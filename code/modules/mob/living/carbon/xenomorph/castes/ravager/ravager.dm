@@ -13,6 +13,7 @@
 	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16
 	old_x = -16
+	bubble_icon = "alienroyal"
 
 // ***************************************
 // *********** Mob overrides
@@ -25,10 +26,21 @@
 	var/mob/living/carbon/human/H = A
 	H.attack_alien_harm(src, xeno_caste.melee_damage * xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 	var/target_turf = get_step_away(src, H, rand(1, 3)) //This is where we blast our target
-	target_turf =  get_step_rand(target_turf) //Scatter
+	target_turf = get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
 	H.Paralyze(2 SECONDS)
 
+/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
+	. = ..()
+	if(stat)
+		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RAVAGER_FLAMER_ACT))
+		return FALSE
+	gain_plasma(50)
+	TIMER_COOLDOWN_START(src, COOLDOWN_RAVAGER_FLAMER_ACT, 1 SECONDS)
+	if(prob(30))
+		emote("roar")
+		to_chat(src, span_xenodanger("The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!"))
 
 // ***************************************
 // *********** Ability related

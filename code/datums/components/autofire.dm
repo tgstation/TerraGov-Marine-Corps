@@ -27,17 +27,18 @@
 /datum/component/automatedfire/autofire/Initialize(_auto_fire_shot_delay = 0.3 SECONDS, _auto_burst_fire_shot_delay, _burstfire_shot_delay, _burst_shots_to_fire = 3, _fire_mode = GUN_FIREMODE_SEMIAUTO, datum/callback/_callback_bursting, datum/callback/_callback_reset_fire, datum/callback/_callback_fire)
 	. = ..()
 
-	RegisterSignal(parent, COMSIG_GUN_FIRE_MODE_TOGGLE, .proc/modify_fire_mode)
-	RegisterSignal(parent, list(COMSIG_GUN_AUTOFIREDELAY_MODIFIED, COMSIG_XENO_AUTOFIREDELAY_MODIFIED), .proc/modify_fire_shot_delay)
-	RegisterSignal(parent, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, .proc/modify_burst_shots_to_fire)
-	RegisterSignal(parent, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, .proc/modify_burstfire_shot_delay)
-	RegisterSignal(parent, list(COMSIG_GUN_FIRE, COMSIG_XENO_FIRE), .proc/initiate_shot)
-	RegisterSignal(parent, list(COMSIG_GUN_STOP_FIRE, COMSIG_XENO_STOP_FIRE), .proc/stop_firing)
+	RegisterSignal(parent, COMSIG_GUN_FIRE_MODE_TOGGLE, PROC_REF(modify_fire_mode))
+	RegisterSignal(parent, list(COMSIG_GUN_AUTOFIREDELAY_MODIFIED, COMSIG_XENO_AUTOFIREDELAY_MODIFIED), PROC_REF(modify_fire_shot_delay))
+	RegisterSignal(parent, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, PROC_REF(modify_burst_shots_to_fire))
+	RegisterSignal(parent, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, PROC_REF(modify_burstfire_shot_delay))
+	RegisterSignal(parent, COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED, PROC_REF(modify_autoburstfire_shot_delay))
+	RegisterSignal(parent, list(COMSIG_GUN_FIRE, COMSIG_XENO_FIRE, COMSIG_MECH_FIRE), PROC_REF(initiate_shot))
+	RegisterSignal(parent, list(COMSIG_GUN_STOP_FIRE, COMSIG_XENO_STOP_FIRE, COMSIG_MECH_STOP_FIRE), PROC_REF(stop_firing))
 
 	auto_fire_shot_delay = _auto_fire_shot_delay
 	burstfire_shot_delay = _burstfire_shot_delay
 	burst_shots_to_fire = _burst_shots_to_fire
-	auto_burst_fire_shot_delay = _auto_burst_fire_shot_delay ? _auto_burst_fire_shot_delay : 2 * auto_fire_shot_delay
+	auto_burst_fire_shot_delay = _auto_burst_fire_shot_delay
 	fire_mode = _fire_mode
 	callback_bursting = _callback_bursting
 	callback_reset_fire = _callback_reset_fire
@@ -69,10 +70,17 @@
 	SIGNAL_HANDLER
 	burstfire_shot_delay = _burstfire_shot_delay
 
+///Setter for autoburst shot delay
+/datum/component/automatedfire/autofire/proc/modify_autoburstfire_shot_delay(datum/source, _auto_burst_fire_shot_delay)
+	SIGNAL_HANDLER
+	auto_burst_fire_shot_delay = _auto_burst_fire_shot_delay
+
 ///Insert the component in the bucket system if it was not in already
 /datum/component/automatedfire/autofire/proc/initiate_shot()
 	SIGNAL_HANDLER
 	if(shooting)//if we are already shooting, it means the shooter is still on cooldown
+		if(bursting) //something went wrong due to lag
+			hard_reset()
 		return
 	shooting = TRUE
 	process_shot()
@@ -91,6 +99,7 @@
 
 ///Hard reset the autofire, happens when the shooter fall/is thrown, at the end of a burst or when it runs out of ammunition
 /datum/component/automatedfire/autofire/proc/hard_reset()
+	callback_reset_fire.Invoke() //resets the gun
 	shots_fired = 0
 	have_to_reset_at_burst_end = FALSE
 	if(bursting)
@@ -104,7 +113,7 @@
 		return
 	if(next_fire > world.time)//This mean duplication somewhere, we abort now
 		return
-	if(!callback_fire.Invoke())//If the parent has failed to fire, we reset the component
+	if(!(callback_fire.Invoke() & AUTOFIRE_CONTINUE))//reset fire if we want to stop
 		hard_reset()
 		return
 	switch(fire_mode)

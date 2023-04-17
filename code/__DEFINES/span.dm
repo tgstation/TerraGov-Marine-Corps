@@ -9,6 +9,7 @@
 #define span_attack(str) ("<span class='attack'>" + str + "</span>")
 #define span_avoidharm(str) ("<span class='avoidharms'>" + str + "</span>")
 #define span_bad(str) ("<span class='bad'>" + str + "</span>")
+#define span_big(str) ("<span class='big'>" + str + "</span>")
 #define span_binarysay(str) ("<span class='binarysay'>" + str + "</span>")
 #define span_bold(str) ("<span class='bold'>" + str + "</span>")
 #define span_boldannounce(str) ("<span class='boldannounce'>" + str + "</span>")
@@ -21,6 +22,8 @@
 #define span_event_announcement(str) ("<span class='event_announcement'>" + str + "</span>")
 #define span_game(str) ("<span class='game'>" + str + "</span>")
 #define span_good(str) ("<span class='good'>" + str + "</span>")
+#define span_greenteamradio(str) ("<span class='greenteamradio'>" + str + "</span>")
+#define span_greentext(str) ("<span class='greentext'>" + str + "</span>")
 #define span_grippy(str) ("<span class='grippy'>" + str + "</span>")
 #define span_hear(str) ("<span class='hear'>" + str + "</span>")
 #define span_highdanger(str) ("<span class='highdanger'>" + str + "</span>")
@@ -72,3 +75,7 @@
 #define span_xenowarning(str) ("<span class='xenowarning'>" + str + "</span>")
 #define span_yell(str) ("<span class='yell'>" + str + "</span>")
 #define span_deptradio(str) ("<span class='deptradio'>" + str + "</span>")
+
+// Spans that use embedded tgui components:
+// Sorted alphabetically
+#define span_tooltip(tip, main_text) ("<span data-component=\"Tooltip\" data-content=\"" + tip + "\" class=\"tooltip\">" + main_text + "</span>")

@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ax" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Cargonia";
@@ -25,7 +25,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bL" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "du" = (
@@ -51,7 +51,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "fG" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
@@ -64,9 +64,9 @@
 /area/bigredv2/outside/cargo)
 "gY" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -80,12 +80,12 @@
 /area/bigredv2/outside/engineering)
 "hF" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "hG" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
@@ -158,7 +158,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "nU" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "oA" = (
@@ -169,8 +169,8 @@
 /area/bigredv2/outside/cargo)
 "oB" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "oN" = (
@@ -180,7 +180,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "oU" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "pb" = (
@@ -201,7 +201,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "qi" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "qC" = (
@@ -287,7 +287,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "xV" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "zh" = (
@@ -302,9 +302,9 @@
 /area/bigredv2/outside/cargo)
 "zP" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "An" = (
@@ -350,10 +350,10 @@
 /area/bigredv2/outside/cargo)
 "CN" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Dc" = (
@@ -377,7 +377,7 @@
 /area/bigredv2/outside/cargo)
 "Fw" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Hd" = (
@@ -391,9 +391,9 @@
 /area/bigredv2/outside/cargo)
 "Id" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "IP" = (
@@ -459,7 +459,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "MF" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -476,7 +476,7 @@
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
 	},
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "NJ" = (
@@ -514,11 +514,11 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/cargo)
 "PW" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Qw" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Rz" = (
@@ -546,12 +546,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Ux" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "Vw" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "VX" = (

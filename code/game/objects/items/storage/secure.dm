@@ -11,18 +11,18 @@
 	var/l_hacking = 0
 	var/open = 0
 	w_class = WEIGHT_CLASS_NORMAL
-	max_w_class = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 14
 
-	examine(mob/user)
-		..()
-		to_chat(user, "The service panel is [open ? "open" : "closed"].")
+/obj/item/storage/secure/examine(mob/user)
+	. = ..()
+	. += "The service panel is [open ? "open" : "closed"]."
 
 
-	MouseDrop(over_object, src_location, over_location)
-		if (locked)
-			return
-		..()
+/obj/item/storage/secure/MouseDrop(over_object, src_location, over_location)
+	if (locked)
+		return
+	..()
 
 
 /obj/item/storage/secure/interact(mob/user)
@@ -105,10 +105,11 @@
 			l_hacking = FALSE
 			return
 
+
 		l_setshort = TRUE
 		l_set = FALSE
 		user.show_message(span_warning(" Internal memory reset.  Please give it a few seconds to reinitialize."))
-		sleep(80)
+		sleep(8 SECONDS)
 		l_setshort = FALSE
 		l_hacking = FALSE
 
@@ -120,9 +121,13 @@
 	name = "secure briefcase"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
+	)
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
-	force = 8.0
+	force = 8
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
@@ -161,9 +166,9 @@
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
 	flags_atom = CONDUCT
-	force = 8.0
-	w_class = 8.0
-	max_w_class = 8
+	force = 8
+	w_class = WEIGHT_CLASS_GIGANTIC
+	max_w_class = WEIGHT_CLASS_GIGANTIC
 	anchored = TRUE
 	density = FALSE
 	cant_hold = list(/obj/item/storage/secure/briefcase)

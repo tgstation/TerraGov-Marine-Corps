@@ -59,10 +59,10 @@
 	LAZYADD(buckled_mobs, buckling_mob)
 	if(buckle_lying != -1)
 		ADD_TRAIT(buckling_mob, TRAIT_FLOORED, BUCKLE_TRAIT)
-	buckling_mob.throw_alert("buckled", /obj/screen/alert/restrained/buckled)
+	buckling_mob.throw_alert("buckled", /atom/movable/screen/alert/restrained/buckled)
 	post_buckle_mob(buckling_mob, silent)
 
-	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, PROC_REF(resisted_against))
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	return TRUE
 
@@ -110,8 +110,8 @@
 
 
 //Wrapper procs that handle sanity and user feedback
-/atom/movable/proc/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = TRUE, silent)
-	if(!Adjacent(user, src) || !isturf(user.loc) || user.incapacitated() || buckling_mob.anchored)
+/atom/movable/proc/user_buckle_mob(mob/living/buckling_mob, mob/living/user, check_loc = TRUE, silent)
+	if(!user.user_can_buckle(buckling_mob))
 		return FALSE
 
 	add_fingerprint(user, "buckle")
@@ -156,3 +156,20 @@
 		var/mob/living/pulling_living = unbuckling_living.pulledby
 		pulling_living.set_pull_offsets(unbuckling_living)
 	return unbuckling_living
+
+///Returns TRUE or FALSE depending on whether src can buckle buckling_mob into something
+/mob/living/proc/user_can_buckle(mob/living/buckling_mob)
+	if(!Adjacent(src, buckling_mob))
+		return FALSE
+	if(!isturf(loc))
+		return FALSE
+	if(incapacitated())
+		return FALSE
+	if(buckling_mob.anchored)
+		return FALSE
+	return TRUE
+
+/mob/living/carbon/xenomorph/user_can_buckle(mob/living/buckling_mob)
+	if(buckling_mob.stat)
+		return FALSE
+	return ..()

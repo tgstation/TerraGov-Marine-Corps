@@ -1,27 +1,49 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window10"
-	},
 /obj/machinery/door_control{
 	dir = 1;
 	id = "minidropship_podlock";
 	name = "outer door-control"
 	},
-/turf/open/floor/mainship_hull,
+/obj/structure/dropship_piece/tadpole/tadpole_nose/right{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/structure/dropship_piece/tadpole/cockpit/right{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "b" = (
-/obj/effect/attach_point/weapon/minidropship,
-/turf/closed/wall/mainship/outer/reinforced,
-/area/shuttle/minidropship)
-"h" = (
-/turf/open/floor/mainship/orange{
-	dir = 4
+/obj/structure/dropship_piece/two/weapon/leftleft{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = -23
+	},
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/turf/closed/shuttle/dropship2/rearcorner/alt/tadpole{
+	dir = 1
 	},
 /area/shuttle/minidropship)
-"i" = (
-/turf/open/floor/mainship/orange{
-	dir = 9
+"c" = (
+/obj/structure/dropship_piece/two/weapon/rightright{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = 23
+	},
+/turf/closed/shuttle/dropship2/rearcorner/tadpole{
+	dir = 1
 	},
 /area/shuttle/minidropship)
 "j" = (
@@ -29,15 +51,17 @@
 	id = "minidropship_podlock";
 	name = "inner door-control"
 	},
-/turf/open/floor/mainship/orange{
-	dir = 5
-	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "n" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window12"
+/obj/structure/dropship_piece/tadpole/tadpole_nose{
+	dir = 1;
+	pixel_y = 32
 	},
-/turf/open/floor/mainship_hull,
+/obj/structure/dropship_piece/singlewindow/tadpole{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "p" = (
 /obj/structure/barricade/plasteel{
@@ -46,39 +70,36 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/machinery/door/poddoor/shutters/transit,
-/obj/machinery/light,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"r" = (
+"q" = (
 /obj/machinery/vending/nanomed/tadpolemed{
-	dir = 4
+	pixel_x = 5
 	},
-/turf/open/floor/mainship/orange{
-	dir = 8
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	pixel_x = -25
 	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "s" = (
-/turf/open/floor/mainship/floor,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "u" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/turf/open/floor/mainship/orange,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "v" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "minidropship_podlock"
 	},
 /obj/structure/barricade/plasteel,
-/turf/open/floor/mainship/orange{
-	dir = 10
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
+	dir = 1
 	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "y" = (
 /obj/structure/barricade/plasteel{
@@ -87,18 +108,46 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/machinery/door/poddoor/shutters/transit,
-/obj/machinery/light,
-/turf/open/floor/mainship/orange{
-	dir = 8
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"A" = (
+/obj/structure/dropship_piece/glassone/tadpole{
+	dir = 1
 	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "B" = (
-/turf/closed/wall/mainship/outer/reinforced,
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = -23;
+	pixel_y = -14
+	},
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/obj/machinery/light,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "C" = (
-/obj/machinery/telecomms/relay/preset/telecomms/onboard,
-/turf/closed/wall/mainship/outer/reinforced,
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = 23;
+	pixel_y = -14
+	},
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "E" = (
 /turf/template_noop,
@@ -108,38 +157,19 @@
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
-/turf/open/floor/mainship/orange{
-	dir = 1
-	},
-/area/shuttle/minidropship)
-"I" = (
-/obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 8
-	},
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/shuttle/minidropship)
-"K" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window1"
-	},
-/turf/open/floor/mainship_hull,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "L" = (
-/obj/structure/shuttle/engine/propulsion/burst/left,
-/turf/open/shuttle/dropship/three,
+/obj/structure/dropship_piece/tadpole/rearleft{
+	dir = 1
+	},
+/turf/template_noop,
 /area/shuttle/minidropship)
 "N" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
+/obj/structure/dropship_piece/glasstwo/tadpole{
+	dir = 1
 	},
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlock"
-	},
-/obj/structure/barricade/plasteel,
-/turf/open/floor/mainship/orange,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "O" = (
 /obj/structure/barricade/plasteel{
@@ -148,32 +178,32 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"R" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
+"Q" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "minidropship_podlock"
 	},
 /obj/structure/barricade/plasteel,
-/turf/open/floor/mainship/orange{
-	dir = 6
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
+	dir = 1
 	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "S" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window6"
+/obj/structure/dropship_piece/tadpole/tadpole_nose/left{
+	dir = 1;
+	pixel_y = 32
 	},
-/turf/open/floor/mainship_hull,
+/obj/structure/dropship_piece/tadpole/cockpit/left{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "T" = (
 /obj/structure/barricade/plasteel{
@@ -182,26 +212,25 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "U" = (
-/obj/structure/shuttle/engine/propulsion/burst/right,
-/turf/open/shuttle/dropship/three,
+/obj/structure/dropship_piece/tadpole/rearright{
+	dir = 1
+	},
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/template_noop,
 /area/shuttle/minidropship)
 "V" = (
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "Y" = (
 /obj/effect/attach_point/crew_weapon/minidropship,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
@@ -230,10 +259,10 @@ E
 E
 E
 S
-K
-i
+A
+q
+s
 V
-r
 v
 E
 "}
@@ -245,25 +274,25 @@ u
 F
 Y
 s
-N
+Q
 E
 "}
 (5,1,1) = {"
 E
 E
 a
-K
+N
 j
-h
-I
-R
+s
+V
+v
 E
 "}
 (6,1,1) = {"
 E
 E
 E
-b
+c
 T
 y
 C

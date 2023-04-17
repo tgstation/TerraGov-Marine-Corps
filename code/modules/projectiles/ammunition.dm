@@ -4,9 +4,12 @@
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = null
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
+		)
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	materials = list(/datum/material/metal = 100)
 	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
@@ -35,13 +38,13 @@
 	var/base_mag_icon
 
 	//Stats to modify on the gun, just like the attachments do, only has used ones add more as you need.
-	var/scatter_mod 	= 0
+	var/scatter_mod = 0
 	///Increases or decreases scatter chance but for onehanded firing.
 	var/scatter_unwielded_mod = 0
 	///Changes the slowdown amount when wielding a weapon by this value.
-	var/aim_speed_mod	= 0
+	var/aim_speed_mod = 0
 	///How long ADS takes (time before firing)
-	var/wield_delay_mod	= 0
+	var/wield_delay_mod = 0
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -79,9 +82,7 @@
 		var/obj/item/weapon/gun/gun = I
 		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
 			return ..()
-		if(!gun.reload(src, user))
-			return
-		gun.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
+		gun.reload(src, user)
 		return
 
 	if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_REFILLABLE)) //and a refillable magazine
@@ -169,7 +170,6 @@
 		user.put_in_hands(new_handful)
 		to_chat(user, span_notice("You grab <b>[rounds]</b> round\s from [src]."))
 		update_icon() //Update the other one.
-		user?.hud_used.update_ammo_hud(user, src)
 		if(current_rounds <= 0 && CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL))
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
@@ -209,7 +209,7 @@
 	default_ammo = source.default_ammo
 
 //~Art interjecting here for explosion when using flamer procs.
-/obj/item/ammo_magazine/flamer_fire_act()
+/obj/item/ammo_magazine/flamer_fire_act(burnlevel)
 	if(!current_rounds)
 		return
 	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
@@ -222,7 +222,6 @@
 /obj/item/ammo_magazine/handful
 	name = "generic handful of bullets or shells"
 	desc = "A handful of rounds to reload on the go."
-	materials = list(/datum/material/metal = 50) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
 	flags_equip_slot = null // It only fits into pockets and such.
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
@@ -238,6 +237,43 @@
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	caliber = CALIBER_12G
+
+/obj/item/ammo_magazine/handful/flechette
+	name = "handful of shotgun flechette shells (12g)"
+	icon_state = "shotgun flechette shell"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
+	caliber = CALIBER_12G
+
+/obj/item/ammo_magazine/handful/incendiary
+	name = "handful of shotgun incendiary shells (12g)"
+	icon_state = "incendiary slug"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/incendiary
+	caliber = CALIBER_12G
+
+/obj/item/ammo_magazine/handful/micro_grenade
+	name = "handful of airburst micro grenades (10g)"
+	icon_state = "micro_grenade_airburst"
+	current_rounds = 3
+	max_rounds = 3
+	default_ammo = /datum/ammo/bullet/micro_rail/airburst
+	caliber = CALIBER_10G_RAIL
+
+/obj/item/ammo_magazine/handful/micro_grenade/dragonbreath
+	name = "handful of dragon's breath micro grenades (10g)"
+	icon_state = "micro_grenade_incendiary"
+	default_ammo = /datum/ammo/bullet/micro_rail/dragonbreath
+
+/obj/item/ammo_magazine/handful/micro_grenade/cluster
+	name = "handful of clustermunition micro grenades (10g)"
+	icon_state = "micro_grenade_cluster"
+	default_ammo = /datum/ammo/bullet/micro_rail/cluster
+
+/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst
+	name = "handful of smoke burst micro grenades (10g)"
+	icon_state = "micro_grenade_smoke"
+	default_ammo = /datum/ammo/bullet/micro_rail/smoke_burst
 
 //----------------------------------------------------------------//
 
@@ -262,17 +298,17 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	layer = LOWER_ITEM_LAYER //Below other objects
 	dir = 1 //Always north when it spawns.
 	flags_atom = CONDUCT|DIRLOCK
-	materials = list(/datum/material/metal = 8)
 	var/current_casings = 1 //This is manipulated in the procs that use these.
 	var/max_casings = 16
 	var/current_icon = 0
 	var/number_of_states = 10 //How many variations of this item there are.
+	var/initial_icon_state = "cartridge_" //holder for icon_state so we can do random variations without effecting mapper visibility
 
 /obj/item/ammo_casing/Initialize()
 	. = ..()
 	pixel_x = rand(-2, 2) //Want to move them just a tad.
 	pixel_y = rand(-2, 2)
-	icon_state += "[rand(1, number_of_states)]" //Set the icon to it.
+	icon_state = initial_icon_state += "[rand(1, number_of_states)]" //Set the icon to it.
 
 //This does most of the heavy lifting. It updates the icon and name if needed, then changes .dir to simulate new casings.
 /obj/item/ammo_casing/update_icon()
@@ -282,8 +318,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			current_icon++
 			icon_state += "_[current_icon]"
 
-		var/I = current_casings*8 // For the metal.
-		materials = list(/datum/material/metal = I)
 		var/base_direction = current_casings - (current_icon * 8)
 		setDir(base_direction + round(base_direction)/3)
 		switch(current_casings)
@@ -296,11 +330,12 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammo_casing/cartridge
 	name = "spent cartridge"
-	icon_state = "cartridge_"
+	icon_state = "cartridge"
 
 /obj/item/ammo_casing/shell
 	name = "spent shell"
-	icon_state = "shell_"
+	initial_icon_state = "shell_"
+	icon_state = "shell"
 
 
 
@@ -315,10 +350,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon_state = "big_ammo_box"
 	item_state = "big_ammo_box"
 	flags_equip_slot = ITEM_SLOT_BACK
-	var/base_icon_state = "big_ammo_box"
+	base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
-	var/bullet_amount = 800
-	var/max_bullet_amount = 800
+	var/bullet_amount = 2400
+	var/max_bullet_amount = 2400
 	var/caliber = CALIBER_10X24_CASELESS
 
 /obj/item/big_ammo_box/update_icon_state()
@@ -384,7 +419,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				qdel(AM)
 
 //explosion when using flamer procs.
-/obj/item/big_ammo_box/flamer_fire_act()
+/obj/item/big_ammo_box/flamer_fire_act(burnlevel)
 	if(!bullet_amount)
 		return
 	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
@@ -504,6 +539,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon_state = "big_ammo_box_m25"
 	base_icon_state = "big_ammo_box_m25"
 	default_ammo = /datum/ammo/bullet/smg
+	bullet_amount = 4500
+	max_bullet_amount = 4500
+	caliber = CALIBER_10X20_CASELESS
 
 /obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"
@@ -514,3 +552,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "Flechette Ammo Box"
 	icon_state = "ammoboxflechette"
 	ammo_type = /datum/ammo/bullet/shotgun/flechette
+
+/obj/item/big_ammo_box/mg
+	name = "big ammo box (10x26mm)"
+	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	caliber = CALIBER_10x26_CASELESS
+	bullet_amount = 3200 //a backpack holds 8 MG-60 box mags, which is 1600 rounds
+	max_bullet_amount = 3200

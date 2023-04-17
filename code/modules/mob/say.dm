@@ -57,7 +57,7 @@
 
 	var/name = "GHOST" // Just defined incase its empty
 	var/alt_name = ""
-	if(mind && mind.name)
+	if(mind?.name)
 		name = "[mind.name]"
 	else
 		name = real_name
@@ -89,6 +89,8 @@
 		var/key_symbol = lowertext(message[length(key) + 1])
 		if(faction == FACTION_TERRAGOV_REBEL)
 			return GLOB.department_radio_keys_rebel[key_symbol]
+		if(faction == FACTION_SOM)
+			return GLOB.department_radio_keys_som[key_symbol]
 		return GLOB.department_radio_keys[key_symbol]
 
 

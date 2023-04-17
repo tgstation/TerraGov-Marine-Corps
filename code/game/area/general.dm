@@ -37,6 +37,7 @@
 	requires_power = 0
 	outside = FALSE
 	flags_area = OB_CAS_IMMUNE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/shuttle/arrival
 	name = "Abandoned Arrival Shuttle"
@@ -244,6 +245,7 @@
 	name = "Abandoned Asteroid - Underground"
 	icon_state = "cave"
 	requires_power = 0
+	minimap_color = MINIMAP_AREA_CAVES
 
 
 /area/asteroid/artifactroom
@@ -773,121 +775,6 @@
 	name = "Abandoned Holodeck - Space"
 
 
-
-
-
-
-
-
-
-
-
-//Engineering
-
-/area/engine
-
-	drone_fabrication
-		name = "Abandoned Drone Fabrication"
-		icon_state = "engine"
-
-	engine_smes
-		name = "Engineering SMES"
-		icon_state = "engine_smes"
-//		requires_power = 0//This area only covers the batteries and they deal with their own power
-
-	engine_room
-		name = "Abandoned Engine Room"
-		icon_state = "engine"
-
-	engine_airlock
-		name = "Abandoned Engine Room Airlock"
-		icon_state = "engine"
-
-	engine_monitoring
-		name = "Abandoned Engine Monitoring Room"
-		icon_state = "engine_monitoring"
-
-	engine_waste
-		name = "Abandoned Engine Waste Handling"
-		icon_state = "engine_waste"
-
-	engineering_monitoring
-		name = "Abandoned Engineering Monitoring Room"
-		icon_state = "engine_monitoring"
-
-	atmos_monitoring
-		name = "Abandoned Atmospherics Monitoring Room"
-		icon_state = "engine_monitoring"
-
-	engineering
-		name = "Engineering"
-		icon_state = "engine_smes"
-
-	engineering_foyer
-		name = "Abandoned Engineering Foyer"
-		icon_state = "engine"
-
-	break_room
-		name = "Abandoned Engineering Break Room"
-		icon_state = "engine"
-
-	hallway
-		name = "Abandoned Engineering Hallway"
-		icon_state = "engine_hallway"
-
-	engine_hallway
-		name = "Abandoned Engine Room Hallway"
-		icon_state = "engine_hallway"
-
-	engine_eva
-		name = "Abandoned Engine EVA"
-		icon_state = "engine_eva"
-
-	engine_eva_maintenance
-		name = "Abandoned Engine EVA Maintenance"
-		icon_state = "engine_eva"
-
-	workshop
-		name = "Abandoned Engineering Workshop"
-		icon_state = "engine_storage"
-
-	locker_room
-		name = "Abandoned Engineering Locker Room"
-		icon_state = "engine_storage"
-
-
-//Solars
-
-/area/solar
-	requires_power = 1
-	always_unpowered = 1
-	static_lighting = FALSE
-	base_lighting_alpha = 255
-
-	auxport
-		name = "Abandoned Fore Port Solar Array"
-		icon_state = "panelsA"
-
-	auxstarboard
-		name = "Abandoned Fore Starboard Solar Array"
-		icon_state = "panelsA"
-
-	fore
-		name = "Abandoned Fore Solar Array"
-		icon_state = "yellow"
-
-	aft
-		name = "Abandoned Aft Solar Array"
-		icon_state = "aft"
-
-	starboard
-		name = "Abandoned Aft Starboard Solar Array"
-		icon_state = "panelsS"
-
-	port
-		name = "Abandoned Aft Port Solar Array"
-		icon_state = "panelsP"
-
 /area/maintenance/auxsolarport
 	name = "Fore Port Solar Maintenance"
 	icon_state = "SolarcontrolP"
@@ -946,6 +833,8 @@
 	ambience = list('sound/ambience/ambimalf.ogg')
 
 //MedBay
+/area/medical
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/medical/medbay
 	name = "Abandoned Medbay"
@@ -1069,6 +958,8 @@
 	icon_state = "exam_room"
 
 //Security
+/area/security
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/security/main
 	name = "Abandoned Security Office"
@@ -1192,6 +1083,8 @@
 	icon_state = "garden"
 
 //rnd (Research and Development
+/area/rnd
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/rnd/research
 	name = "Abandoned Research and Development"

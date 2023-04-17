@@ -9,11 +9,11 @@
 	. = ..()
 	if(!ismovable(target))
 		return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_target_move)
+	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_target_move))
 	var/atom/movable/movable_target = target
 	if(!isturf(movable_target.loc))
 		return
-	for(var/turf/turf_loc as anything in movable_target.locs)
+	for(var/turf/turf_loc AS in movable_target.locs)
 		turf_loc.add_opacity_source(target)
 
 
@@ -23,7 +23,7 @@
 	var/atom/movable/movable_target = target
 	if(!isturf(movable_target.loc))
 		return
-	for(var/turf/turf_loc as anything in movable_target.locs)
+	for(var/turf/turf_loc AS in movable_target.locs)
 		turf_loc.remove_opacity_source(target)
 
 
@@ -33,11 +33,11 @@
 	SIGNAL_HANDLER
 	if(isturf(old_loc))
 		if(old_locs)
-			for(var/turf/old_turf as anything in old_locs)
+			for(var/turf/old_turf AS in old_locs)
 				old_turf.remove_opacity_source(source)
 		else
 			var/turf/old_turf = old_loc
 			old_turf.remove_opacity_source(source)
 	if(isturf(source.loc))
-		for(var/turf/new_turf as anything in source.locs)
+		for(var/turf/new_turf AS in source.locs)
 			new_turf.add_opacity_source(source)

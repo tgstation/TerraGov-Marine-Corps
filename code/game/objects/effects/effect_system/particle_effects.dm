@@ -5,7 +5,7 @@
 /obj/effect/particle_effect
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	flags_pass = PASSTABLE|PASSGRILLE|PASSMOB
 
 	//Fire
@@ -14,7 +14,7 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "3"
 	var/life = 0.5 //In seconds
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 
 /obj/effect/particle_effect/fire/Initialize(mapload, ...)
@@ -26,18 +26,18 @@
 	QDEL_IN(src, life SECONDS)
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
 	setDir(pick(GLOB.cardinals))
-	set_light(3)
+	set_light(1, 3)
 
 	for(var/mob/living/L in loc)//Mobs
 		L.fire_act()
-	for(var/obj/effect/alien/weeds/W in loc)//Weeds
+	for(var/obj/alien/weeds/W in loc)//Weeds
 		W.fire_act()
-	for(var/obj/effect/alien/egg/E in loc)//Eggs
+	for(var/obj/alien/egg/E in loc)//Eggs
 		E.fire_act()
 	for(var/obj/structure/bed/nest/N in loc)//Nests
 		N.fire_act()
@@ -55,8 +55,8 @@
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
-	var/life = 15.0
-	mouse_opacity = 0
+	var/life = 15
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/particle_effect/water/Move(turf/newloc)
 	if (--life < 1)

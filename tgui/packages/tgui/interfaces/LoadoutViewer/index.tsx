@@ -1,39 +1,53 @@
-import { useBackend } from "../../backend";
-import { Window } from "../../layouts";
-import { Button, Section, Stack, Flex } from "../../components";
+import { useBackend } from '../../backend';
+import { Window } from '../../layouts';
+import { Button, Section, Stack, Flex } from '../../components';
 import { SlotSelector } from './Slots';
 import { Loadout } from '../LoadoutManager/Types';
-import { LoadoutViewerData } from "./Types";
+import { LoadoutViewerData } from './Types';
 
 const LoadoutNavigator = (props: Loadout, context) => {
   const { act } = useBackend(context);
-  const {
-    name,
-    job,
-  }= props;
+  const { name, job } = props;
 
   return (
     <Section title="Loadout Navigator" textAlign="center">
       <Flex>
-        <Flex.Item grow={1}><div> </div></Flex.Item>
+        <Flex.Item grow={1}>
+          <div> </div>
+        </Flex.Item>
         <Flex.Item>
           <Button
-            onClick={() => { 
+            onClick={() => {
               act('equipLoadout');
             }}>
             Equip Loadout
           </Button>
         </Flex.Item>
-        <Flex.Item grow={1}><div> </div></Flex.Item>
+        <Flex.Item grow={1}>
+          <div> </div>
+        </Flex.Item>
         <Flex.Item>
-          <Button
+          <Button.Confirm
+            onClick={() => {
+              act('overwriteLoadout');
+            }}>
+            Overwrite Loadout
+          </Button.Confirm>
+        </Flex.Item>
+        <Flex.Item grow={1}>
+          <div> </div>
+        </Flex.Item>
+        <Flex.Item>
+          <Button.Confirm
             onClick={() => {
               act('deleteLoadout');
             }}>
             Delete Loadout
-          </Button>
+          </Button.Confirm>
         </Flex.Item>
-        <Flex.Item grow={1}><div> </div></Flex.Item>
+        <Flex.Item grow={1}>
+          <div> </div>
+        </Flex.Item>
       </Flex>
     </Section>
   );
@@ -41,26 +55,15 @@ const LoadoutNavigator = (props: Loadout, context) => {
 
 export const LoadoutViewer = (props, context) => {
   const { data } = useBackend<LoadoutViewerData>(context);
-  
-  const {
-    loadout,
-    items,
-  }= data;
+
+  const { loadout, items } = data;
 
   return (
-    <Window 
-      title="Loadout Viewer"
-      width={260} 
-      height={460}>
+    <Window title="Loadout Viewer" width={400} height={460}>
       <Window.Content>
         <Stack fill vertical>
-          <SlotSelector 
-            items={items}
-          />
-          <LoadoutNavigator
-            name={loadout.name}
-            job={loadout.job}
-          /> 
+          <SlotSelector items={items} />
+          <LoadoutNavigator name={loadout.name} job={loadout.job} />
         </Stack>
       </Window.Content>
     </Window>

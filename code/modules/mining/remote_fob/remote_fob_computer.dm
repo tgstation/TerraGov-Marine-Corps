@@ -6,6 +6,7 @@
 	desc = "A computer console equipped with camera screen and controls for a planetside deployed construction drone. Materials or equipment vouchers can be added simply by inserting them into the computer."
 	icon = 'icons/Marine/remotefob.dmi'
 	icon_state = "fobpc"
+	interaction_flags = INTERACT_MACHINE_DEFAULT
 	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)
 	resistance_flags = RESIST_ALL
 	networks = FALSE
@@ -33,7 +34,7 @@
 	eject_metal_action = new()
 	eject_plasteel_action = new()
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, PROC_REF(disable_drone_creation))
 
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
 	SIGNAL_HANDLER
@@ -177,6 +178,8 @@
 		eject_plasteel_action.give_action(user)
 		actions += eject_plasteel_action
 
+	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(on_controller_click))
+
 	eyeobj.invisibility = 0
 
 /obj/machinery/computer/camera_advanced/remote_fob/remove_eye_control(mob/living/user)
@@ -184,6 +187,7 @@
 	eyeobj.invisibility = INVISIBILITY_ABSTRACT
 	eyeobj.eye_initialized = FALSE
 	eyeobj.unregister_facedir_signals(user)
+	UnregisterSignal(user, COMSIG_MOB_CLICKON)
 	return ..()
 
 /obj/machinery/computer/camera_advanced/remote_fob/check_eye(mob/living/user)
@@ -192,3 +196,8 @@
 		user.unset_interaction()
 		return
 	return ..()
+
+/// Lets players click a tile while controlling to face it.
+/obj/machinery/computer/camera_advanced/remote_fob/proc/on_controller_click(datum/source, atom/target, turf/location, control, params)
+	SIGNAL_HANDLER
+	eyeobj.facedir(get_dir(eyeobj, target))

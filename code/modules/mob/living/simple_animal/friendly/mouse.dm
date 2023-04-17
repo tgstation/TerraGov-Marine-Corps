@@ -13,9 +13,9 @@
 	see_in_dark = 6
 	maxHealth = 5
 	health = 5
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "splats"
+	response_harm = "splats"
 	density = FALSE
 	flags_pass = PASSTABLE|PASSGRILLE|PASSMOB
 	mob_size = MOB_SIZE_SMALL
@@ -32,9 +32,10 @@
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	ADD_TRAIT(src, TRAIT_CAN_VENTCRAWL, INNATE_TRAIT)
 
 
 /mob/living/simple_animal/mouse/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
@@ -78,6 +79,6 @@
 /mob/living/simple_animal/mouse/brown/Tom
 	name = "Tom"
 	desc = "Jerry the cat is not amused."
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "splats"
+	response_harm = "splats"

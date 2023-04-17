@@ -28,17 +28,12 @@
 	icon_state = "x"
 	anchored = TRUE
 	layer = MOB_LAYER
-	var/jobspawn_override = FALSE
 	var/delete_after_roundstart = TRUE
 	var/used = FALSE
 
 
 /obj/effect/landmark/start/Initialize()
 	GLOB.start_landmarks_list += src
-	if(jobspawn_override)
-		if(!GLOB.jobspawn_overrides[name])
-			GLOB.jobspawn_overrides[name] = list()
-		GLOB.jobspawn_overrides[name] += src
 	. = ..()
 	if(name != "start")
 		tag = "start*[name]"
@@ -46,8 +41,6 @@
 
 /obj/effect/landmark/start/Destroy()
 	GLOB.start_landmarks_list -= src
-	if(jobspawn_override)
-		GLOB.jobspawn_overrides[name] -= src
 	return ..()
 
 
@@ -71,6 +64,11 @@
 /obj/effect/landmark/start/latejoinrebel/Initialize()
 	. = ..()
 	GLOB.latejoinrebel += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/start/latejoinsom/Initialize()
+	. = ..()
+	GLOB.latejoinsom += loc
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/start/latejoin_gateway/Initialize()
@@ -126,7 +124,7 @@
 /obj/effect/landmark/weed_node
 	name = "xeno weed node spawn landmark"
 	icon = 'icons/Xeno/weeds.dmi'
-	icon_state = "weednode"
+	icon_state = "weednode0"
 
 /obj/effect/landmark/weed_node/Initialize()
 	GLOB.xeno_weed_node_turfs += loc
@@ -161,16 +159,6 @@
 /obj/effect/landmark/xeno_silo_spawn/Initialize()
 	GLOB.xeno_resin_silo_turfs += loc
 	. = ..()
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/xeno_turret_spawn
-	name = "xeno turret spawn landmark"
-	icon = 'icons/Xeno/acidturret.dmi'
-	icon_state = "acid_turret"
-
-/obj/effect/landmark/xeno_turret_spawn/Initialize()
-	GLOB.xeno_turret_turfs += loc
-	..()
 	return INITIALIZE_HINT_QDEL
 
 
@@ -266,7 +254,6 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/combat_knife/upp,
 		/obj/item/stack/throwing_knife,
-		/obj/item/weapon/unathiknife,
 		/obj/item/weapon/chainofcommand,
 		/obj/item/weapon/broken_bottle,
 		/obj/item/weapon/baseballbat,
@@ -286,7 +273,7 @@
 		/obj/item/weapon/gun/pistol/m1911/custom,
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/weapon/gun/revolver/mateba/notmarine,
-		/obj/item/weapon/gun/revolver/mateba/captain,
+		/obj/item/weapon/gun/revolver/mateba/custom,
 		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/weapon/gun/smg/standard_smg,
 		/obj/item/weapon/gun/smg/m25,
@@ -428,43 +415,50 @@
 
 /obj/effect/landmark/sensor_tower/Initialize()
 	. = ..()
-	var/area/area_to_control = get_area(src)
-	area_to_control.set_to_contested()
 	GLOB.sensor_towers += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/valhalla_xeno_spawn_landmark_close
-	name = "Valhalla xeno spawn"
+/obj/effect/landmark/sensor_tower_patrol
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor_loyalist"
+
+/obj/effect/landmark/sensor_tower_patrol/Initialize()
+	..()
+	GLOB.sensor_towers_patrol += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/valhalla
 	icon = 'icons/effects/landmarks_static.dmi'
-	icon_state = "xeno_spawn_valhalla"
+	///What do we spawn? (xeno or marine)
+	var/spawns
+	///Where do we spawn?
+	var/where
 
-/obj/effect/landmark/valhalla_xeno_spawn_landmark_close/Initialize()
+/obj/effect/landmark/valhalla/Initialize()
 	. = ..()
-	GLOB.valhalla_xeno_spawn_landmark[CLOSE] = src
+	GLOB.valhalla_button_spawn_landmark["[spawns][where]"] = src
 
-/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two
+/obj/effect/landmark/valhalla/xeno_spawn_landmark
 	name = "Valhalla xeno spawn"
-	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "xeno_spawn_valhalla"
+	spawns = "xeno"
 
-/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two/Initialize()
+/obj/effect/landmark/valhalla/marine_spawner_landmark
+	name = "Marine spawner landmark"
+	spawns = "marine"
+
+//Combat patrol spawn in spots
+/obj/effect/landmark/patrol_point
+	name = "Patrol exit point"
+	//ID to link with an associated start point
+	var/id = null
+
+/obj/effect/landmark/patrol_point/Initialize()
 	. = ..()
-	GLOB.valhalla_xeno_spawn_landmark[CLOSE2] = src
+	//adds the exit points to the glob, and the start points link to them in lateinit
+	GLOB.patrol_point_list += src
 
-/obj/effect/landmark/valhalla_xeno_spawn_landmark_far
-	name = "Valhalla xeno spawn"
-	icon = 'icons/effects/landmarks_static.dmi'
-	icon_state = "xeno_spawn_valhalla"
-
-/obj/effect/landmark/valhalla_xeno_spawn_landmark_far/Initialize()
-	. = ..()
-	GLOB.valhalla_xeno_spawn_landmark[FAR] = src
-
-/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two
-	name = "Valhalla xeno spawn"
-	icon = 'icons/effects/landmarks_static.dmi'
-	icon_state = "xeno_spawn_valhalla"
-
-/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two/Initialize()
-	. = ..()
-	GLOB.valhalla_xeno_spawn_landmark[FAR2] = src
+/obj/effect/landmark/patrol_point/Destroy()
+	GLOB.patrol_point_list -= src
+	return ..()

@@ -28,7 +28,7 @@
 			for(var/rid in S.chems)
 				var/list/reagent_data = S.chems[rid]
 				var/rtotal = reagent_data[1]
-				if(reagent_data.len > 1 && potency > 0)
+				if(length(reagent_data) > 1 && potency > 0)
 					rtotal += round(potency/reagent_data[2])
 				reagents.add_reagent(rid,max(1,rtotal))
 
@@ -118,7 +118,7 @@
 		playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 		force -= rand(1,(force/3)+1) // When you whack someone with it, leaves fall off
 
-	sleep(1)
+	sleep(0.1 SECONDS)
 
 	if(force <= 0)
 		if(user)

@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ak" = (
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
@@ -22,7 +22,7 @@
 /obj/machinery/power/apc,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -37,7 +37,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "ba" = (
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/blue/full,
 /area/bigredv2/outside/office_complex)
@@ -59,7 +59,7 @@
 	dir = 1;
 	name = "\improper Private Office"
 	},
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -120,10 +120,10 @@
 /area/bigredv2/outside/office_complex)
 "bW" = (
 /obj/machinery/power/terminal,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -152,7 +152,7 @@
 "cv" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
 "cF" = (
@@ -167,7 +167,7 @@
 /area/bigredv2/outside/e)
 "cJ" = (
 /obj/structure/cable,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -181,7 +181,7 @@
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/tool/weldpack,
 /obj/item/tool/extinguisher/mini,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship/orange/full,
 /area/bigredv2/outside/office_complex)
 "dv" = (
@@ -202,11 +202,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/office_complex)
-"dT" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 1
-	},
-/area/bigredv2/outside/e)
 "dV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -266,7 +261,7 @@
 /area/bigredv2/outside/office_complex)
 "gN" = (
 /obj/item/ammo_casing,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -283,7 +278,7 @@
 /area/bigredv2/outside/office_complex)
 "ha" = (
 /obj/item/stack/sheet/plasteel,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/office_complex)
@@ -295,7 +290,7 @@
 /area/bigredv2/outside/office_complex)
 "hw" = (
 /obj/structure/cable,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/item/stack/sheet/glass{
 	amount = 50;
 	pixel_x = 3;
@@ -332,7 +327,7 @@
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "ju" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/item/shard,
@@ -350,14 +345,14 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/mainship/red,
 /area/bigredv2/outside/office_complex)
 "jO" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "jX" = (
@@ -386,7 +381,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "lo" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 10
 	},
 /obj/effect/landmark/weed_node,
@@ -452,7 +447,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "nc" = (
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/office_complex)
 "ng" = (
@@ -467,7 +462,7 @@
 /area/bigredv2/outside/office_complex)
 "nX" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 10
 	},
 /turf/open/floor,
@@ -518,8 +513,8 @@
 "pC" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/spawner/random/gun,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "pX" = (
@@ -546,13 +541,13 @@
 /area/bigredv2/outside/office_complex)
 "qI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/e)
 "qL" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "qN" = (
 /obj/effect/decal/cleanable/dirt,
@@ -605,7 +600,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship/red,
 /area/bigredv2/outside/office_complex)
 "sB" = (
@@ -617,7 +612,7 @@
 /area/bigredv2/outside/office_complex)
 "tl" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -634,7 +629,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/e)
 "tF" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -669,7 +664,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "uh" = (
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "uk" = (
@@ -688,7 +683,7 @@
 	},
 /area/bigredv2/outside/se)
 "uC" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
@@ -697,15 +692,15 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "uL" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 5
 	},
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/office_complex)
 "uZ" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
@@ -720,7 +715,7 @@
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "vy" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -737,8 +732,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "vL" = (
-/obj/effect/spawner/random/gun,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/gun,
+/obj/effect/spawner/random/weaponry/ammo,
 /obj/item/shard,
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -758,7 +753,7 @@
 /turf/open/floor/mainship/red/full,
 /area/bigredv2/outside/office_complex)
 "wf" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 6
 	},
 /turf/open/floor,
@@ -881,7 +876,7 @@
 /area/bigredv2/outside/office_complex)
 "zi" = (
 /obj/machinery/door/poddoor/mainship/open,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -913,7 +908,7 @@
 /area/bigredv2/outside/office_complex)
 "Au" = (
 /obj/item/ammo_casing,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -932,8 +927,8 @@
 /area/bigredv2/outside/c)
 "AS" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
 /obj/item/healthanalyzer,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/office_complex)
@@ -1007,7 +1002,7 @@
 /area/bigredv2/outside/office_complex)
 "EA" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor,
@@ -1070,7 +1065,7 @@
 /area/bigredv2/outside/office_complex)
 "FJ" = (
 /obj/structure/cable,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 9
 	},
 /obj/effect/decal/cleanable/blood,
@@ -1097,7 +1092,7 @@
 	locked = 1;
 	name = "\improper Private Office"
 	},
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /turf/open/floor,
@@ -1122,13 +1117,13 @@
 /area/bigredv2/outside/office_complex)
 "HO" = (
 /obj/structure/rack,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/tool/hand_labeler,
 /obj/item/storage/toolbox/electrical,
 /obj/item/stack/barbed_wire/small_stack,
-/obj/effect/spawner/random/gun/machineguns,
+/obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "Id" = (
@@ -1146,7 +1141,7 @@
 "Iy" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -1188,24 +1183,24 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/office_complex)
 "JC" = (
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "JK" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "JT" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/office_complex)
 "JW" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -1296,7 +1291,7 @@
 /area/bigredv2/outside/office_complex)
 "Nz" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor,
@@ -1311,7 +1306,7 @@
 	},
 /area/bigredv2/outside/e)
 "NO" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /turf/open/floor,
@@ -1331,10 +1326,6 @@
 "OS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/plating/icefloor,
-/area/bigredv2/outside/office_complex)
-"OX" = (
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/icefloor,
 /area/bigredv2/outside/office_complex)
 "Pn" = (
@@ -1360,7 +1351,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood,
@@ -1380,7 +1371,7 @@
 "PV" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marine_network,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship/blue{
 	dir = 9
 	},
@@ -1397,7 +1388,7 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/office_complex)
 "Qr" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -1477,7 +1468,7 @@
 "SK" = (
 /obj/structure/cable,
 /obj/item/ammo_casing,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 10
 	},
 /obj/effect/landmark/weed_node,
@@ -1511,13 +1502,13 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 5
 	},
 /turf/open/floor,
 /area/bigredv2/outside/e)
 "TX" = (
-/turf/open/floor/plating/ground/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/e)
 "Uz" = (
 /turf/closed/wall/mainship,
@@ -1556,7 +1547,7 @@
 /area/bigredv2/outside/office_complex)
 "VW" = (
 /obj/machinery/power/smes/preset,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -1633,7 +1624,7 @@
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
@@ -1695,11 +1686,11 @@
 /area/bigredv2/outside/office_complex)
 "YR" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool{
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool{
 	pixel_y = -5
 	},
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "Zd" = (
@@ -1708,7 +1699,7 @@
 /area/bigredv2/outside/office_complex)
 "Ze" = (
 /obj/structure/cable,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -1948,7 +1939,7 @@ Yh
 Nk
 xx
 JY
-OX
+wF
 "}
 (9,1,1) = {"
 bX
@@ -2201,7 +2192,7 @@ PN
 lh
 "}
 (19,1,1) = {"
-dT
+TX
 jZ
 xf
 NB
@@ -2326,7 +2317,7 @@ lM
 Ws
 "}
 (24,1,1) = {"
-dT
+TX
 jZ
 br
 br
@@ -2351,7 +2342,7 @@ mv
 Ws
 "}
 (25,1,1) = {"
-dT
+TX
 jZ
 br
 br
@@ -2376,7 +2367,7 @@ Tx
 Fp
 "}
 (26,1,1) = {"
-dT
+TX
 dK
 br
 NB
@@ -2401,7 +2392,7 @@ Tx
 lh
 "}
 (27,1,1) = {"
-dT
+TX
 jZ
 xf
 br
@@ -2426,7 +2417,7 @@ Tx
 Fp
 "}
 (28,1,1) = {"
-dT
+TX
 NH
 wi
 wi

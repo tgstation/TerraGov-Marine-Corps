@@ -109,8 +109,8 @@
 			return
 
 	else if(stage == CG_READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
-		stage_change(CG_WIRED)
-		to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
+		to_chat(user, span_notice("Patented marine-proof Dura-Cable prevents you from taking apart the grenade."))
+		return
 
 	else if(stage == CG_WIRED && I.tool_behaviour == TOOL_WRENCH)
 		if(length(beakers))
@@ -138,7 +138,7 @@
 /obj/item/explosive/grenade/chem_grenade/examine(mob/user)
 	display_timer = (stage == CG_READY && !nadeassembly)	//show/hide the timer based on assembly state
 	. = ..()
-	if(user.skills.getRating("medical") > SKILL_MEDICAL_NOVICE)
+	if(user.skills.getRating(SKILL_MEDICAL) > SKILL_MEDICAL_NOVICE)
 		if(length(beakers))
 			. += span_notice("You scan the grenade and detect the following reagents:")
 			for(var/obj/item/reagent_containers/glass/G in beakers)
@@ -242,6 +242,7 @@
 	name = "Razorburn Grenade"
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_razorburn"
+	item_state = "grenade_razorburn"
 	stage = CG_READY
 	icon_state_mini = "grenade_chem_yellow"
 
@@ -368,7 +369,7 @@
 
 
 /obj/item/explosive/grenade/chem_grenade/teargas/attack_self(mob/user)
-	if(user.skills.getRating("police") < SKILL_POLICE_MP)
+	if(user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_MP)
 		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
 	return ..()

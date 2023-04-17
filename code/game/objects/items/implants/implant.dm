@@ -74,7 +74,7 @@
 	affected.implants += src
 	part = affected
 	if(flags_implant & ACTIVATE_ON_HEAR)
-		RegisterSignal(src, COMSIG_MOVABLE_HEAR, .proc/on_hear)
+		RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
 	activation_action?.give_action(target)
 	embed_into(target, user.zone_selected, TRUE)
 	return TRUE

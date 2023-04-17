@@ -6,38 +6,65 @@
 	after which you can place both items on the ground by clicking with them. Remove them from the ground by using a crowbar.<br>
 	<br>
 	With your starter kit, all machines can be anchored and unanchored by using a wrench on them, and rotated with a screwdriver, where the direction can be seen with the small arrow on the bottom left of the front of the machine.
-	Outputters must be refilled with refill kits and clicked with an empty hand to be turned on but all other machines just need to be anchored to work.
+	Unboxers must be refilled with refill kits and clicked with an empty hand to be turned on but all other machines just need to be anchored to work.
 	Machines will always output in the direction they are facing and input from the opposite direction.<br>
 	<br>
 	RECIPES:<br>
 	WP GRENADE:<br>
-	OUTPUTTER -> CUTTER -> HEATER -> FORMER<br>
+	UNBOXER -> CUTTER -> HEATER -> FORMER<br>
 	<br>
 	M15 GRENADE:<br>
-	OUTPUTTER -> CUTTER -> FORMER<br>
+	UNBOXER -> CUTTER -> FORMER<br>
 	<br>
 	PIZZA:<br>
-	OUTPUTTER -> CUTTER -> HEATER<br>
+	UNBOXER -> CUTTER -> HEATER<br>
 	<br>
 	ALL SADAR AMMO TYPES:<br>
-	OUTPUTTER -> CUTTER -> HEATER -> FLATTER -> ATOMIC RECONSTRUCTOR<br>
+	UNBOXER -> CUTTER -> HEATER -> FLATTER -> ATOMIC RECONSTRUCTOR<br>
 	<br>
 	ALL RECOILLESS RIFLE AMMO TYPES:<br>
-	OUTPUTTER -> CUTTER -> HEATER -> ATOMIC RECONSTRUCTOR<br>
+	UNBOXER -> CUTTER -> HEATER -> ATOMIC RECONSTRUCTOR<br>
 	<br>
 	CLAYMORE:<br>
-	OUTPUTTER -> ATOMIC RECONSTRUCTOR -> FORMER<br>
+	UNBOXER -> ATOMIC RECONSTRUCTOR -> FORMER<br>
 	<br>
 	ALL IFF AMMO:<br>
-	OUTPUTTER -> CUTTER -> ATOMIC RECONSTRUCTOR<br>
+	UNBOXER -> CUTTER -> ATOMIC RECONSTRUCTOR<br>
 	<br>
 	MATEBA SPEEDLOADER:<br>
-	OUTPUTTER -> CUTTER -> FLATTER<br>
+	UNBOXER -> CUTTER -> FLATTER<br>
 	<br>
 	RAILGUN MAGAZINE:<br>
-	OUTPUTTER -> CUTTER -> FLATTER -> ATOMIC RECONSTRUCTOR<br>
+	UNBOXER -> CUTTER -> FLATTER -> ATOMIC RECONSTRUCTOR<br>
 	<br>
-	SR-8 SCOUT RIFLE MAGAZINE:<br>
-	OUTPUTTER -> CUTTER -> HEATER -> FORMER<br>
+	MINIGUN POWERPACK:<br>
+	UNBOXER -> CUTTER -> ATMOIC RECONSTRUCTOR -> FORMER<br>
+	<br>
+	RAZORFOAM GRENADES:<br>
+	UNBOXER -> CUTTER -> FORMER -> HEATER<br>
+	<br>
+	ALL AMR AMMO:<br>
+	UNBOXER -> CUTTER -> ATOMIC RECONSTRUCTOR<br>
+	<br>
+	ALL HOWITZER SHELL TYPES:<br>
+	UNBOXER -> CUTTER -> DRILLER -> COMPRESSOR -> GALVANIZER<br>
+	<br>
+	SWAT MASKS:<br>
+	UNBOXER -> COMPRESSOR -> GALVANIZER -> CUTTER<br>
+	<br>
+	MEDICAL EQUIPMENT:<br>
+	UNBOXER -> FLATTER -> COMPRESSOR -> DRILLER -> GALVANIZER<br>
+	<br>
+	ALL MODULES:<br>
+	UNBOXER -> CUTTER -> FLATTER -> DRILLER -> HEATER -> COMPRESSOR -> GALVANIZER<br>
+	<br>
+	ALL MORTAR AMMO:<br>
+	UNBOXER -> CUTTER -> HEATER -> DRILLER -> ATOMIC RECONSTRUCTOR -> GALVANIZER<br>
+	<br>
+	MLRS ROCKETS:<br>
+	UNBOXER -> CUTTER -> HEATER -> DRILLER -> COMPRESSOR -> GALVANIZER<br>
+	<br>
+	THERMOBARIC WP ROCKETS:<br>
+	UNBOXER -> CUTTER -> HEATER -> FLATTER -> ATOMIC RECONSTRUCTOR -> GALVANIZER<br>
 	<br>
 	"}

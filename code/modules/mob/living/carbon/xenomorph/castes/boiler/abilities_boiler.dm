@@ -28,9 +28,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/toggle_long_range
 	name = "Toggle Long Range Sight"
 	action_icon_state = "toggle_long_range"
-	mechanics_text = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
+	desc = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
 	plasma_cost = 20
-	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
+	)
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -53,10 +55,12 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/toggle_bomb
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
-	mechanics_text = "Switches Boiler Bombard type between available glob types."
+	desc = "Switches Boiler Bombard type between available glob types."
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
-	alternate_keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_BOMB,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL,
+	)
 
 /datum/action/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -88,8 +92,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return
 	if(length(X.xeno_caste.spit_types) <= 2)	//If we only have two or less glob types, we just use default select anyways.
 		action_activate()
-		return 
-	INVOKE_ASYNC(src, .proc/select_glob_radial)
+		return
+	INVOKE_ASYNC(src, PROC_REF(select_glob_radial))
 
 /**
  * Opens a radial menu to select a glob in and sets current ammo to the selected result.
@@ -104,7 +108,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		if(!glob_image)
 			continue
 		available_globs[initial(glob_type.icon_key)] = glob_image
-			
+
 	var/glob_choice = show_radial_menu(owner, owner, available_globs, radius = 48)
 	if(!glob_choice)
 		return
@@ -116,9 +120,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/xeno_action/toggle_bomb/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	button.overlays.Cut()
 	var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo	//Should be safe as this always selects a ammo.
-	button.overlays += image('icons/mob/actions.dmi', button, boiler_glob.icon_key)
+	action_icon_state = boiler_glob.icon_key
 	return ..()
 
 // ***************************************
@@ -128,10 +131,13 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/create_boiler_bomb
 	name = "Create bomb"
 	action_icon_state = "toggle_bomb0" //to be changed
-	mechanics_text = "Creates a Boiler Bombard of the type currently selected."
+	action_icon = 'icons/xeno/actions_boiler_glob.dmi'
+	desc = "Creates a Boiler Bombard of the type currently selected."
 	plasma_cost = 200
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
-	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB,
+	)
 
 /datum/action/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -157,9 +163,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/xeno_action/create_boiler_bomb/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	button.overlays.Cut()
-	//the bit where the ammo counter sprite updates.
-	button.overlays += image('icons/xeno/actions_boiler_glob.dmi', button, "bomb_count_[X.corrosive_ammo][X.neuro_ammo]")
+	action_icon_state = "bomb_count_[X.corrosive_ammo][X.neuro_ammo]"
 	return ..()
 
 // ***************************************
@@ -168,9 +172,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/activable/bombard
 	name = "Bombard"
 	action_icon_state = "bombard"
-	mechanics_text = "Launch a glob of neurotoxin or acid. Must remain stationary for a few seconds to use."
+	desc = "Launch a glob of neurotoxin or acid. Must remain stationary for a few seconds to use."
 	ability_name = "bombard"
-	keybind_signal = COMSIG_XENOABILITY_BOMBARD
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
+	)
 	target_flags = XABB_TURF_TARGET
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
@@ -217,7 +223,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
 	SIGNAL_HANDLER
 	if(can_use_ability(A))
-		INVOKE_ASYNC(src, .proc/use_ability, A)
+		INVOKE_ASYNC(src, PROC_REF(use_ability), A)
 
 
 /mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
@@ -231,7 +237,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /mob/living/carbon/xenomorph/boiler/proc/set_bombard_pointer()
 	if(client)
-		client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
+		client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
 
 /mob/living/carbon/xenomorph/boiler/proc/reset_bombard_pointer()
 	if(client)

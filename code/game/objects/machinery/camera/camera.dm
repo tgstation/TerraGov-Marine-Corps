@@ -2,7 +2,7 @@
 	name = "security camera"
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/machines/monitors.dmi'
-	icon_state = "camera"
+	icon_state = "camera_icon"
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 10
@@ -23,6 +23,7 @@
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
+	icon_state = "camera"
 
 	if(newDir)
 		setDir(newDir)
@@ -284,14 +285,14 @@
 			if(cam == src)
 				return
 	if(on)
-		set_light(AI_CAMERA_LUMINOSITY)
+		set_light(AI_CAMERA_LUMINOSITY, AI_CAMERA_LUMINOSITY)
 	else
 		set_light(0)
 
 
 /obj/machinery/camera/get_remote_view_fullscreens(mob/user)
 	if(view_range == short_range) //unfocused
-		user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 2)
+		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
 
 
 /obj/machinery/camera/update_remote_sight(mob/living/user)
@@ -307,7 +308,7 @@
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname/Initialize()
-	. =  ..()
+	. = ..()
 	var/static/list/id_by_area = list()
 	var/area/A = get_area(src)
 	c_tag = "[A.name] #[++id_by_area[A]]"

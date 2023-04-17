@@ -15,7 +15,9 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	max_integrity = 200
 	coverage = 40
-	soft_armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
+	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
+	resistance_flags = XENO_DAMAGEABLE
+	var/drop_material = /obj/item/stack/sheet/metal
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/overlay_welded = "welded"
@@ -41,7 +43,7 @@
 
 /obj/structure/closet/Initialize(mapload, ...)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -156,30 +158,27 @@
 /obj/structure/closet/proc/toggle(mob/living/user)
 	return opened ? close(user) : open(user)
 
-
-// this should probably use dump_contents()
 /obj/structure/closet/ex_act(severity)
+	var/dmg
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			for(var/am in contents)//pulls everything out of the locker and hits it with an explosion
-				var/atom/movable/movable_content = am
-				movable_content.forceMove(loc)
-				movable_content.ex_act(severity)
+			contents_explosion(severity)
+			dump_contents()
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			if(prob(50))
-				for(var/am in contents)
-					var/atom/movable/movable_content = am
-					movable_content.forceMove(loc)
-					movable_content.ex_act(severity)
-				qdel(src)
+			dmg = rand()
+			if(!locked || dmg > 0.1)
+				contents_explosion(severity)
+				break_open()
+				if(dmg > 0.5)
+					qdel(src)
 		if(EXPLODE_LIGHT)
-			if(prob(5))
-				for(var/am in contents)
-					var/atom/movable/movable_content = am
-					movable_content.forceMove(loc)
-					movable_content.ex_act(severity)
-				qdel(src)
+			dmg = rand()
+			if(!locked || dmg > 0.5)
+				contents_explosion(severity)
+				break_open()
+				if(dmg > 0.95)
+					qdel(src)
 
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
@@ -188,21 +187,11 @@
 		qdel(src)
 
 /obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
-		return FALSE
-
-	if(X.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, RESIST_ALL))
-		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		if(!opened && prob(70))
-			break_open()
-			X.visible_message(span_danger("\The [X] smashes \the [src] open!"), \
-			span_danger("We smash \the [src] open!"), null, 5)
-		else
-			X.visible_message(span_danger("\The [X] smashes \the [src]!"), \
-			span_danger("We smash \the [src]!"), null, 5)
-		SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_CLOSET)
-	else if(!opened)
-		return attack_hand(X)
+	. = ..()
+	if(!.)
+		return
+	if(X.a_intent == INTENT_HARM && !opened && prob(70))
+		break_open()
 
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
@@ -235,7 +224,8 @@
 		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
 			to_chat(user, span_notice("You need more welding fuel to complete this task."))
 			return TRUE
-		new /obj/item/stack/sheet/metal(drop_location())
+		if(drop_material)
+			new drop_material(drop_location())
 		visible_message(span_notice("\The [src] has been cut apart by [user] with [welder]."), "You hear welding.")
 		qdel(src)
 		return TRUE
@@ -451,8 +441,8 @@
 	destination.mob_size_counter += mob_size
 	stop_pulling()
 	smokecloak_off()
-	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
-	RegisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED, .proc/on_closet_dump)
+	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
+	RegisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED, PROC_REF(on_closet_dump))
 	return TRUE
 
 

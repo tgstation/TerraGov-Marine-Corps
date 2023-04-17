@@ -107,6 +107,7 @@
 /obj/machinery/researchcomp/ui_static_data(mob/user)
 	. = ..()
 
+	.["acquired_points"] = GLOB.round_statistics.points_from_research
 	.["anchored"] = anchored
 	.["researching"] = researching
 	if(!init_resource)
@@ -182,7 +183,7 @@
 /obj/machinery/researchcomp/proc/start_research(mob/living/user, research_time)
 	icon_state = "chamber_active_loaded"
 	researching = TRUE
-	addtimer(CALLBACK(src, .proc/finish_research), research_time)
+	addtimer(CALLBACK(src, PROC_REF(finish_research)), research_time)
 
 ///Handles the research process completing
 /obj/machinery/researchcomp/proc/finish_research()
@@ -308,6 +309,7 @@
 
 /obj/item/research_product/supply_export(faction_selling)
 	SSpoints.supply_points[faction_selling] += export_points
+	GLOB.round_statistics.points_from_research += export_points
 	return new /datum/export_report(export_points, name, faction_selling)
 
 /obj/item/research_product/money/examine(user)
@@ -315,17 +317,17 @@
 	. += span_notice("Rewards export points, as the name suggests.")
 
 /obj/item/research_product/money/basic
-	name = "credits - 5"
-	export_points = 5
+	name = "credits - 50"
+	export_points = 50
 
 /obj/item/research_product/money/common
-	name = "credits - 15"
-	export_points = 15
+	name = "credits - 150"
+	export_points = 150
 
 /obj/item/research_product/money/uncommon
-	name = "credits - 25"
-	export_points = 25
+	name = "credits - 250"
+	export_points = 250
 
 /obj/item/research_product/money/rare
-	name = "credits - 80"
-	export_points = 80
+	name = "credits - 800"
+	export_points = 800

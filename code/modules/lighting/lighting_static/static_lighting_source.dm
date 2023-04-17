@@ -79,7 +79,7 @@
 	if (needs_update == LIGHTING_NO_UPDATE) \
 		SSlighting.static_sources_queue += src; \
 	if (needs_update < level)               \
-		needs_update            = level;    \
+		needs_update = level;    \
 
 
 /// This proc will cause the light source to update the top atom, and add itself to the update queue.
@@ -146,7 +146,7 @@
 /// This is the define used to calculate falloff.
 /datum/static_light_source/proc/remove_lum()
 	applied = FALSE
-	for(var/datum/static_lighting_corner/corner as anything in effect_str)
+	for(var/datum/static_lighting_corner/corner AS in effect_str)
 		REMOVE_CORNER(corner)
 		LAZYREMOVE(corner.affecting, src)
 
@@ -241,19 +241,19 @@
 	var/list/datum/static_lighting_corner/new_corners = (corners - effect_str)
 	LAZYINITLIST(effect_str)
 	if (needs_update == LIGHTING_VIS_UPDATE)
-		for (var/datum/static_lighting_corner/corner as anything in new_corners)
+		for (var/datum/static_lighting_corner/corner AS in new_corners)
 			APPLY_CORNER(corner)
 			if (. != 0)
 				LAZYADD(corner.affecting, src)
 				effect_str[corner] = .
 	else
-		for (var/datum/static_lighting_corner/corner as anything in new_corners)
+		for (var/datum/static_lighting_corner/corner AS in new_corners)
 			APPLY_CORNER(corner)
 			if (. != 0)
 				LAZYADD(corner.affecting, src)
 				effect_str[corner] = .
 
-		for (var/datum/static_lighting_corner/corner as anything in corners - new_corners) // Existing corners
+		for (var/datum/static_lighting_corner/corner AS in corners - new_corners) // Existing corners
 			APPLY_CORNER(corner)
 			if (. != 0)
 				effect_str[corner] = .
@@ -262,7 +262,7 @@
 				effect_str -= corner
 
 	var/list/datum/static_lighting_corner/gone_corners = effect_str - corners
-	for (var/datum/static_lighting_corner/corner as anything in gone_corners)
+	for (var/datum/static_lighting_corner/corner AS in gone_corners)
 		REMOVE_CORNER(corner)
 		LAZYREMOVE(corner.affecting, src)
 	effect_str -= gone_corners

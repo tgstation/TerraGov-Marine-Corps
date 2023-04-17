@@ -5,7 +5,7 @@
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
-	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT | ALLOWREBREATH
+	flags_inventory = COVERMOUTH | COVEREYES | BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -46,26 +46,25 @@
 	icon_state = "gascoif"
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
-/obj/item/clothing/mask/gas/PMC
+/obj/item/clothing/mask/gas/pmc
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
 	icon_state = "pmc_mask"
 	item_state = "helmet"
 	anti_hug = 3
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
-	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
+	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	breathy = FALSE
 
-/obj/item/clothing/mask/gas/PMC/damaged
+/obj/item/clothing/mask/gas/pmc/damaged
 	name = "damaged M8 pattern armored balaclava"
 	anti_hug = 0
 
-/obj/item/clothing/mask/gas/PMC/upp
+/obj/item/clothing/mask/gas/pmc/upp
 	name = "\improper UPP armored commando balaclava"
 	icon_state = "upp_mask"
 
-/obj/item/clothing/mask/gas/PMC/leader
+/obj/item/clothing/mask/gas/pmc/leader
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_mask"
@@ -77,13 +76,18 @@
 	anti_hug = 2
 	breathy = FALSE
 
+/obj/item/clothing/mask/gas/icc
+	name = "\improper Modelle/60 gas mask"
+	desc = "A gasmask worn by ICC personnel."
+	icon_state = "icc"
+
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
 	name = "plague doctor mask"
 	desc = "A modernised version of the classic design, this mask will not only filter out phoron but it can also be connected to an air supply."
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 2, "energy" = 2, "bomb" = 0, "bio" = 75, "rad" = 0, "fire" = 2, "acid" = 2)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 2, ENERGY = 2, BOMB = 0, BIO = 75, FIRE = 2, ACID = 2)
 	flags_armor_protection = HEAD|FACE
 
 /obj/item/clothing/mask/gas/swat

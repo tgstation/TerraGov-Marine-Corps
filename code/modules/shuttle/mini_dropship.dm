@@ -46,13 +46,25 @@
 	var/damaged = FALSE
 	/// How long before you can launch tadpole after a landing
 	var/launching_delay = 10 SECONDS
+	///Minimap for use while in landing cam mode
+	var/datum/action/minimap/marine/external/tadmap
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
 	start_processing()
 	set_light(3,3)
 	land_action = new
+	tadmap = new
 	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Destroy()
+	QDEL_NULL(land_action)
+	QDEL_NULL(tadmap)
+	return ..()
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/CreateEye()
+	. = ..()
+	tadmap.override_locator(eyeobj)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/LateInitialize()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
@@ -71,6 +83,11 @@
 		off_action.target = user
 		off_action.give_action(user)
 		actions += off_action
+	
+	if(tadmap)
+		tadmap.target = user
+		tadmap.give_action(user)
+		actions += tadmap
 
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
@@ -116,6 +133,7 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TADPOLE_LAUNCHING))
 		to_chat(ui_user, span_warning("The dropship's engines are not ready yet"))
 		return
+	TIMER_COOLDOWN_START(src, COOLDOWN_TADPOLE_LAUNCHING, launching_delay) // To stop spamming
 	shuttle_port.shuttle_computer = src
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LAUNCHED)
 	if(fly_state == SHUTTLE_ON_GROUND)
@@ -203,7 +221,7 @@
 
 	if(!ui)
 		ui_user = user
-		RegisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED), .proc/clean_ui_user)
+		RegisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(clean_ui_user))
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
 

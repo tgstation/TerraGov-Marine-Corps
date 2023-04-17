@@ -73,8 +73,8 @@
 		clean_operator()
 		return
 	operator = user
-	RegisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET), .proc/clean_operator)
-	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY), .proc/clean_operator)
+	RegisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET), PROC_REF(clean_operator))
+	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY), PROC_REF(clean_operator))
 	UnregisterSignal(operator, COMSIG_GUN_USER_SET)
 	START_PROCESSING(SSobj, src)
 	update_icon()
@@ -113,11 +113,13 @@
 /// Signal handler to clean out user vars
 /obj/item/attachable/motiondetector/proc/clean_operator()
 	SIGNAL_HANDLER
+	if(operator && (operator.l_hand == src || operator.r_hand == src || operator.l_hand == loc || operator.r_hand == loc))
+		return
 	STOP_PROCESSING(SSobj, src)
 	clean_blips()
 	if(operator)
 		if(!QDELETED(operator))
-			RegisterSignal(operator, COMSIG_GUN_USER_SET, .proc/start_processing_again)
+			RegisterSignal(operator, COMSIG_GUN_USER_SET, PROC_REF(start_processing_again))
 		UnregisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET))
 		UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY))
 		operator = null
@@ -139,8 +141,8 @@
 			continue
 		prepare_blip(nearby_xeno, MOTION_DETECTOR_HOSTILE)
 	if(hostile_detected)
-		operator.playsound_local(loc, 'sound/items/tick.ogg', 100, 0, 7, 2)
-	addtimer(CALLBACK(src, .proc/clean_blips), 1 SECONDS)
+		playsound(loc, 'sound/items/tick.ogg', 100, 0, 7, 2)
+	addtimer(CALLBACK(src, PROC_REF(clean_blips)), 1 SECONDS)
 
 ///Clean all blips from operator screen
 /obj/item/attachable/motiondetector/proc/clean_blips()

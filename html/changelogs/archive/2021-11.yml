@@ -114,7 +114,7 @@
   - balance: Incendiary slugs knockback by 2 and slow.
 2021-11-16:
   AzonStarfall:
-  - bugfix: Fixed T-29 name in the SG vendor.
+  - bugfix: Fixed SG-29 name in the SG vendor.
   BraveMole:
   - bugfix: Fix crash larva delay not existing (now, 2 minutes between each larva)
   RandomGamer123:

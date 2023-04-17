@@ -54,6 +54,6 @@
 	return ..()
 
 /obj/item/reagent_containers/jerrycan/attack_obj(obj/O, mob/living/user)
-	if(istype(O, /obj/effect/alien/weeds))
+	if(istype(O, /obj/alien/weeds))
 		return attack_turf(get_turf(O), user)
 	return ..()

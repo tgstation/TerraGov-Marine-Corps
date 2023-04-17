@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Divider, Flex, Section, Table } from '../../components';
+import { AnimatedNumber, Box, Button, Divider, Flex, Section, Table } from '../../components';
 import { TableRow } from '../../components/Table';
 import { Window } from '../../layouts';
 import { ResearchData, ResearchResource, RewardTier } from './Types';
@@ -7,42 +7,42 @@ import { hexToRGB, objectToArray } from './Utility';
 
 export const Research = (props, context) => {
   const { act, data } = useBackend<ResearchData>(context);
-  const {
-    anchored,
-    researching,
-    init_resource,
-  } = data;
+  const { acquired_points, anchored, researching, init_resource } = data;
 
   return (
-    <Window
-      resizable
-      width={400}
-      height={600}>
+    <Window resizable width={400} height={600}>
       <Window.Content
         scrollable
         align="stretch"
-        backgroundColor={init_resource ? hexToRGB(init_resource.colour, 0.5) : ""}>
+        backgroundColor={
+          init_resource ? hexToRGB(init_resource.colour, 0.5) : ''
+        }>
         <Button
           style={{
-            "margin": "0.2em",
+            'margin': '0.2em',
           }}
-          content={anchored ? "Release" : "Lock"}
+          content={anchored ? 'Release' : 'Lock'}
           disabled={researching}
-          icon={anchored ? "lock" : "lock-open"}
-          onClick={() => act('switch_anchored')} />
-        <Section title="Base resource">
-          {
-            init_resource
-              ? constructResourceInfo(init_resource, act, researching)
-              : "No resource inserted"
-          }
-        </Section>
-        {
-          init_resource ? init_resource.rewards.length > 0
-            ? <RarityInfo {... init_resource.rewards} />
-            : "" : ""
-        }
-
+          icon={anchored ? 'lock' : 'lock-open'}
+          onClick={() => act('switch_anchored')}
+        />
+        <Divider />
+        Total acquired credits: <AnimatedNumber value={acquired_points} />
+        <Divider />
+        {init_resource ? (
+          constructResourceInfo(init_resource, act, researching)
+        ) : (
+          <Section title="Base resource">{'No resource inserted'}</Section>
+        )}
+        {init_resource ? (
+          init_resource.rewards.length > 0 ? (
+            <RarityInfo {...init_resource.rewards} />
+          ) : (
+            ''
+          )
+        ) : (
+          ''
+        )}
       </Window.Content>
     </Window>
   );
@@ -51,50 +51,44 @@ export const Research = (props, context) => {
 const constructResourceInfo = (
   resource: ResearchResource,
   act: Function,
-  researching: boolean) => {
-  const {
-    name,
-    colour,
-    icon,
-  } = resource;
+  researching: boolean
+) => {
+  const { name, colour, icon } = resource;
 
   return (
-    <Flex
-      direction="row">
-      <Flex.Item basis="auto">
-        <p style={{
-          margin: 0,
-        }}>
-          {name}
-        </p>
-        <Divider />
-        <Button
-          content="Research item"
-          disabled={researching}
-          icon="prescription-bottle"
-          onClick={() => act('start_research')} />
-      </Flex.Item>
-      <Flex.Item
-        basis="auto"
-        overflow="hidden"
-        position="relative"
-        style={{
-          "display": "flex",
-          "justify-content": "center",
-        }}>
-        <Box
-          as="img"
-          src={`data:image/jpeg;base64,
-              ${icon}`}
-          color="transparent"
+    <Section title={name}>
+      <Flex direction="row">
+        <Flex.Item basis="auto">
+          <Button
+            content="Research item"
+            disabled={researching}
+            icon="prescription-bottle"
+            onClick={() => act('start_research')}
+          />
+        </Flex.Item>
+        <Flex.Item
+          basis="auto"
+          overflow="hidden"
+          position="relative"
           style={{
-            "vertical-align": "middle",
-            "width": "190px",
-            transform: "scale(2) translate(0, -10%)",
-            "-ms-interpolation-mode": "nearest-neighbor",
-          }} />
-      </Flex.Item>
-    </Flex>
+            'display': 'flex',
+            'justify-content': 'center',
+          }}>
+          <Box
+            as="img"
+            src={`data:image/jpeg;base64,
+                ${icon}`}
+            color="transparent"
+            style={{
+              'vertical-align': 'middle',
+              'width': '190px',
+              transform: 'scale(2) translate(0, -10%)',
+              '-ms-interpolation-mode': 'nearest-neighbor',
+            }}
+          />
+        </Flex.Item>
+      </Flex>
+    </Section>
   );
 };
 
@@ -104,17 +98,13 @@ const RarityInfo = (rewards_list: RewardTier[]) => {
 
   return (
     <Section title="Reward tiers info and possible rewards" p="5px">
-      {rewards_list.map(tier => (constructTierInfo(tier)))}
+      {rewards_list.map((tier) => constructTierInfo(tier))}
     </Section>
   );
 };
 
 const constructTierInfo = (tier: RewardTier) => {
-  const {
-    type,
-    probability,
-    rewards_list,
-  } = tier;
+  const { type, probability, rewards_list } = tier;
 
   return (
     <Box mb="0.6em">
@@ -123,9 +113,8 @@ const constructTierInfo = (tier: RewardTier) => {
       </Box>
       <Table>
         {rewards_list.map((item, i) => (
-          <TableRow key={i}>
-            {`> ${item}`}
-          </TableRow>))}
+          <TableRow key={i}>{`> ${item}`}</TableRow>
+        ))}
       </Table>
     </Box>
   );

@@ -17,7 +17,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "as" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "au" = (
@@ -247,7 +247,7 @@
 /area/bigredv2/outside/medical)
 "fa" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -285,7 +285,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/tracks/wheels/bloody,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "fY" = (
@@ -307,7 +307,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "gD" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
@@ -348,7 +348,7 @@
 	},
 /area/bigredv2/outside/medical)
 "hu" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -371,7 +371,7 @@
 "hO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/vomit,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen,
@@ -461,7 +461,7 @@
 /area/bigredv2/outside/medical)
 "jh" = (
 /obj/item/ammo_casing/bullet,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -505,7 +505,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "jR" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/landmark/xeno_resin_wall,
@@ -519,7 +519,7 @@
 /area/bigredv2/outside/medical)
 "ki" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -552,7 +552,7 @@
 "kO" = (
 /obj/effect/landmark/weed_node,
 /obj/item/stack/sheet/metal,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -575,8 +575,8 @@
 /area/bigredv2/outside/medical)
 "lb" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -644,8 +644,8 @@
 "mq" = (
 /obj/item/ammo_casing/bullet,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /obj/structure/rack,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -869,7 +869,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "sP" = (
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "ta" = (
@@ -1018,7 +1018,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "wm" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -1060,7 +1060,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "wO" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "wQ" = (
@@ -1128,7 +1128,7 @@
 /area/bigredv2/outside/medical)
 "xS" = (
 /obj/effect/spawner/gibspawner/human,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1138,7 +1138,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "xY" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "yc" = (
@@ -1271,7 +1271,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1379,7 +1379,7 @@
 "BZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/tracks/wheels/bloody,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "Cg" = (
@@ -1429,7 +1429,7 @@
 "Dj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Dr" = (
@@ -1504,7 +1504,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "EP" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1537,18 +1537,18 @@
 /obj/item/stack/sheet/metal,
 /obj/item/ammo_casing/bullet,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "Fx" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Fy" = (
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1638,7 +1638,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/security,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen,
@@ -1664,7 +1664,7 @@
 /obj/effect/landmark/corpsespawner/security,
 /obj/item/ammo_casing/bullet,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1682,8 +1682,8 @@
 	},
 /area/bigredv2/outside/medical)
 "HI" = (
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen,
@@ -1868,7 +1868,7 @@
 /obj/effect/landmark/weed_node,
 /obj/item/ammo_casing/bullet,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1927,7 +1927,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/security,
 /obj/effect/ai_node,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 6
 	},
 /turf/open/floor/tile/white,
@@ -2023,7 +2023,7 @@
 "Pf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 6
 	},
 /turf/open/floor/tile/green/whitegreen,
@@ -2129,14 +2129,14 @@
 /area/bigredv2/outside/medical)
 "RS" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 9
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "RT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -2152,7 +2152,7 @@
 "SH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/tracks/wheels/bloody,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "SS" = (
@@ -2171,8 +2171,8 @@
 "Tw" = (
 /obj/structure/window_frame/colony,
 /obj/item/shard,
-/obj/effect/decal/tracks/claw1,
-/obj/effect/decal/tracks/claw2,
+/obj/effect/turf_decal/tracks/claw1,
+/obj/effect/turf_decal/tracks/claw2,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "Ty" = (
@@ -2356,7 +2356,7 @@
 /area/bigredv2/outside/medical)
 "VX" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "VZ" = (

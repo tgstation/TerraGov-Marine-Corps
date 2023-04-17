@@ -4,6 +4,7 @@
 	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Boiler Walking"
+	bubble_icon = "alienroyal"
 	health = 200
 	maxHealth = 200
 	plasma_stored = 450
@@ -43,7 +44,7 @@
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 	update_boiler_glow()
-	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, .proc/gib_explode)
+	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, PROC_REF(gib_explode))
 
 // ***************************************
 // *********** Gibbing behaviour

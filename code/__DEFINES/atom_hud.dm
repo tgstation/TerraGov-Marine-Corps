@@ -10,6 +10,7 @@
 #define HEALTH_HUD_XENO "xeno_health_hud" //health HUD for xenos
 #define SQUAD_HUD_TERRAGOV "squad_hud_terragov" //squad hud showing who's leader, corpsman, etc for each squad.
 #define SQUAD_HUD_REBEL "squad_hud_rebel" //squad hud showing who's leader, corpsman, etc for each squad.
+#define SQUAD_HUD_SOM "squad_hud_som" //squad hud showing who's leader, corpsman, etc for each squad.
 #define PLASMA_HUD "xeno_plasma_hud" //indicates the plasma level of xenos.
 #define PHEROMONE_HUD "xeno_pheromone_hud" //indicates which pheromone is active on a xeno.
 #define QUEEN_OVERWATCH_HUD "xeno_overwatch_hud" //indicates which xeno the queen is overwatching.
@@ -22,6 +23,7 @@
 #define MACHINE_AMMO_HUD "machine_ammo_hud" // displays machine ammo; part of /datum/atom_hud/squad
 #define XENO_DEBUFF_HUD "xeno_debuff_hud" // displays xeno debuffs; part of /datum/atom_hud/xeno_debuff
 #define HEART_STATUS_HUD "heart_status_hud" // display if revivable, along with blood level
+#define XENO_FIRE_HUD "xeno_fire_hud" // displays how many fire stacks a xeno has
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 
@@ -45,8 +47,9 @@
 #define DATA_HUD_MEDICAL_PAIN 12
 #define DATA_HUD_XENO_TACTICAL 13
 #define DATA_HUD_SQUAD_REBEL 14
-#define DATA_HUD_XENO_DEBUFF 15
-#define DATA_HUD_XENO_HEART 16
+#define DATA_HUD_SQUAD_SOM 15
+#define DATA_HUD_XENO_DEBUFF 16
+#define DATA_HUD_XENO_HEART 17
 
 
 // Notification action types

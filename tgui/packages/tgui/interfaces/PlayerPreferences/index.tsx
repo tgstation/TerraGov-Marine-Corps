@@ -11,11 +11,7 @@ import { BackgroundInformation } from './BackgroundInformation';
 export const PlayerPreferences = (props, context) => {
   const { act, data } = useBackend<PlayerPreferencesData>(context);
 
-  const {
-    save_slot_names,
-    slot,
-    tabIndex,
-  } = data;
+  const { save_slot_names, slot, tabIndex } = data;
 
   let affectsSave = false;
   let CurrentTab = CharacterCustomization;
@@ -48,7 +44,7 @@ export const PlayerPreferences = (props, context) => {
   // I dont like this shit, but it doesn't matter in the end
   // i'd rather massage the data in js than byond.
   const slotNames = Object.values(save_slot_names).map(
-    name => name.split(' ')[0]
+    (name) => name.split(' ')[0]
   );
 
   const saveSlots = new Array(10).fill(1).map((_, idx) => (
@@ -61,9 +57,7 @@ export const PlayerPreferences = (props, context) => {
   ));
 
   return (
-    <Window
-      width={1140}
-      height={650}>
+    <Window width={1140} height={650}>
       <Window.Content scrollable>
         <Flex>
           <Flex.Item>
@@ -89,22 +83,34 @@ const NavigationSelector = (props, context) => {
   const { act } = useBackend(context);
   return (
     <Tabs vertical>
-      <Tabs.Tab selected={tabIndex === 1} onClick={() => act("tab_change", { tabIndex: 1 })}>
+      <Tabs.Tab
+        selected={tabIndex === 1}
+        onClick={() => act('tab_change', { tabIndex: 1 })}>
         Character Customization
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 2} onClick={() => act("tab_change", { tabIndex: 2 })}>
+      <Tabs.Tab
+        selected={tabIndex === 2}
+        onClick={() => act('tab_change', { tabIndex: 2 })}>
         Background Information
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 3} onClick={() => act("tab_change", { tabIndex: 3 })}>
+      <Tabs.Tab
+        selected={tabIndex === 3}
+        onClick={() => act('tab_change', { tabIndex: 3 })}>
         Gear Customization
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 4} onClick={() => act("tab_change", { tabIndex: 4 })}>
+      <Tabs.Tab
+        selected={tabIndex === 4}
+        onClick={() => act('tab_change', { tabIndex: 4 })}>
         Job Preferences
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 5} onClick={() => act("tab_change", { tabIndex: 5 })}>
+      <Tabs.Tab
+        selected={tabIndex === 5}
+        onClick={() => act('tab_change', { tabIndex: 5 })}>
         Game Settings
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 6} onClick={() => act("tab_change", { tabIndex: 6 })}>
+      <Tabs.Tab
+        selected={tabIndex === 6}
+        onClick={() => act('tab_change', { tabIndex: 6 })}>
         Keybindings
       </Tabs.Tab>
     </Tabs>

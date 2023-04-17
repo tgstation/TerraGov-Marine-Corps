@@ -4,6 +4,7 @@
 	desc = "A bright red alien with a matching temper."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Bull Walking"
+	bubble_icon = "alienleft"
 	health = 160
 	maxHealth = 160
 	plasma_stored = 200
@@ -18,7 +19,7 @@
 
 /mob/living/carbon/xenomorph/bull/handle_special_state()
 	if(is_charging >= CHARGE_ON)
-		icon_state = "Bull Charging"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
 

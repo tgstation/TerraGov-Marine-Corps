@@ -78,11 +78,11 @@
 		qdel(src, force = TRUE)
 
 /datum/static_lighting_corner/proc/vis_update()
-	for (var/datum/static_light_source/light_source as anything in affecting)
+	for (var/datum/static_light_source/light_source AS in affecting)
 		light_source.vis_update()
 
 /datum/static_lighting_corner/proc/full_update()
-	for (var/datum/static_light_source/light_source as anything in affecting)
+	for (var/datum/static_light_source/light_source AS in affecting)
 		light_source.recalc_corner(src)
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
@@ -113,13 +113,13 @@
 	else if (largest_color_luminosity < LIGHTING_SOFT_THRESHOLD)
 		. = 0 // 0 means soft lighting.
 
-	cache_r  = round(lum_r * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
-	cache_g  = round(lum_g * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
-	cache_b  = round(lum_b * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
+	cache_r = round(lum_r * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
+	cache_g = round(lum_g * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
+	cache_b = round(lum_b * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
 	#else
-	cache_r  = round(lum_r * ., LIGHTING_ROUND_VALUE)
-	cache_g  = round(lum_g * ., LIGHTING_ROUND_VALUE)
-	cache_b  = round(lum_b * ., LIGHTING_ROUND_VALUE)
+	cache_r = round(lum_r * ., LIGHTING_ROUND_VALUE)
+	cache_g = round(lum_g * ., LIGHTING_ROUND_VALUE)
+	cache_b = round(lum_b * ., LIGHTING_ROUND_VALUE)
 	#endif
 
 	src.largest_color_luminosity = round(largest_color_luminosity, LIGHTING_ROUND_VALUE)
@@ -155,7 +155,7 @@
 	if (!force)
 		return QDEL_HINT_LETMELIVE
 
-	for(var/datum/static_light_source/light_source as anything in affecting)
+	for(var/datum/static_light_source/light_source AS in affecting)
 		LAZYREMOVE(light_source.effect_str, src)
 	affecting = null
 

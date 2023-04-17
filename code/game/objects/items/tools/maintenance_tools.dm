@@ -20,9 +20,9 @@
 	icon_state = "screwdriver_map"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 5.0
+	force = 5
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 5.0
+	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("stabbed")
@@ -70,7 +70,7 @@
 	icon_state = "cutters"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 6.0
+	force = 6
 	throw_speed = 2
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL
@@ -113,7 +113,6 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	tool_behaviour = TOOL_WELDER
-	materials = list(/datum/material/metal = 70, /datum/material/glass = 30)
 
 	//blowtorch specific stuff
 	var/welding = 0 	//Whether or not the blowtorch is off(0), on(1) or currently welding(2)
@@ -160,11 +159,11 @@
 // If welding tool ran out of fuel during a construction task, construction fails.
 /obj/item/tool/weldingtool/tool_use_check(mob/living/user, amount)
 	if(!isOn() || !check_fuel())
-		to_chat(user, span_warning("[src] has to be on to complete this task!"))
+		balloon_alert(user, "[src] not on")
 		return FALSE
 
 	if(get_fuel() < amount)
-		to_chat(user, span_warning("You need more welding fuel to complete this task!"))
+		balloon_alert(user, "low fuel")
 		return FALSE
 
 	return TRUE
@@ -199,7 +198,20 @@
 			var/mob/living/L = O
 			L.IgniteMob()
 
+/obj/proc/handle_weldingtool_overlay(removing = FALSE)
+	if(!removing)
+		add_overlay(GLOB.welding_sparks)
+	else
+		cut_overlay(GLOB.welding_sparks)
 
+/obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
+	if(isobj(target))
+		var/obj/O = target
+		O.handle_weldingtool_overlay()
+		. = ..()
+		O.handle_weldingtool_overlay(TRUE)
+	else
+		. = ..()
 
 /obj/item/tool/weldingtool/attack_self(mob/user as mob)
 	if(!status)
@@ -251,7 +263,7 @@
 			welding = 1
 			if(M)
 				to_chat(M, span_notice("You switch [src] on."))
-			set_light(LIGHTER_LUMINOSITY)
+			set_light(1, LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = BURN
@@ -298,31 +310,23 @@
 /obj/item/tool/weldingtool/largetank
 	name = "industrial blowtorch"
 	max_fuel = 40
-	materials = list(/datum/material/metal = 70, /datum/material/glass = 60)
-
 
 /obj/item/tool/weldingtool/hugetank
 	name = "high-capacity industrial blowtorch"
 	max_fuel = 80
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(/datum/material/metal = 70, /datum/material/glass = 120)
-
 
 /obj/item/tool/weldingtool/experimental
 	name = "experimental blowtorch"
 	max_fuel = 40 //?
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(/datum/material/metal = 70, /datum/material/glass = 120)
 	var/last_gen = 0
-
-
 
 /obj/item/tool/weldingtool/experimental/proc/fuel_gen()//Proc to make the experimental welder generate fuel, optimized as fuck -Sieve
 	var/gen_amount = ((world.time-last_gen)/25)
 	reagents += (gen_amount)
 	if(reagents > max_fuel)
 		reagents = max_fuel
-
 
 /obj/item/tool/crowbar
 	name = "crowbar"
@@ -331,8 +335,8 @@
 	icon_state = "crowbar"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 5.0
-	throwforce = 7.0
+	force = 5
+	throwforce = 7
 	item_state = "crowbar"
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
@@ -385,7 +389,10 @@
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/FT = I
-		if(!reagents.total_volume)
+		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
+			return ..()
+		if(FT.default_ammo != /datum/ammo/flamethrower)
+			to_chat(user, span_warning("Not the right kind of fuel!"))
 			return ..()
 
 		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
@@ -445,11 +452,10 @@
 	item_state = "handheldcharger_black_empty"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
-	force = 6.0
+	force = 6
 	throw_speed = 2
 	throw_range = 9
 	flags_equip_slot = ITEM_SLOT_BELT
-	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	/// This is the cell we ar charging
 	var/obj/item/cell/cell
 	///Are we currently recharging something.

@@ -13,9 +13,13 @@
 	turns_per_move = 5
 	see_in_dark = 6
 	flags_pass = PASSTABLE
-	response_help  = "hugs"
+	response_help = "hugs"
 	response_disarm = "rudely paps"
-	response_harm   = "kicks"
+	response_harm = "kicks"
+
+/mob/living/simple_animal/catslug/Initialize()
+	. = ..()
+	AddComponent(/datum/component/companion)
 
 /mob/living/simple_animal/catslug/newt
 	name = "Newt"

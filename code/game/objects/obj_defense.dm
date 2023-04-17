@@ -96,6 +96,8 @@
 	if(istype(P.ammo, /datum/ammo/xeno) && !(resistance_flags & XENO_DAMAGEABLE))
 		return
 	. = ..()
+	if(P.damage < 1)
+		return
 	playsound(loc, P.hitsound, 50, 1)
 	visible_message(span_warning("\the [src] is damaged by \the [P]!"), visible_message_flags = COMBAT_MESSAGE)
 	bullet_ping(P)
@@ -124,20 +126,21 @@
 
 /obj/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL) //Ghosts can't attack machines
-		return
+		return FALSE
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_OBJ, src)
 	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
-		return
+		return FALSE
 	if(!(resistance_flags & XENO_DAMAGEABLE))
 		to_chat(X, span_warning("We stare at \the [src] cluelessly."))
-		return
+		return FALSE
 	if(effects)
 		X.visible_message(span_danger("[X] has slashed [src]!"),
 		span_danger("We slash [src]!"))
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		playsound(loc, "alien_claw_metal", 25)
 	attack_generic(X, damage_amount, damage_type, damage_flag, effects, armor_penetration)
-
+	return TRUE
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)
 	L.visible_message(span_danger("[L] nudges its head against [src]."), \

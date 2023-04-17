@@ -9,39 +9,108 @@
 /obj/docking_port/mobile/supply,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/supply)
+"f" = (
+/obj/machinery/door/poddoor/railing{
+	id = "supply_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply)
+"l" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply)
+"C" = (
+/obj/machinery/door/poddoor/railing{
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply)
+"E" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply)
+"I" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply)
+"K" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply)
+"M" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "supply_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply)
+"Q" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
+I
+l
+l
+l
+M
 "}
 (2,1,1) = {"
-a
+K
 b
 a
 b
-a
+E
 "}
 (3,1,1) = {"
-a
+K
 a
 c
 a
-a
+E
 "}
 (4,1,1) = {"
-a
+K
 b
 a
 b
-a
+E
 "}
 (5,1,1) = {"
-a
-a
-a
-a
-a
+Q
+C
+C
+C
+f
 "}

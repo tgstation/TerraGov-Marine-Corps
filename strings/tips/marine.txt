@@ -1,3 +1,5 @@
+Putting an instrument in your armor slot allows you to still be able to play it, charge into battle with song!
+Many maps spawn with free metal, plasteel and other important supplies in key spots. As a marine remember to grab them and as a xeno make sure to melt them.
 Trading your life for a Xenomorph's is almost always worth it.
 You do not need to be in harm intent to point blank xenomorphs!
 The mini map (green icon on the top of the screen) helps you know where the frontline is at and where revivable marines are. You can keybind it in game preference.
@@ -14,6 +16,7 @@ Be mindful when using hand grenades. Getting stunned or knocked over after primi
 Watch out for friendly fire and marines not in aim mode. Make sure you're not walking into anyone's firing line, and make sure no one else is in yours!
 Some weapons permit aim mode, which prevents friendly fire. Use this behind marines and be a smartgunner lite!
 While medics and doctors are best at it, anyone can use a defibrillator and operate the body scanner and autodoc medical system.
+While engineers and synthetic are best at it, anyone can build barricades and razorsharp obstacles.
 Anyone can make razor wire by using three metal sheets, which is four metal rods and barbed wire from metal sheets. Stop that crusher and bull from charging!
 Terra Experimental standard batteries can be recharged in APCs and power cell rechargers if the generators are on.
 If you aren't a squad marine, then you have a special room in prep with special gear vendors.
@@ -39,7 +42,7 @@ If a M40 FLDP grenade collides to any mob when thrown, the mob will be lit in a 
 SWAT masks ordered from Requisitions can block only one larval facehugger attack. If they successfully blocked an attempted attack, replace them immediately.
 Drag crates of platinum and phoron to the Automated Storage and Retrieval System (ASRS) pad inside cargo. Once the pad lowers with the applicable crates, you will gain requisition points. This applies to dead xenomorphs as well!
 In snow maps (such as Ice Colony or Icey Caves), wear a coif or scarf! You will freeze to death if you go outside of your dropship if you are not wearing them!
-To throw a grenade, Activate (Default: Z) the grenade while in the active hand. You will then automatically enter throw mode, in which then you can simply click anywhere to throw it. Do not take too long!
+To throw a grenade, Activate (Default: Z) the grenade while in the active hand. Then simply click where you want to throw it. Do not take too long!
 Quickly store items to the container (bags, satchels, belts, pouches) by pressing the Quick Equip (Default: E) key while holding an item and you are looking at a container.
 Press Quick Equip (Default: E) while you are not holding an item to the active hand to draw the weapon from whatever preferred slot (Default: Suit Storage, can be customized at the Preferences tab) you selected, otherwise you will pull out any item from a container.
 Stasis bags do not pause xenomorph infection entirely, they only slow progress by a lot.
@@ -94,3 +97,63 @@ Even if a patient dies a second after being successfully revived by a defibrilla
 Don't forget that xenomorphs spawn infinitely during the Crash gamemode. Don't waste too much time hunting xenomorphs down!
 The AI and synthetics can talk together on their own channel using the :n key.
 You can memorialize fallen marines by using their dogtags on the ship's memorial! Memorialized solders will be displayed at the end of the round.
+There are water canteens in the vendors. Stay hydrated.
+If a corpsman is tending to you, try and hold still.
+Moving around with broken bones is dangerous. It can cause organ damage, which require immediate medical attention.
+Jetpacks can fly over most things. Use them to escape your poor decisions.
+You can fit pocket pistols in your boots.
+Ammo is plentiful. Bring a box with you.
+The RO works very hard. Be nice to them.
+While using aim mode, bipods and red-dot-sights allow you to shoot faster.
+Chemrette cigarettes can be very useful.
+Sleeping will slowly heal cloneloss.
+As a mech-pilot, speed is not very important.
+As a mech-pilot, keep a close eye on your teamates. You lead the front!
+As a mech-pilot, the only weapon that have IFF is the sniper, everything else can friendly fire marines.
+As a mech-pilot, make sure to repair and reload often.
+As a flamer, you are a very valuable target. You clear resin walls and doors for marines to push. Just don't push marines into fire.
+Back fuel-tanks can be refilled via welding kits.
+The CSE can customize the detonation time of grenades with a screwdriver.
+White Phosphorus is very dangerous.
+Your gloves can be made into fingerless ones with wirecutters.
+Batteries for energy weapons can be primed into makeshift grenades with the help of a multitool.
+Gigachads leave the autodoc on automatic.
+You can fit tiny items into your helmet.
+The time it takes for you to wield your gun can be the difference between life and death.
+Switching to your sidearm is faster than reloading.
+You can preform a tactical reload by dragging a fresh magazine from your belt towards your gun.
+With your sidearm in hand, RMB a pistol pouch to instantly reload.
+You can turn the safety of your gun on.
+Depending on the tactical situations, smoke grenades can do more harm than good.
+A miner without a turret is a sitting duck.
+Claymores often 1-shot T1s.
+Crushers easily get trapped in razorwire.
+Do not under any circuimstances hug the rouny.
+Researchers can instruct Newt to follow them around.
+Dress to impress! Your fellow marines WILL notice how you look.
+You can wipe any bodypaint off your face with a piece of paper.
+A single protein bar will fill many, if not every, people. Take an extra protein bar too much and you become slower and fat.
+The Sons of Mars reside on a Martian analogue called Cydonia. They haven't lived on Mars in centuries.
+The USL stands for the United State of Lepidoptera, a fringe-terrorist group with connections to an alleged "moth-people".
+Humans love fire. Xenomorphs hate it.
+The CL can order pizza with their fax-machine.
+Insulting your fellow marines is terrible for morale. Be kind.
+The admins are usually not out to get you.
+The most dangerous tactic is the unexpected.
+A single wraith can be fatal to the operation.
+The Baldur armor module significantly increases your light output. Become the flashlight you always wanted to be!
+Try not to bump into corpsmen. Your life might depend on it.
+With a cigarette pack in hand, target the mouth and click yourself to instantly take one.
+Spamming flares can be incredibly helpful, especially when King use Nightout! Many marines cannot see in darkness, so if you lighten up the firing lane with flares, marines can shoot better.
+The cryopods in medbay heal most types of damage but not organ damage!
+When in doubt, throw them in the autodoc.
+Medbay may sometimes run out of power. To avoid this, scream at your nearest engineer to repair the fusion reactors or replace the power cell in medbay APC.
+Doctor's Delight is one of the few healing chemicals that cannot be overdosed.
+Nanites are often not worth the risks.
+You can fit more than water in a canteen.
+15u from a standard inaprovaline injector will instantly heal 30% of all damage on someone in critical condition. They are in a critical state when they are laying on the ground, looking asleep, and gasping for air!
+There is a bazaar of weapons and tactics. Don't be afraid to find your niche!
+Always stick to your squad, or at least have a buddy.
+Walking to and from the FOB by yourself is an easy way to die.
+Xenomorphs are well armored. Over time, their exoskeleton will wear down by sunder, and they will be very vulnerable.
+You can attach a bullet charger to a BR-127 to become a discount autosniper.

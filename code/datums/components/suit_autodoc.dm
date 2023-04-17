@@ -103,12 +103,12 @@
 	toggle_action = new(parent)
 	scan_action = new(parent)
 	configure_action = new(parent)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
-	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
-	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/action_toggle)
-	RegisterSignal(scan_action, COMSIG_ACTION_TRIGGER, .proc/scan_user)
-	RegisterSignal(configure_action, COMSIG_ACTION_TRIGGER, .proc/configure)
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
+	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
+	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, PROC_REF(action_toggle))
+	RegisterSignal(scan_action, COMSIG_ACTION_TRIGGER, PROC_REF(scan_user))
+	RegisterSignal(configure_action, COMSIG_ACTION_TRIGGER, PROC_REF(configure))
 
 
 /**
@@ -129,7 +129,7 @@
 	Specifically registers signals with the wearer to ensure we capture damage taken events
 */
 /datum/component/suit_autodoc/proc/RegisterSignals(mob/user)
-	RegisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
+	RegisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
 
 /**
 	Removes specific user signals
@@ -190,7 +190,7 @@
 	if(!enabled)
 		return
 	enabled = FALSE
-	toggle_action.remove_selected_frame()
+	toggle_action.set_toggle(FALSE)
 	UnregisterSignals(wearer)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
@@ -206,7 +206,7 @@
 	if(enabled)
 		return
 	enabled = TRUE
-	toggle_action.add_selected_frame()
+	toggle_action.set_toggle(TRUE)
 	RegisterSignals(wearer)
 	START_PROCESSING(SSobj, src)
 	if(!silent)
@@ -252,7 +252,7 @@
 	if(LAZYLEN(drugs))
 		. = "[message_prefix] administered. [span_bold("Dosage:[drugs]")]<br/>"
 		TIMER_COOLDOWN_START(src, cooldown_type, chem_cooldown)
-		addtimer(CALLBACK(src, .proc/nextuse_ready, treatment_message), chem_cooldown)
+		addtimer(CALLBACK(src, PROC_REF(nextuse_ready), treatment_message), chem_cooldown)
 
 /**
 	Trys to inject each chmical into the user.
@@ -337,14 +337,14 @@
 */
 /datum/component/suit_autodoc/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(analyzer, /obj/item.proc/attack, wearer, wearer, TRUE)
+	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/obj/item, attack), wearer, wearer, TRUE)
 
 /**
 	Proc to show the suit configuration page
 */
 /datum/component/suit_autodoc/proc/configure(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/interact, wearer)
+	INVOKE_ASYNC(src, PROC_REF(interact), wearer)
 
 /**
 	Shows the suit configuration
@@ -355,7 +355,6 @@
 	<BR>
 	<B>Integrated Health Analyzer:</B><BR>
 	<A href='byond://?src=[REF(src)];analyzer=1'>Scan Wearer</A><BR>
-	<A href='byond://?src=[REF(src)];toggle_mode=1'>Turn Scanner HUD Mode: [analyzer.hud_mode ? "Off" : "On"]</A><BR>
 	<BR>
 	<B>Damage Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
 	<A href='byond://?src=[REF(src)];automed_damage=-50'>-50</A>
@@ -406,13 +405,6 @@
 	else if(href_list["analyzer"]) //Integrated scanner
 		analyzer.attack(wearer, wearer, TRUE)
 
-	else if(href_list["toggle_mode"]) //Integrated scanner
-		analyzer.hud_mode = !analyzer.hud_mode
-		if(analyzer.hud_mode)
-			wearer.balloon_alert(wearer, "The scanner now shows results on the hud")
-		else
-			wearer.balloon_alert(wearer, "The scanner no longer shows results on the hud")
-
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])
 		damage_threshold = round(damage_threshold)
@@ -425,9 +417,6 @@
 	interact(wearer)
 
 //// Action buttons
-/datum/action/suit_autodoc
-	action_icon = 'icons/mob/screen_alert.dmi'
-
 /datum/action/suit_autodoc/can_use_action()
 	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
 		return FALSE
@@ -436,11 +425,14 @@
 /datum/action/suit_autodoc/toggle
 	name = "Toggle Suit Automedic"
 	action_icon_state = "suit_toggle"
+	action_type = ACTION_TOGGLE
 
 /datum/action/suit_autodoc/scan
 	name = "User Medical Scan"
 	action_icon_state = "suit_scan"
-	keybind_signal = COMSIG_KB_SUITANALYZER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_SUITANALYZER,
+	)
 
 /datum/action/suit_autodoc/configure
 	name = "Configure Suit Automedic"

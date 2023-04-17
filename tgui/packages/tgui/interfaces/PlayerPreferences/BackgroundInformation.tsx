@@ -49,9 +49,7 @@ export const BackgroundInformation = (props, context) => {
               onClick={() => act('flavor_text', { characterDesc })}>
               Save
             </Button>
-            <Button
-              icon="times"
-              onClick={() => setCharacterDesc(flavor_text)}>
+            <Button icon="times" onClick={() => setCharacterDesc(flavor_text)}>
               Reset
             </Button>
           </Box>
@@ -76,9 +74,7 @@ export const BackgroundInformation = (props, context) => {
                   onClick={() => act('med_record', { medicalDesc })}>
                   Save
                 </Button>
-                <Button
-                  icon="times"
-                  onClick={() => setMedicalDesc(med_record)}>
+                <Button icon="times" onClick={() => setMedicalDesc(med_record)}>
                   Reset
                 </Button>
               </Box>

@@ -435,7 +435,7 @@
 					record1 = active1
 				if ((istype(src.active2, /datum/data/record) && GLOB.datacore.medical.Find(src.active2)))
 					record2 = active2
-				sleep(50)
+				sleep(5 SECONDS)
 				var/obj/item/paper/P = new /obj/item/paper( src.loc )
 				P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
 				if (record1)
@@ -468,7 +468,7 @@
 				if(1)
 					R.fields["name"] = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 				if(2)
-					R.fields["sex"]	= pick("Male", "Female")
+					R.fields["sex"] = pick("Male", "Female")
 				if(3)
 					R.fields["age"] = rand(5, 85)
 				if(4)

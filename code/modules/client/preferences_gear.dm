@@ -20,31 +20,28 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	cost = 1
 	slot = SLOT_HEAD
 
+/datum/gear/bandanna_grey
+	display_name = "TGMC bandanna (grey)"
+	path = /obj/item/clothing/head/bandanna/grey
+	cost = 3
+	slot = SLOT_HEAD
+
 /datum/gear/bandanna_red
 	display_name = "TGMC bandanna (red)"
 	path = /obj/item/clothing/head/bandanna/red
 	cost = 3
 	slot = SLOT_HEAD
 
-datum/gear/eye_patch
+/datum/gear/bandanna_brown
+	display_name = "TGMC bandanna (brown)"
+	path = /obj/item/clothing/head/bandanna/brown
+	cost = 3
+	slot = SLOT_HEAD
+/datum/gear/eye_patch
 	display_name = "Eye Patch"
 	path = /obj/item/clothing/glasses/eyepatch
 	cost = 2
 	slot = SLOT_GLASSES
-
-/datum/gear/bandanna_green
-	display_name = "TGMC bandanna (green)"
-	path = /obj/item/clothing/head/tgmcbandanna
-	cost = 3
-	slot = SLOT_HEAD
-
-
-/datum/gear/bandanna_tan
-	display_name = "TGMC bandanna (tan)"
-	path = /obj/item/clothing/head/tgmcbandanna/tan
-	cost = 3
-	slot = SLOT_HEAD
-
 
 /datum/gear/beret
 	display_name = "TGMC beret (blue)"
@@ -84,7 +81,7 @@ datum/gear/eye_patch
 	cost = 3
 	slot = SLOT_HEAD
 
-/datum/gear/beret_bloodred
+/datum/gear/beret_bloodred/blue
 	display_name = "TGMC beret (dark blue)"
 	path = /obj/item/clothing/head/tgmcberet/blueberet
 	cost = 3
@@ -186,6 +183,29 @@ datum/gear/eye_patch
 	cost = 2
 	slot = SLOT_WEAR_MASK
 
+/datum/gear/cigarette/pipe
+	display_name = "Smoking pipe"
+	path = /obj/item/clothing/mask/cigarette/pipe
+	cost = 3
+	slot = SLOT_WEAR_MASK
+
+/datum/gear/cigarette/pipe/corn
+	display_name = "Corn cob pipe"
+	path = /obj/item/clothing/mask/cigarette/pipe/cobpipe
+	cost = 3
+	slot = SLOT_WEAR_MASK
+
+/datum/gear/cigarette/pipe/corn/curved
+	display_name = "Curved corn cob pipe"
+	path = /obj/item/clothing/mask/cigarette/pipe/cobpipe/curved
+	cost = 3
+	slot = SLOT_WEAR_MASK
+
+/datum/gear/cigarette/pipe/bone
+	display_name = "Europan bone pipe"
+	path = /obj/item/clothing/mask/cigarette/pipe/bonepipe
+	cost = 3
+	slot = SLOT_WEAR_MASK
 
 /datum/gear/bgoggles
 	display_name = "Ballistic goggles"
@@ -199,3 +219,10 @@ datum/gear/eye_patch
 	path = /obj/item/clothing/glasses/mgoggles/prescription
 	cost = 2
 	slot = SLOT_GLASSES
+
+/datum/gear/kotahi
+	display_name = "Kotahi deck"
+	path = /obj/item/toy/deck/kotahi
+	cost = 2
+	slot = SLOT_R_HAND
+

@@ -6,11 +6,13 @@
 	desc = "An all-terrain vehicle built for traversing rough terrain with ease. \"TGMC CAVALRY\" is stamped on the side of the engine."
 	icon_state = "motorbike"
 	max_integrity = 300
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 0, "bomb" = 30, "fire" = 60, "acid" = 60)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60)
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
 	integrity_failure = 0.5
+	flags_pass = PASSABLE
+	coverage = 30	//It's just a bike, not hard to shoot over
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
 	///Internal motorbick storage object
 	var/obj/item/storage/internal/motorbike_pack/motor_pack = /obj/item/storage/internal/motorbike_pack
@@ -48,25 +50,7 @@
 	return ..()
 
 /obj/vehicle/ridden/motorbike/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
-		balloon_alert(user, "Already busy!")
-		return FALSE
-	if(obj_integrity >= max_integrity)
-		return TRUE
-	balloon_alert_to_viewers("[user] starts repairs", ignored_mobs = user)
-	balloon_alert(user, "You start repair")
-	if(!do_after(user, 2 SECONDS))
-		balloon_alert_to_viewers("Stops repair")
-		return
-	if(!I.use_tool(src, user, 0, volume=50, amount=1))
-		return TRUE
-	obj_integrity += min(10, max_integrity-obj_integrity)
-	if(obj_integrity == max_integrity)
-		balloon_alert_to_viewers("Fully repaired!")
-	else
-		balloon_alert_to_viewers("[user] repairs", ignored_mobs = user)
-		balloon_alert(user, "You repair damage")
-	return TRUE
+	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/motorbike/relaymove(mob/living/user, direction)
 	if(fuel_count <= 0)
@@ -131,7 +115,7 @@
 		motorbike_cover.icon = 'icons/obj/motorbike_sidecar.dmi'
 		motorbike_cover.pixel_x = -9
 		sidecar_dir_change(newdir = dir)
-		RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, .proc/sidecar_dir_change)
+		RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(sidecar_dir_change))
 		add_overlay(motorbike_cover)
 		RemoveElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
 		AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike/sidecar)
@@ -191,12 +175,6 @@
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0, src)
 	smoke.start()
-
-/obj/vehicle/ridden/motorbike/projectile_hit(obj/projectile/P)
-	if(!buckled_mobs)
-		return ..()
-	var/mob/buckled_mob = pick(buckled_mobs)
-	return buckled_mob.projectile_hit(P)
 
 /obj/vehicle/ridden/motorbike/obj_destruction()
 	explosion(src, light_impact_range = 2, flash_range = 0)

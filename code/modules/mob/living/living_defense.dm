@@ -1,21 +1,3 @@
-
-/*
-	run_armor_check(a,b)
-	args
-	a:def_zone - What part is getting hit, if null will check entire body
-	b:attack_flag - What type of attack, bullet, laser, energy, melee
-
-	Returns
-	The armour percentage which is deducted om the damage.
-*/
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee")
-	return getarmor(def_zone, attack_flag)
-
-
-//if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
-/mob/living/proc/getarmor(def_zone, type)
-	return 0
-
 //Handles the effects of "stun" weapons
 /**
 	stun_effect_act(stun_amount, agony_amount, def_zone)
@@ -72,10 +54,8 @@
 			return
 
 		src.visible_message(span_warning(" [src] has been hit by [O]."), null, null, 5)
-		var/armor = run_armor_check(null, "melee")
 
-		if(armor < 1)
-			apply_damage(max(0, throw_damage - (throw_damage * soft_armor.getRating("melee") * 0.01)), dtype, null, armor, is_sharp(O), has_edge(O), TRUE)
+		apply_damage(throw_damage, dtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
@@ -134,21 +114,24 @@
 		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
+	if(get_fire_resist() <= 0 || get_hard_armor("fire", BODY_ZONE_CHEST) >= 100)	//having high fire resist makes you immune
+		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
-		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
+		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, PROC_REF(resist_fire))
 		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
+		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 		update_fire()
 		return TRUE
 
 /mob/living/carbon/human/IgniteMob()
 	. = ..()
-	if(.)
+	if(on_fire == TRUE)
 		if(!stat && !(species.species_flags & NO_PAIN))
 			emote("scream")
 
 /mob/living/carbon/xenomorph/IgniteMob()
-	if(fire_resist_modifier <= -1)	//having high fire resist makes you immune
+	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	. = ..()
 	if(!.)
@@ -194,6 +177,8 @@
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
 	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
 		return
+	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
+		add_fire_stacks = CEILING(add_fire_stacks * get_fire_resist(), 1)
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
@@ -211,12 +196,28 @@
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
 
+/mob/living/flamer_fire_act(burnlevel)
+	if(!burnlevel)
+		return
+	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
+		return
+	if(hard_armor.getRating(FIRE) >= 100)
+		to_chat(src, span_warning("You are untouched by the flames."))
+		return
+
+	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE)
+	to_chat(src, span_warning("You are burned!"))
+
+	if(flags_pass & PASSFIRE) //Pass fire allow to cross fire without being ignited
+		return
+
+	adjust_fire_stacks(burnlevel)
+	IgniteMob()
 
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	Paralyze(80)
-
+	Paralyze(30)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
 		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
@@ -243,6 +244,8 @@
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 			smokecloak_off()
 		return
+	if(status_flags & GODMODE)
+		return FALSE
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return FALSE
 	if(LAZYACCESS(smoke_delays, S.type) > world.time)
@@ -261,11 +264,19 @@
 		if(prob(25 * protection))
 			to_chat(src, span_danger("Your skin feels like it is melting away!"))
 		adjustFireLoss(S.strength * rand(20, 23) * protection)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TOXIC))
+		if(HAS_TRAIT(src, TRAIT_INTOXICATION_IMMUNE))
+			return
+		if(has_status_effect(STATUS_EFFECT_INTOXICATED))
+			var/datum/status_effect/stacking/intoxicated/debuff = has_status_effect(STATUS_EFFECT_INTOXICATED)
+			debuff.add_stacks(SENTINEL_TOXIC_GRENADE_STACKS_PER)
+		apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_GRENADE_STACKS_PER)
+		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 	return protection
 
-/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent)
+/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
 	if(!damage)
 		stack_trace("check_shields called without a damage value")
 		return 0
@@ -273,9 +284,12 @@
 	var/list/affecting_shields = list()
 	SEND_SIGNAL(src, COMSIG_LIVING_SHIELDCALL, affecting_shields, damage_type)
 	if(length(affecting_shields) > 1)
-		sortTim(affecting_shields, /proc/cmp_numeric_dsc, associative = TRUE)
+		sortTim(affecting_shields, GLOBAL_PROC_REF(cmp_numeric_dsc), associative = TRUE)
 	for(var/shield in affecting_shields)
 		var/datum/callback/shield_check = shield
-		. = shield_check.Invoke(attack_type, ., damage_type, silent)
+		. = shield_check.Invoke(attack_type, ., damage_type, silent, penetration)
 		if(!.)
 			break
+
+/mob/living/proc/get_fire_resist()
+	return clamp((100 - get_soft_armor("fire", null)) * 0.01, 0, 1)

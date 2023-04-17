@@ -66,11 +66,6 @@
 /obj/machinery/atmospherics/pipe/update_icon()
 	. = ..()
 	update_alpha()
-	var/turf/T = get_turf(src)
-	if(level == 2 || (!T.intact_tile && !istype(T, /turf/open/floor/plating/plating_catwalk)))
-		plane = GAME_PLANE
-	else
-		plane = FLOOR_PLANE
 
 /obj/machinery/atmospherics/pipe/proc/update_alpha()
 	alpha = invisibility ? 64 : 255

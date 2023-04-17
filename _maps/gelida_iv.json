@@ -1,0 +1,13 @@
+{
+    "map_name": "Gelida IV",
+    "map_path": "map_files/gelida_iv",
+    "map_file": "gelida_iv.dmm",
+    "environment_traits": {
+        "COLD": true
+    },
+    "armor": "ice",
+	"announce_text": "Our comms array has detected an automated emergency signal broadcasting over a frequency reserved for the highest level of emergencies. The message was traced to the northern reaches of the research colony Gelida IV. The ship is moving into the sector with thrusters at max throttle. TGMC, get briefed and then move out!",
+	"traits":[{
+		"weather_snowstorm": true
+	}]
+}

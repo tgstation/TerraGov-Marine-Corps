@@ -4,22 +4,22 @@
 	for(var/xeno_type in GLOB.xeno_caste_datums)
 		xenos += allocate(xeno_type)
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	for(var/i in xenos)
 		var/mob/living/carbon/xenomorph/X = i
 		X.upgrade_xeno(X.upgrade_next())
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	for(var/i in xenos)
 		var/mob/living/carbon/xenomorph/X = i
 		X.upgrade_xeno(X.upgrade_next())
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	for(var/i in xenos)
 		var/mob/living/carbon/xenomorph/X = i
 		X.upgrade_xeno(X.upgrade_next())
 
-	sleep(10)
+	sleep(1 SECONDS)

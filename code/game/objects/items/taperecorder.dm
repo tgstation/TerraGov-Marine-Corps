@@ -5,12 +5,10 @@
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
 
-	materials = list(/datum/material/metal = 60, /datum/material/glass = 30)
-
-	var/recording = 0.0
-	var/playing = 0.0
-	var/timerecorded = 0.0
-	var/playsleepseconds = 0.0
+	var/recording = 0
+	var/playing = 0
+	var/timerecorded = 0
+	var/playsleepseconds = 0
 	var/list/storedinfo = new/list()
 	var/list/timestamp = new/list()
 	var/canprint = 1
@@ -46,7 +44,7 @@
 			if(recording == 0)
 				break
 			timerecorded++
-			sleep(10)
+			sleep(1 SECONDS)
 		recording = 0
 		icon_state = "taperecorderidle"
 		return
@@ -110,19 +108,19 @@
 	for(var/i=1,timerecorded<3600,sleep(10 * (playsleepseconds) ))
 		if(playing == 0)
 			break
-		if(storedinfo.len < i)
+		if(length(storedinfo) < i)
 			break
 		var/turf/T = get_turf(src)
 		T.visible_message("<font color=Maroon><B>[src]</B>: [storedinfo[i]]</font>")
-		if(storedinfo.len < i+1)
+		if(length(storedinfo) < i+1)
 			playsleepseconds = 1
-			sleep(10)
+			sleep(1 SECONDS)
 			T = get_turf(src)
 			T.visible_message("<font color=Maroon><B>[src]</B>: End of recording.</font>")
 		else
 			playsleepseconds = timestamp[i+1] - timestamp[i]
 		if(playsleepseconds > 14)
-			sleep(10)
+			sleep(1 SECONDS)
 			T = get_turf(src)
 			T.visible_message("<font color=Maroon><B>[src]</B>: Skipping [playsleepseconds] seconds of silence</font>")
 			playsleepseconds = 1
@@ -146,12 +144,12 @@
 	to_chat(usr, span_notice("Transcript printed."))
 	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
 	var/t1 = "<B>Transcript:</B><BR><BR>"
-	for(var/i=1,storedinfo.len >= i,i++)
+	for(var/i=1,length(storedinfo) >= i,i++)
 		t1 += "[storedinfo[i]]<BR>"
 	P.info = t1
 	P.name = "Transcript"
 	canprint = 0
-	sleep(300)
+	sleep(30 SECONDS)
 	canprint = 1
 
 
@@ -169,7 +167,7 @@
 				if(recording == 0)
 					break
 				timerecorded++
-				sleep(10)
+				sleep(1 SECONDS)
 			recording = 0
 			icon_state = "taperecorderidle"
 			return

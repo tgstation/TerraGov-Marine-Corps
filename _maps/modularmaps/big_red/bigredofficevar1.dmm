@@ -53,7 +53,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "cD" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/e)
@@ -136,7 +136,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "hp" = (
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "hZ" = (
@@ -157,7 +157,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "ie" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "if" = (
@@ -222,8 +222,7 @@
 /area/bigredv2/outside/e)
 "kz" = (
 /obj/structure/table,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/grimy,
@@ -254,7 +253,7 @@
 /area/bigredv2/outside/office_complex)
 "lK" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "lZ" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -411,7 +410,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "ra" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "rb" = (
 /obj/structure/janitorialcart,
@@ -493,12 +492,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "vR" = (
-/obj/effect/decal/mecha_wreckage/ripley/firefighter,
+/obj/mecha_wreckage/ripley/firefighter,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/bigredv2/outside/office_complex)
 "vU" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "vW" = (
@@ -507,11 +506,11 @@
 /area/bigredv2/outside/office_complex)
 "wh" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "wo" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/structure/prop/mainship/research/mechafab,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "wr" = (
@@ -589,7 +588,7 @@
 /area/bigredv2/outside/office_complex)
 "zx" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/folder/black,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "zI" = (
@@ -800,8 +799,8 @@
 /area/bigredv2/outside/office_complex)
 "IL" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "IO" = (
@@ -856,7 +855,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "LE" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "LH" = (
@@ -904,7 +903,7 @@
 /area/bigredv2/outside/c)
 "NM" = (
 /obj/structure/table,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "NT" = (
@@ -1008,8 +1007,8 @@
 /area/bigredv2/outside/office_complex)
 "RR" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "RT" = (
@@ -1032,7 +1031,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "Td" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
@@ -1040,7 +1039,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "Tz" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 6
 	},
 /area/bigredv2/outside/c)
@@ -1143,7 +1142,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "Zt" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
@@ -1153,7 +1152,7 @@
 /area/bigredv2/outside/office_complex)
 "ZG" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "ZR" = (
@@ -1358,7 +1357,7 @@ ov
 ov
 zJ
 ov
-Gq
+ov
 "}
 (9,1,1) = {"
 ra

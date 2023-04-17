@@ -47,7 +47,7 @@
 		for(var/d in GLOB.cardinals)
 			var/turf/T = get_step(src, d)
 			for(var/obj/machinery/power/terminal/term in T)
-				if(term && term.dir == turn(d, 180))
+				if(term?.dir == turn(d, 180))
 					terminal = term
 					break dir_loop
 	if(!terminal)
@@ -181,7 +181,7 @@
 		machine_stat |= BROKEN
 
 /obj/machinery/power/smes/add_load(amount)
-	if(terminal && terminal.powernet)
+	if(terminal?.powernet)
 		return terminal.add_load(amount)
 	return FALSE
 
@@ -395,7 +395,7 @@
 	inputting = FALSE
 	output_level = 0
 	charge = max(charge - 1e6/severity, 0)
-	addtimer(CALLBACK(src, .proc/reset_power_level), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(reset_power_level)), 10 SECONDS)
 	..()
 
 /obj/machinery/power/smes/proc/reset_power_level()

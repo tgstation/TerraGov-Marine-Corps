@@ -30,6 +30,10 @@
 	icon_state = "RO"
 	job = /datum/job/terragov/requisitions/officer
 
+/obj/effect/landmark/start/job/mechpilot
+	icon_state = "MP"
+	job = /datum/job/terragov/command/mech_pilot
+
 /obj/effect/landmark/start/job/shiptech
 	icon_state = "SE"
 	job = /datum/job/terragov/engineering/tech
@@ -43,7 +47,7 @@
 	job = /datum/job/terragov/medical/medicalofficer
 
 /obj/effect/landmark/start/job/researcher
-	icon_state = "MD"
+	icon_state = "Research"
 	job = /datum/job/terragov/medical/researcher
 
 /obj/effect/landmark/start/job/corporateliaison
@@ -73,10 +77,6 @@
 /obj/effect/landmark/start/job/squadspecialist
 	icon_state = "Spec"
 	job = /datum/job/terragov/squad/specialist
-
-/obj/effect/landmark/start/job/squadleader
-	icon_state = "SL"
-	job = /datum/job/terragov/squad/leader
 
 /obj/effect/landmark/start/job/squadleader
 	icon_state = "SL"
@@ -134,9 +134,6 @@
 /obj/effect/landmark/start/job/squadleader/rebel
 	job = /datum/job/terragov/squad/leader/rebel
 
-/obj/effect/landmark/start/job/squadleader/rebel
-	job = /datum/job/terragov/squad/leader/rebel
-
 /obj/effect/landmark/start/job/ai/rebel
 	job = /datum/job/terragov/silicon/ai/rebel
 
@@ -145,8 +142,32 @@
 	job = /datum/job/survivor/rambo
 
 /obj/effect/landmark/start/job/fallen
-	job = /datum/job/fallen
+	job = /datum/job/fallen/marine
+
+/obj/effect/landmark/start/job/fallen/xenomorph
+	job = /datum/job/fallen/xenomorph
 
 /obj/effect/landmark/start/job/xenomorph
 	icon_state = "xeno_spawn"
 	job = /datum/job/xenomorph
+
+//SOM
+/obj/effect/landmark/start/job/som/squadstandard
+	icon_state = "PFC"
+	job = /datum/job/som/squad/standard
+
+/obj/effect/landmark/start/job/som/squadveteran
+	icon_state = "SGnr"
+	job = /datum/job/som/squad/veteran
+
+/obj/effect/landmark/start/job/som/squadengineer
+	icon_state = "Eng"
+	job = /datum/job/som/squad/engineer
+
+/obj/effect/landmark/start/job/som/squadcorpsman
+	icon_state = "HM"
+	job = /datum/job/som/squad/medic
+
+/obj/effect/landmark/start/job/som/squadleader
+	icon_state = "SL"
+	job = /datum/job/som/squad/leader

@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	))
 
 /obj/item/stack/sheet/mineral
-	force = 5.0
+	force = 5
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	pixel_x = rand(-2, 2)
 	pixel_y = rand(-2, 2)
 
-obj/item/stack/sheet/mineral/iron
+/obj/item/stack/sheet/mineral/iron
 	name = "iron"
 	desc = "Iron is the most basic building material in space, a metal solid at room temperature, easy to shape and available in immense quantities."
 	singular_name = "iron sheet"
@@ -75,7 +75,7 @@ obj/item/stack/sheet/mineral/iron
 	perunit = 3750
 
 
-obj/item/stack/sheet/mineral/iron/Initialize()
+/obj/item/stack/sheet/mineral/iron/Initialize()
 	. = ..()
 	recipes = GLOB.iron_recipes
 

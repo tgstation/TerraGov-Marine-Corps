@@ -29,10 +29,12 @@
 
 
 /obj/item/bodybag/afterattack(atom/target, mob/user, proximity)
-	if(!proximity)
+	if(!proximity || !isturf(target) || target.density)
 		return
-	if(!isopenturf(target))
-		return
+	var/turf/target_turf = target
+	for(var/atom/atom_to_check AS in target_turf)
+		if(atom_to_check.density)
+			return
 	deploy_bodybag(user, target)
 
 
@@ -71,7 +73,7 @@
 /obj/structure/closet/bodybag/Initialize(mapload, foldedbag)
 	. = ..()
 	foldedbag_instance = foldedbag
-	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acidspray_act))
 
 /obj/structure/closet/bodybag/Destroy()
 	open()
@@ -82,7 +84,7 @@
 			stack_trace("[src] destroyed while the [foldedbag_instance] foldedbag_instance was neither destroyed nor in nullspace. This shouldn't happen.")
 		QDEL_NULL(foldedbag_instance)
 
-	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
+	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acidspray_act))
 	return ..()
 
 
@@ -218,11 +220,11 @@
 		to_chat(bodybag_occupant, span_danger("You jolt out of [name] upon being hit!"))
 		open()
 
-/obj/structure/closet/bodybag/flamer_fire_act()
+/obj/structure/closet/bodybag/flamer_fire_act(burnlevel)
 	if(!opened && bodybag_occupant)
 		to_chat(bodybag_occupant, span_danger("The intense heat forces you out of [name]!"))
 		open()
-		bodybag_occupant.flamer_fire_act()
+		bodybag_occupant.flamer_fire_act(burnlevel)
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
@@ -290,7 +292,7 @@
 		return TRUE
 
 	var/obj/item/healthanalyzer/J = I
-	J.attack(bodybag_occupant, user) // yes this is awful -spookydonut
+	J.attack(bodybag_occupant, user) // yes this is awful -spookydonut // TODO
 	return TRUE
 
 
@@ -311,7 +313,7 @@
 	. = ..()
 	if(bodybag_occupant)
 		ADD_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
 
 
 /obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(mob/source, gibbing)
@@ -371,7 +373,7 @@
 	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	unfoldedbag_path = /obj/structure/closet/bodybag/tarp
 	var/serial_number //Randomized serial number used to stop point macros and such.
 
@@ -448,7 +450,7 @@
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
 	if(bodybag_occupant)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
 
 
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)

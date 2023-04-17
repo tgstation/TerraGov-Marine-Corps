@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
-	var/clientfps = 0
+	var/clientfps = 60
 
 	// Custom Keybindings
 	var/list/key_bindings = null
@@ -58,6 +58,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/synthetic_name = "Undefined"
 	var/synthetic_type = "Synthetic"
 
+	//Robot specific preferences
+	var/robot_type = "Basic"
+
 	//Xenomorph specific preferences
 	var/xeno_name = "Undefined"
 
@@ -73,9 +76,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ethnicity = "Western"
 	var/good_eyesight = TRUE
 	var/preferred_squad = "None"
+	///Your preferred squad, when playing SOM
+	var/preferred_squad_som = "None"
 	var/alternate_option = RETURN_TO_LOBBY
-	var/preferred_slot = SLOT_S_STORE
-	var/preferred_slot_alt = SLOT_BACK
+	///Quick equip slots, up to [MAX_QUICK_EQUIP_SLOTS]. One per quick equip hotkey.
+	var/list/quick_equip = list()
 	var/list/gear
 	var/list/job_preferences = list()
 
@@ -110,9 +115,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/moth_wings = "Plain"
 
 	//Lore
-	var/citizenship = "TerraGov"
+	var/citizenship = "Earth Born"
 	var/religion = "None"
-	var/nanotrasen_relation = "Neutral"
 	var/flavor_text = ""
 	var/med_record = ""
 	var/sec_record = ""
@@ -157,8 +161,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"
-	var/obj/screen/map_view/screen_main
-	var/obj/screen/background/screen_bg
+	var/atom/movable/screen/map_view/screen_main
+	var/atom/movable/screen/background/screen_bg
 
 	/// If unique action will only act on the item in the active hand. If false, it will try to act on the item on the inactive hand as well in certain conditions.
 	var/unique_action_use_active_hand = TRUE
@@ -200,7 +204,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/custom_emote/emote = new
 		emote.id = i
 		custom_emotes += emote
-	C.update_movement_keys(src)
+	C.set_macros()
 	loadout_manager = new
 
 

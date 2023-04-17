@@ -178,7 +178,7 @@
 	Returns TURE if it was successful.
 */
 /mob/proc/drop_r_hand()
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(status_flags & INCORPOREAL) //  things don't have hands
 		return FALSE
 	if(r_hand)
 		return dropItemToGround(r_hand)
@@ -219,7 +219,6 @@
 	if(.)
 		I.pixel_x = initial(I.pixel_x) + rand(-6,6)
 		I.pixel_y = initial(I.pixel_y) + rand(-6,6)
-	I.do_drop_animation(src)
 
 /**
  * For when the item will be immediately placed in a loc other than the ground.
@@ -298,6 +297,15 @@
 	//if(hasvar(src,"r_hand")) if(src:r_hand) items += src:r_hand
 
 	return items
+
+///Find the slot an item is equipped to and returns its slot define
+/mob/proc/get_equipped_slot(obj/equipped_item)
+	if(equipped_item == l_hand)
+		. = SLOT_L_HAND
+	else if(equipped_item == r_hand)
+		. = SLOT_R_HAND
+	else if(equipped_item == wear_mask)
+		. = SLOT_WEAR_MASK
 
 /mob/living/proc/unequip_everything()
 	var/list/items = list()

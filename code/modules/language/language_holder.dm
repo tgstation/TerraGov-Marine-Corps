@@ -10,7 +10,7 @@
 
 /datum/language_holder/New(owner)
 	src.owner = owner
-	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_language)
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_language))
 
 	languages = typecacheof(languages)
 	shadow_languages = typecacheof(shadow_languages)
@@ -116,34 +116,15 @@
 	. = ..()
 	grant_all_languages(omnitongue = TRUE)
 
+/datum/language_holder/robot
+	languages = list(/datum/language/common, /datum/language/machine)
 
 /datum/language_holder/synthetic
 	languages = list(/datum/language/common, /datum/language/machine, /datum/language/xenocommon)
 
-
-/datum/language_holder/unathi
-	languages = list(/datum/language/common, /datum/language/unathi)
-
-
-/datum/language_holder/tajaran
-	languages = list(/datum/language/common, /datum/language/tajaran)
-
-
-/datum/language_holder/skrell
-	languages = list(/datum/language/common, /datum/language/skrell)
-
-
 /datum/language_holder/moth
 	languages = list(/datum/language/common, /datum/language/moth)
 	selected_default_language = /datum/language/moth
-
-
-/datum/language_holder/vox
-	languages = list(/datum/language/common, /datum/language/vox)
-
-
-/datum/language_holder/machine
-	languages = list(/datum/language/common, /datum/language/machine, /datum/language/xenocommon)
 
 /datum/language_holder/sectoid
 	languages = list(/datum/language/sectoid)

@@ -24,6 +24,10 @@
 		new_baseturfs.Insert(1, /turf/baseturf_skipover/shuttle)
 
 ////////////////////////////Single-area shuttles////////////////////////////
+/area/shuttle/dropship/Initialize(mapload, ...)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
 
 /area/shuttle/dropship/alamo
 	name = "Dropship Alamo"
@@ -39,6 +43,11 @@
 
 /area/shuttle/minidropship
 	name = "Tadpole Drop Shuttle"
+
+/area/shuttle/minidropship/Initialize(mapload, ...)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
 
 /area/shuttle/ert
 	name = "Emergency Response Team"
@@ -63,6 +72,7 @@
 
 /area/shuttle/escape_pod
 	name = "Escape Pod"
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/shuttle/custom
 	name = "Custom player shuttle"
@@ -169,6 +179,11 @@
 	name = "Canterbury"
 	requires_power = TRUE
 	always_unpowered = FALSE
+
+/area/shuttle/canterbury/Initialize(mapload, ...)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
 
 /area/shuttle/canterbury/cic
 	name = "Combat Information Center"

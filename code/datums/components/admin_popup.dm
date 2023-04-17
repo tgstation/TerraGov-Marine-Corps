@@ -5,7 +5,7 @@
 	/// then the component will delete itself.
 	var/datum/admin_help/ticket
 
-	var/obj/screen/admin_popup/admin_popup
+	var/atom/movable/screen/admin_popup/admin_popup
 
 /datum/component/admin_popup/Initialize(datum/admin_help/ticket)
 	if (!istype(parent, /client))
@@ -23,7 +23,7 @@
 			COMSIG_ADMIN_HELP_REPLIED,
 			COMSIG_PARENT_QDELETING,
 		),
-		.proc/delete_self,
+		PROC_REF(delete_self),
 	)
 
 /datum/component/admin_popup/Destroy(force, silent)
@@ -56,7 +56,7 @@
 	qdel(src)
 
 /// The UI element for admin popups
-/obj/screen/admin_popup
+/atom/movable/screen/admin_popup
 	icon = null
 	icon_state = null
 	plane = ABOVE_HUD_PLANE
@@ -82,26 +82,26 @@
 	/// The `world.time` when the last color update occurred.
 	var/last_update_time = 0
 
-/obj/screen/admin_popup/New(loc, ...)
+/atom/movable/screen/admin_popup/New(loc, ...)
 	. = ..()
 
 	START_PROCESSING(SSobj, src)
 	update_text()
 
-/obj/screen/admin_popup/Destroy()
+/atom/movable/screen/admin_popup/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/screen/admin_popup/process(delta_time)
+/atom/movable/screen/admin_popup/process(delta_time)
 	update_text()
 
-/obj/screen/admin_popup/proc/update_text()
+/atom/movable/screen/admin_popup/proc/update_text()
 	// Even if processing time changes, we want this to remain slow.
 	// We want to pester them into reading their ticket, not give them a seizure!
 	if(world.time - last_update_time < 2 SECONDS)
 		return
 
-	last_color_index = (last_color_index % colors.len) + 1
+	last_color_index = (last_color_index % length(colors)) + 1
 
 	var/message = "<b style='color: [colors[last_color_index]]; text-align: center; font-size: 32px'>"
 	message += "HEY! An admin is trying to talk to you!<br>Check your chat window, and click their name to respond!"

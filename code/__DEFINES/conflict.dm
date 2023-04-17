@@ -38,18 +38,18 @@
 
 //Ammo defines for gun/projectile related things.
 //flags_ammo_behavior
-#define AMMO_EXPLOSIVE (1<<0)
+#define AMMO_EXPLOSIVE (1<<0) //Ammo will impact a targeted open turf instead of continuing past it
 #define AMMO_XENO (1<<1)
 #define AMMO_XENO_TOX (1<<2) //Unused value.
-#define AMMO_ENERGY (1<<3)
-#define AMMO_ROCKET (1<<4)
-#define AMMO_SNIPER (1<<5)
-#define AMMO_INCENDIARY (1<<6)
+#define AMMO_ENERGY (1<<3) //Ammo will pass through windows and has damage reduced by smokes with SMOKE_NERF_BEAM
+#define AMMO_ROCKET (1<<4) //Ammo is more likely to continue past cover such as cades
+#define AMMO_SNIPER (1<<5) //Ammo is more likely to continue past cover such as cades
+#define AMMO_INCENDIARY (1<<6) //Ammo will attempt to add firestacks and ignite a hit mob if it deals any damage. Armor applies, regardless of AMMO_IGNORE_ARMOR
 #define AMMO_SKIPS_ALIENS (1<<7)
 #define AMMO_IS_SILENCED (1<<8) //Unused right now.
-#define AMMO_IGNORE_ARMOR (1<<9)
+#define AMMO_IGNORE_ARMOR (1<<9) //Projectile direct damage will ignore both hard and soft armor
 #define AMMO_IGNORE_RESIST (1<<10) //Unused.
-#define AMMO_BALLISTIC (1<<11)
+#define AMMO_BALLISTIC (1<<11) //Generates blood splatters on mob hit
 #define AMMO_SUNDERING (1<<12)
 #define SPECIAL_PROCESS (1<<13)
 #define AMMO_SENTRY (1<<14) //Used to identify ammo from sentry guns and other automated sources
@@ -60,6 +60,7 @@
 #define AMMO_PASS_THROUGH_TURF (1<<19) //If the projectile passes through walls causing damage to them
 #define AMMO_PASS_THROUGH_MOVABLE (1<<20) //If the projectile passes through mobs and objects causing damage to them
 #define AMMO_PASS_THROUGH_MOB (1<<21) //If the projectile passes through mobs only causing damage to them
+#define AMMO_SOUND_PITCH (1<<22) //If the projectile ricochet and miss sound is pitched up
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -77,7 +78,8 @@
 #define GUN_AMMO_COUNT_BY_PERCENTAGE (1<<11)
 #define GUN_AMMO_COUNT_BY_SHOTS_REMAINING (1<<12)
 #define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<13)
-#define GUN_SHOWS_AMMO_REMAINING (1<<14)
+#define GUN_SHOWS_AMMO_REMAINING (1<<14) //Whether the mob sprite reflects the ammo level
+#define GUN_SHOWS_LOADED (1<<15) //Whether the mob sprite as loaded or unloaded, a binary version of the above
 
 //reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
 #define AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION (1<<0)
@@ -99,11 +101,16 @@
 
 #define FLAMER_STREAM_STRAIGHT "straight"
 #define FLAMER_STREAM_CONE "cone"
+#define FLAMER_STREAM_RANGED "ranged"
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
 #define GUN_FIREMODE_AUTOMATIC "automatic fire mode"
 #define GUN_FIREMODE_AUTOBURST "auto-burst-fire mode"
+
+//autofire component fire callback callback return flags
+#define AUTOFIRE_CONTINUE (1<<0)
+#define AUTOFIRE_SUCCESS (1<<1)
 
 //Ammo magazine defines, for flags_magazine
 #define MAGAZINE_REFILLABLE (1<<0)
@@ -115,10 +122,10 @@
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 
 #define SLOWDOWN_ARMOR_VERY_LIGHT 0.20
-#define SLOWDOWN_ARMOR_LIGHT 0.35
-#define SLOWDOWN_ARMOR_MEDIUM 0.55
-#define SLOWDOWN_ARMOR_HEAVY 1
-#define SLOWDOWN_ARMOR_VERY_HEAVY 1.15
+#define SLOWDOWN_ARMOR_LIGHT 0.3
+#define SLOWDOWN_ARMOR_MEDIUM 0.5
+#define SLOWDOWN_ARMOR_HEAVY 0.7
+#define SLOWDOWN_ARMOR_VERY_HEAVY 1
 
 
 //=================================================
@@ -129,8 +136,9 @@
 
 //Define sniper laser multipliers
 
-#define SNIPER_LASER_DAMAGE_MULTIPLIER 1.7 //+70% damage vs the aimed target
-#define SNIPER_LASER_ARMOR_MULTIPLIER 1.7 //+70% penetration vs the aimed target
+#define SNIPER_LASER_DAMAGE_MULTIPLIER 1.5 //+50% damage vs the aimed target
+#define SNIPER_LASER_ARMOR_MULTIPLIER 1.5 //+50% penetration vs the aimed target
+#define SNIPER_LASER_SLOWDOWN_STACKS 3 // Slowdown applied on hit vs the aimed target.
 
 //Define lasrifle
 #define ENERGY_STANDARD_AMMO_COST 20
@@ -161,6 +169,8 @@
 #define SMOKE_HUGGER_PACIFY (1<<17) //Smoke that pacifies huggers in its area; mainly used for vision blocking smoke
 #define SMOKE_XENO_SANGUINAL (1<<18) //Toxic crimson smoke created by the Defiler's Defile ability.
 #define SMOKE_XENO_OZELOMELYN (1<<19) //Smoke that purges chemicals and does minor capped toxin damage for Defiler.
+#define SMOKE_SATRAPINE (1<<20) //nerve agent that purges painkillers and causes increasing pain
+#define SMOKE_XENO_TOXIC (1<<21) //deals damage to anyone inside it and inflicts the intoxicated debuff, dealing damage over time
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

@@ -112,7 +112,7 @@
 /area/bigredv2/outside/dorms)
 "tr" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -263,7 +263,7 @@
 /area/bigredv2/outside/dorms)
 "JI" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -277,7 +277,7 @@
 /area/bigredv2/outside/dorms)
 "Lx" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "Mp" = (
@@ -300,13 +300,11 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "RW" = (
-/obj/machinery/vending/snack{
-	icon_state = "snack-broken"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/prop/tgbrokenvendor/snackbrokebed,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "SV" = (

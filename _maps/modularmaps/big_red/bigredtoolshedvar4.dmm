@@ -20,7 +20,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "e" = (
@@ -34,7 +34,7 @@
 /area/bigredv2/outside/c)
 "g" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "h" = (
@@ -55,7 +55,7 @@
 /area/bigredv2/outside/c)
 "m" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "o" = (
@@ -75,7 +75,7 @@
 /area/bigredv2/outside/storage)
 "q" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "r" = (
@@ -129,6 +129,13 @@
 	dir = 4
 	},
 /area/bigredv2/outside/c)
+"C" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
 "E" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -163,7 +170,7 @@
 /area/bigredv2/outside/c)
 "N" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/sign/securearea,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
@@ -184,11 +191,22 @@
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "T" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "U" = (
 /turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
+"V" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"W" = (
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "X" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -210,10 +228,10 @@
 t
 j
 L
-L
-L
+W
+o
 Z
-J
+C
 Q
 a
 "}
@@ -281,7 +299,7 @@ S
 e
 g
 y
-X
+E
 "}
 (8,1,1) = {"
 U
@@ -292,7 +310,7 @@ h
 e
 H
 y
-E
+V
 "}
 (9,1,1) = {"
 U
@@ -303,7 +321,7 @@ h
 e
 m
 y
-i
+X
 "}
 (10,1,1) = {"
 U
@@ -375,7 +393,7 @@ i
 U
 x
 w
-w
+W
 o
 J
 A

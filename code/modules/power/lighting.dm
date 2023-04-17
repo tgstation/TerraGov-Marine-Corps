@@ -147,6 +147,25 @@
 	/// true if rigged to explode
 	var/rigged = FALSE
 
+/obj/machinery/light/mainship
+	base_state = "tube"
+
+/obj/machinery/light/mainship/Initialize()
+	. = ..()
+	GLOB.mainship_lights += src
+
+/obj/machinery/light/mainship/Destroy()
+	. = ..()
+	GLOB.mainship_lights -= src
+
+/obj/machinery/light/mainship/small
+	icon_state = "bulb1"
+	base_state = "bulb"
+	fitting = "bulb"
+	brightness = 4
+	desc = "A small lighting fixture."
+	light_type = /obj/item/light_bulb/bulb
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
@@ -422,6 +441,7 @@
 	if(light_on)
 		var/prot = 0
 		var/mob/living/carbon/human/H = user
+		var/datum/limb/limb_check = H.get_limb(H.hand? "l_hand" : "r_hand")
 
 		if(istype(H))
 
@@ -432,8 +452,8 @@
 		else
 			prot = 1
 
-		if(prot > 0)
-			to_chat(user, "You remove the light [fitting]")
+		if(prot > 0 || isrobot(H) || (limb_check.limb_status & LIMB_ROBOT))
+			to_chat(user, "You remove the light [fitting].")
 		else
 			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light
@@ -521,7 +541,7 @@
 
 /obj/machinery/light/proc/explode()
 	broken()	// break it first to give a warning
-	addtimer(CALLBACK(src, .proc/delayed_explosion), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(delayed_explosion)), 0.5 SECONDS)
 
 /obj/machinery/light/proc/delayed_explosion()
 	explosion(loc, 0, 1, 3, 2)
@@ -533,6 +553,10 @@
 
 /obj/item/light_bulb
 	icon = 'icons/obj/lighting.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/lights_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/lights_right.dmi',
+	)
 	force = 2
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -552,7 +576,6 @@
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	materials = list(/datum/material/glass = 100)
 	brightness = 8
 
 /obj/item/light_bulb/tube/large
@@ -565,8 +588,6 @@
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
 	base_state = "lbulb"
-	item_state = "contvapour"
-	materials = list(/datum/material/glass = 100)
 	brightness = 5
 
 /obj/item/light_bulb/bulb/fire
@@ -679,31 +700,31 @@
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds1/delayone/turn_on()
 	icon_state = "landingstripe1"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds1/delaytwo/turn_on()
 	icon_state = "landingstripe2"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds1/delaythree/turn_on()
 	icon_state = "landingstripe3"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds2/delayone/turn_on()
 	icon_state = "landingstripe1"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds2/delaytwo/turn_on()
 	icon_state = "landingstripe2"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds2/delaythree/turn_on()
 	icon_state = "landingstripe3"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/floor_warn_light
 	name = "alarm light"

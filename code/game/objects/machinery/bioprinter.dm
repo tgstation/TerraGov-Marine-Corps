@@ -17,9 +17,13 @@
 
 	//"Name" = list(location, matter, metal, time, isorganic)
 	var/list/products = list(
-		"synthetic left arm (125 - Metal)" =  list(/obj/item/robot_parts/l_arm,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
+		"biotic left arm (100 - Matter)" = list(/obj/item/robot_parts/biotic/l_arm,  LIMB_MATTER_AMOUNT, 0, LIMB_PRINTING_TIME),
+		"biotic right arm (100 - Matter)" = list(/obj/item/robot_parts/biotic/r_arm,  LIMB_MATTER_AMOUNT, 0, LIMB_PRINTING_TIME),
+		"biotic left leg (100 - Matter)" = list(/obj/item/robot_parts/biotic/l_leg,  LIMB_MATTER_AMOUNT, 0, LIMB_PRINTING_TIME),
+		"biotic right leg (100 - Matter)" = list(/obj/item/robot_parts/biotic/r_leg,  LIMB_MATTER_AMOUNT, 0, LIMB_PRINTING_TIME),
+		"synthetic left arm (125 - Metal)" = list(/obj/item/robot_parts/l_arm,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
 		"synthetic right arm (125 - Metal)" = list(/obj/item/robot_parts/r_arm,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
-		"synthetic left leg (125 - Metal)" =  list(/obj/item/robot_parts/l_leg,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
+		"synthetic left leg (125 - Metal)" = list(/obj/item/robot_parts/l_leg,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
 		"synthetic right leg (125 - Metal)" = list(/obj/item/robot_parts/r_leg,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME)
 		)
 
@@ -54,7 +58,14 @@
 
 /obj/machinery/bioprinter/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/reagent_containers/food/snacks/meat))
+	if(istype(I, /obj/item/reagent_containers/glass/beaker))
+		var/obj/item/reagent_containers/glass/beaker/B = I
+		if(B.reagents.has_reagent(/datum/reagent/medicine/biomass, 30))
+			to_chat(user, span_notice("\The [src] processes \the [I]."))
+			stored_matter += 200
+			B.reagents.remove_reagent(/datum/reagent/medicine/biomass, 30)
+
+	else if(istype(I, /obj/item/limb))
 		to_chat(user, span_notice("\The [src] processes \the [I]."))
 		stored_matter += 50
 		user.drop_held_item()
@@ -82,3 +93,4 @@
 
 /obj/machinery/bioprinter/stocked
 	stored_metal = 1000
+	stored_matter = 1000

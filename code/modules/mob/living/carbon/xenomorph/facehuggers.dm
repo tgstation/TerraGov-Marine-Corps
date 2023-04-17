@@ -1,7 +1,7 @@
 ///After how much time of being active we die
 #define FACEHUGGER_DEATH 10 SECONDS
 ///Time it takes to impregnate someone
-#define IMPREGNATION_TIME 12 SECONDS
+#define IMPREGNATION_TIME 10 SECONDS
 
 /**
  *Facehuggers
@@ -18,11 +18,13 @@
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
-	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH
+	resistance_flags = NONE
+	flags_inventory = COVEREYES|COVERMOUTH
 	flags_armor_protection = FACE|EYES
 	flags_atom = CRITICAL_ATOM
 	flags_item = NOBLUDGEON
 	throw_range = 1
+	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
 
 	///Whether the hugger is dead, active or inactive
@@ -64,7 +66,7 @@
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source)
 	. = ..()
 	if(stat == CONSCIOUS)
-		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE)
+		lifetimer = addtimer(CALLBACK(src, PROC_REF(check_lifecycle)), FACEHUGGER_DEATH, TIMER_STOPPABLE)
 
 	if(input_hivenumber)
 		hivenumber = input_hivenumber
@@ -73,8 +75,8 @@
 		facehugger_register_source(input_source)
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-		COMSIG_ATOM_EXITED = .proc/on_exited,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -84,7 +86,7 @@
 		UnregisterSignal(source, COMSIG_PARENT_QDELETING)
 
 	source = S //set and register new source
-	RegisterSignal(S, COMSIG_PARENT_QDELETING, .proc/clear_hugger_source)
+	RegisterSignal(S, COMSIG_PARENT_QDELETING, PROC_REF(clear_hugger_source))
 
 ///Clears the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/clear_hugger_source()
@@ -130,7 +132,7 @@
 /obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
-		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
+		if(X.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			deltimer(jumptimer)
 			deltimer(activetimer)
 			remove_danger_overlay() //Remove the exclamation overlay as we pick it up
@@ -204,14 +206,14 @@
 		stasis = TRUE
 		deltimer(lifetimer)
 	else if(!attached && !(stasis || no_activate))
-		activetimer = addtimer(CALLBACK(src, .proc/go_active), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
-		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
+		activetimer = addtimer(CALLBACK(src, PROC_REF(go_active)), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+		lifetimer = addtimer(CALLBACK(src, PROC_REF(check_lifecycle)), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 ///Resets the life timer for the facehugger
 /obj/item/clothing/mask/facehugger/proc/reset_life_timer()
 	deltimer(lifetimer)
 	lifetimer = null
-	lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
+	lifetimer = addtimer(CALLBACK(src, PROC_REF(check_lifecycle)), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_active(unhybernate = FALSE, reset_life_timer = FALSE)
 	if(QDELETED(src))
@@ -235,9 +237,9 @@
 /obj/item/clothing/mask/facehugger/proc/pre_leap(activation_time = jump_cooldown)
 	if(QDELETED(src))
 		return
-	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), activation_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+	jumptimer = addtimer(CALLBACK(src, PROC_REF(leap_at_nearest_target)), activation_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	if(activation_time >= 2 SECONDS) //If activation timer is equal to or greater than two seconds, we trigger the danger overlay at 1 second, otherwise we do so immediately.
-		addtimer(CALLBACK(src, .proc/apply_danger_overlay), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(apply_danger_overlay)), 1 SECONDS)
 		return
 	apply_danger_overlay()
 
@@ -310,7 +312,7 @@
 		return FALSE
 
 	if(isturf(loc))
-		var/obj/effect/alien/egg/hugger/E = locate() in loc
+		var/obj/alien/egg/hugger/E = locate() in loc
 		if(E?.insert_new_hugger(src))
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
@@ -476,7 +478,7 @@
 	if(attached)
 		return TRUE
 
-	if(M.status_flags & XENO_HOST || isxeno(M))
+	if(M.status_flags & XENO_HOST || M.status_flags & GODMODE || isxeno(M))
 		return FALSE
 
 	if(isxeno(loc)) //Being carried? Drop it
@@ -514,9 +516,6 @@
 					H.visible_message("<span class='danger'>[src] smashes against [H]'s [D.name], damaging it!")
 					return FALSE
 				else
-					if(istype(D, /obj/item/clothing/head/helmet/marine)) //Marine helmets now get a fancy overlay.
-						var/obj/item/clothing/head/helmet/marine/m_helmet = D
-						m_helmet.add_hugger_damage()
 					H.update_inv_head()
 
 	if(M.wear_mask)
@@ -537,13 +536,6 @@
 			if(!blocked)
 				M.visible_message(span_danger("[src] smashes against [M]'s [W.name] and rips it off!"))
 				M.dropItemToGround(W)
-			if(ishuman(M)) //Check for camera; if we have one, turn it off.
-				var/mob/living/carbon/human/H = M
-				if(istype(H.wear_ear, /obj/item/radio/headset/mainship/marine))
-					var/obj/item/radio/headset/mainship/marine/R = H.wear_ear
-					if(R.camera.status)
-						R.camera.toggle_cam(null, FALSE) //Turn camera off.
-						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
 	if(blocked)
 		M.visible_message(span_danger("[src] smashes against [M]'s [blocked]!"))
@@ -560,15 +552,14 @@
 	if(ishuman(user))
 		var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
 		playsound(loc, hugsound, 25, 0)
-	if(!sterile && !issynth(user) && !isIPC(user))
-		user.disable_lights(sparks = TRUE, silent = TRUE)
-		var/stamina_dmg = user.maxHealth + user.max_stamina_buffer
+	if(!sterile && !issynth(user))
+		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)
 	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	go_idle(FALSE, TRUE)
-	addtimer(CALLBACK(src, .proc/Impregnate, user), IMPREGNATION_TIME)
+	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
@@ -583,7 +574,7 @@
 	else
 		reset_attach_status(as_planned)
 		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
-		activetimer = addtimer(CALLBACK(src, .proc/go_active), activate_time)
+		activetimer = addtimer(CALLBACK(src, PROC_REF(go_active)), activate_time)
 		update_icon()
 
 	if(as_planned)
@@ -612,7 +603,7 @@
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 
-	addtimer(CALLBACK(src, .proc/melt_away), melt_timer)
+	addtimer(CALLBACK(src, PROC_REF(melt_away)), melt_timer)
 
 /obj/item/clothing/mask/facehugger/proc/reset_attach_status(forcedrop = TRUE)
 	flags_item &= ~NODROP
@@ -651,7 +642,7 @@
 	if(exposed_temperature > 300)
 		kill_hugger()
 
-/obj/item/clothing/mask/facehugger/flamer_fire_act()
+/obj/item/clothing/mask/facehugger/flamer_fire_act(burnlevel)
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
@@ -707,7 +698,7 @@
 
 	var/mob/living/victim = M
 	do_attack_animation(M)
-	var/armor_block = victim.run_armor_check(BODY_ZONE_CHEST, "bio")
+	var/armor_block = victim.get_soft_armor("bio", BODY_ZONE_CHEST)
 	victim.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //This should prevent sprinting
 	victim.apply_damage(1, BRUTE, sharp = TRUE) //Token brute for the injection
 	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 10, no_overdose = TRUE)
@@ -765,7 +756,7 @@
 
 	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
-			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
+			new /obj/alien/resin/sticky/thin(sticky_tile)
 
 	var/armor_block
 	for(var/mob/living/target in range(1, loc))
@@ -774,7 +765,7 @@
 
 		target.adjust_stagger(3)
 		target.add_slowdown(15)
-		armor_block = target.run_armor_check(BODY_ZONE_CHEST, "bio")
+		armor_block = target.get_soft_armor("bio", BODY_ZONE_CHEST)
 		target.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //Small amount of stamina damage; meant to stop sprinting.
 
 	kill_hugger(0.5 SECONDS)
@@ -801,8 +792,7 @@
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
-	var/armor_block = victim.run_armor_check(affecting, "melee")
-	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, armor_block) //Crap base damage after armour...
+	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, MELEE) //Crap base damage after armour...
 	victim.visible_message(span_danger("[src] frantically claws at [victim]!"),span_danger("[src] frantically claws at you!"))
 	leaping = FALSE
 	go_active() //Slashy boys recover *very* fast.

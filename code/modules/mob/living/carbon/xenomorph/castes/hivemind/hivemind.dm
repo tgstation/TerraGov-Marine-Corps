@@ -7,12 +7,12 @@
 	desc = "A glorious singular entity."
 
 	icon_state = "hivemind_marker"
+	bubble_icon = "alienroyal"
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
-	flags_pass = PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
+	flags_pass = PASSABLE|PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
-	throwpass = TRUE
 
 	a_intent = INTENT_HELP
 
@@ -32,21 +32,24 @@
 	hud_type = /datum/hud/hivemind
 	hud_possible = list(PLASMA_HUD, HEALTH_HUD_XENO, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 	///The core of our hivemind
-	var/obj/effect/alien/hivemindcore/core
+	var/obj/structure/xeno/hivemindcore/core
 	///The minimum health we can have
 	var/minimum_health = -300
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()
-	core = new(loc)
+	core = new(loc, hivenumber)
 	core.parent = src
-	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/check_weeds_and_move)
-	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
-	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
+	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, PROC_REF(return_to_core))
+	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, PROC_REF(change_form))
 	update_action_buttons()
 
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
 	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/upgrade_xeno(newlevel, silent = FALSE)
+	newlevel = XENO_UPGRADE_BASETYPE
+	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
 	if(on_fire)
@@ -69,29 +72,29 @@
 	var/turf/T = loc
 	if(!istype(T))
 		return
-	if(status_flags & INCORPOREAL || locate(/obj/effect/alien/weeds) in T)
-		if(health < minimum_health + maxHealth)
-			setBruteLoss(0)
-			setFireLoss(-minimum_health)
-		if((health >= maxHealth)) //can't regenerate.
-			updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
-			return
-		heal_wounds(XENO_RESTING_HEAL)
-		updatehealth()
+	// If manifested and off weeds, lets deal some damage.
+	if(!(status_flags & INCORPOREAL) && !loc_weeds_type)
+		adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
 		return
-	adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
+	// If not manifested
+	if(health < minimum_health + maxHealth)
+		setBruteLoss(0)
+		setFireLoss(-minimum_health)
+	if(health >= maxHealth) //can't regenerate.
+		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
+		return
+	heal_wounds(XENO_RESTING_HEAL)
+	updatehealth()
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
 	if(!QDELETED(core))
 		QDEL_NULL(core)
 	else
 		core = null
-	upgrade = XENO_UPGRADE_BASETYPE
 	return ..()
 
 
 /mob/living/carbon/xenomorph/hivemind/on_death()
-	upgrade = XENO_UPGRADE_BASETYPE
 	if(!QDELETED(core))
 		QDEL_NULL(core)
 	return ..()
@@ -100,6 +103,9 @@
 	return_to_core()
 
 /mob/living/carbon/xenomorph/hivemind/lay_down()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/set_resting()
 	return
 
 /mob/living/carbon/xenomorph/hivemind/change_form()
@@ -112,7 +118,7 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
 	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
-	addtimer(CALLBACK(src, .proc/do_change_form), TIME_TO_TRANSFORM)
+	addtimer(CALLBACK(src, PROC_REF(do_change_form)), TIME_TO_TRANSFORM)
 
 ///Finish the form changing of the hivemind and give the needed stats
 /mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
@@ -120,35 +126,33 @@
 	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
-		upgrade = XENO_UPGRADE_ZERO
 		resistance_flags = BANISH_IMMUNE
-		flags_pass = NONE
+		flags_pass = PASSTABLE|PASSMOB|PASSXENO
 		density = TRUE
-		throwpass = FALSE
+		hive.xenos_by_upgrade[upgrade] -= src
 		upgrade = XENO_UPGRADE_MANIFESTATION
 		set_datum(FALSE)
+		hive.xenos_by_upgrade[upgrade] += src
 		update_wounds()
 		update_icon()
 		update_action_buttons()
 		return
-	invisibility = initial(invisibility)
 	status_flags = initial(status_flags)
-	upgrade = initial(upgrade)
 	resistance_flags = initial(resistance_flags)
 	flags_pass = initial(flags_pass)
-	density = initial(flags_pass)
-	throwpass = initial(throwpass)
+	density = FALSE
+	hive.xenos_by_upgrade[upgrade] -= src
 	upgrade = XENO_UPGRADE_BASETYPE
 	set_datum(FALSE)
+	hive.xenos_by_upgrade[upgrade] += src
 	update_wounds()
 	update_icon()
 	update_action_buttons()
+	handle_weeds_adjacent_removed()
 
-
-
-/mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
+/mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
 	return_to_core()
-	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")
+	to_chat(src, span_xenonotice("We were on top of fire, we got moved to our core."))
 
 /mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
 	SHOULD_BE_PURE(TRUE)
@@ -157,18 +161,18 @@
 	. = TRUE
 	if(locate(/obj/flamer_fire) in T)
 		return FALSE
-	for(var/obj/effect/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
+	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
 		if(QDESTROYING(W))
 			continue
 		return
 	return FALSE
 
-/mob/living/carbon/xenomorph/hivemind/proc/check_weeds_and_move(turf/T)
-	if(check_weeds(T))
-		return TRUE
+/mob/living/carbon/xenomorph/hivemind/handle_weeds_adjacent_removed()
+	if(loc_weeds_type || check_weeds(get_turf(src)))
+		return
 	return_to_core()
 	to_chat(src, "<span class='xenonotice'>We had no weeds nearby, we got moved to our core.")
-	return FALSE
+	return
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
 	if(!(status_flags & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
@@ -182,7 +186,7 @@
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	flick("Hivemind_materialisation_fast_reverse", src)
-	addtimer(CALLBACK(src, .proc/end_teleport, T), TIME_TO_TRANSFORM / 2)
+	addtimer(CALLBACK(src, PROC_REF(end_teleport), T), TIME_TO_TRANSFORM / 2)
 
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
@@ -209,7 +213,7 @@
 	abstract_move(NewLoc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
-	var/track =  "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
+	var/track = "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
 	show_message("[track] [speaker.hivemind_start()] [span_message("hisses, '[message]'")][speaker.hivemind_end()]", 2)
 
 /mob/living/carbon/xenomorph/hivemind/Topic(href, href_list)
@@ -222,13 +226,17 @@
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
 		if(!istype(xeno))
 			return
-		if(!check_weeds(get_turf(xeno), TRUE))
-			to_chat(src, span_warning("They are not near any weeds we can jump to."))
-			return
-		if(!(status_flags & INCORPOREAL))
-			start_teleport(get_turf(xeno))
-			return
-		abstract_move(get_turf(xeno))
+		jump(xeno)
+
+/// Jump hivemind's camera to the passed xeno, if they are on/near weeds
+/mob/living/carbon/xenomorph/hivemind/proc/jump(mob/living/carbon/xenomorph/xeno)
+	if(!check_weeds(get_turf(xeno), TRUE))
+		balloon_alert(src, "No nearby weeds")
+		return
+	if(!(status_flags & INCORPOREAL))
+		start_teleport(get_turf(xeno))
+		return
+	abstract_move(get_turf(xeno))
 
 /// Hivemind just doesn't have any icons to update, disabled for now
 /mob/living/carbon/xenomorph/hivemind/update_icon()
@@ -295,21 +303,25 @@
 
 // =================
 // hivemind core
-/obj/effect/alien/hivemindcore
+/obj/structure/xeno/hivemindcore
 	name = "hivemind core"
 	desc = "A very weird, pulsating node. This looks almost alive."
 	max_integrity = 600
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "weed_hivemind4"
 	var/mob/living/carbon/xenomorph/hivemind/parent
-	ignore_weed_destruction = TRUE
+	xeno_structure_flags = CRITICAL_STRUCTURE|DEPART_DESTRUCTION_IMMUNE
+	///The cooldown of the alert hivemind gets when a hostile is near it's core
+	COOLDOWN_DECLARE(hivemind_proxy_alert_cooldown)
 
-/obj/effect/alien/hivemindcore/Initialize(mapload)
+/obj/structure/xeno/hivemindcore/Initialize(mapload)
 	. = ..()
-	new /obj/effect/alien/weeds/node(loc)
+	new /obj/alien/weeds/node(loc)
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
+	for(var/turfs in RANGE_TURFS(XENO_HIVEMIND_DETECTION_RANGE, src))
+		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(hivemind_proxy_alert))
 
-/obj/effect/alien/hivemindcore/Destroy()
+/obj/structure/xeno/hivemindcore/Destroy()
 	if(isnull(parent))
 		return ..()
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
@@ -326,7 +338,7 @@
 
 //hivemind cores
 
-/obj/effect/alien/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(isxenoqueen(X))
 		var/choice = tgui_alert(X, "Are you sure you want to destroy the hivemind?", "Destroy hivemind", list("Yes", "Cancel"))
 		if(choice == "Yes")
@@ -336,7 +348,7 @@
 	X.visible_message(span_danger("[X] nudges its head against [src]."), \
 	span_danger("You nudge your head against [src]."))
 
-/obj/effect/alien/hivemindcore/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+/obj/structure/xeno/hivemindcore/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()
 	if(isnull(parent))
 		return
@@ -348,3 +360,29 @@
 			to_chat(parent, span_xenodanger("Your core is under attack, and low on health!"))
 		if(76 to INFINITY)
 			to_chat(parent, span_xenodanger("Your core is under attack!"))
+
+/**
+ * Proc checks if we should alert the hivemind, and if it can, it does so.
+ * datum/source - the atom (in this case it should be a turf) sending the crossed signal
+ * atom/movable/hostile - the atom that triggered the crossed signal, in this case we're looking for a mob
+ */
+/obj/structure/xeno/hivemindcore/proc/hivemind_proxy_alert(datum/source, atom/movable/hostile)
+	SIGNAL_HANDLER
+	if(!COOLDOWN_CHECK(src, hivemind_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
+		return
+
+	if(!isliving(hostile))
+		return
+
+	var/mob/living/living_triggerer = hostile
+	if(living_triggerer.stat == DEAD) //We don't care about the dead
+		return
+
+	if(isxeno(hostile))
+		var/mob/living/carbon/xenomorph/X = hostile
+		if(X.hivenumber == hivenumber) //Trigger proxy alert only for hostile xenos
+			return
+
+	to_chat(parent, span_xenoannounce("Our [src.name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y])."))
+	SEND_SOUND(parent, 'sound/voice/alien_help1.ogg')
+	COOLDOWN_START(src, hivemind_proxy_alert_cooldown, XENO_HIVEMIND_DETECTION_COOLDOWN) //set the cooldown.

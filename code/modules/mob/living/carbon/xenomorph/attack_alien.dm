@@ -35,20 +35,7 @@
 	return TRUE
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
-		return TRUE
-	else if(isnestedhost(src))
-		for(var/obj/item/alien_embryo/embryo in src)
-			if(!embryo.issamexenohive(X))
-				continue
-			to_chat(X, span_warning("We should not harm this host! It has a sister inside."))
-			return FALSE
 	return TRUE
-
-/mob/living/carbon/human/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	. = ..()
-	if(!.)
-		return FALSE
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
@@ -80,22 +67,19 @@
 	var/armor_block = 0
 
 	var/list/damage_mod = list()
-	var/list/armor_mod = list()
+	var/armor_pen = 0
 
-	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod)
+	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_pen)
 
 	// if we don't get any non-stacking bonuses dont apply dam_bonus
 	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED))
 		damage_mod += dam_bonus
 
 	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
-		armor_block = run_armor_check(affecting, "melee")
+		armor_block = MELEE
 
 	for(var/i in damage_mod)
 		damage += i
-
-	for(var/i in armor_mod)
-		armor_block *= i
 
 	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
@@ -130,7 +114,7 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
-	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, updating_health = TRUE) //This should slicey dicey
+	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
 
 	return TRUE
 
@@ -209,11 +193,8 @@
 	switch(X.a_intent)
 		if(INTENT_HELP)
 			if(on_fire)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
-				ExtinguishMob()
-				X.visible_message(span_danger("[X] effortlessly extinguishes the fire on [src]!"),
-					span_notice("We extinguished the fire on [src]."), null, 5)
-				return TRUE
+				X.visible_message(span_danger("[X] stares at [src]."), span_notice("We stare at the roasting [src], toasty."), null, 5)
+				return FALSE
 			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
 			span_notice("We caress [src] with our scythe-like arm."), null, 5)
 			return FALSE

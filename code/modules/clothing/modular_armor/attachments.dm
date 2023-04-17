@@ -3,7 +3,7 @@
 	name = "armor module"
 	desc = "A dis-figured armor module, in its prime this would've been a key item in your modular armor... now its just trash."
 	icon = 'icons/mob/modular/modular_armor.dmi'
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0) // This is here to overwrite code over at objs.dm line 41. Marines don't get funny 200+ bio buff anymore.
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) // This is here to overwrite code over at objs.dm line 41. Marines don't get funny 200+ bio buff anymore.
 
 	slowdown = 0
 
@@ -15,11 +15,11 @@
 	///Icon sheet of the attachment overlays
 	var/attach_icon = null
 	///Proc typepath that is called when this is attached to something.
-	var/on_attach = .proc/on_attach
+	var/on_attach = PROC_REF(on_attach)
 	///Proc typepath that is called when this is detached from something.
-	var/on_detach = .proc/on_detach
+	var/on_detach = PROC_REF(on_detach)
 	///Proc typepath that is called when this is item is being attached to something. Returns TRUE if it can attach.
-	var/can_attach = .proc/can_attach
+	var/can_attach = PROC_REF(can_attach)
 	///Pixel shift for the item overlay on the X axis.
 	var/pixel_shift_x = 0
 	///Pixel shift for the item overlay on the Y axis.
@@ -27,9 +27,9 @@
 	///Bitfield flags of various features.
 	var/flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	///Time it takes to attach.
-	var/attach_delay = 2 SECONDS
+	var/attach_delay = 1.5 SECONDS
 	///Time it takes to detach.
-	var/detach_delay = 2 SECONDS
+	var/detach_delay = 1.5 SECONDS
 	///Used for when the mob attach overlay icon is different than icon.
 	var/mob_overlay_icon
 	///Pixel shift for the mob overlay on the X axis.
@@ -51,6 +51,17 @@
 	///Slot that is required for the action to appear to the equipper. If null the action will appear whenever the item is equiped to a slot.
 	var/prefered_slot = SLOT_WEAR_SUIT
 
+	///If TRUE, this armor piece can be recolored when its parent is right clicked by facepaint.
+	var/secondary_color = FALSE
+
+	///List of slots this attachment has.
+	var/list/attachments_by_slot = list()
+	///Starting attachments that are spawned with this.
+	var/list/starting_attachments = list()
+
+	///The signal for this module if it can toggled
+	var/toggle_signal
+
 /obj/item/armor_module/Initialize()
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
@@ -68,12 +79,14 @@
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
 	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
-	if(!length(variants_by_parent_type) || !(parent.type in variants_by_parent_type))
-		base_icon = icon_state
-		return
-	icon_state = variants_by_parent_type[parent.type]
-	base_icon = variants_by_parent_type[parent.type]
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_actions))
+	base_icon = icon_state
+	if(length(variants_by_parent_type))
+		for(var/selection in variants_by_parent_type)
+			if(istype(parent, selection))
+				icon_state = variants_by_parent_type[selection]
+				base_icon = variants_by_parent_type[selection]
+
 	update_icon()
 
 /// Called when the module is removed from the armor.
@@ -99,19 +112,32 @@
 		return
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
 	var/datum/action/item_action/toggle/new_action = new(src)
+	if(toggle_signal)
+		new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 	new_action.give_action(user)
 
-/obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/action)
-	activate(user)
+/obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/toggle/action)
+	action.set_toggle(activate(user))
 	action.update_button_icon()
 
 ///Called on ui_action_click. Used for activating the module.
 /obj/item/armor_module/proc/activate(mob/living/user)
 	return
 
+///Colors the armor when the parent is right clicked with facepaint.
+/obj/item/armor_module/proc/handle_color(datum/source, obj/paint, mob/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, attackby), paint, user)
+	return COMPONENT_NO_AFTERATTACK
+
+///Relays the extra controls to the user when the parent is examined.
+/obj/item/armor_module/proc/extra_examine(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	examine_list += "Right click [parent] with paint to color [src]"
+
 /**
- *  These are the basic type for armor armor_modules. What seperates these from /armor_module is that these are designed to be recolored.
- *  These include Leg plates, Chest plates, Shoulder Plates and Visors. This could be expanded to anything that functions like armor and has greyscale functionality.
+ *  These are the basic type for modules with set variant icons.
+ *  These include Leg plates, Chest plates and Shoulder Plates.
  */
 
 /obj/item/armor_module/armor
@@ -119,143 +145,67 @@
 	icon = 'icons/mob/modular/modular_armor.dmi'
 
 	/// The additional armor provided by equipping this piece.
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	/// Addititve Slowdown of this armor piece
 	slowdown = 0
 
-	greyscale_config = /datum/greyscale_config/modularchest
-	greyscale_colors = ARMOR_PALETTE_DESERT
-
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT
-	///If TRUE, this armor piece can be recolored when its parent is right clicked by facepaint.
-	var/secondary_color = FALSE
-
-	///optional assoc list of colors we can color this armor
-	var/list/colorable_colors = list(
-		"Default" = list(
-			"Drab" = ARMOR_PALETTE_DRAB,
-			"Brown" = ARMOR_PALETTE_BROWN,
-			"Snow" = ARMOR_PALETTE_SNOW,
-			"Desert" = ARMOR_PALETTE_DESERT,
-			"Black" = ARMOR_PALETTE_BLACK,
-			"Grey" = ARMOR_PALETTE_GREY,
-			"Gun Metal" = ARMOR_PALETTE_GUN_METAL,
-			"Night Slate" = ARMOR_PALETTE_NIGHT_SLATE,
-			"Fall" = ARMOR_PALETTE_FALL,
-		),
-		"Red" = list(
-			"Dark Red" = ARMOR_PALETTE_RED,
-			"Bronze Red" = ARMOR_PALETTE_BRONZE_RED,
-			"Red" = ARMOR_PALETTE_LIGHT_RED,
-			"Blood Red" = ARMOR_PALETTE_BLOOD_RED,
-		),
-		"Green" = list(
-			"Green" = ARMOR_PALETTE_GREEN,
-			"Emerald" = ARMOR_PALETTE_EMERALD,
-			"Lime" = ARMOR_PALETTE_LIME,
-			"Mint" = ARMOR_PALETTE_MINT,
-			"Jade" = ARMOR_PALETTE_JADE,
-			"Leaf" = ARMOR_PALETTE_LEAF,
-			"Forest" = ARMOR_PALETTE_FOREST,
-			"Smoked Green" = ARMOR_PALETTE_SMOKED_GREEN,
-		),
-		"Purple" = list(
-			"Purple" = ARMOR_PALETTE_PURPLE,
-			"Lavander" = ARMOR_PALETTE_LAVANDER,
-			"Lilac" = ARMOR_PALETTE_LILAC,
-			"Iris Purple" = ARMOR_PALETTE_IRIS_PURPLE,
-			"Orchid" = ARMOR_PALETTE_ORCHID,
-			"Grape" = ARMOR_PALETTE_GRAPE,
-		),
-		"Blue" = list(
-			"Dark Blue" = ARMOR_PALETTE_BLUE,
-			"Blue" = ARMOR_PALETTE_LIGHT_BLUE,
-			"Cottonwood" = ARMOR_PALETTE_COTTONWOOD,
-			"Aqua" = ARMOR_PALETTE_AQUA,
-			"Cerulean" = ARMOR_PALETTE_CERULEAN,
-			"Sea Blue" = ARMOR_PALETTE_SEA_BLUE,
-			"Cloud" = ARMOR_PALETTE_CLOUD,
-		),
-		"Yellow" = list(
-			"Gold" = ARMOR_PALETTE_YELLOW,
-			"Yellow" = ARMOR_PALETTE_LIGHT_YELLOW,
-			"Angelic Gold" = ARMOR_PALETTE_ANGELIC,
-			"Honey" = ARMOR_PALETTE_HONEY,
-		),
-		"Orange" = list(
-			"Orange" = ARMOR_PALETTE_ORANGE,
-			"Beige" = ARMOR_PALETTE_BEIGE,
-			"Earth" = ARMOR_PALETTE_EARTH,
-		),
-		"Pink" = list(
-			"Salmon" = ARMOR_PALETTE_SALMON_PINK,
-			"Magenta" = ARMOR_PALETTE_MAGENTA_PINK,
-			"Sakura" = ARMOR_PALETTE_SAKURA,
-		),
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+	///List of icon_state suffixes for armor varients.
+	var/list/icon_state_variants = list(
+		"black",
+		"jungle",
+		"desert",
+		"snow",
+		"alpha",
+		"bravo",
+		"charlie",
+		"delta",
 	)
-	///Some defines to determin if the armor piece is allowed to be recolored.
-	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
+	///Current varient selected.
+	var/current_variant = "black"
 
-/obj/item/armor_module/armor/Initialize()
+/obj/item/armor_module/armor/update_icon()
 	. = ..()
-	update_icon()
+	if(current_variant)
+		icon_state = initial(icon_state) + "_" + current_variant
+		item_state = initial(item_state) + "_" + current_variant
 
 /obj/item/armor_module/armor/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	if(!secondary_color)
 		return
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/handle_color)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/extra_examine)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, PROC_REF(handle_color))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(extra_examine))
 
 /obj/item/armor_module/armor/on_detach(obj/item/detaching_from, mob/user)
 	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_PARENT_EXAMINE))
 	return ..()
 
 /obj/item/armor_module/armor/update_item_sprites()
-	var/new_color
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				new_color = ARMOR_PALETTE_DRAB
+				current_variant = "jungle"
 		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				new_color = ARMOR_PALETTE_SNOW
+				current_variant = "snow"
 		if(MAP_ARMOR_STYLE_PRISON)
 			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				new_color = ARMOR_PALETTE_BLACK
-	set_greyscale_colors(new_color)
+				current_variant = "prison"
+		if(MAP_ARMOR_STYLE_DESERT)
+			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
+				current_variant = "desert"
 	update_icon()
-
-///Will force faction colors on this armor module
-/obj/item/armor_module/armor/proc/limit_colorable_colors(faction)
-	switch(faction)
-		if(FACTION_TERRAGOV)
-			set_greyscale_colors("#2A4FB7")
-			colorable_colors = list(
-				"blue" = "#2A4FB7",
-				"aqua" = "#2098A0",
-				"purple" = "#871F8F",
-			)
-		if(FACTION_TERRAGOV_REBEL)
-			set_greyscale_colors("#CC2C32")
-			colorable_colors = list(
-				"red" = "#CC2C32",
-				"orange" = "#BC4D25",
-				"yellow" = "#B7B21F",
-			)
 
 /obj/item/armor_module/armor/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED))
-		return
-
-	if(!istype(I, /obj/item/facepaint))
+	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
 		return
 
 	var/obj/item/facepaint/paint = I
@@ -263,37 +213,56 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
-	var/selection
+	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
 
-	switch(colorable_allowed)
-		if(COLOR_WHEEL_ONLY)
-			selection = "Color Wheel"
-		if(COLOR_WHEEL_ALLOWED)
-			selection = list("Color Wheel", "Preset Colors")
-			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
-		if(COLOR_WHEEL_NOT_ALLOWED)
-			selection = "Preset Colors"
-
-	if(!selection)
+	if(!variant)
 		return
 
-	var/new_color
-	switch(selection)
-		if("Preset Colors")
-			var/color_selection
-			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
-			if(!color_selection)
-				return
-			if(islist(colorable_colors[color_selection]))
-				var/old_list = colorable_colors[color_selection]
-				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
-				if(!color_selection)
-					return
-				new_color = old_list[color_selection]
-			else
-				new_color = colorable_colors[color_selection]
-		if("Color Wheel")
-			new_color = input(user, "Pick a color", "Pick color") as null|color
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	current_variant = variant
+	paint.uses--
+	update_icon()
+	parent?.update_icon()
+
+/**
+ *  These are the basic type for modules that are recolourable via greyscale.
+ *  These include capes, badges and Visors.
+ */
+
+/obj/item/armor_module/greyscale
+	name = "modular armor - armor module"
+	icon = 'icons/mob/modular/modular_armor.dmi'
+	greyscale_colors = COLOR_VERY_LIGHT_GRAY
+
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+
+/obj/item/armor_module/greyscale/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	if(!secondary_color)
+		return
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, PROC_REF(handle_color))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(extra_examine))
+
+/obj/item/armor_module/greyscale/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_PARENT_EXAMINE))
+	return ..()
+
+/obj/item/armor_module/greyscale/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+
+	if(!istype(I, /obj/item/facepaint))
+		return
+
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		balloon_alert(user, "[paint] is out of color!")
+		return
+
+	var/new_color = input(user, "Pick a color", "Pick color") as null|color
 
 	if(!new_color || !do_after(user, 1 SECONDS, TRUE, parent ? parent : src, BUSY_ICON_GENERIC))
 		return
@@ -302,14 +271,3 @@
 	paint.uses--
 	update_icon()
 	parent?.update_icon()
-
-///Colors the armor when the parent is right clicked with facepaint.
-/obj/item/armor_module/armor/proc/handle_color(datum/source, obj/I, mob/user)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, /atom/proc/attackby, I, user)
-	return COMPONENT_NO_AFTERATTACK
-
-///Relays the extra controls to the user when the parent is examined.
-/obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user, list/examine_list)
-	SIGNAL_HANDLER
-	examine_list += "Right click the [parent] with paint to color the [src]"

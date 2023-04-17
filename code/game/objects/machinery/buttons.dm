@@ -9,7 +9,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 5
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 70)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 90, ACID = 70)
 	var/id = null
 	var/next_activate = 0
 
@@ -55,7 +55,7 @@
 
 	pulsed()
 
-	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, update_icon)), 1.5 SECONDS)
 
 
 /obj/machinery/button/proc/pulsed()
@@ -120,6 +120,11 @@
 	/// Has the shutters alarm been played?
 	var/alarm_played = FALSE
 
+/obj/machinery/button/door/open_only/landing_zone/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
+
 /obj/machinery/button/door/open_only/landing_zone/attack_hand(mob/living/user)
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return
@@ -135,8 +140,8 @@
 
 	alarm_played = TRUE
 	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
-	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
-	addtimer(CALLBACK(src, .proc/pulsed), 185)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, update_icon)), 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(pulsed)), 185)
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	. = ..()
@@ -232,7 +237,7 @@
 	visible_message("Remain calm, someone will be with you shortly.")
 
 	active = TRUE
-	addtimer(CALLBACK(src, .proc/icon_update_check), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(icon_update_check)), 10 SECONDS)
 
 /obj/machinery/medical_help_button/proc/icon_update_check()
 	active = FALSE
@@ -244,33 +249,58 @@
 	else
 		icon_state = "doorctrl0"
 
-/obj/machinery/button/valhalla_button
-	name = "Xeno spawner"
+/obj/machinery/button/valhalla
 	resistance_flags = INDESTRUCTIBLE
-	///The xeno created by the spawner
-	var/mob/living/xeno
-	///What spawner is linked with this spawner
-	var/link = CLOSE
+	///The mob created by the spawner
+	var/mob/living/carbon/human/linked
+	///What spawner landmark is linked with this spawner (this has to be matching with the landmark)
+	var/link
 
-/obj/machinery/button/valhalla_button/attack_hand(mob/living/user)
+/obj/machinery/button/valhalla/Destroy()
+	linked = null
+	return ..()
+
+/obj/machinery/button/valhalla/marine_button
+	name = "Xeno spawner"
+
+/obj/machinery/button/valhalla/marine_button/attack_hand(mob/living/user)
 	var/xeno_wanted = tgui_input_list(user, "What xeno do you want to spawn?", "Xeno spawn", GLOB.all_xeno_types)
 	if(!xeno_wanted)
 		return
-	QDEL_NULL(xeno)
-	xeno = new xeno_wanted(get_turf(GLOB.valhalla_xeno_spawn_landmark[link]))
-	RegisterSignal(xeno, COMSIG_PARENT_QDELETING, .proc/clean_xeno)
+	QDEL_NULL(linked)
+	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+		to_chat(user, span_warning("An error occured, yell at the coders."))
+		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
+	linked = new xeno_wanted(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 
-/obj/machinery/button/valhalla_button/proc/clean_xeno()
-	SIGNAL_HANDLER
-	xeno = null
+/obj/machinery/button/valhalla/xeno_button
+	name = "Marine spawner"
+	///The list of outfits we can equip on the humans we're spawning
+	var/outfit_list = list()
 
-/obj/machinery/button/valhalla_button/far
-	link = FAR
+/obj/machinery/button/valhalla/xeno_button/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	var/list/job_outfits = list()
+	for(var/type in subtypesof(/datum/outfit/job))
+		if(istype(type, /datum/outfit))
+			continue
+		var/datum/outfit/out = type
+		if(initial(out.can_be_admin_equipped))
+			job_outfits[initial(out.name)] = out
 
-/obj/machinery/button/valhalla_button/far2
-	link = FAR2
+	job_outfits = sortList(job_outfits)
+	job_outfits.Insert(1, "Naked")
 
-/obj/machinery/button/valhalla_button/close2
-	link = CLOSE2
+	var/datum/outfit/selected_outfit = tgui_input_list(usr, "Which outfit do you want the human to wear?", "Human spawn", job_outfits)
+	if(!selected_outfit)
+		return
+
+	QDEL_NULL(linked)
+	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+		to_chat(X, span_warning("An error occured, yell at the coders."))
+		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
+	linked = new /mob/living/carbon/human(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+	if(selected_outfit == "Naked" || !selected_outfit)
+		return
+	linked.equipOutfit(job_outfits[selected_outfit], FALSE)
 
 #undef DOOR_FLAG_OPEN_ONLY

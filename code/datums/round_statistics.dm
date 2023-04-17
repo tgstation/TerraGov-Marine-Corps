@@ -13,16 +13,22 @@ add [] around this to use it in text.
 GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 
 /datum/round_statistics
-	var/total_projectiles_fired = 0
-	var/total_bullets_fired = 0
+	///All projectiles fired during the round, listed by faction
+	var/list/total_projectiles_fired = list()
 	var/human_bump_attacks = 0
+	var/points_from_research = 0
+	var/points_from_mining = 0
 	var/total_xeno_deaths = 0
-	var/total_human_deaths = 0
-	var/total_human_revives = 0
+	///All human deaths during the round, listed by faction
+	var/list/total_human_deaths = list()
+	///All human revives during the round, listed by faction
+	var/list/total_human_revives = list()
 	var/total_human_respawns = 0
 	var/total_xenos_created = 0
-	var/total_humans_created = 0
-	var/total_bullet_hits_on_humans = 0
+	///All humans created during the round, listed by faction. Occurs at job spawn to capture faction
+	var/list/total_humans_created = list()
+	///All projectiles hit during the round, listed by faction
+	var/list/total_projectile_hits = list()
 	var/total_bullet_hits_on_marines = 0
 	var/total_bullet_hits_on_xenos = 0
 	var/total_larva_burst = 0
@@ -51,8 +57,12 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/weeds_planted = 0
 	var/weeds_destroyed = 0
 	var/grenades_thrown = 0
+	var/mortar_shells_fired = 0
+	var/howitzer_shells_fired = 0
+	var/rocket_shells_fired = 0
 	var/queen_screech = 0
 	var/now_pregnant = 0
+	var/sentinel_drain_stings = 0
 	var/sentinel_neurotoxin_stings = 0
 	var/ozelomelyn_stings = 0
 	var/defiler_defiler_stings = 0
@@ -65,10 +75,12 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/hivelord_healing_infusions = 0
 	var/spitter_acid_sprays = 0
 	var/spitter_scatter_spits = 0
-	var/wraith_hyperpositions = 0
 	var/wraith_phase_shifts = 0
 	var/wraith_blinks = 0
 	var/wraith_banishes = 0
+	var/bull_crush_hit = 0
+	var/bull_gore_hit = 0
+	var/bull_headbutt_hit = 0
 	var/ravager_endures = 0
 	var/hunter_marks = 0
 	var/hunter_silence_targets = 0
@@ -80,3 +92,8 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/larva_from_psydrain = 0
 	var/larva_from_siloing_body = 0
 	var/req_items_produced = list()
+	var/psy_crushes = 0
+	var/psy_blasts = 0
+	var/psy_lances = 0
+	var/psy_shields = 0
+	var/psy_shield_blasts = 0

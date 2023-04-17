@@ -123,11 +123,11 @@
 			A.client.eye = A.eyeobj
 		else
 			user.reset_perspective(C)
-			user.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/noise)
+			user.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/noise)
 			user.clear_fullscreen("flash", 5)
 		watchers[user] = C
 		use_power(active_power_usage)
-		addtimer(CALLBACK(src, .proc/use_camera_console, user), 5)
+		addtimer(CALLBACK(src, PROC_REF(use_camera_console), user), 5)
 	else
 		user.unset_interaction()
 
@@ -235,6 +235,7 @@
 /obj/machinery/computer/security/dropship/one
 	name = "\improper 'Alamo' camera controls"
 	network = list("dropship1")
+	opacity = FALSE
 
 
 /obj/machinery/computer/security/dropship/two

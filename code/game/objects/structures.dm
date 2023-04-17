@@ -6,7 +6,7 @@
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	obj_flags = CAN_BE_HIT
 	anchored = TRUE
-	throwpass = TRUE
+	flags_pass = PASSABLE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
@@ -31,6 +31,13 @@
 	. = ..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
+		icon_state = ""
+		if(smoothing_flags & SMOOTH_CORNERS)
+			icon_state = ""
+
 
 /obj/structure/proc/climb_on()
 
@@ -97,7 +104,7 @@
 				to_chat(user, span_warning("You cannot leap this way."))
 				return
 			for(var/atom/movable/A in target)
-				if(A && A.density && !(A.flags_atom & ON_BORDER))
+				if(A?.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface
@@ -109,12 +116,12 @@
 	return TRUE
 
 /obj/structure/proc/do_climb(mob/living/user)
-	if(!can_climb(user))
+	if(!can_climb(user) || user.do_actions)
 		return
 
 	user.visible_message(span_warning("[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!"))
 
-	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_climb, user)))
+	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_climb), user)))
 		return
 
 	for(var/m in user.buckled_mobs)
@@ -135,7 +142,7 @@
 				to_chat(user, span_warning("You cannot leap this way."))
 				return
 			for(var/atom/movable/A in target)
-				if(A && A.density && !(A.flags_atom & ON_BORDER))
+				if(A?.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface

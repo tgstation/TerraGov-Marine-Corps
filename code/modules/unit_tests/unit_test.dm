@@ -69,7 +69,7 @@ GLOBAL_VAR(test_log)
 /// Instances allocated through this proc will be destroyed when the test is over
 /datum/unit_test/proc/allocate(type, ...)
 	var/list/arguments = args.Copy(2)
-	if (!arguments.len)
+	if (!length(arguments))
 		arguments = list(run_loc_bottom_left)
 	else if (arguments[1] == null)
 		arguments[1] = run_loc_bottom_left
@@ -81,11 +81,13 @@ GLOBAL_VAR(test_log)
 	CHECK_TICK
 
 	var/tests_to_run = subtypesof(/datum/unit_test)
+	var/list/focused_tests = list()
 	for (var/_test_to_run in tests_to_run)
 		var/datum/unit_test/test_to_run = _test_to_run
 		if (initial(test_to_run.focus))
-			tests_to_run = list(test_to_run)
-			break
+			focused_tests += test_to_run
+		if(length(focused_tests))
+			tests_to_run = focused_tests
 
 	var/list/test_results = list()
 
@@ -120,3 +122,4 @@ GLOBAL_VAR(test_log)
 	file(file_name) << json_encode(test_results)
 
 	SSticker.force_ending = TRUE
+	SSticker.Reboot()

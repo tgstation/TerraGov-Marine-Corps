@@ -5,6 +5,7 @@
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	appearance_flags = NONE
+	move_resist = INFINITY
 
 /atom/movable/hitscan_projectile_effect/Initialize(loc, angle_override, p_x, p_y, scaling = 1, effect_icon)
 	. = ..()

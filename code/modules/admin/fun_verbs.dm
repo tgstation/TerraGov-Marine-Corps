@@ -68,6 +68,19 @@
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
 
+/datum/admins/proc/rouny_all()
+	set name = "Toggle Glob Xeno Rouny"
+	set category = "Fun"
+	set desc = "Toggle all living xenos into rouny versions of themselves"
+
+	if(!check_rights(R_FUN))
+		return
+
+	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
+		if(!isliving(xenotorouny))
+			return
+		xenotorouny.is_a_rouny = !xenotorouny.is_a_rouny
+
 
 /datum/admins/proc/hive_status()
 	set category = "Fun"
@@ -387,7 +400,7 @@
 		return
 
 	var/list/targets
-	var/style = tgui_alert(usr, "Do you want to play this globally or to the xenos/marines?", null, list("Globally", "Xenos", "Marines", "Locally"))
+	var/style = tgui_input_list(usr, "Do you want to play this globally or to the xenos/marines?", null, list("Globally", "Xenos", "Marines", "Locally"))
 	switch(style)
 		if("Globally")
 			targets = GLOB.mob_list
@@ -566,23 +579,23 @@
 		if("CAS: Widow Maker")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb, get_turf(usr.loc), 2, 4, 6, 0, 0, 0, 3), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb), get_turf(usr.loc), 2, 4, 6, 0, 0, 0, 3), 1 SECONDS)
 		if("CAS: Banshee")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb, get_turf(usr.loc), 2, 4, 7, 6, 7, 0, 3), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb), get_turf(usr.loc), 2, 4, 7, 6, 7, 0, 3), 1 SECONDS)
 		if("CAS: Keeper")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb, get_turf(usr.loc), 4, 5, 5, 6, 0, 0, 3), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb), get_turf(usr.loc), 4, 5, 5, 6, 0, 0, 3), 1 SECONDS)
 		if("CAS: Fatty")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb_fatty, get_turf(usr.loc)), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_fatty), get_turf(usr.loc)), 1 SECONDS)
 		if("CAS: Napalm")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb_napalm, get_turf(usr.loc)), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_napalm), get_turf(usr.loc)), 1 SECONDS)
 		if("Small Bomb")
 			explosion(usr.loc, 1, 2, 3, 3, small_animation = TRUE)
 		if("Medium Bomb")
@@ -626,7 +639,7 @@
 /proc/delayed_detonate_bomb_fatty(turf/impact)
 	impact.ceiling_debris_check(2)
 	explosion(impact, 2, 3, 4)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb_fatty_final, impact), 3 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_fatty_final), impact), 3 SECONDS)
 
 /proc/delayed_detonate_bomb_fatty_final(turf/impact)
 	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))

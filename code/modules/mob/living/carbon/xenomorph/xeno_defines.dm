@@ -79,18 +79,20 @@
 	var/unconscious_see_in_dark = 5
 
 	// *** Flags *** //
-	///bitwise flags denoting things a caste can and cannot do, or things a caste is or is not. uses defines.
-	var/caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
-
+	///Bitwise flags denoting things a caste is or is not. Uses defines.
+	var/caste_flags = CASTE_EVOLUTION_ALLOWED
+	///Bitwise flags denoting things a caste can and cannot do. Uses defines.
+	var/can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	///list of traits granted to the owner by becoming this caste
+	var/list/caste_traits = list(TRAIT_CAN_VENTCRAWL)
+	// How long the hive must wait before a new one of this caste can evolve
+	var/death_evolution_delay = 0
 	///whether or not a caste can hold eggs, and either 1 or 2 eggs at a time.
 	var/can_hold_eggs = CANNOT_HOLD_EGGS
 
 	// *** Defense *** //
 	var/list/soft_armor
 	var/list/hard_armor
-
-	///How effective fire is against this caste. From 0 to 1 as it is a multiplier.
-	var/fire_resist = 1
 
 	// *** Sunder *** //
 	///How much sunder is recovered per tick
@@ -121,11 +123,13 @@
 	///The damage acid spray causes to structure.
 	var/acid_spray_structure_damage = 0
 
+	// *** Secrete resin *** //
+	///The maximum number of tiles to where a xeno can build.
+	var/resin_max_range = 0
+
 	// *** Pheromones *** //
-	///The strength of our aura. Zero means we can't emit one
+	///The strength of our aura. Zero means we can't emit any.
 	var/aura_strength = 0
-	///The 'types' of pheremones a xenomorph caste can emit.
-	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
 
 	// *** Defiler Abilities *** //
 	var/list/available_reagents_define = list() //reagents available for select reagent
@@ -151,6 +155,10 @@
 	var/huggers_max = 0
 	///delay between the throw hugger ability activation for carriers
 	var/hugger_delay = 0
+
+	// *** Widow Abilities *** //
+	///maximum amount of spiderlings a widow can carry at one time.
+	var/max_spiderlings = 0
 
 	// *** Defender Abilities *** //
 	///modifying amount to the crest defense ability for defenders. Positive integers only.
@@ -184,8 +192,6 @@
 	//Banish - Values for the Wraith's Banish ability
 	///Base duration of Banish before modifiers
 	var/wraith_banish_base_duration = WRAITH_BANISH_BASE_DURATION
-	///Base range of Banish
-	var/wraith_banish_range = WRAITH_BANISH_RANGE
 
 	//Blink - Values for the Wraith's Blink ability
 	///Cooldown multiplier of Blink when used on non-friendlies
@@ -199,13 +205,25 @@
 	///Damage breakpoint to knock out of stealth
 	var/stealth_break_threshold = 0
 
+	// *** Warlock Abilities ***
+	///The integrity of psychic shields made by the xeno
+	var/shield_strength = 350
+	///The strength of psychic crush's effects
+	var/crush_strength = 35
+	///The strength of psychic blast's  AOE effects
+	var/blast_strength = 25
+
+	// *** Sentinel Abilities ***
+	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
+	var/additional_stacks = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
 	///The iconstate for the xeno on the minimap
-	var/minimap_icon = "xeno"
-	///The iconstate for leadered xenos on the minimap
-	var/minimap_leadered_icon = "xenoleader"
+	var/minimap_icon = "xenominion"
+	///The iconstate for leadered xenos on the minimap, added as overlay
+	var/minimap_leadered_overlay = "xenoleader"
 	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
 	var/plasma_icon_state = "plasma"
 
@@ -215,18 +233,28 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
+	///how much water slows down this caste
+	var/water_slowdown = 1.3
+	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
+	var/evolve_min_xenos = 0
+	// How many of this caste may be alive at once
+	var/maximum_active_caste = INFINITY
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
+	for(var/trait in caste_traits)
+		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
-	if(caste_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
+		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
 	bump_attack?.RemoveComponent()
-	if(caste_flags & CASTE_CAN_RIDE_CRUSHER)
+	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
+	for(var/trait in caste_traits)
+		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
@@ -242,6 +270,8 @@
 	health = 5
 	maxHealth = 5
 	rotate_on_lying = FALSE
+	move_force = MOVE_FORCE_VERY_STRONG
+	move_resist = MOVE_FORCE_VERY_STRONG
 	mob_size = MOB_SIZE_XENO
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
@@ -250,7 +280,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD)
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
@@ -261,8 +291,12 @@
 
 	var/datum/hive_status/hive
 
+	///State tracking of hive status toggles
+	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
+
 	var/list/overlays_standing[X_TOTAL_LAYERS]
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
+	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
 	var/datum/xeno_caste/xeno_caste
 	var/caste_base_type
 	var/language = "Xenomorph"
@@ -271,41 +305,53 @@
 	var/obj/item/r_store = null
 	var/obj/item/l_store = null
 	var/plasma_stored = 0
-	var/amount_grown = 0
-	var/max_grown = 200
 	var/time_of_birth
 
 	///A mob the xeno ate
 	var/mob/living/carbon/eaten_mob
-
-	var/evolution_stored = 0 //How much evolution they have stored
-
-	var/upgrade_stored = 0 //How much upgrade points they have stored.
-	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
-
-	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
+	///How much evolution they have stored
+	var/evolution_stored = 0
+	///How much upgrade points they have stored.
+	var/upgrade_stored = 0
+	///This will track their upgrade level.
+	var/upgrade = XENO_UPGRADE_INVALID
+	///sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
+	var/sunder = 0
 	var/fire_resist_modifier = 0
 
 	var/obj/structure/xeno/tunnel/start_dig = null
-	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
+	///The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
+	var/datum/ammo/xeno/ammo = null
 
-	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
-	var/current_aura = null //"frenzy", "warding", "recovery"
-	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
+	///The aura we're currently emitted. Destroyed whenever we change or stop pheromones.
+	var/datum/aura_bearer/current_aura
+	/// If we're chosen as leader, this is the leader aura we emit.
+	var/datum/aura_bearer/leader_current_aura
+	///Passive plasma cost per tick for enabled personal (not leadership) pheromones.
+	var/pheromone_cost = 5
+	///Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
+	var/frenzy_aura = 0
+	///Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
+	///Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/recovery_aura = 0
-
-	var/regen_power = 0 //Resets to -xeno_caste.regen_delay when you take damage.
-	//Negative values act as a delay while values greater than 0 act as a multiplier.
-	//Will increase by 10 every decisecond if under 0. Increases by xeno_caste.regen_ramp_amount every decisecond.
-	//If you want to balance this, look at the xeno_caste defines mentioned above.
+	///Resets to -xeno_caste.regen_delay when you take damage.
+	///Negative values act as a delay while values greater than 0 act as a multiplier.
+	///Will increase by 10 every decisecond if under 0.
+	///Increases by xeno_caste.regen_ramp_amount every decisecond. If you want to balance this, look at the xeno_caste defines mentioned above.
+	var/regen_power = 0
 
 	var/is_zoomed = 0
 	var/zoom_turf = null
-	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
-	var/tier = XENO_TIER_ONE //This will track their "tier" to restrict/limit evolutions
+
+	///Type of weeds the xeno is standing on, null when not on weeds
+	var/obj/alien/weeds/loc_weeds_type
+	///Bonus or pen to time in between attacks. + makes slashes slower.
+	var/attack_delay = 0
+	///This will track their "tier" to restrict/limit evolutions
+	var/tier = XENO_TIER_ONE
 
 	var/emotedown = 0
 
@@ -317,29 +363,27 @@
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow
 	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit
-	//Naming variables
+	///Naming variables
 	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
 
-	//This list of inherent verbs lets us take any proc basically anywhere and add them.
-	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
-	//It should add them properly on New() and should reset/readd them on evolves
+	///This list of inherent verbs lets us take any proc basically anywhere and add them.
+	///If they're not a xeno subtype it might crash or do weird things, like using human verb procs
+	///It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
 
-	//Lord forgive me for this horror, but Life code is awful
-	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups
-	var/frenzy_new = 0
-	var/warding_new = 0
-	var/recovery_new = 0
+	///The xenomorph that this source is currently overwatching
+	var/mob/living/carbon/xenomorph/observed_xeno
 
 	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
 	var/xeno_melee_damage_modifier = 1
-
-	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
-
-	var/queen_chosen_lead //whether the xeno has been selected by the queen as a leader.
+	///whether the xeno mobhud is activated or not.
+	var/xeno_mobhud = FALSE
+	///whether the xeno has been selected by the queen as a leader.
+	var/queen_chosen_lead = FALSE
 
 	//Charge vars
-	var/is_charging = CHARGE_OFF //Will the mob charge when moving ? You need the charge verb to change this
+	///Will the mob charge when moving ? You need the charge verb to change this
+	var/is_charging = CHARGE_OFF
 
 	//Pounce vars
 	var/usedPounce = 0
@@ -348,15 +392,12 @@
 	var/overheal = 0
 
 	// Warrior vars
-	var/agility = 0		// 0 - upright, 1 - all fours
+	///0 - upright, 1 - all fours
+	var/agility = 0
 
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
-
-	//Leader vars
-	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
-	var/leader_current_aura = "" //Pheromone type inherited from Queen
 
 	//Runner vars
 	var/savage = FALSE

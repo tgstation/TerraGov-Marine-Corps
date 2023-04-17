@@ -10,7 +10,7 @@
 /area/bigredv2/outside/c)
 "b" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "c" = (
@@ -57,9 +57,16 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
+"l" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
 "m" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "n" = (
@@ -69,10 +76,13 @@
 /area/bigredv2/outside/c)
 "o" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/machineguns,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
+"q" = (
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
 "r" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/storage)
@@ -100,11 +110,11 @@
 /area/bigredv2/outside/c)
 "w" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "y" = (
@@ -112,24 +122,32 @@
 /area/bigredv2/outside/c)
 "A" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "B" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "C" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "D" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
+/area/bigredv2/outside/c)
+"E" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "F" = (
 /obj/structure/cable,
@@ -161,13 +179,13 @@
 /area/bigredv2/outside/storage)
 "K" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "L" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "M" = (
@@ -192,14 +210,14 @@
 /area/bigredv2/outside/c)
 "Q" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "R" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/machineguns,
+/obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "S" = (
@@ -214,8 +232,8 @@
 /area/bigredv2/outside/storage)
 "U" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/machinegun,
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "V" = (
@@ -247,10 +265,10 @@
 s
 W
 G
-G
-G
+q
+M
 k
-n
+l
 F
 a
 "}
@@ -318,7 +336,7 @@ u
 J
 o
 r
-t
+O
 "}
 (8,1,1) = {"
 y
@@ -329,7 +347,7 @@ X
 J
 A
 r
-O
+E
 "}
 (9,1,1) = {"
 y
@@ -340,7 +358,7 @@ X
 J
 Z
 r
-v
+t
 "}
 (10,1,1) = {"
 y
@@ -412,7 +430,7 @@ v
 y
 P
 h
-h
+q
 M
 n
 H

@@ -420,7 +420,7 @@ ColorTone(rgb, tone)
 			g = mid
 			b = lo
 
-	return (HSV.len > 3) ? rgb(r,g,b,HSV[4]) : rgb(r,g,b)
+	return (length(HSV) > 3) ? rgb(r,g,b,HSV[4]) : rgb(r,g,b)
 
 
 /proc/RGBtoHSV(rgb)
@@ -797,14 +797,14 @@ ColorTone(rgb, tone)
 						return flat
 					current_layer = process_set + A.layer + current_layer / 1000
 
-				for(var/p in 1 to layers.len)
+				for(var/p in 1 to length(layers))
 					var/image/cmp = layers[p]
 					if(current_layer < layers[cmp])
 						layers.Insert(p, current)
 						break
 				layers[current] = current_layer
 
-		//sortTim(layers, /proc/cmp_image_layer_asc)
+		//sortTim(layers, GLOBAL_PROC_REF(cmp_image_layer_asc))
 
 		var/icon/add // Icon of overlay being added
 
@@ -1099,10 +1099,9 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
  *
  * result_appearance - End result appearance/atom/image
  * time - Animation duration
- * transform_overlay - Appearance/atom/image of effect that moves along the animation - should be horizonatally centered
- * reset_after - If FALSE, filters won't be reset and helper vis_objects will not be removed after animation duration expires. Cleanup must be handled by the caller!
+ * transform_appearance - Appearance/atom/image of effect that moves along the animation - should be horizonatally centered
  */
-/atom/movable/proc/transformation_animation(result_appearance, time = 3 SECONDS, transform_overlay, reset_after=TRUE)
+/atom/movable/proc/transformation_animation(result_appearance, time = 3 SECONDS, transform_appearance)
 	var/list/transformation_objects = GLOB.transformation_animation_objects[src] || list()
 	//Disappearing part
 	var/top_part_filter = filter(type="alpha",icon=icon('icons/effects/alphacolors.dmi',"white"),y=0)
@@ -1117,10 +1116,10 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	appearing_part.filters = filter(type="alpha",icon=icon('icons/effects/alphacolors.dmi',"white"),y=0,flags=MASK_INVERSE)
 	animate(appearing_part.filters[1],y=-32,time=time)
 	transformation_objects += appearing_part
-	//Transform effect thing - todo make appearance passed in
-	if(transform_overlay)
+	//Transform effect thing
+	if(transform_appearance)
 		var/obj/transform_effect = new
-		transform_effect.appearance = transform_overlay
+		transform_effect.appearance = transform_appearance
 		transform_effect.vis_flags = VIS_INHERIT_ID
 		transform_effect.pixel_y = 16
 		transform_effect.alpha = 255
@@ -1131,8 +1130,6 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	GLOB.transformation_animation_objects[src] = transformation_objects
 	for(var/A in transformation_objects)
 		vis_contents += A
-	if(reset_after)
-		addtimer(CALLBACK(src,.proc/_reset_transformation_animation,filter_index),time)
 
 /**
  * Resets filters and removes transformation animations helper objects from vis contents.
@@ -1146,3 +1143,39 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	GLOB.transformation_animation_objects -= src
 	if(filters && length(filters) >= filter_index)
 		filters -= filters[filter_index]
+
+/**
+ * Center's an image.
+ * Requires:
+ * The Image
+ * The x dimension of the icon file used in the image
+ * The y dimension of the icon file used in the image
+ * eg: center_image(image_to_center, 32,32)
+ * eg2: center_image(image_to_center, 96,96)
+**/
+/proc/center_image(image/image_to_center, x_dimension = 0, y_dimension = 0)
+	if(!image_to_center)
+		return
+
+	if(!x_dimension || !y_dimension)
+		return
+
+	if((x_dimension == world.icon_size) && (y_dimension == world.icon_size))
+		return image_to_center
+
+	//Offset the image so that it's bottom left corner is shifted this many pixels
+	//This makes it infinitely easier to draw larger inhands/images larger than world.iconsize
+	//but still use them in game
+	var/x_offset = -((x_dimension / world.icon_size) - 1) * (world.icon_size * 0.5)
+	var/y_offset = -((y_dimension / world.icon_size) - 1) * (world.icon_size * 0.5)
+
+	//Correct values under world.icon_size
+	if(x_dimension < world.icon_size)
+		x_offset *= -1
+	if(y_dimension < world.icon_size)
+		y_offset *= -1
+
+	image_to_center.pixel_x = x_offset
+	image_to_center.pixel_y = y_offset
+
+	return image_to_center

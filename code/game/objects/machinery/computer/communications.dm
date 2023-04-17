@@ -194,10 +194,6 @@
 					message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href exploit on a [src]. [ADMIN_VERBOSEJMP(usr)].")
 					return FALSE
 
-				if(world.time < DISTRESS_TIME_LOCK)
-					to_chat(usr, span_warning("The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again."))
-					return FALSE
-
 				if(!SSticker?.mode)
 					return FALSE //Not a game mode?
 
@@ -263,7 +259,7 @@
 			if(authenticated)
 				if(currmsg)
 					var/title = messagetitle[currmsg]
-					var/text  = messagetext[currmsg]
+					var/text = messagetext[currmsg]
 					messagetitle.Remove(title)
 					messagetext.Remove(text)
 					if(currmsg == aicurrmsg)
@@ -373,7 +369,7 @@
 
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
-			for(var/i = 1; i<=messagetitle.len; i++)
+			for(var/i = 1; length(i<=messagetitle); i++)
 				dat += "<BR><A HREF='?src=\ref[src];operation=viewmessage;message-num=[i]'>[messagetitle[i]]</A>"
 
 		if(STATE_VIEWMESSAGE)

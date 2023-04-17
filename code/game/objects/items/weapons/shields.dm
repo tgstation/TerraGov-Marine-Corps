@@ -1,12 +1,17 @@
 /obj/item/weapon/shield
 	name = "shield"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/shields_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/shields_right.dmi',
+	)
 
 /obj/item/weapon/shield/Initialize()
 	. = ..()
 	set_shield()
 
 /obj/item/weapon/shield/proc/set_shield()
-	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY)
+	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
+	AddComponent(/datum/component/stun_mitigation)
 
 /obj/item/weapon/shield/riot
 	name = "riot shield"
@@ -21,48 +26,44 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/metal = 1000)
 	attack_verb = list("shoved", "bashed")
-	soft_armor = list("melee" = 40, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
-	hard_armor = list("melee" = 5, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 0, ENERGY = 70, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-/obj/item/weapon/shield/riot/metal
-	icon_state = "riot_metal"
-
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	var/health_status = (obj_integrity * 100) / (max_integrity-integrity_failure)
+	var/health_status = (obj_integrity-integrity_failure) * 100 / (max_integrity-integrity_failure)
 	if(integrity_failure && obj_integrity <= integrity_failure)
-		. += span_notice("It's broken, it won't protect anymore.")
+		. += span_notice("It's completely broken, with gaping holes everywhere!")
 		return
 	switch(health_status)
 		if(0 to 20)
-			. += span_notice("It's falling appart, will not be able to withstand much further damage.")
+			. += span_notice("It's falling apart under its own weight!")
 		if(20 to 40)
-			. += span_notice("It has cracked edges and dents.")
+			. += span_notice("It's barely holding its shape.")
 		if(40 to 60)
-			. += span_notice("It appears damaged, but still sturdy.")
+			. += span_notice("It's still holding up.")
 		if(60 to 80)
-			. += span_notice("It appears in decent condition, with some damage marks.")
+			. += span_notice("It's slightly damaged.")
 		if(80 to 100)
-			. += span_notice("It appears in perfect condition.")
+			. += span_notice("It's in perfect condition.")
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/metal_sheets = I
-		if(obj_integrity > (max_integrity - integrity_failure) * 0.2)
+		if(obj_integrity > integrity_failure)
 			return
 
 		if(metal_sheets.get_amount() < 1)
-			to_chat(user, span_warning("You need one metal sheet to repair the base of [src]."))
+			to_chat(user, span_warning("You need one metal sheet to restore the structural integrity of [src]."))
 			return
 
-		visible_message(span_notice("[user] begins to repair the base of [src]."))
+		visible_message(span_notice("[user] begins to restore the structural integrity of [src]."))
 
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
@@ -71,60 +72,17 @@
 			return
 
 		repair_damage(max_integrity * 0.2)
-		visible_message(span_notice("[user] repairs the base of [src]."))
+		visible_message(span_notice("[user] restores the structural integrity of [src]."))
 
 
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
-		return FALSE
+	. = welder_repair_act(user, I, max_integrity * 0.15, 4 SECONDS, integrity_failure / max_integrity, SKILL_ENGINEER_METAL)
+	if(. == BELOW_INTEGRITY_THRESHOLD)
+		balloon_alert(user, "Too damaged. Use metal sheets.")
 
-	var/obj/item/tool/weldingtool/WT = I
-
-	if(!WT.isOn())
-		return FALSE
-
-	if(current_acid)
-		to_chat(user, "<span class='warning'>You can't get near that, it's melting!<span>")
-		return TRUE
-
-	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2)
-		to_chat(user, span_warning("[src] has sustained too much structural damage and needs more metal plates to be repaired."))
-		return TRUE
-
-	if(obj_integrity == max_integrity)
-		to_chat(user, span_warning("[src] doesn't need repairs."))
-		return TRUE
-
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
-		span_notice("You fumble around figuring out how to repair [src]."))
-		var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
-			return TRUE
-
-	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
-	span_notice("You begin repairing the damage to [src]."))
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-
-	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-		return TRUE
-
-	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2 || obj_integrity == max_integrity)
-		return TRUE
-
-	if(!WT.remove_fuel(2, user))
-		to_chat(user, span_warning("Not enough fuel to finish the task."))
-		return TRUE
-
-	user.visible_message(span_notice("[user] repairs some damage on [src]."),
-	span_notice("You repair [src]."))
-	repair_damage(40)
-	update_icon()
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	return TRUE
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/baton) && world.time >= cooldown)
+	if(istype(I, /obj/item/weapon) && world.time >= cooldown)
 		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 		cooldown = world.time + 2.5 SECONDS
@@ -139,8 +97,8 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_integrity = 400
 	integrity_failure = 100
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 0, "energy" = 100, "bomb" = 15, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 35)
-	hard_armor = list("melee" = 0, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 20, ENERGY = 70, BOMB = 15, BIO = 50, FIRE = 0, ACID = 30)
+	hard_armor = list(MELEE = 0, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	force = 20
 	slowdown = 0.5
 
@@ -176,6 +134,45 @@
 	else
 		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
 
+/obj/item/weapon/shield/riot/marine/metal
+	icon_state = "riot_metal"
+
+/obj/item/weapon/shield/riot/marine/som
+	name = "\improper S-144 boarding shield"
+	desc = "A robust, heavy shield designed to be shot instead of the person holding it. Commonly employed by the SOM during boarding actions and other close quarter combat scenarios. This one has a SOM flag emblazoned on the front. Alt click to tighten the strap."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "som_shield"
+	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 50, FIRE = 0, ACID = 15)
+
+//A shield that can be deployed as a barricade
+/obj/item/weapon/shield/riot/marine/deployable
+	name = "\improper TL-182 deployable shield"
+	desc = "A compact shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade. Alt click to tighten the strap."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "folding_shield"
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_NORMAL
+	max_integrity = 300
+	integrity_failure = 50
+	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 50, FIRE = 0, ACID = 30)
+	slowdown = 0.3
+	flags_item = IS_DEPLOYABLE
+	///The item this deploys into
+	var/deployable_item = /obj/structure/barricade/metal/deployable
+	///Time to deploy
+	var/deploy_time = 1 SECONDS
+	///Time to undeploy
+	var/undeploy_time = 1 SECONDS
+	///Whether it is wired
+	var/is_wired = FALSE
+
+/obj/item/weapon/shield/riot/marine/deployable/Initialize()
+	. = ..()
+	AddElement(/datum/element/deployable_item, deployable_item, deploy_time, undeploy_time)
+
+/obj/item/weapon/shield/riot/marine/deployable/set_shield()
+	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
+
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
@@ -183,7 +180,7 @@
 	icon_state = "eshield0" // eshield1 for expanded
 	flags_atom = CONDUCT|NOBLOODY
 	force = 3
-	throwforce = 5.0
+	throwforce = 5
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
@@ -207,3 +204,4 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE)
 		to_chat(user, span_notice("[src] can now be concealed."))
 	add_fingerprint(user, "turned [active ? "on" : "off"]")
+

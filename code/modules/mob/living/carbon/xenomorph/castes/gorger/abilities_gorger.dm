@@ -7,12 +7,13 @@
 /datum/action/xeno_action/activable/devour
 	name = "Devour"
 	action_icon_state = "regurgitate"
-	mechanics_text = "Devour your victim to be able to carry it faster."
+	desc = "Devour your victim to be able to carry it faster."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
-	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_DEVOUR
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
+	)
 
 /datum/action/xeno_action/activable/devour/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
@@ -70,7 +71,7 @@
 	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
 	var/channel = SSsounds.random_available_channel()
 	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(owner_xeno, GORGER_DEVOUR_DELAY, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = owner_xeno.health))))
+	if(!do_after(owner_xeno, GORGER_DEVOUR_DELAY, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		owner_xeno.stop_sound_channel(channel)
 		return
@@ -88,12 +89,14 @@
 /datum/action/xeno_action/activable/drain
 	name = "Drain"
 	action_icon_state = "drain"
-	mechanics_text = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
+	desc = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
 	use_state_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_DRAIN
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN,
+	)
 
 /datum/action/xeno_action/activable/drain/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -130,7 +133,7 @@
 	target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);\
 \
 	var/drain_healing = GORGER_DRAIN_HEAL;\
-	HEAL_XENO_DAMAGE(owner_xeno, drain_healing);\
+	HEAL_XENO_DAMAGE(owner_xeno, drain_healing, TRUE);\
 	adjustOverheal(owner_xeno, drain_healing);\
 	owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
 
@@ -141,7 +144,7 @@
 		while((owner_xeno.health < owner_xeno.maxHealth || owner_xeno.overheal < owner_xeno.xeno_caste.overheal_max) &&do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
 			overheal_gain = owner_xeno.heal_wounds(2.2)
 			adjustOverheal(owner_xeno, overheal_gain)
-			owner_xeno.adjust_sunder(-0.5)
+			owner_xeno.adjust_sunder(-2.5)
 		to_chat(owner_xeno, span_notice("We feel fully restored."))
 		return
 	owner_xeno.face_atom(target_human)
@@ -168,12 +171,14 @@
 /datum/action/xeno_action/activable/transfusion
 	name = "Transfusion"
 	action_icon_state = "transfusion"
-	mechanics_text = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
+	desc = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
 	//When used on self, drains blood continuosly, slows you down and reduces damage taken, while restoring health over time.
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 20
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_TRANSFUSION
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION,
+	)
 
 /datum/action/xeno_action/activable/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
@@ -185,17 +190,19 @@
 			to_chat(owner, span_notice("We can only restore familiar biological lifeforms."))
 		return FALSE
 
+	var/mob/living/carbon/xenomorph/target_xeno = target
+
 	if(owner.do_actions)
 		return FALSE
-	if(!line_of_sight(owner, target, 2) || get_dist(owner, target) > 2)
+	if(!line_of_sight(owner, target_xeno, 2) || get_dist(owner, target_xeno) > 2)
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
-	if(isdead(target))
+	if(target_xeno.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
-	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_mob(owner, target_xeno, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	return TRUE
 
@@ -203,7 +210,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/xenomorph/target_xeno = target
 	var/heal_amount = target_xeno.maxHealth * GORGER_TRANSFUSION_HEAL
-	HEAL_XENO_DAMAGE(target_xeno, heal_amount)
+	HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 	adjustOverheal(target_xeno, heal_amount)
 	if(target_xeno.overheal)
 		target_xeno.balloon_alert(owner_xeno, "Overheal: [target_xeno.overheal]/[target_xeno.xeno_caste.overheal_max]")
@@ -229,12 +236,15 @@
 /datum/action/xeno_action/activable/rejuvenate
 	name = "Rejuvenate"
 	action_icon_state = "rejuvenation"
-	mechanics_text = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
+	desc = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
 	cooldown_timer = 4 SECONDS
 	plasma_cost = GORGER_REJUVENATE_COST
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REJUVENATE,
+	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_USE_STAGGERED
 
 /datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -266,16 +276,27 @@
 /datum/action/xeno_action/activable/psychic_link
 	name = "Psychic Link"
 	action_icon_state = "psychic_link"
-	mechanics_text = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
+	desc = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_LINK
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_LINK,
+	)
+	///Timer for activating the link
+	var/apply_psychic_link_timer
+	///Overlay applied on the target xeno while linking
+	var/datum/progressicon/target_overlay
 
 /datum/action/xeno_action/activable/psychic_link/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
+	if(apply_psychic_link_timer)
+		if(!silent)
+			owner.balloon_alert(owner, "cancelled")
+		link_cleanup()
+		return FALSE
 	if(owner.do_actions)
 		return FALSE
 	if(!isxeno(target))
@@ -299,33 +320,27 @@
 		if(!silent)
 			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
 		return FALSE
-	if(!do_mob(owner, target, GORGER_PSYCHIC_LINK_CHANNEL, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_LOC_CHANGE, extra_checks = new/datum/callback/(src, .proc/channel_checks, target)))
-		if(!silent)
-			to_chat(owner, span_warning("The linking was interrupted."))
-		return FALSE
-	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED))
-		if(!silent)
-			to_chat(owner, span_notice("You are already linked to a xenomorph."))
-		return FALSE
-	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
-		if(!silent)
-			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
-		return FALSE
 	return TRUE
 
-///Runs checks while the status is being applied
-/datum/action/xeno_action/activable/psychic_link/proc/channel_checks(atom/target)
-	return (get_dist(owner, target) <= GORGER_PSYCHIC_LINK_RANGE)
-
 /datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
+	apply_psychic_link_timer = addtimer(CALLBACK(src, PROC_REF(apply_psychic_link), target), GORGER_PSYCHIC_LINK_CHANNEL, TIMER_UNIQUE|TIMER_STOPPABLE)
+	target_overlay = new (target, BUSY_ICON_MEDICAL)
+	owner.balloon_alert(owner, "linking...")
+
+///Activates the link
+/datum/action/xeno_action/activable/psychic_link/proc/apply_psychic_link(atom/target)
+	link_cleanup()
+	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED) || HAS_TRAIT(target, TRAIT_PSY_LINKED))
+		return fail_activate()
+
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/psychic_link = owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
-	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, .proc/status_removed)
-	target.balloon_alert(owner_xeno, "Link successul.")
-	owner_xeno.balloon_alert(target, "[owner_xeno] has linked to you.")
+	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, PROC_REF(status_removed))
+	target.balloon_alert(owner_xeno, "link successul")
+	owner_xeno.balloon_alert(target, "linked to [owner_xeno]")
 	if(!owner_xeno.resting)
 		owner_xeno.set_resting(TRUE, TRUE)
-	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, .proc/cancel_psychic_link)
+	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link))
 	succeed_activate()
 
 ///Removes the status effect on unrest
@@ -338,7 +353,15 @@
 /datum/action/xeno_action/activable/psychic_link/proc/status_removed(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
+	UnregisterSignal(owner, COMSIG_XENOMORPH_UNREST)
 	add_cooldown()
+
+///Clears up things used for the linking
+/datum/action/xeno_action/activable/psychic_link/proc/link_cleanup()
+	QDEL_NULL(target_overlay)
+	deltimer(apply_psychic_link_timer)
+	apply_psychic_link_timer = null
+
 
 /datum/action/xeno_action/activable/psychic_link/ai_should_use(atom/target)
 	return FALSE
@@ -349,10 +372,12 @@
 /datum/action/xeno_action/activable/carnage
 	name = "Carnage"
 	action_icon_state = "carnage"
-	mechanics_text = "Enter a state of thirst, gaining movement and healing on your next attack, scaling with missing blood. If your blood is below a certain %, you also knockdown your victim and drain some blood, during which you can't move."
+	desc = "Enter a state of thirst, gaining movement and healing on your next attack, scaling with missing blood. If your blood is below a certain %, you also knockdown your victim and drain some blood, during which you can't move."
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_CARNAGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CARNAGE,
+	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
 /datum/action/xeno_action/activable/carnage/use_ability(atom/A)
@@ -379,11 +404,14 @@
 /datum/action/xeno_action/activable/feast
 	name = "Feast"
 	action_icon_state = "feast"
-	mechanics_text = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
+	desc = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_FEAST
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST,
+	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_USE_STAGGERED
 
 /datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()

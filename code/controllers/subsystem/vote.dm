@@ -8,12 +8,14 @@ SUBSYSTEM_DEF(vote)
 
 	/// Available choices in the vote
 	var/list/choices = list()
-	/// What choice each player took, if any
-	var/list/choice_by_ckey = list()
+	/// What choices each player took, if any
+	var/list/choices_by_ckey = list()
 	/// Who started the vote
 	var/initiator
 	/// On what subject the vote is about
 	var/mode
+	/// Is multiple vote allowed for that mode
+	var/multiple_vote = FALSE
 	/// The question that will be asked
 	var/question
 	/// When the vote was started
@@ -28,6 +30,8 @@ SUBSYSTEM_DEF(vote)
 	var/vote_happening = FALSE
 	/// The timer id of the shipmap vote
 	var/shipmap_timer_id
+	/// Pop up this vote screen on everyone's screen?
+	var/forced_popup = FALSE
 
 // Called by master_controller
 /datum/controller/subsystem/vote/fire()
@@ -42,7 +46,8 @@ SUBSYSTEM_DEF(vote)
 /// Stop the current vote and reset everything
 /datum/controller/subsystem/vote/proc/reset()
 	choices.Cut()
-	choice_by_ckey.Cut()
+	choices_by_ckey.Cut()
+	multiple_vote = FALSE
 	initiator = null
 	mode = null
 	question = null
@@ -133,16 +138,34 @@ SUBSYSTEM_DEF(vote)
 			if(. == "Restart Round")
 				restart = TRUE
 		if("gamemode")
-			if(. == "Civil War")
-				deltimer(shipmap_timer_id)
-				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Twin Pillars"]
-				SSmapping.changemap(VM, SHIP_MAP)
-			if(GLOB.master_mode != .)
-				SSticker.save_mode(.)
-				if(SSticker.HasRoundStarted())
-					restart = TRUE
-				else
-					GLOB.master_mode = .
+			SSticker.save_mode(.) //changes the next game mode
+			if(GLOB.master_mode == .)
+				return
+			if(SSticker.HasRoundStarted())
+				restart = TRUE
+			else
+				var/ship_change_required
+				var/ground_change_required
+				var/datum/game_mode/new_gamemode = config.pick_mode(.)
+				GLOB.master_mode = . //changes the current gamemode
+				//we check the gamemode's whitelists and blacklists to see if a map change and restart is required
+				if(!(new_gamemode.whitelist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) && !(new_gamemode.blacklist_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
+					ship_change_required = TRUE
+				if(!(new_gamemode.whitelist_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.whitelist_ground_maps)) && !(new_gamemode.blacklist_ground_maps && !(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.blacklist_ground_maps)))
+					ground_change_required = TRUE
+				//we queue up the required votes and restarts
+				if(ship_change_required && ground_change_required)
+					addtimer(CALLBACK(src, PROC_REF(initiate_vote), "shipmap", null, TRUE), 5 SECONDS)
+					addtimer(CALLBACK(src, PROC_REF(initiate_vote), "groundmap", null, TRUE), CONFIG_GET(number/vote_period) + 5 SECONDS)
+					SSticker.Reboot("Restarting server when valid ship and ground map selected", (CONFIG_GET(number/vote_period) * 2) + 15 SECONDS)
+					return
+				else if(ship_change_required)
+					addtimer(CALLBACK(src, PROC_REF(initiate_vote), "shipmap", null, TRUE), 5 SECONDS)
+					SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+				else if(ground_change_required)
+					addtimer(CALLBACK(src, PROC_REF(initiate_vote), "groundmap", null, TRUE), 5 SECONDS)
+					SSticker.Reboot("Restarting server when valid ground map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+			return
 		if("groundmap")
 			var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
 			SSmapping.changemap(VM, GROUND_MAP)
@@ -167,22 +190,33 @@ SUBSYSTEM_DEF(vote)
 /// Register the vote of one player
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
 	if(!mode)
-		return FALSE
+		return
 	if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !usr.client.holder)
-		return FALSE
+		return
 	if(!vote || vote < 1 || vote > length(choices))
-		return FALSE
-	// If user has already voted, remove their specific vote
-	if(usr.ckey in voted)
-		choices[choices[choice_by_ckey[usr.ckey]]]--
-	else
+		return
+	if(!(usr.ckey in voted))
+		choices_by_ckey[usr.ckey] = list(vote)
+		choices[choices[vote]]++
 		voted += usr.ckey
-	choice_by_ckey[usr.ckey] = vote
+		return
+	var/list/list_of_votes = choices_by_ckey[usr.ckey]
+	if(list_of_votes.Find(vote))
+		list_of_votes.Remove(vote)
+		choices[choices[vote]]--
+		if(!multiple_vote && voted.Find(usr.ckey))
+			voted -= usr.ckey
+		return
+
 	choices[choices[vote]]++
-	return vote
+	if(multiple_vote)
+		choices_by_ckey[usr.ckey] += vote
+	else
+		choices[choices[choices_by_ckey[usr.ckey][1]]]--
+		choices_by_ckey[usr.ckey] = list(vote)
 
 /// Start the vote, and prepare the choices to send to everyone
-/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, ignore_delay = FALSE)
+/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, ignore_delay = FALSE, popup_override = FALSE)
 	//Server is still intializing.
 	if(!Master.current_runlevel)
 		to_chat(usr, span_warning("Cannot start vote, server is not done initializing."))
@@ -192,6 +226,8 @@ SUBSYSTEM_DEF(vote)
 		var/ckey = ckey(initiator_key)
 		if(GLOB.admin_datums[ckey])
 			lower_admin = TRUE
+
+	forced_popup = popup_override
 
 	if(!mode)
 		if(started_time && !ignore_delay)
@@ -208,11 +244,10 @@ SUBSYSTEM_DEF(vote)
 			if("restart")
 				choices.Add("Restart Round", "Continue Playing")
 			if("gamemode")
+				multiple_vote = TRUE
 				for(var/datum/game_mode/mode AS in config.votable_modes)
 					var/players = length(GLOB.clients)
 					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
-						continue
-					if(istype(mode, /datum/game_mode/civil_war) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_TWIN_PILLARS)
 						continue
 					if(players > mode.maximum_players)
 						continue
@@ -220,9 +255,11 @@ SUBSYSTEM_DEF(vote)
 						continue
 					choices.Add(mode.config_tag)
 			if("groundmap")
+				multiple_vote = TRUE
 				if(!lower_admin && SSmapping.groundmap_voted)
 					to_chat(usr, span_warning("The next ground map has already been selected."))
 					return FALSE
+				var/datum/game_mode/next_gamemode = config.pick_mode(trim(file2text("data/mode.txt")))
 				var/list/maps = list()
 				if(!config.maplist)
 					return
@@ -230,6 +267,12 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[GROUND_MAP][map]
 					if(!VM.voteweight)
 						continue
+					if(next_gamemode.whitelist_ground_maps)
+						if(!(VM.map_name in next_gamemode.whitelist_ground_maps))
+							continue
+					else if(next_gamemode.blacklist_ground_maps) //can't blacklist and whitelist for the same map
+						if(VM.map_name in next_gamemode.blacklist_ground_maps)
+							continue
 					if(VM.config_max_users || VM.config_min_users)
 						var/players = length(GLOB.clients)
 						if(VM.config_max_users && players > VM.config_max_users)
@@ -241,9 +284,11 @@ SUBSYSTEM_DEF(vote)
 				for(var/valid_map in maps)
 					choices.Add(valid_map)
 			if("shipmap")
+				multiple_vote = TRUE
 				if(!lower_admin && SSmapping.shipmap_voted)
 					to_chat(usr, span_warning("The next ship map has already been selected."))
 					return FALSE
+				var/datum/game_mode/next_gamemode = config.pick_mode(trim(file2text("data/mode.txt")))
 				var/list/maps = list()
 				if(!config.maplist)
 					return
@@ -251,6 +296,12 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[SHIP_MAP][map]
 					if(!VM.voteweight)
 						continue
+					if(next_gamemode.whitelist_ship_maps)
+						if(!(VM.map_name in next_gamemode.whitelist_ship_maps))
+							continue
+					else if(next_gamemode.blacklist_ship_maps) //can't blacklist and whitelist for the same map
+						if(VM.map_name in next_gamemode.blacklist_ship_maps)
+							continue
 					if(VM.config_max_users || VM.config_min_users)
 						var/players = length(GLOB.clients)
 						if(VM.config_max_users && players > VM.config_max_users)
@@ -270,6 +321,8 @@ SUBSYSTEM_DEF(vote)
 					if(!option || mode || !usr.client)
 						break
 					choices.Add(option)
+				multiple_vote = tgui_alert(usr, "Allow multiple voting?", "Multiple voting", list("Yes", "No")) == "Yes" ? TRUE : FALSE
+				forced_popup = tgui_alert(usr, "Pop the screen up for everyone?", "Pop up?", list("Yes", "No")) == "Yes" ? TRUE : FALSE
 			else
 				return FALSE
 		if(!length(choices))
@@ -281,6 +334,8 @@ SUBSYSTEM_DEF(vote)
 			result(choices[1])
 			reset()
 			return FALSE
+		if(length(choices) == 2)
+			multiple_vote = FALSE
 		initiator = initiator_key
 		started_time = world.time
 		var/text = "[capitalize(mode)] vote started by [initiator ? initiator : "server"]."
@@ -299,6 +354,8 @@ SUBSYSTEM_DEF(vote)
 				V.name = "Vote: [question]"
 			C.player_details.player_actions += V
 			V.give_action(C.mob)
+			if(forced_popup)
+				SSvote.ui_interact(C.mob)
 		return TRUE
 	return FALSE
 
@@ -309,9 +366,9 @@ SUBSYSTEM_DEF(vote)
 
 ///Starts the automatic map vote at the end of each round
 /datum/controller/subsystem/vote/proc/automatic_vote()
-	initiate_vote("gamemode", null, TRUE)
-	shipmap_timer_id = addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS, TIMER_STOPPABLE)
-	addtimer(CALLBACK(src, .proc/initiate_vote, "groundmap", null, TRUE), CONFIG_GET(number/vote_period) * 2 + 6 SECONDS)
+	initiate_vote("gamemode", null, TRUE, TRUE)
+	shipmap_timer_id = addtimer(CALLBACK(src, PROC_REF(initiate_vote), "shipmap", null, TRUE, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, PROC_REF(initiate_vote), "groundmap", null, TRUE, TRUE), CONFIG_GET(number/vote_period) * 2 + 6 SECONDS)
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state
@@ -331,7 +388,7 @@ SUBSYSTEM_DEF(vote)
 		"lower_admin" = !!user.client?.holder,
 		"mode" = mode,
 		"question" = question,
-		"selected_choice" = choice_by_ckey[user.client?.ckey],
+		"selected_choice" = choices_by_ckey[user.client?.ckey] ? choices_by_ckey[user.client?.ckey] : list(),
 		"time_remaining" = time_remaining,
 		"upper_admin" = check_rights_for(user.client, R_ADMIN),
 		"voting" = list(),
@@ -412,11 +469,17 @@ SUBSYSTEM_DEF(vote)
 
 /datum/action/innate/vote/give_action(mob/M)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_REMOVE_VOTE_BUTTON, .proc/remove_vote_action)
+	RegisterSignal(SSdcs, COMSIG_GLOB_REMOVE_VOTE_BUTTON, PROC_REF(remove_vote_action))
 
 /datum/action/innate/vote/proc/remove_vote_action(datum/source)
 	SIGNAL_HANDLER
 	if(owner)
+		if(owner.client)
+			owner.client?.player_details.player_actions -= src
+
+		else if(owner.ckey)
+			var/datum/player_details/associated_details = GLOB.player_details[owner.ckey]
+			associated_details?.player_actions -= src
 		remove_action(owner)
 	qdel(src)
 

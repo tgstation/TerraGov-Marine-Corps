@@ -26,6 +26,10 @@
 					ExtinguishMob()
 				return TRUE
 
+			if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && H != src)
+				H.stripPanelUnequip(wear_mask, src, SLOT_WEAR_MASK)
+				return TRUE
+
 			if(health >= get_crit_threshold())
 				help_shake_act(H)
 				return TRUE
@@ -35,7 +39,7 @@
 				return FALSE
 
 			if(species?.species_flags & ROBOTIC_LIMBS)
-				to_chat(H, span_boldnotice("You cant help this one, [p_they()] have no lungs!"))
+				to_chat(H, span_boldnotice("You can't help this one, [p_they()] [p_have()] no lungs!"))
 				return FALSE
 
 			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
@@ -83,6 +87,8 @@
 
 		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
+			if(H == src && !H.do_self_harm)
+				return FALSE
 			var/datum/unarmed_attack/attack = H.species.unarmed
 			if(!attack.is_usable(H))
 				attack = H.species.secondary_unarmed
@@ -101,11 +107,11 @@
 				return FALSE
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-			var/max_dmg = H.melee_damage + H.skills.getRating("cqc")
+			var/max_dmg = H.melee_damage + H.skills.getRating(SKILL_CQC)
 			var/damage = rand(1, max_dmg)
 
-			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
-			var/armor_block = run_armor_check(affecting, "melee")
+			var/target_zone = ran_zone(H.zone_selected)
+			var/armor_block = get_soft_armor("melee", target_zone)
 
 			playsound(loc, attack.attack_sound, 25, TRUE)
 
@@ -117,7 +123,7 @@
 				hit_report += "(KO)"
 
 			damage += attack.damage
-			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge, updating_health = TRUE)
+			apply_damage(damage, BRUTE, target_zone, MELEE, attack.sharp, attack.edge, updating_health = TRUE)
 
 			hit_report += "(RAW DMG: [damage])"
 
@@ -132,10 +138,10 @@
 
 			H.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
-			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
+			var/target_zone = ran_zone(H.zone_selected)
 
 			//Accidental gun discharge
-			if(user.skills.getRating("cqc") < SKILL_CQC_MP)
+			if(user.skills.getRating(SKILL_CQC) < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -157,10 +163,10 @@
 						var/turf/target = pick(turfs)
 						return W.afterattack(target,src)
 
-			var/randn = rand(1, 100) + skills.getRating("cqc") * 5 - H.skills.getRating("cqc") * 5
+			var/randn = rand(1, 100) + skills.getRating(SKILL_CQC) * 5 - H.skills.getRating(SKILL_CQC) * 5
 
 			if (randn <= 25)
-				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
+				apply_effect(3, WEAKEN, get_soft_armor("melee", target_zone))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[H] has pushed [src]!"), null, null, 5)
 				log_combat(user, src, "pushed")
@@ -197,8 +203,7 @@
 				span_notice("You remove the holo card on yourself."), null, 3)
 			return
 
-		visible_message(span_notice("[src] examines [p_them()]self."),
-			span_notice("You check yourself for injuries."), null, 3)
+
 		check_self_for_injuries()
 		return
 
@@ -207,6 +212,8 @@
 
 /mob/living/carbon/human/proc/check_self_for_injuries()
 	var/list/final_msg = list()
+	balloon_alert_to_viewers("Examines [p_them()]self.", "You examine yourself")
+	final_msg += span_notice("<b>You check yourself for injuries.</b>")
 
 	for(var/datum/limb/org in limbs)
 		var/status = ""
@@ -250,20 +257,18 @@
 			status += " <b>(SPLINTED)</b>"
 		if(org.limb_status & LIMB_STABILIZED)
 			status += " <b>(STABILIZED)</b>"
-		if(org.limb_status & LIMB_MUTATED)
-			status = "weirdly shapen."
 		if(org.limb_status & LIMB_NECROTIZED)
 			status = "rotting"
 		if(org.limb_status & LIMB_DESTROYED)
 			status = "MISSING!"
 
-		if(brute_treated == FALSE && brutedamage > 0)
+		if(brute_treated && brutedamage > 0)
 			treat = "(Bandaged"
-			if(burn_treated == FALSE && burndamage > 0)
+			if(burn_treated && burndamage > 0)
 				treat += " and Salved)"
 			else
 				treat += ")"
-		else if(burn_treated == FALSE && burndamage > 0)
+		else if(burn_treated && burndamage > 0)
 			treat += "(Salved)"
 		var/msg = "My [org.display_name] is [status]. [treat]"
 		final_msg += status=="OK" ? span_notice(msg) : span_warning (msg)
@@ -298,4 +303,14 @@
 		if(26 to INFINITY)
 			final_msg += span_info("Your body aches all over, it's driving you mad!")
 
-	to_chat(src, final_msg.Join("\n"))
+	switch(germ_level)
+		if(0 to 19)
+			final_msg += span_info("You're [pick("free of grime", "pristine", "freshly laundered")].")
+		if(20 to 79)
+			final_msg += span_info(pick("You've got some grime on you", "You're a bit dirty"))
+		if(80 to 150)
+			final_msg += span_info(pick("You're not far off filthy.", "You're pretty dirty.", "There's still one or two clean spots left on you."))
+		else
+			final_msg += span_info(pick("There's a full layer of dirt covering you. Maybe it'll work as camo?", "You could go for a shower.", "You've reached a more complete understanding of grime."))
+
+	to_chat(src, examine_block(final_msg.Join("\n")))

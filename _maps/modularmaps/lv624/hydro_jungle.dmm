@@ -386,10 +386,10 @@
 /area/lv624/ground/jungle7)
 "GW" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/monkeyburger{
+/obj/effect/spawner/random/food_or_drink/burger{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/snacks/orangecakeslice{
+/obj/item/reagent_containers/food/snacks/pastries/orangecakeslice{
 	pixel_x = 4;
 	pixel_y = 8
 	},
@@ -546,13 +546,10 @@
 	},
 /area/lv624/ground/jungle9)
 "Vg" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/secure{

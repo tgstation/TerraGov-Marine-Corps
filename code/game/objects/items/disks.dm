@@ -2,6 +2,10 @@
 	name = "disk"
 	icon = 'icons/obj/items/disk.dmi'
 	icon_state = "datadisk0"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/id_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/id_right.dmi',
+	)
 	item_state = "card-id"
 
 
@@ -23,14 +27,14 @@
 
 /obj/item/disk/nuclear/red
 	name = "red nuclear authentication disk"
-	icon_state = "datadisk0"
+	icon_state = "datadisk7"
 
 
 /obj/item/disk/nuclear/green
 	name = "green nuclear authentication disk"
-	icon_state = "datadisk3"
+	icon_state = "botanydisk"
 
 
 /obj/item/disk/nuclear/blue
 	name = "blue nuclear authentication disk"
-	icon_state = "datadisk1"
+	icon_state = "datadisk0"

@@ -30,7 +30,7 @@
 		for(var/rid in S.chems)
 			var/list/reagent_data = S.chems[rid]
 			var/rtotal = reagent_data[1]
-			if(reagent_data.len > 1 && potency > 0)
+			if(length(reagent_data) > 1 && potency > 0)
 				rtotal += round(potency/reagent_data[2])
 			if(reagents)
 				reagents.add_reagent(rid, max(1, rtotal))
@@ -139,40 +139,6 @@
 	icon_state = "plastellium"
 	filling_color = "#C4C4C4"
 	plantname = "plastic"
-
-/obj/item/reagent_containers/food/snacks/grown/shand
-	name = "S'rendarr's Hand leaf"
-	desc = "A leaf sample from a lowland thicket shrub. Smells strongly like wax."
-	icon_state = "shand"
-	filling_color = "#70C470"
-	plantname = "shand"
-
-/obj/item/reagent_containers/food/snacks/grown/mtear
-	name = "sprig of Messa's Tear"
-	desc = "A mountain climate herb with a soft, cold blue flower, known to contain an abundance of healing chemicals."
-	icon_state = "mtear"
-	filling_color = "#70C470"
-	plantname = "mtear"
-
-/obj/item/reagent_containers/food/snacks/grown/mtear/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	var/obj/item/stack/medical/heal_pack/ointment/tajaran/poultice = new /obj/item/stack/medical/heal_pack/ointment/tajaran(user.loc)
-
-	poultice.heal_burn = potency
-	qdel(src)
-
-	to_chat(user, span_notice("You mash the petals into a poultice."))
-
-/obj/item/reagent_containers/food/snacks/grown/shand/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	var/obj/item/stack/medical/heal_pack/gauze/tajaran/poultice = new /obj/item/stack/medical/heal_pack/gauze/tajaran(user.loc)
-
-	poultice.heal_brute = potency
-	qdel(src)
-
-	to_chat(user, span_notice("You mash the leaves into a poultice."))
 
 /obj/item/reagent_containers/food/snacks/grown/glowberries
 	name = "bunch of glow-berries"
@@ -398,10 +364,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/bluetomato/Initialize()
 	. = ..()
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-	)
-	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/slippery, 0.8 SECONDS, 0.5 SECONDS)
 
 /obj/item/reagent_containers/food/snacks/grown/bluetomato/throw_impact(atom/hit_atom)
 	..()
@@ -411,12 +374,6 @@
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
 	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/grown/bluetomato/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
-	SIGNAL_HANDLER
-	if(iscarbon(AM))
-		var/mob/living/carbon/C = AM
-		C.slip(name, 8, 5)
 
 /obj/item/reagent_containers/food/snacks/grown/wheat
 	name = "wheat"
@@ -564,7 +521,7 @@
 		if(T.x>world.maxx-outer_teleport_radius || T.x<outer_teleport_radius)	continue
 		if(T.y>world.maxy-outer_teleport_radius || T.y<outer_teleport_radius)	continue
 		turfs += T
-	if(!turfs.len)
+	if(!length(turfs))
 		var/list/turfs_to_pick_from = list()
 		for(var/turf/T in orange(M,outer_teleport_radius))
 			if(!(T in orange(M,inner_teleport_radius)))
@@ -578,7 +535,7 @@
 			s.start()
 			new/obj/effect/decal/cleanable/molten_item(M.loc) //Leaves a pile of goo behind for dramatic effect.
 			M.loc = picked //
-			sleep(1)
+			sleep(0.1 SECONDS)
 			s.set_up(3, 1, M)
 			s.start() //Two set of sparks, one before the teleport and one after.
 		if(2) //Teleports mob the tomato hit instead.
@@ -587,7 +544,7 @@
 				s.start()
 				new/obj/effect/decal/cleanable/molten_item(A.loc) //Leave a pile of goo behind for dramatic effect...
 				A.loc = picked//And teleport them to the chosen location.
-				sleep(1)
+				sleep(0.1 SECONDS)
 				s.set_up(3, 1, A)
 				s.start()
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)

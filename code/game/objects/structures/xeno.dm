@@ -2,7 +2,7 @@
 /*
 * effect/alien
 */
-/obj/effect/alien
+/obj/alien
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
@@ -15,21 +15,17 @@
 	///Set this to true if this object isn't destroyed when the weeds under it is.
 	var/ignore_weed_destruction = FALSE
 
-/obj/effect/alien/Initialize()
+/obj/alien/Initialize()
 	. = ..()
 	if(!ignore_weed_destruction)
-		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-	)
-	AddElement(/datum/element/connect_loc, connections)
+		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
 
 /// Destroy the alien effect when the weed it was on is destroyed
-/obj/effect/alien/proc/weed_removed()
+/obj/alien/proc/weed_removed()
 	SIGNAL_HANDLER
 	obj_destruction(damage_flag = "melee")
 
-/obj/effect/alien/attackby(obj/item/I, mob/user, params)
+/obj/alien/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(user.a_intent == INTENT_HARM) //Already handled at the parent level.
@@ -38,16 +34,10 @@
 	if(obj_flags & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
+/obj/alien/flamer_fire_act(burnlevel)
+	take_damage(burnlevel * 2, BURN, "fire")
 
-/obj/effect/alien/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
-	SIGNAL_HANDLER
-	if(istype(O, /obj/vehicle/multitile/hitbox/cm_armored))
-		tank_collision(O)
-
-/obj/effect/alien/flamer_fire_act()
-	take_damage(50, BURN, "fire")
-
-/obj/effect/alien/ex_act(severity)
+/obj/alien/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(500)
@@ -56,7 +46,7 @@
 		if(EXPLODE_LIGHT)
 			take_damage((rand(50, 100)))
 
-/obj/effect/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
+/obj/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
@@ -66,7 +56,7 @@
 /*
 * Resin
 */
-/obj/effect/alien/resin
+/obj/alien/resin
 	name = "resin"
 	desc = "Looks like some kind of slimy growth."
 	icon_state = "Resin1"
@@ -74,13 +64,13 @@
 	resistance_flags = XENO_DAMAGEABLE
 
 
-/obj/effect/alien/resin/attack_hand(mob/living/user)
-	to_chat(usr, span_warning("You scrape ineffectively at \the [src]."))
+/obj/alien/resin/attack_hand(mob/living/user)
+	balloon_alert(user, "You only scrape at it")
 	return TRUE
 
 
-/obj/effect/alien/resin/sticky
-	name = "sticky resin"
+/obj/alien/resin/sticky
+	name = STICKY_RESIN
 	desc = "A layer of disgusting sticky slime."
 	icon_state = "sticky"
 	density = FALSE
@@ -92,14 +82,14 @@
 
 	ignore_weed_destruction = TRUE
 
-/obj/effect/alien/resin/sticky/Initialize()
+/obj/alien/resin/sticky/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
+		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/effect/alien/resin/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+/obj/alien/resin/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
 	if(crosser.throwing || crosser.buckled)
 		return
@@ -122,11 +112,13 @@
 
 	victim.next_move_slowdown += slow_amt
 
-/obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
+		if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
+			SSresinshaping.decrement_build_counter(X)
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, "alien_resin_break", 25) //SFX
 		deconstruct(TRUE)
@@ -135,7 +127,7 @@
 	return ..()
 
 // Praetorian Sticky Resin spit uses this.
-/obj/effect/alien/resin/sticky/thin
+/obj/alien/resin/sticky/thin
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
 	max_integrity = 6
@@ -145,30 +137,40 @@
 
 //Resin Doors
 /obj/structure/mineral_door/resin
-	name = "resin door"
-	mineralType = "resin"
-	icon = 'icons/Xeno/Effects.dmi'
-	hardness = 1.5
+	name = RESIN_DOOR
+	icon = 'icons/obj/smooth_objects/resin-door.dmi'
+	icon_state = "resin-door-1"
+	base_icon_state = "resin-door"
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 100
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_XENO_STRUCTURES
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
+	canSmoothWith = list(
+		SMOOTH_GROUP_XENO_STRUCTURES,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+	)
+	soft_armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 15, BIO = 0, FIRE = 0, ACID = 0)
+	trigger_sound = "alien_resin_move"
+	hit_sound = "alien_resin_move"
+	destroy_sound = "alien_resin_move"
+
+	///The delay before the door closes automatically after being open
 	var/close_delay = 10 SECONDS
-	
+	///The timer that tracks the delay above
+	var/closetimer
 
 
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
+	if(!locate(/obj/alien/weeds) in loc)
+		new /obj/alien/weeds(loc)
 
-	if(!locate(/obj/effect/alien/weeds) in loc)
-		new /obj/effect/alien/weeds(loc)
-	if(locate(/mob/living) in loc)	//If we build a door below ourselves, it starts open.
-		Open()
 
 /obj/structure/mineral_door/resin/Cross(atom/movable/mover, turf/target)
 	. = ..()
-	if(!. && isxeno(mover))
-		Open()
+	if(!. && isxeno(mover) && !open)
+		toggle_state()
 		return TRUE
 
 
@@ -176,7 +178,7 @@
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return FALSE
-	TryToSwitchState(M)
+	try_toggle_state(M)
 	return TRUE
 
 //clicking on resin doors attacks them, or opens them without harm intent
@@ -185,69 +187,55 @@
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
 	if(X.a_intent != INTENT_HARM)
-		TryToSwitchState(X)
+		try_toggle_state(X)
+		return TRUE
+	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
+		SSresinshaping.decrement_build_counter(X)
+		qdel(src)
 		return TRUE
 
-	X.visible_message(span_warning("\The [X] digs into \the [src] and begins ripping it down."), \
-	span_warning("We dig into \the [src] and begin ripping it down."), null, 5)
+	src.balloon_alert(X, "Destroying...")
 	playsound(src, "alien_resin_break", 25)
 	if(do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
-		X.visible_message(span_danger("[X] rips down \the [src]!"), \
-		span_danger("We rip down \the [src]!"), null, 5)
+		src.balloon_alert(X, "Destroyed")
 		qdel(src)
 
-/obj/structure/mineral_door/resin/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+/obj/structure/mineral_door/resin/flamer_fire_act(burnlevel)
+	take_damage(burnlevel * 2, BURN, "fire")
+
+/obj/structure/mineral_door/resin/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel()
+		if(EXPLODE_HEAVY)
+			qdel()
+		if(EXPLODE_LIGHT)
+			take_damage((rand(50, 60)))
 
 /turf/closed/wall/resin/fire_act()
 	take_damage(50, BURN, "fire")
 
-/obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
+/obj/structure/mineral_door/resin/try_toggle_state(atom/user)
 	if(isxeno(user))
 		return ..()
 
-/obj/structure/mineral_door/resin/Open()
-	if(state || !loc)
-		return //already open
-	playsound(loc, "alien_resin_move", 25)
-	flick("[mineralType]opening",src)
-	density = FALSE
-	set_opacity(FALSE)
-	state = 1
-	update_icon()
-	addtimer(CALLBACK(src, .proc/Close), close_delay)
+/obj/structure/mineral_door/resin/toggle_state()
+	. = ..()
+	if(open)
+		closetimer = addtimer(CALLBACK(src, PROC_REF(do_close)), close_delay, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+	else
+		deltimer(closetimer)
+		closetimer = null
 
-/obj/structure/mineral_door/resin/Close()
-	if(!state || !loc ||isSwitchingStates)
-		return //already closed
-	//Can't close if someone is blocking it
-	for(var/turf/turf in locs)
-		if(locate(/mob/living) in turf)
-			addtimer(CALLBACK(src, .proc/Close), close_delay)
-			return
-	isSwitchingStates = TRUE
-	playsound(loc, "alien_resin_move", 25)
-	flick("[mineralType]closing",src)
-	addtimer(CALLBACK(src, .proc/do_close), 1 SECONDS)
-
-/// Change the icon and density of the door
+/// Toggle(close) the door. Used for the timer's callback.
 /obj/structure/mineral_door/resin/proc/do_close()
-	density = TRUE
-	set_opacity(TRUE)
-	state = 0
-	update_icon()
-	isSwitchingStates = 0
-	for(var/turf/turf in locs)
-		if(locate(/mob/living) in turf)
-			Open()
-			return
-
-/obj/structure/mineral_door/resin/Dismantle(devastated = 0)
-	qdel(src)
-
-/obj/structure/mineral_door/resin/CheckHardness()
-	playsound(loc, "alien_resin_move", 25)
-	..()
+	if(locate(/mob/living) in loc) //there is a mob in the door, abort and reschedule the close
+		closetimer = addtimer(CALLBACK(src, PROC_REF(do_close)), close_delay, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+		return
+	if(!open) //we got closed in the meantime
+		return
+	flick("[icon_state]-closing", src)
+	toggle_state()
 
 /obj/structure/mineral_door/resin/Destroy()
 	var/turf/T
@@ -256,7 +244,7 @@
 		if(!istype(T))
 			continue
 		for(var/obj/structure/mineral_door/resin/R in T)
-			INVOKE_NEXT_TICK(R, .proc/check_resin_support)
+			INVOKE_NEXT_TICK(R, PROC_REF(check_resin_support))
 	return ..()
 
 
@@ -272,13 +260,11 @@
 			. = TRUE
 			break
 	if(!.)
-		visible_message("<span class = 'notice'>[src] collapses from the lack of support.</span>")
+		src.balloon_alert_to_viewers("Collapsed")
 		qdel(src)
 
 /obj/structure/mineral_door/resin/thick
-	name = "thick resin door"
 	max_integrity = 160
-	hardness = 2.0
 
 /obj/item/resin_jelly
 	name = "resin jelly"
@@ -287,41 +273,54 @@
 	icon_state = "biomass"
 	soft_armor = list("fire" = 200)
 	var/immune_time = 15 SECONDS
+	///Holder to ensure only one user per resin jelly.
+	var/current_user
 
 /obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_JELLY)
+	if(X.xeno_caste.can_flags & CASTE_CAN_HOLD_JELLY)
 		return attack_hand(X)
-	if(X.do_actions)
+	if(X.do_actions || !isnull(current_user))
 		return
-	X.visible_message(span_notice("[X] starts to cover themselves in a foul substance..."), span_xenonotice("We begin to cover ourselves in a foul substance..."))
-	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
+	current_user = X
+	X.balloon_alert(X, "Applying...")
+	if(!do_after(X, RESIN_SELF_TIME, TRUE, X, BUSY_ICON_MEDICAL))
+		current_user = null
 		return
 	activate_jelly(X)
 
 /obj/item/resin_jelly/attack_self(mob/living/carbon/xenomorph/user)
+	//Activates if the item itself is clicked in hand.
 	if(!isxeno(user))
 		return
-	if(user.do_actions)
+	if(user.do_actions || !isnull(current_user))
 		return
-	user.visible_message(span_notice("[user] starts to cover themselves in a foul substance..."), span_xenonotice("We begin to cover ourselves in a foul substance..."))
-	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
+	current_user = user
+	user.balloon_alert(user, "Applying...")
+	if(!do_after(user, RESIN_SELF_TIME, TRUE, user, BUSY_ICON_MEDICAL))
+		current_user = null
 		return
 	activate_jelly(user)
 
 /obj/item/resin_jelly/attack(mob/living/carbon/xenomorph/M, mob/living/user)
+	//Activates if active hand and clicked on mob in game.
+	//Can target self so we need to check for that.
 	if(!isxeno(user))
 		return TRUE
 	if(!isxeno(M))
-		to_chat(user, span_xenonotice("We cannot apply the [src] to this creature."))
+		M.balloon_alert(user, "Cannot apply")
 		return FALSE
-	if(user.do_actions)
+	if(user.do_actions || !isnull(current_user))
 		return FALSE
-	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
+	current_user = M
+	M.balloon_alert(user, "Applying...")
+	if(M != user)
+		user.balloon_alert(M, "Applying jelly...") //Notify recipient to not move.
+	if(!do_after(user, (M == user ? RESIN_SELF_TIME : RESIN_OTHER_TIME), TRUE, M, BUSY_ICON_MEDICAL))
+		current_user = null
 		return FALSE
-	user.visible_message(span_notice("[user] smears a viscous substance on [M]."),span_xenonotice("We carefully smear [src] onto [user]."))
 	activate_jelly(M)
 	user.temporarilyRemoveItemFromInventory(src)
 	return FALSE
@@ -330,12 +329,13 @@
 	user.visible_message(span_notice("[user]'s chitin begins to gleam with an unseemly glow..."), span_xenonotice("We feel powerful as we are covered in [src]!"))
 	user.emote("roar")
 	user.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
+	SEND_SIGNAL(user, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED)
 	qdel(src)
 
 /obj/item/resin_jelly/throw_at(atom/target, range, speed, thrower, spin, flying)
-	. = ..()
 	if(isxenohivelord(thrower))
-		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, .proc/jelly_throw_hit)
+		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, PROC_REF(jelly_throw_hit))
+	. = ..()
 
 /obj/item/resin_jelly/proc/jelly_throw_hit(datum/source, atom/hit_atom)
 	SIGNAL_HANDLER
@@ -343,7 +343,7 @@
 	if(!isxeno(hit_atom))
 		return
 	var/mob/living/carbon/xenomorph/X = hit_atom
-	if(X.fire_resist_modifier <= -20)
+	if(X.fire_resist_modifier <= -20 || X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	X.visible_message(span_notice("[X] is splattered with jelly!"))
-	INVOKE_ASYNC(src, .proc/activate_jelly, X)
+	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)

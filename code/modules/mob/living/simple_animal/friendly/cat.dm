@@ -15,9 +15,9 @@
 	see_in_dark = 6
 	flags_pass = PASSTABLE
 	mob_size = MOB_SIZE_SMALL
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 
 
 /mob/living/simple_animal/cat/space
@@ -135,8 +135,12 @@
 	desc = "Kitty!!"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cat2"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/animals_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/animals_right.dmi',
+	)
 	flags_armor_features = ARMOR_NO_DECAP
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 10, BIO = 5, FIRE = 50, ACID = 50)
 	var/mob/living/simple_animal/cat/cat
 
 /obj/item/clothing/head/cat/Destroy()
@@ -160,4 +164,3 @@
 	if(loc == user)
 		return
 	qdel(src)
-

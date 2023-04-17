@@ -1,4 +1,3 @@
-#define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
 #define BASE_HEAL_RATE -0.0125
 
 
@@ -10,10 +9,12 @@
 	alert_type = null
 
 /datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration)
+	if(new_owner.status_flags & GODMODE)
+		qdel(src)
+		return
 	if(isnum(set_duration))
 		duration = set_duration
 	return ..()
-
 
 //STUN
 /datum/status_effect/incapacitating/stun
@@ -98,7 +99,7 @@
 //SLEEPING
 /datum/status_effect/incapacitating/sleeping
 	id = "sleeping"
-	alert_type = /obj/screen/alert/status_effect/asleep
+	alert_type = /atom/movable/screen/alert/status_effect/asleep
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
 
@@ -144,7 +145,7 @@
 			owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
 			owner.adjustStaminaLoss(healing * 100)
 			owner.adjustCloneLoss(healing * health_ratio * 0.8)
-	if(human_owner && human_owner.drunkenness)
+	if(human_owner?.drunkenness)
 		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
 	if(prob(20))
 		if(carbon_owner)
@@ -152,7 +153,138 @@
 		if(prob(10) && owner.health > owner.health_threshold_crit)
 			owner.emote("snore")
 
-/obj/screen/alert/status_effect/asleep
+///Basically a temporary self-inflicted shutdown for maintenance
+/datum/status_effect/incapacitating/repair_mode
+	id = "repairing"
+	tick_interval = 1 SECONDS
+	///How much brute or burn per second
+	var/healing_per_tick = 4
+	///Whether the last tick made a sound effect or not
+	var/last_sound
+
+/datum/status_effect/incapacitating/repair_mode/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.disabilities |= BLIND
+	owner.blind_eyes(1)
+	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/incapacitating/repair_mode/on_remove()
+	owner.disabilities &= ~BLIND
+	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
+/datum/status_effect/incapacitating/repair_mode/tick()
+	var/sound_to_play
+	if(owner.getBruteLoss())
+		owner.heal_limb_damage(healing_per_tick, 0, TRUE, TRUE)
+		sound_to_play = 'sound/effects/robotrepair.ogg'
+	else if(owner.getFireLoss())
+		owner.heal_limb_damage(0, healing_per_tick, TRUE, TRUE)
+		sound_to_play = 'sound/effects/robotrepair2.ogg'
+	if(!sound_to_play || last_sound)
+		last_sound = FALSE
+		return
+	last_sound = TRUE
+	playsound(owner, sound_to_play, 50)
+
+
+
+/**
+ * Adjusts a timed status effect on the mob,taking into account any existing timed status effects.
+ * This can be any status effect that takes into account "duration" with their initialize arguments.
+ *
+ * Positive durations will add deciseconds to the duration of existing status effects
+ * or apply a new status effect of that duration to the mob.
+ *
+ * Negative durations will remove deciseconds from the duration of an existing version of the status effect,
+ * removing the status effect entirely if the duration becomes less than zero (less than the current world time).
+ *
+ * duration - the duration, in deciseconds, to add or remove from the effect
+ * effect - the type of status effect being adjusted on the mob
+ * max_duration - optional - if set, positive durations will only be added UP TO the passed max duration
+ */
+/mob/living/proc/adjust_timed_status_effect(duration, effect, max_duration)
+	if(!isnum(duration))
+		CRASH("adjust_timed_status_effect: called with an invalid duration. (Got: [duration])")
+
+	if(!ispath(effect, /datum/status_effect))
+		CRASH("adjust_timed_status_effect: called with an invalid effect type. (Got: [effect])")
+
+	// If we have a max duration set, we need to check our duration does not exceed it
+	if(isnum(max_duration))
+		if(max_duration <= 0)
+			CRASH("adjust_timed_status_effect: Called with an invalid max_duration. (Got: [max_duration])")
+
+		if(duration >= max_duration)
+			duration = max_duration
+
+	var/datum/status_effect/existing = has_status_effect(effect)
+	if(existing)
+		if(isnum(max_duration) && duration > 0)
+			// Check the duration remaining on the existing status effect
+			// If it's greater than / equal to our passed max duration, we don't need to do anything
+			var/remaining_duration = existing.duration - world.time
+			if(remaining_duration >= max_duration)
+				return
+
+			// Otherwise, add duration up to the max (max_duration - remaining_duration),
+			// or just add duration if it doesn't exceed our max at all
+			existing.duration += min(max_duration - remaining_duration, duration)
+
+		else
+			existing.duration += duration
+
+		// If the duration was decreased and is now less 0 seconds,
+		// qdel it / clean up the status effect immediately
+		// (rather than waiting for the process tick to handle it)
+		if(existing.duration <= world.time)
+			qdel(existing)
+
+	else if(duration > 0)
+		apply_status_effect(effect, duration)
+
+/**
+ * Sets a timed status effect of some kind on a mob to a specific value.
+ * If only_if_higher is TRUE, it will only set the value up to the passed duration,
+ * so any pre-existing status effects of the same type won't be reduced down
+ *
+ * duration - the duration, in deciseconds, of the effect. 0 or lower will either remove the current effect or do nothing if none are present
+ * effect - the type of status effect given to the mob
+ * only_if_higher - if TRUE, we will only set the effect to the new duration if the new duration is longer than any existing duration
+ */
+/mob/living/proc/set_timed_status_effect(duration, effect, only_if_higher = FALSE)
+	if(!isnum(duration))
+		CRASH("set_timed_status_effect: called with an invalid duration. (Got: [duration])")
+
+	if(!ispath(effect, /datum/status_effect))
+		CRASH("set_timed_status_effect: called with an invalid effect type. (Got: [effect])")
+
+	var/datum/status_effect/existing = has_status_effect(effect)
+	if(existing)
+		// set_timed_status_effect to 0 technically acts as a way to clear effects,
+		// though remove_status_effect would achieve the same goal more explicitly.
+		if(duration <= 0)
+			qdel(existing)
+			return
+
+		if(only_if_higher)
+			// If the existing status effect has a higher remaining duration
+			// than what we aim to set it to, don't downgrade it - do nothing (return)
+			var/remaining_duration = existing.duration - world.time
+			if(remaining_duration >= duration)
+				return
+
+		// Set the duration accordingly
+		existing.duration = world.time + duration
+
+	else if(duration > 0)
+		apply_status_effect(effect, duration)
+
+/atom/movable/screen/alert/status_effect/asleep
 	name = "Asleep"
 	desc = "You've fallen asleep. Wait a bit and you should wake up. Unless you don't, considering how helpless you are."
 	icon_state = "asleep"
@@ -160,7 +292,7 @@
 //ADMIN SLEEP
 /datum/status_effect/incapacitating/adminsleep
 	id = "adminsleep"
-	alert_type = /obj/screen/alert/status_effect/adminsleep
+	alert_type = /atom/movable/screen/alert/status_effect/adminsleep
 	duration = -1
 
 /datum/status_effect/incapacitating/adminsleep/on_apply()
@@ -173,17 +305,17 @@
 	REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/obj/screen/alert/status_effect/adminsleep
+/atom/movable/screen/alert/status_effect/adminsleep
 	name = "Admin Slept"
 	desc = "You've been slept by an Admin."
 	icon_state = "asleep"
 
 //CONFUSED
-/datum/status_effect/confused
+/datum/status_effect/incapacitating/confused
 	id = "confused"
-	alert_type = /obj/screen/alert/status_effect/confused
+	alert_type = /atom/movable/screen/alert/status_effect/confused
 
-/obj/screen/alert/status_effect/confused
+/atom/movable/screen/alert/status_effect/confused
 	name = "Confused"
 	desc = "You're dazed and confused."
 	icon_state = "asleep"
@@ -251,9 +383,9 @@
 //MUTE
 /datum/status_effect/mute
 	id = "mute"
-	alert_type = /obj/screen/alert/status_effect/mute
+	alert_type = /atom/movable/screen/alert/status_effect/mute
 
-/obj/screen/alert/status_effect/mute
+/atom/movable/screen/alert/status_effect/mute
 	name = "Muted"
 	desc = "You can't speak!"
 	icon_state = "mute"
@@ -284,3 +416,117 @@
 /datum/status_effect/spacefreeze/tick()
 	owner.adjustFireLoss(40)
 
+///irradiated mob
+/datum/status_effect/incapacitating/irradiated
+	id = "irradiated"
+	status_type = STATUS_EFFECT_REFRESH
+	tick_interval = 20
+	alert_type = /atom/movable/screen/alert/status_effect/irradiated
+	///Some effects only apply to carbons
+	var/mob/living/carbon/carbon_owner
+
+/datum/status_effect/incapacitating/irradiated/on_creation(mob/living/new_owner, set_duration)
+	. = ..()
+	if(.)
+		if(iscarbon(owner))
+			carbon_owner = owner
+
+/datum/status_effect/incapacitating/irradiated/Destroy()
+	carbon_owner = null
+	return ..()
+
+/datum/status_effect/incapacitating/irradiated/tick()
+	var/mob/living/living_owner = owner
+	//Roulette of bad things
+	if(prob(15))
+		living_owner.adjustCloneLoss(2)
+		to_chat(living_owner, span_warning("You feel like you're burning from the inside!"))
+	else
+		living_owner.adjustToxLoss(3)
+	if(prob(15))
+		living_owner.adjust_Losebreath(5)
+	if(prob(15))
+		living_owner.vomit()
+	if(carbon_owner && prob(15))
+		var/datum/internal_organ/organ = pick(carbon_owner.internal_organs)
+		if(organ)
+			organ.take_damage(5)
+
+/atom/movable/screen/alert/status_effect/irradiated
+	name = "Irradiated"
+	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
+	icon_state = "radiation"
+
+// ***************************************
+// *********** Intoxicated
+// ***************************************
+/datum/status_effect/stacking/intoxicated
+	id = "intoxicated"
+	tick_interval = 2 SECONDS
+	stacks = 1
+	max_stacks = 30
+	consumed_on_threshold = FALSE
+	/// Owner of the debuff is limited to carbons.
+	var/mob/living/carbon/debuff_owner
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/stacking/intoxicated/can_gain_stacks()
+	if(owner.status_flags & GODMODE)
+		return FALSE
+	return ..()
+
+/datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply)
+	if(new_owner.status_flags & GODMODE)
+		qdel(src)
+		return
+	. = ..()
+	debuff_owner = new_owner
+	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
+	debuff_owner.balloon_alert(debuff_owner, "Intoxicated")
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
+	particle_holder = new(debuff_owner, /particles/toxic_slash)
+	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	particle_holder.pixel_x = -2
+	particle_holder.pixel_y = 0
+	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT) || (debuff_owner.get_soft_armor(BIO) >= 65))
+		stack_decay = 2
+
+/datum/status_effect/stacking/intoxicated/on_remove()
+	UnregisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST)
+	debuff_owner = null
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/datum/status_effect/stacking/intoxicated/tick()
+	. = ..()
+	if(!debuff_owner)
+		return
+	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT) || (debuff_owner.get_soft_armor(BIO) > 65))
+		stack_decay = 2
+	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10)
+	debuff_owner.adjustFireLoss(debuff_damage)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	if(stacks >= 20)
+		debuff_owner.adjust_slowdown(1)
+		debuff_owner.adjust_stagger(1)
+
+/// Called when the debuff's owner uses the Resist action for this debuff.
+/datum/status_effect/stacking/intoxicated/proc/call_resist_debuff()
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(resist_debuff)) // grilled cheese sandwich
+
+/// Resisting the debuff will allow the debuff's owner to remove some stacks from themselves.
+/datum/status_effect/stacking/intoxicated/proc/resist_debuff()
+	if(length(debuff_owner.do_actions))
+		return
+	if(!do_after(debuff_owner, 5 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
+		debuff_owner.balloon_alert("Interrupted")
+		return
+	playsound(debuff_owner.loc, 'sound/effects/slosh.ogg', 30)
+	debuff_owner.balloon_alert("Succeeded")
+	stacks -= SENTINEL_INTOXICATED_RESIST_REDUCTION
+	if(stacks > 0)
+		resist_debuff() // We repeat ourselves as long as the debuff persists.
+		return

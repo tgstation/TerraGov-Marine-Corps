@@ -28,7 +28,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		number = min(n, 10)
 		cardinals = c
 		setup = TRUE
-		INVOKE_ASYNC(src, .proc/start)
+		INVOKE_ASYNC(src, PROC_REF(start))
 
 		if(self_delete)
 			QDEL_IN(src, self_delete)
@@ -46,7 +46,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 /datum/effect_system/proc/start()
 	for(var/i in 1 to number)
-		INVOKE_ASYNC(src, .proc/spawn_particle)
+		INVOKE_ASYNC(src, PROC_REF(spawn_particle))
 
 /datum/effect_system/proc/spawn_particle()
 	return
@@ -54,7 +54,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /datum/effect_system/Destroy()
 	holder = null
 	return ..()
-	
+
 
 /////////////////////////////////////////////
 // GENERIC STEAM SPREAD SYSTEM
@@ -89,7 +89,7 @@ steam.start() -- spawns the effect
 	else
 		direction = pick(GLOB.alldirs)
 	for(var/i in 1 to pick(1,2,3))
-		sleep(5) // sleep is fine here, invoked async
+		sleep(0.5 SECONDS) // sleep is fine here, invoked async
 		step(steam,direction)
 	QDEL_IN(steam, 2 SECONDS)
 
@@ -104,7 +104,7 @@ steam.start() -- spawns the effect
 	name = "sparks"
 	icon_state = "sparks"
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	light_on = TRUE
 	light_power = 1
 	light_range = 1
@@ -128,7 +128,7 @@ steam.start() -- spawns the effect
 	else
 		direction = pick(GLOB.alldirs)
 	for(var/i in pick(1,2,3))
-		sleep(5)
+		sleep(0.5 SECONDS)
 		step(sparks,direction)
 	QDEL_IN(sparks, 2 SECONDS)
 
@@ -152,7 +152,7 @@ steam.start() -- spawns the effect
 		processing = TRUE
 	if(processing)
 		processing = FALSE
-		INVOKE_ASYNC(src, .proc/spawn_particle)
+		INVOKE_ASYNC(src, PROC_REF(spawn_particle))
 
 /datum/effect_system/trail/proc/stop()
 	processing = FALSE
@@ -181,7 +181,7 @@ steam.start() -- spawns the effect
 			I.icon_state = "blank"
 			QDEL_IN(I, 2 SECONDS)
 
-	addtimer(CALLBACK(src, .proc/start, TRUE), 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(start), TRUE), 0.2 SECONDS)
 
 /////////////////////////////////////////////
 //////// Attach a steam trail to an object (eg. a reacting beaker) that will follow it
@@ -194,9 +194,9 @@ steam.start() -- spawns the effect
 		number++
 		oldposition = get_turf(holder)
 		I.setDir(holder.dir)
-		addtimer(CALLBACK(src, .proc/decay, I), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(decay), I), 1 SECONDS)
 
-	addtimer(CALLBACK(src, .proc/start, TRUE), 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(start), TRUE), 0.2 SECONDS)
 
 /datum/effect_system/trail/steam_trail_follow/proc/decay(obj/effect/particle_effect/steam/I)
 	qdel(I)

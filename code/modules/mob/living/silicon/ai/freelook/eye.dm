@@ -83,6 +83,13 @@
 		ai.master_multicam.refresh_view()
 	update_parallax_contents()
 
+/mob/camera/aiEye/abstract_move(atom/new_loc)
+	var/turf/old_turf = get_turf(src)
+	var/turf/new_turf = get_turf(new_loc)
+	if(old_turf?.z != new_turf?.z)
+		onTransitZ(old_turf?.z, new_turf?.z)
+	return ..()
+
 
 /mob/camera/aiEye/Move()
 	return FALSE
@@ -165,6 +172,7 @@
 	eyeobj.setLoc(loc)
 	eyeobj.name = "[name] (AI Eye)"
 	eyeobj.real_name = eyeobj.name
+	mini.override_locator(eyeobj)
 	set_eyeobj_visible(TRUE)
 
 

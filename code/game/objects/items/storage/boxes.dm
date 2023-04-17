@@ -47,7 +47,7 @@
 	item_state = "syringe_kit"
 	foldable = /obj/item/paper/crumpled
 	storage_slots = null
-	max_w_class = 2 //Changed because of in-game abuse
+	max_w_class = WEIGHT_CLASS_SMALL //Changed because of in-game abuse
 	w_class = WEIGHT_CLASS_BULKY //Changed becuase of in-game abuse
 	var/spawn_type
 	var/spawn_number
@@ -158,7 +158,7 @@
 /obj/item/storage/box/monkeycubes
 	name = "monkey cube box"
 	desc = "Drymate brand monkey cubes. Just add water!"
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/packaged.dmi'
 	icon_state = "monkeycubebox"
 	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
 	spawn_number = 5
@@ -369,10 +369,10 @@
 	name = "\improper M40 FLDP flare pack"
 	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m40"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 14
 	spawn_type = /obj/item/explosive/grenade/flare
-	spawn_number = 7
+	spawn_number = 14
 
 /obj/item/storage/box/m94/update_icon()
 	icon_state = initial(icon_state)
@@ -410,6 +410,8 @@
 	max_w_class = 0
 	foldable = 0
 	var/isopened = 0
+	///the item left behind when this is used up
+	var/trash_item = /obj/item/trash/mre
 
 /obj/item/storage/box/MRE/Initialize()
 	. = ..()
@@ -418,7 +420,7 @@
 /obj/item/storage/box/MRE/Destroy()
 	var/turf/T = get_turf(src)
 	if(T)
-		new /obj/item/trash/mre(T)
+		new trash_item(T)
 	return ..()
 
 /obj/item/storage/box/MRE/proc/pickflavor()
@@ -434,13 +436,19 @@
 
 /obj/item/storage/box/MRE/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
-	if(. && !contents.len && !gc_destroyed)
+	if(. && !length(contents) && !gc_destroyed)
 		qdel(src)
 
 /obj/item/storage/box/MRE/update_icon()
 	if(!isopened)
 		isopened = 1
-		icon_state = "mealpackopened"
+		icon_state += "opened"
+
+/obj/item/storage/box/MRE/som
+	name = "\improper SOM MFR"
+	desc = "A Martian Field Ration, guaranteed to have a taste of Mars in every bite."
+	icon_state = "som_mealpack"
+	trash_item = /obj/item/trash/mre/som
 
 /**
  * # fillable box
@@ -457,7 +465,7 @@
 	item_state = "mag_box"
 	w_class = WEIGHT_CLASS_HUGE
 	slowdown = 0.4 // Big unhandly box
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64
 	use_to_pickup = TRUE
@@ -541,8 +549,8 @@
 
 	else if(deployed)
 		draw_mode = variety == 1? TRUE: FALSE //If only one type of item in box, then quickdraw it.
-		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
+		if(draw_mode && ishuman(user) && length(contents))
+			var/obj/item/I = contents[length(contents)]
 			I.attack_hand(user)
 			return
 		open(user)
@@ -629,7 +637,7 @@
 	name = "ammunition box"
 	desc = "This box is able to hold a wide variety of supplies, mainly military-grade ammunition."
 	icon_state = "mag_box"
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64	//SMG and pistol sized (tiny and small) mags can fit all 32 slots, normal (LMG and AR) fit 21
 	can_hold = list(
@@ -861,20 +869,6 @@
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/martini
 
-/obj/item/storage/box/visual/magazine/compact/standard_smartrifle
-	name = "T-25 magazine box"
-	desc = "A box specifically designed to hold a large amount of T-25 smartgun magazines."
-	storage_slots = 30
-	closed_overlay = "mag_box_small_overlay_t25"
-	can_hold = list(
-		/obj/item/ammo_magazine/rifle/standard_smartrifle,
-	)
-
-/obj/item/storage/box/visual/magazine/compact/standard_smartrifle/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle/standard_smartrifle
-
-
 /obj/item/storage/box/visual/magazine/compact/tx11
 	name = "AR-11 magazine box"
 	desc = "A box specifically designed to hold a large amount of AR-11 magazines."
@@ -949,8 +943,8 @@
 // -Energy-
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle
-	name = "PP-73 cell box"
-	desc = "A box specifically designed to hold a large amount of PP-73 cells."
+	name = "LR-73 cell box"
+	desc = "A box specifically designed to hold a large amount of TX-73 cells."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_tx73"
 	can_hold = list(
@@ -1072,7 +1066,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/heavymachinegun
 	name = "HMG-08 drum box"
-	desc = "A box specifically designed to hold a large amount ofHMG-08 drum."
+	desc = "A box specifically designed to hold a large amount of HMG-08 drum."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_mg08"
 	can_hold = list(
@@ -1083,25 +1077,12 @@
 	spawn_number = 10
 	spawn_type = /obj/item/ammo_magazine/heavymachinegun
 
-/obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun
-	name = "T-29 drum box"
-	desc = "A box specifically designed to hold a large amount of T-29 drum magazines."
-	storage_slots = 30
-	closed_overlay = "mag_box_small_overlay_t29"
-	can_hold = list(
-		/obj/item/ammo_magazine/standard_smartmachinegun,
-	)
-
-/obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/standard_smartmachinegun
-
 // --GRENADE BOXES--
 /obj/item/storage/box/visual/grenade
 	name = "grenade box"
 	desc = "This box is able to hold a wide variety of grenades."
 	icon_state = "grenade_box"
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 25
 	max_storage_space = 50
 	can_hold = list(

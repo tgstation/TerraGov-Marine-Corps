@@ -1,4 +1,3 @@
-
 import { useBackend, useLocalState } from '../../backend';
 import { Section, LabeledList, Modal, Button, Box, Grid, Flex } from '../../components';
 
@@ -7,7 +6,9 @@ export const JobPreferences = (props, context) => {
   const {
     alternate_option,
     squads,
+    squads_som,
     preferred_squad,
+    preferred_squad_som,
     overflow_job,
     special_occupations,
     special_occupation,
@@ -41,13 +42,21 @@ export const JobPreferences = (props, context) => {
     'Squad Corpsman',
     'Squad Smartgunner',
     'Squad Leader',
+    'Mech Pilot', // not really a marine job but creating empty space in the support section is lame
+  ];
+  const somJobs = [
+    'SOM Squad Standard',
+    'SOM Squad Engineer',
+    'SOM Squad Medic',
+    'SOM Squad Veteran',
+    'SOM Squad Leader',
   ];
   const flavourJobs = ['Corporate Liaison'];
 
   const JobList = ({ name, jobs }) => (
     <Section title={name}>
       <LabeledList>
-        {jobs.map(job => (
+        {jobs.map((job) => (
           <JobPreference
             key={job}
             job={job}
@@ -122,13 +131,25 @@ export const JobPreferences = (props, context) => {
               </Flex.Item>
               <Flex.Item>
                 <h4>Preferred Squad</h4>
-                {Object.values(squads).map(squad => (
+                {Object.values(squads).map((squad) => (
                   <Button.Checkbox
                     key={squad}
                     inline
                     content={squad}
                     checked={preferred_squad === squad}
                     onClick={() => act('squad', { newValue: squad })}
+                  />
+                ))}
+              </Flex.Item>
+              <Flex.Item>
+                <h4>Preferred Squad - SOM</h4>
+                {Object.values(squads_som).map((squad_som) => (
+                  <Button.Checkbox
+                    key={squad_som}
+                    inline
+                    content={squad_som}
+                    checked={preferred_squad_som === squad_som}
+                    onClick={() => act('squad_som', { newValue: squad_som })}
                   />
                 ))}
               </Flex.Item>
@@ -141,13 +162,13 @@ export const JobPreferences = (props, context) => {
                       inline
                       content={special}
                       checked={
-                        special_occupation
-                        & special_occupations[special]
+                        special_occupation & special_occupations[special]
                       }
                       onClick={() =>
                         act('be_special', {
                           flag: special_occupations[special],
-                        })}
+                        })
+                      }
                     />
                     {idx === 1 && <br />}
                   </>
@@ -155,6 +176,11 @@ export const JobPreferences = (props, context) => {
               </Flex.Item>
             </Flex>
           </Section>
+        </Grid.Column>
+      </Grid>
+      <Grid>
+        <Grid.Column>
+          <JobList name="SOM Jobs" jobs={somJobs} />
         </Grid.Column>
       </Grid>
     </Section>

@@ -4,11 +4,13 @@
 /datum/action/xeno_action/toggle_agility
 	name = "Toggle Agility"
 	action_icon_state = "agility_on"
-	mechanics_text = "Move an all fours for greater speed. Cannot use abilities while in this mode."
+	desc = "Move an all fours for greater speed. Cannot use abilities while in this mode."
 	ability_name = "toggle agility"
 	cooldown_timer = 0.5 SECONDS
 	use_state_flags = XACT_USE_AGILITY
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_AGILITY,
+	)
 	var/last_agility_bonus = 0
 
 /datum/action/xeno_action/toggle_agility/on_xeno_upgrade()
@@ -54,11 +56,13 @@
 /datum/action/xeno_action/activable/lunge
 	name = "Lunge"
 	action_icon_state = "lunge"
-	mechanics_text = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
+	desc = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
 	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_LUNGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
+	)
 	target_flags = XABB_MOB_TARGET
 	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
 	var/atom/lunge_target
@@ -73,12 +77,18 @@
 	if(!.)
 		return FALSE
 
-	if(get_dist_euclide_square(A, owner) > 36)
+	if(get_dist_euclide_square(A, owner) > 20)
 		if(!silent)
 			to_chat(owner, span_xenonotice("You are too far!"))
 		return FALSE
 
 	if(!isliving(A)) //We can only lunge at the living; expanded to xenos in order to allow for supportive applications; lunging > throwing to safety
+		if(!silent)
+			to_chat(owner, span_xenodanger("We can't [name] at that!"))
+		return FALSE
+
+	var/mob/living/living_target = A
+	if(living_target.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't [name] at that!"))
 		return FALSE
@@ -108,9 +118,9 @@
 	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
 	lunge_target = A
 
-	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
-	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
+	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_lunge_target))
+	RegisterSignal(X, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_lunge_possible))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(clean_lunge_target))
 	if(lunge_target.Adjacent(X)) //They're already in range, neck grab without lunging.
 		lunge_grab(X, lunge_target)
 	else
@@ -127,7 +137,7 @@
 	SIGNAL_HANDLER
 	if(!lunge_target.Adjacent(source))
 		return
-	lunge_grab(source, lunge_target)
+	INVOKE_ASYNC(src, PROC_REF(lunge_grab), source, lunge_target)
 
 ///Do a last check to see if we can grab the target, and then clean up after the throw. Handles an in-place lunge.
 /datum/action/xeno_action/activable/lunge/proc/finish_lunge(datum/source)
@@ -159,11 +169,13 @@
 /datum/action/xeno_action/activable/fling
 	name = "Fling"
 	action_icon_state = "fling"
-	mechanics_text = "Knock a target flying up to 5 tiles away."
+	desc = "Knock a target flying up to 5 tiles away."
 	ability_name = "fling"
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Grapple Toss
-	keybind_signal = COMSIG_XENOABILITY_FLING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
+	)
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
@@ -258,11 +270,13 @@
 /datum/action/xeno_action/activable/toss
 	name = "Grapple Toss"
 	action_icon_state = "grapple_toss"
-	mechanics_text = "Throw a creature you're grappling up to 3 tiles away."
+	desc = "Throw a creature you're grappling up to 3 tiles away."
 	ability_name = "grapple toss"
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
-	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
+	)
 	target_flags = XABB_TURF_TARGET
 
 /datum/action/xeno_action/activable/toss/on_cooldown_finish()
@@ -334,11 +348,13 @@
 /datum/action/xeno_action/activable/punch
 	name = "Punch"
 	action_icon_state = "punch"
-	mechanics_text = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
+	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_name = "punch"
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_PUNCH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
+	)
 	target_flags = XABB_MOB_TARGET
 	///The punch range, 1 would be adjacent.
 	var/range = 1
@@ -364,7 +380,7 @@
 			to_chat(owner, span_xenodanger("We can't harm our sister!"))
 		return FALSE
 
-	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isuav(A))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't punch this target!"))
 		return FALSE
@@ -399,7 +415,7 @@
 	add_cooldown()
 
 /atom/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	return
+	return TRUE
 
 /obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
@@ -462,9 +478,19 @@
 	Shake(4, 4, 2 SECONDS)
 	return TRUE
 
+/obj/vehicle/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
+	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+	attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to vehicles
+	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
+		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	Shake(4, 4, 2 SECONDS)
+	return TRUE
+
 /mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
-		damage *= 2
+		damage *= 1.5
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
@@ -476,16 +502,10 @@
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
-			target_zone = BODY_ZONE_CHEST
-			L =  carbon_victim.get_limb(target_zone)
-
-		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-			L.remove_limb_flags(LIMB_SPLINTED)
-			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
-
-		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
+			L = carbon_victim.get_limb(BODY_ZONE_CHEST)
+		apply_damage(damage, BRUTE, L, MELEE)
 	else
-		apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
+		apply_damage(damage, BRUTE, blocked = MELEE)
 
 	if(push)
 		var/facing = get_dir(X, src)
@@ -542,10 +562,12 @@
 /datum/action/xeno_action/activable/punch/jab
 	name = "Jab"
 	action_icon_state = "jab"
-	mechanics_text = "Precisely strike your target from further away, heavily slowing them."
+	desc = "Precisely strike your target from further away, heavily slowing them."
 	plasma_cost = 10
 	range = 2
-	keybind_signal = COMSIG_XENOABILITY_JAB
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB,
+	)
 
 /datum/action/xeno_action/activable/punch/jab/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -556,7 +578,8 @@
 	if(!target.punch_act(X, damage, target_zone, push = FALSE, punch_description = "precise", stagger_stacks = 3, slowdown_stacks = 6))
 		return fail_activate()
 	if(X.empower())
-		target.overlay_fullscreen_timer(3 SECONDS, 10, "jab", /obj/screen/fullscreen/flash) //Would prefer if it was extremely distorted, but bluriness doesn't make the cut.
+		target.blind_eyes(3)
+		target.blur_eyes(6)
 		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))
 		target.Confused(3 SECONDS) //Does literally nothing for now, will have to re-add confusion code.
 	GLOB.round_statistics.warrior_punches++

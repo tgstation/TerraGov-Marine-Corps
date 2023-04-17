@@ -3,6 +3,7 @@
 	config_tag = "Off-Duty"
 	required_players = 0
 	votable = FALSE
+	allow_persistence_save = FALSE
 	var/operation_start_timer
 
 /datum/game_mode/offduty/announce()
@@ -11,7 +12,7 @@
 
 /datum/game_mode/offduty/post_setup()
 	. = ..()
-	addtimer(CALLBACK(.proc/start_round_end), 10 SECONDS)
+	addtimer(CALLBACK(PROC_REF(start_round_end)), 10 SECONDS)
 
 	if(!operation_start_timer)
 		return TRUE

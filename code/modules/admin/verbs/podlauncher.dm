@@ -46,7 +46,7 @@
 	else if(ismob(user))
 		var/mob/M = user
 		holder = M.client
-	bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas
+	bay = locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas
 	podarea = locate(/area/centcom/supplypod/podStorage) in GLOB.sorted_areas
 	createPod(podarea)
 	selector = new()
@@ -385,7 +385,7 @@
 			var/soundInput = input(holder, "Please pick a sound file to play when the pod lands.", "Pick a Sound File") as null|sound
 			if(isnull(soundInput))
 				return
-			var/timeInput =  input(holder, "What is the exact length of the sound file, in seconds?", "Pick a Sound File", 0.3) as null|num
+			var/timeInput = input(holder, "What is the exact length of the sound file, in seconds?", "Pick a Sound File", 0.3) as null|num
 			if(isnull(timeInput))
 				return
 			if(!isnum(timeInput))
@@ -534,7 +534,7 @@
 	var/list/pa = params2list(params)
 	var/left_click = pa.Find("left")
 	if(launcherActivated)
-		if(istype(target,/obj/screen))
+		if(istype(target,/atom/movable/screen))
 			return FALSE
 
 		. = TRUE

@@ -5,6 +5,7 @@
 	desc = "used by shipside staff to issue supply drops to squad beacons"
 	icon_state = "supplydrop"
 	interaction_flags = INTERACT_MACHINE_TGUI
+	circuit = /obj/item/circuitboard/computer/supplydrop
 	///Time between two supply drops
 	var/launch_cooldown = 30 SECONDS
 	///The beacon we will send the supplies
@@ -73,7 +74,7 @@
 			if(!istype(supply_beacon_choice))
 				return
 			supply_beacon = supply_beacon_choice
-			RegisterSignal(supply_beacon, COMSIG_PARENT_QDELETING, .proc/clean_supply_beacon)
+			RegisterSignal(supply_beacon, COMSIG_PARENT_QDELETING, PROC_REF(clean_supply_beacon))
 			refresh_pad()
 		if("set_x")
 			var/new_x = text2num(params["set_x"])
@@ -124,9 +125,9 @@
 	if(!supply_beacon)
 		return
 	for(var/obj/C in supply_pad.loc)
-		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send vendors, crates and large crates
+		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send vendors, crates, unmanned vehicles and large crates
 			supplies.Add(C)
-		if(supplies.len > MAX_SUPPLY_DROPS)
+		if(length(supplies) > MAX_SUPPLY_DROPS)
 			break
 
 ///Start the supply drop process
@@ -152,7 +153,7 @@
 		C.anchored = TRUE //to avoid accidental pushes
 	playsound(supply_pad.loc, 'sound/effects/bamf.ogg', 50, TRUE)
 	visible_message("[icon2html(supply_beacon, viewers(supply_beacon))] [span_boldnotice("The [supply_pad.name] begins to beep!")]")
-	addtimer(CALLBACK(src, .proc/fire_supplydrop, supplies, x_offset, y_offset), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(fire_supplydrop), supplies, x_offset, y_offset), 10 SECONDS)
 
 ///Make the supplies teleport
 /obj/machinery/computer/supplydrop_console/proc/fire_supplydrop(list/supplies, x_offset, y_offset)
@@ -168,7 +169,7 @@
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! Supply beacon signal lost.")]")
 		return
 
-	if(!supplies.len)
+	if(!length(supplies))
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! No deployable object detected on the drop pad.")]")
 		return
 
@@ -178,4 +179,4 @@
 	for(var/obj/C in supplies)
 		var/turf/TC = locate(supply_beacon.drop_location.x + x_offset, supply_beacon.drop_location.y + y_offset, supply_beacon.drop_location.z)
 		C.forceMove(TC)
-	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] [span_boldnotice("Supply drop teleported! Another launch will be available in one minute.")]")
+	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] [span_boldnotice("Supply drop teleported! Another launch will be available in [launch_cooldown/10] seconds.")]")

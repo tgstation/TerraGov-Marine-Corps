@@ -23,11 +23,11 @@ SUBSYSTEM_DEF(weeds)
 		if(MC_TICK_CHECK)
 			return
 
-		var/obj/effect/alien/weeds/node/node = currentrun[T]
+		var/obj/alien/weeds/node/node = currentrun[T]
 		currentrun -= T
 
-		var/obj/effect/alien/weeds/weed = locate(/obj/effect/alien/weeds) in T
-		if(weed && !weed.parent_node && !istype(weed, /obj/effect/alien/weeds/node))
+		var/obj/alien/weeds/weed = locate(/obj/alien/weeds) in T
+		if(weed && !weed.parent_node && !istype(weed, /obj/alien/weeds/node))
 			weed.set_parent_node(node)
 			SSweeds_decay.decaying_list -= weed
 
@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(weeds)
 
 		for(var/direction in GLOB.cardinals)
 			var/turf/AdjT = get_step(T, direction)
-			if (!(locate(/obj/effect/alien/weeds) in AdjT))
+			if (!(locate(/obj/alien/weeds) in AdjT))
 				continue
 
 			creating[T] = node
@@ -55,14 +55,14 @@ SUBSYSTEM_DEF(weeds)
 		if(MC_TICK_CHECK)
 			return
 		// Adds a bit of jitter to the spawning weeds.
-		addtimer(CALLBACK(src, .proc/create_weed, T, creating[T]), rand(1, 3 SECONDS))
+		addtimer(CALLBACK(src, PROC_REF(create_weed), T, creating[T]), rand(1, 3 SECONDS))
 		pending -= T
 		spawn_attempts_by_node -= T
 		creating -= T
 
 
 
-/datum/controller/subsystem/weeds/proc/add_node(obj/effect/alien/weeds/node/node)
+/datum/controller/subsystem/weeds/proc/add_node(obj/alien/weeds/node/node)
 	if(!node)
 		stack_trace("SSweed.add_node called with a null obj")
 		return FALSE
@@ -73,33 +73,30 @@ SUBSYSTEM_DEF(weeds)
 		pending[T] = node
 		spawn_attempts_by_node[T] = 5 //5 attempts maximum
 
-/datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/node)
+/datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/alien/weeds/node/node)
 	if(QDELETED(node))
 		return
-
-	if(iswallturf(T))
-		new /obj/effect/alien/weeds/weedwall(T, node)
-		return
+	var/obj/alien/weeds/weed_to_spawn = node.weed_type
 	var/swapped = FALSE
+	if(iswallturf(T))
+		weed_to_spawn = /obj/alien/weeds/weedwall
 	for (var/obj/O in T)
 		if(istype(O, /obj/structure/window/framed))
-			new /obj/effect/alien/weeds/weedwall/window(T, node)
-			return
+			weed_to_spawn = /obj/alien/weeds/weedwall/window
 		else if(istype(O, /obj/structure/window_frame))
-			new /obj/effect/alien/weeds/weedwall/frame(T, node)
-			return
+			weed_to_spawn = /obj/alien/weeds/weedwall/window/frame
 		else if(istype(O, /obj/machinery/door) && O.density)
 			return
-		else if(istype(O, /obj/effect/alien/weeds))
-			if(istype(O, /obj/effect/alien/weeds/node))
+		else if(istype(O, /obj/alien/weeds))
+			if(istype(O, /obj/alien/weeds/node))
 				return
-			var/obj/effect/alien/weeds/weed = O
+			var/obj/alien/weeds/weed = O
 			if(weed.parent_node && weed.parent_node != node && get_dist_euclide_square(node, weed) >= get_dist_euclide_square(weed.parent_node, weed))
 				return
-			if(weed.type == node.weed_type)
+			if((weed.type == weed_to_spawn) && (weed.color_variant == node.color_variant))
 				weed.set_parent_node(node)
 				return
 			weed.swapped = TRUE
 			swapped = TRUE
 			qdel(O)
-	new node.weed_type(T, node, swapped)
+	new weed_to_spawn(T, node, swapped)

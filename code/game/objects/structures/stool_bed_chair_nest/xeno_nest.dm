@@ -94,7 +94,7 @@
 		buckled_mob.visible_message(span_warning("\The [buckled_mob] struggles to break free of \the [src]."),
 			span_warning("You struggle to break free from \the [src]."),
 			span_notice("You hear squelching."))
-		addtimer(CALLBACK(src, .proc/unbuckle_time_message, user), NEST_RESIST_TIME)
+		addtimer(CALLBACK(src, PROC_REF(unbuckle_time_message), user), NEST_RESIST_TIME)
 		return FALSE
 	if(resisting_time + NEST_RESIST_TIME > world.time)
 		to_chat(buckled_mob, span_warning("You're already trying to free yourself. Give it some time."))
@@ -133,16 +133,11 @@
 		. += image("icon_state" = "nest_overlay", "layer" = LYING_MOB_LAYER + 0.1)
 
 
-/obj/structure/bed/nest/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+/obj/structure/bed/nest/flamer_fire_act(burnlevel)
+	take_damage(burnlevel * 2, BURN, "fire")
 
 /obj/structure/bed/nest/fire_act()
 	take_damage(50, BURN, "fire")
-
-/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_NEST)
-	return ..()
-
 
 #undef NEST_RESIST_TIME
 #undef NEST_UNBUCKLED_COOLDOWN

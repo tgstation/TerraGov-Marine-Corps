@@ -1,7 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - rscadd: "Volkite weaponry, Martian ray guns for SOM use only
-expansion: Updates SOM ERT with new weaponry, armour and loadouts. You better be sure before you hit that distress beacon."
-  - balance: "Marine armour energy armour scales with weight class"
-  - bugfix: "fixed a few misc sprite issues"

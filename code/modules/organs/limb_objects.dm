@@ -1,9 +1,13 @@
 
 /obj/item/limb
 	icon = 'icons/mob/human_races/r_human.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/bodyparts_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/bodyparts_right.dmi',
+	)
 
-/obj/item/limb/New(loc, mob/living/carbon/human/H)
-	..(loc)
+/obj/item/limb/Initialize(loc, mob/living/carbon/human/H)
+	. = ..()
 	if(!istype(H))
 		return
 	//Forming icon for the limb
@@ -69,7 +73,6 @@
 	icon_state = "head_m"
 	resistance_flags = UNACIDABLE
 	var/mob/living/brain/brainmob
-	var/brain_op_stage = 0
 	var/brain_item_type = /obj/item/organ/brain
 	var/braindeath_on_decap = 1 //whether the brainmob dies when head is decapitated (used by synthetics)
 
@@ -78,7 +81,6 @@
 	if(!istype(H))
 		return
 
-	icon_state = H.gender == MALE? "head_m" : "head_f"
 	if(H.species.species_flags & HAS_NO_HAIR)
 		return
 	//Add (facial) hair.
@@ -122,60 +124,13 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src
-
-/obj/item/limb/head/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/tool/surgery/scalpel))
-		switch(brain_op_stage)
-			if(0)
-				user.visible_message(span_warning("[brainmob] is beginning to have [brainmob.p_their()] head cut open with [I] by [user]."), \
-									span_warning("You cut [brainmob]'s head open with [I]!"))
-				to_chat(brainmob, span_warning("[user] begins to cut open your head with [I]!"))
-
-				brain_op_stage = 1
-			if(2)
-				user.visible_message(span_warning("[brainmob] is having [brainmob.p_their()] connections to the brain delicately severed with [I] by [user]."), \
-									span_warning("You cut [brainmob]'s head open with [I]!"))
-				to_chat(brainmob, span_warning("[user] begins to cut open your head with [I]!"))
-
-				brain_op_stage = 3.0
-			else
-				return ..()
-	else if(istype(I, /obj/item/tool/surgery/circular_saw))
-		switch(brain_op_stage)
-			if(1)
-				user.visible_message(span_warning("[brainmob] has [brainmob.p_their()] head sawed open with [I] by [user]."), \
-							span_warning("You saw [brainmob]'s head open with [I]!"))
-				to_chat(brainmob, span_warning("[user] saw open your head with [I]!"))
-				brain_op_stage = 2
-			if(3)
-				user.visible_message(span_warning("[brainmob] has [brainmob.p_their()] spine's connection to the brain severed with [I] by [user]."), \
-									span_warning("You sever [brainmob]'s brain's connection to the spine with [I]!"))
-				to_chat(brainmob, span_warning("[user] severs your brain's connection to the spine with [I]!"))
-
-				log_combat(user, brainmob, "debrained", I, "(INTENT: [uppertext(user.a_intent)])")
-
-				//TODO: ORGAN REMOVAL UPDATE.
-				var/obj/item/organ/brain/B = new brain_item_type(loc)
-				if(brainmob.stat != DEAD)
-					brainmob.death() //brain mob doesn't survive outside a head
-				B.transfer_identity(brainmob)
-
-				brain_op_stage = 4.0
-			else
-				return ..()
-	else
-		return ..()
-
+	brainmob.copy_known_languages_from(H, TRUE)
 
 //synthetic head, allowing brain mob inside to talk
 /obj/item/limb/head/synth
-	name = "synthetic head"
-	brain_item_type = /obj/item/organ/brain/prosthetic
+	brain_item_type = null
 	braindeath_on_decap = 0
 
 /obj/item/limb/head/robotic
-	name = "robotic head"
-	icon = 'icons/mob/human_races/r_robot.dmi'
-	icon_state = "head_dead"
-	brain_item_type = /obj/item/organ/brain/prosthetic
+	brain_item_type = null
 	braindeath_on_decap = 0

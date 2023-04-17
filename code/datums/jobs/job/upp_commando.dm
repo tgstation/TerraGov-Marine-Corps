@@ -23,13 +23,13 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/commando
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/uppcap
-	mask = /obj/item/clothing/mask/gas/PMC/upp
+	mask = /obj/item/clothing/mask/gas/pmc/upp
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles/upp
 	suit_store = /obj/item/weapon/gun/rifle/type71/commando
 	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -71,17 +71,17 @@
 	jobtype = /datum/job/upp/commando/medic
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/combatLifesaver/upp
+	belt = /obj/item/storage/belt/lifesaver/full/upp
 	ears = /obj/item/radio/headset/distress/usl
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP/medic
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/commando
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/uppcap
-	mask = /obj/item/clothing/mask/gas/PMC/upp
+	mask = /obj/item/clothing/mask/gas/pmc/upp
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles/upp
 	suit_store = /obj/item/weapon/gun/smg/skorpion
-	r_store = /obj/item/storage/pouch/medkit
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack
 
@@ -134,13 +134,13 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/commando
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/uppcap/beret
-	mask = /obj/item/clothing/mask/gas/PMC/upp
+	mask = /obj/item/clothing/mask/gas/pmc/upp
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles/upp
 	suit_store = /obj/item/weapon/gun/rifle/type71/commando
 	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 

@@ -8,7 +8,7 @@
 /obj/item/weapon/gun/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN_EJECTS))
 		do_unique_action(user, TRUE)
 		return
 	unload(user)
@@ -45,12 +45,6 @@
 	return ..()
 
 
-/obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
-	if( harness_check(thrower) )
-		to_chat(usr, span_warning("\The [src] clanks on the ground."))
-	else
-		return ..()
-
 /*
 Note: pickup and dropped on weapons must have both the ..() to update zoom AND twohanded,
 As sniper rifles have both and weapon mods can change them as well. ..() deals with zoom only.
@@ -59,7 +53,6 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	. = ..()
 
 	unwield(user)
-	harness_check(user)
 
 
 /obj/item/weapon/gun/pickup(mob/user)
@@ -72,62 +65,18 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(CONFIG_GET(flag/remove_gun_restrictions))
 		return TRUE //Not if the config removed it.
 
-	if(user.skills.getRating("police") >= SKILL_POLICE_MP)
+	if(user.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
 		return TRUE
 	if(user.mind && allowed(user))
 		return TRUE
 	to_chat(user, span_warning("[src] flashes a warning sign indicating unauthorized use!"))
 
-
-/obj/item/weapon/gun/proc/wielded_stable() //soft wield-delay
-	if(world.time > wield_time)
-		return TRUE
-	else
-		return FALSE
-
-
 /obj/item/weapon/gun/proc/do_wield(mob/user, wdelay) //*shrugs*
-	if(wield_time > 0 && !do_mob(user, user, wdelay, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, TRUE, CALLBACK(src, .proc/is_wielded)))
+	if(wield_time > 0 && !do_mob(user, user, wdelay, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, TRUE, CALLBACK(src, PROC_REF(is_wielded))))
 		return FALSE
+	flags_item |= FULLY_WIELDED
+	setup_bullet_accuracy()
 	return TRUE
-
-/*
-Here we have throwing and dropping related procs.
-This should fix some issues with throwing mag harnessed guns when
-they're not supposed to be thrown. Either way, this fix
-should be alright.
-*/
-/obj/item/weapon/gun/proc/harness_check(mob/user)
-	if(!ishuman(user))
-		return FALSE
-	var/mob/living/carbon/human/owner = user
-	if(!has_attachment(/obj/item/attachable/magnetic_harness))
-		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
-		if(!istype(B, /obj/item/belt_harness))
-			return FALSE
-	var/obj/item/I = owner.wear_suit
-	if(!is_type_in_list(I, list(/obj/item/clothing/suit/storage, /obj/item/clothing/suit/armor, /obj/item/clothing/suit/modular)))
-		return FALSE
-	addtimer(CALLBACK(src, .proc/harness_return, user), 0.3 SECONDS, TIMER_UNIQUE)
-	return TRUE
-
-
-/obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
-	if(!isturf(loc) || QDELETED(user) || !isnull(user.s_store) && !isnull(user.back))
-		return
-
-	user.equip_to_slot_if_possible(src, SLOT_S_STORE, warning = FALSE)
-	if(user.s_store == src)
-		var/obj/item/I = user.wear_suit
-		to_chat(user, span_warning("[src] snaps into place on [I]."))
-		user.update_inv_s_store()
-		return
-
-	user.equip_to_slot_if_possible(src, SLOT_BACK, warning = FALSE)
-	if(user.back == src)
-		to_chat(user, span_warning("[src] snaps into place on your back."))
-	user.update_inv_back()
-
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	. = ..()
@@ -155,18 +104,18 @@ should be alright.
 			return
 		to_chat(user, span_warning("[new_magazine] cannot fit into [src]!"))
 		return
-	if(src != user.r_hand && src != user.l_hand && master_gun != user.r_hand && master_gun != user.l_hand)
+	if(src != user.r_hand && src != user.l_hand && (!master_gun || (master_gun != user.r_hand && master_gun != user.l_hand)))
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || max_chamber_items > 1)
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
-	if(!user.skills.getRating("firearms"))
+	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
 	to_chat(user, span_notice("You start a tactical reload."))
-	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating("firearms") * 5)
+	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating(SKILL_FIREARMS) * 5)
 	if(length(chamber_items))
 		if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 			return
@@ -252,9 +201,9 @@ should be alright.
 ///Helper proc that processes a clicked target, if the target is not black tiles, it will not change it. If they are it will return the turf of the black tiles. It will return null if the object is a screen object other than black tiles.
 /proc/get_turf_on_clickcatcher(atom/target, mob/user, params)
 	var/list/modifiers = params2list(params)
-	if(!istype(target, /obj/screen))
+	if(!istype(target, /atom/movable/screen))
 		return target
-	if(!istype(target, /obj/screen/click_catcher))
+	if(!istype(target, /atom/movable/screen/click_catcher))
 		return null
 	return params2turf(modifiers["screen-loc"], get_turf(user), user.client)
 
@@ -361,7 +310,7 @@ should be alright.
 	do_toggle_firemode()
 
 
-/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
+/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, datum/keybinding, new_firemode)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))//can't toggle mid burst
 		return
@@ -389,6 +338,7 @@ should be alright.
 			gun_user.update_action_buttons()
 	playsound(src, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
+	setup_bullet_accuracy()
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
@@ -475,6 +425,8 @@ should be alright.
 		var/obj/item/attachable/attachable = attachment
 		return attachable.activate(user)
 
+
+// todo destroy all verbs
 /mob/living/carbon/human/verb/empty_mag()
 	set category = "Weapons"
 	set name = "Unload Weapon"
@@ -529,7 +481,7 @@ should be alright.
 	set name = "Toggle Gun Safety (Weapon)"
 	set desc = "Toggle the safety of the held gun."
 
-	to_chat(usr, span_notice("You toggle the safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "<b>off</b>" : "<b>on</b>"]."))
+	balloon_alert(usr, "Safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "off" : "on"].")
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	if(!HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		ADD_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
@@ -558,7 +510,7 @@ should be alright.
 	//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
 	//		usable_attachments += rail
 	if(!length(attachments_by_slot))
-		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
+		balloon_alert(usr, "No usable attachments")
 		return
 
 	for(var/key in attachments_by_slot)
@@ -570,7 +522,7 @@ should be alright.
 			usable_attachments += attachment
 
 	if(!length(usable_attachments)) //No usable attachments.
-		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
+		balloon_alert(usr, "No usable attachments")
 		return
 	var/obj/item/attachable/usable_attachment
 	if(length(usable_attachments) == 1)
@@ -600,7 +552,7 @@ should be alright.
 
 	if(activate_attachment(ATTACHMENT_SLOT_RAIL, usr))
 		return
-	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+	balloon_alert(usr, "No usable rail attachments")
 
 /obj/item/weapon/gun/verb/toggle_underrail_attachment()
 	set category = null
@@ -609,9 +561,16 @@ should be alright.
 
 	if(activate_attachment(ATTACHMENT_SLOT_UNDER, usr))
 		return
-	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+	balloon_alert(usr, "No usable underrail attachments")
 
+///Toggles weapons ejecting their magazines when they're empty. This one is one a gun level and is used via right clicking the gun.
+/obj/item/weapon/gun/verb/toggle_auto_eject()
+	set category = null
+	set name = "Toggle Automatic Magazine Ejection (Weapon)"
+	set desc = "Toggles the automatic unloading of the gun's magazine upon depletion."
 
+	TOGGLE_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
+	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -626,6 +585,10 @@ should be alright.
 /obj/item/weapon/gun/proc/modify_burst_delay(value, mob/user)
 	burst_delay += value
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, burst_delay)
+
+/obj/item/weapon/gun/proc/modify_auto_burst_delay(value, mob/user)
+	autoburst_delay += value
+	SEND_SIGNAL(src, COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED, autoburst_delay)
 
 /obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
 	burst_amount += value
@@ -643,28 +606,25 @@ should be alright.
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
 ///Calculates aim_fire_delay, can't be below 0
-#define RECALCULATE_AIM_MODE_FIRE_DELAY \
-	var/modification_value = 0; \
-	for(var/key in aim_fire_delay_mods) { \
-		modification_value += aim_fire_delay_mods[key]; \
-	}; \
-	var/old_delay = aim_fire_delay; \
-	aim_fire_delay = max(initial(aim_fire_delay) + modification_value, 0); \
-	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING)) { \
-		modify_fire_delay(aim_fire_delay - old_delay); \
-	}
+/obj/item/weapon/gun/proc/recalculate_aim_mode_fire_delay()
+	var/modification_value = 0
+	for(var/key in aim_fire_delay_mods)
+		modification_value += aim_fire_delay_mods[key]
+	var/old_delay = aim_fire_delay
+	aim_fire_delay = max(initial(aim_fire_delay) + modification_value, 0)
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
+		modify_fire_delay(aim_fire_delay - old_delay)
+		modify_auto_burst_delay(aim_fire_delay - old_delay)
 
 ///Adds an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/add_aim_mode_fire_delay(source, value)
 	aim_fire_delay_mods[source] = value
-	RECALCULATE_AIM_MODE_FIRE_DELAY
+	recalculate_aim_mode_fire_delay()
 
 ///Removes an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/remove_aim_mode_fire_delay(source)
 	aim_fire_delay_mods -= source
-	RECALCULATE_AIM_MODE_FIRE_DELAY
-
-#undef RECALCULATE_AIM_MODE_FIRE_DELAY
+	recalculate_aim_mode_fire_delay()
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
@@ -687,10 +647,12 @@ should be alright.
 		REMOVE_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
+		modify_auto_burst_delay(-aim_fire_delay)
 		///if your attached weapon has aim mode, stops it from aimming
 		if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
 			REMOVE_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
-			gunattachment:modify_fire_delay(-aim_fire_delay)
+			gunattachment.modify_fire_delay(-aim_fire_delay)
+			gunattachment.modify_auto_burst_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming."))
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -714,10 +676,12 @@ should be alright.
 	ADD_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
 	modify_fire_delay(aim_fire_delay)
+	modify_auto_burst_delay(aim_fire_delay)
 	///if your attached weapon has aim mode, makes it aim
 	if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
 		ADD_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
-		gunattachment:modify_fire_delay(aim_fire_delay)
+		gunattachment.modify_fire_delay(aim_fire_delay)
+		gunattachment.modify_auto_burst_delay(aim_fire_delay)
 	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))
 
 /// Signal handler to activate the rail attachement of that gun if it's in our active hand
@@ -747,3 +711,13 @@ should be alright.
 	SIGNAL_HANDLER
 	toggle_gun_safety()
 	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to toggle automatic magazine ejection
+/obj/item/weapon/gun/proc/toggle_auto_eject_keybind()
+	SIGNAL_HANDLER
+	toggle_auto_eject()
+	return COMSIG_KB_ACTIVATED
+
+/obj/item/weapon/gun/toggle_deployment_flag(deployed)
+	. = ..()
+	setup_bullet_accuracy()

@@ -29,36 +29,44 @@
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/shrike,
 		/mob/living/carbon/xenomorph/queen,
+		/mob/living/carbon/xenomorph/king,
 		/mob/living/carbon/xenomorph/carrier,
 		/mob/living/carbon/xenomorph/hivelord,
 		/mob/living/carbon/xenomorph/hivemind,
 	)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_IS_BUILDER|CASTE_CAN_HOLD_JELLY|CASTE_CAN_BECOME_KING|CASTE_CAN_RIDE_CRUSHER
-
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY|CASTE_CAN_RIDE_CRUSHER
+	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 0)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 0)
 
 	// *** Pheromones *** //
 	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
-	aura_allowed = list("frenzy", "warding", "recovery")
+
+	// *** Minimap Icon *** //
+	minimap_icon = "drone"
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/essence_link,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/create_jelly/slow,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 	)
 
 /datum/xeno_caste/drone/young
@@ -86,7 +94,7 @@
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 17, "bullet" = 17, "laser" = 17, "energy" = 17, "bomb" = 0, "bio" = 5, "rad" = 5, "fire" = 17, "acid" = 5)
+	soft_armor = list(MELEE = 17, BULLET = 17, LASER = 17, ENERGY = 17, BOMB = 0, BIO = 5, FIRE = 17, ACID = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
@@ -101,7 +109,7 @@
 	melee_damage = 18
 
 	// *** Speed *** //
-	speed = -1.0
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -114,7 +122,7 @@
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 24, "bomb" = 0, "bio" = 10, "rad" = 10, "fire" = 24, "acid" = 10)
+	soft_armor = list(MELEE = 24, BULLET = 24, LASER = 24, ENERGY = 24, BOMB = 0, BIO = 10, FIRE = 24, ACID = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 1.8
@@ -142,7 +150,7 @@
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 31, "bullet" = 31, "laser" = 31, "energy" = 31, "bomb" = 0, "bio" = 15, "rad" = 15, "fire" = 31, "acid" = 15)
+	soft_armor = list(MELEE = 31, BULLET = 31, LASER = 31, ENERGY = 31, BOMB = 0, BIO = 15, FIRE = 31, ACID = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2
@@ -170,7 +178,7 @@
 	upgrade_threshold = 660
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 31, "bullet" = 31, "laser" = 31, "energy" = 31, "bomb" = 0, "bio" = 15, "rad" = 15, "fire" = 31, "acid" = 15)
+	soft_armor = list(MELEE = 31, BULLET = 31, LASER = 31, ENERGY = 31, BOMB = 0, BIO = 15, FIRE = 31, ACID = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2
@@ -178,15 +186,19 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/sow,
+		/datum/action/xeno_action/activable/essence_link,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
+		/datum/action/xeno_action/enhancement,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/create_jelly/slow,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 	)

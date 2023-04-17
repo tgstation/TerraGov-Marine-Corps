@@ -17,7 +17,7 @@
 			if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 				germ_level++
 
-
+			handle_breath()
 			//blood
 			handle_blood()
 
@@ -60,3 +60,24 @@
 	if(hud_list)
 		med_hud_set_status()
 
+/mob/living/carbon/human/proc/handle_breath()
+	if(species.species_flags & NO_BREATHE)
+		return
+
+	if(losebreath <= 10)
+		adjust_Losebreath(-1) //Since this happens before checking to take/heal oxyloss, a losebreath of 1 or less won't do anything.
+	else
+		set_Losebreath(10) //Any single hit is functionally capped - to keep someone suffocating, you need continued losebreath applications.
+
+	if(health < get_crit_threshold() || losebreath)
+		if(HAS_TRAIT(src, TRAIT_IGNORE_SUFFOCATION)) //Prevent losing health from asphyxiation, but natural recovery can still happen.
+			return
+		adjustOxyLoss(CARBON_CRIT_MAX_OXYLOSS, TRUE)
+		if(!oxygen_alert)
+			emote("gasp")
+			oxygen_alert = TRUE
+	else
+		adjustOxyLoss(CARBON_RECOVERY_OXYLOSS, TRUE)
+		if(oxygen_alert)
+			to_chat(src, span_notice("Fresh air fills your lungs; you can breath again!"))
+			oxygen_alert = FALSE

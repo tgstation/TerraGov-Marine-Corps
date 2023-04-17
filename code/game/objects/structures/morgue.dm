@@ -27,7 +27,7 @@
 	if (morgue_open)
 		icon_state = "[morgue_type]0"
 	else
-		if (contents.len > 1) //not counting the morgue tray
+		if (length(contents) > 1) //not counting the morgue tray
 			icon_state = "[morgue_type]2"
 		else
 			icon_state = "[morgue_type]1"
@@ -119,7 +119,6 @@
 	layer = OBJ_LAYER
 	var/obj/structure/morgue/linked_morgue = null
 	anchored = TRUE
-	throwpass = 1
 
 /obj/structure/morgue_tray/Initialize(mapload, obj/structure/morgue/morgue_source)
 	. = ..()
@@ -190,7 +189,7 @@
 	if(cremating)
 		return
 
-	if(contents.len <= 1) //1 because the tray is inside.
+	if(length(contents) <= 1) //1 because the tray is inside.
 		visible_message(span_warning(" You hear a hollow crackle."))
 	else
 		visible_message(span_warning(" You hear a roar as the crematorium activates."))
@@ -216,7 +215,7 @@
 			qdel(O)
 
 		new /obj/effect/decal/cleanable/ash(src)
-		sleep(30)
+		sleep(3 SECONDS)
 		cremating = 0
 		update_icon()
 		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)

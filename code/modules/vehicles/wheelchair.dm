@@ -5,7 +5,7 @@
 	icon_state = "wheelchair"
 	layer = OBJ_LAYER
 	max_integrity = 100
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 30, "fire" = 60, "acid" = 60) //Wheelchairs aren't super tough yo
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60) //Wheelchairs aren't super tough yo
 	density = FALSE //Thought I couldn't fix this one easily, phew
 	/// Run speed delay is multiplied with this for vehicle move delay.
 	var/delay_multiplier = 6.7
@@ -17,7 +17,7 @@
 	. = ..()
 	make_ridable()
 	wheels_overlay = image(icon, overlay_icon, FLY_LAYER)
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, .proc/can_user_rotate),CALLBACK(src, .proc/can_be_rotated),null)
+	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, PROC_REF(can_user_rotate)),CALLBACK(src, PROC_REF(can_be_rotated)),null)
 
 /obj/vehicle/ridden/wheelchair/obj_destruction(damage_flag)
 	new /obj/item/stack/rods(drop_location(), 1)

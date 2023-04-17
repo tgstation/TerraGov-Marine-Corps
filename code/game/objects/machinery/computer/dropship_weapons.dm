@@ -77,7 +77,7 @@
 			var/mob/living/L = usr
 			if(!istype(L))
 				return
-			if(!L.skills.getRating("pilot")) //everyone can fire dropship weapons while fumbling.
+			if(!L.skills.getRating(SKILL_PILOT)) //everyone can fire dropship weapons while fumbling.
 				L.visible_message(span_notice("[L] fumbles around figuring out how to use the automated targeting system."),
 				span_notice("You fumble around figuring out how to use the automated targeting system."))
 				var/fumbling_time = 10 SECONDS
@@ -115,6 +115,7 @@
 /obj/machinery/computer/dropship_weapons/dropship1
 	name = "\improper 'Alamo' weapons controls"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
+	opacity = FALSE
 
 /obj/machinery/computer/dropship_weapons/dropship1/Initialize()
 	. = ..()

@@ -54,11 +54,11 @@
 /datum/asset/simple/namespaced/fontawesome
 	legacy = TRUE //remove on tgui4
 	assets = list(
-		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
+		"fa-regular-400.eot" = 'html/font-awesome/webfonts/fa-regular-400.eot',
 		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
-		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
-		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
-		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
+		"fa-solid-900.eot" = 'html/font-awesome/webfonts/fa-solid-900.eot',
+		"fa-solid-900.woff" = 'html/font-awesome/webfonts/fa-solid-900.woff',
+		"v4shim.css" = 'html/font-awesome/css/v4-shims.min.css'
 	)
 	parents = list("font-awesome.css" = 'html/font-awesome/css/all.min.css')
 
@@ -88,7 +88,7 @@
 	..()
 
 /datum/asset/simple/namespaced/common
-	assets = list("padlock.png"	= 'html/images/padlock.png')
+	assets = list("padlock.png" = 'html/images/padlock.png')
 	parents = list("common.css" = 'html/browser/common.css')
 
 /datum/asset/simple/permissions
@@ -118,15 +118,55 @@
 		set waitfor = FALSE
 		var/datum/language/L = new path ()
 		L.get_icon()
-
-/datum/asset/simple/orbit
-	assets = list(
-		"ghost.png" = 'html/images/ghost.png'
-	)
-
 /datum/asset/spritesheet/blessingmenu
 	name = "blessingmenu"
 
 /datum/asset/spritesheet/blessingmenu/register()
 	InsertAll("", 'icons/UI_Icons/buyable_icons.dmi')
 	..()
+
+/datum/asset/spritesheet/mechaarmor
+	name = "mechaarmor"
+
+/datum/asset/spritesheet/mechaarmor/register()
+	InsertAll("", 'icons/UI_Icons/mecha/armor.dmi')
+	..()
+
+/datum/asset/spritesheet/mech_builder
+	name = "mech_builder"
+
+/datum/asset/spritesheet/mech_builder/register()
+	InsertAll("", 'icons/mecha/mecha_equipment_64x32.dmi')
+	..()
+
+/datum/asset/spritesheet/mech_ammo
+	name = "mech_ammo"
+
+/datum/asset/spritesheet/mech_ammo/register()
+	InsertAll("", 'icons/mecha/mecha_ammo.dmi')
+	..()
+
+/datum/asset/spritesheet/hivestatus
+	name = "hivestatus"
+
+/datum/asset/spritesheet/hivestatus/register()
+	InsertAll("", 'icons/UI_Icons/hive_status_icons.dmi')
+	..()
+
+/datum/asset/simple/particle_editor
+	assets = list(
+		"motion" = 'icons/ui_icons/particle_editor/motion.png',
+
+		"uniform" = 'icons/ui_icons/particle_editor/uniform_rand.png',
+		"normal" ='icons/ui_icons/particle_editor/normal_rand.png',
+		"linear" = 'icons/ui_icons/particle_editor/linear_rand.png',
+		"square_rand" = 'icons/ui_icons/particle_editor/square_rand.png',
+
+		"num" = 'icons/ui_icons/particle_editor/num_gen.png',
+		"vector" = 'icons/ui_icons/particle_editor/vector_gen.png',
+		"box" = 'icons/ui_icons/particle_editor/box_gen.png',
+		"circle" = 'icons/ui_icons/particle_editor/circle_gen.png',
+		"sphere" = 'icons/ui_icons/particle_editor/sphere_gen.png',
+		"square" = 'icons/ui_icons/particle_editor/square_gen.png',
+		"cube" = 'icons/ui_icons/particle_editor/cube_gen.png',
+	)

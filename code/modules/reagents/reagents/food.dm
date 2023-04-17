@@ -55,7 +55,7 @@
 	data = counterlist_normalise(supplied_data)
 
 /datum/reagent/consumable/nutriment/on_merge(list/newdata, newvolume)
-	if(!islist(newdata) || !newdata.len)
+	if(!islist(newdata) || !length(newdata))
 		return
 
 	// data for nutriment is one or more (flavour -> ratio)
@@ -129,15 +129,10 @@
 		var/mob/living/carbon/human/H = L
 		if((H.species.species_flags & NO_PAIN))
 			return ..()
-	switch(current_cycle)
-		if(1 to agony_start - 1)
-			if(prob(5))
-				to_chat(L, discomfort_message)
-		if(agony_start to INFINITY)
-			L.apply_effect(agony_amount, AGONY)
-			if(prob(5))
-				L.emote(pick("dry heaves!", "coughs!", "splutters!"))
-				to_chat(L, discomfort_message)
+	if(prob(5))
+		to_chat(L, discomfort_message)
+	if(L.bodytemperature == targ_temp)
+		L.apply_effect(agony_amount, AGONY)
 	return ..()
 
 /datum/reagent/consumable/capsaicin/condensed
@@ -282,19 +277,19 @@
 	L.druggy = max(L.druggy, 30)
 	switch(current_cycle)
 		if(1 to 5)
-			L.stuttering += 1
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
 			L.dizzy(5)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
 		if(5 to 10)
-			L.stuttering += 1
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
 			L.jitter(10)
 			L.dizzy(10)
 			L.set_drugginess(35)
 			if(prob(20))
 				L.emote(pick("twitch","giggle"))
 		if(10 to INFINITY)
-			L.stuttering += 1
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
 			L.jitter(20)
 			L.dizzy(20)
 			L.set_drugginess(40)
@@ -430,4 +425,38 @@
 	L.adjustBruteLoss(-0.5*effect_str)
 	return ..()
 
+/datum/reagent/consumable/caramel
+	name = "Caramel"
+	description = "Who would have guessed that heated sugar could be so delicious?"
+	nutriment_factor = 10 * REAGENTS_METABOLISM
+	color = "#D98736"
+	taste_multi = 2
+	taste_description = "caramel"
+	reagent_state = SOLID
 
+/datum/reagent/consumable/vanilla
+	name = "Vanilla Powder"
+	description = "A fatty, bitter paste made from vanilla pods."
+	reagent_state = SOLID
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#FFFACD"
+	taste_description = "vanilla"
+
+/datum/reagent/consumable/salt
+	name = "Table Salt"
+	description = "A salt made of sodium chloride. Commonly used to season food."
+	reagent_state = SOLID
+	color = "#FFFFFF" // rgb: 255,255,255
+	taste_description = "salt"
+
+/datum/reagent/consumable/nutriment/vitamin
+	name = "Vitamin"
+	description = "All the best vitamins, minerals, and carbohydrates the body needs in pure form."
+
+	brute_heal = 0.07
+	burn_heal = 0.07
+
+/datum/reagent/consumable/nutriment/protein
+	name = "Protein"
+	description = "A natural polyamide made up of amino acids. An essential constituent of mosts known forms of life."
+	brute_heal = 0.02 //Rewards the player for eating a balanced diet.

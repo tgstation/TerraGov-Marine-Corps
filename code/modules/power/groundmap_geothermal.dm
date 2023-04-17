@@ -28,10 +28,15 @@
 
 /obj/machinery/power/geothermal/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/activate_corruption)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(activate_corruption))
 	update_icon()
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "generator")
-	GLOB.geothermal_generator_ammount++
+
+	if(!GLOB.xeno_generators_by_hive)
+		GLOB.xeno_generators_by_hive = list()
+
+	if(corrupted)
+		GLOB.xeno_generators_by_hive[corrupted] += 1
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -89,8 +94,8 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		if(length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list))
-			SSpoints.add_psy_points("[corrupted]", GENERATOR_PSYCH_POINT_OUTPUT / GLOB.geothermal_generator_ammount)
+		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])) && GLOB.xeno_generators_by_hive[corrupted] > 0)
+			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT / GLOB.xeno_generators_by_hive[corrupted])
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
@@ -138,7 +143,9 @@
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
-	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
+	if(corrupted) //you have no reason to interact with it if its already corrupted
+		return
+	if(CHECK_BITFIELD(X.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
 		to_chat(X, span_notice("You start to corrupt [src]"))
 		if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
 			return
@@ -201,10 +208,10 @@
 /obj/machinery/power/geothermal/welder_act(mob/living/user, obj/item/I)
 	var/obj/item/tool/weldingtool/WT = I
 	if(corrupted)
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
 			span_notice("You fumble around figuring out the resin tendrils on [src]."))
-			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
@@ -214,22 +221,26 @@
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message(span_notice("[user] carefully starts burning [src]'s resin off."),
 		span_notice("You carefully start burning [src]'s resin off."))
+		add_overlay(GLOB.welding_sparks)
 
 		if(!do_after(user, 20 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+			cut_overlay(GLOB.welding_sparks)
 			return FALSE
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		user.visible_message(span_notice("[user] burns [src]'s resin off."),
 		span_notice("You burn [src]'s resin off."))
+		cut_overlay(GLOB.welding_sparks)
 		corrupted = 0
 		stop_processing()
 		update_icon()
+		GLOB.xeno_generators_by_hive[corrupted] -= 1
 		return
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
 		span_notice("You fumble around figuring out [src]'s internals."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 			return
 
@@ -239,24 +250,27 @@
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 	span_notice("You start welding [src]'s internal damage."))
+	add_overlay(GLOB.welding_sparks)
 
 	if(!do_after(user, 20 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
+		cut_overlay(GLOB.welding_sparks)
 		return FALSE
 
 	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 	buildstate = GEOTHERMAL_MEDIUM_DAMAGE
 	user.visible_message(span_notice("[user] welds [src]'s internal damage."),
 	span_notice("You weld [src]'s internal damage."))
+	cut_overlay(GLOB.welding_sparks)
 	update_icon()
 	return TRUE
 
 /obj/machinery/power/geothermal/wirecutter_act(mob/living/user, obj/item/I)
 	if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 		return
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
 		span_notice("You fumble around figuring out [src]'s wiring."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 			return
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -276,10 +290,10 @@
 /obj/machinery/power/geothermal/wrench_act(mob/living/user, obj/item/I)
 	if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 		return
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
 		span_notice("You fumble around figuring out [src]'s tubing and plating."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 			return
 
@@ -299,6 +313,7 @@
 
 /obj/machinery/power/geothermal/proc/corrupt(hivenumber)
 	corrupted = hivenumber
+	GLOB.xeno_generators_by_hive[corrupted] += 1
 	is_on = FALSE
 	power_gen_percent = 0
 	cur_tick = 0

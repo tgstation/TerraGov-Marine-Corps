@@ -14,7 +14,12 @@
 //#define VISUALIZE_ACTIVE_TURFS //Highlights atmos active turfs in green
 #endif
 
-//#define UNIT_TESTS //Enables unit tests via TEST_RUN_PARAMETER
+// If this is uncommented, we do a single run though of the game setup and tear down process with unit tests in between
+// #define UNIT_TESTS
+
+// If this is uncommented, will attempt to load and initialize prof.dll/libprof.so.
+// We do not ship byond-tracy. Build it yourself here: https://github.com/mafemergency/byond-tracy/
+// #define USE_BYOND_TRACY
 
 #ifndef PRELOAD_RSC				//set to:
 #define PRELOAD_RSC 2			//	0 to allow using external resources or on-demand behaviour;
@@ -23,35 +28,6 @@
 
 #ifdef LOWMEMORYMODE
 #define FORCE_MAP "_maps/runtimestation.json"
-#endif
-
-//Update this whenever you need to take advantage of more recent byond features
-#define MIN_COMPILER_VERSION 513
-#define MIN_COMPILER_BUILD 1539
-#ifndef SPACEMAN_DMM
-#if DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD
-//Don't forget to update this part
-#error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 513.1539 or higher
-#endif
-#endif
-
-//Update this whenever the byond version is stable so people stop updating to hilariously broken versions
-#define MAX_COMPILER_VERSION 514
-#define MAX_COMPILER_BUILD 1583
-#if DM_VERSION > MAX_COMPILER_VERSION || DM_BUILD > MAX_COMPILER_BUILD
-#warn WARNING! your byond version is over the recommended version! There may be unexpected byond bugs!
-#endif
-
-//Don't load extools on 514
-#if DM_VERSION < 514
-#define USE_EXTOOLS
-#endif
-
-#if DM_BUILD < 1540
-#define AS as()
-#else
-#define AS as anything
 #endif
 
 ///Used to find the sources of harddels, quite laggy, don't be surpised if it freezes your client for a good while

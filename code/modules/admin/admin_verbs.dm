@@ -47,7 +47,8 @@
 	M.client.holder.invisimined = !M.client.holder.invisimined
 
 	log_admin("[key_name(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
-	message_admins("[ADMIN_TPMONTY(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
+	if(!check_rights(R_DBRANKS))
+		message_admins("[ADMIN_TPMONTY(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
 
 
 /datum/admins/proc/stealth_mode()
@@ -72,26 +73,27 @@
 		M.client.create_stealth_key()
 
 	log_admin("[key_name(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
-	message_admins("[ADMIN_TPMONTY(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
+	if(!check_rights(R_DBRANKS))
+		message_admins("[ADMIN_TPMONTY(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 
 /// Will apply on every xeno a multiplicative buff on health, regen and damage.
 /datum/admins/proc/set_xeno_stat_buffs()
 	set category = "Debug"
 	set name = "Set Xeno Buffs"
-	set desc = "Allows you to change stats on all xeno. It is a multiplicator buff, so input 1 to put back everything to normal"
+	set desc = "Allows you to change stats for all xenos. It is a multiplicator buff, so input 100 to put everything back to normal"
 
 	if(!check_rights(R_FUN))
 		return
 
-	var/multiplicator_buff_wanted = tgui_input_number(usr, "Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack")
+	var/multiplicator_buff_wanted = tgui_input_number(usr, "Input the factor in percentage that will multiply xeno stat", "100 is normal stat, 200 is doubling health, regen and melee attack")
 
 	if(!multiplicator_buff_wanted)
 		return
-	GLOB.xeno_stat_multiplicator_buff = multiplicator_buff_wanted
+	GLOB.xeno_stat_multiplicator_buff = (multiplicator_buff_wanted / 100)
 	SSmonitor.is_automatic_balance_on = FALSE
 	SSmonitor.apply_balance_changes()
 
-	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted * 100]%"
+	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted]%"
 	log_admin(logging)
 	message_admins(logging)
 
@@ -165,7 +167,7 @@
 		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 
-	L.revive()
+	L.revive(TRUE)
 
 	log_admin("[key_name(usr)] revived [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
@@ -189,7 +191,7 @@
 		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 
-	L.revive()
+	L.revive(TRUE)
 
 	log_admin("[key_name(usr)] revived [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
@@ -820,7 +822,7 @@
 
 	var/datum/admin_help/AH = C.current_ticket
 
-	if(AH && AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
+	if(AH?.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
 	if(AH && !AH.marked)
 		AH.marked = usr.client.key
@@ -1400,3 +1402,37 @@
 	message_admins(msg)
 	admin_ticket_log(whom, msg)
 	log_admin("[key_name(src)] punished [key_name(whom)] with [punishment].")
+
+/client/proc/show_traitor_panel(mob/target_mob in GLOB.mob_list)
+	set category = "Admin"
+	set name = "Show Objective Panel"
+	var/datum/mind/target_mind = target_mob.mind
+	if(!target_mind)
+		to_chat(usr, "This mob has no mind!", confidential = TRUE)
+		return
+	if(!istype(target_mob) && !istype(target_mind))
+		to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
+		return
+	target_mind.traitor_panel()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Objective Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/validate_objectives()
+	set category = "Debug"
+	set name = "Check All Objectives Completion"
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.owner)
+			continue
+
+		to_chat(usr,"[A.owner.key]")
+		to_chat(usr,"[A.owner.name]")
+		to_chat(usr,"[A.type]")
+		to_chat(usr,"[A.name]")
+
+		if(length(A.objectives))
+			for(var/datum/objective/O in A.objectives)
+				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
+				to_chat(usr,"--------------------------------")
+				to_chat(usr,"[O.type]")
+				to_chat(usr,"---------------------------------")
+				to_chat(usr,"[O.explanation_text] = [result]")
+				to_chat(usr,"----------------------------------")

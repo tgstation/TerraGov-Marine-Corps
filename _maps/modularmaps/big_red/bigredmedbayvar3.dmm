@@ -440,7 +440,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "lN" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Medical";
@@ -630,7 +630,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/medical)
 "qZ" = (
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -671,7 +671,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "rP" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "sg" = (
@@ -823,7 +823,7 @@
 /area/bigredv2/outside/medical)
 "wq" = (
 /obj/structure/table,
-/obj/item/organ/kidneys/prosthetic,
+/obj/effect/spawner/random/medical/organ,
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "wA" = (
@@ -846,8 +846,8 @@
 /area/bigredv2/outside/medical)
 "wQ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1088,7 +1088,7 @@
 /area/bigredv2/outside/medical)
 "Df" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1174,7 +1174,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "FY" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
