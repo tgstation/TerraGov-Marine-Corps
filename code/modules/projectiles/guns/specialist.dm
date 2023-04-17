@@ -809,10 +809,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	extended = !extended
 	if(!extended)
 		w_class = WEIGHT_CLASS_NORMAL
-		flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
+		flags_gun_features |= GUN_DEPLOYED_FIRE_ONLY
 	else
 		w_class = WEIGHT_CLASS_BULKY
-		flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+		flags_gun_features &= ~GUN_DEPLOYED_FIRE_ONLY
 	update_icon()
 
 /obj/item/weapon/gun/launcher/rocket/oneuse/update_icon_state()
