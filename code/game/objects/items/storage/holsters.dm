@@ -230,6 +230,15 @@
 		/obj/item/mortar_kit,
 	)
 
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
+
+
 /obj/item/storage/holster/backholster/mortar/full/Initialize()
 	. = ..()
 	new /obj/item/mortal_shell/he(src)
@@ -264,6 +273,14 @@
 	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/engineer = 1,)
 	///The internal fuel tank
 	var/obj/item/ammo_magazine/flamer_tank/internal/tank
+
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
 
 /obj/item/storage/holster/backholster/flamer/Initialize()
 	. = ..()

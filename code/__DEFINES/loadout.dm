@@ -20,7 +20,6 @@
 #define CAT_LEDSUP "LEADER SUPPLIES"
 #define CAT_SGSUP "SMARTGUNNER SUPPLIES"
 #define CAT_LOAD "LOADOUT"
-#define CAT_KIT "SPECIAL KITS"
 
 // Synth Special Categories
 #define CAT_SMR "SUITS AND ARMOR" // Synth's suits
@@ -54,11 +53,11 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 GLOBAL_LIST_INIT(marine_gear_listed_products, list())
 
 GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
-		/obj/effect/essentials_set/builder = list(CAT_KIT, "Building kit", 75, "black"),
-		/obj/effect/essentials_set/minelayer = list(CAT_KIT, "Minelaying kit", 45, "black"),
-		/obj/effect/essentials_set/mortar = list(CAT_KIT, "Mortar kit", 30, "black"),
-		/obj/effect/essentials_set/pyro = list(CAT_KIT, "flamethrower kit", 30, "black"),
-		/obj/effect/vendor_bundle/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
+		/obj/effect/vendor_bundle/engi = list(CAT_ENGSUP, "Essential Engineer Set", 0, "white"),
+		/obj/effect/vendor_bundle/builder = list(CAT_ENGSUP, "Building kit", 75, "black"),
+		/obj/effect/vendor_bundle/minelayer = list(CAT_ENGSUP, "Minelaying kit", 45, "black"),
+		/obj/effect/vendor_bundle/mortar = list(CAT_ENGSUP, "Mortar kit", 30, "black"),
+		/obj/effect/vendor_bundle/pyro = list(CAT_ENGSUP, "Flamethrower kit", 30, "black"),
 		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", METAL_PRICE_IN_GEAR_VENDOR, "orange"),
 		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_ENGSUP, "Plasteel x10", PLASTEEL_PRICE_IN_GEAR_VENDOR, "orange"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "orange"),

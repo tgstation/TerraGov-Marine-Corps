@@ -334,6 +334,7 @@ obj/item/weapon/gun/flamer/big_flamer/engineer/Initialize()
 
 	var/obj/item/storage/holster/backholster/flamer/D = W
 	var/obj/item/ammo_magazine/flamer_tank/internal/tank = D.tank
+	tank.forceMove(src.loc)
 	if(tank.current_rounds <= 0)
 		to_chat(user, span_warning("The internal fuel tank is empty!"))
 		return

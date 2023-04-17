@@ -710,6 +710,40 @@
 		/obj/item/circuitboard/apc,
 	)
 
+/obj/effect/vendor_bundle/builder
+	gear_to_spawn = list(
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/plasteel/large_stack,
+		/obj/item/stack/sheet/plasteel/large_stack,
+	)
+
+
+/obj/effect/vendor_bundle/mortar
+	gear_to_spawn = list(
+		/obj/item/binoculars/tactical/range,
+		/obj/item/encryptionkey/cas,
+		/obj/item/encryptionkey/cas,
+		/obj/item/encryptionkey/cas,
+		/obj/item/storage/holster/backholster/mortar/full,
+	)
+
+/obj/effect/vendor_bundle/minelayer
+	gear_to_spawn = list(
+		/obj/item/minelayer,
+		/obj/item/storage/box/explosive_mines/large,
+		/obj/item/storage/box/explosive_mines/large,
+	)
+
+/obj/effect/vendor_bundle/pyro
+	gear_to_spawn = list(
+		/obj/item/storage/holster/backholster/flamer/full,
+	)
+
 /obj/effect/vendor_bundle/leader
 	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
