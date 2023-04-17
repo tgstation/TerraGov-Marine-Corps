@@ -29,10 +29,9 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/particle_effect/smoke/Initialize(mapload, range, smoketime, smokecloud, parent)
+/obj/effect/particle_effect/smoke/Initialize(mapload, range, smoketime, smokecloud)
 	. = ..()
-	if(parent)
-		origin = parent
+	origin = src
 	if(smokecloud)
 		cloud = smokecloud
 		LAZYADD(cloud.smokes, src)
@@ -170,7 +169,7 @@
 	amount = parent.amount-1
 	origin = parent.origin
 	if(merge)
-		lifetime = min((parent.lifetime + lifetime), (initial(lifetime) * 2))
+		lifetime = min((parent.lifetime + lifetime), initial(lifetime) * 2)
 		strength = max(parent.strength, strength)
 	else
 		lifetime = parent.lifetime
@@ -234,7 +233,7 @@
 /datum/effect_system/smoke_spread/start()
 	if(!QDELETED(holder))
 		location = get_turf(holder)
-	new smoke_type(location, range, lifetime, src)
+	new smoke_type(location, range, lifetime)
 
 /////////////////////////////////////////////
 // Bad smoke
