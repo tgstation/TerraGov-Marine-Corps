@@ -85,3 +85,7 @@
 /datum/job/xenomorph/queen/handle_special_preview(client/parent)
 	parent.show_character_previews(image('icons/Xeno/1x1_Xenos.dmi', icon_state = "Larva", dir = SOUTH))
 	return TRUE
+
+/datum/job/xenomorph/facehugger
+	title = ROLE_XENO_HUGGER
+	job_flags = JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN

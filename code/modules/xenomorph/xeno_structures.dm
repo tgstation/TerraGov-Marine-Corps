@@ -262,6 +262,27 @@
 	set_trap_type(TRAP_HUGGER)
 	balloon_alert(user, "Inserted facehugger")
 
+//Sentient facehugger can get in the trap
+/obj/structure/xeno/trap/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
+	. = ..()
+
+	if(alert("Do you want to get into the trap?", "Get inside the trap", "Yes", "No") != "Yes")
+		return
+
+	if(trap_type)
+		F.balloon_alert(F, "The trap is occupied")
+		return
+
+	var/obj/item/clothing/mask/facehugger/FH = new(src)
+	FH.go_idle(TRUE)
+	hugger = FH
+	set_trap_type(TRAP_HUGGER)
+
+	F.visible_message(span_xenowarning("[F] slides back into [src]."),span_xenonotice("You slides back into [src]."))
+	F.ghostize()
+	F.death(deathmessage = "get inside the trap", silent = TRUE)
+	qdel(F)
+
 /*
 TUNNEL
 */
@@ -368,6 +389,9 @@ TUNNEL
 
 /obj/structure/xeno/tunnel/attack_larva(mob/living/carbon/xenomorph/larva/L) //So larvas can actually use tunnels
 	attack_alien(L)
+
+/obj/structure/xeno/tunnel/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
+	attack_alien(F)
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)

@@ -411,6 +411,8 @@
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
+	///Sentient facehugger spawn
+	var/sentient_huggers = FALSE
 
 	//Notification spam controls
 	var/recent_notice = 0

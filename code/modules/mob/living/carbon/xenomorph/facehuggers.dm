@@ -466,7 +466,7 @@
 /////////////////////////////
 // ATTACHING AND IMPREGNATION
 //////////////////////////////
-/obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M)
+/obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M, can_catch = TRUE)
 
 	set_throwing(FALSE)
 	leaping = FALSE
@@ -486,7 +486,7 @@
 		X.dropItemToGround(src)
 		X.update_icons()
 
-	if(M.in_throw_mode && M.dir != dir && !M.incapacitated() && !M.get_active_held_item())
+	if(M.in_throw_mode && M.dir != dir && !M.incapacitated() && !M.get_active_held_item() && can_catch)
 		var/catch_chance = 50
 		if(M.dir == REVERSE_DIR(dir))
 			catch_chance += 20
@@ -549,6 +549,8 @@
 	if(slot != SLOT_WEAR_MASK || stat == DEAD)
 		reset_attach_status(FALSE)
 		return
+	if(isxenofacehugger(source))
+		source.status_flags |= GODMODE
 	if(ishuman(user))
 		var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
 		playsound(loc, hugsound, 25, 0)
@@ -567,6 +569,8 @@
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
+			if(source?.mind && isxenofacehugger(source)) //If hugger sentient he will get an advantage for becoming a larva
+				embryo.source = source.ckey
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 			sterile = TRUE
@@ -585,7 +589,7 @@
 			target.apply_damage(15, BRUTE, "head", updating_health = TRUE)
 
 
-/obj/item/clothing/mask/facehugger/proc/kill_hugger(melt_timer = 1 MINUTES)
+/obj/item/clothing/mask/facehugger/proc/kill_hugger(melt_timer = 1 MINUTES, no_drop = FALSE)
 	reset_attach_status()
 
 	if(stat == DEAD)
@@ -595,15 +599,17 @@
 	deltimer(jumptimer)
 	deltimer(lifetimer)
 	deltimer(activetimer)
-	remove_danger_overlay() //Remove the danger overlay
+	if(no_drop)
+		qdel(src)
+	else
+		remove_danger_overlay() //Remove the danger overlay
+		update_icon()
+		visible_message("\icon[src] [span_danger("\The [src] curls up into a ball!")]")
+		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
 
-	update_icon()
-	visible_message("\icon[src] [span_danger("\The [src] curls up into a ball!")]")
-	playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
+		layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 
-	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
-
-	addtimer(CALLBACK(src, PROC_REF(melt_away)), melt_timer)
+		addtimer(CALLBACK(src, PROC_REF(melt_away)), melt_timer)
 
 /obj/item/clothing/mask/facehugger/proc/reset_attach_status(forcedrop = TRUE)
 	flags_item &= ~NODROP
@@ -647,7 +653,18 @@
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
-	go_idle()
+	//If hugger sentient, then we drop player's hugger
+	if(isxenofacehugger(source))
+		var/mob/living/M = user
+		source.status_flags &= ~GODMODE
+		source.forceMove(get_turf(M))
+		if(source in M.client_mobs_in_contents)
+			M.client_mobs_in_contents -= source
+		if(sterile || M.status_flags & XENO_HOST)
+			source.death()
+		kill_hugger(no_drop = TRUE)
+	else
+		go_idle()
 
 
 /////////////////////////////

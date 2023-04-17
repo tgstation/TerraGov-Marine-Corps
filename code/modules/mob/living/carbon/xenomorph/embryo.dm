@@ -14,6 +14,8 @@
 	var/larva_autoburst_countdown = 20
 	///How long will the embryo's growth rate be increased
 	var/boost_timer = 0
+	///The xeno that spawned the embryo.
+	var/source = null
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/admin = FALSE
 
@@ -133,11 +135,18 @@
 
 	var/mob/picked
 
+	if(source) //If the larva appeared because of a sentient facehugger, he gets an advantage.
+		var/mob/first_picked = get_mob_by_ckey(source)
+		if(first_picked)
+			if(first_picked.client?.prefs && isobserver(first_picked) && !(first_picked.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5))
+				picked = first_picked
+
 	//If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva.
-	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & (BE_ALIEN|BE_ALIEN_UNREVIVABLE)) && !is_banned_from(affected_mob.ckey, ROLE_XENOMORPH))
-		picked = affected_mob
-	else //Get a candidate from observers.
-		picked = get_alien_candidate()
+	if(!picked)
+		if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & (BE_ALIEN|BE_ALIEN_UNREVIVABLE)) && !is_banned_from(affected_mob.ckey, ROLE_XENOMORPH))
+			picked = affected_mob
+		else //Get a candidate from observers.
+			picked = get_alien_candidate()
 
 	//Spawn the larva.
 	var/mob/living/carbon/xenomorph/larva/new_xeno

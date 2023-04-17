@@ -42,6 +42,7 @@ GLOBAL_LIST_EMPTY(alert_consoles)			// Station alert consoles, /obj/machinery/co
 GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
 GLOBAL_LIST_EMPTY(xeno_weed_node_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)
+GLOBAL_LIST_EMPTY(xeno_egg_hugger)
 GLOBAL_LIST_EMPTY(xeno_resin_wall_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_silos_by_hive)
 GLOBAL_LIST_EMPTY(xeno_resin_turrets_by_hive)

@@ -454,6 +454,14 @@
 	if(pipe)
 		handle_ventcrawl(pipe, xeno_caste.vent_enter_speed, xeno_caste.silent_vent_crawl)
 
+/mob/living/carbon/xenomorph/proc/toggle_playable_facehugger()
+	set name = "Toggle playable facehugger"
+	set desc = "Enable/disable the ability for ghosts to take our facehuggers."
+	set category = "Alien"
+
+	sentient_huggers = !sentient_huggers
+	to_chat(src, span_notice("You have [sentient_huggers ? "enabled" : "disabled"] ghost possession huggers."))
+
 /mob/living/carbon/xenomorph/verb/toggle_xeno_mobhud()
 	set name = "Toggle Xeno Status HUD"
 	set desc = "Toggles the health and plasma hud appearing above Xenomorphs."

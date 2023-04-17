@@ -17,7 +17,8 @@
 
 /obj/alien/egg/Initialize(mapload, hivenumber)
 	. = ..()
-	src.hivenumber = hivenumber
+	if(hivenumber)
+		src.hivenumber = hivenumber
 	advance_maturity(maturity_stage)
 
 /obj/alien/egg/update_icon_state()
@@ -90,6 +91,14 @@
 	///What type of hugger are produced here
 	var/hugger_type = /obj/item/clothing/mask/facehugger
 
+/obj/alien/egg/hugger/Initialize(mapload, hivenumber)
+	. = ..()
+	GLOB.xeno_egg_hugger += src
+
+/obj/alien/egg/hugger/Destroy()
+	GLOB.xeno_egg_hugger -= src
+	return ..()
+
 /obj/alien/egg/hugger/update_icon_state()
 	. = ..()
 	overlays.Cut()
@@ -141,6 +150,49 @@
 			span_xenonotice("We clear the hatched egg."))
 			playsound(loc, "alien_resin_break", 25)
 			qdel(src)
+
+//Observers can become playable facehuggers by clicking on the egg
+/obj/alien/egg/hugger/attack_ghost(mob/dead/observer/user)
+	. = ..()
+
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	if(!hive.can_spawn_as_hugger(user))
+		return FALSE
+
+	if(maturity_stage != stage_ready_to_burst)
+		to_chat(user, span_warning("The egg is not ready."))
+		return FALSE
+	if(!hugger_type)
+		to_chat(user, span_warning("The egg is empty."))
+		return FALSE
+
+	advance_maturity(stage_ready_to_burst + 1)
+	for(var/turf/turf_to_watch AS in filled_turfs(src, trigger_size, "circle", FALSE))
+		UnregisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED)
+	playsound(loc, "sound/effects/alien_egg_move.ogg", 25)
+	flick("egg opening", src)
+
+	var/mob/living/carbon/xenomorph/facehugger/new_hugger = new /mob/living/carbon/xenomorph/facehugger(loc)
+	hugger_type = null
+	addtimer(CALLBACK(new_hugger, /mob/living.proc/transfer_mob, user), 1 SECONDS)
+	log_admin("[user.key] took control of [new_hugger.name] from an egg at [AREACOORD(src)].")
+	return TRUE
+
+//Sentient facehugger can get in the egg
+/obj/alien/egg/hugger/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
+	. = ..()
+
+	if(alert("Do you want to get into the egg?", "Get inside the egg", "Yes", "No") != "Yes")
+		return
+
+	if(!insert_new_hugger(new /obj/item/clothing/mask/facehugger/larval()))
+		F.balloon_alert(F, span_xenowarning("We can't use this egg"))
+		return
+
+	F.visible_message(span_xenowarning("[F] slides back into [src]."),span_xenonotice("You slides back into [src]."))
+	F.ghostize()
+	F.death(deathmessage = "get inside the egg", silent = TRUE)
+	qdel(F)
 
 /obj/alien/egg/hugger/attackby(obj/item/I, mob/user, params)
 	. = ..()
