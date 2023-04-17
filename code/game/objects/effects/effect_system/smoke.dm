@@ -133,7 +133,7 @@
 			if(!moveable.CanPass(src, T))
 				can_spread = FALSE
 				break
-			if(!istype(moveable, src.type))
+			if(!(moveable.type == src.type))
 				continue
 			new_smoke = moveable
 			if(origin == new_smoke.origin) //part of the same smoke bloom
