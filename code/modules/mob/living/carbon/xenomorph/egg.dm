@@ -174,7 +174,7 @@
 
 	var/mob/living/carbon/xenomorph/facehugger/new_hugger = new /mob/living/carbon/xenomorph/facehugger(loc)
 	hugger_type = null
-	addtimer(CALLBACK(new_hugger, /mob/living.proc/transfer_mob, user), 1 SECONDS)
+	addtimer(CALLBACK(new_hugger, PROC_REF(transfer_mob), user), 1 SECONDS)
 	log_admin("[user.key] took control of [new_hugger.name] from an egg at [AREACOORD(src)].")
 	return TRUE
 
