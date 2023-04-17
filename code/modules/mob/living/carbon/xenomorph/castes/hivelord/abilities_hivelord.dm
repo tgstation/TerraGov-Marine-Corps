@@ -23,9 +23,6 @@
 	var/mob/living/carbon/xenomorph/victim = target
 	if(!.)
 		return FALSE
-	if(hivelord.do_actions)
-		hivelord.balloon_alert(hivelord, "Busy")
-		return FALSE
 	if(!hivelord.Adjacent(victim))
 		hivelord.balloon_alert(hivelord, "Too far")
 		return FALSE
