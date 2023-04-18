@@ -1563,8 +1563,8 @@
 	package = TRUE
 	bitesize = 2
 	icon = 'icons/obj/items/food/snacktin.dmi'
-	icon_state = "Snack Tin Sealed" //If you see a tin inside a tin, you have a problem
-	var/snacktype = "Swedish Rouny's" //Everything is a rouny until states otherwise
+	icon_state = "snack_tin_closed" //If you see a tin inside a tin, you have a problem
+	var/snacktype = "swedish_rouny's" //Everything is a rouny until stated otherwise
 
 /obj/item/reagent_containers/food/snacks/wrapped_snack/Initialize(mapload, newsnacktype)
 	tastes = list("[pick(SSstrings.get_list_from_file("names/food_adjectives"))]" = 1) //idea, list, gimmick
@@ -1584,7 +1584,7 @@
 /obj/item/reagent_containers/food/snacks/wrapped_snack/proc/determinetype(newsnacktype)
 	name = "\improper" + newsnacktype
 	snacktype = newsnacktype
-	icon_state = "[snacktype]_wrapped"
+	icon_state = snacktype + "_wrapped"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 
 /*

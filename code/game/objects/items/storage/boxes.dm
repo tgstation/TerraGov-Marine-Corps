@@ -461,10 +461,10 @@
 	foldable = 0
 	max_w_class = 0
 	//List of snacks that can spawn in each position
-	var/static/list/snackA = list("Twink-E", "Jello", "Kup Cake", "Snow Baller", "Galactic Brownies")
-	var/static/list/snackB = list("Jingles' Can", "Nutty Bars", "Oatmeal Cream Pied", "Jelly Baby", "Snow Cubes")
-	var/static/list/snackC = list("Jelly Beno's", "Bombastic Rouny", "Popping Jihad", "Defiler's Delight", "Tricord Twink-E")
-	var/static/list/snackD = list("Defoonder Jawbreaker", "Chocolate Pudding", "Vanilla Pudding", "Swedish Rouny's")
+	var/static/list/snackA = list("twink-e", "jello", "kup_cake", "snow_baller", "galactic_brownies")
+	var/static/list/snackB = list("jingles'_can", "nutty_bars", "oatmeal_cream_pied", "jelly_baby", "snow_cubes")
+	var/static/list/snackC = list("jelly_beno's", "bombastic_rouny", "popping_jihad", "defiler's_delight", "tricord_twink-e")
+	var/static/list/snackD = list("defoonder_jawbreaker", "chocolate_pudding", "vanilla_pudding", "swedish_rouny's")
 
 /obj/item/storage/box/snack_tin/Initialize()
 	. = ..()
