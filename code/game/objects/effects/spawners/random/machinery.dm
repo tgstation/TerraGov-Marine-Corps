@@ -2,8 +2,9 @@
 	name = "Random base machinery spawner"
 	icon = 'icons/effects/random/machinery.dmi'
 	icon_state = "random_frame"
-	loot_subtype_path = /obj/effect/spawner/random/machinery
-	loot = list()
+	loot = list(
+		/obj/structure/prop/mainship/errorprop,
+	)
 
 /obj/effect/spawner/random/machinery/status_display
 	name = "random status display spawner"

@@ -2069,7 +2069,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aqZ" = (
 /obj/structure/closet/fireaxecabinet{
-	pixel_y = 32
+	pixel_y = 31
 	},
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)

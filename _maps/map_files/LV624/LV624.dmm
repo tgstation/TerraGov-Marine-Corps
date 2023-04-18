@@ -2811,8 +2811,8 @@
 /area/lv624/ground/caves/rock)
 "byO" = (
 /obj/structure/rack,
-/obj/item/storage/pouch/flare/full,
-/obj/item/storage/pouch/flare/full,
+/obj/item/storage/holster/flarepouch/full,
+/obj/item/storage/holster/flarepouch/full,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -5915,9 +5915,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "fEL" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
 /obj/effect/spawner/random/misc/folder,
 /obj/machinery/light/small{
 	dir = 1
@@ -6024,7 +6021,7 @@
 	dir = 1
 	},
 /obj/machinery/atm{
-	pixel_y = 30
+	pixel_y = 29
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
@@ -9564,6 +9561,12 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
+"kyk" = (
+/obj/machinery/status_display{
+	pixel_y = -1
+	},
+/turf/closed/wall,
+/area/lv624/lazarus/kitchen)
 "kyP" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/glass{
@@ -9582,6 +9585,12 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central5)
+"kzG" = (
+/obj/machinery/status_display{
+	pixel_y = -1
+	},
+/turf/closed/wall,
+/area/lv624/lazarus/corporate_affairs)
 "kzO" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/bot,
@@ -10520,9 +10529,6 @@
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "lOr" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
 /obj/structure/bed/chair,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
@@ -17331,9 +17337,9 @@
 /area/lv624/ground/jungle10)
 "uUM" = (
 /obj/machinery/status_display{
-	pixel_y = -32
+	pixel_y = -1
 	},
-/turf/open/floor/tile/whiteyellow/full,
+/turf/closed/wall,
 /area/lv624/lazarus/quart)
 "uUS" = (
 /turf/open/ground/grass/beach/corner{
@@ -38384,7 +38390,7 @@ uGM
 nnf
 ffX
 lML
-vqz
+kzG
 fEL
 jlC
 jJI
@@ -50231,11 +50237,11 @@ xuw
 gwf
 avb
 iJN
-xsa
+uUM
 flS
 fUX
 dgi
-uUM
+uBN
 xsa
 xsa
 xsa
@@ -50960,7 +50966,7 @@ ruA
 fPN
 wPG
 krM
-gvV
+kyk
 bWM
 brH
 cxe
