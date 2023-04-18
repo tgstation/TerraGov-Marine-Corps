@@ -255,7 +255,7 @@
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/plasmaloss(src)
 	var/obj/item/new_item = new /obj/item/mortar_kit(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/flamer
 	name = "\improper TGMC flamethrower bag"
@@ -307,7 +307,7 @@
 	new /obj/item/explosive/grenade/phosphorus(src)
 	new /obj/item/explosive/grenade/phosphorus(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/flamer/big_flamer/engineer(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 //one slot holsters
 
