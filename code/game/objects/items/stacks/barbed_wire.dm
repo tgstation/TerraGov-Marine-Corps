@@ -34,14 +34,14 @@
 		return
 
 	var/obj/item/stack/rods/R = I
-	if(R.amount < 4)
-		to_chat(user, span_warning("You need [4 - R.amount] more [R] to make a razor wire obstacle!"))
+	if(R.amount < 8)
+		to_chat(user, span_warning("You need [8 - R.amount] more [R] to make a razor wire obstacle!"))
 		return
 
-	R.use(4)
+	R.use(8)
 	use(1)
 
-	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 1)
+	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 2)
 	to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 /obj/item/stack/razorwire
