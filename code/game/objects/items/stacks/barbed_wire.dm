@@ -30,7 +30,7 @@
 /obj/item/stack/barbed_wire/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(!istype(I,/obj/item/stack/rods))
+	if(!istype(I, /obj/item/stack/rods))
 		return
 
 	var/obj/item/stack/rods/R = I
