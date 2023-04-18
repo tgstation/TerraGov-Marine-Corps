@@ -1572,14 +1572,15 @@
 	desc = "A packaged [icon_state] from a cute little snack tin, there is a lengthy list of [pick("obscure", "arcane", "unintelligible", "revolutionary", "sophisticated", "unspellable")] ingredients and addictives printed on the back.</i>"
 	return ..()
 
-/obj/item/reagent_containers/food/snacks/wrapped_snack/attack_self(mob/user as mob)
-	if(package)
-		to_chat(user, span_notice("You remove the packaging from the wrapped [snacktype], revealing a delicious snack!"))
-		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
-		name = "\improper" + snacktype
-		desc = "The contents of a snack tin. This one is " + snacktype + "."
-		icon_state = snacktype
-		package = FALSE
+/obj/item/reagent_containers/food/snacks/wrapped_snack/attack_self(mob/user)
+	if(!package)
+		return
+	to_chat(user, span_notice("You remove the packaging from the wrapped [snacktype], revealing a delicious snack!"))
+	playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
+	name = "\improper" + snacktype
+	desc = "The contents of a snack tin. This one is " + snacktype + "."
+	icon_state = snacktype
+	package = FALSE
 
 /obj/item/reagent_containers/food/snacks/wrapped_snack/proc/determinetype(newsnacktype)
 	name = "\improper" + newsnacktype
