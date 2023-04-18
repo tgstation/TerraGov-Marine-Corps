@@ -581,7 +581,7 @@
 		target.blind_eyes(3)
 		target.blur_eyes(6)
 		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))
-		target.Confused(3 SECONDS) //Does literally nothing for now, will have to re-add confusion code.
+		target.apply_status_effect(STATUS_EFFECT_CONFUSED, 3 SECONDS)
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 	succeed_activate()
