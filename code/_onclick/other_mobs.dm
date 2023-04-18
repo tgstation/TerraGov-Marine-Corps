@@ -65,6 +65,15 @@
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, user) & COMPONENT_NO_ATTACK_HAND)
 		return TRUE
 
+/**
+ * This proc is called when an atom gets attacked (clicked on) by a powerloader clamp
+ *
+ * Arguments:
+ * * user: The mob doing the attacking
+ * * attached_clamp: The clamp used by the mob for attacking
+ */
+
+
 /atom/proc/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	. = FALSE
 
