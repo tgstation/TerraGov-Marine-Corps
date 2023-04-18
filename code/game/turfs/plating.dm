@@ -103,6 +103,9 @@
 	mediumxenofootstep = FOOTSTEP_CATWALK
 	layer = CATWALK_LAYER
 
+/turf/open/floor/plating/catwalk/ex_act(severity)
+	return
+
 /turf/open/floor/plating/warning
 	icon_state = "warnplate"
 

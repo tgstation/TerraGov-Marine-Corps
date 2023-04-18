@@ -143,11 +143,10 @@
 	T.balloon_alert(X, "Tunnel dug")
 	X.visible_message(span_xenonotice("\The [X] digs out a tunnel entrance."), \
 	span_xenonotice("We dig out a tunnel, connecting it to our network."), null, 5)
-	var/obj/structure/xeno/tunnel/newt = new(T)
+	var/obj/structure/xeno/tunnel/newt = new(T, X.get_xeno_hivenumber())
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
-	newt.hivenumber = X.hivenumber //Set our structure's hivenumber for alerts/lists
 	newt.creator = X
 	newt.RegisterSignal(X, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/obj/structure/xeno/tunnel, clear_creator))
 
@@ -217,8 +216,8 @@
 
 	succeed_activate()
 
-	playsound(T, "alien_resin_build", 25)
-	var/obj/structure/xeno/resin_jelly_pod/pod = new(T)
+	playsound(owner, "alien_resin_build", 25)
+	var/obj/structure/xeno/resin_jelly_pod/pod = new(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We shape some resin into \a [pod]."))
 	add_cooldown()
 

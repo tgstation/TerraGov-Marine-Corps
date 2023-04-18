@@ -178,8 +178,6 @@
 				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
 					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
 					vended_items += new headset_type(loc, H.assigned_squad, vendor_role)
-					if(!istype(H.job, /datum/job/terragov/squad/engineer))
-						vended_items += new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 
@@ -436,8 +434,8 @@
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
 		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
 		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
-		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
-		/obj/item/armor_module/module/artemis =  list(CAT_HEL, "Jaeger Artemis module", 0, "orange"),
+		/obj/item/armor_module/module/binoculars = list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
+		/obj/item/armor_module/module/artemis = list(CAT_HEL, "Jaeger Freyr module", 0, "orange"),
 		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
 		/obj/item/clothing/head/tgmcberet/fc = list(CAT_HEL, "FC Beret", 0, "black"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
@@ -448,7 +446,7 @@
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
 		/obj/item/storage/pouch/general/large = list(CAT_POU, "General pouch", 0, "black"),
 		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Magazine pouch", 0, "black"),
-		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
+		/obj/item/storage/holster/flarepouch/full = list(CAT_POU, "Flare pouch", 0, "black"),
 		/obj/item/storage/pouch/medical_injectors/firstaid = list(CAT_POU, "Combat injector pouch", 0,"orange"),
 		/obj/item/storage/pouch/medkit/firstaid = list(CAT_POU, "Firstaid pouch", 0, "orange"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0, "black"),
@@ -462,7 +460,7 @@
 		/obj/effect/vendor_bundle/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
-		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Arrowhead Energy Shield System", 0 , "black"),
+		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Svalinn Energy Shield System", 0 , "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
@@ -605,6 +603,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/paper/tutorial/medical,
 		/obj/item/paper/tutorial/mechanics,
@@ -614,6 +613,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 		/obj/item/paper/tutorial/medical,
@@ -624,6 +624,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -631,6 +632,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
@@ -639,6 +641,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -646,6 +649,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
@@ -654,6 +658,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/corpsman,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -661,6 +666,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
@@ -759,7 +765,7 @@
 	name = "Full set of TGMC white dress uniform"
 	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
 	gear_to_spawn = list(
-		/obj/item/clothing/under/whites,
+		/obj/item/clothing/under/marine/whites,
 		/obj/item/clothing/suit/white_dress_jacket,
 		/obj/item/clothing/head/white_dress,
 		/obj/item/clothing/shoes/white,
@@ -770,7 +776,7 @@
 	name = "Full set of TGMC service uniform"
 	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
 	gear_to_spawn = list(
-		/obj/item/clothing/under/service,
+		/obj/item/clothing/under/marine/service,
 		/obj/item/clothing/head/garrisoncap,
 		/obj/item/clothing/head/servicecap,
 		/obj/item/clothing/shoes/marine/full,
@@ -897,12 +903,32 @@
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
 	)
 
-/obj/effect/vendor_bundle/robot
+/obj/effect/vendor_bundle/robot/essentials
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/robotic,
 		/obj/item/tool/weldingtool,
-		/obj/item/stack/cable_coil/twentyfive,
+		/obj/item/stack/cable_coil,
 	)
+
+/obj/effect/vendor_bundle/robot/light_armor
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/modular/robot/light,
+		/obj/item/clothing/head/modular/robot/light,
+	)
+
+/obj/effect/vendor_bundle/robot/medium_armor
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/modular/robot,
+		/obj/item/clothing/head/modular/robot,
+	)
+
+/obj/effect/vendor_bundle/robot/heavy_armor
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/modular/robot/heavy,
+		/obj/item/clothing/head/modular/robot/heavy,
+	)
+
+
 
 #undef DEFAULT_TOTAL_BUY_POINTS
 #undef MEDIC_TOTAL_BUY_POINTS

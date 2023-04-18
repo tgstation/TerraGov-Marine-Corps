@@ -1,13 +1,13 @@
 /obj/item/storage/get_antag_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.antag_text)
+	if(general_entry?.antag_text)
 		return general_entry.antag_text
 
 /obj/item/storage/get_lore_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.lore_text)
+	if(general_entry?.lore_text)
 		return general_entry.lore_text
 
 /obj/item/storage/get_mechanics_info()
@@ -15,7 +15,7 @@
 
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.mechanics_text)
+	if(general_entry?.mechanics_text)
 		storage_strings += general_entry.mechanics_text + "<br>"
 
 	var/list/slots = list()
@@ -23,7 +23,7 @@
 		if(flags_equip_slot & GLOB.string_equip_flags[name])
 			slots += name
 
-	if(slots.len)
+	if(length(slots))
 		storage_strings += "It can be worn on your [english_list(slots)]."
 
 	if(use_to_pickup)
@@ -73,4 +73,4 @@
 	mechanics_text = "It's a belt for holding your tools"
 	lore_text = "Although it looks and feels like leather, the last cow was killed to make a steak dinner for the queen of France."
 	antag_text = "I don't see how this could be used for antagonistic purposes."
-	
+

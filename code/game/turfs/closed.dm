@@ -17,12 +17,13 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
+	minimap_color = NONE
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
-		if(istype(turf_to_check, /turf/open))
+		if(!isnull(turf_to_check) && !turf_to_check.density)
 			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
 			switch(direction)
 				if(NORTH)
@@ -33,6 +34,8 @@
 					rock_side.pixel_x += world.icon_size
 				if(WEST)
 					rock_side.pixel_x -= world.icon_size
+			if(!isspaceturf(turf_to_check))
+				minimap_color = MINIMAP_SOLID
 			overlays += rock_side
 
 /turf/closed/mineral/smooth
@@ -116,6 +119,18 @@
 	icon_state = "rock_dark"
 	resistance_flags = RESIST_ALL
 
+//desertdam rock, seen in certain EORD maps. Surprisingly not seen in Desert Dam.
+/turf/closed/mineral/smooth/desertdamrockwall
+	name = "rockwall"
+	icon = 'icons/turf/walls/cave.dmi'
+	icon_state = "cave-0"
+	color = "#c9a37b"
+	walltype = "cave"
+	base_icon_state = "cave"
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'
@@ -142,25 +157,24 @@
 /turf/closed/gm/dense
 	name = "dense jungle wall"
 	resistance_flags = PLASMACUTTER_IMMUNE
+	minimap_color = NONE
+	icon_state = "wall-dense"
 
-//desertdam rock
-/turf/closed/desertdamrockwall
-	name = "rockwall"
-	icon = 'icons/turf/walls/cave.dmi'
-	icon_state = "cave-0"
-	color = "#c9a37b"
-	walltype = "cave"
-	base_icon_state = "cave"
-	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
+/turf/closed/gm/dense/Initialize(mapload)
+	. = ..()
+	for(var/direction in GLOB.cardinals)
+		var/turf/turf_to_check = get_step(src, direction)
+		if(!isnull(turf_to_check) && !turf_to_check.density && !isspaceturf(turf_to_check))
+			minimap_color = MINIMAP_SOLID
 
-/turf/closed/desertdamrockwall/invincible
-	resistance_flags = RESIST_ALL
-	icon_state = "wall-invincible"
-
-/turf/closed/desertdamrockwall/invincible/perimeter
+//Orange Border (What else am I meant to call it?)
+/turf/closed/perimeter
 	name = "wall"
+	resistance_flags = RESIST_ALL
+	base_icon_state = "pwall"
 	icon_state = "pwall"
 	icon = 'icons/turf/shuttle.dmi'
+
 
 //lava rock
 /turf/closed/brock
@@ -799,6 +813,7 @@
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 	)
 	walltype = "sulaco"
+	minimap_color = MINIMAP_FENCE
 
 /turf/closed/shuttle/escapeshuttle/prison
 	resistance_flags = RESIST_ALL

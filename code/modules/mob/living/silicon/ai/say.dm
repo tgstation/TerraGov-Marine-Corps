@@ -65,7 +65,7 @@
 	for(var/word in GLOB.vox_sounds) //populate our list of available words for the user to see
 		index++
 		dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
-		if(index != GLOB.vox_sounds.len)
+		if(index != length(GLOB.vox_sounds))
 			dat += " / "
 
 	var/datum/browser/popup = new(src, "announce_help", "Announcement Help", 500, 400)
@@ -95,7 +95,7 @@
 	var/list/words = splittext(trim(message), " ")
 	var/list/incorrect_words = list() //needed so we can show the user what words we don't have
 
-	if(words.len > 30)
+	if(length(words) > 30)
 		words.len = 30
 
 	for(var/word in words)
@@ -106,7 +106,7 @@
 		if(!GLOB.vox_sounds[word])
 			incorrect_words += word
 
-	if(incorrect_words.len)
+	if(length(incorrect_words))
 		to_chat(src, span_notice("These words are not available on the announcement system: [english_list(incorrect_words)]."))
 		return
 
@@ -120,7 +120,7 @@
 		play_vox_word(word, src.z, null)
 
 ///play vox words for mobs on our zlevel
-/proc/play_vox_word(word, z_level, mob/only_listener) 
+/proc/play_vox_word(word, z_level, mob/only_listener)
 
 	word = lowertext(word)
 

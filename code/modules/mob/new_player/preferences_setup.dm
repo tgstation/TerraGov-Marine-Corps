@@ -16,8 +16,8 @@
 	randomize_hair_color("facial")
 	randomize_eyes_color()
 	randomize_species_specific()
-	underwear = rand(1, GLOB.underwear_m.len)
-	undershirt = rand(1, GLOB.undershirt_f.len)
+	underwear = rand(1, length(GLOB.underwear_m))
+	undershirt = rand(1, length(GLOB.undershirt_f))
 	backpack = 2
 	age = rand(AGE_MIN,AGE_MAX)
 	if(H)
@@ -192,9 +192,9 @@
 	character.g_hair = g_hair
 	character.b_hair = b_hair
 
-	character.r_grad	= r_grad
-	character.g_grad	= g_grad
-	character.b_grad	= b_grad
+	character.r_grad = r_grad
+	character.g_grad = g_grad
+	character.b_grad = b_grad
 
 	character.r_facial = r_facial
 	character.g_facial = g_facial

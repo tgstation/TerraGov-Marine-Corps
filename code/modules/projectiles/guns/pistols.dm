@@ -111,7 +111,7 @@
 	pixel_shift_x = 10
 	pixel_shift_y = 19
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 	placed_overlay_iconstate = "tx7"
 
@@ -636,6 +636,32 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	recoil_unwielded = 3
 
 //-------------------------------------------------------
+// PL-5 ICC Duty Pistol
+
+/obj/item/weapon/gun/pistol/icc_dpistol
+	name = "\improper PL-5B2 duty pistol"
+	desc = "The PL-5 is a true and tested ICCAF handgun, used for a very long time with minimal changes to the core design, best used at close quarters with its higher than usual magazine size for its caliber. It is chambered in .45 ACP."
+	icon_state = "pl5"
+	item_state = "pl5"
+	icon = 'icons/Marine/gun64.dmi'
+	caliber = CALIBER_45ACP //codex
+	max_shells = 18 //codex
+	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
+	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/icc_dpistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/icc_dpistol)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
+	reciever_flags = AMMO_RECIEVER_MAGAZINES
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.75
+	damage_falloff_mult = 1.25
+	recoil = -2
+	recoil_unwielded = -1
+
+//-------------------------------------------------------
 //The first rule of monkey pistol is we don't talk about monkey pistol.
 
 /obj/item/weapon/gun/pistol/chimp
@@ -702,12 +728,12 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 // Smart pistol, based on Calico M-950
 /obj/item/weapon/gun/pistol/smart_pistol
 	name = "\improper SP-13 smart pistol"
-	desc = "The SP-13 is a latest solution for personal officer defence produced by Terran Armories. A cutting-edge miniaturization technology allows mounting of smartgun IFF system on the pistol, albeit at high manufactoring cost. Unique design feature high-capacity mag on top of the barrel, with integrated sight. As with all smartgun systems, requires special training."
+	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "sp13"
 	item_state = "sp13"
 	caliber = CALIBER_9X19 //codex
-	max_shells = 25 //codex
+	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
@@ -725,6 +751,8 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_skill_category = SKILL_SMARTGUN
+	actions_types = list() // Inherits aimmode, but has IFF so..
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_SEMIAUTO)
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 

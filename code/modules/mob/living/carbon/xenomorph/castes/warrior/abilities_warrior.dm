@@ -502,7 +502,7 @@
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
-			L =  carbon_victim.get_limb(BODY_ZONE_CHEST)
+			L = carbon_victim.get_limb(BODY_ZONE_CHEST)
 		apply_damage(damage, BRUTE, L, MELEE)
 	else
 		apply_damage(damage, BRUTE, blocked = MELEE)
@@ -581,7 +581,7 @@
 		target.blind_eyes(3)
 		target.blur_eyes(6)
 		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))
-		target.Confused(3 SECONDS) //Does literally nothing for now, will have to re-add confusion code.
+		target.apply_status_effect(STATUS_EFFECT_CONFUSED, 3 SECONDS)
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 	succeed_activate()

@@ -8,6 +8,10 @@
 	desc = "A high powered jetpack with enough fuel to send a person flying for a short while. It allows for fast and agile movement on the battlefield. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped.</b>"
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "jetpack_marine"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	obj_flags = CAN_BE_HIT
@@ -145,7 +149,7 @@
 /obj/item/jetpack_marine/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(lit)
-		standing.overlays += mutable_appearance('icons/mob/back.dmi',"+jetpack_lit")
+		standing.overlays += mutable_appearance('icons/mob/clothing/back.dmi',"+jetpack_lit")
 
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator()

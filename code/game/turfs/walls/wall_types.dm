@@ -52,6 +52,7 @@
 	desc = "A huge chunk of metal used to seperate space from the ship"
 	walltype = "gwall"
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
 	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
@@ -134,6 +135,7 @@
 
 /turf/closed/wall/desert/invincible
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 //tyson
 /turf/closed/wall/tyson
@@ -370,3 +372,15 @@
 	base_icon_state = "woodwall"
 	walltype = "woodwall"
 	explosion_block = 1
+
+// Reinforced Wood Wall
+
+/turf/closed/wall/wood/reinforced
+	name = "reinforced wood wall"
+	desc = "A reinforced wooden wall"
+	icon = 'icons/turf/walls/woodrwall.dmi'
+	icon_state = "wall-reinforced"
+	base_icon_state = "woodrwall"
+	walltype = "woodrwall"
+	max_integrity = 3000
+	explosion_block = 4

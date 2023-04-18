@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		LARVAL_HUGGER = image('icons/mob/actions.dmi', icon_state = LARVAL_HUGGER),
 		CLAWED_HUGGER = image('icons/mob/actions.dmi', icon_state = CLAWED_HUGGER),
 		NEURO_HUGGER = image('icons/mob/actions.dmi', icon_state = NEURO_HUGGER ),
-		ACID_HUGGER  = image('icons/mob/actions.dmi', icon_state = ACID_HUGGER),
+		ACID_HUGGER = image('icons/mob/actions.dmi', icon_state = ACID_HUGGER),
 		RESIN_HUGGER = image('icons/mob/actions.dmi', icon_state = RESIN_HUGGER),
 		))
 
@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
-	new /obj/structure/xeno/trap(T, owner)
+	new /obj/structure/xeno/trap(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
 // ***************************************
@@ -232,7 +232,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	xeno_carrier.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_carrier]!"))
 	while(xeno_carrier.huggers > 0)
-		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier))
+		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier), xeno_carrier.hivenumber, xeno_carrier)
 		step_away(new_hugger, xeno_carrier, 1)
 		addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/obj/item/clothing/mask/facehugger, go_active), TRUE), new_hugger.jump_cooldown)
 		xeno_carrier.huggers--
@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!T.check_alien_construction(owner, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(owner))
 		return FALSE
 
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
 		if(get_dist(turret, owner) < 6)
 			if(!silent)
 				to_chat(owner, span_xenowarning("Another turret is too close!"))

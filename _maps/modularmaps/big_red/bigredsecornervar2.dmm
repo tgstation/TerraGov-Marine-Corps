@@ -67,7 +67,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "cr" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "cJ" = (
@@ -85,7 +85,7 @@
 /obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
 "dk" = (
@@ -106,7 +106,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/caves/southeast)
 "dI" = (
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "eu" = (
@@ -185,7 +185,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "gi" = (
 /obj/machinery/door/firedoor/mainship,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "gn" = (
@@ -306,7 +306,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
 "jg" = (
@@ -418,8 +418,8 @@
 /obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/mainship/floor,
 /area/bigredv2/caves/rustedpreparea)
 "np" = (
@@ -449,8 +449,8 @@
 /area/bigredv2/caves/southeast)
 "oo" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "oq" = (
@@ -469,7 +469,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "ox" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/plating,
 /area/bigredv2/caves/rustedpreparea)
 "oB" = (
@@ -513,7 +513,7 @@
 /obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/caves/rustedpreparea)
 "pi" = (
@@ -536,8 +536,8 @@
 /area/bigredv2/caves/southeast)
 "pE" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/melee,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/weaponry/melee,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship,
 /area/bigredv2/caves/rustedpreparea)
 "pR" = (
@@ -649,7 +649,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
 "sN" = (
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
@@ -678,7 +678,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/southeast)
 "uy" = (
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "uz" = (
@@ -746,8 +746,8 @@
 /turf/open/floor/mainship/floor,
 /area/bigredv2/caves/rustedpreparea)
 "wD" = (
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -761,8 +761,8 @@
 /area/bigredv2/caves/rustedpreparea)
 "wL" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship,
 /area/bigredv2/caves/rustedpreparea)
 "xB" = (
@@ -802,7 +802,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/southeast)
 "xY" = (
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -895,7 +895,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "BL" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/southeast)
 "BQ" = (
@@ -933,7 +933,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "CK" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/mainship,
 /area/bigredv2/caves/rustedpreparea)
 "CO" = (
@@ -1255,7 +1255,7 @@
 /area/bigredv2/caves/southeast)
 "JU" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "Kg" = (
@@ -1319,7 +1319,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "LL" = (
 /obj/effect/ai_node,
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "Mp" = (
@@ -1349,7 +1349,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "MQ" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/mainship/floor,
 /area/bigredv2/caves/rustedpreparea)
 "Nd" = (
@@ -1500,7 +1500,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "RM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/southeast)
 "Sf" = (
@@ -1510,7 +1510,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "Sw" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship,
 /area/bigredv2/caves/rustedpreparea)
 "SA" = (
@@ -1603,7 +1603,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "VI" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/mainship,
 /area/bigredv2/caves/rustedpreparea)
 "VL" = (
@@ -1689,7 +1689,7 @@
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/southeast)
 "Yu" = (
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "Yz" = (
@@ -1706,7 +1706,7 @@
 /area/bigredv2/caves/southeast)
 "Zo" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "Zq" = (
@@ -1723,7 +1723,7 @@
 "ZG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /obj/item/paper/crumpled/bloody,
 /turf/open/floor/wood,
 /area/bigredv2/caves/southeast)

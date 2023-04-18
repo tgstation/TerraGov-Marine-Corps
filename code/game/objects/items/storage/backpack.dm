@@ -6,6 +6,10 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
+	)
 	item_state = "backpack"
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -16,7 +20,7 @@
 		)
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = null
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS
@@ -59,7 +63,7 @@
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	icon_state = "holdingpack"
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	max_storage_space = 28
 
 /obj/item/storage/backpack/holding/proc/failcheck(mob/user)
@@ -92,7 +96,7 @@
 	item_state = "giftbag"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = null
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 400 // can store a ton of shit!
 
 /obj/item/storage/backpack/cultpack
@@ -172,6 +176,7 @@
 	name = "mining satchel"
 	desc = "A satchel with origins dating back to the mining colonies."
 	icon_state = "som_satchel"
+	item_state = "som_satchel"
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"

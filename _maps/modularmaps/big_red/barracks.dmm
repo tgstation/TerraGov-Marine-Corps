@@ -741,7 +741,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "FS" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Operations";
 	name = "\improper Operations Shutters"
@@ -1249,7 +1249,7 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "Yi" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Operations";

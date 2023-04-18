@@ -7,8 +7,12 @@
 	icon_state = "shield0"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "electronic"
-	throwforce = 5.0
+	throwforce = 5
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL

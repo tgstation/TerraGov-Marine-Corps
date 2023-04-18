@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(ping)
 	var/list/currentrun = list()
 
 /datum/controller/subsystem/ping/stat_entry()
-	..("P:[GLOB.clients.len]")
+	..("P:[length(GLOB.clients)]")
 
 /datum/controller/subsystem/ping/fire(resumed = FALSE)
 	// Prepare the new batch of clients
@@ -23,8 +23,8 @@ SUBSYSTEM_DEF(ping)
 	// De-reference the list for sanic speeds
 	var/list/currentrun = src.currentrun
 
-	while (currentrun.len)
-		var/client/client = currentrun[currentrun.len]
+	while (length(currentrun))
+		var/client/client = currentrun[length(currentrun)]
 		currentrun.len--
 
 		if (client?.tgui_panel?.is_ready())

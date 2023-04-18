@@ -259,7 +259,7 @@
 	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
 	update_pixels(user, TRUE)
 
-	if(current_scope && current_scope.deployed_scope_rezoom)
+	if(current_scope?.deployed_scope_rezoom)
 		INVOKE_ASYNC(current_scope, TYPE_PROC_REF(/obj/item/attachable/scope, activate), operator)
 
 	return FALSE
@@ -295,7 +295,7 @@
 	update_pixels(user, FALSE)
 	user_old_x = 0
 	user_old_y = 0
-	density = TRUE
+	density = initial(density)
 	user.move_resist = user_old_move_resist
 
 ///makes sure you can see and or use the gun

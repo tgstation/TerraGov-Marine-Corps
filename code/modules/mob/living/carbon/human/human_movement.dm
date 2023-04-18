@@ -71,4 +71,7 @@
 
 /mob/living/carbon/human/Moved(atom/oldloc, direction)
 	Process_Cloaking_Router(src)
+	// Moving around increases germ_level faster
+	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
+		germ_level++
 	return ..()

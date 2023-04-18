@@ -51,11 +51,11 @@
 		/obj/item/tool/weldingtool,
 		/obj/item/tool/wirecutters,
 		/obj/item/tool/wrench,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/t_scanner,
-		/obj/item/analyzer,
+		/obj/item/tool/analyzer,
 		/obj/item/tool/taperoll/engineering,
 	)
 
@@ -68,7 +68,7 @@
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
-	new /obj/item/multitool(src)
+	new /obj/item/tool/multitool(src)
 
 
 /obj/item/storage/belt/utility/atmostech/Initialize()
@@ -87,7 +87,7 @@
 	item_state = "medicbag"
 	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
 	max_storage_space = 42
-	max_w_class = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
@@ -107,7 +107,7 @@
 	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/isotonic(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/alkysine(src)
 	new /obj/item/storage/pill_bottle/imidazoline(src)
@@ -244,7 +244,7 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	storage_slots = 16
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 42
 
 	can_hold = list(
@@ -308,7 +308,7 @@
 	item_state = "medicbag"
 	storage_slots = 21
 	max_storage_space = 42
-	max_w_class = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/beaker,
@@ -341,7 +341,7 @@
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
 	storage_slots = 7
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 21
 	can_hold = list(
 		/obj/item/explosive/grenade/flashbang,
@@ -375,7 +375,7 @@
 	icon_state = "swatbelt"
 	item_state = "swatbelt"
 	storage_slots = 9
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 21
 
 /obj/item/storage/belt/marine
@@ -385,12 +385,12 @@
 	item_state = "marinebelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 6
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 18
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/flashlight/flare,
+		/obj/item/explosive/grenade/flare/civilian,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/cell/lasgun,
@@ -399,6 +399,7 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
+		/obj/item/ammo_magazine/railgun,
 		/obj/item/explosive/grenade,
 		/obj/item/mine,
 		/obj/item/reagent_containers/food/snacks,
@@ -656,7 +657,7 @@
 	item_state = "shotgunbelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 14
-	max_w_class = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 28
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
@@ -819,12 +820,12 @@
 	update_icon()
 
 /obj/item/storage/belt/shotgun/martini/update_icon()
-	if(!contents.len)
+	if(!length(contents))
 		icon_state = initial(icon_state) + "_e"
 		return
 	icon_state = initial(icon_state)
 
-	var/holding = round((contents.len + 1) / 2)
+	var/holding = round((length(contents) + 1) / 2)
 	setDir(holding + round(holding/3))
 
 /obj/item/storage/belt/shotgun/martini/attackby(obj/item/I, mob/user, params)
@@ -842,13 +843,13 @@
 		for(var/mob/M in content_watchers)
 			close(M)
 
-	if(!draw_mode || !ishuman(user) && !contents.len)
+	if(!draw_mode || !ishuman(user) && !length(contents))
 		open(user)
 
 	if(!length(contents))
 		return
 
-	var/obj/item/I = contents[contents.len]
+	var/obj/item/I = contents[length(contents)]
 	if(!istype(I, /obj/item/ammo_magazine/handful))
 		return
 
@@ -869,7 +870,7 @@
 	item_state="knifebelt"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 6
-	max_w_class = 1
+	max_w_class = WEIGHT_CLASS_TINY
 	max_storage_space = 6
 	draw_mode = TRUE
 	can_hold = list(/obj/item/stack/throwing_knife)
@@ -890,7 +891,7 @@
 	item_state="grenadebelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 9
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 27
 	can_hold = list(/obj/item/explosive/grenade)
 
@@ -914,7 +915,7 @@
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 16
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 48
 	can_hold = list(/obj/item/explosive/grenade)
 
@@ -942,7 +943,7 @@
 	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
 
@@ -957,7 +958,7 @@
 
 /obj/item/storage/belt/gun
 	name = "pistol belt"
-	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
+	desc = "A belt-holster assembly that allows one to hold a pistol and six magazines."
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
 	use_sound = null
@@ -967,7 +968,7 @@
 	)
 	storage_slots = 7
 	max_storage_space = 15
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	///The gun it holds, used for referencing later so we can update the icon.
 	var/obj/item/weapon/gun/current_gun
 	var/image/gun_underlay
@@ -1186,7 +1187,7 @@
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
 	max_storage_space = 16
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
@@ -1294,7 +1295,7 @@
 	desc = "A purpose built belt-holster assembly that holds a SH-34 shotgun and one shell box or 2 handfuls."
 	icon_state = "ts34_holster"
 	item_state = "ts34_holster"
-	max_w_class = 4 //So it can hold the shotgun.
+	max_w_class = WEIGHT_CLASS_BULKY //So it can hold the shotgun.
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 3
 	max_storage_space = 8

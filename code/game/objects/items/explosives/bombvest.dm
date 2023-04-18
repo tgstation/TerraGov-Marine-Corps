@@ -11,11 +11,11 @@
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/equipped(mob/user, slot)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_SHIELD_DETATCH, PROC_REF(shield_dropped))
+	RegisterSignal(user, COMSIG_MOB_SHIELD_DETACH, PROC_REF(shield_dropped))
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/unequipped(mob/unequipper, slot)
 	. = ..()
-	UnregisterSignal(unequipper, COMSIG_MOB_SHIELD_DETATCH)
+	UnregisterSignal(unequipper, COMSIG_MOB_SHIELD_DETACH)
 
 ///Updates the last shield drop time when one is dropped
 /obj/item/clothing/suit/storage/marine/harness/boomvest/proc/shield_dropped()

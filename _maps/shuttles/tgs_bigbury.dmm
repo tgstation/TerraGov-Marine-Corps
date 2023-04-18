@@ -161,6 +161,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/item/reagent_containers/glass/beaker/cryomix,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "aO" = (
@@ -279,7 +280,7 @@
 	dir = 8
 	},
 /obj/machinery/door_control{
-	id = "starboard_umbilical_outer";
+	id = "port_umbilical_outer";
 	name = "outer door-control";
 	pixel_y = 32
 	},
@@ -702,7 +703,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "sR" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "te" = (

@@ -166,7 +166,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/flashbang/stun,
 	)
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE
@@ -183,6 +183,9 @@ The Grenade Launchers
 	icon_state = "grenade_mpi"
 	flags_attach_features = NONE
 	default_ammo_type = /obj/item/explosive/grenade/som
+
+/obj/item/weapon/gun/grenade_launcher/underslung/mpi/removeable
+	flags_attach_features = ATTACH_REMOVABLE
 
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"

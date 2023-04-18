@@ -17,7 +17,6 @@ GLOBAL_VAR(restart_counter)
 	if(fexists(extools))
 		LIBCALL(extools, "maptick_initialize")()
 #endif
-	enable_debugger()
 
 	log_world("World loaded at [time_stamp()]!")
 
@@ -282,7 +281,7 @@ GLOBAL_VAR(restart_counter)
 
 /world/proc/load_mode()
 	var/list/Lines = file2list("data/mode.txt")
-	if(Lines.len)
+	if(length(Lines))
 		if(Lines[1])
 			GLOB.master_mode = Lines[1]
 			log_config("Saved mode is '[GLOB.master_mode]'")

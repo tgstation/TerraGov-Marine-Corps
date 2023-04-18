@@ -5,6 +5,10 @@
 	name = "drink"
 	desc = "yummy"
 	icon = 'icons/obj/items/drinks.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/drinks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/drinks_right.dmi',
+	)
 	icon_state = null
 	init_reagent_flags = OPENCONTAINER_NOUNIT
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
@@ -125,17 +129,6 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
 	list_reagents = list(/datum/reagent/consumable/drink/milk = 50)
-
-/* Flour is no longer a reagent
-/obj/item/reagent_containers/food/drinks/flour
-	name = "flour sack"
-	desc = "A big bag of flour. Good for baking!"
-	icon = 'icons/obj/items/food.dmi'
-	icon_state = "flour"
-	item_state = "flour"
-	center_of_mass = list(x=-10, y=-10)
-	list_reagents = list(/datum/reagent/consumable/flour = 30)
-*/
 
 /obj/item/reagent_containers/food/drinks/soymilk
 	name = "soy milk"

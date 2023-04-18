@@ -212,7 +212,7 @@
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
-	X.visible_message(span_danger("\The skin on the [X] begins to glow!"), \
+	X.visible_message(span_danger("[X]'s skin begins to glow!"), \
 	span_xenowarning("We feel the plasma coursing through our veins!"))
 
 	X.endure = TRUE

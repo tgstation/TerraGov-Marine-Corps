@@ -5,7 +5,11 @@
 	desc = "The M-21 battle armor is typically used by SOM light infantry, or other specialists that require more mobility at the cost of some protection. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 55, ACID = 50)
 	icon = 'icons/mob/modular/som_armor.dmi'
-	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/som_armor.dmi')
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/modular/som_armor.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/suits_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/suits_right.dmi',
+	)
 	icon_state = "som_medium"
 	item_state = "som_medium"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
@@ -123,8 +127,9 @@
 	icon = 'icons/mob/modular/som_helmets.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/modular/som_helmets.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_l_hand_str = 'icons/mob/inhands/clothing/hats_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/hats_right.dmi',
+	)
 	icon_state = "som_helmet"
 	item_state = "som_helmet"
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 55, ACID = 50)
@@ -149,6 +154,7 @@
 	name = "\improper SOM engineering helmet"
 	desc = "A specialised helmet designed for use by combat engineers. Its main feature being an integrated welding mask."
 	icon_state = "som_helmet_engineer"
+	item_state = "som_helmet_engineer"
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/greyscale/badge,
@@ -160,6 +166,7 @@
 	name = "\improper SOM biohazard helmet"
 	desc = "This specialised helmet is worn by SOM personel equipped to deal with dangerous chemical, radiological or otherwise hazard substances. Typical unleashed by the SOM themselves."
 	icon_state = "som_helmet_bio"
+	item_state = "som_helmet_bio"
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 50, ACID = 70)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
@@ -175,6 +182,7 @@
 	name = "Lorica Helmet System"
 	desc = "An bulky helmet paired with the 'Lorica' armor module, designed for outstanding protection at the cost of significant weight and reduced flexibility. Substantial additional armor improves protection against all damage."
 	icon_state = "som_helmet_lorica"
+	item_state = "som_helmet_lorica"
 	soft_armor = list(MELEE = 60, BULLET = 85, LASER = 80, ENERGY = 80, BOMB = 65, BIO = 55, FIRE = 70, ACID = 60)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,

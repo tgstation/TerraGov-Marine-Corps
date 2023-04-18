@@ -279,8 +279,8 @@
 	. = ..()
 	if((isobserver(user) || ishuman(user)) && fallen_list)
 		var/faltext = ""
-		for(var/i = 1 to fallen_list.len)
-			if(i != fallen_list.len)
+		for(var/i = 1 to length(fallen_list))
+			if(i != length(fallen_list))
 				faltext += "[fallen_list[i]], "
 			else
 				faltext += fallen_list[i]
@@ -763,7 +763,7 @@
 	icon_state = "pump_map-2"
 
 /obj/structure/prop/mainship/pipeprop/pump/on
-	icon_state =  "pump_on"
+	icon_state = "pump_on"
 	layer = GAS_PUMP_LAYER
 
 /obj/structure/prop/mainship/halfbuilt_mech
@@ -1033,6 +1033,7 @@
 /obj/structure/prop/vehicle/truck/truckcargo/destructible
 	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/vehicle/crane
 	name = "crane"
 	desc = "An old crane, seems to be broken down."
@@ -1978,6 +1979,12 @@
 	name = "Port Quarter Solar Control"
 	desc = "A controller for solar panel arrays."
 	icon_state = "solar"
+
+/obj/structure/prop/mainship/errorprop
+	name = "ERROR"
+	desc = "If you see this object in game you should ahelp, something has broken."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "error"
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK

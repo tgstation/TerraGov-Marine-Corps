@@ -14,7 +14,7 @@
 	///reference to a glob list containing the recipe
 	var/list/recipe
 	///What result we become when we've run through all our machines
-	var/result = /obj/item/violin
+	var/result = /obj/item/instrument/violin
 
 /obj/item/factory_part/Initialize()
 	..()

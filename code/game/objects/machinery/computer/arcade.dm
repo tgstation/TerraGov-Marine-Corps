@@ -13,7 +13,7 @@
 	var/gameover = 0
 	var/blocked = 0 //Player cannot attack/heal while set
 	var/list/prizes = list(
-		/obj/item/spacecash/c10	= 4,
+		/obj/item/spacecash/c10 = 4,
 		/obj/item/tool/lighter/zippo = 2,
 		/obj/item/storage/box/tgmc_mre = 2,
 		/obj/item/camera = 2,
@@ -132,7 +132,7 @@
 			src.gameover = 1
 			src.temp = "[src.enemy_name] has fallen! Rejoice!"
 
-			if(!contents.len)
+			if(!length(contents))
 				var/prizeselect = pickweight(prizes)
 				new prizeselect(src.loc)
 

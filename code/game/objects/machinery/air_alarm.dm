@@ -112,12 +112,12 @@
 		name = "[alarm_area.name] Air Alarm"
 
 	// breathable air according to human/Life()
-	TLV["oxygen"] =			list(16, 19, 135, 140) // Partial pressure, kpa
+	TLV["oxygen"] = list(16, 19, 135, 140) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
-	TLV["phoron"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
-	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
-	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
-	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
+	TLV["phoron"] = list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
+	TLV["other"] = list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
+	TLV["pressure"] = list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
+	TLV["temperature"] = list(T0C-26, T0C, T0C+40, T0C+66) // K
 
 
 /obj/machinery/alarm/proc/handle_heating_cooling()
@@ -198,10 +198,10 @@
 /obj/machinery/alarm/proc/register_env_machine(m_id, device_type)
 	var/new_name
 	if (device_type=="AVP")
-		new_name = "[alarm_area.name] Vent Pump #[alarm_area.air_vent_names.len+1]"
+		new_name = "[alarm_area.name] Vent Pump #[length(alarm_area.air_vent_names) + 1]"
 		alarm_area.air_vent_names[m_id] = new_name
 	else if (device_type=="AScr")
-		new_name = "[alarm_area.name] Air Scrubber #[alarm_area.air_scrub_names.len+1]"
+		new_name = "[alarm_area.name] Air Scrubber #[length(alarm_area.air_scrub_names) + 1]"
 		alarm_area.air_scrub_names[m_id] = new_name
 	else
 		return
@@ -432,7 +432,7 @@ Pressure: <span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kP
 
 		if (AALARM_SCREEN_VENT)
 			var/sensor_data = ""
-			if(alarm_area.air_vent_names.len)
+			if(length(alarm_area.air_vent_names))
 				for(var/id_tag in alarm_area.air_vent_names)
 					var/long_name = alarm_area.air_vent_names[id_tag]
 					var/list/data = alarm_area.air_vent_info[id_tag]
@@ -474,7 +474,7 @@ siphoning
 			output = {"<a href='?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
 		if (AALARM_SCREEN_SCRUB)
 			var/sensor_data = ""
-			if(alarm_area.air_scrub_names.len)
+			if(length(alarm_area.air_scrub_names))
 				for(var/id_tag in alarm_area.air_scrub_names)
 					var/long_name = alarm_area.air_scrub_names[id_tag]
 					var/list/data = alarm_area.air_scrub_info[id_tag]
@@ -512,13 +512,13 @@ Nitrous Oxide
 
 		if (AALARM_SCREEN_MODE)
 			output += "<a href='?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br><b>Air machinery mode for the area:</b><ul>"
-			var/list/modes = list(AALARM_MODE_SCRUBBING   = "Filtering - Scrubs out contaminants",\
+			var/list/modes = list(AALARM_MODE_SCRUBBING = "Filtering - Scrubs out contaminants",\
 				AALARM_MODE_REPLACEMENT = span_notice("Replace Air - Siphons out air while replacing"),\
-				AALARM_MODE_PANIC       = "<font color='red'>Panic - Siphons air out of the room</font>",\
-				AALARM_MODE_CYCLE       = "<font color='red'>Cycle - Siphons air before replacing</font>",\
-				AALARM_MODE_FILL        = "<font color='green'>Fill - Shuts off scrubbers and opens vents</font>",\
-				AALARM_MODE_OFF         = span_notice("Off - Shuts off vents and scrubbers"),)
-			for (var/m=1,m<=modes.len,m++)
+				AALARM_MODE_PANIC = "<font color='red'>Panic - Siphons air out of the room</font>",\
+				AALARM_MODE_CYCLE = "<font color='red'>Cycle - Siphons air before replacing</font>",\
+				AALARM_MODE_FILL = "<font color='green'>Fill - Shuts off scrubbers and opens vents</font>",\
+				AALARM_MODE_OFF = span_notice("Off - Shuts off vents and scrubbers"),)
+			for (var/m=1,length(m<=modes),m++)
 				if (mode==m)
 					output += "<li><A href='?src=\ref[src];mode=[m]'><b>[modes[m]]</b></A> (selected)</li>"
 				else
@@ -543,10 +543,10 @@ table tr:first-child th:first-child { border: none;}
 <TR><th></th><th class=dl2>min2</th><th class=dl1>min1</th><th class=dl1>max1</th><th class=dl2>max2</th></TR>
 "}
 			var/list/gases = list(
-				"oxygen"         = "O<sub>2</sub>",
+				"oxygen" = "O<sub>2</sub>",
 				"carbon dioxide" = "CO<sub>2</sub>",
-				"phoron"         = "Toxin",
-				"other"          = "Other",)
+				"phoron" = "Toxin",
+				"other" = "Other",)
 
 			var/list/selected
 			for (var/g in gases)
@@ -623,7 +623,7 @@ table tr:first-child th:first-child { border: none;}
 				if (isnull(newval) || ..() || (locked && !issilicon(usr)))
 					return
 				if (newval<0)
-					selected[threshold] = -1.0
+					selected[threshold] = -1
 				else if (env=="temperature" && newval>5000)
 					selected[threshold] = 5000
 				else if (env=="pressure" && newval>50*ONE_ATMOSPHERE)
@@ -781,12 +781,12 @@ table tr:first-child th:first-child { border: none;}
 	if (name == "alarm")
 		name = "[alarm_area.name] Air Alarm"
 
-	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
+	TLV["oxygen"] = list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
-	TLV["phoron"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
-	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
-	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
-	TLV["temperature"] =	list(20, 40, 140, 160) // K
+	TLV["phoron"] = list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
+	TLV["other"] = list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
+	TLV["pressure"] = list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
+	TLV["temperature"] = list(20, 40, 140, 160) // K
 
 
 /obj/machinery/alarm/proc/reset(wire)

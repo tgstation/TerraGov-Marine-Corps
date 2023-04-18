@@ -3,18 +3,18 @@
 GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
 
 /datum/ammo
-	var/name 		= "generic bullet"
-	var/icon 		= 'icons/obj/items/projectiles.dmi'
-	var/icon_state 	= "bullet"
+	var/name = "generic bullet"
+	var/icon = 'icons/obj/items/projectiles.dmi'
+	var/icon_state = "bullet"
 	///used in icons/obj/items/ammo for use in generating handful sprites
 	var/handful_icon_state = "bullet"
 	///how much of this ammo you can carry in a handful
 	var/handful_amount = 8
 	///Bullet type on the Ammo HUD
-	var/hud_state   = "unknown"
+	var/hud_state = "unknown"
 	var/hud_state_empty = "unknown"
 	///The icon that is displayed when the bullet bounces off something.
-	var/ping 		= "ping_b"
+	var/ping = "ping_b"
 	///When it deals damage.
 	var/sound_hit
 	///When it's blocked by human armor.
@@ -64,7 +64,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///How many stacks of sundering to apply to a mob on hit
 	var/sundering = 0
 	///how much damage airbursts do to mobs around the target, multiplier of the bullet's damage
-	var/airburst_multiplier	= 0.1
+	var/airburst_multiplier = 0.1
 	///What kind of behavior the ammo has
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
@@ -129,6 +129,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				to_chat(target, span_highdanger("The blast knocks you off your feet!"))
 		step_away(victim, proj)
 
+///Handles CC application on the victim
 /datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, soft_size_threshold = 3, hard_size_threshold = 2)
 	if(!victim)
 		CRASH("staggerstun called without a mob target")
@@ -154,10 +155,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			stun = 0
 
 	//Check for and apply hard CC.
-	if(hard_size_threshold >= victim.mob_size)
+	if(hard_size_threshold >= victim.mob_size && (stun || weaken || knockback))
 		var/mob/living/living_victim = victim
-		if(!living_victim.IsStun() && !living_victim.IsParalyzed()) //Prevent chain stunning.
+		if(living_victim.IsStun() || living_victim.IsParalyzed()) //Prevent chain stunning.
+			stun = 0
+			weaken = 0
+
+		if(stun || weaken)
+			var/list/stunlist = list(stun, weaken, stagger, slowdown)
+			if(SEND_SIGNAL(living_victim, COMSIG_LIVING_PROJECTILE_STUN, stunlist, armor_type, penetration))
+				stun = stunlist[1]
+				weaken = stunlist[2]
+				stagger = stunlist[3]
+				slowdown = stunlist[4]
 			living_victim.apply_effects(stun,weaken)
+
 		if(knockback)
 			if(isxeno(victim))
 				impact_message += span_xenodanger("The blast knocks you off your feet!")
@@ -313,7 +325,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	sound_hit 	 = "ballistic_hit"
-	sound_armor  = "ballistic_armor"
+	sound_armor = "ballistic_armor"
 	sound_miss	 = "ballistic_miss"
 	sound_bounce = "ballistic_bounce"
 	point_blank_range = 2
@@ -602,13 +614,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 30
 	sundering = 3
 
+/datum/ammo/bullet/smg/ap/hv
+	name = "high velocity armor-piercing submachinegun bullet"
+	shell_speed = 4
+
+/datum/ammo/bullet/smg/hollow
+	name = "hollow-point submachinegun bullet"
+	hud_state = "pistol_squash"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	damage = 35
+	penetration = 0
+	damage_falloff = 3
+	shrapnel_chance = 45
+
 /datum/ammo/bullet/smg/incendiary
 	name = "incendiary submachinegun bullet"
 	hud_state = "smg_fire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 18
 	penetration = 0
-
 
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
@@ -757,6 +781,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 15
 	damage = 32.5
 	sundering = 1.25
+
+/datum/ammo/bullet/rifle/icc_confrontationrifle
+	name = "armor-piercing heavy rifle bullet"
+	hud_state = "rifle_ap"
+	damage = 50
+	penetration = 40
+	sundering = 3.5
 
 /datum/ammo/bullet/rifle/mech
 	name = "super-heavy rifle bullet"
@@ -1077,7 +1108,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 90
 	penetration = 0
 	sundering = 25
-	airburst_multiplier	= 0.2
+	airburst_multiplier = 0.2
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
@@ -1209,9 +1240,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
 	name = "machinegun bullet"
-	icon_state 	= "bullet" // Keeping it bog standard with the turret but allows it to be changed.
+	icon_state = "bullet" // Keeping it bog standard with the turret but allows it to be changed.
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	hud_state   = "minigun"
+	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	accurate_range = 12
 	damage = 40 //Reduced damage due to vastly increased mobility
@@ -1270,7 +1301,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 12
 	max_range = 30
-	airburst_multiplier	= 1
+	airburst_multiplier = 1
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
@@ -1278,7 +1309,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
 	hud_state = "railgun_ap"
-	icon_state 	= "blue_bullet"
+	icon_state = "blue_bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 14
@@ -1317,7 +1348,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/apfsds
 	name = "\improper APFSDS round"
 	hud_state = "alloy_spike"
-	icon_state 	= "blue_bullet"
+	icon_state = "blue_bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 14
@@ -1335,7 +1366,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "20mm_airburst"
 	handful_amount = 3
 	ping = null //no bounce off.
-	sound_bounce	= "rocket_bounce"
+	sound_bounce = "rocket_bounce"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	armor_type = "bomb"
 	damage_falloff = 0.5
@@ -1561,7 +1592,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_LEAVE_TURF
 	sound_hit 	 = "ballistic_hit"
-	sound_armor  = "ballistic_armor"
+	sound_armor = "ballistic_armor"
 	sound_miss	 = "ballistic_miss"
 	sound_bounce = "ballistic_bounce"
 	shell_speed = 2
@@ -1608,7 +1639,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "bullet" //PLACEHOLDER
 	flags_ammo_behavior = AMMO_BALLISTIC
 	sound_hit 	 = "ballistic_hit"
-	sound_armor  = "ballistic_armor"
+	sound_armor = "ballistic_armor"
 	sound_miss	 = "ballistic_miss"
 	sound_bounce = "ballistic_bounce"
 	shell_speed = 2
@@ -1648,7 +1679,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "40mm_grenade"
 	handful_amount = 1
 	ping = null //no bounce off.
-	sound_bounce	= "rocket_bounce"
+	sound_bounce = "rocket_bounce"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_IFF
 	armor_type = "bomb"
 	damage_falloff = 0.5
@@ -1721,7 +1752,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/coilgun
 	name = "high-velocity tungsten slug"
 	hud_state = "railgun_ap"
-	icon_state 	= "blue_bullet"
+	icon_state = "blue_bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 5
 	max_range = 31
@@ -1767,7 +1798,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rocket_he"
 	hud_state_empty = "rocket_empty"
 	ping = null //no bounce off.
-	sound_bounce	= "rocket_bounce"
+	sound_bounce = "rocket_bounce"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	armor_type = "bomb"
 	damage_falloff = 0
@@ -1788,7 +1819,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(M))
 
 /datum/ammo/rocket/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O))
+	drop_nade(O.density ? P.loc : O.loc)
 
 /datum/ammo/rocket/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
@@ -2368,7 +2399,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy
 	ping = "ping_s"
 	sound_hit 	 = "energy_hit"
-	sound_armor  = "ballistic_armor"
+	sound_armor = "ballistic_armor"
 	sound_miss	 = "ballistic_miss"
 	sound_bounce = "ballistic_bounce"
 
@@ -2927,7 +2958,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	//inherited, could use some changes
 	ping = "ping_s"
 	sound_hit 	 = "energy_hit"
-	sound_armor  = "ballistic_armor"
+	sound_armor = "ballistic_armor"
 	sound_miss	 = "ballistic_miss"
 	sound_bounce = "ballistic_bounce"
 
@@ -3009,24 +3040,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/toxin/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
-/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
-	drop_neuro_smoke(get_turf(C))
+/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/carbon_victim, obj/projectile/proj)
+	drop_neuro_smoke(get_turf(carbon_victim))
 
-	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
+	if(!istype(carbon_victim) || carbon_victim.stat == DEAD || carbon_victim.issamexenohive(proj.firer) )
 		return
 
-	if(isnestedhost(C))
+	if(isnestedhost(carbon_victim))
 		return
 
-	C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
-	C.add_slowdown(slowdown_stacks) //slow em down
+	carbon_victim.adjust_stagger(stagger_stacks)
+	carbon_victim.add_slowdown(slowdown_stacks)
 
 	set_reagents()
-	var/armor_block = (1 - C.get_soft_armor(armor_type, BODY_ZONE_CHEST) * 0.01) //Check the target's armor mod; default to chest
-	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] *= armor_block
+	for(var/reagent_id in spit_reagents)
+		spit_reagents[reagent_id] = carbon_victim.modify_by_armor(spit_reagents[reagent_id], armor_type, penetration, proj.def_zone)
 
-	C.reagents.add_reagent_list(spit_reagents) //transfer reagents
+	carbon_victim.reagents.add_reagent_list(spit_reagents)
 
 	return ..()
 
@@ -3141,7 +3171,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "acid spit"
 	icon_state = "xeno_acid"
 	sound_hit 	 = "acid_hit"
-	sound_bounce	= "acid_bounce"
+	sound_bounce = "acid_bounce"
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 50
@@ -3297,7 +3327,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
-
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	var/turf/target_turf = get_turf(victim)
 	drop_nade(target_turf.density ? get_turf(proj) : target_turf, proj.firer)
@@ -3314,11 +3343,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	var/mob/living/carbon/carbon_victim = victim
 	set_reagents()
-	var/armor_block = (1 - carbon_victim.get_soft_armor(armor_type, BODY_ZONE_CHEST) * 0.01) //Check the target's armor mod; default to chest
-	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] *= armor_block
+	for(var/reagent_id in spit_reagents)
+		spit_reagents[reagent_id] = carbon_victim.modify_by_armor(spit_reagents[reagent_id], armor_type, penetration, proj.def_zone)
 
-	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
+	carbon_victim.reagents.add_reagent_list(spit_reagents)
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
@@ -3353,7 +3381,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "glob of acid"
 	icon_state = "boiler_gas"
 	sound_hit 	 = "acid_hit"
-	sound_bounce	= "acid_bounce"
+	sound_bounce = "acid_bounce"
 	icon_key = BOILER_GLOB_ACID
 	select_text = "We will now fire corrosive acid. This is lethal!"
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
@@ -3432,21 +3460,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "facehugger"
 	///The type of hugger thrown
 	var/obj/item/clothing/mask/facehugger/hugger_type = /obj/item/clothing/mask/facehugger
+	///The hive of the huggers throw
+	var/hugger_hivenumber = XENO_HIVE_NORMAL
 
 /datum/ammo/xeno/hugger/on_hit_mob(mob/M, obj/projectile/proj)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(M))
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(M), hugger_hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/on_hit_obj(obj/O, obj/projectile/proj)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(O))
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(O), hugger_hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/on_hit_turf(turf/T, obj/projectile/P)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T, hugger_hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/do_at_max_range(turf/T, obj/projectile/P)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T, hugger_hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/slash
@@ -3570,9 +3600,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "alloy spike"
 	ping = "ping_s"
 	icon_state = "MSpearFlight"
-	sound_hit 	 	= "alloy_hit"
-	sound_armor	 	= "alloy_armor"
-	sound_bounce	= "alloy_bounce"
+	sound_hit 	 = "alloy_hit"
+	sound_armor	 = "alloy_armor"
+	sound_bounce = "alloy_bounce"
 	armor_type = BULLET
 	accuracy = 20
 	accurate_range = 15

@@ -5,8 +5,8 @@
 	icon_state = "rods"
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 9.0
-	throwforce = 15.0
+	force = 9
+	throwforce = 15
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 60
@@ -15,14 +15,15 @@
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/stack/barbed_wire)) //making razorwire obstacles
+
+	if(istype(W, /obj/item/stack/barbed_wire)) // making razorwire obstacles
 		var/obj/item/stack/barbed_wire/B = W
-		if(amount < 4)
-			to_chat(user, span_warning("You need [4 - amount] more [src] to make a razor wire obstacle!"))
+		if(amount < 8)
+			to_chat(user, span_warning("You need at least [8 - amount] more [src] to make razorwire obstacles!"))
 			return
-		use(4)
+		use(8)
 		B.use(1)
-		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
+		var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 2)
 		to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 	if (iswelder(W))

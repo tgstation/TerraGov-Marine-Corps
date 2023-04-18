@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	var/turf/buildloc = get_step(buyer, building_loc)
 
 	var/atom/built = new building_type(buildloc, buyer.hivenumber)
-	to_chat(buyer, span_notice("We build \a [built] for [psypoint_cost] psy points."))
+	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
 	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
 	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
 	return ..()
@@ -192,10 +192,11 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 
-	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
-		if(get_dist(silo, buyer) < 15)
-			to_chat(buyer, span_xenowarning("Another silo is too close!"))
-			return FALSE
+	for(var/hive in GLOB.xeno_resin_silos_by_hive)
+		for(var/silo in hive)
+			if(get_dist(silo, buyer) < 15)
+				to_chat(buyer, span_xenowarning("Another silo is too close!"))
+				return FALSE
 
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
@@ -267,7 +268,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!T.check_alien_construction(buyer, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
 		return FALSE
 
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
 		if(get_dist(turret, buyer) < 6)
 			if(!silent)
 				to_chat(buyer, span_xenowarning("Another turret is too close!"))

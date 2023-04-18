@@ -21,7 +21,7 @@
 	flags_item = IMPEDE_JETPACK
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/tool/extinguisher)
-	slowdown = 1.0
+	slowdown = 1
 	flags_inventory = NOPRESSUREDMAGE
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS

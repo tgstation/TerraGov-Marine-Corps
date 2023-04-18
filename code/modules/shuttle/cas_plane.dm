@@ -196,15 +196,20 @@
 	var/fuel_max = 40
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/weapon/active_weapon
+	///Minimap for the pilot to know where the marines have ran off to
+	var/datum/action/minimap/marine/external/cas_mini
 
 /obj/docking_port/mobile/marine_dropship/casplane/Initialize()
 	. = ..()
 	off_action = new
+	cas_mini = new
 	RegisterSignal(src, COMSIG_SHUTTLE_SETMODE, PROC_REF(update_state))
 
 /obj/docking_port/mobile/marine_dropship/casplane/Destroy(force)
 	STOP_PROCESSING(SSslowprocess, src)
 	end_cas_mission(chair?.occupant)
+	QDEL_NULL(off_action)
+	QDEL_NULL(cas_mini)
 	return ..()
 
 /obj/docking_port/mobile/marine_dropship/casplane/process()
@@ -290,6 +295,8 @@
 	if(!eyeobj)
 		eyeobj = new()
 		eyeobj.origin = src
+		cas_mini.override_locator(eyeobj)
+
 	if(eyeobj.eye_user)
 		to_chat(user, span_warning("CAS mode is already in-use!"))
 		return
@@ -297,21 +304,32 @@
 	if(SSmonitor.human_on_ground <= 5)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
-	var/input
+	var/starting_point
 	if(length(GLOB.active_cas_targets))
-		input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
-	else
-		input = GLOB.minidropship_start_loc
-	if(!input)
+		starting_point = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
+
+	else //if we don't have any targets use the minimap to select a starting position
+		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+		user.client.screen += map
+		var/list/polled_coords = map.get_coords_from_click(user)
+		user.client.screen -= map
+		starting_point = locate(polled_coords[1], polled_coords[2], 2)
+
+	if(GLOB.minidropship_start_loc && !starting_point) //and if this somehow fails (it shouldn't) we just go to the default point
+		starting_point = GLOB.minidropship_start_loc
+
+	if(!starting_point)
 		return
 	to_chat(user, span_warning("Targets detected, routing to area of operations."))
 	give_eye_control(user)
-	eyeobj.setLoc(get_turf(input))
+	eyeobj.setLoc(get_turf(starting_point))
 
 ///Gives user control of the eye and allows them to start shooting
 /obj/docking_port/mobile/marine_dropship/casplane/proc/give_eye_control(mob/user)
 	off_action.target = user
 	off_action.give_action(user)
+	cas_mini.target = user
+	cas_mini.give_action(user)
 	eyeobj.eye_user = user
 	eyeobj.name = "CAS Camera Eye ([user.name])"
 	user.remote_control = eyeobj
@@ -329,6 +347,7 @@
 	UnregisterSignal(user, COMSIG_MOB_CLICKON)
 	user.client.mouse_pointer_icon = initial(user.client.mouse_pointer_icon)
 	off_action.remove_action(user)
+	cas_mini.remove_action(user)
 	for(var/V in eyeobj.visibleCameraChunks)
 		var/datum/camerachunk/C = V
 		C.remove(eyeobj)
@@ -398,13 +417,13 @@
 	.["active_weapon_name"] = null
 	.["active_weapon_ammo"] = null
 	.["active_weapon_max_ammo"] = null
-	.["active_weapon_ammo_name"] =  null
+	.["active_weapon_ammo_name"] = null
 	if(active_weapon)
 		.["active_weapon_name"] = sanitize(copytext(active_weapon?.name,1,MAX_MESSAGE_LEN))
 		if(active_weapon.ammo_equipped)
 			.["active_weapon_ammo"] = active_weapon.ammo_equipped.ammo_count
 			.["active_weapon_max_ammo"] = active_weapon.ammo_equipped.max_ammo_count
-			.["active_weapon_ammo_name"] =  active_weapon.ammo_equipped.name
+			.["active_weapon_ammo_name"] = active_weapon.ammo_equipped.name
 
 /obj/docking_port/mobile/marine_dropship/casplane/getStatusText()
 	switch(mode)

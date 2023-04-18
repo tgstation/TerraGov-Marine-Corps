@@ -222,7 +222,7 @@ SUBSYSTEM_DEF(minimaps)
 		minimaps_by_z["[zlevel]"].images_raw["[flag]"] += blip
 	if(ismovableatom(target))
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
-		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
 	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target)
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_marker))
 
@@ -234,6 +234,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/removeimage(image/blip, atom/target)
 	for(var/flag in GLOB.all_minimap_flags)
 		minimaps_by_z["[target.z]"].images_raw["[flag]"] -= blip
+	blip.UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 	removal_cbs -= target
 
 /**
@@ -252,12 +253,12 @@ SUBSYSTEM_DEF(minimaps)
 /**
  * Simple proc, updates overlay position on the map when a atom moves
  */
-/datum/controller/subsystem/minimaps/proc/on_move(atom/movable/source, oldloc)
+/image/proc/minimap_on_move(atom/movable/source, oldloc)
 	SIGNAL_HANDLER
 	if(!source.z)
 		return //this can happen legitimately when you go into pipes, it shouldnt but thats how it is
-	images_by_source[source].pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + minimaps_by_z["[source.z]"].x_offset
-	images_by_source[source].pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + minimaps_by_z["[source.z]"].y_offset
+	pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + SSminimaps.minimaps_by_z["[source.z]"].x_offset
+	pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + SSminimaps.minimaps_by_z["[source.z]"].y_offset
 
 /**
  * Removes an atom and it's blip from the subsystem
@@ -266,7 +267,7 @@ SUBSYSTEM_DEF(minimaps)
 	SIGNAL_HANDLER
 	if(!removal_cbs[source]) //already removed
 		return
-	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_Z_CHANGED))
+	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
 	for(var/flag in GLOB.all_minimap_flags)
 		minimaps_by_z["[source.z]"].images_assoc["[flag]"] -= source
 	images_by_source -= source
@@ -373,6 +374,9 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap
 	name = "Toggle Minimap"
 	action_icon_state = "minimap"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_TOGGLE_MINIMAP,
+	)
 	///Flags to allow the owner to see others of this type
 	var/minimap_flags = MINIMAP_FLAG_ALL
 	///marker flags this will give the target, mostly used for marine minimaps
@@ -381,9 +385,11 @@ SUBSYSTEM_DEF(minimaps)
 	var/minimap_displayed = FALSE
 	///Minimap object we'll be displaying
 	var/atom/movable/screen/minimap/map
+	///Overrides what the locator tracks aswell what z the map displays as opposed to always tracking the minimap's owner. Default behavior when null.
+	var/atom/movable/locator_override
 	///Minimap "You are here" indicator for when it's up
 	var/atom/movable/screen/minimap_locator/locator
-	///This is mostly for the AI & other things which do not move groundside.
+	///Sets a fixed z level to be tracked by this minimap action instead of being influenced by the owner's / locator override's z level.
 	var/default_overwatch_level = 0
 
 /datum/action/minimap/New(Target)
@@ -392,6 +398,7 @@ SUBSYSTEM_DEF(minimaps)
 
 /datum/action/minimap/Destroy()
 	map = null
+	locator_override = null
 	QDEL_NULL(locator)
 	return ..()
 
@@ -399,51 +406,123 @@ SUBSYSTEM_DEF(minimaps)
 	. = ..()
 	if(!map)
 		return
+	var/atom/movable/tracking = locator_override ? locator_override : owner
 	if(minimap_displayed)
 		owner.client.screen -= map
 		owner.client.screen -= locator
-		locator.UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	else
+		if(locate(/atom/movable/screen/minimap) in owner.client.screen) //This seems like the most effective way to do this without some wacky code
+			to_chat(owner, span_warning("You already have a minimap open!"))
+			return
 		owner.client.screen += map
 		owner.client.screen += locator
-		locator.update(owner)
-		locator.RegisterSignal(owner, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
+		locator.update(tracking)
+		locator.RegisterSignal(tracking, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
 	minimap_displayed = !minimap_displayed
+
+///Overrides the minimap locator to a given atom
+/datum/action/minimap/proc/override_locator(atom/movable/to_track)
+	var/atom/movable/tracking = locator_override ? locator_override : owner
+	var/atom/movable/new_track = to_track ? to_track : owner
+	if(locator_override)
+		UnregisterSignal(locator_override, COMSIG_PARENT_QDELETING)
+	if(owner)
+		UnregisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED)
+	if(!minimap_displayed)
+		locator_override = to_track
+		if(to_track)
+			RegisterSignal(to_track, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
+		if(owner)
+			RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
+			if(tracking.z != new_track.z)
+				on_owner_z_change(new_track, tracking.z, new_track.z)
+		return
+	locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+	locator_override = to_track
+	if(to_track)
+		RegisterSignal(to_track, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
+	RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
+	if(tracking.z != new_track.z)
+		on_owner_z_change(new_track, tracking.z, new_track.z)
+	locator.RegisterSignal(new_track, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
+	locator.update(new_track)
+
+///CLears the locator override in case the override target is deleted
+/datum/action/minimap/proc/clear_locator_override()
+	SIGNAL_HANDLER
+	UnregisterSignal(locator_override, COMSIG_PARENT_QDELETING)
+	if(owner)
+		UnregisterSignal(locator_override, COMSIG_MOVABLE_Z_CHANGED)
+		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED)
+		if(locator_override.z != owner.z)
+			on_owner_z_change(owner, locator_override.z, owner.z)
+	if(minimap_displayed)
+		locator.UnregisterSignal(locator_override, COMSIG_MOVABLE_MOVED)
+		locator.RegisterSignal(owner, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
+		locator.update(owner)
+	locator_override = null
 
 /datum/action/minimap/give_action(mob/M)
 	. = ..()
-
+	var/atom/movable/tracking = locator_override ? locator_override : M
+	RegisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 	if(default_overwatch_level)
+		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
+			return
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
-	else
-		RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
-	RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, PROC_REF(action_activate))
-	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
 		return
-	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
+	if(!SSminimaps.minimaps_by_z["[tracking.z]"] || !SSminimaps.minimaps_by_z["[tracking.z]"].hud_image)
+		return
+	map = SSminimaps.fetch_minimap_object(tracking.z, minimap_flags)
 
 /datum/action/minimap/remove_action(mob/M)
-	. = ..()
+	var/atom/movable/tracking = locator_override ? locator_override : M
 	if(minimap_displayed)
-		owner.client.screen -= map
+		owner.client?.screen -= map
+		owner.client?.screen -= locator
+		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 		minimap_displayed = FALSE
-	UnregisterSignal(M, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_KB_TOGGLE_MINIMAP))
+	UnregisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED)
+	return ..()
 
 /**
  * Updates the map when the owner changes zlevel
  */
 /datum/action/minimap/proc/on_owner_z_change(atom/movable/source, oldz, newz)
 	SIGNAL_HANDLER
+	var/atom/movable/tracking = locator_override ? locator_override : owner
 	if(minimap_displayed)
-		owner.client.screen -= map
-		minimap_displayed = FALSE
+		owner.client?.screen -= map
 	map = null
-	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
-		return
 	if(default_overwatch_level)
+		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
+			if(minimap_displayed)
+				owner.client?.screen -= locator
+				locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+				minimap_displayed = FALSE
+			return
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
+		if(minimap_displayed)
+			if(owner.client)
+				owner.client.screen += map
+			else
+				minimap_displayed = FALSE
+		return
+	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
+		if(minimap_displayed)
+			owner.client?.screen -= locator
+			locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+			minimap_displayed = FALSE
 		return
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
+	if(minimap_displayed)
+		if(owner.client)
+			owner.client.screen += map
+		else
+			minimap_displayed = FALSE
+
+
 
 /datum/action/minimap/xeno
 	minimap_flags = MINIMAP_FLAG_XENO
@@ -456,10 +535,14 @@ SUBSYSTEM_DEF(minimaps)
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
 
-/datum/action/minimap/ai
+/datum/action/minimap/marine/external //Avoids keybind conflicts between inherent mob minimap and bonus minimap from consoles, CAS or similar.
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP,
+	)
+
+/datum/action/minimap/ai	//I'll keep this as seperate type despite being identical so it's easier if people want to make different aspects different.
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
-	default_overwatch_level = 2
 
 /datum/action/minimap/marine/rebel
 	minimap_flags = MINIMAP_FLAG_MARINE_REBEL

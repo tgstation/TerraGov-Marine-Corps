@@ -372,8 +372,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
-	job_points_needed = 40
-	job_points = 15
+	job_points_needed = 80
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
@@ -688,7 +687,7 @@ A happy ship is a well-functioning ship."})
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m44/full
 	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/rank/ro_suit
+	w_uniform = /obj/item/clothing/under/marine/officer/ro_suit
 	wear_suit = /obj/item/clothing/suit/storage/marine/officer/req
 	suit_store = /obj/item/weapon/gun/energy/taser
 	shoes = /obj/item/clothing/shoes/marine/full
@@ -1094,12 +1093,12 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	return preference_source.prefs.synthetic_name
 
 /datum/job/terragov/silicon/synthetic/return_spawn_type(datum/preferences/prefs)
-	if(prefs && prefs.synthetic_type == "Early Synthetic")
+	if(prefs?.synthetic_type == "Early Synthetic")
 		return /mob/living/carbon/human/species/early_synthetic
 	return /mob/living/carbon/human/species/synthetic
 
 /datum/job/terragov/silicon/synthetic/return_skills_type(datum/preferences/prefs)
-	if(prefs && prefs.synthetic_type == "Early Synthetic")
+	if(prefs?.synthetic_type == "Early Synthetic")
 		return /datum/skills/early_synthetic
 	return ..()
 
@@ -1199,7 +1198,7 @@ If you require any help, use <b>mentorhelp</b> to ask mentors about what you're 
 
 /datum/job/terragov/silicon/ai/announce(mob/living/announced_mob)
 	. = ..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(minor_announce), "[announced_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(announced_mob)]."))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "[announced_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(announced_mob)]."))
 
 
 /datum/job/terragov/silicon/ai/config_check()

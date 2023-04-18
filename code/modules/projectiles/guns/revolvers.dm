@@ -62,7 +62,7 @@
 	desc = "The R-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	icon_state = "tp44"
 	item_state = "tp44"
-	caliber =  CALIBER_44 //codex
+	caliber = CALIBER_44 //codex
 	max_chamber_items = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
@@ -278,7 +278,7 @@
 	icon_state = "t76"
 	item_state = "t76"
 	fire_animation = "t76_fire"
-	caliber =  CALIBER_12x7 //codex
+	caliber = CALIBER_12x7 //codex
 	max_chamber_items = 5 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_magnum
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_magnum)

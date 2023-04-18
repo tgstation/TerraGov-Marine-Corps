@@ -360,7 +360,7 @@
 						to_chat(src, span_warning("[L] is restraining [P], you cannot push past."))
 					return
 
-		if(!L.buckled && !L.anchored && !moving_diagonally)
+		if(!L.buckled && !L.anchored)
 			var/mob_swap_mode = NO_SWAP
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == INTENT_GRAB)

@@ -54,11 +54,11 @@
 
 /obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(mover && mover.throwing)
+	if(mover?.throwing)
 		return TRUE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
+	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
 	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) & dir))

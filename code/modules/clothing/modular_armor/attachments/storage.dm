@@ -31,7 +31,7 @@
 	. = ..()
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(open_storage))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(access_storage))
 	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(insert_item))
 	storage.master_item = parent
@@ -39,11 +39,19 @@
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	time_to_equip = initial(time_to_equip)
 	time_to_unequip = initial(time_to_unequip)
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_PARENT_ATTACKBY))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_PARENT_ATTACKBY))
 	storage.master_item = src
 	return ..()
 
-///Opens the internal storage when the parent is clicked on.
+///Triggers attack hand interaction for storage when the parent is clicked on.
+/obj/item/armor_module/storage/proc/access_storage(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	if(parent.loc != user)
+		return
+	INVOKE_ASYNC(storage, TYPE_PROC_REF(/obj/item/storage/internal, handle_attack_hand), user)
+	return COMPONENT_NO_ATTACK_HAND
+
+///Opens the internal storage when the parent is alt right clicked on.
 /obj/item/armor_module/storage/proc/open_storage(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.loc != user)
@@ -88,7 +96,7 @@
 	name = "General Purpose Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like binoculars, maps, and motion detectors."
 	icon_state = "mod_general_bag"
-	storage =  /obj/item/storage/internal/modular/general
+	storage = /obj/item/storage/internal/modular/general
 
 /obj/item/storage/internal/modular/general
 	max_storage_space = 6
@@ -121,7 +129,7 @@
 	name = "Magazine Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Holds some magazines. Don’t expect to fit specialist munitions or LMG drums in, but you can get some good mileage. Looks like it might slow you down a bit."
 	icon_state = "mod_mag_bag"
-	storage =  /obj/item/storage/internal/modular/ammo_mag
+	storage = /obj/item/storage/internal/modular/ammo_mag
 	slowdown = 0.1
 
 /obj/item/armor_module/storage/ammo_mag/freelancer/Initialize()
@@ -153,7 +161,7 @@
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/flashlight/flare,
+		/obj/item/explosive/grenade/flare/civilian,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/cell/lasgun,
@@ -171,7 +179,7 @@
 	name = "Engineering Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold about as much as a tool pouch, and sometimes small spools of things like barbed wire, or an entrenching tool."
 	icon_state = "mod_engineer_bag"
-	storage =  /obj/item/storage/internal/modular/engineering
+	storage = /obj/item/storage/internal/modular/engineering
 
 /obj/item/storage/internal/modular/engineering
 	max_storage_space = 15
@@ -192,7 +200,7 @@
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/handheld_charger,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/binoculars/tactical/range,
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
@@ -219,7 +227,7 @@
 	name = "Medical Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
-	storage =  /obj/item/storage/internal/modular/medical
+	storage = /obj/item/storage/internal/modular/medical
 
 /obj/item/armor_module/storage/medical/irremovable
 	desc = "Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
@@ -263,7 +271,7 @@
 	name = "Injector Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of injectors."
 	icon_state = "mod_injector_bag"
-	storage =  /obj/item/storage/internal/modular/injector
+	storage = /obj/item/storage/internal/modular/injector
 
 /obj/item/storage/internal/modular/injector
 	max_storage_space = 10
@@ -278,7 +286,7 @@
 	name = "IS Pattern Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Impedes movement somewhat, but holds about as much as a satchel could."
 	icon_state = "mod_is_bag"
-	storage =  /obj/item/storage/internal/modular/integrated
+	storage = /obj/item/storage/internal/modular/integrated
 	slowdown = 0.2
 
 /obj/item/storage/internal/modular/integrated
@@ -291,7 +299,7 @@
 	name = "Grenade Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a respectable amount of grenades."
 	icon_state = "mod_grenade_harness"
-	storage =  /obj/item/storage/internal/modular/grenade
+	storage = /obj/item/storage/internal/modular/grenade
 
 /obj/item/storage/internal/modular/grenade
 	max_storage_space = 12
@@ -302,11 +310,46 @@
 		/obj/item/reagent_containers/food/drinks/cans,
 	)
 
+/obj/item/armor_module/storage/boot
+	name = "boot storage module"
+	desc = "A small set of straps to hold something in your boot."
+	icon_state = ""
+	storage = /obj/item/storage/internal/shoes/boot_knife
+	flags_attach_features = ATTACH_APPLY_ON_MOB
+
+/obj/item/storage/internal/shoes/boot_knife
+	max_storage_space = 3
+	storage_slots = 1
+	draw_mode = TRUE
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/gun/pistol/standard_pocketpistol,
+		/obj/item/weapon/gun/shotgun/double/derringer,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/stack/throwing_knife,
+		/obj/item/storage/box/MRE,
+	)
+
+/obj/item/armor_module/storage/boot/full/Initialize()
+	. = ..()
+	new /obj/item/weapon/combat_knife(storage)
+
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."
-	icon_state = "invisible" //It is invisible
-	storage =  /obj/item/storage/internal/marinehelmet
-	slowdown = 0
+	icon_state = ""
+	storage = /obj/item/storage/internal/marinehelmet
 	show_storage = TRUE
 	flags_attach_features = NONE
+
+/obj/item/storage/internal/marinehelmet
+	max_storage_space = 2
+	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_TINY
+	bypass_w_limit = list(
+		/obj/item/clothing/glasses,
+		/obj/item/reagent_containers/food/snacks,
+	)
+	cant_hold = list(
+		/obj/item/stack,
+	)

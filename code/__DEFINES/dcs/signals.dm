@@ -388,7 +388,7 @@
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_KEYBINDINGS_UPDATED "mob_bindings_changed"   //from base of datum/preferences/ui_act(): (/datum/keybinding)
 
-#define COMSIG_MOB_SHIELD_DETATCH "mob_shield_detatched"
+#define COMSIG_MOB_SHIELD_DETACH "mob_shield_detached"
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"				//from base of /obj/item/attack(): (mob/target, /obj/item/attacking_item)
 #define COMSIG_MOB_ITEM_ATTACK_ALTERNATE "mob_item_attack_alt"	//from base of /obj/item/attack_alternate(): (mob/target, /obj/item/attacking_item)
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)						//return this if you dont want attacka and altattacks to run
@@ -434,6 +434,7 @@
 #define COMSIG_LIVING_SET_CANMOVE "living_set_canmove"			//from base of /mob/living/set_canmove(): (canmove)
 #define COMSIG_LIVING_MELEE_ALIEN_DISARMED "living_melee_alien_disarmed"	//from /mob/living/proc/attack_alien_disarm(): (mob/living/carbon/xenomorph/X)
 #define COMSIG_LIVING_SHIELDCALL "living_shieldcall"
+#define COMSIG_LIVING_PROJECTILE_STUN "living_stun_mitigation" //from /datum/ammo/proc/staggerstun
 ///from /mob/living/proc/set_lying_angle
 #define COMSIG_LIVING_SET_LYING_ANGLE "living_set_lying_angle"
 
@@ -626,6 +627,7 @@
 #define COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP "keybinding_hold_run_move_intent_up"
 #define COMSIG_KB_EMOTE "keybinding_emote"
 #define COMSIG_KB_TOGGLE_MINIMAP "toggle_minimap"
+#define COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP "toggle_external_minimap"
 #define COMSIG_KB_SELFHARM "keybind_selfharm"
 
 // mecha keybinds
@@ -796,6 +798,7 @@
 #define COMSIG_XENOABILITY_SPIDERLING_MARK "xenoability_spiderling_mark"
 
 #define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
+#define COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD "xenoability_trigger_psychic_shield"
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
 #define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
 
@@ -812,7 +815,6 @@
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
-#define COMSIG_KB_QUICKEQUIPALT "keybinding_quickequipalt"
 #define COMSIG_KB_GUN_SAFETY "keybinding_gun_safety"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 #define COMSIG_KB_RAILATTACHMENT "keybinding_railattachment"
@@ -820,6 +822,7 @@
 #define COMSIG_KB_UNLOADGUN "keybinding_unloadgun"
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 #define COMSIG_KB_FIREMODE "keybind_firemode"
+#define COMSIG_KB_AUTOEJECT "keybind_autoeject"
 #define COMSIG_KB_GIVE "keybind_give"
 #define COMSIG_KB_HELMETMODULE "keybinding_helmetmodule"
 #define COMSIG_KB_ROBOT_AUTOREPAIR "keybinding_robot_autorepair"

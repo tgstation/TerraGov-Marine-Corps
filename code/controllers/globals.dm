@@ -16,7 +16,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	gvars_datum_in_built_vars = exclude_these.vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
 	QDEL_IN(exclude_these, 1)	//signal logging isn't ready
 
-	log_world("[vars.len - gvars_datum_in_built_vars.len] global variables")
+	log_world("[length(vars) - length(gvars_datum_in_built_vars)] global variables")
 
 	Initialize()
 
@@ -40,10 +40,10 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	gvars_datum_init_order = list()
 	gvars_datum_protected_varlist = list(NAMEOF(src, gvars_datum_protected_varlist) = TRUE)
 	var/list/global_procs = typesof(/datum/controller/global_vars/proc)
-	var/expected_len = vars.len - gvars_datum_in_built_vars.len
-	if(global_procs.len != expected_len)
-		warning("Unable to detect all global initialization procs! Expected [expected_len] got [global_procs.len]!")
-		if(global_procs.len)
+	var/expected_len = length(vars) - length(gvars_datum_in_built_vars)
+	if(length(global_procs) != expected_len)
+		warning("Unable to detect all global initialization procs! Expected [expected_len] got [length(global_procs)]!")
+		if(length(global_procs))
 			var/list/expected_global_procs = vars - gvars_datum_in_built_vars
 			for(var/I in global_procs)
 				expected_global_procs -= replacetext("[I]", "InitGlobal", "")
