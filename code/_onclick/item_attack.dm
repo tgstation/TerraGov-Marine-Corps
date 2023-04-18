@@ -93,25 +93,27 @@
 	if(.)
 		return
 
-	if(!attached_clamp.loaded)
-		if(!CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED) && !CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR))
-			to_chat(user, span_notice("[attached_clamp.linked_powerloader] cannot pick up [src]!"))
-			return
+	if(attached_clamp.loaded)
+		return
 
-		if(anchored && !CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR))
-			to_chat(user, span_notice("[src] is bolted to the ground."))
-			return
+	if(!CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED) && !CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR))
+		to_chat(user, span_notice("[attached_clamp.linked_powerloader] cannot pick up [src]!"))
+		return
 
-		if(powerloader_pickup_time && !do_after(user, powerloader_pickup_time, target = src))
-			balloon_alert(user, "Interrupted!")
-			return
+	if(anchored && !CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR))
+		to_chat(user, span_notice("[src] is bolted to the ground."))
+		return
 
-		forceMove(attached_clamp.linked_powerloader)
-		attached_clamp.loaded = src
-		playsound(attached_clamp.linked_powerloader, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		attached_clamp.update_icon()
-		user.visible_message(span_notice("[user] grabs [attached_clamp.loaded] with [attached_clamp]."),
-		span_notice("You grab [attached_clamp.loaded] with [src]."))
+	if(powerloader_pickup_time && !do_after(user, powerloader_pickup_time, target = src))
+		balloon_alert(user, "Interrupted!")
+		return
+
+	forceMove(attached_clamp.linked_powerloader)
+	attached_clamp.loaded = src
+	playsound(attached_clamp.linked_powerloader, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	attached_clamp.update_icon()
+	user.visible_message(span_notice("[user] grabs [attached_clamp.loaded] with [attached_clamp]."),
+	span_notice("You grab [attached_clamp.loaded] with [src]."))
 
 /mob/living/attacked_by(obj/item/I, mob/living/user, def_zone)
 
@@ -206,10 +208,9 @@
 	if(.)
 		return
 
-	if(!attached_clamp.loaded) //no picking up turfs
+	if(!attached_clamp.loaded || density) //no picking up turfs
 		return
-	if(density)
-		return
+
 	for(var/i in contents)
 		var/atom/movable/blocky_stuff = i
 		if(!blocky_stuff.density)
