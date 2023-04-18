@@ -10337,7 +10337,6 @@
 "nkX" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
-/obj/item/tank/anesthetic,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},

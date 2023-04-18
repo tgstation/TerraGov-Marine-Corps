@@ -3413,10 +3413,6 @@
 	dir = 1
 	},
 /area/centcom/valhalla/primary/fore)
-"eqR" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
-/area/centcom/valhalla/medical/medbay)
 "ete" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -3924,6 +3920,10 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/starboard_hallway)
+"fcK" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/primary/aft)
 "fdg" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -4841,10 +4841,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/crew_quarters/captain)
-"gsI" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
-/area/centcom/valhalla/security/checkpoint)
 "gtc" = (
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/ai_monitored/storage/secure)
@@ -9390,10 +9386,6 @@
 	dir = 8
 	},
 /area/centcom/valhalla/starboard_hallway)
-"mKV" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
-/area/centcom/valhalla/library)
 "mLC" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -10194,9 +10186,9 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig)
 "nFT" = (
-/obj/machinery/vending/boozeomat,
-/turf/closed/wall/mainship,
-/area/tdome)
+/obj/machinery/status_display,
+/turf/closed/wall/r_wall,
+/area/centcom/valhalla/security/brig)
 "nGE" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -10503,6 +10495,10 @@
 	dir = 8
 	},
 /area/centcom/valhalla/secondary/entry)
+"ogD" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/security/checkpoint)
 "ogI" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/tile/dark/gray,
@@ -10662,6 +10658,10 @@
 	dir = 9
 	},
 /area/centcom/valhalla/crew_quarters)
+"opn" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/library)
 "orB" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -11152,8 +11152,8 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "oZI" = (
 /obj/machinery/status_display,
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla/security/brig)
+/turf/closed/wall,
+/area/centcom/valhalla/janitor)
 "oZR" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -11309,9 +11309,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla/medical/chemistry)
 "pjq" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
-/area/centcom/valhalla/janitor)
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "pjR" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/tile/dark/gray,
@@ -12961,6 +12961,10 @@
 /area/centcom/valhalla/crew_quarters)
 "rsu" = (
 /obj/machinery/newscaster,
+/turf/closed/wall,
+/area/centcom/valhalla/medical/medbay)
+"rtr" = (
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/centcom/valhalla/medical/medbay)
 "rtA" = (
@@ -16156,10 +16160,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/valhalla/engine/engineering)
-"vCZ" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
-/area/centcom/valhalla/primary/aft)
 "vDx" = (
 /obj/structure/prop/mainship/pipeprop/pump/on{
 	name = "Gas to Cooling Loop"
@@ -20706,7 +20706,7 @@ xrI
 xrI
 lIC
 lIC
-nFT
+lIC
 sji
 sqp
 nzE
@@ -21395,7 +21395,7 @@ xrI
 xrI
 xrI
 lIC
-hUu
+pjq
 hUu
 ncf
 hUu
@@ -26208,7 +26208,7 @@ ipO
 grx
 ipO
 lvE
-oZI
+nFT
 mZM
 ojM
 vLH
@@ -26231,7 +26231,7 @@ lmF
 mDO
 wXk
 lOR
-mKV
+opn
 acu
 klg
 vnN
@@ -27327,7 +27327,7 @@ jhC
 uIP
 vmM
 qFW
-pjq
+oZI
 fhh
 bYd
 iHX
@@ -27756,7 +27756,7 @@ ckN
 cDn
 aWh
 lda
-eqR
+rtr
 tfU
 wXW
 woP
@@ -29967,7 +29967,7 @@ ufQ
 nhm
 xeT
 xMI
-gsI
+ogD
 gzn
 cUs
 rDY
@@ -30243,14 +30243,14 @@ vhv
 nhm
 xeT
 xMI
-gsI
+ogD
 dqB
 iuT
 qun
 pYe
 oke
 iFb
-gsI
+ogD
 xgK
 fHt
 rYF
@@ -30391,7 +30391,7 @@ uyh
 uyh
 xgK
 fHt
-vCZ
+fcK
 lkM
 xMI
 vAV
