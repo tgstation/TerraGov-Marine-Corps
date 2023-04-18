@@ -88,6 +88,31 @@
 	return TRUE
 
 
+/obj/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	. = ..()
+	if(.)
+		return
+
+	if(!attached_clamp.loaded)
+		if(!CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED) && !CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR))
+			to_chat(user, span_notice("[attached_clamp.linked_powerloader] cannot pick up [src]!"))
+			return
+
+		if(anchored && !CHECK_BITFIELD(interaction_flags, INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR))
+			to_chat(user, span_notice("[src] is bolted to the ground."))
+			return
+
+		if(powerloader_pickup_time && !do_after(user, powerloader_pickup_time, target = src))
+			balloon_alert(user, "Interrupted!")
+			return
+
+		forceMove(attached_clamp.linked_powerloader)
+		attached_clamp.loaded = src
+		playsound(attached_clamp.linked_powerloader, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		attached_clamp.update_icon()
+		user.visible_message(span_notice("[user] grabs [attached_clamp.loaded] with [attached_clamp]."),
+		span_notice("You grab [attached_clamp.loaded] with [src]."))
+
 /mob/living/attacked_by(obj/item/I, mob/living/user, def_zone)
 
 	var/message_verb = "attacked"
@@ -175,6 +200,51 @@
 		return TRUE
 
 	return I.attack_turf(src, user)
+
+/turf/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	. = ..()
+	if(.)
+		return
+
+	if(!attached_clamp.loaded) //no picking up turfs
+		return
+	if(density)
+		return
+	for(var/i in contents)
+		var/atom/movable/blocky_stuff = i
+		if(!blocky_stuff.density)
+			continue
+		to_chat(user, span_warning("You can't drop [attached_clamp.loaded] here, [blocky_stuff] blocks the way."))
+		return
+	if(attached_clamp.loaded.bound_height > 32)
+		var/turf/next_turf = get_step(src, NORTH)
+		if(next_turf.density)
+			to_chat(user, span_warning("You can't drop [attached_clamp.loaded] here, something blocks the way."))
+			return
+		for(var/i in next_turf.contents)
+			var/atom/movable/blocky_stuff = i
+			if(!blocky_stuff.density)
+				continue
+			to_chat(user, span_warning("You can't drop [attached_clamp.loaded] here, [blocky_stuff] blocks the way."))
+			return
+	if(attached_clamp.loaded.bound_width > 32)
+		var/turf/next_turf = get_step(src, EAST)
+		if(next_turf.density)
+			to_chat(user, span_warning("You can't drop [attached_clamp.loaded] here, something blocks the way."))
+			return
+		for(var/i in next_turf.contents)
+			var/atom/movable/blocky_stuff = i
+			if(!blocky_stuff.density)
+				continue
+			to_chat(user, span_warning("You can't drop [attached_clamp.loaded] here, [blocky_stuff] blocks the way."))
+			return
+
+	user.visible_message(span_notice("[user] drops [attached_clamp.loaded] onto [src]."),
+	span_notice("You drop [attached_clamp.loaded] onto [src]."))
+	attached_clamp.loaded.forceMove(src)
+	attached_clamp.loaded = null
+	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+	attached_clamp.update_icon()
 
 /obj/item/proc/attack_turf(turf/T, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_TURF, T, user) & COMPONENT_NO_ATTACK_TURF)

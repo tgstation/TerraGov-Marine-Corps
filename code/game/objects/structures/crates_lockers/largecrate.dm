@@ -24,17 +24,6 @@
 	. += span_notice("You need a crowbar to pry this open!")
 
 
-/obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return TRUE
-
-	if(istype(I, /obj/item/powerloader_clamp))
-		return
-
-	return attack_hand(user)
-
-
 /obj/structure/largecrate/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	user.visible_message(span_notice("[user] pries \the [src] open."),

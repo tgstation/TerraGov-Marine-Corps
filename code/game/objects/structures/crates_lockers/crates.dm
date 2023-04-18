@@ -83,9 +83,6 @@
 	return 1
 
 /obj/structure/closet/crate/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/powerloader_clamp))
-		return FALSE
-
 	. = ..()
 
 	if(iscablecoil(I))
