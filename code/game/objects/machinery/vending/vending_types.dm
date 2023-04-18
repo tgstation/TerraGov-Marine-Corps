@@ -116,6 +116,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = -1,
 		/obj/item/reagent_containers/food/snacks/lollipop = -1,
+		/obj/item/storage/box/snack_tin = -1,
 	)
 
 /obj/machinery/vending/cola

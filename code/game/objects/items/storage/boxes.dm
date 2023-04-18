@@ -477,10 +477,10 @@
 		. += snackoverlay
 
 /obj/item/storage/box/snack_tin/proc/pickflavor()
-	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackA))
-	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackB))
-	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackC))
 	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackD))
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackC))
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackB))
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackA))
 
 /obj/item/storage/box/snack_tin/open(mob/user)
 	if(!opened)
