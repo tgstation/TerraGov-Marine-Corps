@@ -104,10 +104,6 @@
 		to_chat(user, span_notice("[src] is bolted to the ground."))
 		return
 
-	if(powerloader_pickup_time && !do_after(user, powerloader_pickup_time, target = src))
-		balloon_alert(user, "Interrupted!")
-		return
-
 	forceMove(attached_clamp.linked_powerloader)
 	attached_clamp.loaded = src
 	playsound(attached_clamp.linked_powerloader, 'sound/machines/hydraulics_2.ogg', 40, 1)
