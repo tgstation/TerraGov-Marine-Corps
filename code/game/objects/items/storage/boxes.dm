@@ -487,7 +487,7 @@
 		icon_state = base_icon_state + "_open"
 		update_overlays()
 		update_icon()
-	. = ..()
+	return ..()
 
 /**
  * # fillable box

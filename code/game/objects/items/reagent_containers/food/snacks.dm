@@ -1587,22 +1587,6 @@
 	icon_state = snacktype + "_wrapped"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 
-/*
-	switch(newsnacktype)
-		if("Twink-E", "Jello", "Kup Cake", "Snow Baller", "Galactic Brownies")
-			list_reagents = list(/datum/reagent/consumable/nutriment = 6)
-		if("Jingles' Can", "Nutty Bars", "Oatmeal Cream Pied", "Jelly Baby", "Snow Cubes")
-			list_reagents = list(/datum/reagent/consumable/nutriment = 6)
-		if("Jelly Beno's", "Bombastic Rouny", "Popping Jihad", "Defiler's Delight", "Tricord Twink-E")
-			list_reagents = list(/datum/reagent/consumable/nutriment = 6)
-		if("Defoonder Jawbreaker", "Chocolate Pudding", "Vanilla Pudding", "Swedish Rouny'd")
-			list_reagents = list(/datum/reagent/consumable/nutriment = 6)
-*/
-
-
-
-
-
 /obj/item/reagent_containers/food/snacks/lollipop
 	name = "lollipop"
 	desc = "A delicious lollipop."
