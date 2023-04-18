@@ -770,7 +770,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(CHECK_BITFIELD(iff_signal, TGMC_REBEL_IFF))
 		marker_flags |= MINIMAP_FLAG_MARINE_REBEL
 	//Lumping all the antag groups together
-	if(CHECK_BITFIELD(iff_signal, SON_OF_MARS_IFF|ICC_IFF|DEATHSQUAD_IFF))
+	if(CHECK_BITFIELD(iff_signal, SOM_IFF|ICC_IFF|DEATHSQUAD_IFF))
 		marker_flags |= MINIMAP_FLAG_MARINE_SOM
 	radio.talk_into(src, "ALERT! Hostile/Unknown: [L.name] | [AREACOORD_NO_Z(src)]")
 	SSminimaps.remove_marker(src)
