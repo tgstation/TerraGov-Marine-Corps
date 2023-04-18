@@ -1049,6 +1049,7 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
 		/obj/item/storage/box/MRE = -1,
+		/obj/item/storage/box/snack_tin = -1,
 		/obj/item/reagent_containers/food/drinks/flask/marine = -1,
 	)
 //Christmas inventory

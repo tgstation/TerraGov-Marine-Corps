@@ -328,6 +328,7 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/stack/throwing_knife,
 		/obj/item/storage/box/MRE,
+		/obj/item/storage/box/snack_tin,
 	)
 
 /obj/item/armor_module/storage/boot/full/Initialize()

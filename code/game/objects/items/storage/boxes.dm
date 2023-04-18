@@ -459,7 +459,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	storage_slots = 4
 	foldable = 0
-	can_hold = list(/obj/item/reagent_containers/food/snacks/wrapped_snack)
+	max_w_class = 0
 	//List of snacks that can spawn in each position
 	var/static/list/snackA = list("Twink-E", "Jello", "Kup Cake", "Snow Baller", "Galactic Brownies")
 	var/static/list/snackB = list("Jingles' Can", "Nutty Bars", "Oatmeal Cream Pied", "Jelly Baby", "Snow Cubes")
@@ -470,6 +470,12 @@
 	. = ..()
 	pickflavor()
 
+/obj/item/storage/box/snack_tin/update_overlays()
+	. = ..()
+	for(var/obj/item/reagent_containers/food/snacks/wrapped_snack in contents)
+		var/image/snackoverlay = image('icons/obj/items/food/snacktin.dmi', src, "[wrapped_snack.icon_state]_overlay")
+		. += snackoverlay
+
 /obj/item/storage/box/snack_tin/proc/pickflavor()
 	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackA))
 	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackB))
@@ -477,19 +483,11 @@
 	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackD))
 
 /obj/item/storage/box/snack_tin/open(mob/user)
-	. = ..()
-	update_icon()
-
-/obj/item/storage/box/snack_tin/update_icon()
-	if(opened)
+	if(!opened)
 		icon_state = base_icon_state + "_open"
 		update_overlays()
-
-/obj/item/storage/box/snack_tin/update_overlays()
+		update_icon()
 	. = ..()
-	for(var/obj/item/reagent_containers/food/snacks/wrapped_snack in contents)
-		var/mutable_appearance/snackoverlay = mutable_appearance('icons/obj/items/food/snacktin.dmi', "[wrapped_snack.icon_state]_overlay")
-		. += snackoverlay
 
 /**
  * # fillable box
