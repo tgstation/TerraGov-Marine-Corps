@@ -166,10 +166,13 @@
 	scatter = 10
 	deployed_scatter_change = -10
 	fire_delay = 0.4 SECONDS
+	burst_amount = 12
+	burst_delay = 0.25 SECONDS
+	extra_delay = 1.5 SECONDS
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
@@ -179,18 +182,6 @@
 		/obj/item/ammo_magazine/auto_cannon,
 		/obj/item/ammo_magazine/auto_cannon/flak,
 	)
-
-	scatter = 0
-	min_scatter = 0
-	scatter_increase = 2 //Not supposed to have scatter unless you're fuller auto'ing.
-	scatter_decay = 2
-	scatter_decay_unwielded = 2
-
-	burst_amount = 2 // You're firing both barrels in sync for that FULLER AUTO EXPERIENCE
-	autoburst_delay = 0.1 SECONDS
-	autoburst_delay = 0.1 SECONDS
-	burst_accuracy_mult = 0.9
-	burst_scatter_mult = 2
 
 	undeploy_time = 2000 SECONDS
 	deployable_item = /obj/machinery/deployable/mounted/moveable/auto_cannon
