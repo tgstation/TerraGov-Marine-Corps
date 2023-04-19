@@ -449,7 +449,7 @@
 	input_tag = "waste_lower_in";
 	name = "Lower Deck Waste Tank Control";
 	output_tag = "waste_lower_out";
-	sensors = list("waste_sensor" = "Tank")
+	sensors = list("waste_sensor"="Tank")
 	},
 /turf/open/floor/mainship/orange,
 /area/mainship/hull/starboard_hull)
@@ -719,7 +719,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Lower Oxygen Supply Console";
 	output_tag = "oxygen_lower_out";
-	sensors = list("oxy_sensor" = "Tank")
+	sensors = list("oxy_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -735,7 +735,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Lower Nitrogen Control Console";
 	output_tag = "nit_lower_out";
-	sensors = list("nit_sensor" = "Tank")
+	sensors = list("nit_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -758,7 +758,7 @@
 	input_tag = "mix_lower_in";
 	name = "Lower Mixed Air Control";
 	output_tag = "mix_lower_out";
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/mainship/orange{
 	dir = 5
@@ -8463,8 +8463,7 @@
 /turf/open/space/basic,
 /area/space)
 "dhn" = (
-/obj/structure/flora/pottedplant/twentytwo,
-/obj/machinery/firealarm,
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -14318,6 +14317,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /turf/open/floor/mainship/green,
 /area/mainship/living/numbertwobunks)
 "ngO" = (
@@ -19658,10 +19660,6 @@
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating,
 /area/mainship/medical/lower_medical)
-"wzV" = (
-/obj/machinery/floodlight/combat,
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/repair_bay)
 "wAa" = (
 /obj/machinery/computer/camera_advanced/remote_fob,
 /turf/open/floor/mainship/mono,
@@ -47424,7 +47422,7 @@ kjI
 gtv
 nbP
 xmg
-wzV
+nbP
 vYD
 aVs
 fZA
@@ -47680,8 +47678,8 @@ bSf
 cbO
 bTU
 nbP
-wzV
-wzV
+nbP
+nbP
 blq
 aVs
 wem
@@ -47938,7 +47936,7 @@ nNL
 bVx
 nbP
 fLi
-wzV
+nbP
 bXq
 aVs
 qae

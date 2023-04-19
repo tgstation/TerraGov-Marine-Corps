@@ -25115,6 +25115,12 @@
 	dir = 6
 	},
 /obj/structure/cable,
+/obj/machinery/holopad{
+	active_power_usage = 130;
+	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a larger lense.";
+	holo_range = 7;
+	name = "modfied holopad"
+	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "vln" = (
@@ -26660,7 +26666,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
 	},
-/obj/machinery/holopad,
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "xxy" = (

@@ -585,6 +585,23 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/gear/commander
+	name = "NEXUS Automated Field Commander Equipment Rack"
+	desc = "An automated field commander equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
+	vendor_role = /datum/job/terragov/command/fieldcommander
+	req_access = list(ACCESS_MARINE_COMMANDER)
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/commander/Initialize()
+	. = ..()
+	listed_products = GLOB.commander_gear_listed_products
+
+/obj/machinery/marine_selector/gear/commander/rebel
+	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
+
 ///Spawns a set of objects from specified typepaths. For vendors to spawn multiple items while only needing one path.
 /obj/effect/vendor_bundle
 	///The set of typepaths to spawn
@@ -685,6 +702,21 @@
 		/obj/item/facepaint/green,
 	)
 
+/obj/effect/vendor_bundle/basic_commander
+	gear_to_spawn = list(
+		/obj/item/clothing/under/marine,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+	)
+
+/obj/effect/vendor_bundle/basic_jaeger_commander
+	gear_to_spawn = list(
+		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+		/obj/item/facepaint/green,
+	)
+
 /obj/effect/vendor_bundle/medic
 	gear_to_spawn = list(
 		/obj/item/bodybag/cryobag,
@@ -724,6 +756,7 @@
 
 /obj/effect/vendor_bundle/commander
 	gear_to_spawn = list(
+		/obj/item/explosive/plastique,
 		/obj/item/beacon/supply_beacon,
 		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/healthanalyzer,
@@ -745,6 +778,7 @@
 		/obj/item/whistle,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
+		/obj/item/clothing/glasses/hud/health,
 	)
 
 /obj/effect/vendor_bundle/synth
@@ -941,5 +975,6 @@
 #undef DEFAULT_TOTAL_BUY_POINTS
 #undef MEDIC_TOTAL_BUY_POINTS
 #undef ENGINEER_TOTAL_BUY_POINTS
+#undef COMMANDER_TOTAL_BUY_POINTS
 #undef SQUAD_LOCK
 #undef JOB_LOCK

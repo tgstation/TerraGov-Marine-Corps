@@ -13209,7 +13209,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "ME" = (
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "MF" = (

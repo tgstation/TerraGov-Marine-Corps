@@ -25407,6 +25407,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/alpha)
+"trW" = (
+/obj/machinery/marine_selector/gear/commander,
+/turf/open/floor/wood,
+/area/mainship/living/numbertwobunks)
 "tsd" = (
 /obj/structure/rack,
 /obj/item/tool/soap/nanotrasen,
@@ -58783,7 +58787,7 @@ wmi
 paj
 fpl
 suH
-tfA
+trW
 mLm
 xOs
 uZf

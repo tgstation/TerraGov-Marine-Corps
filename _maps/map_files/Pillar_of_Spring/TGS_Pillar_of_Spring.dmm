@@ -3109,7 +3109,6 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/item/clothing/head/ornamented_cap,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "dRR" = (
@@ -17652,6 +17651,10 @@
 /obj/item/storage/firstaid/rad,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
+"wHe" = (
+/obj/machinery/marine_selector/gear/commander,
+/turf/open/floor/wood,
+/area/mainship/living/numbertwobunks)
 "wHf" = (
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/stripesquare,
@@ -56669,7 +56672,7 @@ jmC
 ivw
 bIl
 tzF
-tzF
+wHe
 uyy
 pVb
 lkH
