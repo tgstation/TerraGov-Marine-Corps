@@ -413,11 +413,10 @@
 		O.emp_act(severity)
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
-	if(ishandslot(slot))	//Same slots as tac reload
-		mouse_opacity = MOUSE_OPACITY_OPAQUE
 	unwield(user)
 	if(ishandslot(slot))
 		set_gun_user(user)
+		mouse_opacity = MOUSE_OPACITY_OPAQUE
 		return ..()
 	set_gun_user(null)
 	return ..()
@@ -432,7 +431,7 @@
 
 /obj/item/weapon/gun/unequipped(mob/user, slot)
 	. = ..()
-	mouse_opacity = MOUSE_OPACITY_ICON //So that it doesnt remain opaque when you drop or discard the gun
+	mouse_opacity = initial(mouse_opacity) //So that it doesnt remain opaque when you drop or discard the gun
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
