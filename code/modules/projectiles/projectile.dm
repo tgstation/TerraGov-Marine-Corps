@@ -1360,7 +1360,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		playsound(src, P.ammo.sound_bounce, 50, 1, frequency = pitch)
 	addtimer(CALLBACK(src, PROC_REF(remove_ping), src, smoke_visuals, debris_visuals), 0.7 SECONDS)
 
-/atom/proc/remove_ping(atom/hit, /obj/effect/abstract/particle_holder/smoke_visuals, /obj/effect/abstract/particle_holder/debris_visuals)
+/atom/proc/remove_ping(atom/hit, smoke_visuals, debris_visuals)
 	if(!QDELETED(hit))
 		QDEL_NULL(smoke_visuals)
 		if(debris_visuals)
