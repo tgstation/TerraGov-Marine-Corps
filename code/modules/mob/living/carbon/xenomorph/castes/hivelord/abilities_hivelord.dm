@@ -17,23 +17,27 @@
 	plasma_cost = 150
 	gamemode_flags = ABILITY_DISTRESS
 
-/datum/action/xeno_action/activable/recycle/can_use_ability(atom/target)
+/datum/action/xeno_action/activable/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/hivelord = owner
 	var/mob/living/carbon/xenomorph/victim = target
 	if(!.)
 		return FALSE
 	if(!hivelord.Adjacent(victim))
-		hivelord.balloon_alert(hivelord, "Too far")
+		if(!silent)
+				hivelord.balloon_alert(hivelord, "Too far")
 		return FALSE
 	if(hivelord.on_fire)
-		hivelord.balloon_alert(hivelord, "Cannot while burning")
+		if(!silent)
+				hivelord.balloon_alert(hivelord, "Cannot while burning")
 		return FALSE
 	if(!iscarbon(target)||!isxeno(target))
-		hivelord.balloon_alert(hivelord, "Cannot recycle")
+		if(!silent)
+			hivelord.balloon_alert(hivelord, "Cannot recycle")
 		return FALSE
 	if(victim.stat != DEAD)
-		hivelord.balloon_alert(hivelord, "Sister isn't dead")
+		if(!silent)
+			hivelord.balloon_alert(hivelord, "Sister isn't dead")
 		return FALSE
 
 /datum/action/xeno_action/activable/recycle/use_ability(atom/target)
@@ -43,7 +47,7 @@
 	hivelord.face_atom(recycled_xeno) //Face towards the target so we don't look silly
 	hivelord.visible_message(span_warning("\The [hivelord] starts breaking apart \the [recycled_xeno]'s carcass."), \
 	span_danger("We slowly deconstruct upon \the [recycled_xeno]'s carcass!"), null, 20)
-	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability))))
+	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, XACT_USE_BUSY)))
 		return
 	switch(recycled_xeno.tier)
 		if(XENO_TIER_MINION)
