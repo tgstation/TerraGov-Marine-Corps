@@ -116,6 +116,9 @@
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
 
+	///The current acid on this atom
+	var/obj/effect/xenomorph/acid/A_current_acid = null
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -174,13 +177,14 @@ directive is properly returned.
 /atom/proc/get_acid_delay()
 	return 1 SECONDS
 
+//returns wether or not we apply a new acid
 /atom/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
 	if(!new_acid)
 		return TRUE
-	if(!current_acid)
-		return FALSE
-	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
-		return FALSE
+	if(!A_current_acid)
+		return TRUE
+	if(initial(new_acid.acid_strength) > A_current_acid.acid_strength)
+		return TRUE
 	return TRUE
 
 /atom/proc/on_reagent_change()
