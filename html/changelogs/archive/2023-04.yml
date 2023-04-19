@@ -1,0 +1,256 @@
+2023-04-01:
+  Lumipharon:
+  - imageadd: added in hand sprites for SOM helmets, armor, uniforms and bags
+2023-04-02:
+  Lumipharon:
+  - rscadd: Added a SOM breaching axe to HvH
+  - bugfix: fixed blood looking weird on larger items
+  - bugfix: Importing loadouts works again with the current version
+  - bugfix: fixed SOM veterans having a blank HUD icon
+  RipGrayson:
+  - bugfix: Fixed carpets and catwalks becoming blank voids after explosions.
+  ivanmixo:
+  - code_imp: Fixes the stuff the 515 regexing missed
+  - balance: Makes the default starting boot knife the M5 survival knife
+  - bugfix: Fixes the 3rd person ravager endure message
+2023-04-03:
+  Lumipharon:
+  - code_imp: The mc now detects if its priority budget gets out of sync with reality
+      and soft resets
+  - code_imp: The mc now keeps track of how many times a subsystem has slept in fire()
+  - code_imp: Updated the failsafe to recover from a deleted MC
+  - code_imp: Increased SSsilo priority to reduce the chance of it getting stuck
+  ivanmixo:
+  - rscadd: Gave the nuke disk generator a new TGUI interface
+  - bugfix: Fixed a bug related to the disk console never being processed again if
+      turned off once
+  - refactor: Refactored a bit of the nuke disk generator code and added autodocs
+2023-04-04:
+  Xander3359:
+  - imageadd: updates minimap action button icon.
+  - balance: Dispenser can no longer carry bulky items.
+  ivanmixo:
+  - rscadd: Admins can disable players taking over ssd mobs now
+  - bugfix: Admins can now actually toggle the var to disable valhalla joining
+2023-04-05:
+  Lumipharon:
+  - bugfix: Draining a hive threat now gives a flat 1000 maturity points
+  - bugfix: The droppod deployment map can no longer get stuck if you deploy with
+      it open
+  - qol: Minor standardisation to minimap color opacity
+  - bugfix: Comms blackouts no longer last forever
+  - bugfix: Comms blackouts now correctly apply for a randomised period of time
+  Pariah919:
+  - balance: Railgun now holds 3 shots in a canister rather than 1, has 3 seconds
+      of fire delay inbetween shots. Railgun ammo now costs 50 points rather than
+      30 to accommodate for the larger magazine size.
+  QualityVan:
+  - rscadd: When you check yourself for wounds, you can see the dirt you've accumulated.
+      Mostly only matters for surgeons.
+  - code_imp: germ_level moved from atom to human, no major player-facing changes
+  Skye:
+  - qol: Adds cryogenics to the TGS Smallbury, used in the Crash game mode. (Also
+      moves a table.)
+  - balance: Adds a cryomix beaker to both Canterbury variants.
+  Xander3359:
+  - code_imp: max_w_class uses defines now.
+  irRegularGuy646:
+  - rscadd: Added big 10x26mm caseless ammo box to req operational vendor
+  novaepee:
+  - bugfix: reverse grip on right wielding greatsword
+2023-04-07:
+  Lumipharon:
+  - bugfix: Fixed mortar sounds playing after they've already landed
+  - balance: Barricade repair time and fuel use cut in half. Repair amount reduced
+      from 150 to 85
+  Pariah919:
+  - bugfix: ICC and some SoM armors not having their onmobs show up properly.
+  ivanmixo:
+  - bugfix: Sentinel spit now travels properly instead of stopping at the tile you
+      aimed
+2023-04-08:
+  567Turtle:
+  - balance: Claymore now hits slower
+  Autisem:
+  - rscadd: You can now craft supply crates with wood
+  Blundir:
+  - bugfix: Xenomorph Queen ban now bans shrike as well
+  Losenis:
+  - balance: Buildasentry attachment increases object (gun) size by 1.
+  Lumipharon:
+  - balance: Big Red LZ2 is slightly wider on the right hand side
+  - bugfix: fixed CL uniforms not having icon sprites
+  RikuTheKiller:
+  - balance: Resisting intoxication takes 5 seconds instead of 3 seconds and removes
+      8 stacks instead of 3 stacks. This makes it 1.6 times more effective in general,
+      but harder to use in the middle of combat.
+  - qol: Resisting intoxication now automatically repeats itself, similarly to repairing
+      things.
+  - bugfix: You can't stack intoxication resists anymore to remove it almost instantly.
+  RipGrayson:
+  - imageadd: Replaced some crusty food icons with TG versions
+  - code_imp: Reorganized food icons to not be in a single giant file
+  Xander3359:
+  - balance: MREs contain a lot more nutriment.
+  - rscadd: Hyposprays can now draw reagent with right click (Autoinjectors are also
+      hyposprays fyi).
+  dopamiin:
+  - rscadd: The TGMC has approved several morale-boosting supply options to be added
+      to requisitions.
+  irRegularGuy646:
+  - balance: large 10x26 box now holds 3200 rounds instead of 2400
+  - bugfix: obsolete large ammo box orders removed from req
+  - bugfix: MG-60 magazine is now referred to as a "belt box" instead of a "drum magazine"
+  ivanmixo:
+  - bugfix: Fixed a behead runtime
+2023-04-09:
+  Arturlang:
+  - bugfix: fixed random_available_channel runtiming from accessing a invalid index
+      on channel_list, hopefully
+  - bugfix: Hopefully the maptext for secrete resin will no longer cause all xenos
+      to spawn without any abilities randomly.
+  Xander3359:
+  - balance: Sentry ammo is now sentry sized (Normal)
+  - code_imp: w_class code cleanup 2nd try.
+  ivanmixo:
+  - code_imp: Removed pointless .0 for some vars
+  - bugfix: Adds the ak47 to the proper seasonal instead of 2 mag types
+  - bugfix: Fixed psi point gen calculations being wrong. Also you cant corrupt an
+      already corrupted gen anymore.
+  - bugfix: Fixed people who get killed while buckled in the alamo chairs standing
+      up even while dead
+  - refactor: Refactored inflatables and other simple doors
+2023-04-10:
+  Lumipharon:
+  - code_imp: Some minor code cleanup
+  ivanmixo:
+  - rscadd: Adds 2 AI droids to Theseus
+  - bugfix: Fixes the psi gen fix
+  - code_imp: Utilized ?. a lot more where applicable
+2023-04-11:
+  Naaanii:
+  - spellcheck: added improper tag to some guns missing it.
+  RipGrayson:
+  - rscadd: Created a handful of new spawners for mappers
+  - balance: Pillar of Spring now has an extra button in CiC for controlling req shutters
+  - balance: Expanded hangar lockdown shutters some in PoS so they aren't completely
+      pointless
+  - balance: Colony windows now have a very minor chance of starting broken on map
+      load
+  - balance: Extended the no build zone in front of Chigusa LZ2 a bit
+  - balance: Made many nonessential items randomized on mapload across most maps
+  - bugfix: Fixed a number of ships having core lockdown buttons in AI core, but not
+      having any shutters in AI core for protection
+  - bugfix: Fixed LZ walls smoothing with shutters
+  - bugfix: Fixed crayon MREs producing an error icon_state
+  - bugfix: Fixed Icy Caves complex having 5 APCs
+  - bugfix: Fixed BR filtration having an extra APC
+  - bugfix: Fixed a handful of regular Gelida areas having more than one APC
+  - bugfix: Fixed PoS AI core having a fire alarm but no shutters inside
+  - bugfix: Fixed Theseus AI core having a fire alarm but no shutters inside
+  - bugfix: Fixed inflatables not having an icon_state or type
+  - bugfix: Fixed Gelida having swapped landing zone areas
+  - bugfix: Fixed Gelida crashed ships counting as outside for the purposes of weather
+  - bugfix: Fixed some BR LZ modular inserts having improperly rotated buttons rendering
+      them impossible to access
+  - bugfix: Fixed generic ammo spawners being invisible to mappers
+  - bugfix: Fixed an area south of LZ1 on LV624 having improper smoothing
+  - bugfix: Fixed random stool spawners never spawning anything
+  - imageadd: Created a new icon for 2x1 horizontal lockdown doors by editing an existing
+      sprite
+  - imageadd: Made new random icons for the new spawners
+  maikilangiolo:
+  - balance: lowered import guns prices across the board
+  novaepee:
+  - rscadd: shrike can now give plasma
+  - balance: shrike can help xenomorph even more by giving plasma
+2023-04-12:
+  '@KillerOrcaCora':
+  - rscadd: navy cap in the SO locker
+  - imageadd: RO cap minor resprite
+  KillerOrcaCora:
+  - imageadd: xfuel back tank has a better sprite.
+  Lumipharon:
+  - bugfix: fixed some odd behavior when firing rockets at dense objects like windows
+      or airlocks
+  - bugfix: fixed some IFF issues with various minor factions
+  MacBlaze1:
+  - qol: made players automatically interact with deployables when they deploy them,
+      it is now an option in game preferences that you can enable and disable at will.
+  - balance: This change applies to all weapons deployables, like emplacements and
+      machine guns
+  RipGrayson:
+  - code_imp: Removed an unused breaker box type from the code.
+  grinkgo:
+  - spellcheck: Smartgun-related req items are now more consistently named
+  ivanmixo:
+  - bugfix: Fixed resin doors not being damagable in melee
+  metalyc:
+  - bugfix: Scout droids being able to cloak again
+2023-04-13:
+  '@KillerOrcaCora':
+  - imageadd: Flamethrower backtank new sprite.
+  Losenis:
+  - qol: Corpsman vendor now has hypospray option for QC+ and Peri+
+  - balance: Dexaline pill bottle in lifesaver belts replaced with Isotonic Solution
+      pill bottle
+  Lumipharon:
+  - bugfix: fixed a couple of space suit helmet icons
+  RipGrayson:
+  - bugfix: Tables should smooth correctly in odd circumstances
+  - code_imp: Integrated tables with the new smoothing system
+  Xander3359:
+  - qol: Loadouts are re-organizable.
+  - balance: Vali green blood gain scales off weapon attack speed.
+  - bugfix: You can no longer magically health scan/defib after being delimbed while
+      wearing scan/defib gloves.
+  - qol: Some GHMME improvements
+  ivanmixo:
+  - bugfix: Acid on walls gets deleted if the wall gets deleted
+  mc-oofert:
+  - rscadd: robot gibs for unmanned vehicles
+2023-04-14:
+  Mrrpip:
+  - rscadd: 'Adds smooth desert dam rock.
+
+      qol; Adds extra helpers for mappers'
+2023-04-15:
+  '@KillerOrcaCora':
+  - imageadd: Flamethrower backtank mob sprite
+  QualityVan:
+  - bugfix: You need to be holding a gun to tac reload it
+  RipGrayson:
+  - imagedel: Deleted some ancient unused landmark icons.
+  - code_imp: Reorganized random spawners into smaller individual sections.
+  Xander3359:
+  - spellcheck: pistol belt has 7 slots total, not 3
+  ivanmixo:
+  - bugfix: The burst larvas have the same hive as the hive of the carrier who did
+      the hug.
+  - rscadd: Added a verb/keybind to toggle automatic magazine ejections
+2023-04-16:
+  Lumipharon:
+  - rscadd: 'HvH: some items such as B18 or shields now have the chance to convert
+      projectile based hard stuns into staggerslow'
+  - bugfix: Fixed item active toggling not working correctly in many cases
+2023-04-17:
+  '@Xander3359 @KillerOrcaCora':
+  - refactor: Flare pouch is a holster now
+  - imageadd: New flare pouch sprites
+  Pariah919:
+  - rscadd: AR-55 is now avaliable to be bought from req for 525 points, magazines
+      are 25 points.
+  - rscadd: SLs can now buy AR-55s from their vendors, and as such can also buy basic
+      GL-54 magazines.
+  - balance: GL-54 Airburst magazines have been halved in price in req from 40 to
+      20.
+  RipGrayson:
+  - bugfix: Random spawners should no longer malfunction
+  - bugfix: Fixed mapper icons for modular spawners displaying error
+  - imageadd: Resprited status displays to fit on walls instead of hanging out inside
+      of them
+  Xander3359:
+  - bugfix: AMR Ammo is no longer FIXME
+  - imageadd: AMR Resprite
+  ivanmixo:
+  - refactor: Cleaned up the human topic proc

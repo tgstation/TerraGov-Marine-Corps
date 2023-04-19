@@ -4,6 +4,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "grenade"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/grenades_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/grenades_right.dmi',
+	)
 	item_state = "grenade"
 	throw_speed = 3
 	throw_range = 7
@@ -15,7 +19,7 @@
 	var/launched = FALSE
 	///bonus impact damage if launched from a UGL/grenade launcher
 	var/launchforce = 10
-	var/det_time =  4 SECONDS
+	var/det_time = 4 SECONDS
 	///Does it make a danger overlay for humans? Can synths use it?
 	var/dangerous = TRUE
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
@@ -109,7 +113,7 @@
 	icon_state = "grenade_rad" //placeholder
 	item_state = "grenade_rad" //placeholder
 	icon_state_mini = "grenade_red" //placeholder
-	det_time =  40 //default
+	det_time = 40 //default
 	arm_sound = 'sound/weapons/armbomb.ogg' //placeholder
 	hud_state = "grenade_he" //placeholder
 	///The range for the grenade's full effect

@@ -63,7 +63,7 @@
 	. = ..()
 	if(.)
 		return
-	if(contents.len <= 0)
+	if(length(contents) <= 0)
 		to_chat(user, span_notice("\The [src] is empty."))
 		return
 

@@ -217,7 +217,7 @@
 /// Extra handling for adding the action for draggin functionality (for instant building)
 /datum/action/xeno_action/activable/secrete_resin/give_action(mob/living/L)
 	. = ..()
-	if(!(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
+	if(!(CHECK_BITFIELD(SSticker?.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
 		return
 
 	var/mutable_appearance/build_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
@@ -740,9 +740,9 @@
 		RegisterSignal(X, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
 		RegisterSignal(X, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 		return ..()
-	for(var/i in 1 to X.xeno_caste.spit_types.len)
+	for(var/i in 1 to length(X.xeno_caste.spit_types))
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
-			if(i == X.xeno_caste.spit_types.len)
+			if(i == length(X.xeno_caste.spit_types))
 				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
 				break
 			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
@@ -1030,7 +1030,7 @@
 	owner.visible_message(span_xenonotice("[owner] starts planting an egg."), \
 		span_xenonotice("We start planting an egg."), null, 5)
 
-	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, /turf/proc/check_alien_construction, owner)))
+	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, TYPE_PROC_REF(/turf, check_alien_construction), owner)))
 		return fail_activate()
 
 	if(!xeno.loc_weeds_type)

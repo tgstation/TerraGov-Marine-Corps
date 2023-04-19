@@ -9,6 +9,10 @@
 	name = "syringe"
 	desc = "A syringe."
 	icon = 'icons/obj/items/syringe.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
+	)
 	item_state = "syringe_0"
 	icon_state = "0"
 	init_reagent_flags = AMOUNT_SKILLCHECK

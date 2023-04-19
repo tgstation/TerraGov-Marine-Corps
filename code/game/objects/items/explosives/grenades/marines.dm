@@ -136,7 +136,7 @@
 	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 	burn_damage = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 
-	for(var/t in filled_turfs(epicenter, radius, "circle"))
+	for(var/t in filled_turfs(epicenter, radius, "circle", air_pass = TRUE))
 		var/turf/turf_to_flame = t
 		turf_to_flame.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
@@ -428,6 +428,12 @@
 	if(N)
 		qdel(N)
 		turn_off()
+
+/obj/item/explosive/grenade/flare/civilian
+	name = "flare"
+	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
+	icon_state = "flare"
+	item_state = "flare"
 
 /obj/item/explosive/grenade/flare/cas
 	name = "\improper M50 CFDP signal flare"

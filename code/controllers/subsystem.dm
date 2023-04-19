@@ -15,20 +15,36 @@
 	var/can_fire = TRUE
 
 	// Bookkeeping variables; probably shouldn't mess with these.
-	var/last_fire = 0		//last world.time we called fire()
-	var/next_fire = 0		//scheduled world.time for next fire()
-	var/cost = 0			//average time to execute
-	var/tick_usage = 0		//average tick usage
-	var/tick_overrun = 0	//average tick overrun
-	var/state = SS_IDLE		//tracks the current state of the ss, running, paused, etc.
-	var/paused_ticks = 0	//ticks this ss is taking to run right now.
-	var/paused_tick_usage	//total tick_usage of all of our runs while pausing this run
-	var/ticks = 1			//how many ticks does this ss take to run on avg.
-	var/times_fired = 0		//number of times we have called fire()
-	var/queued_time = 0		//time we entered the queue, (for timing and priority reasons)
-	var/queued_priority 	//we keep a running total to make the math easier, if priority changes mid-fire that would break our running total, so we store it here
-	//linked list stuff for the queue
+
+	///last world.time we called fire()
+	var/last_fire = 0
+	///scheduled world.time for next fire()
+	var/next_fire = 0
+	///average time to execute
+	var/cost = 0
+	///average time to execute
+	var/tick_usage = 0
+	///average tick usage
+	var/tick_overrun = 0
+	///tracks the current state of the ss, running, paused, etc.
+	var/state = SS_IDLE
+	/// Tracks how many times a subsystem has ever slept in fire().
+	var/slept_count = 0
+	///ticks this ss is taking to run right now.
+	var/paused_ticks = 0
+	///total tick_usage of all of our runs while pausing this run
+	var/paused_tick_usage
+	///how many ticks does this ss take to run on avg.
+	var/ticks = 1
+	///number of times we have called fire()
+	var/times_fired = 0
+	///time we entered the queue, (for timing and priority reasons)
+	var/queued_time = 0
+	///we keep a running total to make the math easier, if priority changes mid-fire that would break our running total, so we store it here
+	var/queued_priority
+	/// Next subsystem in the queue of subsystems to run this tick
 	var/datum/controller/subsystem/queue_next
+	/// Previous subsystem in the queue of subsystems to run this tick
 	var/datum/controller/subsystem/queue_prev
 
 	var/runlevels = RUNLEVELS_DEFAULT	//points of the game at which the SS can fire
@@ -51,8 +67,10 @@
 	fire(resumed)
 	. = state
 	if (state == SS_SLEEPING)
+		slept_count++
 		state = SS_IDLE
 	if (state == SS_PAUSING)
+		slept_count++
 		var/QT = queued_time
 		enqueue()
 		state = SS_PAUSED
@@ -69,7 +87,8 @@
 	dequeue()
 	can_fire = 0
 	flags |= SS_NO_FIRE
-	Master.subsystems -= src
+	if(Master)
+		Master.subsystems -= src
 	return ..()
 
 ///Queue it to run.
@@ -138,9 +157,9 @@
 		queue_next.queue_prev = queue_prev
 	if (queue_prev)
 		queue_prev.queue_next = queue_next
-	if (src == Master.queue_tail)
+	if (Master && (src == Master.queue_tail))
 		Master.queue_tail = queue_prev
-	if (src == Master.queue_head)
+	if (Master && (src == Master.queue_head))
 		Master.queue_head = queue_next
 	queued_time = 0
 	if (state == SS_QUEUED)

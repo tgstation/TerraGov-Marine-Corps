@@ -6,7 +6,7 @@
 	display_order = JOB_DISPLAY_ORDER_XENOMORPH
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_SHOW_OPEN_POSITIONS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
-	job_points_needed  = 10 //Redefined via config.
+	job_points_needed = 10 //Redefined via config.
 	faction = FACTION_XENO
 	exp_type = EXP_TYPE_SPECIAL
 	html_description = {"
@@ -26,8 +26,8 @@
 	return /mob/living/carbon/xenomorph/larva
 
 /datum/job/xenomorph/return_spawn_turf()
-	if(length(GLOB.xeno_resin_silos))
-		return pick(GLOB.xeno_resin_silos)
+	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
+		return pick(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
 
 /datum/job/xenomorph/radio_help_message(mob/M)

@@ -13,7 +13,7 @@
 	set name = "Config/Launch Supplypod"
 	set desc = "Configure and launch a Centcom supplypod full of whatever your heart desires!"
 	set category = "Admin"
-	var/datum/centcom_podlauncher/plaunch  = new(usr)//create the datum
+	var/datum/centcom_podlauncher/plaunch = new(usr)//create the datum
 	plaunch.ui_interact(usr)//datum has a tgui component, here we open the window
 
 //Variables declared to change how items in the launch bay are picked and launched. (Almost) all of these are changed in the ui_act proc
@@ -46,7 +46,7 @@
 	else
 		var/mob/M = H
 		holder = M.client //if its a mob, assign the mob's client to holder
-	bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas //Locate the default bay (one) from the centcom map
+	bay = locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas //Locate the default bay (one) from the centcom map
 	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in GLOB.sorted_areas) //Create a new temp_pod in the podStorage area on centcom (so users are free to look at it and change other variables if needed)
 	orderedArea = createOrderedArea(bay) //Order all the turfs in the selected bay (top left to bottom right) to a single list. Used for the "ordered" mode (launchChoice = 1)
 
@@ -105,23 +105,23 @@
 	switch(action)
 		////////////////////////////UTILITIES//////////////////
 		if("bay1")
-			bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas //set the "bay" variable to the corresponding room in centcom
+			bay = locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas //set the "bay" variable to the corresponding room in centcom
 			refreshBay() //calls refreshBay() which "recounts" the bay to see what items we can launch (among other things).
 			. = TRUE
 		if("bay2")
-			bay =  locate(/area/centcom/supplypod/loading/two) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/two) in GLOB.sorted_areas
 			refreshBay()
 			. = TRUE
 		if("bay3")
-			bay =  locate(/area/centcom/supplypod/loading/three) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/three) in GLOB.sorted_areas
 			refreshBay()
 			. = TRUE
 		if("bay4")
-			bay =  locate(/area/centcom/supplypod/loading/four) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/four) in GLOB.sorted_areas
 			refreshBay()
 			. = TRUE
 		if("bay5")
-			bay =  locate(/area/centcom/supplypod/loading/ert) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/ert) in GLOB.sorted_areas
 			refreshBay()
 			. = TRUE
 		if("teleportCentcom") //Teleports the user to the centcom supply loading facility.
@@ -178,7 +178,7 @@
 				return
 			var/list/expNames = list("Devastation", "Heavy Damage", "Light Damage", "Flame") //Explosions have a range of different types of damage
 			var/list/boomInput = list()
-			for (var/i=1 to expNames.len) //Gather input from the user for the value of each type of damage
+			for (var/i=1 to length(expNames)) //Gather input from the user for the value of each type of damage
 				boomInput.Add(usr, tgui_input_number("[expNames[i]] Range", "Enter the [expNames[i]] range of the explosion. WARNING: This ignores the bomb cap!", 0))
 				if (isnull(boomInput[i]))
 					return
@@ -339,7 +339,7 @@
 			var/soundInput = input(holder, "Please pick a sound file to play when the pod lands! NOTICE: Take a note of exactly how long the sound is.", "Pick a Sound File") as null|sound
 			if (isnull(soundInput))
 				return
-			var/timeInput =  tgui_input_number(holder, "What is the exact length of the sound file, in seconds. This number will be used to line the sound up so that it finishes right as the pod lands!", "Pick a Sound File", 0.3)
+			var/timeInput = tgui_input_number(holder, "What is the exact length of the sound file, in seconds. This number will be used to line the sound up so that it finishes right as the pod lands!", "Pick a Sound File", 0.3)
 			if (isnull(timeInput))
 				return
 			if (!isnum(timeInput))
@@ -498,7 +498,7 @@
 	numTurfs = 0 //Counts the number of turfs that can be launched (remember, supplypods either launch all at once or one turf-worth of items at a time)
 	acceptableTurfs = list()
 	for (var/turf/T in orderedArea) //Go through the orderedArea list
-		if (typecache_filter_list_reverse(T.contents, ignored_atoms).len != 0) //if there is something in this turf that isnt in the blacklist, we consider this turf "acceptable" and add it to the acceptableTurfs list
+		if (typecache_filter_list_reverse(T.contents, length(ignored_atoms)) != 0) //if there is something in this turf that isnt in the blacklist, we consider this turf "acceptable" and add it to the acceptableTurfs list
 			acceptableTurfs.Add(T) //Because orderedArea was an ordered linear list, acceptableTurfs will be as well.
 			numTurfs ++
 
@@ -509,7 +509,7 @@
 				for (var/turf/T in acceptableTurfs)
 					launchList |= typecache_filter_list_reverse(T.contents, ignored_atoms) //We filter any blacklisted atoms and add the rest to the launchList
 			if(1) //If we are launching one at a time
-				if (launchCounter > acceptableTurfs.len) //Check if the launchCounter, which acts as an index, is too high. If it is, reset it to 1
+				if (launchCounter > length(acceptableTurfs)) //Check if the launchCounter, which acts as an index, is too high. If it is, reset it to 1
 					launchCounter = 1 //Note that the launchCounter index is incremented in the launch() proc
 				for (var/atom/movable/O in acceptableTurfs[launchCounter].contents) //Go through the acceptableTurfs list based on the launchCounter index
 					launchList |= typecache_filter_list_reverse(acceptableTurfs[launchCounter].contents, ignored_atoms) //Filter the specicic turf chosen from acceptableTurfs, and add it to the launchList
@@ -541,7 +541,7 @@
 /datum/centcom_podlauncher/proc/updateSelector() //Ensures that the selector effect will showcase the next item if needed
 	if (launchChoice == 1 && !isemptylist(acceptableTurfs) && !temp_pod.reversing && !temp_pod.effectMissile) //We only show the selector if we are taking items from the bay
 		var/index = launchCounter + 1 //launchCounter acts as an index to the ordered acceptableTurfs list, so adding one will show the next item in the list
-		if (index > acceptableTurfs.len) //out of bounds check
+		if (index > length(acceptableTurfs)) //out of bounds check
 			index = 1
 		selector.forceMove(acceptableTurfs[index]) //forceMove the selector to the next turf in the ordered acceptableTurfs list
 	else

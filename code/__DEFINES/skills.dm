@@ -93,14 +93,14 @@
 #define SKILL_SURGERY_AMATEUR 1 //basic notions of first aid and biology (SL, SO)
 #define SKILL_SURGERY_TRAINED 2 //semi-professional surgery (Squad Corpsman)
 #define SKILL_SURGERY_PROFESSIONAL 3 //professional but unspecialized (Researcher)
-#define SKILL_SURGERY_EXPERT 4 //specialized (Doctor, CMO)
-#define SKILL_SURGERY_MASTER 5 //to be implemented, perhaps instant surgery
+#define SKILL_SURGERY_EXPERT 4 //specialized (Doctor)
+#define SKILL_SURGERY_MASTER 5 // CMO
 //higher levels means faster surgery.
 
 //police skill, hidden
 #define SKILL_POLICE_DEFAULT 0
-#define SKILL_POLICE_FLASH 1 //flash use (CE, CMO, any officer starting with a flash)
-#define SKILL_POLICE_MP 2 //all police gear use, can strip someone's clothes simultaneously (MP)
+#define SKILL_POLICE_FLASH 1 //flash use
+#define SKILL_POLICE_MP 2 //all police gear use, can strip someone's clothes simultaneously
 
 //cqc skill
 //higher disarm chance on humans(+5% per level)

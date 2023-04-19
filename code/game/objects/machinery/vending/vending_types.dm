@@ -107,7 +107,7 @@
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
 	products = list(
-		/obj/item/reagent_containers/food/snacks/packaged_burger = -1,
+		/obj/item/reagent_containers/food/snacks/burger/packaged_burger = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_burrito = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_hdogs = -1,
 		/obj/item/reagent_containers/food/snacks/kepler_crisps = -1,
@@ -233,14 +233,14 @@
 	resistance_flags = INDESTRUCTIBLE
 	products = list(
 		"Hypospray" = list (
-			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
-			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
-			/obj/item/reagent_containers/hypospray/advanced = 5,
-			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 5,
-			/obj/item/reagent_containers/hypospray/advanced/kelotane = 5,
-			/obj/item/reagent_containers/hypospray/advanced/tramadol = 5,
-			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 5,
-			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = -1,
+			/obj/item/reagent_containers/hypospray/advanced = -1,
+			/obj/item/reagent_containers/hypospray/advanced/bicaridine = -1,
+			/obj/item/reagent_containers/hypospray/advanced/kelotane = -1,
+			/obj/item/reagent_containers/hypospray/advanced/tramadol = -1,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,
+			/obj/item/reagent_containers/hypospray/advanced/dylovene = -1,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
@@ -265,6 +265,8 @@
 			/obj/item/storage/pill_bottle/tricordrazine = -1,
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/inaprovaline = -1,
+			/obj/item/storage/pill_bottle/isotonic = -1,
+			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/dexalin = -1,
 			/obj/item/storage/pill_bottle/spaceacillin = -1,
 			/obj/item/storage/pill_bottle/alkysine = -1,
@@ -297,7 +299,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
-			/obj/item/reagent_containers/glass/bottle/toxin = 1,
+			/obj/item/reagent_containers/glass/bottle/toxin = -1,
 		),
 	)
 
@@ -540,8 +542,8 @@
 	icon_vend = "engivend-vend"
 	icon_deny = "engivend-deny"
 	products = list(
-		/obj/item/multitool = -1,
-		/obj/item/analyzer = -1,
+		/obj/item/tool/multitool = -1,
+		/obj/item/tool/analyzer = -1,
 		/obj/item/t_scanner = -1,
 		/obj/item/circuitboard/apc = -1,
 		/obj/item/circuitboard/airlock = -1,

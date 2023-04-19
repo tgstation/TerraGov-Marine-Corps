@@ -31,9 +31,9 @@
 	var/shouldwakeup = FALSE //convenience var for forcibly waking up an idling AI on next check.
 
 	//Interaction
-	var/response_help   = "pokes"
+	var/response_help = "pokes"
 	var/response_disarm = "shoves"
-	var/response_harm   = "hits"
+	var/response_harm = "hits"
 	var/harm_intent_damage = 3
 	var/force_threshold = 0 //Minimum force required to deal any damage
 	var/healable = TRUE
@@ -313,33 +313,33 @@
 	set waitfor = FALSE
 	if(speak_chance)
 		if(prob(speak_chance) || override)
-			if(speak && speak.len)
-				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
+			if(length(speak))
+				if((emote_hear && length(emote_hear)) || (emote_see && length(emote_see)))
 					var/length = speak.len
-					if(emote_hear && emote_hear.len)
+					if(emote_hear && length(emote_hear))
 						length += emote_hear.len
-					if(emote_see && emote_see.len)
+					if(emote_see && length(emote_see))
 						length += emote_see.len
 					var/randomValue = rand(1,length)
-					if(randomValue <= speak.len)
+					if(randomValue <= length(speak))
 						say(pick(speak), forced = "poly")
 					else
 						randomValue -= speak.len
-						if(emote_see && randomValue <= emote_see.len)
+						if(emote_see && randomValue <= length(emote_see))
 							emote("me [pick(emote_see)]", 1)
 						else
 							emote("me [pick(emote_hear)]", 2)
 				else
 					say(pick(speak), forced = "poly")
 			else
-				if(!(emote_hear && emote_hear.len) && (emote_see && emote_see.len))
+				if(!length(emote_hear) && length(emote_see))
 					emote("me", 1, pick(emote_see))
-				if((emote_hear && emote_hear.len) && !(emote_see && emote_see.len))
+				if(length(emote_hear) && !length(emote_see))
 					emote("me", 2, pick(emote_hear))
-				if((emote_hear && emote_hear.len) && (emote_see && emote_see.len))
-					var/length = emote_hear.len + emote_see.len
+				if(length(emote_hear) && length(emote_see))
+					var/length = length(emote_hear) + emote_see.len
 					var/pick = rand(1,length)
-					if(pick <= emote_see.len)
+					if(pick <= length(emote_see))
 						emote("me", 1, pick(emote_see))
 					else
 						emote("me", 2, pick(emote_hear))

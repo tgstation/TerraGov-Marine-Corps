@@ -354,3 +354,170 @@
   - bugfix: Fixed valhalla buttons
   novaepee:
   - rscadd: Add keybind for activate autorepair for combat robots
+2023-03-22:
+  Lumipharon:
+  - bugfix: Fixed an issue with targeting mounted guns when manned
+  - bugfix: Fixed a couple of minor  COPE sentry issues
+  Naaanii:
+  - rscadd: Adds tracker shells to regular weapon vendors.
+  - balance: Tracking fluid now layers over weeds.
+  Xander3359:
+  - rscadd: Healthscanner gloves, there are 8 available in the marine med, medics
+      can purchase them for 2 points from their vendor.
+  - imageadd: Healthscanner glove sprites.
+  ivanmixo:
+  - bugfix: Fixes slippery floors being slippery forever
+2023-03-23:
+  Lumipharon:
+  - bugfix: fixed a loadout screen BSOD
+  - code_imp: removed the pocket var from boots and some hats, replacing them with
+      irremovable attachments.
+  - code_imp: Loadout version progressed to 11.
+  - qol: Added colours to the shipside minimap
+  Xander3359:
+  - bugfix: Added missing things to the valhalla medplus.
+  ivanmixo:
+  - bugfix: Makes structures exist per hive, which prevents different hives from sharing
+      larva gen rates
+  - bugfix: Fixes runtime from clientless mobs behind hit with projectiles
+  - balance: Made defiler smoke (and neuro) pacify huggers
+  - bugfix: Fixed charlie turtleneck missing a sprite
+2023-03-24:
+  ClosetedSkeletonGH:
+  - rscadd: Adds helljumper to old jaeger lego options
+  Lumipharon:
+  - code_imp: Attempted to clean up some DMI mess for uniforms, suits and hats
+  - bugfix: Sectoids no longer show in incorrect helmet sprite
+  QualityVan:
+  - bugfix: Defibbing robots is more reliable
+  Xander3359:
+  - rscdel: Deletes the unobtainable chem xeno_blood
+  ivanmixo:
+  - qol: Made cas' eye starting position selectable via minimap
+2023-03-25:
+  ClosetedSkeletonGH:
+  - rscadd: Many many more option's for robot random-name generation
+  Lumipharon:
+  - balance: Standard smoke grenades now extinguish fire
+  - bugfix: TGMC interdictors have cleansed the sector of the excessive amount of
+      xeno infested ERT ships, returning them to normal levels
+  - bugfix: Fixed some minor issues where valhalla or admin xenos were being counted
+      as real xenos
+  Naaanii:
+  - balance: Roundstart larvae can instantly evolve.
+  Xander3359:
+  - rscadd: There are now 5 quick equip keybinds.
+  - rscdel: preferred_slot client verb as it has become unecessary.
+  - code_imp: Some cleanup in a few files I touched upon, nothing major.
+  ivanmixo:
+  - bugfix: Shuttle landing shadow doesn't block clicks anymore
+2023-03-26:
+  Naaanii:
+  - spellcheck: updated beacon admin log to say 'supply' instead of 'orbital strike'
+  ivanmixo:
+  - balance: Moved green disk to engineering on LV
+2023-03-27:
+  567Turtle:
+  - rscadd: Changed Arrowhead to Svalinn
+  - rscadd: Changed Artemis to Freyr
+  DeltaFire15:
+  - qol: Readds the original psychic shield keybind behavior as an alternate keybind
+      option.
+  Lumipharon:
+  - qol: Dead space on the minimap no longer shows up, improvement readability
+  - qol: Added more coloured areas to groundside and Sulaco minimaps
+  - bugfix: fixed an autobalance issue
+  - bugfix: PMC armor is no longer invisible
+  Naaanii:
+  - balance: changes CMO surgery and medical skill to Master.
+  - bugfix: fixes some descriptions in code to be more accurate
+  Xander3359:
+  - rscadd: RMB with health analyzer will show the patient their health.
+  - rscadd: Health scanner balloon alerts.
+  - bugfix: Runtime involved when health scanning non-carbons.
+  - bugfix: '"Belt (2") in quick equip prefs is now "Belt Inside"'
+  carlarctg:
+  - refactor: Refactored and reworked EORD loadout selection to pick from all the
+      subtypes of normal ERT factions. Added spec ops to this list. Removed UPP because
+      they suck and have boring loadouts. Added ICC.
+  - rscadd: Added the HvH loadouts for SOM and terragov soldiers that are handled
+      by randomly picking from the relevant subtype outfits.
+  - rscadd: Added a 7% chance to spawn in as a 'rare faction', skeletons, Imperial
+      Guardsmen, and sectoids, also a tiny 2% additional roll will net you deathsquad.
+  - code_imp: Moved species changing of skeletons and sectoids from the ERT call proc
+      to when the outfit is applied.
+  chizzy376:
+  - bugfix: fixed big canterbury left button opening right shutters instead
+  ivanmixo:
+  - balance: Orphan hivemind collapse can no longer trigger before shutters are open
+  novaepee:
+  - bugfix: Fix long hair getting its top cut off by helmet
+2023-03-28:
+  567Turtle:
+  - rscadd: Harvester claymore, available at marine vendors
+  Lumipharon:
+  - bugfix: left click draws items out of boots again, alt right click will open storage
+      instead
+  Naaanii:
+  - balance: T1 Xenos get the maturity points for evolving.
+  ivanmixo:
+  - rscadd: Added real snow to gelida instead of fake snow
+  - rscadd: Preweeded the rest of ice colony
+  - rscdel: Removed fake snow due to it being ugly and unnecesarry
+  - balance: Snow is now weedable and no longer slows down
+  - qol: Melting snow with a plasmacutter is also free now since it's cosmetic
+2023-03-29:
+  Autisem:
+  - rscadd: Phermone towers now spawn alongside the silo's during crash
+  DeltaFire15:
+  - rscadd: CIC Overwatch now has a minimap while using the camera system.
+  - rscadd: CAS now has a minimap while on a groundside strike mission.
+  - balance: AI's minimap now tracks the z the AI's eye is on, instead of only shipside
+  - bugfix: Miners no longer cause minimap-related runtimes every init.
+  - bugfix: default_overwatch_level for minimaps should now work properly.
+  - code_imp: Minimaps now support tracking atoms which aren't the owner of the action.
+  - bugfix: Fixes a very minor, easy to trigger, droppod runtime.
+  Pariah919:
+  - balance: Smartpistol now uses pistol AP bullets rather than normal pistol bullets,
+      and has full auto and a bit more magazine size (25->30).
+  chizzy376:
+  - rscadd: Added a new map, Desparity. Lowpop exclusive (30 pop or less).
+  ivanmixo:
+  - balance: River slows the amount its supposed to again
+  - bugfix: Snow actually doesn't slow xenos down
+2023-03-30:
+  Lumipharon:
+  - code_imp: reorganised item inhand sprites
+  - bugfix: fixed some issues with quick equip for hat and boot storage
+  - code_imp: Improved quick equip code somewhat
+  - bugfix: Minor fix to the anti-stalemate system
+  - bugfix: fixed some invisible ERT armor
+  - bugfix: Added a few missing items on a couple of SOM ERT loadouts
+  carlarctg:
+  - qol: Halved attaching delay for most things, except anything that has it overriden
+      such as guns.
+  - qol: Halved the delay for taking modules out, 3s -> 1.5s.
+  - qol: Allowed you to take off modules without taking the armor off, but it doubles
+      it back to its normal 3s value.
+  - qol: Added a sprite to signify you've hooked a gun to your harness.
+  ivanmixo:
+  - bugfix: Fixed mobs getting stuck on eachother and other mobs when moving diagonally
+  - bugfix: Fixes window and window frame weeds transferring the click to the frame/window
+      below
+  - code_imp: Removed some weed window frame copypasta
+2023-03-31:
+  DeltaFire15:
+  - bugfix: Overwatch consoles should no longer brick under certain eye-deletion related
+      conditions.
+  - balance: Tad's landing cam view has minimap access.
+  QualityVan:
+  - bugfix: Moved the actual necrosis removal of surgery back to the second step,
+      rendering it possible to perform once again
+  Skye:
+  - bugfix: fixes the ICC medic spawn. It's Space...Somewhere, not 1940s Russia.
+  ivanmixo:
+  - code_imp: Replaced usages of .len with length() where applicable
+  - balance: Dropship fabricators now earn 30 and 15 points from respective miners.
+  - rscdel: Removed the dropship points voulcher
+  novaepee:
+  - imageadd: New Vali object and mob sprites

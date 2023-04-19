@@ -154,15 +154,17 @@
 /area/orion_outpost/surface/building/canteen
 	name = "Canteen"
 	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/orion_outpost/surface/building/barracks
 	name = "Barracks"
 	icon_state = "crew_quarters"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/orion_outpost/surface/building/prep
 	name = "Preperations"
 	icon_state = "green"
-	minimap_color = MINIMAP_AREA_SEC
+	minimap_color = MINIMAP_AREA_PREP
 
 /area/orion_outpost/surface/building/command
 	name = "Command"
@@ -177,6 +179,7 @@
 /area/orion_outpost/surface/building/cargo
 	name = "Cargo Storage"
 	icon_state = "dark160"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/orion_outpost/surface/building/nebuilding
 	name = "Northeast Building"
@@ -190,6 +193,7 @@
 /area/orion_outpost/surface/building/dorms
 	name = "Dormitory"
 	icon_state = "crew_quarters"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/orion_outpost/surface/building/bunker
 	name = "Bunkers"
@@ -227,15 +231,19 @@
 /area/orion_outpost/surface/building/atc
 	name = "Traffic Control"
 	icon_state = "bluenew"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/orion_outpost/surface/building/ammodepot
 	name = "Ammo Depot"
 	icon_state = "dark"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/orion_outpost/surface/building/vehicledepot
 	name = "Vehicle Depot"
 	icon_state = "dark160"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/orion_outpost/surface/building/breakroom
 	name = "Breakroom Building"
 	icon_state = "dark160"
+	minimap_color = MINIMAP_AREA_LIVING

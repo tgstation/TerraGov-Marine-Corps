@@ -220,7 +220,7 @@
 							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
 
-/obj/item/weapon/combat_knife/vali_knife
+/obj/item/weapon/combat_knife/harvester
 	name = "\improper HP-S Harvester knife"
 	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' knife. An advanced version of the HP-S Harvester blade, shrunken down to the size of the standard issue boot knife. It trades the harvester blades size and power for a smaller form, with the side effect of a miniscule chemical storage, yet it still keeps its ability to apply debilitating effects to its targets. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
 	icon_state = "vali_knife_icon"
@@ -239,19 +239,19 @@
 	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
 	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/combat_knife/vali_knife/Initialize()
+/obj/item/weapon/combat_knife/harvester/Initialize()
 	. = ..()
 	AddComponent(/datum/component/harvester, 5)
 
-/obj/item/weapon/combat_knife/vali_knife/equipped(mob/user, slot)
+/obj/item/weapon/combat_knife/harvester/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-/obj/item/weapon/combat_knife/vali_knife/dropped(mob/user)
+/obj/item/weapon/combat_knife/harvester/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-/obj/item/weapon/combat_knife/vali_knife/get_mechanics_info()
+/obj/item/weapon/combat_knife/harvester/get_mechanics_info()
 	. = ..()
 	. += jointext(codex_info, "<br>")
 
@@ -437,7 +437,7 @@
 	name = "chainsword"
 	desc = "chainsword thing"
 	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "chainswordoff"
+	icon_state = "chainsword"
 	attack_verb = list("gored", "slashed", "cut")
 	force = 10
 	throwforce = 5
@@ -447,8 +447,8 @@
 	. = ..()
 	if(!on)
 		on = !on
-		icon_state = "chainswordon"
-		force = 40
+		icon_state = "[initial(icon_state)]_on"
+		force = 80
 		throwforce = 30
 	else
 		on = !on
@@ -463,3 +463,8 @@
 /obj/item/weapon/chainsword/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return(BRUTELOSS)
+
+/obj/item/weapon/chainsword/civilian
+	name = "chainsaw"
+	desc = "A chainsaw. Good for turning big things into little things."
+	icon_state = "chainsaw"

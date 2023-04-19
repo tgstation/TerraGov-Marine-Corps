@@ -217,7 +217,7 @@
 		L.Unconscious(5 SECONDS)
 
 /datum/reagent/medicine/leporazine/overdose_crit_process(mob/living/L, metabolism)
-	L.drowsyness  = max(L.drowsyness, 30)
+	L.drowsyness = max(L.drowsyness, 30)
 
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
@@ -930,7 +930,7 @@
 	if(prob(15) && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/affected_organ = pick("heart","lungs","liver","kidneys")
-		var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
+		var/datum/internal_organ/I = H.internal_organs_by_name[affected_organ]
 		I.take_damage(5.5*effect_str)
 
 

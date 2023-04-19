@@ -237,6 +237,10 @@
 	name = "bucket"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
+	)
 	item_state = "bucket"
 	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 20

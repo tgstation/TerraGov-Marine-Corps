@@ -75,7 +75,7 @@
 		var/sql_roles
 		if(islist(roles))
 			var/list/sql_roles_list = list()
-			for (var/i in 1 to roles.len)
+			for (var/i in 1 to length(roles))
 				values["role[i]"] = roles[i]
 				sql_roles_list += ":role[i]"
 			sql_roles = sql_roles_list.Join(", ")
@@ -571,7 +571,7 @@
 	if(!SSdbcore.MassInsert(format_table_name("ban"), sql_ban, warn = TRUE, special_columns = special_columns))
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
-	var/msg = "has created a [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][roles_to_ban[1] == "Server" ? "server ban" : "role ban from [roles_to_ban.len] roles"] for [target]."
+	var/msg = "has created a [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][roles_to_ban[1] == "Server" ? "server ban" : "role ban from [length(roles_to_ban)] roles"] for [target]."
 	log_admin_private("[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	message_admins("[kna] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
 	if(applies_to_admins)
@@ -720,7 +720,7 @@
 		while(query_unban_search_bans.NextRow())
 			var/ban_id = query_unban_search_bans.item[1]
 			var/ban_datetime = query_unban_search_bans.item[2]
-			var/ban_round_id  = query_unban_search_bans.item[3]
+			var/ban_round_id = query_unban_search_bans.item[3]
 			var/role = query_unban_search_bans.item[4]
 			//make the href for unban here so only the search parameters are passed
 			var/unban_href = "<a href='?src=[REF(usr.client.holder)];[HrefToken()];unbanid=[ban_id];unbankey=[player_key];unbanadminkey=[admin_key];unbanip=[player_ip];unbancid=[player_cid];unbanrole=[role];unbanpage=[page]'>Unban</a>"

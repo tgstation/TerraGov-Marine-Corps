@@ -49,7 +49,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
-	dir = 4
+	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "db" = (
@@ -65,12 +65,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"dU" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 6
-	},
-/area/shuttle/drop2/lz2)
 "eg" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 1
@@ -108,7 +102,7 @@
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
 	},
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
@@ -159,7 +153,7 @@
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
 	},
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "mf" = (
@@ -245,7 +239,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "rw" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
@@ -319,6 +313,10 @@
 /obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/marking/asteroidwarning,
 /area/shuttle/drop2/lz2)
+"xH" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/shuttle/drop2/lz2)
 "yh" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
@@ -368,7 +366,9 @@
 /area/shuttle/drop2/lz2)
 "zI" = (
 /obj/effect/ai_node,
-/turf/open/floor/asteroidfloor,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
 /area/shuttle/drop2/lz2)
 "Aa" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -481,9 +481,7 @@
 /obj/machinery/button/door/open_only/landing_zone/lz2{
 	dir = 8
 	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "HG" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -544,7 +542,7 @@
 /turf/closed/wall/r_wall,
 /area/shuttle/drop2/lz2)
 "LY" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -596,9 +594,7 @@
 "Nx" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/lv624/lazarus/console)
 "NM" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -634,7 +630,7 @@
 /area/shuttle/drop2/lz2)
 "OW" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -711,7 +707,7 @@
 /area/space)
 "Ua" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -753,14 +749,16 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "Wv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/sw)
+"WW" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning,
+/area/shuttle/drop2/lz2)
 "Xm" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -1548,7 +1546,7 @@ Ng
 Ng
 Ng
 mq
-Ng
+mq
 Ng
 Ng
 Ng
@@ -1589,21 +1587,21 @@ LT
 LT
 GB
 mq
-Ng
-Ng
-Ng
-Ng
-Ng
-Ng
-Ng
-Ng
-Ng
-Ng
-Ng
-Ng
-Ng
-Ng
-Ng
+mq
+mq
+mq
+mq
+mq
+mq
+mq
+mq
+mq
+mq
+mq
+mq
+mq
+mq
+mq
 Ng
 Ng
 "}
@@ -1617,7 +1615,7 @@ sZ
 MO
 fz
 fz
-fz
+ze
 fz
 fz
 fz
@@ -1628,23 +1626,23 @@ fz
 fz
 Zi
 GB
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
 Ng
 mq
-mq
-mq
-mq
-mq
-mq
-mq
-mq
-mq
-mq
-mq
-mq
-mq
-mq
-mq
-Ng
 Ng
 "}
 (22,1,1) = {"
@@ -1657,53 +1655,13 @@ UT
 MO
 fz
 fz
-ze
-fz
-fz
-fz
-fz
-fz
-tY
-fz
-fz
-Zi
-GB
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Ng
-mq
-Ng
-"}
-(23,1,1) = {"
-qM
-Ng
-Ng
-am
-mU
-sZ
-MO
-fz
-fz
 fz
 fz
 fz
 fz
 GZ
 aX
-fz
+tY
 fz
 fz
 Zi
@@ -1727,7 +1685,7 @@ Ng
 Ng
 mq
 "}
-(24,1,1) = {"
+(23,1,1) = {"
 qM
 Ng
 Ng
@@ -1736,7 +1694,7 @@ mU
 sZ
 MO
 fz
-GZ
+fz
 aX
 fz
 GZ
@@ -1767,9 +1725,9 @@ Wv
 Wv
 Wv
 "}
-(25,1,1) = {"
+(24,1,1) = {"
 qM
-qM
+Ng
 Ng
 am
 mU
@@ -1807,8 +1765,8 @@ Zi
 Zi
 Sp
 "}
-(26,1,1) = {"
-VI
+(25,1,1) = {"
+qM
 qM
 Ng
 am
@@ -1847,8 +1805,8 @@ BT
 Zi
 Sp
 "}
-(27,1,1) = {"
-UJ
+(26,1,1) = {"
+VI
 qM
 Ng
 am
@@ -1887,8 +1845,8 @@ BT
 Zi
 Sp
 "}
-(28,1,1) = {"
-VI
+(27,1,1) = {"
+UJ
 qM
 Ng
 am
@@ -1927,16 +1885,16 @@ BT
 Zi
 Sp
 "}
-(29,1,1) = {"
-Kk
+(28,1,1) = {"
+VI
 qM
 Ng
 am
 mU
 sZ
-BT
-kH
-RW
+MO
+fz
+GZ
 sZ
 QV
 it
@@ -1967,16 +1925,16 @@ BT
 Zi
 Sp
 "}
-(30,1,1) = {"
-Mi
+(29,1,1) = {"
+Kk
 qM
 Ng
 am
 mU
-UT
+sZ
 BT
-Eh
-yR
+kH
+RW
 sZ
 Qt
 it
@@ -2007,16 +1965,16 @@ BT
 Zi
 Sp
 "}
-(31,1,1) = {"
+(30,1,1) = {"
 Mi
 qM
 Ng
 am
 mU
-sZ
-MO
-fz
-GZ
+UT
+BT
+Eh
+yR
 sZ
 nq
 it
@@ -2047,8 +2005,8 @@ BT
 Zi
 Sp
 "}
-(32,1,1) = {"
-pu
+(31,1,1) = {"
+Mi
 qM
 Ng
 am
@@ -2056,7 +2014,7 @@ mU
 sZ
 MO
 fz
-rf
+GZ
 sZ
 kW
 it
@@ -2087,16 +2045,16 @@ BT
 Zi
 Sp
 "}
-(33,1,1) = {"
-qa
-Id
-Id
+(32,1,1) = {"
+pu
+qM
+Ng
 am
 mU
 sZ
 MO
 fz
-GZ
+rf
 sZ
 xp
 it
@@ -2127,16 +2085,16 @@ BT
 Zi
 Sp
 "}
-(34,1,1) = {"
-CN
-mU
-mU
-mU
+(33,1,1) = {"
+qa
+Id
+Id
+am
 mU
 sZ
 MO
-Aa
-mU
+fz
+GZ
 sZ
 Qt
 it
@@ -2167,16 +2125,16 @@ BT
 Zi
 Sp
 "}
-(35,1,1) = {"
+(34,1,1) = {"
 CN
-rN
-bV
-bV
-kH
-BT
-BT
-kH
-kH
+mU
+mU
+mU
+mU
+sZ
+MO
+Aa
+mU
 sZ
 EV
 it
@@ -2207,16 +2165,16 @@ BT
 Zi
 Sp
 "}
-(36,1,1) = {"
-Xm
-sZ
-zk
+(35,1,1) = {"
+CN
+rN
+bV
+bV
+kH
 BT
 BT
-zk
-zk
-BT
-BT
+kH
+kH
 sZ
 kW
 it
@@ -2247,17 +2205,17 @@ BT
 Zi
 Sp
 "}
-(37,1,1) = {"
-ZF
-qY
-Nb
-Nb
-Nb
-OQ
-wR
-wR
-wR
-qY
+(36,1,1) = {"
+Xm
+sZ
+zk
+BT
+BT
+zk
+zk
+BT
+BT
+sZ
 QV
 it
 tR
@@ -2287,16 +2245,16 @@ BT
 Zi
 Sp
 "}
-(38,1,1) = {"
-CN
-sZ
-BT
-BT
-ES
-mU
-mU
-mU
-mU
+(37,1,1) = {"
+ZF
+qY
+Nb
+Nb
+Nb
+OQ
+wR
+wR
+wR
 qY
 Qt
 Ti
@@ -2327,11 +2285,11 @@ BT
 Zi
 Sp
 "}
-(39,1,1) = {"
+(38,1,1) = {"
 CN
-vJ
+sZ
 BT
-zk
+BT
 ES
 mU
 mU
@@ -2367,6 +2325,46 @@ BT
 Zi
 Sp
 "}
+(39,1,1) = {"
+CN
+vJ
+BT
+zk
+ES
+mU
+mU
+mU
+mU
+qY
+sZ
+BT
+MO
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+BT
+sZ
+BT
+MO
+BT
+Zi
+Sp
+"}
 (40,1,1) = {"
 CN
 vJ
@@ -2377,32 +2375,32 @@ LR
 mU
 mU
 mU
-qY
-sZ
-BT
-MO
-BT
-BT
+wE
+mo
+Eh
+yR
+Eh
+Eh
 zI
-BT
-BT
-BT
-BT
-BT
-BT
-BT
-BT
-BT
+Eh
+Eh
+Eh
+Eh
+Eh
+Eh
+Eh
+Eh
+Eh
 zI
-BT
-BT
-BT
-BT
-BT
+Eh
+Eh
+Eh
+Eh
+Eh
 zI
-sZ
-BT
-MO
+mo
+Eh
+yR
 BT
 Zi
 Sp
@@ -2417,33 +2415,33 @@ mU
 mU
 mU
 zl
-qY
-wE
+xH
+xH
 cW
-dU
-BT
-BT
-BT
-BT
-BT
-BT
-BT
+ES
+mU
+mU
+mU
+mU
+mU
+mU
+mU
 mS
 Nx
 Wq
-wR
-wR
-wR
+xH
+qY
+WW
 Hl
-wR
-wR
-wR
-Eh
-Eh
-mo
-Eh
-yR
-Eh
+xH
+xH
+qY
+MO
+mU
+mU
+mU
+mU
+mU
 Zi
 Sp
 "}

@@ -161,6 +161,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/item/reagent_containers/glass/beaker/cryomix,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "aO" = (
@@ -279,7 +280,7 @@
 	dir = 8
 	},
 /obj/machinery/door_control{
-	id = "starboard_umbilical_outer";
+	id = "port_umbilical_outer";
 	name = "outer door-control";
 	pixel_y = 32
 	},
@@ -465,9 +466,7 @@
 	},
 /area/shuttle/canterbury/cic)
 "bO" = (
-/obj/machinery/alarm{
-	dir = 1
-	},
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "bP" = (
@@ -498,8 +497,8 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "bT" = (
-/obj/machinery/marine_selector/clothes/synth,
 /obj/machinery/light/small,
+/obj/machinery/marine_selector/clothes/commander,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -702,7 +701,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "sR" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/machinery/marine_selector/clothes/synth,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "te" = (
@@ -766,6 +765,9 @@
 	dir = 8
 	},
 /obj/machinery/iv_drip,
+/obj/structure/sink{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "vW" = (
@@ -810,6 +812,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"zk" = (
+/obj/machinery/alarm,
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/shuttle/canterbury/cic)
 "zy" = (
 /obj/structure/closet/crate/trashcart,
 /obj/item/storage/bag/trash,
@@ -1252,7 +1260,7 @@ Uo
 Uo
 al
 al
-uu
+zk
 bL
 al
 Rd
@@ -1352,7 +1360,7 @@ Uo
 ad
 ae
 MY
-bO
+bS
 al
 qh
 ac
@@ -1550,7 +1558,7 @@ Uo
 ad
 jo
 MY
-bS
+bO
 al
 BZ
 ac

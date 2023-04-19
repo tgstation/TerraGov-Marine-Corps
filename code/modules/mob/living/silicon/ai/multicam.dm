@@ -43,7 +43,7 @@
 
 
 /atom/movable/screen/movable/pic_in_pic/ai/set_view_size(width, height, do_refresh = TRUE)
-	aiEye.static_visibility_range =	(round(max(width, height) / 2) + 1)
+	aiEye.static_visibility_range = (round(max(width, height) / 2) + 1)
 	if(ai)
 		ai.camera_visibility(aiEye)
 	return ..()
@@ -217,7 +217,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 		return
 	if(!eyeobj)
 		return
-	if(multicam_screens.len >= max_multicams)
+	if(length(multicam_screens) >= max_multicams)
 		if(!silent)
 			to_chat(src, span_warning("Cannot place more than [max_multicams] multicamera windows."))
 		return

@@ -57,7 +57,7 @@
 /mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE)
 	if(!generic_evolution_checks())
 		return
-	
+
 	if(caste_type == /mob/living/carbon/xenomorph/hivemind && tgui_alert(src, "You are about to evolve into a hivemind, which places its core on the tile you're on when evolving. This core cannot be moved and you cannot regress. Are you sure you would like to place your core here?", "Evolving to hivemind", list("Yes", "No"), FALSE) == "No")
 		return
 
@@ -273,7 +273,7 @@
 			to_chat(src, span_warning("The hivemind is still recovering from the last [initial(new_caste_type.display_name)]'s death. We must wait [DisplayTimeText(timeleft(death_timer))] before we can evolve."))
 			return FALSE
 	var/maximum_active_caste = new_caste_type.maximum_active_caste
-	if(maximum_active_caste != INFINITY && maximum_active_caste <= hive.xenos_by_typepath[new_mob_type].len)
+	if(maximum_active_caste != INFINITY && maximum_active_caste <= length(hive.xenos_by_typepath[new_mob_type]))
 		to_chat(src, span_warning("There is already a [initial(new_caste_type.display_name)] in the hive. We must wait for it to die."))
 		return FALSE
 	var/turf/T = get_turf(src)

@@ -39,7 +39,7 @@
 		for(var/i in baseturf_cache)
 			if(baseturf_to_replace[i])
 				baseturf_cache -= i
-		if(!baseturf_cache.len)
+		if(!length(baseturf_cache))
 			thing.assemble_baseturfs(baseturf)
 		else
 			thing.PlaceOnBottom(null, baseturf)
@@ -187,7 +187,7 @@
 	var/hide = FALSE
 
 /obj/effect/mapping_helpers/simple_pipes/LateInitialize()
-	var/list/connections = list( dir2text(NORTH)  = FALSE, dir2text(SOUTH) = FALSE , dir2text(EAST) = FALSE , dir2text(WEST) = FALSE)
+	var/list/connections = list( dir2text(NORTH) = FALSE, dir2text(SOUTH) = FALSE , dir2text(EAST) = FALSE , dir2text(WEST) = FALSE)
 	var/list/valid_connectors = typecacheof(/obj/machinery/atmospherics)
 	for(var/direction in connections)
 		var/turf/T = get_step(src,  text2dir(direction))

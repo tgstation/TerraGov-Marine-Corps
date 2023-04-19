@@ -16,6 +16,10 @@ SUBSYSTEM_DEF(air)
 	setup_pipenets()
 	return ..()
 
+/datum/controller/subsystem/air/Recover()
+	atmos_machinery = SSair.atmos_machinery
+	pipe_init_dirs_cache = SSair.pipe_init_dirs_cache
+
 /datum/controller/subsystem/air/proc/get_init_dirs(type, dir)
 	if(!pipe_init_dirs_cache[type])
 		pipe_init_dirs_cache[type] = list()

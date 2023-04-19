@@ -516,9 +516,6 @@
 					H.visible_message("<span class='danger'>[src] smashes against [H]'s [D.name], damaging it!")
 					return FALSE
 				else
-					if(istype(D, /obj/item/clothing/head/helmet/marine)) //Marine helmets now get a fancy overlay.
-						var/obj/item/clothing/head/helmet/marine/m_helmet = D
-						m_helmet.add_hugger_damage()
 					H.update_inv_head()
 
 	if(M.wear_mask)

@@ -11,6 +11,7 @@
 
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
+	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], src)
 	GLOB.dead_xeno_list += src
 
 	QDEL_NULL(current_aura)

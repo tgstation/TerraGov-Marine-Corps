@@ -33,17 +33,17 @@
 	item_state = "trashbag"
 
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 	storage_slots = 21
 	can_hold = list() // any
 	cant_hold = list(/obj/item/disk/nuclear)
 
 /obj/item/storage/bag/trash/update_icon_state()
-	if(contents.len == 0)
+	if(length(contents) == 0)
 		icon_state = "trashbag0"
-	else if(contents.len < 12)
+	else if(length(contents) < 12)
 		icon_state = "trashbag1"
-	else if(contents.len < 21)
+	else if(length(contents) < 21)
 		icon_state = "trashbag2"
 	else
 		icon_state = "trashbag3"
@@ -61,7 +61,7 @@
 	item_state = "plasticbag"
 
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 	storage_slots = 21
 	can_hold = list() // any
 	cant_hold = list(/obj/item/disk/nuclear)
@@ -79,7 +79,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 50
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(/obj/item/ore)
 
 
@@ -93,7 +93,7 @@
 	name = "Plant Bag"
 	storage_slots = 50; //the number of plant pieces it can carry.
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/reagent_containers/food/snacks/grown,
@@ -175,7 +175,7 @@
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken
 /obj/item/storage/bag/sheetsnatcher/orient2hud()
-	var/adjusted_contents = contents.len
+	var/adjusted_contents = length(contents)
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
@@ -250,7 +250,7 @@
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."
 	storage_slots = 50; //the number of cash pieces it can carry.
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/coin,

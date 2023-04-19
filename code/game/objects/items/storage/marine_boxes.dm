@@ -139,7 +139,7 @@
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
 	new /obj/item/weapon/gun/rifle/sniper/antimaterial(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-		new /obj/item/clothing/under/marine/sniper(src)
+		new /obj/item/clothing/under/marine/camo/snow(src)
 		new /obj/item/storage/backpack/marine/satchel(src)
 		new /obj/item/bodybag/tarp/snow(src)
 	else

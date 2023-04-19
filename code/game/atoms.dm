@@ -16,8 +16,6 @@
 
 	var/resistance_flags = PROJECTILE_IMMUNE
 
-	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
-
 	///If non-null, overrides a/an/some in all cases
 	var/article
 
@@ -258,7 +256,7 @@ directive is properly returned.
 				pass |= istype(A, type)
 			if(!pass)
 				continue
-		if(A.contents.len)
+		if(length(A.contents))
 			found += A.search_contents_for(path,filter_path)
 	return found
 
@@ -275,7 +273,7 @@ directive is properly returned.
 	face_atom(examinify)
 	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 
-	if(result.len)
+	if(length(result))
 		for(var/i in 1 to (length(result) - 1))
 			result[i] += "\n"
 
@@ -655,12 +653,12 @@ Proc for attack log creation, because really why not
 	Adds an instance of colour_type to the atom's atom_colours list
 */
 /atom/proc/add_atom_colour(coloration, colour_priority)
-	if(!atom_colours || !atom_colours.len)
+	if(!atom_colours || !length(atom_colours))
 		atom_colours = list()
 		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
 	if(!coloration)
 		return
-	if(colour_priority > atom_colours.len)
+	if(colour_priority > length(atom_colours))
 		return
 	atom_colours[colour_priority] = coloration
 	update_atom_colour()
@@ -673,7 +671,7 @@ Proc for attack log creation, because really why not
 	if(!atom_colours)
 		atom_colours = list()
 		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
-	if(colour_priority > atom_colours.len)
+	if(colour_priority > length(atom_colours))
 		return
 	if(coloration && atom_colours[colour_priority] != coloration)
 		return //if we don't have the expected color (for a specific priority) to remove, do nothing
@@ -693,7 +691,7 @@ Proc for attack log creation, because really why not
 	for(var/C in atom_colours)
 		if(islist(C))
 			var/list/L = C
-			if(L.len)
+			if(length(L))
 				color = L
 				return
 		else if(C)
@@ -841,7 +839,7 @@ Proc for attack log creation, because really why not
 	return FALSE
 
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
-	if(!istype(I, /obj/item/multitool))
+	if(!istype(I, /obj/item/tool/multitool))
 		if(user && !silent)
 			to_chat(user, span_warning("[I] has no data buffer!"))
 		return FALSE

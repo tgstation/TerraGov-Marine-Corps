@@ -148,9 +148,9 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 				possible_targets += possible_target
 	if(try_target_late_joiners)
 		var/list/all_possible_targets = possible_targets.Copy()
-		if(!possible_targets.len)
+		if(!length(possible_targets))
 			possible_targets = all_possible_targets
-	if(possible_targets.len > 0)
+	if(length(possible_targets) > 0)
 		target = pick(possible_targets)
 	if(!target)
 		var/mob/living/M
@@ -268,7 +268,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		explanation_text = "Escape with somebody on a shuttle." //placeholder in case we can't find a real player
 		return
 	var/mob/living/livingtarget = target.current
-	if(target && target.current)
+	if(target?.current)
 		explanation_text = "Escape with [livingtarget.name], the [livingtarget.job.title], on a shuttle without being in custody."
 	else
 		explanation_text = "Free Objective"
@@ -313,7 +313,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		explanation_text = "Strand somebody on the planet." //placeholder in case we can't find a real player
 		return
 	var/mob/living/livingtarget = target.current
-	if(target && target.current)
+	if(target?.current)
 		explanation_text = "Make sure [livingtarget.name], the [livingtarget.job.title], is planetside at the end of the operation."
 	else
 		explanation_text = "Free Objective"
@@ -342,7 +342,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		explanation_text = "Kill somebody." //placeholder in case we can't find a real player
 		return
 	var/mob/living/livingtarget = target.current
-	if(target && target.current)
+	if(target?.current)
 		explanation_text = "Ensure [livingtarget.name], the [livingtarget.job.title] does not survive the operation."
 	else
 		explanation_text = "Free Objective"
@@ -361,7 +361,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/steal/New()
 	..()
-	if(!GLOB.possible_items.len)//Only need to fill the list when it's needed.
+	if(!length(GLOB.possible_items))//Only need to fill the list when it's needed.
 		for(var/I in subtypesof(/datum/objective_item/steal))
 			new I
 
@@ -466,7 +466,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/protect/update_explanation_text()
 	..()
-	if(target && target.current)
+	if(target?.current)
 		var/mob/living/livingtarget = target.current
 		explanation_text = "Protect [livingtarget.name], the [livingtarget.job.title]."
 	else
