@@ -31,7 +31,7 @@
 		if(!silent)
 			hivelord.balloon_alert(hivelord, "Cannot while burning")
 		return FALSE
-	if(!iscarbon(target)||!isxeno(target))
+	if(!isxeno(target))
 		if(!silent)
 			hivelord.balloon_alert(hivelord, "Cannot recycle")
 		return FALSE
