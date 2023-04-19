@@ -3778,9 +3778,9 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/atmos/storage)
 "aNH" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall,
-/area/storage/testroom)
+/obj/machinery/status_display,
+/turf/closed/wall/r_wall,
+/area/deltastation/command/heads_quarters/captain)
 "aNI" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/effect/mapping_helpers/simple_pipes/cyan/hidden{
@@ -4016,7 +4016,7 @@
 /turf/open/floor/iron,
 /area/deltastation/service/abandoned_gambling_den)
 "aRj" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/hop)
 "aRl" = (
@@ -4741,7 +4741,9 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/storage/tech)
 "aYg" = (
-/obj/machinery/atm,
+/obj/machinery/atm{
+	pixel_y = -1
+	},
 /turf/closed/wall,
 /area/deltastation/engineering/storage/tech)
 "aYh" = (
@@ -9052,7 +9054,7 @@
 "bSd" = (
 /obj/structure/closet/fireaxecabinet,
 /turf/closed/wall,
-/area/deltastation/command/meeting_room/council)
+/area/deltastation/engineering/atmos/storage)
 "bSf" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/sandedge{
@@ -10328,7 +10330,6 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "cfQ" = (
-/obj/machinery/computer/security/telescreen/entertainment,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -10732,9 +10733,9 @@
 	},
 /area/deltastation/science/lobby)
 "ckg" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
-/area/deltastation/hallway/secondary/exit)
+/area/deltastation/service/barber)
 "ckx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -17640,9 +17641,9 @@
 /turf/open/floor/iron/dark,
 /area/storage/testroom)
 "dFK" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall,
-/area/deltastation/medical/psychology)
+/obj/machinery/status_display,
+/turf/closed/wall/r_wall,
+/area/deltastation/command/heads_quarters/rd)
 "dFM" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/effect/turf_decal/warning_stripes/box,
@@ -20385,7 +20386,7 @@
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics/garden)
 "eeN" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/service/library/lounge)
 "eeU" = (
@@ -22755,7 +22756,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/security/telescreen/entertainment,
 /obj/effect/spawner/random/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -24026,9 +24026,9 @@
 /turf/open/floor/plating,
 /area/deltastation/service/chapel/funeral)
 "ePo" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall/r_wall,
-/area/ai_monitored/storage/eva)
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/deltastation/maintenance/starboard/aft)
 "ePr" = (
 /obj/effect/spawner/random/machinery/status_display,
 /turf/closed/wall,
@@ -26478,7 +26478,9 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/pumproom)
 "foj" = (
-/obj/machinery/atm,
+/obj/machinery/atm{
+	pixel_y = -1
+	},
 /turf/closed/wall,
 /area/deltastation/medical/break_room)
 "fok" = (
@@ -31979,7 +31981,7 @@
 /turf/open/floor/wood,
 /area/deltastation/service/lawoffice)
 "gtG" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/service/chapel/office)
 "gtO" = (
@@ -35177,7 +35179,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/starboard)
 "hbh" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/security/range)
 "hbi" = (
@@ -36637,7 +36639,7 @@
 /turf/open/floor/plating,
 /area/deltastation/security/execution/transfer)
 "hpx" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/command/heads_quarters/hos)
 "hpF" = (
@@ -38938,7 +38940,7 @@
 "hQF" = (
 /obj/structure/closet/fireaxecabinet,
 /turf/closed/wall/r_wall,
-/area/deltastation/maintenance/department/engine/atmos)
+/area/deltastation/command/bridge)
 "hQO" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/grown/log,
@@ -40530,7 +40532,9 @@
 /turf/open/floor/plating,
 /area/deltastation/commons/dorms)
 "iiU" = (
-/obj/machinery/atm,
+/obj/machinery/atm{
+	pixel_y = -1
+	},
 /turf/closed/wall,
 /area/deltastation/maintenance/port/fore)
 "ije" = (
@@ -41186,7 +41190,9 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
 "ipN" = (
-/obj/machinery/atm,
+/obj/machinery/atm{
+	pixel_y = -1
+	},
 /turf/closed/wall/r_wall,
 /area/deltastation/command/gateway)
 "ipQ" = (
@@ -43621,7 +43627,7 @@
 /turf/open/floor/iron/smooth,
 /area/deltastation/maintenance/department/science/xenobiology)
 "iPs" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/dorms)
 "iPF" = (
@@ -46772,7 +46778,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/science/xenobiology)
 "jyj" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/service/library/private)
 "jyo" = (
@@ -55415,7 +55421,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/easterntunnel)
 "lnT" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/dorms/laundry)
 "lnV" = (
@@ -55475,7 +55481,7 @@
 /turf/open/floor/plating,
 /area/deltastation/hallway/primary/central/fore)
 "loH" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/checkpoint/medical/medsci)
 "loJ" = (
@@ -58184,7 +58190,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/science)
 "lPX" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/vacant_room/commissary)
 "lPY" = (
@@ -70028,7 +70034,7 @@
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "oqr" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/locker)
 "oqC" = (
@@ -70172,7 +70178,7 @@
 /turf/open/floor/iron/freezer,
 /area/deltastation/medical/coldroom)
 "orM" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/storage)
 "orR" = (
@@ -72830,7 +72836,6 @@
 	},
 /obj/item/storage/fancy/candle_box,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/security/telescreen/entertainment,
 /turf/open/floor/plating,
 /area/deltastation/service/theater/abandoned)
 "oSq" = (
@@ -76379,7 +76384,6 @@
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "pCt" = (
-/obj/machinery/computer/security/telescreen/entertainment,
 /obj/machinery/newscaster,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/rd)
@@ -78817,13 +78821,9 @@
 /turf/open/floor/iron/white,
 /area/deltastation/science/lab)
 "qaS" = (
-/obj/machinery/recharge_station,
-/obj/effect/spawner/random/machinery/status_display,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
-/area/deltastation/ai_monitored/turret_protected/aisat_interior)
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/deltastation/service/chapel)
 "qbb" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -82813,7 +82813,6 @@
 /area/deltastation/security/courtroom)
 "qOa" = (
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted,
-/obj/structure/sign/securearea,
 /obj/machinery/light,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -82874,7 +82873,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/chapel)
 "qOC" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /obj/machinery/newscaster,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/medical/virology)
@@ -84466,7 +84465,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
 "rhc" = (
-/obj/effect/spawner/random/machinery/status_display,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/service/library/printer)
 "rhq" = (
@@ -84759,7 +84758,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "rkc" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/research)
 "rkf" = (
@@ -85589,7 +85588,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/chemistry)
 "rsu" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/break_room)
 "rsv" = (
@@ -86244,7 +86243,6 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
 "rzX" = (
-/obj/machinery/computer/security/telescreen/entertainment,
 /turf/closed/wall/r_wall,
 /area/deltastation/service/barber)
 "rAm" = (
@@ -86321,7 +86319,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/solars/starboard/aft)
 "rAT" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/science/breakroom)
 "rBc" = (
@@ -89230,10 +89228,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/security/holding_cell)
-"sgx" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall,
-/area/deltastation/maintenance/department/chapel)
 "sgA" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
@@ -93823,10 +93817,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/hallway/primary/starboard)
-"tbQ" = (
-/obj/effect/spawner/random/machinery/status_display,
-/turf/closed/wall/r_wall,
-/area/deltastation/maintenance/department/science/xenobiology)
 "tbU" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/mapping_helpers/simple_pipes/scrubbers/visible,
@@ -94359,8 +94349,7 @@
 "tgP" = (
 /obj/item/radio/intercom,
 /obj/machinery/door_control{
-	id = "barber_door_lock";
-	pixel_y = 40
+	id = "barber_door_lock"
 	},
 /obj/structure/prop/camera,
 /turf/open/floor/wood,
@@ -95256,10 +95245,6 @@
 /obj/machinery/light_switch,
 /turf/closed/wall,
 /area/deltastation/command/meeting_room/council)
-"tqy" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall,
-/area/deltastation/security/prison/work)
 "tqB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/transparent/red{
@@ -98143,7 +98128,9 @@
 	},
 /area/holodeck)
 "tTz" = (
-/obj/machinery/atm,
+/obj/machinery/atm{
+	pixel_y = -1
+	},
 /turf/closed/wall/r_wall,
 /area/ai_monitored/storage/eva)
 "tTA" = (
@@ -98718,7 +98705,7 @@
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/storage_shared)
 "tZK" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/captain/private)
 "tZL" = (
@@ -101897,7 +101884,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
 "uHj" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/break_room)
 "uHo" = (
@@ -110582,23 +110569,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/service/abandoned_gambling_den/gaming)
-"wqR" = (
-/obj/effect/turf_decal/tile/transparent/neutral{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/sign/securearea{
-	dir = 4;
-	pixel_x = 32
-	},
-/obj/structure/sign/securearea{
-	dir = 4;
-	pixel_x = 32;
-	pixel_y = -8
-	},
-/turf/open/floor/iron,
-/area/deltastation/hallway/primary/central/aft)
 "wqW" = (
 /obj/effect/landmark/xeno_resin_door{
 	dir = 4
@@ -114156,10 +114126,6 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/abandoned_gambling_den)
-"xao" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall,
-/area/deltastation/commons/fitness/recreation)
 "xaQ" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -116637,7 +116603,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/science/lab)
 "xAD" = (
-/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/service/library)
 "xAF" = (
@@ -117555,10 +117521,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/starboard)
-"xIp" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall,
-/area/deltastation/service/library/printer)
 "xIu" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/vault,
@@ -122944,7 +122906,7 @@ aIe
 aIe
 aIe
 aIe
-aNH
+aIe
 aIe
 aIe
 vNR
@@ -126896,7 +126858,7 @@ mYD
 wzS
 rsm
 pkf
-oaS
+dGs
 eVX
 qSM
 vXJ
@@ -127396,20 +127358,20 @@ qOQ
 vNR
 daY
 ocL
-wDV
 ocL
 ocL
 ocL
-wDV
 ocL
-wDV
+ocL
+ocL
+ocL
 ocL
 gJA
 stK
 uVO
 elk
 heB
-qaS
+pkf
 dGs
 fCY
 iJh
@@ -128175,7 +128137,7 @@ xYm
 eYP
 ckX
 xxC
-gJA
+dWz
 mrw
 oAc
 nuK
@@ -129717,7 +129679,7 @@ piC
 aRQ
 fGM
 hsv
-gJA
+dWz
 mrw
 dmt
 nuK
@@ -130480,13 +130442,13 @@ qOQ
 vNR
 daY
 ocL
-wDV
+ocL
 vNR
 vNR
 vNR
-wDV
+ocL
 dmj
-wDV
+ocL
 ocL
 gJA
 gbF
@@ -138749,7 +138711,7 @@ dbZ
 awI
 iYW
 nhb
-tbQ
+awI
 awI
 awI
 awI
@@ -144857,7 +144819,7 @@ vvN
 xLS
 vvN
 hzS
-hzS
+bSd
 lwQ
 upf
 plb
@@ -146393,7 +146355,7 @@ evU
 qRt
 vHM
 vHM
-hQF
+vHM
 vHM
 vHM
 vvN
@@ -149800,7 +149762,7 @@ bDP
 oIm
 qwN
 bLb
-otA
+dFK
 awU
 dKZ
 nxi
@@ -151824,7 +151786,7 @@ ogF
 smu
 kIf
 ocV
-wwv
+ckg
 wvK
 kfY
 cxw
@@ -155186,7 +155148,7 @@ qfJ
 owe
 qfJ
 asQ
-wqR
+qfJ
 aWq
 sOO
 cqf
@@ -156950,7 +156912,7 @@ wyx
 rHg
 vLS
 rHg
-nsO
+hQF
 uFe
 rDC
 jCy
@@ -157475,7 +157437,7 @@ bpp
 pvR
 cEc
 cEq
-xXK
+aRj
 biO
 bxP
 bxP
@@ -157734,7 +157696,7 @@ crd
 hIW
 xXK
 xXK
-aRj
+xXK
 miz
 xXK
 xXK
@@ -157983,7 +157945,7 @@ bie
 llj
 xyp
 tDK
-bSd
+mtH
 hIW
 ggo
 tzh
@@ -158012,7 +157974,7 @@ asG
 uNp
 uNp
 uNp
-ePo
+uNp
 uNp
 rvL
 wqf
@@ -162095,7 +162057,7 @@ lFR
 xOK
 aNL
 tDK
-igh
+aNH
 eCs
 fJP
 piB
@@ -162931,7 +162893,7 @@ ceG
 dUm
 eHX
 nwy
-dFK
+sRV
 hbZ
 aYP
 aYP
@@ -164723,7 +164685,7 @@ vuW
 vuW
 oSg
 sSx
-ckg
+vuW
 dfN
 ide
 nOh
@@ -166019,7 +165981,7 @@ vjj
 oKL
 oVf
 tCo
-gIY
+qaS
 coF
 uGT
 nGm
@@ -166272,9 +166234,9 @@ lQh
 lQh
 lQh
 nfH
-jPb
-sgx
-jPb
+lQh
+lQh
+lQh
 hNA
 bei
 lQw
@@ -167047,7 +167009,7 @@ lQh
 lQh
 lQh
 lQh
-gIY
+qaS
 vqn
 uGT
 lMz
@@ -168041,7 +168003,7 @@ vfP
 wPC
 pWQ
 hkI
-xIp
+vfP
 bNr
 xOx
 unZ
@@ -168808,7 +168770,7 @@ pPf
 iQV
 ebt
 wPi
-xIp
+vfP
 hVy
 klf
 ulX
@@ -169065,7 +169027,7 @@ pPf
 irg
 pPf
 pPf
-vfP
+rhc
 bii
 emv
 pqW
@@ -169335,7 +169297,7 @@ tAd
 xOx
 mXR
 tnV
-gqN
+eeN
 kIE
 cDK
 tiC
@@ -169592,7 +169554,7 @@ rer
 vuK
 rer
 gYT
-eeN
+gqN
 iUC
 eMh
 wNT
@@ -172404,7 +172366,7 @@ hWX
 hWX
 dmx
 hWX
-nRB
+hWX
 hWX
 hbj
 hWX
@@ -172661,7 +172623,7 @@ iPs
 kTi
 wit
 hhx
-hWX
+iPs
 iEC
 wit
 lRd
@@ -172693,7 +172655,7 @@ nFA
 nFA
 jZM
 fdM
-nFA
+ePo
 pQb
 oWZ
 faG
@@ -173183,7 +173145,7 @@ vwU
 jcJ
 cWr
 biu
-hWX
+iPs
 aHF
 qOa
 nFA
@@ -173432,7 +173394,7 @@ hWX
 erT
 gJj
 fbq
-hWX
+iPs
 gpz
 gJj
 nqN
@@ -173689,13 +173651,13 @@ hWX
 egG
 egG
 dax
-xao
+egG
 tlo
-dax
 egG
 egG
 egG
-xao
+egG
+egG
 dax
 egG
 dLK
@@ -175680,7 +175642,7 @@ vNR
 cPu
 cPu
 vAo
-tqy
+vAo
 lKJ
 vAo
 vAo

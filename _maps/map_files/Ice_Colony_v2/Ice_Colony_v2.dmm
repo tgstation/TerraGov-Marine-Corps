@@ -41,7 +41,7 @@
 /area/ice_colony/exterior/surface/valley/north)
 "aaw" = (
 /obj/structure/closet/fireaxecabinet{
-	pixel_y = 32
+	pixel_y = 31
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
@@ -1285,7 +1285,7 @@
 	dir = 1
 	},
 /obj/structure/closet/fireaxecabinet{
-	pixel_y = 32
+	pixel_y = 31
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
@@ -12759,7 +12759,9 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "blA" = (
-/obj/structure/closet/fireaxecabinet,
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = -1
+	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/engineering)
 "blB" = (
@@ -17304,7 +17306,7 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bDj" = (
 /obj/structure/closet/fireaxecabinet{
-	pixel_y = 32
+	pixel_y = 31
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 1

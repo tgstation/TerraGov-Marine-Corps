@@ -2592,7 +2592,9 @@
 /turf/closed/wall/wood,
 /area/crew_quarters/sleep/bedrooms)
 "nK" = (
-/obj/structure/closet/fireaxecabinet,
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = -1
+	},
 /obj/structure/cable,
 /turf/closed/wall/wood,
 /area/crew_quarters/sleep/bedrooms)
@@ -2614,7 +2616,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "nT" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "nU" = (
@@ -2668,7 +2670,7 @@
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "om" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "ot" = (
@@ -2736,7 +2738,7 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "oP" = (
-/obj/machinery/door/airlock/colony,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "oS" = (
@@ -5250,7 +5252,6 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "OK" = (
-/obj/machinery/door/airlock/glass,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,

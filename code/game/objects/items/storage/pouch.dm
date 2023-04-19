@@ -576,39 +576,6 @@
 		/obj/item/clipboard,
 	)
 
-
-/obj/item/storage/pouch/flare
-	name = "flare pouch"
-	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
-	max_w_class = WEIGHT_CLASS_TINY
-	storage_slots = 28
-	max_storage_space = 28
-	icon_state = "flare"
-	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
-	bypass_w_limit = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare)
-	fill_type = /obj/item/explosive/grenade/flare
-	can_hold = list(
-		/obj/item/explosive/grenade/flare/civilian,
-		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
-		/obj/item/explosive/grenade/flare,
-	)
-	refill_types = list(/obj/item/storage/box/m94)
-	refill_sound = "rustle"
-
-/obj/item/storage/pouch/flare/full/Initialize()
-	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
-	fill_number = max_storage_space - flare_gun.w_class
-	return ..()
-
-/obj/item/storage/pouch/flare/attackby_alternate(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
-		return ..()
-	var/obj/item/weapon/gun/grenade_launcher/single_shot/flare/flare_gun = I
-	for(var/obj/item/flare in contents)
-		flare_gun.reload(flare, user)
-		orient2hud()
-		return
-
 /obj/item/storage/pouch/radio
 	name = "radio pouch"
 	storage_slots = 2
