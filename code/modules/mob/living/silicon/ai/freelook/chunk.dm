@@ -33,7 +33,7 @@
 	eye.visibleCameraChunks -= src
 	seenby -= eye
 
-	if(remove_static_with_last_chunk && !eye.visibleCameraChunks.len)
+	if(remove_static_with_last_chunk && !length(eye.visibleCameraChunks))
 		var/client/client = eye.GetViewerClient()
 		if(client && eye.use_static)
 			client.images -= GLOB.cameranet.obscured
@@ -49,7 +49,7 @@
  * instead be flagged to update the next time an AI Eye moves near it.
  */
 /datum/camerachunk/proc/hasChanged(update_now = FALSE)
-	if(seenby.len || update_now)
+	if(length(seenby) || update_now)
 		addtimer(CALLBACK(src, PROC_REF(update)), UPDATE_BUFFER_TIME, TIMER_UNIQUE)
 	else
 		changed = TRUE

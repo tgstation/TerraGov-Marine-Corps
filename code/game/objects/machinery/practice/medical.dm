@@ -35,7 +35,7 @@
 				var/list/bones_to_break = list()
 				for(var/datum/limb/E in humanspawned.limbs)
 					bones_to_break += E
-				if(bones_to_break.len)
+				if(length(bones_to_break))
 					var/datum/limb/L = pick(bones_to_break)
 					var/limb_name = L.display_name
 					L.fracture()
@@ -48,6 +48,6 @@
 				var/list/organs_to_hurt = list()
 				for(var/datum/internal_organ/I in humanspawned.internal_organs)
 					organs_to_hurt += I
-				if(organs_to_hurt.len)
+				if(length(organs_to_hurt))
 					var/datum/internal_organ/O = pick(organs_to_hurt)
 					O.take_damage(40)

@@ -203,7 +203,7 @@
 
 #define isscrewdriver(I) (istype(I, /obj/item/tool/screwdriver))
 
-#define ismultitool(I) (istype(I, /obj/item/multitool))
+#define ismultitool(I) (istype(I, /obj/item/tool/multitool))
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 

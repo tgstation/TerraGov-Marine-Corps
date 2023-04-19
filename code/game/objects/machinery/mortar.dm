@@ -213,7 +213,7 @@
 		user.temporarilyRemoveItemFromInventory(mortar_shell)
 
 	if(istype(I, /obj/item/ai_target_beacon))
-		if(!GLOB.ai_list.len)
+		if(!length(GLOB.ai_list))
 			to_chat(user, span_notice("There is no AI to associate with."))
 			return
 
@@ -259,7 +259,7 @@
 	shell.generate_bullet(ammo)
 	var/shell_range = min(get_dist_euclide(src,target), ammo.max_range)
 	shell.fire_at(target, src, src, shell_range, ammo.shell_speed)
-	var/fall_time = shell_range/ammo.shell_speed - 1 SECONDS
+	var/fall_time = (shell_range/(ammo.shell_speed * 5)) - 0.5 SECONDS
 	//prevent runtime
 	if(fall_time < 0.5 SECONDS)
 		fall_time = 0.5 SECONDS
@@ -533,6 +533,10 @@
 	name = "\improper 80mm mortar shell"
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/Marine/mortar.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
+	)
 	icon_state = "mortar_ammo_cas"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT

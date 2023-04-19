@@ -40,7 +40,7 @@
 	user.visible_message(span_notice("[user] pries \the [src] open."),
 		span_notice("You pry open \the [src]."),
 		span_notice("You hear splitting wood."))
-	new /obj/item/stack/sheet/wood(loc)
+	new /obj/item/stack/sheet/wood/five(loc)
 	deconstruct(TRUE)
 	return TRUE
 
@@ -95,7 +95,7 @@
 	var/list/stuff = list(
 						/obj/item/cell/high,
 						/obj/item/storage/belt/utility/full,
-						/obj/item/multitool,
+						/obj/item/tool/multitool,
 						/obj/item/tool/crowbar,
 						/obj/item/flashlight,
 						/obj/item/reagent_containers/food/snacks/donkpocket,
@@ -104,7 +104,7 @@
 						/obj/item/assembly/igniter,
 						/obj/item/tool/weldingtool,
 						/obj/item/tool/wirecutters,
-						/obj/item/analyzer,
+						/obj/item/tool/analyzer,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine
 						)

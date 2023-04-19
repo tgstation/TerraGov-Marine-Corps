@@ -26,7 +26,7 @@
 	. = ..()
 	if(!_hivenumber)
 		return
-	hivenumber =  _hivenumber
+	hivenumber = _hivenumber
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)

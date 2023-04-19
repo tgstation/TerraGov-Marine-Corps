@@ -304,7 +304,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 			a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 
 
-	if(hud_used && hud_used.action_intent)
+	if(hud_used?.action_intent)
 		hud_used.action_intent.icon_state = "[a_intent]"
 
 

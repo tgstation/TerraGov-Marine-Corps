@@ -33,10 +33,22 @@
 		if(lock_override & CAMERA_LOCK_CENTCOM)
 			z_lock |= SSmapping.levels_by_trait(ZTRAIT_CENTCOM)
 
-
+///Creates this computer's eye object and sets up its references.
 /obj/machinery/computer/camera_advanced/proc/CreateEye()
 	eyeobj = new()
 	eyeobj.origin = src
+	RegisterSignal(eyeobj, COMSIG_PARENT_QDELETING, PROC_REF(clear_eye_ref))
+
+/**
+ * This proc is used to make sure no references or other leftovers are left behind if the computer's eye is deleted.
+ * To achieve this, it reacts to the PARENT_QDELETING signal of the computer's eye object and triggers if it is sent.
+**/
+/obj/machinery/computer/camera_advanced/proc/clear_eye_ref()
+	SIGNAL_HANDLER
+	UnregisterSignal(eyeobj, COMSIG_PARENT_QDELETING)
+	if(current_user)
+		remove_eye_control(current_user)
+	eyeobj = null
 
 
 /obj/machinery/computer/camera_advanced/proc/give_actions(mob/living/user)
@@ -186,6 +198,8 @@
 
 /obj/machinery/computer/camera_advanced/process()
 	if(QDELETED(tracking_target))
+		return PROCESS_KILL
+	if(QDELETED(eyeobj))
 		return PROCESS_KILL
 
 	if(!tracking_target.can_track(current_user))

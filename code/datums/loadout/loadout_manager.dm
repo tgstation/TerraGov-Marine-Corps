@@ -48,24 +48,20 @@
 	ui_close()
 
 /datum/loadout_manager/ui_data(mob/living/user)
-	. = ..()
-	var/data = list()
-	var/list/loadouts_data_tgui = list()
-	for(var/list/loadout_data in loadouts_data)
-		var/next_loadout_data = list()
-		next_loadout_data["job"] = loadout_data[1]
-		next_loadout_data["name"] = loadout_data[2]
-		loadouts_data_tgui += list(next_loadout_data)
-	data["loadout_list"] = loadouts_data_tgui
+	var/list/data = list()
+	data["loadout_list"] = list()
+
+	for(var/list/loadout_data as anything in loadouts_data)
+		data["loadout_list"] += list(list(
+			"job" = loadout_data[1],
+			"name" = loadout_data[2],
+		))
 	return data
 
 /datum/loadout_manager/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
-	if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_VISUALIZATION))
-		return
-	TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS) //Anti spam cooldown
 	switch(action)
 		if("saveLoadout")
 			if(length(loadouts_data) >= MAXIMUM_LOADOUT * 2)
@@ -86,6 +82,34 @@
 			update_static_data(ui.user, ui)
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)
+		if("edit_loadout_position")
+			var/loadout_name = params["loadout_name"]
+			var/loadout_job = params["loadout_job"]
+			if(isnull(loadout_name) || isnull(loadout_job))
+				return
+			var/list/located_loadout
+			for(var/list/loadout_data as anything in loadouts_data)
+				if(loadout_data[1] == loadout_job && loadout_data[2] == loadout_name)
+					located_loadout = loadout_data
+					break
+			if(isnull(located_loadout))
+				return
+			var/loadout_location = loadouts_data.Find(located_loadout)
+			var/direction = params["direction"]
+			if(!direction)
+				return
+			switch(direction)
+				if("down")
+					//return if it's going above the limit
+					if(loadout_location == length(loadouts_data))
+						return
+					loadouts_data.Swap(loadout_location++, loadout_location)
+				if("up")
+					//return if it's the very bottom already
+					if(loadout_location == 1)
+						return
+					loadouts_data.Swap(loadout_location--, loadout_location)
+			return TRUE
 		if("importLoadout")
 			var/loadout_id = params["loadout_id"]
 			if(isnull(loadout_id))
@@ -111,6 +135,9 @@
 			loadout.ui_interact(ui.user)
 
 		if("selectLoadout")
+			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_VISUALIZATION))
+				return
+			TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS) //Anti spam cooldown
 			var/job = params["loadout_job"]
 			var/name = params["loadout_name"]
 			if(isnull(name))

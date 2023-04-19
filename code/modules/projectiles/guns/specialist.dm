@@ -531,7 +531,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	pixel_shift_x = 18
 	pixel_shift_y = 16
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 /particles/backblast
 	icon = 'icons/effects/effects.dmi'
@@ -809,12 +809,29 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	extended = !extended
 	if(!extended)
 		w_class = WEIGHT_CLASS_NORMAL
-		flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
-		icon_state = initial(icon_state)
-		return
-	w_class = WEIGHT_CLASS_BULKY
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	icon_state = "[icon_state]_extended"
+		flags_gun_features |= GUN_DEPLOYED_FIRE_ONLY
+	else
+		w_class = WEIGHT_CLASS_BULKY
+		flags_gun_features &= ~GUN_DEPLOYED_FIRE_ONLY
+	update_icon()
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/update_icon_state()
+	if(extended)
+		icon_state = "[base_gun_icon]_extended"
+	else
+		icon_state = base_gun_icon
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/update_item_state()
+	var/current_state = item_state
+
+	item_state = "[base_gun_icon][extended ? "_extended" : ""][flags_item & WIELDED ? "_w" : ""]"
+
+	if(current_state != item_state && ishuman(gun_user))
+		var/mob/living/carbon/human/human_user = gun_user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
 
 //SOM RPG
 /obj/item/weapon/gun/launcher/rocket/som
@@ -861,7 +878,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "railgun"
 	item_state = "railgun"
-	max_shells = 1 //codex
+	max_shells = 3 //codex
 	caliber = CALIBER_RAILGUN
 	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/railgun.ogg'
@@ -885,7 +902,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
-	fire_delay = 1 SECONDS
+	fire_delay = 3 SECONDS
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 0

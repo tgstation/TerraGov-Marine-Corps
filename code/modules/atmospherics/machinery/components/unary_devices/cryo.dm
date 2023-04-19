@@ -231,7 +231,7 @@
 			to_chat(user, span_warning("That's too big to fit!"))
 			return
 
-		beaker =  I
+		beaker = I
 
 
 		var/reagentnames = ""
@@ -389,7 +389,7 @@
 
 	data["isBeakerLoaded"] = beaker ? TRUE : FALSE
 	var/beakerContents = list()
-	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
+	if(beaker?.reagents && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents += list(list("name" = R.name, "volume" = R.volume))
 	data["beakerContents"] = beakerContents

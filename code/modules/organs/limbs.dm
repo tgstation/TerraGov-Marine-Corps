@@ -30,7 +30,7 @@
 
 	var/display_name
 	var/list/wounds = list()
-	var/number_wounds = 0 // cache the number of wounds, which is NOT wounds.len!
+	var/number_wounds = 0 // cache the number of wounds, which is NOT length(wounds)!
 
 	var/min_broken_damage = 30
 
@@ -253,7 +253,7 @@
 				possible_points += children
 			if(length(forbidden_limbs))
 				possible_points -= forbidden_limbs
-			if(possible_points.len)
+			if(length(possible_points))
 				//And pass the damage around, but not the chance to cut the limb off.
 				var/datum/limb/target = pick(possible_points)
 				target.take_damage_limb(remain_brute, remain_burn, sharp, edge, blocked, FALSE, forbidden_limbs + src)
@@ -378,7 +378,7 @@
 		last_dam = brute_dam + burn_dam
 	if(germ_level)
 		return 1
-	if(wounds.len)
+	if(length(wounds))
 		return 1
 	return 0
 
@@ -655,7 +655,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(istype(E, /datum/limb/chest) || istype(E, /datum/limb/groin) || istype(E, /datum/limb/head))
 			continue
 		limbs_to_remove += E
-	if(limbs_to_remove.len)
+	if(length(limbs_to_remove))
 		var/datum/limb/L = pick(limbs_to_remove)
 		var/limb_name = L.display_name
 		L.droplimb(0,delete_limb)

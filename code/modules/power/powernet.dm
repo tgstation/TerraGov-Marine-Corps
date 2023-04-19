@@ -27,7 +27,7 @@
 	return ..()
 
 /datum/powernet/proc/is_empty()
-	return !cables.len && !nodes.len
+	return !length(cables) && !length(nodes)
 
 //remove a cable from the current powernet
 //if the powernet is then empty, delete it
@@ -76,7 +76,7 @@
 	//see if there's a surplus of power remaining in the powernet and stores unused power in the SMES
 	netexcess = avail - load
 
-	if(netexcess > 100 && nodes && nodes.len)		// if there was excess power last cycle
+	if(netexcess > 100 && nodes && length(nodes))		// if there was excess power last cycle
 		for(var/obj/machinery/power/smes/S in nodes)	// find the SMESes in the network
 			S.restore()				// and restore some of the power that was used
 

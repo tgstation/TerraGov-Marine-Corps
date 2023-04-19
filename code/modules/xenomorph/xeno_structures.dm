@@ -865,7 +865,7 @@ TUNNEL
 	bound_height = 32
 	obj_integrity = 600
 	max_integrity = 1500
-	layer =  ABOVE_MOB_LAYER
+	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
@@ -963,7 +963,7 @@ TUNNEL
 	if(world.time > last_scan_time + TURRET_SCAN_FREQUENCY)
 		scan()
 		last_scan_time = world.time
-	if(!potential_hostiles.len)
+	if(!length(potential_hostiles))
 		return
 	set_hostile(get_target())
 	if (!hostile)
@@ -1038,7 +1038,7 @@ TUNNEL
 			continue
 		path = getline(src, nearby_hostile)
 		path -= get_turf(src)
-		if(!path.len) //Can't shoot if it's on the same turf
+		if(!length(path)) //Can't shoot if it's on the same turf
 			continue
 		var/blocked = FALSE
 		for(var/turf/T AS in path)
@@ -1097,6 +1097,7 @@ TUNNEL
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)
+		hugger_ammo.hugger_hivenumber = hivenumber
 	firing = TRUE
 	update_minimap_icon()
 

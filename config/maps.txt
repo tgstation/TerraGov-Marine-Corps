@@ -66,3 +66,7 @@ endmap
 map deltastation
 	minplayers 60
 endmap
+
+map desparity
+	maxplayers 30
+endmap

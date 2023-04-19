@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "as" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Dormitories";
@@ -26,7 +26,7 @@
 	dir = 8;
 	on = 1
 	},
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "ck" = (
@@ -34,7 +34,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "cH" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -71,7 +71,7 @@
 "fq" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "fW" = (
@@ -285,7 +285,7 @@
 /area/bigredv2/outside/hydroponics)
 "qG" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -316,7 +316,7 @@
 /area/bigredv2/outside/ne)
 "rZ" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "sa" = (
@@ -350,8 +350,8 @@
 /area/bigredv2/outside/general_offices)
 "ul" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "um" = (
@@ -395,7 +395,7 @@
 /area/bigredv2/outside/general_offices)
 "vP" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -475,7 +475,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "zO" = (
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/chair/wood{
 	dir = 4
@@ -502,12 +502,12 @@
 /area/bigredv2/outside/bar)
 "Bh" = (
 /obj/structure/bed,
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "Bk" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Greenhouse";
@@ -522,7 +522,7 @@
 /area/bigredv2/outside/general_offices)
 "BD" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -663,7 +663,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "Hm" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/hydroponics)
 "Hw" = (
@@ -729,7 +729,7 @@
 "Lo" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/effect/spawner/random/hats,
+/obj/effect/spawner/random/clothing/hats,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -806,7 +806,7 @@
 /area/bigredv2/outside/general_offices)
 "Oy" = (
 /obj/structure/table,
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "OD" = (
@@ -819,8 +819,8 @@
 /area/bigredv2/outside/general_offices)
 "OP" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "Pq" = (
@@ -877,8 +877,8 @@
 /area/bigredv2/outside/general_offices)
 "RA" = (
 /obj/structure/bed/fancy,
-/obj/effect/spawner/random/clothing,
-/obj/effect/spawner/random/hats,
+/obj/effect/spawner/random/clothing/general,
+/obj/effect/spawner/random/clothing/hats,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "Sd" = (
@@ -904,7 +904,7 @@
 /area/bigredv2/outside/general_offices)
 "SG" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/stack/cable_coil,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -941,7 +941,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "Ub" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Greenhouse";
 	name = "\improper Greenhouse Shutters"
@@ -970,7 +970,7 @@
 /area/bigredv2/outside/general_offices)
 "US" = (
 /obj/structure/table,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "Vo" = (
@@ -1027,7 +1027,7 @@
 "Xv" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "Xy" = (
@@ -1046,7 +1046,7 @@
 	dir = 4;
 	on = 1
 	},
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
@@ -1076,9 +1076,9 @@
 /area/bigredv2/outside/general_offices)
 "YX" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "Zd" = (

@@ -39,81 +39,81 @@
 	result = /obj/item/reagent_containers/food/snacks/donut/normal
 
 
-/datum/recipe/human/burger
+/datum/recipe/human
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat/human,
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 	)
-	result = /obj/item/reagent_containers/food/snacks/human/burger
+	result = /obj/item/reagent_containers/food/snacks/burger/human
 
 
 /datum/recipe/plainburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/meat //do not place this recipe before /datum/recipe/humanburger
 	)
-	result = /obj/item/reagent_containers/food/snacks/monkeyburger
+	result = /obj/item/reagent_containers/food/snacks/burger/plain
 
 /datum/recipe/syntiburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
 	)
-	result = /obj/item/reagent_containers/food/snacks/monkeyburger
+	result = /obj/item/reagent_containers/food/snacks/burger/plain
 
 /datum/recipe/brainburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/organ/brain,
 	)
-	result = /obj/item/reagent_containers/food/snacks/brainburger
+	result = /obj/item/reagent_containers/food/snacks/burger/brain
 
 /datum/recipe/xenoburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/xenomeat,
 	)
-	result = /obj/item/reagent_containers/food/snacks/xenoburger
+	result = /obj/item/reagent_containers/food/snacks/burger/xeno
 
 /datum/recipe/fishburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/carpmeat,
 	)
-	result = /obj/item/reagent_containers/food/snacks/fishburger
+	result = /obj/item/reagent_containers/food/snacks/burger/fishburger
 
 /datum/recipe/tofuburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/tofu,
 	)
-	result = /obj/item/reagent_containers/food/snacks/tofuburger
+	result = /obj/item/reagent_containers/food/snacks/burger/tofu
 
 /datum/recipe/ghostburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/ectoplasm //where do you even find this stuff
 	)
-	result = /obj/item/reagent_containers/food/snacks/ghostburger
+	result = /obj/item/reagent_containers/food/snacks/burger/ghostburger
 
 /datum/recipe/clownburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/clothing/mask/gas/clown_hat,
 		/* /obj/item/reagent_containers/food/snacks/grown/banana, */
 	)
-	result = /obj/item/reagent_containers/food/snacks/clownburger
+	result = /obj/item/reagent_containers/food/snacks/burger/clown
 
 /datum/recipe/mimeburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/clothing/head/beret,
 	)
-	result = /obj/item/reagent_containers/food/snacks/mimeburger
+	result = /obj/item/reagent_containers/food/snacks/burger/mime
 
 /datum/recipe/hotdog
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/sausage,
 	)
 	result = /obj/item/reagent_containers/food/snacks/hotdog
@@ -170,7 +170,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/meatbread
+	result = /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/meatbread
 
 /datum/recipe/syntibread
 	items = list(
@@ -184,7 +184,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/meatbread
+	result = /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/meatbread
 
 /datum/recipe/xenomeatbread
 	items = list(
@@ -198,7 +198,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread
+	result = /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/xenomeatbread
 
 /datum/recipe/bananabread
 	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 15)
@@ -208,7 +208,7 @@
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/grown/banana,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/bananabread
+	result = /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/bananabread
 
 /datum/recipe/omelette
 	items = list(
@@ -263,7 +263,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/carrot,
 		/obj/item/reagent_containers/food/snacks/grown/carrot,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/carrotcake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/carrotcake
 
 /datum/recipe/cheesecake
 	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 15)
@@ -274,7 +274,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/cheesecake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/cheesecake
 
 /datum/recipe/plaincake
 	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 15)
@@ -283,28 +283,28 @@
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/plaincake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/plaincake
 
 /datum/recipe/meatpie
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/meat,
 	)
-	result = /obj/item/reagent_containers/food/snacks/meatpie
+	result = /obj/item/reagent_containers/food/snacks/pastries/meatpie
 
 /datum/recipe/tofupie
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/tofu,
 	)
-	result = /obj/item/reagent_containers/food/snacks/tofupie
+	result = /obj/item/reagent_containers/food/snacks/pastries/tofupie
 
 /datum/recipe/xemeatpie
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/xenomeat,
 	)
-	result = /obj/item/reagent_containers/food/snacks/xemeatpie
+	result = /obj/item/reagent_containers/food/snacks/pastries/xemeatpie
 
 /datum/recipe/pie
 	reagents = list(/datum/reagent/consumable/sugar = 5)
@@ -312,7 +312,7 @@
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/grown/banana,
 	)
-	result = /obj/item/reagent_containers/food/snacks/pie
+	result = /obj/item/reagent_containers/food/snacks/pastries/pie
 
 /datum/recipe/cherrypie
 	reagents = list(/datum/reagent/consumable/sugar = 10)
@@ -320,21 +320,21 @@
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/grown/cherries,
 	)
-	result = /obj/item/reagent_containers/food/snacks/cherrypie
+	result = /obj/item/reagent_containers/food/snacks/pastries/cherrypie
 
 /datum/recipe/berryclafoutis
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/grown/berries,
 	)
-	result = /obj/item/reagent_containers/food/snacks/berryclafoutis
+	result = /obj/item/reagent_containers/food/snacks/pastries/berryclafoutis
 
 /datum/recipe/wingfangchu
 	reagents = list(/datum/reagent/consumable/soysauce = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/xenomeat,
 	)
-	result = /obj/item/reagent_containers/food/snacks/wingfangchu
+	result = /obj/item/reagent_containers/food/snacks/soup/wingfangchu
 
 /datum/recipe/chaosdonut
 	reagents = list(/datum/reagent/consumable/frostoil = 5, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/sugar = 5)
@@ -387,7 +387,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/tofubread
+	result = /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/tofubread
 
 /datum/recipe/loadedbakedpotato
 	items = list(
@@ -472,7 +472,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita
 
 /datum/recipe/meatpizza
 	items = list(
@@ -483,7 +483,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza
 
 /datum/recipe/syntipizza
 	items = list(
@@ -494,7 +494,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza
 
 /datum/recipe/mushroompizza
 	items = list(
@@ -507,7 +507,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/mushroompizza
 
 /datum/recipe/vegetablepizza
 	items = list(
@@ -518,7 +518,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza
 
 /datum/recipe/spacylibertyduff
 	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/ethanol/vodka = 5)
@@ -527,7 +527,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap,
 	)
-	result = /obj/item/reagent_containers/food/snacks/spacylibertyduff
+	result = /obj/item/reagent_containers/food/snacks/soup/spacylibertyduff
 
 /datum/recipe/amanitajelly
 	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/ethanol/vodka = 5)
@@ -536,10 +536,10 @@
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/amanita,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/amanita,
 	)
-	result = /obj/item/reagent_containers/food/snacks/amanitajelly
+	result = /obj/item/reagent_containers/food/snacks/soup/amanitajelly
 
 /datum/recipe/amanitajelly/make_food(obj/container)
-	var/obj/item/reagent_containers/food/snacks/amanitajelly/being_cooked = ..(container)
+	var/obj/item/reagent_containers/food/snacks/soup/amanitajelly/being_cooked = ..(container)
 	being_cooked.reagents.del_reagent(/datum/reagent/toxin/amatoxin)
 	return being_cooked
 
@@ -550,7 +550,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/carrot,
 		/obj/item/reagent_containers/food/snacks/grown/potato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/meatballsoup
+	result = /obj/item/reagent_containers/food/snacks/soup/meatballsoup
 
 /datum/recipe/vegetablesoup
 	reagents = list(/datum/reagent/water = 10)
@@ -560,7 +560,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/eggplant,
 		/obj/item/reagent_containers/food/snacks/grown/potato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/vegetablesoup
+	result = /obj/item/reagent_containers/food/snacks/soup/vegetablesoup
 
 /datum/recipe/nettlesoup
 	reagents = list(/datum/reagent/water = 10)
@@ -569,11 +569,11 @@
 		/obj/item/reagent_containers/food/snacks/grown/potato,
 		/obj/item/reagent_containers/food/snacks/egg,
 	)
-	result = /obj/item/reagent_containers/food/snacks/nettlesoup
+	result = /obj/item/reagent_containers/food/snacks/soup/nettlesoup
 
 /datum/recipe/wishsoup
 	reagents = list(/datum/reagent/water = 20)
-	result= /obj/item/reagent_containers/food/snacks/wishsoup
+	result= /obj/item/reagent_containers/food/snacks/soup/wishsoup
 
 /datum/recipe/hotchili
 	items = list(
@@ -581,7 +581,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/chili,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/hotchili
+	result = /obj/item/reagent_containers/food/snacks/soup/hotchili
 
 /datum/recipe/coldchili
 	items = list(
@@ -589,45 +589,45 @@
 		/obj/item/reagent_containers/food/snacks/grown/icepepper,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/coldchili
+	result = /obj/item/reagent_containers/food/snacks/soup/coldchili
 
 /datum/recipe/amanita_pie
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/amanita,
 	)
-	result = /obj/item/reagent_containers/food/snacks/amanita_pie
+	result = /obj/item/reagent_containers/food/snacks/pastries/amanita_pie
 
 /datum/recipe/plump_pie
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
 	)
-	result = /obj/item/reagent_containers/food/snacks/plump_pie
+	result = /obj/item/reagent_containers/food/snacks/pastries/plump_pie
 
 /datum/recipe/spellburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/monkeyburger,
+		/obj/item/reagent_containers/food/snacks/burger/plain,
 		/obj/item/clothing/head/wizard/fake,
 	)
-	result = /obj/item/reagent_containers/food/snacks/spellburger
+	result = /obj/item/reagent_containers/food/snacks/burger/spell
 
 /datum/recipe/spellburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/monkeyburger,
+		/obj/item/reagent_containers/food/snacks/burger/plain,
 		/obj/item/clothing/head/wizard,
 	)
-	result = /obj/item/reagent_containers/food/snacks/spellburger
+	result = /obj/item/reagent_containers/food/snacks/burger/spell
 
 /datum/recipe/bigbiteburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/monkeyburger,
+		/obj/item/reagent_containers/food/snacks/burger/plain,
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/egg,
 	)
-	result = /obj/item/reagent_containers/food/snacks/bigbiteburger
+	result = /obj/item/reagent_containers/food/snacks/burger/bigbite
 
 /datum/recipe/enchiladas
 	items = list(
@@ -636,7 +636,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/chili,
 		/obj/item/reagent_containers/food/snacks/grown/corn,
 	)
-	result = /obj/item/reagent_containers/food/snacks/enchiladas
+	result = /obj/item/reagent_containers/food/snacks/mexican/enchiladas
 
 /datum/recipe/creamcheesebread
 	items = list(
@@ -646,7 +646,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/creamcheesebread
 
 /datum/recipe/monkeysdelight
 	reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
@@ -680,37 +680,37 @@
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/clothing/head/cakehat,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/birthdaycake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/birthdaycake
 
 /datum/recipe/bread
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/egg,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/bread
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/bread
 
 /datum/recipe/sandwich
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meatsteak,
-		/obj/item/reagent_containers/food/snacks/breadslice,
-		/obj/item/reagent_containers/food/snacks/breadslice,
+		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
+		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sandwich
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/sandwich
 
 /datum/recipe/toastedsandwich
 	items = list(
-		/obj/item/reagent_containers/food/snacks/sandwich,
+		/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
 	)
-	result = /obj/item/reagent_containers/food/snacks/toastedsandwich
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich
 
 /datum/recipe/grilledcheese
 	items = list(
-		/obj/item/reagent_containers/food/snacks/breadslice,
-		/obj/item/reagent_containers/food/snacks/breadslice,
+		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
+		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/grilledcheese
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich
 
 /datum/recipe/tomatosoup
 	reagents = list(/datum/reagent/water = 10)
@@ -718,7 +718,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/tomatosoup
+	result = /obj/item/reagent_containers/food/snacks/soup/tomatosoup
 
 /datum/recipe/rofflewaffles
 	reagents = list(/datum/reagent/consumable/psilocybin = 5, /datum/reagent/consumable/sugar = 10)
@@ -738,14 +738,14 @@
 		/obj/item/reagent_containers/food/snacks/grown/eggplant,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom,
 	)
-	result = /obj/item/reagent_containers/food/snacks/stew
+	result = /obj/item/reagent_containers/food/snacks/soup/stew
 
 /datum/recipe/jelliedtoast
 	reagents = list(/datum/reagent/consumable/cherryjelly = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/breadslice,
+		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 	)
-	result = /obj/item/reagent_containers/food/snacks/jelliedtoast/cherry
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/jelliedtoast/cherry
 
 /datum/recipe/milosoup
 	reagents = list(/datum/reagent/water = 10)
@@ -755,7 +755,7 @@
 		/obj/item/reagent_containers/food/snacks/tofu,
 		/obj/item/reagent_containers/food/snacks/tofu,
 	)
-	result = /obj/item/reagent_containers/food/snacks/milosoup
+	result = /obj/item/reagent_containers/food/snacks/soup/milosoup
 
 /datum/recipe/stewedsoymeat
 	items = list(
@@ -769,26 +769,26 @@
 /datum/recipe/boiledspagetti
 	reagents = list(/datum/reagent/water = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/spagetti,
+		/obj/item/reagent_containers/food/snacks/pizzapasta/spagetti,
 	)
-	result = /obj/item/reagent_containers/food/snacks/boiledspagetti
+	result = /obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti
 
 /datum/recipe/boiledrice
 	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/rice = 10)
-	result = /obj/item/reagent_containers/food/snacks/boiledrice
+	result = /obj/item/reagent_containers/food/snacks/soup/boiledrice
 
 /datum/recipe/ricepudding
 	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/rice = 10)
-	result = /obj/item/reagent_containers/food/snacks/ricepudding
+	result = /obj/item/reagent_containers/food/snacks/soup/ricepudding
 
 /datum/recipe/pastatomato
 	reagents = list(/datum/reagent/water = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/spagetti,
+		/obj/item/reagent_containers/food/snacks/pizzapasta/spagetti,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/pastatomato
+	result = /obj/item/reagent_containers/food/snacks/pizzapasta/pastatomato
 
 /datum/recipe/poppypretzel
 	items = list(
@@ -797,19 +797,19 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/poppypretzel
 
-/datum/recipe/meatballspagetti
+/datum/recipe/meatballspaghetti
 	reagents = list(/datum/reagent/water = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/spagetti,
+		/obj/item/reagent_containers/food/snacks/pizzapasta/spagetti,
 		/obj/item/reagent_containers/food/snacks/meatball,
 		/obj/item/reagent_containers/food/snacks/meatball,
 	)
-	result = /obj/item/reagent_containers/food/snacks/meatballspagetti
+	result = /obj/item/reagent_containers/food/snacks/pizzapasta/meatballspaghetti
 
 /datum/recipe/spesslaw
 	reagents = list(/datum/reagent/water = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/spagetti,
+		/obj/item/reagent_containers/food/snacks/pizzapasta/spagetti,
 		/obj/item/reagent_containers/food/snacks/meatball,
 		/obj/item/reagent_containers/food/snacks/meatball,
 		/obj/item/reagent_containers/food/snacks/meatball,
@@ -820,14 +820,14 @@
 /datum/recipe/superbiteburger
 	reagents = list(/datum/reagent/consumable/sodiumchloride = 5, /datum/reagent/consumable/blackpepper = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bigbiteburger,
+		/obj/item/reagent_containers/food/snacks/burger/bigbite,
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/boiledegg,
 	)
-	result = /obj/item/reagent_containers/food/snacks/superbiteburger
+	result = /obj/item/reagent_containers/food/snacks/burger/superbite
 
 /datum/recipe/candiedapple
 	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/sugar = 5)
@@ -841,7 +841,7 @@
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/grown/apple,
 	)
-	result = /obj/item/reagent_containers/food/snacks/applepie
+	result = /obj/item/reagent_containers/food/snacks/pastries/applepie
 
 /datum/recipe/applecake
 	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 5)
@@ -852,30 +852,30 @@
 		/obj/item/reagent_containers/food/snacks/grown/apple,
 		/obj/item/reagent_containers/food/snacks/grown/apple,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/applecake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/applecake
 
 /datum/recipe/jellyburger
 	reagents = list(/datum/reagent/consumable/cherryjelly = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
 	)
-	result = /obj/item/reagent_containers/food/snacks/jellyburger/cherry
+	result = /obj/item/reagent_containers/food/snacks/burger/jelly
 
 /datum/recipe/twobread
 	reagents = list(/datum/reagent/consumable/ethanol/wine = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/breadslice,
-		/obj/item/reagent_containers/food/snacks/breadslice,
+		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
+		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 	)
-	result = /obj/item/reagent_containers/food/snacks/twobread
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/twobread
 
 /datum/recipe/cherrysandwich
 	reagents = list(/datum/reagent/consumable/cherryjelly = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/breadslice,
-		/obj/item/reagent_containers/food/snacks/breadslice,
+		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
+		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 	)
-	result = /obj/item/reagent_containers/food/snacks/jellysandwich/cherry
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/jellysandwich/cherry
 
 /datum/recipe/orangecake
 	reagents = list(/datum/reagent/consumable/drink/milk = 5)
@@ -889,7 +889,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/orange,
 		/obj/item/reagent_containers/food/snacks/grown/orange,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/orangecake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/orangecake
 
 /datum/recipe/limecake
 	reagents = list(/datum/reagent/consumable/drink/milk = 5)
@@ -903,7 +903,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/lime,
 		/obj/item/reagent_containers/food/snacks/grown/lime,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/limecake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/limecake
 
 /datum/recipe/lemoncake
 	reagents = list(/datum/reagent/consumable/drink/milk = 5)
@@ -917,7 +917,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/lemon,
 		/obj/item/reagent_containers/food/snacks/grown/lemon,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/lemoncake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/lemoncake
 
 /datum/recipe/chocolatecake
 	reagents = list(/datum/reagent/consumable/drink/milk = 5)
@@ -931,7 +931,7 @@
 		/obj/item/reagent_containers/food/snacks/chocolatebar,
 		/obj/item/reagent_containers/food/snacks/chocolatebar,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/chocolatecake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/chocolatecake
 
 /datum/recipe/bloodsoup
 	reagents = list(/datum/reagent/blood = 10)
@@ -939,7 +939,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/bloodtomato,
 		/obj/item/reagent_containers/food/snacks/grown/bloodtomato,
 	)
-	result = /obj/item/reagent_containers/food/snacks/bloodsoup
+	result = /obj/item/reagent_containers/food/snacks/soup/bloodsoup
 
 /datum/recipe/braincake
 	reagents = list(/datum/reagent/consumable/drink/milk = 5)
@@ -952,7 +952,7 @@
 		/obj/item/reagent_containers/food/snacks/egg,
 		/obj/item/organ/brain,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/braincake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/braincake
 
 /datum/recipe/chocolateegg
 	items = list(
@@ -985,7 +985,7 @@
 		/obj/item/reagent_containers/food/snacks/egg,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/mysterysoup
+	result = /obj/item/reagent_containers/food/snacks/soup/mysterysoup
 
 /datum/recipe/pumpkinpie
 	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/sugar = 5)
@@ -994,7 +994,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/pumpkin,
 		/obj/item/reagent_containers/food/snacks/egg,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/pumpkinpie
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/pumpkinpie
 
 /datum/recipe/plumphelmetbiscuit
 	reagents = list(/datum/reagent/water = 5)
@@ -1009,7 +1009,7 @@
 	items = list(
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
 	)
-	result = /obj/item/reagent_containers/food/snacks/mushroomsoup
+	result = /obj/item/reagent_containers/food/snacks/soup/mushroomsoup
 
 /datum/recipe/chawanmushi
 	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/soysauce = 5)
@@ -1026,7 +1026,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/whitebeet,
 		/obj/item/reagent_containers/food/snacks/grown/cabbage,
 	)
-	result = /obj/item/reagent_containers/food/snacks/beetsoup
+	result = /obj/item/reagent_containers/food/snacks/soup/beetsoup
 
 /datum/recipe/appletart
 	reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/drink/milk = 5)
@@ -1037,7 +1037,7 @@
 		/obj/item/reagent_containers/food/snacks/egg,
 		/obj/item/reagent_containers/food/snacks/grown/goldapple,
 	)
-	result = /obj/item/reagent_containers/food/snacks/appletart
+	result = /obj/item/reagent_containers/food/snacks/pastries/appletart
 
 /datum/recipe/tossedsalad
 	items = list(
@@ -1056,7 +1056,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/reagent_containers/food/snacks/grown/goldapple,
 	)
-	result = /obj/item/reagent_containers/food/snacks/aesirsalad
+	result = /obj/item/reagent_containers/food/snacks/soup/aesirsalad
 
 /datum/recipe/validsalad
 	items = list(
@@ -1083,7 +1083,7 @@
 /datum/recipe/stuffing
 	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/sliceable/bread,
+		/obj/item/reagent_containers/food/snacks/sandwiches/bread,
 	)
 	result = /obj/item/reagent_containers/food/snacks/stuffing
 
@@ -1105,13 +1105,13 @@
 		/obj/item/reagent_containers/food/snacks/cutlet,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/taco
+	result = /obj/item/reagent_containers/food/snacks/mexican/taco
 
 /datum/recipe/bun
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 	)
-	result = /obj/item/reagent_containers/food/snacks/bun
+	result = /obj/item/reagent_containers/food/snacks/burger/bun
 
 /datum/recipe/flatbread
 	items = list(
@@ -1142,6 +1142,6 @@
 	result = /obj/item/reagent_containers/food/snacks/mint
 
 /datum/recipe/larva_soup
-	reagents = list(/datum/reagent/water  = 5, /datum/reagent/consumable/larvajelly = 5)
-	result = /obj/item/reagent_containers/food/snacks/larvasoup
+	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/larvajelly = 5)
+	result = /obj/item/reagent_containers/food/snacks/soup/larvasoup
 

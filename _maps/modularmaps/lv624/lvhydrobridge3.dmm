@@ -71,7 +71,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "y" = (
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "A" = (

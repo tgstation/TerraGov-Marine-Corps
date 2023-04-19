@@ -452,3 +452,72 @@
   - balance: Orphan hivemind collapse can no longer trigger before shutters are open
   novaepee:
   - bugfix: Fix long hair getting its top cut off by helmet
+2023-03-28:
+  567Turtle:
+  - rscadd: Harvester claymore, available at marine vendors
+  Lumipharon:
+  - bugfix: left click draws items out of boots again, alt right click will open storage
+      instead
+  Naaanii:
+  - balance: T1 Xenos get the maturity points for evolving.
+  ivanmixo:
+  - rscadd: Added real snow to gelida instead of fake snow
+  - rscadd: Preweeded the rest of ice colony
+  - rscdel: Removed fake snow due to it being ugly and unnecesarry
+  - balance: Snow is now weedable and no longer slows down
+  - qol: Melting snow with a plasmacutter is also free now since it's cosmetic
+2023-03-29:
+  Autisem:
+  - rscadd: Phermone towers now spawn alongside the silo's during crash
+  DeltaFire15:
+  - rscadd: CIC Overwatch now has a minimap while using the camera system.
+  - rscadd: CAS now has a minimap while on a groundside strike mission.
+  - balance: AI's minimap now tracks the z the AI's eye is on, instead of only shipside
+  - bugfix: Miners no longer cause minimap-related runtimes every init.
+  - bugfix: default_overwatch_level for minimaps should now work properly.
+  - code_imp: Minimaps now support tracking atoms which aren't the owner of the action.
+  - bugfix: Fixes a very minor, easy to trigger, droppod runtime.
+  Pariah919:
+  - balance: Smartpistol now uses pistol AP bullets rather than normal pistol bullets,
+      and has full auto and a bit more magazine size (25->30).
+  chizzy376:
+  - rscadd: Added a new map, Desparity. Lowpop exclusive (30 pop or less).
+  ivanmixo:
+  - balance: River slows the amount its supposed to again
+  - bugfix: Snow actually doesn't slow xenos down
+2023-03-30:
+  Lumipharon:
+  - code_imp: reorganised item inhand sprites
+  - bugfix: fixed some issues with quick equip for hat and boot storage
+  - code_imp: Improved quick equip code somewhat
+  - bugfix: Minor fix to the anti-stalemate system
+  - bugfix: fixed some invisible ERT armor
+  - bugfix: Added a few missing items on a couple of SOM ERT loadouts
+  carlarctg:
+  - qol: Halved attaching delay for most things, except anything that has it overriden
+      such as guns.
+  - qol: Halved the delay for taking modules out, 3s -> 1.5s.
+  - qol: Allowed you to take off modules without taking the armor off, but it doubles
+      it back to its normal 3s value.
+  - qol: Added a sprite to signify you've hooked a gun to your harness.
+  ivanmixo:
+  - bugfix: Fixed mobs getting stuck on eachother and other mobs when moving diagonally
+  - bugfix: Fixes window and window frame weeds transferring the click to the frame/window
+      below
+  - code_imp: Removed some weed window frame copypasta
+2023-03-31:
+  DeltaFire15:
+  - bugfix: Overwatch consoles should no longer brick under certain eye-deletion related
+      conditions.
+  - balance: Tad's landing cam view has minimap access.
+  QualityVan:
+  - bugfix: Moved the actual necrosis removal of surgery back to the second step,
+      rendering it possible to perform once again
+  Skye:
+  - bugfix: fixes the ICC medic spawn. It's Space...Somewhere, not 1940s Russia.
+  ivanmixo:
+  - code_imp: Replaced usages of .len with length() where applicable
+  - balance: Dropship fabricators now earn 30 and 15 points from respective miners.
+  - rscdel: Removed the dropship points voulcher
+  novaepee:
+  - imageadd: New Vali object and mob sprites

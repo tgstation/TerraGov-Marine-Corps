@@ -308,18 +308,34 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	name = "Set drop pod target"
 	action_icon = 'icons/mecha/actions_mecha.dmi'
 	action_icon_state = "mech_zoom_on"
+	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
+	var/choosing = FALSE
+
+/datum/action/innate/set_drop_target/can_use_action()
+	if(choosing)
+		return FALSE
+	return ..()
 
 /datum/action/innate/set_drop_target/Activate()
 	. = ..()
 	//yes this is hardcoded bite me
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
 	owner.client.screen += map
+	choosing = TRUE
 	var/list/polled_coords = map.get_coords_from_click(owner)
 	if(!polled_coords)
+		owner.client?.screen -= map
+		choosing = FALSE
 		return
 	owner.client?.screen -= map
+	choosing = FALSE
 	var/obj/structure/droppod/pod = target
 	pod.set_target(polled_coords[1], polled_coords[2])
+
+/datum/action/innate/set_drop_target/remove_action(mob/M)
+	if(choosing)
+		owner.client?.screen -= SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+	return ..()
 
 /obj/structure/dropprop	//Just a prop for now but if the pods are someday made movable make a requirement to have these on the turf
 	name = "Zeus pod launch bay"

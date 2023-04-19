@@ -8,6 +8,10 @@
 /obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_NORMAL
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
@@ -26,7 +30,7 @@
 	var/list/click_border_start = list()
 	var/list/click_border_end = list()
 	///Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_w_class = 2
+	var/max_w_class = WEIGHT_CLASS_SMALL
 	///The sum of the storage costs of all the items in this storage item.
 	var/max_storage_space = 14
 	///The number of storage slots in this container.
@@ -341,7 +345,7 @@
 ///This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
 
-	var/adjusted_contents = contents.len
+	var/adjusted_contents = length(contents)
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
@@ -375,7 +379,7 @@
 
 	if(loc == W)
 		return FALSE //Means the item is already in the storage item
-	if(storage_slots != null && contents.len >= storage_slots)
+	if(storage_slots != null && length(contents) >= storage_slots)
 		if(warning)
 			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE //Storage item is full
@@ -548,7 +552,7 @@
 				return do_refill(I, user)
 
 	if(!can_be_inserted(I))
-		return
+		return FALSE
 	return handle_item_insertion(I, FALSE, user)
 
 ///Refills the storage from the refill_types item
@@ -576,8 +580,8 @@
 
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
-		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
+		if(draw_mode && ishuman(user) && length(contents))
+			var/obj/item/I = contents[length(contents)]
 			I.attack_hand(user)
 			return
 		else if(open(user))
@@ -749,7 +753,7 @@
 		return
 
 	//Otherwise we'll try to fold it.
-	if ( contents.len )
+	if ( length(contents) )
 		return
 
 	if ( !ispath(foldable) )

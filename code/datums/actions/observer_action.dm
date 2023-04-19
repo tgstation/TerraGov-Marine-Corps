@@ -48,6 +48,11 @@
 
 /datum/action/observer_action/take_ssd_mob/action_activate()
 	var/mob/dead/observer/dead_owner = owner
+
+	if(!GLOB.ssd_posses_allowed)
+		to_chat(owner, span_warning("Taking over SSD mobs is currently disabled."))
+		return
+
 	if(GLOB.key_to_time_of_death[owner.key] + TIME_BEFORE_TAKING_BODY > world.time && !dead_owner.started_as_observer)
 		to_chat(owner, span_warning("You died too recently to be able to take a new mob."))
 		return
@@ -62,7 +67,7 @@
 				continue
 		free_ssd_mobs += ssd_mob
 
-	if(!free_ssd_mobs.len)
+	if(!length(free_ssd_mobs))
 		to_chat(owner, span_warning("There aren't any SSD mobs."))
 		return FALSE
 

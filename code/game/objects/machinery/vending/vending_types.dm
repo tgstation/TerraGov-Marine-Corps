@@ -107,7 +107,7 @@
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
 	products = list(
-		/obj/item/reagent_containers/food/snacks/packaged_burger = -1,
+		/obj/item/reagent_containers/food/snacks/burger/packaged_burger = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_burrito = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_hdogs = -1,
 		/obj/item/reagent_containers/food/snacks/kepler_crisps = -1,
@@ -550,8 +550,8 @@
 	icon_vend = "engivend-vend"
 	icon_deny = "engivend-deny"
 	products = list(
-		/obj/item/multitool = -1,
-		/obj/item/analyzer = -1,
+		/obj/item/tool/multitool = -1,
+		/obj/item/tool/analyzer = -1,
 		/obj/item/t_scanner = -1,
 		/obj/item/circuitboard/apc = -1,
 		/obj/item/circuitboard/airlock = -1,

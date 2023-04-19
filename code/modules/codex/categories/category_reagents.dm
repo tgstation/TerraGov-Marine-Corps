@@ -23,7 +23,7 @@
 				var/datum/reagent/reactant = GLOB.chemical_reagents_list[reactant_id]
 				reactant_values += "[reaction.required_reagents[reactant_id]]u [lowertext(reactant.name)]"
 
-			if(!reactant_values.len)
+			if(!length(reactant_values))
 				continue
 
 			var/list/catalysts = list()
@@ -38,12 +38,12 @@
 
 			production_strings += "- [jointext(reactant_values, " + ")]"
 
-			if(catalysts.len)
+			if(length(catalysts))
 				production_strings += "(catalysts: [jointext(catalysts, ", ")])"
 
 			production_strings += ": [jointext(results, ", ")]"
 
-		if(production_strings.len)
+		if(length(production_strings))
 			if(!entry.mechanics_text)
 				entry.mechanics_text = "It can be produced as follows:<br>"
 			else
