@@ -1,6 +1,6 @@
 /datum/element/shrapnel_removal
 	element_flags = ELEMENT_BESPOKE
-	id_arg_index = 2
+	argument_hash_start_idx = 2
 	var/do_after_time
 
 /datum/element/shrapnel_removal/Attach(datum/target, duration)
