@@ -1351,7 +1351,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		debris_visuals.particles.count = debris_amount
 		debris_visuals.particles.spawning = debris_amount
 		if(bloom)
-			debris_visuals.add_filter("bloom", 1, bloom_filter("#c50021", 3, 1, 255))
+			debris_visuals.add_filter("bloom", 1, drop_shadow_filter(0, 0, 3, 1, "#ffa300"))
 	smoke_visuals.layer = ABOVE_OBJ_LAYER + 0.01
 	if(P.ammo.sound_bounce)
 		var/pitch = 0

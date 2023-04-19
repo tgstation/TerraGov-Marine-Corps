@@ -183,7 +183,6 @@ const FilterDataEntry = (props, context) => {
     threshold: 'float',
     factor: 'float',
     repeat: 'int',
-    alpha: 'float',
   };
 
   return (
