@@ -70,67 +70,51 @@ GLOBAL_LIST_EMPTY(blood_particles)
 		if(0, 360)
 			target_pixel_x = 0
 			target_pixel_y = 8
-			layer = ABOVE_MOB_LAYER
 		if(1 to 44)
 			target_pixel_x = round(4 * ((angle) / 45))
 			target_pixel_y = 8
-			layer = ABOVE_MOB_LAYER
 		if(45)
 			target_pixel_x = 8
 			target_pixel_y = 8
-			layer = ABOVE_MOB_LAYER
 		if(46 to 89)
 			target_pixel_x = 8
 			target_pixel_y = round(4 * ((90 - angle) / 45))
-			layer = ABOVE_MOB_LAYER
 		if(90)
 			target_pixel_x = 8
 			target_pixel_y = 0
-			layer = ABOVE_MOB_LAYER
 		if(91 to 134)
 			target_pixel_x = 8
 			target_pixel_y = round(-3 * ((angle - 90) / 45))
-			layer = ABOVE_MOB_LAYER
 		if(135)
 			target_pixel_x = 8
 			target_pixel_y = -6
-			layer = ABOVE_MOB_LAYER
 		if(136 to 179)
 			target_pixel_x = round(4 * ((180 - angle) / 45))
 			target_pixel_y = -6
-			layer = ABOVE_MOB_LAYER
 		if(180)
 			target_pixel_x = 0
 			target_pixel_y = -6
-			layer = ABOVE_MOB_LAYER
 		if(181 to 224)
 			target_pixel_x = round(-6 * ((angle - 180) / 45))
 			target_pixel_y = -6
-			layer = ABOVE_MOB_LAYER
 		if(225)
 			target_pixel_x = -6
 			target_pixel_y = -6
-			layer = ABOVE_MOB_LAYER
 		if(226 to 269)
 			target_pixel_x = -6
 			target_pixel_y = round(-6 * ((270 - angle) / 45))
-			layer = ABOVE_MOB_LAYER
 		if(270)
 			target_pixel_x = -6
 			target_pixel_y = 0
-			layer = ABOVE_MOB_LAYER
 		if(271 to 314)
 			target_pixel_x = -6
 			target_pixel_y = round(8 * ((angle - 270) / 45))
-			layer = ABOVE_MOB_LAYER
 		if(315)
 			target_pixel_x = -6
 			target_pixel_y = 8
-			layer = ABOVE_MOB_LAYER
 		if(316 to 359)
 			target_pixel_x = round(-6 * ((360 - angle) / 45))
 			target_pixel_y = 8
-			layer = ABOVE_MOB_LAYER
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/transfer_plasma
