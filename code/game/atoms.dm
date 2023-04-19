@@ -121,7 +121,7 @@
 	var/debris_amount = 8
 	///Velocity of debris particles
 	var/debris_velocity = -15
-	///If the debris particles
+	///If the debris particles have a bloom filter
 	var/debris_bloom = FALSE
 
 /*
