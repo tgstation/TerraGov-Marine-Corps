@@ -48,22 +48,18 @@
 	if(!. || !is_type_in_list(W,holsterable_allowed)) //check to see if the item being inserted is the snowflake item
 		return
 	holstered_item = W
+	update_holster_underlays()
+	update_icon_state() //So that the icon actually updates after we've assigned our holstered_item
 	playsound(src, sheathe_sound, 15, 1)
-	if(istype(src, /obj/item/storage/holster/belt)) //Belt holsters have a pistol-in-belt sprite to overlay over the belt
-		update_gun_icon()
-	else
-		update_icon()
 
 /obj/item/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
 	if(!. || !is_type_in_list(W,holsterable_allowed)) //check to see if the item being removed is the snowflake item
 		return
 	holstered_item = null
+	update_holster_underlays()
+	update_icon_state() //So that the icon actually updates after we've assigned our holstered_item
 	playsound(src, draw_sound, 15, 1)
-	if(istype(src, /obj/item/storage/holster/belt)) //Belt holsters have a pistol-in-belt sprite to overlay over the belt
-		update_gun_icon()
-	else
-		update_icon()
 
 /obj/item/storage/holster/attack_hand(mob/living/user) //Prioritizes our snowflake item on unarmed click
 	if(holstered_item && ishuman(user) && loc == user)
@@ -71,14 +67,22 @@
 	else
 		return ..()
 
+///Will add the holstered item to our holster underlay
+/obj/item/storage/holster/proc/update_holster_underlays()
+	if(holstered_item)
+		gun_underlay = image(icon, src, holstered_item.icon_state)
+		underlays += gun_underlay
+	else
+		underlays -= gun_underlay
+		QDEL_NULL(gun_underlay)
+
 /obj/item/storage/holster/update_icon_state()
 	//sets the icon to full or empty
 	if(holstered_item)
 		icon_state = base_icon + "_full"
 	else
 		icon_state = base_icon
-	//sets the item state to match the icon state
-	item_state = icon_state
+	item_state = icon_state //sets the item state to match the icon state
 
 /obj/item/storage/holster/update_icon()
 	. = ..() //calls update_icon_state to change the icon/item state
@@ -89,32 +93,6 @@
 	user.update_inv_belt()
 	user.update_inv_s_store()
 
-///We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
-/obj/item/storage/holster/proc/update_gun_icon()
-	var/mob/user = loc
-	if(holstered_item) //So it has a gun, let's make an icon.
-		/*
-		Have to use a workaround here, otherwise images won't display properly at all times.
-		Reason being, transform is not displayed when right clicking/alt+clicking an object,
-		so it's necessary to pre-load the potential states so the item actually shows up
-		correctly without having to rotate anything. Preloading weapon icons also makes
-		sure that we don't have to do any extra calculations.
-		*/
-		playsound(src,draw_sound, 15, 1)
-		gun_underlay = image(icon, src, holstered_item.icon_state)
-		icon_state = base_icon + "_full"
-		item_state = icon_state
-		underlays += gun_underlay
-	else
-		playsound(src,sheathe_sound, 15, 1)
-		underlays -= gun_underlay
-		icon_state = base_icon
-		item_state = icon_state
-		qdel(gun_underlay)
-		gun_underlay = null
-	if(istype(user)) user.update_inv_belt()
-	if(istype(user)) user.update_inv_s_store()
-
 ///Will only draw the specific holstered item, not ammo etc.
 /obj/item/storage/holster/do_quick_equip(mob/user)
 	if(!holstered_item)
@@ -123,12 +101,6 @@
 	if(!remove_from_storage(W, null, user))
 		return FALSE
 	return W
-
-/obj/item/storage/holster/attack_hand(mob/living/user) //If your holstered item is in the storage, clicking the holster will always draw it
-	if(holstered_item && ishuman(user) && loc == user)
-		holstered_item.attack_hand(user)
-	else
-		return ..()
 
 /obj/item/storage/holster/vendor_equip(mob/user)
 	..()
