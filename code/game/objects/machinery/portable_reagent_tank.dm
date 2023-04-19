@@ -118,8 +118,8 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	max_w_class = WEIGHT_CLASS_SMALL	//Beaker size
-	storage_slots = 28
-	max_storage_space = 28
+	storage_slots = null
+	max_storage_space = 5
 	can_hold = list(/obj/item/reagent_containers, /obj/item/reagent_scanner)
 	max_integrity = 200
 	var/container_flags = TRANSPARENT
