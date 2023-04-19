@@ -10064,6 +10064,10 @@
 "mTs" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/crew_quarters/toilet)
+"mTH" = (
+/obj/machinery/marine_selector/gear/commander,
+/turf/open/floor/wood,
+/area/mainship/living/numbertwobunks)
 "mUU" = (
 /obj/machinery/light/mainship,
 /obj/structure/sink{
@@ -55938,8 +55942,8 @@ oKe
 uyy
 hpS
 lHu
-tzF
 faC
+mTH
 jzh
 bCZ
 dxc

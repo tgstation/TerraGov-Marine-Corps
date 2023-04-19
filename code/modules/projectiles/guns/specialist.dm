@@ -809,12 +809,29 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	extended = !extended
 	if(!extended)
 		w_class = WEIGHT_CLASS_NORMAL
-		flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
-		icon_state = initial(icon_state)
-		return
-	w_class = WEIGHT_CLASS_BULKY
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	icon_state = "[icon_state]_extended"
+		flags_gun_features |= GUN_DEPLOYED_FIRE_ONLY
+	else
+		w_class = WEIGHT_CLASS_BULKY
+		flags_gun_features &= ~GUN_DEPLOYED_FIRE_ONLY
+	update_icon()
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/update_icon_state()
+	if(extended)
+		icon_state = "[base_gun_icon]_extended"
+	else
+		icon_state = base_gun_icon
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/update_item_state()
+	var/current_state = item_state
+
+	item_state = "[base_gun_icon][extended ? "_extended" : ""][flags_item & WIELDED ? "_w" : ""]"
+
+	if(current_state != item_state && ishuman(gun_user))
+		var/mob/living/carbon/human/human_user = gun_user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
 
 //SOM RPG
 /obj/item/weapon/gun/launcher/rocket/som
