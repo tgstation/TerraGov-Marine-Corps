@@ -350,7 +350,9 @@
 	icon = 'icons/turf/desertdam_map.dmi'
 	icon_state = "cavewall0"
 	walltype = "cavewall"
-
+	debris = "rock"
+	debris_amount = 5
+	debris_velocity = -10
 
 //Prison wall
 
@@ -372,6 +374,10 @@
 	base_icon_state = "woodwall"
 	walltype = "woodwall"
 	explosion_block = 1
+	debris_bloom = FALSE
+	debris = "wood"
+	debris_amount = 5
+	debris_velocity = -10
 
 // Reinforced Wood Wall
 

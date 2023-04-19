@@ -832,6 +832,8 @@
 	density = TRUE
 	resistance_flags = RESIST_ALL
 	opacity = TRUE
+	debris = "spark"
+	debris_bloom = TRUE
 
 /obj/structure/dropship_piece/ex_act(severity)
 	return

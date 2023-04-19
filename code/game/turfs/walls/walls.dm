@@ -43,6 +43,8 @@
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 		SMOOTH_GROUP_SHUTTERS,
 	)
+	debris = "spark"
+	debris_bloom = TRUE
 
 /turf/closed/wall/Initialize(mapload, ...)
 	. = ..()

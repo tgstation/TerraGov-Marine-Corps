@@ -33,6 +33,9 @@
 	max_integrity = 500
 	layer = ABOVE_FLY_LAYER
 	var/log_amount = 10
+	debris = "wood"
+	debris_amount = 5
+	debris_velocity = -10
 
 /obj/structure/flora/tree/Initialize()
 	. = ..()
@@ -717,6 +720,9 @@
 	layer = ABOVE_TURF_LAYER
 	coverage = 100
 	icon_state = "basalt"
+	debris = "rock"
+	debris_amount = 5
+	debris_velocity = -10
 
 /obj/structure/flora/rock/alt
 	name = "volcanic rock"

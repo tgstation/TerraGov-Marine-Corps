@@ -172,4 +172,6 @@
 	base_icon_state = "wood"
 	trigger_sound = 'sound/effects/doorcreaky.ogg'
 	max_integrity = 100
-
+	debris = "wood"
+	debris_amount = 5
+	debris_velocity = -10

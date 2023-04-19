@@ -1,6 +1,8 @@
 /obj/structure/shuttle
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
+	debris = "spark"
+	debris_bloom = TRUE
 
 /obj/structure/shuttle/window
 	name = "shuttle window"

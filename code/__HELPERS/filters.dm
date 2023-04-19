@@ -133,6 +133,14 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 			"WAVE_SIDEWAYS" = WAVE_SIDEWAYS,
 			"WAVE_BOUNDED" = WAVE_BOUNDED
 		)
+	),
+	"bloom" = list(
+		"defaults" = list(
+			"threshold" = 0,
+			"size" = 1,
+			"offset" = 0,
+			"alpha" = 255
+		)
 	)
 ))
 
@@ -293,6 +301,17 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 		.["offset"] = offset
 	if(!isnull(flags))
 		.["flags"] = flags
+
+/proc/bloom_filter(threshold, size, offset, alpha)
+	. = list("type" = "bloom")
+	if(!isnull(threshold))
+		.["threshold"] = threshold
+	if(!isnull(size))
+		.["size"] = size
+	if(!isnull(offset))
+		.["offset"] = offset
+	if(!isnull(alpha))
+		.["alpha"] = alpha
 
 /proc/apply_wibbly_filters(atom/in_atom, length)
 	for(var/i in 1 to 7)

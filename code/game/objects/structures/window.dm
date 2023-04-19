@@ -22,6 +22,9 @@
 	var/damageable = TRUE
 	var/deconstructable = TRUE
 	flags_pass = PASSLASER
+	debris = "glass"
+	debris_amount = 5
+	debris_velocity = -10
 
 //I hate this as much as you do
 /obj/structure/window/full

@@ -100,7 +100,7 @@
 		return
 	playsound(loc, P.hitsound, 50, 1)
 	visible_message(span_warning("\the [src] is damaged by \the [P]!"), visible_message_flags = COMBAT_MESSAGE)
-	bullet_ping(P)
+	bullet_ping(P, debris, debris_velocity, debris_amount, debris_bloom)
 	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, turn(P.dir, 180), P.ammo.penetration)
 
 

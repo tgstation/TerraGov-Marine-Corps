@@ -828,7 +828,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/carbon/do_projectile_hit(obj/projectile/proj)
 	. = ..()
 	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, proj.dir, get_blood_color())
+		var/angle = !isnull(proj.dir_angle) ? proj.dir_angle : round(Get_Angle(proj.starting_turf, src), 1)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, angle, get_blood_color())
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -882,7 +883,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type, FALSE, proj.penetration)
 	if(!damage)
 		proj.ammo.on_shield_block(src, proj)
-		bullet_ping(proj)
+		bullet_ping(proj, debris, debris_velocity, debris_amount, debris_bloom)
 		return
 
 	if(!damage)
@@ -938,7 +939,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/xenomorph/bullet_act(obj/projectile/proj)
 	if(issamexenohive(proj.firer)) //Aliens won't be harming allied aliens.
-		bullet_ping(proj)
+		bullet_ping(proj, debris, debris_velocity, debris_amount, debris_bloom)
 		return
 
 	return ..()
@@ -1227,7 +1228,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return ..() * get_sunder()
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
-	bullet_ping(proj)
+	bullet_ping(proj, debris, debris_velocity, debris_amount, debris_bloom)
 
 
 /mob/living/carbon/human/bullet_soak_effect(obj/projectile/proj)
@@ -1247,7 +1248,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //Turf handling.
 /turf/bullet_act(obj/projectile/proj)
 	. = ..()
-	bullet_ping(proj)
+	bullet_ping(proj, debris, debris_velocity, debris_amount, debris_bloom)
 
 	var/list/mob_list = list() //Let's built a list of mobs on the bullet turf and grab one.
 	for(var/mob/possible_target in src)
@@ -1297,31 +1298,73 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					//					\\
 //----------------------------------------------------------
 
+/particles/debris
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	width = 500
+	height = 500
+	count = 10
+	spawning = 10
+	lifespan = 0.7 SECONDS
+	fade = 0.4 SECONDS
+	drift = generator(GEN_CIRCLE, 0, 7)
+	scale = 0.7
+	velocity = list(50, 0)
+	friction = generator(GEN_NUM, 0.1, 0.15)
+	spin = generator(GEN_NUM, -20, 20)
+
+/particles/impact_smoke
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	width = 500
+	height = 500
+	count = 20
+	spawning = 20
+	lifespan = 0.7 SECONDS
+	fade = 8 SECONDS
+	grow = 0.1
+	scale = 0.2
+	spin = generator(GEN_NUM, -20, 20)
+	velocity = list(50, 0)
+	friction = generator(GEN_NUM, 0.1, 0.5)
 
 //This is where the bullet bounces off.
-/atom/proc/bullet_ping(obj/projectile/P)
+/atom/proc/bullet_ping(obj/projectile/P, debris = FALSE, debris_velocity, debris_amount, bloom = FALSE)
 	if(!P.ammo.ping)
 		return
-	if(prob(65))
-		if(P.ammo.sound_bounce)
-			var/pitch = 0
-			if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
-				pitch = 55000
-			playsound(src, P.ammo.sound_bounce, 50, 1, frequency = pitch)
-		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
-		var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
-		if(prob(60))
-			angle += rand(-angle, 360 - angle)
-		I.pixel_x += rand(-6,6)
-		I.pixel_y += rand(-6,6)
+	var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
+	var/x_component = sin(angle) * debris_velocity
+	var/y_component = cos(angle) * debris_velocity
+	var/x_component_smoke = sin(angle) * -15
+	var/y_component_smoke = cos(angle) * -15
+	var/obj/effect/abstract/particle_holder/debris_visuals
+	var/obj/effect/abstract/particle_holder/smoke_visuals
+	var/position_offset = rand(-6,6)
+	smoke_visuals = new(src, /particles/impact_smoke)
+	smoke_visuals.particles.position = list(position_offset, position_offset)
+	smoke_visuals.particles.velocity = list(x_component_smoke, y_component_smoke)
+	if(debris && !(P.ammo.flags_ammo_behavior & AMMO_ENERGY || P.ammo.flags_ammo_behavior & AMMO_XENO))
+		debris_visuals = new(src, /particles/debris)
+		debris_visuals.particles.position = generator(GEN_CIRCLE, position_offset, position_offset)
+		debris_visuals.particles.velocity = list(x_component, y_component)
+		debris_visuals.layer = ABOVE_OBJ_LAYER + 0.02
+		debris_visuals.particles.icon_state = debris
+		debris_visuals.particles.count = debris_amount
+		debris_visuals.particles.spawning = debris_amount
+		if(bloom)
+			debris_visuals.add_filter("bloom", 1, bloom_filter("#c50021", 3, 1, 255))
+	smoke_visuals.layer = ABOVE_OBJ_LAYER + 0.01
+	if(P.ammo.sound_bounce)
+		var/pitch = 0
+		if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
+			pitch = 55000
+		playsound(src, P.ammo.sound_bounce, 50, 1, frequency = pitch)
+	addtimer(CALLBACK(src, PROC_REF(remove_ping), src, smoke_visuals, debris_visuals), 0.7 SECONDS)
 
-		var/matrix/rotate = matrix()
-		rotate.Turn(angle)
-		I.transform = rotate
-		add_overlay(I)
-		addtimer(CALLBACK(src, PROC_REF(cut_overlay), I), 3, TIMER_CLIENT_TIME)
-
-
+/atom/proc/remove_ping(atom/hit, var/obj/effect/abstract/particle_holder/smoke_visuals, var/obj/effect/abstract/particle_holder/debris_visuals)
+	if(!QDELETED(hit))
+		QDEL_NULL(smoke_visuals)
+		if(debris_visuals)
+			QDEL_NULL(debris_visuals)
 
 #define BULLET_MESSAGE_NO_SHOOTER 0
 #define BULLET_MESSAGE_HUMAN_SHOOTER 1

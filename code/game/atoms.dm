@@ -115,6 +115,14 @@
 
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
+	///Icon state of debris when impacted by a projectile
+	var/debris = FALSE
+	///Amount of debris particles
+	var/debris_amount = 8
+	///Velocity of debris particles
+	var/debris_velocity = -15
+	///If the debris particles
+	var/debris_bloom = FALSE
 
 /*
 We actually care what this returns, since it can return different directives.

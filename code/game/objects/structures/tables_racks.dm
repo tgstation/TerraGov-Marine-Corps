@@ -367,6 +367,9 @@
 	table_prefix = "wood"
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
+	debris = "wood"
+	debris_amount = 5
+	debris_velocity = -10
 
 /obj/structure/table/fancywoodentable
 	name = "fancy wooden table"
@@ -376,6 +379,9 @@
 	base_icon_state = "fancy_table"
 	table_prefix = "fwood"
 	parts = /obj/item/frame/table/fancywood
+	debris = "wood"
+	debris_amount = 5
+	debris_velocity = -10
 
 /obj/structure/table/rusticwoodentable
 	name = "rustic wooden table"
@@ -385,6 +391,9 @@
 	base_icon_state = "rustic_table"
 	table_prefix = "pwood"
 	parts = /obj/item/frame/table/rusticwood
+	debris = "wood"
+	debris_amount = 5
+	debris_velocity = -10
 
 /obj/structure/table/black
 	name = "black metal table"
