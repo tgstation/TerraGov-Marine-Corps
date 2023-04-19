@@ -459,7 +459,7 @@
 
 /obj/machinery/deployable/mounted/moveable/atgun/attackby(obj/item/I, mob/user, params)
 	if(user.interactee == src)
-		visible_message("[icon2html(src, viewers(src))] [span_notice("You cannot reload while you're manning the [src]!")]",)
+		balloon_alert(user, "Cannot reload while you're manning it.")
 		return
 
 	return . = ..()
