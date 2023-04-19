@@ -22,8 +22,8 @@
 	var/list/holsterable_allowed = list()
 	///records the specific special item currently in the holster
 	var/obj/holstered_item = null
-	///Image of the pistol that gets overlay'd over the belt sprite
-	var/image/gun_underlay
+	///Image that get's underlayed under the sprite of the holster
+	var/image/holstered_item_underlay
 
 /obj/item/storage/holster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE || slot == SLOT_L_STORE || slot == SLOT_R_STORE )	//add more if needed
@@ -48,8 +48,7 @@
 	if(!. || !is_type_in_list(W,holsterable_allowed)) //check to see if the item being inserted is the snowflake item
 		return
 	holstered_item = W
-	update_holster_underlays()
-	update_icon_state() //So that the icon actually updates after we've assigned our holstered_item
+	update_icon() //So that the icon actually updates after we've assigned our holstered_item
 	playsound(src, sheathe_sound, 15, 1)
 
 /obj/item/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
@@ -57,8 +56,7 @@
 	if(!. || !is_type_in_list(W,holsterable_allowed)) //check to see if the item being removed is the snowflake item
 		return
 	holstered_item = null
-	update_holster_underlays()
-	update_icon_state() //So that the icon actually updates after we've assigned our holstered_item
+	update_icon() //So that the icon actually updates after we've assigned our holstered_item
 	playsound(src, draw_sound, 15, 1)
 
 /obj/item/storage/holster/attack_hand(mob/living/user) //Prioritizes our snowflake item on unarmed click
@@ -67,14 +65,14 @@
 	else
 		return ..()
 
-///Will add the holstered item to our holster underlay
-/obj/item/storage/holster/proc/update_holster_underlays()
-	if(holstered_item)
-		gun_underlay = image(icon, src, holstered_item.icon_state)
-		underlays += gun_underlay
+/obj/item/storage/holster/update_overlays()
+	. = ..()
+	if(holstered_item && !holstered_item_underlay)
+		holstered_item_underlay = image(icon, src, holstered_item.icon_state)
+		underlays += holstered_item_underlay
 	else
-		underlays -= gun_underlay
-		QDEL_NULL(gun_underlay)
+		underlays -= holstered_item_underlay
+		QDEL_NULL(holstered_item_underlay)
 
 /obj/item/storage/holster/update_icon_state()
 	//sets the icon to full or empty
@@ -431,9 +429,9 @@
 	) //Any pistol you add to a holster should update the sprite. Ammo/Magazines dont update any sprites
 
 /obj/item/storage/holster/belt/Destroy()
-	if(gun_underlay)
-		qdel(gun_underlay)
-		gun_underlay = null
+	if(holstered_item_underlay)
+		qdel(holstered_item_underlay)
+		holstered_item_underlay = null
 	if(holstered_item)
 		qdel(holstered_item)
 		holstered_item = null
