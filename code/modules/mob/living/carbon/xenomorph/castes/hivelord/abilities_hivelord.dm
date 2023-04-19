@@ -25,11 +25,11 @@
 		return FALSE
 	if(!hivelord.Adjacent(victim))
 		if(!silent)
-				hivelord.balloon_alert(hivelord, "Too far")
+			hivelord.balloon_alert(hivelord, "Too far")
 		return FALSE
 	if(hivelord.on_fire)
 		if(!silent)
-				hivelord.balloon_alert(hivelord, "Cannot while burning")
+			hivelord.balloon_alert(hivelord, "Cannot while burning")
 		return FALSE
 	if(!iscarbon(target)||!isxeno(target))
 		if(!silent)
