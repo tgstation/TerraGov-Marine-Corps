@@ -417,8 +417,8 @@
 	if(ishandslot(slot))
 		set_gun_user(user)
 		mouse_opacity = MOUSE_OPACITY_OPAQUE
-		return ..()
-	set_gun_user(null)
+	else
+		set_gun_user(null)
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
