@@ -413,12 +413,12 @@
 		O.emp_act(severity)
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
-	unwield(user)
 	if(ishandslot(slot))
 		set_gun_user(user)
 		mouse_opacity = MOUSE_OPACITY_OPAQUE
 	else
 		set_gun_user(null)
+	unwield(user)
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
