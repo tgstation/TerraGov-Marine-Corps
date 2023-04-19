@@ -1,5 +1,4 @@
 ///Parent item for all holster type storage items
-
 /obj/item/storage/holster
 	name = "holster"
 	desc = "Holds stuff, and sometimes goes swoosh."
@@ -67,6 +66,8 @@
 
 /obj/item/storage/holster/update_overlays()
 	. = ..()
+	if(!(flags_item & HAS_UNDERLAY))
+		return
 	if(holstered_item && !holstered_item_underlay)
 		holstered_item_underlay = image(icon, src, holstered_item.icon_state)
 		underlays += holstered_item_underlay
@@ -410,6 +411,7 @@
 	base_icon = "m4a3_holster"
 	item_state = "m4a3_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
+	flags_item = HAS_UNDERLAY
 	use_sound = null
 	storage_slots = 7
 	max_storage_space = 15
