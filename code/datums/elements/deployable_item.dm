@@ -1,7 +1,7 @@
 
 /datum/element/deployable_item
 	element_flags = ELEMENT_BESPOKE
-	id_arg_index = 2
+	argument_hash_start_idx = 2
 
 	///Time it takes for the parent to be deployed.
 	var/deploy_time = 0
