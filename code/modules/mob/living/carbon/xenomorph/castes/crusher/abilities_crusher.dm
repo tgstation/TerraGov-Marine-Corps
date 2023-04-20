@@ -124,10 +124,11 @@
 		if(isclosedturf(throw_origin)) //Make sure the victim can actually go to the target turf
 			to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
 			return fail_activate()
-		for(var/obj/object in T) //Check if there is fog where the xeno is standing. You should be able to throw someone into fog.
-			if(istype(object, /obj/effect/forcefield/fog))
-				to_chat(X, span_xenowarning("We try to fling [A] behind us, but we cannot fling through fog!"))
-				return fail_activate()
+		if(!X.issamexenohive(A)) //xenos should be able to fling xenos into xeno passable areas!
+			for(var/obj/object in T) //Check if there is fog where the xeno is standing. You should be able to throw someone into fog.
+				if(istype(object, /obj/effect/forcefield/fog))
+					to_chat(X, span_xenowarning("We try to fling [A] behind us, but we cannot fling through fog!"))
+					return fail_activate()
 		for(var/obj/O in throw_origin)
 			if(!O.CanPass(A, get_turf(X)) && !istype(O, /obj/structure/barricade)) //Ignore barricades because they will once thrown anyway
 				to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
