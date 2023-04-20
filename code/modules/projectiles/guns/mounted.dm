@@ -460,7 +460,7 @@
 /obj/machinery/deployable/mounted/moveable/atgun/attackby(obj/item/I, mob/user, params)
 	var/obj/item/weapon/gun/standard_atgun/internal_gun = internal_item
 	if(user.interactee == src && (I.type in internal_gun.allowed_ammo_types))
-		balloon_alert(user, "Cannot reload while you're manning it")
+		balloon_alert(user, "Busy manning!")
 		return
 
 	return . = ..()
