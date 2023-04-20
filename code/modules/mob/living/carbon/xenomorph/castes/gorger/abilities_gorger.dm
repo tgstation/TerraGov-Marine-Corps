@@ -180,7 +180,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION,
 	)
 
-	var/target_health //Used to keep track of the target's previous health for extra_health_check()
+	///Used to keep track of the target's previous health for extra_health_check()
+	var/target_health
 
 /datum/action/xeno_action/activable/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
@@ -209,6 +210,7 @@
 		return FALSE
 	return TRUE
 
+///An extra check for the do_mob in can_use_ability. If the target isn't immobile and has lost health, the ability is cancelled. The ability is also cancelled if the target is knocked into crit DURING the do_mob.
 /datum/action/xeno_action/activable/transfusion/proc/extra_health_check(mob/living/target)
 	if((target.health < target_health && !HAS_TRAIT(target, TRAIT_IMMOBILE)) || (target.InCritical() && target_health > target.get_crit_threshold()))
 		return FALSE
