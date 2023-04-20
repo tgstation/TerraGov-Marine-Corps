@@ -404,7 +404,6 @@
 		/obj/item/explosive/mine,
 		/obj/item/reagent_containers/food/snacks,
 	)
-	allows_tactical_reload = TRUE
 
 /obj/item/storage/belt/marine/t18/Initialize()
 	. = ..()
@@ -947,7 +946,6 @@
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
-	allows_tactical_reload = TRUE
 
 /obj/item/storage/belt/sparepouch/som
 	name= "standard utility pouch"
@@ -984,7 +982,6 @@
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
 	)
-	allows_tactical_reload = TRUE
 
 /obj/item/storage/belt/gun/Destroy()
 	if(gun_underlay)
@@ -1042,6 +1039,10 @@
 	desc = "A pistol belt that is not a revolver belt"
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
+
+/obj/item/storage/belt/gun/pistol/Initialize(mapload, ...)
+	. = ..()
+	AddComponent(/datum/component/tac_reload_storage)
 
 /obj/item/storage/belt/gun/pistol/m4a3
 	name = "\improper M4A3 holster rig"
@@ -1165,7 +1166,6 @@
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
 	)
-	allows_tactical_reload = FALSE
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"
@@ -1178,7 +1178,6 @@
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
 	)
-	allows_tactical_reload = FALSE
 
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
@@ -1204,7 +1203,6 @@
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/ammo_magazine/revolver/mateba,
 	)
-	allows_tactical_reload = FALSE
 
 /obj/item/storage/belt/gun/mateba/full/Initialize()
 	. = ..()

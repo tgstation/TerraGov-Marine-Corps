@@ -42,10 +42,7 @@
 	desc = "A general purpose pouch used to carry small items."
 	icon_state = "small_drop"
 	draw_mode = 1
-
 	bypass_w_limit = list(/obj/item/ammo_magazine/packet)
-
-	allows_tactical_reload = TRUE
 
 /obj/item/storage/pouch/general/medium
 	name = "medium general pouch"
@@ -212,7 +209,6 @@
 		/obj/item/ammo_magazine/railgun,
 		/obj/item/cell/lasgun,
 	)
-	allows_tactical_reload = TRUE
 
 /obj/item/storage/pouch/magazine/smgfull
 	fill_type = /obj/item/ammo_magazine/smg/standard_machinepistol
