@@ -458,7 +458,8 @@
 	sponson = new sponson(src)
 
 /obj/machinery/deployable/mounted/moveable/atgun/attackby(obj/item/I, mob/user, params)
-	if(user.interactee == src)
+	var/obj/item/weapon/gun/standard_atgun/internal_gun = internal_item
+	if(user.interactee == src && (I.type in internal_gun.allowed_ammo_types))
 		balloon_alert(user, "Cannot reload while you're manning it")
 		return
 
