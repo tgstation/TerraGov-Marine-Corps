@@ -522,10 +522,6 @@
 /obj/structure/bed/chair,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
-"dk" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall/mainship/gray,
-/area/orion_outpost/surface/building/administration)
 "dm" = (
 /obj/structure/flora/grass/tallgrass{
 	color = "#7a8c54"
@@ -12610,7 +12606,7 @@ Ub
 FI
 pN
 pN
-dk
+pN
 VO
 DX
 pN
