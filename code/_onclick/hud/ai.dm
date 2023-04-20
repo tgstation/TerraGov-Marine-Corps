@@ -89,11 +89,8 @@
 	. = ..()
 	if(.)
 		return
-	var/dat = GLOB.datacore.get_manifest()
-
-	var/datum/browser/popup = new(usr, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
-	popup.set_content(dat)
-	popup.open(FALSE)
+	var/mob/living/silicon/ai/AI = usr
+	AI.view_manifest()
 
 /atom/movable/screen/ai/main_overwatch
 	name = "Connect to Main Overwatch"
