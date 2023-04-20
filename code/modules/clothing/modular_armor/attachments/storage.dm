@@ -18,7 +18,6 @@
 	var/show_storage = FALSE
 	///Icon for the extra storage overlays.
 	var/show_storage_icon = 'icons/mob/modular/modular_helmet_storage.dmi'
-	///If our module is capable of tactical reload with a gun
 
 /obj/item/armor_module/storage/Initialize()
 	. = ..()
