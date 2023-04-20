@@ -16,7 +16,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
-	akimbo_additional_delay = 0.08 SECONDS
+	akimbo_additional_delay = 0.8
 	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
 	gun_skill_category = SKILL_PISTOLS
 
