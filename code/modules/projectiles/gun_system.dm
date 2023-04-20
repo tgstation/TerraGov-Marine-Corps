@@ -164,6 +164,8 @@
 	var/lower_akimbo_accuracy = 1
 	///If fire delay is 1 second, and akimbo_additional_delay is 0.5, then you'll have to wait 1 second * 0.5 to fire the second gun
 	var/akimbo_additional_delay = 0.5
+	///Damage multiplier applied to akimbo.
+	var/akimbo_damage_multiplier = 0.75
 	///Delay for the gun winding up before firing.
 	var/windup_delay = 0
 	///Sound played during windup.
@@ -1690,9 +1692,10 @@
 			iff_signal = sentry.iff_signal
 		projectile_to_fire.iff_signal = iff_signal
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
-	//no point blank bonus when akimbo
+
 	if(dual_wield)
-		projectile_to_fire.point_blank_range = 0
+		projectile_to_fire.point_blank_range = 0	// no point blank bonus when akimbo
+		projectile_to_fire.damage *= akimbo_damage_multiplier	// damage multiplier applied when akimbo
 
 ///Sets the projectile accuracy and scatter
 /obj/item/weapon/gun/proc/setup_bullet_accuracy()
