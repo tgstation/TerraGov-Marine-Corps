@@ -132,7 +132,7 @@
 					continue
 				else
 					neuro_applied = TRUE
-			defile_strength_multiplier *= 2
+			defile_strength_multiplier *= 1.5
 	if(living_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
 		var/datum/status_effect/stacking/intoxicated/debuff = living_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
 		defile_reagent_amount += debuff.stacks
