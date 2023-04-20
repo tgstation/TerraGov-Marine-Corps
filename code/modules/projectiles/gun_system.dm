@@ -416,8 +416,9 @@
 	unwield(user)
 	if(ishandslot(slot))
 		set_gun_user(user)
-		return ..()
-	set_gun_user(null)
+		mouse_opacity = MOUSE_OPACITY_OPAQUE
+	else
+		set_gun_user(null)
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
@@ -427,6 +428,10 @@
 	if(!length(chamber_items) || !chamber_items[current_chamber_position] || chamber_items[current_chamber_position].loc == src)
 		return
 	drop_connected_mag(chamber_items[current_chamber_position], user)
+
+/obj/item/weapon/gun/unequipped(mob/user, slot)
+	. = ..()
+	mouse_opacity = initial(mouse_opacity) //So that it doesnt remain opaque when you drop or discard the gun
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
