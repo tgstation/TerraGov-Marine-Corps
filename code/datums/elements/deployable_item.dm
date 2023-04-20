@@ -77,6 +77,11 @@ GLOBAL_LIST_EMPTY(deployable_items)
 		if(user.do_actions)
 			user.balloon_alert(user, "You are already doing something!")
 			return
+		if(istype(item_to_deploy, /obj/item/weapon/gun/sentry))
+			for(var/obj/machinery/deployable/mounted/sentry in orange(SENTRY_DEPLOY_RANGE_LIMIT, location))
+				if(get_dist_euclide_square(sentry, item_to_deploy) >= SENTRY_DEPLOY_RANGE_LIMIT)
+					user.balloon_alert(user, "Another sentry is too close")
+					return
 		user.balloon_alert(user, "You start deploying...")
 		user.setDir(get_dir(user, location)) //Face towards deploy location for ease of deploy.
 		var/newdir = user.dir //Save direction before the doafter for ease of deploy
