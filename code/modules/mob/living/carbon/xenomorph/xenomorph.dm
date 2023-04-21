@@ -89,6 +89,13 @@
 		CRASH("error finding datum")
 	if(xeno_caste)
 		xeno_caste.on_caste_removed(src)
+
+		soft_armor = soft_armor.detachArmor(getArmor(arglist(xeno_caste.soft_armor)))
+		hard_armor = hard_armor.detachArmor(getArmor(arglist(xeno_caste.hard_armor)))
+	else
+		soft_armor = getArmor()
+		hard_armor = getArmor()
+
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
@@ -100,9 +107,10 @@
 		plasma_stored = max(plasma_stored, xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
 		health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
-	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
-	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
-	warding_aura = 0 //Resets aura for reapplying armor
+
+	//detaching and attaching preserves any tempory armor modifiers on the xeno
+	soft_armor = soft_armor.attachArmor(getArmor(arglist(xeno_caste.soft_armor)))
+	hard_armor = hard_armor.attachArmor(getArmor(arglist(xeno_caste.hard_armor)))
 
 ///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff while maintaining current health percent.
 /mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
