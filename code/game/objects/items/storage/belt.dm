@@ -813,7 +813,7 @@
 
 	draw_mode = 1
 
-	flags_1 = DIRLOCK
+	flags_atom = DIRLOCK
 
 /obj/item/storage/belt/shotgun/martini/Initialize(mapload, ...)
 	. = ..()

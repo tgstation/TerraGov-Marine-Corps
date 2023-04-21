@@ -9,7 +9,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
 	item_state = "electronic"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON
 	flags_equip_slot = ITEM_SLOT_BELT
 

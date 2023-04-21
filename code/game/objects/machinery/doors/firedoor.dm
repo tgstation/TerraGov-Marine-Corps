@@ -47,7 +47,7 @@
 	. = ..()
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
-			flags_1 |= INITIALIZED_1
+			flags_atom |= INITIALIZED
 			return INITIALIZE_HINT_QDEL
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
@@ -316,7 +316,7 @@
 
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
-	flags_1 = ON_BORDER
+	flags_atom = ON_BORDER
 
 /obj/machinery/door/firedoor/border_only/Initialize()
 	. = ..()
@@ -329,7 +329,7 @@
 	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(leaver.flags_pass, PASSGLASS))
 		return NONE
-	if(!density || !(flags_1 & ON_BORDER) || !(direction & dir) || (leaver.status_flags & INCORPOREAL))
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (leaver.status_flags & INCORPOREAL))
 		return NONE
 	moveblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT

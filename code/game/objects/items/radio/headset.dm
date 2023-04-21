@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = FREQ_COMMON
-	flags_1 = CONDUCT | PREVENT_CONTENTS_EXPLOSION
+	flags_atom = CONDUCT | PREVENT_CONTENTS_EXPLOSION
 	freerange = TRUE
 	var/obj/machinery/camera/camera
 	var/datum/atom_hud/squadhud = null

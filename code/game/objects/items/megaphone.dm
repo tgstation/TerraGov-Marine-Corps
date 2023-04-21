@@ -8,7 +8,7 @@
 	)
 	item_state = "radio"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 
 	var/spamcheck = 0
 	var/insults = 0

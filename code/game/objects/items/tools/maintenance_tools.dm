@@ -3,7 +3,7 @@
 	desc = "A wrench with many common uses. Can be usually found in your hand."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "wrench"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 7
@@ -18,7 +18,7 @@
 	desc = "You can be totally screwwy with this."
 	icon = 'icons/obj/items/screwdriver.dmi'
 	icon_state = "screwdriver_map"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -68,7 +68,7 @@
 	desc = "This cuts wires."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "cutters"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 6
 	throw_speed = 2
@@ -102,7 +102,7 @@
 	name = "blowtorch"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welder"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 
 	//Amount of OUCH when it's thrown
@@ -333,7 +333,7 @@
 	desc = "Used to remove floors and to pry open doors."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "crowbar"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 7
@@ -451,7 +451,7 @@
 	icon_state = "handheldcharger_black_empty"
 	item_state = "handheldcharger_black_empty"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	force = 6
 	throw_speed = 2
 	throw_range = 9

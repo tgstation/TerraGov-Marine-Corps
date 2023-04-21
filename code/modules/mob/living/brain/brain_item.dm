@@ -3,7 +3,7 @@
 	max_integrity = 400 //They need to live awhile longer than other organs.
 	desc = "A piece of juicy meat found in a person's head."
 	icon_state = "brain2"
-	flags_1 = NONE
+	flags_atom = NONE
 	force = 1
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 1

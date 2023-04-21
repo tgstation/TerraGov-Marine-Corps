@@ -9,7 +9,7 @@
 	)
 	item_state = "fire_extinguisher"
 	hitsound = 'sound/weapons/smash.ogg'
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2

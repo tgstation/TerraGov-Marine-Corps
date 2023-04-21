@@ -177,7 +177,7 @@
 
 /obj/item/stack/medical/heal_pack/advanced
 	dir = NORTH
-	flags_1 = DIRLOCK
+	flags_atom = DIRLOCK
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
 	unskilled_delay = SKILL_TASK_EASY
 

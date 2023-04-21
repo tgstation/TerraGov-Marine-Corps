@@ -43,7 +43,7 @@
 	if(width > 1)
 		handle_multidoor()
 	var/turf/current_turf = get_turf(src)
-	current_turf.flags_1 &= ~ AI_BLOCKED
+	current_turf.flags_atom &= ~ AI_BLOCKED
 
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)

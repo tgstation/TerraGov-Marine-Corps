@@ -51,7 +51,7 @@
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
-		if(!(thing.flags_1 & ON_BORDER)) //dense and non-directional, end
+		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
 			to_chat(user, span_warning("No space here for a barricade."))
 			return FALSE
 		if(thing.dir != user.dir)

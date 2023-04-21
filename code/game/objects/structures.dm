@@ -80,7 +80,7 @@
 				continue
 
 		//dense obstacles (border or not) on the structure's tile
-		if(O.density && (!(O.flags_1 & ON_BORDER) || O.dir & get_dir(src,user)))
+		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir & get_dir(src,user)))
 			to_chat(user, span_warning("There's \a [O.name] in the way."))
 			return FALSE
 
@@ -90,11 +90,11 @@
 			if(S.climbable)
 				continue
 		//dense border obstacles on our tile
-		if(O.density && (O.flags_1 & ON_BORDER) && O.dir & get_dir(user, src))
+		if(O.density && (O.flags_atom & ON_BORDER) && O.dir & get_dir(user, src))
 			to_chat(user, span_warning("There's \a [O.name] in the way."))
 			return FALSE
 
-	if((flags_1 & ON_BORDER))
+	if((flags_atom & ON_BORDER))
 		if(user.loc != loc && user.loc != get_step(T, dir))
 			to_chat(user, span_warning("You need to be up against [src] to leap over."))
 			return
@@ -104,7 +104,7 @@
 				to_chat(user, span_warning("You cannot leap this way."))
 				return
 			for(var/atom/movable/A in target)
-				if(A?.density && !(A.flags_1 & ON_BORDER))
+				if(A?.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface
@@ -119,7 +119,7 @@
 	if(!can_climb(user) || user.do_actions)
 		return
 
-	user.visible_message(span_warning("[user] starts [flags_1 & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!"))
+	user.visible_message(span_warning("[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!"))
 
 	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_climb), user)))
 		return
@@ -127,7 +127,7 @@
 	for(var/m in user.buckled_mobs)
 		user.unbuckle_mob(m)
 
-	if(!(flags_1 & ON_BORDER)) //If not a border structure or we are not on its tile, assume default behavior
+	if(!(flags_atom & ON_BORDER)) //If not a border structure or we are not on its tile, assume default behavior
 		user.forceMove(get_turf(src))
 
 		if(get_turf(user) == get_turf(src))
@@ -142,7 +142,7 @@
 				to_chat(user, span_warning("You cannot leap this way."))
 				return
 			for(var/atom/movable/A in target)
-				if(A?.density && !(A.flags_1 & ON_BORDER))
+				if(A?.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface

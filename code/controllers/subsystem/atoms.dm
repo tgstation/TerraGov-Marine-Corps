@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(atoms)
 		count = length(atoms)
 		for(var/I in 1 to count)
 			var/atom/A = atoms[I]
-			if(!(A.flags_1 & INITIALIZED_1))
+			if(!(A.flags_atom & INITIALIZED))
 				CHECK_TICK
 				PROFILE_INIT_ATOM_BEGIN()
 				InitAtom(A, TRUE, mapload_arg)
@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(atoms)
 	else
 		count = 0
 		for(var/atom/A in world)
-			if(!(A.flags_1 & INITIALIZED_1))
+			if(!(A.flags_atom & INITIALIZED))
 				PROFILE_INIT_ATOM_BEGIN()
 				InitAtom(A, FALSE, mapload_arg)
 				PROFILE_INIT_ATOM_END(A)
@@ -138,7 +138,7 @@ SUBSYSTEM_DEF(atoms)
 
 	if(!A) //possible harddel
 		qdeleted = TRUE
-	else if(!(A.flags_1 & INITIALIZED_1))
+	else if(!(A.flags_atom & INITIALIZED))
 		BadInitializeCalls[the_type] |= BAD_INIT_DIDNT_INIT
 	else
 		SEND_SIGNAL(A,COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE)

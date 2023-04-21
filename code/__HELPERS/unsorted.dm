@@ -221,7 +221,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 			continue
 		if((object.flags_pass & PASSAIR) && air_pass)
 			continue
-		if(object.flags_1 & ON_BORDER && object.dir != direction)
+		if(object.flags_atom & ON_BORDER && object.dir != direction)
 			continue
 		return TRUE
 	return FALSE
@@ -1018,9 +1018,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 /mob/dview/Initialize() //Properly prevents this mob from gaining huds or joining any global lists
 	SHOULD_CALL_PARENT(FALSE)
-	if(flags_1 & INITIALIZED_1)
+	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags_1 |= INITIALIZED_1
+	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_NORMAL
 
 /mob/dview/Destroy(force = FALSE)

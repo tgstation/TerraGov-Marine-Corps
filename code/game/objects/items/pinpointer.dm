@@ -1,7 +1,7 @@
 /obj/item/pinpointer
 	name = "Xeno structure pinpointer"
 	icon_state = "pinoff"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_TINY
 	item_icons = list(

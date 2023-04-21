@@ -8,9 +8,9 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 
 /mob/living/carbon/human/dummy/Initialize()
 	SHOULD_CALL_PARENT(FALSE)// just dummies, shouldnt register
-	if(flags_1 & INITIALIZED_1)
+	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags_1 |= INITIALIZED_1
+	flags_atom |= INITIALIZED
 	set_species()
 	return INITIALIZE_HINT_NORMAL // This stops dummies being setup and registered in the human_mob_list
 

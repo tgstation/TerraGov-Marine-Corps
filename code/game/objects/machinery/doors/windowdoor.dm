@@ -11,7 +11,7 @@
 	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	use_power = FALSE
-	flags_1 = ON_BORDER
+	flags_atom = ON_BORDER
 	flags_pass = PASSLASER
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
@@ -41,7 +41,7 @@
 
 /obj/machinery/door/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/moveblockers)
 	SIGNAL_HANDLER
-	if(!density || !(flags_1 & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 	moveblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT

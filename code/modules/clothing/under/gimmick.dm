@@ -85,7 +85,7 @@
 	name = "metal body"
 	desc = "It may be metallic, but it contains the heart and soul of Alex J. Murphy."
 	icon_state = "robocop_suit"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 
 /obj/item/clothing/shoes/gimmick/robocop
 	name = "polished metal boots"
@@ -98,7 +98,7 @@
 	name = "metal hands"
 	desc = "The cold, unfeeling hands of the law."
 	icon_state = "robocop_gloves"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	soft_armor = list(MELEE = 87, BULLET = 87, LASER = 87, ENERGY = 87, BOMB = 87, BIO = 50, FIRE = 87, ACID = 87)
 
 /obj/item/clothing/head/helmet/gimmick/robocop
@@ -117,7 +117,7 @@
 	icon_state = "robocop_armor"
 	item_state = "robocop_armor"
 	slowdown = 1
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_inventory = BLOCKSHARPOBJ
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS

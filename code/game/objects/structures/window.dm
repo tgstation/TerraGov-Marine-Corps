@@ -7,7 +7,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	flags_1 = ON_BORDER|DIRLOCK
+	flags_atom = ON_BORDER|DIRLOCK
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
@@ -70,7 +70,7 @@
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	if(!(flags_1 & ON_BORDER) || ISDIAGONALDIR(dir))
+	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
 	return FALSE
 
@@ -85,7 +85,7 @@
 /obj/structure/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return NONE
-	if(!density || !(flags_1 & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
@@ -381,7 +381,7 @@
 	basestate = "window"
 	max_integrity = 40
 	reinf = TRUE
-	flags_1 = NONE
+	flags_atom = NONE
 
 /obj/structure/window/shuttle/update_icon() //icon_state has to be set manually
 	return
@@ -392,7 +392,7 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = TRUE
-	flags_1 = NONE //This is not a border object; it takes up the entire tile.
+	flags_atom = NONE //This is not a border object; it takes up the entire tile.
 	explosion_block = 2
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(

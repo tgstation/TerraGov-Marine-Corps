@@ -55,7 +55,7 @@
 	name = "phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
 	icon_state = "phoron"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = NONE	//they have no straps!
 
 
@@ -67,7 +67,7 @@
 	name = "emergency oxygen tank"
 	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
 	icon_state = "emergency"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_TINY
 	force = 4

@@ -23,7 +23,7 @@
 	desc = "What are you standing around staring at this for? Get to killing!"
 	icon_state = "claymore"
 	item_state = "claymore"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 40
 	throwforce = 10
@@ -144,7 +144,7 @@
 	name = "katana"
 	desc = "A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza."
 	icon_state = "katana"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	force = 50
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG
@@ -182,7 +182,7 @@
 	icon_state = "combat_knife"
 	item_state = "combat_knife"
 	desc = "A standard survival knife of high quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 30
 	w_class = WEIGHT_CLASS_SMALL
@@ -271,7 +271,7 @@
 	icon_state = "karambit"
 	item_state = "karambit"
 	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has a mottled red finish."
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 30
 	w_class = WEIGHT_CLASS_SMALL
@@ -314,7 +314,7 @@
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
 	stack_name = "pile"
 	singular_name = "knife"
-	flags_1 = CONDUCT|DIRLOCK
+	flags_atom = CONDUCT|DIRLOCK
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 20
 	w_class = WEIGHT_CLASS_TINY

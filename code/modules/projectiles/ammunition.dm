@@ -8,7 +8,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
 		)
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
@@ -226,7 +226,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
 	max_rounds = 5 // For shotguns, though this will be determined by the handful type when generated.
-	flags_1 = CONDUCT|DIRLOCK
+	flags_atom = CONDUCT|DIRLOCK
 	flags_magazine = MAGAZINE_HANDFUL|MAGAZINE_REFILLABLE
 	attack_speed = 3 // should make reloading less painful
 	icon_state_mini = "bullets"
@@ -297,7 +297,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	w_class = WEIGHT_CLASS_TINY
 	layer = LOWER_ITEM_LAYER //Below other objects
 	dir = 1 //Always north when it spawns.
-	flags_1 = CONDUCT|DIRLOCK
+	flags_atom = CONDUCT|DIRLOCK
 	var/current_casings = 1 //This is manipulated in the procs that use these.
 	var/max_casings = 16
 	var/current_icon = 0

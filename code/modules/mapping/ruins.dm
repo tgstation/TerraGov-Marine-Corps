@@ -9,7 +9,7 @@
 
 		for(var/turf/check in get_affected_turfs(central_turf,1))
 			var/area/new_area = get_area(check)
-			if(!(istype(new_area, allowed_areas)) || check.flags_1 & NO_RUINS_1)
+			if(!(istype(new_area, allowed_areas)) || check.flags_atom & NO_RUINS_1)
 				valid = FALSE
 				break
 
@@ -29,7 +29,7 @@
 		loaded++
 
 		for(var/turf/T in get_affected_turfs(central_turf, 1))
-			T.flags_1 |= NO_RUINS_1
+			T.flags_atom |= NO_RUINS_1
 
 		new /obj/effect/landmark/ruin(central_turf, src)
 		return TRUE

@@ -1,5 +1,5 @@
 /obj/machinery/deployable
-	flags_1 = PREVENT_CONTENTS_EXPLOSION
+	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
 	flags_pass = PASSAIR

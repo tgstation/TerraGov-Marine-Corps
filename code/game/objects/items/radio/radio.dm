@@ -8,7 +8,7 @@
 	)
 	item_state = "radio"
 
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throw_speed = 2
 	throw_range = 9

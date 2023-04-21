@@ -136,7 +136,7 @@
 		else
 			airlock.locked = TRUE
 			var/turf/current_turf = get_turf(airlock)
-			current_turf.flags_1 |= AI_BLOCKED
+			current_turf.flags_atom |= AI_BLOCKED
 	else
 		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 
@@ -264,7 +264,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 /obj/effect/mapping_helpers/no_lava/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	T.flags_1 |= NO_LAVA_GEN_1
+	T.flags_atom |= NO_LAVA_GEN_1
 */
 
 /*

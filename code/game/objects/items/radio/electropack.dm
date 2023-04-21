@@ -8,7 +8,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/security_right.dmi',
 	)
 	item_state = "electropack"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 

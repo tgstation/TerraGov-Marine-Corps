@@ -4,7 +4,7 @@
 	appearance_flags = TILE_BOUND
 	var/level = 2
 
-	var/flags_1 = NONE
+	var/flags_atom = NONE
 	var/datum/reagents/reagents = null
 
 	var/list/fingerprints
@@ -414,7 +414,7 @@ directive is properly returned.
  * Default behaviour is to call [contents_explosion][/atom/proc/contents_explosion] and send the [COMSIG_ATOM_EX_ACT] signal
  */
 /atom/proc/ex_act(severity, epicenter_dist, impact_range)
-	if(!(flags_1 & PREVENT_CONTENTS_EXPLOSION))
+	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
 		contents_explosion(severity, epicenter_dist, impact_range)
 	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
@@ -721,9 +721,9 @@ Proc for attack log creation, because really why not
 /atom/proc/Initialize(mapload, ...)
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
-	if(flags_1 & INITIALIZED_1)
+	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags_1 |= INITIALIZED_1
+	flags_atom |= INITIALIZED
 
 	update_greyscale()
 

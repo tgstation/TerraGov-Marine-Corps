@@ -1,5 +1,5 @@
 /obj/item/weapon/energy
-	flags_1 = NOBLOODY
+	flags_atom = NOBLOODY
 
 /obj/item/weapon/energy/suicide_act(mob/user)
 	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku."), \
@@ -17,7 +17,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_1 = CONDUCT|NOBLOODY
+	flags_atom = CONDUCT|NOBLOODY
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
@@ -52,7 +52,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	flags_1 = NOBLOODY
+	flags_atom = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1

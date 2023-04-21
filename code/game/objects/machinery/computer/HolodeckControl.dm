@@ -50,7 +50,7 @@
 	density = TRUE
 	layer = WINDOW_LAYER
 	anchored = TRUE
-	flags_1 = ON_BORDER
+	flags_atom = ON_BORDER
 
 
 

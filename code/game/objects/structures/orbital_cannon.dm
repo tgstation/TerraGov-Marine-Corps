@@ -441,7 +441,7 @@
 	desc = "The console controlling the orbital cannon loading systems."
 	icon_state = "ob_console"
 	dir = WEST
-	flags_1 = ON_BORDER|CONDUCT
+	flags_atom = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
 
 

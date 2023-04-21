@@ -4,7 +4,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "suitcooler0"
 	flags_equip_slot = ITEM_SLOT_BACK
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	force = 5
 	throwforce = 10
 	throw_speed = 1

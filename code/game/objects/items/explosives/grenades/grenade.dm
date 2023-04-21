@@ -11,7 +11,7 @@
 	item_state = "grenade"
 	throw_speed = 3
 	throw_range = 7
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
 	icon_state_mini = "grenade_red"

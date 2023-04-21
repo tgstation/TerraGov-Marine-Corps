@@ -9,7 +9,7 @@
 	)
 	item_state = "flashlight"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	actions_types = list(/datum/action/item_action)
 	light_range = 5
@@ -121,7 +121,7 @@
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
 	item_state = ""
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	light_range = 2
 	w_class = WEIGHT_CLASS_TINY
 	raillight_compatible = FALSE

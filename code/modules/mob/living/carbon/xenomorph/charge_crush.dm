@@ -389,7 +389,7 @@
 		charge_datum.do_stop_momentum()
 		return PRECRUSH_STOPPED
 	if(anchored)
-		if(flags_1 & ON_BORDER)
+		if(flags_atom & ON_BORDER)
 			if(dir == REVERSE_DIR(charger.dir))
 				. = (CHARGE_SPEED(charge_datum) * 80) //Damage to inflict.
 				charge_datum.speed_down(3)

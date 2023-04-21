@@ -103,7 +103,7 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "volkite_powerpack"
 	charge_overlay = "volkite_back"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE

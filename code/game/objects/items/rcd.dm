@@ -5,7 +5,7 @@
 	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	force = 10
 	throwforce = 10
 	throw_speed = 1

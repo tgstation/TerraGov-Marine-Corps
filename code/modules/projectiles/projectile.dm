@@ -30,7 +30,7 @@
 	resistance_flags = RESIST_ALL
 	anchored = TRUE //You will not have me, space wind!
 	move_resist = INFINITY
-	flags_1 = NOINTERACT //No real need for this, but whatever. Maybe this flag will do something useful in the future.
+	flags_atom = NOINTERACT //No real need for this, but whatever. Maybe this flag will do something useful in the future.
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_MAXIMUM // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
 	layer = FLY_LAYER
@@ -654,7 +654,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
 	var/hit_chance = coverage //base chance for the projectile to hit the object instead of bypassing it
-	if(flags_1 & ON_BORDER)
+	if(flags_atom & ON_BORDER)
 		if(!(cardinal_move & REVERSE_DIR(dir))) //The bullet will only hit if the barricade and its movement are facing opposite directions.
 			if(!uncrossing)
 				proj.uncross_scheduled += src
@@ -679,7 +679,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /obj/structure/window/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
 		return FALSE
-	if(flags_1 & ON_BORDER && !(cardinal_move & REVERSE_DIR(dir)))
+	if(flags_atom & ON_BORDER && !(cardinal_move & REVERSE_DIR(dir)))
 		if(!uncrossing)
 			proj.uncross_scheduled += src
 		return FALSE
@@ -688,7 +688,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /obj/machinery/door/window/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
 		return FALSE
-	if(flags_1 & ON_BORDER && !(cardinal_move & REVERSE_DIR(dir)))
+	if(flags_atom & ON_BORDER && !(cardinal_move & REVERSE_DIR(dir)))
 		if(!uncrossing)
 			proj.uncross_scheduled += src
 		return FALSE

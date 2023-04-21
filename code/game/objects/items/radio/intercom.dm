@@ -8,7 +8,7 @@
 	anchored = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	canhear_range = 2
-	flags_1 = CONDUCT|NOBLOODY
+	flags_atom = CONDUCT|NOBLOODY
 	var/number = 0
 	var/anyai = 1
 	var/mob/living/silicon/ai/ai = list()

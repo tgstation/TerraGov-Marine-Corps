@@ -66,7 +66,7 @@
 	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
 		return NONE
-	if(!density || !(flags_1 & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT

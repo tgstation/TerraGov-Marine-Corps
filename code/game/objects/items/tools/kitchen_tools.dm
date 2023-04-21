@@ -26,7 +26,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	attack_verb = list("attacked", "stabbed", "poked")
 	sharp = 0
 	var/loaded      //Descriptive string for currently loaded food object.
@@ -127,7 +127,7 @@
 	name = "kitchen knife"
 	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 	force = 10
@@ -156,7 +156,7 @@
 	name = "butcher's cleaver"
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	force = 15
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 8
@@ -199,7 +199,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	/* // NOPE
 	var/food_total= 0
 	var/burger_amt = 0

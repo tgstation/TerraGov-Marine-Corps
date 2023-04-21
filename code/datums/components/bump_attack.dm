@@ -58,7 +58,7 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
 		return NONE
 	var/mob/living/bumper = parent
-	if(!(target.flags_1 & BUMP_ATTACKABLE) || bumper.throwing || bumper.incapacitated())
+	if(!(target.flags_atom & BUMP_ATTACKABLE) || bumper.throwing || bumper.incapacitated())
 		return NONE
 
 ///Handles carbon bump action checks before actually doing the attack checks.

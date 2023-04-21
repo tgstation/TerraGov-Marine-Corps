@@ -220,7 +220,7 @@
 	desc = "Woefully underpowered in D20."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "katana"
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5

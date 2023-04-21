@@ -4,7 +4,7 @@
 	name = "grab"
 	icon_state = "reinforce"
 	icon = 'icons/mob/screen/generic.dmi'
-	flags_1 = NONE
+	flags_atom = NONE
 	flags_item = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE

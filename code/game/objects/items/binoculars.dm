@@ -4,7 +4,7 @@
 	desc = "A pair of binoculars."
 	icon_state = "binoculars"
 
-	flags_1 = CONDUCT
+	flags_atom = CONDUCT
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5
