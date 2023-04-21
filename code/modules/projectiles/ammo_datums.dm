@@ -1271,7 +1271,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	max_range = 35
 	///Bonus flat damage to walls, balanced around resin walls.
-	var/autocannon_wall_bonus = 15
+	var/autocannon_wall_bonus = 20
 
 /datum/ammo/bullet/auto_cannon/on_hit_turf(turf/T, obj/projectile/P)
 	P.proj_max_range -= 20
@@ -1290,7 +1290,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/auto_cannon/flak
 	name = "autocannon smart-detonating bullet"
 	hud_state = "sniper_flak"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_EXPLOSIVE
 	damage = 40
 	penetration = 20
 	sundering = 5
@@ -1300,6 +1300,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
+
+/datum/ammo/bullet/auto_cannon/do_at_max_range(turf/T, obj/projectile/proj)
+	airburst(T, proj)
 
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"

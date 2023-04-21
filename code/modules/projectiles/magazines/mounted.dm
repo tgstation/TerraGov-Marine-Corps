@@ -129,14 +129,14 @@
 
 /obj/item/ammo_magazine/auto_cannon
 	name = "autocannon high-velocity magazine(20mm)"
-	desc = "A box of 80 high-velocity 20mm rounds for the ATR-22 mounted autocannon. Will pierce people and cover"
+	desc = "A box of 100 high-velocity 20mm rounds for the ATR-22 mounted autocannon. Will pierce people and cover"
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-ac.dmi'
 	icon_state = "ac_mag"
 	item_state = "ac"
 	flags_magazine = NONE
 	caliber = CALIBER_20
-	max_rounds = 80
+	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/auto_cannon
 	reload_delay = 4 SECONDS
 
