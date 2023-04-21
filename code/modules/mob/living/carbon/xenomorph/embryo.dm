@@ -144,7 +144,7 @@
 
 	new_xeno = new(affected_mob)
 
-	new_xeno.hivenumber = hivenumber
+	new_xeno.transfer_to_hive(hivenumber)
 	new_xeno.update_icons()
 
 	//If we have a candidate, transfer it over.
@@ -171,7 +171,7 @@
 
 	victim.emote_burstscream()
 
-	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(burst), victim), 3 SECONDS)
 
 
 /mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/victim)

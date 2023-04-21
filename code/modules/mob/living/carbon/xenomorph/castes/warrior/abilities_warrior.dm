@@ -118,9 +118,9 @@
 	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
 	lunge_target = A
 
-	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
-	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
+	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_lunge_target))
+	RegisterSignal(X, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_lunge_possible))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(clean_lunge_target))
 	if(lunge_target.Adjacent(X)) //They're already in range, neck grab without lunging.
 		lunge_grab(X, lunge_target)
 	else
@@ -137,7 +137,7 @@
 	SIGNAL_HANDLER
 	if(!lunge_target.Adjacent(source))
 		return
-	INVOKE_ASYNC(src, .proc/lunge_grab, source, lunge_target)
+	INVOKE_ASYNC(src, PROC_REF(lunge_grab), source, lunge_target)
 
 ///Do a last check to see if we can grab the target, and then clean up after the throw. Handles an in-place lunge.
 /datum/action/xeno_action/activable/lunge/proc/finish_lunge(datum/source)
@@ -502,7 +502,7 @@
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
-			L =  carbon_victim.get_limb(BODY_ZONE_CHEST)
+			L = carbon_victim.get_limb(BODY_ZONE_CHEST)
 		apply_damage(damage, BRUTE, L, MELEE)
 	else
 		apply_damage(damage, BRUTE, blocked = MELEE)
@@ -581,7 +581,7 @@
 		target.blind_eyes(3)
 		target.blur_eyes(6)
 		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))
-		target.Confused(3 SECONDS) //Does literally nothing for now, will have to re-add confusion code.
+		target.apply_status_effect(STATUS_EFFECT_CONFUSED, 3 SECONDS)
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 	succeed_activate()

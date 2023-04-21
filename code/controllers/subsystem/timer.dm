@@ -272,7 +272,7 @@ SUBSYSTEM_DEF(timer)
 		return
 
 	// Sort all timers by time to run
-	sortTim(alltimers, .proc/cmp_timer)
+	sortTim(alltimers, PROC_REF(cmp_timer))
 
 	// Get the earliest timer, and if the TTR is earlier than the current world.time,
 	// then set the head offset appropriately to be the earliest time tracked by the
@@ -331,10 +331,15 @@ SUBSYSTEM_DEF(timer)
 
 
 /datum/controller/subsystem/timer/Recover()
-	second_queue |= SStimer.second_queue
-	hashes |= SStimer.hashes
-	timer_id_dict |= SStimer.timer_id_dict
-	bucket_list |= SStimer.bucket_list
+	//Find the current timer sub-subsystem in global and recover its buckets etc
+	var/datum/controller/subsystem/timer/timerSS = null
+	for(var/global_var in global.vars)
+		if (istype(global.vars[global_var],src.type))
+			timerSS = global.vars[global_var]
+	second_queue |= timerSS.second_queue
+	hashes |= timerSS.hashes
+	timer_id_dict |= timerSS.timer_id_dict
+	bucket_list |= timerSS.bucket_list
 
 /**
  * # Timed Event
@@ -414,7 +419,7 @@ SUBSYSTEM_DEF(timer)
 	if (flags & TIMER_UNIQUE && hash)
 		timer_subsystem.hashes -= hash
 
-	if (callBack && callBack.object && callBack.object != GLOBAL_PROC && callBack.object.active_timers)
+	if (callBack?.object && callBack.object != GLOBAL_PROC && callBack.object.active_timers)
 		callBack.object.active_timers -= src
 		UNSETEMPTY(callBack.object.active_timers)
 
@@ -433,9 +438,9 @@ SUBSYSTEM_DEF(timer)
 		spent = world.time
 		bucketEject()
 	else
-		if (prev && prev.next == src)
+		if (prev?.next == src)
 			prev.next = next
-		if (next && next.prev == src)
+		if (next?.prev == src)
 			next.prev = prev
 	next = null
 	prev = null
@@ -471,9 +476,9 @@ SUBSYSTEM_DEF(timer)
 
 	// Remove the timed event from the bucket, ensuring to maintain
 	// the integrity of the bucket's list if relevant
-	if (prev && prev.next == src)
+	if (prev?.next == src)
 		prev.next = next
-	if (next && next.prev == src)
+	if (next?.prev == src)
 		next.prev = prev
 	prev = next = null
 	bucket_pos = -1

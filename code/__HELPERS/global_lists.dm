@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
 		var/type_path = initial(caste.caste_type_path)
 
-		GLOB.hive_ui_caste_index[type_path] = GLOB.hive_ui_static_data.len //Starts from 0.
+		GLOB.hive_ui_caste_index[type_path] = length(GLOB.hive_ui_static_data) //Starts from 0.
 
 		var/icon/xeno_minimap = icon('icons/UI_icons/map_blips.dmi', initial(caste.minimap_icon))
 		var/tier = initial(caste.tier)
@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			"minimap" = icon2base64(xeno_minimap),
 			"sort_mod" = per_tier_counter[tier]++,
 			"tier" = GLOB.tier_as_number[tier],
-			"is_unique" = tier == XENO_TIER_FOUR, //TODO: Make this check a flag after caste flag refactoring is merged.
+			"is_unique" = caste.maximum_active_caste == 1,
 			"can_transfer_plasma" = CHECK_BITFIELD(initial(caste.can_flags), CASTE_CAN_BE_GIVEN_PLASMA),
 			"evolution_max" = initial(caste.evolution_threshold)
 		))
@@ -126,27 +126,6 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 	shuffle(GLOB.fruit_icon_states)
 	shuffle(GLOB.reagent_effects)
-
-
-	for(var/path in subtypesof(/datum/material))
-		var/datum/material/M = new path
-		GLOB.materials[path] = M
-
-
-	for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
-		var/datum/autolathe/recipe/recipe = new R
-		GLOB.autolathe_recipes += recipe
-		GLOB.autolathe_categories |= recipe.category
-
-		var/obj/item/I = new recipe.path
-		if(I.materials && !recipe.resources) //This can be overidden in the datums.
-			recipe.resources = list()
-			for(var/material in I.materials)
-				if(istype(I,/obj/item/stack/sheet))
-					recipe.resources[material] = I.materials[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
-				else
-					recipe.resources[material] = round(I.materials[material]*1.25) // More expensive to produce than they are to recycle.
-			qdel(I)
 
 	for(var/path in subtypesof(/datum/reagent))
 		var/datum/reagent/D = new path()

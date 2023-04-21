@@ -60,6 +60,8 @@
 		item_cat = CAT_LEDSUP
 	else if (user.job.title == SQUAD_ENGINEER)
 		item_cat = CAT_ENGSUP
+	else if(user.job.title == FIELD_COMMANDER)
+		item_cat = CAT_FCSUP
 	else
 		return FALSE
 
@@ -85,17 +87,21 @@
 	if(ispath(item_type, /obj/item/weapon/gun))
 		return /datum/item_representation/gun
 	if(ispath(item_type, /obj/item/clothing/suit/modular))
-		return /datum/item_representation/modular_armor
-	if(ispath(item_type, /obj/item/armor_module/armor))
+		return /datum/item_representation/armor_suit/modular_armor
+	if(ispath(item_type, /obj/item/armor_module/greyscale))
 		return /datum/item_representation/armor_module/colored
+	if(ispath(item_type, /obj/item/armor_module/armor))
+		return /datum/item_representation/armor_module/armor
 	if(ispath(item_type, /obj/item/armor_module/storage))
 		return /datum/item_representation/armor_module/storage
 	if(ispath(item_type, /obj/item/storage))
 		return /datum/item_representation/storage
-	if(ispath(item_type, /obj/item/clothing/suit/storage))
-		return /datum/item_representation/suit_with_storage
+	if(ispath(item_type, /obj/item/clothing/suit))
+		return /datum/item_representation/armor_suit
 	if(ispath(item_type, /obj/item/clothing/head/modular))
-		return /datum/item_representation/modular_helmet
+		return /datum/item_representation/hat/modular_helmet
+	if(ispath(item_type, /obj/item/clothing/head))
+		return /datum/item_representation/hat
 	if(ispath(item_type, /obj/item/clothing/under))
 		return /datum/item_representation/uniform_representation
 	if(ispath(item_type, /obj/item/ammo_magazine/handful))

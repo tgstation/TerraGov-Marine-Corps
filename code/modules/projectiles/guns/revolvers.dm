@@ -17,7 +17,7 @@
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
 	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	max_chamber_items = 7
@@ -62,7 +62,7 @@
 	desc = "The R-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	icon_state = "tp44"
 	item_state = "tp44"
-	caliber =  CALIBER_44 //codex
+	caliber = CALIBER_44 //codex
 	max_chamber_items = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
@@ -187,6 +187,7 @@
 	accuracy_mult = 1.15
 	scatter = 0
 	accuracy_mult_unwielded = 0.8
+	akimbo_additional_delay = 0.9 // Akimbo only gives more shots.
 	scatter_unwielded = 7
 
 /obj/item/weapon/gun/revolver/mateba/notmarine
@@ -277,7 +278,7 @@
 	icon_state = "t76"
 	item_state = "t76"
 	fire_animation = "t76_fire"
-	caliber =  CALIBER_12x7 //codex
+	caliber = CALIBER_12x7 //codex
 	max_chamber_items = 5 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_magnum
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_magnum)
@@ -291,7 +292,6 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/stock/t76,
 	)
@@ -339,7 +339,7 @@
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 6
 	default_ammo_type = /obj/item/ammo_magazine/revolver
-	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver, /obj/item/ammo_magazine/revolver/marksman, /obj/item/ammo_magazine/revolver/heavy)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,

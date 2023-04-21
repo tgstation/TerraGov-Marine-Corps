@@ -35,11 +35,11 @@
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 
-		var/list/slot_data =  hud_data.gear[gear_slot]
-		inv_box.name =        gear_slot
-		inv_box.screen_loc =  slot_data["loc"]
-		inv_box.slot_id =     slot_data["slot"]
-		inv_box.icon_state =  slot_data["state"]
+		var/list/slot_data = hud_data.gear[gear_slot]
+		inv_box.name = gear_slot
+		inv_box.screen_loc = slot_data["loc"]
+		inv_box.slot_id = slot_data["slot"]
+		inv_box.icon_state = slot_data["state"]
 
 		if(slot_data["toggle"])
 			toggleable_inventory += inv_box
@@ -217,11 +217,12 @@
 	f_style = "Shaved"
 	if(ishumanbasic(src))
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
-	undershirt = GLOB.undershirt_t.Find("None")
 	if(gender == MALE)
 		underwear = GLOB.underwear_m.Find("None")
+		undershirt = GLOB.undershirt_m.Find("None")
 	else
 		underwear = GLOB.underwear_f.Find("None")
+		undershirt = GLOB.undershirt_f.Find("None")
 	regenerate_icons()
 
 
@@ -233,7 +234,7 @@
 	var/mob/living/carbon/human/H = mymob
 	var/mob/screenmob = viewer || H
 
-	if(H.species && H.species.hud && !H.species.hud.gear.len)
+	if(H.species && H.species.hud && !length(H.species.hud.gear))
 		inventory_shown = FALSE
 		return //species without inv slots don't show items.
 	if(screenmob.hud_used.inventory_shown && screenmob.hud_used.hud_shown)

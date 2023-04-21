@@ -3,8 +3,8 @@
 
 	var/target
 	var/name = "nobody's admin datum (no rank)"
-	var/client/owner	= null
-	var/fakekey			= null
+	var/client/owner = null
+	var/fakekey = null
 
 	var/datum/marked_datum
 	var/marked_file
@@ -185,7 +185,7 @@
 
 //This proc checks whether subject has at least ONE of the rights specified in rights_required.
 /proc/check_rights_for(client/subject, rights_required)
-	if(subject && subject.holder)
+	if(subject?.holder)
 		return subject.holder.check_for_rights(rights_required)
 	return FALSE
 
@@ -294,6 +294,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/check_fingerprints,
 	/client/proc/smite,
+	/client/proc/show_traitor_panel,
+	/client/proc/validate_objectives,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -552,7 +554,7 @@ GLOBAL_PROTECT(admin_verbs_log)
 		return FALSE
 	if(!C?.holder?.rank?.rights)
 		return FALSE
-	if(check_other_rights(C, R_ADMINTICKET, FALSE))
+	if(check_other_rights(C, R_ADMIN, FALSE))
 		return FALSE
 	if(!check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE

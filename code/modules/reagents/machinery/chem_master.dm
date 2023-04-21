@@ -121,11 +121,6 @@
 
 	var/mob/living/user = usr
 
-	if(user.skills.getRating("medical") < SKILL_MEDICAL_NOVICE)
-		to_chat(user, span_notice("You start fiddling with \the [src]..."))
-		if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
-			return
-
 	if (href_list["ejectp"])
 		if(loaded_pill_bottle)
 			loaded_pill_bottle.loc = loc
@@ -252,7 +247,7 @@
 				P.icon_state = "pill"+pillsprite
 				reagents.trans_to(P,amount_per_pill)
 				if(loaded_pill_bottle)
-					if(loaded_pill_bottle.contents.len < loaded_pill_bottle.max_storage_space)
+					if(length(loaded_pill_bottle.contents) < loaded_pill_bottle.max_storage_space)
 						loaded_pill_bottle.handle_item_insertion(P, TRUE)
 						updateUsrDialog()
 
@@ -347,6 +342,10 @@
 	. = ..()
 	if(.)
 		return
+	if(user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_PRACTICED)
+		balloon_alert(user, "skill issue")
+		return
+
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
@@ -362,13 +361,13 @@
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
 		if(loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 	else
 		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
 		if(loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 		if(!beaker.reagents.total_volume)

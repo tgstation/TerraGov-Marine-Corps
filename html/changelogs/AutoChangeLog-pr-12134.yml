@@ -1,7 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscadd: "Crumpled pill packets are biodegradable"
-  - balance: "Paracetamol, Leporazine, Red Russian, Ryetalyn Packets. 4 Pills >> 8 Pills."
-  - bugfix: "Pill sound now properly plays when you take a pill out of a bottle/packet"
-  - imageadd: "New pill packet sprites."

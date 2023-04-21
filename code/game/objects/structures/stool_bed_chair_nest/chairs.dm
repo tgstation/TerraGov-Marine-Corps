@@ -91,10 +91,10 @@
 			return
 		var/obj/item/tool/weldingtool/WT = I
 
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to weld down \the [src]."),
 			span_notice("You fumble around figuring out how to weld down \the [src]."))
-			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating("engineer"))
+			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER))
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
@@ -283,7 +283,7 @@
 	. = ..()
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
 		visible_message(span_danger("[mover] slams into [src] and breaks it!"))
-		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
+		INVOKE_ASYNC(src, PROC_REF(fold_down), TRUE)
 		return FALSE
 
 /obj/structure/bed/chair/dropship/passenger/Initialize()
@@ -295,10 +295,13 @@
 /obj/structure/bed/chair/dropship/passenger/post_buckle_mob(mob/buckling_mob)
 	icon_state = "shuttle_chair_buckled"
 	overlays += chairbar
+	return ..()
+
 
 /obj/structure/bed/chair/dropship/passenger/post_unbuckle_mob(mob/buckled_mob)
 	icon_state = "shuttle_chair"
 	overlays -= chairbar
+	return ..()
 
 
 /obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)

@@ -22,7 +22,7 @@
 		if(obj_integrity > max_integrity * 0.5)
 			new sheet_type(loc)
 		var/obj/item/stack/rods/salvage = new sheet_type2(loc)
-		salvage.amount = min(1, round(4 * (obj_integrity / max_integrity) ) )
+		salvage.amount = max(1, round(4 * (obj_integrity / max_integrity) ) )
 	else
 		if(prob(50))
 			new sheet_type(loc)
@@ -34,9 +34,9 @@
 /obj/structure/razorwire/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-		COMSIG_ATOM_EXITED = .proc/on_exited,
-		COMSIG_ATOM_EXIT = .proc/on_try_exit,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	AddElement(/datum/element/egrill)
@@ -89,9 +89,9 @@
 	ADD_TRAIT(entangled, TRAIT_IMMOBILE, type)
 	ENABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	LAZYADD(entangled_list, entangled) //Add the entangled person to the trapped list.
-	RegisterSignal(entangled, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
-	RegisterSignal(entangled, COMSIG_PARENT_QDELETING, .proc/do_razorwire_untangle)
-	RegisterSignal(entangled, COMSIG_MOVABLE_PULL_MOVED, .proc/razorwire_untangle)
+	RegisterSignal(entangled, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
+	RegisterSignal(entangled, COMSIG_PARENT_QDELETING, PROC_REF(do_razorwire_untangle))
+	RegisterSignal(entangled, COMSIG_MOVABLE_PULL_MOVED, PROC_REF(razorwire_untangle))
 
 
 /obj/structure/razorwire/resisted_against(datum/source)
@@ -186,7 +186,7 @@
 /obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
 	user.visible_message(span_notice("[user] starts disassembling [src]."),
 	span_notice("You start disassembling [src]."))
-	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
+	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating(SKILL_ENGINEER))
 
 	if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE

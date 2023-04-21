@@ -16,8 +16,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "radio headset"
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	icon_state = "headset"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/ears_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/ears_right.dmi',
+	)
 	item_state = "headset"
-	materials = list(/datum/material/metal = 75)
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
@@ -183,9 +186,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		wearer = user
 		squadhud = GLOB.huds[hud_type]
 		enable_squadhud()
-		RegisterSignal(user, COMSIG_MOB_REVIVE, .proc/update_minimap_icon)
-		RegisterSignal(user, COMSIG_MOB_DEATH, .proc/set_dead_on_minimap)
-		RegisterSignal(user, COMSIG_HUMAN_SET_UNDEFIBBABLE, .proc/set_undefibbable_on_minimap)
+		RegisterSignal(user, COMSIG_MOB_REVIVE, PROC_REF(update_minimap_icon))
+		RegisterSignal(user, COMSIG_MOB_DEATH, PROC_REF(set_dead_on_minimap))
+		RegisterSignal(user, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(set_undefibbable_on_minimap))
 	if(camera)
 		camera.c_tag = user.name
 		if(user.assigned_squad)
@@ -196,7 +199,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /// Make the headset lose its keysloy
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	to_chat(user, span_warning("[src] violently buzzes and explodes in your face as its tampering mechanisms are triggered!"))
-	playsound(user, 'sound/effects/explosion_small1.ogg', 50, 1)
+	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
 	user.ex_act(EXPLODE_LIGHT)
 	qdel(src)
 
@@ -257,7 +260,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	remove_minimap()
 	var/datum/action/minimap/mini = new minimap_type
 	mini.give_action(wearer)
-	INVOKE_NEXT_TICK(src, .proc/update_minimap_icon) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
+	INVOKE_NEXT_TICK(src, PROC_REF(update_minimap_icon)) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
 
 /obj/item/radio/headset/mainship/proc/update_minimap_icon()
 	SIGNAL_HANDLER
@@ -767,7 +770,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_COLONIST
 
 
-/obj/item/radio/headset/distress/PMC
+/obj/item/radio/headset/distress/pmc
 	name = "contractor headset"
 	keyslot = /obj/item/encryptionkey/PMC
 	keyslot2 = /obj/item/encryptionkey/mcom
@@ -804,6 +807,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/sectoid
 	frequency = FREQ_SECTOID
 
+
+/obj/item/radio/headset/distress/icc
+	name = "shiphands headset"
+	keyslot = /obj/item/encryptionkey/icc
+	frequency = FREQ_ICC
 
 /obj/item/radio/headset/distress/echo
 	name = "\improper Echo Task Force headset"

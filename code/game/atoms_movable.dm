@@ -205,7 +205,7 @@
 		else if((direction & SOUTH) && loc.Exit(src, SOUTH) && get_step(loc, SOUTH).Enter(src))
 			can_pass_diagonally = SOUTH
 		else if((direction & EAST) && loc.Exit(src, EAST) && get_step(loc, EAST).Enter(src))
-			can_pass_diagonally =  EAST
+			can_pass_diagonally = EAST
 		else if((direction & WEST) && loc.Exit(src, WEST) && get_step(loc, WEST).Enter(src))
 			can_pass_diagonally = WEST
 		else
@@ -599,7 +599,7 @@
 	if(!originally_dir_locked)
 		flags_atom &= ~DIRLOCK
 	if(parrier)
-		INVOKE_NEXT_TICK(src, .proc/throw_at, (thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
+		INVOKE_NEXT_TICK(src, PROC_REF(throw_at), (thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
 		return	//Do not trigger final turf impact nor throw end comsigs as it returns back to its source and should be treated as a single throw.
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
@@ -1114,7 +1114,7 @@
 ///allows this movable to hear and adds itself to the important_recursive_contents list of itself and every movable loc its in
 /atom/movable/proc/become_hearing_sensitive(trait_source = TRAIT_GENERIC)
 	if(!HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE))
-		//RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE), .proc/on_hearing_sensitive_trait_loss)
+		//RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE), PROC_REF(on_hearing_sensitive_trait_loss))
 		for(var/atom/movable/location AS in get_nested_locs(src) + src)
 			LAZYADDASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)
 

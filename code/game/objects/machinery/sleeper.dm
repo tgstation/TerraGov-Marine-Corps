@@ -45,7 +45,7 @@
 	connected = null
 	if(future_connected)
 		connected = future_connected
-		RegisterSignal(connected, COMSIG_PARENT_QDELETING, .proc/clean_connected)
+		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(clean_connected))
 
 ///Clean the connected var
 /obj/machinery/sleep_console/proc/clean_connected()
@@ -117,7 +117,7 @@
 		if(connected.occupant.stat == DEAD)
 			to_chat(usr, span_warning("This person has no life for to preserve anymore."))
 		else if(ismonkey(connected.occupant))
-			to_chat(usr, span_scanner("Unknown biological subject detected, chemical injection not available. Please contact a licensed supplier for further assistance."))	
+			to_chat(usr, span_scanner("Unknown biological subject detected, chemical injection not available. Please contact a licensed supplier for further assistance."))
 		else if(!(R in connected.available_chemicals))
 			message_admins("[ADMIN_TPMONTY(usr)] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt, or a bug.")
 		else
@@ -170,7 +170,7 @@
 	. = ..()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
 /obj/machinery/sleeper/proc/shuttle_crush()
 	SIGNAL_HANDLER
@@ -186,7 +186,7 @@
 	connected = null
 	if(future_connected)
 		connected = future_connected
-		RegisterSignal(connected, COMSIG_PARENT_QDELETING, .proc/clean_connected)
+		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(clean_connected))
 
 ///Clean the connected var
 /obj/machinery/sleeper/proc/clean_connected()
@@ -377,7 +377,7 @@
 
 
 /obj/machinery/sleeper/proc/inject_chemical(mob/living/user as mob, chemical, amount)
-	if(occupant && occupant.reagents)
+	if(occupant?.reagents)
 		if(occupant.reagents.get_reagent_amount(chemical) + amount <= 20)
 			occupant.reagents.add_reagent(chemical, amount)
 			to_chat(user, span_notice("Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in his/her bloodstream."))

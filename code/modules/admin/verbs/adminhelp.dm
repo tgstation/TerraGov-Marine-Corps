@@ -495,7 +495,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	closed_at = world.time
 	QDEL_NULL(statclick)
 	GLOB.ahelp_tickets.active_tickets -= src
-	if(initiator && initiator.current_ticket == src)
+	if(initiator?.current_ticket == src)
 		initiator.current_ticket = null
 	SEND_SIGNAL(src, COMSIG_ADMIN_HELP_MADE_INACTIVE)
 
@@ -544,7 +544,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		to_chat(initiator, span_adminhelp("Your mentor ticket has been resolved, if you need to ask something again, feel free to send another one."))
 	else if(tier == TICKET_ADMIN)
 		to_chat(initiator, span_adminhelp("Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly."))
-		addtimer(CALLBACK(initiator, /client.proc/giveadminhelpverb), 50)
+		addtimer(CALLBACK(initiator, TYPE_PROC_REF(/client, giveadminhelpverb)), 50)
 	if(!silent)
 		log_admin_private("Ticket (#[id]) resolved by [key_name(usr)].")
 		if(tier == TICKET_MENTOR)

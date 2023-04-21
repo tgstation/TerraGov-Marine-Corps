@@ -217,7 +217,7 @@
 				msg += "[span_deadsay("[t_He] [t_has] gone cold.")]\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
 			user.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.", null, 4)
-		addtimer(CALLBACK(src, .proc/take_pulse, user), 15)
+		addtimer(CALLBACK(src, PROC_REF(take_pulse), user), 15)
 
 	msg += "<span class='warning'>"
 
@@ -540,7 +540,7 @@
 		switch(hudtype)
 			if("security")
 				//only MPs can use the security HUD glasses's functionalities
-				if(H.skills.getRating("police") >= SKILL_POLICE_MP)
+				if(H.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
 					return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)

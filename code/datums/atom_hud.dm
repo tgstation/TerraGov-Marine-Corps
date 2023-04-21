@@ -84,11 +84,11 @@ GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 	hudusers[M] = TRUE
 	if(next_time_allowed[M] > world.time)
 		if(!queued_to_see[M])
-			addtimer(CALLBACK(src, .proc/show_hud_images_after_cooldown, M), next_time_allowed[M] - world.time)
+			addtimer(CALLBACK(src, PROC_REF(show_hud_images_after_cooldown), M), next_time_allowed[M] - world.time)
 			queued_to_see[M] = TRUE
 	else
 		if(!next_time_allowed[M])
-			RegisterSignal(M, COMSIG_PARENT_QDELETING, .proc/clean_mob_refs)
+			RegisterSignal(M, COMSIG_PARENT_QDELETING, PROC_REF(clean_mob_refs))
 		next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN
 		for(var/atom/A in hudatoms)
 			add_to_single_hud(M, A)
@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 		return FALSE
 	hudatoms |= A
 	if(!ismob(A))
-		RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/remove_from_hud, A)
+		RegisterSignal(A, COMSIG_PARENT_QDELETING, PROC_REF(remove_from_hud), A)
 	for(var/u in hudusers)
 		var/mob/M = u
 		if(!queued_to_see[M])
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 
 /mob/proc/reload_huds()
 	for(var/datum/atom_hud/hud in GLOB.all_huds)
-		if(hud && hud.hudusers[src])
+		if(hud?.hudusers[src])
 			for(var/atom/A in hud.hudatoms)
 				hud.add_to_single_hud(src, A)
 

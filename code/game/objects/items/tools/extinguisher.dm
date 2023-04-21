@@ -3,6 +3,10 @@
 	desc = "A traditional red fire extinguisher."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "fire_extinguisher0"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "fire_extinguisher"
 	hitsound = 'sound/weapons/smash.ogg'
 	flags_atom = CONDUCT
@@ -10,10 +14,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 10
-	force = 10.0
+	force = 10
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	var/max_water = 50
-	var/last_use = 1.0
+	var/last_use = 1
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
 
@@ -29,7 +33,7 @@
 	hitsound = null	//it is much lighter, after all.
 	throwforce = 2
 	w_class = WEIGHT_CLASS_SMALL
-	force = 3.0
+	force = 3
 	max_water = 30
 	sprite_name = "miniFE"
 

@@ -7,8 +7,8 @@
 	interaction_flags = INTERACT_OBJ_UI
 	item_state_worn = TRUE
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/instruments_lefthand.dmi',
-		slot_r_hand_str = 'icons/mob/instruments_righthand.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/instruments_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/instruments_right.dmi',
 		slot_s_store_str = 'icons/mob/instruments_back.dmi',
 		)
 	/// Our song datum.
@@ -163,7 +163,7 @@
 
 /obj/item/instrument/harmonica/equipped(mob/M, slot)
 	. = ..()
-	RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /obj/item/instrument/harmonica/dropped(mob/M)
 	UnregisterSignal(M, COMSIG_MOB_SAY)
@@ -173,6 +173,10 @@
 	name = "gilded bike horn"
 	desc = "An exquisitely decorated bike horn, capable of honking in a variety of notes."
 	icon_state = "bike_horn"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
+	)
 	allowed_instrument_ids = list("bikehorn", "honk")
 	attack_verb = list("beautifully honks")
 	w_class = WEIGHT_CLASS_TINY

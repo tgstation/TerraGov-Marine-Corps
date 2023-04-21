@@ -18,7 +18,7 @@
 /obj/alien/Initialize()
 	. = ..()
 	if(!ignore_weed_destruction)
-		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
+		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
 
 /// Destroy the alien effect when the weed it was on is destroyed
 /obj/alien/proc/weed_removed()
@@ -85,7 +85,7 @@
 /obj/alien/resin/sticky/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
+		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -138,11 +138,9 @@
 //Resin Doors
 /obj/structure/mineral_door/resin
 	name = RESIN_DOOR
-	mineralType = "resin"
 	icon = 'icons/obj/smooth_objects/resin-door.dmi'
 	icon_state = "resin-door-1"
 	base_icon_state = "resin-door"
-	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 100
 	smoothing_flags = SMOOTH_BITMASK
@@ -152,21 +150,27 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
+	soft_armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 15, BIO = 0, FIRE = 0, ACID = 0)
+	trigger_sound = "alien_resin_move"
+	hit_sound = "alien_resin_move"
+	destroy_sound = "alien_resin_move"
 
+	///The delay before the door closes automatically after being open
 	var/close_delay = 10 SECONDS
+	///The timer that tracks the delay above
+	var/closetimer
+
 
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
-
 	if(!locate(/obj/alien/weeds) in loc)
 		new /obj/alien/weeds(loc)
-	if(locate(/mob/living) in loc)	//If we build a door below ourselves, it starts open.
-		Open()
+
 
 /obj/structure/mineral_door/resin/Cross(atom/movable/mover, turf/target)
 	. = ..()
-	if(!. && isxeno(mover))
-		Open()
+	if(!. && isxeno(mover) && !open)
+		toggle_state()
 		return TRUE
 
 
@@ -174,7 +178,7 @@
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return FALSE
-	TryToSwitchState(M)
+	try_toggle_state(M)
 	return TRUE
 
 //clicking on resin doors attacks them, or opens them without harm intent
@@ -183,7 +187,7 @@
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
 	if(X.a_intent != INTENT_HARM)
-		TryToSwitchState(X)
+		try_toggle_state(X)
 		return TRUE
 	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
 		SSresinshaping.decrement_build_counter(X)
@@ -211,53 +215,27 @@
 /turf/closed/wall/resin/fire_act()
 	take_damage(50, BURN, "fire")
 
-/obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
+/obj/structure/mineral_door/resin/try_toggle_state(atom/user)
 	if(isxeno(user))
 		return ..()
 
-/obj/structure/mineral_door/resin/Open()
-	if(state || !loc)
-		return //already open
-	playsound(loc, "alien_resin_move", 25)
-	flick("[icon_state]-opening",src)
-	density = FALSE
-	set_opacity(FALSE)
-	state = 1
-	update_icon()
-	addtimer(CALLBACK(src, .proc/Close), close_delay)
+/obj/structure/mineral_door/resin/toggle_state()
+	. = ..()
+	if(open)
+		closetimer = addtimer(CALLBACK(src, PROC_REF(do_close)), close_delay, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+	else
+		deltimer(closetimer)
+		closetimer = null
 
-/obj/structure/mineral_door/resin/Close()
-	if(!state || !loc ||isSwitchingStates)
-		return //already closed
-	//Can't close if someone is blocking it
-	for(var/turf/turf in locs)
-		if(locate(/mob/living) in turf)
-			addtimer(CALLBACK(src, .proc/Close), close_delay)
-			return
-	isSwitchingStates = TRUE
-	playsound(loc, "alien_resin_move", 25)
-	addtimer(CALLBACK(src, .proc/do_close), 1 SECONDS)
-
-/// Change the icon and density of the door
+/// Toggle(close) the door. Used for the timer's callback.
 /obj/structure/mineral_door/resin/proc/do_close()
-	density = TRUE
-	set_opacity(TRUE)
-	icon_state = formericon
-	flick("[icon_state]-closing",src)
-	state = 0
-	update_icon()
-	isSwitchingStates = 0
-	for(var/turf/turf in locs)
-		if(locate(/mob/living) in turf)
-			Open()
-			return
-
-/obj/structure/mineral_door/resin/Dismantle(devastated = 0)
-	qdel(src)
-
-/obj/structure/mineral_door/resin/CheckHardness()
-	playsound(loc, "alien_resin_move", 25)
-	..()
+	if(locate(/mob/living) in loc) //there is a mob in the door, abort and reschedule the close
+		closetimer = addtimer(CALLBACK(src, PROC_REF(do_close)), close_delay, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+		return
+	if(!open) //we got closed in the meantime
+		return
+	flick("[icon_state]-closing", src)
+	toggle_state()
 
 /obj/structure/mineral_door/resin/Destroy()
 	var/turf/T
@@ -266,7 +244,7 @@
 		if(!istype(T))
 			continue
 		for(var/obj/structure/mineral_door/resin/R in T)
-			INVOKE_NEXT_TICK(R, .proc/check_resin_support)
+			INVOKE_NEXT_TICK(R, PROC_REF(check_resin_support))
 	return ..()
 
 
@@ -287,7 +265,6 @@
 
 /obj/structure/mineral_door/resin/thick
 	max_integrity = 160
-	hardness = 2.0
 
 /obj/item/resin_jelly
 	name = "resin jelly"
@@ -357,7 +334,7 @@
 
 /obj/item/resin_jelly/throw_at(atom/target, range, speed, thrower, spin, flying)
 	if(isxenohivelord(thrower))
-		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, .proc/jelly_throw_hit)
+		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, PROC_REF(jelly_throw_hit))
 	. = ..()
 
 /obj/item/resin_jelly/proc/jelly_throw_hit(datum/source, atom/hit_atom)
@@ -369,4 +346,4 @@
 	if(X.fire_resist_modifier <= -20 || X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	X.visible_message(span_notice("[X] is splattered with jelly!"))
-	INVOKE_ASYNC(src, .proc/activate_jelly, X)
+	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)

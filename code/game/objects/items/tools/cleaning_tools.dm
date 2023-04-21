@@ -2,9 +2,13 @@
 	desc = "The world of janitalia wouldn't be complete without a mop."
 	name = "mop"
 	icon = 'icons/obj/janitor.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
+	)
 	icon_state = "mop"
-	force = 3.0
-	throwforce = 10.0
+	force = 3
+	throwforce = 10
 	throw_speed = 5
 	throw_range = 10
 	w_class = WEIGHT_CLASS_NORMAL
@@ -47,6 +51,10 @@
 	desc = "Caution! Wet Floor!"
 	icon_state = "caution"
 	icon = 'icons/obj/janitor.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
+	)
 	force = 1
 	throwforce = 3
 	throw_speed = 1
@@ -59,7 +67,7 @@
 	desc = "This cone is trying to warn you of something!"
 	icon_state = "cone"
 	icon = 'icons/obj/janitor.dmi'
-	item_icons = list(slot_head_str = 'icons/mob/head_0.dmi')
+	item_icons = list(slot_head_str = 'icons/mob/clothing/headwear/head_0.dmi')
 	force = 1
 	throwforce = 3
 	throw_speed = 1
@@ -67,9 +75,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
-
-
-
 
 
 /obj/item/tool/soap
@@ -84,17 +89,7 @@
 
 /obj/item/tool/soap/Initialize()
 	. = ..()
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-	)
-	AddElement(/datum/element/connect_loc, connections)
-
-/obj/item/tool/soap/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs) //TODO JUST USE THE SLIPPERY COMPONENT
-	SIGNAL_HANDLER
-	if (iscarbon(AM))
-		var/mob/living/carbon/C =AM
-		C.slip("soap", 3, 2)
-
+	AddComponent(/datum/component/slippery, 0.3 SECONDS, 0.2 SECONDS)
 
 /obj/item/tool/soap/attack(mob/target, mob/user)
 	return

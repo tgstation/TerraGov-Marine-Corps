@@ -145,6 +145,7 @@
 #define XENO_HIVE_BETA "beta_hive"
 #define XENO_HIVE_ZETA "zeta_hive"
 #define XENO_HIVE_ADMEME "admeme_hive"
+#define XENO_HIVE_FALLEN "fallen_hive"
 
 // =============================
 // xeno tiers
@@ -339,18 +340,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HAS_LIPS (1<<9)
 #define HAS_UNDERWEAR (1<<10)
 #define HAS_NO_HAIR (1<<11)
-#define IS_PLANT (1<<12)
-#define IS_SYNTHETIC (1<<13)
-#define NO_STAMINA (1<<14)
-#define DETACHABLE_HEAD (1<<15)
-#define USES_ALIEN_WEAPONS (1<<16)
-#define NO_DAMAGE_OVERLAY (1<<17)
-#define CAN_VENTCRAWL (1<<18)
-#define HEALTH_HUD_ALWAYS_DEAD (1<<19)
-#define PARALYSE_RESISTANT (1<<20)
-#define ROBOTIC_LIMBS (1<<21)
-#define GREYSCALE_BLOOD (1<<22)
-#define IS_INSULATED (1<<23)
+#define IS_SYNTHETIC (1<<12)
+#define NO_STAMINA (1<<13)
+#define DETACHABLE_HEAD (1<<14)
+#define USES_ALIEN_WEAPONS (1<<15)
+#define NO_DAMAGE_OVERLAY (1<<16)
+#define HEALTH_HUD_ALWAYS_DEAD (1<<17)
+#define PARALYSE_RESISTANT (1<<18)
+#define ROBOTIC_LIMBS (1<<19)
+#define GREYSCALE_BLOOD (1<<20)
+#define IS_INSULATED (1<<21)
 
 //=================================================
 
@@ -468,8 +467,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
-#define QUEEN_DEATH_TIMER 5 MINUTES
-#define KING_DEATH_TIMER 7 MINUTES
+
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER 0.25 //multiplies top level explosive damage by this amount.
 #define XENO_EXPLOSION_GIB_THRESHOLD 5 //under this level of bomb armour, devestating explosion will gib xenos
@@ -502,9 +500,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2
 
+//TODO a lot of caste and caste_can flags should just be traits using caste_traits instead
 #define CASTE_INNATE_HEALING (1<<0) // Xenomorphs heal outside of weeds. Larvas, for example.
-#define CASTE_FIRE_IMMUNE (1<<1)
-#define CASTE_EVOLUTION_ALLOWED (1<<2)
+#define CASTE_FIRE_IMMUNE (1<<1) //Are we immune to fire
+#define CASTE_EVOLUTION_ALLOWED (1<<2) //If we're allowed to evolve (also affects the gain of evo points)
 #define CASTE_IS_INTELLIGENT (1<<3) // A hive leader or able to use more human controls
 #define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<4) //Doesn't alert the hive when at low life, and is quieter when dying
 #define CASTE_HIDE_IN_STATUS (1<<5)
@@ -519,15 +518,20 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<14) // xenos with this flag wont be announced to hive when dying
 #define CASTE_STAGGER_RESISTANT (1<<15) //Resistant to some forms of stagger, such as projectiles
 
+// Xeno defines that affect evolution, considering making a new var for these
+#define CASTE_LEADER_TYPE (1<<16) //Whether we are a leader type caste, such as the queen, shrike or ?king?, and is affected by queen ban and playtime restrictions
+#define CASTE_CANNOT_EVOLVE_IN_CAPTIVITY (1<<17) //Whether we cannot evolve in the research lab
+#define CASTE_REQUIRES_FREE_TILE (1<<18) //Whether we require a free tile to evolve
+#define CASTE_INSTANT_EVOLUTION (1<<19) //Whether we require no evolution progress to evolve to this caste
+
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
-#define CASTE_CAN_VENT_CRAWL (1<<1)
-#define CASTE_CAN_BE_QUEEN_HEALED (1<<2)
-#define CASTE_CAN_BE_GIVEN_PLASMA (1<<3)
-#define CASTE_CAN_BE_LEADER (1<<4)
-#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<5) // Xenomorphs can heal even without a queen on the same z level
-#define CASTE_CAN_HOLD_JELLY (1<<6)//whether we can hold fireproof jelly in our hands
-#define CASTE_CAN_CORRUPT_GENERATOR (1<<7) //Can corrupt a generator
-#define CASTE_CAN_RIDE_CRUSHER (1<<8) //Can ride a crusher
+#define CASTE_CAN_BE_QUEEN_HEALED (1<<1)
+#define CASTE_CAN_BE_GIVEN_PLASMA (1<<2)
+#define CASTE_CAN_BE_LEADER (1<<3)
+#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<4) // Xenomorphs can heal even without a queen on the same z level
+#define CASTE_CAN_HOLD_JELLY (1<<5)//whether we can hold fireproof jelly in our hands
+#define CASTE_CAN_CORRUPT_GENERATOR (1<<6) //Can corrupt a generator
+#define CASTE_CAN_RIDE_CRUSHER (1<<7) //Can ride a crusher
 
 #define HIVE_STATUS_SHOW_EMPTY (1<<0)
 #define HIVE_STATUS_COMPACT_MODE (1<<1)
@@ -694,7 +698,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SENTINEL_DRAIN_MULTIPLIER 6 //Amount to multiply Drain Sting's restoration by
 #define SENTINEL_DRAIN_SURGE_ARMOR_MOD 20 //Amount to modify the Sentinel's armor by when under the effects of Drain Surge.
 #define SENTINEL_INTOXICATED_BASE_DAMAGE 1 //Amount of damage per tick dealt by the Intoxicated debuff
-#define SENTINEL_INTOXICATED_RESIST_REDUCTION 3 //Amount of stacks removed every time the Intoxicated debuff is Resisted against.
+#define SENTINEL_INTOXICATED_RESIST_REDUCTION 8 //Amount of stacks removed every time the Intoxicated debuff is Resisted against.
 #define SENTINEL_INTOXICATED_SANGUINAL_INCREASE 3 //Amount of debuff stacks applied for every tick of Sanguinal.
 
 //Wraith defines
@@ -796,7 +800,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define STAMINA_STATE_IDLE 0
 #define STAMINA_STATE_ACTIVE 1
 
-#define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
+#define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, TYPE_PROC_REF(/mob/living, updatehealth)), 1, TIMER_UNIQUE))
 
 #define GRAB_PIXEL_SHIFT_PASSIVE 6
 #define GRAB_PIXEL_SHIFT_AGGRESSIVE 12

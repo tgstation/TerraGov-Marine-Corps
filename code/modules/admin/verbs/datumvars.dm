@@ -278,7 +278,7 @@
 	var/list/variable_html = list()
 	if(islist)
 		var/list/L = D
-		for(var/i in 1 to L.len)
+		for(var/i in 1 to length(L))
 			var/key = L[i]
 			var/value
 			if(IS_NORMAL_LIST(L) && !isnum(key))
@@ -572,7 +572,7 @@
 		var/list/items = list()
 
 		if(istype(DA, /datum/controller/global_vars) && !DA.vv_edit_var(name, L))
-			item = "[VV_HTML_ENCODE(name)] = /list ([L.len])"
+			item = "[VV_HTML_ENCODE(name)] = /list ([length(L)])"
 		else if(length(L) > 0  && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
 			for(var/i in 1 to length(L))
 				var/key = L[i]
@@ -585,9 +585,9 @@
 
 				items += debug_variable(key, val, level + 1, sanitize = sanitize)
 
-			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a><ul>[items.Join()]</ul>"
+			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([length(L)])</a><ul>[items.Join()]</ul>"
 		else
-			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a>"
+			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([length(L)])</a>"
 
 	else if(name in GLOB.bitfields)
 		var/list/flags = list()
@@ -841,9 +841,9 @@
 			return
 
 		L.len = value["value"]
-		log_world("### ListVarEdit by [src]: /list len: [L.len]")
-		log_admin("[key_name(src)] modified list's len: [L.len]")
-		message_admins("[ADMIN_TPMONTY(usr)] modified list's len: [L.len]")
+		log_world("### ListVarEdit by [src]: /list len: [length(L)]")
+		log_admin("[key_name(src)] modified list's len: [length(L)]")
+		message_admins("[ADMIN_TPMONTY(usr)] modified list's len: [length(L)]")
 
 
 	else if(href_list["listshuffle"])
@@ -1020,7 +1020,7 @@
 
 		var/Text = href_list["adjustDamage"]
 
-		var/amount =  input("Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0) as num
+		var/amount = input("Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0) as num
 
 		if(!L)
 			return

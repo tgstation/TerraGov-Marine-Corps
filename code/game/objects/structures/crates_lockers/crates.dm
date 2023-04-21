@@ -24,7 +24,7 @@
 		return 1
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
+	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
 		return 1
 	if(opened) //Open crate, you can cross over it
 		return 1
@@ -248,7 +248,7 @@
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
-	new /obj/item/rcd(src)
+	new /obj/item/tool/rcd(src)
 
 /obj/structure/closet/crate/solar
 	name = "Solar Pack crate"
@@ -340,7 +340,6 @@
 	icon_opened = "open_basic"
 	icon_closed = "closed_basic"
 	max_integrity = 5 //hopefully makes it so req crate spam can easily be destroyed
-	materials = list(/datum/material/metal = 200)
 	drop_material = null
 
 

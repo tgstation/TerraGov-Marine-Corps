@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		affecting = items
 	conveying = TRUE
 
-	INVOKE_NEXT_TICK(src, .proc/convey, affecting)//Movement effect
+	INVOKE_NEXT_TICK(src, PROC_REF(convey), affecting)//Movement effect
 
 /obj/machinery/conveyor/proc/convey(list/affecting)
 	for(var/am in affecting)

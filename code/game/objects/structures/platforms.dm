@@ -39,7 +39,7 @@
 			I.pixel_x = -16
 	overlays += I
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = .proc/on_try_exit
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -54,11 +54,11 @@
 
 /obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(mover && mover.throwing)
+	if(mover?.throwing)
 		return TRUE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
+	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
 	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) & dir))

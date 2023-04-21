@@ -10,8 +10,11 @@
 	w_class = WEIGHT_CLASS_TINY
 	force = 5
 	throwforce = 8
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "shard-glass"
-	materials = list(/datum/material/glass = 3750)
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 	var/source_sheet_type = /obj/item/stack/sheet/glass
 	var/shardsize
@@ -40,7 +43,7 @@
 			pixel_y = rand(-5, 5)
 	icon_state += shardsize
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -101,7 +104,7 @@
 		return
 
 	if(!H.shoes && !(H.wear_suit?.flags_armor_protection & FEET))
-		INVOKE_ASYNC(src, .proc/pierce_foot, H)
+		INVOKE_ASYNC(src, PROC_REF(pierce_foot), H)
 
 /obj/item/shard/proc/pierce_foot(mob/living/carbon/human/target)
 	var/datum/limb/affecting = target.get_limb(pick("l_foot", "r_foot"))
@@ -119,7 +122,6 @@
 	name = "shrapnel"
 	icon_state = "shrapnel"
 	desc = "A bunch of tiny bits of shattered metal."
-	materials = list(/datum/material/metal = 50)
 	source_sheet_type = null
 	embedding = list("embedded_flags" = EMBEDDED_DEL_ON_HOLDER_DEL, "embed_chance" = 0, "embedded_fall_chance" = 0)
 

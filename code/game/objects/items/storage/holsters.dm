@@ -5,7 +5,7 @@
 	desc = "Holds stuff, and sometimes goes swoosh."
 	icon_state = "backpack"
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = 4 ///normally the special item will be larger than what should fit. Child items will have lower limits and an override
+	max_w_class = WEIGHT_CLASS_BULKY ///normally the special item will be larger than what should fit. Child items will have lower limits and an override
 	storage_slots = 1
 	max_storage_space = 4
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -20,10 +20,10 @@
 	///the snowflake item(s) that will update the sprite.
 	var/list/holsterable_allowed = list()
 	///records the specific special item currently in the holster
-	var/holstered_item = null
+	var/obj/holstered_item = null
 
 /obj/item/storage/holster/equipped(mob/user, slot)
-	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	//add more if needed
+	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE || slot == SLOT_L_STORE || slot == SLOT_R_STORE )	//add more if needed
 		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
 	return ..()
 
@@ -56,6 +56,12 @@
 	playsound(src, draw_sound, 15, 1)
 	update_icon()
 
+/obj/item/storage/holster/attack_hand(mob/living/user) //Prioritizes our snowflake item on unarmed click
+	if(holstered_item && ishuman(user) && loc == user)
+		holstered_item.attack_hand(user)
+	else
+		return ..()
+
 /obj/item/storage/holster/update_icon_state()
 	//sets the icon to full or empty
 	if (holstered_item)
@@ -79,7 +85,8 @@
 	if(!holstered_item)
 		return FALSE
 	var/obj/item/W = holstered_item
-	remove_from_storage(W, null, user)
+	if(!remove_from_storage(W, null, user))
+		return FALSE
 	return W
 
 /obj/item/storage/holster/vendor_equip(mob/user)
@@ -90,6 +97,10 @@
 /obj/item/storage/holster/backholster
 	name = "backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too."
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
+	)
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -97,7 +108,7 @@
 		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
-	max_w_class = 3 //normal items
+	max_w_class = WEIGHT_CLASS_NORMAL //normal items
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS ///0 out for satchel types
 
@@ -123,7 +134,7 @@
 	base_icon = "marine_rocket"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 5
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	access_delay = 0.5 SECONDS
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
@@ -151,7 +162,7 @@
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/rpg/low_impact/Initialize()
 	. = ..()
@@ -160,7 +171,7 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/rpg/som
 	name = "\improper SOM RPG bag"
@@ -186,7 +197,7 @@
 	new /obj/item/ammo_magazine/rocket/som/rad(src)
 	new /obj/item/ammo_magazine/rocket/som/rad(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/rpg/som/ert/Initialize()
 	. = ..()
@@ -195,7 +206,7 @@
 	new /obj/item/ammo_magazine/rocket/som/heat(src)
 	new /obj/item/ammo_magazine/rocket/som/rad(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 //one slot holsters
 
@@ -223,7 +234,7 @@
 /obj/item/storage/holster/blade/machete/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
@@ -231,7 +242,7 @@
 /obj/item/storage/holster/blade/machete/full_harvester/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/harvester(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/katana
 	name = "\improper katana scabbard"
@@ -247,7 +258,7 @@
 /obj/item/storage/holster/blade/katana/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/katana(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/officer
 	name = "\improper officer sword scabbard"
@@ -261,7 +272,7 @@
 /obj/item/storage/holster/blade/officer/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/officersword(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 //guns
 
@@ -282,7 +293,7 @@
 /obj/item/storage/holster/m37/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/shotgun/pump(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/t35
 	name = "\improper L44 SH-35 scabbard"
@@ -297,7 +308,7 @@
 /obj/item/storage/holster/t35/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/shotgun/pump/t35(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/m25
 	name = "\improper M276 pattern M25 holster rig"
@@ -315,7 +326,7 @@
 /obj/item/storage/holster/m25/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/m25(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/t19
 	name = "\improper M276 pattern MP-19 holster rig"
@@ -329,9 +340,51 @@
 		/obj/item/weapon/gun/smg/standard_machinepistol/compact,
 		/obj/item/weapon/gun/smg/standard_machinepistol/vgrip,
 	)
-	can_hold = list(/obj/item/weapon/gun/smg/standard_machinepistol)
+
+	storage_slots = 4
+	max_storage_space = 10
+	max_w_class = WEIGHT_CLASS_BULKY
+
+	can_hold = list(
+		/obj/item/weapon/gun/smg/standard_machinepistol,
+		/obj/item/ammo_magazine/smg/standard_machinepistol,
+	)
 
 /obj/item/storage/holster/t19/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/standard_machinepistol(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/flarepouch
+	name = "flare pouch"
+	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
+	flags_equip_slot = ITEM_SLOT_POCKET
+	storage_slots = 28
+	max_storage_space = 28
+	icon = 'icons/Marine/marine-pouches.dmi'
+	base_icon = "flare"
+	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
+	can_hold = list(
+		/obj/item/explosive/grenade/flare/civilian,
+		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
+		/obj/item/explosive/grenade/flare,
+	)
+	refill_types = list(/obj/item/storage/box/m94)
+	refill_sound = "rustle"
+	holsterable_allowed = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine)
+
+/obj/item/storage/holster/flarepouch/attackby_alternate(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
+		return ..()
+	var/obj/item/weapon/gun/grenade_launcher/single_shot/flare/flare_gun = I
+	for(var/obj/item/flare in contents)
+		flare_gun.reload(flare, user)
+		orient2hud()
+		return
+
+/obj/item/storage/holster/flarepouch/full/Initialize()
+	. = ..()
+	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flare_gun)
+	for(var/i in 1 to (storage_slots-flare_gun.w_class))
+		new /obj/item/explosive/grenade/flare(src)

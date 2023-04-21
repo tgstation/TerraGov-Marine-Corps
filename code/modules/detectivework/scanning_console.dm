@@ -18,7 +18,7 @@
 	. += "<h2>[fresh.fields["name"]]</h2>"
 	. += "Scanned in [fresh.fields["area"]] at [worldtime2text(fresh.fields["time"])]<br>"
 	var/list/prints = fresh.fields["fprints"]
-	if(prints.len)
+	if(length(prints))
 		. += "<h3>Fingerprints:</h3>"
 		var/incomplete = 0
 		for(var/fullprint in prints)
@@ -33,7 +33,7 @@
 		. += "<br>No fingerprints recorded.<br>"
 
 	var/list/fibers = fresh.fields["fibers"]
-	if(fibers.len)
+	if(length(fibers))
 		. += "<h3>Fibers:</h3>"
 		. += "<ul>"
 		for(var/fiber in fibers)
@@ -43,7 +43,7 @@
 		. += "<br>No fibers recorded."
 
 	var/list/bloods = fresh.fields["blood"]
-	if(bloods.len)
+	if(length(bloods))
 		. += "<h3>Blood:</h3>"
 		. += "<ul>"
 		for(var/blood in bloods)
@@ -151,7 +151,7 @@
 
 				current_list = get_filtered_set()
 				dat+= "<br><hr><br>"
-				if(current_list.len < 1)
+				if(length(current_list) < 1)
 					dat += "No data matching your request found."
 				else
 					dat += "<table><tr>"
@@ -161,7 +161,7 @@
 						dat += "<td>[record.fields["area"]]</td>"
 						for(var/criteria in list("fprints", "fibers", "blood"))
 							var/list/data = record.fields[criteria]
-							dat += "<td>[data.len ? data.len : "None"]</td>"
+							dat += "<td>[length(data) ? length(data) : "None"]</td>"
 						dat += "<td>[record.fields["label"] ? record.fields["label"] : ""]</td>"
 						dat += "<td><a href='?src=\ref[src];operation=delete;identifier=[record.uid]'>Delete</a></td>"
 						dat += "</tr>"

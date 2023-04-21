@@ -158,7 +158,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "ib" = (
-/obj/machinery/power/breakerbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "iu" = (
@@ -185,8 +184,8 @@
 /area/bigredv2/outside/engineering)
 "jG" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "kp" = (
@@ -196,7 +195,7 @@
 "kq" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "kF" = (
@@ -213,7 +212,7 @@
 /area/bigredv2/outside/engineering)
 "lf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -257,11 +256,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "pZ" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -381,12 +380,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "wt" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "wW" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "xf" = (
@@ -396,7 +395,7 @@
 /area/bigredv2/caves/southwest)
 "xn" = (
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "xH" = (
@@ -430,7 +429,7 @@
 /area/bigredv2/outside/engineering)
 "zj" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -663,14 +662,14 @@
 /area/bigredv2/outside/engineering)
 "KV" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "LF" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "LM" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "LR" = (
@@ -808,7 +807,7 @@
 /area/bigredv2/outside/sw)
 "Sr" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Sv" = (
@@ -850,7 +849,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "US" = (
@@ -859,7 +858,7 @@
 /area/bigredv2/outside/sw)
 "Vj" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Vs" = (
@@ -940,7 +939,7 @@
 /area/bigredv2/outside/engineering)
 "ZV" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/item/stack/sheet/metal{
 	amount = 30
 	},

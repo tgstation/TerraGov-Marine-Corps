@@ -5,9 +5,9 @@
 	icon_state = "binoculars"
 
 	flags_atom = CONDUCT
-	force = 5.0
+	force = 5
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 5.0
+	throwforce = 5
 	throw_range = 15
 	throw_speed = 3
 	zoom_tile_offset = 11
@@ -64,8 +64,8 @@
 		if(MODE_ORBITAL)
 			. += span_notice("They are currently set to orbital bombardment mode.")
 	. += span_notice("Use on a mortar to link it for remote targeting.")
-	if(linked_mortars.len)
-		. += span_notice("They are currently linked to [linked_mortars.len] mortar(s).")
+	if(length(linked_mortars))
+		. += span_notice("They are currently linked to [length(linked_mortars)] mortar(s).")
 		. += span_notice("They are currently set to mortar [selected_mortar].")
 		return
 	. += span_notice("They are not linked to a mortar.")
@@ -129,15 +129,15 @@
 /obj/item/binoculars/tactical/proc/check_mortar_index()
 	if(!linked_mortars)
 		return
-	if(!linked_mortars.len)
+	if(!length(linked_mortars))
 		selected_mortar = 1 // set back to default but it still wont fire because no mortars and thats good
 		return
-	if(selected_mortar > linked_mortars.len)
+	if(selected_mortar > length(linked_mortars))
 		selected_mortar = 1
 
 /obj/item/binoculars/tactical/AltClick(mob/user)
 	. = ..()
-	if(!linked_mortars.len)
+	if(!length(linked_mortars))
 		return
 	selected_mortar += 1
 	check_mortar_index()
@@ -226,7 +226,7 @@
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	if(mode != MODE_RANGE_FINDER)
 		to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
-		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 			return
 	if(targ_area.flags_area & OB_CAS_IMMUNE)
 		to_chat(user, span_warning("Our payload won't reach this target!"))
@@ -242,7 +242,7 @@
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
-			if(!linked_mortars.len)
+			if(!length(linked_mortars))
 				to_chat(user, span_notice("No linked mortars found."))
 				return
 			check_mortar_index() // incase varedit screws something up
@@ -318,7 +318,7 @@
 		linked_mortars -= mortar
 		return FALSE
 	linked_mortars += mortar
-	RegisterSignal(mortar, COMSIG_PARENT_QDELETING, .proc/clean_refs)
+	RegisterSignal(mortar, COMSIG_PARENT_QDELETING, PROC_REF(clean_refs))
 	return TRUE
 
 ///Proc called when linked_mortar is deleted.

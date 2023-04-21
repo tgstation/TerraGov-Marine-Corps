@@ -66,10 +66,10 @@
 
 /datum/component/riding/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, .proc/vehicle_turned)
-	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/vehicle_moved)
-	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, .proc/vehicle_bump)
+	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(vehicle_turned))
+	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved))
+	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, PROC_REF(vehicle_bump))
 
 /**
  * This proc handles all of the proc calls to things like set_vehicle_dir_layer() that a type of riding datum needs to call on creation
@@ -149,9 +149,9 @@
 				if(offsetdir == AM_dir)
 					var/list/diroffsets = offsets[offsetdir]
 					buckled_mob.pixel_x = diroffsets[1]
-					if(diroffsets.len >= 2)
+					if(length(diroffsets) >= 2)
 						buckled_mob.pixel_y = diroffsets[2]
-					if(diroffsets.len == 3)
+					if(length(diroffsets) == 3)
 						buckled_mob.layer = diroffsets[3]
 					break dir_loop
 
@@ -213,10 +213,10 @@
 	if(!istype(possible_bumped_door))
 		return
 	for(var/occupant in movable_parent.buckled_mobs)
-		INVOKE_ASYNC(possible_bumped_door, /atom.proc/Bumped, occupant)
+		INVOKE_ASYNC(possible_bumped_door, TYPE_PROC_REF(/atom, Bumped), occupant)
 
 /datum/component/riding/proc/Unbuckle(atom/movable/M)
-	addtimer(CALLBACK(parent, /atom/movable/.proc/unbuckle_mob, M), 0, TIMER_UNIQUE)
+	addtimer(CALLBACK(parent, TYPE_PROC_REF(/atom/movable, unbuckle_mob), M), 0, TIMER_UNIQUE)
 
 /// currently replicated from ridable because we need this behavior here too, see if we can deal with that
 /datum/component/riding/proc/unequip_buckle_inhands(mob/living/carbon/user)

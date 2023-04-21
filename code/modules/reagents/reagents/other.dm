@@ -20,13 +20,6 @@
 	taste_description = "sludge"
 	description = "A white blood-like liquid used by all Synthetics."
 
-/datum/reagent/blood/xeno_blood
-	name = "Acid Blood"
-	color = "#dffc00"
-	taste_description = "acid"
-	description = "A corrosive yellow-ish liquid..."
-
-
 /datum/reagent/water
 	name = "Water"
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
@@ -352,11 +345,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "iron"
-
-/datum/reagent/iron/on_mob_life(mob/living/L, metabolism)
-	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
-		L.blood_volume += 0.8
-	return ..()
+	scannable = TRUE
 
 /datum/reagent/iron/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(1, 0, 1)
@@ -412,11 +401,13 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "gross metal"
+	///The effect creates when this reagent is splashed on the ground
+	var/effect_type = /obj/effect/decal/cleanable/liquid_fuel
 
 /datum/reagent/fuel/reaction_turf(turf/T, volume)
 	if(volume <= 3 || !isfloorturf(T))
 		return
-	new /obj/effect/decal/cleanable/liquid_fuel(T, volume) //It already handles dupes on it own turf.
+	new effect_type(T, volume) //It already handles dupes on it own turf.
 
 /datum/reagent/fuel/on_mob_life(mob/living/L)
 	L.adjustToxLoss(1)
@@ -433,6 +424,12 @@
 
 /datum/reagent/fuel/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
+
+/datum/reagent/fuel/xfuel
+	name = "X-fuel"
+	description = "Type X fuel, for use in flamers for when you really want something nice and crispy"
+	color = COLOR_MODERATE_BLUE
+	effect_type = /obj/effect/decal/cleanable/liquid_fuel/xfuel
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
@@ -628,9 +625,9 @@
 /datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
-	L.germ_level -= min(volume * 20 * touch_protection, L.germ_level)
 	if(ishuman(L))
 		var/mob/living/carbon/human/disinfectee = L
+		disinfectee.germ_level -= min(volume * 20 * touch_protection, disinfectee.germ_level)
 		for(var/datum/limb/limb AS in disinfectee.limbs)
 			limb.disinfect() //Only removes germs from individual external wounds. Won't help with the limb itself having a high germ level.
 	if(prob(L.getFireLoss() + L.getBruteLoss())) // >Spraying space bleach on open wounds
@@ -643,12 +640,6 @@
 		L.emote(pick("scream","pain","moan"))
 		L.flash_pain()
 		L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
-
-/datum/reagent/sterilizine/reaction_obj(obj/O, volume)
-	O.germ_level -= min(volume*20, O.germ_level)
-
-/datum/reagent/sterilizine/reaction_turf(turf/T, volume)
-	T.germ_level -= min(volume*20, T.germ_level)
 
 /datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(effect_str)

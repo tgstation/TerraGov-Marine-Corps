@@ -67,10 +67,15 @@
 	///Used for remote targeting by AI
 	var/obj/item/ai_target_beacon/ai_targeter
 
+	// used for keeping track of different mortars and their types for cams
+	var/static/list/id_by_type = list()
+
 /obj/machinery/deployable/mortar/Initialize(mapload, _internal_item, deployer)
 	. = ..()
+
 	impact_cam = new
 	impact_cam.forceMove(src)
+	impact_cam.c_tag = "[strip_improper(name)] #[++id_by_type[type]]"
 
 /obj/machinery/deployable/mortar/Destroy()
 	QDEL_NULL(impact_cam)
@@ -213,7 +218,7 @@
 		user.temporarilyRemoveItemFromInventory(mortar_shell)
 
 	if(istype(I, /obj/item/ai_target_beacon))
-		if(!GLOB.ai_list.len)
+		if(!length(GLOB.ai_list))
 			to_chat(user, span_notice("There is no AI to associate with."))
 			return
 
@@ -259,15 +264,15 @@
 	shell.generate_bullet(ammo)
 	var/shell_range = min(get_dist_euclide(src,target), ammo.max_range)
 	shell.fire_at(target, src, src, shell_range, ammo.shell_speed)
-	var/fall_time = shell_range/ammo.shell_speed - 1 SECONDS
+	var/fall_time = (shell_range/(ammo.shell_speed * 5)) - 0.5 SECONDS
 	//prevent runtime
 	if(fall_time < 0.5 SECONDS)
 		fall_time = 0.5 SECONDS
 	impact_cam.forceMove(get_turf(target))
 	current_shots++
-	addtimer(CALLBACK(src, .proc/falling, target, shell), fall_time)
-	addtimer(CALLBACK(src, .proc/return_cam), fall_time + 2 SECONDS)
-	addtimer(CALLBACK(src, .proc/cool_off), cool_off_time)
+	addtimer(CALLBACK(src, PROC_REF(falling), target, shell), fall_time)
+	addtimer(CALLBACK(src, PROC_REF(return_cam)), fall_time + 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(cool_off)), cool_off_time)
 
 ///Proc called by tactical binoculars to send targeting information.
 /obj/machinery/deployable/mortar/proc/recieve_target(turf/T, mob/user)
@@ -362,7 +367,7 @@
 	for(var/i = 1 to amount_to_fire)
 		var/turf/impact_turf = pick(turf_list)
 		in_chamber = chamber_items[next_chamber_position]
-		addtimer(CALLBACK(src, .proc/begin_fire, impact_turf, in_chamber), fire_delay * i)
+		addtimer(CALLBACK(src, PROC_REF(begin_fire), impact_turf, in_chamber), fire_delay * i)
 		next_chamber_position--
 		chamber_items -= in_chamber
 		QDEL_NULL(in_chamber)
@@ -393,7 +398,7 @@
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployable_item, type, 1 SECONDS)
+	AddElement(/datum/element/deployable_item, deployable_item, 1 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
 	do_unique_action(user)
@@ -533,6 +538,10 @@
 	name = "\improper 80mm mortar shell"
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/Marine/mortar.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
+	)
 	icon_state = "mortar_ammo_cas"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT

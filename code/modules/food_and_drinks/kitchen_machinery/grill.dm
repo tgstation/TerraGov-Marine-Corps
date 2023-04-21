@@ -59,7 +59,7 @@
 			return
 		else if(!grilled_item && user.transferItemToLoc(I, src))
 			grilled_item = I
-			RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
+			RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, PROC_REF(GrillCompleted))
 			ADD_TRAIT(grilled_item, TRAIT_FOOD_GRILLED, "boomers")
 			to_chat(user, span_notice("You put the [grilled_item] on [src]."))
 			update_icon()

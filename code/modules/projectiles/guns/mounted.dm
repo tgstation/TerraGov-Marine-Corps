@@ -39,7 +39,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 1 SECONDS
 	accuracy_mult = 1.2 //it's got a bipod
-	burst_accuracy_mult = 2
+	burst_accuracy_mult = 1
 	burst_scatter_mult = 0
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
@@ -83,7 +83,7 @@
 		/obj/item/ammo_magazine/tl102,
 		/obj/item/ammo_magazine/tl102/hsg_nest,
 	)
-	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 /obj/item/weapon/gun/tl102/hsg_nest/sandless
@@ -140,7 +140,7 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "minigun_nest"
 
-	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
@@ -149,20 +149,19 @@
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
 //-------------------------------------------------------
-//ATR-22 mounted heavy dualcannon
+//ATR-22 mounted heavy autocannon
 
-/obj/item/weapon/gun/standard_dual_cannon
-	name = "\improper ATR-22 mounted heavy dualcannon"
-	desc = "The ATR-22 mounted heavy dualcannon is a double barrel 20mm autocannon, usually seen fitted in terran armored vehicles. It shreds through armor and walls causing heavy sunder but is rather lacking in damage against xenomorph targets."
+/obj/item/weapon/gun/standard_auto_cannon
+	name = "\improper ATR-22 mounted heavy autocannon"
+	desc = "The ATR-22 is a recoiling barrel 20mm autocannon, usually seen fitted in terran armored vehicles. It shreds through armor and walls causing heavy sunder but is rather lacking in sustained damage."
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
+	icon = 'icons/Marine/marine-ac.dmi'
 	icon_state = "autocannon"
-
-	fire_sound = 'sound/weapons/guns/fire/autocannon_fire.ogg'
+	fire_sound = "ac_fire"
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/dual_cannon
+	default_ammo_type = /obj/item/ammo_magazine/auto_cannon
 
 	scatter = 10
 	deployed_scatter_change = -10
@@ -176,7 +175,10 @@
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/dual_cannon)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/auto_cannon,
+		/obj/item/ammo_magazine/auto_cannon/flak,
+	)
 
 	deploy_time = 6 SECONDS
 	undeploy_time = 3 SECONDS
@@ -346,7 +348,7 @@
 	force = 40
 	aim_slowdown = 1.2
 	wield_delay = 2 SECONDS
-	fire_sound =  'sound/weapons/guns/fire/t27.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t27.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'

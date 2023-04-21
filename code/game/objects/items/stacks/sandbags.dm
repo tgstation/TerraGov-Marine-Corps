@@ -62,8 +62,8 @@
 	singular_name = "sandbag"
 	icon_state = "sandbag_pile"
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 9.0
-	throwforce = 15.0
+	force = 9
+	throwforce = 15
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 25
@@ -76,5 +76,5 @@
 
 /obj/item/stack/sandbags/attack_self(mob/living/user)
 	. = ..()
-	var/building_time = LERP(2 SECONDS, 1 SECONDS, user.skills.getPercent("construction", SKILL_ENGINEER_MASTER))
+	var/building_time = LERP(2 SECONDS, 1 SECONDS, user.skills.getPercent(SKILL_CONSTRUCTION, SKILL_ENGINEER_MASTER))
 	create_object(user, new/datum/stack_recipe("sandbag barricade", /obj/structure/barricade/sandbags, 5, time = building_time, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE), 1)

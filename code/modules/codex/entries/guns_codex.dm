@@ -1,13 +1,13 @@
 /obj/item/weapon/gun/get_antag_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.antag_text)
+	if(general_entry?.antag_text)
 		return general_entry.antag_text
 
 /obj/item/weapon/gun/get_lore_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.lore_text)
+	if(general_entry?.lore_text)
 		return general_entry.lore_text
 
 /obj/item/weapon/gun/get_mechanics_info()
@@ -96,7 +96,7 @@
 	traits += "<br>"
 	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.mechanics_text)
+	if(general_entry?.mechanics_text)
 		traits += general_entry.mechanics_text
 
 	. += jointext(traits, "<br>")
@@ -112,7 +112,7 @@
 
 /obj/item/weapon/gun/shotgun/pump/get_mechanics_info()
 	. = ..()
-	if(gun_skill_category == GUN_SKILL_RIFLES)
+	if(gun_skill_category == SKILL_RIFLES)
 		. += "<br><br>To work the weapon press spacebar.<br>"
 	else
 		. += "<br><br>To pump it press spacebar.<br>"

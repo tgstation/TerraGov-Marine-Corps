@@ -92,7 +92,7 @@
 			user.progbar_towers[bar.loc] -= bar.height
 			if(user.progbar_towers[bar.loc] <= 0)
 				LAZYREMOVE(user.progbar_towers, bar.loc)
-		INVOKE_ASYNC(bar, /image/progress/proc/fade_out, client, frame, bg)
+		INVOKE_ASYNC(bar, TYPE_PROC_REF(/image/progress, fade_out), client, frame, bg)
 
 	QDEL_LIST(prog_displays)
 
@@ -105,7 +105,7 @@
 
 /image/progress/proc/fade_out(client, bar_bg, bar_frame)
 	animate(src, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
-	addtimer(CALLBACK(src, .proc/letsdeleteourself, client, bar_bg, bar_frame), PROGRESSBAR_ANIMATION_TIME + 1)
+	addtimer(CALLBACK(src, PROC_REF(letsdeleteourself), client, bar_bg, bar_frame), PROGRESSBAR_ANIMATION_TIME + 1)
 
 /image/progress/proc/letsdeleteourself(client/client, bar_bg, bar_frame)
 	if(client)

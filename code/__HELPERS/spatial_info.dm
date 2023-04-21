@@ -47,7 +47,7 @@
 		SSspatial_grid.number_of_oranges_ears -= 1
 
 	var/turf/our_loc = get_turf(src)
-	if(our_loc && our_loc.assigned_oranges_ear == src)
+	if(our_loc?.assigned_oranges_ear == src)
 		our_loc.assigned_oranges_ear = null
 
 	. = ..()

@@ -1,6 +1,6 @@
 /datum/element/plasma_on_attack
 	element_flags = ELEMENT_BESPOKE
-	id_arg_index = 2
+	argument_hash_start_idx = 2
 
 	///the multiplier of plasma won via causing damage to living things.
 	var/damage_plasma_multiplier = 1
@@ -9,7 +9,7 @@
 	. = ..()
 	if(!isxeno(target))
 		return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/damage_dealt)
+	RegisterSignal(target, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(damage_dealt))
 	src.damage_plasma_multiplier = damage_plasma_multiplier
 
 /datum/element/plasma_on_attack/Detach(datum/source, force)

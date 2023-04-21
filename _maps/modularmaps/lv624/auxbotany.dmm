@@ -196,7 +196,7 @@
 /area/lv624/lazarus/hydroponics/aux)
 "pt" = (
 /obj/structure/table,
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
@@ -217,8 +217,8 @@
 /area/lv624/lazarus/hydroponics/aux)
 "qq" = (
 /obj/structure/table,
-/obj/item/analyzer/plant_analyzer,
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/hydroponics/aux)
 "rr" = (

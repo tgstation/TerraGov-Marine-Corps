@@ -62,6 +62,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/rocket_shells_fired = 0
 	var/queen_screech = 0
 	var/now_pregnant = 0
+	var/sentinel_drain_stings = 0
 	var/sentinel_neurotoxin_stings = 0
 	var/ozelomelyn_stings = 0
 	var/defiler_defiler_stings = 0
@@ -77,6 +78,9 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/wraith_phase_shifts = 0
 	var/wraith_blinks = 0
 	var/wraith_banishes = 0
+	var/bull_crush_hit = 0
+	var/bull_gore_hit = 0
+	var/bull_headbutt_hit = 0
 	var/ravager_endures = 0
 	var/hunter_marks = 0
 	var/hunter_silence_targets = 0

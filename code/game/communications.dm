@@ -127,6 +127,7 @@ GLOBAL_LIST_INIT(radiochannels, list(
 	RADIO_CHANNEL_XRAY = FREQ_XRAY,
 	RADIO_CHANNEL_WHISKEY = FREQ_WHISKEY,
 	RADIO_CHANNEL_SECTOID = FREQ_SECTOID,
+	RADIO_CHANNEL_ICC = FREQ_ICC,
 	RADIO_CHANNEL_ECHO = FREQ_ECHO,
 	RADIO_CHANNEL_DS1 = FREQ_DROPSHIP_1,
 	RADIO_CHANNEL_DS2 = FREQ_DROPSHIP_2
@@ -236,7 +237,7 @@ GLOBAL_LIST_INIT(reverseradiochannels, list(
 		if(!devices_line)
 			devices -= devices_filter
 		devices_line -= device
-		if(!devices_line.len)
+		if(!length(devices_line))
 			devices -= devices_filter
 
 

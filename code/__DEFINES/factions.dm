@@ -11,6 +11,7 @@
 #define FACTION_NANOTRASEN "Nanotrasen"
 #define FACTION_SECTOIDS "Sectoids"
 #define FACTION_SOM "Sons of Mars"
+#define FACTION_ICC "Independent Colonial Confederation"
 #define FACTION_USL "United Space Lepidoptera"
 #define FACTION_ALIEN "Alien"
 #define FACTION_SPIDER "Spider"
@@ -18,6 +19,7 @@
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
 #define FACTION_VALHALLA "Valhalla"
+#define FACTION_SPECFORCE "Special Forces"
 
 //Alignement are currently only used by req.
 ///Mob with a neutral alignement cannot be sold by anyone
@@ -27,12 +29,15 @@
 ///Mob with friendly alignement can only be sold by mob of the hostile or neutral alignement
 #define ALIGNEMENT_FRIENDLY 1
 
-//Alignement for each faction
+///Alignement for each faction
 GLOBAL_LIST_INIT(faction_to_alignement, list(
 	FACTION_NEUTRAL = ALIGNEMENT_NEUTRAL,
+	//Friendly
 	FACTION_TERRAGOV = ALIGNEMENT_FRIENDLY,
 	FACTION_NANOTRASEN = ALIGNEMENT_FRIENDLY,
 	FACTION_FREELANCERS = ALIGNEMENT_FRIENDLY,
+	FACTION_SPECFORCE = ALIGNEMENT_FRIENDLY,
+	//Hostile
 	FACTION_XENO = ALIGNEMENT_HOSTILE,
 	FACTION_CLF = ALIGNEMENT_HOSTILE,
 	FACTION_DEATHSQUAD = ALIGNEMENT_HOSTILE,
@@ -40,6 +45,7 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 	FACTION_UNKN_MERCS = ALIGNEMENT_HOSTILE,
 	FACTION_SECTOIDS = ALIGNEMENT_HOSTILE,
 	FACTION_SOM = ALIGNEMENT_HOSTILE,
+	FACTION_ICC = ALIGNEMENT_HOSTILE,
 	FACTION_USL = ALIGNEMENT_HOSTILE,
 	FACTION_ALIEN = ALIGNEMENT_HOSTILE,
 	FACTION_SPIDER = ALIGNEMENT_HOSTILE,
@@ -50,23 +56,38 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 ))
 
 ///Iff signals for factions
-#define TGMC_LOYALIST_IFF (1 << 0)
-#define SON_OF_MARS_IFF (1 << 1)
-#define TGMC_REBEL_IFF (1 << 2)
-#define DEATHSQUAD_IFF (1 << 3)
+#define TGMC_LOYALIST_IFF (1<<0) //Friendly IFF Signal
+#define SOM_IFF (1<<1)
+#define TGMC_REBEL_IFF (1<<2)
+#define DEATHSQUAD_IFF (1<<3)
+#define ICC_IFF (1<<4)
+#define CLF_IFF (1<<5)
+#define IMP_IFF (1<<6)
+#define UNKN_MERCS_IFF (1<<7)
+#define SECTOIDS_IFF (1<<8)
+#define USL_IFF (1<<9)
+#define PIRATE_IFF (1<<10)
 
-//Iff for each faction that is able to use iff
+///Iff for each faction that is able to use iff
 GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_NEUTRAL = TGMC_LOYALIST_IFF|TGMC_REBEL_IFF,
 	FACTION_TERRAGOV = TGMC_LOYALIST_IFF,
-	FACTION_TERRAGOV_REBEL = TGMC_REBEL_IFF,
+	FACTION_SPECFORCE = TGMC_LOYALIST_IFF,
 	FACTION_NANOTRASEN = TGMC_LOYALIST_IFF,
 	FACTION_FREELANCERS = TGMC_LOYALIST_IFF,
+	FACTION_TERRAGOV_REBEL = TGMC_REBEL_IFF,
+	FACTION_CLF = CLF_IFF,
 	FACTION_DEATHSQUAD = DEATHSQUAD_IFF,
-	FACTION_SOM = SON_OF_MARS_IFF,
+	FACTION_IMP = IMP_IFF,
+	FACTION_UNKN_MERCS = UNKN_MERCS_IFF,
+	FACTION_SECTOIDS = SECTOIDS_IFF,
+	FACTION_SOM = SOM_IFF,
+	FACTION_ICC = ICC_IFF,
+	FACTION_USL = USL_IFF,
+	FACTION_PIRATE = PIRATE_IFF,
 ))
 
-//List of correspond factions to data hud
+///List of correspond factions to data hud
 GLOBAL_LIST_INIT(faction_to_data_hud, list(
 	FACTION_TERRAGOV = DATA_HUD_SQUAD_TERRAGOV,
 	FACTION_TERRAGOV_REBEL = DATA_HUD_SQUAD_REBEL,

@@ -5,7 +5,6 @@
 	name = "Coin"
 	icon_state = "coin"
 	flags_atom = CONDUCT
-	force = 0.0
 	w_class = WEIGHT_CLASS_TINY
 	var/string_attached
 	var/sides = 2

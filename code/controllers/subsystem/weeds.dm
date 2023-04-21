@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(weeds)
 		if(MC_TICK_CHECK)
 			return
 		// Adds a bit of jitter to the spawning weeds.
-		addtimer(CALLBACK(src, .proc/create_weed, T, creating[T]), rand(1, 3 SECONDS))
+		addtimer(CALLBACK(src, PROC_REF(create_weed), T, creating[T]), rand(1, 3 SECONDS))
 		pending -= T
 		spawn_attempts_by_node -= T
 		creating -= T
@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(weeds)
 		if(istype(O, /obj/structure/window/framed))
 			weed_to_spawn = /obj/alien/weeds/weedwall/window
 		else if(istype(O, /obj/structure/window_frame))
-			weed_to_spawn = /obj/alien/weeds/weedwall/frame
+			weed_to_spawn = /obj/alien/weeds/weedwall/window/frame
 		else if(istype(O, /obj/machinery/door) && O.density)
 			return
 		else if(istype(O, /obj/alien/weeds))

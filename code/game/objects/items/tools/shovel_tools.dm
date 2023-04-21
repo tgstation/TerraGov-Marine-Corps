@@ -49,7 +49,7 @@
 		if(dirt_type == DIRT_TYPE_SNOW)
 			var/turf/T = get_turf(user.loc)
 			var/obj/item/stack/snow/S = locate() in T
-			if(S && S.amount < S.max_amount)
+			if(S?.amount < S.max_amount)
 				S.amount += dirt_amt
 			else
 				new /obj/item/stack/snow(T, dirt_amt)
@@ -99,7 +99,7 @@
 			playsound(user.loc, "rustle", 30, 1, 6)
 			if(dirt_type == DIRT_TYPE_SNOW)
 				var/obj/item/stack/snow/S = locate() in T
-				if(S && S.amount + dirt_amt < S.max_amount)
+				if(S?.amount + dirt_amt < S.max_amount)
 					S.amount += dirt_amt
 				else
 					new /obj/item/stack/snow(T, dirt_amt)
@@ -110,7 +110,6 @@
 	name = "spade"
 	desc = "A small tool for digging and moving dirt."
 	icon_state = "spade"
-	item_state = "spade"
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
@@ -134,7 +133,6 @@
 	icon_state = "etool_c"
 	force = 2
 	throwforce = 2
-	item_state = "crowbar"
 	hitsound = "sound/weapons/shovel.ogg"
 	w_class = WEIGHT_CLASS_SMALL //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
 	folded = TRUE

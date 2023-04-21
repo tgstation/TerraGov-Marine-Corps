@@ -209,6 +209,16 @@
 	icon_state_mini = "mag_pistol_yellow"
 
 //-------------------------------------------------------
+//PL-5
+
+/obj/item/ammo_magazine/pistol/icc_dpistol
+	name = "\improper PL-5 magazine (.45)"
+	default_ammo = /datum/ammo/bullet/pistol/heavy
+	caliber = CALIBER_45ACP
+	icon_state = "pl5"
+	max_rounds = 18
+
+//-------------------------------------------------------
 
 //A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
 
@@ -232,10 +242,9 @@
 
 //SP-13 (Calico)
 /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
-	name = "\improper SP-13 magazine (9mm)"
-	desc = "A SP-13 magazine."
+	name = "\improper SP-13 magazine (9mm AP)"
 	caliber = CALIBER_9X19
 	icon_state = "tx13"
-	max_rounds = 25
+	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
-	default_ammo = /datum/ammo/bullet/pistol
+	default_ammo = /datum/ammo/bullet/pistol/ap

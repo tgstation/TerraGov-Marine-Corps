@@ -823,6 +823,9 @@
 	floor_tile = new /obj/item/stack/tile/carpet
 	return INITIALIZE_HINT_LATELOAD
 
+/turf/open/floor/carpet/ex_act(severity)
+	return
+
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"
 

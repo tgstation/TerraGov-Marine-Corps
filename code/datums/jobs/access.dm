@@ -38,12 +38,12 @@
 /obj/proc/check_access_list(L[])
 	if(!req_access  && !req_one_access)	return 1
 	if(!islist(req_access)) return 1
-	if(!req_access.len && (!req_one_access || !req_one_access.len))	return 1
+	if(!length(req_access) && (!req_one_access || !length(req_one_access)))	return 1
 	if(!islist(L))	return
 	var/i
 	for(i in req_access)
 		if(!(i in L)) return //doesn't have this access
-	if(req_one_access && req_one_access.len)
+	if(length(req_one_access))
 		for(i in req_one_access)
 			if(i in L) return 1//has an access from the single access list
 		return
@@ -339,14 +339,76 @@
 			. = size ? "CLF " : "CLF Medic"
 		if("CLF3")
 			. = size ? "CLF " : "CLF Leader"
-		if("SOM1")
-			. = size ? "SOM " : "SOM Standard"
-		if("SOM2")
-			. = size ? "SOM " : "SOM Medic"
-		if("SOM3")
-			. = size ? "SOM " : "SOM Veteran"
-		if("SOM4")
-			. = size ? "SOM " : "SOM Leader"
+		if("SOM_E1")
+			. = size ? "PTE " : "SOM Private"
+		if("SOM_E2")
+			. = size ? "PFC " : "SOM Private First Class"
+		if("SOM_E3")
+			. = size ? "LCP " : "SOM Lance Corporal"
+		if("SOM_E4")
+			. = size ? "CPL " : "SOM Corporal"
+		if("SOM_E5")
+			. = size ? "CFC " : "SOM Corporal First Class"
+		if("SOM_S1")
+			. = size ? "3SG " : "SOM Third Sergeant"
+		if("SOM_S2")
+			. = size ? "2SG " : "SOM Second Sergeant"
+		if("SOM_S3")
+			. = size ? "1SG " : "SOM First Sergeant"
+		if("SOM_S4")
+			. = size ? "SSG " : "SOM Staff Sergeant"
+		if("SOM_S5")
+			. = size ? "MSG " : "SOM Master Sergeant"
+		if("SOM_W1")
+			. = size ? "3WO " : "SOM Third Warrant Officer"
+		if("SOM_W2")
+			. = size ? "2WO " : "SOM Second Warrant Officer"
+		if("SOM_W3")
+			. = size ? "1WWO " : "SOM First Warrant Officer"
+		if("SOM_W4")
+			. = size ? "MWO " : "SOM Master Warrant Officer"
+		if("SOM_W5")
+			. = size ? "SWO " : "SOM Senior Warrant Officer"
+		if("SOM_W6")
+			. = size ? "CWO " : "SOM Chief Warrant Officer"
+		if("SOM_O1")
+			. = size ? "2LT " : "SOM Second Lieutenant"
+		if("SOM_O2")
+			. = size ? "LTA " : "SOM Lieutenant"
+		if("SOM_O3")
+			. = size ? "CPT " : "SOM Captain"
+		if("SOM_O4")
+			. = size ? "MAJ " : "SOM Major"
+		if("SOM_O5")
+			. = size ? "LTC " : "SOM Lieutenant-Colonel"
+		if("SOM_O6")
+			. = size ? "SLTC " : "SOM Senior Lieutenant-Colonel"
+		if("SOM_O7")
+			. = size ? "COL " : "SOM Colonel"
+		if("SOM_G1")
+			. = size ? "BG " : "SOM Brigadier-General"
+		if("SOM_G2")
+			. = size ? "MG " : "SOM Major-General"
+		if("SOM_G3")
+			. = size ? "LG " : "SOM Lieutenant-General"
+		if("SOM_G4")
+			. = size ? "GEN " : "SOM General"
+		if("SOM_A1")
+			. = size ? "RADM(1) " : "SOM Rear-Admiral"
+		if("SOM_A2")
+			. = size ? "RADM(2) " : "SOM Rear-Admiral"
+		if("SOM_A3")
+			. = size ? "VADM " : "SOM Vice-Admiral"
+		if("SOM_A4")
+			. = size ? "ADM " : "SOM Admiral"
+		if("ICC1")
+			. = size ? "ICC " : "ICC Standard"
+		if("ICC2")
+			. = size ? "ICC " : "ICC Medic"
+		if("ICC3")
+			. = size ? "ICCG " : "ICC Guard"
+		if("ICC4")
+			. = size ? "ICCL " : "ICC Leader"
 		if("MRC1")
 			. = size ? "MERC " : "MERC Heavy"
 		if("MRC2")

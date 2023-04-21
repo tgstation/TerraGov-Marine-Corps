@@ -6,6 +6,10 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
+	)
 	item_state = "backpack"
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -16,7 +20,7 @@
 		)
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = null
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS
@@ -59,7 +63,7 @@
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	icon_state = "holdingpack"
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	max_storage_space = 28
 
 /obj/item/storage/backpack/holding/proc/failcheck(mob/user)
@@ -92,7 +96,7 @@
 	item_state = "giftbag"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = null
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 400 // can store a ton of shit!
 
 /obj/item/storage/backpack/cultpack
@@ -172,6 +176,7 @@
 	name = "mining satchel"
 	desc = "A satchel with origins dating back to the mining colonies."
 	icon_state = "som_satchel"
+	item_state = "som_satchel"
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"
@@ -504,7 +509,7 @@
 	camo_last_stealth = world.time
 	wearer = M
 
-	RegisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH, .proc/on_other_activate)
+	RegisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH, PROC_REF(on_other_activate))
 	M.visible_message("[M] fades into thin air!", span_notice("You activate your cloak's camouflage."))
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
@@ -522,14 +527,14 @@
 		GLOB.huds[DATA_HUD_XENO_INFECTION].remove_from_hud(M)
 		GLOB.huds[DATA_HUD_XENO_HEART].remove_from_hud(M)
 
-	addtimer(CALLBACK(src, .proc/on_cloak), 1)
-	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
+	addtimer(CALLBACK(src, PROC_REF(on_cloak)), 1)
+	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
 	RegisterSignal(M, list(
 		COMSIG_MOB_GUN_FIRED,
 		COMSIG_MOB_GUN_AUTOFIRED,
 		COMSIG_MOB_ATTACHMENT_FIRED,
 		COMSIG_MOB_THROW,
-		COMSIG_MOB_ITEM_ATTACK), .proc/action_taken)
+		COMSIG_MOB_ITEM_ATTACK), PROC_REF(action_taken))
 
 	START_PROCESSING(SSprocessing, src)
 	wearer.cloaking = TRUE
@@ -572,7 +577,7 @@
 	GLOB.huds[DATA_HUD_XENO_INFECTION].add_to_hud(user)
 	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(user)
 
-	addtimer(CALLBACK(src, .proc/on_decloak), 1)
+	addtimer(CALLBACK(src, PROC_REF(on_decloak)), 1)
 
 	var/cooldown = round( (initial(camo_energy) - camo_energy) / SCOUT_CLOAK_INACTIVE_RECOVERY * 10) //Should be 20 seconds after a full depletion with inactive recovery at 5
 	if(cooldown)
@@ -593,7 +598,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
 	if(!camo_cooldown_timer)
 		return
-	addtimer(CALLBACK(src, .proc/cooldown_finished), cooldown)
+	addtimer(CALLBACK(src, PROC_REF(cooldown_finished)), cooldown)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/cooldown_finished()
 	camo_cooldown_timer = null
@@ -807,3 +812,13 @@
 	desc = "A rucksack with origins dating back to the mining colonies."
 	icon_state = "som_lightpack"
 	item_state = "som_lightpack"
+
+/obj/item/storage/backpack/lightpack/icc
+	name = "\improper Modello/190"
+	desc = "A small lightweight buttpack made for use in a wide variety of operations, made with a synthetic tan fibre."
+	icon_state = "icc_bag"
+
+/obj/item/storage/backpack/lightpack/icc/guard
+	name = "\improper Modello/190"
+	desc = "A small lightweight buttpack made for use in a wide variety of operations, made with a synthetic black fibre."
+	icon_state = "icc_bag_guard"

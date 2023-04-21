@@ -77,7 +77,7 @@
 		marker_flags = MINIMAP_FLAG_MARINE
 	else if(iff_signal == TGMC_REBEL_IFF)
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
-	else if(iff_signal == SON_OF_MARS_IFF)
+	else if(iff_signal == SOM_IFF)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	else
 		marker_flags = MINIMAP_FLAG_MARINE
@@ -184,7 +184,7 @@
 	var/current_rounds
 	current_rounds = gun.rounds
 	. = list(
-		"rounds" =  current_rounds,
+		"rounds" = current_rounds,
 		"health" = obj_integrity
 	)
 
@@ -281,7 +281,7 @@
 	set_light(SENTRY_LIGHT_POWER,SENTRY_LIGHT_POWER)
 	update_icon()
 	START_PROCESSING(SSobj, src)
-	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)
+	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, PROC_REF(check_next_shot))
 	update_minimap_icon()
 
 ///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/xeno_abilities in punch
@@ -381,7 +381,7 @@
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
-		INVOKE_ASYNC(internal_gun, /obj/item/weapon/gun.proc/do_unique_action)
+		INVOKE_ASYNC(internal_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action))
 	if(!CHECK_BITFIELD(internal_gun.flags_item, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
 		firing = FALSE
@@ -389,7 +389,7 @@
 		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
-	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns don't fire once every two seconds.
+	addtimer(CALLBACK(src, PROC_REF(sentry_start_fire)), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns don't fire once every two seconds.
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
@@ -421,11 +421,11 @@
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(mob/living/target)
 	var/list/turf/path = getline(src, target)
 	path -= get_turf(src)
-	if(!path.len)
+	if(!length(path))
 		return FALSE
 	for(var/turf/T AS in path)
 		var/obj/effect/particle_effect/smoke/smoke = locate() in T
-		if(smoke && smoke.opacity)
+		if(smoke?.opacity)
 			return FALSE
 
 		if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_pass & PASSPROJECTILE) && !(T.type in ignored_terrains))
@@ -518,7 +518,7 @@
 		return
 	operator?.unset_interaction()
 
-	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item  = internal_item //Item the machine is undeploying
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item = internal_item //Item the machine is undeploying
 
 	if(!ishuman(user))
 		return

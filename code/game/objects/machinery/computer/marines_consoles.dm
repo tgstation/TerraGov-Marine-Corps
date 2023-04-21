@@ -7,8 +7,8 @@
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
-	var/authenticated = 0.0
-	var/mode = 0.0
+	var/authenticated = 0
+	var/mode = 0
 	var/printing = null
 
 
@@ -68,11 +68,11 @@
 			target_name = modify.name
 		else
 			target_name = "--------"
-		if(modify && modify.registered_name)
+		if(modify?.registered_name)
 			target_owner = modify.registered_name
 		else
 			target_owner = "--------"
-		if(modify && modify.assignment)
+		if(modify?.assignment)
 			target_rank = modify.assignment
 		else
 			target_rank = "Unassigned"
@@ -97,7 +97,7 @@
 		header += "<hr>"
 
 		var/jobs_all = ""
-		var/list/alljobs = (GLOB.jobs_regular_all - list(SYNTHETIC, SILICON_AI) + "Custom")
+		var/list/alljobs = (GLOB.jobs_regular_all - GLOB.jobs_som - list(SYNTHETIC, SILICON_AI) + "Custom")
 		for(var/job in alljobs)
 			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 

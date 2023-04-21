@@ -17,7 +17,7 @@
 
 /datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
 	user = nuser
-	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/clean_browser)
+	RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(clean_browser))
 	window_id = nwindow_id
 	if(ntitle)
 		title = format_text(ntitle)
@@ -147,7 +147,7 @@
 	if(!User)
 		return
 
-	var/output =  {"<center><b>[Message]</b></center><br />
+	var/output = {"<center><b>[Message]</b></center><br />
 		<div style="text-align:center">
 		<a style="font-size:large;float:[( Button2 ? "left" : "right" )]" href="?src=[REF(src)];button=1">[Button1]</a>"}
 
@@ -257,7 +257,7 @@
 					winset(user, "mapwindow", "focus=true")
 				break
 	if(timeout)
-		addtimer(CALLBACK(src, .proc/close), timeout)
+		addtimer(CALLBACK(src, PROC_REF(close)), timeout)
 
 
 /datum/browser/modal/proc/wait()
@@ -273,7 +273,7 @@
 	if(!User)
 		return
 
-	var/output =  {"<form><input type="hidden" name="src" value="[REF(src)]"><ul class="sparse">"}
+	var/output = {"<form><input type="hidden" name="src" value="[REF(src)]"><ul class="sparse">"}
 	if(inputtype == "checkbox" || inputtype == "radio")
 		for(var/i in values)
 			var/div_slider = slidecolor

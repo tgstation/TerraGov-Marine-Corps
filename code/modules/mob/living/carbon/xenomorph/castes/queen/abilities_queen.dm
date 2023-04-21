@@ -138,8 +138,8 @@
 
 /datum/action/xeno_action/watch_xeno/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, COMSIG_MOB_DEATH, .proc/on_owner_death)
-	RegisterSignal(L, COMSIG_XENOMORPH_WATCHXENO, .proc/on_list_xeno_selection)
+	RegisterSignal(L, COMSIG_MOB_DEATH, PROC_REF(on_owner_death))
+	RegisterSignal(L, COMSIG_XENOMORPH_WATCHXENO, PROC_REF(on_list_xeno_selection))
 
 /datum/action/xeno_action/watch_xeno/remove_action(mob/living/L)
 	if(overwatch_active)
@@ -165,10 +165,10 @@
 	if(isxenoqueen(watcher)) // Only queen needs the eye shown.
 		target.hud_set_queen_overwatch()
 	watcher.reset_perspective()
-	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, .proc/on_xeno_death)
-	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
-	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
-	RegisterSignal(watcher, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/on_damage_taken)
+	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, PROC_REF(on_xeno_death))
+	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(on_xeno_evolution))
+	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
+	RegisterSignal(watcher, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(on_damage_taken))
 	overwatch_active = TRUE
 	set_toggle(TRUE)
 
@@ -188,7 +188,7 @@
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/start_overwatch, selected_xeno)
+	INVOKE_ASYNC(src, PROC_REF(start_overwatch), selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	SIGNAL_HANDLER
@@ -242,7 +242,7 @@
 
 /datum/action/xeno_action/toggle_queen_zoom/proc/zoom_xeno_in(message = TRUE)
 	var/mob/living/carbon/xenomorph/xeno = owner
-	RegisterSignal(xeno, COMSIG_MOVABLE_MOVED, .proc/on_movement)
+	RegisterSignal(xeno, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	if(message)
 		xeno.visible_message(span_notice("[xeno] emits a broad and weak psychic aura."),
 		span_notice("We start focusing our psychic energy to expand the reach of our senses."), null, 5)
@@ -277,7 +277,7 @@
 
 /datum/action/xeno_action/set_xeno_lead/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, COMSIG_XENOMORPH_LEADERSHIP, .proc/try_use_action)
+	RegisterSignal(L, COMSIG_XENOMORPH_LEADERSHIP, PROC_REF(try_use_action))
 
 /datum/action/xeno_action/set_xeno_lead/remove_action(mob/living/L)
 	. = ..()
@@ -288,7 +288,7 @@
 	SIGNAL_HANDLER
 	if(!can_use_action())
 		return
-	INVOKE_ASYNC(src, .proc/select_xeno_leader, target)
+	INVOKE_ASYNC(src, PROC_REF(select_xeno_leader), target)
 
 /// Check if there is an empty slot and promote the passed xeno to a hive leader
 /datum/action/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
@@ -414,7 +414,7 @@
 
 /datum/action/xeno_action/activable/queen_give_plasma/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, .proc/try_use_ability)
+	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, PROC_REF(try_use_ability))
 
 /datum/action/xeno_action/activable/queen_give_plasma/remove_action(mob/living/L)
 	. = ..()
@@ -436,76 +436,3 @@
 	if (get_dist(owner, receiver) > 7)
 		// Out of screen transfer.
 		owner.balloon_alert(owner, "Transferred plasma")
-
-// ***************************************
-// *********** Queen deevolve
-// ***************************************
-/datum/action/xeno_action/deevolve
-	name = "De-Evolve a Xenomorph"
-	action_icon_state = "xeno_deevolve"
-	desc = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
-	plasma_cost = 600
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEEVOLVE,
-	)
-	use_state_flags = XACT_USE_LYING
-
-/datum/action/xeno_action/deevolve/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.observed_xeno)
-		X.balloon_alert(X, "Must overwatch to deevolve")
-		return
-
-	var/mob/living/carbon/xenomorph/T = X.observed_xeno
-
-	if(T.is_ventcrawling)
-		T.balloon_alert(X, "Cannot deevolve, ventcrawling")
-		return
-
-	if(!isturf(T.loc))
-		T.balloon_alert(X, "Cannot deevolve here")
-		return
-
-	if((T.health < T.maxHealth) || (T.plasma_stored < (T.xeno_caste.plasma_max * T.xeno_caste.plasma_regen_limit)))
-		T.balloon_alert(X, "Cannot deevolve, too weak")
-		return
-
-	if(!T.xeno_caste.deevolves_to)
-		T.balloon_alert(X, "Cannot deevolve")
-		return
-
-	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
-
-	var/confirm = tgui_alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", null, list("Yes", "No"))
-	if(confirm != "Yes")
-		return
-
-	var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")
-	if(isnull(reason))
-		T.balloon_alert(X, "De-evolution reason required")
-		return
-
-	if(!X.check_concious_state() || X.observed_xeno != T)
-		return
-
-	if(T.is_ventcrawling)
-		return
-
-	if(!isturf(T.loc))
-		return
-
-	if((T.health < T.maxHealth) || (T.plasma_stored < (T.xeno_caste.plasma_max * T.xeno_caste.plasma_regen_limit)))
-		return
-
-	T.balloon_alert(T, "Queen deevolution")
-	to_chat(T, span_xenowarning("The Queen deevolved us for the following reason: [reason]"))
-
-	T.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
-
-	log_game("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
-	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
-
-	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
-	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
-	qdel(T)
-	succeed_activate()

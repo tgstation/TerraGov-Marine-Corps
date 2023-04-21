@@ -139,8 +139,8 @@
 	if(!gun)
 		CRASH("[src] has been deployed and attempted interaction with [operator] without having a gun. This shouldn't happen.")
 
-	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
+	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 
 	for(var/datum/action/action AS in gun.actions)
 		action.give_action(operator)
@@ -259,8 +259,8 @@
 	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
 	update_pixels(user, TRUE)
 
-	if(current_scope && current_scope.deployed_scope_rezoom)
-		INVOKE_ASYNC(current_scope, /obj/item/attachable/scope.proc/activate, operator)
+	if(current_scope?.deployed_scope_rezoom)
+		INVOKE_ASYNC(current_scope, TYPE_PROC_REF(/obj/item/attachable/scope, activate), operator)
 
 	return FALSE
 
@@ -295,7 +295,7 @@
 	update_pixels(user, FALSE)
 	user_old_x = 0
 	user_old_y = 0
-	density = TRUE
+	density = initial(density)
 	user.move_resist = user_old_move_resist
 
 ///makes sure you can see and or use the gun

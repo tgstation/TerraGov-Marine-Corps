@@ -81,16 +81,16 @@
 
 /datum/component/overlay_lighting/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_parent_moved)
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/check_holder)
-	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_RANGE, .proc/set_range)
-	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_POWER, .proc/set_power)
-	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_COLOR, .proc/set_color)
-	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_ON, .proc/on_toggle)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_parent_moved))
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(check_holder))
+	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_RANGE, PROC_REF(set_range))
+	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_POWER, PROC_REF(set_power))
+	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_COLOR, PROC_REF(set_color))
+	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_ON, PROC_REF(on_toggle))
 	var/atom/movable/movable_parent = parent
 	if(movable_parent.light_on)
 		turn_on()
-	INVOKE_NEXT_TICK(src, .proc/check_holder)
+	INVOKE_NEXT_TICK(src, PROC_REF(check_holder))
 
 
 /datum/component/overlay_lighting/UnregisterFromParent()

@@ -116,7 +116,7 @@
 			handle_pod()
 
 	desiredstate = !desiredstate
-	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(unpress)), 15, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 
 /obj/machinery/door_control/attack_ai(mob/living/silicon/ai/AI)

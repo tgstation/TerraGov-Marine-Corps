@@ -26,7 +26,7 @@
 	QDEL_IN(src, life SECONDS)
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -55,7 +55,7 @@
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
-	var/life = 15.0
+	var/life = 15
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/particle_effect/water/Move(turf/newloc)

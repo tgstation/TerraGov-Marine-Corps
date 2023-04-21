@@ -11,13 +11,13 @@
 	slowdown = 0.5
 	default_language_holder = /datum/language_holder/zombie
 	has_organ = list(
-		"heart" =    /datum/internal_organ/heart,
-		"lungs" =    /datum/internal_organ/lungs,
-		"liver" =    /datum/internal_organ/liver,
-		"kidneys" =  /datum/internal_organ/kidneys,
-		"brain" =    /datum/internal_organ/brain/zombie,
+		"heart" = /datum/internal_organ/heart,
+		"lungs" = /datum/internal_organ/lungs,
+		"liver" = /datum/internal_organ/liver,
+		"kidneys" = /datum/internal_organ/kidneys,
+		"brain" = /datum/internal_organ/brain/zombie,
 		"appendix" = /datum/internal_organ/appendix,
-		"eyes" =     /datum/internal_organ/eyes
+		"eyes" = /datum/internal_organ/eyes
 	)
 	///Sounds made randomly by the zombie
 	var/list/sounds = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
@@ -86,7 +86,7 @@
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
 	SSmobs.stop_processing(H)
 	if(!H.on_fire && H.has_working_organs())
-		addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, FALSE), revive_time)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
 
 /datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
 	. = ..()

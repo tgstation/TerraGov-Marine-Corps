@@ -2,7 +2,11 @@
 	icon = 'icons/obj/items/radio.dmi'
 	name = "station bounced radio"
 	icon_state = "walkietalkie"
-	item_state = "walkietalkie"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
+	item_state = "radio"
 
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -50,8 +54,6 @@
 	var/command = FALSE
 	/// If true, can say/hear over non common channels without working tcomms equipment (for ERTs mostly).
 	var/independent = FALSE
-
-	materials = list(/datum/material/metal = 25, /datum/material/glass = 25)
 
 	/// associative list of the encrypted radio channels this radio is currently set to listen/broadcast to, of the form: list(channel name = TRUE or FALSE)
 	var/list/channels = list()
@@ -237,7 +239,7 @@
 		spans = list(talking_movable.speech_span)
 	if(!language)
 		language = talking_movable.get_default_language()
-	INVOKE_ASYNC(src, .proc/talk_into_impl, talking_movable, message, channel, spans.Copy(), language, message_mods)
+	INVOKE_ASYNC(src, PROC_REF(talk_into_impl), talking_movable, message, channel, spans.Copy(), language, message_mods)
 	return ITALICS | REDUCE_RANGE
 
 
@@ -298,7 +300,7 @@
 
 	// Non-subspace radios will check in a couple of seconds, and if the signal
 	// was never received, send a mundane broadcast (no headsets).
-	addtimer(CALLBACK(src, .proc/backup_transmission, signal), 20)
+	addtimer(CALLBACK(src, PROC_REF(backup_transmission), signal), 20)
 
 
 /obj/item/radio/proc/backup_transmission(datum/signal/subspace/vocal/signal)
@@ -333,7 +335,7 @@
 
 /// Checks if this radio can receive on the given frequency.
 /obj/item/radio/proc/can_receive(input_frequency, list/levels)
-	if(levels != RADIO_NO_Z_LEVEL_RESTRICTION)
+	if(!(RADIO_NO_Z_LEVEL_RESTRICTION in levels))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in levels))
 			return FALSE

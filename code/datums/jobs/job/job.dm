@@ -34,7 +34,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/current_positions = 0
 	var/max_positions = INFINITY //How many positions can be dynamically assigned.
 	var/job_points = 0 //Points assigned dynamically to open new positions.
-	var/job_points_needed  = INFINITY
+	var/job_points_needed = INFINITY
 
 	var/supervisors = ""
 	var/selection_color = "#ffffff"
@@ -75,6 +75,8 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
+	if(isnull(L))
+		stack_trace("Job after_spawn was called without a valid target.")
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/H = L

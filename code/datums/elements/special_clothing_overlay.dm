@@ -9,8 +9,8 @@
  * procs for details
  */
 /datum/element/special_clothing_overlay
-	id_arg_index = 2
-	element_flags = ELEMENT_BESPOKE|ELEMENT_DETACH
+	argument_hash_start_idx = 2
+	element_flags = ELEMENT_BESPOKE|ELEMENT_DETACH_ON_HOST_DESTROY
 	///The image/icon/mutable_appearance we arre going to be applying to here
 	var/overlay_to_apply
 	///when this layer is updated on the wearer, overlay_to_apply will be applied/removed with it
@@ -26,7 +26,7 @@
 		overlay_to_apply = get_overlay_icon()
 		if(!overlay_to_apply)
 			return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
+	RegisterSignal(target, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
 
 /datum/element/special_clothing_overlay/Detach(datum/source, force)
 	. = ..()
@@ -43,9 +43,9 @@
  */
 /datum/element/special_clothing_overlay/proc/equipped(obj/item/source, mob/equipper, slot)
 	SIGNAL_HANDLER
-	RegisterSignal(equipper, COMSIG_HUMAN_APPLY_OVERLAY, .proc/add_as_overlay)
-	RegisterSignal(equipper, COMSIG_HUMAN_REMOVE_OVERLAY, .proc/remove_as_overlay)
-	RegisterSignal(source, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
+	RegisterSignal(equipper, COMSIG_HUMAN_APPLY_OVERLAY, PROC_REF(add_as_overlay))
+	RegisterSignal(equipper, COMSIG_HUMAN_REMOVE_OVERLAY, PROC_REF(remove_as_overlay))
+	RegisterSignal(source, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
 
 /**
  * Signal handler for adding the overlay to the wearer
@@ -77,11 +77,14 @@
 /datum/element/special_clothing_overlay/modular_helmet_visor
 	///greyscale icon we fetch to make worn icon with
 	var/icon/special_icon
+	///Icon_state to use for the emissive
+	var/visor_icon_state
 
-/datum/element/special_clothing_overlay/modular_helmet_visor/Attach(datum/target, applytarget, greyscale_type, color_string)
-	if(!special_icon)
+/datum/element/special_clothing_overlay/modular_helmet_visor/Attach(datum/target, applytarget, icon_state, greyscale_type, color_string)
+	if(!special_icon || !visor_icon_state)
+		visor_icon_state = icon_state
 		special_icon = SSgreyscale.GetColoredIconByType(greyscale_type, list(color_string))
 	return ..()
 
 /datum/element/special_clothing_overlay/modular_helmet_visor/get_overlay_icon()
-	return emissive_appearance(special_icon, "")
+	return emissive_appearance(special_icon, visor_icon_state)

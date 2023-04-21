@@ -24,7 +24,7 @@
 	do_animate("opening")
 	icon_state = "shutter0"
 	playsound(loc, 'sound/machines/shutter.ogg', 25)
-	addtimer(CALLBACK(src, .proc/do_open), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_open)), 1 SECONDS)
 	return TRUE
 
 /obj/machinery/door/poddoor/shutters/proc/do_open()
@@ -35,7 +35,7 @@
 	if(operating)
 		operating = FALSE
 	if(autoclose)
-		addtimer(CALLBACK(src, .proc/autoclose), 150)
+		addtimer(CALLBACK(src, PROC_REF(autoclose)), 150)
 
 /obj/machinery/door/poddoor/shutters/close()
 	if(operating)
@@ -48,7 +48,7 @@
 	if(visible)
 		set_opacity(TRUE)
 	playsound(loc, 'sound/machines/shutter.ogg', 25)
-	addtimer(CALLBACK(src, .proc/do_close), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_close)), 1 SECONDS)
 	return TRUE
 
 /obj/machinery/door/poddoor/shutters/proc/do_close()
@@ -76,7 +76,7 @@
 
 
 /obj/machinery/door/poddoor/shutters/timed_late/Initialize()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/open)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), PROC_REF(open))
 	return ..()
 
 

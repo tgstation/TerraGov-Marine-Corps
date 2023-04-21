@@ -4,7 +4,7 @@
 /area/template_noop)
 "ab" = (
 /turf/closed/wall/mainship/white{
-	
+
 	},
 /area/shuttle/big_ert)
 "ac" = (
@@ -358,7 +358,7 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "bi" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "bj" = (
@@ -710,8 +710,8 @@
 /area/shuttle/big_ert)
 "ca" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/ammo_magazine/shotgun/beanbag{
 	pixel_x = -3;
 	pixel_y = -5

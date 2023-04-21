@@ -4,6 +4,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "grenade"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/grenades_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/grenades_right.dmi',
+	)
 	item_state = "grenade"
 	throw_speed = 3
 	throw_range = 7
@@ -11,10 +15,13 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
 	icon_state_mini = "grenade_red"
-	var/launched = FALSE //if launched from a UGL/grenade launcher
-	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
-	var/det_time =  4 SECONDS
-	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
+	///if launched from a UGL/grenade launcher
+	var/launched = FALSE
+	///bonus impact damage if launched from a UGL/grenade launcher
+	var/launchforce = 10
+	var/det_time = 4 SECONDS
+	///Does it make a danger overlay for humans? Can synths use it?
+	var/dangerous = TRUE
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
@@ -51,10 +58,11 @@
 		var/image/grenade = image('icons/mob/talk.dmi', user, "grenade")
 		user.add_emote_overlay(grenade)
 
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		C.throw_mode_on()
-
+/obj/item/explosive/grenade/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	. = ..()
+	if(!active)
+		return
+	user.throw_item(target)
 
 /obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)
@@ -71,7 +79,7 @@
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
-	addtimer(CALLBACK(src, .proc/prime), det_time)
+	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
 
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()
@@ -105,7 +113,7 @@
 	icon_state = "grenade_rad" //placeholder
 	item_state = "grenade_rad" //placeholder
 	icon_state_mini = "grenade_red" //placeholder
-	det_time =  40 //default
+	det_time = 40 //default
 	arm_sound = 'sound/weapons/armbomb.ogg' //placeholder
 	hud_state = "grenade_he" //placeholder
 	///The range for the grenade's full effect

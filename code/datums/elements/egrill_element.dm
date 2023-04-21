@@ -1,14 +1,14 @@
 /datum/element/egrill
-	element_flags = ELEMENT_DETACH
+	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 
 /datum/element/egrill/Attach(datum/target)
 	if(!isobj(target))
 		return ELEMENT_INCOMPATIBLE
 	. = ..()
-	RegisterSignal(target, COMSIG_ATOM_BUMPED, .proc/bumped)
-	RegisterSignal(target, COMSIG_ATOM_ATTACK_HAND, .proc/attack_hand)
-	RegisterSignal(target, COMSIG_PARENT_ATTACKBY, .proc/attackby)
-	RegisterSignal(target, COMSIG_OBJ_ATTACK_ALIEN, .proc/attack_alien)
+	RegisterSignal(target, COMSIG_ATOM_BUMPED, PROC_REF(bumped))
+	RegisterSignal(target, COMSIG_ATOM_ATTACK_HAND, PROC_REF(attack_hand))
+	RegisterSignal(target, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby))
+	RegisterSignal(target, COMSIG_OBJ_ATTACK_ALIEN, PROC_REF(attack_alien))
 	START_PROCESSING(SSegrill, target)
 
 /datum/element/egrill/Detach(datum/source, force)

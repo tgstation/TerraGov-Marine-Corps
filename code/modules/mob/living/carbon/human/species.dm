@@ -82,7 +82,7 @@
 
 	///Generic traits tied to having the species.
 	var/list/inherent_traits = list()
-	var/species_flags  = NONE       // Various specific features.
+	var/species_flags = NONE       // Various specific features.
 
 	var/list/abilities = list()	// For species-derived or admin-given powers
 	var/list/preferences = list()
@@ -106,13 +106,13 @@
 	/// inherent Species-specific verbs.
 	var/list/inherent_verbs
 	var/list/has_organ = list(
-		"heart" =    /datum/internal_organ/heart,
-		"lungs" =    /datum/internal_organ/lungs,
-		"liver" =    /datum/internal_organ/liver,
-		"kidneys" =  /datum/internal_organ/kidneys,
-		"brain" =    /datum/internal_organ/brain,
+		"heart" = /datum/internal_organ/heart,
+		"lungs" = /datum/internal_organ/lungs,
+		"liver" = /datum/internal_organ/liver,
+		"kidneys" = /datum/internal_organ/kidneys,
+		"brain" = /datum/internal_organ/brain,
 		"appendix" = /datum/internal_organ/appendix,
-		"eyes" =     /datum/internal_organ/eyes
+		"eyes" = /datum/internal_organ/eyes
 		)
 
 	var/knock_down_reduction = 1 //how much the knocked_down effect is reduced per Life call.
@@ -361,7 +361,7 @@
 /datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
 	H.h_style = "Bald"
-	H.skills = getSkillsType(/datum/skills/vatgrown)
+	H.set_skills(getSkillsType(/datum/skills/vatgrown))
 
 /datum/species/human/vatgrown/early
 	name = "Early Vat-Grown Human"
@@ -374,8 +374,8 @@
 
 /datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
-	H.skills = getSkillsType(/datum/skills/vatgrown/early)
-	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
+	H.set_skills(getSkillsType(/datum/skills/vatgrown/early))
+	timerid = addtimer(CALLBACK(src, PROC_REF(handle_age), H), 15 MINUTES, TIMER_STOPPABLE)
 
 /datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
@@ -387,8 +387,6 @@
 /datum/species/human/vatgrown/early/proc/handle_age(mob/living/carbon/human/H)
 	H.set_species("Vat-Grown Human")
 
-
-GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 /datum/species/robot
 	name = "Combat Robot"
@@ -444,11 +442,17 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
 	H.health_threshold_crit = -100
+	var/datum/action/repair_self/repair_action = new()
+	repair_action.give_action(H)
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
 	H.health_threshold_crit = -50
+	var/datum/action/repair_self/repair_action = H.actions_by_path[/datum/action/repair_self]
+	repair_action.remove_action(H)
+	qdel(repair_action)
+
 
 /mob/living/carbon/human/species/robot/handle_regular_hud_updates()
 	. = ..()
@@ -461,6 +465,28 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	else
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
+
+///Lets a robot repair itself over time at the cost of being stunned and blind
+/datum/action/repair_self
+	name = "Activate autorepair"
+	action_icon_state = "suit_configure"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_ROBOT_AUTOREPAIR,
+	)
+
+/datum/action/repair_self/can_use_action()
+	. = ..()
+	if(!.)
+		return
+	return !owner.incapacitated()
+
+/datum/action/repair_self/action_activate()
+	. = ..()
+	if(!. || !ishuman(owner))
+		return
+	var/mob/living/carbon/human/howner = owner
+	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 5 SECONDS)
+	howner.balloon_alert_to_viewers("Repairing")
 
 /datum/species/robot/alpharii
 	name = "Hammerhead Combat Robot"
@@ -601,7 +627,8 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	name = "Monkey"
 	name_plural = "Monkeys"
 	icobase = 'icons/mob/human_races/r_monkey.dmi'
-	species_flags = HAS_NO_HAIR|NO_STAMINA|CAN_VENTCRAWL|DETACHABLE_HEAD
+	species_flags = HAS_NO_HAIR|NO_STAMINA|DETACHABLE_HEAD
+	inherent_traits = list(TRAIT_CAN_VENTCRAWL)
 	reagent_tag = IS_MONKEY
 	eyes = "blank_eyes"
 	speech_verb_override = "chimpers"
@@ -865,20 +892,20 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	// to be drawn for the mob. This is fairly delicate, try to avoid messing with it
 	// unless you know exactly what it does.
 	var/list/gear = list(
-		"i_clothing" =   list("loc" = ui_iclothing, "slot" = SLOT_W_UNIFORM, "state" = "uniform", "toggle" = TRUE),
-		"o_clothing" =   list("loc" = ui_oclothing, "slot" = SLOT_WEAR_SUIT, "state" = "suit",  "toggle" = TRUE),
-		"mask" =         list("loc" = ui_mask,      "slot" = SLOT_WEAR_MASK, "state" = "mask",  "toggle" = TRUE),
-		"gloves" =       list("loc" = ui_gloves,    "slot" = SLOT_GLOVES,    "state" = "gloves", "toggle" = TRUE),
-		"eyes" =         list("loc" = ui_glasses,   "slot" = SLOT_GLASSES,   "state" = "glasses","toggle" = TRUE),
-		"wear_ear" =     list("loc" = ui_wear_ear,  "slot" = SLOT_EARS,     "state" = "ears",   "toggle" = TRUE),
-		"head" =         list("loc" = ui_head,      "slot" = SLOT_HEAD,      "state" = "head",   "toggle" = TRUE),
-		"shoes" =        list("loc" = ui_shoes,     "slot" = SLOT_SHOES,     "state" = "shoes",  "toggle" = TRUE),
+		"i_clothing" = list("loc" = ui_iclothing, "slot" = SLOT_W_UNIFORM, "state" = "uniform", "toggle" = TRUE),
+		"o_clothing" = list("loc" = ui_oclothing, "slot" = SLOT_WEAR_SUIT, "state" = "suit",  "toggle" = TRUE),
+		"mask" = list("loc" = ui_mask,      "slot" = SLOT_WEAR_MASK, "state" = "mask",  "toggle" = TRUE),
+		"gloves" = list("loc" = ui_gloves,    "slot" = SLOT_GLOVES,    "state" = "gloves", "toggle" = TRUE),
+		"eyes" = list("loc" = ui_glasses,   "slot" = SLOT_GLASSES,   "state" = "glasses","toggle" = TRUE),
+		"wear_ear" = list("loc" = ui_wear_ear,  "slot" = SLOT_EARS,     "state" = "ears",   "toggle" = TRUE),
+		"head" = list("loc" = ui_head,      "slot" = SLOT_HEAD,      "state" = "head",   "toggle" = TRUE),
+		"shoes" = list("loc" = ui_shoes,     "slot" = SLOT_SHOES,     "state" = "shoes",  "toggle" = TRUE),
 		"suit storage" = list("loc" = ui_sstore1,   "slot" = SLOT_S_STORE,   "state" = "suit_storage"),
-		"back" =         list("loc" = ui_back,      "slot" = SLOT_BACK,      "state" = "back"),
-		"id" =           list("loc" = ui_id,        "slot" = SLOT_WEAR_ID,   "state" = "id"),
-		"storage1" =     list("loc" = ui_storage1,  "slot" = SLOT_L_STORE,   "state" = "pocket"),
-		"storage2" =     list("loc" = ui_storage2,  "slot" = SLOT_R_STORE,   "state" = "pocket"),
-		"belt" =         list("loc" = ui_belt,      "slot" = SLOT_BELT,      "state" = "belt")
+		"back" = list("loc" = ui_back,      "slot" = SLOT_BACK,      "state" = "back"),
+		"id" = list("loc" = ui_id,        "slot" = SLOT_WEAR_ID,   "state" = "id"),
+		"storage1" = list("loc" = ui_storage1,  "slot" = SLOT_L_STORE,   "state" = "pocket"),
+		"storage2" = list("loc" = ui_storage2,  "slot" = SLOT_R_STORE,   "state" = "pocket"),
+		"belt" = list("loc" = ui_belt,      "slot" = SLOT_BELT,      "state" = "belt")
 		)
 
 /datum/hud_data/New()

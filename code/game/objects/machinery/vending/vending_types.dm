@@ -107,7 +107,7 @@
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
 	products = list(
-		/obj/item/reagent_containers/food/snacks/packaged_burger = -1,
+		/obj/item/reagent_containers/food/snacks/burger/packaged_burger = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_burrito = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_hdogs = -1,
 		/obj/item/reagent_containers/food/snacks/kepler_crisps = -1,
@@ -192,6 +192,7 @@
 			/obj/item/storage/pill_bottle/dylovene = 15,
 			/obj/item/storage/pill_bottle/inaprovaline = 15,
 			/obj/item/storage/pill_bottle/isotonic = 15,
+			/obj/item/storage/pill_bottle/paracetamol = 6,
 			/obj/item/storage/pill_bottle/dexalin = 6,
 			/obj/item/storage/pill_bottle/spaceacillin = 6,
 			/obj/item/storage/pill_bottle/alkysine = 6,
@@ -201,11 +202,14 @@
 			/obj/item/storage/pill_bottle/russian_red = 6,
 		),
 		"Misc" = list(
-			/obj/item/reagent_containers/syringe = -1,
 			/obj/item/tool/research/xeno_analyzer = -1,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
+			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/reagent_containers/glass/beaker = -1,
+			/obj/item/reagent_containers/glass/beaker/large = -1,
+			/obj/item/reagent_containers/glass/beaker/vial = -1,
 			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
 		),
@@ -229,14 +233,14 @@
 	resistance_flags = INDESTRUCTIBLE
 	products = list(
 		"Hypospray" = list (
-			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
-			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
-			/obj/item/reagent_containers/hypospray/advanced = 5,
-			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 5,
-			/obj/item/reagent_containers/hypospray/advanced/kelotane = 5,
-			/obj/item/reagent_containers/hypospray/advanced/tramadol = 5,
-			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 5,
-			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = -1,
+			/obj/item/reagent_containers/hypospray/advanced = -1,
+			/obj/item/reagent_containers/hypospray/advanced/bicaridine = -1,
+			/obj/item/reagent_containers/hypospray/advanced/kelotane = -1,
+			/obj/item/reagent_containers/hypospray/advanced/tramadol = -1,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,
+			/obj/item/reagent_containers/hypospray/advanced/dylovene = -1,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
@@ -261,6 +265,8 @@
 			/obj/item/storage/pill_bottle/tricordrazine = -1,
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/inaprovaline = -1,
+			/obj/item/storage/pill_bottle/isotonic = -1,
+			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/dexalin = -1,
 			/obj/item/storage/pill_bottle/spaceacillin = -1,
 			/obj/item/storage/pill_bottle/alkysine = -1,
@@ -277,11 +283,14 @@
 			/obj/item/stack/medical/splint = -1,
 		),
 		"Misc" = list(
-			/obj/item/reagent_containers/syringe = -1,
 			/obj/item/tool/research/xeno_analyzer = -1,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
+			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/reagent_containers/glass/beaker = -1,
+			/obj/item/reagent_containers/glass/beaker/large = -1,
+			/obj/item/reagent_containers/glass/beaker/vial = -1,
 			/obj/item/clothing/glasses/hud/health = -1,
 			/obj/item/roller = -1,
 		),
@@ -290,7 +299,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
-			/obj/item/reagent_containers/glass/bottle/toxin = 1,
+			/obj/item/reagent_containers/glass/bottle/toxin = -1,
 		),
 	)
 
@@ -512,6 +521,7 @@
 		/obj/item/tool/kitchen/utensil/knife = 2,
 		/obj/item/tool/kitchen/rollingpin = 2,
 		/obj/item/tool/kitchen/knife/butcher = 2,
+		/obj/item/tool/kitchen/knife = -1,
 	)
 
 /obj/machinery/vending/sovietsoda
@@ -532,13 +542,26 @@
 	icon_vend = "engivend-vend"
 	icon_deny = "engivend-deny"
 	products = list(
-		/obj/item/multitool = -1,
-		/obj/item/analyzer = -1,
+		/obj/item/tool/multitool = -1,
+		/obj/item/tool/analyzer = -1,
 		/obj/item/t_scanner = -1,
 		/obj/item/circuitboard/apc = -1,
 		/obj/item/circuitboard/airlock = -1,
 		/obj/item/cell/high = 10,
 		/obj/item/clothing/head/hardhat = 4,
+		/obj/item/clothing/head/welding = 4,
+		/obj/item/clothing/glasses/welding = 4,
+		/obj/item/taperecorder = -1,
+		/obj/item/assembly/igniter = -1,
+		/obj/item/assembly/signaler = -1,
+		/obj/item/assembly/infra = -1,
+		/obj/item/assembly/timer = -1,
+		/obj/item/assembly/prox_sensor = -1,
+		/obj/item/light_bulb/tube = -1,
+		/obj/item/light_bulb/bulb = -1,
+		/obj/item/ashtray/glass = -1,
+		/obj/item/frame/camera = -1,
+		/obj/item/reagent_containers/glass/bucket = -1,
 	)
 
 /obj/machinery/vending/engivend/nopower

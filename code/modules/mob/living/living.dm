@@ -95,8 +95,8 @@
 	stamina_regen_modifiers = list()
 	received_auras = list()
 	emitted_auras = list()
-	RegisterSignal(src, COMSIG_AURA_STARTED, .proc/add_emitted_auras)
-	RegisterSignal(src, COMSIG_AURA_FINISHED, .proc/remove_emitted_auras)
+	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
+	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
 /mob/living/Destroy()
 	for(var/i in embedded_objects)
@@ -360,7 +360,7 @@
 						to_chat(src, span_warning("[L] is restraining [P], you cannot push past."))
 					return
 
-		if(!L.buckled && !L.anchored && !moving_diagonally)
+		if(!L.buckled && !L.anchored)
 			var/mob_swap_mode = NO_SWAP
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
@@ -487,7 +487,7 @@
  * speed : how fast will it fly
  */
 /mob/living/proc/fly_at(atom/target, range, speed, hovering_time)
-	addtimer(CALLBACK(src,.proc/end_flying, layer), hovering_time)
+	addtimer(CALLBACK(src,PROC_REF(end_flying), layer), hovering_time)
 	layer = FLY_LAYER
 	set_flying(TRUE)
 	throw_at(target, range, speed, null, 0, TRUE)
@@ -535,9 +535,15 @@
 		clear_fullscreen("tint", 0)
 		return FALSE
 
+///Modifies the mobs inherent accuracy modifier
 /mob/living/proc/adjust_mob_accuracy(accuracy_mod)
 	ranged_accuracy_mod += accuracy_mod
+	SEND_SIGNAL(src, COMSIG_RANGED_ACCURACY_MOD_CHANGED, accuracy_mod)
 
+///Modifies the mobs inherent scatter modifier
+/mob/living/proc/adjust_mob_scatter(scatter_mod)
+	ranged_scatter_mod += scatter_mod
+	SEND_SIGNAL(src, COMSIG_RANGED_SCATTER_MOD_CHANGED, scatter_mod)
 
 /mob/living/proc/smokecloak_on()
 
@@ -605,7 +611,7 @@ below 100 is not dizzy
 	dizziness = clamp(dizziness + amount, 0, 1000)
 
 	if(dizziness > 100 && !is_dizzy)
-		INVOKE_ASYNC(src, .proc/dizzy_process)
+		INVOKE_ASYNC(src, PROC_REF(dizzy_process))
 
 /mob/living/proc/dizzy_process()
 	is_dizzy = TRUE
@@ -929,7 +935,7 @@ below 100 is not dizzy
 				if(timeleft(afk_timer_id) <= afk_timer)
 					return
 				deltimer(afk_timer_id) //We'll go with the shorter timer.
-			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
+			afk_timer_id = addtimer(CALLBACK(src, PROC_REF(on_sdd_grace_period_end)), afk_timer, TIMER_STOPPABLE)
 	afk_status = new_status
 	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
 

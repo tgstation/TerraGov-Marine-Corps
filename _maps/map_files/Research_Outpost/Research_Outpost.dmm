@@ -38,9 +38,9 @@
 /area/outpost/yard/central)
 "aj" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "al" = (
@@ -228,7 +228,7 @@
 "bj" = (
 /obj/structure/table,
 /obj/structure/cable,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -441,9 +441,18 @@
 "cu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark/yellow2,
 /area/outpost/engineering)
+"cw" = (
+/obj/structure/closet/secure_closet/security,
+/obj/item/weapon/gun/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/attachable/flashlight,
+/turf/open/floor/tile/dark/red2,
+/area/outpost/arrivals/securitylz1)
 "cy" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -695,6 +704,19 @@
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz1)
+"dJ" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/gun/rifle/mpi_km,
+/obj/item/weapon/gun/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/turf/open/floor/tile/dark/red2,
+/area/outpost/brig/armoury)
 "dK" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -863,6 +885,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/cargo/security)
+"eB" = (
+/obj/machinery/prop/autolathe,
+/obj/machinery/light,
+/turf/open/floor/tile/dark/purple2{
+	dir = 10
+	},
+/area/outpost/science/research)
 "eC" = (
 /obj/machinery/vending/hydronutrients,
 /obj/machinery/light,
@@ -1006,9 +1035,9 @@
 "fl" = (
 /obj/structure/table,
 /obj/structure/cable,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -1055,7 +1084,7 @@
 /area/outpost/dormitories)
 "ft" = (
 /obj/structure/table,
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/hydponics)
 "fu" = (
@@ -1536,13 +1565,13 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -2275,7 +2304,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/south)
 "kO" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/prop/r_n_d/protolathe,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -2792,8 +2821,8 @@
 /area/outpost/medbay)
 "nj" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -2943,6 +2972,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/caves/north_west)
+"nQ" = (
+/obj/machinery/prop/autolathe,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/yellow2{
+	dir = 4
+	},
+/area/outpost/engineering)
 "nR" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
@@ -3130,7 +3168,7 @@
 /area/outpost/engineering/engine)
 "oH" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
@@ -3306,7 +3344,7 @@
 /area/outpost/engineering/engine)
 "pt" = (
 /obj/structure/cable,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "pv" = (
@@ -3937,7 +3975,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/north_east)
 "sf" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -4737,7 +4775,7 @@
 /area/outpost/lz2)
 "vO" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/radio,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -4752,7 +4790,7 @@
 "vQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "vR" = (
@@ -4916,8 +4954,8 @@
 "wD" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/attachable/flashlight,
 /obj/item/attachable/heavy_barrel,
 /obj/item/attachable/reddot,
@@ -5139,8 +5177,8 @@
 "xA" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -5198,8 +5236,8 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/radio,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
@@ -5496,7 +5534,7 @@
 /area/outpost/medbay/chemistry)
 "zg" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/clothing/head/beret/sec/warden,
 /obj/machinery/light{
 	dir = 1
@@ -5657,12 +5695,12 @@
 /area/outpost/arrivals/securitylz2)
 "zT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
 "zW" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -5961,6 +5999,17 @@
 	dir = 4
 	},
 /area/outpost/yard/east)
+"Bp" = (
+/obj/structure/closet/secure_closet/security,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/weapon/gun/rifle/mpi_km,
+/obj/item/attachable/flashlight,
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
+/area/outpost/engineering/security)
 "Bq" = (
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidwarning,
@@ -6056,7 +6105,7 @@
 /area/outpost/yard/south_east)
 "BL" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -6540,7 +6589,7 @@
 /area/outpost/yard/central)
 "Ej" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "Ek" = (
@@ -8043,7 +8092,7 @@
 "Ll" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/armoury)
@@ -8233,7 +8282,7 @@
 /area/outpost/hallway/central)
 "Mf" = (
 /obj/structure/table,
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -8586,8 +8635,8 @@
 /area/outpost/yard/south_east)
 "NG" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -8782,17 +8831,6 @@
 	dir = 4
 	},
 /area/outpost/engineering)
-"Ow" = (
-/obj/structure/closet/secure_closet/security,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/weapon/gun/rifle/mpi_km,
-/obj/item/attachable/flashlight,
-/turf/open/floor/tile/dark/red2{
-	dir = 6
-	},
-/area/outpost/engineering/security)
 "Oy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -8935,7 +8973,7 @@
 	},
 /area/outpost/science/hydponics)
 "Pi" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/tile/dark/purple2{
 	dir = 6
 	},
@@ -8974,7 +9012,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/yard/east)
 "Pq" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -9045,7 +9083,7 @@
 	dir = 8
 	},
 /obj/structure/paper_bin,
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -9220,7 +9258,7 @@
 	},
 /area/outpost/hallway/west)
 "Qx" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "Qz" = (
@@ -9248,8 +9286,8 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/attachable/gyro,
 /obj/item/attachable/reddot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/weapon/gun/shotgun/double,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2,
@@ -9379,15 +9417,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/central)
-"Rj" = (
-/obj/machinery/autolathe,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/yellow2{
-	dir = 4
-	},
-/area/outpost/engineering)
 "Rk" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -9735,15 +9764,6 @@
 	dir = 1
 	},
 /area/outpost/hallway/northern)
-"SM" = (
-/obj/structure/closet/secure_closet/security,
-/obj/item/weapon/gun/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/attachable/flashlight,
-/turf/open/floor/tile/dark/red2,
-/area/outpost/arrivals/securitylz1)
 "SN" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 4
@@ -9922,7 +9942,7 @@
 	},
 /area/outpost/cargo)
 "Tz" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
 "TB" = (
@@ -10022,19 +10042,6 @@
 /obj/item/attachable/reddot,
 /turf/open/floor/wood,
 /area/outpost/dormitories)
-"TU" = (
-/obj/structure/rack,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/gun/rifle/mpi_km,
-/obj/item/weapon/gun/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/turf/open/floor/tile/dark/red2,
-/area/outpost/brig/armoury)
 "TW" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -10421,7 +10428,7 @@
 	},
 /area/outpost/medbay)
 "VH" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -10453,7 +10460,7 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/outpost/yard/south_east)
 "VO" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /turf/open/floor/tile/dark/purple2{
 	dir = 9
 	},
@@ -10600,7 +10607,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "Ww" = (
-/obj/machinery/computer/rdservercontrol,
+/obj/machinery/prop/computer/rdservercontrol,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/research)
 "Wx" = (
@@ -10716,13 +10723,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/east)
-"WZ" = (
-/obj/machinery/autolathe,
-/obj/machinery/light,
-/turf/open/floor/tile/dark/purple2{
-	dir = 10
-	},
-/area/outpost/science/research)
 "Xa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10912,7 +10912,7 @@
 /area/outpost/brig)
 "XQ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -15450,7 +15450,7 @@ Wl
 HI
 rx
 xC
-SM
+cw
 Pt
 Gj
 Gj
@@ -24148,7 +24148,7 @@ VO
 MS
 RP
 MS
-WZ
+eB
 zZ
 rF
 aM
@@ -25518,7 +25518,7 @@ yW
 Zt
 Mz
 xy
-Ow
+Bp
 IV
 Ok
 CV
@@ -25866,7 +25866,7 @@ lp
 iz
 cp
 vt
-TU
+dJ
 lp
 op
 OK
@@ -26179,7 +26179,7 @@ Sw
 hF
 zW
 xA
-Rj
+nQ
 ju
 Ov
 UM

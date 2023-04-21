@@ -1,46 +1,79 @@
-/datum/status_effect/stacking/gun_skill
+/datum/status_effect/gun_skill
 	id = "gun_skill"
-	tick_interval = 2 SECONDS
-	delay_before_decay = 5 SECONDS
-	stack_threshold = 100
-	max_stacks = 100
 	///reference to particle effect holder is present for this stack, initially a reference to the type to use
 	var/obj/effect/abstract/particle_holder/particles = /particles/gun_skill
 
-/datum/status_effect/stacking/gun_skill/on_creation(mob/living/new_owner, stacks_to_apply)
+/datum/status_effect/gun_skill/on_creation(mob/living/new_owner, set_duration)
+	if(isnum(set_duration))
+		duration = set_duration
 	. = ..()
 	if(!.)
 		return
 	particles = new(owner, particles)
 
-/datum/status_effect/stacking/gun_skill/add_stacks(stacks_added)
-	. = ..()
-	if(!.)
-		return
-	particles.particles.spawning = stacks
-
-/datum/status_effect/stacking/gun_skill/Destroy()
+/datum/status_effect/gun_skill/Destroy()
 	if(particles)
 		QDEL_NULL(particles)
 	return ..()
 
+//Base accuracy effect
+/datum/status_effect/gun_skill/accuracy
+	///How much the owner's accuracy will be modified by. Positive or negative.
+	var/accuracy_modifier = 0
 
-/datum/status_effect/stacking/gun_skill/accuracy/buff
+/datum/status_effect/gun_skill/accuracy/on_apply()
+	if(!isliving(owner))
+		return FALSE
+	var/mob/living/living_owner = owner
+	living_owner.adjust_mob_accuracy(accuracy_modifier)
+	return TRUE
+
+/datum/status_effect/gun_skill/accuracy/on_remove()
+	if(!isliving(owner))
+		return FALSE
+	var/mob/living/living_owner = owner
+	living_owner.adjust_mob_accuracy(-accuracy_modifier)
+
+/datum/status_effect/gun_skill/accuracy/buff
 	id = "gun_skill_accuracy_buff"
+	accuracy_modifier = 25
 	particles = /particles/gun_skill/accuracy/buff
 
-/datum/status_effect/stacking/gun_skill/accuracy/debuff
+/datum/status_effect/gun_skill/accuracy/debuff
 	id = "gun_skill_accuracy_debuff"
+	accuracy_modifier = -25
 	particles = /particles/gun_skill/accuracy/debuff
 
-/datum/status_effect/stacking/gun_skill/scatter/buff
+//Base scatter effect
+/datum/status_effect/gun_skill/scatter
+	///How much the owner's scatter will be modified by. Positive or negative.
+	var/scatter_modifier = 0
+
+/datum/status_effect/gun_skill/scatter/on_apply()
+	if(!isliving(owner))
+		return FALSE
+	var/mob/living/living_owner = owner
+	living_owner.adjust_mob_scatter(scatter_modifier)
+	return TRUE
+
+/datum/status_effect/gun_skill/scatter/on_remove()
+	if(!isliving(owner))
+		return FALSE
+	var/mob/living/living_owner = owner
+	living_owner.adjust_mob_scatter(-scatter_modifier)
+
+/datum/status_effect/gun_skill/scatter/buff
 	id = "gun_skill_scatter_buff"
+	scatter_modifier = -20
 	particles = /particles/gun_skill/scatter/buff
 
-/datum/status_effect/stacking/gun_skill/scatter/debuff
+/datum/status_effect/gun_skill/scatter/debuff
 	id = "gun_skill_scatter_debuff"
+	scatter_modifier = 20
 	particles = /particles/gun_skill/scatter/debuff
 
+
+//particle effects
 /particles/gun_skill
 	count = 30
 	spawning = 3

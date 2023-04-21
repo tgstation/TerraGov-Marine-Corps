@@ -1,5 +1,9 @@
 /obj/item/weapon/shield
 	name = "shield"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/shields_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/shields_right.dmi',
+	)
 
 /obj/item/weapon/shield/Initialize()
 	. = ..()
@@ -7,6 +11,7 @@
 
 /obj/item/weapon/shield/proc/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
+	AddComponent(/datum/component/stun_mitigation)
 
 /obj/item/weapon/shield/riot
 	name = "riot shield"
@@ -21,16 +26,12 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/metal = 1000)
 	attack_verb = list("shoved", "bashed")
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 0, ENERGY = 70, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	var/cooldown = 0 //shield bash cooldown. based on world.time
-
-/obj/item/weapon/shield/riot/metal
-	icon_state = "riot_metal"
 
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -133,6 +134,9 @@
 	else
 		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
 
+/obj/item/weapon/shield/riot/marine/metal
+	icon_state = "riot_metal"
+
 /obj/item/weapon/shield/riot/marine/som
 	name = "\improper S-144 boarding shield"
 	desc = "A robust, heavy shield designed to be shot instead of the person holding it. Commonly employed by the SOM during boarding actions and other close quarter combat scenarios. This one has a SOM flag emblazoned on the front. Alt click to tighten the strap."
@@ -164,7 +168,7 @@
 
 /obj/item/weapon/shield/riot/marine/deployable/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployable_item, type, deploy_time, undeploy_time)
+	AddElement(/datum/element/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 /obj/item/weapon/shield/riot/marine/deployable/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
@@ -176,7 +180,7 @@
 	icon_state = "eshield0" // eshield1 for expanded
 	flags_atom = CONDUCT|NOBLOODY
 	force = 3
-	throwforce = 5.0
+	throwforce = 5
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
