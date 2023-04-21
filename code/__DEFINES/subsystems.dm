@@ -11,7 +11,7 @@
  *
  * make sure you add an update to the schema_version stable in the db changelog
  */
-#define DB_MAJOR_VERSION 5
+#define DB_MAJOR_VERSION 2
 
 /**
  * DB minor schema version
@@ -20,7 +20,7 @@
  *
  * make sure you add an update to the schema_version stable in the db changelog
  */
-#define DB_MINOR_VERSION 23
+#define DB_MINOR_VERSION 1
 
 
 //! ## Timing subsystem
@@ -235,47 +235,13 @@
 */
 #define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)
 
-// Air subsystem subtasks
-#define SSAIR_PIPENETS 1
-#define SSAIR_ATMOSMACHINERY 2
-#define SSAIR_ACTIVETURFS 3
-#define SSAIR_HOTSPOTS 4
-#define SSAIR_EXCITEDGROUPS 5
-#define SSAIR_HIGHPRESSURE 6
-#define SSAIR_SUPERCONDUCTIVITY 7
-#define SSAIR_PROCESS_ATOMS 8
-
-// Pipeline rebuild helper defines, these suck but it'll do for now //Fools you actually merged it
-#define SSAIR_REBUILD_PIPELINE 1
-#define SSAIR_REBUILD_QUEUE 2
-
 // Explosion Subsystem subtasks
 #define SSEXPLOSIONS_MOVABLES 1
 #define SSEXPLOSIONS_TURFS 2
 #define SSEXPLOSIONS_THROWS 3
 
-// Wardrobe subsystem tasks
-#define SSWARDROBE_STOCK 1
-#define SSWARDROBE_INSPECT 2
-
-// Wardrobe cache metadata indexes
-#define WARDROBE_CACHE_COUNT 1
-#define WARDROBE_CACHE_LAST_INSPECT 2
-#define WARDROBE_CACHE_CALL_INSERT 3
-#define WARDROBE_CACHE_CALL_REMOVAL 4
-
-// Wardrobe preloaded stock indexes
-#define WARDROBE_STOCK_CONTENTS 1
-#define WARDROBE_STOCK_CALL_INSERT 2
-#define WARDROBE_STOCK_CALL_REMOVAL 3
-
-// Wardrobe callback master list indexes
-#define WARDROBE_CALLBACK_INSERT 1
-#define WARDROBE_CALLBACK_REMOVE 2
-
 // Subsystem delta times or tickrates, in seconds. I.e, how many seconds in between each process() call for objects being processed by that subsystem.
 // Only use these defines if you want to access some other objects processing delta_time, otherwise use the delta_time that is sent as a parameter to process()
-#define SSFLUIDS_DT (SSplumbing.wait/10)
 #define SSMACHINES_DT (SSmachines.wait/10)
 #define SSMOBS_DT (SSmobs.wait/10)
 #define SSOBJ_DT (SSobj.wait/10)
