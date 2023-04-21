@@ -5,7 +5,7 @@
 /obj/item/chameleon
 	name = "chameleon-projector"
 	icon_state = "shield0"
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',

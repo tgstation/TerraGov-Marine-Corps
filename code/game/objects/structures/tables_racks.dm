@@ -103,7 +103,7 @@
 		return TRUE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
+	if(S?.climbable && !(S.flags_1 & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
 		return TRUE
 	if(flipped)
 		if(get_dir(loc, target) & dir)
@@ -116,7 +116,7 @@
 	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(flags_1 & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
@@ -258,7 +258,7 @@
 			if(T.flipped && T.dir == src.dir && !T.unflipping_check(new_dir))
 				return FALSE
 	for(var/obj/structure/S in loc)
-		if((S.flags_atom & ON_BORDER) && S.density && S != src) //We would put back on a structure that wouldn't allow it
+		if((S.flags_1 & ON_BORDER) && S.density && S != src) //We would put back on a structure that wouldn't allow it
 			return FALSE
 	return TRUE
 
@@ -304,7 +304,7 @@
 		layer = FLY_LAYER
 	flipped = TRUE
 	coverage = 60
-	flags_atom |= ON_BORDER
+	flags_1 |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))
 		var/obj/structure/table/T = locate() in get_step(src,D)
 		if(T && !T.flipped)
@@ -324,7 +324,7 @@
 	flipped = FALSE
 	coverage = 10
 	climbable = initial(climbable)
-	flags_atom &= ~ON_BORDER
+	flags_1 &= ~ON_BORDER
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
 		var/obj/structure/table/T = locate() in get_step(src.loc,D)
 		if(T?.flipped && T.dir == src.dir)
@@ -537,7 +537,7 @@
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
+	if(S?.climbable && !(S.flags_1 & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
 		return TRUE
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)

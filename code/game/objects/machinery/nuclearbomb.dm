@@ -13,7 +13,7 @@
 	density = TRUE
 	anchored = TRUE
 	coverage = 20
-	flags_atom = CRITICAL_ATOM
+	flags_1 = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
 	layer = BELOW_MOB_LAYER
 	interaction_flags = INTERACT_OBJ_UI

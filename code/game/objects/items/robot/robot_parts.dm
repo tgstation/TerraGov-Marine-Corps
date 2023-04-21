@@ -7,7 +7,7 @@
 	)
 	item_state = "buildpipe"
 	icon_state = "blank"
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	var/list/part
 
@@ -53,7 +53,7 @@
 /obj/item/robot_parts/biotic
 	name = "biotic limbs"
 	icon = 'icons/mob/human_races/r_human.dmi'
-	flags_atom = NONE
+	flags_1 = NONE
 
 /obj/item/robot_parts/biotic/l_arm
 	name = "biotic left arm"

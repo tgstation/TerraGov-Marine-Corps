@@ -6,7 +6,7 @@
 	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	flags_atom = ON_BORDER
+	flags_1 = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
@@ -72,7 +72,7 @@
 				knownblockers += src
 				return COMPONENT_ATOM_BLOCK_EXIT
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
+	if(!density || !(flags_1 & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
 		return NONE
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
@@ -99,11 +99,11 @@
 		deconstruct(FALSE)
 		return FALSE
 
-	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
+	if((mover.flags_1 & ON_BORDER) && get_dir(loc, target) & dir)
 		return FALSE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
+	if(S?.climbable && !(S.flags_1 & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
 	if(get_dir(loc, target) & dir)

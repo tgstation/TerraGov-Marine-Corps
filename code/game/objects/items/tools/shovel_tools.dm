@@ -6,7 +6,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "shovel"
 	item_state = "shovel"
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 8
 	throwforce = 4

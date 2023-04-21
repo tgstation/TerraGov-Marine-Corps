@@ -13,6 +13,7 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 	for(var/obj/effect/ai_node/ai_node AS in GLOB.all_nodes)
 		nodes += list(ai_node.serialize())
 	rustg_register_nodes_astar(json_encode(nodes))
+	return SS_INIT_SUCCESS
 
 #ifdef TESTING
 #define BENCHMARK_LOOP while(world.timeofday < end_time)
@@ -111,7 +112,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 					atom_to_check = current_node.adjacent_nodes[direction]
 				if(TILE_PATHING)
 					var/turf/turf_to_check = get_step(current_atom, direction)
-					if(turf_to_check.density || turf_to_check.flags_atom & AI_BLOCKED)
+					if(turf_to_check.density || turf_to_check.flags_1 & AI_BLOCKED)
 						continue
 					atom_to_check = turf_to_check
 			if(paths_to_check[atom_to_check] || paths_checked[atom_to_check] || !atom_to_check) //We already found a better path to get to this atom

@@ -7,7 +7,7 @@
 	name = "pickaxe"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "pickaxe"
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 15
 	throwforce = 4

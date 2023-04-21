@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(greyscale)
 		var/datum/greyscale_config/config = new greyscale_type()
 		configurations["[greyscale_type]"] = config
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 ///Proc built to handle cacheing the nested lists of armor colors found in code/modules/clothing/modular_armor
 /datum/controller/subsystem/greyscale/proc/cache_list(list/colors, config)

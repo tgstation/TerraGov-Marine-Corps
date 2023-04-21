@@ -12,7 +12,7 @@
 	move_delay = 2.5	//set this to limit the speed of the vehicle
 	max_integrity = 150
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-	flags_atom = BUMP_ATTACKABLE
+	flags_1 = BUMP_ATTACKABLE
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
 	/// Needed to keep track of any slowdowns and/or diagonal movement
 	var/next_move_delay = 0

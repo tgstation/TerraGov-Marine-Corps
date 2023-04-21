@@ -543,7 +543,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_color = LIGHT_COLOR_FIRE
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 4
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("burnt", "singed")
 

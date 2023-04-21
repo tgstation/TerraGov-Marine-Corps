@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(minimaps)
 	for(var/i=1 to length(earlyadds)) //lateload icons
 		earlyadds[i].Invoke()
 	earlyadds = null //then clear them
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/minimaps/stat_entry(msg)
 	msg = "Upd:[length(update_targets_unsorted)] Mark: [length(removal_cbs)]"

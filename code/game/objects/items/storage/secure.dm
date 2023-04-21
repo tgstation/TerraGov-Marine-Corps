@@ -165,7 +165,7 @@
 	icon_opened = "safe0"
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	force = 8
 	w_class = WEIGHT_CLASS_GIGANTIC
 	max_w_class = WEIGHT_CLASS_GIGANTIC

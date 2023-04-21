@@ -2,7 +2,8 @@ SUBSYSTEM_DEF(blackbox)
 	name = "Blackbox"
 	wait = 10 MINUTES
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
-
+	flags = SS_NO_INIT
+	
 	var/list/feedback = list()
 	var/sealed = FALSE
 

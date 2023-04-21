@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(atoms)
 	InitializeAtoms()
 	initialized = INITIALIZATION_INNEW_REGULAR
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 #ifdef PROFILE_MAPLOAD_INIT_ATOM
 #define PROFILE_INIT_ATOM_BEGIN(...) var/__profile_stat_time = TICK_USAGE
@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(atoms)
 		count = length(atoms)
 		for(var/I in 1 to count)
 			var/atom/A = atoms[I]
-			if(!(A.flags_atom & INITIALIZED))
+			if(!(A.flags_1 & INITIALIZED_1))
 				CHECK_TICK
 				PROFILE_INIT_ATOM_BEGIN()
 				InitAtom(A, TRUE, mapload_arg)
@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(atoms)
 	else
 		count = 0
 		for(var/atom/A in world)
-			if(!(A.flags_atom & INITIALIZED))
+			if(!(A.flags_1 & INITIALIZED_1))
 				PROFILE_INIT_ATOM_BEGIN()
 				InitAtom(A, FALSE, mapload_arg)
 				PROFILE_INIT_ATOM_END(A)
@@ -133,15 +133,12 @@ SUBSYSTEM_DEF(atoms)
 			if(INITIALIZE_HINT_QDEL)
 				qdel(A)
 				qdeleted = TRUE
-			if(INITIALIZE_HINT_QDEL_FORCE)
-				qdel(A, force = TRUE)
-				qdeleted = TRUE
 			else
 				BadInitializeCalls[the_type] |= BAD_INIT_NO_HINT
 
 	if(!A) //possible harddel
 		qdeleted = TRUE
-	else if(!(A.flags_atom & INITIALIZED))
+	else if(!(A.flags_1 & INITIALIZED_1))
 		BadInitializeCalls[the_type] |= BAD_INIT_DIDNT_INIT
 	else
 		SEND_SIGNAL(A,COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE)

@@ -172,7 +172,7 @@
 	edge = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	flags_item = TWOHANDED
 	force_wielded = 75
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -254,7 +254,7 @@
 	force_wielded = 150
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
-	flags_atom = NOBLOODY
+	flags_1 = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
@@ -378,7 +378,7 @@
 	throw_speed = 3
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	resistance_flags = UNACIDABLE
@@ -445,7 +445,7 @@
 	throw_speed = 2
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
-	flags_atom = CONDUCT | TWOHANDED
+	flags_1 = CONDUCT | TWOHANDED
 	attack_verb = list("smashed", "hammered")
 	attack_speed = 20
 

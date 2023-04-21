@@ -16,7 +16,7 @@
 
 // recieve a mousedrop
 /atom/proc/MouseDrop_T(atom/dropping, mob/user)
-	if(dropping.flags_atom & NOINTERACT)
+	if(dropping.flags_1 & NOINTERACT)
 		return TRUE //Already handled
 
 /atom/movable/MouseDrop_T(atom/dropping, mob/user)

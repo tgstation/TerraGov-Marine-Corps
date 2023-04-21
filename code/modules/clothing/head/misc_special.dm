@@ -17,7 +17,7 @@
 	item_state = "welding"
 	var/up = FALSE
 	soft_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE
 	flags_armor_protection = HEAD|FACE|EYES

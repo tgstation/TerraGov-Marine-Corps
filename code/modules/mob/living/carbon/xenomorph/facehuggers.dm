@@ -21,7 +21,7 @@
 	resistance_flags = NONE
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_armor_protection = FACE|EYES
-	flags_atom = CRITICAL_ATOM
+	flags_1 = CRITICAL_ATOM
 	flags_item = NOBLUDGEON
 	throw_range = 1
 	worn_layer = FACEHUGGER_LAYER

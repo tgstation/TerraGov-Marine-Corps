@@ -13,7 +13,7 @@
 	layer = OBJ_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	interaction_flags = INTERACT_CHECK_INCAPACITATED //no dexterity flag so xenos can climb them
-	flags_atom = ON_BORDER
+	flags_1 = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE	//TEMP PATCH UNTIL XENO AI PATHFINDING IS BETTER, SET THIS TO INDESTRUCTIBLE ONCE IT IS - Tivi
 	obj_integrity = 1000	//Ditto
 	max_integrity = 1000	//Ditto
@@ -47,7 +47,7 @@
 	SIGNAL_HANDLER
 	if(O.throwing)
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
+	if(!density || !(flags_1 & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
 		return NONE
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
@@ -58,10 +58,10 @@
 		return TRUE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
+	if(S?.climbable && !(S.flags_1 & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
-	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) & dir))
+	if(!(flags_1 & ON_BORDER) || !(get_dir(loc, target) & dir))
 		return TRUE
 
 /obj/structure/platform_decoration
@@ -72,7 +72,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = 3.5
-	flags_atom = ON_BORDER
+	flags_1 = ON_BORDER
 	resistance_flags = UNACIDABLE
 
 /obj/structure/platform_decoration/Initialize()

@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(ticker)
 	for(var/client/player AS in GLOB.clients)
 		player.play_title_music()
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 ///returns the string address of a random config lobby song
 /datum/controller/subsystem/ticker/proc/choose_lobby_song()

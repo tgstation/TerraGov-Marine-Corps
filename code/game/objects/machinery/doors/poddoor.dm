@@ -15,12 +15,12 @@
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.flags_1 |= AI_BLOCKED
 
 /obj/machinery/door/poddoor/Destroy()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
-		current_turf.flags_atom &= ~AI_BLOCKED
+		current_turf.flags_1 &= ~AI_BLOCKED
 	return ..()
 
 /obj/machinery/door/poddoor/bumpopen(mob/user)
@@ -30,13 +30,13 @@
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
-		current_turf.flags_atom &= ~AI_BLOCKED
+		current_turf.flags_1 &= ~AI_BLOCKED
 
 /obj/machinery/door/poddoor/close()
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.flags_1 |= AI_BLOCKED
 
 /obj/machinery/door/poddoor/Bumped(atom/AM)
 	if(!density)

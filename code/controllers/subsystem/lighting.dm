@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(lighting)
 		//Handle static lightnig
 		create_all_lighting_objects()
 	fire(FALSE, TRUE)
-	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/lighting/stat_entry()

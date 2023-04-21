@@ -31,9 +31,9 @@
  */
 /turf/open/space/Initialize(mapload, ...)
 	SHOULD_CALL_PARENT(FALSE) //prevent laggies
-	if(flags_atom & INITIALIZED)
+	if(flags_1 & INITIALIZED_1)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	ENABLE_BITFIELD(flags_atom, INITIALIZED)
+	ENABLE_BITFIELD(flags_1, INITIALIZED_1)
 	icon_state = SPACE_ICON_STATE(x, y, z)
 
 	return INITIALIZE_HINT_NORMAL

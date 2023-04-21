@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(persistence)
 	LoadSeasonalItems()
 	load_custom_loadouts_list()
 	load_last_civil_war_round_time()
-	return ..()
+	return SS_INIT_SUCCESS
 
 ///Stores data at the end of the round
 /datum/controller/subsystem/persistence/proc/CollectData()

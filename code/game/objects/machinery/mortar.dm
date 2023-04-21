@@ -539,7 +539,7 @@
 	)
 	icon_state = "mortar_ammo_cas"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	///Ammo datum typepath that the shell uses
 	var/ammo_type
 

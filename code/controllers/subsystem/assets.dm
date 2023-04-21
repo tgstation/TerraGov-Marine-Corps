@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(assets)
 	preload = cache.Copy() //don't preload assets generated during the round
 	transport.Initialize(cache)
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/assets/Recover()
 	cache = SSassets.cache

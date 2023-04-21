@@ -14,7 +14,7 @@ Stepping directly on the mine will also blow it up
 	throwforce = 5
 	throw_range = 6
 	throw_speed = 3
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 
 	/// IFF signal - used to determine friendly units
 	var/iff_signal = NONE

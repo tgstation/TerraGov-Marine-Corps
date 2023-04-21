@@ -18,14 +18,15 @@
 
 
 
-//flags_atom
+//flags_1
 
 #define NOINTERACT (1<<3)		// You can't interact with it, at all. Useful when doing certain animations.
 #define CONDUCT (1<<4)		// conducts electricity (metal etc.)
 #define ON_BORDER (1<<5)		// 'border object'. item has priority to check when entering or leaving
 #define NOBLOODY (1<<6)		// Don't want a blood overlay on this one.
 #define DIRLOCK (1<<7)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define INITIALIZED (1<<8)  	//Whether /atom/Initialize() has already run for the object
+///Whether /atom/Initialize() has already run for the object
+#define INITIALIZED_1 (1<<8)  	//Whether /atom/Initialize() has already run for the object
 #define NODECONSTRUCT (1<<9)
 #define OVERLAY_QUEUED (1<<10)
 #define PREVENT_CLICK_UNDER (1<<11)		//Prevent clicking things below it on the same turf
@@ -54,7 +55,7 @@
 #define HANDLE_BARRIER_BLOCK 2
 
 
-//bitflags that were previously under flags_atom, these only apply to items.
+//bitflags that were previously under flags_1, these only apply to items.
 //clothing specific stuff uses flags_inventory.
 //flags_item
 #define NODROP (1<<0)	// Cannot be dropped/unequipped at all, only deleted.

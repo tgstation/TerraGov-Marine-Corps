@@ -42,6 +42,8 @@ SUBSYSTEM_DEF(direction)
 	for (var/hivenumber in GLOB.hive_datums)
 		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 		init_squad(hivenumber, HS.living_xeno_ruler, )
+	
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/direction/stat_entry()

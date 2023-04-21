@@ -3,7 +3,7 @@
 	desc = "A tool used by great men to placate the frothing masses."
 	icon_state = "chain"
 	item_state = "chain"
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 10
 	throwforce = 7
@@ -20,7 +20,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "cane"
 	item_state = "cane"
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL

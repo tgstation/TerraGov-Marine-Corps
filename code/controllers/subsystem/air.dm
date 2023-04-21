@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(air)
 /datum/controller/subsystem/air/Initialize(timeofday)
 	setup_atmos_machinery()
 	setup_pipenets()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/air/Recover()
 	atmos_machinery = SSair.atmos_machinery

@@ -136,7 +136,7 @@
 		else
 			airlock.locked = TRUE
 			var/turf/current_turf = get_turf(airlock)
-			current_turf.flags_atom |= AI_BLOCKED
+			current_turf.flags_1 |= AI_BLOCKED
 	else
 		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 

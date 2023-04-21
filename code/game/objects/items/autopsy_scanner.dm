@@ -2,5 +2,5 @@
 	name = "autopsy scanner"
 	desc = "Extracts information on wounds."
 	icon_state = "autopsy_scanner"
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL

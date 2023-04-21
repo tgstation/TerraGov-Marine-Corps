@@ -17,7 +17,7 @@ SUBSYSTEM_DEF(icon_smooth)
 		cached.len--
 		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED))
 			continue
-		if(smoothing_atom.flags_atom & INITIALIZED)
+		if(smoothing_atom.flags_1 & INITIALIZED_1)
 			smoothing_atom.smooth_icon()
 		else
 			deferred += smoothing_atom
@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(icon_smooth)
 		if(!isturf(movable_item.loc))
 			continue
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/icon_smooth/proc/add_to_queue(atom/thing)

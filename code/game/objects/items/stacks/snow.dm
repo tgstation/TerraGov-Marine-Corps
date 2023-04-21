@@ -93,7 +93,7 @@
 	//Using same safeties as other constructions
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
 		if(O.density)
-			if(O.flags_atom & ON_BORDER)
+			if(O.flags_1 & ON_BORDER)
 				if(O.dir == user.dir)
 					to_chat(user, span_warning("There is already \a [O.name] in this direction!"))
 					return
@@ -109,7 +109,7 @@
 		return
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
 		if(O.density)
-			if(!(O.flags_atom & ON_BORDER) || O.dir == user.dir)
+			if(!(O.flags_1 & ON_BORDER) || O.dir == user.dir)
 				return
 	var/obj/structure/barricade/snow/SB = new(user.loc, user.dir)
 	user.visible_message(span_notice("[user] assembles a snow barricade."),

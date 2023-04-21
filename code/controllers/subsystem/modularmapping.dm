@@ -9,4 +9,4 @@ SUBSYSTEM_DEF(modularmapping)
 		map.load_modularmap()
 	markers = null
 	repopulate_sorted_areas() //adds all the modular map areas to the list
-	return ..()
+	return SS_INIT_SUCCESS

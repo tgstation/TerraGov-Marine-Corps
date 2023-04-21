@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(silo)
 
 /datum/controller/subsystem/silo/Initialize(timeofday)
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(start_spawning))
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/silo/fire(resumed = 0)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)

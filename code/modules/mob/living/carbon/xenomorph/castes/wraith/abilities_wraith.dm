@@ -384,7 +384,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
 		return TRUE
 	for(var/atom/blocker AS in T)
-		if((blocker.flags_atom & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
+		if((blocker.flags_1 & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
 			continue
 		if(!blocker.CanPass(subject, T) && !ignore_can_pass) //If the subject atom can't pass and we care about that, we have a block
 			return TRUE

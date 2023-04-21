@@ -30,7 +30,7 @@
 		if(!C.incapacitated() && (direction & WEST))
 			knownblockers += C
 			return COMPONENT_ATOM_BLOCK_EXIT
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
+	if(!density || !(flags_1 & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
 		return NONE
 	knownblockers += C
 	return COMPONENT_ATOM_BLOCK_EXIT

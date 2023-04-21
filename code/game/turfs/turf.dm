@@ -61,9 +61,9 @@
 
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
-	if(flags_atom & INITIALIZED)
+	if(flags_1 & INITIALIZED_1)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	ENABLE_BITFIELD(flags_atom, INITIALIZED)
+	ENABLE_BITFIELD(flags_1, INITIALIZED_1)
 
 	// by default, vis_contents is inherited from the turf that was here before
 	vis_contents.Cut()
@@ -132,7 +132,7 @@
 			B.vars[I] = null
 		return QDEL_HINT_IWILLGC
 	visibilityChanged()
-	DISABLE_BITFIELD(flags_atom, INITIALIZED)
+	DISABLE_BITFIELD(flags_1, INITIALIZED_1)
 	soft_armor = null
 	hard_armor = null
 	QDEL_NULL(current_acid)
@@ -182,7 +182,7 @@
 			return TRUE //We've entered the tile and gotten entangled inside it.
 		if(QDELETED(mover)) //Mover deleted from Cross/CanPass, do not proceed.
 			return FALSE
-		else if(!firstbump || ((thing.layer > firstbump.layer || thing.flags_atom & ON_BORDER) && !(firstbump.flags_atom & ON_BORDER)))
+		else if(!firstbump || ((thing.layer > firstbump.layer || thing.flags_1 & ON_BORDER) && !(firstbump.flags_1 & ON_BORDER)))
 			firstbump = thing
 	if(QDELETED(mover)) //Mover deleted from Cross/CanPass/Bump, do not proceed.
 		return FALSE
@@ -229,7 +229,7 @@
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
-		if(O.flags_atom & INITIALIZED)
+		if(O.flags_1 & INITIALIZED_1)
 			SEND_SIGNAL(O, COMSIG_OBJ_HIDE, intact_tile)
 
 
@@ -614,7 +614,7 @@
 			has_obstacle = TRUE
 			break
 
-		if(O.density && !(O.flags_atom & ON_BORDER))
+		if(O.density && !(O.flags_1 & ON_BORDER))
 			has_obstacle = TRUE
 			break
 
@@ -713,7 +713,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 	var/turf/newT
 	if(flags & CHANGETURF_SKIP) // We haven't been initialized
-		if(flags_atom & INITIALIZED)
+		if(flags_1 & INITIALIZED_1)
 			stack_trace("CHANGETURF_SKIP was used in a PlaceOnTop call for a turf that's initialized. This is a mistake. [src]([type])")
 		assemble_baseturfs()
 	if(fake_turf_type)
@@ -810,7 +810,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 // Removes all signs of lattice on the pos of the turf -Donkieyo
 /turf/proc/RemoveLattice()
 	var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-	if(L && (L.flags_atom & INITIALIZED))
+	if(L && (L.flags_1 & INITIALIZED_1))
 		qdel(L)
 
 // A proc in case it needs to be recreated or badmins want to change the baseturfs
@@ -923,19 +923,19 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		switch(severity)
 			if(EXPLODE_DEVASTATE)
 				SSexplosions.highMovAtom[thing_in_turf] += list(src)
-				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+				if(thing_in_turf.flags_1 & PREVENT_CONTENTS_EXPLOSION)
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.highMovAtom[a] += list(src)
 			if(EXPLODE_HEAVY)
 				SSexplosions.medMovAtom[thing_in_turf] += list(src)
-				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+				if(thing_in_turf.flags_1 & PREVENT_CONTENTS_EXPLOSION)
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.medMovAtom[a] += list(src)
 			if(EXPLODE_LIGHT)
 				SSexplosions.lowMovAtom[thing_in_turf] += list(src)
-				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+				if(thing_in_turf.flags_1 & PREVENT_CONTENTS_EXPLOSION)
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.lowMovAtom[a] += list(src)

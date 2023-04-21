@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	name = "Coin"
 	icon_state = "coin"
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	w_class = WEIGHT_CLASS_TINY
 	var/string_attached
 	var/sides = 2

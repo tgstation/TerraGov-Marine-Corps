@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/Initialize(timeofday)
 	SetupOccupations()
 	overflow_role = GetJobType(overflow_role)
-	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/job/proc/SetupOccupations()

@@ -3,7 +3,7 @@
 	icon = 'icons/obj/doors/railing.dmi'
 	icon_state = "railing1"
 	use_power = 0
-	flags_atom = ON_BORDER
+	flags_1 = ON_BORDER
 	opacity = FALSE
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
@@ -35,7 +35,7 @@
 
 /obj/machinery/door/poddoor/railing/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/moveblockers)
 	SIGNAL_HANDLER
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(flags_1 & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 	if(mover.throwing)
 		return NONE
@@ -76,7 +76,7 @@
 	operating = FALSE
 	var/turf/current_turf = get_turf(src)
 	if(current_turf)
-		current_turf.flags_atom &= ~AI_BLOCKED
+		current_turf.flags_1 &= ~AI_BLOCKED
 
 /obj/machinery/door/poddoor/railing/close()
 	if (!SSticker || operating || density)
@@ -89,7 +89,7 @@
 	icon_state = "railing1"
 	var/turf/current_turf = get_turf(src)
 	if(current_turf)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.flags_1 |= AI_BLOCKED
 
 	addtimer(CALLBACK(src, PROC_REF(do_close)), 12)
 	return TRUE

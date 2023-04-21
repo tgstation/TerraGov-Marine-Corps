@@ -7,7 +7,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/toolboxes_right.dmi',
 	)
 	item_state = "toolbox_red"
-	flags_atom = CONDUCT
+	flags_1 = CONDUCT
 	force = 5
 	throwforce = 10
 	throw_speed = 1

@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(events)
 			continue				//don't want this one! leave it for the garbage collector
 		control += E				//add it to the list of all events (controls)
 	reschedule()
-	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/events/fire(resumed = 0)

@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(points)
 
 /datum/controller/subsystem/points/Initialize(timeofday)
 	ordernum = rand(1, 9000)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /// Prepare the global supply pack list at the gamemode start
 /datum/controller/subsystem/points/proc/prepare_supply_packs_list(is_human_req_only = FALSE)

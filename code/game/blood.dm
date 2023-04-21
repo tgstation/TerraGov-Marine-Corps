@@ -27,7 +27,7 @@
 
 
 /obj/add_blood(b_color)
-	if(flags_atom & NOBLOODY)
+	if(flags_1 & NOBLOODY)
 		return FALSE
 	if(b_color)
 		blood_color = b_color

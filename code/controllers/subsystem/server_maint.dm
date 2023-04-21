@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(server_maint)
 /datum/controller/subsystem/server_maint/Initialize(timeofday)
 	if(CONFIG_GET(flag/hub))
 		world.update_hub_visibility(TRUE)
-	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/server_maint/fire(resumed = FALSE)
