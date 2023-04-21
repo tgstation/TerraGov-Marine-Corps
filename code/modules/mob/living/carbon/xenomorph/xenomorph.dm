@@ -92,9 +92,6 @@
 
 		soft_armor = soft_armor.detachArmor(getArmor(arglist(xeno_caste.soft_armor)))
 		hard_armor = hard_armor.detachArmor(getArmor(arglist(xeno_caste.hard_armor)))
-	else
-		soft_armor = getArmor()
-		hard_armor = getArmor()
 
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
@@ -132,10 +129,6 @@
 
 	maxHealth = new_max_health
 	updatehealth()
-
-/mob/living/carbon/xenomorph/set_armor_datum()
-	return //Handled in set_datum()
-
 
 /mob/living/carbon/xenomorph/proc/generate_nicknumber()
 	//We don't have a nicknumber yet, assign one to stick with us
