@@ -88,7 +88,6 @@
 	..()
 
 /obj/machinery/power/apc/Initialize(mapload, ndir, building)
-	. = ..()
 	GLOB.apcs_list += src
 	wires = new /datum/wires/apc(src)
 
