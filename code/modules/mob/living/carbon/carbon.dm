@@ -141,12 +141,12 @@
 
 /mob/living/carbon/proc/throw_mode_off()
 	src.in_throw_mode = 0
-	if(hud_used && hud_used.throw_icon) //in case we don't have the HUD and we use the hotkey
+	if(hud_used?.throw_icon) //in case we don't have the HUD and we use the hotkey
 		hud_used.throw_icon.icon_state = "act_throw_off"
 
 /mob/living/carbon/proc/throw_mode_on()
 	src.in_throw_mode = 1
-	if(hud_used && hud_used.throw_icon)
+	if(hud_used?.throw_icon)
 		hud_used.throw_icon.icon_state = "act_throw_on"
 
 ///Throws active held item at target in params

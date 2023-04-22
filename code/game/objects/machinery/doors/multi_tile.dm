@@ -177,7 +177,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/marine/alpha/sl
 	name = "\improper Alpha Squad Leader Preparations"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
-	req_one_access =  null
+	req_one_access = null
 
 /obj/machinery/door/airlock/multi_tile/mainship/marine/alpha/engineer
 	name = "\improper Alpha Squad Engineer Preparations"
@@ -187,7 +187,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/marine/alpha/medic
 	name = "\improper Alpha Squad Medic Preparations"
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ALPHA)
-	req_one_access =  null
+	req_one_access = null
 
 /obj/machinery/door/airlock/multi_tile/mainship/marine/alpha/smart
 	name = "\improper Alpha Squad Smartgunner Preparations"

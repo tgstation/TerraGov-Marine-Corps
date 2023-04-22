@@ -481,7 +481,7 @@
 	if(!new_dir || new_dir == old_dir)
 		return
 	owner.overlays -= stolen_appearance
-	var/matrix/new_transform  = stolen_appearance.transform
+	var/matrix/new_transform = stolen_appearance.transform
 	switch(old_dir)
 		if(NORTH)
 			new_transform.Translate(-15, -12)

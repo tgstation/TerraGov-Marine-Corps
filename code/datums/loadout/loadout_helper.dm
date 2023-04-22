@@ -60,6 +60,8 @@
 		item_cat = CAT_LEDSUP
 	else if (user.job.title == SQUAD_ENGINEER)
 		item_cat = CAT_ENGSUP
+	else if(user.job.title == FIELD_COMMANDER)
+		item_cat = CAT_FCSUP
 	else
 		return FALSE
 

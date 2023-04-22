@@ -306,7 +306,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			flameturf += t
 		if(throw_range > dist)
 			throwTurf[t] += list(epicenter)
-			throwTurf[t][epicenter] =  list(max_range - dist, get_dir(epicenter, t))
+			throwTurf[t][epicenter] = list(max_range - dist, get_dir(epicenter, t))
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPLOSION, epicenter, devastation_range, heavy_impact_range, light_impact_range, (REALTIMEOFDAY - started_at) * 0.1)
 

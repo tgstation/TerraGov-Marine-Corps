@@ -17,8 +17,9 @@
 	var/datum/action/harvester/reagent_select/reagent_select_action
 	///The maximum amount that one chemical can be loaded
 	var/max_loadable_reagent_amount = 30
+	var/loadup_on_attack = FALSE
 
-/datum/component/harvester/Initialize(max_reagent_amount)
+/datum/component/harvester/Initialize(max_reagent_amount, loadup_on_attack)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -26,6 +27,8 @@
 
 	if(max_reagent_amount)
 		max_loadable_reagent_amount = max_reagent_amount
+	if(loadup_on_attack)
+		src.loadup_on_attack = loadup_on_attack
 
 	reagent_select_action = new
 	LAZYADD(item_parent.actions, reagent_select_action)
@@ -48,7 +51,8 @@
 		COMSIG_PARENT_EXAMINE,
 		COMSIG_ITEM_UNIQUE_ACTION,
 		COMSIG_ITEM_ATTACK,
-		COMSIG_PARENT_ATTACKBY))
+		COMSIG_PARENT_ATTACKBY,
+	))
 
 ///Adds additional text for the component when examining the item
 /datum/component/harvester/proc/examine(datum/source, mob/user, list/examine_list)
@@ -112,7 +116,6 @@
 
 ///Handles behavior when activating the weapon
 /datum/component/harvester/proc/activate_blade_async(datum/source, mob/user)
-
 	if(loaded_reagent)
 		user.balloon_alert(user, "[initial(loaded_reagent.name)]")
 		return
@@ -196,6 +199,9 @@
 		update_selected_reagent(null)
 		user.balloon_alert(user, "[initial(loaded_reagent.name)]: empty")
 	loaded_reagent = null
+
+	if(loadup_on_attack)
+		INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
 
 /datum/component/harvester/proc/select_reagent(datum/source)
 	var/list/options = list()

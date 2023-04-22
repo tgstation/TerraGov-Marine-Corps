@@ -21,9 +21,9 @@
 
 /obj/item/stack/sheet/glass/Initialize(mapload, new_amount)
 	. = ..()
-	recipes = list(new/datum/stack_recipe("directional window", created_window, 1, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req =  SKILL_CONSTRUCTION_PLASTEEL),\
-				new/datum/stack_recipe("fulltile window", text2path("[created_window]/full"), 4, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req =  SKILL_CONSTRUCTION_PLASTEEL),\
-				new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req =  SKILL_CONSTRUCTION_PLASTEEL))
+	recipes = list(new/datum/stack_recipe("directional window", created_window, 1, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL),\
+				new/datum/stack_recipe("fulltile window", text2path("[created_window]/full"), 4, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL),\
+				new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL))
 
 /obj/item/stack/sheet/glass/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -32,7 +32,7 @@
 		return
 
 	else if(istype(I, /obj/item/stack/rods))
-		var/obj/item/stack/rods/V  = I
+		var/obj/item/stack/rods/V = I
 		if(V.get_amount() < 1 || get_amount() < 1)
 			to_chat(user, span_warning("You need one rod and one sheet of glass to make reinforced glass."))
 			return

@@ -156,7 +156,7 @@ written either to a file opened in binary mode (mode='wb'),
 or to stdout by means of:   sys.stdout.buffer.write()
 
 my_opus = [
-    96, 
+    96,
     [   # track 0:
         ['patch_change', 0, 1, 8],   # and these are the events...
         ['note_on',   5, 1, 25, 96],
@@ -286,7 +286,7 @@ def midi2opus(midi=b''):
     my_midi = my_midi[14:]
     track_num = 1   # 5.1
     while len(my_midi) >= 8:
-        track_type   = bytes(my_midi[0:4])
+        track_type = bytes(my_midi[0:4])
         if track_type != b'MTrk':
             _warn('midi2opus: Warning: track #'+str(track_num)+' type is '+str(track_type)+" instead of b'MTrk'")
         [track_length] = struct.unpack('>I', my_midi[4:8])
@@ -379,7 +379,7 @@ but it does make it easy to mix different scores together.
     if old_opus == None:
         return [1000,[],]
     try:
-        old_tpq  = int(old_opus[0])
+        old_tpq = int(old_opus[0])
     except IndexError:   # 5.0
         _warn('to_millisecs: the opus '+str(type(old_opus))+' has no elements')
         return [1000,[],]
@@ -569,20 +569,20 @@ be returned.
             i += 1
             continue
         new_track = []
-        channel2patch_num  = {}  # keep most recent patch change before start
+        channel2patch_num = {}  # keep most recent patch change before start
         channel2patch_time = {}
-        set_tempo_num  = 1000000 # keep most recent tempo change before start
+        set_tempo_num = 1000000 # keep most recent tempo change before start
         set_tempo_time = 0
         earliest_note_time = end_time
         for event in score[i]:
             if event[0] == 'patch_change':
                 patch_time = channel2patch_time.get(event[2]) or 0
                 if (event[1] < start_time) and (event[1] >= patch_time):  # 2.0
-                    channel2patch_num[event[2]]  = event[3]
+                    channel2patch_num[event[2]] = event[3]
                     channel2patch_time[event[2]] = event[1]
             if event[0] == 'set_tempo':
                 if (event[1] < start_time) and (event[1] >= set_tempo_time):
-                    set_tempo_num  = event[2]
+                    set_tempo_num = event[2]
                     set_tempo_time = event[1]
             if (event[1] >= start_time) and (event[1] <= end_time):
                 new_track.append(event)
@@ -687,7 +687,7 @@ that a dedicated function is useful.
         input_score = opus2score([1000, input_track])
         for event in input_score[1]:
             output_score[1].append(event)
-    output_score[1].sort(key=_ticks) 
+    output_score[1].sort(key=_ticks)
     output_opus = score2opus(output_score)
     return output_opus[1]
 
@@ -722,15 +722,15 @@ pitch_range_sum (sum over tracks of the pitch_ranges),
     bank_select_lsb = -1
     bank_select = []
     channels_by_track = []
-    channels_total    = set([])
+    channels_total = set([])
     general_midi_mode = []
     num_notes_by_channel = dict([])
-    patches_used_by_track  = []
-    patches_used_total     = set([])
+    patches_used_by_track = []
+    patches_used_total = set([])
     patch_changes_by_track = []
-    patch_changes_total    = set([])
+    patch_changes_total = set([])
     percussion = dict([]) # histogram of channel 9 "pitches"
-    pitches    = dict([]) # histogram of pitch-occurrences channels 0-8,10-15
+    pitches = dict([]) # histogram of pitch-occurrences channels 0-8,10-15
     pitch_range_sum = 0   # u pitch-ranges of each track
     pitch_range_by_track = []
     is_a_score = True
@@ -755,7 +755,7 @@ pitch_range_sum (sum over tracks of the pitch_ranges),
                 if event[3] == 9:
                     percussion[event[4]] = percussion.get(event[4],0) + 1
                 else:
-                    pitches[event[4]]    = pitches.get(event[4],0) + 1
+                    pitches[event[4]] = pitches.get(event[4],0) + 1
                     if event[4] > highest_pitch:
                         highest_pitch = event[4]
                     if event[4] < lowest_pitch:
@@ -775,7 +775,7 @@ pitch_range_sum (sum over tracks of the pitch_ranges),
                 if event[2] == 9:
                     percussion[event[3]] = percussion.get(event[3],0) + 1
                 else:
-                    pitches[event[3]]    = pitches.get(event[3],0) + 1
+                    pitches[event[3]] = pitches.get(event[3],0) + 1
                     if event[3] > highest_pitch:
                         highest_pitch = event[3]
                     if event[3] < lowest_pitch:
@@ -851,7 +851,7 @@ tune_request'''.split())
 
 # Actually, 'tune_request' is is F-series event, not strictly a meta-event...
 Meta_events = Text_events + Nontext_meta_events
-All_events  = MIDI_events + Meta_events
+All_events = MIDI_events + Meta_events
 
 # And three dictionaries:
 Number2patch = {   # General MIDI patch numbers:
@@ -1360,7 +1360,7 @@ The options:
         # from the MIDI file spec.  So, I'm going to assume that
         # they CAN, in practice, occur.  I don't know whether it's
         # proper for you to actually emit these into a MIDI file.
-        
+
         elif (first_byte == 0xF2):   # DTime, Beats
             #  <song position msg> ::=     F2 <data pair>
             E = ['song_position', time, _read_14_bit(trackdata[:2])]
@@ -1417,7 +1417,7 @@ The options:
                     E = ['text_event', E[1], '']
                 else:
                     E = []   # EOT with a delta-time of 0; ignore it.
-        
+
         if E and not (E[0] in exclude):
             #if ( $exclusive_event_callback ):
             #    &{ $exclusive_event_callback }( @E );
@@ -1521,7 +1521,7 @@ def _encode(events_lol, unknown_callback=None, never_add_eot=False,
                 parameters = struct.pack('>B', int(E[1]) & 0xFF)
             elif (event == 'pitch_wheel_change'):
                 status = 0xE0 | (int(E[0]) & 0x0F)
-                parameters =  _write_14_bit(int(E[1]) + 0x2000)
+                parameters = _write_14_bit(int(E[1]) + 0x2000)
             else:
                 _warn("BADASS FREAKOUT ERROR 31415!")
 
@@ -1535,7 +1535,7 @@ def _encode(events_lol, unknown_callback=None, never_add_eot=False,
             if (status != last_status) or no_running_status:
                 data.append(struct.pack('>B', status))
             data.append(parameters)
- 
+
             last_status = status
             continue
         else:

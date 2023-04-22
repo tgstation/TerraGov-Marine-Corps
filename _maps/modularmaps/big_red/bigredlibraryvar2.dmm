@@ -24,7 +24,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "eF" = (
@@ -36,7 +36,7 @@
 /area/bigredv2/outside/library)
 "gS" = (
 /obj/structure/table/woodentable,
-/obj/item/book/manual/hydroponics_beekeeping,
+/obj/item/book/manual/nuclear,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "iU" = (
@@ -50,7 +50,7 @@
 "iX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/carpet/side{
-	dir = 5;
+	dir = 5
 	},
 /area/bigredv2/outside/library)
 "jD" = (
@@ -77,16 +77,16 @@
 "mP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "oL" = (
 /turf/open/floor/carpet/side{
-	dir = 1;
+	dir = 1
 	},
 /area/bigredv2/outside/library)
 "pO" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Library";
 	name = "\improper Library Shutters"
@@ -99,7 +99,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "ql" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Library";
@@ -122,8 +122,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "ua" = (
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "uo" = (
 /obj/structure/bookcase{
@@ -147,17 +146,10 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
-"xn" = (
-/obj/structure/bookcase{
-	density = 0
-	},
-/obj/item/book/manual/hydroponics_beekeeping,
-/turf/open/floor/wood,
-/area/bigredv2/outside/library)
 "xz" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
-	dir = 6;
+	dir = 6
 	},
 /area/bigredv2/outside/library)
 "yu" = (
@@ -189,7 +181,7 @@
 /area/bigredv2/outside/library)
 "AN" = (
 /turf/open/floor/carpet/side{
-	dir = 9;
+	dir = 9
 	},
 /area/bigredv2/outside/library)
 "AY" = (
@@ -269,8 +261,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "HF" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -284,8 +275,7 @@
 	dir = 5
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "JQ" = (
 /obj/structure/bookcase{
@@ -328,7 +318,7 @@
 /area/bigredv2/outside/library)
 "NC" = (
 /turf/open/floor/carpet/side{
-	dir = 5;
+	dir = 5
 	},
 /area/bigredv2/outside/library)
 "NO" = (
@@ -360,14 +350,14 @@
 /area/bigredv2/outside/e)
 "Sj" = (
 /turf/open/floor/carpet/side{
-	dir = 10;
+	dir = 10
 	},
 /area/bigredv2/outside/library)
 "Sy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "SK" = (
@@ -383,14 +373,14 @@
 /area/bigredv2/outside/library)
 "Wf" = (
 /turf/open/floor/carpet/side{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/library)
 "WJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "WY" = (
@@ -447,7 +437,7 @@ ce
 FH
 JQ
 AJ
-xn
+qY
 AJ
 VR
 NO

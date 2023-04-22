@@ -11,6 +11,7 @@
 
 /obj/item/weapon/shield/proc/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
+	AddComponent(/datum/component/stun_mitigation)
 
 /obj/item/weapon/shield/riot
 	name = "riot shield"
@@ -179,7 +180,7 @@
 	icon_state = "eshield0" // eshield1 for expanded
 	flags_atom = CONDUCT|NOBLOODY
 	force = 3
-	throwforce = 5.0
+	throwforce = 5
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL

@@ -77,7 +77,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/starboard)
 "sd" = (
@@ -201,7 +201,7 @@
 /area/security/nuke_storage)
 "ER" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/spawner/random/structure/random_broken_computer,
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
 "Gk" = (
