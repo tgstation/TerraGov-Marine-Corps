@@ -197,7 +197,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/custom
 	antagpanel_category = "Custom"
 	show_name_in_check_antagonists = TRUE //They're all different
-	///var/datum/team/custom_team - TODO: actually implement teams
 
 /datum/antagonist/custom/admin_add(datum/mind/new_owner, mob/admin)
 	var/custom_name = stripped_input(admin, "Custom antagonist name:", "Custom antag", "Antagonist")
