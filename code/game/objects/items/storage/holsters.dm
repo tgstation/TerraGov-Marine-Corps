@@ -279,7 +279,7 @@
 	if(!proximity)
 		return
 	//uses the tank's proc to refuel
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank))
+	if(istype(O, /obj/structure/reagent_dispensers/fueltank))
 		tank.afterattack(O, user)
 
 /obj/item/storage/holster/backholster/flamer/examine(mob/user)
