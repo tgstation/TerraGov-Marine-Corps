@@ -185,11 +185,6 @@
 	layer = FULLSCREEN_DRUGGY_LAYER
 	blend_mode = BLEND_MULTIPLY
 
-/atom/movable/screen/fullscreen/machine/update_for_view(client_view)
-	. = ..()
-	animate(src, alpha = initial(alpha)-30, time = 50, loop = -1)
-	animate(alpha = initial(alpha), time = 20, loop = -1)
-
 /atom/movable/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "flash"

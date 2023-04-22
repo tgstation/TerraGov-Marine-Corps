@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/can_be_pulled(user, force)
 	return ..(user, move_resist) // xenos can always be pulled regardless of move force
 
-/mob/living/carbon/human/get_reagent_tags()
+/mob/living/carbon/xenomorph/get_reagent_tags()
 	. = ..()
 	return .|IS_XENO
 

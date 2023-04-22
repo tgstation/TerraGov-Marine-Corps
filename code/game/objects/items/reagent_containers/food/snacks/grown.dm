@@ -94,6 +94,10 @@
 		pocell.charge = pocell.maxcharge
 		qdel(src)
 
+	else if(istype(I, /obj/item/tool/kitchen/utensil/knife))
+		new /obj/item/reagent_containers/food/snacks/rawsticks(src)
+		to_chat(user, "You cut the potato.")
+		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/grown/grapes
 	name = "bunch of grapes"

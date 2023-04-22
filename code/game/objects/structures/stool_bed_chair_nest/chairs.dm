@@ -336,10 +336,6 @@
 /obj/structure/bed/chair/dropship/passenger/rotate()
 	return // no
 
-/obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
-	if(chair_state != DROPSHIP_CHAIR_UNFOLDED)
-		return
-	..()
 
 /obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)

@@ -23,6 +23,7 @@
 
 /obj/machinery/grill/Destroy()
 	QDEL_NULL(grill_loop)
+	grilled_item = null
 	return ..()
 
 /obj/machinery/grill/update_icon_state()
@@ -92,9 +93,6 @@
 		grilled_item = null
 	return ..()
 
-/obj/machinery/grill/Destroy()
-	grilled_item = null
-	return ..()
 
 /obj/machinery/grill/handle_atom_del(atom/A)
 	if(A == grilled_item)

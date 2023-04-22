@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(!check_rights(R_ADMIN))
 		return
 	//Antag memory edit
-	if (href_list["memory_edit"])
+	if(href_list["memory_edit"])
 		edit_memory(usr)
 		//owner.traitor_panel()
 		return
@@ -206,26 +206,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 	else
 		return
 	..()
-
-/datum/antagonist/Topic(href,href_list)
-	if(!check_rights(R_ADMIN))
-		return
-	//Antag memory edit
-	if (href_list["memory_edit"])
-		edit_memory(usr)
-		owner.traitor_panel()
-		return
-
-	//Some commands might delete/modify this datum clearing or changing owner
-	var/datum/mind/persistent_owner = owner
-
-	var/commands = get_admin_commands()
-	for(var/admin_command in commands)
-		if(href_list["command"] == admin_command)
-			var/datum/callback/C = commands[admin_command]
-			C.Invoke(usr)
-			persistent_owner.traitor_panel()
-			return
 
 //Returns MINDS of the assigned antags of given type/subtypes
 /proc/get_antag_minds(antag_type,specific = FALSE)
