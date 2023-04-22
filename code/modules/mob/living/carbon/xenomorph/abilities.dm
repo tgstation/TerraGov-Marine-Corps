@@ -199,7 +199,8 @@
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/xeno_action/activable/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
-	if(toggled)
+	var/list/modifiers = params2list(params)
+	if(toggled && modifiers["left"] && !modifiers["shift"] && !modifiers["ctrl"])
 		dragging = TRUE
 		preshutter_build_resin(get_turf(object))
 
@@ -287,9 +288,7 @@
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xowner = owner
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
-		preshutter_build_resin(A)
-	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
+	if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
 	else
 		build_resin(get_turf(A))
@@ -309,6 +308,9 @@
 
 /// A version of build_resin with the plasma drain and distance checks removed.
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
+	if(!T)
+		return
+
 	if(!SSresinshaping.get_building_points(owner))
 		owner.balloon_alert(owner, "You have used all your quick-build points! Wait until the marines have landed!")
 		return
