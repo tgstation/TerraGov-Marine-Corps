@@ -39,7 +39,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 1 SECONDS
 	accuracy_mult = 1.2 //it's got a bipod
-	burst_accuracy_mult = 1
+	burst_accuracy_bonus = 1
 	burst_scatter_mult = 0
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
