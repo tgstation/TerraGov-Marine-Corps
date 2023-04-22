@@ -102,14 +102,9 @@
 		INVOKE_ASYNC(src, PROC_REF(emote), "pain")
 
 	next_move_slowdown += slow_amt
-	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
-	var/armor_block = get_soft_armor("acid", affecting)
-	INVOKE_ASYNC(affecting, TYPE_PROC_REF(/datum/limb, take_damage_limb), 0, acid_damage/2, FALSE, FALSE, armor_block)
-
-	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
-	armor_block = get_soft_armor("acid", affecting)
-	INVOKE_ASYNC(affecting, TYPE_PROC_REF(/datum/limb, take_damage_limb), 0, acid_damage/2, FALSE, FALSE, armor_block, TRUE)
-
+	var/list/affected_limbs - list(get_limb(BODY_ZONE_PRECISE_L_FOOT), get_limb(BODY_ZONE_PRECISE_R_FOOT))
+	for(var/datum/limb/affecting AS in affected_limbs)
+		INVOKE_ASYNC(affecting, TYPE_PROC_REF(/datum/limb, take_damage_limb), 0, modify_by_armor(acid_damage * 0.5, ACID, def_zone = affecting))
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc

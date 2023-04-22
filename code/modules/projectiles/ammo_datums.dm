@@ -2112,8 +2112,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 ///Applies the actual rad effects
 /datum/ammo/rocket/som/rad/proc/irradiate(mob/living/victim, strength)
-	var/rad_penetration = max((100 - victim.get_soft_armor(BIO)) / 100, 0.25)
-	var/effective_strength = strength * rad_penetration //strength with rad armor taken into account
+	var/effective_strength = max(victim.modify_by_armor(strength, BIO), strength * 0.25)
 	victim.adjustCloneLoss(effective_strength)
 	victim.adjustStaminaLoss(effective_strength * 7)
 	victim.adjust_stagger(effective_strength / 2)
@@ -2747,7 +2746,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			if(living_victim.stat == DEAD)
 				continue
 			if(!isxeno(living_victim))
-				living_victim.apply_damage(aoe_damage, BURN, blocked = living_victim.get_soft_armor(ENERGY) - penetration, updating_health = TRUE)
+				living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration)
 				staggerstun(living_victim, P, 10, slowdown = 1)
 		else if(isobj(victim))
 			var/obj/obj_victim = victim
@@ -3021,9 +3020,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	C.add_slowdown(slowdown_stacks) //slow em down
 
 	set_reagents()
-	var/armor_block = (1 - C.get_soft_armor(armor_type, BODY_ZONE_CHEST) * 0.01) //Check the target's armor mod; default to chest
 	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] *= armor_block
+		spit_reagents[reagent_id] = C.modify_by_armor(spit_reagents[reagent_id], armor_type, penetration, def_zone)
 
 	C.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
@@ -3313,9 +3311,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	var/mob/living/carbon/carbon_victim = victim
 	set_reagents()
-	var/armor_block = (1 - carbon_victim.get_soft_armor(armor_type, BODY_ZONE_CHEST) * 0.01) //Check the target's armor mod; default to chest
 	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] *= armor_block
+		spit_reagents[reagent_id] = C.modify_by_armor(spit_reagents[reagent_id], armor_type, penetration, def_zone)
 
 	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
 

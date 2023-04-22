@@ -131,41 +131,39 @@
 
 	var/b_loss = 0
 	var/f_loss = 0
-	var/armor = get_soft_armor("bomb") * 0.01 //Gets average bomb armor over all limbs.
+	var/stagger_slow_amount = 0
+	var/ear_damage_amount = 0
+	var/armor = modify_by_armor(1, BOMB) //percentage that pierces overall bomb armor
+
+	if(armor <= 0) //we have 100 effective bomb armor
+		return
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			b_loss += rand(160, 200)
-			f_loss += rand(160, 200)
-
-			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				adjust_ear_damage(60 - (60 * armor), 240 - (240 * armor))
-
-			adjust_stagger(12 - (12 * armor))
-			add_slowdown((120 - round(120 * armor, 1)) * 0.01)
+			b_loss = rand(160, 200)
+			f_loss = rand(160, 200)
+			stagger_slow_amount = 12
+			ear_damage_amount = 60
 
 		if(EXPLODE_HEAVY)
-			b_loss += rand(80, 100)
-			f_loss += rand(80, 100)
-
-			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				adjust_ear_damage(30 - (30 * armor), 120 - (120 * armor))
-
-			adjust_stagger(6 - (6 * armor))
-			add_slowdown((60 - round(60 * armor, 1)) * 0.1)
+			b_loss = rand(80, 100)
+			f_loss = rand(80, 100)
+			stagger_slow_amount = 6
+			ear_damage_amount = 30
 
 		if(EXPLODE_LIGHT)
-			b_loss += rand(40, 50)
-			f_loss += rand(40, 50)
+			b_loss = rand(40, 50)
+			f_loss = rand(40, 50)
+			stagger_slow_amount = 3
+			ear_damage_amount = 10
 
-			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				adjust_ear_damage(10 - (10 * armor), 30 - (30 * armor))
-
-			adjust_stagger(3 - (3 * armor))
-			add_slowdown((30 - round(30 * armor, 1)) * 0.1)
+	if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+		adjust_ear_damage(ear_damage_amount * armor, ear_damage_amount * 4 * armor)
+	adjust_stagger(stagger_slow_amount * armor)
+	add_slowdown(stagger_slow_amount * armor)
 
 	#ifdef DEBUG_HUMAN_ARMOR
-	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
+	to_chat(world, "DEBUG EX_ACT: armor: [armor], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
 	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE, max_limbs = 4)
