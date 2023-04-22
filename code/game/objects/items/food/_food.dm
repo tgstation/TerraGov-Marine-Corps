@@ -87,3 +87,11 @@
 	if(trash_type)
 		AddElement(/datum/element/food_trash, trash_type)
 	return
+
+/obj/item/food/badrecipe //Item you get from fucking up
+	name = "burned mess"
+	desc = "Someone should be demoted from cook for this."
+	icon_state = "badrecipe"
+	food_reagents = list(/datum/reagent/toxin/bad_food = 30)
+	foodtypes = GROSS
+	w_class = WEIGHT_CLASS_SMALL
