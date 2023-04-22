@@ -32,10 +32,6 @@ Behavior that's still missing from this component that original food items had t
 	var/datum/callback/after_eat
 	///Callback to be ran for when you take a bite of something
 	var/datum/callback/on_consume
-	///Callback to be ran for when the code check if the food is liked, allowing for unique overrides for special foods like donuts with cops.
-	var/datum/callback/check_liked
-	///Last time we checked for food likes
-	var/last_check_time
 	///The initial volume of the foods reagents
 	var/volume = 50
 	///The flavortext for taste (haha get it flavor text)
@@ -53,7 +49,6 @@ Behavior that's still missing from this component that original food items had t
 	junkiness,
 	datum/callback/after_eat,
 	datum/callback/on_consume,
-	datum/callback/check_liked,
 )
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -68,7 +63,6 @@ Behavior that's still missing from this component that original food items had t
 	src.after_eat = after_eat
 	src.on_consume = on_consume
 	src.tastes = string_assoc_list(tastes)
-	src.check_liked = check_liked
 
 	setup_initial_reagents(initial_reagents)
 
@@ -123,7 +117,6 @@ Behavior that's still missing from this component that original food items had t
 	junkiness,
 	datum/callback/after_eat,
 	datum/callback/on_consume,
-	datum/callback/check_liked,
 )
 
 	// If we got passed an old comp, take only the values that will not override our current ones
@@ -176,8 +169,6 @@ Behavior that's still missing from this component that original food items had t
 		src.after_eat = after_eat
 	if(!isnull(on_consume))
 		src.on_consume = on_consume
-	if(!isnull(check_liked))
-		src.check_liked = check_liked
 
 	// add newly passed in reagents
 	setup_initial_reagents(initial_reagents)
@@ -185,7 +176,6 @@ Behavior that's still missing from this component that original food items had t
 /datum/component/edible/Destroy(force, silent)
 	QDEL_NULL(after_eat)
 	QDEL_NULL(on_consume)
-	QDEL_NULL(check_liked)
 	return ..()
 
 /// Sets up the initial reagents of the food.

@@ -59,7 +59,7 @@
 			update_appearance()
 			return
 	else if(IS_EDIBLE(I))
-		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ABSTRACT | DROPDEL)))
+		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & (ABSTRACT | DROPDEL)))
 			return ..()
 		else if(HAS_TRAIT(I, TRAIT_FOOD_GRILLED))
 			to_chat(user, span_notice("[I] has already been grilled!"))

@@ -370,7 +370,7 @@
 	base_build_path = /obj/machinery/smartfridge/drinks
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
-	if(!is_reagent_container(O) || (O.item_flags & ABSTRACT) || !O.reagents || !O.reagents.reagent_list.len)
+	if(!is_reagent_container(O) || (O.flags_item & ABSTRACT) || !O.reagents || !O.reagents.reagent_list.len)
 		return FALSE
 	if(istype(O, /obj/item/reagent_containers/cup) || istype(O, /obj/item/reagent_containers/cup/glass) || istype(O, /obj/item/reagent_containers/condiment))
 		return TRUE
@@ -404,22 +404,6 @@
 
 /obj/machinery/smartfridge/extract/preloaded
 	initial_contents = list(/obj/item/slime_scanner = 2)
-
-// -------------------------------------
-// Cytology Petri Dish Smartfridge
-// -------------------------------------
-/obj/machinery/smartfridge/petri
-	name = "smart petri dish storage"
-	desc = "A refrigerated storage unit for petri dishes."
-	base_build_path = /obj/machinery/smartfridge/petri
-
-/obj/machinery/smartfridge/petri/accept_check(obj/item/O)
-	if(istype(O, /obj/item/petri_dish))
-		return TRUE
-	return FALSE
-
-/obj/machinery/smartfridge/petri/preloaded
-	initial_contents = list(/obj/item/petri_dish = 5)
 
 // -------------------------
 // Organ Surgery Smartfridge
@@ -493,7 +477,7 @@
 					return FALSE
 			return TRUE
 		return FALSE
-	if(!is_reagent_container(O) || (O.item_flags & ABSTRACT))
+	if(!is_reagent_container(O) || (O.flags_item & ABSTRACT))
 		return FALSE
 	if(istype(O, /obj/item/reagent_containers/pill)) // empty pill prank ok
 		return TRUE

@@ -59,9 +59,9 @@
 
 	if(randomize_pixel_offset && isitem(result))
 		var/obj/item/result_item = result
-		if(!(result_item.item_flags & NO_PIXEL_RANDOM_DROP))
-			result_item.pixel_x = result_item.base_pixel_x + rand(-6, 6)
-			result_item.pixel_y = result_item.base_pixel_y + rand(-5, 6)
+		if(!(result_item.flags_item & NO_PIXEL_RANDOM_DROP))
+			result_item.pixel_x = initial(result_item.pixel_x) + rand(-6, 6) //result_item.base_pixel_x
+			result_item.pixel_y = initial(result_item.pixel_y) + rand(-5, 6) //result_item.base_pixel_y
 
 	return recipe_result
 

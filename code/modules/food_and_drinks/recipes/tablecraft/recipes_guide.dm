@@ -16,20 +16,6 @@
 	result = /obj/item/restraints/handcuffs/cable
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/runed_metal
-	reqs = list(/obj/item/stack/sheet/plasteel = 1)
-	result = /obj/item/stack/sheet/runed_metal
-	category = CAT_CULT
-	non_craftable = TRUE
-	steps = list("Use Twisted Construction on plasteel")
-
-/datum/crafting_recipe/constructshell
-	reqs = list(/obj/item/stack/sheet/iron = 50)
-	result = /obj/structure/constructshell
-	category = CAT_CULT
-	non_craftable = TRUE
-	steps = list("Use Twisted Construction on iron")
-
 // Food reactions
 
 /datum/crafting_recipe/food/reaction

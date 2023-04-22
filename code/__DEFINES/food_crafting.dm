@@ -63,7 +63,6 @@ GLOBAL_LIST_INIT(crafting_category_food, list(
 #define CAT_CONTAINERS "Containers"
 #define CAT_ENTERTAINMENT "Entertainment"
 #define CAT_TOOLS "Tools"
-#define CAT_CULT "Blood Cult"
 
 GLOBAL_LIST_INIT(crafting_category, list(
 	CAT_WEAPON_RANGED,
@@ -83,5 +82,4 @@ GLOBAL_LIST_INIT(crafting_category, list(
 	CAT_CONTAINERS,
 	CAT_ENTERTAINMENT,
 	CAT_TOOLS,
-	CAT_CULT,
 ))

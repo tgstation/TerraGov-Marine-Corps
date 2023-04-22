@@ -196,7 +196,7 @@
 	if(panel_open) //Can't insert objects when its screwed open
 		return TRUE
 
-	if (istype(attack_item, /obj/item/reagent_containers/cup/coffeepot) && !(attack_item.item_flags & ABSTRACT) && attack_item.is_open_container())
+	if (istype(attack_item, /obj/item/reagent_containers/cup/coffeepot) && !(attack_item.flags_item & ABSTRACT) && attack_item.is_open_container())
 		var/obj/item/reagent_containers/cup/coffeepot/new_pot = attack_item
 		. = TRUE //no afterattack
 		if(!user.transferItemToLoc(new_pot, src))
@@ -205,7 +205,7 @@
 		update_appearance(UPDATE_OVERLAYS)
 		return TRUE //no afterattack
 
-	if (istype(attack_item, /obj/item/reagent_containers/cup/glass/coffee_cup) && !(attack_item.item_flags & ABSTRACT) && attack_item.is_open_container())
+	if (istype(attack_item, /obj/item/reagent_containers/cup/glass/coffee_cup) && !(attack_item.flags_item & ABSTRACT) && attack_item.is_open_container())
 		var/obj/item/reagent_containers/cup/glass/coffee_cup/new_cup = attack_item
 		if(new_cup.reagents.total_volume > 0)
 			balloon_alert(user, "the cup must be empty!")
@@ -261,7 +261,7 @@
 		update_appearance(UPDATE_OVERLAYS)
 		return TRUE //no afterattack
 
-	if (istype(attack_item, /obj/item/coffee_cartridge) && !(attack_item.item_flags & ABSTRACT))
+	if (istype(attack_item, /obj/item/coffee_cartridge) && !(attack_item.flags_item & ABSTRACT))
 		var/obj/item/coffee_cartridge/new_cartridge = attack_item
 		if(!user.transferItemToLoc(new_cartridge, src))
 			return
@@ -605,7 +605,7 @@
 	if(panel_open) //Can't insert objects when its screwed open
 		return TRUE
 
-	if (istype(attack_item, /obj/item/reagent_containers/cup/coffeepot) && !(attack_item.item_flags & ABSTRACT) && attack_item.is_open_container())
+	if (istype(attack_item, /obj/item/reagent_containers/cup/coffeepot) && !(attack_item.flags_item & ABSTRACT) && attack_item.is_open_container())
 		var/obj/item/reagent_containers/cup/coffeepot/new_pot = attack_item
 		if(!user.transferItemToLoc(new_pot, src))
 			return TRUE
@@ -613,7 +613,7 @@
 		update_appearance(UPDATE_OVERLAYS)
 		return TRUE //no afterattack
 
-	if (istype(attack_item, /obj/item/reagent_containers/cup/glass/coffee) && !(attack_item.item_flags & ABSTRACT) && attack_item.is_open_container())
+	if (istype(attack_item, /obj/item/reagent_containers/cup/glass/coffee) && !(attack_item.flags_item & ABSTRACT) && attack_item.is_open_container())
 		var/obj/item/reagent_containers/cup/glass/coffee/new_cup = attack_item //different type of cup
 		if(new_cup.reagents.total_volume > 0 )
 			balloon_alert(user, "the cup must be empty!")
@@ -669,7 +669,7 @@
 		update_appearance(UPDATE_OVERLAYS)
 		return TRUE //no afterattack
 
-	if (istype(attack_item, /obj/item/food/grown/coffee) && !(attack_item.item_flags & ABSTRACT))
+	if (istype(attack_item, /obj/item/food/grown/coffee) && !(attack_item.flags_item & ABSTRACT))
 		if(coffee_amount >= BEAN_CAPACITY)
 			balloon_alert(user, "the coffee container is full!")
 			return
