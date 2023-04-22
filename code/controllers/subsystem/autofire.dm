@@ -65,12 +65,12 @@ SUBSYSTEM_DEF(automatedfire)
 	// Iterate through each bucket starting from the practical offset
 	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)
 		if(!shooter)
-			shooter =  bucket_list[practical_offset]
+			shooter = bucket_list[practical_offset]
 			bucket_list[practical_offset] = null
 
 		while (shooter)
 			next_shooter = shooter.next
-			INVOKE_ASYNC(shooter, /datum/component/automatedfire/proc/process_shot)
+			INVOKE_ASYNC(shooter, TYPE_PROC_REF(/datum/component/automatedfire, process_shot))
 
 			SSautomatedfire.shooter_count--
 			shooter = next_shooter

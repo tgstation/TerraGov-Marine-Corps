@@ -196,7 +196,7 @@
 /area/lv624/lazarus/hydroponics/aux)
 "pt" = (
 /obj/structure/table,
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},

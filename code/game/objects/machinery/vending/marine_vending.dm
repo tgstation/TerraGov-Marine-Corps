@@ -1,5 +1,5 @@
 /obj/machinery/vending/weapon
-	name = "\improper Automated Weapons Rack"
+	name = "automated weapons rack"
 	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "marinearmory"
 	icon_vend = "marinearmory-vend"
@@ -904,6 +904,7 @@
 		"Ammo Boxes" = list(
 			/obj/item/big_ammo_box = -1,
 			/obj/item/big_ammo_box/smg = -1,
+			/obj/item/big_ammo_box/mg = -1,
 			/obj/item/shotgunbox = -1,
 			/obj/item/shotgunbox/buckshot = -1,
 			/obj/item/shotgunbox/flechette = -1,
@@ -1207,7 +1208,7 @@
 			blood_type = initial(temp_path.blood_type)
 			R.product_name += blood_type? " [blood_type]" : ""
 			temp_list -= R.product_path
-			if(!temp_list.len) break
+			if(!length(temp_list)) break
 
 /obj/machinery/vending/armor_supply
 	name = "\improper Surplus Armor Equipment Vendor"
@@ -1400,7 +1401,7 @@
 			/obj/item/storage/pouch/magazine/large = -1,
 			/obj/item/storage/pouch/magazine/pistol/large = -1,
 			/obj/item/storage/pouch/shotgun = -1,
-			/obj/item/storage/pouch/flare/full = -1,
+			/obj/item/storage/holster/flarepouch/full = -1,
 			/obj/item/storage/pouch/grenade = -1,
 			/obj/item/storage/pouch/explosive = -1,
 			/obj/item/storage/pouch/medkit = -1,

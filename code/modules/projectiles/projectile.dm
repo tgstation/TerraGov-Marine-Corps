@@ -147,7 +147,7 @@
 
 /obj/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo = ispath(ammo_datum) ? GLOB.ammo_list[ammo_datum] : ammo_datum
-	name 		= ammo.name
+	name = ammo.name
 	point_blank_range = ammo.point_blank_range
 
 	///sets greyscale for the projectile if it has been specified by the ammo datum
@@ -155,11 +155,11 @@
 		set_greyscale_config(ammo.projectile_greyscale_config)
 		set_greyscale_colors(ammo.projectile_greyscale_colors)
 
-	icon_state 	= ammo.icon_state
-	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
+	icon_state = ammo.icon_state
+	damage = ammo.damage + bonus_damage //Mainly for emitters.
 	penetration = ammo.penetration
-	sundering 	= ammo.sundering
-	scatter		= ammo.scatter
+	sundering = ammo.sundering
+	scatter = ammo.scatter
 	airburst_multiplier = ammo.airburst_multiplier
 	accuracy   += ammo.accuracy
 	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.
@@ -1204,7 +1204,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		var/list/datum/limb/parts = get_damageable_limbs()
 
-		while(parts.len)
+		while(length(parts))
 			var/datum/limb/picked = pick_n_take(parts)
 			var/weight = GLOB.organ_rel_size[picked.name]
 			armor_val += picked.soft_armor.getRating(armor_type) * weight

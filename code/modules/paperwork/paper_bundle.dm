@@ -197,7 +197,7 @@
 	qdel(src)
 
 /obj/item/paper_bundle/update_icon()
-	if(contents.len)
+	if(length(contents))
 		var/obj/item/I = contents[1]
 		icon_state = I.icon_state
 		overlays = I.overlays
@@ -220,7 +220,7 @@
 			photo = 1
 			overlays += IMG
 	if(i>1)
-		desc =  "[i] papers clipped to each other."
+		desc = "[i] papers clipped to each other."
 	else
 		desc = "A single sheet of paper."
 	if(photo)

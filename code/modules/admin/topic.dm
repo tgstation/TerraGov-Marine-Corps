@@ -126,7 +126,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				dat += "<center><b>0 bans detected for [ckey]</b></center>"
 			else
 				bans = json_decode(response["body"])
-				dat += "<center><b>[bans.len] ban\s detected for [ckey]</b></center>"
+				dat += "<center><b>[length(bans)] ban\s detected for [ckey]</b></center>"
 				for(var/list/ban in bans)
 					dat += "<b>Server: </b> [sanitize(ban["sourceName"])]<br>"
 					dat += "<b>RP Level: </b> [sanitize(ban["sourceRoleplayLevel"])]<br>"
@@ -465,7 +465,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/moth, location, null, delmob, "Moth")
 			if("zombie")
-				newmob =  M.change_mob_type(/mob/living/carbon/human/species/zombie, location, null, delmob, "Zombie")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/zombie, location, null, delmob, "Zombie")
 			if("ai")
 				newmob = M.change_mob_type(/mob/living/silicon/ai, location, null, delmob)
 

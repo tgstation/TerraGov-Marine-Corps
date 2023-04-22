@@ -15,9 +15,7 @@
 	bullet_color = COLOR_PALE_GREEN_GRAY
 	damage = 12
 	spit_cost = 30
-	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	/// The owner of this projectile.
-	var/mob/living/carbon/xenomorph/xeno_owner
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 	/// The amount of stacks applied on hit.
 	var/intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER
 
@@ -186,6 +184,7 @@
 	xeno_owner.gain_plasma(drain_potency * 3.5)
 	xeno_owner.do_attack_animation(xeno_target, ATTACK_EFFECT_DRAIN_STING)
 	playsound(owner.loc, 'sound/effects/alien_tail_swipe1.ogg', 30)
+	xeno_owner.visible_message(message = span_xenowarning("\A [xeno_owner] stings [xeno_target]!"), self_message = span_xenowarning("We sting [xeno_target]!"))
 	debuff.stacks -= round(debuff.stacks * 0.7)
 	succeed_activate()
 	add_cooldown()

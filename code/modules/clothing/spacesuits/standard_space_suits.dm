@@ -2,7 +2,7 @@
 /obj/item/clothing/head/helmet/space/tgmc
 	name = "\improper TGMC Compression Helmet"
 	desc = "A high tech, TGMC designed, dark red space suit helmet. Used for maintenance in space."
-	icon_state = "void-helm"
+	icon_state = "void_helm"
 	anti_hug = 3
 
 /obj/item/clothing/suit/space/tgmc

@@ -12,7 +12,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
 	flags_atom = CONDUCT
-	force = 8.0
+	force = 8
 	hitsound = "swing_hit"
 	throw_speed = 1
 	throw_range = 4
@@ -74,7 +74,7 @@
 	var/list/display_list = list()
 
 
-	for(var/i in 1 to listed_products.len)
+	for(var/i in 1 to length(listed_products))
 		var/list/myprod = listed_products[i]
 		var/p_name = myprod[1]
 		var/p_cost = myprod[2]

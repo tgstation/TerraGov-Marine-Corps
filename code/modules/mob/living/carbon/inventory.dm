@@ -1,17 +1,3 @@
-//called when we get cuffed/uncuffed
-/mob/living/carbon/proc/update_handcuffed(obj/item/restraints/handcuffs/restraints)
-	if(restraints)
-		drop_all_held_items()
-		stop_pulling()
-		handcuffed = restraints
-		restraints.equipped(src, SLOT_HANDCUFFED)
-		handcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
-	else if(handcuffed)
-		handcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
-		handcuffed = null
-		restraints.unequipped(src, SLOT_HANDCUFFED)
-	update_inv_handcuffed()
-
 /mob/living/carbon/doUnEquip(obj/item/I)
 	. = ..()
 	if(.)
@@ -30,6 +16,29 @@
 		update_handcuffed(null)
 		. = ITEM_UNEQUIP_UNEQUIPPED
 
+/mob/living/carbon/get_equipped_slot(obj/equipped_item)
+	if(..())
+		return
 
+	if(equipped_item == handcuffed)
+		. = SLOT_HANDCUFFED
+	else if(equipped_item == back)
+		. = SLOT_BACK
+
+///called when we get cuffed/uncuffed
+/mob/living/carbon/proc/update_handcuffed(obj/item/restraints/handcuffs/restraints)
+	if(restraints)
+		drop_all_held_items()
+		stop_pulling()
+		handcuffed = restraints
+		restraints.equipped(src, SLOT_HANDCUFFED)
+		handcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
+	else if(handcuffed)
+		handcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
+		handcuffed = null
+		restraints.unequipped(src, SLOT_HANDCUFFED)
+	update_inv_handcuffed()
+
+///Updates the mask slot icon
 /mob/living/carbon/proc/wear_mask_update(obj/item/I, equipping = FALSE)
 	update_inv_wear_mask()

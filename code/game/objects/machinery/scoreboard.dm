@@ -16,7 +16,7 @@
 	update_display()
 
 /obj/machinery/scoreboard/proc/update_display()
-	if(overlays.len)
+	if(length(overlays))
 		overlays.Cut()
 
 	var/score_state = "s[( round(scoreleft/10) > scoreleft/10 ? round(scoreleft/10)-1 : round(scoreleft/10) )]a"

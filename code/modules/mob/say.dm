@@ -57,7 +57,7 @@
 
 	var/name = "GHOST" // Just defined incase its empty
 	var/alt_name = ""
-	if(mind && mind.name)
+	if(mind?.name)
 		name = "[mind.name]"
 	else
 		name = real_name

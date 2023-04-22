@@ -166,7 +166,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/flashbang/stun,
 	)
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE

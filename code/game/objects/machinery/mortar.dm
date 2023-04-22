@@ -67,10 +67,15 @@
 	///Used for remote targeting by AI
 	var/obj/item/ai_target_beacon/ai_targeter
 
+	// used for keeping track of different mortars and their types for cams
+	var/static/list/id_by_type = list()
+
 /obj/machinery/deployable/mortar/Initialize(mapload, _internal_item, deployer)
 	. = ..()
+
 	impact_cam = new
 	impact_cam.forceMove(src)
+	impact_cam.c_tag = "[strip_improper(name)] #[++id_by_type[type]]"
 
 /obj/machinery/deployable/mortar/Destroy()
 	QDEL_NULL(impact_cam)
@@ -213,7 +218,7 @@
 		user.temporarilyRemoveItemFromInventory(mortar_shell)
 
 	if(istype(I, /obj/item/ai_target_beacon))
-		if(!GLOB.ai_list.len)
+		if(!length(GLOB.ai_list))
 			to_chat(user, span_notice("There is no AI to associate with."))
 			return
 
@@ -259,7 +264,7 @@
 	shell.generate_bullet(ammo)
 	var/shell_range = min(get_dist_euclide(src,target), ammo.max_range)
 	shell.fire_at(target, src, src, shell_range, ammo.shell_speed)
-	var/fall_time = shell_range/ammo.shell_speed - 1 SECONDS
+	var/fall_time = (shell_range/(ammo.shell_speed * 5)) - 0.5 SECONDS
 	//prevent runtime
 	if(fall_time < 0.5 SECONDS)
 		fall_time = 0.5 SECONDS

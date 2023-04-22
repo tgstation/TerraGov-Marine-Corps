@@ -13,7 +13,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
 "bF" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
 	},

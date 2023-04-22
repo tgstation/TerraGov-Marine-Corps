@@ -9,9 +9,9 @@
 	var/amount = 1 //Basically moles.
 	var/spread_fail_chance = 75 //percent
 	///Used for the fire_lvl of the resulting fire
-	var/fire_lvl
+	var/fire_lvl = 15
 	///Used for the burn_lvl of the resulting fire
-	var/burn_lvl
+	var/burn_lvl = 15
 	var/f_color = "red"
 
 
@@ -22,8 +22,8 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	amount = amt
-	burn_lvl = rand(0, 25)
-	fire_lvl = rand(5,30)
+	burn_lvl += rand(-15, 15)
+	fire_lvl += rand(-10, 20)
 	if(newDir)
 		setDir(newDir)
 	return INITIALIZE_HINT_LATELOAD
@@ -124,3 +124,8 @@
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"
 	spread_fail_chance = 0 //percent
+
+/obj/effect/decal/cleanable/liquid_fuel/xfuel
+	fire_lvl = 25
+	burn_lvl = 25
+	f_color = "blue"

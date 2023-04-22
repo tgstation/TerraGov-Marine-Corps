@@ -76,7 +76,7 @@
 		. += span_warning("WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!")
 
 	. += "<b>Sensor readings:</b>"
-	for(var/index = 1; index <= tile_info.len; index++)
+	for(var/index = 1; index <= length(tile_info); index++)
 		var/o = "&nbsp;&nbsp;"
 		switch(index)
 			if(1)
@@ -102,10 +102,10 @@
 		o += "[pressure]kPa</span></li>"
 		. += o
 
-	if(islist(users_to_open) && users_to_open.len)
+	if(islist(users_to_open) && length(users_to_open))
 		var/users_to_open_string = users_to_open[1]
-		if(users_to_open.len >= 2)
-			for(var/i = 2 to users_to_open.len)
+		if(length(users_to_open) >= 2)
+			for(var/i = 2 to length(users_to_open))
 				users_to_open_string += ", [users_to_open[i]]"
 		. += "These people have opened \the [src] during an alert: [users_to_open_string]."
 
@@ -292,7 +292,7 @@
 		if(dir_alerts)
 			for(var/d=1;d<=4;d++)
 				var/cdir = GLOB.cardinals[d]
-				for(var/i=1;i<=ALERT_STATES.len;i++)
+				for(var/i=1;i<=length(ALERT_STATES);i++)
 					if(dir_alerts[d] & (1<<(i-1)))
 						overlays += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
 	else

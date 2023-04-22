@@ -271,12 +271,18 @@
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
 	)
 
+/obj/item/card/id/dogtag/fc
+	marine_points = list(
+		CAT_FCSUP = COMMANDER_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/dogtag/full
 	marine_points = list(
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+		CAT_FCSUP = COMMANDER_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/som
@@ -284,7 +290,7 @@
 	desc = "Used by the Sons of Mars."
 	icon_state = "dogtag_som"
 	item_state = "dogtag_som"
-	iff_signal = SON_OF_MARS_IFF
+	iff_signal = SOM_IFF
 
 
 /obj/item/card/id/dogtag/examine(mob/user)
@@ -318,8 +324,8 @@
 
 /obj/item/dogtag/examine(mob/user)
 	. = ..()
-	if(ishuman(user) && fallen_names && fallen_names.len)
-		if(fallen_names.len == 1)
+	if(ishuman(user) && fallen_names && length(fallen_names))
+		if(length(fallen_names) == 1)
 			to_chat(user, span_notice("It reads: \"[fallen_names[1]] - [fallen_assignements[1]]\"."))
 		else
 			var/msg = "<span class='notice'> It reads: "

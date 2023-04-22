@@ -39,7 +39,7 @@
 		/obj/item/toy/prize/ripley,
 		/obj/item/toy/prize/seraph,
 		/obj/item/toy/spinningtoy,
-		/obj/item/toy/sword,
+		/obj/item/toy/katana,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/instrument/violin,

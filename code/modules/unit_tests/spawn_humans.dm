@@ -12,7 +12,7 @@
 		if(!length(outfits_to_test))
 			break
 		var/mob/living/carbon/human/H = i
-		H.equipOutfit(outfits_to_test[outfits_to_test.len])
+		H.equipOutfit(outfits_to_test[length(outfits_to_test)])
 		outfits_to_test.len--
 
 	sleep(2 SECONDS)

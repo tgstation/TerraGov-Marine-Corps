@@ -377,10 +377,10 @@
 /mob/living/carbon/xenomorph/proc/update_spits(skip_ammo_choice = FALSE)
 	if(!ammo && length(xeno_caste.spit_types))
 		ammo = GLOB.ammo_list[xeno_caste.spit_types[1]]
-	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
+	if(!ammo || !xeno_caste.spit_types || !length(xeno_caste.spit_types)) //Only update xenos with ammo and spit types.
 		return
 	if(!skip_ammo_choice)
-		for(var/i in 1 to xeno_caste.spit_types.len)
+		for(var/i in 1 to length(xeno_caste.spit_types))
 			var/datum/ammo/A = GLOB.ammo_list[xeno_caste.spit_types[i]]
 			if(ammo.icon_state == A.icon_state)
 				ammo = A

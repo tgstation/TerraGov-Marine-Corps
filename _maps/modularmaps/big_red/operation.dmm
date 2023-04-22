@@ -242,7 +242,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -283,7 +283,7 @@
 /turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
 "ml" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Operations";
@@ -319,7 +319,7 @@
 /turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
 "nT" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "ol" = (
@@ -807,7 +807,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)
 "CU" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "CX" = (
@@ -826,7 +826,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "Ds" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "DQ" = (
@@ -922,7 +922,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "Ha" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Operations";
 	name = "\improper Operations Shutters"

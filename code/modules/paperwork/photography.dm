@@ -288,7 +288,7 @@
 	var/list/dead_spotted = list()
 	var/ai_user = isAI(user)
 	var/list/seen
-	var/list/viewlist = (user && user.client)? getviewsize(user.client.view) : getviewsize(WORLD_VIEW)
+	var/list/viewlist = (user?.client)? getviewsize(user.client.view) : getviewsize(WORLD_VIEW)
 	var/viewr = max(viewlist[1], viewlist[2]) + max(size_x, size_y)
 	var/viewc = user.client? user.client.eye : target
 	seen = get_hear(viewr, viewc)
@@ -405,9 +405,9 @@
 
 	var/list/sorted = list()
 	var/j
-	for(var/i in 1 to atoms.len)
+	for(var/i in 1 to length(atoms))
 		var/atom/c = atoms[i]
-		for(j = sorted.len, j > 0, --j)
+		for(j = length(sorted), j > 0, --j)
 			var/atom/c2 = sorted[j]
 			if(c2.layer <= c.layer)
 				break

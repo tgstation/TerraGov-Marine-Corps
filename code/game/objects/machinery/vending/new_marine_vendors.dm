@@ -178,8 +178,6 @@
 				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
 					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
 					vended_items += new headset_type(loc, H.assigned_squad, vendor_role)
-					if(!istype(H.job, /datum/job/terragov/squad/engineer))
-						vended_items += new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 
@@ -410,8 +408,8 @@
 /obj/machinery/marine_selector/clothes/commander/Initialize()
 	. = ..()
 	listed_products = list(
-		/obj/effect/vendor_bundle/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"),
-		/obj/effect/vendor_bundle/jaeger_commander = list(CAT_STD, "Jaeger Commander kit ", 0, "white"),
+		/obj/effect/vendor_bundle/basic_commander = list(CAT_STD, "Standard kit", 0, "white"),
+		/obj/effect/vendor_bundle/basic_jaeger_commander = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -436,8 +434,8 @@
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
 		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
 		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
-		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
-		/obj/item/armor_module/module/artemis =  list(CAT_HEL, "Jaeger Freyr module", 0, "orange"),
+		/obj/item/armor_module/module/binoculars = list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
+		/obj/item/armor_module/module/artemis = list(CAT_HEL, "Jaeger Freyr module", 0, "orange"),
 		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
 		/obj/item/clothing/head/tgmcberet/fc = list(CAT_HEL, "FC Beret", 0, "black"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
@@ -448,7 +446,7 @@
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
 		/obj/item/storage/pouch/general/large = list(CAT_POU, "General pouch", 0, "black"),
 		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Magazine pouch", 0, "black"),
-		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
+		/obj/item/storage/holster/flarepouch/full = list(CAT_POU, "Flare pouch", 0, "black"),
 		/obj/item/storage/pouch/medical_injectors/firstaid = list(CAT_POU, "Combat injector pouch", 0,"orange"),
 		/obj/item/storage/pouch/medkit/firstaid = list(CAT_POU, "Firstaid pouch", 0, "orange"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0, "black"),
@@ -585,6 +583,23 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/gear/commander
+	name = "NEXUS Automated Field Commander Equipment Rack"
+	desc = "An automated field commander equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
+	vendor_role = /datum/job/terragov/command/fieldcommander
+	req_access = list(ACCESS_MARINE_COMMANDER)
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/commander/Initialize()
+	. = ..()
+	listed_products = GLOB.commander_gear_listed_products
+
+/obj/machinery/marine_selector/gear/commander/rebel
+	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
+
 ///Spawns a set of objects from specified typepaths. For vendors to spawn multiple items while only needing one path.
 /obj/effect/vendor_bundle
 	///The set of typepaths to spawn
@@ -605,6 +620,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/paper/tutorial/medical,
 		/obj/item/paper/tutorial/mechanics,
@@ -614,6 +630,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 		/obj/item/paper/tutorial/medical,
@@ -624,6 +641,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -631,6 +649,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
@@ -639,6 +658,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -646,6 +666,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
@@ -654,6 +675,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/corpsman,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -661,6 +683,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
@@ -673,6 +696,21 @@
 	)
 
 /obj/effect/vendor_bundle/basic_jaeger_engineer
+	gear_to_spawn = list(
+		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+		/obj/item/facepaint/green,
+	)
+
+/obj/effect/vendor_bundle/basic_commander
+	gear_to_spawn = list(
+		/obj/item/clothing/under/marine,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+	)
+
+/obj/effect/vendor_bundle/basic_jaeger_commander
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
@@ -718,24 +756,13 @@
 
 /obj/effect/vendor_bundle/commander
 	gear_to_spawn = list(
+		/obj/item/explosive/plastique,
 		/obj/item/beacon/supply_beacon,
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
-		/obj/item/storage/box/MRE,
-	)
-
-/obj/effect/vendor_bundle/jaeger_commander
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/beacon/supply_beacon,
-		/obj/item/healthanalyzer,
-		/obj/item/roller/medevac,
-		/obj/item/medevac_beacon,
-		/obj/item/whistle,
-		/obj/item/storage/box/MRE,
-		/obj/item/facepaint/green,
+		/obj/item/clothing/glasses/hud/health,
 	)
 
 /obj/effect/vendor_bundle/synth
@@ -897,15 +924,36 @@
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
 	)
 
-/obj/effect/vendor_bundle/robot
+/obj/effect/vendor_bundle/robot/essentials
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/robotic,
 		/obj/item/tool/weldingtool,
-		/obj/item/stack/cable_coil/twentyfive,
+		/obj/item/stack/cable_coil,
 	)
+
+/obj/effect/vendor_bundle/robot/light_armor
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/modular/robot/light,
+		/obj/item/clothing/head/modular/robot/light,
+	)
+
+/obj/effect/vendor_bundle/robot/medium_armor
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/modular/robot,
+		/obj/item/clothing/head/modular/robot,
+	)
+
+/obj/effect/vendor_bundle/robot/heavy_armor
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/modular/robot/heavy,
+		/obj/item/clothing/head/modular/robot/heavy,
+	)
+
+
 
 #undef DEFAULT_TOTAL_BUY_POINTS
 #undef MEDIC_TOTAL_BUY_POINTS
 #undef ENGINEER_TOTAL_BUY_POINTS
+#undef COMMANDER_TOTAL_BUY_POINTS
 #undef SQUAD_LOCK
 #undef JOB_LOCK

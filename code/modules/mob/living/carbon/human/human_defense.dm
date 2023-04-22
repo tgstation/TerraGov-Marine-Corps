@@ -27,7 +27,7 @@ Contains most of the procs that are called when a mob is attacked by something
 					emote("me", 1, "drops what they were holding, [p_their()] [affected.display_name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in [p_their()] [affected.display_name]!")
+					emote("me", 1, "[(species?.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in [p_their()] [affected.display_name]!")
 
 	return ..()
 
@@ -37,7 +37,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if (!def_zone)
 		return 1.0
 
-	var/siemens_coefficient = 1.0
+	var/siemens_coefficient = 1
 
 	if(species.species_flags & IS_INSULATED)
 		siemens_coefficient = 0
@@ -132,7 +132,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(user == src) // Attacking yourself can't miss
 		target_zone = user.zone_selected
 	else
-		target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
+		target_zone = def_zone ? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
 	var/datum/limb/affecting = get_limb(target_zone)
 	if(affecting.limb_status & LIMB_DESTROYED)
@@ -200,7 +200,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(applied_damage) && stat == CONSCIOUS)
-					Paralyze(modify_by_armor(16, MELEE, def_zone = affecting))
+					Paralyze(modify_by_armor(16, MELEE, def_zone = target_zone))
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
 					hit_report += "(KO)"
@@ -218,7 +218,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 			if("chest")//Easier to score a stun but lasts less time
 				if(prob((applied_damage + 5)) && !incapacitated())
-					apply_effect(modify_by_armor(6, MELEE, def_zone = def_zone), WEAKEN)
+					apply_effect(modify_by_armor(6, MELEE, def_zone = target_zone), WEAKEN)
 					visible_message(span_danger("[src] has been knocked down!"),
 									span_danger("You have been knocked down!"), null, 5)
 					hit_report += "(KO)"

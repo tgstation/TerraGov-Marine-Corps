@@ -304,7 +304,7 @@
 /area/magmoor/landing/two)
 "akM" = (
 /obj/item/ammo_casing,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
@@ -692,7 +692,7 @@
 /area/magmoor/civilian/arrival/east)
 "aAC" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
@@ -950,7 +950,7 @@
 /area/magmoor/cave/rock)
 "aLW" = (
 /obj/structure/table/woodentable,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "aMe" = (
@@ -2348,7 +2348,7 @@
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "bIS" = (
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -2884,7 +2884,7 @@
 /area/magmoor/civilian/arrival/east)
 "cdt" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/orange{
 	dir = 4
@@ -3064,7 +3064,7 @@
 "cjH" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/item/ammo_casing,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3930,7 +3930,7 @@
 /area/magmoor/cave/north)
 "cSj" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/boiledrice,
+/obj/item/reagent_containers/food/snacks/soup/boiledrice,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "cSl" = (
@@ -4453,7 +4453,7 @@
 /area/magmoor/volcano)
 "djX" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/birthdaycakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/birthdaycakeslice,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/cryostasis)
 "dkb" = (
@@ -4688,7 +4688,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "drW" = (
@@ -4766,7 +4766,7 @@
 /area/magmoor/cave/west)
 "dsZ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -5634,8 +5634,8 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/mainship/red,
 /area/magmoor/security/storage)
 "dWD" = (
@@ -5700,7 +5700,7 @@
 /area/magmoor/security/infocenter)
 "dYI" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "dZt" = (
@@ -5982,7 +5982,7 @@
 /area/magmoor/compound/south)
 "ekY" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -7579,7 +7579,7 @@
 	},
 /area/magmoor/engi/storage)
 "fsn" = (
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "fss" = (
@@ -8438,7 +8438,7 @@
 "fXI" = (
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "fXS" = (
@@ -10393,7 +10393,7 @@
 /area/magmoor/compound/north)
 "hzY" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/item/storage/firstaid,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
@@ -10881,7 +10881,7 @@
 	},
 /area/magmoor/compound/east)
 "hVl" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "hVo" = (
@@ -11271,7 +11271,7 @@
 	pixel_y = 4
 	},
 /obj/item/ammo_casing,
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /obj/item/shard{
 	pixel_x = -9
 	},
@@ -12309,7 +12309,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/flour,
 /obj/item/tool/kitchen/rollingpin,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "iZM" = (
@@ -13006,7 +13006,7 @@
 /area/magmoor/command/commandroom)
 "jtd" = (
 /obj/machinery/light,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "jto" = (
@@ -13178,7 +13178,7 @@
 /area/magmoor/command/commandroom)
 "jAj" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)
 "jAA" = (
@@ -13819,7 +13819,7 @@
 /area/magmoor/engi/power)
 "jZC" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/purple,
 /area/magmoor/research/rnd/lobby)
 "jZD" = (
@@ -14582,7 +14582,7 @@
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/item/ammo_casing,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/mainship/blue{
@@ -14641,7 +14641,7 @@
 	},
 /area/magmoor/compound/south)
 "kFU" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -15488,7 +15488,9 @@
 /turf/open/floor/concrete/lines,
 /area/magmoor/compound/southwest)
 "loR" = (
-/obj/structure/closet/fireaxecabinet,
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = -1
+	},
 /turf/closed/wall/r_wall,
 /area/magmoor/engi/atmos)
 "loS" = (
@@ -16080,10 +16082,6 @@
 	dir = 9
 	},
 /area/magmoor/engi/power)
-"lNM" = (
-/obj/machinery/roomba,
-/turf/open/floor/mainship/green,
-/area/magmoor/civilian/rnr)
 "lOl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -16177,7 +16175,7 @@
 /area/magmoor/cave/north)
 "lRX" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research)
 "lSA" = (
@@ -16276,9 +16274,9 @@
 /area/magmoor/compound/south)
 "lUZ" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/tile/dark/red2,
 /area/magmoor/security/infocenter)
 "lVp" = (
@@ -16486,6 +16484,10 @@
 "mbC" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/closet/fireaxecabinet{
+	pixel_x = 32;
+	pixel_y = -1
+	},
 /turf/open/floor/mainship/orange/full,
 /area/magmoor/engi)
 "mca" = (
@@ -17292,7 +17294,7 @@
 "mLY" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/kitchen/utensil/fork,
-/obj/item/reagent_containers/food/snacks/bloodsoup,
+/obj/item/reagent_containers/food/snacks/soup/bloodsoup,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "mMj" = (
@@ -17626,7 +17628,7 @@
 /area/magmoor/research/serverroom)
 "mVN" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -17673,7 +17675,7 @@
 	},
 /area/magmoor/medical/treatment)
 "mYd" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -18171,7 +18173,7 @@
 /area/magmoor/medical/treatment)
 "noU" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 1
 	},
@@ -18620,7 +18622,7 @@
 	},
 /area/magmoor/engi/power)
 "nGp" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -18832,8 +18834,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/breadslice,
-/obj/item/reagent_containers/food/snacks/breadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "nSr" = (
@@ -20092,7 +20094,7 @@
 /area/magmoor/volcano)
 "oMm" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/aesirsalad,
+/obj/item/reagent_containers/food/snacks/soup/aesirsalad,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "oMr" = (
@@ -21395,7 +21397,7 @@
 /obj/structure/table/woodentable{
 	flipped = 1
 	},
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "pzo" = (
@@ -21771,7 +21773,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/lemoncakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/lemoncakeslice,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "pNj" = (
@@ -22621,7 +22623,7 @@
 /area/magmoor/engi/storage)
 "qtZ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -24098,7 +24100,7 @@
 /area/magmoor/compound/north)
 "rCK" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/lobby)
 "rCS" = (
@@ -24354,7 +24356,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/roomba,
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/magmoor/civilian/arrival)
 "rMh" = (
@@ -24529,7 +24530,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "rSQ" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/machinery/alarm,
 /turf/open/floor/mainship/silver{
 	dir = 1
@@ -24828,7 +24829,7 @@
 	},
 /area/magmoor/civilian/rnr)
 "sfI" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
@@ -25683,9 +25684,6 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bar)
 "sLD" = (
-/obj/structure/closet/fireaxecabinet{
-	pixel_x = 32
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1;
@@ -26266,7 +26264,7 @@
 /area/magmoor/civilian/bar)
 "thl" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
@@ -26485,7 +26483,7 @@
 /obj/structure/table/mainship,
 /obj/item/book/manual/medical_diagnostics_manual,
 /obj/structure/cable,
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
 "tnD" = (
@@ -26690,7 +26688,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "twX" = (
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "twY" = (
@@ -26784,7 +26782,7 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "tzI" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
 "tzN" = (
@@ -28330,7 +28328,7 @@
 /area/magmoor/cave/north)
 "uDl" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/creamcheesebreadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/creamcheesebreadslice,
 /turf/open/floor/wood,
 /area/magmoor/civilian/jani)
 "uDn" = (
@@ -29803,7 +29801,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
 "vKV" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/wood,
 /area/magmoor/civilian/jani)
 "vKY" = (
@@ -30141,7 +30139,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "vVM" = (
@@ -30398,7 +30396,7 @@
 "wgq" = (
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
 "wgs" = (
@@ -31593,7 +31591,7 @@
 	},
 /area/magmoor/compound/north)
 "wVe" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -31642,7 +31640,7 @@
 /area/magmoor/medical/chemistry)
 "wXI" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby/east)
 "wXM" = (
@@ -31658,7 +31656,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/enchiladas,
+/obj/item/reagent_containers/food/snacks/mexican/enchiladas,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "wYx" = (
@@ -31899,7 +31897,7 @@
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/cargo/processing/south)
 "xfk" = (
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /obj/structure/table/reinforced,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)
@@ -32071,7 +32069,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
@@ -32554,7 +32552,7 @@
 /area/magmoor/civilian/jani)
 "xAG" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby)
 "xAV" = (
@@ -33618,7 +33616,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/magmoor/engi/thermal)
 "ylX" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -47301,7 +47299,7 @@ upk
 pCT
 ePb
 fBg
-lNM
+oOH
 upk
 aaE
 qnk

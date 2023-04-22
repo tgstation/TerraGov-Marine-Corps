@@ -20,9 +20,9 @@
 	icon_state = "screwdriver_map"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 5.0
+	force = 5
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 5.0
+	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("stabbed")
@@ -70,7 +70,7 @@
 	icon_state = "cutters"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 6.0
+	force = 6
 	throw_speed = 2
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL
@@ -335,8 +335,8 @@
 	icon_state = "crowbar"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 5.0
-	throwforce = 7.0
+	force = 5
+	throwforce = 7
 	item_state = "crowbar"
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
@@ -452,7 +452,7 @@
 	item_state = "handheldcharger_black_empty"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
-	force = 6.0
+	force = 6
 	throw_speed = 2
 	throw_range = 9
 	flags_equip_slot = ITEM_SLOT_BELT

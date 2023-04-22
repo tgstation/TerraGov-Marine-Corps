@@ -33,20 +33,20 @@
 	dir = 4
 	},
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/drink_alcohol_bottle{
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle{
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle{
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle{
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle{
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle{
 	pixel_x = -4;
 	pixel_y = 3
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /obj/item/pizzabox/meat{
 	pixel_x = -5;
 	pixel_y = 12
@@ -87,7 +87,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "jI" = (
@@ -179,7 +179,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "rL" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Library";
 	name = "\improper Library Shutters"
@@ -225,7 +225,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "ve" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/library)
@@ -254,12 +254,12 @@
 "xB" = (
 /obj/structure/table/woodentable,
 /obj/item/toy/dice/d20,
-/obj/item/reagent_containers/food/snacks/meatpizzaslice,
-/obj/effect/spawner/random/drink_alcohol_bottle{
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle{
 	pixel_x = -1;
 	pixel_y = 3
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "yE" = (
@@ -308,11 +308,11 @@
 /area/bigredv2/outside/library)
 "Ez" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatpizzaslice{
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice{
 	pixel_x = -3;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
 /obj/item/tool/pen/invisible,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -344,7 +344,7 @@
 	},
 /area/bigredv2/outside/library)
 "HS" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Jb" = (
@@ -374,9 +374,9 @@
 /area/bigredv2/outside/library)
 "Nb" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatpizzaslice,
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "NF" = (
@@ -398,7 +398,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Rn" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Library";
@@ -462,10 +462,10 @@
 /obj/structure/table/woodentable,
 /obj/item/paper,
 /obj/item/paper/crumpled,
-/obj/effect/spawner/random/drink_alcohol_bottle{
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle{
 	pixel_x = -5
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "VX" = (
