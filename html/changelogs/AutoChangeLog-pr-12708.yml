@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - imagedel: "Deleted some ancient unused landmark icons."
-  - code_imp: "Reorganized random spawners into smaller individual sections."

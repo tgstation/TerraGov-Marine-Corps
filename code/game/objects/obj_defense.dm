@@ -125,10 +125,10 @@
 
 
 /obj/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(X.status_flags & INCORPOREAL) //Ghosts can't attack machines
 		return FALSE
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_OBJ, src)
-	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
 		return FALSE
 	if(!(resistance_flags & XENO_DAMAGEABLE))

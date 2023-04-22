@@ -1980,5 +1980,11 @@
 	desc = "A controller for solar panel arrays."
 	icon_state = "solar"
 
+/obj/structure/prop/mainship/errorprop
+	name = "ERROR"
+	desc = "If you see this object in game you should ahelp, something has broken."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "error"
+
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK

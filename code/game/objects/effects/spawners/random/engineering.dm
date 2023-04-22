@@ -2,8 +2,9 @@
 	name = "Random base engineering spawner"
 	icon = 'icons/effects/random/engineering.dmi'
 	icon_state = "random_tool"
-	loot_subtype_path = /obj/effect/spawner/random/engineering
-	loot = list()
+	loot = list(
+		/obj/structure/prop/mainship/errorprop,
+	)
 
 /obj/effect/spawner/random/engineering/tool
 	name = "Random Tool"

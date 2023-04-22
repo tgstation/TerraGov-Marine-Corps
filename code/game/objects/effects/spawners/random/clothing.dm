@@ -4,9 +4,9 @@
 	name = "Random base clothing spawner"
 	icon = 'icons/effects/random/clothing.dmi'
 	icon_state = "random_clothes"
-	loot_subtype_path = /obj/effect/spawner/random/clothing
-	loot = list()
-
+	loot = list(
+		/obj/structure/prop/mainship/errorprop,
+	)
 /obj/effect/spawner/random/clothing/general
 	name = "Random clothing spawner"
 	icon_state = "random_clothes"

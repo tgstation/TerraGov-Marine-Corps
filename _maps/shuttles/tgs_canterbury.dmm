@@ -92,6 +92,9 @@
 /area/shuttle/canterbury/cic)
 "aq" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
+/obj/machinery/alarm{
+	dir = 1
+	},
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "ar" = (
@@ -99,26 +102,18 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "as" = (
-/obj/structure/table/mainship,
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/structure/paper_bin,
-/obj/item/tool/pen,
-/obj/item/clipboard,
-/obj/item/pinpointer,
-/obj/machinery/vending/nanomed,
+/obj/machinery/marine_selector/clothes/commander,
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "at" = (
-/obj/machinery/computer/crew,
-/obj/machinery/alarm{
-	dir = 1
-	},
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/mainship/blue{
 	dir = 6
 	},
@@ -389,6 +384,7 @@
 /obj/item/tool/crowbar,
 /obj/item/pinpointer,
 /obj/structure/table/reinforced,
+/obj/item/pinpointer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bu" = (
@@ -535,12 +531,6 @@
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
-/obj/item/radio/intercom{
-	dir = 4;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ca" = (
@@ -562,26 +552,22 @@
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "cd" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/surgical_tray,
-/obj/item/storage/firstaid/adv,
+/obj/machinery/shower{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ce" = (
 /obj/structure/table/reinforced,
-/obj/item/healthanalyzer,
-/obj/machinery/light,
-/obj/machinery/reagentgrinder{
-	pixel_x = -1;
-	pixel_y = 8
+/obj/item/storage/surgical_tray,
+/obj/item/storage/firstaid/adv,
+/obj/structure/sink{
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cf" = (
-/obj/machinery/iv_drip,
-/obj/machinery/shower{
-	dir = 8
-	},
+/obj/machinery/computer/crew,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cg" = (
@@ -710,6 +696,7 @@
 /obj/structure/closet/crate/trashcart,
 /obj/item/storage/bag/trash,
 /obj/item/storage/bag/trash,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cO" = (
@@ -904,7 +891,7 @@ bG
 bK
 bR
 bZ
-cd
+cf
 bo
 cl
 "}
@@ -950,7 +937,7 @@ bI
 cs
 cJ
 cJ
-cf
+cd
 bo
 cm
 "}

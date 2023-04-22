@@ -115,7 +115,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	caliber = CALIBER_WATER //Deep lore
 	flags_magazine = NONE
-	icon_state_mini = "tank_blue_mini"
+	icon_state_mini = "tank_water"
 
 	default_ammo = /datum/ammo/water
 	dispenser_type = /obj/structure/reagent_dispensers/watertank

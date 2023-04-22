@@ -1938,6 +1938,7 @@
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/reagent_containers/food/drinks/bottle/davenport,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
@@ -3207,6 +3208,11 @@
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/item/storage/box/ids,
+/obj/item/storage/briefcase,
+/obj/item/clipboard{
+	pixel_x = 4
+	},
+/obj/item/taperecorder,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "bii" = (
@@ -9439,7 +9445,7 @@
 /area/mainship/hallways/hangar)
 "eWQ" = (
 /obj/machinery/status_display{
-	pixel_y = 30
+	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -15087,6 +15093,12 @@
 "ost" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
+"osZ" = (
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_hallway)
 "otD" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/floor,
@@ -18390,9 +18402,6 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/port_umbilical)
 "tZK" = (
-/obj/machinery/status_display{
-	pixel_y = -30
-	},
 /turf/open/floor/mainship/silver,
 /area/mainship/command/cic)
 "uat" = (
@@ -20176,12 +20185,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "xqY" = (
-/obj/item/taperecorder,
-/obj/item/clipboard{
-	pixel_x = 4
-	},
-/obj/item/storage/briefcase,
-/obj/structure/table/woodentable,
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
@@ -51309,7 +51313,7 @@ bKI
 tHD
 bMh
 bsC
-ext
+osZ
 dzn
 ruj
 bRa
@@ -54907,7 +54911,7 @@ acB
 kpy
 vfD
 nSl
-ext
+osZ
 bQh
 bWC
 ahO
