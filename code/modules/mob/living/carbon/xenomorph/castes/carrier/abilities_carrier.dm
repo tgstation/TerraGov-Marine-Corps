@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		LARVAL_HUGGER = image('icons/mob/actions.dmi', icon_state = LARVAL_HUGGER),
 		CLAWED_HUGGER = image('icons/mob/actions.dmi', icon_state = CLAWED_HUGGER),
 		NEURO_HUGGER = image('icons/mob/actions.dmi', icon_state = NEURO_HUGGER ),
-		ACID_HUGGER  = image('icons/mob/actions.dmi', icon_state = ACID_HUGGER),
+		ACID_HUGGER = image('icons/mob/actions.dmi', icon_state = ACID_HUGGER),
 		RESIN_HUGGER = image('icons/mob/actions.dmi', icon_state = RESIN_HUGGER),
 		))
 
@@ -232,7 +232,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	xeno_carrier.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_carrier]!"))
 	while(xeno_carrier.huggers > 0)
-		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier))
+		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier), xeno_carrier.hivenumber, xeno_carrier)
 		step_away(new_hugger, xeno_carrier, 1)
 		addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/obj/item/clothing/mask/facehugger, go_active), TRUE), new_hugger.jump_cooldown)
 		xeno_carrier.huggers--

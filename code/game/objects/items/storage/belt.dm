@@ -107,7 +107,7 @@
 	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/isotonic(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/alkysine(src)
 	new /obj/item/storage/pill_bottle/imidazoline(src)
@@ -958,7 +958,7 @@
 
 /obj/item/storage/belt/gun
 	name = "pistol belt"
-	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
+	desc = "A belt-holster assembly that allows one to hold a pistol and six magazines."
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
 	use_sound = null

@@ -344,7 +344,7 @@
 	burn_level_mod = 0.6
 	flame_max_range = 4
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
 	flags_attach_features = NONE

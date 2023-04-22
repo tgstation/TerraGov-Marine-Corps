@@ -205,7 +205,7 @@
 		else if((direction & SOUTH) && loc.Exit(src, SOUTH) && get_step(loc, SOUTH).Enter(src))
 			can_pass_diagonally = SOUTH
 		else if((direction & EAST) && loc.Exit(src, EAST) && get_step(loc, EAST).Enter(src))
-			can_pass_diagonally =  EAST
+			can_pass_diagonally = EAST
 		else if((direction & WEST) && loc.Exit(src, WEST) && get_step(loc, WEST).Enter(src))
 			can_pass_diagonally = WEST
 		else

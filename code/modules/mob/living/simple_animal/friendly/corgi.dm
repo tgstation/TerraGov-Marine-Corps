@@ -6,9 +6,9 @@
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "bops"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
 	speak_emote = list("barks", "woofs")
 	emote_hear = list("barks!", "woofs!", "yaps.","pants.")
@@ -79,9 +79,9 @@
 	real_name = "Ian"
 	gender = MALE
 	desc = "It's the HoP's beloved corgi."
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "bops"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 
 
 /mob/living/simple_animal/corgi/narsie
@@ -139,6 +139,6 @@
 	icon_state = "lisa"
 	icon_living = "lisa"
 	icon_dead = "lisa_dead"
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "bops"
-	response_harm   = "kicks"
+	response_harm = "kicks"

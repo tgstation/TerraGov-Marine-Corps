@@ -73,6 +73,11 @@
 	full_name = "Switch fire mode"
 	keybind_signal = COMSIG_KB_FIREMODE
 
+/datum/keybinding/human/toggle_auto_eject
+	name = "toggle_auto_eject"
+	full_name = "Toggle automatic magazine ejection"
+	keybind_signal = COMSIG_KB_AUTOEJECT
+
 /datum/keybinding/human/give
 	name = "give"
 	full_name = "Give"

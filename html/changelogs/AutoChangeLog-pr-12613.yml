@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "The droppod deployment map can no longer get stuck if you deploy with it open"

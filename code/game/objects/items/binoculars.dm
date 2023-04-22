@@ -5,9 +5,9 @@
 	icon_state = "binoculars"
 
 	flags_atom = CONDUCT
-	force = 5.0
+	force = 5
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 5.0
+	throwforce = 5
 	throw_range = 15
 	throw_speed = 3
 	zoom_tile_offset = 11

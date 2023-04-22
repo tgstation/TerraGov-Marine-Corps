@@ -220,7 +220,7 @@
 			photo = 1
 			overlays += IMG
 	if(i>1)
-		desc =  "[i] papers clipped to each other."
+		desc = "[i] papers clipped to each other."
 	else
 		desc = "A single sheet of paper."
 	if(photo)

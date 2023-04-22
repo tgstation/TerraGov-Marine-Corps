@@ -104,7 +104,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			return
 		to_chat(user, span_warning("[new_magazine] cannot fit into [src]!"))
 		return
-	if(src != user.r_hand && src != user.l_hand && master_gun != user.r_hand && master_gun != user.l_hand)
+	if(src != user.r_hand && src != user.l_hand && (!master_gun || (master_gun != user.r_hand && master_gun != user.l_hand)))
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || max_chamber_items > 1)
@@ -563,7 +563,14 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return
 	balloon_alert(usr, "No usable underrail attachments")
 
+///Toggles weapons ejecting their magazines when they're empty. This one is one a gun level and is used via right clicking the gun.
+/obj/item/weapon/gun/verb/toggle_auto_eject()
+	set category = null
+	set name = "Toggle Automatic Magazine Ejection (Weapon)"
+	set desc = "Toggles the automatic unloading of the gun's magazine upon depletion."
 
+	TOGGLE_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
+	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -703,6 +710,12 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/proc/toggle_gun_safety_keybind()
 	SIGNAL_HANDLER
 	toggle_gun_safety()
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to toggle automatic magazine ejection
+/obj/item/weapon/gun/proc/toggle_auto_eject_keybind()
+	SIGNAL_HANDLER
+	toggle_auto_eject()
 	return COMSIG_KB_ACTIVATED
 
 /obj/item/weapon/gun/toggle_deployment_flag(deployed)

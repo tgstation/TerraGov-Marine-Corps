@@ -329,7 +329,7 @@
 /area/lv624/lazarus/sandtemple)
 "PZ" = (
 /obj/structure/jungle/vines,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "Qj" = (
