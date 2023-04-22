@@ -13,7 +13,7 @@
 */
 /mob/living/proc/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
 	penetration = max(0, penetration - get_hard_armor(armor_type, def_zone))
-	return clamp((damage_amount * min((1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01)), 1)), 0, damage_amount)
+	return clamp((damage_amount * (1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01))), 0, damage_amount)
 
 /*
 	apply_damage(a,b,c)
