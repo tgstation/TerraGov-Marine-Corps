@@ -1325,3 +1325,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/vendor_equip(mob/user)
 	return FALSE
 
+// Cooking procs
+
+/obj/item/proc/microwave_act(obj/machinery/microwave/microwave_source, mob/microwaver, randomize_pixel_offset)
+	SHOULD_CALL_PARENT(TRUE)
+	return SEND_SIGNAL(src, COMSIG_ITEM_MICROWAVE_ACT, microwave_source, microwaver, randomize_pixel_offset)
+
+///Used to check for extra requirements for grinding an object
+/obj/item/proc/grind_requirements(obj/machinery/reagentgrinder/R)
+	return TRUE
+
+///Called BEFORE the object is ground up - use this to change grind results based on conditions. Use "return -1" to prevent the grinding from occurring
+/obj/item/proc/on_grind()
+	return SEND_SIGNAL(src, COMSIG_ITEM_ON_GRIND)
+
+/obj/item/proc/on_juice()
+	return SEND_SIGNAL(src, COMSIG_ITEM_ON_JUICE)
+
+
