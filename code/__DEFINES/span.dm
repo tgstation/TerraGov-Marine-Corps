@@ -22,6 +22,7 @@
 #define span_event_announcement(str) ("<span class='event_announcement'>" + str + "</span>")
 #define span_game(str) ("<span class='game'>" + str + "</span>")
 #define span_good(str) ("<span class='good'>" + str + "</span>")
+#define span_green(str) ("<span class='green'>" + str + "</span>")
 #define span_greenteamradio(str) ("<span class='greenteamradio'>" + str + "</span>")
 #define span_greentext(str) ("<span class='greentext'>" + str + "</span>")
 #define span_grippy(str) ("<span class='grippy'>" + str + "</span>")

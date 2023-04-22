@@ -85,6 +85,11 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/reach = 1
 
+	///Grinder var:A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
+	var/list/grind_results
+	//Grinder var:A reagent list containing blah blah... but when JUICED in a grinder!
+	var/list/juice_results
+
 	/// Species-specific sprites, concept stolen from Paradise//vg/. Ex: sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') If index term exists and icon_override is not set, this sprite sheet will be used.
 	var/list/sprite_sheets = null
 

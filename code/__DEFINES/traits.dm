@@ -121,8 +121,12 @@
 
 
 
-//added b grilling a food
+///If this item's been grilled
 #define TRAIT_FOOD_GRILLED "food_grilled"
+///If this item's been made by a chef instead of being map-spawned or admin-spawned or such
+#define TRAIT_FOOD_CHEF_MADE "food_made_by_chef"
+/// Trait for allowing an item that isn't food into the customizable reagent holder
+#define TRAIT_ODD_CUSTOMIZABLE_FOOD_INGREDIENT "odd_customizable_food_ingredient"
 
 //mob traits
 #define TRAIT_POSSESSING "possessing" // Prevents mob from being taken by ghosts
