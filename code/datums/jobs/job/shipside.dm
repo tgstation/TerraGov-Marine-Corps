@@ -138,10 +138,6 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
-/datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
-	. = ..()
-
-
 
 /datum/job/terragov/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
