@@ -2594,13 +2594,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/briefing)
-"dig" = (
-/obj/machinery/status_display{
-	pixel_x = 15
-	},
-/obj/effect/soundplayer,
-/turf/closed/wall/mainship,
-/area/mainship/living/briefing)
 "dit" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/mainship/tcomms,
@@ -11128,9 +11121,7 @@
 	},
 /area/mainship/living/briefing)
 "orC" = (
-/obj/machinery/status_display{
-	pixel_x = -15
-	},
+/obj/machinery/status_display,
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/briefing)
@@ -53101,7 +53092,7 @@ kDx
 kDx
 plN
 oLC
-dig
+orC
 gnS
 kwS
 nGn
