@@ -288,11 +288,6 @@
 
 /obj/item/storage/holster/backholster/flamer/full/Initialize()
 	. = ..()
-	new /obj/item/explosive/plastique(src)
-	new /obj/item/explosive/plastique(src)
-	new /obj/item/explosive/plastique(src)
-	new /obj/item/explosive/grenade/phosphorus(src)
-	new /obj/item/explosive/grenade/phosphorus(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/flamer/big_flamer/engineer(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
