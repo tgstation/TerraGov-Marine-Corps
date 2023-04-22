@@ -125,7 +125,6 @@
 	stack_trace("Powercell deleted while powering the defib, this isn't supposed to happen normally.")
 	set_dcell(null)
 
-
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
 		return null
@@ -140,6 +139,12 @@
 			return ghost
 	return null
 
+///GET IN DA BODY
+/mob/living/proc/grab_ghost()
+	var/mob/dead/observer/G = get_ghost()
+	. = G
+	if(G)
+		G.reenter_corpse()
 
 /mob/living/carbon/human/proc/has_working_organs()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
@@ -196,9 +201,9 @@
 	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
 		return
-
-	var/mob/dead/observer/G = H.get_ghost()
-	if(istype(G))
+	
+	var/mob/dead/observer/G = H.grab_ghost()
+	if(G)
 		notify_ghost(G, "<font size=3>Someone is trying to revive your body. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/gladosmarinerevive.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = H, action = NOTIFY_JUMP)
 	else if(!H.client)
 		//We couldn't find a suitable ghost, this means the person is not returning
