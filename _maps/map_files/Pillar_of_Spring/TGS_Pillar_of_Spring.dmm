@@ -326,9 +326,9 @@
 /area/mainship/medical/lower_medical)
 "axo" = (
 /obj/machinery/door_display/research_cell/cell{
-	dir = 1
+	pixel_y = 2
 	},
-/turf/open/floor/mainship/sterile/dark,
+/turf/closed/wall/mainship/white,
 /area/mainship/medical/medical_science)
 "axA" = (
 /obj/structure/cable,
@@ -10502,6 +10502,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"nyw" = (
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/port_hallway)
 "nyy" = (
 /obj/effect/soundplayer,
 /obj/structure/sign/science,
@@ -18043,6 +18050,9 @@
 /area/mainship/engineering/engineering_workshop)
 "xdy" = (
 /obj/effect/landmark/start/job/ai,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "xdN" = (
@@ -41291,12 +41301,12 @@ rGg
 kQn
 fbP
 sXo
-gmc
+axo
 qIt
 nNo
 fFD
 xYE
-axo
+rGg
 gmc
 kEP
 rKn
@@ -49518,7 +49528,7 @@ pyV
 pgh
 pgh
 tBj
-xyS
+hGT
 hUf
 cNy
 hUf
@@ -49785,7 +49795,7 @@ gbM
 gbM
 gbM
 gbM
-ekk
+nyw
 eel
 ekk
 ekx
@@ -50041,7 +50051,7 @@ vAn
 vAn
 eZp
 vmD
-pvX
+vmD
 vmD
 acn
 vmD
