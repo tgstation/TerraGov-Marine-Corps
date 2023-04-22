@@ -148,8 +148,6 @@
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
-		/obj/item/weapon/gun/smg/standard_machinepistol,
-		/obj/item/ammo_magazine/smg/standard_machinepistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 		/obj/item/cell/lasgun/lasrifle,
 	)
