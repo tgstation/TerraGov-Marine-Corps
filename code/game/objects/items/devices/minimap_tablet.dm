@@ -1,6 +1,9 @@
 ///A player needs to be unbanned from ALL these roles in order to be able to use the minimap drawing tool
 GLOBAL_LIST_INIT(roles_allowed_minimap_draw, list(SQUAD_LEADER, CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER))
 GLOBAL_PROTECT(roles_allowed_minimap_draw)
+/// range that we can remove labels when we click near them with the removal tool
+#define LABEL_REMOVE_RANGE 20
+#define MINIMAP_DRAW_OFFSET 8
 
 /obj/item/minimap_tablet
 	name = "minimap tablet"
@@ -32,6 +35,10 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 /obj/item/minimap_tablet/Destroy()
 	. = ..()
 	QDEL_LIST(drawing_tools)
+
+/obj/item/minimap_tablet/examine(mob/user)
+	. = ..()
+	. += span_warning("Note that abuse may result in a command role ban.")
 
 /obj/item/minimap_tablet/attack_self(mob/user)
 	. = ..()
@@ -94,6 +101,18 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	y_offset = SSminimaps.minimaps_by_z["[zlevel]"].y_offset
 	drawn_image = SSminimaps.get_drawing_image(zlevel, minimap_flag)
 
+/atom/movable/screen/minimap_tool/MouseEntered(location, control, params)
+	. = ..()
+	add_filter("mouseover", 1, outline_filter(1, COLOR_LIME))
+	if(desc)
+		openToolTip(usr, src, params, title = name, content = desc)
+
+/atom/movable/screen/minimap_tool/MouseExited(location, control, params)
+	. = ..()
+	remove_filter("mouseover")
+	if(desc)
+		closeToolTip(usr)
+
 /atom/movable/screen/minimap_tool/Click(location, control, params)
 	var/list/modifiers = params2list(params)
 	if(modifiers[BUTTON] == LEFT_CLICK)
@@ -106,16 +125,19 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
  */
 /atom/movable/screen/minimap_tool/proc/on_mousedown(mob/source, atom/object, location, control, params)
 	SIGNAL_HANDLER
-	if(!istype(object, /atom/movable/screen/minimap_tool) && (src in source.client.screen))
-		return COMSIG_MOB_CLICK_CANCELED
-	// clicked self again, reset
-	UnregisterSignal(source, COMSIG_MOB_MOUSEDOWN)
-	source.client.mouse_pointer_icon = null
-	return NONE
+	if(!(src in source.client.screen))
+		UnregisterSignal(source, COMSIG_MOB_MOUSEDOWN)
+		source.client.mouse_pointer_icon = null
+		return NONE
+	if(istype(object, /atom/movable/screen/minimap_tool))
+		UnregisterSignal(usr, COMSIG_MOB_MOUSEDOWN)
+		usr.client.mouse_pointer_icon = null
+		return NONE
+	return COMSIG_MOB_CLICK_CANCELED
 
-#define MINIMAP_DRAW_OFFSET 8
 /atom/movable/screen/minimap_tool/draw_tool
 	icon_state = "draw"
+	desc = "Draw using a color. Drag to draw a line, right click to place a dot. Right click this button to unselect."
 	// color that this draw tool will be drawing in
 	color = COLOR_PINK
 	var/list/last_drawn
@@ -143,9 +165,10 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 		mona_lisa.DrawBox(color, pixel_coords[1], pixel_coords[2], ++pixel_coords[1], ++pixel_coords[2])
 		drawn_image.icon = mona_lisa
 		log_minimap_drawing("[key_name(source)] has made a dot at [pixel_coords[1]/2], [pixel_coords[2]/2]")
-		return
+		return COMSIG_MOB_CLICK_CANCELED
 	starting_coords = pixel_coords
 	RegisterSignal(source, COMSIG_MOB_MOUSEUP, PROC_REF(on_mouseup))
+	return COMSIG_MOB_CLICK_CANCELED
 
 ///Called when the mouse is released again to finish the drag-draw
 /atom/movable/screen/minimap_tool/draw_tool/proc/on_mouseup(mob/living/source, atom/object, location, control, params)
@@ -240,12 +263,14 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 
 /atom/movable/screen/minimap_tool/draw_tool/erase
 	icon_state = "erase"
+	desc = "Drag to erase a line, right click to erase a dot. Right click this button to unselect."
 	active_mouse_icon = 'icons/UI_Icons/minimap_mouse/draw_erase.dmi'
 	screen_loc = "16,10"
 	color = null
 
 /atom/movable/screen/minimap_tool/label
 	icon_state = "label"
+	desc = "Click to place a label. Rightclick a label to remove it. Right click this button to remove all labels."
 	active_mouse_icon = 'icons/UI_Icons/minimap_mouse/label.dmi'
 	screen_loc = "16,8"
 	/// List of turfs that have labels attached to them. kept around so it can be cleared
@@ -255,9 +280,13 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	. = ..()
 	var/list/modifiers = params2list(params)
 	if(modifiers[BUTTON] == RIGHT_CLICK)
-		log_minimap_drawing("[key_name(usr)] has cleared current labels")
-		for(var/turf/label AS in labelled_turfs)
-			SSminimaps.remove_marker(label)
+		clear_labels(usr)
+
+///Clears all labels and logs who did it
+/atom/movable/screen/minimap_tool/label/proc/clear_labels(mob/user)
+	log_minimap_drawing("[key_name(usr)] has cleared current labels")
+	for(var/turf/label AS in labelled_turfs)
+		SSminimaps.remove_marker(label)
 
 /atom/movable/screen/minimap_tool/label/on_mousedown(mob/source, atom/object, location, control, params)
 	. = ..()
@@ -268,13 +297,6 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 
 ///async mousedown for the actual label placement handling
 /atom/movable/screen/minimap_tool/label/proc/async_mousedown(mob/source, atom/object, location, control, params)
-	var/label_text = MAPTEXT(tgui_input_text(source, title = "Label Name", max_length = 35))
-	if(CHAT_FILTER_CHECK(label_text))
-		to_chat(source, span_warning("That label contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[label_text]\"</span>"))
-		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
-		return
-	if(!label_text)
-		return
 	// this is really [/atom/movable/screen/minimap/proc/get_coords_from_click] copypaste since we
 	// want to also cancel the click if they click src and I cant be bothered to make it even more generic rn
 	var/list/modifiers = params2list(params)
@@ -283,6 +305,30 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	var/y = (pixel_coords[2] - y_offset + MINIMAP_DRAW_OFFSET) / 2
 	var/c_x = clamp(CEILING(x, 1), 1, world.maxx)
 	var/c_y = clamp(CEILING(y, 1), 1, world.maxy)
+	var/turf/target = locate(c_x, c_y, zlevel)
+	if(modifiers[BUTTON] == RIGHT_CLICK)
+		var/curr_dist
+		var/turf/nearest
+		for(var/turf/label AS in labelled_turfs)
+			var/dist = get_dist_euclide(label, target)
+			if(dist > LABEL_REMOVE_RANGE)
+				continue
+			if(!curr_dist || curr_dist > dist)
+				curr_dist = dist
+				nearest = label
+		if(nearest)
+			SSminimaps.remove_marker(nearest)
+		return
+	var/label_text = MAPTEXT(tgui_input_text(source, title = "Label Name", max_length = 35))
+	if(CHAT_FILTER_CHECK(label_text))
+		to_chat(source, span_warning("That label contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[label_text]\"</span>"))
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		return
+	if(!label_text)
+		return
+	var/atom/movable/screen/minimap/mini = SSminimaps.fetch_minimap_object(zlevel, minimap_flag)
+	if(!locate(mini) in source.client?.screen)
+		return
 
 	var/mutable_appearance/textbox = new
 	textbox.maptext_x = 5
@@ -290,15 +336,17 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	textbox.maptext_width = 64
 	textbox.maptext = label_text
 
-	var/turf/target = locate(c_x, c_y, zlevel)
 	labelled_turfs += target
 	SSminimaps.add_marker(target, zlevel, minimap_flag, "label", 'icons/UI_icons/map_blips.dmi', list(textbox))
 	log_minimap_drawing("[key_name(source)] has added the label [label_text] at [c_x], [c_y]")
 
 /atom/movable/screen/minimap_tool/clear
 	icon_state = "clear"
+	desc = "Remove all current labels and drawings."
 	screen_loc = "16,9"
 
 /atom/movable/screen/minimap_tool/clear/Click()
 	drawn_image.icon = icon('icons/UI_icons/minimap.dmi')
+	var/atom/movable/screen/minimap_tool/label/labels = locate() in usr.client?.screen
+	labels?.clear_labels(usr)
 	log_minimap_drawing("[key_name(usr)] has cleared the minimap")
