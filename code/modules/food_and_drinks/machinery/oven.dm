@@ -81,7 +81,7 @@
 		if(DT_PROB(10, delta_time))
 			visible_message(span_danger("You smell a burnt smell coming from [src]!"))
 	set_smoke_state(worst_cooked_food_state)
-	update_appearance()
+	update_icon()
 	use_power(active_power_usage)
 
 
@@ -107,7 +107,7 @@
 
 	RegisterSignal(used_tray, COMSIG_MOVABLE_MOVED, PROC_REF(on_tray_moved))
 	update_baking_audio()
-	update_appearance()
+	update_icon()
 
 ///Called when the tray is moved out of the oven in some way
 /obj/machinery/oven/proc/on_tray_moved(obj/item/oven_tray, atom/OldLoc, Dir, Forced)
@@ -145,7 +145,7 @@
 			for(var/obj/item/baked_item in used_tray.contents)
 				SEND_SIGNAL(baked_item, COMSIG_ITEM_OVEN_PLACED_IN, src, user)
 
-	update_appearance()
+	update_icon()
 	update_baking_audio()
 	return TRUE
 

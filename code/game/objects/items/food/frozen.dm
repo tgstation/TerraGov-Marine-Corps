@@ -346,14 +346,13 @@
 
 /obj/item/food/popsicle/proc/after_bite(mob/living/eater, mob/living/feeder, bitecount)
 	src.bitecount = bitecount
-	update_appearance()
+	update_icon()
 
 /obj/item/popsicle_stick
 	name = "popsicle stick"
 	icon = 'icons/obj/food/frozen_treats.dmi'
 	icon_state = "popsicle_stick"
 	desc = "This humble little stick usually carries a frozen treat, at the moment it seems freed from this Atlassian burden."
-	custom_materials = list(/datum/material/wood = 20)
 	w_class = WEIGHT_CLASS_TINY
 	force = 0
 

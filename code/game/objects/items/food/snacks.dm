@@ -21,7 +21,7 @@
 	name = "\improper South Bronx Paradise bar"
 	desc = "Lose weight, guaranteed! Caramel Mocha Flavor. Something about product consumption..."
 	icon_state = "bronx"
-	inhand_icon_state = "candy"
+	item_state = "candy"
 	trash_type = /obj/item/trash/candy
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,

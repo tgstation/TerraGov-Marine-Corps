@@ -4,7 +4,7 @@
 	name = "pancake"
 	desc = "A fluffy pancake. The softer, superior relative of the waffle."
 	icon_state = "pancakes_1"
-	inhand_icon_state = null
+	item_state = null
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pancakes" = 1)
 	foodtypes = GRAIN | SUGAR | BREAKFAST
@@ -77,7 +77,7 @@
 
 /obj/item/food/pancakes/Initialize(mapload)
 	. = ..()
-	update_appearance()
+	update_icon()
 
 /obj/item/food/pancakes/update_name()
 	name = contents.len ? "stack of pancakes" : initial(name)
@@ -145,13 +145,13 @@
 	pancake_visual.pixel_x = rand(-1, 1)
 	pancake_visual.pixel_y = 3 * contents.len - 1
 	add_overlay(pancake_visual)
-	update_appearance()
+	update_icon()
 
 /obj/item/food/pancakes/attack(mob/target, mob/living/user, params, stacked = TRUE)
-	if(user.combat_mode || !contents.len || !stacked)
+	if(user.a_intent == INTENT_HARM || !contents.len || !stacked)
 		return ..()
 	var/obj/item/item = contents[contents.len]
 	. = item.attack(target, user, params, FALSE)
-	update_appearance()
+	update_icon()
 
 #undef PANCAKE_MAX_STACK

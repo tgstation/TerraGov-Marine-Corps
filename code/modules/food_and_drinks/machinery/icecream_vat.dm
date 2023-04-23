@@ -80,7 +80,7 @@
 	popup.open()
 
 /obj/machinery/icecream_vat/attackby(obj/item/O, mob/user, params)
-	if(is_reagent_container(O) && !(O.flags_item & ABSTRACT) && O.is_open_container())
+	if(isreagentcontainer(O) && !(O.flags_item & ABSTRACT) && O.is_open_container())
 		. = TRUE //no afterattack
 		var/obj/item/reagent_containers/B = O
 		if(!user.transferItemToLoc(B, src))
@@ -88,7 +88,7 @@
 		replace_beaker(user, B)
 		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
-		update_appearance()
+		update_icon()
 		return
 	else if(O.is_drainable())
 		return

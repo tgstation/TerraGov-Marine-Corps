@@ -42,16 +42,6 @@
 	. = ..()
 	icon_state = "[base_icon_state]_[rand(1, 3)]"
 
-/obj/item/food/muffin/moffin/examine(mob/user)
-	. = ..()
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/moffin_observer = user
-	if(moffin_observer.dna.species.liked_food & CLOTH)
-		. += span_nicegreen("Ooh! It's even got bits of clothes on it! Yummy!")
-	else
-		. += span_warning("You're not too sure what's on top though...")
-
 ////////////////////////////////////////////WAFFLES////////////////////////////////////////////
 
 /obj/item/food/waffles

@@ -1,7 +1,7 @@
 /obj/item/food/burger
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "hburger"
-	inhand_icon_state = "burger"
+	item_state = "burger"
 	bite_consumption = 3
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,

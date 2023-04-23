@@ -106,7 +106,7 @@
 			user.visible_message(span_notice("[user] adds \the [O] to \the [src]."), span_notice("You add \the [O] to \the [src]."))
 			SStgui.update_uis(src)
 			if(visible_contents)
-				update_appearance()
+				update_icon()
 			return TRUE
 
 		if(istype(O, /obj/item/storage/bag))
@@ -130,13 +130,13 @@
 				if(O.contents.len > 0)
 					to_chat(user, span_warning("Some items are refused."))
 				if (visible_contents)
-					update_appearance()
+					update_icon()
 				return TRUE
 			else
 				to_chat(user, span_warning("There is nothing in [O] to put in [src]!"))
 				return FALSE
 
-	if(!user.combat_mode)
+	if(!user.a_intent == INTENT_HARM)
 		to_chat(user, span_warning("\The [src] smartly refuses [O]."))
 		SStgui.update_uis(src)
 		return FALSE
@@ -237,7 +237,7 @@
 					desired--
 
 			if (visible_contents)
-				update_appearance()
+				update_icon()
 			return TRUE
 
 	return FALSE
@@ -295,7 +295,7 @@
 /obj/machinery/smartfridge/drying_rack/ui_act(action, params)
 	. = ..()
 	if(.)
-		update_appearance() // This is to handle a case where the last item is taken out manually instead of through drying pop-out
+		update_icon() // This is to handle a case where the last item is taken out manually instead of through drying pop-out
 		return
 	switch(action)
 		if("Dry")
@@ -315,7 +315,7 @@
 
 /obj/machinery/smartfridge/drying_rack/load(obj/item/dried_object) //For updating the filled overlay
 	. = ..()
-	update_appearance()
+	update_icon()
 
 /obj/machinery/smartfridge/drying_rack/update_overlays()
 	. = ..()
@@ -334,7 +334,7 @@
 			rack_dry(item_iterator)
 
 		SStgui.update_uis(src)
-		update_appearance()
+		update_icon()
 		use_power(active_power_usage)
 
 /obj/machinery/smartfridge/drying_rack/accept_check(obj/item/O)
@@ -349,7 +349,7 @@
 	else
 		drying = TRUE
 		update_use_power(ACTIVE_POWER_USE)
-	update_appearance()
+	update_icon()
 
 /obj/machinery/smartfridge/drying_rack/proc/rack_dry(obj/item/target)
 	SEND_SIGNAL(target, COMSIG_ITEM_DRIED)
@@ -370,7 +370,7 @@
 	base_build_path = /obj/machinery/smartfridge/drinks
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
-	if(!is_reagent_container(O) || (O.flags_item & ABSTRACT) || !O.reagents || !O.reagents.reagent_list.len)
+	if(!isreagentcontainer(O) || (O.flags_item & ABSTRACT) || !O.reagents || !O.reagents.reagent_list.len)
 		return FALSE
 	if(istype(O, /obj/item/reagent_containers/cup) || istype(O, /obj/item/reagent_containers/cup/glass) || istype(O, /obj/item/reagent_containers/condiment))
 		return TRUE
@@ -477,7 +477,7 @@
 					return FALSE
 			return TRUE
 		return FALSE
-	if(!is_reagent_container(O) || (O.flags_item & ABSTRACT))
+	if(!isreagentcontainer(O) || (O.flags_item & ABSTRACT))
 		return FALSE
 	if(istype(O, /obj/item/reagent_containers/pill)) // empty pill prank ok
 		return TRUE

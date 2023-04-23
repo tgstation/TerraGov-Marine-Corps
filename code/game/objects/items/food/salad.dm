@@ -162,7 +162,6 @@
 	icon = 'icons/obj/food/soupsalad.dmi'
 	icon_state = "bowl"
 	reagent_flags = OPENCONTAINER
-	custom_materials = list(/datum/material/glass = 500)
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/reagent_containers/cup/bowl/Initialize(mapload)

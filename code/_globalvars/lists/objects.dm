@@ -94,3 +94,9 @@ GLOBAL_LIST_INIT(do_not_preserve_empty, typecacheof(list(
 	/obj/item/storage/backpack/marine/corpsman/satchel,
 	/obj/item/storage/backpack/marine/satchel/tech,
 	/obj/item/storage/backpack/marine/standard), only_root_path = TRUE))
+
+//Crafting related
+GLOBAL_LIST_EMPTY(crafting_recipes) //list of all crafting recipes
+GLOBAL_LIST_EMPTY(crafting_recipes_atoms) //list of all atoms occuring in crafting recipes
+GLOBAL_LIST_EMPTY(cooking_recipes) //list of all cooking recipes
+GLOBAL_LIST_EMPTY(cooking_recipes_atoms) //list of all atoms occuring in cooking recipes

@@ -40,6 +40,11 @@
 	icon_state = "swap_1_m"
 	screen_loc = ui_swaphand1
 
+/atom/movable/screen/craft
+	name = "crafting menu"
+	icon_state = "craft"
+	screen_loc = ui_crafting
+
 /atom/movable/screen/swap_hand/Click()
 	if(!iscarbon(usr))
 		return

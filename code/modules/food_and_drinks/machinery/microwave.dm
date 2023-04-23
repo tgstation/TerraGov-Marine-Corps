@@ -55,7 +55,7 @@
 	soundloop = new(src, FALSE)
 	set_on_table()
 
-	update_appearance(UPDATE_ICON)
+	update_icon()
 
 /obj/machinery/microwave/Exited(atom/movable/gone, direction)
 	if(gone in ingredients)
@@ -219,7 +219,7 @@
 	if(dirty >= MAX_MICROWAVE_DIRTINESS)
 		return FALSE
 	if(default_unfasten_wrench(user, tool))
-		update_appearance()
+		update_icon()
 	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/microwave/crowbar_act(mob/living/user, obj/item/tool)
@@ -235,7 +235,7 @@
 	if(dirty >= MAX_MICROWAVE_DIRTINESS)
 		return
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, tool))
-		update_appearance()
+		update_icon()
 	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/microwave/attackby(obj/item/O, mob/living/user, params)
@@ -257,7 +257,7 @@
 			if(O.use_tool(src, user, 20))
 				user.visible_message(span_notice("[user] fixes \the [src]."), span_notice("You fix \the [src]."))
 				broken = NOT_BROKEN
-				update_appearance()
+				update_icon()
 				return FALSE //to use some fuel
 		else
 			balloon_alert(user, "it's broken!")
@@ -271,7 +271,7 @@
 			playsound(loc, 'sound/effects/spray3.ogg', 50, TRUE, -6)
 			user.visible_message(span_notice("[user] cleans \the [src]."), span_notice("You clean \the [src]."))
 			dirty = 0
-			update_appearance()
+			update_icon()
 		else
 			to_chat(user, span_warning("You need more space cleaner!"))
 		return TRUE
@@ -285,7 +285,7 @@
 		if(do_after(user, cleanspeed, target = src))
 			user.visible_message(span_notice("[user] cleans \the [src]."), span_notice("You clean \the [src]."))
 			dirty = 0
-			update_appearance()
+			update_icon()
 		return TRUE
 
 	if(dirty >= MAX_MICROWAVE_DIRTINESS) // The microwave is all dirty so can't be used!
@@ -306,10 +306,10 @@
 				ingredients += S
 		if(loaded)
 			to_chat(user, span_notice("You insert [loaded] items into \the [src]."))
-			update_appearance()
+			update_icon()
 		return
 
-	if(O.w_class <= WEIGHT_CLASS_NORMAL && !istype(O, /obj/item/storage) && !user.combat_mode)
+	if(O.w_class <= WEIGHT_CLASS_NORMAL && !istype(O, /obj/item/storage) && !user.a_intent == INTENT_HARM)
 		if(ingredients.len >= max_n_of_items)
 			balloon_alert(user, "it's full!")
 			return TRUE
@@ -319,7 +319,7 @@
 
 		ingredients += O
 		user.visible_message(span_notice("[user] adds \a [O] to \the [src]."), span_notice("You add [O] to \the [src]."))
-		update_appearance()
+		update_icon()
 		return
 
 	return ..()
@@ -409,7 +409,7 @@
 
 	set_light(1.5)
 	soundloop.start()
-	update_appearance()
+	update_icon()
 
 /obj/machinery/microwave/proc/spark()
 	visible_message(span_warning("Sparks fly around [src]!"))
@@ -429,7 +429,7 @@
 	wzhzhzh()
 	playsound(loc, 'sound/effects/splat.ogg', 50, TRUE)
 	dirty_anim_playing = TRUE
-	update_appearance()
+	update_icon()
 	loop(MICROWAVE_MUCK, 4)
 
 /obj/machinery/microwave/proc/loop(type, time, wait = max(12 - 2 * efficiency, 2), mob/cooker) // standard wait is 10
@@ -511,12 +511,12 @@
 
 /obj/machinery/microwave/proc/open()
 	open = TRUE
-	update_appearance()
+	update_icon()
 	addtimer(CALLBACK(src, PROC_REF(close)), 0.8 SECONDS)
 
 /obj/machinery/microwave/proc/close()
 	open = FALSE
-	update_appearance()
+	update_icon()
 
 /// Go on top of a table if we're anchored & not varedited
 /obj/machinery/microwave/proc/set_on_table()

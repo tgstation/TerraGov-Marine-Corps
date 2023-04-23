@@ -2,7 +2,7 @@
 	name = "pizza bomb"
 	desc = "Special delivery!"
 	icon_state = "pizzabomb_inactive"
-	inhand_icon_state = "eshield"
+	item_state = "eshield"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 
@@ -12,7 +12,7 @@
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "pizzabox"
 	base_icon_state = "pizzabox"
-	inhand_icon_state = "pizzabox"
+	item_state = "pizzabox"
 	lefthand_file = 'icons/mob/inhands/items/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/food_righthand.dmi'
 	custom_materials = list(/datum/material/cardboard = 2000)
@@ -41,7 +41,7 @@
 	. = ..()
 	if(pizza)
 		pizza = new pizza
-	update_appearance()
+	update_icon()
 	register_context()
 
 /obj/item/pizzabox/Destroy()
@@ -126,7 +126,7 @@
 		audible_message(span_warning("[icon2html(src, hearers(src))] *beep*"))
 		bomb_active = TRUE
 		START_PROCESSING(SSobj, src)
-	update_appearance()
+	update_icon()
 
 /obj/item/pizzabox/attack_self_secondary(mob/user)
 	if(length(boxes) > 0)
@@ -146,13 +146,13 @@
 		if(pizza)
 			user.put_in_hands(pizza)
 			pizza = null
-			update_appearance()
+			update_icon()
 		else if(bomb)
 			if(wires.is_all_cut() && bomb_defused)
 				user.put_in_hands(bomb)
 				balloon_alert(user, "removed bomb")
 				bomb = null
-				update_appearance()
+				update_icon()
 				return
 			else
 				bomb_timer = tgui_input_number(user, "Set the bomb timer", "Pizza Bomb", bomb_timer, bomb_timer_max, bomb_timer_min)
@@ -162,13 +162,13 @@
 				log_bomber(user, "has trapped a", src, "with [bomb] set to [bomb_timer] seconds")
 				bomb.adminlog = "The [bomb.name] in [src.name] that [key_name(user)] activated has detonated!"
 				balloon_alert(user, "bomb set")
-				update_appearance()
+				update_icon()
 	else if(length(boxes))
 		var/obj/item/pizzabox/topbox = boxes[length(boxes)]
 		boxes -= topbox
 		user.put_in_hands(topbox)
-		topbox.update_appearance()
-		update_appearance()
+		topbox.update_icon()
+		update_icon()
 		user.regenerate_icons()
 
 /obj/item/pizzabox/attackby(obj/item/I, mob/user, params)
@@ -182,8 +182,8 @@
 				return
 			boxes += add
 			newbox.boxes.Cut()
-			newbox.update_appearance()
-			update_appearance()
+			newbox.update_icon()
+			update_icon()
 			user.regenerate_icons()
 			if(length(boxes) >= 5)
 				if(prob(10 * length(boxes)))
@@ -202,7 +202,7 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			pizza = I
-			update_appearance()
+			update_icon()
 			return
 	else if(istype(I, /obj/item/bombcore/miniature/pizza))
 		if(open && !bomb)
@@ -211,7 +211,7 @@
 			wires = new /datum/wires/explosive/pizza(src)
 			bomb = I
 			balloon_alert(user, "bomb placed")
-			update_appearance()
+			update_icon()
 			return
 		else if(bomb)
 			balloon_alert(user, "already rigged!")
@@ -225,7 +225,7 @@
 				return
 			balloon_alert(user, "writing box tag...")
 			boxtag_set = TRUE
-			update_appearance()
+			update_icon()
 			return
 	else if(is_wire_tool(I))
 		if(wires && bomb)
@@ -277,9 +277,9 @@
 			fall_dir = pick(GLOB.alldirs)
 			step(P.pizza, fall_dir)
 			P.pizza = null
-			P.update_appearance()
+			P.update_icon()
 		boxes -= P
-	update_appearance()
+	update_icon()
 	if(isliving(loc))
 		var/mob/living/L = loc
 		L.regenerate_icons()
@@ -288,7 +288,7 @@
 	STOP_PROCESSING(SSobj, src)
 	qdel(wires)
 	wires = null
-	update_appearance()
+	update_icon()
 
 /obj/item/pizzabox/bomb/Initialize(mapload)
 	. = ..()
@@ -388,7 +388,7 @@
 	var/obj/item/food/pizza/favourite_pizza_type = pizza_preferences[nommer.ckey]
 	pizza = new favourite_pizza_type
 	boxtag_set = FALSE
-	update_appearance() //update our boxtag to match our new pizza
+	update_icon() //update our boxtag to match our new pizza
 	pizza.foodtypes = nommer.dna.species.liked_food //it's our favorite!
 
 ///screentips for pizzaboxes

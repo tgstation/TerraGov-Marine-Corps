@@ -1,6 +1,6 @@
 /datum/component/personal_crafting/Initialize()
 	if(ismob(parent))
-		RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))
+		RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(create_mob_button))
 
 /datum/component/personal_crafting/proc/create_mob_button(mob/user, client/CL)
 	SIGNAL_HANDLER
@@ -126,7 +126,7 @@
 				.["tool_behaviour"] += item.tool_behaviour
 				.["other"][item.type] += 1
 			else
-				if(is_reagent_container(item))
+				if(isreagentcontainer(item))
 					var/obj/item/reagent_containers/container = item
 					if(container.is_drainable())
 						for(var/datum/reagent/reagent in container.reagents.reagent_list)
@@ -271,7 +271,7 @@
 							RG.volume -= amt
 							data = RG.data
 							RC.reagents.conditional_update(RC)
-							RC.update_appearance(UPDATE_ICON)
+							RC.update_icon()
 							RG = locate(RG.type) in Deletion
 							RG.volume = amt
 							RG.data += data
@@ -281,7 +281,7 @@
 							amt -= RG.volume
 							RC.reagents.reagent_list -= RG
 							RC.reagents.conditional_update(RC)
-							RC.update_appearance(UPDATE_ICON)
+							RC.update_icon()
 							RGNT = locate(RG.type) in Deletion
 							RGNT.volume += RG.volume
 							RGNT.data += RG.data
@@ -347,7 +347,7 @@
 		Deletion.Cut(Deletion.len)
 		// Snowflake handling of reagent containers, storage atoms, and structures with contents.
 		// If we consumed them in our crafting, we should dump their contents out before qdeling them.
-		if(is_reagent_container(DL))
+		if(isreagentcontainer(DL))
 			var/obj/item/reagent_containers/container = DL
 			container.reagents.expose(container.loc, TOUCH)
 		else if(istype(DL, /obj/item/storage))
@@ -404,10 +404,6 @@
 	data["recipes"] = list()
 	data["categories"] = list()
 	data["foodtypes"] = list()
-
-	if(user.has_dna())
-		var/mob/living/carbon/carbon = user
-		data["diet"] = carbon.dna.species.get_species_diet()
 
 	for(var/datum/crafting_recipe/recipe as anything in (mode ? GLOB.cooking_recipes : GLOB.crafting_recipes))
 		if(!is_recipe_available(recipe, user))

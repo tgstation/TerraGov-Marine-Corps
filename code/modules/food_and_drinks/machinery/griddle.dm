@@ -87,7 +87,7 @@
 		begin_processing()
 	else
 		end_processing()
-	update_appearance()
+	update_icon()
 	update_grill_audio()
 
 
@@ -102,7 +102,7 @@
 	RegisterSignal(item_to_grill, COMSIG_ITEM_GRILLED, PROC_REF(GrillCompleted))
 	RegisterSignal(item_to_grill, COMSIG_PARENT_QDELETING, PROC_REF(ItemRemovedFromGrill))
 	update_grill_audio()
-	update_appearance()
+	update_icon()
 
 /obj/machinery/griddle/proc/ItemRemovedFromGrill(obj/item/ungrill)
 	SIGNAL_HANDLER

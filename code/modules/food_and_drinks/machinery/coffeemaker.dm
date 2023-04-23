@@ -145,7 +145,7 @@
 		coffeepot = null
 	if(A == cartridge)
 		cartridge = null
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 
 /obj/machinery/coffeemaker/update_overlays()
 	. = ..()
@@ -167,7 +167,7 @@
 	if(new_coffeepot)
 		coffeepot = new_coffeepot
 	balloon_alert(user, "replaced pot")
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 	return TRUE
 
 /obj/machinery/coffeemaker/proc/replace_cartridge(mob/living/user, obj/item/coffee_cartridge/new_cartridge)
@@ -177,7 +177,7 @@
 		try_put_in_hand(cartridge, user)
 	if(new_cartridge)
 		cartridge = new_cartridge
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 	return TRUE
 
 /obj/machinery/coffeemaker/wrench_act(mob/living/user, obj/item/tool)
@@ -202,7 +202,7 @@
 		if(!user.transferItemToLoc(new_pot, src))
 			return TRUE
 		replace_pot(user, new_pot)
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 	if (istype(attack_item, /obj/item/reagent_containers/cup/glass/coffee_cup) && !(attack_item.flags_item & ABSTRACT) && attack_item.is_open_container())
@@ -216,7 +216,7 @@
 		if(!user.transferItemToLoc(attack_item, src))
 			return
 		coffee_cups++
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 	if (istype(attack_item, /obj/item/reagent_containers/condiment/pack/sugar))
@@ -230,7 +230,7 @@
 		if(!user.transferItemToLoc(attack_item, src))
 			return
 		sugar_packs++
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 	if (istype(attack_item, /obj/item/reagent_containers/condiment/creamer))
@@ -244,7 +244,7 @@
 		if(!user.transferItemToLoc(attack_item, src))
 			return
 		creamer_packs++
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 	if (istype(attack_item, /obj/item/reagent_containers/condiment/pack/astrotame))
@@ -258,7 +258,7 @@
 		else if(!user.transferItemToLoc(attack_item, src))
 			return
 		sweetener_packs++
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 	if (istype(attack_item, /obj/item/coffee_cartridge) && !(attack_item.flags_item & ABSTRACT))
@@ -267,7 +267,7 @@
 			return
 		replace_cartridge(user, new_cartridge)
 		balloon_alert(user, "added cartridge")
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 /obj/machinery/coffeemaker/proc/try_brew()
@@ -367,7 +367,7 @@
 	var/obj/item/reagent_containers/cup/glass/coffee_cup/new_cup = new(get_turf(src))
 	user.put_in_hands(new_cup)
 	coffee_cups--
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 
 /obj/machinery/coffeemaker/proc/take_sugar(mob/user)
 	if(!sugar_packs)
@@ -376,7 +376,7 @@
 	var/obj/item/reagent_containers/condiment/pack/sugar/new_pack = new(get_turf(src))
 	user.put_in_hands(new_pack)
 	sugar_packs--
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 
 /obj/machinery/coffeemaker/proc/take_sweetener(mob/user)
 	if(!sweetener_packs)
@@ -385,7 +385,7 @@
 	var/obj/item/reagent_containers/condiment/pack/astrotame/new_pack = new(get_turf(src))
 	user.put_in_hands(new_pack)
 	sweetener_packs--
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 
 /obj/machinery/coffeemaker/proc/take_creamer(mob/user)
 	if(!creamer_packs)
@@ -394,7 +394,7 @@
 	var/obj/item/reagent_containers/condiment/creamer/new_pack = new(drop_location())
 	user.put_in_hands(new_pack)
 	creamer_packs--
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 
 ///Updates the smoke state to something else, setting particles if relevant
 /obj/machinery/coffeemaker/proc/toggle_steam()
@@ -577,7 +577,7 @@
 		coffeepot = null
 	if(A == coffee)
 		coffee.Cut()
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 
 /obj/machinery/coffeemaker/impressa/try_brew()
 	if(coffee_amount <= 0)
@@ -610,7 +610,7 @@
 		if(!user.transferItemToLoc(new_pot, src))
 			return TRUE
 		replace_pot(user, new_pot)
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 	if (istype(attack_item, /obj/item/reagent_containers/cup/glass/coffee) && !(attack_item.flags_item & ABSTRACT) && attack_item.is_open_container())
@@ -624,7 +624,7 @@
 		if(!user.transferItemToLoc(attack_item, src))
 			return
 		coffee_cups++
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 	if (istype(attack_item, /obj/item/reagent_containers/condiment/pack/sugar))
@@ -638,7 +638,7 @@
 		if(!user.transferItemToLoc(attack_item, src))
 			return
 		sugar_packs++
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 	if (istype(attack_item, /obj/item/reagent_containers/condiment/creamer))
@@ -652,7 +652,7 @@
 		if(!user.transferItemToLoc(attack_item, src))
 			return
 		creamer_packs++
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 	if (istype(attack_item, /obj/item/reagent_containers/condiment/pack/astrotame))
@@ -666,7 +666,7 @@
 		if(!user.transferItemToLoc(attack_item, src))
 			return
 		sweetener_packs++
-		update_appearance(UPDATE_OVERLAYS)
+		update_overlays()
 		return TRUE //no afterattack
 
 	if (istype(attack_item, /obj/item/food/grown/coffee) && !(attack_item.flags_item & ABSTRACT))
@@ -697,7 +697,7 @@
 						coffee_amount++
 						new_coffee.forceMove(src)
 						balloon_alert(user, "added coffee")
-						update_appearance(UPDATE_OVERLAYS)
+						update_overlays()
 					else
 						return
 				else
@@ -706,7 +706,7 @@
 				balloon_alert(user, "non-dried beans inside of coffee pack!")
 				return
 
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 	return TRUE //no afterattack
 
 /obj/machinery/coffeemaker/impressa/take_cup(mob/user)
@@ -717,7 +717,7 @@
 	var/obj/item/reagent_containers/cup/glass/coffee/no_lid/new_cup = new(get_turf(src))
 	user.put_in_hands(new_cup)
 	coffee_cups--
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 
 /obj/machinery/coffeemaker/impressa/toggle_steam()
 	QDEL_NULL(particles)
@@ -733,6 +733,6 @@
 	coffeepot.reagents.add_reagent_list(list(/datum/reagent/consumable/coffee = 120))
 	coffee.Cut(1,2) //remove the first item from the list
 	coffee_amount--
-	update_appearance(UPDATE_OVERLAYS)
+	update_overlays()
 
 #undef BEAN_CAPACITY

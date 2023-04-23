@@ -18,10 +18,10 @@
 //Grabs the appropriate seed datum from the global list.
 /obj/item/seeds/proc/update_seed()
 	seed = GLOB.seed_types[seed_type]
-	update_appearance()
+	update_seed_appearance()
 
 //Updates strings and icon appropriately based on seed datum.
-/obj/item/seeds/proc/update_appearance()
+/obj/item/seeds/proc/update_seed_appearance()
 	icon_state = seed.packet_icon
 	name = "packet of [seed.seed_name] [seed.seed_noun]"
 	desc = "It has a picture of [seed.display_name] on the front."

@@ -154,6 +154,23 @@ ColorTone(rgb, tone)
 		upper.MapColors((255-TONE[1])/(255-gray),0,0,0, 0,(255-TONE[2])/(255-gray),0,0, 0,0,(255-TONE[3])/(255-gray),0, 0,0,0,0, 0,0,0,1)
 		Blend(upper, ICON_ADD)
 
+/proc/GetColors(hex) //Used in customizable_reagent_holder.dm
+	hex = uppertext(hex)
+	// No alpha set? Default to full alpha.
+	if(length(hex) == 7)
+		hex += "FF"
+	var/hi1 = text2ascii(hex, 2) // R
+	var/lo1 = text2ascii(hex, 3) // R
+	var/hi2 = text2ascii(hex, 4) // G
+	var/lo2 = text2ascii(hex, 5) // G
+	var/hi3 = text2ascii(hex, 6) // B
+	var/lo3 = text2ascii(hex, 7) // B
+	var/hi4 = text2ascii(hex, 8) // A
+	var/lo4 = text2ascii(hex, 9) // A
+	return list(((hi1 >= 65 ? hi1-55 : hi1-48)<<4) | (lo1 >= 65 ? lo1-55 : lo1-48),
+		((hi2 >= 65 ? hi2-55 : hi2-48)<<4) | (lo2 >= 65 ? lo2-55 : lo2-48),
+		((hi3 >= 65 ? hi3-55 : hi3-48)<<4) | (lo3 >= 65 ? lo3-55 : lo3-48),
+		((hi4 >= 65 ? hi4-55 : hi4-48)<<4) | (lo4 >= 65 ? lo4-55 : lo4-48))
 
 // Take the minimum color of two icons; combine transparency as if blending with ICON_ADD
 /icon/proc/MinColors(icon)

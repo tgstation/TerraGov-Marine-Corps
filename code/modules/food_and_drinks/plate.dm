@@ -53,7 +53,7 @@
 	item_to_plate.pixel_z = item_to_plate.pixel_y
 	item_to_plate.pixel_x = 0
 	item_to_plate.pixel_y = 0
-	update_appearance()
+	update_icon()
 
 ///This proc cleans up any signals on the item when it is removed from a plate, and ensures it has the correct state again.
 /obj/item/plate/proc/ItemRemovedFromPlate(obj/item/removed_item)

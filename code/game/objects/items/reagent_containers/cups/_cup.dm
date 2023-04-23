@@ -104,7 +104,7 @@
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 
-	target.update_appearance()
+	target.update_icon()
 
 /obj/item/reagent_containers/cup/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
 	if((!proximity_flag) || !check_allowed_items(target, target_self = TRUE))
@@ -125,7 +125,7 @@
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 
-	target.update_appearance()
+	target.update_icon()
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 /obj/item/reagent_containers/cup/attackby(obj/item/attacking_item, mob/user, params)
@@ -164,20 +164,12 @@
 
 	return ..()
 
-/*
- * On accidental consumption, make sure the container is partially glass, and continue to the reagent_container proc
- */
-/obj/item/reagent_containers/cup/on_accidental_consumption(mob/living/carbon/M, mob/living/carbon/user, obj/item/source_item, discover_after = TRUE)
-	if(isGlass && !custom_materials)
-		set_custom_materials(list(GET_MATERIAL_REF(/datum/material/glass) = 5))//sets it to glass so, later on, it gets picked up by the glass catch (hope it doesn't 'break' things lol)
-	return ..()
-
 /obj/item/reagent_containers/cup/beaker
 	name = "beaker"
 	desc = "A beaker. It can hold up to 50 units."
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "beaker"
-	inhand_icon_state = "beaker"
+	item_state = "beaker"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	worn_icon_state = "beaker"
@@ -186,7 +178,7 @@
 
 /obj/item/reagent_containers/cup/beaker/Initialize(mapload)
 	. = ..()
-	update_appearance()
+	update_icon()
 
 /obj/item/reagent_containers/cup/beaker/get_part_rating()
 	return reagents.maximum_volume
@@ -303,7 +295,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 	icon_state = "bucket"
-	inhand_icon_state = "bucket"
+	item_state = "bucket"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
 	greyscale_colors = "#0085e5" //matches 1:1 with the original sprite color before gag-ification.
@@ -344,7 +336,7 @@
 /obj/item/reagent_containers/cup/bucket/wooden
 	name = "wooden bucket"
 	icon_state = "woodbucket"
-	inhand_icon_state = "woodbucket"
+	item_state = "woodbucket"
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null

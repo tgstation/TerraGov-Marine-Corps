@@ -46,7 +46,7 @@
 		else
 			grill_fuel += (50 * stackamount)
 		S.use(stackamount)
-		update_appearance()
+		update_icon()
 		return
 	if(I.resistance_flags & INDESTRUCTIBLE)
 		to_chat(user, span_warning("You don't feel it would be wise to grill [I]..."))
@@ -56,7 +56,7 @@
 			grill_fuel += (20 * (I.reagents.get_reagent_amount(/datum/reagent/consumable/monkey_energy)))
 			to_chat(user, span_notice("You pour the Monkey Energy in [src]."))
 			I.reagents.remove_reagent(/datum/reagent/consumable/monkey_energy, I.reagents.get_reagent_amount(/datum/reagent/consumable/monkey_energy))
-			update_appearance()
+			update_icon()
 			return
 	else if(IS_EDIBLE(I))
 		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & (ABSTRACT | DROPDEL)))
@@ -71,7 +71,7 @@
 			grilled_item = I
 			RegisterSignal(grilled_item, COMSIG_ITEM_GRILLED, PROC_REF(GrillCompleted))
 			to_chat(user, span_notice("You put the [grilled_item] on [src]."))
-			update_appearance()
+			update_icon()
 			grill_loop.start()
 			return
 
@@ -79,7 +79,7 @@
 
 /obj/machinery/grill/process(delta_time)
 	..()
-	update_appearance()
+	update_icon()
 	if(grill_fuel <= 0)
 		return
 	else
@@ -126,7 +126,7 @@
 	if(grilled_item)
 		to_chat(user, span_notice("You take out [grilled_item] from [src]."))
 		grilled_item.forceMove(drop_location())
-		update_appearance()
+		update_icon()
 		return
 	return ..()
 
