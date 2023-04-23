@@ -998,3 +998,56 @@ Proc for attack log creation, because really why not
 
 /atom/proc/can_slip()
 	return TRUE
+
+/**
+ * Ensure a list of atoms/reagents exists inside this atom
+ *
+ * Goes throught he list of passed in parts, if they're reagents, adds them to our reagent holder
+ * creating the reagent holder if it exists.
+ *
+ * If the part is a moveable atom and the  previous location of the item was a mob/living,
+ * it calls the inventory handler transferItemToLoc for that mob/living and transfers the part
+ * to this atom
+ *
+ * Otherwise it simply forceMoves the atom into this atom
+ */
+/atom/proc/CheckParts(list/parts_list, datum/crafting_recipe/current_recipe)
+	SEND_SIGNAL(src, COMSIG_ATOM_CHECKPARTS, parts_list, current_recipe)
+	if(!parts_list)
+		return
+	for(var/part in parts_list)
+		if(istype(part, /datum/reagent))
+			if(!reagents)
+				reagents = new()
+			reagents.reagent_list.Add(part)
+			reagents.conditional_update()
+		else if(ismovable(part))
+			var/atom/movable/object = part
+			if(isliving(object.loc))
+				var/mob/living/living = object.loc
+				living.transferItemToLoc(object, src)
+			else
+				object.forceMove(src)
+			SEND_SIGNAL(object, COMSIG_ATOM_USED_IN_CRAFT, src)
+	parts_list.Cut()
+
+/** Handles exposing this atom to a list of reagents.
+ *
+ * Sends COMSIG_ATOM_EXPOSE_REAGENTS
+ * Calls expose_atom() for every reagent in the reagent list.
+ *
+ * Arguments:
+ * - [reagents][/list]: The list of reagents the atom is being exposed to.
+ * - [source][/datum/reagents]: The reagent holder the reagents are being sourced from.
+ * - methods: How the atom is being exposed to the reagents. Bitflags.
+ * - volume_modifier: Volume multiplier.
+ * - show_message: Whether to display anything to mobs when they are exposed.
+ */
+/atom/proc/expose_reagents(list/reagents, datum/reagents/source, methods=TOUCH, volume_modifier=1, show_message=TRUE)
+	. = SEND_SIGNAL(src, COMSIG_ATOM_EXPOSE_REAGENTS, reagents, source, methods, volume_modifier, show_message)
+	if(. & COMPONENT_NO_EXPOSE_REAGENTS)
+		return
+
+	SEND_SIGNAL(source, COMSIG_REAGENTS_EXPOSE_ATOM, src, reagents, methods, volume_modifier, show_message)
+	for(var/datum/reagent/current_reagent as anything in reagents)
+		. |= current_reagent.expose_atom(src, reagents[current_reagent])

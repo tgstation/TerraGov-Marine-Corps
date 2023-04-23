@@ -546,6 +546,60 @@
 			if("OBJ")
 				R.reaction_obj(A, R.volume * volume_modifier, show_message)
 
+/**
+ * Applies the relevant expose_ proc for every reagent in this holder
+ * * [/datum/reagent/proc/expose_mob]
+ * * [/datum/reagent/proc/expose_turf]
+ * * [/datum/reagent/proc/expose_obj]
+ *
+ * Arguments
+ * - Atom/A: What mob/turf/object is being exposed to reagents? This is your reaction target.
+ * - Methods: What reaction type is the reagent itself going to call on the reaction target? Types are TOUCH, INGEST, VAPOR, PATCH, and INJECT.
+ * - Volume_modifier: What is the reagent volume multiplied by when exposed? Note that this is called on the volume of EVERY reagent in the base body, so factor in your Maximum_Volume if necessary!
+ * - Show_message: Whether to display anything to mobs when they are exposed.
+ */
+/datum/reagents/proc/expose(atom/A, methods = TOUCH, volume_modifier = 1, show_message = 1)
+	if(isnull(A))
+		return null
+
+	var/list/cached_reagents = reagent_list
+	if(!cached_reagents.len)
+		return null
+
+	var/list/reagents = list()
+	for(var/datum/reagent/reagent as anything in cached_reagents)
+		reagents[reagent] = reagent.volume * volume_modifier
+
+	return A.expose_reagents(reagents, src, methods, volume_modifier, show_message)
+
+// Same as [/datum/reagents/proc/expose] but only for multiple reagents (through a list)
+/datum/reagents/proc/expose_multiple(list/r_to_expose, atom/A, methods = TOUCH, volume_modifier = 1, show_message = 1)
+	if(isnull(A))
+		return null
+
+	var/list/cached_reagents = r_to_expose
+	if(!cached_reagents.len)
+		return null
+
+	var/list/reagents = list()
+	for(var/datum/reagent/reagent as anything in cached_reagents)
+		reagents[reagent] = reagent.volume * volume_modifier
+
+	return A.expose_reagents(reagents, src, methods, volume_modifier, show_message)
+
+/// Same as [/datum/reagents/proc/expose] but only for one reagent
+/datum/reagents/proc/expose_single(datum/reagent/R, atom/A, methods = TOUCH, volume_modifier = 1, show_message = TRUE)
+	if(isnull(A))
+		return null
+
+	if(ispath(R))
+		R = get_reagent(R)
+	if(isnull(R))
+		return null
+
+	// Yes, we need the parentheses.
+	return A.expose_reagents(list((R) = R.volume * volume_modifier), src, methods, volume_modifier, show_message)
+
 /datum/reagents/proc/holder_full()
 	if(total_volume >= maximum_volume)
 		return TRUE
