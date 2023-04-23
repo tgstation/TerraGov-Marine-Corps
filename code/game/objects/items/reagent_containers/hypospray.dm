@@ -67,7 +67,8 @@
 		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
 		to_chat(user, span_notice("You dissolve [pill] from [bottle] in [src]."))
-		bottle.remove_from_storage(pill,user,user)
+		bottle.remove_from_storage(pill,null,user)
+		qdel(pill)
 		return
 
 	//For drawing reagents, will check if it's possible to draw, then draws.
