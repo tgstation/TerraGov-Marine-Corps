@@ -849,7 +849,7 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "YI" = (
-/obj/effect/spawner/random/medical/structure/ivdrip,
+/obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 
