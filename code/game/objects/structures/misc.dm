@@ -159,6 +159,10 @@
 		if(EXPLODE_LIGHT)
 			take_damage(50)
 
+/obj/structure/xenoautopsy/tank/Destroy()
+	occupant = null
+	return ..()
+
 /obj/structure/xenoautopsy/tank/escaped
 	name = "broken cryo tank"
 	icon_state = "tank_escaped"
