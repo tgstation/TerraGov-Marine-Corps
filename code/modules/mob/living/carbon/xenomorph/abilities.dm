@@ -1422,6 +1422,9 @@
 	)
 	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
 
+/datum/action/xeno_action/blessing_menu/should_show()
+	return FALSE // Blessings meni now done through hive status UI!
+
 /datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	X.hive.purchases.interact(X)
