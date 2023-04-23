@@ -506,7 +506,7 @@
 /datum/keybinding/xeno/call_of_the_burrowed
 	name = "call_of_the_burrowed"
 	full_name = "Call of the Burrowed"
-	description = ""
+	description = "Attempts to summon all currently burrowed larva."
 	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
 
 /datum/keybinding/xeno/psychic_fling
