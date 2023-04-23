@@ -64,8 +64,11 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_hand_alternate(mob/living/user)
 	. = ..()
 	var/new_bomb_message = stripped_input(user, "Select Warcry", "Warcry", null, 50)
-	if(CHAT_FILTER_CHECK(new_bomb_message))
+	var/filter_result = is_ic_filtered(new_bomb_message)
+	if(filter_result)
 		to_chat(user, span_info("This warcry is prohibited from IC chat."))
+		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
+		log_filter("IC", new_bomb_message, filter_result)
 		return
 	if(findtext(new_bomb_message, regex(bad_warcries_regex, "i")))
 		to_chat(user, span_info("This warcry is prohibited from IC chat."))

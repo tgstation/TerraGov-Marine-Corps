@@ -222,6 +222,8 @@
 	WRITE_LOG(GLOB.config_error_log, text)
 	SEND_TEXT(world.log, text)
 
+/proc/log_filter_raw(text)
+	WRITE_LOG(GLOB.filter_log, "FILTER: [text]")
 
 /proc/log_paper(text)
 	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
