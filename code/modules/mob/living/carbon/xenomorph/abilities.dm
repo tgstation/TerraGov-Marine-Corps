@@ -887,8 +887,6 @@
 	set_target(get_turf_on_clickcatcher(object, xeno, params))
 	if(!current_target)
 		return
-	xeno.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
-	span_xenowarning("We spit at \the [current_target]!") )
 
 	SEND_SIGNAL(owner, COMSIG_XENO_FIRE)
 	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
