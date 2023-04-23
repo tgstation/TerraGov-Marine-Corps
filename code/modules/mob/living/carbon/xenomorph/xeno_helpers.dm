@@ -24,10 +24,6 @@
 	if(!actions_by_path[/datum/action/xeno_action/rally_minion])
 		var/datum/action/xeno_action/rally_minion/rally = new /datum/action/xeno_action/rally_minion
 		rally.give_action(src)
-	if(!actions_by_path[/datum/action/xeno_action/set_agressivity])
-		var/datum/action/xeno_action/set_agressivity/minions_behaviour = new /datum/action/xeno_action/set_agressivity
-		minions_behaviour.give_action(src)
-
 
 
 ///Helper proc for removing the rally hive ability appropriately
@@ -41,7 +37,4 @@
 
 	if(rally_minion)
 		rally_minion.remove_action(src)
-	var/datum/action/xeno_action/set_agressivity/minions_behaviour = actions_by_path[/datum/action/xeno_action/set_agressivity]
-	if(minions_behaviour)
-		minions_behaviour.remove_action(src)
 
