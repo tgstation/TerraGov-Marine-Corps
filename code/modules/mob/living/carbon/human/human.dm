@@ -133,9 +133,9 @@
 	var/f_loss = 0
 	var/stagger_slow_amount = 0
 	var/ear_damage_amount = 0
-	var/armor = modify_by_armor(1, BOMB) //percentage that pierces overall bomb armor
+	var/armor_modifier = modify_by_armor(1, BOMB) //percentage that pierces overall bomb armor
 
-	if(armor <= 0) //we have 100 effective bomb armor
+	if(armor_modifier <= 0) //we have 100 effective bomb armor
 		return
 
 	switch(severity)
@@ -158,12 +158,12 @@
 			ear_damage_amount = 10
 
 	if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-		adjust_ear_damage(ear_damage_amount * armor, ear_damage_amount * 4 * armor)
-	adjust_stagger(stagger_slow_amount * armor)
-	add_slowdown(stagger_slow_amount * armor)
+		adjust_ear_damage(ear_damage_amount * armor_modifier, ear_damage_amount * 4 * armor_modifier)
+	adjust_stagger(stagger_slow_amount * armor_modifier)
+	add_slowdown(stagger_slow_amount * armor_modifier)
 
 	#ifdef DEBUG_HUMAN_ARMOR
-	to_chat(world, "DEBUG EX_ACT: armor: [armor], b_loss: [b_loss], f_loss: [f_loss]")
+	to_chat(world, "DEBUG EX_ACT: armor_modifier: [armor_modifier], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
 	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE, max_limbs = 4)

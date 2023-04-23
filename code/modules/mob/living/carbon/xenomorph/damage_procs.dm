@@ -9,14 +9,10 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
-	penetration += sunder
-	return ..()
-
-/mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
 	var/hard_armor_remaining = get_hard_armor(armor_type, def_zone)
 
 	var/effective_penetration = max(0, penetration - hard_armor_remaining)
-	hard_armor_remaining = hard_armor_remaining - (penetration - effective_penetration)
+	hard_armor_remaining -= (penetration - effective_penetration)
 
 	var/sunder_ratio = clamp(1 - ((sunder - hard_armor_remaining) * 0.01), 0, 1) //sunder is reduced by whatever remaining hardarmour there is
 
@@ -34,7 +30,7 @@
 	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_armor_ratio)
 	var/bomb_sunder_multiplier = max(0, 1 - bomb_armor_ratio)
 
-	if((severity == EXPLODE_DEVASTATE) && ((bomb_armor_ratio * get_soft_armor(BOMB)) <= XENO_EXPLOSION_GIB_THRESHOLD))
+	if((severity == EXPLODE_DEVASTATE) && (bomb_armor_ratio > XENO_EXPLOSION_GIB_THRESHOLD))
 		return gib() //Gibs unprotected benos
 
 	//Slowdown and stagger
