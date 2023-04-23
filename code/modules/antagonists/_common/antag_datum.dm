@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(!check_rights(R_ADMIN))
 		return
 	//Antag memory edit
-	if (href_list["memory_edit"])
+	if(href_list["memory_edit"])
 		edit_memory(usr)
 		//owner.traitor_panel()
 		return
@@ -197,35 +197,14 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/custom
 	antagpanel_category = "Custom"
 	show_name_in_check_antagonists = TRUE //They're all different
-	var/datum/team/custom_team
 
-/datum/antagonist/custom/admin_add(datum/mind/new_owner,mob/admin)
+/datum/antagonist/custom/admin_add(datum/mind/new_owner, mob/admin)
 	var/custom_name = stripped_input(admin, "Custom antagonist name:", "Custom antag", "Antagonist")
 	if(custom_name)
 		name = custom_name
 	else
 		return
-	..()
-
-/datum/antagonist/Topic(href,href_list)
-	if(!check_rights(R_ADMIN))
-		return
-	//Antag memory edit
-	if (href_list["memory_edit"])
-		edit_memory(usr)
-		owner.traitor_panel()
-		return
-
-	//Some commands might delete/modify this datum clearing or changing owner
-	var/datum/mind/persistent_owner = owner
-
-	var/commands = get_admin_commands()
-	for(var/admin_command in commands)
-		if(href_list["command"] == admin_command)
-			var/datum/callback/C = commands[admin_command]
-			C.Invoke(usr)
-			persistent_owner.traitor_panel()
-			return
+	return ..()
 
 //Returns MINDS of the assigned antags of given type/subtypes
 /proc/get_antag_minds(antag_type,specific = FALSE)
