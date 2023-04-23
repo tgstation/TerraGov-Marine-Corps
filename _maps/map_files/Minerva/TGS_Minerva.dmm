@@ -17266,6 +17266,9 @@
 /area/mainship/command/airoom)
 "YX" = (
 /obj/effect/landmark/start/job/ai,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "YZ" = (

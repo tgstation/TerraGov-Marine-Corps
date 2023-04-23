@@ -1449,12 +1449,12 @@
 	},
 /area/mainship/hallways/bow_hallway)
 "aqJ" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
 /obj/structure/table/mainship/nometal,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "ars" = (
@@ -1727,7 +1727,7 @@
 /area/mainship/medical/medical_science)
 "awS" = (
 /obj/machinery/status_display{
-	pixel_y = 30
+	pixel_y = 32
 	},
 /turf/open/floor/mainship/orange{
 	dir = 1
@@ -4548,7 +4548,7 @@
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/machinery/status_display{
-	pixel_y = 30
+	pixel_y = 32
 	},
 /turf/open/floor/mainship/orange{
 	dir = 9
@@ -8583,10 +8583,10 @@
 /area/mainship/medical/lower_medical)
 "dvk" = (
 /obj/structure/closet,
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
 /obj/item/toy/plush/slime,
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "dvy" = (
@@ -9199,7 +9199,7 @@
 /area/mainship/medical/operating_room_three)
 "ext" = (
 /obj/machinery/status_display{
-	pixel_y = 30
+	pixel_y = 32
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
@@ -9444,9 +9444,6 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "eWQ" = (
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -9455,6 +9452,9 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
+/obj/machinery/status_display{
+	pixel_y = 34
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -10757,9 +10757,6 @@
 /area/mainship/hallways/port_hallway)
 "hbF" = (
 /obj/structure/cable,
-/obj/machinery/firealarm{
-	dir = 8
-	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -10868,7 +10865,7 @@
 /area/mainship/command/cic)
 "hjE" = (
 /obj/machinery/status_display{
-	pixel_y = 30
+	pixel_y = 32
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
@@ -12280,15 +12277,11 @@
 	},
 /area/mainship/command/cic)
 "jQK" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
 /obj/machinery/door_display/research_cell/cell/cell1{
-	dir = 4
+	pixel_y = 2
 	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
-	},
-/area/mainship/medical/medical_science)
+/turf/closed/wall/mainship/white,
+/area/mainship/medical/surgery_hallway)
 "jRe" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -13903,7 +13896,7 @@
 /area/mainship/hallways/aft_hallway)
 "mxY" = (
 /obj/machinery/status_display{
-	pixel_y = 30
+	pixel_y = 32
 	},
 /turf/open/floor/mainship/silver{
 	dir = 1
@@ -14535,12 +14528,12 @@
 "nyj" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/cups,
-/obj/item/tool/kitchen/utensil/spoon,
-/obj/item/tool/kitchen/utensil/spoon,
-/obj/item/tool/kitchen/utensil/spoon,
-/obj/item/tool/kitchen/utensil/fork,
-/obj/item/tool/kitchen/utensil/fork,
-/obj/item/tool/kitchen/utensil/fork,
+/obj/effect/spawner/random/food_or_drink/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
 "nzG" = (
@@ -15095,7 +15088,7 @@
 /area/mainship/medical/lower_medical)
 "osZ" = (
 /obj/machinery/status_display{
-	pixel_y = 32
+	pixel_y = 34
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
@@ -56697,7 +56690,7 @@ ckd
 ckd
 bDw
 bvX
-blP
+jQK
 bHk
 aDE
 ehB
@@ -57473,7 +57466,7 @@ iOm
 bIw
 nCT
 poH
-jQK
+poH
 bIw
 poH
 poH
@@ -69531,11 +69524,11 @@ aai
 aal
 abR
 rhS
-bhJ
+vXq
 vXq
 tBH
 vXq
-bhJ
+vXq
 rhS
 tNX
 qEl
@@ -70045,11 +70038,11 @@ bfU
 rbR
 abR
 nUz
-vXq
+bhJ
 tgF
 lBr
 qVQ
-vXq
+bhJ
 dvM
 abR
 nMO

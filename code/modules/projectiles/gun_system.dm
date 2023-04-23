@@ -209,10 +209,10 @@
 	var/min_scatter = -360
 	///Minimum scatter when wielded
 	var/min_scatter_unwielded = -360
-	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
+	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing, based off burst size
 	var/burst_scatter_mult = 1
-	///Additive number added to accuracy_mult. Defaults to 0 (no change).
-	var/burst_accuracy_mult = 0
+	///Additive number added to accuracy_mult.
+	var/burst_accuracy_bonus = 0
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
 	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing while moving.
@@ -416,7 +416,6 @@
 	unwield(user)
 	if(ishandslot(slot))
 		set_gun_user(user)
-		mouse_opacity = MOUSE_OPACITY_OPAQUE
 	else
 		set_gun_user(null)
 	return ..()
@@ -428,10 +427,6 @@
 	if(!length(chamber_items) || !chamber_items[current_chamber_position] || chamber_items[current_chamber_position].loc == src)
 		return
 	drop_connected_mag(chamber_items[current_chamber_position], user)
-
-/obj/item/weapon/gun/unequipped(mob/user, slot)
-	. = ..()
-	mouse_opacity = initial(mouse_opacity) //So that it doesnt remain opaque when you drop or discard the gun
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
@@ -1717,10 +1712,10 @@
 
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST)
 		if(wielded_fire)
-			gun_accuracy_mult += burst_accuracy_mult
+			gun_accuracy_mult += burst_accuracy_bonus
 			gun_scatter += burst_amount * burst_scatter_mult
 		else
-			gun_accuracy_mult += burst_accuracy_mult * 2
+			gun_accuracy_mult += burst_accuracy_bonus * 2
 			gun_scatter += burst_amount * burst_scatter_mult * 2
 
 	if(dual_wield) //akimbo firing gives terrible scatter
