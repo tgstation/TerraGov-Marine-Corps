@@ -458,10 +458,10 @@
 	. = ..()
 	if(health <= 0 && health > -50)
 		clear_fullscreen("robotlow")
-		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/robothalf)
+		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
 	else if(health <= -50)
 		clear_fullscreen("robothalf")
-		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/robotlow)
+		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
 	else
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
