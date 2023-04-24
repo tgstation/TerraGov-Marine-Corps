@@ -130,6 +130,9 @@
 	if(xenomorph.status_flags & INCORPOREAL)
 		return FALSE
 
+	if(isxenofacehugger(xenomorph))
+		return enter_egg(xenomorph)
+
 	if(!istype(xenomorph))
 		return attack_hand(xenomorph)
 
@@ -160,10 +163,10 @@
 		return FALSE
 
 	if(maturity_stage != stage_ready_to_burst)
-		to_chat(user, span_warning("The egg is not ready."))
+		balloon_alert(user, "Not fully grown")
 		return FALSE
 	if(!hugger_type)
-		to_chat(user, span_warning("The egg is empty."))
+		balloon_alert(user, "Empty")
 		return FALSE
 
 	advance_maturity(stage_ready_to_burst + 1)
@@ -172,17 +175,14 @@
 	playsound(loc, "sound/effects/alien_egg_move.ogg", 25)
 	flick("egg opening", src)
 
-	var/mob/living/carbon/xenomorph/facehugger/new_hugger = new /mob/living/carbon/xenomorph/facehugger(loc)
+	var/mob/living/carbon/xenomorph/facehugger/new_hugger = new(loc)
 	hugger_type = null
 	addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/mob/living, transfer_mob), user), 1 SECONDS)
-	log_admin("[user.key] took control of [new_hugger.name] from an egg at [AREACOORD(src)].")
 	return TRUE
 
-//Sentient facehugger can get in the egg
-/obj/alien/egg/hugger/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
-	. = ..()
-
-	if(alert("Do you want to get into the egg?", "Get inside the egg", "Yes", "No") != "Yes")
+///Sentient facehugger can get in the egg, called on attack_alien
+/obj/alien/egg/hugger/proc/enter_egg(mob/living/carbon/xenomorph/facehugger/F)
+	if(tgui_alert(F, "Do you want to get into the egg?", "Get inside the egg", list("Yes", "No")) != "Yes")
 		return
 
 	if(!insert_new_hugger(new /obj/item/clothing/mask/facehugger/larval()))

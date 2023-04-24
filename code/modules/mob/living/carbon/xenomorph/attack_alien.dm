@@ -195,6 +195,8 @@
 			if(on_fire)
 				X.visible_message(span_danger("[X] stares at [src]."), span_notice("We stare at the roasting [src], toasty."), null, 5)
 				return FALSE
+			if(isxenofacehugger(X))
+				return attempt_facehug(X)
 			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
 			span_notice("We caress [src] with our scythe-like arm."), null, 5)
 			return FALSE
@@ -210,26 +212,12 @@
 	M.visible_message(span_danger("[M] nudges its head against [src]."), \
 	span_danger("We nudge our head against [src]."), null, 5)
 
-/mob/living/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, damage_amount = F.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(F.status_flags & INCORPOREAL)
+///A facehugger who clicks a human on help intent will try to facehug the target. Called by attack_alien()
+/mob/living/proc/attempt_facehug(mob/living/carbon/xenomorph/facehugger/F)
+	if(!(ishuman(src)))
 		return FALSE
-
-	switch(F.a_intent)
-		if(INTENT_HELP, INTENT_GRAB) //Try to hug target if this is a human
-			if(ishuman(src))
-				F.visible_message(null, span_notice("We're starting to climb on [src]"), null, 5)
-				if(!do_after(F, 3 SECONDS, TRUE, F, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(F, TYPE_PROC_REF(/datum, Adjacent), src)))
-					F.balloon_alert(F, "Climbing interrupted")
-					return FALSE
-				F.try_attach(src)
-			else if(on_fire)
-				F.visible_message(span_danger("[F] stares at [src]."), \
-				span_notice("We stare at the roasting [src], toasty."), null, 5)
-			else
-				F.visible_message(span_notice("[F] stares at [src]."), \
-				span_notice("We stare at [src]."), null, 5)
-			return FALSE
-
-		if(INTENT_HARM, INTENT_DISARM)
-			return attack_alien_harm(F)
-	return FALSE
+	F.visible_message(null, span_notice("We're starting to climb on [src]"), null, 5)
+	if(!do_after(F, 3 SECONDS, TRUE, F, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(F, TYPE_PROC_REF(/datum, Adjacent), src)))
+		balloon_alert(F, "Climbing interrupted")
+		return FALSE
+	F.try_attach(src)

@@ -42,35 +42,34 @@
 		return FALSE
 
 	if(!sentient_huggers)
-		to_chat(user, span_warning("The carrier did not allow possession."))
+		balloon_alert(user, "Sentient huggers disabled")
 		return FALSE
 
 	if(!huggers)
-		to_chat(user, span_warning("The carrier doesn't have available huggers."))
+		balloon_alert(user, "No huggers available")
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/facehugger/new_hugger = new /mob/living/carbon/xenomorph/facehugger(get_turf(src))
+	var/mob/living/carbon/xenomorph/facehugger/new_hugger = new(get_turf(src))
 	huggers--
 	new_hugger.transfer_mob(user)
-	log_admin("[user.key] took control of [new_hugger.name] from a [name] at [AREACOORD(src)].")
 	return TRUE
 
 //Sentient facehugger can climb on the carrier
-/mob/living/carbon/xenomorph/carrier/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/mob/living/carbon/xenomorph/carrier/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()
-
-	if(alert("Do you want to climb on the carrier?", "Climb on the carrier", "Yes", "No") != "Yes")
+	if(!isxenofacehugger(X))
 		return
-
+	if(tgui_alert(X, "Do you want to climb on the carrier?", "Climb on the carrier", list("Yes", "No")) != "Yes")
+		return
 	if(huggers >= xeno_caste.huggers_max)
-		F.balloon_alert(F, "The carrier has no space")
+		balloon_alert(X, "The carrier has no space")
 		return
 
 	huggers++
-	F.visible_message(span_xenowarning("[F] climb on the [src]."),span_xenonotice("You climb on the [src]."))
-	F.ghostize()
-	F.death(deathmessage = "climb on the carrier", silent = TRUE)
-	qdel(F)
+	X.visible_message(span_xenowarning("[X] climb on the [src]."),span_xenonotice("You climb on the [src]."))
+	X.ghostize()
+	X.death(deathmessage = "climb on the carrier", silent = TRUE)
+	qdel(X)
 
 /mob/living/carbon/xenomorph/carrier/update_icons()
 	. = ..()

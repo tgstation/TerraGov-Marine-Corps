@@ -337,10 +337,10 @@
 		to_chat(user, span_warning("You died too recently to be able to take a new facehugger."))
 		return FALSE
 
-	if(alert("Are you sure you want to be a Facehugger?", "Become a part of the Horde", "Yes", "No") != "Yes")
+	if(tgui_alert(user, "Are you sure you want to be a Facehugger?", "Become a part of the Horde", list("Yes", "No")) != "Yes")
 		return FALSE
 
-	if(length_char(facehuggers) >= MAX_FACEHUGGERS)
+	if(length(facehuggers) >= MAX_FACEHUGGERS)
 		to_chat(user, span_warning("The Hive cannot support more facehuggers! Limit: <b>[length_char(facehuggers)]/[MAX_FACEHUGGERS]</b>."))
 		return FALSE
 

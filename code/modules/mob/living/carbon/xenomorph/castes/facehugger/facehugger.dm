@@ -61,17 +61,11 @@
 
 ///Trying to attach facehagger to face. Returns true on success and false otherwise
 /mob/living/carbon/xenomorph/facehugger/proc/try_attach(mob/living/carbon/human/host)
-	var/obj/item/clothing/mask/facehugger/larval/mask = new /obj/item/clothing/mask/facehugger/larval(host, src.hivenumber, src)
-	if(host.can_be_facehugged(mask, provoked = TRUE))
-		if(mask.Attach(host, FALSE)) //Attach hugger-mask
-			src.forceMove(host) //Moving sentient hugger inside host
-			return TRUE
-		else
-			qdel(mask)
-			return FALSE
-	else
+	var/obj/item/clothing/mask/facehugger/mask = new(host, src.hivenumber, src)
+	if(!(host.can_be_facehugged(mask, provoked = TRUE)))
+		return FALSE
+	if(!(mask.Attach(host, FALSE)))
 		qdel(mask)
 		return FALSE
-
-
-
+	forceMove(host)
+	return TRUE
