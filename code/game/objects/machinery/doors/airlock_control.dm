@@ -115,6 +115,15 @@
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
+
+	wires = new /datum/wires/airlock(src)
+
+	if(closeOtherId != null)
+		for(var/obj/machinery/door/airlock/A in GLOB.machines)
+			if(A.closeOtherId == src.closeOtherId && A != src)
+				src.closeOther = A
+				break
+
 	update_icon()
 
 /obj/machinery/airlock_sensor

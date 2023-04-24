@@ -262,7 +262,7 @@
 	if(helper && user != helper)
 		if(user.stat == DEAD)
 			to_chat(helper, span_notice("[user] is dead!"))
-			return
+			return FALSE
 
 		helper.visible_message(span_notice("[helper] starts putting [user] into [src]."),
 		span_notice("You start putting [user] into [src]."))
@@ -272,16 +272,16 @@
 
 	var/mob/initiator = helper ? helper : user
 	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
-		return
+		return FALSE
 
 	if(!QDELETED(occupant))
 		to_chat(initiator, span_warning("[src] is occupied."))
-		return
+		return FALSE
 
 	user.forceMove(src)
-
 	occupant = user
 	update_icon()
+	return TRUE
 
 /obj/machinery/cryopod/proc/go_out()
 	if(QDELETED(occupant))
