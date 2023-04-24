@@ -440,9 +440,12 @@
 
 /mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE)
 	. = ..()
-	LAZYADDASSOC(GLOB.xeno_structures_by_hive, HS.hivenumber, core)
+	if(!GLOB.xeno_structures_by_hive[HS.hivenumber])
+		GLOB.xeno_structures_by_hive[HS.hivenumber] = list()
+
+	GLOB.xeno_structures_by_hive[HS.hivenumber] |= core
 	core.hivenumber = HS.hivenumber
-	core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name ]"]hivemind core"
+	core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name] "]hivemind core"
 	core.color = HS.color
 
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
