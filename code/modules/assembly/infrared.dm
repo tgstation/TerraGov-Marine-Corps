@@ -178,7 +178,7 @@
 			return
 	return refreshBeam()
 
-/obj/item/assembly/signaler/can_interact(mob/user)
+/obj/item/assembly/infra/can_interact(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE

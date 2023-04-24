@@ -67,9 +67,6 @@
 	name = "Installation Light"
 	desc = "A powerful light stationed on the base to provide better visibility."
 
-/obj/machinery/floodlight/landing/Initialize()
-	. = ..()
-	set_light(brightness_on)
 
 /obj/machinery/floodlight/landing/testroom
 	name = "Ambience Light"
