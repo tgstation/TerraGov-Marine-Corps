@@ -37,8 +37,8 @@
 	test_filter(
 		"<(0_0<) <(0_0)> (>0_0)> KIRBY DANCE!!!",
 		"<(0_0<)",
-		BLOCKED_IC_BOMB_VEST,
 		null,
+		BLOCKED_IC_BOMB_VEST,
 		null,
 	)
 
