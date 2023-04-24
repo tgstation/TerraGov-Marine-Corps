@@ -21,6 +21,7 @@
 #define SKILL_POLICE "police"
 #define SKILL_POWERLOADER "powerloader"
 #define SKILL_LARGE_VEHICLE "large_vehicle"
+#define SKILL_PUSH "push"
 ////////////////////////////////////////////////
 
 //firearms skill (general knowledge of guns) (hidden skill)
@@ -153,3 +154,7 @@
 #define SKILL_TASK_DIFFICULT 100
 #define SKILL_TASK_CHALLENGING 150
 #define SKILL_TASK_FORMIDABLE 200
+
+// pushing skill
+#define SKILL_PUSH_SKILL_ISSUE 0 //pushes normally
+#define SKILL_PUSH_TRAINED 1 // smooth
