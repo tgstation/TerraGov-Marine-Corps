@@ -443,6 +443,7 @@
 	LAZYADDASSOC(GLOB.xeno_structures_by_hive, HS.hivenumber, core)
 	core.hivenumber = HS.hivenumber
 	core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name ]"]hivemind core"
+	core.color = HS.color
 
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
@@ -542,6 +543,7 @@
 	. = ..()
 	if(!QDELETED(src)) //if we aren't dead
 		core.name = "banished hivemind core"
+		core.color = null
 
 
 // ***************************************
