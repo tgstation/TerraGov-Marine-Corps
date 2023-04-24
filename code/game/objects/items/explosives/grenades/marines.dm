@@ -153,7 +153,7 @@
 	item_state = "molotov"
 	arm_sound = 'sound/items/welder2.ogg'
 
-/obj/item/explosive/grenade/incendiary/molotov/Initialize()
+/obj/item/explosive/grenade/incendiary/molotov/Initialize(mapload)
 	. = ..()
 	det_time = rand(1 SECONDS, 4 SECONDS)//Adds some risk to using this thing.
 
@@ -264,7 +264,7 @@
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	icon_state_mini = "grenade_cyan"
 
-/obj/item/explosive/grenade/phosphorus/Initialize()
+/obj/item/explosive/grenade/phosphorus/Initialize(mapload)
 	. = ..()
 	smoke = new(src)
 
@@ -322,7 +322,7 @@
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
 
-/obj/item/explosive/grenade/flare/Initialize()
+/obj/item/explosive/grenade/flare/Initialize(mapload)
 	. = ..()
 	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
@@ -384,7 +384,7 @@
 	if(!active)
 		turn_on(user)
 
-/obj/item/explosive/grenade/flare/on/Initialize()
+/obj/item/explosive/grenade/flare/on/Initialize(mapload)
 	. = ..()
 	active = TRUE
 	heat = 1500

@@ -24,7 +24,7 @@
 	var/accuracy_mod = 0
 	flags_inventory = NOQUICKEQUIP
 
-/obj/item/clothing/Initialize()
+/obj/item/clothing/Initialize(mapload)
 	. = ..()
 	attachments_allowed = string_list(attachments_allowed)
 	starting_attachments = string_list(starting_attachments)
@@ -146,7 +146,7 @@
 	light_range = 4
 	light_system = MOVABLE_LIGHT
 
-/obj/item/clothing/suit/Initialize()
+/obj/item/clothing/suit/Initialize(mapload)
 	. = ..()
 	GLOB.nightfall_toggleable_lights += src
 

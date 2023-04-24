@@ -17,7 +17,7 @@
 	///x offset of image
 	var/image_to_play_offset_x = 0
 
-/atom/movable/screen/text/screen_text/picture/Initialize()
+/atom/movable/screen/text/screen_text/picture/Initialize(mapload)
 	. = ..()
 	overlays += image('icons/UI_Icons/screen_alert_images.dmi', icon_state = image_to_play, pixel_y = image_to_play_offset_y, pixel_x = image_to_play_offset_x)
 

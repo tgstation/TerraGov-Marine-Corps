@@ -172,7 +172,7 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
 
-/obj/item/clothing/suit/armor/sectoid/shield/Initialize()
+/obj/item/clothing/suit/armor/sectoid/shield/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/shield/overhealth)
 

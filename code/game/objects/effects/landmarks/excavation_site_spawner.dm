@@ -9,7 +9,7 @@
 	///Excavation rewards datum that is used when excavation is performed
 	var/datum/excavation_rewards/rewards_typepath
 
-/obj/effect/landmark/excavation_site_spawner/Initialize()
+/obj/effect/landmark/excavation_site_spawner/Initialize(mapload)
 	. = ..()
 	SSexcavation.excavation_site_spawners += src
 

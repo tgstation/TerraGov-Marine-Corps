@@ -1014,7 +1014,7 @@
 
 	prices = list()
 
-/obj/machinery/vending/lasgun/Initialize()
+/obj/machinery/vending/lasgun/Initialize(mapload)
 	. = ..()
 	update_icon()
 

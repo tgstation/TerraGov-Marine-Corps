@@ -20,7 +20,7 @@
 	var/loaded_tray = FALSE
 	var/ob_cannon_busy = FALSE
 
-/obj/structure/orbital_cannon/Initialize()
+/obj/structure/orbital_cannon/Initialize(mapload)
 	. = ..()
 	if(!GLOB.marine_main_ship.orbital_cannon)
 		GLOB.marine_main_ship.orbital_cannon = src
@@ -427,7 +427,7 @@
 	icon_state = "ob_fuel"
 	is_solid_fuel = TRUE
 
-/obj/structure/ob_ammo/ob_fuel/Initialize()
+/obj/structure/ob_ammo/ob_fuel/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
@@ -544,7 +544,7 @@
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
 	var/obj/structure/ship_ammo/railgun/rail_gun_ammo
 
-/obj/structure/ship_rail_gun/Initialize()
+/obj/structure/ship_rail_gun/Initialize(mapload)
 	. = ..()
 	if(!GLOB.marine_main_ship.rail_gun)
 		GLOB.marine_main_ship.rail_gun = src

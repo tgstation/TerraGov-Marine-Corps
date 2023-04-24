@@ -17,7 +17,7 @@
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/splatter/Initialize() //Self-deletes after creation & animation
+/obj/effect/xenomorph/splatter/Initialize(mapload) //Self-deletes after creation & animation
 	. = ..()
 	QDEL_IN(src, 8)
 
@@ -29,7 +29,7 @@
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/splatterblob/Initialize() //Self-deletes after creation & animation
+/obj/effect/xenomorph/splatterblob/Initialize(mapload) //Self-deletes after creation & animation
 	. = ..()
 	QDEL_IN(src, 4 SECONDS)
 

@@ -23,7 +23,7 @@
 	///flags for the foam, such as RAZOR_FOAM and METAL_FOAM.
 	var/foam_flags = NONE
 
-/obj/effect/particle_effect/foam/Initialize()
+/obj/effect/particle_effect/foam/Initialize(mapload)
 	. = ..()
 	create_reagents(1000) //limited by the size of the reagent holder anyway.
 	START_PROCESSING(SSfastprocess, src)

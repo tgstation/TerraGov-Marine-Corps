@@ -63,7 +63,7 @@
 	max_integrity = 40
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
-/obj/structure/mopbucket/Initialize()
+/obj/structure/mopbucket/Initialize(mapload)
 	. = ..()
 	create_reagents(100, OPENCONTAINER)
 
@@ -118,7 +118,7 @@
 	icon_state = "jarshelf_0"
 	var/randomise = 1 //Random icon
 
-/obj/structure/xenoautopsy/jar_shelf/Initialize()
+/obj/structure/xenoautopsy/jar_shelf/Initialize(mapload)
 	. = ..()
 	if(randomise)
 		icon_state = "jarshelf_[rand(0,9)]"
@@ -155,7 +155,7 @@
 	icon_state = "jar_sample"
 	desc = "Used to store organic samples inside for preservation."
 
-/obj/item/alienjar/Initialize()
+/obj/item/alienjar/Initialize(mapload)
 	. = ..()
 
 	var/image/sample_image = image('icons/obj/alien_autopsy.dmi', "sample_[rand(0,11)]")

@@ -654,7 +654,7 @@
 	stat = UNCONSCIOUS
 	stasis = TRUE
 
-/obj/item/clothing/mask/facehugger/stasis/Initialize()
+/obj/item/clothing/mask/facehugger/stasis/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -665,7 +665,7 @@
 	stat = DEAD
 	sterile = TRUE
 
-/obj/item/clothing/mask/facehugger/dead/Initialize()
+/obj/item/clothing/mask/facehugger/dead/Initialize(mapload)
 	. = ..()
 	update_icon()
 

@@ -54,7 +54,7 @@
 	//Gibber thingy
 	var/nutrition = NUTRITION_WELLFED
 
-/mob/living/simple_animal/Initialize()
+/mob/living/simple_animal/Initialize(mapload)
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
 	if(gender == PLURAL)

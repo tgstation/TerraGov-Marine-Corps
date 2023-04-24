@@ -15,7 +15,7 @@
 	///Set this to true if this object isn't destroyed when the weeds under it is.
 	var/ignore_weed_destruction = FALSE
 
-/obj/alien/Initialize()
+/obj/alien/Initialize(mapload)
 	. = ..()
 	if(!ignore_weed_destruction)
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
@@ -82,7 +82,7 @@
 
 	ignore_weed_destruction = TRUE
 
-/obj/alien/resin/sticky/Initialize()
+/obj/alien/resin/sticky/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
@@ -161,7 +161,7 @@
 	var/closetimer
 
 
-/obj/structure/mineral_door/resin/Initialize()
+/obj/structure/mineral_door/resin/Initialize(mapload)
 	. = ..()
 	if(!locate(/obj/alien/weeds) in loc)
 		new /obj/alien/weeds(loc)

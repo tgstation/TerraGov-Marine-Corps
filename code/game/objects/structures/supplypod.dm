@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	resistance_flags = RESIST_ALL
 
 
-/obj/structure/closet/supplypod/Initialize()
+/obj/structure/closet/supplypod/Initialize(mapload)
 	. = ..()
 	setStyle(style, TRUE)
 

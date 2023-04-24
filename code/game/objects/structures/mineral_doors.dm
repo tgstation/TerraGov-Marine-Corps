@@ -18,7 +18,7 @@
 	///The type of material we're made from and what we drop when destroyed
 	var/material_type
 
-/obj/structure/mineral_door/Initialize()
+/obj/structure/mineral_door/Initialize(mapload)
 	. = ..()
 	if((locate(/mob/living) in loc) && !open)	//If we build a door below ourselves, it starts open.
 		toggle_state()

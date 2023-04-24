@@ -28,7 +28,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	///whether they should generate corruption if corrupted
 	var/corruption_on = FALSE
 
-/obj/machinery/power/geothermal/Initialize()
+/obj/machinery/power/geothermal/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(activate_corruption))
 	update_icon()

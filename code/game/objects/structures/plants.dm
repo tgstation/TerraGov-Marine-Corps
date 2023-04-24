@@ -19,7 +19,7 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "thickvines"
 
-/obj/structure/bush/Initialize()
+/obj/structure/bush/Initialize(mapload)
 	. = ..()
 	if(prob(75))
 		opacity = TRUE
@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(reagent_effects, list(/datum/reagent/toxin,/datum/reagent/medic
 	var/fruit_g
 	var/fruit_b
 
-/obj/structure/jungle_plant/Initialize()
+/obj/structure/jungle_plant/Initialize(mapload)
 	. = ..()
 	fruit_type = rand(1,7)
 	icon_state = "plant[fruit_type]"

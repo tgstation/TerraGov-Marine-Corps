@@ -54,6 +54,6 @@
 	req_access = list(ACCESS_MARINE_BRIG)
 
 
-/obj/item/storage/lockbox/clusterbang/Initialize()
+/obj/item/storage/lockbox/clusterbang/Initialize(mapload)
 	. = ..()
 	new /obj/item/explosive/grenade/flashbang/clusterbang(src)

@@ -155,7 +155,7 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
 
-/obj/item/storage/holster/backholster/rpg/full/Initialize()
+/obj/item/storage/holster/backholster/rpg/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
@@ -164,7 +164,7 @@
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
-/obj/item/storage/holster/backholster/rpg/low_impact/Initialize()
+/obj/item/storage/holster/backholster/rpg/low_impact/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
@@ -190,7 +190,7 @@
 		/obj/item/weapon/gun/launcher/rocket/som,
 	)
 
-/obj/item/storage/holster/backholster/rpg/som/war_crimes/Initialize()
+/obj/item/storage/holster/backholster/rpg/som/war_crimes/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rocket/som/incendiary(src)
 	new /obj/item/ammo_magazine/rocket/som/incendiary(src)
@@ -199,7 +199,7 @@
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
-/obj/item/storage/holster/backholster/rpg/som/ert/Initialize()
+/obj/item/storage/holster/backholster/rpg/som/ert/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rocket/som/thermobaric(src)
 	new /obj/item/ammo_magazine/rocket/som/thermobaric(src)
@@ -231,7 +231,7 @@
 		/obj/item/weapon/claymore/harvester,
 	)
 
-/obj/item/storage/holster/blade/machete/full/Initialize()
+/obj/item/storage/holster/blade/machete/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
@@ -239,7 +239,7 @@
 /obj/item/storage/holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
 
-/obj/item/storage/holster/blade/machete/full_harvester/Initialize()
+/obj/item/storage/holster/blade/machete/full_harvester/Initialize(mapload)
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/harvester(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
@@ -255,7 +255,7 @@
 	holsterable_allowed = list(/obj/item/weapon/katana)
 	can_hold = list(/obj/item/weapon/katana)
 
-/obj/item/storage/holster/blade/katana/full/Initialize()
+/obj/item/storage/holster/blade/katana/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/katana(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
@@ -269,7 +269,7 @@
 	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword)
 	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
 
-/obj/item/storage/holster/blade/officer/full/Initialize()
+/obj/item/storage/holster/blade/officer/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/officersword(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
@@ -290,7 +290,7 @@
 		/obj/item/weapon/gun/shotgun/pump,
 	)
 
-/obj/item/storage/holster/m37/full/Initialize()
+/obj/item/storage/holster/m37/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/shotgun/pump(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
@@ -305,7 +305,7 @@
 		/obj/item/weapon/gun/shotgun/pump/t35,
 	)
 
-/obj/item/storage/holster/t35/full/Initialize()
+/obj/item/storage/holster/t35/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/shotgun/pump/t35(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
@@ -323,7 +323,7 @@
 	)
 	can_hold = list(/obj/item/weapon/gun/smg/m25)
 
-/obj/item/storage/holster/m25/full/Initialize()
+/obj/item/storage/holster/m25/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/m25(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
@@ -350,7 +350,7 @@
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
 	)
 
-/obj/item/storage/holster/t19/full/Initialize()
+/obj/item/storage/holster/t19/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/standard_machinepistol(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
@@ -382,7 +382,7 @@
 		orient2hud()
 		return
 
-/obj/item/storage/holster/flarepouch/full/Initialize()
+/obj/item/storage/holster/flarepouch/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flare_gun)

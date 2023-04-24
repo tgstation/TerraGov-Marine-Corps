@@ -33,7 +33,7 @@
 	if(result)
 		amount_per_transfer_from_this = result
 
-/obj/structure/reagent_dispensers/Initialize()
+/obj/structure/reagent_dispensers/Initialize(mapload)
 	. = ..()
 	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
 

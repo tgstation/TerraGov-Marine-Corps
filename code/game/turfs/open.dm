@@ -341,7 +341,7 @@
 /turf/open/lavaland/lava/single/corners
 	icon_state = "single_corners"
 
-/turf/open/lavaland/lava/Initialize()
+/turf/open/lavaland/lava/Initialize(mapload)
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(current_turf && density)

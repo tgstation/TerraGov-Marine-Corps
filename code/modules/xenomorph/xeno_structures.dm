@@ -647,7 +647,7 @@ TUNNEL
 	///Countdown to the next time we generate a jelly
 	var/nextjelly = 0
 
-/obj/structure/xeno/resin_jelly_pod/Initialize()
+/obj/structure/xeno/resin_jelly_pod/Initialize(mapload)
 	. = ..()
 	add_overlay(image(icon, "resinpod_inside", layer + 0.01, dir))
 	START_PROCESSING(SSslowprocess, src)
@@ -718,7 +718,7 @@ TUNNEL
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
-/obj/structure/xeno/silo/Initialize()
+/obj/structure/xeno/silo/Initialize(mapload)
 	. = ..()
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
@@ -1259,7 +1259,7 @@ TUNNEL
 	COOLDOWN_DECLARE(spawner_proxy_alert_cooldown)
 	var/linked_minions = list()
 
-/obj/structure/xeno/spawner/Initialize()
+/obj/structure/xeno/spawner/Initialize(mapload)
 	. = ..()
 	LAZYADDASSOC(GLOB.xeno_spawners_by_hive, hivenumber, src)
 	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, CALLBACK(src, PROC_REF(on_spawn)))
@@ -1367,7 +1367,7 @@ TUNNEL
 	///How long does it take for the plant to be useable
 	var/maturation_time = 2 MINUTES
 
-/obj/structure/xeno/plant/Initialize()
+/obj/structure/xeno/plant/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time)
 

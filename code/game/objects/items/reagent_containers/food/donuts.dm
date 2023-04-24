@@ -15,7 +15,7 @@
 	list_reagents = list (/datum/reagent/consumable/nutriment = 3)
 	bitesize = 3
 
-/obj/item/reagent_containers/food/snacks/donut/normal/Initialize()
+/obj/item/reagent_containers/food/snacks/donut/normal/Initialize(mapload)
 	. = ..()
 	if(prob(40))
 		icon_state = "donut_pink"
@@ -40,7 +40,7 @@
 	bitesize = 10
 
 
-/obj/item/reagent_containers/food/snacks/donut/chaos/Initialize()
+/obj/item/reagent_containers/food/snacks/donut/chaos/Initialize(mapload)
 	. = ..()
 	var/chaosselect = pick(1,2,3,4,5,6,7,8,9)
 	switch(chaosselect)
@@ -79,7 +79,7 @@
 	list_reagents = list (/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/drink/berryjuice = 5)
 
 
-/obj/item/reagent_containers/food/snacks/donut/jelly/Initialize()
+/obj/item/reagent_containers/food/snacks/donut/jelly/Initialize(mapload)
 	. = ..()
 	if(prob(30))
 		icon_state = "jelly_pink"
@@ -95,7 +95,7 @@
 	list_reagents = list (/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/cherryjelly = 5)
 
 
-/obj/item/reagent_containers/food/snacks/donut/cherryjelly/Initialize()
+/obj/item/reagent_containers/food/snacks/donut/cherryjelly/Initialize(mapload)
 	. = ..()
 	if(prob(30))
 		icon_state = "jelly_pink"
@@ -144,7 +144,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/hot_coco = 3, /datum/reagent/consumable/sprinkles = 1) //the coco reagent is just bitter.
 	tastes = list("donut" = 4, "bitterness" = 1)
 
-/obj/item/reagent_containers/food/snacks/donut/choco/Initialize()
+/obj/item/reagent_containers/food/snacks/donut/choco/Initialize(mapload)
 	. = ..()
 	if(prob(40))
 		icon_state = "donut_choc_sprinkles"

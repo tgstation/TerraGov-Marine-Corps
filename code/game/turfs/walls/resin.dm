@@ -18,7 +18,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
-/turf/closed/wall/resin/Initialize()
+/turf/closed/wall/resin/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
