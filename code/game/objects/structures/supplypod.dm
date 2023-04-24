@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	icon_state = ""
 
 
-/obj/effect/DPfall/Initialize(dropLocation, obj/structure/closet/supplypod/pod)
+/obj/effect/DPfall/Initialize(mapload, dropLocation, obj/structure/closet/supplypod/pod)
 	if(pod.style == STYLE_SEETHROUGH)
 		pixel_x = -16
 		pixel_y = 0

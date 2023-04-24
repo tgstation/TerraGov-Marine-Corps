@@ -7,7 +7,7 @@
 	///Which hive(number) do we belong to?
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/structure/xeno/Initialize(location, hivenumber)
+/obj/structure/xeno/Initialize(mapload, location, hivenumber)
 	. = ..()
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
@@ -450,7 +450,7 @@ TUNNEL
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize(loc, creator)
+/obj/structure/xeno/acidwell/Initialize(mapload, loc, creator)
 	. = ..()
 	src.creator = creator
 	RegisterSignal(creator, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator))

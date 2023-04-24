@@ -188,7 +188,7 @@
 	///All the projectiles currently frozen by this obj
 	var/list/frozen_projectiles = list()
 
-/obj/effect/xeno/shield/Initialize(loc, creator)
+/obj/effect/xeno/shield/Initialize(mapload, loc, creator)
 	. = ..()
 	owner = creator
 	dir = owner.dir

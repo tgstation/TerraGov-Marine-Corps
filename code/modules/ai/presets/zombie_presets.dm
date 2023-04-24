@@ -12,7 +12,7 @@
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling , null)
 
-/mob/living/carbon/human/species/zombie/ai/follower/Initialize(loc, atom_to_escort)
+/mob/living/carbon/human/species/zombie/ai/follower/Initialize(mapload, loc, atom_to_escort)
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie, atom_to_escort)
 
