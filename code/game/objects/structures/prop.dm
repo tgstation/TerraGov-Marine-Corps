@@ -520,6 +520,7 @@
 /obj/structure/prop/mainship/research/circuit_imprinter
 	name = "Circuit Imprinter"
 	icon_state = "circuit_imprinter"
+	desc = "Manufactures circuit boards for the construction of machines."
 
 /obj/structure/prop/mainship/research/mechafab
 	icon_state = "mechfab1"
@@ -528,6 +529,7 @@
 
 /obj/structure/prop/mainship/research/destructive_analyzer
 	name = "Destructive Analyzer"
+	desc = "Learn science by destroying things!"
 	icon_state = "d_analyzer"
 
 /obj/structure/prop/mainship/research/tdoppler
