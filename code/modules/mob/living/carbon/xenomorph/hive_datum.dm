@@ -438,6 +438,12 @@
 		return
 	HS.update_ruler()
 
+/mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE)
+	. = ..()
+	LAZYADDASSOC(GLOB.xeno_structures_by_hive, HS.hivenumber, core)
+	core.hivenumber = HS.hivenumber
+	core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name ]"]hivemind core"
+
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
@@ -530,6 +536,12 @@
 	if(hive_removed_from.living_xeno_ruler == src)
 		hive_removed_from.set_ruler(null)
 		hive_removed_from.update_ruler() //Try to find a successor.
+
+/mob/living/carbon/xenomorph/hivemind/remove_from_hive()
+	GLOB.xeno_structures_by_hive[hivenumber] -= core
+	. = ..()
+	if(!QDELETED(src)) //if we aren't dead
+		core.name = "banished hivemind core"
 
 
 // ***************************************
