@@ -3,6 +3,7 @@
 	SEND_SIGNAL(src, COMSIG_MOB_LOGOUT)
 	SStgui.on_logout(src)
 	unset_machine()
+	remove_all_indicators()
 	if(interactee)
 		unset_interaction()
 	remove_typing_indicator()

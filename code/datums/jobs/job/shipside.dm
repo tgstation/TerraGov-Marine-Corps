@@ -138,10 +138,6 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
-/datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
-	. = ..()
-	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, L)
-
 
 /datum/job/terragov/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
@@ -165,13 +161,14 @@ Make the TGMC proud!"})
 			new_human.wear_id.paygrade = "MO4"
 		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "MO5"
+	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, new_mob)
 
 
 /datum/outfit/job/command/fieldcommander
 	name = FIELD_COMMANDER
 	jobtype = /datum/job/terragov/command/fieldcommander
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/fc
 	belt = /obj/item/storage/holster/blade/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec

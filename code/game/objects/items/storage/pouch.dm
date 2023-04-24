@@ -677,15 +677,19 @@
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "tools"
 	can_hold = list(
-		/obj/item/tool/wirecutters,
-		/obj/item/tool/shovel/etool,
 		/obj/item/tool/screwdriver,
-		/obj/item/tool/crowbar,
+		/obj/item/tool/wirecutters,
 		/obj/item/tool/weldingtool,
-		/obj/item/tool/multitool,
 		/obj/item/tool/wrench,
+		/obj/item/tool/crowbar,
 		/obj/item/stack/cable_coil,
+		/obj/item/tool/multitool,
+		/obj/item/flashlight,
+		/obj/item/t_scanner,
+		/obj/item/tool/analyzer,
+		/obj/item/tool/taperoll/engineering,
 		/obj/item/tool/extinguisher/mini,
+		/obj/item/tool/shovel/etool,
 	)
 
 /obj/item/storage/pouch/tools/full/Initialize()

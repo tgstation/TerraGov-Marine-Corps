@@ -187,11 +187,6 @@
 	if(initial(sterile))
 		. += span_warning("It looks like the proboscis has been removed.")
 
-/obj/item/clothing/mask/facehugger/dropped(mob/user)
-	. = ..()
-	// Whena  xeno removes the hugger from storage we don't want to start the active timer until they drop or throw it
-	if(isxeno(user)) //Set the source mob
-		facehugger_register_source(user)
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
 	if(stat == DEAD)
@@ -648,6 +643,8 @@
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
 	go_idle()
+	if(isxeno(user)) //Set the source mob
+		facehugger_register_source(user)
 
 
 /////////////////////////////

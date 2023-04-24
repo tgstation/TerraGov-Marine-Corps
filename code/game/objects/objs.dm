@@ -87,11 +87,6 @@
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
 	anchored = anchorvalue
 
-/obj/ex_act()
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-	return ..()
-
 /obj/item/proc/is_used_on(obj/O, mob/user)
 	return
 

@@ -101,6 +101,7 @@
 /obj/item/tool/weldingtool
 	name = "blowtorch"
 	icon = 'icons/obj/items/items.dmi'
+	desc = "Used for welding and repairing various things."
 	icon_state = "welder"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
