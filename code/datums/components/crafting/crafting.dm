@@ -147,7 +147,7 @@
 	var/list/present_qualities = list()
 
 	for(var/obj/item/contained_item in source.contents)
-		if(contained_item.atom_storage)
+		if(contained_item.contents)
 			for(var/obj/item/subcontained_item in contained_item.contents)
 				available_tools[subcontained_item.type] = TRUE
 				if(subcontained_item.tool_behaviour)
@@ -204,7 +204,7 @@
 				I = new R.result (get_turf(a.loc), R.result_amount || 1)
 			else
 				I = new R.result (get_turf(a.loc))
-				if(I.atom_storage && R.delete_contents)
+				if(I.contents && R.delete_contents)
 					for(var/obj/item/thing in I)
 						qdel(thing)
 			I.CheckParts(parts, R)

@@ -63,7 +63,7 @@
 		to_chat(user, span_warning("There's something in \the [parent]."))
 		return
 
-	if(HAS_TRAIT(inserted_item, TRAIT_NODROP))
+	if(inserted_item.flags_item == NODROP)
 		to_chat(user, span_warning("\the [inserted_item] is stuck to your hand, you can't put into \the [parent]!"))
 		return
 

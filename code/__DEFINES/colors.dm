@@ -81,6 +81,7 @@
 
 #define COLOR_BROWN "#BA9F6D"
 #define COLOR_DARK_BROWN "#997C4F"
+#define COLOR_DRIED_TAN "#ad7257"
 
 #define COLOR_GREEN_GRAY "#99BB76"
 #define COLOR_RED_GRAY "#B4696A"

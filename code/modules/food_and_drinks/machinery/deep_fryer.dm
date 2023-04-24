@@ -118,8 +118,8 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 		// Check for stuff we certainly shouldn't fry
 		else if(is_type_in_typecache(weapon, deepfry_blacklisted_items) \
 			|| is_type_in_typecache(weapon, GLOB.oilfry_blacklisted_items) \
-			|| weapon.atom_storage \
-			|| HAS_TRAIT(weapon, TRAIT_NODROP) \
+			|| weapon.contents \
+			|| (weapon.flags_item == NODROP) \
 			|| (weapon.flags_item & (ABSTRACT|DROPDEL|HAND_ITEM)))
 			return ..()
 		// Do the frying.

@@ -133,8 +133,6 @@
 #define TRAIT_DRIED "trait_dried"
 /// Trait for customizable reagent holder
 #define TRAIT_CUSTOMIZABLE_REAGENT_HOLDER "customizable_reagent_holder"
-/// Trait for allowing an item that isn't food into the customizable reagent holder
-#define TRAIT_ODD_CUSTOMIZABLE_FOOD_INGREDIENT "odd_customizable_food_ingredient"
 
 
 //mob traits
@@ -204,6 +202,8 @@
 #define TRAIT_GUN_RELOADING "reloading"
 
 // item traits
+///Itemm cannot be dropped
+#define TRAIT_NODROP "nodrop"
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 // turf traits
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
@@ -222,3 +222,6 @@
 //added to escaped humans
 #define TRAIT_HAS_ESCAPED "escaped_marine"
 #define TRAIT_HAS_BEEN_TARGETED "been_targeted"
+
+/// Trait applied by element
+#define ELEMENT_TRAIT(source) "element_trait_[source]"

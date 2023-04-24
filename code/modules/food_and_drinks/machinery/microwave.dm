@@ -301,7 +301,7 @@
 			if(ingredients.len >= max_n_of_items)
 				balloon_alert(user, "it's full!")
 				return TRUE
-			if(T.atom_storage.attempt_remove(S, src))
+			if(T.contents.attempt_remove(S, src))
 				loaded++
 				ingredients += S
 		if(loaded)

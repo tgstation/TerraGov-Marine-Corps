@@ -122,22 +122,13 @@
 	else
 		. += span_notice("There is no creamer left.")
 
-/obj/machinery/coffeemaker/attack_hand_secondary(mob/user, list/modifiers)
+/obj/machinery/coffeemaker/attack_hand_alternate(mob/living/user)
 	. = ..()
-	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
-		return
-	if(!can_interact(user) || !user.can_perform_action(src, ALLOW_SILICON_REACH|FORBID_TELEKINESIS_REACH))
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	if(!can_interact(user))
+		return FALSE
 	if(brewing)
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		return FALSE
 	replace_pot(user)
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-
-/obj/machinery/coffeemaker/attack_robot_secondary(mob/user, list/modifiers)
-	return attack_hand_secondary(user, modifiers)
-
-/obj/machinery/coffeemaker/attack_ai_secondary(mob/user, list/modifiers)
-	return attack_hand_secondary(user, modifiers)
 
 /obj/machinery/coffeemaker/handle_atom_del(atom/A)
 	. = ..()
@@ -493,8 +484,8 @@
 
 /obj/item/storage/fancy/coffee_cart_rack/Initialize(mapload)
 	. = ..()
-	atom_storage.max_slots = 4
-	atom_storage.set_holdable(list(/obj/item/coffee_cartridge))
+	contents.max_slots = 4
+	contents.set_holdable(list(/obj/item/coffee_cartridge))
 
 /*
  * impressa coffee maker

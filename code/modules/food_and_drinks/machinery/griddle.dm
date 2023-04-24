@@ -141,7 +141,7 @@
 		if(griddled_objects.len >= max_items)
 			break
 
-		if(!storage_source.atom_storage.attempt_remove(to_dump, src, silent = TRUE))
+		if(!storage_source.contents.attempt_remove(to_dump, src, silent = TRUE))
 			continue
 
 		to_dump.pixel_x = initial(to_dump.pixel_x) + rand(-5, 5) //to_dump.base_pixel_x

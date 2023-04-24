@@ -17,32 +17,24 @@
 //////////////////////////////////////////FOOD MIXTURES////////////////////////////////////
 
 /datum/chemical_reaction/food
-	optimal_temp = 400
-	temp_exponent_factor = 1
-	optimal_ph_min = 2
-	optimal_ph_max = 10
-	thermic_constant = 0
-	H_ion_release = 0
 	reaction_tags = REACTION_TAG_FOOD | REACTION_TAG_EASY
 
 /datum/chemical_reaction/food/tofu
 	required_reagents = list(/datum/reagent/consumable/soymilk = 10)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
 	mob_react = FALSE
-	reaction_flags = REACTION_INSTANT
 
 /datum/chemical_reaction/food/candycorn
 	required_reagents = list(/datum/reagent/consumable/cornoil = 5)
 	required_catalysts = list(/datum/reagent/consumable/sugar = 5)
 	mob_react = FALSE
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/candycorn/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/candycorn/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/food/candy_corn(location)
 
-/datum/chemical_reaction/food/tofu/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/tofu/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/food/tofu(location)
@@ -57,9 +49,8 @@
 
 /datum/chemical_reaction/food/chocolate_bar
 	required_reagents = list(/datum/reagent/consumable/soymilk = 2, /datum/reagent/consumable/coco = 2, /datum/reagent/consumable/sugar = 2)
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/chocolate_bar/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/chocolate_bar/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/food/chocolatebar(location)
@@ -67,18 +58,16 @@
 /datum/chemical_reaction/food/chocolate_bar2
 	required_reagents = list(/datum/reagent/consumable/milk/chocolate_milk = 4, /datum/reagent/consumable/sugar = 2)
 	mob_react = FALSE
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/chocolate_bar2/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/chocolate_bar2/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/food/chocolatebar(location)
 
 /datum/chemical_reaction/food/chocolate_bar3
 	required_reagents = list(/datum/reagent/consumable/milk = 2, /datum/reagent/consumable/coco = 2, /datum/reagent/consumable/sugar = 2)
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/chocolate_bar3/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/chocolate_bar3/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/food/chocolatebar(location)
@@ -95,24 +84,19 @@
 /datum/chemical_reaction/food/caramel
 	results = list(/datum/reagent/consumable/caramel = 1)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1)
-	required_temp = 413.15
-	optimal_temp = 600
 	mob_react = FALSE
 
 /datum/chemical_reaction/food/caramel_burned
 	results = list(/datum/reagent/carbon = 1)
 	required_reagents = list(/datum/reagent/consumable/caramel = 1)
-	required_temp = 483.15
-	optimal_temp = 1000
 	rate_up_lim = 10
 	mob_react = FALSE
 
 /datum/chemical_reaction/food/cheesewheel
 	required_reagents = list(/datum/reagent/consumable/milk = 40)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/cheesewheel/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/cheesewheel/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/food/cheese/wheel(location)
@@ -120,9 +104,8 @@
 /datum/chemical_reaction/food/synthmeat
 	required_reagents = list(/datum/reagent/blood = 5, /datum/reagent/medicine/cryoxadone = 1)
 	mob_react = FALSE
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/synthmeat/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/synthmeat/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/food/meat/slab/synthmeat(location)
@@ -139,9 +122,8 @@
 	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5)
 	required_container = /obj/item/food/tofu
 	mix_message = "The mixture becomes similar to carp meat."
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/imitationcarpmeat/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/imitationcarpmeat/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	new /obj/item/food/fishmeat/carp/imitation(location)
 	if(holder?.my_atom)
@@ -150,9 +132,8 @@
 /datum/chemical_reaction/food/dough
 	required_reagents = list(/datum/reagent/water = 10, /datum/reagent/consumable/flour = 15)
 	mix_message = "The ingredients form a dough."
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/dough/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/dough/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/food/dough(location)
@@ -160,9 +141,8 @@
 /datum/chemical_reaction/food/cakebatter
 	required_reagents = list(/datum/reagent/consumable/eggyolk = 6, /datum/reagent/consumable/eggwhite = 12, /datum/reagent/consumable/flour = 15, /datum/reagent/consumable/sugar = 5)
 	mix_message = "The ingredients form a cake batter."
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/cakebatter/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/cakebatter/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/food/cakebatter(location)
@@ -177,9 +157,8 @@
 /datum/chemical_reaction/food/uncooked_rice
 	required_reagents = list(/datum/reagent/consumable/rice = 10, /datum/reagent/water = 10)
 	mix_message = "The rice absorbs the water."
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/uncooked_rice/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/uncooked_rice/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/food/uncooked_rice(location)
@@ -217,9 +196,8 @@
 /datum/chemical_reaction/food/mothic_pizza_dough
 	required_reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/quality_oil = 2, /datum/reagent/medicine/salglu_solution = 5, /datum/reagent/consumable/cornmeal = 10, /datum/reagent/consumable/flour = 5)
 	mix_message = "The ingredients form a pizza dough."
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/mothic_pizza_dough/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/mothic_pizza_dough/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/food/mothic_pizza_dough(location)
@@ -228,9 +206,8 @@
 	required_reagents = list(/datum/reagent/consumable/milk = 15, /datum/reagent/consumable/vinegar = 5, /datum/reagent/consumable/cream = 5)
 	mix_message = "The milk curdles into cheese."
 	required_temp = 353
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/curd_cheese/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/curd_cheese/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/food/cheese/curd_cheese(location)
@@ -240,9 +217,8 @@
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 1)
 	mix_message = "Fine ribbons of curd form in the milk."
 	required_temp = 353
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/mozzarella/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/mozzarella/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/food/cheese/mozzarella(location)
@@ -256,9 +232,8 @@
 	required_reagents = list(/datum/reagent/consumable/cornmeal_batter = 25)
 	mix_message = "The batter bakes into cornbread- somehow!"
 	required_temp = 473
-	reaction_flags = REACTION_INSTANT
 
-/datum/chemical_reaction/food/cornbread/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/food/cornbread/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/food/bread/corn(location)
@@ -267,20 +242,16 @@
 	required_reagents = list(/datum/reagent/consumable/cream = 10, /datum/reagent/consumable/virus_food = 2)
 	results = list(/datum/reagent/consumable/yoghurt = 10)
 	mix_message = "The mixture thickens into yoghurt."
-	reaction_flags = REACTION_INSTANT
 
 /datum/chemical_reaction/food/quality_oil_upconvert
 	required_reagents = list(/datum/reagent/consumable/quality_oil = 1, /datum/reagent/consumable/cooking_oil = 2)
 	results = list(/datum/reagent/consumable/quality_oil = 2)
 	mix_message = "The cooking oil dilutes the quality oil- how delightfully devilish..."
-	reaction_flags = REACTION_INSTANT
 
 /datum/chemical_reaction/food/quality_oil
 	results = list(/datum/reagent/consumable/quality_oil = 2)
 	required_reagents = list(/datum/reagent/consumable/olivepaste = 4, /datum/reagent/water = 1)
-	reaction_flags = REACTION_INSTANT
 
 /datum/chemical_reaction/food/vinegar
 	results = list(/datum/reagent/consumable/vinegar = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/wine = 1, /datum/reagent/water = 1, /datum/reagent/consumable/sugar = 1)
-	reaction_flags = REACTION_INSTANT

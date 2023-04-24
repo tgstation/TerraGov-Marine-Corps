@@ -99,13 +99,10 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	else
 		..()
 
-/obj/item/food/egg/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/food/egg/afterattack_alternate(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
-	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
-		return
-
 	if(!istype(target, /obj/machinery/griddle))
-		return SECONDARY_ATTACK_CALL_NORMAL
+		return FALSE
 
 	var/atom/broken_egg = new /obj/item/food/rawegg(target.loc)
 	broken_egg.pixel_x = pixel_x
@@ -118,7 +115,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	target.balloon_alert(user, "cracks [src] open")
 
 	qdel(src)
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return
 
 /obj/item/food/egg/blue
 	icon_state = "egg-blue"
