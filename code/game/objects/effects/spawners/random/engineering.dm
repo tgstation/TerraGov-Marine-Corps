@@ -198,8 +198,8 @@
 	spawn_random_offset = TRUE
 	spawn_loot_chance = 65
 	loot = list(
-		/obj/item/clothing/gloves/fyellow = 85,
-		/obj/item/clothing/gloves/yellow = 15,
+		/obj/item/clothing/gloves/yellow = 85,
+		/obj/item/clothing/gloves/insulated = 15,
 	)
 
 /obj/effect/spawner/random/engineering/radio
