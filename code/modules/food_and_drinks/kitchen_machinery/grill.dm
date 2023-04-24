@@ -67,7 +67,7 @@
 
 		user.visible_message(span_danger("[user] slams [living_victim] onto the [src]!"))
 		living_victim.apply_damage(40, BURN, BODY_ZONE_HEAD, FIRE, updating_health = TRUE)
-		playsound(src, "sound/machines/grill/grillsizzle.ogg", 100, null, 9)
+		playsound(src, "sound/machines/grill/frying.ogg", 100, null, 9)
 		living_victim.emote("scream")
 		return
 
