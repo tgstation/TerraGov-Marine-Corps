@@ -110,9 +110,13 @@
 	},
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"jC" = (
-/turf/closed/mineral/smooth/bigred,
-/area/bigredv2/outside/sw)
+"jq" = (
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "jR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
@@ -153,6 +157,10 @@
 "ni" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
+"nz" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning,
+/area/shuttle/drop2/lz2)
 "oc" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -167,7 +175,7 @@
 /area/shuttle/drop2/lz2)
 "ou" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -196,7 +204,7 @@
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
 	},
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
@@ -213,6 +221,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"sz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/shuttle/drop2/lz2)
 "sF" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
@@ -255,9 +270,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "vB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -278,6 +291,10 @@
 "vT" = (
 /obj/machinery/landinglight/ds2,
 /turf/open/floor/marking/asteroidwarning,
+/area/shuttle/drop2/lz2)
+"wy" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "wG" = (
 /obj/structure/cable,
@@ -332,12 +349,6 @@
 "zI" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
-	},
-/area/shuttle/drop2/lz2)
-"zS" = (
-/obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 5
 	},
 /area/shuttle/drop2/lz2)
 "zX" = (
@@ -495,9 +506,6 @@
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/marking/asteroidwarning,
 /area/shuttle/drop2/lz2)
-"KF" = (
-/turf/closed/mineral/smooth/bigred,
-/area/bigredv2/outside/w)
 "KG" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning,
@@ -525,13 +533,6 @@
 "Mb" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
-"Mj" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
 /area/shuttle/drop2/lz2)
 "Mv" = (
 /obj/effect/landmark/weed_node,
@@ -571,6 +572,10 @@
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
+"OB" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/shuttle/drop2/lz2)
 "Pa" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/marking/asteroidwarning{
@@ -592,9 +597,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "Qa" = (
 /obj/effect/decal/cleanable/dirt,
@@ -631,7 +634,7 @@
 /area/bigredv2/outside/sw)
 "Rp" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -662,10 +665,8 @@
 "Tq" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/lv624/lazarus/console)
 "Uj" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
@@ -689,6 +690,13 @@
 "UL" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
+	},
+/area/shuttle/drop2/lz2)
+"UU" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 5
 	},
 /area/shuttle/drop2/lz2)
 "Ve" = (
@@ -734,7 +742,7 @@
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
 	},
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "Zu" = (
@@ -1525,24 +1533,24 @@ Dq
 Dq
 Dq
 Dq
-KF
+dj
 JK
 dC
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
+dC
+dC
+dC
+dC
+dC
+dC
+dC
+dC
+dC
+dC
+dC
+dC
+dC
+dC
+dC
 Uj
 Uj
 "}
@@ -1556,34 +1564,34 @@ Uj
 Uj
 Dq
 Dq
+SF
 Dq
 Dq
 Dq
 Dq
+SF
 Dq
 Dq
-Dq
-Dq
-Dq
-KF
+SF
+dj
 JK
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
 Uj
 dC
-dC
-dC
-dC
-dC
-dC
-dC
-dC
-dC
-dC
-dC
-dC
-dC
-dC
-dC
-Uj
 Uj
 "}
 (22,1,1) = {"
@@ -1596,35 +1604,35 @@ Uj
 Dq
 Dq
 Dq
-SF
 Dq
 Dq
 Dq
 Dq
-SF
+dA
+zI
 Dq
 Dq
-SF
-KF
+Dq
+dj
+dj
+dj
+dj
+dj
+dj
+dj
+dj
+dj
+dj
+dj
+dj
+dj
+dj
+dj
+dj
 JK
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
+Uj
 Uj
 dC
-Uj
 "}
 (23,1,1) = {"
 xo
@@ -1636,46 +1644,6 @@ Dq
 Dq
 Dq
 Dq
-Dq
-Dq
-Dq
-Dq
-dA
-zI
-Dq
-Dq
-Dq
-KF
-jC
-jC
-jC
-jC
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
-JK
-Uj
-Uj
-dC
-"}
-(24,1,1) = {"
-xo
-Uj
-JK
-Uj
-Dq
-Dq
-Dq
-Dq
-dA
 zI
 Dq
 dA
@@ -1700,13 +1668,13 @@ Et
 aX
 mo
 Dq
-jC
+dj
 JK
 af
 af
 af
 "}
-(25,1,1) = {"
+(24,1,1) = {"
 xo
 Uj
 JK
@@ -1714,8 +1682,8 @@ Uj
 Dq
 Dq
 Dq
+Dq
 dA
-aX
 gi
 gi
 Ve
@@ -1740,21 +1708,21 @@ Ve
 Ve
 Ve
 Ve
-jC
-jC
-jC
-jC
+dj
+dj
+dj
+dj
 JK
 "}
-(26,1,1) = {"
-zY
+(25,1,1) = {"
+xo
 Uj
 JK
 Uj
 Dq
 SF
 Dq
-Et
+dA
 aX
 EB
 dt
@@ -1783,10 +1751,10 @@ BV
 BV
 BV
 As
-jC
+dj
 JK
 "}
-(27,1,1) = {"
+(26,1,1) = {"
 zY
 Uj
 JK
@@ -1823,12 +1791,12 @@ ky
 BV
 BV
 BV
-jC
+dj
 JK
 "}
-(28,1,1) = {"
+(27,1,1) = {"
 zY
-xo
+Uj
 JK
 Uj
 Dq
@@ -1863,11 +1831,11 @@ ub
 BV
 BV
 BV
-jC
+dj
 JK
 "}
-(29,1,1) = {"
-mq
+(28,1,1) = {"
+zY
 xo
 JK
 Uj
@@ -1903,11 +1871,11 @@ vN
 BV
 BV
 BV
-jC
+dj
 JK
 "}
-(30,1,1) = {"
-Bg
+(29,1,1) = {"
+mq
 xo
 JK
 Uj
@@ -1946,7 +1914,7 @@ BV
 dj
 JK
 "}
-(31,1,1) = {"
+(30,1,1) = {"
 Bg
 xo
 JK
@@ -1954,7 +1922,7 @@ Uj
 Dq
 Dq
 Dq
-HM
+Et
 aX
 dt
 ZR
@@ -1986,16 +1954,16 @@ BV
 dj
 JK
 "}
-(32,1,1) = {"
-dh
+(31,1,1) = {"
+Bg
 xo
 JK
+Uj
 Dq
 Dq
 Dq
-Dq
-Dq
-Et
+HM
+aX
 dt
 tq
 ic
@@ -2026,17 +1994,17 @@ BV
 dj
 JK
 "}
-(33,1,1) = {"
-xo
+(32,1,1) = {"
+dh
 xo
 JK
-pQ
-zI
-SF
 Dq
-dA
-aX
-EB
+Dq
+Dq
+Dq
+Dq
+Et
+dt
 tZ
 ic
 ic
@@ -2062,21 +2030,21 @@ ic
 vN
 BV
 BV
-As
-Uj
+BV
+dj
 JK
 "}
-(34,1,1) = {"
-HR
-af
+(33,1,1) = {"
+xo
+xo
 JK
+pQ
+zI
+SF
+Dq
+dA
 aX
-aX
-pc
-pc
-aX
-aX
-dt
+EB
 vT
 ic
 ic
@@ -2102,20 +2070,20 @@ ic
 QQ
 BV
 BV
-BV
-Uj
+As
+dj
 JK
 "}
-(35,1,1) = {"
+(34,1,1) = {"
 HR
-Gd
-BC
-BC
-Ve
-Ve
-Ve
-Ve
-Ve
+af
+JK
+aX
+aX
+pc
+pc
+aX
+aX
 dt
 Kj
 ic
@@ -2143,19 +2111,19 @@ yz
 BV
 BV
 BV
-Uj
+dj
 JK
 "}
-(36,1,1) = {"
-vB
-dt
-JF
-BV
-BV
-JF
-JF
-BV
-BV
+(35,1,1) = {"
+HR
+Gd
+BC
+BC
+Ve
+Ve
+Ve
+Ve
+Ve
 dt
 tq
 fC
@@ -2183,20 +2151,20 @@ ub
 BV
 BV
 BV
-Uj
+dj
 JK
 "}
-(37,1,1) = {"
-Qa
-Jz
-SC
-SC
-SC
-zX
-Nu
-Nu
-Nu
-Jz
+(36,1,1) = {"
+vB
+dt
+JF
+BV
+BV
+JF
+JF
+BV
+BV
+dt
 YQ
 ic
 ic
@@ -2223,19 +2191,19 @@ vN
 BV
 BV
 BV
-Uj
+dj
 JK
 "}
-(38,1,1) = {"
-HR
-dt
-BV
-BV
-KG
-aX
-aX
-aX
-aX
+(37,1,1) = {"
+Qa
+Jz
+SC
+SC
+SC
+zX
+Nu
+Nu
+Nu
 Jz
 vT
 ic
@@ -2263,14 +2231,14 @@ QQ
 BV
 BV
 BV
-Uj
+dj
 JK
 "}
-(39,1,1) = {"
+(38,1,1) = {"
 HR
-DP
+dt
 BV
-JF
+BV
 KG
 aX
 aX
@@ -2303,7 +2271,47 @@ JI
 Ve
 Pa
 BV
-Uj
+dj
+JK
+"}
+(39,1,1) = {"
+HR
+DP
+BV
+JF
+KG
+aX
+aX
+aX
+aX
+Jz
+dt
+BV
+os
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+BV
+dt
+BV
+os
+BV
+dj
 JK
 "}
 (40,1,1) = {"
@@ -2316,34 +2324,34 @@ aX
 aX
 aX
 aX
-yN
-dt
-As
-os
+UU
+AV
+jq
+Qh
+UL
+UL
+UL
+er
+UL
+UL
+UL
+UL
+UL
+UL
+er
+UL
+er
+UL
+UL
+er
+UL
+UL
+UL
+AV
+UL
+YL
 BV
-BV
-BV
-As
-BV
-BV
-BV
-BV
-BV
-BV
-As
-BV
-As
-BV
-BV
-As
-BV
-BV
-BV
-dt
-BV
-os
-BV
-Uj
+dj
 JK
 "}
 (41,1,1) = {"
@@ -2356,34 +2364,34 @@ aX
 aX
 aX
 aX
-Jz
-zS
-zX
-Qh
-BV
-BV
-BV
-BV
-BV
-BV
-BV
+OB
+OB
+sz
+KG
+aX
+aX
+aX
+aX
+aX
+aX
+aX
 ky
 Tq
 vg
-Nu
-Nu
-Nu
+OB
+Jz
+nz
 Pq
-Nu
-Nu
-Mj
-UL
-UL
-AV
-UL
-YL
-er
-Uj
+OB
+OB
+yN
+os
+aX
+aX
+aX
+aX
+wy
+dj
 JK
 "}
 (42,1,1) = {"
@@ -2423,7 +2431,7 @@ aX
 aX
 CL
 Dq
-Uj
+dj
 JK
 "}
 (43,1,1) = {"

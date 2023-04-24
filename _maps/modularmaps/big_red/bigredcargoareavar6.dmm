@@ -64,7 +64,7 @@
 	},
 /area/bigredv2/outside/nw)
 "fA" = (
-/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "fF" = (
@@ -245,7 +245,7 @@
 /area/bigredv2/outside/nw)
 "tb" = (
 /obj/machinery/light,
-/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "th" = (

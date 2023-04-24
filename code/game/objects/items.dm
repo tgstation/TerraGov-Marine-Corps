@@ -83,9 +83,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
-
 	var/reach = 1
-
 
 	/// Species-specific sprites, concept stolen from Paradise//vg/. Ex: sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') If index term exists and icon_override is not set, this sprite sheet will be used.
 	var/list/sprite_sheets = null
@@ -147,7 +145,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	if(flags_item_map_variant)
 		update_item_sprites()
-
 
 /obj/item/Destroy()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
@@ -1109,18 +1106,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	return TRUE
 
-
-/obj/item/attack_self(mob/user)
-	if(!can_interact(user))
-		return
-
-	interact(user)
-
 /obj/item/proc/toggle_active(new_state)
 	if(!isnull(new_state))
 		if(new_state == active)
 			return
-		new_state = active
+		active = new_state
 	else
 		active = !active
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)

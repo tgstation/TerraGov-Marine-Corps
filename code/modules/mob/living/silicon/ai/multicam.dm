@@ -43,7 +43,7 @@
 
 
 /atom/movable/screen/movable/pic_in_pic/ai/set_view_size(width, height, do_refresh = TRUE)
-	aiEye.static_visibility_range =	(round(max(width, height) / 2) + 1)
+	aiEye.static_visibility_range = (round(max(width, height) / 2) + 1)
 	if(ai)
 		ai.camera_visibility(aiEye)
 	return ..()

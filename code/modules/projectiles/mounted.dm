@@ -259,7 +259,7 @@
 	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
 	update_pixels(user, TRUE)
 
-	if(current_scope && current_scope.deployed_scope_rezoom)
+	if(current_scope?.deployed_scope_rezoom)
 		INVOKE_ASYNC(current_scope, TYPE_PROC_REF(/obj/item/attachable/scope, activate), operator)
 
 	return FALSE

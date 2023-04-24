@@ -10,7 +10,7 @@
 /area/bigredv2/outside/c)
 "b" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "c" = (
@@ -66,7 +66,7 @@
 /area/bigredv2/outside/c)
 "m" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "n" = (
@@ -76,8 +76,8 @@
 /area/bigredv2/outside/c)
 "o" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/machineguns,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "q" = (
@@ -110,11 +110,11 @@
 /area/bigredv2/outside/c)
 "w" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "y" = (
@@ -122,18 +122,18 @@
 /area/bigredv2/outside/c)
 "A" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "B" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "C" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "D" = (
@@ -179,13 +179,13 @@
 /area/bigredv2/outside/storage)
 "K" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "L" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "M" = (
@@ -210,14 +210,14 @@
 /area/bigredv2/outside/c)
 "Q" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "R" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/machineguns,
+/obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "S" = (
@@ -232,8 +232,8 @@
 /area/bigredv2/outside/storage)
 "U" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/machinegun,
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "V" = (

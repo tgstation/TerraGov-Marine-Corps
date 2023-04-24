@@ -79,14 +79,14 @@
 
 /obj/item/clothing/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
-		var/image/bloodsies	= mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
-		bloodsies.color	= blood_color
+		var/image/bloodsies = mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
+		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
 
 /obj/item/clothing/suit/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
 		blood_sprite_state = "[blood_overlay_type]blood"
-		var/image/bloodsies	= mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
+		var/image/bloodsies = mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
 		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
 

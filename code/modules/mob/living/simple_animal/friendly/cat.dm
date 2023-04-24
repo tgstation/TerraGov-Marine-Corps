@@ -15,9 +15,9 @@
 	see_in_dark = 6
 	flags_pass = PASSTABLE
 	mob_size = MOB_SIZE_SMALL
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 
 
 /mob/living/simple_animal/cat/space

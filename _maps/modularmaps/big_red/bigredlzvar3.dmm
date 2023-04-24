@@ -56,17 +56,17 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "cF" = (
-/obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "cG" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "cI" = (
@@ -99,10 +99,14 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "cX" = (
-/obj/structure/table,
-/obj/item/folder/black_random,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Spaceport";
+	name = "\improper Spaceport Shutters"
+	},
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "dx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
@@ -270,7 +274,7 @@
 	},
 /area/bigredv2/outside/nw)
 "gP" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Spaceport";
@@ -377,16 +381,11 @@
 /area/bigredv2/caves/rock)
 "jj" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "jz" = (
 /obj/effect/mapping_helpers/area_flag_injector/marine_base,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
-"jA" = (
-/obj/structure/table,
-/obj/item/folder/black,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "jC" = (
@@ -576,8 +575,8 @@
 /area/bigredv2/outside/marshal_office)
 "nB" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "nN" = (
@@ -591,8 +590,8 @@
 /area/bigredv2/outside/space_port)
 "nT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "og" = (
@@ -614,8 +613,8 @@
 /area/bigredv2/outside/space_port)
 "oL" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "oN" = (
@@ -628,7 +627,7 @@
 "oR" = (
 /obj/structure/table,
 /obj/item/clothing/head/beret/sec/warden,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "pg" = (
@@ -799,7 +798,7 @@
 "tR" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "tS" = (
@@ -866,9 +865,9 @@
 "vP" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "vS" = (
@@ -949,7 +948,7 @@
 "wQ" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/structure/window_frame/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
@@ -1004,7 +1003,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "yS" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
@@ -1056,7 +1055,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "zF" = (
-/obj/item/folder/yellow,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "zK" = (
@@ -1084,7 +1083,7 @@
 /area/bigredv2/outside/space_port)
 "As" = (
 /obj/structure/table,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/misc/handcuffs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "Ax" = (
@@ -1097,7 +1096,7 @@
 /area/bigredv2/outside/telecomm)
 "AN" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "AQ" = (
@@ -1199,7 +1198,7 @@
 /area/bigredv2/outside/marshal_office)
 "DX" = (
 /obj/structure/table,
-/obj/item/folder/yellow,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "Ec" = (
@@ -1228,8 +1227,8 @@
 /area/bigredv2/outside/marshal_office)
 "EA" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -1307,7 +1306,7 @@
 /area/bigredv2/outside/space_port)
 "Gx" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1341,7 +1340,7 @@
 /area/bigredv2/caves/northwest)
 "Hs" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "HE" = (
@@ -1366,9 +1365,9 @@
 /area/bigredv2/outside/space_port)
 "Ia" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "Ih" = (
@@ -1403,7 +1402,7 @@
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "Jk" = (
@@ -1426,12 +1425,12 @@
 /area/bigredv2/outside/telecomm)
 "Jz" = (
 /obj/structure/table,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "JB" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
@@ -1449,7 +1448,7 @@
 /area/bigredv2/outside/marshal_office)
 "JS" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "Ke" = (
@@ -1479,7 +1478,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "Lh" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Marshal Offices";
@@ -1508,8 +1507,8 @@
 /area/bigredv2/outside/nw)
 "LW" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "Mb" = (
@@ -1603,11 +1602,11 @@
 /area/lv624/lazarus/console)
 "Ow" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Spaceport";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
@@ -1651,8 +1650,8 @@
 /area/bigredv2/outside/marshal_office)
 "Pu" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "Pv" = (
@@ -1728,7 +1727,7 @@
 "RK" = (
 /obj/machinery/vending/cigarette/colony,
 /obj/machinery/status_display{
-	pixel_y = 32
+	pixel_y = 31
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
@@ -1812,7 +1811,7 @@
 /area/bigredv2/outside/space_port)
 "TC" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
@@ -1875,8 +1874,8 @@
 /area/bigredv2/outside/nw)
 "Vj" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/door_control{
 	dir = 4;
 	id = "tcomms";
@@ -1935,10 +1934,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -1958,7 +1957,7 @@
 /area/bigredv2/outside/space_port)
 "Xc" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "Xz" = (
@@ -2026,7 +2025,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Zz" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "ZB" = (
@@ -2189,7 +2188,7 @@ wT
 wT
 pG
 OO
-jA
+DX
 Gx
 nB
 vl
@@ -2391,7 +2390,7 @@ Bk
 OO
 JL
 DX
-cX
+DX
 CP
 Pf
 oN
@@ -2549,7 +2548,7 @@ Bk
 PV
 hb
 Ry
-cX
+DX
 kT
 sv
 Ce
@@ -3668,7 +3667,7 @@ CH
 CH
 sX
 Ia
-gP
+cX
 iu
 hG
 iu
@@ -3708,7 +3707,7 @@ xE
 CH
 CH
 LW
-gP
+cX
 iu
 hG
 iu

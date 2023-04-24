@@ -75,7 +75,7 @@
 
 
 /obj/item/stack/Destroy()
-	if(usr && usr.interactee == src)
+	if(usr?.interactee == src)
 		usr << browse(null, "window=stack")
 	return ..()
 

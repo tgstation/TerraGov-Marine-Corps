@@ -295,10 +295,13 @@
 /obj/structure/bed/chair/dropship/passenger/post_buckle_mob(mob/buckling_mob)
 	icon_state = "shuttle_chair_buckled"
 	overlays += chairbar
+	return ..()
+
 
 /obj/structure/bed/chair/dropship/passenger/post_unbuckle_mob(mob/buckled_mob)
 	icon_state = "shuttle_chair"
 	overlays -= chairbar
+	return ..()
 
 
 /obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)

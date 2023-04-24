@@ -13,7 +13,7 @@
 */
 
 /obj/item/storage/fancy
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/food.dmi'
 	icon_state = "donutbox6"
 	name = "donut box"
 	var/icon_type = "donut"
@@ -53,7 +53,7 @@
 */
 
 /obj/item/storage/fancy/egg_box
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/packaged.dmi'
 	icon_state = "eggbox"
 	icon_type = "egg"
 	name = "egg box"
@@ -277,7 +277,7 @@
 	icon = 'icons/obj/items/storage/vialbox.dmi'
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
 	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6

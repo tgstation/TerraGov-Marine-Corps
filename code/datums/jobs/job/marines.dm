@@ -254,7 +254,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 	)
-	job_points_needed  = 10 //Redefined via config.
+	job_points_needed = 10 //Redefined via config.
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
@@ -321,7 +321,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_STRONG,
 	)
-	job_points_needed  = 10 //Redefined via config.
+	job_points_needed = 10 //Redefined via config.
 
 
 /datum/job/terragov/squad/specialist/radio_help_message(mob/M)

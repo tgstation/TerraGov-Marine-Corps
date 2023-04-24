@@ -312,7 +312,7 @@
 	caliber = CALIBER_RAILGUN
 	icon_state = "railgun"
 	default_ammo = /datum/ammo/bullet/railgun
-	max_rounds = 1
+	max_rounds = 3
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_railgun"

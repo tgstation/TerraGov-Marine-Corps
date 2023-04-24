@@ -50,6 +50,7 @@
 	new /obj/item/clothing/head/tgmcberet(src)
 	new /obj/item/clothing/head/tgmcberet/tan(src)
 	new /obj/item/clothing/head/tgmccap/ro(src)
+	new /obj/item/clothing/head/tgmccap/ro/navy(src)
 	new /obj/item/clothing/under/marine/officer/bridge(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/clothing/suit/storage/marine/officer(src)

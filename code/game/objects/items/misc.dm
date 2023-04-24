@@ -3,8 +3,8 @@
 	desc = "Should anything ever go wrong..."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "red_phone"
-	force = 3.0
-	throwforce = 2.0
+	force = 3
+	throwforce = 2
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
@@ -16,8 +16,8 @@
 	desc = "A battery powered clock, able to keep time within about 5 seconds... it was never that accurate."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "digital_clock"
-	force = 3.0
-	throwforce = 2.0
+	force = 3
+	throwforce = 2
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
@@ -49,7 +49,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
 	icon_state = "gift3"
-	var/size = 3.0
+	var/size = 3
 	var/obj/item/gift = null
 	item_state = "gift"
 	w_class = WEIGHT_CLASS_BULKY
@@ -63,8 +63,8 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
 	)
 	icon_state = "staff"
-	force = 3.0
-	throwforce = 5.0
+	force = 3
+	throwforce = 5
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -107,7 +107,7 @@
 	uptype = "reinforced components"
 
 /obj/item/minerupgrade/overclock
-	name =  "high-efficiency drill"
+	name = "high-efficiency drill"
 	desc = "A box with a few pumps and a big drill, meant to replace the standard drill used in normal mining wells for faster extraction."
 	icon_state = "mining_drill_overclockeddisplay"
 	uptype = "high-efficiency drill"

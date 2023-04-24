@@ -155,9 +155,6 @@
 	var/datum/effect_system/smoke_spread/bad/smoke_system = new
 
 	////Action vars
-	///Ref to any active thrusters we might have
-	var/obj/item/mecha_parts/mecha_equipment/thrusters/active_thrusters
-
 	///Bool for energy shield on/off
 	var/defense_mode = FALSE
 

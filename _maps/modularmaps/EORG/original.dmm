@@ -593,7 +593,7 @@
 /area/deathmatch)
 "cv" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/tile/bar,
 /area/deathmatch)
 "cw" = (
@@ -713,7 +713,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/shuttle/dropship/floor,
 /area/deathmatch)
 "cU" = (

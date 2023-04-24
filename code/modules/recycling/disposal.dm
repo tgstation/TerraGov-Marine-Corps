@@ -206,7 +206,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(user && user.loc == src)
+	if(user?.loc == src)
 		to_chat(usr, span_warning("You cannot reach the controls from inside."))
 		return FALSE
 
@@ -1233,10 +1233,10 @@
 			O.expel(H) //Expel at outlet
 		else
 			var/obj/machinery/disposal/D = linked
-			if(H && H.loc)
+			if(H?.loc)
 				D.expel(H) //Expel at disposal
 	else
-		if(H && H.loc)
+		if(H?.loc)
 			src.expel(H, loc, 0) //Expel at turf
 	return null
 
@@ -1329,7 +1329,7 @@
 
 		to_chat(user, span_notice("You sliced the floorweld off the disposal outlet."))
 		var/obj/structure/disposalconstruct/C = new(loc)
-		C.ptype = 7 //7 =  outlet
+		C.ptype = 7 //7 = outlet
 		C.update()
 		C.anchored = TRUE
 		C.density = TRUE

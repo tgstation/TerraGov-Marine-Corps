@@ -187,7 +187,7 @@
 	var/hide = FALSE
 
 /obj/effect/mapping_helpers/simple_pipes/LateInitialize()
-	var/list/connections = list( dir2text(NORTH)  = FALSE, dir2text(SOUTH) = FALSE , dir2text(EAST) = FALSE , dir2text(WEST) = FALSE)
+	var/list/connections = list( dir2text(NORTH) = FALSE, dir2text(SOUTH) = FALSE , dir2text(EAST) = FALSE , dir2text(WEST) = FALSE)
 	var/list/valid_connectors = typecacheof(/obj/machinery/atmospherics)
 	for(var/direction in connections)
 		var/turf/T = get_step(src,  text2dir(direction))

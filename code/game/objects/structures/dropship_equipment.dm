@@ -895,7 +895,7 @@
 	update_icon()
 
 /obj/structure/dropship_equipment/weapon/rocket_pod/update_icon()
-	if(ammo_equipped && ammo_equipped.ammo_count)
+	if(ammo_equipped?.ammo_count)
 		icon_state = "rocket_pod_loaded[ammo_equipped.ammo_id]"
 	else
 		if(ship_base)
@@ -915,7 +915,7 @@
 	ammo_type_used = CAS_MINI_ROCKET
 
 /obj/structure/dropship_equipment/weapon/minirocket_pod/update_icon()
-	if(ammo_equipped && ammo_equipped.ammo_count)
+	if(ammo_equipped?.ammo_count)
 		icon_state = "minirocket_pod_loaded"
 	else
 		if(ship_base)
@@ -940,7 +940,7 @@
 	ammo_type_used = CAS_LASER_BATTERY
 
 /obj/structure/dropship_equipment/weapon/laser_beam_gun/update_icon()
-	if(ammo_equipped && ammo_equipped.ammo_count)
+	if(ammo_equipped?.ammo_count)
 		icon_state = "laser_beam_loaded"
 	else
 		if(ship_base)

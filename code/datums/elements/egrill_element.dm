@@ -1,5 +1,5 @@
 /datum/element/egrill
-	element_flags = ELEMENT_DETACH
+	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 
 /datum/element/egrill/Attach(datum/target)
 	if(!isobj(target))

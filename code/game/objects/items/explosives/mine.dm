@@ -68,10 +68,7 @@ Stepping directly on the mine will also blow it up
 
 	if(armed)
 		return
-
-	user.visible_message(span_notice("[user] starts deploying [src]."), \
-	span_notice("You start deploying [src]."))
-	if(!do_after(user, 40, TRUE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
 		user.visible_message(span_notice("[user] stops deploying [src]."), \
 	span_notice("You stop deploying \the [src]."))
 		return
