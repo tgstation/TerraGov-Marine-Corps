@@ -79,7 +79,7 @@
 		/obj/item/packageWrap = 1,
 		/obj/effect/spawner/random/engineering/bomb_supply = 2,
 		/obj/item/tool/extinguisher = 1,
-		/obj/item/clothing/gloves/fyellow = 1,
+		/obj/item/clothing/gloves/yellow = 1,
 		/obj/item/stack/cable_coil = 3,
 		/obj/effect/spawner/random/engineering/toolbox = 2,
 		/obj/item/storage/belt/utility = 2,
