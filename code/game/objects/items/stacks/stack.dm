@@ -218,6 +218,7 @@
 		O = new R.result_type(get_turf(user))
 	if(O)
 		O.setDir(user.dir)
+		O.color = color
 	use(R.req_amount * multiplier)
 
 	if(QDELETED(O))
