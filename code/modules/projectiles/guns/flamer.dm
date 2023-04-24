@@ -324,9 +324,6 @@
 		/obj/item/ammo_magazine/flamer_tank/internal,
 	)
 
-/obj/item/weapon/gun/flamer/big_flamer/engineer/Initialize()
-	. = ..()
-
 /obj/item/weapon/gun/flamer/big_flamer/engineer/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the backpack to the gun will load the gun with the internal mag.
 	. = ..()
 	if(!istype(W, /obj/item/storage/holster/backholster/flamer))
