@@ -259,6 +259,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/roomba/valhalla/eord,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "bd" = (
@@ -636,6 +637,10 @@
 /area/deathmatch)
 "Fu" = (
 /turf/open/floor/mainship/emerald,
+/area/deathmatch)
+"Gb" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor,
 /area/deathmatch)
 "PC" = (
 /obj/structure/barricade/guardrail{
@@ -1198,7 +1203,7 @@ bT
 aZ
 bT
 bT
-bT
+Gb
 bT
 bT
 bT
@@ -1259,7 +1264,7 @@ bT
 bT
 PC
 PC
-bT
+Gb
 PC
 PC
 bT

@@ -161,6 +161,11 @@
 	dir = 8
 	},
 /area/deathmatch)
+"eh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
 "eq" = (
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/blue2{
@@ -378,6 +383,10 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
+/area/deathmatch)
+"jA" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/tile/dark2,
 /area/deathmatch)
 "jT" = (
 /turf/open/floor/tile/dark/blue2/corner{
@@ -1351,6 +1360,11 @@
 /obj/item/clipboard,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
+"Fz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/stairs,
+/area/deathmatch)
 "FA" = (
 /obj/structure/largecrate/random,
 /obj/item/tool/crowbar,
@@ -1503,6 +1517,10 @@
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
 	},
+/area/deathmatch)
+"Kl" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Kn" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -2055,6 +2073,10 @@
 /obj/item/storage/belt/champion,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
+"Wg" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
 "Wl" = (
 /obj/structure/table,
 /obj/item/stack/sheet/cardboard{
@@ -2501,7 +2523,7 @@ uX
 WK
 WK
 WK
-WK
+Wg
 uX
 Mr
 WK
@@ -2581,7 +2603,7 @@ WY
 MY
 WY
 WY
-vM
+eh
 WY
 WY
 WY
@@ -2786,7 +2808,7 @@ ZJ
 jg
 Nm
 Xw
-rp
+Fz
 Np
 Sr
 kP
@@ -3261,7 +3283,7 @@ jg
 hF
 Ye
 ZJ
-ZJ
+Kl
 ZJ
 ib
 Xv
@@ -3575,7 +3597,7 @@ KH
 (28,1,1) = {"
 Qw
 Ye
-ZJ
+Kl
 Sz
 Xv
 ZD
@@ -3639,7 +3661,7 @@ GO
 jT
 WY
 WY
-WY
+jA
 vM
 vM
 WY
@@ -4360,7 +4382,7 @@ Hg
 Sh
 kx
 OC
-WY
+jA
 ZQ
 Rw
 wN

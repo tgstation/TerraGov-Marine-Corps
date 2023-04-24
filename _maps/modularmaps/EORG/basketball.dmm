@@ -577,6 +577,10 @@
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
+"oZ" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/mainship/sterile/plain,
+/area/deathmatch)
 "pV" = (
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/mainship/blue{
@@ -598,6 +602,10 @@
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
+/area/deathmatch)
+"rn" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/wood,
 /area/deathmatch)
 "rF" = (
 /obj/machinery/light{
@@ -656,6 +664,11 @@
 "xx" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
+/area/deathmatch)
+"xE" = (
+/obj/structure/bed/chair,
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/wood,
 /area/deathmatch)
 "xH" = (
 /obj/structure/bed/chair{
@@ -1344,7 +1357,7 @@ ai
 HL
 HL
 HL
-HL
+rn
 HL
 HL
 HL
@@ -1425,7 +1438,7 @@ IS
 IS
 cP
 hr
-hr
+xE
 hr
 HL
 aH
@@ -1453,7 +1466,7 @@ Zn
 PK
 Zn
 aH
-HL
+rn
 ri
 bI
 aa
@@ -1506,7 +1519,7 @@ bI
 bI
 aa
 bf
-bg
+oZ
 ba
 bc
 bm
@@ -2784,7 +2797,7 @@ HL
 HL
 HL
 HL
-HL
+rn
 HL
 aG
 HL
@@ -2797,7 +2810,7 @@ Zn
 PK
 Zn
 aH
-HL
+rn
 bI
 bI
 cP
@@ -2866,7 +2879,7 @@ Kh
 Kh
 aa
 hr
-hr
+xE
 aY
 aH
 ue

@@ -84,6 +84,10 @@
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/wood,
 /area/deathmatch)
+"fj" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/grass,
+/area/deathmatch)
 "fs" = (
 /obj/structure/inflatable/popped,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -384,6 +388,10 @@
 /obj/structure/table/gamblingtable,
 /turf/open/floor/wood,
 /area/deathmatch)
+"uC" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/wood,
+/area/deathmatch)
 "uS" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -529,6 +537,10 @@
 "AC" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/wood/broken,
+/area/deathmatch)
+"AQ" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/grime,
 /area/deathmatch)
 "AU" = (
 /obj/structure/platform,
@@ -1403,7 +1415,7 @@ WT
 BK
 BK
 tq
-BK
+uC
 BK
 pD
 BK
@@ -1729,7 +1741,7 @@ wz
 Gl
 Gl
 xL
-Gl
+fj
 Gl
 BC
 BC
@@ -1850,7 +1862,7 @@ fs
 yM
 fs
 BK
-BK
+uC
 BK
 yM
 QU
@@ -2288,7 +2300,7 @@ Gl
 Gl
 pZ
 Gl
-Gl
+fj
 Gl
 Qm
 SO
@@ -2321,7 +2333,7 @@ kn
 JS
 Oh
 Oh
-Oh
+AQ
 Oh
 Oh
 SY
@@ -2837,7 +2849,7 @@ Gl
 wJ
 Oh
 Oh
-Gl
+fj
 Gl
 wb
 Gl
@@ -2859,7 +2871,7 @@ oD
 xL
 Gl
 SO
-Gl
+fj
 Gl
 yM
 yM

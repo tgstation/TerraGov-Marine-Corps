@@ -78,6 +78,12 @@
 /obj/structure/flora/desert/grass/seven,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
+"jR" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
 "kv" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
@@ -89,12 +95,27 @@
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
+"mK" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 9
+	},
+/area/deathmatch)
 "mY" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/deathmatch)
 "no" = (
 /obj/item/frame/rack,
 /turf/open/floor/wood,
+/area/deathmatch)
+"nu" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/deathmatch)
+"od" = (
+/obj/structure/flora/desert/grass/seven,
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "os" = (
 /obj/structure/bed,
@@ -114,6 +135,10 @@
 /obj/structure/table/mainship,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood,
+/area/deathmatch)
+"qB" = (
+/obj/machinery/roomba/valhalla/eord,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "qR" = (
 /obj/structure/bed/chair/wood/wings{
@@ -768,7 +793,7 @@ Gk
 uR
 uR
 rf
-Gx
+mK
 bP
 uR
 Uv
@@ -1025,7 +1050,7 @@ Uv
 Uv
 Uv
 WC
-WV
+jR
 WC
 Uv
 Uv
@@ -1342,7 +1367,7 @@ oE
 Gk
 uR
 uR
-jg
+od
 QI
 uN
 uN
@@ -1743,7 +1768,7 @@ WC
 hw
 WC
 WC
-WV
+jR
 GB
 GB
 WC
@@ -1961,7 +1986,7 @@ oE
 Yq
 aB
 Yw
-aB
+nu
 aB
 aB
 pl
@@ -2532,7 +2557,7 @@ uR
 xg
 uR
 uR
-uR
+qB
 uR
 uR
 uR
