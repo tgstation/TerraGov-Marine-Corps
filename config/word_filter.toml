@@ -12,7 +12,7 @@
 
 # Anything in here is blocked from all IC interactions *except* PDAs.
 # On /tg/, netspeak is OK in PDAs.
-[ic_outside_pda]
+[bombvest]
 "<(0_0<)" = "Kirby dancing is strictly prohibited on this server."
 
 # Anything in here will warn the player if said in IC, dead chat or OOC, the player must approve their message to send it
@@ -24,5 +24,5 @@
 "testsofterblocks" = "This term is commonly considered OOC, only use it with context."
 
 # Anything in here will warn the player if said ICly *except* PDAs. the player must approve their message to send it
-[soft_ic_outside_pda]
+[soft_bombvest]
 "testsoftestblocks" = "Stop saying debug phrases ICly."

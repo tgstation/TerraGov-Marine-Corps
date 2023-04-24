@@ -27,7 +27,7 @@
 	var/static/regex/ooc_filter_regex
 
 	/// A regex that matches words blocked IC, but not in PDAs
-	var/static/regex/ic_outside_pda_filter_regex
+	var/static/regex/ic_bomb_vest_filter_regex
 
 	/// A regex that matches words soft blocked IC
 	var/static/regex/soft_ic_filter_regex
@@ -36,13 +36,13 @@
 	var/static/regex/soft_ooc_filter_regex
 
 	/// A regex that matches words soft blocked IC, but not in PDAs
-	var/static/regex/soft_ic_outside_pda_filter_regex
+	var/static/regex/soft_ic_bomb_vest_filter_regex
 
 	/// An assoc list of blocked IC words to their reasons
 	var/static/list/ic_filter_reasons
 
 	/// An assoc list of words that are blocked IC, but not in PDAs, to their reasons
-	var/static/list/ic_outside_pda_filter_reasons
+	var/static/list/ic_bomb_vest_filter_reasons
 
 	/// An assoc list of words that are blocked both IC and OOC to their reasons
 	var/static/list/shared_filter_reasons
@@ -51,7 +51,7 @@
 	var/static/list/soft_ic_filter_reasons
 
 	/// An assoc list of words that are soft blocked IC, but not in PDAs, to their reasons
-	var/static/list/soft_ic_outside_pda_filter_reasons
+	var/static/list/soft_ic_bomb_vest_filter_reasons
 
 	/// An assoc list of words that are soft blocked both IC and OOC to their reasons
 	var/static/list/soft_shared_filter_reasons
@@ -451,10 +451,10 @@ Example config:
 	var/list/word_filter = json_decode(result["content"])
 
 	ic_filter_reasons = try_extract_from_word_filter(word_filter, "ic")
-	ic_outside_pda_filter_reasons = try_extract_from_word_filter(word_filter, "ic_outside_pda")
+	ic_bomb_vest_filter_reasons = try_extract_from_word_filter(word_filter, "bombvest")
 	shared_filter_reasons = try_extract_from_word_filter(word_filter, "shared")
 	soft_ic_filter_reasons = try_extract_from_word_filter(word_filter, "soft_ic")
-	soft_ic_outside_pda_filter_reasons = try_extract_from_word_filter(word_filter, "soft_ic_outside_pda")
+	soft_ic_bomb_vest_filter_reasons = try_extract_from_word_filter(word_filter, "soft_bombvest")
 	soft_shared_filter_reasons = try_extract_from_word_filter(word_filter, "soft_shared")
 
 	update_chat_filter_regexes()
@@ -466,10 +466,10 @@ Example config:
 	log_config("Loading config file in_character_filter.txt...")
 
 	ic_filter_reasons = list()
-	ic_outside_pda_filter_reasons = list()
+	ic_bomb_vest_filter_reasons = list()
 	shared_filter_reasons = list()
 	soft_ic_filter_reasons = list()
-	soft_ic_outside_pda_filter_reasons = list()
+	soft_ic_bomb_vest_filter_reasons = list()
 	soft_shared_filter_reasons = list()
 
 	for (var/line in world.file2list("[directory]/in_character_filter.txt"))
@@ -478,17 +478,17 @@ Example config:
 		if (findtextEx(line, "#", 1, 2))
 			continue
 		// The older filter didn't apply to PDA
-		ic_outside_pda_filter_reasons[line] = "No reason available"
+		ic_bomb_vest_filter_reasons[line] = "No reason available"
 
 	update_chat_filter_regexes()
 
 /// Will update the internal regexes of the chat filter based on the filter reasons
 /datum/controller/configuration/proc/update_chat_filter_regexes()
-	ic_filter_regex = compile_filter_regex(ic_filter_reasons + ic_outside_pda_filter_reasons + shared_filter_reasons)
-	ic_outside_pda_filter_regex = compile_filter_regex(ic_filter_reasons + shared_filter_reasons)
+	ic_filter_regex = compile_filter_regex(ic_filter_reasons + shared_filter_reasons)
+	ic_bomb_vest_filter_regex = compile_filter_regex(ic_filter_reasons + ic_bomb_vest_filter_reasons + shared_filter_reasons)
 	ooc_filter_regex = compile_filter_regex(shared_filter_reasons)
-	soft_ic_filter_regex = compile_filter_regex(soft_ic_filter_reasons + soft_ic_outside_pda_filter_reasons + soft_shared_filter_reasons)
-	soft_ic_outside_pda_filter_regex = compile_filter_regex(soft_ic_filter_reasons + soft_shared_filter_reasons)
+	soft_ic_filter_regex = compile_filter_regex(soft_ic_filter_reasons + soft_shared_filter_reasons)
+	soft_ic_bomb_vest_filter_regex = compile_filter_regex(soft_ic_filter_reasons + soft_ic_bomb_vest_filter_reasons + soft_shared_filter_reasons)
 	soft_ooc_filter_regex = compile_filter_regex(soft_shared_filter_reasons)
 
 /datum/controller/configuration/proc/try_extract_from_word_filter(list/word_filter, key)

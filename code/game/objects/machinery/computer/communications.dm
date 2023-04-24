@@ -105,7 +105,7 @@
 				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					return FALSE
 
-				var/filter_result = is_ic_filtered(input)
+				var/filter_result = CAN_BYPASS_FILTER(usr) ? null : is_ic_filtered(input)
 				if(filter_result)
 					to_chat(usr, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
 					SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
