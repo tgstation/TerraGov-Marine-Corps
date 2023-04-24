@@ -1589,7 +1589,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
 "akE" = (
 /obj/structure/table,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/prison/darkpurple{
 	dir = 1
 	},

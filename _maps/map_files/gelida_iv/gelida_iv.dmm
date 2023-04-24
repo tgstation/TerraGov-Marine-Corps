@@ -33061,7 +33061,7 @@
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
 "vxK" = (
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/engineering)
 "vxL" = (

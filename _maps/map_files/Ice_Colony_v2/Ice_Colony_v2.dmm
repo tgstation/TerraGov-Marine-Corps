@@ -414,7 +414,7 @@
 /obj/structure/table/reinforced,
 /obj/item/stack/medical/heal_pack/gauze,
 /obj/item/cell,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -11999,7 +11999,7 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "bhF" = (
 /obj/structure/table,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
 "bhG" = (

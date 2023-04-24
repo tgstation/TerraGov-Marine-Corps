@@ -7139,7 +7139,7 @@
 /obj/item/light_bulb/tube,
 /obj/item/light_bulb/tube,
 /obj/item/clothing/glasses/meson,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "jwr" = (

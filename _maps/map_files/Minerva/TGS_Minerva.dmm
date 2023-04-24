@@ -14546,7 +14546,7 @@
 /area/mainship/engineering/engineering_workshop)
 "QP" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /obj/item/storage/belt/utility/atmostech,
 /turf/open/floor/mainship/orange{
 	dir = 9
@@ -14917,7 +14917,7 @@
 "Sb" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/taperoll/engineering,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /obj/item/lightreplacer,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)

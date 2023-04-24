@@ -21434,7 +21434,7 @@
 /area/sulaco/hangar/droppod)
 "qHy" = (
 /obj/structure/rack,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},

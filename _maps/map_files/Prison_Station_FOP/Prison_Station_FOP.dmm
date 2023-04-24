@@ -31131,7 +31131,7 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},

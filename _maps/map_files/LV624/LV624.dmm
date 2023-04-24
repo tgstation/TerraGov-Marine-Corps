@@ -16759,7 +16759,7 @@
 "ufA" = (
 /obj/structure/closet,
 /obj/item/tool/crowbar,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack,
 /obj/structure/window/reinforced{
 	dir = 4

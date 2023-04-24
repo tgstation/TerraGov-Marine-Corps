@@ -9253,7 +9253,7 @@
 /area/centcom/valhalla/security/brig)
 "mvp" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/storage/primary)
@@ -14399,10 +14399,10 @@
 /area/centcom/valhalla/hydroponics)
 "tjf" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /obj/item/reagent_containers/food/drinks/cans/thirteenloko,
-/obj/item/clothing/gloves/yellow,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
+/obj/item/clothing/gloves/insulated,
 /mob/living/simple_animal/parrot/Poly,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
@@ -17963,7 +17963,7 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /obj/item/storage/toolbox/electrical,
 /obj/item/circuitboard/apc,
 /obj/item/circuitboard/airlock,

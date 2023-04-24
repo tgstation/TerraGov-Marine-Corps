@@ -7257,7 +7257,7 @@
 /area/mainship/engineering/engineering_workshop)
 "gDb" = (
 /obj/structure/table/mainship,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /obj/item/clothing/glasses/meson,
 /obj/item/light_bulb/tube,
 /turf/open/floor/mainship/mono,
@@ -9603,7 +9603,7 @@
 /area/mainship/living/cryo_cells)
 "iLN" = (
 /obj/structure/table/mainship,
-/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/insulated,
 /obj/item/clothing/glasses/meson,
 /obj/item/light_bulb/tube,
 /turf/open/floor/mainship/mono,
