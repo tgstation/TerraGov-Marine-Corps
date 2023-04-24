@@ -29,7 +29,7 @@
 		loaded++
 
 		for(var/turf/T in get_affected_turfs(central_turf, 1))
-			T.flags_atom |= NO_RUINS_1
+			T.flags_1 |= NO_RUINS_1
 
 		new /obj/effect/landmark/ruin(central_turf, src)
 		return TRUE
