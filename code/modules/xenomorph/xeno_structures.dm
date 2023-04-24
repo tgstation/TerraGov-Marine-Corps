@@ -11,13 +11,16 @@
 	. = ..()
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
+	if(hivenumber) ///because admins can spawn them
+		src.hivenumber = hivenumber
 	LAZYADDASSOC(GLOB.xeno_structures_by_hive, hivenumber, src)
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
 		GLOB.xeno_critical_structures += src
-	if(hivenumber) ///because admins can spawn them
-		src.hivenumber = hivenumber
 
 /obj/structure/xeno/Destroy()
+	if(!locate(src) in GLOB.xeno_structures_by_hive[hivenumber]) //The rest of the proc is pointless to look through if its not in the lists
+		stack_trace("[src] not found in the list of xeno structures!") //We dont want to CRASH because that'd block deletion completely. Just trace it and continue.
+		return ..()
 	GLOB.xeno_structures_by_hive[hivenumber] -= src
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
 		GLOB.xeno_critical_structures -= src
