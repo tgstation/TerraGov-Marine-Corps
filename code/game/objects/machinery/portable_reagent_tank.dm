@@ -23,10 +23,18 @@
 	. += "[span_bold("Click")] with an open hand on [span_bold("Grab")] intent to drink from the nozzle."
 	. += "[span_bold("Drag")] to yourself to undeploy."
 
-/obj/machinery/deployable/reagent_tank/update_icon()
-	//Remove overlays and reset the icon
-	overlays.Cut()
+/obj/machinery/deployable/reagent_tank/update_icon_state()
+	. = ..()
+	//Reset the icon
 	icon_state = initial(internal_item.icon_state)
+	//Change the sprite to the one that looks opened to indicate it is in refilling mode
+	if(is_refillable())
+		icon_state += "_open"
+
+/obj/machinery/deployable/reagent_tank/update_overlays()
+	. = ..()
+	//Remove any overlays before we begin
+	overlays.Cut()
 	//If reagents are present, add some overlays
 	if(reagents?.total_volume)
 		var/image/filling = image(icon, src, "[icon_state]")
@@ -46,9 +54,6 @@
 				filling.icon_state = "[icon_state]_full"
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		overlays += filling
-	//Change the sprite to the one that looks opened to indicate it is in refilling mode
-	if(is_refillable())
-		icon_state += "_open"
 
 /obj/machinery/deployable/reagent_tank/on_reagent_change()
 	update_icon()
@@ -63,7 +68,7 @@
 /obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X.a_intent != INTENT_HARM)
 		return drink_from_nozzle(X, TRUE)
-	. = ..()
+	return ..()
 
 ///Process for drinking reagents directly from the dispenser's nozzle
 /obj/machinery/deployable/reagent_tank/proc/drink_from_nozzle(mob/living/user, is_xeno = FALSE)
@@ -138,9 +143,9 @@
 	. = ..()
 	. += "[span_bold("Ctrl Click")] an adjacent tile to deploy."
 
-/obj/item/storage/reagent_tank/update_icon()
+/obj/item/storage/reagent_tank/update_overlays()
+	. = ..()
 	overlays.Cut()
-	icon_state = initial(icon_state)
 	if(reagents.total_volume)
 		var/image/filling = image(icon, src, "[icon_state]")
 		var/percent = round((reagents.total_volume/max_volume) * 100)
@@ -166,17 +171,17 @@
 /obj/item/storage/reagent_tank/attack_hand(mob/living/user)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return open(user)
-	. = ..()
+	return ..()
 
 /obj/item/storage/reagent_tank/open(mob/user)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		. = ..()
+		return ..()
 
 /obj/item/storage/reagent_tank/attempt_draw_object(mob/living/user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		balloon_alert(user, "[src] must be deployed!")
 		return FALSE
-	. = ..()
+	return ..()
 
 /obj/item/storage/reagent_tank/do_quick_equip(mob/user)
 	balloon_alert(user, "[src] must be deployed!")
@@ -185,7 +190,7 @@
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		balloon_alert(usr, "Deploy [src] to store [W]!")
 		return FALSE
-	. = ..()
+	return ..()
 
 //Preset tanks so you can have these ready for a round and not need to drain the chem master's energy
 /obj/item/storage/reagent_tank/bicaridine
