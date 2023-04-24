@@ -46,18 +46,18 @@
 	if(tool_paths)
 		tool_paths = string_list(tool_paths)
 
-/datum/crafting_recipe/stack/New(obj/item/stack/material, datum/stack_recipe/stack_recipe)
-	if(!material || !stack_recipe || !stack_recipe.result_type)
-		stack_trace("Invalid stack recipe [stack_recipe]")
+/datum/crafting_recipe/stack/New(obj/item/stack/material, datum/crafting_stack_recipe/crafting_stack_recipe)
+	if(!material || !crafting_stack_recipe || !crafting_stack_recipe.result_type)
+		stack_trace("Invalid stack recipe [crafting_stack_recipe]")
 		return
 	..()
 
-	src.name = stack_recipe.title
-	src.time = stack_recipe.time
-	src.result = stack_recipe.result_type
-	src.result_amount = stack_recipe.res_amount
-	src.reqs[material] = stack_recipe.req_amount
-	src.category = stack_recipe.category || CAT_MISC
+	src.name = crafting_stack_recipe.title
+	src.time = crafting_stack_recipe.time
+	src.result = crafting_stack_recipe.result_type
+	src.result_amount = crafting_stack_recipe.res_amount
+	src.reqs[material] = crafting_stack_recipe.req_amount
+	src.category = crafting_stack_recipe.category || CAT_MISC
 
 /**
  * Run custom pre-craft checks for this recipe, don't add feedback messages in this because it will spam the client

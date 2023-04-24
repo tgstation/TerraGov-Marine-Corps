@@ -2,7 +2,7 @@
 /*
  * Recipe datum
  */
-/datum/stack_recipe
+/datum/crafting_stack_recipe
 	/// The title of the recipe
 	var/title = "ERROR"
 	/// What atom the recipe makes, typepath
@@ -32,7 +32,7 @@
 	/// Category for general crafting menu
 	var/category
 
-/datum/stack_recipe/New(
+/datum/crafting_stack_recipe/New(
 	title,
 	result_type,
 	req_amount = 1,
@@ -65,11 +65,11 @@
 	src.trait_modifier = trait_modifier
 	src.category = src.category || category || CAT_MISC
 
-/datum/stack_recipe/radial
+/datum/crafting_stack_recipe/radial
 	/// Optional info to be shown on the radial option for this item
 	var/desc
 
-/datum/stack_recipe/radial/New(
+/datum/crafting_stack_recipe/radial/New(
 	title,
 	result_type,
 	req_amount = 1,
@@ -101,10 +101,10 @@
 /*
  * Recipe list datum
  */
-/datum/stack_recipe_list
+/datum/crafting_stack_recipe_list
 	var/title = "ERROR"
 	var/list/recipes
 
-/datum/stack_recipe_list/New(title, recipes)
+/datum/crafting_stack_recipe_list/New(title, recipes)
 	src.title = title
 	src.recipes = recipes
