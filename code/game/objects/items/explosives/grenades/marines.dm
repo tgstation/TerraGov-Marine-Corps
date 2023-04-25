@@ -112,6 +112,34 @@
 	stuck_to = null
 	saved_overlay = null
 
+/obj/item/explosive/grenade/sticky/trailblazer
+	name = "\improper M45 Trailblazer grenade"
+	desc = "capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. It is set to detonate in 5 seconds."
+	icon_state = "grenade_sticky_fire"
+	item_state = "grenade_sticky_fire"
+	det_time = 5 SECONDS
+	light_impact_range = 1
+
+/obj/item/explosive/grenade/sticky/trailblazer/prime()
+	flame_radius(0.5, get_turf(src))
+	playsound(loc, "incendiary_explosion", 35)
+	qdel(src)
+	return ..()
+
+/obj/item/explosive/grenade/sticky/trailblazer/throw_impact(atom/hit_atom, speed)
+    . = ..()
+    RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
+    new /obj/flamer_fire(get_turf(src), 25, 25)
+
+///causes fire tiles underneath target when stuck_to
+/obj/item/explosive/grenade/sticky/trailblazer/proc/make_fire(datum/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	new /obj/flamer_fire(get_turf(src),25, 25)
+
+/obj/item/explosive/grenade/sticky/trailblazer/clean_refs()
+	. = ..()
+	UnregisterSignal(stuck_to,COMSIG_MOVABLE_MOVED)
+
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
 	desc = "The M40 HIDP is a small, but deceptively strong incendiary grenade. It is set to detonate in 4 seconds."
