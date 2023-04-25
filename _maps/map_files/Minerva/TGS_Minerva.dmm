@@ -5059,19 +5059,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
-"oO" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/computer/dropship_picker,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "oP" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
@@ -13692,6 +13679,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"Ol" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/tool/taperoll/engineering,
+/obj/item/clothing/gloves/insulated,
+/obj/item/lightreplacer,
+/turf/open/floor/mainship/orange,
+/area/mainship/engineering/engineering_workshop)
 "Om" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -14565,14 +14559,6 @@
 "QO" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
-"QP" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/clothing/gloves/yellow,
-/obj/item/storage/belt/utility/atmostech,
-/turf/open/floor/mainship/orange{
-	dir = 9
-	},
-/area/mainship/engineering/engineering_workshop)
 "QQ" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/clothing/glasses/welding,
@@ -14935,13 +14921,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/medical/lower_medical)
-"Sb" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/tool/taperoll/engineering,
-/obj/item/clothing/gloves/yellow,
-/obj/item/lightreplacer,
-/turf/open/floor/mainship/orange,
-/area/mainship/engineering/engineering_workshop)
 "Sd" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
@@ -16063,6 +16042,19 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
+"Vf" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/computer/dropship_picker,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "Vg" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -17043,6 +17035,14 @@
 	dir = 10
 	},
 /area/mainship/command/cic)
+"Yn" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/clothing/gloves/insulated,
+/obj/item/storage/belt/utility/atmostech,
+/turf/open/floor/mainship/orange{
+	dir = 9
+	},
+/area/mainship/engineering/engineering_workshop)
 "Yo" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -24586,7 +24586,7 @@ dO
 ez
 ez
 ez
-oO
+Vf
 rb
 RV
 ez
@@ -26959,7 +26959,7 @@ MX
 NH
 OF
 PL
-QP
+Yn
 RZ
 TB
 NK
@@ -27058,7 +27058,7 @@ NH
 OG
 PM
 QQ
-Sb
+Ol
 TC
 pf
 Wz
