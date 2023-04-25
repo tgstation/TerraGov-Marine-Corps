@@ -193,6 +193,21 @@
 	if(isxeno(user)) //Set the source mob
 		facehugger_register_source(user)
 
+/obj/item/clothing/mask/facehugger/dropped(mob/user)
+	. = ..()
+	//If hugger sentient, then we drop player's hugger
+	if(isxenofacehugger(source))
+		var/mob/living/M = user
+		source.status_flags &= ~GODMODE
+		source.forceMove(get_turf(M))
+		if(source in M.client_mobs_in_contents)
+			M.client_mobs_in_contents -= source
+		if(sterile || M.status_flags & XENO_HOST)
+			source.death()
+		kill_hugger(no_drop = TRUE)
+	else
+		go_idle()
+
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
 	if(stat == DEAD)
 		return FALSE
@@ -570,7 +585,7 @@
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
 			if(source?.mind && isxenofacehugger(source)) //If hugger sentient he will get an advantage for becoming a larva
-				embryo.source = source.ckey
+				embryo.facehugger_source = source.ckey
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 			sterile = TRUE
@@ -650,22 +665,6 @@
 
 /obj/item/clothing/mask/facehugger/flamer_fire_act(burnlevel)
 	kill_hugger()
-
-/obj/item/clothing/mask/facehugger/dropped(mob/user)
-	. = ..()
-	//If hugger sentient, then we drop player's hugger
-	if(isxenofacehugger(source))
-		var/mob/living/M = user
-		source.status_flags &= ~GODMODE
-		source.forceMove(get_turf(M))
-		if(source in M.client_mobs_in_contents)
-			M.client_mobs_in_contents -= source
-		if(sterile || M.status_flags & XENO_HOST)
-			source.death()
-		kill_hugger(no_drop = TRUE)
-	else
-		go_idle()
-
 
 /////////////////////////////
 // SUBTYPES

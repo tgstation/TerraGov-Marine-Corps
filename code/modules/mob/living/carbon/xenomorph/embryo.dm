@@ -14,8 +14,8 @@
 	var/larva_autoburst_countdown = 20
 	///How long will the embryo's growth rate be increased
 	var/boost_timer = 0
-	///The xeno that spawned the embryo.
-	var/source = null
+	///The ckey of the sentient facehugger that spawned the embryo.
+	var/facehugger_source = null
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/admin = FALSE
 
@@ -135,8 +135,8 @@
 
 	var/mob/picked
 
-	if(source) //If the larva appeared because of a sentient facehugger, he gets an advantage.
-		var/mob/first_picked = get_mob_by_ckey(source)
+	if(facehugger_source) //If the larva appeared because of a sentient facehugger, he gets an advantage.
+		var/mob/first_picked = get_mob_by_ckey(facehugger_source)
 		if(first_picked)
 			if(first_picked.client?.prefs && isobserver(first_picked) && !(first_picked.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5))
 				picked = first_picked
