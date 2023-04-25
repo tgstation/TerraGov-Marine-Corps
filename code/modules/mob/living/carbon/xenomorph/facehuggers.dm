@@ -763,7 +763,7 @@
 
 		target.adjust_stagger(3)
 		target.add_slowdown(15)
-		victim.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
+		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
 
 	kill_hugger(0.5 SECONDS)
 
