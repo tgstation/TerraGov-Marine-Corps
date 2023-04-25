@@ -12,6 +12,12 @@
 "f" = (
 /turf/closed/shuttle/ert/engines/right,
 /area/shuttle/minidropship)
+"h" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 16
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
 "k" = (
 /obj/structure/dropship_piece/tadpole/engine{
 	dir = 1;
@@ -53,6 +59,7 @@
 "t" = (
 /obj/structure/table/mainship,
 /obj/item/stack/sheet/metal/medium_stack,
+/obj/item/tool/extinguisher/mini,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "u" = (
@@ -224,7 +231,7 @@ q
 l
 q
 B
-B
+h
 X
 "}
 (6,1,1) = {"
