@@ -298,7 +298,6 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/shotgun/mbx900/tracking = -1,
 		)
 
-
 /datum/season_datum/weapons/guns/shotgun_seasonal
 	name = "Pumps"
 	description = "Three classic pump shotguns from older times."
