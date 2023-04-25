@@ -1246,15 +1246,14 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/standard_smarttargetrifle
-	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smarttargetrifle)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_smarttargetrifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_smarttargetrifle)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/lasersight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
 		/obj/item/weapon/gun/rifle/standard_spottingrifle,
 		/obj/item/attachable/stock/strstock,
 		/obj/item/attachable/motiondetector,
@@ -1287,15 +1286,15 @@
 	caliber = CALIBER_12x7
 	slot = ATTACHMENT_SLOT_UNDER
 	max_shells = 5
-	default_ammo_type =/obj/item/ammo_magazine/standard_spottingrifle
+	default_ammo_type =/obj/item/ammo_magazine/rifle/standard_spottingrifle
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/standard_spottingrifle,
-		/obj/item/ammo_magazine/standard_spottingrifle/highimpact,
-		/obj/item/ammo_magazine/standard_spottingrifle/heavyrubber,
-		/obj/item/ammo_magazine/standard_spottingrifle/plasmaloss,
-		/obj/item/ammo_magazine/standard_spottingrifle/tungsten,
-		/obj/item/ammo_magazine/standard_spottingrifle/incendiary,
-		/obj/item/ammo_magazine/standard_spottingrifle/flak,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak,
 	)
 	force = 5
 	attachable_allowed = list()

@@ -1221,6 +1221,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 30
 	sundering = 5
+	damage_falloff = 0.5
 	accurate_range = 25
 	accurate_range_min = 3
 
@@ -1233,6 +1234,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 70
 	penetration = 20
 	sundering = 5
+	accuracy = 15
 
 /datum/ammo/bullet/spottingrifle/highimpact
 	name = "smart high-impact spotting bullet"
@@ -1261,8 +1263,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/spottingrifle/plasmaloss/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
-		X.use_plasma(0.2 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) // This is draining 20%+20 flat per hit.
-		X.use_plasma(20)
+		X.use_plasma(20 + 0.2 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) // This is draining 20%+20 flat per hit.
 
 /datum/ammo/bullet/spottingrifle/tungsten
 	name = "smart tungsten spotting bullet"
