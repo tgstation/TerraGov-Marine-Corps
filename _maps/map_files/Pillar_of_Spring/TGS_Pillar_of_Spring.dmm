@@ -2972,11 +2972,6 @@
 /obj/machinery/atm,
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison)
-"dIJ" = (
-/obj/structure/cable,
-/obj/machinery/computer/dropship_picker,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "dJs" = (
 /obj/machinery/self_destruct/console,
 /turf/open/floor/mainship/tcomms,
@@ -5710,6 +5705,18 @@
 	dir = 4
 	},
 /area/mainship/shipboard/firing_range)
+"hvT" = (
+/obj/machinery/power/apc/mainship/hardened{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/mainship/command/self_destruct)
 "hwU" = (
 /obj/machinery/door/airlock/mainship/marine/general/engi,
 /obj/machinery/door/firedoor/mainship,
@@ -9511,6 +9518,14 @@
 /obj/structure/punching_bag,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
+"mjD" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/holopad,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "mka" = (
 /turf/open/floor/mainship/black{
 	dir = 9
@@ -11332,13 +11347,6 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
 /area/mainship/engineering/port_atmos)
-"oIu" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/holopad,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "oIC" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/ids,
@@ -16120,6 +16128,13 @@
 /obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"uFH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "uFV" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/faxmachine,
@@ -17903,6 +17918,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"wTt" = (
+/obj/machinery/computer/dropship_picker,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "wTX" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
@@ -18863,18 +18882,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
-"yal" = (
-/obj/machinery/power/apc/mainship/hardened{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
-	},
-/area/mainship/command/self_destruct)
 "yao" = (
 /obj/structure/dropship_equipment/weapon/minirocket_pod,
 /turf/open/floor/mainship/floor,
@@ -49991,7 +49998,7 @@ kDx
 kDx
 kDx
 plN
-tzk
+uFH
 wEZ
 lrW
 dpY
@@ -50248,8 +50255,8 @@ kDx
 kDx
 kDx
 plN
-oIu
-dIJ
+mjD
+wTt
 lrW
 dpY
 uzm
@@ -50505,7 +50512,7 @@ kDx
 kDx
 kDx
 plN
-tzk
+uFH
 wEZ
 lrW
 dpY
@@ -56248,7 +56255,7 @@ kLR
 bXH
 xmu
 lrn
-yal
+hvT
 fEf
 nIr
 dDg
