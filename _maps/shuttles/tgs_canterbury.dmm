@@ -848,6 +848,10 @@
 /obj/machinery/marine_selector/clothes/synth,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
+"YI" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
 
 (1,1,1) = {"
 aa
@@ -936,7 +940,7 @@ by
 bI
 cs
 cJ
-cJ
+YI
 cd
 bo
 cm

@@ -1897,9 +1897,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 100
 	sundering = 100
 
-/datum/ammo/rocket/drop_nade(turf/T)
-	explosion(T, 0, 4, 6, 2)
-
 /datum/ammo/rocket/he/unguided
 	damage = 100
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.

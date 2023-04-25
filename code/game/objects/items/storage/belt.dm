@@ -45,28 +45,30 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version lacks any combat functionality, and is commonly used by engineers to transport important tools."
 	icon_state = "utilitybelt"
 	item_state = "utility"
+	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
-		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
-		/obj/item/tool/weldingtool,
 		/obj/item/tool/wirecutters,
+		/obj/item/tool/weldingtool,
 		/obj/item/tool/wrench,
+		/obj/item/tool/crowbar,
+		/obj/item/stack/cable_coil,
 		/obj/item/tool/multitool,
 		/obj/item/flashlight,
-		/obj/item/stack/cable_coil,
 		/obj/item/t_scanner,
 		/obj/item/tool/analyzer,
 		/obj/item/tool/taperoll/engineering,
+		/obj/item/tool/extinguisher/mini,
+		/obj/item/tool/shovel/etool,
 	)
-
 
 /obj/item/storage/belt/utility/full/Initialize()
 	. = ..()
-	new /obj/item/tool/screwdriver(src)
-	new /obj/item/tool/wrench(src)
-	new /obj/item/tool/weldingtool(src)
-	new /obj/item/tool/crowbar(src)
-	new /obj/item/tool/wirecutters(src)
+	new /obj/item/tool/screwdriver (src)
+	new /obj/item/tool/wirecutters (src)
+	new /obj/item/tool/weldingtool (src)
+	new /obj/item/tool/wrench (src)
+	new /obj/item/tool/crowbar (src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 	new /obj/item/tool/multitool(src)
 
@@ -271,7 +273,7 @@
 	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/isotonic(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/alkysine(src)
 	new /obj/item/storage/pill_bottle/imidazoline(src)

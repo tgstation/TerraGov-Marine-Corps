@@ -102,9 +102,6 @@
 	component_parts += new /obj/item/stock_parts/capacitor(src)
 	RefreshParts()
 
-/obj/machinery/power/port_gen/pacman/Initialize()
-	. = ..()
-
 	var/obj/S = sheet_path
 	sheet_name = initial(S.name)
 

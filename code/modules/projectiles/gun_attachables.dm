@@ -72,8 +72,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/recoil_mod = 0
 	///If positive, adds recoil, if negative, lowers it. but for onehanded firing. Recoil can't go below 0.
 	var/recoil_unwielded_mod = 0
-	///Modifier to scatter from wielded burst fire, works off a multiplier.
+	///Additive to burst scatter modifier from burst fire, works off a multiplier.
 	var/burst_scatter_mod = 0
+	///additive modifier to burst fire accuracy.
+	var/burst_accuracy_mod = 0
 	///Adds silenced to weapon. changing its fire sound, muzzle flash, and volume. TRUE or FALSE
 	var/silence_mod = FALSE
 	///Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
@@ -236,6 +238,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.aim_slowdown					+= aim_speed_mod
 		master_gun.wield_delay					+= wield_delay_mod
 		master_gun.burst_scatter_mult			+= burst_scatter_mod
+		master_gun.burst_accuracy_bonus			+= burst_accuracy_mod
 		master_gun.movement_acc_penalty_mult	+= movement_acc_penalty_mod
 		master_gun.shell_speed_mod				+= attach_shell_speed_mod
 		master_gun.scope_zoom					+= scope_zoom_mod
@@ -286,6 +289,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.aim_slowdown					-= aim_speed_mod
 		master_gun.wield_delay					-= wield_delay_mod
 		master_gun.burst_scatter_mult			-= burst_scatter_mod
+		master_gun.burst_accuracy_bonus			-= burst_accuracy_mod
 		master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
 		master_gun.shell_speed_mod				-= attach_shell_speed_mod
 		master_gun.scope_zoom					-= scope_zoom_mod
@@ -1201,11 +1205,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability. \nIncreases scatter and decreases accuracy."
 	icon_state = "rapidfire"
 	slot = ATTACHMENT_SLOT_UNDER
-	accuracy_mod = -0.10
 	burst_mod = 2
-	scatter_mod = 3
-	accuracy_unwielded_mod = -0.20
-	scatter_unwielded_mod = 5
+	burst_scatter_mod = 1
+	burst_accuracy_mod = -0.1
 
 
 //Foldable/deployable attachments
