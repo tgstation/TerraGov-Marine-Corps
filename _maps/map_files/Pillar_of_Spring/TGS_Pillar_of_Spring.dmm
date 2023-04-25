@@ -1696,6 +1696,13 @@
 	dir = 9
 	},
 /area/mainship/squads/general)
+"eS" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "eT" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /obj/machinery/door/firedoor/mainship,
@@ -10596,6 +10603,7 @@
 	dir = 1
 	},
 /obj/machinery/holopad,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "CZ" = (
@@ -13031,7 +13039,6 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/weapon_room)
 "Jr" = (
-/obj/structure/cable,
 /obj/machinery/computer/dropship_picker,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -49991,7 +49998,7 @@ Zv
 Zv
 Zv
 wq
-Ov
+eS
 Ts
 Ct
 nL
@@ -50505,7 +50512,7 @@ Zv
 Zv
 Zv
 wq
-Ov
+eS
 Ts
 Ct
 nL
