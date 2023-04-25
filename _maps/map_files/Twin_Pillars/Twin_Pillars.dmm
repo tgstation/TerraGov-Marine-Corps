@@ -914,7 +914,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "aRX" = (
-/obj/structure/bookcase,
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "aSl" = (
@@ -2887,7 +2887,7 @@
 	frequency = 1443;
 	name = "Lower Oxygen Supply Console";
 	output_tag = "oxygen_lower_out";
-	sensors = list("oxy_sensor" = "Tank")
+	sensors = list("oxy_sensor"="Tank")
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
@@ -4270,7 +4270,7 @@
 	input_tag = "mix_lower_in";
 	name = "Lower Mixed Air Control";
 	output_tag = "mix_lower_out";
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
@@ -9454,7 +9454,7 @@
 	frequency = 1443;
 	name = "Lower Nitrogen Control Console";
 	output_tag = "nit_lower_out";
-	sensors = list("nit_sensor" = "Tank")
+	sensors = list("nit_sensor"="Tank")
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos/rebel)
@@ -14130,7 +14130,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring/rebel)
 "mPo" = (
-/obj/structure/bookcase,
+/obj/machinery/marine_selector/gear/commander/rebel,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks/rebel)
 "mPs" = (
@@ -14910,7 +14910,7 @@
 	input_tag = "waste_lower_in";
 	name = "Lower Deck Waste Tank Control";
 	output_tag = "waste_lower_out";
-	sensors = list("waste_sensor" = "Tank")
+	sensors = list("waste_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -20037,7 +20037,7 @@
 	frequency = 1443;
 	name = "Lower Oxygen Supply Console";
 	output_tag = "oxygen_lower_out";
-	sensors = list("oxy_sensor" = "Tank")
+	sensors = list("oxy_sensor"="Tank")
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos/rebel)
@@ -20142,7 +20142,7 @@
 	frequency = 1443;
 	name = "Lower Nitrogen Control Console";
 	output_tag = "nit_lower_out";
-	sensors = list("nit_sensor" = "Tank")
+	sensors = list("nit_sensor"="Tank")
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
@@ -22067,7 +22067,7 @@
 	input_tag = "waste_lower_in";
 	name = "Lower Deck Waste Tank Control";
 	output_tag = "waste_lower_out";
-	sensors = list("waste_sensor" = "Tank")
+	sensors = list("waste_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -23442,7 +23442,7 @@
 	input_tag = "mix_lower_in";
 	name = "Lower Mixed Air Control";
 	output_tag = "mix_lower_out";
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos/rebel)

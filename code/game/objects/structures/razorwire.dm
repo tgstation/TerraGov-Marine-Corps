@@ -22,7 +22,7 @@
 		if(obj_integrity > max_integrity * 0.5)
 			new sheet_type(loc)
 		var/obj/item/stack/rods/salvage = new sheet_type2(loc)
-		salvage.amount = min(1, round(4 * (obj_integrity / max_integrity) ) )
+		salvage.amount = max(1, round(4 * (obj_integrity / max_integrity) ) )
 	else
 		if(prob(50))
 			new sheet_type(loc)
@@ -71,10 +71,6 @@
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
 
-/obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
-		return TRUE
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/entangled, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
@@ -220,6 +216,8 @@
 
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
+	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+		return TRUE
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
 	if(mover.throwing && istype(mover,/obj/item))

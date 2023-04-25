@@ -37,11 +37,6 @@
 		return
 	variant = rand(1,3)
 
-/obj/machinery/griddle/crowbar_act(mob/living/user, obj/item/I)
-	..()
-	return default_deconstruction_crowbar(I, ignore_panel = TRUE)
-
-
 /obj/machinery/griddle/attackby(obj/item/I, mob/user, params)
 	if(length(griddled_objects) >= max_items)
 		to_chat(user, span_notice("[src] can't fit more items!"))

@@ -67,10 +67,15 @@
 	///Used for remote targeting by AI
 	var/obj/item/ai_target_beacon/ai_targeter
 
+	// used for keeping track of different mortars and their types for cams
+	var/static/list/id_by_type = list()
+
 /obj/machinery/deployable/mortar/Initialize(mapload, _internal_item, deployer)
 	. = ..()
+
 	impact_cam = new
 	impact_cam.forceMove(src)
+	impact_cam.c_tag = "[strip_improper(name)] #[++id_by_type[type]]"
 
 /obj/machinery/deployable/mortar/Destroy()
 	QDEL_NULL(impact_cam)

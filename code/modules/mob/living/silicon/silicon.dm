@@ -187,21 +187,6 @@
 	UPDATEHEALTH(src)
 
 
-/mob/living/silicon/emp_act(severity)
-	. = ..()
-
-	to_chat(src, span_danger("Electromagnetic pulse detected."))
-
-	switch(severity)
-		if(1)
-			adjustBruteLoss(20)
-		if(2)
-			adjustBruteLoss(10)
-
-	to_chat(src, span_danger("*BZZZT*"))
-	flash_act()
-
-
 /mob/living/silicon/update_transform()
 	var/matrix/ntransform = matrix(transform)
 	var/changed = 0

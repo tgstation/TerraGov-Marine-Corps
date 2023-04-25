@@ -365,22 +365,6 @@
 	src.visible_message(span_warning(" [src.name] has been squashed."),span_warning(" You hear a smack."))
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/toy/crayon))
-		var/obj/item/toy/crayon/C = I
-		var/clr = C.colourName
-
-		if(!(clr in list("blue", "green", "mime", "orange", "purple", "rainbow", "red", "yellow")))
-			to_chat(user, span_notice("The egg refuses to take on this color!"))
-			return
-
-		to_chat(user, span_notice("You color \the [src] [clr]"))
-		icon_state = "egg-[clr]"
-		egg_color = clr
-
-
 /obj/item/reagent_containers/food/snacks/egg/blue
 	icon_state = "egg-blue"
 	egg_color = "blue"
@@ -1206,6 +1190,18 @@
 		qdel(I)
 		qdel(src)
 
+	else if(istype(I, /obj/item/toy/crayon))
+		var/obj/item/toy/crayon/C = I
+		var/clr = C.colourName
+
+		if(!(clr in list("blue", "green", "mime", "orange", "purple", "rainbow", "red", "yellow")))
+			to_chat(user, span_notice("The egg refuses to take on this color!"))
+			return
+
+		to_chat(user, span_notice("You color \the [src] [clr]"))
+		icon_state = "egg-[clr]"
+		egg_color = clr
+
 /obj/item/reagent_containers/food/snacks/dough
 	name = "dough"
 	desc = "A piece of dough."
@@ -1340,14 +1336,6 @@
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
 
-// potato + knife = raw sticks
-/obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/tool/kitchen/utensil/knife))
-		new /obj/item/reagent_containers/food/snacks/rawsticks(src)
-		to_chat(user, "You cut the potato.")
-		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/rawsticks
 	name = "raw potato sticks"
@@ -1373,6 +1361,7 @@
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 		to_chat(user, span_notice("You pull off the wrapping from the squishy burrito!"))
 		package = FALSE
+		icon = 'icons/obj/items/food/mexican.dmi'
 		icon_state = "openburrito"
 
 /obj/item/reagent_containers/food/snacks/packaged_hdogs
@@ -1390,6 +1379,7 @@
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 		to_chat(user, span_notice("You pull off the wrapping from the squishy hotdog!"))
 		package = FALSE
+		icon = 'icons/obj/items/food/food.dmi'
 		icon_state = "hotdog"
 
 /obj/item/reagent_containers/food/snacks/upp

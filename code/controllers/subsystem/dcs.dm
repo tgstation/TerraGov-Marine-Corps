@@ -1,6 +1,7 @@
 PROCESSING_SUBSYSTEM_DEF(dcs)
 	name = "Datum Component System"
 	flags = SS_NO_INIT
+	wait = 1 SECONDS
 
 	var/list/elements_by_type = list()
 
@@ -33,7 +34,7 @@ PROCESSING_SUBSYSTEM_DEF(dcs)
 	var/list/fullid = list("[eletype]")
 	var/list/named_arguments = list()
 
-	for(var/i in initial(eletype.id_arg_index) to length(arguments))
+	for(var/i in initial(eletype.argument_hash_start_idx) to length(arguments))
 		var/key = arguments[i]
 
 		if(istext(key))

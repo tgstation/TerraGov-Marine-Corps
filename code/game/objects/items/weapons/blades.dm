@@ -119,14 +119,6 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
-
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
 	desc = "The pride of an imperial commissar, held high as they charge into battle."

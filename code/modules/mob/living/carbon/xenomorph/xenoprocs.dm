@@ -528,11 +528,6 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/xenomorph/add_slowdown(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
-		return
-	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
-
 ///Eject the mob inside our belly, and putting it in a cocoon if needed
 /mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)
 	if(!eaten_mob)

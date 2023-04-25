@@ -74,20 +74,17 @@
 		repair_damage(max_integrity * 0.2)
 		visible_message(span_notice("[user] restores the structural integrity of [src]."))
 
+	else if(istype(I, /obj/item/weapon) && world.time >= cooldown)
+		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
+		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
+		cooldown = world.time + 2.5 SECONDS
+
 
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
 	. = welder_repair_act(user, I, max_integrity * 0.15, 4 SECONDS, integrity_failure / max_integrity, SKILL_ENGINEER_METAL)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "Too damaged. Use metal sheets.")
 
-
-/obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon) && world.time >= cooldown)
-		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
-		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
-		cooldown = world.time + 2.5 SECONDS
-		return TRUE
-	return ..()
 
 /obj/item/weapon/shield/riot/marine
 	name = "\improper TL-172 defensive shield"
