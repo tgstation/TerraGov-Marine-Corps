@@ -10,6 +10,9 @@
 	smoothing_behavior = NO_SMOOTHING
 	smoothing_groups = NONE
 
+	resistance_flags = RESIST_ALL
+	flags_pass = NONE
+
 	var/obj/docking_port/mobile/supply/linked_pad
 
 
@@ -37,9 +40,7 @@
 
 /obj/machinery/door/poddoor/railing/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/moveblockers)
 	SIGNAL_HANDLER
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	if(mover.throwing)
+	if(!mover.throwing || !density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 	moveblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
