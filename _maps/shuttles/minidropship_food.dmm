@@ -90,6 +90,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/vending/nanomed/tadpolemed{
+	dir = 4;
+	pixel_x = -20
+	},
 /turf/open/floor/iron/white/textured_corner,
 /area/shuttle/minidropship)
 "x" = (
@@ -184,6 +188,9 @@
 	},
 /obj/item/reagent_containers/food/snacks/meat,
 /obj/item/reagent_containers/food/snacks/meat,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 16
+	},
 /turf/open/floor/iron/white/textured_corner{
 	dir = 8
 	},
