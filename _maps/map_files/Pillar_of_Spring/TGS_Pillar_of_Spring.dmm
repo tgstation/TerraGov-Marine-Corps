@@ -10574,6 +10574,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"nFw" = (
+/obj/structure/cable,
+/obj/machinery/computer/dropship_picker,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "nFD" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -50247,7 +50252,7 @@ kDx
 kDx
 plN
 oIu
-wEZ
+nFw
 lrW
 dpY
 uzm

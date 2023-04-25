@@ -1,0 +1,39 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/machinery/door/window/secure{
+	dir = 8
+	},
+/obj/machinery/door/window/secure,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"b" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"y" = (
+/turf/closed/shuttle/ert/engines/left,
+/area/shuttle/minidropship)
+"F" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/camera/autoname/mainship,
+/obj/structure/window/reinforced{
+	max_integrity = 150;
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	max_integrity = 150;
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+
+(1,1,1) = {"
+b
+F
+a
+y
+"}

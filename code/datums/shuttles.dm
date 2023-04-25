@@ -24,7 +24,7 @@
 	if(shuttle_id == "SHOULD NEVER EXIST")
 		stack_trace("invalid shuttle datum")
 	//shuttle_id = "[port_id]_[suffix]"
-	mappath = "[prefix][shuttle_id].dmm"
+	mappath = "[prefix][shuttle_id][suffix].dmm"
 	return ..()
 
 /datum/map_template/shuttle/preload_size(path, cache)
@@ -72,6 +72,7 @@
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 
 		for(var/obj/docking_port/mobile/port in place)
+			port.calculate_docking_port_information(src)
 			if(register)
 				port.register()
 			if(isnull(port_x_offset))
@@ -123,6 +124,35 @@
 /datum/map_template/shuttle/minidropship
 	shuttle_id = SHUTTLE_TADPOLE
 	name = "Tadpole Drop Shuttle"
+	suffix = "_standard"
+	description = "The plain and simple old Tadpole-03 model."
+	///shuttle switch console name
+	var/display_name = "Tadpole Standard Model"
+	var/image_url = "https://i.ibb.co/7vk4Q1h/2023-04-25-12-13-59-Window.png" // "shuttle previews are bad idea" ok heres an url instead
+
+/datum/map_template/shuttle/minidropship/pill
+	suffix = "_pill"
+	description = "A horribly unsafe yet tiny and compact Tadpole model. Does not sport anything useful for combat. Do not leave during transit. Bought by the TGMC, and only technically legal."
+	display_name = "Tadpole Pill Model"
+	image_url = "https://i.ibb.co/2tPPfLH/image-2023-04-24-213046771.png"
+
+/datum/map_template/shuttle/minidropship/old
+	suffix = "_big"
+	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
+	display_name = "Tadpole Carrier Model"
+	image_url = "https://i.ibb.co/cybNy80/2023-04-25-12-06-28-Window.png"
+
+/datum/map_template/shuttle/minidropship/food
+	suffix = "_food"
+	description = "A Tadpole modified to provide foods and services. Who the hell let this on the military catalogue? Bounty on that guy."
+	display_name = "Tadpole Food-truck Model"
+	image_url = "https://i.ibb.co/z6xg3w3/2023-04-25-13-02-20-Window.png"
+
+/datum/map_template/shuttle/minidropship/factorio
+	suffix = "_factorio"
+	description = "A Tadpole model for hauling, engineering and general maintenance. Patented by Nakamura Engineering, and is a rather reliable way to transport goods."
+	display_name = "Tadpole NK-Haul Model"
+	image_url = "https://i.ibb.co/M1g6Gmt/2023-04-25-14-31-59-Window.png"
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD

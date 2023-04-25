@@ -2747,6 +2747,10 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"xBy" = (
+/obj/machinery/computer/dropship_picker,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "xFR" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -3805,7 +3809,7 @@ bOu
 bOu
 bOu
 bOu
-dwY
+xBy
 ldZ
 bgb
 rmt
