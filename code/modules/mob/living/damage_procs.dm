@@ -7,7 +7,7 @@
 	* penetration: How much the damage source might bypass the armour value (optional)
 	* def_zone: What part of the body we want to check the armor of (optional)
 
-	Hard armor reduces penetration or sunder a flat amount, and sunder in the case of xenos
+	Hard armor reduces penetration by a flat amount, and sunder in the case of xenos
 	Penetration reduces soft armor by a flat amount.
 	Damage cannot go into the negative, or exceed the original amount.
 */

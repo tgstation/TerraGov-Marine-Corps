@@ -102,9 +102,8 @@
 		INVOKE_ASYNC(src, PROC_REF(emote), "pain")
 
 	next_move_slowdown += slow_amt
-	var/list/affected_limbs = list(get_limb(BODY_ZONE_PRECISE_L_FOOT), get_limb(BODY_ZONE_PRECISE_R_FOOT))
-	for(var/datum/limb/affecting AS in affected_limbs)
-		INVOKE_ASYNC(affecting, TYPE_PROC_REF(/datum/limb, take_damage_limb), 0, modify_by_armor(acid_damage * 0.5, ACID, def_zone = affecting))
+	for(var/limb_to_hit in list(BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT))
+		INVOKE_ASYNC(src, PROC_REF(apply_damage), acid_damage * 0.5, BURN, limb_to_hit, ACID)
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc
