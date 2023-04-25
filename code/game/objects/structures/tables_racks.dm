@@ -49,7 +49,6 @@
 		if(!table)
 			continue
 		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
-	QUEUE_SMOOTH(src)
 
 /obj/structure/table/Destroy()
 	update_adjacent(loc) //so neighbouring tables get updated correctly

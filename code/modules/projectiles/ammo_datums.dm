@@ -2995,6 +2995,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/datum/effect_system/smoke_spread/xeno/smoke_system
 	var/smoke_strength
 	var/smoke_range
+	///The hivenumber of this ammo
+	var/hivenumber = XENO_HIVE_NORMAL
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
@@ -3437,23 +3439,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "facehugger"
 	///The type of hugger thrown
 	var/obj/item/clothing/mask/facehugger/hugger_type = /obj/item/clothing/mask/facehugger
-	///The hive of the huggers throw
-	var/hugger_hivenumber = XENO_HIVE_NORMAL
 
 /datum/ammo/xeno/hugger/on_hit_mob(mob/M, obj/projectile/proj)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(M), hugger_hivenumber)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(M), hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/on_hit_obj(obj/O, obj/projectile/proj)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(O), hugger_hivenumber)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(O), hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/on_hit_turf(turf/T, obj/projectile/P)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T, hugger_hivenumber)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T, hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/do_at_max_range(turf/T, obj/projectile/P)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T, hugger_hivenumber)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T, hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/slash
@@ -3539,7 +3539,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /// This spawns a leash ball and checks if the turf is dense before doing so
 /datum/ammo/xeno/leash_ball/proc/drop_leashball(turf/T)
-	new /obj/structure/xeno/aoe_leash(get_turf(T))
+	new /obj/structure/xeno/aoe_leash(get_turf(T), hivenumber)
 /*
 //================================================
 					Misc Ammo

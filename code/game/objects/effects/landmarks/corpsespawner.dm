@@ -295,7 +295,7 @@
 	corpseback = /obj/item/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/orange
 	corpsebelt = /obj/item/storage/belt/utility/full
-	corpsegloves = /obj/item/clothing/gloves/yellow
+	corpsegloves = /obj/item/clothing/gloves/insulated
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
 	corpseidjob = "Station Engineer"
@@ -537,7 +537,7 @@
 	corpsemask = /obj/item/clothing/mask/gas
 	corpseglasses = /obj/item/clothing/glasses/welding
 	corpsehelmet = /obj/item/clothing/head/soft/grey
-	corpsegloves = /obj/item/clothing/gloves/fyellow
+	corpsegloves = /obj/item/clothing/gloves/yellow
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpsepocket1 = /obj/item/tool/soap/nanotrasen
 	corpsepocket2 = /obj/item/tool/lighter/zippo

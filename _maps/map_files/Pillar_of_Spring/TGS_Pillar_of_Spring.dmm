@@ -3440,6 +3440,16 @@
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
+"ekM" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/radio,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "ekT" = (
 /turf/open/floor/mainship/green{
 	dir = 8
@@ -7144,16 +7154,6 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/living/tankerbunks)
-"juG" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/radio,
-/obj/item/light_bulb/tube,
-/obj/item/light_bulb/tube,
-/obj/item/light_bulb/tube,
-/obj/item/clothing/glasses/meson,
-/obj/item/clothing/gloves/yellow,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "jwr" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
 	dir = 2
@@ -10409,21 +10409,6 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/lower_medical)
-"ntN" = (
-/obj/machinery/power/apc/mainship/hardened{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/black{
-	dir = 8
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
-	},
-/area/mainship/command/self_destruct)
 "nuj" = (
 /obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship,
@@ -17874,6 +17859,18 @@
 "wSh" = (
 /turf/open/floor/mainship/black/corner{
 	dir = 1
+	},
+/area/mainship/command/self_destruct)
+"wSj" = (
+/obj/machinery/power/apc/mainship/hardened{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
 	},
 /area/mainship/command/self_destruct)
 "wSs" = (
@@ -49292,7 +49289,7 @@ oHV
 uQI
 dla
 mBZ
-vfH
+fXS
 vfH
 bxQ
 vfH
@@ -51374,7 +51371,7 @@ kfm
 kfm
 saT
 soK
-juG
+ekM
 fez
 dcY
 wPV
@@ -51605,7 +51602,7 @@ lon
 bfc
 snn
 mBZ
-vfH
+fXS
 vfH
 bxQ
 vfH
@@ -56246,7 +56243,7 @@ kLR
 bXH
 xmu
 lrn
-ntN
+wSj
 fEf
 nIr
 dDg
