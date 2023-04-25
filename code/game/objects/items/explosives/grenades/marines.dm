@@ -114,7 +114,7 @@
 
 /obj/item/explosive/grenade/sticky/trailblazer
 	name = "\improper M45 Trailblazer grenade"
-	desc = "capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. It is set to detonate in 5 seconds."
+	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. It is set to detonate in 5 seconds."
 	icon_state = "grenade_sticky_fire"
 	item_state = "grenade_sticky_fire"
 	det_time = 5 SECONDS
