@@ -244,11 +244,6 @@
 		#endif
 	return slowdown
 
-/mob/living/carbon/xenomorph/adjust_stagger(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
-		return FALSE
-	return ..()
-
 /mob/living/carbon/xenomorph/proc/set_frenzy_aura(new_aura)
 	if(frenzy_aura == new_aura)
 		return

@@ -45,7 +45,7 @@
 	QDEL_NULL(reagent_select_action)
 	return ..()
 
-/datum/component/chem_booster/UnregisterFromParent()
+/datum/component/harvester/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
 		COMSIG_PARENT_EXAMINE,

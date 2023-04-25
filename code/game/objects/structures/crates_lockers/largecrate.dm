@@ -224,7 +224,7 @@
 	return TRUE
 
 
-/obj/structure/largecrate/random/barrel/examine(mob/user)
+/obj/structure/largecrate/random/secure/examine(mob/user)
 	. = ..()
 	. += span_notice("You need something sharp to cut off the straps.")
 
