@@ -80,9 +80,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/machinery/vending/engivend{
-	req_access = null
-	},
+/obj/machinery/vending/engivend,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "aam" = (
@@ -16302,7 +16300,6 @@
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
-	id = null;
 	id_tag = "mbayexit"
 	},
 /obj/machinery/door/firedoor/mainship{
@@ -23460,6 +23457,13 @@
 	dir = 1
 	},
 /area/sulaco/research)
+"tau" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/computer/dropship_picker,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "taR" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -26653,9 +26657,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "xua" = (
-/obj/machinery/vending/engivend{
-	req_access = null
-	},
+/obj/machinery/vending/engivend,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "xur" = (
@@ -66299,7 +66301,7 @@ aPZ
 aPZ
 aPZ
 aPZ
-aSl
+tau
 xNa
 aPF
 aPF
