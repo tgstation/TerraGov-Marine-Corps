@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, Box, Flex, ByondUi } from '../components';
+import { Button, Section, Box, Flex } from '../components';
 import { Window } from '../layouts';
 
 export const DropshipPicker = (_props, context) => {
@@ -18,7 +18,7 @@ export const DropshipPicker = (_props, context) => {
             </Box>
             <Section
               title={'Description - ' + (data.name ? data.name : 'None')}
-              fill={true}>
+              fill>
               <Box>{data.desc !== null ? data.desc : 'Pick a ship!'}</Box>
             </Section>
           </Flex.Item>
@@ -39,7 +39,7 @@ const ShuttleSelection = (props, context) => {
   const { act, data } = useBackend(context);
 
   return (
-    <Section title="Available Models" fill={true}>
+    <Section title="Available Models" fill>
       {data.shuttles.map((shuttle) => (
         <Box key={shuttle.ref}>
           <Button
