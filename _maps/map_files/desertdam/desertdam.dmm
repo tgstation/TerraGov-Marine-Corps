@@ -14559,9 +14559,9 @@
 	},
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bLk" = (
-/obj/machinery/miner/damaged/platinum,
+/obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_hydro)
+/area/desert_dam/exterior/valley/valley_medical)
 "bLn" = (
 /obj/machinery/power/apc/super,
 /obj/structure/cable,
@@ -94321,7 +94321,7 @@ rCV
 rCV
 xqW
 cdw
-owP
+bLk
 coI
 ciU
 cfw
@@ -98350,7 +98350,7 @@ ciQ
 djx
 dtY
 gdW
-bLk
+eLU
 tLl
 dda
 dea
@@ -108356,7 +108356,7 @@ oQF
 chr
 ciU
 cdw
-owP
+bLk
 pNQ
 cdw
 aMz

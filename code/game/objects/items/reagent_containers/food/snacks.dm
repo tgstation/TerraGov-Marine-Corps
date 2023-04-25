@@ -1361,6 +1361,7 @@
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 		to_chat(user, span_notice("You pull off the wrapping from the squishy burrito!"))
 		package = FALSE
+		icon = 'icons/obj/items/food/mexican.dmi'
 		icon_state = "openburrito"
 
 /obj/item/reagent_containers/food/snacks/packaged_hdogs
@@ -1378,6 +1379,7 @@
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 		to_chat(user, span_notice("You pull off the wrapping from the squishy hotdog!"))
 		package = FALSE
+		icon = 'icons/obj/items/food/food.dmi'
 		icon_state = "hotdog"
 
 /obj/item/reagent_containers/food/snacks/upp
