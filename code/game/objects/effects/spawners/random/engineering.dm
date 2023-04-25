@@ -79,7 +79,7 @@
 		/obj/item/packageWrap = 1,
 		/obj/effect/spawner/random/engineering/bomb_supply = 2,
 		/obj/item/tool/extinguisher = 1,
-		/obj/item/clothing/gloves/fyellow = 1,
+		/obj/item/clothing/gloves/yellow = 1,
 		/obj/item/stack/cable_coil = 3,
 		/obj/effect/spawner/random/engineering/toolbox = 2,
 		/obj/item/storage/belt/utility = 2,
@@ -198,8 +198,8 @@
 	spawn_random_offset = TRUE
 	spawn_loot_chance = 65
 	loot = list(
-		/obj/item/clothing/gloves/fyellow = 85,
-		/obj/item/clothing/gloves/yellow = 15,
+		/obj/item/clothing/gloves/yellow = 85,
+		/obj/item/clothing/gloves/insulated = 15,
 	)
 
 /obj/effect/spawner/random/engineering/radio
