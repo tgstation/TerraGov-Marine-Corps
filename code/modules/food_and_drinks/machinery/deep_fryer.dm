@@ -8,9 +8,6 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	/obj/item/reagent_containers/cup,
 	/obj/item/reagent_containers/syringe,
 	/obj/item/reagent_containers/condiment,
-	/obj/item/delivery,
-	/obj/item/his_grace,
-	/obj/item/bodybag/bluespace,
 )))
 
 /obj/machinery/deepfryer
@@ -19,10 +16,9 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "fryer_off"
 	density = TRUE
-	pass_flags_self = PASSMACHINE | LETPASSTHROW
-	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.05
+	pass_flags_self = PASSSMALLSTRUCT | PASSTHROW
+	idle_power_usage = 5
 	layer = BELOW_OBJ_LAYER
-	circuit = /obj/item/circuitboard/machine/deep_fryer
 
 	/// What's being fried RIGHT NOW?
 	var/obj/item/frying

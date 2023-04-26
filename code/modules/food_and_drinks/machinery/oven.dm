@@ -14,7 +14,7 @@
 	icon = 'icons/obj/machines/kitchenmachines.dmi'
 	icon_state = "oven_off"
 	density = TRUE
-	pass_flags_self = PASSMACHINE | LETPASSTHROW
+	pass_flags_self = PASSSMALLSTRUCT | PASSTHROW
 	layer = BELOW_OBJ_LAYER
 	circuit = /obj/item/circuitboard/machine/oven
 	processing_flags = START_PROCESSING_MANUALLY
