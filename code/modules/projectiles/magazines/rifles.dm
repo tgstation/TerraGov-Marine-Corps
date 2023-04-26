@@ -391,7 +391,7 @@
 	max_rounds = 8
 	icon_state_mini = "mag_sniper"
 	greyscale_config = /datum/greyscale_config/ammo
-	greyscale_colors = "#3ab0c9"
+	greyscale_colors = "#2272eb"
 
 /obj/item/ammo_magazine/rifle/tx54/he
 	name = "\improper 20mm HE grenade magazine"

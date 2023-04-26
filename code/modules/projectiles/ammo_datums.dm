@@ -1383,10 +1383,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bonus_projectile_quantity = 7
 
 	handful_greyscale_config = /datum/greyscale_config/ammo
-	handful_greyscale_colors = "#3ab0c9"
+	handful_greyscale_colors = "#2272eb"
 
 	projectile_greyscale_config = /datum/greyscale_config/projectile
-	projectile_greyscale_colors = "#3ab0c9"
+	projectile_greyscale_colors = "#2272eb"
 
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1)
