@@ -704,10 +704,11 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/visual/grenade/M15)
 	cost = 500
 
-/datum/supply_packs/Explosives/explosives_sticky
+/datum/supply_packs/explosives/explosives_sticky
 	name = "M40 adhesive charge grenade box crate"
 	notes = "contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/sticky)
+	cost = 500
 
 /datum/supply_packs/explosives/explosives_hsdp
 	name = "M40 HSDP white phosphorous grenade box crate"
@@ -721,6 +722,12 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/visual/grenade/drain)
 	cost = 700
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/explosives/explosives_cloak
+	name = "M40-2 SCDP grenade box crate"
+	notes = "contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/cloak)
+	cost = 700
 
 /datum/supply_packs/explosives/plastique
 	name = "C4 plastic explosive"
