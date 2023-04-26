@@ -1152,6 +1152,12 @@
 	spawn_type = /obj/item/explosive/grenade/smokebomb/cloak
 	closed_overlay = "grenade_box_overlay_cloak"
 
+/obj/item/storage/box/visual/grenade/smokebomb
+	name = "\improper M40 HSDP grenade box"
+	desc = "A secure box holding 25 M40 HSDP smoke grenades. Don't blindly shoot into the smoke."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb
+	closed_overlay = "grenade_box_overlay_smokebomb"
 /obj/item/storage/box/visual/grenade/drain
 	name = "\improper M40-T grenade box"
 	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
