@@ -12,7 +12,7 @@
 	hit_sound = 'sound/effects/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
-	debris = "wood"
+	debris = DEBRIS_WOOD
 	debris_amount = 5
 	debris_velocity = -10
 

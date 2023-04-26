@@ -49,8 +49,8 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	duration = 0.5 SECONDS
 	randomdir = FALSE
 	layer = ABOVE_MOB_LAYER
-	var/splatter_type = "splatter"
 	alpha = 175
+	var/splatter_type = "splatter"
 
 /obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, angle, blood_color)
 	if(!blood_color)
@@ -63,6 +63,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	particles.velocity = list(x_component, y_component)
 	color = blood_color
 	icon_state = "[splatter_type][pick(1, 2, 3, 4, 5, 6)]"
+	Turn(angle)
 	. = ..()
 	var/target_pixel_x = 0
 	var/target_pixel_y = 0

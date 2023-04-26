@@ -22,7 +22,7 @@
 	var/damageable = TRUE
 	var/deconstructable = TRUE
 	flags_pass = PASSLASER
-	debris = "glass"
+	debris = DEBRIS_GLASS
 	debris_amount = 5
 	debris_velocity = -10
 

@@ -33,7 +33,7 @@
 	max_integrity = 500
 	layer = ABOVE_FLY_LAYER
 	var/log_amount = 10
-	debris = "wood"
+	debris = DEBRIS_WOOD
 	debris_amount = 5
 	debris_velocity = -10
 
@@ -720,7 +720,7 @@
 	layer = ABOVE_TURF_LAYER
 	coverage = 100
 	icon_state = "basalt"
-	debris = "rock"
+	debris = DEBRIS_ROCK
 	debris_amount = 5
 	debris_velocity = -10
 

@@ -4,7 +4,7 @@
 	icon_state = "cabinet_closed"
 	icon_closed = "cabinet_closed"
 	icon_opened = "cabinet_open"
-	debris = "wood"
+	debris = DEBRIS_WOOD
 	debris_amount = 5
 	debris_velocity = -10
 

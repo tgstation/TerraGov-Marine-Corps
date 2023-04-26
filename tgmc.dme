@@ -87,6 +87,7 @@
 #include "code\__DEFINES\obj_flags.dm"
 #include "code\__DEFINES\objects.dm"
 #include "code\__DEFINES\overwatch.dm"
+#include "code\__DEFINES\particles.dm"
 #include "code\__DEFINES\pipe_construction.dm"
 #include "code\__DEFINES\power.dm"
 #include "code\__DEFINES\preferences.dm"

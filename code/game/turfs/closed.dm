@@ -11,7 +11,7 @@
 	var/junctiontype = NONE
 	///used for plasmacutter deconstruction
 	var/open_turf_type = /turf/open/floor/plating
-	debris = FALSE
+	debris = null
 	debris_bloom = FALSE
 
 /turf/closed/mineral
@@ -20,7 +20,7 @@
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	minimap_color = NONE
-	debris = "rock"
+	debris = DEBRIS_ROCK
 	debris_amount = 5
 	debris_velocity = -10
 
@@ -147,7 +147,7 @@
 	base_icon_state = "junglewall"
 	walltype = "junglewall"
 	open_turf_type = /turf/open/ground/jungle/clear
-	debris = "leaf"
+	debris = DEBRIS_LEAF
 	debris_amount = 5
 	debris_velocity = -10
 
@@ -217,7 +217,7 @@
 	icon_state = "Single"
 	desc = "It is very thick."
 	open_turf_type = /turf/open/floor/plating/ground/ice
-	debris = "rock"
+	debris = DEBRIS_ROCK
 	debris_amount = 5
 	debris_velocity = -10
 
@@ -317,7 +317,7 @@
 	icon = 'icons/turf/rockwall.dmi'
 	resistance_flags = PLASMACUTTER_IMMUNE
 	open_turf_type = /turf/open/floor/plating/ground/ice
-	debris = "rock"
+	debris = DEBRIS_ROCK
 	debris_amount = 5
 	debris_velocity = -10
 
@@ -379,7 +379,7 @@
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
 	resistance_flags = PLASMACUTTER_IMMUNE
-	debris = "spark"
+	debris = DEBRIS_SPARKS
 	debris_bloom = TRUE
 
 /turf/closed/shuttle/re_corner/notdense

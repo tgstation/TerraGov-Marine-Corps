@@ -4,7 +4,7 @@
 	icon = 'icons/turf/wood.dmi'
 	icon_state = "wood0"
 	density = TRUE
-	debris = "wood"
+	debris = DEBRIS_WOOD
 	debris_amount = 5
 	debris_velocity = -10
 

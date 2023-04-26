@@ -379,7 +379,7 @@
 	can_change_dmg_state = FALSE
 	barricade_type = "wooden"
 	can_wire = FALSE
-	debris = "wood"
+	debris = DEBRIS_WOOD
 	debris_amount = 5
 	debris_velocity = -10
 
@@ -443,7 +443,7 @@
 	var/build_state = BARRICADE_METAL_FIRM
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
-	debris = "spark"
+	debris = DEBRIS_SPARKS
 	debris_bloom = TRUE
 
 /obj/structure/barricade/metal/update_overlays()
@@ -752,7 +752,7 @@
 	closed = TRUE
 	can_wire = TRUE
 	climbable = TRUE
-	debris = "spark"
+	debris = DEBRIS_SPARKS
 	debris_bloom = TRUE
 
 	///What state is our barricade in for construction steps?
