@@ -572,6 +572,7 @@
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	max_chamber_items = 13 //codex
 	default_ammo_type = /datum/ammo/bullet/rifle/repeater
+	allowed_ammo_types = list(/datum/ammo/bullet/rifle/repeater, /obj/item/ammo_magazine/rifle/repeater_speedloader)
 	gun_skill_category = SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	flags_item_map_variant = NONE
