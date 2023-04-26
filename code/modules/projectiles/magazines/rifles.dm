@@ -428,7 +428,7 @@
 	icon_state = "tx54_airburst"
 	greyscale_colors = "#AA1FDC"
 
-/obj/item/ammo_magazine/rifle/tx54/smoke/razor
+/obj/item/ammo_magazine/rifle/tx54/razor
 	name = "\improper 20mm razorburn grenade magazine"
 	desc = "A 20mm magazine loaded with razorburn grenades. For use with the GL-54 or AR-55."
 	default_ammo = /datum/ammo/tx54/razor
