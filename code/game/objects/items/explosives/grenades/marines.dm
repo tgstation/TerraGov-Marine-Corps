@@ -127,9 +127,9 @@
 	return ..()
 
 /obj/item/explosive/grenade/sticky/trailblazer/throw_impact(atom/hit_atom, speed)
-    . = ..()
-    RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
-    new /obj/flamer_fire(get_turf(src), 25, 25)
+	. = ..()
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
+	new /obj/flamer_fire(get_turf(src), 25, 25)
 
 ///causes fire tiles underneath target when stuck_to
 /obj/item/explosive/grenade/sticky/trailblazer/proc/make_fire(datum/source, old_loc, movement_dir, forced, old_locs)
