@@ -228,3 +228,29 @@
   - bugfix: The burst larvas have the same hive as the hive of the carrier who did
       the hug.
   - rscadd: Added a verb/keybind to toggle automatic magazine ejections
+2023-04-16:
+  Lumipharon:
+  - rscadd: 'HvH: some items such as B18 or shields now have the chance to convert
+      projectile based hard stuns into staggerslow'
+  - bugfix: Fixed item active toggling not working correctly in many cases
+2023-04-17:
+  '@Xander3359 @KillerOrcaCora':
+  - refactor: Flare pouch is a holster now
+  - imageadd: New flare pouch sprites
+  Pariah919:
+  - rscadd: AR-55 is now avaliable to be bought from req for 525 points, magazines
+      are 25 points.
+  - rscadd: SLs can now buy AR-55s from their vendors, and as such can also buy basic
+      GL-54 magazines.
+  - balance: GL-54 Airburst magazines have been halved in price in req from 40 to
+      20.
+  RipGrayson:
+  - bugfix: Random spawners should no longer malfunction
+  - bugfix: Fixed mapper icons for modular spawners displaying error
+  - imageadd: Resprited status displays to fit on walls instead of hanging out inside
+      of them
+  Xander3359:
+  - bugfix: AMR Ammo is no longer FIXME
+  - imageadd: AMR Resprite
+  ivanmixo:
+  - refactor: Cleaned up the human topic proc

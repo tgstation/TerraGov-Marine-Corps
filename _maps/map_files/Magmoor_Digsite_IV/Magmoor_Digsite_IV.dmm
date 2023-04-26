@@ -15488,7 +15488,9 @@
 /turf/open/floor/concrete/lines,
 /area/magmoor/compound/southwest)
 "loR" = (
-/obj/structure/closet/fireaxecabinet,
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = -1
+	},
 /turf/closed/wall/r_wall,
 /area/magmoor/engi/atmos)
 "loS" = (
@@ -16482,6 +16484,10 @@
 "mbC" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/closet/fireaxecabinet{
+	pixel_x = 32;
+	pixel_y = -1
+	},
 /turf/open/floor/mainship/orange/full,
 /area/magmoor/engi)
 "mca" = (
@@ -25678,9 +25684,6 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bar)
 "sLD" = (
-/obj/structure/closet/fireaxecabinet{
-	pixel_x = 32
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1;

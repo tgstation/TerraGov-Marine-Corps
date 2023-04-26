@@ -349,7 +349,6 @@
 /area/deathmatch)
 "iI" = (
 /obj/structure/table/woodentable,
-/obj/machinery/computer/security/telescreen/entertainment,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1264,13 +1263,8 @@
 	},
 /area/deathmatch)
 "DM" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
+/obj/machinery/status_display,
+/turf/closed/wall/mainship/gray,
 /area/deathmatch)
 "DP" = (
 /obj/structure/bed/chair/sofa/right{
@@ -1528,8 +1522,8 @@
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "KA" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall/mainship/gray,
+/obj/machinery/status_display,
+/turf/closed/wall/mainship/gray/outer,
 /area/deathmatch)
 "KB" = (
 /obj/structure/bed/chair/comfy/black{
@@ -2162,7 +2156,6 @@
 /area/deathmatch)
 "XK" = (
 /obj/structure/table/woodentable,
-/obj/machinery/computer/security/telescreen/entertainment,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "XS" = (
@@ -2724,7 +2717,7 @@ WY
 WY
 GX
 bL
-Nm
+DM
 ry
 XK
 WY
@@ -3110,7 +3103,7 @@ ZD
 ZD
 ZD
 ZD
-Xv
+KA
 kj
 ZJ
 ZJ
@@ -3254,7 +3247,7 @@ ZD
 ZD
 ZD
 ZD
-Xv
+KA
 kj
 ZJ
 Zx
@@ -3500,7 +3493,7 @@ Xv
 Xv
 Xv
 Nm
-KA
+Nm
 WN
 mE
 eH
@@ -4123,7 +4116,7 @@ wM
 UJ
 lx
 yY
-Nm
+DM
 Ag
 dZ
 Xq
@@ -4171,7 +4164,7 @@ Xv
 Nm
 mO
 tn
-KA
+Nm
 vU
 QF
 Tp
@@ -4210,7 +4203,7 @@ WK
 Qc
 ot
 dH
-DM
+Yn
 xj
 oU
 Xv

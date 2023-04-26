@@ -88,26 +88,9 @@
 	..()
 
 /obj/machinery/power/apc/Initialize(mapload, ndir, building)
-	. = ..()
 	GLOB.apcs_list += src
 	wires = new /datum/wires/apc(src)
 
-/obj/machinery/power/apc/Destroy()
-	GLOB.apcs_list -= src
-
-	area.power_light = 0
-	area.power_equip = 0
-	area.power_environ = 0
-	area.power_change()
-
-	QDEL_NULL(cell)
-	QDEL_NULL(wires)
-	if(terminal)
-		disconnect_terminal()
-
-	return ..()
-
-/obj/machinery/power/apc/Initialize(mapload, ndir, building = FALSE)
 	// offset 32 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if (ndir)
@@ -165,6 +148,20 @@
 		if(!start_charge && is_ground_level(z) && prob(10))
 			addtimer(CALLBACK(src, PROC_REF(set_broken)), 5)
 
+/obj/machinery/power/apc/Destroy()
+	GLOB.apcs_list -= src
+
+	area.power_light = 0
+	area.power_equip = 0
+	area.power_environ = 0
+	area.power_change()
+
+	QDEL_NULL(cell)
+	QDEL_NULL(wires)
+	if(terminal)
+		disconnect_terminal()
+
+	return ..()
 
 ///Wrapper to guarantee powercells are properly nulled and avoid hard deletes.
 /obj/machinery/power/apc/proc/set_cell(obj/item/cell/new_cell)

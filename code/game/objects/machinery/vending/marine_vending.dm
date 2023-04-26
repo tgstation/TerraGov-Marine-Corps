@@ -1113,7 +1113,6 @@
 		),
 		"Misc" = list(
 			/obj/item/defibrillator = 8,
-			/obj/item/healthanalyzer/gloves = 8,
 			/obj/item/healthanalyzer = 16,
 			/obj/item/bodybag/cryobag = 24,
 		),
@@ -1401,7 +1400,7 @@
 			/obj/item/storage/pouch/magazine/large = -1,
 			/obj/item/storage/pouch/magazine/pistol/large = -1,
 			/obj/item/storage/pouch/shotgun = -1,
-			/obj/item/storage/pouch/flare/full = -1,
+			/obj/item/storage/holster/flarepouch/full = -1,
 			/obj/item/storage/pouch/grenade = -1,
 			/obj/item/storage/pouch/explosive = -1,
 			/obj/item/storage/pouch/medkit = -1,

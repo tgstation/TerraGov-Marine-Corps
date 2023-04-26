@@ -520,6 +520,7 @@
 /obj/structure/prop/mainship/research/circuit_imprinter
 	name = "Circuit Imprinter"
 	icon_state = "circuit_imprinter"
+	desc = "Manufactures circuit boards for the construction of machines."
 
 /obj/structure/prop/mainship/research/mechafab
 	icon_state = "mechfab1"
@@ -528,6 +529,7 @@
 
 /obj/structure/prop/mainship/research/destructive_analyzer
 	name = "Destructive Analyzer"
+	desc = "Learn science by destroying things!"
 	icon_state = "d_analyzer"
 
 /obj/structure/prop/mainship/research/tdoppler
@@ -1982,6 +1984,12 @@
 	name = "Port Quarter Solar Control"
 	desc = "A controller for solar panel arrays."
 	icon_state = "solar"
+
+/obj/structure/prop/mainship/errorprop
+	name = "ERROR"
+	desc = "If you see this object in game you should ahelp, something has broken."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "error"
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK

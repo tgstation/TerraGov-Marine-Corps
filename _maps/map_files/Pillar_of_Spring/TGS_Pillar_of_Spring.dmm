@@ -326,9 +326,9 @@
 /area/mainship/medical/lower_medical)
 "axo" = (
 /obj/machinery/door_display/research_cell/cell{
-	dir = 1
+	pixel_y = 2
 	},
-/turf/open/floor/mainship/sterile/dark,
+/turf/closed/wall/mainship/white,
 /area/mainship/medical/medical_science)
 "axA" = (
 /obj/structure/cable,
@@ -2583,7 +2583,9 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "dhv" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display{
+	pixel_y = 2
+	},
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/upper_medical)
 "dhK" = (
@@ -2592,10 +2594,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/briefing)
-"dig" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mainship,
-/area/mainship/living/cryo_cells)
 "dit" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/mainship/tcomms,
@@ -3442,6 +3440,16 @@
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
+"ekM" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/radio,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "ekT" = (
 /turf/open/floor/mainship/green{
 	dir = 8
@@ -3676,10 +3684,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "eCd" = (
-/obj/effect/soundplayer,
 /obj/machinery/status_display,
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/upper_medical)
+/turf/closed/wall/mainship,
+/area/mainship/living/cryo_cells)
 "eCr" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -7147,16 +7154,6 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/living/tankerbunks)
-"juG" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/radio,
-/obj/item/light_bulb/tube,
-/obj/item/light_bulb/tube,
-/obj/item/light_bulb/tube,
-/obj/item/clothing/glasses/meson,
-/obj/item/clothing/gloves/yellow,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "jwr" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
 	dir = 2
@@ -10060,6 +10057,10 @@
 "mTs" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/crew_quarters/toilet)
+"mTH" = (
+/obj/machinery/marine_selector/gear/commander,
+/turf/open/floor/wood,
+/area/mainship/living/numbertwobunks)
 "mUU" = (
 /obj/machinery/light/mainship,
 /obj/structure/sink{
@@ -10333,7 +10334,6 @@
 "nkX" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
-/obj/item/tank/anesthetic,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -10409,21 +10409,6 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/lower_medical)
-"ntN" = (
-/obj/machinery/power/apc/mainship/hardened{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/black{
-	dir = 8
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
-	},
-/area/mainship/command/self_destruct)
 "nuj" = (
 /obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship,
@@ -10495,6 +10480,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"nyw" = (
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/port_hallway)
 "nyy" = (
 /obj/effect/soundplayer,
 /obj/structure/sign/science,
@@ -13802,9 +13794,8 @@
 /area/mainship/shipboard/firing_range)
 "rPt" = (
 /obj/machinery/status_display,
-/obj/effect/soundplayer,
 /turf/closed/wall/mainship,
-/area/mainship/squads/req)
+/area/mainship/living/bridgebunks)
 "rPu" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -16284,10 +16275,6 @@
 /obj/item/storage/fancy/cigar,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"uQp" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mainship,
-/area/mainship/living/grunt_rnr)
 "uQI" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -17874,6 +17861,18 @@
 	dir = 1
 	},
 /area/mainship/command/self_destruct)
+"wSj" = (
+/obj/machinery/power/apc/mainship/hardened{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/mainship/command/self_destruct)
 "wSs" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -18039,6 +18038,9 @@
 /area/mainship/engineering/engineering_workshop)
 "xdy" = (
 /obj/effect/landmark/start/job/ai,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "xdN" = (
@@ -18104,10 +18106,6 @@
 	dir = 4
 	},
 /area/mainship/engineering/engineering_workshop)
-"xhG" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mainship,
-/area/mainship/living/bridgebunks)
 "xhP" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/ai_node,
@@ -41291,12 +41289,12 @@ rGg
 kQn
 fbP
 sXo
-gmc
+axo
 qIt
 nNo
 fFD
 xYE
-axo
+rGg
 gmc
 kEP
 rKn
@@ -46209,7 +46207,7 @@ aKD
 bpc
 bYb
 llr
-whZ
+rPt
 bVU
 aXc
 whZ
@@ -46725,7 +46723,7 @@ pPR
 whZ
 whZ
 whZ
-xhG
+whZ
 oDx
 hUf
 uBn
@@ -47465,10 +47463,10 @@ ffi
 olX
 wnJ
 vHQ
-eCd
+olX
 qvJ
 qvJ
-uQp
+qvJ
 qvJ
 qvJ
 gkL
@@ -49291,7 +49289,7 @@ oHV
 uQI
 dla
 mBZ
-vfH
+fXS
 vfH
 bxQ
 vfH
@@ -49518,7 +49516,7 @@ pyV
 pgh
 pgh
 tBj
-xyS
+hGT
 hUf
 cNy
 hUf
@@ -49785,7 +49783,7 @@ gbM
 gbM
 gbM
 gbM
-ekk
+nyw
 eel
 ekk
 ekx
@@ -50041,7 +50039,7 @@ vAn
 vAn
 eZp
 vmD
-pvX
+vmD
 vmD
 acn
 vmD
@@ -50810,7 +50808,7 @@ hhf
 hhf
 dLx
 dLx
-rPt
+lxK
 sAl
 iyl
 vmD
@@ -51067,7 +51065,7 @@ scb
 kKO
 ooM
 pJi
-hhf
+fQO
 iYg
 lhG
 vmD
@@ -51373,7 +51371,7 @@ kfm
 kfm
 saT
 soK
-juG
+ekM
 fez
 dcY
 wPV
@@ -51604,7 +51602,7 @@ lon
 bfc
 snn
 mBZ
-vfH
+fXS
 vfH
 bxQ
 vfH
@@ -53366,7 +53364,7 @@ uLY
 qKL
 ocK
 lxK
-fQO
+hhf
 cHE
 czx
 hhf
@@ -53374,7 +53372,7 @@ hhf
 hhf
 hhf
 hhf
-fQO
+hhf
 hhf
 dLx
 dLx
@@ -53392,10 +53390,10 @@ vab
 bMm
 rUK
 rUF
-hme
+rUF
 rUF
 hwU
-hme
+rUF
 oXs
 rUF
 rUF
@@ -54157,19 +54155,19 @@ wMh
 kTI
 jQT
 vmD
-rUF
+hme
 qhf
 tkW
 lJV
 pGb
 qhf
-rUF
+hme
 gxL
 mNM
 rrh
 pyS
 gxL
-rUF
+hme
 ikM
 jXW
 yhG
@@ -55941,8 +55939,8 @@ oKe
 uyy
 hpS
 lHu
-tzF
 faC
+mTH
 jzh
 bCZ
 dxc
@@ -56245,7 +56243,7 @@ kLR
 bXH
 xmu
 lrn
-ntN
+wSj
 fEf
 nIr
 dDg
@@ -58795,7 +58793,7 @@ aSJ
 heh
 vmB
 fpB
-dig
+aSJ
 cwD
 wJh
 wJh
@@ -59551,27 +59549,27 @@ iWR
 eLt
 owh
 snm
-aSJ
+eCd
 lsh
 hOm
 atN
 pHC
-aSJ
+eCd
 lsh
 qqP
 kQS
 ktb
-aSJ
+eCd
 lsh
 rqX
 atN
 ktb
-aSJ
+eCd
 rzd
 wJh
 wJh
 cwD
-aSJ
+eCd
 rzd
 wJh
 wJh
@@ -60070,18 +60068,18 @@ aSJ
 kir
 hcb
 aSJ
-dig
+aSJ
 aSJ
 kir
 hcb
 aSJ
-dig
+aSJ
 aSJ
 kir
 hcb
 aSJ
-dig
-dig
+aSJ
+aSJ
 aSJ
 aSJ
 aSJ

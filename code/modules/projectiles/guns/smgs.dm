@@ -80,7 +80,7 @@
 	burst_amount = 1
 	autoburst_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_mult = 0.3
+	burst_accuracy_bonus = -0.3
 	burst_scatter_mult = 25
 
 /obj/item/weapon/gun/smg/standard_machinepistol/compact
@@ -458,7 +458,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_mult = -0.3
+	burst_accuracy_bonus = -0.3
 	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7

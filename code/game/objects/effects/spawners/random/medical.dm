@@ -2,8 +2,9 @@
 	name = "Random base medical spawner"
 	icon = 'icons/effects/random/medical.dmi'
 	icon_state = "random_syringe"
-	loot_subtype_path = /obj/effect/spawner/random/medical
-	loot = list()
+	loot = list(
+		/obj/structure/prop/mainship/errorprop,
+	)
 
 /obj/effect/spawner/random/medical/health_analyzer
 	name = "health analyzer spawner"

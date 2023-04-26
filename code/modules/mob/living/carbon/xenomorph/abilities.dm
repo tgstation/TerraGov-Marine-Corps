@@ -887,8 +887,6 @@
 	set_target(get_turf_on_clickcatcher(object, xeno, params))
 	if(!current_target)
 		return
-	xeno.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
-	span_xenowarning("We spit at \the [current_target]!") )
 
 	SEND_SIGNAL(owner, COMSIG_XENO_FIRE)
 	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
@@ -1215,7 +1213,7 @@
 /mob/living/carbon/xenomorph/proc/add_abilities()
 	for(var/action_path in xeno_caste.actions)
 		var/datum/action/xeno_action/action = new action_path()
-		if(SSticker.mode?.flags_xeno_abilities & action.gamemode_flags)
+		if(!SSticker.mode || SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
 			action.give_action(src)
 
 
@@ -1421,6 +1419,9 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU,
 	)
 	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
+
+/datum/action/xeno_action/blessing_menu/should_show()
+	return FALSE // Blessings meni now done through hive status UI!
 
 /datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
