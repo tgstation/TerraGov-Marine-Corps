@@ -317,12 +317,6 @@
 	boxtag = "Margherita Deluxe"
 
 
-/obj/item/pizzabox/vegetable/Initialize()
-	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza(src)
-	boxtag = "Gourmet Vegatable"
-
-
 /obj/item/pizzabox/mushroom/Initialize()
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/mushroompizza(src)

@@ -6,7 +6,6 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 60, ACID = 30)
 	anchored = FALSE
 
-	var/datum/gas_mixture/air_contents
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port
 	var/obj/item/tank/holding
 

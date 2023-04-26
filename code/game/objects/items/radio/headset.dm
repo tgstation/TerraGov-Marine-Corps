@@ -727,7 +727,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_DELTA_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
 
-/obj/item/radio/headset/mainship/marine/delta/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/rebel/delta/LateInitialize(mapload)
 	. = ..()
 	camera.network += list("delta_rebel")
 

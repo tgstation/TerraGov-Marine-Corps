@@ -78,18 +78,6 @@
 		return
 	step_to(src, get_step(src,newdir))
 
-/obj/machinery/roomba/attack_hand(mob/living/user)
-	if(!CONFIG_GET(flag/fun_allowed))
-		return
-	if(user.a_intent != INTENT_HARM)
-		return
-	tgui_alert(user, "Are you really sure to want to try your luck with the devilish roomba?", "The roomba roulette", list("Yes", "Yes!", "Yes?"))
-	if(prob(50))
-		explosion(user, 1, 0, 0, 0, 0, 4, "[user] lost at the roomba roulette")
-		return
-	explosion(src, 1, 0, 0, 0, 0, 4, "[user] won at the roomba roulette")
-	qdel(src)
-
 /obj/machinery/roomba/Bump(atom/A)
 	. = ..()
 	if(++stuck_counter <= 3)
@@ -121,7 +109,17 @@
 
 /obj/machinery/roomba/attack_hand(mob/living/user)
 	. = ..()
-	visible_message(span_notice("[user] lovingly pats the [src]."), span_notice("You lovingly pat the [src]."))
+	if(!CONFIG_GET(flag/fun_allowed))
+		visible_message(span_notice("[user] lovingly pats the [src]."), span_notice("You lovingly pat the [src]."))
+		return
+	if(user.a_intent != INTENT_HARM)
+		return
+	tgui_alert(user, "Are you really sure to want to try your luck with the devilish roomba?", "The roomba roulette", list("Yes", "Yes!", "Yes?"))
+	if(prob(50))
+		explosion(user, 1, 0, 0, 0, 0, 4, "[user] lost at the roomba roulette")
+		return
+	explosion(src, 1, 0, 0, 0, 0, 4, "[user] won at the roomba roulette")
+	qdel(src)
 
 /obj/machinery/roomba/attackby(obj/item/I, mob/living/user, def_zone)
 	if(!allow_claymore)

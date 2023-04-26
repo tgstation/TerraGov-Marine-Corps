@@ -1202,7 +1202,7 @@ ENGINEERING
 	name = "electrical maintenance supplies"
 	contains = list(
 		/obj/item/storage/toolbox/electrical,
-		/obj/item/clothing/gloves/yellow,
+		/obj/item/clothing/gloves/insulated,
 		/obj/item/cell,
 		/obj/item/cell/high,
 	)

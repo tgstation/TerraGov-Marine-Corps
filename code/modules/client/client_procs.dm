@@ -27,9 +27,15 @@
 		- If so, is there any protection against somebody spam-clicking a link?
 	*/
 
-/client/Topic(href, href_list, hsrc)
-	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
+//the undocumented 4th argument is for ?[0x\ref] style topic links. hsrc is set to the reference and anything after the ] gets put into hsrc_command
+/client/Topic(href, href_list, hsrc, hsrc_command)
+	if(!usr || usr != mob) //stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
+
+#ifndef TESTING
+	if (lowertext(hsrc_command) == "_debug") //disable the integrated byond vv in the client side debugging tools since it doesn't respect vv read protections
+		return
+#endif
 
 	//Asset cache
 	var/asset_cache_job
@@ -481,11 +487,16 @@
 		if (CONFIG_GET(flag/asset_simple_preload))
 			addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
 
+		#if (PRELOAD_RSC == 0)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/client, preload_vox)), 1 MINUTES)
+		#endif
+
 #if (PRELOAD_RSC == 0)
-		for (var/name in GLOB.vox_sounds)
-			var/file = GLOB.vox_sounds[name]
-			Export("##action=load_rsc", file)
-			stoplag()
+/client/proc/preload_vox()
+	for (var/name in GLOB.vox_sounds)
+		var/file = GLOB.vox_sounds[name]
+		Export("##action=load_rsc", file)
+		stoplag()
 #endif
 
 //Hook, override it to run code when dir changes
