@@ -569,7 +569,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_4570 //codex
-	load_method = SINGLE_CASING //codex
+	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	max_chamber_items = 13 //codex
 	default_ammo_type = /datum/ammo/bullet/rifle/repeater
 	gun_skill_category = SKILL_RIFLES

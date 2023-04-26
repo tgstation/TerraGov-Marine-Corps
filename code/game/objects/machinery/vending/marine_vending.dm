@@ -20,6 +20,7 @@
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
 			/obj/item/weapon/gun/shotgun/pump/lever/repeater = -1,
 			/obj/item/ammo_magazine/packet/p4570 = -1,
+			/obj/item/ammo_magazine/rifle/repeater_speedloader = -1
 		),
 		"Energy Weapons" = list(
 			/obj/item/cell/lasgun/lasrifle = -1,
@@ -238,6 +239,7 @@
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
 			/obj/item/weapon/gun/shotgun/pump/lever/repeater = -1,
 			/obj/item/ammo_magazine/packet/p4570 = -1,
+			/obj/item/ammo_magazine/rifle/repeater_speedloader = -1
 		),
 		"Energy Weapons" = list(
 			/obj/item/cell/lasgun/lasrifle = -1,
@@ -432,6 +434,7 @@
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
 			/obj/item/weapon/gun/shotgun/pump/lever/repeater = -1,
 			/obj/item/ammo_magazine/packet/p4570 = -1,
+			/obj/item/ammo_magazine/rifle/repeater_speedloader = -1
 		),
 		"Energy Weapons" = list(
 			/obj/item/cell/lasgun/lasrifle = -1,
@@ -639,6 +642,7 @@
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
 			/obj/item/weapon/gun/shotgun/pump/lever/repeater = -1,
 			/obj/item/ammo_magazine/packet/p4570 = -1,
+			/obj/item/ammo_magazine/rifle/repeater_speedloader = -1
 		),
 		"Energy Weapons" = list(
 			/obj/item/cell/lasgun/lasrifle = -1,

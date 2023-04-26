@@ -496,3 +496,15 @@
 	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle
 	max_rounds = 25
 	icon_state_mini = "mag_rifle"
+
+//-------------------------------------------------------
+//Leicaster Repeater
+/obj/item/ammo_magazine/rifle/repeater_speedloader
+	name = "\improper .45-70 magnum speed loader"
+	desc = "A speedloader with 13 rounds of .45-70 Government."
+	default_ammo = /datum/ammo/bullet/rifle/repeater
+	flags_equip_slot = NONE
+	caliber = CALIBER_4570
+	icon_state = "r4570"
+	w_class = WEIGHT_CLASS_SMALL
+	max_rounds = 13
