@@ -1542,7 +1542,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 5
 	penetration = 0
 	sundering = 0
-	///The smoke type loaded in this ammo
+	///The foam type loaded in this ammo
 	var/datum/effect_system/foam_spread/chemical_payload
 	///The reagent content of the projectile
 	var/datum/reagents/reagent_list
