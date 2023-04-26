@@ -71,7 +71,6 @@
 		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/set_agressivity,
 		/datum/action/xeno_action/blessing_menu,
 	)
 
@@ -208,7 +207,6 @@
 		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/set_agressivity,
 		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/activable/gravity_grenade,
 	)
