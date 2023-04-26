@@ -710,6 +710,11 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/visual/grenade/sticky)
 	cost = 500
 
+/datum/supply_packs/explosives/explosives_smokebomb
+	name = "M40 HSDP smokebomb grenade box crate"
+	notes = "contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/smokebomb)
+	cost = 500
 /datum/supply_packs/explosives/explosives_hsdp
 	name = "M40 HSDP white phosphorous grenade box crate"
 	notes = "Contains 15 grenades"
