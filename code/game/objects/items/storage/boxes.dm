@@ -1108,6 +1108,13 @@
 	spawn_type = /obj/item/explosive/grenade
 	closed_overlay = "grenade_box_overlay_hedp"
 
+/obj/item/storage/box/visual/grenade/sticky
+	name = "\improper M40 adhesive charge grenade box"
+	desc = "A secure box holding 25 M40 adhesive charge grenades. Highly explosive and sticky."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/sticky
+	closed_overlay = "grenade_box_overlay_sticky"
+
 /obj/item/storage/box/visual/grenade/incendiary
 	name = "\improper M40 HIDP grenade box"
 	desc = "A secure box holding 25 M40 HIDP incendiary grenades. Warning: highly flammable!!."
