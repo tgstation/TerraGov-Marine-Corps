@@ -247,6 +247,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 	if(!silent)
 		visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> ejects the freshly spawned clone.")]")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLONE_PRODUCED, src)
 	occupant.forceMove(get_step(loc, dir))
 	occupant.Paralyze(10 SECONDS)
 	occupant.disabilities &= ~(BLIND | DEAF)

@@ -98,6 +98,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, PROC_REF(receive_lockdown_warning))
 	RegisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED, PROC_REF(show_disk_complete))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(show_nuke_start))
+	RegisterSignal(SSdcs, CCOMSIG_GLOB_CLONE_PRODUCED, PROC_REF(show_fresh_clone))
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
@@ -130,6 +131,7 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MINI_DROPSHIP_DESTROYED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED)
 	QDEL_NULL(mini)
 	return ..()
 
@@ -186,6 +188,13 @@
 	to_chat(src, span_notice("The nuclear bomb at [A] has been activated!"))
 	playsound_local(src, 'sound/machines/warning-buzzer.ogg', 15)
 	notify_ai(src, "<b> The nuclear bomb at [A] has been activated! </b>", source = nukebomb, action = NOTIFY_AI_ALERT)
+
+/mob/living/silicon/ai/proc/show_fresh_clone(datum/source, obj/machinery/cloning/vats/cloningtube)
+	SIGNAL_HANDLER
+	var/area/A = get_area(cloningtube)
+	to_chat(src, span_notice("A fresh clone has awoken at [A]!"))
+	playsound_local(src, 'sound/machines/medevac_extend.ogg', 15)
+	notify_ai(src, "<b> A fresh clone has awoken at [A]! </b>", source = cloningtube, action = NOTIFY_AI_ALERT)
 
 /mob/living/silicon/ai/proc/notify_ai(mob/living/silicon/receivingai, message, ai_sound = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_AI_ALERT, header = null, notify_volume = 100) //stripped down notify_ghost for AI
 
