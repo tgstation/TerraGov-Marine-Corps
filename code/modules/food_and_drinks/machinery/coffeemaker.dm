@@ -6,13 +6,13 @@
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "coffeemaker_nopot_nocart"
 	base_icon_state = "coffeemaker"
-	resistance_flags = FIRE_PROOF | ACID_PROOF
+	resistance_flags = UNACIDABLE
 	circuit = /obj/item/circuitboard/machine/coffeemaker
 	pixel_y = 4 //needed to make it sit nicely on tables
 	var/obj/item/reagent_containers/cup/coffeepot/coffeepot = null
 	var/brewing = FALSE
 	var/brew_time = 20 SECONDS
-	var/speed = 1
+	var/speed = 4
 	/// The coffee cartridge to make coffee from. In the future, coffee grounds are like printer ink.
 	var/obj/item/coffee_cartridge/cartridge = null
 	/// The type path to instantiate for the coffee cartridge the device initially comes with, eg. /obj/item/coffee_cartridge
@@ -62,12 +62,6 @@
 		cartridge = null
 	return ..()
 
-/obj/machinery/coffeemaker/RefreshParts()
-	. = ..()
-	speed = 0
-	for(var/datum/stock_part/micro_laser/laser in component_parts)
-		speed += laser.tier
-
 /obj/machinery/coffeemaker/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
@@ -76,10 +70,6 @@
 
 	if(brewing)
 		. += span_warning("\The [src] is brewing.")
-		return
-
-	if(panel_open)
-		. += span_notice("[src]'s maintenance hatch is open!")
 		return
 
 	if(coffeepot || cartridge)
@@ -183,9 +173,6 @@
 
 	if(default_deconstruction_crowbar(attack_item))
 		return
-
-	if(panel_open) //Can't insert objects when its screwed open
-		return TRUE
 
 	if (istype(attack_item, /obj/item/reagent_containers/cup/coffeepot) && !(attack_item.flags_item & ABSTRACT) && attack_item.is_open_container())
 		var/obj/item/reagent_containers/cup/coffeepot/new_pot = attack_item
@@ -586,16 +573,6 @@
 	return TRUE
 
 /obj/machinery/coffeemaker/impressa/attackby(obj/item/attack_item, mob/living/user, params)
-	//You can only screw open empty grinder
-	if(!coffeepot && default_deconstruction_screwdriver(user, icon_state, icon_state, attack_item))
-		return
-
-	if(default_deconstruction_crowbar(attack_item))
-		return
-
-	if(panel_open) //Can't insert objects when its screwed open
-		return TRUE
-
 	if (istype(attack_item, /obj/item/reagent_containers/cup/coffeepot) && !(attack_item.flags_item & ABSTRACT) && attack_item.is_open_container())
 		var/obj/item/reagent_containers/cup/coffeepot/new_pot = attack_item
 		if(!user.transferItemToLoc(new_pot, src))

@@ -66,7 +66,6 @@
 /datum/chemical_reaction/drink/triple_citrus
 	results = list(/datum/reagent/consumable/triple_citrus = 3)
 	required_reagents = list(/datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/orangejuice = 1)
-	optimal_ph_min = 0//Our reaction is very acidic, so lets shift our range
 
 /datum/chemical_reaction/drink/grape_soda
 	results = list(/datum/reagent/consumable/grape_soda = 2)

@@ -3,28 +3,37 @@
 #define GAS 3
 
 // reagent_flags defines
-#define INJECTABLE (1<<0)	// Makes it possible to add reagents through droppers and syringes.
-#define DRAWABLE (1<<1)	// Makes it possible to remove reagents through syringes.
+#define INJECTABLE (1<<0) // Makes it possible to add reagents through droppers and syringes.
+#define DRAWABLE (1<<1) // Makes it possible to remove reagents through syringes.
 
-#define REFILLABLE (1<<2)	// Makes it possible to add reagents through any reagent container.
-#define DRAINABLE (1<<3)	// Makes it possible to remove reagents through any reagent container.
+#define REFILLABLE (1<<2) // Makes it possible to add reagents through any reagent container.
+#define DRAINABLE (1<<3) // Makes it possible to remove reagents through any reagent container.
+#define DUNKABLE (1<<4) // Allows items to be dunked into this container for transfering reagents. Used in conjunction with the dunkable component.
 
-#define TRANSPARENT (1<<4)	// Used on containers which you want to be able to see the reagents off.
-#define AMOUNT_VISIBLE (1<<5)	// For non-transparent containers that still have the general amount of reagents in them visible.
+#define TRANSPARENT (1<<5) // Used on containers which you want to be able to see the reagents of.
+#define AMOUNT_VISIBLE (1<<6) // For non-transparent containers that still have the general amount of reagents in them visible.
+#define NO_REACT (1<<7) // Applied to a reagent holder, the contents will not react with each other.
+#define REAGENT_HOLDER_INSTANT_REACT (1<<8)  // Applied to a reagent holder, all of the reactions in the reagents datum will be instant. Meant to be used for things like smoke effects where reactions aren't meant to occur
+///If the holder is "alive" (i.e. mobs and organs) - If this flag is applied to a holder it will cause reagents to split upon addition to the object
+#define REAGENT_HOLDER_ALIVE (1<<9)
 
-#define AMOUNT_SKILLCHECK (1<<6) //For containers which apply a skill check for wheter showing their reagents to the user or not.
-#define AMOUNT_ESTIMEE (1<<7)	//For containers without volume meters on (e.g. drinking glasses, cans, sprays)
-#define NO_REACT (1<<8)
+///If the holder a sealed container - Used if you don't want reagent contents boiling out (plasma, specifically, in which case it only bursts out when at ignition temperatures)
+#define SEALED_CONTAINER (1<<10)
+
+#define AMOUNT_SKILLCHECK (1<<11) //For containers which apply a skill check for wheter showing their reagents to the user or not.
+#define AMOUNT_ESTIMEE (1<<12) //For containers without volume meters on (e.g. drinking glasses, cans, sprays)
+
+
+// Is an open container for all intents and purposes.
+#define OPENCONTAINER (REFILLABLE | DRAINABLE | TRANSPARENT)
+#define OPENCONTAINER_NOUNIT (REFILLABLE | DRAINABLE | AMOUNT_ESTIMEE)
+
 
 // trait_flags
 #define TACHYCARDIC (1<<0)
 #define BRADYCARDICS (1<<1)
 #define HEARTSTOPPER (1<<2)
 #define CHEARTSTOPPER (1<<3)
-
-// Is an open container for all intents and purposes.
-#define OPENCONTAINER (REFILLABLE | DRAINABLE | TRANSPARENT)
-#define OPENCONTAINER_NOUNIT (REFILLABLE | DRAINABLE | AMOUNT_ESTIMEE)
 
 
 #define TOUCH 1	// splashing

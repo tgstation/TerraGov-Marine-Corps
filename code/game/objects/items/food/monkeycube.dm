@@ -12,7 +12,7 @@
 	var/spawned_mob = /mob/living/carbon/human/species/monkey
 
 /obj/item/food/monkeycube/proc/Expand()
-	var/mob/spammer = get_mob_by_key(fingerprintslast)
+	var/mob/spammer = get_mob_by_ckey(fingerprints)
 	var/mob/living/bananas = new spawned_mob(drop_location(), TRUE, spammer)
 	if(faction)
 		bananas.faction = faction
@@ -23,23 +23,6 @@
 		visible_message(span_notice("[src] fails to expand!"))
 	qdel(src)
 
-/obj/item/food/monkeycube/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is putting [src] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
-	var/eating_success = do_after(user, 1 SECONDS, src)
-	if(QDELETED(user)) //qdeletion: the nuclear option of self-harm
-		return SHAME
-	if(!eating_success || QDELETED(src)) //checks if src is gone or if they failed to wait for a second
-		user.visible_message(span_suicide("[user] chickens out!"))
-		return SHAME
-	if(HAS_TRAIT(user, TRAIT_NOHUNGER)) //plasmamen don't have saliva/stomach acid
-		user.visible_message(span_suicide("[user] realizes [user.p_their()] body won't activate [src]!")
-		,span_warning("Your body won't activate [src]..."))
-		return SHAME
-	playsound(user, 'sound/items/eatfood.ogg', rand(10, 50), TRUE)
-	user.temporarilyRemoveItemFromInventory(src) //removes from hands, keeps in M
-	addtimer(CALLBACK(src, PROC_REF(finish_suicide), user), 15) //you've eaten it, you can run now
-	return MANUAL_SUICIDE
-
 /obj/item/food/monkeycube/proc/finish_suicide(mob/living/user) ///internal proc called by a monkeycube's suicide_act using a timer and callback. takes as argument the mob/living who activated the suicide
 	if(QDELETED(user) || QDELETED(src))
 		return
@@ -49,9 +32,6 @@
 	Expand()
 	user.visible_message(span_danger("[user]'s torso bursts open as a primate emerges!"))
 	user.gib(null, TRUE, null, TRUE)
-
-/obj/item/food/monkeycube/syndicate
-	faction = list(FACTION_NEUTRAL, ROLE_SYNDICATE)
 
 /obj/item/food/monkeycube/gorilla
 	name = "gorilla cube"

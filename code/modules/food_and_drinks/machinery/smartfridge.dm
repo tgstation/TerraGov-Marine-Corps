@@ -12,7 +12,7 @@
 	/// What path boards used to construct it should build into when dropped. Needed so we don't accidentally have them build variants with items preloaded in them.
 	var/base_build_path = /obj/machinery/smartfridge
 	/// Maximum number of items that can be loaded into the machine
-	var/max_n_of_items = 1500
+	var/max_n_of_items = 6000
 	/// If the AI is allowed to retrieve items within the machine
 	var/allow_ai_retrieve = FALSE
 	/// List of items that the machine starts with upon spawn
@@ -33,11 +33,6 @@
 				amount = 1
 			for(var/i in 1 to amount)
 				load(new typekey(src))
-
-/obj/machinery/smartfridge/RefreshParts()
-	. = ..()
-	for(var/datum/stock_part/matter_bin/matter_bin in component_parts)
-		max_n_of_items = 1500 * matter_bin.tier
 
 /obj/machinery/smartfridge/examine(mob/user)
 	. = ..()
@@ -404,53 +399,6 @@
 
 /obj/machinery/smartfridge/extract/preloaded
 	initial_contents = list(/obj/item/slime_scanner = 2)
-
-// -------------------------
-// Organ Surgery Smartfridge
-// -------------------------
-/obj/machinery/smartfridge/organ
-	name = "smart organ storage"
-	desc = "A refrigerated storage unit for organ storage."
-	max_n_of_items = 20 //vastly lower to prevent processing too long
-	base_build_path = /obj/machinery/smartfridge/organ
-	var/repair_rate = 0
-
-/obj/machinery/smartfridge/organ/accept_check(obj/item/O)
-	if(isorgan(O) || isbodypart(O))
-		return TRUE
-	return FALSE
-
-/obj/machinery/smartfridge/organ/load(obj/item/O)
-	. = ..()
-	if(!.) //if the item loads, clear can_decompose
-		return
-	if(isorgan(O))
-		var/obj/item/organ/organ = O
-		organ.organ_flags |= ORGAN_FROZEN
-	if(isbodypart(O))
-		var/obj/item/bodypart/bodypart = O
-		for(var/obj/item/organ/stored in bodypart.contents)
-			stored.organ_flags |= ORGAN_FROZEN
-
-/obj/machinery/smartfridge/organ/RefreshParts()
-	. = ..()
-	for(var/datum/stock_part/matter_bin/matter_bin in component_parts)
-		max_n_of_items = 20 * matter_bin.tier
-		repair_rate = max(0, STANDARD_ORGAN_HEALING * (matter_bin.tier - 1) * 0.5)
-
-/obj/machinery/smartfridge/organ/process(delta_time)
-	for(var/obj/item/organ/organ in contents)
-		organ.apply_organ_damage(-repair_rate * organ.maxHealth * delta_time)
-
-/obj/machinery/smartfridge/organ/Exited(atom/movable/gone, direction)
-	. = ..()
-	if(isorgan(gone))
-		var/obj/item/organ/O = gone
-		O.organ_flags &= ~ORGAN_FROZEN
-	if(isbodypart(gone))
-		var/obj/item/bodypart/bodypart = gone
-		for(var/obj/item/organ/stored in bodypart.contents)
-			stored.organ_flags &= ~ORGAN_FROZEN
 
 // -----------------------------
 // Chemistry Medical Smartfridge

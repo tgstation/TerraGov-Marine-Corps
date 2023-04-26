@@ -89,7 +89,6 @@
 /datum/chemical_reaction/food/caramel_burned
 	results = list(/datum/reagent/carbon = 1)
 	required_reagents = list(/datum/reagent/consumable/caramel = 1)
-	rate_up_lim = 10
 	mob_react = FALSE
 
 /datum/chemical_reaction/food/cheesewheel
@@ -177,13 +176,11 @@
 	results = list(/datum/reagent/peptides_failed = 0.5)
 	required_reagents = list(/datum/reagent/consumable/nutriment/ = 0.5)
 	required_catalysts = list(/datum/reagent/impurity/probital_failed = 0.5)
-	thermic_constant = 100 // a tell
 
 /datum/chemical_reaction/food/failed_protein_peptide
 	results = list(/datum/reagent/peptides_failed = 0.5)
 	required_reagents = list(/datum/reagent/consumable/nutriment/protein = 0.5)
 	required_catalysts = list(/datum/reagent/impurity/probital_failed = 0.5)
-	thermic_constant = 100 // a tell
 
 /datum/chemical_reaction/food/bbqsauce
 	results = list(/datum/reagent/consumable/bbqsauce = 5)

@@ -461,7 +461,6 @@
 /obj/item/food/meat/steak/goliath
 	name = "goliath steak"
 	desc = "A delicious, lava cooked steak."
-	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	icon_state = "goliathsteak"
 	trash_type = null
 	tastes = list("meat" = 1, "rock" = 1)

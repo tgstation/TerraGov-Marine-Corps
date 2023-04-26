@@ -6,7 +6,7 @@
 
 /datum/chemical_reaction/drink/goldschlager
 	results = list(/datum/reagent/consumable/ethanol/goldschlager = 10)
-	required_reagents = list(/datum/reagent/consumable/ethanol/vodka = GOLDSCHLAGER_VODKA, /datum/reagent/gold = GOLDSCHLAGER_GOLD)
+	required_reagents = list(/datum/reagent/consumable/ethanol/vodka, /datum/reagent/gold)
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY
 
 /datum/chemical_reaction/drink/patron
@@ -257,7 +257,6 @@
 /datum/chemical_reaction/drink/acidspit
 	results = list(/datum/reagent/consumable/ethanol/acid_spit = 6)
 	required_reagents = list(/datum/reagent/toxin/acid = 1, /datum/reagent/consumable/ethanol/wine = 5)
-	optimal_ph_min = 0 //Our reaction is very acidic, so lets shift our range
 
 /datum/chemical_reaction/drink/amasec
 	results = list(/datum/reagent/consumable/ethanol/amasec = 10)

@@ -19,7 +19,14 @@
 	var/list/list_reagents
 	///Whether we can restock this in a vendor without it having its starting reagents
 	var/free_refills = TRUE
-
+	/// Reagent flags, a few examples being if the container is open or not, if its transparent, if you can inject stuff in and out of the container, and so on
+	var/reagent_flags
+	/// The different thresholds at which the reagent fill overlay will change
+	var/list/fill_icon_thresholds = null
+	/// The optional custom name for the reagent fill icon_state prefix
+	var/fill_icon_state = null
+	/// The icon file to take fill icon appearances from
+	var/fill_icon = 'icons/obj/reagentfillings.dmi'
 
 /obj/item/reagent_containers/Initialize()
 	. = ..()

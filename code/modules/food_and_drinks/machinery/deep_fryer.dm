@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "fryer_off"
 	density = TRUE
-	pass_flags_self = PASSSMALLSTRUCT | PASSTHROW
+	flags_pass = PASSSMALLSTRUCT | PASSTHROW
 	idle_power_usage = 5
 	layer = BELOW_OBJ_LAYER
 
@@ -25,9 +25,9 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	/// How long the current object has been cooking for
 	var/cook_time = 0
 	/// How much cooking oil is used per process
-	var/oil_use = 0.025
+	var/oil_use = 0.006
 	/// How quickly we fry food - modifier applied per process tick
-	var/fry_speed = 1
+	var/fry_speed = 4
 	/// Has our currently frying object been fried?
 	var/frying_fried = FALSE
 	/// Has our currently frying object been burnt?
@@ -62,25 +62,12 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 		frying.forceMove(drop_location())
 	return ..()
 
-/obj/machinery/deepfryer/RefreshParts()
-	. = ..()
-	var/oil_efficiency = 0
-	for(var/datum/stock_part/micro_laser/laser in component_parts)
-		oil_efficiency += laser.tier
-	oil_use = initial(oil_use) - (oil_efficiency * 0.00475)
-	fry_speed = oil_efficiency
-
 /obj/machinery/deepfryer/examine(mob/user)
 	. = ..()
 	if(frying)
 		. += "You can make out \a [frying] in the oil."
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Frying at <b>[fry_speed*100]%</b> speed.<br>Using <b>[oil_use]</b> units of oil per second.")
-
-/obj/machinery/deepfryer/wrench_act(mob/living/user, obj/item/tool)
-	. = ..()
-	default_unfasten_wrench(user, tool)
-	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/deepfryer/attackby(obj/item/weapon, mob/user, params)
 	// Dissolving pills into the frier
@@ -103,9 +90,6 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	// No fractal frying
 	if(HAS_TRAIT(weapon, TRAIT_FOOD_FRIED))
 		to_chat(user, span_userdanger("Your cooking skills are not up to the legendary Doublefry technique."))
-		return
-	// Handle opening up the fryer with tools
-	if(default_deconstruction_screwdriver(user, "fryer_off", "fryer_off", weapon)) //where's the open maint panel icon?!
 		return
 	else
 		// So we skip the attack animation
@@ -169,13 +153,6 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 
 /obj/machinery/deepfryer/proc/start_fry(obj/item/frying_item, mob/user)
 	to_chat(user, span_notice("You put [frying_item] into [src]."))
-	if(istype(frying_item, /obj/item/freeze_cube))
-		log_bomber(user, "put a freeze cube in a", src)
-		visible_message(span_userdanger("[src] starts glowing... Oh no..."))
-		playsound(src, 'sound/effects/pray_chaplain.ogg', 100)
-		add_filter("entropic_ray", 10, list("type" = "rays", "size" = 35, "color" = COLOR_VIVID_YELLOW))
-		addtimer(CALLBACK(src, PROC_REF(blow_up)), 5 SECONDS)
-
 	frying = frying_item
 	// Give them reagents to put frying oil in
 	if(isnull(frying.reagents))
@@ -186,11 +163,6 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 
 	icon_state = "fryer_on"
 	fry_loop.start()
-
-/obj/machinery/deepfryer/proc/blow_up()
-	visible_message(span_userdanger("[src] blows up from the entropic reaction!"))
-	explosion(src, devastation_range = 1, heavy_impact_range = 3, light_impact_range = 5, flame_range = 7)
-	deconstruct(FALSE)
 
 /obj/machinery/deepfryer/attack_ai(mob/user)
 	return
