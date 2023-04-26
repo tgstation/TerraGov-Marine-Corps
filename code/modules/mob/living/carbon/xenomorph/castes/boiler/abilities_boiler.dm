@@ -132,12 +132,16 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Create bomb"
 	action_icon_state = "toggle_bomb0" //to be changed
 	action_icon = 'icons/xeno/actions_boiler_glob.dmi'
-	desc = "Creates a Boiler Bombard of the type currently selected. Causes the boiler to glow if 2 or more are stored. Reduces bombard cooldown by 1.5s for each stored."
+	desc = "Creates a Boiler Bombard of the type currently selected."
 	plasma_cost = 200
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB,
 	)
+
+/datum/action/xeno_action/create_boiler_bomb/New(Target)
+    . = ..()
+    desc = "Creates a Boiler Bombard of the type currently selected. Reduces bombard cooldown by [BOILER_BOMBARD_COOLDOWN_REDUCTION] seconds for each stored."
 
 /datum/action/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -181,7 +185,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	return X.xeno_caste.bomb_delay - ((X.neuro_ammo + X.corrosive_ammo) * X.xeno_caste.ammo_multiplier)
+	return X.xeno_caste.bomb_delay - ((X.neuro_ammo + X.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION))
 
 /datum/action/xeno_action/activable/bombard/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
