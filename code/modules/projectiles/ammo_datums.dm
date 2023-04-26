@@ -1415,7 +1415,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/tx54/smoke
 	name = "20mm tactical smoke grenade"
-	hud_state = "grenade_fire"
+	hud_state = "grenade_hide"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/smoke
 	bonus_projectiles_scatter = 24
 	bonus_projectile_quantity = 5
@@ -1424,21 +1424,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/tx54/smoke/dense
 	name = "20mm smoke grenade"
-	hud_state = "grenade_fire"
+	hud_state = "grenade_smoke"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/smoke/dense
 	handful_greyscale_colors = "#0F98BD"
 	projectile_greyscale_colors = "#0F98BD"
 
 /datum/ammo/tx54/smoke/tangle
 	name = "20mm tanglefoot grenade"
-	hud_state = "grenade_fire"
+	hud_state = "grenade_drain"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/smoke/tangle
 	handful_greyscale_colors = "#AA1FDC"
 	projectile_greyscale_colors = "#AA1FDC"
 
 /datum/ammo/tx54/razor
 	name = "20mm razorburn grenade"
-	hud_state = "grenade_fire"
+	hud_state = "grenade_razor"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/razor
 	bonus_projectiles_scatter = 50
 	bonus_projectile_quantity = 3
