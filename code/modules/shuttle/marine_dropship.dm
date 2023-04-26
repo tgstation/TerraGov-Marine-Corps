@@ -501,6 +501,7 @@
 		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
 			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flight."))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, src)
 			M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 			M.do_start_hijack_timer()
 

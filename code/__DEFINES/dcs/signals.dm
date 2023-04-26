@@ -21,6 +21,7 @@
 #define COMSIG_GLOB_NUKE_STOP "!nuke_stop"
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
 #define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
+#define COMSIG_GLOB_DISK_GENERATED "!disk_produced"
 
 /// from /obj/machinery/setAnchored(): (machine, anchoredstate)
 #define COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE "!machinery_anchored_change"
@@ -45,6 +46,10 @@
 #define COMSIG_GLOB_LIGHT_OFF "item_light_off"
 ///Sent when the floodlight switch is powered
 #define COMSIG_GLOB_FLOODLIGHT_SWITCH "!floodlight_switch_power_change"
+/// Sent when the xenos lock the dropship controls
+#define COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED "!dropship_locked"
+/// Sent when the xenos destroy the tadpole controls
+#define COMSIG_GLOB_MINI_DROPSHIP_DESTROYED "!tad_ruined"
 
 //Signals for fire support
 #define COMSIG_GLOB_OB_LASER_CREATED "!ob_laser_sent"
