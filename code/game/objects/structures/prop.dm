@@ -610,6 +610,9 @@
 	resistance_flags = RESIST_ALL
 	density = TRUE
 
+/obj/structure/prop/mainship/prop_so/som
+	icon_state = "officersomprop"
+
 /obj/structure/prop/mainship/prop_tech
 	name = "Technician"
 	desc = "A hard working technician maintaining the vehicles of the base, as well as the base itself. They seem to be very busy investigating something right now."
