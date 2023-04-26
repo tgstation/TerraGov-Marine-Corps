@@ -4497,7 +4497,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "fFa" = (
