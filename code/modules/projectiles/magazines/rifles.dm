@@ -407,6 +407,34 @@
 	icon_state = "tx54_airburst"
 	greyscale_colors = "#fa7923"
 
+/obj/item/ammo_magazine/rifle/tx54/smoke
+	name = "\improper 20mm tactical smoke grenade magazine"
+	desc = "A 20mm magazine loaded with tactical smoke grenades. For use with the GL-54 or AR-55."
+	default_ammo = /datum/ammo/tx54/smoke
+	icon_state = "tx54_airburst"
+	greyscale_colors = "#2F7B00"
+
+/obj/item/ammo_magazine/rifle/tx54/smoke/dense
+	name = "\improper 20mm smoke grenade magazine"
+	desc = "A 20mm magazine loaded with smoke grenades. For use with the GL-54 or AR-55."
+	default_ammo = /datum/ammo/tx54/smoke/dense
+	icon_state = "tx54_airburst"
+	greyscale_colors = "#0F98BD"
+
+/obj/item/ammo_magazine/rifle/tx54/smoke/tangle
+	name = "\improper 20mm tanglefoot grenade magazine"
+	desc = "A 20mm magazine loaded with tanglefoot grenades. For use with the GL-54 or AR-55."
+	default_ammo = /datum/ammo/tx54/smoke/tangle
+	icon_state = "tx54_airburst"
+	greyscale_colors = "#AA1FDC"
+
+/obj/item/ammo_magazine/rifle/tx54/smoke/razor
+	name = "\improper 20mm razorburn grenade magazine"
+	desc = "A 20mm magazine loaded with razorburn grenades. For use with the GL-54 or AR-55."
+	default_ammo = /datum/ammo/tx54/razor
+	icon_state = "tx54_airburst"
+	greyscale_colors = "#FBF236"
+
 //-------------------------------------------------------
 //Garand
 /obj/item/ammo_magazine/rifle/garand
