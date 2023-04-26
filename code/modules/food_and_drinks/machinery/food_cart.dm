@@ -7,8 +7,6 @@
 	density = TRUE
 	anchored = FALSE
 	use_power = NO_POWER_USE
-	req_access = list(ACCESS_KITCHEN)
-	flags_1 = NODECONSTRUCT_1
 	var/unpacked = FALSE
 	var/obj/machinery/griddle/stand/cart_griddle
 	var/obj/machinery/smartfridge/food/cart_smartfridge
@@ -120,7 +118,6 @@
 	atom_break()
 
 /obj/machinery/food_cart/atom_break(damage_flag)
-	. = ..()
 	pack_up()
 	if(!QDELETED(cart_griddle))
 		QDEL_NULL(cart_griddle)
@@ -137,4 +134,3 @@
 	icon = 'icons/obj/3x3.dmi'
 	icon_state = "stand"
 	layer = ABOVE_MOB_LAYER//big mobs will still go over the tent, this is fine and cool
-	plane = GAME_PLANE_UPPER
