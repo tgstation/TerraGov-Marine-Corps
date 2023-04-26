@@ -372,6 +372,9 @@
 				mob_swap_mode = PHASING
 			else if((move_resist >= MOVE_FORCE_VERY_STRONG || move_resist > L.move_force) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap_mode = SWAPPING
+			///if we're moving diagonally, but the mob isn't on the diagonal destination turf we have no reason to shuffle/push them
+			if(moving_diagonally && (get_dir(src, L) in GLOB.cardinals) && get_step(src, dir).Enter(src, loc))
+				mob_swap_mode = PHASING
 			if(mob_swap_mode)
 				//switch our position with L
 				if(loc && !loc.Adjacent(L.loc))
@@ -387,7 +390,7 @@
 
 				var/move_failed = FALSE
 				if(!Move(oldLloc) || (mob_swap_mode == SWAPPING && !L.Move(oldloc)))
-					L.forceMove(oldLloc)
+					L.forceMove(oldLloc) //return them to where they were if the move fails
 					forceMove(oldloc)
 					move_failed = TRUE
 
