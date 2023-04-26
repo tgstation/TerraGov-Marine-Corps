@@ -526,16 +526,6 @@
 	tastes = list("meat" = 1, "salmon" = 1)
 	bitesize = 3
 
-/obj/item/reagent_containers/food/snacks/xenomeat
-	name = "meat"
-	desc = "A slab of meat"
-	icon = 'icons/obj/items/food/meat.dmi'
-	icon_state = "xenomeat"
-	filling_color = "#43DE18"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
-	tastes = list("meat" = 1, "acid" = 1)
-	bitesize = 6
-
 /obj/item/reagent_containers/food/snacks/raw_lizard_sausage
 	name = "raw Lizard blood sausage"
 	desc = "A raw lizard blood sausage, ready to be cured on a drying rack."
@@ -1265,10 +1255,13 @@
 	desc = "A synthetic slab of flesh."
 
 /obj/item/reagent_containers/food/snacks/meat/human
-	name = "-meat"
-	var/subjectname = ""
-	var/subjectjob = null
+	desc = "A slab of meat. Looks kinda like pork..."
 
+/obj/item/reagent_containers/food/snacks/meat/xeno
+	icon_state = "xenomeat"
+	filling_color = "#43DE18"
+	tastes = list("meat" = 1, "acid" = 1)
+	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/meat/monkey
 	//same as plain meat
