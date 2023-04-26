@@ -98,7 +98,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, PROC_REF(receive_lockdown_warning))
 	RegisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED, PROC_REF(show_disk_complete))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(show_nuke_start))
-	RegisterSignal(SSdcs, CCOMSIG_GLOB_CLONE_PRODUCED, PROC_REF(show_fresh_clone))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED, PROC_REF(show_fresh_clone))
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
