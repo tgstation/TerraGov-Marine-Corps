@@ -148,6 +148,11 @@
 	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "rocap"
 
+/obj/item/clothing/head/tgmccap/ro/navy
+	name = "\improper TGMC navy officer cap"
+	desc = "A hat usually worn by officers in the TGMC. This time in a nice shade of navy blue."
+	icon_state = "navycap"
+
 /obj/item/clothing/head/tgmccap/req
 	name = "\improper TGMC requisition cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."

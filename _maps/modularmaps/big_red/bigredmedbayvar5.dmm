@@ -149,7 +149,7 @@
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "dQ" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "ec" = (
@@ -230,7 +230,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "gt" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "gK" = (
@@ -259,7 +259,7 @@
 	},
 /area/bigredv2/outside/medical)
 "hl" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Medical";
@@ -392,8 +392,8 @@
 /area/bigredv2/outside/medical)
 "kX" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 9
 	},
@@ -574,7 +574,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "oE" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
@@ -838,7 +838,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "vx" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "vV" = (
@@ -1013,7 +1013,7 @@
 /area/bigredv2/outside/medical)
 "AM" = (
 /obj/structure/table,
-/obj/effect/spawner/random/organ,
+/obj/effect/spawner/random/medical/organ,
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "AY" = (
@@ -1204,7 +1204,7 @@
 "GV" = (
 /obj/item/clothing/glasses/regular/hipster,
 /obj/structure/rack,
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -1408,7 +1408,7 @@
 /area/bigredv2/outside/medical)
 "Lf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1438,8 +1438,8 @@
 /area/bigredv2/outside/medical)
 "LX" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "Mp" = (
@@ -1471,7 +1471,7 @@
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "MX" = (
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1499,8 +1499,8 @@
 /area/bigredv2/outside/medical)
 "Oa" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1537,8 +1537,8 @@
 /area/bigredv2/outside/medical)
 "OX" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool{
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool{
 	pixel_x = -1;
 	pixel_y = -4
 	},
@@ -1965,7 +1965,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Zu" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "ZI" = (
@@ -1981,8 +1981,8 @@
 /area/bigredv2/outside/medical)
 "ZO" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 

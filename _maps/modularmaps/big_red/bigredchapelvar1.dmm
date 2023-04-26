@@ -28,7 +28,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "g" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Chapel";
@@ -148,7 +148,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "H" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Chapel";
 	name = "\improper Chapel Shutters"

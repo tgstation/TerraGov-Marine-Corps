@@ -171,7 +171,7 @@
 /area/oscar_outpost/outside/north)
 "bh" = (
 /obj/machinery/iv_drip,
-/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "bj" = (
@@ -310,7 +310,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "cu" = (
-/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "cy" = (
@@ -421,7 +421,7 @@
 "dx" = (
 /obj/item/storage/belt/lifesaver/full,
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "dB" = (
@@ -841,7 +841,7 @@
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 9;
 	pixel_y = 19
 	},
@@ -1119,7 +1119,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
 "lm" = (
-/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "lp" = (
@@ -1225,51 +1225,51 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "mC" = (
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -1655,7 +1655,7 @@
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 10;
 	pixel_y = 23
 	},
@@ -1899,7 +1899,7 @@
 /turf/closed/wall/mainship/outer,
 /area/oscar_outpost)
 "rC" = (
-/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "rG" = (
@@ -2397,7 +2397,7 @@
 	},
 /area/oscar_outpost)
 "xj" = (
-/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher,
 /obj/structure/platform/trench{
 	dir = 1
 	},
@@ -2441,7 +2441,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "yc" = (
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -2858,58 +2858,58 @@
 /area/oscar_outpost/outside/northeast)
 "Dj" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost)
 "Dk" = (
-/obj/effect/spawner/random/structure/m42c/oscaroutpost,
+/obj/effect/spawner/random/misc/structure/m42c/oscaroutpost,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -2976,56 +2976,56 @@
 /area/oscar_outpost)
 "DP" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/structure/gascan,
-/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "DV" = (
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -3396,7 +3396,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "HI" = (
-/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
@@ -3669,8 +3669,8 @@
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
-/obj/effect/spawner/random/kitchen,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor,
 /area/oscar_outpost)
 "KJ" = (
@@ -3734,7 +3734,7 @@
 	plantname = "barley"
 	},
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor,
 /area/oscar_outpost)
 "Li" = (
@@ -3857,8 +3857,8 @@
 "LU" = (
 /obj/item/storage/surgical_tray,
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/plushie/nospawnninetynine,
-/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "LV" = (
@@ -4124,7 +4124,7 @@
 /area/oscar_outpost/outside/northeast)
 "On" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/structure/random_broken_computer/small/pc,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/pc,
 /turf/open/floor,
 /area/oscar_outpost)
 "Oo" = (
@@ -4152,51 +4152,51 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "OI" = (
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -4430,7 +4430,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "Qz" = (
-/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "QE" = (
@@ -4487,7 +4487,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northeast)
 "Rv" = (
-/obj/effect/spawner/random/structure/crate/medsupplies/alwaysspawns,
+/obj/effect/spawner/random/misc/structure/crate/medsupplies/alwaysspawns,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "Rw" = (
@@ -4604,7 +4604,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/northeast)
 "Sl" = (
-/obj/effect/spawner/random/structure/rollerbed,
+/obj/effect/spawner/random/medical/structure/rollerbed,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "So" = (
@@ -4618,7 +4618,7 @@
 	},
 /area/oscar_outpost)
 "Ss" = (
-/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "St" = (
@@ -4665,8 +4665,8 @@
 "SU" = (
 /obj/structure/rack,
 /obj/effect/spawner/random_set/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "SV" = (
@@ -4878,11 +4878,11 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Vw" = (
-/obj/effect/spawner/random/beaker/regularweighted{
+/obj/effect/spawner/random/medical/beaker/regularweighted{
 	pixel_x = 7;
 	pixel_y = 9
 	},
-/obj/effect/spawner/random/beaker/regularweighted{
+/obj/effect/spawner/random/medical/beaker/regularweighted{
 	pixel_x = -5;
 	pixel_y = 9
 	},
@@ -4942,7 +4942,7 @@
 /area/oscar_outpost/outside/west)
 "Wa" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/structure/random_broken_computer/small/pc{
+/obj/effect/spawner/random/machinery/random_broken_computer/small/pc{
 	dir = 1
 	},
 /turf/open/floor,
@@ -5050,7 +5050,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/road)
 "Xf" = (
-/obj/effect/spawner/random/structure/m42c/oscaroutpost,
+/obj/effect/spawner/random/misc/structure/m42c/oscaroutpost,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northwest)
 "Xk" = (
@@ -5106,39 +5106,39 @@
 /area/oscar_outpost/outside/northwest)
 "Ye" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -2;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 4;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -2;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 4;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -2;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 4;
 	pixel_y = 8
 	},

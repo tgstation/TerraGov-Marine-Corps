@@ -157,7 +157,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "ie" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "if" = (
@@ -497,7 +497,7 @@
 /area/bigredv2/outside/office_complex)
 "vU" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "vW" = (
@@ -506,7 +506,7 @@
 /area/bigredv2/outside/office_complex)
 "wh" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "wo" = (
@@ -588,7 +588,7 @@
 /area/bigredv2/outside/office_complex)
 "zx" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/folder/nooffset,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "zI" = (
@@ -799,8 +799,8 @@
 /area/bigredv2/outside/office_complex)
 "IL" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "IO" = (
@@ -1007,8 +1007,8 @@
 /area/bigredv2/outside/office_complex)
 "RR" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "RT" = (
@@ -1031,7 +1031,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "Td" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
@@ -1142,7 +1142,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "Zt" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
@@ -1152,7 +1152,7 @@
 /area/bigredv2/outside/office_complex)
 "ZG" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "ZR" = (

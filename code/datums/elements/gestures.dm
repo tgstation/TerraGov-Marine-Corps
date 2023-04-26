@@ -1,5 +1,5 @@
 /datum/element/gesture
-	element_flags = ELEMENT_DETACH
+	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 	var/turf/starting_mob_turf
 	var/turf/starting_turf
 

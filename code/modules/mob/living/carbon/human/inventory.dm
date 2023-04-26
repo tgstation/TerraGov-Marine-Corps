@@ -464,6 +464,34 @@
 		if(SLOT_IN_HEAD)
 			return head
 
+/mob/living/carbon/human/get_equipped_slot(obj/equipped_item)
+	if(..())
+		return
+
+	if(equipped_item == wear_suit)
+		. = SLOT_WEAR_SUIT
+	else if(equipped_item == w_uniform)
+		. = SLOT_W_UNIFORM
+	else if(equipped_item == shoes)
+		. = SLOT_SHOES
+	else if(equipped_item == belt)
+		. = SLOT_BELT
+	else if(equipped_item == gloves)
+		. = SLOT_GLOVES
+	else if(equipped_item == glasses)
+		. = SLOT_GLASSES
+	else if(equipped_item == head)
+		. = SLOT_HEAD
+	else if(equipped_item == wear_ear)
+		. = SLOT_EARS
+	else if(equipped_item == wear_id)
+		. = SLOT_WEAR_ID
+	else if(equipped_item == r_store)
+		. = SLOT_R_STORE
+	else if(equipped_item == l_store)
+		. = SLOT_L_STORE
+	else if(equipped_item == s_store)
+		. = SLOT_S_STORE
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
 	if(I.flags_item & ITEM_ABSTRACT)

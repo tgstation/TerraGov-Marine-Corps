@@ -58,6 +58,7 @@
 
 /obj/item/circuitboard/airlock
 	name = "airlock electronics"
+	desc = "Required in the construction of an airlock."
 	icon_state = "door_electronics"
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	var/list/conf_access = null

@@ -290,7 +290,7 @@ WEAPONS
 /datum/supply_packs/weapons/tx54_airburst
 	name = "GL-54 airburst grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54)
-	cost = 40
+	cost = 20
 
 /datum/supply_packs/weapons/tx54_incendiary
 	name = "GL-54 incendiary grenade magazine"
@@ -302,6 +302,16 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
 	cost = 100
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/tx55
+	name = "AR-55 OICW Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/tx55)
+	cost = 525
+
+/datum/supply_packs/weapons/tx55/ammo
+	name = "AR-55 OICW rifle magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx55)
+	cost = 25
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "RL-160 Recoilless rifle kit"
@@ -581,6 +591,12 @@ WEAPONS
 	name = "Type X back fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank/X)
 	cost = 600
+
+/datum/supply_packs/weapons/fueltank
+	name = "X-fuel tank"
+	contains = list(/obj/structure/reagent_dispensers/fueltank/xfuel)
+	cost = 600
+	containertype = null
 
 /datum/supply_packs/weapons/rpgoneuse
 	name = "RL-72 Disposable RPG"
@@ -1186,7 +1202,7 @@ ENGINEERING
 	name = "electrical maintenance supplies"
 	contains = list(
 		/obj/item/storage/toolbox/electrical,
-		/obj/item/clothing/gloves/yellow,
+		/obj/item/clothing/gloves/insulated,
 		/obj/item/cell,
 		/obj/item/cell/high,
 	)

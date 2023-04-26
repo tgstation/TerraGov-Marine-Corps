@@ -864,6 +864,7 @@
 /mob/proc/set_stat(new_stat)
 	if(new_stat == stat)
 		return
+	remove_all_indicators()
 	. = stat //old stat
 	stat = new_stat
 

@@ -311,8 +311,8 @@
 /area/whiskey_outpost/outside/north)
 "bn" = (
 /obj/machinery/optable,
-/obj/effect/spawner/random/surgical,
-/obj/effect/spawner/random/organ,
+/obj/effect/spawner/random/medical/surgical,
+/obj/effect/spawner/random/medical/organ,
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -637,10 +637,10 @@
 	},
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/glass/beaker/noreact,
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = -2
 	},
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = -3;
 	pixel_y = 4
 	},
@@ -1411,7 +1411,7 @@
 	},
 /area/whiskey_outpost)
 "gr" = (
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "gs" = (
@@ -2689,10 +2689,10 @@
 	pixel_y = 10
 	},
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/pillbottle,
+/obj/effect/spawner/random/medical/pillbottle,
 /obj/item/storage/pill_bottle/alkysine{
 	pixel_x = -8
 	},
@@ -4022,7 +4022,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "tq" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "tt" = (
@@ -4043,7 +4043,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "tz" = (
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "tA" = (
@@ -4069,7 +4069,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "tE" = (
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "tK" = (
@@ -4896,7 +4896,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/north)
 "yz" = (
-/obj/effect/spawner/random/organ,
+/obj/effect/spawner/random/medical/organ,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "yF" = (
@@ -5033,7 +5033,7 @@
 /area/whiskey_outpost/outside/south)
 "zy" = (
 /obj/effect/spawner/gibspawner/human,
-/obj/effect/spawner/random/organ,
+/obj/effect/spawner/random/medical/organ,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "zD" = (
@@ -5493,7 +5493,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "Co" = (
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "Cp" = (
@@ -5637,7 +5637,7 @@
 /obj/item/healthanalyzer,
 /obj/item/healthanalyzer,
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/pillbottle,
+/obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "Df" = (
@@ -5759,7 +5759,7 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost)
 "Ea" = (
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "Eb" = (
@@ -6042,7 +6042,7 @@
 /area/whiskey_outpost/outside/west)
 "Gn" = (
 /obj/effect/spawner/gibspawner/human,
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Gp" = (
@@ -7551,7 +7551,7 @@
 	pixel_y = 10
 	},
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/surgical,
+/obj/effect/spawner/random/medical/surgical,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "RP" = (
@@ -7641,7 +7641,7 @@
 "Sj" = (
 /obj/item/clothing/suit/surgical,
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = -2
 	},
 /obj/item/armor_module/storage/uniform/white_vest,
@@ -8028,7 +8028,7 @@
 	desc = "A premium single-malt whiskey. To celebrate your impending doom";
 	name = "\improper Whiskey Outpost Whiskey"
 	},
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = 3;
 	pixel_y = 4
 	},
@@ -8347,7 +8347,7 @@
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "XV" = (
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)

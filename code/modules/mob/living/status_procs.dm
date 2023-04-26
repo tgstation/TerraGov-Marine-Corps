@@ -687,7 +687,7 @@
 	return slowdown
 
 /mob/living/carbon/xenomorph/add_slowdown(amount)
-	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
+	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE) || is_charging >= CHARGE_ON)
 		return
 	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
 

@@ -51,6 +51,19 @@
 	},
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/crew_quarters/captain)
+"afF" = (
+/obj/effect/spawner/random/engineering/pickaxe,
+/turf/open/floor/plating,
+/area/space)
+"agj" = (
+/obj/structure/rack,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/centcom/valhalla/security/brig)
 "ahj" = (
 /turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/one)
@@ -110,6 +123,15 @@
 "akE" = (
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/supplypod/loading/one)
+"alO" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/cheesecake,
+/obj/item/reagent_containers/food/snacks/pastries/lemoncakeslice,
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_y = 3
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "amL" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker/cryoxadone{
@@ -178,6 +200,18 @@
 "apt" = (
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/supplypod/loading/four)
+"apv" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/emergency{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/item/storage/toolbox/emergency,
+/obj/item/tool/shovel,
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/quartermaster/miningdock)
 "apI" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -509,12 +543,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/port)
-"aGd" = (
-/obj/structure/table/reinforced,
-/obj/item/lightreplacer,
-/obj/effect/spawner/random/powercell,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/engine/engineering)
 "aHv" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/glasses/science{
@@ -679,6 +707,21 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/medbay)
+"aPc" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/centcom/valhalla/security/checkpoint)
+"aQd" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/chef_recipes,
+/obj/item/taperecorder,
+/obj/item/attachable/flashlight,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig)
 "aQF" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -734,6 +777,16 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters/heads/hop)
+"aVj" = (
+/obj/item/clothing/glasses/hud/xenohud,
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/melee,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "aVk" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /turf/open/floor/mainship/sterile/white,
@@ -908,20 +961,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/bridge)
-"bax" = (
-/obj/structure/closet/fireaxecabinet{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 4
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/bridge)
 "baD" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating,
@@ -955,6 +994,17 @@
 "bcm" = (
 /turf/closed/wall,
 /area/centcom/valhalla/crew_quarters/heads/hop)
+"bcC" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/port)
 "bcJ" = (
 /obj/machinery/alarm/server{
 	dir = 4
@@ -1086,14 +1136,6 @@
 	},
 /turf/open/floor/carpet/side,
 /area/tdome/tdomeobserve)
-"bme" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -32
-	},
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla/library)
 "bmt" = (
 /obj/machinery/computer/atmoscontrol{
 	dir = 8
@@ -1111,11 +1153,6 @@
 /obj/structure/sign/vacuum,
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/maintenance/starboardsolar)
-"bnh" = (
-/obj/effect/spawner/random/pickaxe,
-/obj/effect/turf_decal/sandedge/corner2,
-/turf/open/floor/plating,
-/area/centcom/valhalla/security/brig/interiorcavern)
 "bnV" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/dmg1,
@@ -1156,12 +1193,11 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
-"bue" = (
-/obj/machinery/status_display{
-	pixel_x = 32
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/primary/aft)
+"bua" = (
+/obj/item/storage/fancy/candle_box,
+/obj/structure/rack,
+/turf/open/floor/wood,
+/area/centcom/valhalla/library)
 "bur" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /obj/machinery/door/poddoor/shutters/mainship/open{
@@ -1217,15 +1253,6 @@
 "bAx" = (
 /turf/closed/wall,
 /area/centcom/valhalla/bridge)
-"bAN" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/box,
-/obj/effect/spawner/random/trash,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/port)
 "bAZ" = (
 /obj/structure/noticeboard{
 	dir = 1;
@@ -1336,6 +1363,22 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/lightred,
 /area/centcom/valhalla/maintenance/starboardsolar)
+"bIf" = (
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -8
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 14
+	},
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/soup/milosoup,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "bIE" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
@@ -1380,6 +1423,13 @@
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/centcom/valhalla/chapel/main)
+"bMy" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner,
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 1
+	},
+/turf/open/floor/mainship/tcomms,
+/area/centcom/valhalla/comms)
 "bMI" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -1429,6 +1479,26 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla/primary/fore/port)
+"bTe" = (
+/obj/item/reagent_containers/food/drinks/cans/sodawater,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit,
+/obj/item/reagent_containers/food/snacks/pastries/xemeatpie{
+	pixel_y = 7
+	},
+/obj/effect/spawner/random/food_or_drink/burger{
+	pixel_x = -4;
+	pixel_y = -1
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "bTq" = (
 /obj/machinery/status_display{
 	pixel_y = 32
@@ -1468,6 +1538,17 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
+/area/centcom/valhalla/port)
+"bVy" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/folder,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/port)
 "bVK" = (
 /obj/structure/table/reinforced,
@@ -1555,23 +1636,21 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/security/detectives_office)
-"bZY" = (
-/obj/item/reagent_containers/food/drinks/britcup,
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/rofflewaffles,
-/obj/item/reagent_containers/food/snacks/soup/larvasoup,
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
+"bZX" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/grimy,
+/area/centcom/valhalla/crew_quarters)
 "cae" = (
 /obj/item/storage/secure/safe{
 	pixel_y = -6
 	},
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/crew_quarters/heads/hop)
+"caj" = (
+/obj/structure/table,
+/obj/item/taperecorder,
+/turf/open/floor/tile/dark,
+/area/centcom/valhalla/library)
 "caq" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/tile/darkgreen,
@@ -1609,29 +1688,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"cca" = (
-/obj/structure/table/woodentable,
-/obj/effect/spawner/random/burger,
-/obj/item/reagent_containers/food/snacks/pastries/pumpkinpieslice{
-	pixel_x = -5
-	},
-/obj/item/reagent_containers/food/snacks/sandwiches/meatbreadslice{
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/snacks/pastries/meatpie{
-	pixel_x = 5;
-	pixel_y = -4
-	},
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = -14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = -2;
-	pixel_y = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "cdt" = (
 /obj/machinery/chem_dispenser/valhalla,
 /turf/open/floor/tile/dark/gray,
@@ -1676,6 +1732,11 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/crew_quarters/bar)
+"chH" = (
+/turf/open/floor/carpet/side{
+	dir = 1
+	},
+/area/tdome/tdomeobserve)
 "cjh" = (
 /obj/structure/displaycase{
 	req_access = null
@@ -1724,6 +1785,13 @@
 /obj/structure/janitorialcart,
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters/heads/hop)
+"cny" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig)
 "cnE" = (
 /obj/machinery/vending/engivend/nopower,
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -1761,10 +1829,6 @@
 /obj/item/bedsheet/captain,
 /turf/open/floor/grimy,
 /area/centcom/valhalla/crew_quarters/captain)
-"cpx" = (
-/obj/effect/spawner/random/trash,
-/turf/open/floor/wood,
-/area/centcom/valhalla/library)
 "cpX" = (
 /obj/structure/table,
 /obj/machinery/light_switch{
@@ -1924,6 +1988,21 @@
 	dir = 4
 	},
 /area/centcom/valhalla/secondary/exit)
+"czy" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/pastries/plaincakeslice,
+/obj/item/reagent_containers/food/snacks/soup/nettlesoup{
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/food/snacks/no_raisin{
+	pixel_x = 6
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "czV" = (
 /obj/structure/door_assembly/door_assembly_mhatch,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -2032,6 +2111,18 @@
 	dir = 5
 	},
 /area/centcom/valhalla/medical/morgue)
+"cEr" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/mexican/taco,
+/obj/item/reagent_containers/food/snacks/sandwiches/twobread,
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = -14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_y = 4
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "cFb" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -2156,6 +2247,28 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/crew_quarters/captain)
+"cNb" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/soylenviridians{
+	pixel_x = 1;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/food/snacks/pastries/applepie{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/snacks/meatsteak{
+	pixel_x = 1;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice{
+	pixel_x = 3
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "cNG" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /turf/open/floor/grimy,
@@ -2273,6 +2386,10 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
+"cYe" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/wood/broken/seven,
+/area/centcom/valhalla/crew_quarters)
 "cYi" = (
 /obj/structure/table,
 /obj/item/storage/donut_box,
@@ -2356,21 +2473,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
-"dbr" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/pastries/plaincakeslice,
-/obj/item/reagent_containers/food/snacks/soup/nettlesoup{
-	pixel_y = 14
-	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
-	pixel_x = 6
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = -2;
-	pixel_y = 7
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "dbM" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -2519,20 +2621,6 @@
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/chapel/main)
-"dqp" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sandwiches/jelliedtoast,
-/obj/effect/spawner/random/donut,
-/obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti,
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = 14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = -4;
-	pixel_y = 5
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "dqB" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/chef_recipes,
@@ -2609,12 +2697,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters/captain)
-"dxc" = (
-/obj/effect/spawner/random/trash,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/centcom/valhalla/port)
 "dxp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -2686,6 +2768,20 @@
 	dir = 5
 	},
 /area/centcom/valhalla/bridge)
+"dAo" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/glass/large_stack,
+/obj/item/stack/sheet/plasteel/large_stack,
+/obj/item/tool/crowbar,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/engine/engineering)
 "dAC" = (
 /turf/open/floor/freezer,
 /area/centcom/valhalla/crew_quarters/kitchen)
@@ -2745,14 +2841,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/medbay)
-"dDN" = (
-/obj/machinery/status_display{
-	pixel_y = -32
-	},
-/turf/open/floor/tile/black{
-	dir = 8
-	},
-/area/centcom/valhalla/secondary/exit)
 "dDT" = (
 /obj/structure/sign/securearea{
 	pixel_x = -32
@@ -2780,13 +2868,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"dFG" = (
-/obj/structure/table/woodentable,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
-/turf/open/floor/wood,
-/area/tdome/tdomeobserve)
 "dFY" = (
 /obj/item/tool/wrench,
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -2993,21 +3074,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/ai_monitored/storage/secure)
-"dPI" = (
-/obj/item/reagent_containers/food/drinks/coffee,
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/pizzapasta/pastatomato,
-/obj/item/reagent_containers/food/snacks/soup/mysterysoup{
-	pixel_y = 12
-	},
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = 14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_y = 5
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "dPO" = (
 /obj/structure/table/reinforced,
 /obj/item/seeds/sugarcaneseed{
@@ -3043,20 +3109,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/ai_monitored/storage/secure)
-"dPY" = (
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/bridge)
 "dPZ" = (
 /obj/machinery/photocopier,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -3137,15 +3189,6 @@
 /obj/item/toy/deck,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"dSu" = (
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/warning_stripes/box/small{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/quartermaster/storage)
 "dSO" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -3178,17 +3221,6 @@
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/storage)
-"dTO" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/item/fuelCell/random,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/port)
 "dUh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -3326,6 +3358,25 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters/captain)
+"efv" = (
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -8
+	},
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/pastries/orangecakeslice,
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "efJ" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -3413,21 +3464,6 @@
 /obj/item/taperecorder,
 /turf/open/floor/wood/broken/six,
 /area/centcom/valhalla/library)
-"eoT" = (
-/obj/machinery/status_display/ai{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/crew_quarters/heads/hop)
 "epz" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder/nopower{
@@ -3508,6 +3544,11 @@
 	dir = 4
 	},
 /area/tdome)
+"eyr" = (
+/turf/open/floor/tile/black{
+	dir = 8
+	},
+/area/centcom/valhalla/secondary/exit)
 "eys" = (
 /obj/machinery/door_control/old/valhalla{
 	id = "cargounload";
@@ -3555,36 +3596,6 @@
 /obj/structure/sign/nosmoking_1,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"eBc" = (
-/obj/machinery/status_display{
-	pixel_x = 32
-	},
-/obj/structure/sign/securearea{
-	pixel_x = 32;
-	pixel_y = -32
-	},
-/obj/machinery/door_control/old/valhalla{
-	id = "hopline";
-	name = "Queue Shutters Control";
-	pixel_x = -8;
-	pixel_y = -24
-	},
-/obj/machinery/door_control/old/valhalla{
-	id = "hopblast";
-	name = "Lockdown Blast doors";
-	pixel_x = 8;
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/crew_quarters/heads/hop)
 "eBr" = (
 /obj/machinery/door_control/unmeltable{
 	dir = 4;
@@ -3606,6 +3617,13 @@
 "eCH" = (
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/exterior)
+"eDi" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/plating,
+/area/centcom/valhalla/starboard)
 "eDu" = (
 /obj/effect/turf_decal/tile/black{
 	dir = 1
@@ -3675,24 +3693,18 @@
 	dir = 5
 	},
 /area/centcom/valhalla/bridge)
-"eKN" = (
-/obj/machinery/status_display{
-	pixel_y = -32
+"eKS" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/birthdaycake,
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = -14
 	},
-/turf/open/floor/tile/escape,
-/area/centcom/valhalla/secondary/exit)
-"eLn" = (
-/obj/structure/table,
-/obj/item/clothing/mask/cigarette/cigar/cohiba{
-	pixel_x = 3
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -4;
+	pixel_y = 3
 	},
-/obj/item/clothing/mask/cigarette/cigar/havana{
-	pixel_x = -3
-	},
-/obj/item/clothing/mask/cigarette/cigar,
-/obj/effect/spawner/random/sunglasses,
-/turf/open/floor/grimy,
-/area/centcom/valhalla/security/detectives_office)
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "eLQ" = (
 /obj/effect/landmark/thunderdome/admin,
 /obj/structure/bed/chair/sofa{
@@ -3930,26 +3942,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
-"faS" = (
-/obj/item/reagent_containers/food/drinks/cans/sodawater,
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit,
-/obj/item/reagent_containers/food/snacks/pastries/xemeatpie{
-	pixel_y = 7
-	},
-/obj/effect/spawner/random/burger{
-	pixel_x = -4;
-	pixel_y = -1
-	},
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = 14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = 2;
-	pixel_y = 6
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "fbp" = (
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig)
@@ -3991,6 +3983,26 @@
 /obj/structure/bed/stool,
 /turf/open/floor/wood,
 /area/centcom/valhalla/port)
+"fgf" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/applecake,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/effect/spawner/random/food_or_drink/burger{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_y = 2
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "fgs" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/green{
@@ -4066,6 +4078,18 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/primary/aft)
+"fiY" = (
+/obj/structure/table,
+/obj/item/clothing/mask/cigarette/cigar/cohiba{
+	pixel_x = 3
+	},
+/obj/item/clothing/mask/cigarette/cigar/havana{
+	pixel_x = -3
+	},
+/obj/item/clothing/mask/cigarette/cigar,
+/obj/effect/spawner/random/clothing/sunglasses,
+/turf/open/floor/grimy,
+/area/centcom/valhalla/security/detectives_office)
 "fkc" = (
 /obj/structure/bedsheetbin,
 /turf/open/floor/tile/cafe,
@@ -4109,16 +4133,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/quartermaster/storage)
-"fpS" = (
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
-/obj/machinery/status_display{
-	pixel_x = 32
-	},
-/obj/structure/table,
-/turf/open/floor/grimy,
-/area/centcom/valhalla/security/detectives_office)
 "fqk" = (
 /obj/effect/landmark/thunderdome/one,
 /obj/machinery/camera/autoname/thunderdome/hidden,
@@ -4165,10 +4179,6 @@
 	},
 /turf/open/floor/grimy,
 /area/centcom/valhalla/primary/aft)
-"fuL" = (
-/obj/effect/spawner/random/pickaxe,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/centcom/valhalla/security/brig/interiorcavern)
 "fuY" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /turf/open/floor/plating,
@@ -4259,6 +4269,26 @@
 	dir = 5
 	},
 /area/centcom/valhalla/crew_quarters/captain)
+"fCQ" = (
+/obj/structure/table/reinforced,
+/obj/item/tool/lighter{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/tool/lighter,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -7;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/centcom/valhalla/crew_quarters/bar)
 "fCR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -4477,27 +4507,6 @@
 	dir = 9
 	},
 /area/centcom/valhalla/medical/medbay)
-"fSa" = (
-/obj/structure/rack,
-/obj/item/ammo_magazine/rifle/pepperball,
-/obj/item/ammo_magazine/rifle/pepperball,
-/obj/item/ammo_magazine/rifle/pepperball{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/ammo_magazine/rifle/pepperball{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/structure/extinguisher_cabinet{
-	dir = 4
-	},
-/obj/item/weapon/gun/rifle/pepperball,
-/obj/effect/spawner/random/gun/shotgun,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/centcom/valhalla/security/brig)
 "fSc" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
@@ -4510,15 +4519,6 @@
 	},
 /turf/open/floor/wood/broken/six,
 /area/centcom/valhalla/crew_quarters/heads/hop)
-"fST" = (
-/obj/item/clothing/glasses/hud/xenohud,
-/obj/item/clothing/glasses/hud/xenohud{
-	pixel_x = -5
-	},
-/obj/structure/rack,
-/obj/effect/spawner/random/melee,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/security/brig/interiorcavern)
 "fTg" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/machinery/vending/medical/valhalla,
@@ -4674,6 +4674,17 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/security/brig)
+"geM" = (
+/obj/machinery/computer/secure_data{
+	dir = 8
+	},
+/obj/structure/table,
+/turf/open/floor/grimy,
+/area/centcom/valhalla/security/detectives_office)
+"ggq" = (
+/obj/machinery/vending/tool/nopower,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/storage/primary)
 "ggF" = (
 /obj/machinery/light_switch{
 	pixel_x = -24;
@@ -4842,6 +4853,26 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
+"gpz" = (
+/obj/structure/bedsheetbin,
+/obj/structure/extinguisher_cabinet,
+/obj/item/radio/intercom{
+	name = "Station Intercom"
+	},
+/obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/obj/structure/sign/atmosplaque{
+	dir = 4
+	},
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/centcom/valhalla/janitor)
 "gqM" = (
 /obj/machinery/newscaster{
 	dir = 4
@@ -5215,14 +5246,6 @@
 "gQL" = (
 /turf/closed/wall,
 /area/centcom/valhalla/secondary/entry)
-"gSN" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/port)
 "gUo" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -5272,18 +5295,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/crew_quarters/kitchen)
-"gZH" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/gun/sidearms{
-	pixel_y = 3
-	},
-/obj/effect/spawner/random/gun/sidearms{
-	pixel_y = -2
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/centcom/valhalla/security/brig)
 "hag" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -5313,15 +5324,6 @@
 	dir = 8
 	},
 /area/centcom/valhalla/primary/aft)
-"hbV" = (
-/obj/structure/rack,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/centcom/valhalla/security/brig)
 "hda" = (
 /obj/machinery/button/valhalla/xeno_button{
 	link = "marinetop"
@@ -5384,25 +5386,18 @@
 	dir = 5
 	},
 /area/centcom/valhalla/port)
-"hiw" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/machinery/door/airlock/highsecurity{
-	locked = 1;
-	name = "AI Vault Chamber"
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
+"hii" = (
+/obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/door/poddoor/mainship/indestructible{
-	dir = 1;
-	id = "securestoragelockdown";
-	name = "Secure Storage Heavy Blast Shutters"
+/obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/tile/black,
+/obj/effect/turf_decal/tile/black{
+	dir = 1
 	},
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla/ai_monitored/storage/secure)
+/obj/machinery/power/monitor/core,
+/turf/open/floor/tile/dark2,
+/area/centcom/valhalla/engine/atmos_monitoring)
 "hiA" = (
 /obj/structure/table,
 /obj/item/instrument/guitar,
@@ -5420,6 +5415,14 @@
 "hiF" = (
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/starboard_hallway)
+"hja" = (
+/obj/structure/table/reinforced,
+/obj/item/tank/oxygen/red,
+/obj/structure/sign/nosmoking_1,
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/engine,
+/area/centcom/valhalla/engine/engineering)
 "hkw" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -5463,6 +5466,10 @@
 	dir = 1
 	},
 /area/centcom/valhalla/quartermaster/storage)
+"hnf" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/port)
 "hng" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -5494,6 +5501,16 @@
 	dir = 5
 	},
 /area/centcom/valhalla/quartermaster/storage)
+"hpS" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/blood/oil,
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/fore)
 "hqh" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
@@ -5616,25 +5633,6 @@
 	dir = 4
 	},
 /area/centcom/valhalla/primary/starboard)
-"hAG" = (
-/obj/structure/rack,
-/obj/item/radio/intercom{
-	dir = 4;
-	name = "Station Intercom"
-	},
-/obj/effect/spawner/random/gun/sidearms{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/centcom/valhalla/security/brig)
 "hCh" = (
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -5673,28 +5671,6 @@
 	dir = 4
 	},
 /area/centcom/valhalla/security/brig)
-"hCP" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/soylenviridians{
-	pixel_x = 1;
-	pixel_y = -2
-	},
-/obj/item/reagent_containers/food/snacks/pastries/applepie{
-	pixel_x = -4
-	},
-/obj/item/reagent_containers/food/snacks/meatsteak{
-	pixel_x = 1;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice{
-	pixel_x = 3
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = 2;
-	pixel_y = 5
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "hDt" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -5756,16 +5732,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
-"hHi" = (
-/obj/machinery/status_display{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/warning_stripes/thick/corner,
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 1
-	},
-/turf/open/floor/mainship/tcomms,
-/area/centcom/valhalla/comms)
 "hIc" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -5852,16 +5818,6 @@
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
-"hNy" = (
-/obj/item/clothing/glasses/hud/xenohud,
-/obj/item/clothing/glasses/hud/xenohud{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/structure/rack,
-/obj/effect/spawner/random/melee,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/security/brig/interiorcavern)
 "hNU" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -6002,6 +5958,39 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/storage)
+"hVH" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/rifle/pepperball,
+/obj/item/ammo_magazine/rifle/pepperball,
+/obj/item/ammo_magazine/rifle/pepperball{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/ammo_magazine/rifle/pepperball{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 4
+	},
+/obj/item/weapon/gun/rifle/pepperball,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
+/area/centcom/valhalla/security/brig)
+"hWk" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/sliceable/sandwiches/xenomeatbread,
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "hXf" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -6039,18 +6028,21 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/starboard_hallway)
-"hZl" = (
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/side{
-	dir = 1
-	},
-/area/tdome/tdomeobserve)
-"hZF" = (
-/obj/machinery/status_display,
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla/storage/eva)
+"hZK" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/bearmeat,
+/obj/item/reagent_containers/food/snacks/bearmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat/xeno,
+/obj/item/reagent_containers/food/snacks/meat/xeno,
+/turf/open/floor/freezer,
+/area/centcom/valhalla/crew_quarters/kitchen)
 "hZN" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/crowbar,
@@ -6152,20 +6144,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/starboard_hallway)
-"igx" = (
-/obj/structure/table/reinforced,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
-/obj/item/stack/sheet/glass/large_stack,
-/obj/item/stack/sheet/plasteel/large_stack,
-/obj/item/tool/crowbar,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/effect/spawner/random/tool,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/engine/engineering)
 "igK" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave{
@@ -6193,6 +6171,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/starboard_hallway)
+"iiD" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/port)
 "ilh" = (
 /turf/open/floor/tile/brown{
 	dir = 8
@@ -6348,6 +6335,12 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
+"ivw" = (
+/obj/effect/spawner/random/misc/trash,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/centcom/valhalla/port)
 "ivQ" = (
 /turf/open/floor/tile/vault{
 	dir = 5
@@ -6510,6 +6503,13 @@
 /obj/effect/landmark/itemspawner/commie,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
+"iJo" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thick/corner,
+/turf/open/floor/mainship/tcomms,
+/area/centcom/valhalla/comms)
 "iJw" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -6544,21 +6544,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"iNM" = (
-/obj/machinery/teleport/station,
-/obj/machinery/status_display{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/teleporter)
 "iPn" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
@@ -6678,6 +6663,15 @@
 /obj/structure/closet/secure_closet/hydroponics,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/hydroponics)
+"jbF" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig)
 "jcb" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -6887,6 +6881,25 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/storage/eva)
+"jqE" = (
+/obj/machinery/door/firedoor{
+	dir = 2
+	},
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 1;
+	id = "securestoragelockdown";
+	name = "Secure Storage Heavy Blast Shutters"
+	},
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/tile/dark,
+/area/centcom/valhalla/ai_monitored/storage/secure)
 "jqT" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -6965,13 +6978,6 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/centcom/valhalla/crew_quarters/bar)
-"jty" = (
-/obj/structure/closet/cabinet,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -32
-	},
-/turf/open/floor/grimy,
-/area/centcom/valhalla/crew_quarters)
 "jtz" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/green{
@@ -7019,25 +7025,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
-"jwE" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/item/tool/wirecutters,
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/powercell,
-/obj/effect/landmark/itemspawner/madscientist,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/port)
-"jwO" = (
-/obj/structure/table,
-/obj/item/taperecorder,
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla/library)
 "jxj" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -7306,6 +7293,10 @@
 	},
 /turf/open/floor/freezer,
 /area/centcom/valhalla/crew_quarters/toilet)
+"jPS" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/crew_quarters/heads/hop)
 "jQw" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/mint,
@@ -7372,6 +7363,10 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/teleporter)
+"jTP" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/janitor)
 "jUa" = (
 /obj/structure/table/reinforced,
 /obj/machinery/smartfridge/chemistry/nopower,
@@ -7496,6 +7491,10 @@
 /obj/structure/table,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"kaD" = (
+/obj/machinery/status_display,
+/turf/closed/wall/mainship,
+/area/tdome)
 "kbR" = (
 /obj/structure/table,
 /obj/item/storage/donut_box,
@@ -7662,6 +7661,15 @@
 	dir = 5
 	},
 /area/centcom/valhalla/library)
+"klx" = (
+/obj/item/clothing/glasses/hud/xenohud,
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -5
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/melee,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "kmz" = (
 /obj/machinery/vending/weapon/valhalla,
 /obj/structure/window/reinforced{
@@ -7787,18 +7795,20 @@
 "krR" = (
 /turf/open/floor/freezer,
 /area/centcom/valhalla/crew_quarters/toilet)
-"ksc" = (
-/obj/item/storage/fancy/candle_box,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
-	},
-/obj/structure/rack,
-/turf/open/floor/wood,
-/area/centcom/valhalla/library)
 "ksv" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/crew_quarters/cafeteria)
+"ksF" = (
+/obj/structure/table,
+/obj/item/storage/fancy/candle_box{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/fancy/candle_box,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/grimy,
+/area/centcom/valhalla/chapel/main)
 "ksY" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -7905,6 +7915,10 @@
 "kCb" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/teleporter)
+"kCd" = (
+/obj/machinery/status_display,
+/turf/closed/wall/r_wall,
+/area/centcom/valhalla/security/brig)
 "kCL" = (
 /obj/machinery/vending/snack,
 /obj/structure/sign/securearea,
@@ -7947,6 +7961,18 @@
 /obj/structure/prop/mainship/suit_storage_prop,
 /turf/open/floor/plating,
 /area/centcom/valhalla/engine/engineering)
+"kEH" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/turf/open/floor/tile/dark,
+/area/centcom/valhalla/crew_quarters/bar)
 "kFc" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -8082,19 +8108,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/crew_quarters/bar)
-"kLM" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -8
-	},
-/obj/effect/spawner/random/kitchenknife,
-/obj/item/book/manual/chef_recipes,
-/turf/open/floor/mainship/sterile/white,
-/area/centcom/valhalla/crew_quarters/kitchen)
 "kME" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -8123,6 +8136,10 @@
 "kMT" = (
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"kNz" = (
+/obj/effect/spawner/random/engineering/pickaxe,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "kOY" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -8195,13 +8212,6 @@
 /obj/item/ammo_magazine/revolver/mateba,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/port)
-"kWa" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/security/brig)
 "kWn" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark/gray,
@@ -8211,6 +8221,10 @@
 /obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/hydroponics)
+"kXO" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/medical/medbay)
 "kYp" = (
 /obj/machinery/door_control/old/valhalla{
 	desc = "A remote control switch for the medbay foyer.";
@@ -8251,19 +8265,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/aft)
-"kZb" = (
-/obj/structure/closet/cabinet,
-/obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran,
-/obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran,
-/obj/item/weapon/chainsword,
-/obj/item/clothing/under/marine/imperial,
-/obj/item/clothing/shoes/marine/imperial,
-/obj/item/weapon/gun/energy/lasgun/lasrifle,
-/obj/item/cell/lasgun/lasrifle,
-/obj/item/cell/lasgun/lasrifle,
-/obj/item/cell/lasgun/lasrifle,
-/turf/open/floor/wood,
-/area/centcom/valhalla/port)
 "lce" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -8322,10 +8323,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla/port)
-"lfP" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall,
 /area/centcom/valhalla/port)
 "lgF" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8546,24 +8543,6 @@
 /obj/structure/extinguisher_cabinet,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/starboard_hallway)
-"ltl" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice{
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/food/drinks/dry_ramen,
-/obj/item/reagent_containers/food/snacks/pastries/chocolatecakeslice{
-	pixel_y = 9
-	},
-/obj/effect/spawner/random/burger{
-	pixel_x = -4;
-	pixel_y = 1
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_y = 5
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "ltq" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -8580,18 +8559,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/quartermaster/miningdock)
-"ltH" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/gloves/orange,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/explosive/grenade/chem_grenade/cleaner,
-/obj/item/explosive/grenade/chem_grenade/cleaner,
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/turf/open/floor/tile/lightred,
-/area/centcom/valhalla/janitor)
 "luM" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -8613,17 +8580,10 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
-"lwu" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/rack,
-/obj/item/folder,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tool,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/port)
+"lxD" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/crew_quarters)
 "lzH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -8656,19 +8616,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/medbay)
-"lAw" = (
-/obj/structure/table/reinforced,
-/obj/item/book/manual/chef_recipes,
-/obj/item/taperecorder,
-/obj/machinery/status_display{
-	pixel_y = -32
-	},
-/obj/item/attachable/flashlight,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/security/brig)
 "lAU" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -8690,18 +8637,6 @@
 /turf/open/floor/tile/brown{
 	dir = 10
 	},
-/area/centcom/valhalla/quartermaster/miningdock)
-"lDT" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/emergency{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/effect/spawner/random/pickaxe,
-/obj/item/storage/toolbox/emergency,
-/obj/item/tool/shovel,
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/miningdock)
 "lEo" = (
 /obj/structure/closet/emcloset,
@@ -8737,6 +8672,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig)
+"lHp" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "lIl" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
@@ -8779,6 +8718,25 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/storage/primary)
+"lKU" = (
+/obj/structure/rack,
+/obj/item/radio/intercom{
+	dir = 4;
+	name = "Station Intercom"
+	},
+/obj/effect/spawner/random/weaponry/gun/sidearms{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
+/area/centcom/valhalla/security/brig)
 "lKY" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/mechanical,
@@ -8798,6 +8756,18 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/crew_quarters/heads/hop)
+"lMv" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/gun/sidearms{
+	pixel_y = 3
+	},
+/obj/effect/spawner/random/weaponry/gun/sidearms{
+	pixel_y = -2
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
+/area/centcom/valhalla/security/brig)
 "lMJ" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -8828,6 +8798,18 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/crew_quarters/theatre)
+"lON" = (
+/obj/machinery/teleport/station,
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/centcom/valhalla/teleporter)
 "lOR" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
@@ -8848,6 +8830,27 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/aft)
+"lRj" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/validsalad,
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = -14
+	},
+/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
+/obj/item/reagent_containers/food/snacks/baguette{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/snacks/carrotfries{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "lRu" = (
 /obj/structure/bed/roller,
 /obj/machinery/iv_drip,
@@ -8868,6 +8871,17 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/engine/atmos_monitoring)
+"lVb" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/item/tool/wirecutters,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/landmark/itemspawner/madscientist,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/port)
 "lVi" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -8883,21 +8897,6 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/hydroponics)
-"lXg" = (
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/obj/effect/turf_decal/tile/black,
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/machinery/power/monitor/core,
-/turf/open/floor/tile/dark2,
-/area/centcom/valhalla/engine/atmos_monitoring)
 "lXm" = (
 /obj/machinery/power/smes{
 	charge = 5e+006
@@ -8984,13 +8983,6 @@
 "mcp" = (
 /turf/open/floor/tile/chapel,
 /area/centcom/valhalla/chapel/main)
-"mcr" = (
-/obj/structure/table/woodentable,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -32
-	},
-/turf/open/floor/wood,
-/area/tdome/tdomeobserve)
 "mcN" = (
 /obj/item/storage/box/visual/grenade/teargas{
 	pixel_x = 3;
@@ -9099,6 +9091,14 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/break_room)
+"mhA" = (
+/obj/structure/table,
+/obj/item/ammo_magazine/shotgun/beanbag,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/centcom/valhalla/crew_quarters/bar)
 "mhC" = (
 /turf/open/floor/tile/neutral/corner{
 	dir = 1
@@ -9189,6 +9189,10 @@
 /obj/structure/prop/mainship/suit_storage_prop,
 /turf/open/floor/plating,
 /area/centcom/valhalla/storage/eva)
+"moX" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/plating/scorched,
+/area/centcom/valhalla/starboard)
 "moY" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -9251,12 +9255,6 @@
 "mvn" = (
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/security/brig)
-"mvp" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/gloves/yellow,
-/obj/item/storage/box/lights/mixed,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/storage/primary)
 "mwU" = (
 /obj/structure/bookcase,
 /obj/item/book/manual/supermatter_engine,
@@ -9450,6 +9448,10 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/engine/engineering)
+"mKn" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/wood,
+/area/centcom/valhalla/library)
 "mKq" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp/green{
@@ -9472,6 +9474,16 @@
 	dir = 8
 	},
 /area/centcom/valhalla/starboard_hallway)
+"mKS" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 6
+	},
+/obj/structure/rack,
+/obj/item/tool/wrench,
+/obj/item/stack/pipe_cleaner_coil/random/five,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/fore)
 "mLC" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -9956,6 +9968,16 @@
 /obj/structure/sign/nosmoking_1,
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/engine/engineering)
+"nqF" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/item/stack/cable_coil/five,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/starboard)
 "nrq" = (
 /obj/machinery/newscaster,
 /turf/closed/wall,
@@ -10045,11 +10067,6 @@
 /obj/machinery/status_display/ai,
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/engine/engineering)
-"nuz" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
-/turf/open/floor/plating,
-/area/centcom/valhalla/port)
 "nuE" = (
 /obj/machinery/door/firedoor{
 	dir = 2
@@ -10148,6 +10165,21 @@
 	dir = 5
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
+"nBu" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/gloves/orange,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/explosive/grenade/chem_grenade/cleaner,
+/obj/item/explosive/grenade/chem_grenade/cleaner,
+/turf/open/floor/tile/lightred,
+/area/centcom/valhalla/janitor)
+"nBO" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/primary/aft)
 "nCA" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -10179,6 +10211,14 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig)
+"nDz" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/port)
 "nDI" = (
 /turf/closed/wall,
 /area/centcom/valhalla/security/brig)
@@ -10268,10 +10308,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig)
-"nFT" = (
-/obj/machinery/vending/boozeomat,
-/turf/closed/wall/mainship,
-/area/tdome)
 "nGE" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -10368,6 +10404,17 @@
 	},
 /turf/closed/wall,
 /area/centcom/valhalla/starboard)
+"nPM" = (
+/obj/item/reagent_containers/food/drinks/britcup,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/rofflewaffles,
+/obj/item/reagent_containers/food/snacks/soup/larvasoup,
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "nPV" = (
 /obj/machinery/firealarm,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
@@ -10404,27 +10451,6 @@
 /obj/structure/morgue,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/medical/morgue)
-"nTc" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/validsalad,
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = -14
-	},
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/snacks/baguette{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/food/snacks/carrotfries{
-	pixel_x = 3;
-	pixel_y = 9
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "nUd" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 1
@@ -10536,6 +10562,18 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/teleporter)
+"odu" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine{
+	pixel_y = -3
+	},
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "ody" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
@@ -10693,18 +10731,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/fore)
-"oke" = (
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
-/obj/machinery/status_display/ai{
-	pixel_x = 32
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/centcom/valhalla/security/checkpoint)
 "olK" = (
 /turf/closed/wall,
 /area/centcom/valhalla/fore)
@@ -10845,30 +10871,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/secondary/exit)
-"owt" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/alarm,
-/obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/item/stack/cable_coil,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/starboard)
-"owX" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/structure/rack,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/bomb_supply,
-/obj/item/stack/cable_coil/five,
-/obj/effect/spawner/random/tool,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/starboard)
-"oxZ" = (
-/obj/effect/spawner/random/trash,
-/turf/open/floor/plating/scorched,
-/area/centcom/valhalla/starboard)
 "oAl" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle,
@@ -10905,6 +10907,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
+"oDG" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/item/tank/oxygen/red,
+/obj/item/clothing/mask/gas,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/plating,
+/area/centcom/valhalla/starboard)
 "oEt" = (
 /obj/machinery/firealarm{
 	dir = 1
@@ -10918,21 +10930,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
 /area/centcom/valhalla/secondary/entry)
-"oGw" = (
-/obj/structure/table/reinforced,
-/obj/item/cell/high,
-/obj/item/cell/high,
-/obj/machinery/cell_charger,
-/obj/machinery/firealarm{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	pixel_x = -24;
-	pixel_y = -24
-	},
-/obj/effect/spawner/random/powercell,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/storage/primary)
 "oHc" = (
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -10986,13 +10983,6 @@
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/secondary/exit)
-"oKJ" = (
-/obj/machinery/status_display{
-	pixel_y = -32
-	},
-/obj/machinery/vending/tool/nopower,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/storage/primary)
 "oLe" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -11099,6 +11089,18 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating/asteroidplating,
 /area/centcom/valhalla/exterior)
+"oTt" = (
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/centcom/valhalla/crew_quarters/heads/hop)
 "oTz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -11107,12 +11109,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/crew_quarters/bar)
-"oTY" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
-/obj/effect/spawner/random/sugary_snack,
-/turf/open/floor/grimy,
-/area/centcom/valhalla/primary/aft)
 "oUp" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -11182,6 +11178,11 @@
 	dir = 8
 	},
 /area/centcom/valhalla/starboard_hallway)
+"oXI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/plating,
+/area/centcom/valhalla/port)
 "oXK" = (
 /obj/effect/decal/cleanable/cobweb2,
 /obj/machinery/power/smes{
@@ -11231,10 +11232,6 @@
 /obj/item/stack/cable_coil/five,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"oZI" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall,
-/area/centcom/valhalla/security/checkpoint)
 "oZR" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -11299,6 +11296,12 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/crew_quarters/heads/hop)
+"pdn" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/gloves/insulated,
+/obj/item/storage/box/lights/mixed,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/storage/primary)
 "pdz" = (
 /obj/structure/prop/mainship/pipeprop,
 /turf/closed/wall/r_wall/unmeltable,
@@ -11389,14 +11392,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla/medical/chemistry)
-"pjq" = (
-/obj/machinery/status_display{
-	pixel_x = 32
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/library)
 "pjR" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/tile/dark/gray,
@@ -11427,6 +11422,17 @@
 /obj/item/circuitboard/airlock,
 /turf/open/floor/wood,
 /area/centcom/valhalla/port)
+"pmD" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/item/fuelCell/random,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/port)
 "pmW" = (
 /obj/machinery/firealarm{
 	dir = 1
@@ -11454,6 +11460,10 @@
 /obj/machinery/power/monitor,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
+"ppc" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/security/checkpoint)
 "pps" = (
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/secondary/exit)
@@ -11507,6 +11517,12 @@
 /obj/structure/prop/mainship/protolathe/engi,
 /turf/open/floor/plating,
 /area/centcom/valhalla/engine/engineering)
+"ptX" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/turf/open/floor/tile/dark,
+/area/centcom/valhalla/crew_quarters/bar)
 "pur" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -11554,6 +11570,19 @@
 	},
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla/primary/central_one)
+"pAj" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/hotdog,
+/obj/item/reagent_containers/food/snacks/pastries/carrotcakeslice,
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = -14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "pBq" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
@@ -11569,17 +11598,48 @@
 	dir = 9
 	},
 /area/centcom/valhalla/primary/aft)
-"pDW" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla/crew_quarters/bar)
+"pEd" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/soup/ricepudding,
+/obj/item/reagent_containers/food/snacks/muffin{
+	pixel_x = -3;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/snacks/meatsteak{
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/snacks/grown/peanut{
+	pixel_x = 17;
+	pixel_y = 2
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = -13
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_y = 2
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "pEk" = (
 /turf/open/floor/tile/chapel{
 	dir = 8
 	},
 /area/centcom/valhalla/chapel/main)
+"pEL" = (
+/obj/item/reagent_containers/food/snacks/cheesiehonkers,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/poppypretzel,
+/obj/item/reagent_containers/food/snacks/syndicake{
+	pixel_y = 8
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -3
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "pFs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/wood,
@@ -11630,6 +11690,19 @@
 /obj/machinery/vending/MarineMed/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
+"pMN" = (
+/obj/structure/closet/wardrobe/mixed,
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/obj/effect/spawner/random/food_or_drink/burger,
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/centcom/valhalla/port)
 "pNw" = (
 /obj/machinery/door/firedoor{
 	dir = 2
@@ -11690,16 +11763,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/library)
-"pSj" = (
-/obj/structure/table,
-/obj/item/storage/fancy/candle_box{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/fancy/candle_box,
-/obj/effect/spawner/random/trash,
-/turf/open/floor/grimy,
-/area/centcom/valhalla/chapel/main)
 "pTm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -11735,10 +11798,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/engine/engineering)
-"pUh" = (
-/obj/effect/spawner/random/plushie/nospawnninetynine,
-/turf/open/floor/gcircuit,
-/area/centcom/valhalla/ai_monitored/storage/secure)
 "pUr" = (
 /obj/effect/turf_decal/tile/pink{
 	dir = 4
@@ -11829,6 +11888,12 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/engine/engineering)
+"qbu" = (
+/obj/machinery/status_display{
+	pixel_x = 32
+	},
+/turf/closed/wall/r_wall,
+/area/centcom/valhalla/engine/atmos_monitoring)
 "qbx" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -11890,6 +11955,11 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/atmos_monitoring)
+"qeN" = (
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/effect/turf_decal/sandedge/corner2,
+/turf/open/floor/plating,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "qfs" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/corner{
@@ -11954,24 +12024,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/break_room)
-"qjt" = (
-/obj/structure/bedsheetbin,
-/obj/structure/extinguisher_cabinet,
-/obj/item/radio/intercom{
-	name = "Station Intercom"
-	},
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/structure/sign/atmosplaque,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/janitor)
 "qkB" = (
 /obj/structure/bookcase,
 /turf/open/floor/tile/dark,
@@ -12024,6 +12076,26 @@
 "qmw" = (
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/security/detectives_office)
+"qmQ" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/clothing/gloves/insulated,
+/obj/item/storage/toolbox/electrical,
+/obj/item/circuitboard/apc,
+/obj/item/circuitboard/airlock,
+/obj/item/cell/high,
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/centcom/valhalla/starboard)
 "qnk" = (
 /obj/machinery/newscaster,
 /turf/closed/wall,
@@ -12086,14 +12158,6 @@
 /obj/structure/prop/mainship/toolboxforacause2020,
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
-"qun" = (
-/obj/machinery/status_display{
-	pixel_x = 32
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/centcom/valhalla/security/checkpoint)
 "quJ" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/tile/black,
@@ -12137,57 +12201,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/port)
-"qwk" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/mexican/taco,
-/obj/item/reagent_containers/food/snacks/sandwiches/twobread,
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = -14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_y = 4
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
-"qxi" = (
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -8
-	},
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/pastries/orangecakeslice,
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = 14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = -2;
-	pixel_y = 7
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
-"qxA" = (
-/obj/structure/table/reinforced,
-/obj/item/tool/lighter{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/tool/lighter,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -7;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/crew_quarters/bar)
 "qyU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/tile/dark,
@@ -12200,6 +12213,19 @@
 /obj/machinery/status_display/ai,
 /turf/closed/wall,
 /area/centcom/valhalla/crew_quarters/bar)
+"qzC" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -8
+	},
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
+/obj/item/book/manual/chef_recipes,
+/turf/open/floor/mainship/sterile/white,
+/area/centcom/valhalla/crew_quarters/kitchen)
 "qzG" = (
 /turf/closed/wall,
 /area/centcom/valhalla/janitor)
@@ -12484,6 +12510,10 @@
 "qNs" = (
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/teleporter)
+"qNR" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/library)
 "qOf" = (
 /obj/structure/prop/mainship/meterprop/random,
 /obj/structure/prop/mainship/pipeprop{
@@ -12591,16 +12621,6 @@
 /obj/structure/sign/securearea,
 /turf/open/floor/plating,
 /area/centcom/valhalla/bridge)
-"qRU" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/decal/cleanable/cobweb,
-/obj/effect/decal/cleanable/blood/oil,
-/obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/bomb_supply,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/fore)
 "qSs" = (
 /obj/structure/table,
 /obj/item/weapon/gun/revolver/single_action/m44,
@@ -12617,16 +12637,6 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/crew_quarters/bar)
-"qTA" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 6
-	},
-/obj/structure/rack,
-/obj/item/tool/wrench,
-/obj/item/stack/pipe_cleaner_coil/random/five,
-/obj/effect/spawner/random/tool,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/fore)
 "qTQ" = (
 /obj/machinery/status_display{
 	pixel_y = 32
@@ -12735,26 +12745,6 @@
 "qZP" = (
 /turf/open/floor/wood/broken/seven,
 /area/centcom/valhalla/library)
-"qZR" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/pastries/applecake,
-/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
-/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice{
-	pixel_x = 1;
-	pixel_y = 8
-	},
-/obj/effect/spawner/random/burger{
-	pixel_x = -7;
-	pixel_y = 10
-	},
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = 14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_y = 2
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "qZS" = (
 /obj/structure/bed/chair,
 /obj/item/radio/intercom{
@@ -12783,14 +12773,6 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla/crew_quarters/bar)
-"rcu" = (
-/obj/structure/table,
-/obj/item/ammo_magazine/shotgun/beanbag,
-/obj/effect/spawner/random/gun/shotgun,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
 /area/centcom/valhalla/crew_quarters/bar)
 "rdX" = (
 /obj/structure/table/reinforced,
@@ -12936,28 +12918,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/engine/atmos_monitoring)
-"rlc" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/item/tank/oxygen/red,
-/obj/item/clothing/mask/gas,
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor/plating,
-/area/centcom/valhalla/starboard)
-"rlp" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/effect/spawner/random/plushie/nospawnninetynine{
-	pixel_y = -3
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/security/brig/interiorcavern)
 "rlZ" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -13040,11 +13000,6 @@
 	},
 /turf/open/floor/grimy,
 /area/centcom/valhalla/chapel/main)
-"rsf" = (
-/obj/structure/table,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
-/turf/open/floor/tile/neutral/full,
-/area/centcom/valhalla/crew_quarters)
 "rsu" = (
 /obj/machinery/newscaster,
 /turf/closed/wall,
@@ -13206,15 +13161,6 @@
 	dir = 8
 	},
 /area/centcom/valhalla/security/checkpoint)
-"rEs" = (
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/primary/aft)
 "rFk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -13260,24 +13206,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/hydroponics)
-"rII" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/loadedbakedpotato,
-/obj/item/reagent_containers/food/snacks/sausage{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/food/snacks/spacetwinkie,
-/obj/item/reagent_containers/food/snacks/stuffing{
-	pixel_x = 1;
-	pixel_y = 7
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "rJl" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -13322,6 +13250,16 @@
 /obj/item/clothing/suit/pirate,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/crew_quarters)
+"rLx" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/alarm,
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/item/stack/cable_coil,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/starboard)
 "rMb" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/tile/white,
@@ -13343,6 +13281,20 @@
 	dir = 8
 	},
 /area/centcom/valhalla/primary/port)
+"rOH" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/sandwiches/jelliedtoast,
+/obj/effect/spawner/random/food_or_drink/donut,
+/obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti,
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "rPe" = (
 /obj/structure/window{
 	dir = 8
@@ -13353,12 +13305,6 @@
 	},
 /turf/open/floor/gcircuit,
 /area/centcom/valhalla/engine/engineering)
-"rPr" = (
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -32
-	},
-/turf/open/floor/tile/white,
-/area/tdome/tdomeobserve)
 "rPH" = (
 /obj/machinery/vending/snack,
 /obj/machinery/firealarm{
@@ -13441,6 +13387,19 @@
 	dir = 1
 	},
 /area/centcom/valhalla/primary/starboard)
+"rWM" = (
+/obj/item/reagent_containers/food/drinks/cans/dr_gibb,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/pastries/pumpkinpieslice,
+/obj/item/reagent_containers/food/snacks/baguette,
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 14
+	},
+/obj/item/reagent_containers/food/drinks/britcup,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "rXh" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating,
@@ -13505,6 +13464,21 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
+"san" = (
+/obj/structure/table/reinforced,
+/obj/item/cell/high,
+/obj/item/cell/high,
+/obj/machinery/cell_charger,
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = -24;
+	pixel_y = -24
+	},
+/obj/effect/spawner/random/engineering/powercell,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/storage/primary)
 "sbe" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -13568,6 +13542,46 @@
 	dir = 8
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
+"shO" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/stewedsoymeat{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/snacks/pastries/orangecakeslice{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/snacks/soup/ricepudding{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = -14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = 2
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
+"sir" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/loadedbakedpotato,
+/obj/item/reagent_containers/food/snacks/sausage{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/snacks/spacetwinkie,
+/obj/item/reagent_containers/food/snacks/stuffing{
+	pixel_x = 1;
+	pixel_y = 7
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "sis" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/alarm{
@@ -14026,28 +14040,6 @@
 	dir = 1
 	},
 /area/centcom/valhalla/primary/fore)
-"sJC" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/stewedsoymeat{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/snacks/pastries/orangecakeslice{
-	pixel_x = -1;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/snacks/soup/ricepudding{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = -14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = 2
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "sJF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red{
@@ -14136,19 +14128,6 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
 /area/centcom/valhalla/primary/aft)
-"sOY" = (
-/obj/item/reagent_containers/food/drinks/cans/dr_gibb,
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/pastries/pumpkinpieslice,
-/obj/item/reagent_containers/food/snacks/baguette,
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = 14
-	},
-/obj/item/reagent_containers/food/drinks/britcup,
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/sugary_snack,
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "sPt" = (
 /obj/structure/bedsheetbin,
 /obj/machinery/alarm{
@@ -14162,6 +14141,16 @@
 	dir = 1
 	},
 /area/centcom/valhalla/crew_quarters)
+"sQV" = (
+/obj/structure/table/reinforced,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/effect/spawner/random/engineering/powercell,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/engine/atmos_monitoring)
 "sRc" = (
 /obj/machinery/vending/boozeomat,
 /turf/closed/wall,
@@ -14291,6 +14280,21 @@
 	},
 /turf/closed/wall,
 /area/centcom/valhalla/medical/medbay)
+"taD" = (
+/obj/item/reagent_containers/food/drinks/coffee,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/pizzapasta/pastatomato,
+/obj/item/reagent_containers/food/snacks/soup/mysterysoup{
+	pixel_y = 12
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_y = 5
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "tbL" = (
 /obj/machinery/alarm,
 /turf/open/floor/tile/neutral,
@@ -14394,15 +14398,6 @@
 /obj/item/reagent_containers/dropper,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/hydroponics)
-"tjf" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/gloves/yellow,
-/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
-/obj/item/clothing/gloves/yellow,
-/obj/item/clothing/gloves/yellow,
-/mob/living/simple_animal/parrot/Poly,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/engine/engineering)
 "tjg" = (
 /obj/structure/window{
 	dir = 4
@@ -14437,6 +14432,12 @@
 /obj/structure/sign/electricshock,
 /turf/open/floor/engine,
 /area/centcom/valhalla/engine/engineering)
+"tlT" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 10
+	},
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/teleporter)
 "tmc" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
@@ -14532,6 +14533,12 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
+"tsy" = (
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = -1
+	},
+/turf/closed/wall/r_wall/unmeltable,
+/area/centcom/valhalla/bridge)
 "tsS" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -14565,15 +14572,6 @@
 /obj/item/stack/sheet/glass,
 /turf/open/floor/wood,
 /area/centcom/valhalla/port)
-"ttQ" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/item/restraints/handcuffs,
-/obj/effect/spawner/random/gun/sidearms,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/security/brig)
 "tuC" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -14588,19 +14586,6 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
 /area/centcom/valhalla/secondary/entry)
-"tuV" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/hotdog,
-/obj/item/reagent_containers/food/snacks/pastries/carrotcakeslice,
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = -14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = -2;
-	pixel_y = 7
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "tvG" = (
 /obj/machinery/loadout_vendor/valhalla,
 /obj/structure/window/reinforced{
@@ -14680,18 +14665,6 @@
 /obj/item/clothing/shoes/slippers_worn,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/crew_quarters)
-"tye" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/sandwiches/xenomeatbread,
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = 14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = 3;
-	pixel_y = 2
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "tzf" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
@@ -14724,13 +14697,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/morgue)
-"tAJ" = (
-/obj/structure/closet/cabinet,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
-/turf/open/floor/grimy,
-/area/centcom/valhalla/crew_quarters)
 "tAQ" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/clothing/under/lawyer/black,
@@ -14758,15 +14724,6 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/centcom/valhalla/starboard)
-"tBc" = (
-/obj/structure/closet/cabinet,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/side{
-	dir = 5
-	},
-/area/centcom/valhalla/crew_quarters)
 "tCf" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
@@ -14803,15 +14760,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/crew_quarters/bar)
-"tEm" = (
-/obj/machinery/status_display{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 10
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/teleporter)
 "tEx" = (
 /obj/machinery/computer/atmoscontrol{
 	dir = 1
@@ -14866,6 +14814,12 @@
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/centcom/valhalla/engine/engineering)
+"tII" = (
+/obj/structure/table/reinforced,
+/obj/item/lightreplacer,
+/obj/effect/spawner/random/engineering/powercell,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/engine/engineering)
 "tIS" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -14912,22 +14866,10 @@
 /obj/machinery/biogenerator,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/hydroponics)
-"tLl" = (
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -8
-	},
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = 14
-	},
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/soup/milosoup,
-/obj/effect/spawner/random/sugary_snack,
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
+"tLv" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/centcom/valhalla/primary/aft)
 "tMS" = (
 /obj/machinery/newscaster,
 /turf/closed/wall,
@@ -15040,16 +14982,14 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/aft)
-"tUF" = (
+"tTi" = (
 /obj/structure/table/reinforced,
-/obj/structure/paper_bin,
-/obj/item/tool/pen,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/spawner/random/powercell,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/engine/atmos_monitoring)
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/engine,
+/area/centcom/valhalla/engine/engineering)
 "tUI" = (
 /obj/item/conveyor_switch_construct,
 /obj/effect/decal/cleanable/dirt,
@@ -15124,6 +15064,12 @@
 "tZJ" = (
 /turf/open/floor/plating/dmg3,
 /area/centcom/valhalla/starboard)
+"tZV" = (
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/quartermaster/storage)
 "tZZ" = (
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/security/checkpoint)
@@ -15227,6 +15173,17 @@
 "udp" = (
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla/crew_quarters)
+"uek" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran,
+/obj/item/clothing/under/marine/imperial,
+/obj/item/clothing/shoes/marine/imperial,
+/obj/item/weapon/gun/energy/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/turf/open/floor/wood,
+/area/centcom/valhalla/port)
 "uez" = (
 /obj/structure/disposalpipe/trunk,
 /obj/structure/disposaloutlet,
@@ -15388,18 +15345,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/medbay)
-"upB" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 2
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -4;
-	pixel_y = 6
-	},
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla/crew_quarters/bar)
 "uqg" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -15425,6 +15370,33 @@
 /obj/effect/turf_decal/tile/pink,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/miningdock)
+"ute" = (
+/obj/structure/sign/securearea{
+	pixel_x = 32;
+	pixel_y = -32
+	},
+/obj/machinery/door_control/old/valhalla{
+	id = "hopline";
+	name = "Queue Shutters Control";
+	pixel_x = -8;
+	pixel_y = -24
+	},
+/obj/machinery/door_control/old/valhalla{
+	id = "hopblast";
+	name = "Lockdown Blast doors";
+	pixel_x = 8;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/centcom/valhalla/crew_quarters/heads/hop)
 "utM" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/structure/closet/crate/freezer,
@@ -15530,28 +15502,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/secondary/exit)
-"uCk" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/soup/ricepudding,
-/obj/item/reagent_containers/food/snacks/muffin{
-	pixel_x = -3;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/food/snacks/meatsteak{
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/food/snacks/grown/peanut{
-	pixel_x = 17;
-	pixel_y = 2
-	},
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = -13
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_y = 2
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "uDy" = (
 /obj/machinery/newscaster{
 	dir = 8
@@ -15602,21 +15552,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/chapel/main)
-"uFp" = (
-/obj/item/reagent_containers/food/snacks/cheesiehonkers,
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/poppypretzel,
-/obj/item/reagent_containers/food/snacks/syndicake{
-	pixel_y = 8
-	},
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = 14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = -3
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "uGG" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -15843,6 +15778,10 @@
 "uZp" = (
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/crew_quarters/bar)
+"uZx" = (
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
+/turf/open/floor/gcircuit,
+/area/centcom/valhalla/ai_monitored/storage/secure)
 "vaS" = (
 /obj/effect/ai_node,
 /obj/structure/prop/mainship/pipeprop{
@@ -15960,6 +15899,15 @@
 	},
 /turf/closed/wall,
 /area/centcom/valhalla/security/detectives_office)
+"viT" = (
+/obj/machinery/computer/secure_data{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/centcom/valhalla/security/checkpoint)
 "vjb" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -16028,6 +15976,29 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla/medical/chemistry)
+"vnc" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/food_or_drink/burger,
+/obj/item/reagent_containers/food/snacks/pastries/pumpkinpieslice{
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/food/snacks/sandwiches/meatbreadslice{
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/snacks/pastries/meatpie{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = -14
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "vnF" = (
 /obj/effect/landmark/thunderdome/admin,
 /obj/structure/bed/chair/sofa/right{
@@ -16283,18 +16254,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/white,
 /area/tdome/tdomeobserve)
-"vFA" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/pastries/birthdaycake,
-/obj/item/tool/kitchen/utensil/fork{
-	pixel_x = -14
-	},
-/obj/effect/spawner/random/sugary_snack{
-	pixel_x = -4;
-	pixel_y = 3
-	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
 "vFG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -16501,13 +16460,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/valhalla/engine/engineering)
-"vOT" = (
-/obj/structure/closet/cabinet,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -32
-	},
-/turf/open/floor/wood/broken/seven,
-/area/centcom/valhalla/crew_quarters)
 "vQc" = (
 /turf/open/floor/plating,
 /area/space)
@@ -16562,11 +16514,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/miningdock)
-"vRY" = (
-/obj/structure/table/woodentable,
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/open/floor/wood,
-/area/tdome/tdomeobserve)
 "vSy" = (
 /turf/closed/wall,
 /area/centcom/valhalla/quartermaster/storage)
@@ -16785,21 +16732,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig)
-"vYP" = (
-/obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/bearmeat,
-/obj/item/reagent_containers/food/snacks/bearmeat,
-/obj/item/reagent_containers/food/snacks/carpmeat,
-/obj/item/reagent_containers/food/snacks/carpmeat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/xenomeat,
-/obj/item/reagent_containers/food/snacks/xenomeat,
-/turf/open/floor/freezer,
-/area/centcom/valhalla/crew_quarters/kitchen)
 "vYZ" = (
 /obj/structure/sign/fixedinplace/evac{
 	dir = 4
@@ -16874,17 +16806,6 @@
 "wcJ" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/quartermaster/storage)
-"wcU" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/port)
 "wdt" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -16892,6 +16813,24 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/miningdock)
+"wec" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice{
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/food/drinks/dry_ramen,
+/obj/item/reagent_containers/food/snacks/pastries/chocolatecakeslice{
+	pixel_y = 9
+	},
+/obj/effect/spawner/random/food_or_drink/burger{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_y = 5
+	},
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "wee" = (
 /obj/structure/bed/chair/sofa{
 	dir = 1
@@ -16983,15 +16922,12 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"wic" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/pastries/cheesecake,
-/obj/item/reagent_containers/food/snacks/pastries/lemoncakeslice,
-/obj/effect/spawner/random/sugary_snack{
-	pixel_y = 3
+"whh" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/carpet/side{
+	dir = 5
 	},
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
+/area/centcom/valhalla/crew_quarters)
 "wiL" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -17153,16 +17089,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
-"wrj" = (
-/obj/machinery/status_display{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thick/corner,
-/turf/open/floor/mainship/tcomms,
-/area/centcom/valhalla/comms)
 "wrn" = (
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
@@ -17313,14 +17239,6 @@
 	},
 /turf/open/floor/freezer,
 /area/centcom/valhalla/crew_quarters/kitchen)
-"wBu" = (
-/obj/structure/table/reinforced,
-/obj/item/tank/oxygen/red,
-/obj/structure/sign/nosmoking_1,
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor/engine,
-/area/centcom/valhalla/engine/engineering)
 "wDo" = (
 /obj/item/clothing/gloves/black,
 /obj/item/clothing/glasses/meson,
@@ -17335,6 +17253,15 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/item/tool/handheld_charger,
 /turf/open/floor/engine,
+/area/centcom/valhalla/engine/engineering)
+"wDA" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/gloves/insulated,
+/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
+/obj/item/clothing/gloves/insulated,
+/obj/item/clothing/gloves/insulated,
+/mob/living/simple_animal/parrot/Poly,
+/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
 "wEg" = (
 /obj/machinery/button/door/indestructible{
@@ -17393,14 +17320,6 @@
 "wHz" = (
 /obj/structure/bedsheetbin,
 /obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/engine,
-/area/centcom/valhalla/engine/engineering)
-"wIi" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
 /turf/open/floor/engine,
 /area/centcom/valhalla/engine/engineering)
 "wIl" = (
@@ -17748,10 +17667,6 @@
 	},
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"wYG" = (
-/obj/effect/spawner/random/pickaxe,
-/turf/open/floor/plating,
-/area/space)
 "wZp" = (
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/quartermaster/storage)
@@ -17951,26 +17866,6 @@
 	},
 /turf/open/floor/wood/broken/five,
 /area/centcom/valhalla/port)
-"xkO" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/item/clothing/gloves/yellow,
-/obj/item/storage/toolbox/electrical,
-/obj/item/circuitboard/apc,
-/obj/item/circuitboard/airlock,
-/obj/item/cell/high,
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/starboard)
 "xlK" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -18469,6 +18364,11 @@
 /obj/machinery/telecomms/bus,
 /turf/open/floor/gcircuit,
 /area/centcom/valhalla/comms)
+"xPr" = (
+/obj/structure/table,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
+/turf/open/floor/tile/neutral/full,
+/area/centcom/valhalla/crew_quarters)
 "xPs" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -18656,6 +18556,12 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /turf/open/space,
 /area/space)
+"xVM" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/turf/open/floor/grimy,
+/area/centcom/valhalla/primary/aft)
 "xVT" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/machinery/button/valhalla/marine_button{
@@ -18890,19 +18796,6 @@
 "yfz" = (
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla/crew_quarters/cafeteria)
-"yfA" = (
-/obj/structure/closet/wardrobe/mixed,
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/spawner/random/burger,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/port)
 "yfC" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -19037,13 +18930,6 @@
 /area/centcom/valhalla/teleporter)
 "yjA" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/centcom/valhalla/starboard)
-"ykb" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/spawner/random/trash,
 /turf/open/floor/plating,
 /area/centcom/valhalla/starboard)
 "ylD" = (
@@ -20130,8 +20016,8 @@ gUR
 dIY
 dIY
 dIY
-rPr
-lIC
+dIY
+kaD
 meN
 xtI
 gBi
@@ -20538,8 +20424,8 @@ xrI
 xrI
 xrI
 xrI
-lIC
-hZl
+kaD
+chH
 blM
 lIC
 aJX
@@ -20813,7 +20699,7 @@ xrI
 xrI
 lIC
 lIC
-nFT
+lIC
 sji
 sqp
 nzE
@@ -21089,11 +20975,11 @@ xrI
 xrI
 lIC
 ibs
-dFG
 tsg
 tsg
-mcr
-lIC
+tsg
+tsg
+kaD
 qvl
 aDr
 iZT
@@ -21225,7 +21111,7 @@ xrI
 xrI
 xrI
 xrI
-lIC
+kaD
 ePE
 ePE
 ePE
@@ -21502,7 +21388,7 @@ xrI
 xrI
 xrI
 lIC
-hUu
+lHp
 hUu
 ncf
 hUu
@@ -21642,7 +21528,7 @@ xrI
 lIC
 ldg
 kmB
-vRY
+tsg
 hlk
 hUu
 ndg
@@ -21915,8 +21801,8 @@ xrI
 xrI
 xrI
 xrI
-lIC
-dFG
+kaD
+tsg
 hlk
 hUu
 kmB
@@ -22878,7 +22764,7 @@ xmt
 mhk
 yhP
 mhk
-wrj
+iJo
 rvV
 fmR
 fmR
@@ -22891,7 +22777,7 @@ xrI
 xrI
 xrI
 xrI
-lIC
+kaD
 meN
 xtI
 uwK
@@ -23154,7 +23040,7 @@ xqi
 hXf
 yiC
 hXf
-hHi
+bMy
 rvV
 fWu
 fmR
@@ -23809,7 +23695,7 @@ fWu
 fmR
 lgU
 aLR
-fuL
+kNz
 aMq
 bbR
 eFA
@@ -23839,7 +23725,7 @@ rxk
 pcb
 uUZ
 pVV
-wBu
+hja
 pcb
 xSK
 nKF
@@ -24092,7 +23978,7 @@ lgU
 rXh
 fmR
 hTv
-fST
+klx
 llp
 ndm
 knm
@@ -24375,10 +24261,10 @@ khV
 tvG
 llp
 ndm
-rlp
+odu
 khV
-vLH
-lXg
+qbu
+hii
 mLF
 nuE
 ohN
@@ -24644,7 +24530,7 @@ vQc
 fmR
 fWu
 hTv
-hNy
+aVj
 yeN
 tzf
 knm
@@ -24805,7 +24691,7 @@ pVV
 qML
 ven
 vOH
-wIi
+tTi
 tHw
 xTZ
 xVz
@@ -24829,7 +24715,7 @@ xTw
 cqb
 jrN
 xTw
-jwE
+lVb
 ycV
 fmR
 fmR
@@ -25091,7 +24977,7 @@ fWu
 bRv
 fWu
 vQc
-wYG
+afF
 fmR
 vQc
 fLm
@@ -25233,7 +25119,7 @@ fmR
 fmR
 fWu
 fLm
-kZb
+uek
 pFs
 rGn
 lrW
@@ -25488,7 +25374,7 @@ mvn
 mvn
 mvn
 mvn
-qRU
+hpS
 xnM
 ead
 xnM
@@ -25612,21 +25498,21 @@ fmR
 lgU
 eAp
 mvn
-fSa
-gZH
-hAG
+hVH
+lMv
+lKU
 lGH
 jaW
 jwi
 koR
-kWa
+cny
 mcN
 lGH
 ecT
 ecT
 ecT
 mvn
-qTA
+mKS
 ead
 vLH
 vLH
@@ -25650,11 +25536,11 @@ hec
 hec
 hec
 hec
-lwu
-wcU
+bVy
+bcC
 dii
-gSN
-dTO
+nDz
+pmD
 hec
 fuY
 hec
@@ -25779,7 +25665,7 @@ xyy
 lcR
 sDo
 keE
-igx
+dAo
 iZD
 iZD
 ndS
@@ -25788,7 +25674,7 @@ fTH
 qFW
 qFW
 qUU
-nuz
+oXI
 cqb
 kJw
 tgW
@@ -25889,7 +25775,7 @@ dVr
 eAE
 mvn
 fVz
-hbV
+agj
 hCL
 lGH
 jcx
@@ -26056,18 +25942,18 @@ yeH
 mDO
 xUk
 wqZ
-tjf
+wDA
 tgY
 kEE
 mDO
 qFW
 uEH
 srV
-bme
+pSb
 cYU
 acu
 kkv
-jwO
+caj
 ojF
 srV
 voO
@@ -26315,12 +26201,12 @@ ipO
 grx
 ipO
 lvE
-mvn
+kCd
 mZM
 ojM
 vLH
 tvT
-tUF
+sQV
 rjI
 vlt
 wRz
@@ -26332,13 +26218,13 @@ mhv
 rzm
 cgS
 rZp
-aGd
+tII
 iZD
 lmF
 mDO
 wXk
 lOR
-srV
+qNR
 acu
 klg
 vnN
@@ -26347,7 +26233,7 @@ pSb
 aSM
 srV
 wae
-ksc
+bua
 hGs
 srV
 qFW
@@ -26432,7 +26318,7 @@ awi
 aMq
 aMq
 rxd
-bnh
+qeN
 boq
 boq
 boq
@@ -26452,7 +26338,7 @@ hGj
 ivi
 nAP
 jwi
-ttQ
+jbF
 mvn
 nbd
 ojW
@@ -26475,7 +26361,7 @@ nsT
 sis
 mDO
 qbx
-bAN
+iiD
 srV
 aBf
 fad
@@ -26590,7 +26476,7 @@ jcx
 ivs
 kcp
 ivs
-lAw
+aQd
 mvn
 ncr
 olK
@@ -26618,7 +26504,7 @@ qQJ
 jAq
 vJN
 vnN
-cpx
+mKn
 pyx
 ivQ
 gYp
@@ -26631,7 +26517,7 @@ oOW
 gPw
 gPw
 uah
-lfP
+ycV
 fmR
 fmR
 fmR
@@ -26903,7 +26789,7 @@ qFW
 ycV
 oSg
 aFd
-lfP
+hnf
 gDc
 eZa
 gEE
@@ -27178,7 +27064,7 @@ srV
 qFW
 ycV
 qwh
-yfA
+pMN
 ycV
 hiA
 keP
@@ -27298,7 +27184,7 @@ ycV
 ovg
 qzG
 nsz
-ltH
+nBu
 gwH
 ipl
 qzG
@@ -27425,7 +27311,7 @@ oEt
 uIP
 twY
 sPV
-rsf
+xPr
 tSI
 tSI
 vUD
@@ -27434,7 +27320,7 @@ jhC
 uIP
 vmM
 qFW
-qzG
+jTP
 fhh
 bYd
 iHX
@@ -27448,7 +27334,7 @@ njt
 mYF
 epY
 pYX
-pjq
+ivQ
 hMy
 srV
 qFW
@@ -27459,7 +27345,7 @@ wXk
 qFW
 qFW
 tgW
-dxc
+ivw
 sKi
 uax
 uEZ
@@ -27467,7 +27353,7 @@ sKi
 nPV
 icr
 kbR
-pSj
+ksF
 pNS
 gCo
 xrI
@@ -27542,7 +27428,7 @@ cHZ
 dnm
 dGD
 dnm
-eLn
+fiY
 fmy
 gle
 bCs
@@ -27697,7 +27583,7 @@ kMP
 lKR
 qbM
 nkG
-oGw
+san
 uIP
 tzz
 tZl
@@ -27711,7 +27597,7 @@ uIP
 uvt
 cqb
 qzG
-qjt
+gpz
 uaJ
 iaa
 axF
@@ -27819,7 +27705,7 @@ doK
 vhy
 dnm
 eNk
-fpS
+geM
 glw
 qmw
 rSR
@@ -27835,7 +27721,7 @@ yiI
 wrO
 lKY
 nmj
-oKJ
+ggq
 uIP
 uIP
 uIP
@@ -27863,7 +27749,7 @@ ckN
 cDn
 aWh
 lda
-jYM
+kXO
 tfU
 wXW
 woP
@@ -27971,7 +27857,7 @@ xco
 yen
 wVM
 lKY
-mvp
+pdn
 nsr
 oLe
 uIP
@@ -28112,15 +27998,15 @@ uYH
 uYH
 qUc
 rYK
-uIP
-tAJ
+lxD
+bZX
 qBK
 uIP
 tbW
 udp
-uIP
+lxD
 xgS
-vOT
+cYe
 uIP
 qFW
 syo
@@ -28526,15 +28412,15 @@ xil
 qFW
 tgW
 sbe
-uIP
-tBc
+lxD
+whh
 uby
 uIP
 tdj
 ujt
-uIP
+lxD
 qBK
-jty
+bZX
 uIP
 tgW
 syo
@@ -28657,7 +28543,7 @@ fUn
 xWF
 xWF
 xWF
-tEm
+tlT
 qNs
 ovg
 ycV
@@ -29069,7 +28955,7 @@ eSl
 fDX
 fXm
 kCa
-iNM
+lON
 mXt
 tPn
 qNs
@@ -29928,7 +29814,7 @@ wKu
 dot
 wVi
 xfB
-oTY
+xVM
 rYt
 jhS
 rYt
@@ -30041,21 +29927,21 @@ mSV
 xEy
 yfz
 yfz
-qwk
-hCP
-vFA
-sJC
+cEr
+cNb
+eKS
+shO
 yfz
 yfz
-rII
-wic
-uCk
+sir
+alO
+pEd
 yfz
 xkj
-nTc
-tuV
-cca
-dbr
+lRj
+pAj
+vnc
+czy
 yfz
 yfz
 xkj
@@ -30074,7 +29960,7 @@ ufQ
 nhm
 xeT
 xMI
-uyh
+ppc
 gzn
 cUs
 rDY
@@ -30164,10 +30050,10 @@ cYi
 bls
 mxw
 eiq
-pUh
+uZx
 fHG
 gtc
-hiw
+jqE
 nMn
 yfE
 yfE
@@ -30179,21 +30065,21 @@ mTe
 xEy
 yfz
 yfz
-qxi
-qZR
-tye
-sOY
+efv
+fgf
+hWk
+rWM
 yfz
 yfz
-bZY
-ltl
-uFp
+nPM
+wec
+pEL
 yfz
 yfz
-dqp
-faS
-tLl
-dPI
+rOH
+bTe
+bIf
+taD
 yfz
 yfz
 yfz
@@ -30350,14 +30236,14 @@ vhv
 nhm
 xeT
 xMI
-uyh
+ppc
 dqB
 iuT
-qun
+aPc
 pYe
-oke
+viT
 iFb
-uyh
+ppc
 xgK
 fHt
 rYF
@@ -30495,10 +30381,10 @@ uyh
 uqg
 uyh
 uyh
-oZI
+uyh
 xgK
 fHt
-nhm
+tLv
 lkM
 xMI
 vAV
@@ -30637,7 +30523,7 @@ xgK
 xgK
 xgK
 lQk
-rEs
+nBO
 xgK
 vAV
 biW
@@ -30708,7 +30594,7 @@ sjH
 sjH
 aHO
 azA
-bax
+bac
 bka
 bAx
 xOi
@@ -30731,10 +30617,10 @@ rXP
 sMN
 sMN
 xJg
-qxA
+fCQ
 nFB
 oPz
-upB
+kEH
 tDV
 ulN
 xIU
@@ -30775,7 +30661,7 @@ pQh
 fhO
 kGq
 eGd
-bue
+xgK
 jJC
 vAV
 biW
@@ -30843,7 +30729,7 @@ xrI
 xHr
 biW
 biW
-xDl
+tsy
 aKm
 aQF
 bac
@@ -30852,7 +30738,7 @@ bFh
 xTn
 xTn
 cRJ
-dPY
+xTn
 elK
 xTn
 xTn
@@ -30874,7 +30760,7 @@ xbj
 uZp
 xbj
 tEJ
-pDW
+ptX
 xIU
 yfz
 uKQ
@@ -30884,7 +30770,7 @@ xoR
 xom
 jWe
 wuZ
-vYP
+hZK
 tls
 wuZ
 sjM
@@ -31140,7 +31026,7 @@ yhG
 fZE
 kDw
 yhG
-hZF
+yhG
 yhG
 yhG
 rXP
@@ -31284,7 +31170,7 @@ yhG
 xWW
 nrq
 qAy
-rcu
+mhA
 xbj
 sRd
 xJg
@@ -31294,7 +31180,7 @@ rXP
 wuZ
 wbj
 xoR
-kLM
+qzC
 xoR
 dyZ
 wuZ
@@ -31817,7 +31703,7 @@ vGP
 vGP
 bcm
 aVk
-bcm
+jPS
 uVb
 aLi
 fSA
@@ -31957,8 +31843,8 @@ yew
 dcs
 hhc
 dQh
-eoT
-eBc
+oTt
+ute
 yhA
 gEA
 dve
@@ -32508,7 +32394,7 @@ smd
 wxd
 wcJ
 bfK
-dSu
+tZV
 bWB
 ldw
 hIc
@@ -32523,7 +32409,7 @@ hvP
 hZa
 jsn
 wff
-owt
+rLx
 mbn
 wff
 nNR
@@ -32644,7 +32530,7 @@ fWu
 smd
 bLb
 aDS
-wcJ
+dye
 uHR
 bzq
 fgt
@@ -32661,7 +32547,7 @@ lsI
 hZa
 jxj
 wff
-owX
+nqF
 tZJ
 wff
 rgf
@@ -32814,7 +32700,7 @@ wff
 xzU
 wff
 qaH
-eKN
+sWR
 xfa
 xWb
 xfa
@@ -32937,7 +32823,7 @@ lsN
 moY
 nez
 lSb
-oxZ
+moX
 yjA
 xzU
 rQF
@@ -33058,7 +32944,7 @@ xmJ
 xFT
 yfo
 fmR
-wcJ
+dye
 iwx
 dSO
 euB
@@ -33078,9 +32964,9 @@ wff
 oAm
 mbn
 tBa
-ykb
+eDi
 oYh
-rlc
+oDG
 tBa
 xzU
 xni
@@ -33361,7 +33247,7 @@ fWu
 fWu
 tBa
 wtX
-xkO
+qmQ
 wff
 xzU
 wff
@@ -33472,13 +33358,13 @@ xrI
 xrI
 xrI
 iDZ
-dye
+wcJ
 uft
 cok
 vSy
 cok
 cFb
-dye
+wcJ
 vVU
 wcJ
 vVU
@@ -33784,7 +33670,7 @@ qFx
 mjw
 xGq
 qDW
-dDN
+eyr
 xTc
 xTc
 xTc
@@ -34175,7 +34061,7 @@ xrI
 xrI
 biW
 xVt
-lDT
+apv
 iAa
 jAf
 xVt
