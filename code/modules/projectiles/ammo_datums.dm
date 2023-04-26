@@ -1555,6 +1555,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	reagent_list.add_reagent(/datum/reagent/foaming_agent = 1)
 	reagent_list.add_reagent(/datum/reagent/toxin/nanites = 7)
 
+/datum/ammo/bullet/tx54_spread/razor/Destroy()
+	if(chemical_payload)
+		QDEL_NULL(chemical_payload)
+	return ..()
+
 /datum/ammo/bullet/tx54_spread/razor/on_hit_mob(mob/M, obj/projectile/proj)
 	return
 
