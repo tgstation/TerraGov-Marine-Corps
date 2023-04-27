@@ -104,7 +104,10 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "I" = (
-/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/mainship/canterbury{
+	name = "orbital insertion safety window";
+	max_integrity = 300
+	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},
@@ -173,8 +176,8 @@
 /area/shuttle/minidropship)
 "Z" = (
 /obj/structure/window/framed/mainship/canterbury{
-	name = "kevlar-weave infused bulletproof window";
-	max_integrity = 1000
+	name = "orbital insertion safety window";
+	max_integrity = 300
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
