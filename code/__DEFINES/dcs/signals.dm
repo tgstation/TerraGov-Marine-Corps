@@ -64,6 +64,9 @@
 ///called after a clone is produced and leaves his vat
 #define COMSIG_GLOB_CLONE_PRODUCED "!clone_produced"
 
+///called when an AI is requested by a holopad
+#define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
