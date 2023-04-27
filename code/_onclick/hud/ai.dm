@@ -172,7 +172,7 @@
 			var/turf/T = get_turf(target)
 			if(T)
 				recipientai.eyeobj.setLoc(T)
-		if(NOTIFY_AI_ALERT)
+		if(NOTIFY_AI_BOMBARD)
 			var/obj/machinery/computer/camera_advanced/overwatch/main/O = new //OB firing is buried very deeply within the overwatch console, we create an instance to handle firing for the ai
 			if(length(GLOB.active_laser_targets)) //set selected_target manually, can't copy from regular console since it doesn't set selected_target until it gets a UI interaction
 				for(var/obj/effect/overlay/temp/laser_target/LT in GLOB.active_laser_targets)
