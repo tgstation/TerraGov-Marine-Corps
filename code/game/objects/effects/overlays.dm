@@ -178,6 +178,8 @@
 	var/obj/item/binoculars/tactical/source_binoc
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
+	///what kind of laser we are, used for signals
+	var/lasertype = "railgun"
 
 /obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
@@ -187,6 +189,13 @@
 	squad = assigned_squad
 	if(squad)
 		squad.squad_laser_targets += src
+	switch(lasertype)
+		if("railgun")
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RAILGUN_LASER_CREATED, src)
+		if("cas")
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
+		if("ob")
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/Destroy()
 	if(squad)
@@ -211,12 +220,12 @@
 
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
+	lasertype = "cas"
 
 /obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	linked_cam = new(src, name)
 	GLOB.active_cas_targets += src
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
 	GLOB.active_cas_targets -= src
@@ -229,10 +238,10 @@
 
 /obj/effect/overlay/temp/laser_target/OB
 	icon_state = "laser_target2"
+	lasertype = "ob"
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()

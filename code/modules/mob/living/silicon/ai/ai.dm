@@ -95,6 +95,7 @@
 	///register the various signals we need for alerts
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, PROC_REF(receive_laser_ob))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, PROC_REF(receive_laser_cas))
+	RegisterSignal(SSdcs, COMSIG_GLOB_RAILGUN_LASER_CREATED, PROC_REF(receive_laser_railgun))
 	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, PROC_REF(shuttle_takeoff_notification))
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, PROC_REF(receive_lockdown_warning))
 	RegisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED, PROC_REF(show_disk_complete))
@@ -128,6 +129,7 @@
 
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_RAILGUN_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MINI_DROPSHIP_DESTROYED)

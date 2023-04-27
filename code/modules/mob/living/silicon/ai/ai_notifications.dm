@@ -43,6 +43,11 @@
 	to_chat(src, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	notify_ai(src, "<b> CAS laser detected. </b> Target: [AREACOORD_NO_Z(incoming_laser)]", ai_sound = 'sound/effects/binoctarget.ogg', source = incoming_laser, action = NOTIFY_AI_ALERT, notify_volume = 15)
 
+/mob/living/silicon/ai/proc/receive_laser_railgun(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+	SIGNAL_HANDLER
+	to_chat(src, span_notice("Railgun laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
+	notify_ai(src, "<b> Railgun laser detected. </b> Target: [AREACOORD_NO_Z(incoming_laser)]", ai_sound = 'sound/effects/binoctarget.ogg', source = incoming_laser, action = NOTIFY_AI_ALERT, notify_volume = 15)
+
 /mob/living/silicon/ai/proc/receive_lockdown_warning(datum/source, obj/machinery/computer/shuttle/marine_dropship/lockedship)
 	SIGNAL_HANDLER
 	var/area/A = get_area(lockedship)

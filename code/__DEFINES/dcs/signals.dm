@@ -54,6 +54,7 @@
 //Signals for fire support
 #define COMSIG_GLOB_OB_LASER_CREATED "!ob_laser_sent"
 #define COMSIG_GLOB_CAS_LASER_CREATED "!cas_laser_sent"
+#define COMSIG_GLOB_RAILGUN_LASER_CREATED "!railgun_laser_sent"
 
 //Signals for shuttle
 #define COMSIG_GLOB_SHUTTLE_TAKEOFF "!shuttle_take_off"
