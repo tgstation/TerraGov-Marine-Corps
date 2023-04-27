@@ -1167,7 +1167,7 @@
 
 /obj/item/storage/box/visual/grenade/razorburn
 	name = "razorburn grenade box"
-	desc = "A secure box holding 20 razor burn grenades. Used for quick flank coverage."
+	desc = "A secure box holding 15 razor burn grenades. Used for quick flank coverage."
 	storage_slots = 15
 	max_storage_space = 30
 	spawn_number = 15
@@ -1181,6 +1181,7 @@
 	spawn_number = 10
 	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_large
 	closed_overlay = "grenade_box_overlay_razorburn_large"
+
 /obj/item/storage/box/visual/grenade/teargas
 	name = "\improper M66 teargas grenade box"
 	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
