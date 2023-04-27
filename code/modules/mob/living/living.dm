@@ -393,10 +393,6 @@
 					Move(oldLloc)
 				if(mob_swap_mode == SWAPPING)
 					L.Move(oldloc)
-				/*if(!Move(oldLloc) || (mob_swap_mode == SWAPPING && !L.Move(oldloc)))
-					L.forceMove(oldLloc) //return them to where they were if the move fails
-					forceMove(oldloc)
-					move_failed = TRUE*/
 
 				if(!src_passmob)
 					flags_pass &= ~PASSMOB
@@ -405,8 +401,7 @@
 
 				now_pushing = FALSE
 
-				if(!move_failed)
-					return TURF_ENTER_ALREADY_MOVED
+				return TURF_ENTER_ALREADY_MOVED
 
 		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
 			return
