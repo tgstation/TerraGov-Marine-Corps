@@ -389,10 +389,14 @@
 				flags_pass |= PASSMOB
 
 				var/move_failed = FALSE
-				if(!Move(oldLloc) || (mob_swap_mode == SWAPPING && !L.Move(oldloc)))
+				if(!moving_diagonally) //the diagonal move already does this for us
+					Move(oldLloc)
+				if(mob_swap_mode == SWAPPING)
+					L.Move(oldloc)
+				/*if(!Move(oldLloc) || (mob_swap_mode == SWAPPING && !L.Move(oldloc)))
 					L.forceMove(oldLloc) //return them to where they were if the move fails
 					forceMove(oldloc)
-					move_failed = TRUE
+					move_failed = TRUE*/
 
 				if(!src_passmob)
 					flags_pass &= ~PASSMOB
