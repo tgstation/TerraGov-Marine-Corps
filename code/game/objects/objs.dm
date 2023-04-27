@@ -245,3 +245,7 @@
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	handle_weldingtool_overlay(TRUE)
 	return TRUE
+
+/// Should move all contained objects to it's location.
+/obj/proc/dump_contents()
+	CRASH("Unimplemented.")

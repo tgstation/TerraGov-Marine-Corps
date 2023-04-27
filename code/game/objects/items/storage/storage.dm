@@ -859,3 +859,22 @@
 	drawn_item.attack_hand(user)
 
 /obj/item/storage/proc/PopulateContents()
+
+///Removes everything inside of our storage @param atom/target where we're placing the item
+/obj/item/storage/proc/emptyStorage(atom/target)
+	var/obj/item/resolve_parent = src?.resolve()
+	var/obj/item/resolve_location = src?.resolve()
+	if(!resolve_parent || !resolve_location)
+		return
+
+	if(!target)
+		target = get_turf(resolve_parent)
+
+	for(var/obj/item/thing in resolve_location)
+		if(thing.loc != resolve_location)
+			continue
+		if(!attempt_remove(thing, target, silent = TRUE))
+			continue
+		thing.pixel_x = thing.initial(pixel_x) + rand(-8, 8)
+		thing.pixel_y = thing.initial(pixel_y) + rand(-8, 8)
+
