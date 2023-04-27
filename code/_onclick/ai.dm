@@ -1,3 +1,8 @@
+#define AI_MAX_RAILGUN_SHOTS_FIRED 5
+#define AI_RAILGUN_FIRING_TIME_DELAY 1 SECONDS
+#define AI_RAILGUN_FIRING_WINDUP_DELAY 30 SECONDS
+
+
 /*
 	AI ClickOn()
 
@@ -218,3 +223,50 @@
 		message += " It is underground."
 	to_chat(user, span_notice(message))
 
+/turf/AICtrlShiftClick(mob/living/silicon/ai/user)
+	///var to keep us from queuing a million railgun shots and breaking the system, do_afters don't work well with AI actions
+	var/static/busy = null
+	var/laz_name = user.name
+	var/obj/effect/overlay/temp/laser_target/laser
+	var/area/A = get_area(user.eyeobj.loc)
+	if(busy)
+		to_chat(user, span_warning("The rail guns are already targeting a location, wait for them to finish."))
+		return
+	if(locate(/mob/living/carbon/human) in range(10, get_turf(user.eyeobj.loc)))
+		to_chat(user, span_warning("Friendly biologicals detected near [loc] target location, aborting."))
+		return
+	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A)) //can't fire the railgun off the ground level, or at the DS
+		to_chat(user, span_warning("Incompatible target location."))
+		return
+	if(A.ceiling > CEILING_METAL)
+		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
+		return
+	if((GLOB.marine_main_ship?.rail_gun?.last_firing + 300 SECONDS) > world.time)
+		to_chat(user, "[icon2html(src, user)] [span_warning("The rail gun hasn't cooled down yet!")]")
+	else if(!A)
+		to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
+	else
+		to_chat(user, span_notice("Firing orbital railguns at [loc], COORDINATES: X:[x] Y:[y]"))
+		busy = TRUE
+		///how many times we've fired the railgun this cycle
+		var/timesfired = 0
+		var/obj/effect/overlay/temp/laser_target/RGL = new (user.eyeobj.loc, 0, laz_name)
+		laser = RGL
+		playsound(src, 'sound/effects/binoctarget.ogg', 35)
+		if(!do_after(user, AI_RAILGUN_FIRING_WINDUP_DELAY, TRUE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+			QDEL_NULL(laser)
+			return
+		while(laser)
+			if(timesfired >= AI_MAX_RAILGUN_SHOTS_FIRED) //fire until we hit defined limit
+				QDEL_NULL(laser)
+				busy = FALSE
+				return
+			if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, TRUE, laser, BUSY_ICON_GENERIC)) //delay between shots
+				QDEL_NULL(laser)
+				break
+			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(user.eyeobj,user)
+			++timesfired
+
+#undef AI_MAX_RAILGUN_SHOTS_FIRED
+#undef AI_RAILGUN_FIRING_TIME_DELAY
+#undef AI_RAILGUN_FIRING_WINDUP_DELAY
