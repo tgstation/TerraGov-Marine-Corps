@@ -78,14 +78,15 @@
 
 /obj/item/storage/holster/update_icon()
 	. = ..()
+	if(flags_item & HAS_UNDERLAY)
+		update_underlays()
 	var/mob/user = loc
 	if(!istype(user))
 		return
 	user.update_inv_back()
 	user.update_inv_belt()
 	user.update_inv_s_store()
-	if(flags_item & HAS_UNDERLAY)
-		return update_underlays()
+
 
 ///Adds or removes underlay sprites, checks holstered_item to see which underlay to add
 /obj/item/storage/holster/proc/update_underlays()
