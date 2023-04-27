@@ -69,17 +69,6 @@
 	else
 		return ..()
 
-/obj/item/storage/holster/update_overlays()
-	. = ..()
-	if(!(flags_item & HAS_UNDERLAY))
-		return
-	if(holstered_item && !holstered_item_underlay)
-		holstered_item_underlay = image(icon, src, holstered_item.icon_state)
-		underlays += holstered_item_underlay
-	else
-		underlays -= holstered_item_underlay
-		QDEL_NULL(holstered_item_underlay)
-
 /obj/item/storage/holster/update_icon_state()
 	if(holstered_item)
 		icon_state = initial(icon_state) + "_full"
@@ -95,6 +84,17 @@
 	user.update_inv_back()
 	user.update_inv_belt()
 	user.update_inv_s_store()
+	if(flags_item & HAS_UNDERLAY)
+		return update_underlays()
+
+///Adds or removes underlay sprites, checks holstered_item to see which underlay to add
+/obj/item/storage/holster/update_underlays()
+	if(holstered_item && !holstered_item_underlay)
+		holstered_item_underlay = image(icon, src, holstered_item.icon_state)
+		underlays += holstered_item_underlay
+	else
+		underlays -= holstered_item_underlay
+		QDEL_NULL(holstered_item_underlay)
 
 /obj/item/storage/holster/do_quick_equip(mob/user) //Will only draw the specific holstered item, not ammo etc.
 	if(!holstered_item)
@@ -145,7 +145,6 @@
 	name = "\improper TGMC rocket bag"
 	desc = "This backpack can hold 4 67mm shells, in addition to a recoiless launcher."
 	icon_state = "marine_rocket"
-	item_state = "marine_rocket"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_BULKY
@@ -191,7 +190,6 @@
 	name = "\improper SOM RPG bag"
 	desc = "This backpack can hold 4 RPGs, in addition to a RPG launcher."
 	icon_state = "som_rocket"
-	item_state = "som_rocket"
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/launcher/rocket/som,
 		/obj/item/weapon/gun/launcher/rocket/som/rad,
@@ -402,7 +400,6 @@
 	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "m4a3_holster"
-	item_state = "m4a3_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
 	flags_item = HAS_UNDERLAY
 	use_sound = null
@@ -526,7 +523,6 @@
 	name = "\improper S19 holster rig"
 	desc = "A belt with origins dating back to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
-	item_state = "som_belt_pistol"
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
@@ -540,7 +536,6 @@
 	name = "\improper S19-B holster rig"
 	desc = "A quality pistol belt of a style typically seen worn by SOM officers. It looks old, but well looked after."
 	icon_state = "som_belt_pistol_fancy"
-	item_state = "som_belt_pistol_fancy"
 
 /obj/item/storage/holster/belt/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"
@@ -554,13 +549,11 @@
 	name = "\improper T457 pattern pistol holster rig"
 	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
 	icon_state = "tp14_holster"
-	item_state = "tp14_holster"
 
 /obj/item/storage/holster/belt/revolver/standard_revolver
 	name = "\improper T457 pattern revolver holster rig"
 	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
 	icon_state = "tp44_holster"
-	item_state = "tp44_holster"
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/revolver,
 	)
@@ -573,7 +566,6 @@
 	name = "\improper M276 pattern M44 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
 	icon_state = "m44_holster"
-	item_state = "m44_holster"
 	max_storage_space = 16
 	max_w_class = WEIGHT_CLASS_BULKY
 	can_hold = list(
@@ -596,7 +588,6 @@
 	name = "\improper M276 pattern Mateba holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders."
 	icon_state = "mateba_holster"
-	item_state = "mateba_holster"
 	max_storage_space = 16
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/revolver/mateba,
@@ -619,7 +610,6 @@
 
 /obj/item/storage/holster/belt/mateba/officer
 	icon_state = "c_mateba_holster"
-	item_state = "c_mateba_holster"
 
 /obj/item/storage/holster/belt/mateba/officer/full/Initialize()
 	. = ..()
@@ -635,7 +625,6 @@
 /obj/item/storage/holster/belt/mateba/notmarine/Initialize()
 	. = ..()
 	icon_state = "a_mateba_holster"
-	item_state = "a_mateba_holster"
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -649,7 +638,6 @@
 	name = "\improper Type 41 pistol holster rig"
 	desc = "A modification of the standard UPP pouch rig to carry a single Korovin PK-9 pistol. It also contains side pouches that can store .22 magazines, either hollowpoints or tranquilizers."
 	icon_state = "korovin_holster"
-	item_state = "korovin_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99,
@@ -682,7 +670,6 @@
 	name = "\improper M276 pattern SH-34 shotgun holster rig"
 	desc = "A purpose built belt-holster assembly that holds a SH-34 shotgun and one shell box or 2 handfuls."
 	icon_state = "ts34_holster"
-	item_state = "ts34_holster"
 	max_w_class = WEIGHT_CLASS_BULKY //So it can hold the shotgun.
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 3
