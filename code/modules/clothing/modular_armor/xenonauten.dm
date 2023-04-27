@@ -95,31 +95,31 @@
 /obj/item/clothing/suit/modular/xenonauten/heavy/leader
 	starting_attachments = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/medical,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
 	starting_attachments = list(
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
-		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/medical,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
 	starting_attachments = list(
 		/obj/item/armor_module/module/tyr_extra_armor,
-		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/medical,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	starting_attachments = list(
 		/obj/item/armor_module/module/fire_proof,
-		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/medical,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield,
-		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/medical,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/pilot
