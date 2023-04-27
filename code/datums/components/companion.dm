@@ -30,7 +30,8 @@
 		commands_info = info
 
 /datum/component/companion/Destroy(force, silent)
-	unassign_mob_master()
+	if(mob_master)
+		unassign_mob_master()
 	return ..()
 
 /datum/component/companion/RegisterWithParent()
