@@ -275,6 +275,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	var/atom/A = caster.selected_hugger_type
 	to_chat(caster, span_notice("We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability."))
+	caster.balloon_alert(caster,"[initial(A.name)]")
 	update_button_icon()
 	succeed_activate()
 	return COMSIG_KB_ACTIVATED
@@ -289,6 +290,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			caster.selected_hugger_type = hugger_type
 			break
 	to_chat(caster, span_notice("We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability."))
+	caster.balloon_alert(caster, "[hugger_choice]")
 	update_button_icon()
 	return succeed_activate()
 
