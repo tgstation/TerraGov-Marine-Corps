@@ -706,7 +706,7 @@ EXPLOSIVES
 
 /datum/supply_packs/explosives/explosives_M45
 	name = "M45 Trailblazer grenade box crate"
-	notes = "contains 25 grenades"
+	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/M45)
 	cost = 500
 
