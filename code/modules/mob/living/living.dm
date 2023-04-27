@@ -388,7 +388,6 @@
 				L.flags_pass |= PASSMOB
 				flags_pass |= PASSMOB
 
-				var/move_failed = FALSE
 				if(!moving_diagonally) //the diagonal move already does this for us
 					Move(oldLloc)
 				if(mob_swap_mode == SWAPPING)
