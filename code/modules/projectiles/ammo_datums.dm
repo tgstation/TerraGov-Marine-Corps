@@ -1383,10 +1383,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bonus_projectile_quantity = 7
 
 	handful_greyscale_config = /datum/greyscale_config/ammo
-	handful_greyscale_colors = "#2272eb"
+	handful_greyscale_colors = COLOR_AMMO_AIRBURST
 
 	projectile_greyscale_config = /datum/greyscale_config/projectile
-	projectile_greyscale_colors = "#2272eb"
+	projectile_greyscale_colors = COLOR_AMMO_AIRBURST
 
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1)
@@ -1410,8 +1410,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "grenade_fire"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/incendiary
 	bullet_color = LIGHT_COLOR_FIRE
-	handful_greyscale_colors = "#fa7923"
-	projectile_greyscale_colors = "#fa7923"
+	handful_greyscale_colors = COLOR_AMMO_INCENDIARY
+	projectile_greyscale_colors = COLOR_AMMO_INCENDIARY
 
 /datum/ammo/tx54/smoke
 	name = "20mm tactical smoke grenade"
@@ -1419,22 +1419,22 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/smoke
 	bonus_projectiles_scatter = 24
 	bonus_projectile_quantity = 5
-	handful_greyscale_colors = "#2F7B00"
-	projectile_greyscale_colors = "#2F7B00"
+	handful_greyscale_colors = COLOR_AMMO_TACTICAL_SMOKE
+	projectile_greyscale_colors = COLOR_AMMO_TACTICAL_SMOKE
 
 /datum/ammo/tx54/smoke/dense
 	name = "20mm smoke grenade"
 	hud_state = "grenade_smoke"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/smoke/dense
-	handful_greyscale_colors = "#0F98BD"
-	projectile_greyscale_colors = "#0F98BD"
+	handful_greyscale_colors = COLOR_AMMO_SMOKE
+	projectile_greyscale_colors = COLOR_AMMO_SMOKE
 
 /datum/ammo/tx54/smoke/tangle
 	name = "20mm tanglefoot grenade"
 	hud_state = "grenade_drain"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/smoke/tangle
-	handful_greyscale_colors = "#AA1FDC"
-	projectile_greyscale_colors = "#AA1FDC"
+	handful_greyscale_colors = COLOR_AMMO_TANGLEFOOT
+	projectile_greyscale_colors = COLOR_AMMO_TANGLEFOOT
 
 /datum/ammo/tx54/razor
 	name = "20mm razorburn grenade"
@@ -1442,16 +1442,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/razor
 	bonus_projectiles_scatter = 50
 	bonus_projectile_quantity = 3
-	handful_greyscale_colors = "#FBF236"
-	projectile_greyscale_colors = "#FBF236"
+	handful_greyscale_colors = COLOR_AMMO_RAZORBURN
+	projectile_greyscale_colors = COLOR_AMMO_RAZORBURN
 
 /datum/ammo/tx54/he
 	name = "20mm HE grenade"
 	hud_state = "grenade_he"
 	bonus_projectiles_type = null
 	max_range = 12
-	handful_greyscale_colors = "#b02323"
-	projectile_greyscale_colors = "#b02323"
+	handful_greyscale_colors = COLOR_AMMO_HIGH_EXPLOSIVE
+	projectile_greyscale_colors = COLOR_AMMO_HIGH_EXPLOSIVE
 
 /datum/ammo/tx54/he/drop_nade(turf/T)
 	explosion(T, 0, 0, 2, 2)
