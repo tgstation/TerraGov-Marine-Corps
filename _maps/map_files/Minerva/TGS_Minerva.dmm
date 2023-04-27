@@ -15206,6 +15206,7 @@
 "SW" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/ids,
+/obj/item/minimap_tablet,
 /turf/open/floor/mainship/orange,
 /area/mainship/command/cic)
 "SX" = (

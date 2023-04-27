@@ -9941,6 +9941,7 @@
 	pixel_x = -7;
 	pixel_y = 2
 	},
+/obj/item/minimap_tablet,
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},

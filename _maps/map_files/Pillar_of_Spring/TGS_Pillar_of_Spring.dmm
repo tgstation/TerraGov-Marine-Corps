@@ -18414,6 +18414,10 @@
 	pixel_x = 6;
 	pixel_y = 2
 	},
+/obj/item/minimap_tablet{
+	pixel_x = 9;
+	pixel_y = 5
+	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "xBh" = (
