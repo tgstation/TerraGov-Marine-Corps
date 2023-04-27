@@ -744,13 +744,13 @@ EXPLOSIVES
 
 /datum/supply_packs/Explosives/explosives_sticky
 	name = "M40 adhesive charge grenade box crate"
-	notes = "contains 25 grenades"
+	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/sticky)
 	cost = 500
 
 /datum/supply_packs/explosives/explosives_smokebomb
 	name = "M40 HSDP smokebomb grenade box crate"
-	notes = "contains 25 grenades"
+	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/smokebomb)
 	cost = 500
 /datum/supply_packs/explosives/explosives_hsdp
