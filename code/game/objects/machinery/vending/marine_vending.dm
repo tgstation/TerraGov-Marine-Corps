@@ -106,6 +106,8 @@
 			/obj/item/weapon/gun/rifle/tx54 = 2,
 			/obj/item/ammo_magazine/rifle/tx54 = 10,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
+			/obj/item/ammo_magazine/rifle/tx54/smoke = 4,
+			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = 2,
 			/obj/item/explosive/grenade = 600,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
