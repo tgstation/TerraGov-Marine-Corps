@@ -16,6 +16,12 @@
 	flags_armor_protection = HANDS
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
 
+/obj/item/clothing/gloves/marine/black
+	name = "black marine combat gloves"
+	desc = "Standard issue marine tactical gloves but black! It reads: 'knit by Marine Widows Association'."
+	icon_state = "gloves_marine_black"
+	item_state = "black"
+
 /obj/item/clothing/gloves/marine/insulated
 	name = "insulated marine combat gloves"
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
