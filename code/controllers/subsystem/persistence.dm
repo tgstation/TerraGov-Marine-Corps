@@ -291,7 +291,7 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/lever_seasonal
-	name = "Lever actions"
+	name = "Lever Actions"
 	description = "Try and win the modern west with these"
 	item_list = list(
 		/obj/item/weapon/gun/shotgun/pump/lever = -1,
