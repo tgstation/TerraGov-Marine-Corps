@@ -715,8 +715,14 @@ TUNNEL
 	var/number_silo
 	///For minimap icon change if silo takes damage or nearby hostile
 	var/warning
+	///What directions to check for when making a tunnel and in what order
+	var/tunnel_directions = list(NORTH, SOUTH, WEST, EAST, NORTHWEST, NORTHEAST, SOUTHWEST, SOUTHEAST)
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
+
+/obj/structure/xeno/silo/indestructible
+	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things. This one seems sturdier than usual."
+	resistance_flags = UNACIDABLE | INDESTRUCTIBLE
 
 /obj/structure/xeno/silo/Initialize()
 	. = ..()
@@ -736,7 +742,6 @@ TUNNEL
 
 	return INITIALIZE_HINT_LATELOAD
 
-
 /obj/structure/xeno/silo/LateInitialize()
 	. = ..()
 	var/siloprefix = GLOB.hive_datums[hivenumber].name
@@ -751,11 +756,13 @@ TUNNEL
 		if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1)
 			GLOB.hive_datums[hivenumber].give_larva_to_next_in_queue()
 		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
-	var/turf/tunnel_turf = get_step(center_turf, NORTH)
-	if(tunnel_turf.can_dig_xeno_tunnel())
+	var/turf/tunnel_turf = get_tunnel_turf()
+	if(tunnel_turf)
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
+		if(resistance_flags & INDESTRUCTIBLE)
+			newt.resistance_flags |= INDESTRUCTIBLE
 
 /obj/structure/xeno/silo/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(GLOB.hive_datums[hivenumber])
@@ -801,6 +808,13 @@ TUNNEL
 		START_PROCESSING(SSslowprocess, src)
 
 	resin_silo_damage_alert()
+
+/obj/structure/xeno/silo/proc/get_tunnel_turf()
+	var/turf/tunnel_turf
+	for(var/direction in list(NORTH, SOUTH, WEST, EAST, NORTHWEST, NORTHEAST, SOUTHWEST, SOUTHEAST))
+		tunnel_turf = get_step(center_turf, direction)
+		if(tunnel_turf.can_dig_xeno_tunnel())
+			return tunnel_turf
 
 /obj/structure/xeno/silo/proc/resin_silo_damage_alert()
 	if(!COOLDOWN_CHECK(src, silo_damage_alert_cooldown))
@@ -1195,6 +1209,10 @@ TUNNEL
 	var/aura_strength = 5
 	///Radius (in tiles) of the pheromones given by this tower.
 	var/aura_radius = 32
+
+/obj/structure/xeno/pherotower/indestructible
+	desc = "A resin formation that looks like a small pillar. A faint, weird smell can be perceived from it. This one seems sturdier than usual."
+	resistance_flags = UNACIDABLE | INDESTRUCTIBLE
 
 /obj/structure/xeno/pherotower/Initialize(mapload)
 	. = ..()
