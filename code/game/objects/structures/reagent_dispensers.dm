@@ -8,6 +8,7 @@
 	density = TRUE
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
+	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	max_integrity = 100
 	///high chance to block bullets, offset by being unanchored
 	coverage = 80
