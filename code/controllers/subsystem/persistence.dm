@@ -265,7 +265,7 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/copsandrobbers_seasonal
-	name = "SWAT and terrorists"
+	name = "SWAT and Terrorists"
 	description = "Four classic SMGs, and no one's favorite burst revolver."
 	item_list = list(
 		/obj/item/weapon/gun/smg/uzi = -1,
