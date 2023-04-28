@@ -200,7 +200,7 @@
 	SIGNAL_HANDLER
 
 	var/list/modifiers = params2list(params)
-	if(toggled && !modifiers["left"])
+	if(toggled && !modifiers[BUTTON] == LEFT_CLICK)
 		dragging = TRUE
 		preshutter_build_resin(get_turf(object))
 
