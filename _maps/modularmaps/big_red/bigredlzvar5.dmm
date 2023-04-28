@@ -880,6 +880,9 @@
 /area/bigredv2/outside/marshal_office)
 "we" = (
 /obj/structure/closet/secure_closet/injection,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ws" = (
@@ -1050,6 +1053,9 @@
 "AI" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "AP" = (
@@ -4381,7 +4387,7 @@ Xr
 Xr
 OH
 LG
-fF
+Av
 AI
 hq
 hq
@@ -4421,7 +4427,7 @@ OH
 Xr
 Xr
 LG
-fF
+Av
 uk
 CO
 yZ
@@ -4461,7 +4467,7 @@ oT
 Xr
 Xr
 LG
-fF
+Av
 we
 oP
 yZ

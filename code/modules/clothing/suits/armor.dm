@@ -84,8 +84,8 @@
 		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
 		/obj/item/storage/holster/blade,
-		/obj/item/storage/belt/gun/pistol/m4a3,
-		/obj/item/storage/belt/gun/m44,
+		/obj/item/storage/holster/belt/pistol/m4a3,
+		/obj/item/storage/holster/belt/m44,
 	)
 
 /obj/item/clothing/suit/armor/riot

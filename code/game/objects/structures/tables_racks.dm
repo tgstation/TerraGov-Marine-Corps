@@ -286,15 +286,15 @@
 	if(!straight_table_check(turn(direction, 90)) || !straight_table_check(turn(direction, -90)))
 		return FALSE
 
-	verbs -=/obj/structure/table/verb/do_flip
-	verbs +=/obj/structure/table/proc/do_put
+	verbs -= /obj/structure/table/verb/do_flip
+	verbs += /obj/structure/table/proc/do_put
 
 	var/list/targets = list(get_step(src, dir), get_step(src, turn(dir, 45)),get_step(src, turn(dir, -45)))
 	for(var/i in get_turf(src))
 		if(isobserver(i))
 			continue
 		var/atom/movable/thing_to_throw = i
-		if(thing_to_throw.anchored)
+		if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY)
 			continue
 		thing_to_throw.throw_at(pick(targets), 1, 1)
 

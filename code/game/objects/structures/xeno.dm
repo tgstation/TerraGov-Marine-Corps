@@ -343,7 +343,7 @@
 	if(!isxeno(hit_atom))
 		return
 	var/mob/living/carbon/xenomorph/X = hit_atom
-	if(X.fire_resist_modifier <= -20 || X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+	if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	X.visible_message(span_notice("[X] is splattered with jelly!"))
 	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)

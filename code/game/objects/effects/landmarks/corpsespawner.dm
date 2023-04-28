@@ -393,7 +393,7 @@
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpseback = /obj/item/storage/backpack/satchel
-	corpsebelt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
+	corpsebelt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	corpsemask = /obj/item/clothing/mask/gas/pmc/damaged

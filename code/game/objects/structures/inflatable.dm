@@ -196,7 +196,6 @@
 	open = !open
 	flick("door_[open ? "opening" : "closing"]", src)
 	density = !density
-	opacity = !opacity
 	update_icon()
 	addtimer(VARSET_CALLBACK(src, switching_states, FALSE), 1 SECONDS)
 

@@ -6,29 +6,31 @@
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	if(get_fire_resist() <= 0)
-		return
 	return ..()
 
 /mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
-	var/hard_armor_modifier = get_hard_armor(armor_type, def_zone)
-	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
-	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01)), 1)
-	return clamp(((damage_amount - hard_armor_modifier) * soft_armor_modifier), 0, damage_amount)
+	var/hard_armor_remaining = get_hard_armor(armor_type, def_zone)
+
+	var/effective_penetration = max(0, penetration - hard_armor_remaining)
+	hard_armor_remaining -= (penetration - effective_penetration)
+
+	var/sunder_ratio = clamp(1 - ((sunder - hard_armor_remaining) * 0.01), 0, 1) //sunder is reduced by whatever remaining hardarmour there is
+
+	return clamp(damage_amount * (1 - ((get_soft_armor(armor_type, def_zone) * sunder_ratio - effective_penetration) * 0.01)), 0, damage_amount)
 
 /mob/living/carbon/xenomorph/ex_act(severity)
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-	var/bomb_effective_armor = (soft_armor.getRating("bomb")/100)*get_sunder()
-	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
-	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
+	var/bomb_armor_ratio = modify_by_armor(1, BOMB)
 
-	if(bomb_effective_armor >= 1)
+	if(bomb_armor_ratio <= 0)
 		return //immune
 
+	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_armor_ratio)
+	var/bomb_sunder_multiplier = max(0, 1 - bomb_armor_ratio)
 
-	if((severity == EXPLODE_DEVASTATE) && ((bomb_effective_armor * 100) <= XENO_EXPLOSION_GIB_THRESHOLD))
+	if((severity == EXPLODE_DEVASTATE) && (bomb_armor_ratio > XENO_EXPLOSION_GIB_THRESHOLD))
 		return gib() //Gibs unprotected benos
 
 	//Slowdown and stagger

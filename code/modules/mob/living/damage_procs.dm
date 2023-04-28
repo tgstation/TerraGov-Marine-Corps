@@ -7,15 +7,13 @@
 	* penetration: How much the damage source might bypass the armour value (optional)
 	* def_zone: What part of the body we want to check the armor of (optional)
 
-	Hard armor is calculated as a flat reduction before soft armor is applied as a multiplier.
-	Penetration reduces soft armor by a flat amount, but reduces hard armor as a multiplier.
+	Hard armor reduces penetration by a flat amount, and sunder in the case of xenos
+	Penetration reduces soft armor by a flat amount.
 	Damage cannot go into the negative, or exceed the original amount.
 */
 /mob/living/proc/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
-	var/hard_armor_modifier = get_hard_armor(armor_type, def_zone)
-	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
-	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01)), 1)
-	return clamp(((damage_amount - hard_armor_modifier) * soft_armor_modifier), 0, damage_amount)
+	penetration = max(0, penetration - get_hard_armor(armor_type, def_zone))
+	return clamp((damage_amount * (1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01))), 0, damage_amount)
 
 /*
 	apply_damage(a,b,c)

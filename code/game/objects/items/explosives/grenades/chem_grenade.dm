@@ -243,6 +243,7 @@
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_razorburn"
 	item_state = "grenade_razorburn"
+	hud_state = "grenade_razor"
 	stage = CG_READY
 	icon_state_mini = "grenade_chem_yellow"
 

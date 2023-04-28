@@ -27,7 +27,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/claymore,
-		/obj/item/storage/belt/gun,
+		/obj/item/storage/holster/belt,
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
 		/obj/item/tool/pickaxe/plasmacutter,

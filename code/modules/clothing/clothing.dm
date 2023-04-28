@@ -39,9 +39,11 @@
 		return
 	if(!ishuman(user))
 		return
+	var/mob/living/carbon/human/human_user = user
 	if(accuracy_mod)
-		var/mob/living/carbon/human/human_user = user
 		human_user.adjust_mob_accuracy(accuracy_mod)
+	if(flags_armor_features & ARMOR_FIRE_RESISTANT)
+		ADD_TRAIT(human_user, TRAIT_NON_FLAMMABLE, src)
 
 
 /obj/item/clothing/unequipped(mob/unequipper, slot)
@@ -49,9 +51,11 @@
 		return ..()
 	if(!ishuman(unequipper))
 		return ..()
+	var/mob/living/carbon/human/human_unequipper = unequipper
 	if(accuracy_mod)
-		var/mob/living/carbon/human/human_unequipper = unequipper
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
+	if(flags_armor_features & ARMOR_FIRE_RESISTANT)
+		REMOVE_TRAIT(human_unequipper, TRAIT_NON_FLAMMABLE, src)
 	return ..()
 
 /obj/item/clothing/vendor_equip(mob/user)
