@@ -270,7 +270,7 @@
 //	 bitesize = 3														//This is the amount each bite consumes.
 
 
-///obj/item/reagent_containers/food/snacks/burger/xeno/Initialize()		//Absolute pathing for procs, please.
+///obj/item/reagent_containers/food/snacks/burger/xeno/Initialize(mapload)		//Absolute pathing for procs, please.
 //	 . = ..()															//Calls the parent proc, don't forget to add this.
 
 

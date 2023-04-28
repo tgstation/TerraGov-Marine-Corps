@@ -139,7 +139,7 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
-/obj/item/storage/pouch/firstaid/combat_patrol_leader/Initialize()
+/obj/item/storage/pouch/firstaid/combat_patrol_leader/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
 	new /obj/item/storage/pill_bottle/packet/kelotane(src)
@@ -171,7 +171,7 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
-/obj/item/storage/pouch/firstaid/som/combat_patrol_leader/Initialize()
+/obj/item/storage/pouch/firstaid/som/combat_patrol_leader/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
 	new /obj/item/storage/pill_bottle/packet/kelotane(src)

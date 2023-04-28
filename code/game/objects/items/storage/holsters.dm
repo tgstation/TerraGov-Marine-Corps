@@ -454,7 +454,7 @@
 		/obj/item/cell/lasgun/lasrifle,
 	)
 
-/obj/item/storage/holster/belt/pistol/m4a3/full/Initialize()
+/obj/item/storage/holster/belt/pistol/m4a3/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
@@ -465,7 +465,7 @@
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
-/obj/item/storage/holster/belt/pistol/m4a3/officer/Initialize()
+/obj/item/storage/holster/belt/pistol/m4a3/officer/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
@@ -476,7 +476,7 @@
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
-/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander/Initialize()
+/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
@@ -487,7 +487,7 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
-/obj/item/storage/holster/belt/pistol/m4a3/vp70/Initialize()
+/obj/item/storage/holster/belt/pistol/m4a3/vp70/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -498,7 +498,7 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
-/obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc/Initialize()
+/obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70/tactical(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -509,7 +509,7 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
-/obj/item/storage/holster/belt/pistol/m4a3/vp78/Initialize()
+/obj/item/storage/holster/belt/pistol/m4a3/vp78/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
@@ -574,7 +574,7 @@
 		/obj/item/ammo_magazine/revolver,
 	)
 
-/obj/item/storage/holster/belt/m44/full/Initialize()
+/obj/item/storage/holster/belt/m44/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/single_action/m44(src)
 	new /obj/item/ammo_magazine/revolver/heavy(src)
@@ -598,7 +598,7 @@
 		/obj/item/ammo_magazine/revolver/mateba,
 	)
 
-/obj/item/storage/holster/belt/mateba/full/Initialize()
+/obj/item/storage/holster/belt/mateba/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -612,7 +612,7 @@
 /obj/item/storage/holster/belt/mateba/officer
 	icon_state = "c_mateba_holster"
 
-/obj/item/storage/holster/belt/mateba/officer/full/Initialize()
+/obj/item/storage/holster/belt/mateba/officer/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/custom(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -623,7 +623,7 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
-/obj/item/storage/holster/belt/mateba/notmarine/Initialize()
+/obj/item/storage/holster/belt/mateba/notmarine/Initialize(mapload)
 	. = ..()
 	icon_state = "a_mateba_holster"
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/(src)
@@ -645,7 +645,7 @@
 		/obj/item/ammo_magazine/pistol/c99t,
 	)
 
-/obj/item/storage/holster/belt/korovin/standard/Initialize()
+/obj/item/storage/holster/belt/korovin/standard/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
@@ -656,7 +656,7 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
-/obj/item/storage/holster/belt/korovin/tranq/Initialize()
+/obj/item/storage/holster/belt/korovin/tranq/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/tranq(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
@@ -682,7 +682,7 @@
 	)
 	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/double/marine)
 
-/obj/item/storage/holster/belt/ts34/full/Initialize()
+/obj/item/storage/holster/belt/ts34/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
@@ -696,7 +696,7 @@
 		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
 	)
 
-/obj/item/storage/holster/belt/pistol/smart_pistol/full/Initialize()
+/obj/item/storage/holster/belt/pistol/smart_pistol/full/Initialize(mapload)
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/smart_pistol(src)
 	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
