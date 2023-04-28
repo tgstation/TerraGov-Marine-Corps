@@ -10,7 +10,7 @@ FLOOR SAFES
 	name = "Secure Safe Combination"
 	var/obj/structure/safe/safe = null
 
-/obj/item/paper/safe_key/Initialize()
+/obj/item/paper/safe_key/Initialize(mapload)
 	. = ..()
 	for(var/obj/structure/safe/safe in loc)
 		if(safe)
@@ -39,7 +39,7 @@ FLOOR SAFES
 	var/space = 0		//the combined w_class of everything in the safe
 	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
 
-/obj/structure/safe/Initialize()
+/obj/structure/safe/Initialize(mapload)
 	. = ..()
 	tumbler_1_pos = 0
 	tumbler_1_open = (rand(0,10) * 5)
@@ -203,7 +203,7 @@ FLOOR SAFES
 	layer = UNDERFLOOR_OBJ_LAYER
 
 
-/obj/structure/safe/floor/Initialize()
+/obj/structure/safe/floor/Initialize(mapload)
 	. = ..()
 	var/turf/T = loc
 	hide(T.intact_tile)

@@ -16,7 +16,7 @@
 	active_power_usage = 1000
 
 
-/obj/machinery/gibber/Initialize()
+/obj/machinery/gibber/Initialize(mapload)
 	. = ..()
 	overlays += image('icons/obj/kitchen.dmi', "grjam")
 

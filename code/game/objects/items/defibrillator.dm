@@ -25,7 +25,7 @@
 	return (FIRELOSS)
 
 
-/obj/item/defibrillator/Initialize()
+/obj/item/defibrillator/Initialize(mapload)
 	. = ..()
 	sparks = new
 	sparks.set_up(5, 0, src)

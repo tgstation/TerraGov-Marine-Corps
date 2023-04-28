@@ -38,7 +38,7 @@
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		. += span_notice("The maintenance hatch is open.")
 
-/obj/machinery/power/smes/Initialize()
+/obj/machinery/power/smes/Initialize(mapload)
 	. = ..()
 	if(!powernet)
 		connect_to_network()

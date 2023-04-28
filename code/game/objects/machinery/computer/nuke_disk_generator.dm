@@ -51,7 +51,7 @@
 	///The flavor message that shows up in the UI upon segment completion
 	var/message = "error"
 
-/obj/machinery/computer/nuke_disk_generator/Initialize()
+/obj/machinery/computer/nuke_disk_generator/Initialize(mapload)
 	. = ..()
 	update_minimap_icon()
 

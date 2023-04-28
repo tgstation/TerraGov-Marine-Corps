@@ -36,7 +36,7 @@
 	var/obj/item/disk/nuclear/green/g_auth
 	var/obj/item/disk/nuclear/blue/b_auth
 
-/obj/machinery/nuclearbomb/Initialize()
+/obj/machinery/nuclearbomb/Initialize(mapload)
 	. = ..()
 	GLOB.nuke_list += src
 	countdown = new(src)

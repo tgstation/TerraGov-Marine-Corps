@@ -57,7 +57,7 @@
 	///the higher the power level the harder it hits
 	var/setting = 1
 
-/obj/item/weapon/powerfist/Initialize()
+/obj/item/weapon/powerfist/Initialize(mapload)
 	. = ..()
 	update_icon()
 

@@ -53,13 +53,22 @@
 	allowed_uniform_type = /obj/item/clothing/under
 
 /obj/item/clothing/suit/modular/xenonauten/engineer
-	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp, /obj/item/armor_module/storage/engineering)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/engineering,
+	)
 
 /obj/item/clothing/suit/modular/xenonauten/mimir
-	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/mark1)
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/storage/medical,
+	)
 
 /obj/item/clothing/suit/modular/xenonauten/shield
-	starting_attachments = list(/obj/item/armor_module/module/eshield)
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/storage/medical,
+	)
 
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"
@@ -70,7 +79,10 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/modular/xenonauten/light/shield
-	starting_attachments = list(/obj/item/armor_module/module/eshield)
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/storage/medical,
+	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy
 	name = "\improper Xenonauten-H pattern armored vest"
@@ -81,19 +93,34 @@
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/leader
-	starting_attachments = list(/obj/item/armor_module/module/valkyrie_autodoc, /obj/item/armor_module/storage/general)
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/medical,
+	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
-	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor/mark1)
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/storage/medical,
+	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
-	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor)
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/storage/medical,
+	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/surt
-	starting_attachments = list(/obj/item/armor_module/module/fire_proof, /obj/item/armor_module/storage/general)
+	starting_attachments = list(
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/storage/medical,
+	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/shield
-	starting_attachments = list(/obj/item/armor_module/module/eshield)
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/storage/medical,
+	)
 
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper TerraGov standard flak jacket"
@@ -127,7 +154,7 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
-		/obj/item/storage/belt/gun,
+		/obj/item/storage/holster/belt,
 		/obj/item/weapon/energy/sword,
 	)
 

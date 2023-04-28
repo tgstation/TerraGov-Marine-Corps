@@ -18,7 +18,7 @@
 	///The hive we're tracking
 	var/tracked_hivenumber = XENO_HIVE_NORMAL
 
-/obj/item/pinpointer/Initialize()
+/obj/item/pinpointer/Initialize(mapload)
 	. = ..()
 	tracked_list = GLOB.xeno_critical_structures_by_hive[tracked_hivenumber]
 

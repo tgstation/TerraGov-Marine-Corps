@@ -40,7 +40,7 @@
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
 
-/obj/item/toy/balloon/Initialize()
+/obj/item/toy/balloon/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
@@ -166,7 +166,7 @@
 	icon_state = "snappop"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/toy/snappop/Initialize()
+/obj/item/toy/snappop/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -212,7 +212,7 @@
 	var/empty = 0
 	flags
 
-/obj/item/toy/waterflower/Initialize()
+/obj/item/toy/waterflower/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
@@ -384,7 +384,7 @@
 	var/sides = 6
 	attack_verb = list("diced")
 
-/obj/item/toy/dice/Initialize()
+/obj/item/toy/dice/Initialize(mapload)
 	. = ..()
 	icon_state = "[name][rand(sides)]"
 
@@ -421,7 +421,7 @@
 	attack_verb = list("HONKED")
 
 
-/obj/item/toy/bikehorn/Initialize()
+/obj/item/toy/bikehorn/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, 'sound/items/bikehorn.ogg', 50)
 
@@ -439,7 +439,7 @@
 							span_notice("You hug [src]. Dawwww... "))
 		last_hug_time = world.time + 50 //5 second cooldown
 
-/obj/item/toy/plush/Initialize()
+/obj/item/toy/plush/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, 'sound/items/dollsqueak.ogg', 50)
 

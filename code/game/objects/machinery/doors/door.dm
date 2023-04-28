@@ -32,7 +32,7 @@
 	dir = EAST
 	var/width = 1
 
-/obj/machinery/door/Initialize()
+/obj/machinery/door/Initialize(mapload)
 	. = ..()
 	if(density)
 		layer = closed_layer
