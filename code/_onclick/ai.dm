@@ -1,6 +1,8 @@
 #define AI_MAX_RAILGUN_SHOTS_FIRED 10
+#define AI_RAILGUN_HUMAN_EXCLUSION_RANGE 5
 #define AI_RAILGUN_FIRING_TIME_DELAY 1 SECONDS
 #define AI_RAILGUN_FIRING_WINDUP_DELAY 30 SECONDS
+
 
 
 /*
@@ -232,7 +234,7 @@
 	if(busy)
 		to_chat(user, span_warning("The rail guns are already targeting a location, wait for them to finish."))
 		return
-	if(locate(/mob/living/carbon/human) in range(10, get_turf(user.eyeobj.loc)))
+	if(locate(/mob/living/carbon/human) in range(AI_RAILGUN_HUMAN_EXCLUSION_RANGE, get_turf(user.eyeobj.loc)))
 		to_chat(user, span_warning("Friendly biologicals detected near [loc] target location, aborting."))
 		return
 	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A)) //can't fire the railgun off the ground level, or at the DS
