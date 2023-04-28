@@ -9,7 +9,7 @@
 /datum/action/xeno_action/activable/recycle
 	name = "Recycle"
 	action_icon_state = "recycle"
-	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms. Gain back a few larva points."
+	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
 	use_state_flags = XACT_USE_STAGGERED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
