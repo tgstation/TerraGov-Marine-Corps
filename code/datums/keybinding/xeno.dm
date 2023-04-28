@@ -40,6 +40,13 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
+/datum/keybinding/xeno/recycle
+	name = "Recycle"
+	full_name = "Recycle xenomorph"
+	description = "Recycles a fellow dead xenomorph"
+	keybind_signal = COMSIG_XENOABILITY_RECYCLE
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/place_acid_well
 	name = "place_acid_well"
 	full_name = "Place acid well"
@@ -448,13 +455,6 @@
 	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 	hotkey_keys = list("X")
-
-/datum/keybinding/xeno/recycle
-	name = "Recycle"
-	full_name = "Hivelord: Recycle xenomorph"
-	description = "Recycles a fellow dead xenomorph for psy points and larva points"
-	keybind_signal = COMSIG_XENOABILITY_RECYCLE
-	hotkey_keys = list("G")
 
 /datum/keybinding/xeno/change_form
 	name = "change_form"
