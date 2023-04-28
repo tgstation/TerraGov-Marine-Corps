@@ -11,7 +11,7 @@
 		/obj/item/ammo_magazine/tl102,
 	)
 
-/obj/item/storage/box/tl102/Initialize()
+/obj/item/storage/box/tl102/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/tl102(src) //gun itself
 	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
@@ -453,7 +453,7 @@
 	max_w_class = WEIGHT_CLASS_BULKY
 	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
 
-/obj/machinery/deployable/mounted/moveable/atgun/Initialize()
+/obj/machinery/deployable/mounted/moveable/atgun/Initialize(mapload)
 	. = ..()
 	sponson = new sponson(src)
 

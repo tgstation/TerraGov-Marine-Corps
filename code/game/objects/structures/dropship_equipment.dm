@@ -375,7 +375,7 @@
 	var/obj/machinery/deployable/mounted/sentry/deployed_turret
 	var/sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship
 
-/obj/structure/dropship_equipment/sentry_holder/Initialize()
+/obj/structure/dropship_equipment/sentry_holder/Initialize(mapload)
 	. = ..()
 	if(!deployed_turret)
 		var/obj/new_gun = new sentry_type(src)
@@ -491,7 +491,7 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_mg
 
-/obj/structure/dropship_equipment/mg_holder/Initialize()
+/obj/structure/dropship_equipment/mg_holder/Initialize(mapload)
 	. = ..()
 	if(deployed_mg)
 		return
@@ -532,7 +532,7 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_minigun
 
-/obj/structure/dropship_equipment/minigun_holder/Initialize()
+/obj/structure/dropship_equipment/minigun_holder/Initialize(mapload)
 	. = ..()
 	if(deployed_minigun)
 		return
@@ -573,7 +573,7 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_heavylaser
 
-/obj/structure/dropship_equipment/heavylaser_holder/Initialize()
+/obj/structure/dropship_equipment/heavylaser_holder/Initialize(mapload)
 	. = ..()
 	if(deployed_heavylaser)
 		return
@@ -614,7 +614,7 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_heavyrr
 
-/obj/structure/dropship_equipment/heavy_rr_holder/Initialize()
+/obj/structure/dropship_equipment/heavy_rr_holder/Initialize(mapload)
 	. = ..()
 	if(deployed_heavyrr)
 		return
@@ -655,7 +655,7 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mortar/double/deployed_mortar
 
-/obj/structure/dropship_equipment/mortar_holder/Initialize()
+/obj/structure/dropship_equipment/mortar_holder/Initialize(mapload)
 	. = ..()
 	if(deployed_mortar)
 		return
@@ -867,7 +867,7 @@
 	point_cost = 0
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|IS_NOT_REMOVABLE
 
-/obj/structure/dropship_equipment/weapon/heavygun/radial_cas/Initialize()
+/obj/structure/dropship_equipment/weapon/heavygun/radial_cas/Initialize(mapload)
 	. = ..()
 	ammo_equipped = new /obj/structure/ship_ammo/heavygun(src)
 
@@ -973,7 +973,7 @@
 	point_cost = 100
 	var/obj/machinery/optable/deployed_table
 
-/obj/structure/dropship_equipment/operatingtable/Initialize()
+/obj/structure/dropship_equipment/operatingtable/Initialize(mapload)
 	. = ..()
 	if(!deployed_table)
 		deployed_table = new(src)

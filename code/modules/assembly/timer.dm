@@ -11,7 +11,7 @@
 	var/loop = FALSE
 	var/hearing_range = 3
 
-/obj/item/assembly/timer/Initialize()
+/obj/item/assembly/timer/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

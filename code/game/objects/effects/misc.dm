@@ -48,7 +48,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/datum/looping_sound/alarm_loop/deltalarm
 
-/obj/effect/soundplayer/Initialize()
+/obj/effect/soundplayer/Initialize(mapload)
 	. = ..()
 	deltalarm = new(null, FALSE)
 	GLOB.ship_alarms += src
@@ -67,7 +67,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	resistance_flags = RESIST_ALL
 
-/obj/effect/forcefield/Initialize()
+/obj/effect/forcefield/Initialize(mapload)
 	. = ..()
 	if(icon_state == "blocker")
 		icon_state = ""
@@ -79,7 +79,7 @@
 	icon_state = "smoke"
 	opacity = TRUE
 
-/obj/effect/forcefield/fog/Initialize()
+/obj/effect/forcefield/fog/Initialize(mapload)
 	. = ..()
 	dir = pick(CARDINAL_DIRS)
 	GLOB.fog_blockers += src
@@ -122,7 +122,7 @@
 	density = FALSE
 	resistance_flags = RESIST_ALL|PROJECTILE_IMMUNE
 
-/obj/effect/forcefield/fog/passable_fog/Initialize()
+/obj/effect/forcefield/fog/passable_fog/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

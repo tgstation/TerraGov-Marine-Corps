@@ -80,7 +80,7 @@
 	. = ..()
 	update_cloak()
 
-/mob/living/Initialize()
+/mob/living/Initialize(mapload)
 	. = ..()
 	register_init_signals()
 	update_move_intent_effects()

@@ -396,7 +396,7 @@
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
-/obj/item/mortar_kit/Initialize()
+/obj/item/mortar_kit/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/deployable_item, deployable_item, 1 SECONDS)
 
@@ -758,7 +758,7 @@
 	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	storage_slots = 16
 
-/obj/item/storage/box/mlrs_rockets/Initialize()
+/obj/item/storage/box/mlrs_rockets/Initialize(mapload)
 	. = ..()
 	new /obj/item/mortal_shell/rocket/mlrs(src)
 	new /obj/item/mortal_shell/rocket/mlrs(src)

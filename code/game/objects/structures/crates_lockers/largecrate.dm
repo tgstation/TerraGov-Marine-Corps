@@ -99,7 +99,7 @@
 						/obj/item/clothing/shoes/marine
 						)
 
-/obj/structure/largecrate/random/Initialize()
+/obj/structure/largecrate/random/Initialize(mapload)
 	. = ..()
 	if(!num_things) num_things = rand(0,3)
 
@@ -237,7 +237,7 @@
 					/obj/item/weapon/gun/grenade_launcher/single_shot = /obj/item/explosive/grenade/phosphorus
 					)
 
-/obj/structure/largecrate/guns/Initialize()
+/obj/structure/largecrate/guns/Initialize(mapload)
 	. = ..()
 	var/gun_type
 	var/i = 0

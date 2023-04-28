@@ -142,7 +142,7 @@
 	///Are we currently busy opening/closing?
 	var/switching_states = FALSE
 
-/obj/structure/inflatable/door/Initialize()
+/obj/structure/inflatable/door/Initialize(mapload)
 	. = ..()
 	if((locate(/mob/living) in loc) && !open)
 		toggle_state()

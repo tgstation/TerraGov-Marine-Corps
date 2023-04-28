@@ -286,7 +286,7 @@
 		INVOKE_ASYNC(src, PROC_REF(fold_down), TRUE)
 		return FALSE
 
-/obj/structure/bed/chair/dropship/passenger/Initialize()
+/obj/structure/bed/chair/dropship/passenger/Initialize(mapload)
 	. = ..()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
 	chairbar.layer = ABOVE_MOB_LAYER

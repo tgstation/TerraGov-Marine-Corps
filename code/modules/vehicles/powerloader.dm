@@ -21,7 +21,7 @@
 	var/light_range_on = 4
 
 
-/obj/vehicle/ridden/powerloader/Initialize()
+/obj/vehicle/ridden/powerloader/Initialize(mapload)
 	. = ..()
 	for(var/i in 1 to 2)
 		var/obj/item/powerloader_clamp/PC = new(src)

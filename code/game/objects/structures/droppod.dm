@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	///after the pod finishes it's travelhow long it spends falling
 	var/falltime = 0.6 SECONDS
 
-/obj/structure/droppod/Initialize()
+/obj/structure/droppod/Initialize(mapload)
 	. = ..()
 	interaction_actions = list()
 	interaction_actions += new /datum/action/innate/set_drop_target(src)

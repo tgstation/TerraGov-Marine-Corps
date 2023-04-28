@@ -24,7 +24,7 @@
 	var/fuel_rate = 0 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
 
 
-/obj/machinery/power/fusion_engine/Initialize()
+/obj/machinery/power/fusion_engine/Initialize(mapload)
 	. = ..()
 	fusion_cell = new(src)
 
@@ -32,7 +32,7 @@
 	return TRUE
 
 
-/obj/machinery/power/fusion_engine/preset/Initialize()
+/obj/machinery/power/fusion_engine/preset/Initialize(mapload)
 	. = ..()
 	fusion_cell.set_fuel_amount(100)
 	is_on = TRUE
@@ -40,7 +40,7 @@
 	update_icon()
 	start_processing()
 
-/obj/machinery/power/fusion_engine/random/Initialize()
+/obj/machinery/power/fusion_engine/random/Initialize(mapload)
 	. = ..()
 	switch(rand(1,100))
 		if(1 to 5)
@@ -354,7 +354,7 @@
 	icon_state = "cell-full"
 	fuel_amount = 100
 
-/obj/item/fuelCell/random/Initialize()
+/obj/item/fuelCell/random/Initialize(mapload)
 	. = ..()
 	fuel_amount = rand(0,100)
 	update_icon()

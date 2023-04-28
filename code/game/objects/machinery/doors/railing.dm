@@ -19,7 +19,7 @@
 	density = FALSE
 
 
-/obj/machinery/door/poddoor/railing/Initialize()
+/obj/machinery/door/poddoor/railing/Initialize(mapload)
 	. = ..()
 	if(dir == SOUTH)
 		closed_layer = ABOVE_MOB_LAYER

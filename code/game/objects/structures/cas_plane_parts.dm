@@ -189,7 +189,7 @@
 /obj/structure/caspart/leftprong
 	icon_state = "28"
 
-/obj/structure/caspart/leftprong/Initialize()
+/obj/structure/caspart/leftprong/Initialize(mapload)
 	. = ..()
 	var/image/overlay = image('icons/Marine/casship.dmi', src, "29")
 	overlay.pixel_y = 32
@@ -198,7 +198,7 @@
 /obj/structure/caspart/rightprong
 	icon_state = "13"
 
-/obj/structure/caspart/rightprong/Initialize()
+/obj/structure/caspart/rightprong/Initialize(mapload)
 	. = ..()
 	var/image/overlay = image('icons/Marine/casship.dmi', src, "14")
 	overlay.pixel_y = 32

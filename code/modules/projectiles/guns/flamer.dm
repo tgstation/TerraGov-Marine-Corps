@@ -76,7 +76,7 @@
 	///how wide of a cone the flamethrower produces on wide mode.
 	var/cone_angle = 55
 
-/obj/item/weapon/gun/flamer/Initialize()
+/obj/item/weapon/gun/flamer/Initialize(mapload)
 	. = ..()
 	if(!rounds)
 		return

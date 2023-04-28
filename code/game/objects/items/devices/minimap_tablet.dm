@@ -25,7 +25,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	/// The minimap flag we will be allowing to edit
 	var/minimap_flag = MINIMAP_FLAG_MARINE
 
-/obj/item/minimap_tablet/Initialize()
+/obj/item/minimap_tablet/Initialize(mapload)
 	. = ..()
 	var/list/atom/movable/screen/actions = list()
 	for(var/path in drawing_tools)

@@ -307,7 +307,7 @@
 	var/recharge_timer
 
 
-/obj/item/armor_module/module/eshield/Initialize()
+/obj/item/armor_module/module/eshield/Initialize(mapload)
 	. = ..()
 	spark_system = new()
 	spark_system.set_up(5, 0, src)

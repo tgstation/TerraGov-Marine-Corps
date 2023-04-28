@@ -108,7 +108,7 @@
 	/// List of atoms already hit by that projectile. Will only matter for projectiles capable of passing through multiple atoms
 	var/list/atom/hit_atoms = list()
 
-/obj/projectile/Initialize()
+/obj/projectile/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -947,7 +947,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	///The icon of the laser beam that will be created
 	var/effect_icon = "beam"
 
-/obj/projectile/hitscan/Initialize(loc, effect_icon)
+/obj/projectile/hitscan/Initialize(mapload, loc, effect_icon)
 	. = ..()
 	if(effect_icon)
 		src.effect_icon = effect_icon

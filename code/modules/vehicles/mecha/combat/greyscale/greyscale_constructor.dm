@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	/// list(STRING-list(STRING-STRING)) of visor palettes. first string is category, second is name
 	var/static/list/available_visor_colors = VISOR_PALETTES_LIST
 
-/obj/machinery/computer/mech_builder/Initialize()
+/obj/machinery/computer/mech_builder/Initialize(mapload)
 	. = ..()
 	mech_view = new
 	update_ui_view()

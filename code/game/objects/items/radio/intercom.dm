@@ -14,7 +14,7 @@
 	var/mob/living/silicon/ai/ai = list()
 	var/last_tick //used to delay the powercheck
 
-/obj/item/radio/intercom/Initialize()
+/obj/item/radio/intercom/Initialize(mapload)
 	. = ..()
 	switch(dir)
 		if(NORTH)

@@ -44,7 +44,7 @@
 	time_to_equip = 2 SECONDS
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
-/obj/item/clothing/suit/storage/marine/Initialize()
+/obj/item/clothing/suit/storage/marine/Initialize(mapload)
 	. = ..()
 	armor_overlays = list("lamp") //Just one for now, can add more later.
 	update_icon()

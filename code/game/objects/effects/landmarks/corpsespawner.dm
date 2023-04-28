@@ -38,7 +38,7 @@
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 
-/obj/effect/landmark/corpsespawner/Initialize()
+/obj/effect/landmark/corpsespawner/Initialize(mapload)
 	. = ..()
 	GLOB.corpse_landmarks_list += src
 

@@ -24,7 +24,7 @@
 	obj_integrity = 50 //ditto
 	max_integrity = 50	//ditto
 
-/obj/structure/platform/Initialize()
+/obj/structure/platform/Initialize(mapload)
 	. = ..()
 	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
 	switch(dir)
@@ -75,7 +75,7 @@
 	flags_atom = ON_BORDER
 	resistance_flags = UNACIDABLE
 
-/obj/structure/platform_decoration/Initialize()
+/obj/structure/platform_decoration/Initialize(mapload)
 	. = ..()
 	switch(dir)
 		if (NORTH)
@@ -136,7 +136,7 @@
 	obj_integrity = 50	//Ditto
 	max_integrity = 50	//Ditto
 
-/obj/structure/fakeplatform/Initialize()
+/obj/structure/fakeplatform/Initialize(mapload)
 	. = ..()
 	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
 	switch(dir)

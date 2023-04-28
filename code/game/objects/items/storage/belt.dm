@@ -62,7 +62,7 @@
 		/obj/item/tool/shovel/etool,
 	)
 
-/obj/item/storage/belt/utility/full/Initialize()
+/obj/item/storage/belt/utility/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/tool/screwdriver (src)
 	new /obj/item/tool/wirecutters (src)
@@ -73,7 +73,7 @@
 	new /obj/item/tool/multitool(src)
 
 
-/obj/item/storage/belt/utility/atmostech/Initialize()
+/obj/item/storage/belt/utility/atmostech/Initialize(mapload)
 	. = ..()
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/wrench(src)
@@ -101,7 +101,7 @@
 		/obj/item/stack/medical,
 	)
 
-/obj/item/storage/belt/lifesaver/full/Initialize()  //The belt, with all it's magic inside!
+/obj/item/storage/belt/lifesaver/full/Initialize(mapload)  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
@@ -125,7 +125,7 @@
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/healthanalyzer(src)
 
-/obj/item/storage/belt/lifesaver/quick/Initialize()  //quick load for combat patrol
+/obj/item/storage/belt/lifesaver/quick/Initialize(mapload)  //quick load for combat patrol
 	. = ..()
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
@@ -162,7 +162,7 @@
 	icon_state = "medicbag_som"
 	item_state = "medicbag_som"
 
-/obj/item/storage/belt/lifesaver/som/ert/Initialize()
+/obj/item/storage/belt/lifesaver/som/ert/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
@@ -186,7 +186,7 @@
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/healthanalyzer(src)
 
-/obj/item/storage/belt/lifesaver/som/quick/Initialize()
+/obj/item/storage/belt/lifesaver/som/quick/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
@@ -216,7 +216,7 @@
 	icon_state = "medicbag_icc"
 	item_state = "medicbag_icc"
 
-/obj/item/storage/belt/lifesaver/icc/ert/Initialize()
+/obj/item/storage/belt/lifesaver/icc/ert/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
@@ -265,7 +265,7 @@
 		/obj/item/tool/research,
 	)
 
-/obj/item/storage/belt/rig/medical/Initialize()  //The belt, with all it's magic inside!
+/obj/item/storage/belt/rig/medical/Initialize(mapload)  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
@@ -284,7 +284,7 @@
 	new /obj/item/defibrillator(src)
 	new /obj/item/healthanalyzer(src)
 
-/obj/item/storage/belt/rig/research/Initialize()  //The belt, with all it's magic inside!
+/obj/item/storage/belt/rig/research/Initialize(mapload)  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
@@ -318,7 +318,7 @@
 		/obj/item/reagent_containers/hypospray,
 	)
 
-/obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
+/obj/item/storage/belt/hypospraybelt/Initialize(mapload)  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
 	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
@@ -407,7 +407,7 @@
 		/obj/item/reagent_containers/food/snacks,
 	)
 
-/obj/item/storage/belt/marine/t18/Initialize()
+/obj/item/storage/belt/marine/t18/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
 	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
@@ -416,7 +416,7 @@
 	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
 	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
 
-/obj/item/storage/belt/marine/t12/Initialize()
+/obj/item/storage/belt/marine/t12/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
@@ -425,7 +425,7 @@
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 
-/obj/item/storage/belt/marine/standard_skirmishrifle/Initialize()
+/obj/item/storage/belt/marine/standard_skirmishrifle/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
@@ -434,7 +434,7 @@
 	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
 
-/obj/item/storage/belt/marine/standard_battlerifle/Initialize()
+/obj/item/storage/belt/marine/standard_battlerifle/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/standard_br(src)
 	new /obj/item/ammo_magazine/rifle/standard_br(src)
@@ -443,7 +443,7 @@
 	new /obj/item/ammo_magazine/rifle/standard_br(src)
 	new /obj/item/ammo_magazine/rifle/standard_br(src)
 
-/obj/item/storage/belt/marine/t90/Initialize()
+/obj/item/storage/belt/marine/t90/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
@@ -452,7 +452,7 @@
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 
-/obj/item/storage/belt/marine/secondary/Initialize()
+/obj/item/storage/belt/marine/secondary/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/smg/m25(src)
 	new /obj/item/ammo_magazine/smg/m25(src)
@@ -461,7 +461,7 @@
 	new /obj/item/ammo_magazine/smg/m25(src)
 	new /obj/item/ammo_magazine/smg/m25(src)
 
-/obj/item/storage/belt/marine/antimaterial/Initialize()
+/obj/item/storage/belt/marine/antimaterial/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/sniper/flak(src)
 	new /obj/item/ammo_magazine/sniper/flak(src)
@@ -470,7 +470,7 @@
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper(src)
 
-/obj/item/storage/belt/marine/tx8/Initialize()
+/obj/item/storage/belt/marine/tx8/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
 	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
@@ -479,7 +479,7 @@
 	new /obj/item/ammo_magazine/rifle/tx8(src)
 	new /obj/item/ammo_magazine/rifle/tx8(src)
 
-/obj/item/storage/belt/marine/combat_rifle/Initialize()
+/obj/item/storage/belt/marine/combat_rifle/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/tx11(src)
 	new /obj/item/ammo_magazine/rifle/tx11(src)
@@ -488,7 +488,7 @@
 	new /obj/item/ammo_magazine/rifle/tx11(src)
 	new /obj/item/ammo_magazine/rifle/tx11(src)
 
-/obj/item/storage/belt/marine/alf_machinecarbine/Initialize()
+/obj/item/storage/belt/marine/alf_machinecarbine/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/alf_machinecarbine(src)
 	new /obj/item/ammo_magazine/rifle/alf_machinecarbine(src)
@@ -497,7 +497,7 @@
 	new /obj/item/ammo_magazine/rifle/alf_machinecarbine(src)
 	new /obj/item/ammo_magazine/rifle/alf_machinecarbine(src)
 
-/obj/item/storage/belt/marine/auto_shotgun/Initialize()
+/obj/item/storage/belt/marine/auto_shotgun/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/tx15_slug(src)
 	new /obj/item/ammo_magazine/rifle/tx15_slug(src)
@@ -506,7 +506,7 @@
 	new /obj/item/ammo_magazine/rifle/tx15_flechette(src)
 	new /obj/item/ammo_magazine/rifle/tx15_flechette(src)
 
-/obj/item/storage/belt/marine/te_cells/Initialize()
+/obj/item/storage/belt/marine/te_cells/Initialize(mapload)
 	. = ..()
 	new /obj/item/cell/lasgun/lasrifle(src)
 	new /obj/item/cell/lasgun/lasrifle(src)
@@ -515,7 +515,7 @@
 	new /obj/item/cell/lasgun/lasrifle(src)
 	new /obj/item/cell/lasgun/lasrifle(src)
 
-/obj/item/storage/belt/marine/oicw/Initialize()
+/obj/item/storage/belt/marine/oicw/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/tx55(src)
 	new /obj/item/ammo_magazine/rifle/tx55(src)
@@ -531,7 +531,7 @@
 	item_state = "upp_belt"
 
 //version full of type 71 mags
-/obj/item/storage/belt/marine/upp/full/Initialize()
+/obj/item/storage/belt/marine/upp/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71(src)
@@ -546,7 +546,7 @@
 	icon_state = "som_belt"
 	item_state = "som_belt"
 
-/obj/item/storage/belt/marine/som/som_rifle/Initialize()
+/obj/item/storage/belt/marine/som/som_rifle/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/som(src)
 	new /obj/item/ammo_magazine/rifle/som(src)
@@ -555,7 +555,7 @@
 	new /obj/item/ammo_magazine/rifle/som(src)
 	new /obj/item/ammo_magazine/rifle/som(src)
 
-/obj/item/storage/belt/marine/som/som_rifle_ap/Initialize()
+/obj/item/storage/belt/marine/som/som_rifle_ap/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/som/ap(src)
 	new /obj/item/ammo_magazine/rifle/som/ap(src)
@@ -564,7 +564,7 @@
 	new /obj/item/ammo_magazine/rifle/som/ap(src)
 	new /obj/item/ammo_magazine/rifle/som/ap(src)
 
-/obj/item/storage/belt/marine/som/som_smg/Initialize()
+/obj/item/storage/belt/marine/som/som_smg/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/smg/som(src)
 	new /obj/item/ammo_magazine/smg/som(src)
@@ -573,7 +573,7 @@
 	new /obj/item/ammo_magazine/smg/som(src)
 	new /obj/item/ammo_magazine/smg/som(src)
 
-/obj/item/storage/belt/marine/som/som_smg_ap/Initialize()
+/obj/item/storage/belt/marine/som/som_smg_ap/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/smg/som/ap(src)
 	new /obj/item/ammo_magazine/smg/som/ap(src)
@@ -582,7 +582,7 @@
 	new /obj/item/ammo_magazine/smg/som/ap(src)
 	new /obj/item/ammo_magazine/smg/som/ap(src)
 
-/obj/item/storage/belt/marine/som/volkite/Initialize()
+/obj/item/storage/belt/marine/som/volkite/Initialize(mapload)
 	. = ..()
 	new /obj/item/cell/lasgun/volkite(src)
 	new /obj/item/cell/lasgun/volkite(src)
@@ -591,7 +591,7 @@
 	new /obj/item/cell/lasgun/volkite(src)
 	new /obj/item/cell/lasgun/volkite(src)
 
-/obj/item/storage/belt/marine/som/mpi_plum/Initialize()
+/obj/item/storage/belt/marine/som/mpi_plum/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
@@ -600,7 +600,7 @@
 	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
 
-/obj/item/storage/belt/marine/som/mpi_black/Initialize()
+/obj/item/storage/belt/marine/som/mpi_black/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
@@ -609,7 +609,7 @@
 	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
 
-/obj/item/storage/belt/marine/som/carbine/Initialize()
+/obj/item/storage/belt/marine/som/carbine/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
@@ -618,7 +618,7 @@
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
 
-/obj/item/storage/belt/marine/som/carbine_black/Initialize()
+/obj/item/storage/belt/marine/som/carbine_black/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
@@ -877,7 +877,7 @@
 	draw_mode = TRUE
 	can_hold = list(/obj/item/stack/throwing_knife)
 
-/obj/item/storage/belt/knifepouch/Initialize()
+/obj/item/storage/belt/knifepouch/Initialize(mapload)
 	. = ..()
 	new /obj/item/stack/throwing_knife(src)
 	new /obj/item/stack/throwing_knife(src)
@@ -902,7 +902,7 @@
 	desc="A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
 	icon_state="grenadebelt_som"
 
-/obj/item/storage/belt/grenade/standard/Initialize()
+/obj/item/storage/belt/grenade/standard/Initialize(mapload)
 	. = ..()
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
@@ -921,7 +921,7 @@
 	max_storage_space = 48
 	can_hold = list(/obj/item/explosive/grenade)
 
-/obj/item/storage/belt/grenade/b17/Initialize()
+/obj/item/storage/belt/grenade/b17/Initialize(mapload)
 	. = ..()
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)

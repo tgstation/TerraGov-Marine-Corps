@@ -60,7 +60,7 @@
 
 	var/list/holdingitems = list()
 
-/obj/machinery/reagentgrinder/Initialize()
+/obj/machinery/reagentgrinder/Initialize(mapload)
 	. = ..()
 	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
 

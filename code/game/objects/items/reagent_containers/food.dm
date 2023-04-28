@@ -13,7 +13,7 @@
 
 	var/list/center_of_mass = newlist() //Center of mass
 
-/obj/item/reagent_containers/food/Initialize()
+/obj/item/reagent_containers/food/Initialize(mapload)
 	. = ..()
 	if(!pixel_x && !pixel_y)
 		pixel_x = rand(-6, 6) //Randomizes postion

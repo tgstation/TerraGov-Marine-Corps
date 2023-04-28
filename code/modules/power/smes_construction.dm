@@ -22,7 +22,7 @@
 /obj/machinery/power/smes/buildable/empty/backup
 	name = "backup power SMES"
 
-/obj/machinery/power/smes/buildable/Initialize()
+/obj/machinery/power/smes/buildable/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,30)

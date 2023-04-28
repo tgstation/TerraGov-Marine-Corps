@@ -413,7 +413,7 @@
 	///the item left behind when this is used up
 	var/trash_item = /obj/item/trash/mre
 
-/obj/item/storage/box/MRE/Initialize()
+/obj/item/storage/box/MRE/Initialize(mapload)
 	. = ..()
 	pickflavor()
 

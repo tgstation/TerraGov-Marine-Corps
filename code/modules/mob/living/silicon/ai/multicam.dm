@@ -6,7 +6,7 @@
 	var/mob/camera/aiEye/pic_in_pic/aiEye
 
 
-/atom/movable/screen/movable/pic_in_pic/ai/Initialize()
+/atom/movable/screen/movable/pic_in_pic/ai/Initialize(mapload)
 	. = ..()
 	aiEye = new /mob/camera/aiEye/pic_in_pic()
 	aiEye.screen = src
@@ -115,7 +115,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	icon_state = "x"
 
 
-/obj/effect/landmark/ai_multicam_room/Initialize()
+/obj/effect/landmark/ai_multicam_room/Initialize(mapload)
 	. = ..()
 	qdel(GLOB.ai_camera_room_landmark)
 	GLOB.ai_camera_room_landmark = src

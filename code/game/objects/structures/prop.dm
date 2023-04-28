@@ -121,7 +121,7 @@
 	resistance_flags = RESIST_ALL
 
 
-/obj/structure/prop/mainship/deadai/Initialize()
+/obj/structure/prop/mainship/deadai/Initialize(mapload)
 	. = ..()
 	icon_state = pick(
 		"ai_dead",
@@ -316,7 +316,7 @@
 /obj/structure/prop/mainship/name_stencil/C
 	icon_state = "TGMC4"
 
-/obj/structure/prop/mainship/name_stencil/Initialize()
+/obj/structure/prop/mainship/name_stencil/Initialize(mapload)
 	. = ..()
 	name = SSmapping.configs[SHIP_MAP].map_name
 
@@ -783,7 +783,7 @@
 		MECH_GREY_L_ARM = MECH_ASSAULT,
 	)
 
-/obj/structure/prop/mainship/halfbuilt_mech/Initialize()
+/obj/structure/prop/mainship/halfbuilt_mech/Initialize(mapload)
 	. = ..()
 	var/default_colors = MECH_GREY_PRIMARY_DEFAULT + MECH_GREY_SECONDARY_DEFAULT
 	var/default_visor = MECH_GREY_VISOR_DEFAULT
@@ -914,7 +914,7 @@
 	desc = "A storage device for AIs. Patent pending."
 	icon_state = "aicard"
 
-/obj/item/prop/aicard/Initialize()
+/obj/item/prop/aicard/Initialize(mapload)
 	. = ..()
 	if(prob(50))
 		icon_state = "aicard-404"
@@ -931,7 +931,7 @@
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "dogtag"
 
-/obj/item/prop/dogtag/random/Initialize()
+/obj/item/prop/dogtag/random/Initialize(mapload)
 	. = ..()
 	name = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 
@@ -1006,7 +1006,7 @@
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
-/obj/structure/prop/vehicle/van/Initialize()
+/obj/structure/prop/vehicle/van/Initialize(mapload)
 	. = ..()
 	if(dir & (NORTH|SOUTH))
 		bound_height = 64
@@ -1401,7 +1401,7 @@
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
-/obj/structure/prop/vehicle/apc/Initialize()
+/obj/structure/prop/vehicle/apc/Initialize(mapload)
 	. = ..()
 	if(dir == EAST || dir == WEST)
 		bound_height = 64
@@ -1723,7 +1723,7 @@
 	///var to control vendor appearance, can be vendor_broken, vendor_working or vendor_blank
 	var/vendorstate = VENDOR_BROKEN
 
-/obj/structure/prop/tgbrokenvendor/Initialize()
+/obj/structure/prop/tgbrokenvendor/Initialize(mapload)
 	. = ..()
 	vendorstate = pick(VENDOR_BROKEN, VENDOR_BLANK)
 	if(vendorstate == VENDOR_BROKEN)

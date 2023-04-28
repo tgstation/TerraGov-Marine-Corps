@@ -49,7 +49,7 @@
 		/obj/item/ammo_magazine/sentry,
 	)
 
-/obj/item/storage/box/sentry/Initialize()
+/obj/item/storage/box/sentry/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)

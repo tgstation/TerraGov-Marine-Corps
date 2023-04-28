@@ -340,7 +340,7 @@
 	coverage = 60
 
 
-/obj/structure/table/flipped/Initialize()
+/obj/structure/table/flipped/Initialize(mapload)
 	. = ..()
 	flipped = FALSE //We'll properly flip it in LateInitialize()
 	return INITIALIZE_HINT_LATELOAD
@@ -428,7 +428,7 @@
 	table_status = TABLE_STATUS_WEAKENED
 
 
-/obj/structure/table/reinforced/flipped/Initialize()
+/obj/structure/table/reinforced/flipped/Initialize(mapload)
 	. = ..()
 	flipped = FALSE
 	return INITIALIZE_HINT_LATELOAD
@@ -524,7 +524,7 @@
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
 
-/obj/structure/rack/Initialize()
+/obj/structure/rack/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

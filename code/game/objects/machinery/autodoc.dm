@@ -61,7 +61,7 @@
 	var/stored_metal_max = 2000
 
 
-/obj/machinery/autodoc/Initialize()
+/obj/machinery/autodoc/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
@@ -944,7 +944,7 @@
 	var/obj/item/reagent_containers/blood/OMinus/blood_pack
 
 
-/obj/machinery/autodoc_console/Initialize()
+/obj/machinery/autodoc_console/Initialize(mapload)
 	. = ..()
 	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
 	if(connected)

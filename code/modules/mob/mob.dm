@@ -22,7 +22,7 @@
 	set_focus(null)
 	return ..()
 
-/mob/Initialize()
+/mob/Initialize(mapload)
 	GLOB.mob_list += src
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src

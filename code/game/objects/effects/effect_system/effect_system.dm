@@ -110,7 +110,7 @@ steam.start() -- spawns the effect
 	light_range = 1
 	light_color = COLOR_VERY_SOFT_YELLOW
 
-/obj/effect/particle_effect/sparks/Initialize()
+/obj/effect/particle_effect/sparks/Initialize(mapload)
 	. = ..()
 	playsound(src.loc, "sparks", 25, 1)
 	QDEL_IN(src, 10 SECONDS)
