@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(allow_drop))
 	GLOB.droppod_list += src
 	update_icon()
-	set_dir(SOUTH)
+	setDir(SOUTH)
 	if((!locate(/obj/structure/drop_pod_launcher) in get_turf(src)) && mapload)
 		stack_trace("Droppod [REF(src)] was created without a drop pod launcher under it at [x],[y],[z]")
 		return INITIALIZE_HINT_QDEL
