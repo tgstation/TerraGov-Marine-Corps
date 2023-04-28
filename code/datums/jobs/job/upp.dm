@@ -208,7 +208,7 @@
 	jobtype = /datum/job/upp/leader
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/korovin/standard
+	belt = /obj/item/storage/holster/belt/korovin/standard
 	ears = /obj/item/radio/headset/distress/usl
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
