@@ -48,15 +48,16 @@
 		return
 	if(!reloading_storage)
 		CRASH("[user] attempted to reload [reloading_gun] on [source], but it has no storage attached!")
+	INVOKE_ASYNC(src, PROC_REF(do_tac_reload), reloading_gun, user, params)
 
+///Performs the tactical reload
+/datum/component/tac_reload_storage/proc/do_tac_reload(obj/item/weapon/gun/reloading_gun, mob/user, params)
 	for(var/obj/item/item_to_reload_with in reloading_storage.contents)
 		if(!(item_to_reload_with.type in reloading_gun.allowed_ammo_types))
 			continue
-		if(user.l_hand && user.r_hand || length(reloading_gun.chamber_items))
-			INVOKE_ASYNC(reloading_gun, TYPE_PROC_REF(/obj/item/weapon/gun, tactical_reload), item_to_reload_with, user)
-		else
-			INVOKE_ASYNC(reloading_gun, TYPE_PROC_REF(/obj/item/weapon/gun, reload), item_to_reload_with, user)
-		INVOKE_ASYNC(reloading_storage, TYPE_PROC_REF(/obj/item/storage, orient2hud))
+		if(user.get_active_held_item(reloading_gun))
+			reloading_gun.tactical_reload(item_to_reload_with, user)
+			reloading_storage.orient2hud()
 		return COMPONENT_NO_AFTERATTACK
 
 /**
