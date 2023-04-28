@@ -334,7 +334,10 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /datum/action/innate/set_drop_target/remove_action(mob/M)
 	if(choosing)
-		owner.client?.screen -= SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+		owner.client?.screen -= map
+		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		choosing = FALSE
 	return ..()
 
 /obj/structure/dropprop	//Just a prop for now but if the pods are someday made movable make a requirement to have these on the turf
