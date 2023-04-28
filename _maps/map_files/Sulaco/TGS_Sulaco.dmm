@@ -15531,7 +15531,7 @@
 /area/sulaco/bridge)
 "iHe" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/prison/cleanmarked,
 /area/sulaco/hangar/droppod)
@@ -17424,7 +17424,7 @@
 /area/sulaco/engineering)
 "lfa" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -18055,7 +18055,7 @@
 /area/sulaco/hallway/central_hall3)
 "lYE" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -22253,7 +22253,7 @@
 /area/sulaco/hangar)
 "rFM" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/prison/cleanmarked,
 /area/sulaco/hangar/droppod)
 "rGe" = (
@@ -22476,7 +22476,7 @@
 /turf/open/floor/prison,
 /area/sulaco/bar)
 "rTz" = (
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/structure/droppod/leader,
 /turf/open/floor/prison/cleanmarked,
 /area/sulaco/hangar/droppod)

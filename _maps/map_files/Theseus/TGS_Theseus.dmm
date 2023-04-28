@@ -3693,7 +3693,7 @@
 	dir = 4
 	},
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
 "bkS" = (
@@ -5042,7 +5042,7 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "byG" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
 "byW" = (
@@ -9980,7 +9980,7 @@
 /turf/open/floor/mainship/orange,
 /area/mainship/hull/port_hull)
 "fLr" = (
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/structure/droppod/leader,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
