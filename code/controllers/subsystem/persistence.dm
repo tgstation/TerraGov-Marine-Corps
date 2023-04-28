@@ -223,7 +223,7 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/season_datum/weapons/guns/rifle_seasonal_three
 	name = "Cold War"
-	description = "Hot Guns from the Cold War"
+	description = "Hot guns from the Cold War"
 	item_list = list(
 		/obj/item/weapon/gun/rifle/mpi_km= -1,
 		/obj/item/ammo_magazine/rifle/mpi_km/plum = -1,
