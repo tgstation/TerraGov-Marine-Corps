@@ -123,7 +123,6 @@
 /obj/item/explosive/grenade/sticky/trailblazer/prime()
 	flame_radius(0.5, get_turf(src))
 	playsound(loc, "incendiary_explosion", 35)
-	qdel(src)
 	return ..()
 
 /obj/item/explosive/grenade/sticky/trailblazer/throw_impact(atom/hit_atom, speed)
