@@ -420,6 +420,7 @@
 /obj/item/reagent_containers/hypospray/advanced/inaprovaline
 	name = "inaprovaline hypospray"
 	desc = "A hypospray loaded with inaprovaline."
+	amount_per_transfer_from_this = 15
 	list_reagents = list(
 		/datum/reagent/medicine/inaprovaline = 60,
 	)
