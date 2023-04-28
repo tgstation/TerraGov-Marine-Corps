@@ -23,6 +23,8 @@
 
 /datum/component/tac_reload_storage/UnregisterFromParent()
 	UnregisterSignal(parent, list(
+		COMSIG_ATTACHMENT_ATTACHED,
+		COMSIG_ATTACHMENT_DETACHED,
 		COMSIG_PARENT_ATTACKBY_ALTERNATE,
 		COMSIG_PARENT_EXAMINE,
 	))
