@@ -198,9 +198,7 @@
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/xeno_action/activable/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
-
-	var/list/modifiers = params2list(params)
-	if(toggled && !modifiers[BUTTON] == LEFT_CLICK)
+	if(toggled)
 		dragging = TRUE
 		preshutter_build_resin(get_turf(object))
 
