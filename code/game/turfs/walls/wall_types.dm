@@ -352,7 +352,7 @@
 	walltype = "cavewall"
 
 /turf/closed/wall/desertcavewall/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, FALSE)
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
 
 //Prison wall
 
@@ -376,7 +376,7 @@
 	explosion_block = 1
 
 /turf/closed/wall/wood/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5, FALSE)
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
 
 // Reinforced Wood Wall
 

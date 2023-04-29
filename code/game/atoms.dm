@@ -1003,4 +1003,4 @@ Proc for attack log creation, because really why not
 
 ///Adds the debris element for projectile impacts
 /atom/proc/add_debris_element()
-	AddElement(/datum/element/debris, null, -15, 8, FALSE)
+	AddElement(/datum/element/debris, null, -15, 8, 0.7)

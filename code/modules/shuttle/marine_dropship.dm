@@ -834,7 +834,7 @@
 	opacity = TRUE
 
 /obj/structure/dropship_piece/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, TRUE)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 0.5)
 
 /obj/structure/dropship_piece/ex_act(severity)
 	return

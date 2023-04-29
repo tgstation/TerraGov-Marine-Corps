@@ -38,15 +38,15 @@
 	var/debris_velocity = -15
 	///Amount of debris particles
 	var/debris_amount = 8
-	///If the debris particles have a bloom filter
-	var/debris_bloom = FALSE
+	///Scale of particle debris
+	var/debris_scale = 0.7
 
-/datum/element/debris/Attach(datum/target, _debris_icon_state, _debris_velocity, _debris_amount, _debris_bloom)
+/datum/element/debris/Attach(datum/target, _debris_icon_state, _debris_velocity = -15, _debris_amount = 8, _debris_scale = 0.7)
 	. = ..()
 	debris = _debris_icon_state
 	debris_velocity = _debris_velocity
 	debris_amount = _debris_amount
-	debris_bloom = _debris_bloom
+	debris_scale = _debris_scale
 	RegisterSignal(target, COMSIG_ATOM_BULLET_ACT, PROC_REF(register_for_impact))
 
 /datum/element/debris/Detach(datum/source, force)
@@ -79,8 +79,7 @@
 		debris_visuals.particles.icon_state = debris
 		debris_visuals.particles.count = debris_amount
 		debris_visuals.particles.spawning = debris_amount
-		if(debris_bloom)
-			debris_visuals.add_filter("bloom", 1, drop_shadow_filter(0, 0, 3, 1, "#ffa300"))
+		debris_visuals.particles.scale = debris_scale
 	smoke_visuals.layer = ABOVE_OBJ_LAYER + 0.01
 	if(P.ammo.sound_bounce)
 		var/pitch = 0

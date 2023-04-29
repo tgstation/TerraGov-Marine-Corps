@@ -13,7 +13,7 @@
 	var/collapsed_type = /turf/closed/mineral
 
 /obj/structure/support/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5, FALSE)
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
 
 /obj/structure/support/deconstruct(disassembled)
 	collapse()

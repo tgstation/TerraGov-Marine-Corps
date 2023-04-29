@@ -15,7 +15,7 @@
 	var/spawn_amount
 
 /obj/structure/largecrate/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5, FALSE)
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
 
 /obj/structure/largecrate/deconstruct(disassembled = TRUE)
 	spawn_stuff()
@@ -158,6 +158,8 @@
 	. = ..()
 	. += span_notice("You need a blowtorch to weld this open!")
 
+/obj/structure/largecrate/random/barrel/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 0.5)
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"

@@ -45,7 +45,7 @@
 	)
 
 /turf/closed/wall/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, TRUE)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 0.5)
 
 /turf/closed/wall/Initialize(mapload, ...)
 	. = ..()

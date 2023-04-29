@@ -34,6 +34,9 @@
 	layer = ABOVE_FLY_LAYER
 	var/log_amount = 10
 
+/obj/structure/flora/tree/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 /obj/structure/flora/tree/Initialize(mapload)
 	. = ..()
 	AddTransparencyComponent()
@@ -719,7 +722,7 @@
 	icon_state = "basalt"
 
 /obj/structure/flora/rock/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, FALSE)
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
 
 /obj/structure/flora/rock/alt
 	name = "volcanic rock"
