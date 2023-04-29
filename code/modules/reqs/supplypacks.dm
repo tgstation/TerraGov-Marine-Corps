@@ -724,6 +724,12 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/visual/grenade/M15)
 	cost = 500
 
+/datum/supply_packs/explosives/explosives_trailblazer
+	name = "M45 Trailblazer grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/trailblazer)
+	cost = 500
+
 /datum/supply_packs/explosives/explosives_hsdp
 	name = "M40 HSDP white phosphorous grenade box crate"
 	notes = "Contains 15 grenades"
