@@ -247,7 +247,7 @@
 	else if(!A)
 		to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 		return
-	to_chat(user, span_notice("Firing orbital railguns at [loc], COORDINATES: X:[x] Y:[y]"))
+	to_chat(user, span_notice("Firing orbital rail guns at [loc], COORDINATES: X:[x] Y:[y]"))
 	ADD_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 	///how many times we've fired the railgun this cycle
 	var/timesfired = 0
