@@ -136,6 +136,18 @@ OPERATIONS
 	contains = list(/obj/item/spacecash/c500)
 	cost = 50
 
+/datum/supply_packs/operations/droppod
+	name = "drop pod"
+	contains = list(/obj/structure/droppod)
+	containertype = null
+	cost = 50
+
+/datum/supply_packs/operations/droppod_leader
+	name = "leader drop pod"
+	contains = list(/obj/structure/droppod/leader)
+	containertype = null
+	cost = 100
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
