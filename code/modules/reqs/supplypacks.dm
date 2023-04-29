@@ -136,6 +136,18 @@ OPERATIONS
 	contains = list(/obj/item/spacecash/c500)
 	cost = 50
 
+/datum/supply_packs/operations/droppod
+	name = "drop pod"
+	contains = list(/obj/structure/droppod)
+	containertype = null
+	cost = 50
+
+/datum/supply_packs/operations/droppod_leader
+	name = "leader drop pod"
+	contains = list(/obj/structure/droppod/leader)
+	containertype = null
+	cost = 100
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -722,6 +734,12 @@ EXPLOSIVES
 	name = "M15 fragmentation grenade box crate"
 	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/M15)
+	cost = 500
+
+/datum/supply_packs/explosives/explosives_trailblazer
+	name = "M45 Trailblazer grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/trailblazer)
 	cost = 500
 
 /datum/supply_packs/explosives/explosives_hsdp
