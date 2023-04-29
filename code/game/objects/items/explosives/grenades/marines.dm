@@ -153,7 +153,7 @@
 	item_state = "molotov"
 	arm_sound = 'sound/items/welder2.ogg'
 
-/obj/item/explosive/grenade/incendiary/molotov/Initialize()
+/obj/item/explosive/grenade/incendiary/molotov/Initialize(mapload)
 	. = ..()
 	det_time = rand(1 SECONDS, 4 SECONDS)//Adds some risk to using this thing.
 
@@ -210,6 +210,7 @@
 	desc = "A smoke grenade containing a concentrated neurotoxin developed by Nanotrasen, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the TGMC."
 	icon_state = "grenade_neuro"
 	item_state = "grenade_neuro"
+	hud_state = "grenade_neuro"
 	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
@@ -220,6 +221,7 @@
 	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Nanotrasen, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, none of which Terra Gov is a signatory to."
 	icon_state = "grenade_acid"
 	item_state = "grenade_acid"
+	hud_state = "grenade_acid"
 	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid
@@ -230,6 +232,7 @@
 	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers. Employed heavily by the SOM."
 	icon_state = "grenade_nerve"
 	item_state = "grenade_nerve"
+	hud_state = "grenade_nerve"
 	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/satrapine
@@ -249,6 +252,7 @@
 	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
 	icon_state = "grenade_pgas"
 	item_state = "grenade_pgas"
+	hud_state = "grenade_drain"
 	det_time = 6 SECONDS
 	icon_state_mini = "grenade_blue"
 	dangerous = TRUE
@@ -264,7 +268,7 @@
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	icon_state_mini = "grenade_cyan"
 
-/obj/item/explosive/grenade/phosphorus/Initialize()
+/obj/item/explosive/grenade/phosphorus/Initialize(mapload)
 	. = ..()
 	smoke = new(src)
 
@@ -322,7 +326,7 @@
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
 
-/obj/item/explosive/grenade/flare/Initialize()
+/obj/item/explosive/grenade/flare/Initialize(mapload)
 	. = ..()
 	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
@@ -384,7 +388,7 @@
 	if(!active)
 		turn_on(user)
 
-/obj/item/explosive/grenade/flare/on/Initialize()
+/obj/item/explosive/grenade/flare/on/Initialize(mapload)
 	. = ..()
 	active = TRUE
 	heat = 1500

@@ -66,7 +66,7 @@
 	network = "tcommsat"
 
 
-/obj/machinery/telecomms/server/presets/Initialize()
+/obj/machinery/telecomms/server/presets/Initialize(mapload)
 	. = ..()
 	name = id
 
@@ -242,7 +242,7 @@
 	autolinkers = list("common_som")
 
 //Common and other radio frequencies for people to freely use
-/obj/machinery/telecomms/server/presets/common/Initialize()
+/obj/machinery/telecomms/server/presets/common/Initialize(mapload)
 	. = ..()
 	for(var/i = MIN_FREQ, i <= MAX_FREQ, i += 2)
 		freq_listening |= i

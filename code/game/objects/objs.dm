@@ -41,7 +41,7 @@
 	///Odds of a projectile hitting the object, if the object is dense and has THROWPROJECTILE
 	var/coverage = 50
 
-/obj/Initialize()
+/obj/Initialize(mapload)
 	. = ..()
 	if(islist(soft_armor))
 		soft_armor = getArmor(arglist(soft_armor))

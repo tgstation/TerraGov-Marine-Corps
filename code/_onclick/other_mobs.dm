@@ -65,6 +65,36 @@
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, user) & COMPONENT_NO_ATTACK_HAND)
 		return TRUE
 
+/**
+ * This proc is called when an atom gets attacked (clicked on) by a powerloader clamp
+ *
+ * Arguments:
+ * * user: The mob doing the attacking
+ * * attached_clamp: The clamp used by the mob for attacking
+ */
+
+
+/atom/proc/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	. = FALSE
+
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_POWERLOADER, user, attached_clamp)
+	add_fingerprint(user, "attack_powerloader")
+
+	if(!attached_clamp)
+		stack_trace("attack_powerloader called on [src] without an attached_clamp.")
+		return TRUE
+
+	if(!user)
+		stack_trace("[attached_clamp] called attack_powerloader on [src] without a user.")
+		return TRUE
+
+	if(!attached_clamp.linked_powerloader)
+		stack_trace("[attached_clamp] called attack_powerloader on [src] without a linked_powerloader.")
+		return TRUE
+
+	if(!Adjacent(user))
+		return TRUE
+
 /*
 	New Players:
 	Have no reason to click on anything at all.

@@ -12,7 +12,7 @@
 	var/turf/listeningTo
 	var/hearing_range = 3
 
-/obj/item/assembly/infra/Initialize()
+/obj/item/assembly/infra/Initialize(mapload)
 	. = ..()
 	beams = list()
 	START_PROCESSING(SSobj, src)
@@ -233,7 +233,7 @@
 	density = FALSE
 	flags_pass = PASSTABLE|PASSGLASS|PASSGRILLE
 
-/obj/effect/beam/i_beam/Initialize()
+/obj/effect/beam/i_beam/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

@@ -22,7 +22,7 @@
 	user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (FIRELOSS)
 
-/obj/item/weapon/baton/Initialize()
+/obj/item/weapon/baton/Initialize(mapload)
 	. = ..()
 	bcell = new/obj/item/cell/high(src)
 	update_icon()

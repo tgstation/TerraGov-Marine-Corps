@@ -15,7 +15,7 @@
 	var/base_icon = "portgen0"
 	var/datum/looping_sound/generator/soundloop
 
-/obj/machinery/power/port_gen/Initialize()
+/obj/machinery/power/port_gen/Initialize(mapload)
 	. = ..()
 	soundloop = new(list(src), active)
 
@@ -90,7 +90,7 @@
 	power_gen = 15000
 	interaction_flags = INTERACT_MACHINE_TGUI
 
-/obj/machinery/power/port_gen/pacman/Initialize()
+/obj/machinery/power/port_gen/pacman/Initialize(mapload)
 	. = ..()
 	if(anchored)
 		connect_to_network()
@@ -291,7 +291,7 @@
 /obj/machinery/power/port_gen/pacman/mobile_power
 	name = "\improper A.D.V.P.A.C.M.A.N.-type portable generator"
 
-/obj/machinery/power/port_gen/pacman/mobile_power/Initialize()
+/obj/machinery/power/port_gen/pacman/mobile_power/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/mobile_power, active, 10)
 

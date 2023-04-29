@@ -113,6 +113,7 @@ REAGENT SCANNER
 	patient = M
 	current_user = user
 	if(show_patient)
+		balloon_alert_to_viewers("Showed healthscan", vision_distance = 4)
 		ui_interact(M)
 	else
 		ui_interact(user)

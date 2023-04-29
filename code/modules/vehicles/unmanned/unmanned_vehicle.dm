@@ -50,7 +50,7 @@
 	var/atom/movable/vis_obj/effect/muzzle_flash/flash
 	COOLDOWN_DECLARE(fire_cooldown)
 
-/obj/vehicle/unmanned/Initialize()
+/obj/vehicle/unmanned/Initialize(mapload)
 	. = ..()
 	ammo = GLOB.ammo_list[ammo]
 	name += " " + num2text(serial)

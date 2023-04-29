@@ -77,6 +77,8 @@
 #define DEPLOYED_NO_ROTATE  (1<<17) //Disables deployed item rotation abilities to rotate.
 #define DEPLOYED_WRENCH_DISASSEMBLE (1<<18) //If this is on an item, the item can only be disassembled using a wrench once deployed.
 #define FULLY_WIELDED (1<<19) //If the item is properly wielded. Used for guns
+///If a holster has underlay sprites
+#define HAS_UNDERLAY (1<<20)
 
 //==========================================================================================
 
@@ -141,6 +143,7 @@
 #define ARMOR_LAMP_ON (1<<2)
 #define ARMOR_IS_REINFORCED (1<<3)
 #define ARMOR_NO_DECAP (1<<4)
+#define ARMOR_FIRE_RESISTANT (1<<5)
 //===========================================================================================
 
 //===========================================================================================

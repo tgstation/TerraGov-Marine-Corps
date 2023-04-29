@@ -34,11 +34,11 @@
 	desc = "A black folder. It is decorated with stripes."
 	icon_state = "folder_black_green"
 
-/obj/item/folder/black_random/Initialize()
+/obj/item/folder/black_random/Initialize(mapload)
 	. = ..()
 	icon_state = "folder_black[pick("_red", "_green", "_blue", "_yellow", "_white")]"
 
-/obj/item/folder/Initialize()
+/obj/item/folder/Initialize(mapload)
 	. = ..()
 	if(updateicon)
 		update_icon()

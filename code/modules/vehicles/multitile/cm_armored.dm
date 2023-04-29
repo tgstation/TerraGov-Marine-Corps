@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	icon_state = "cargo_engine"
 
 
-/obj/vehicle/multitile/root/cm_armored/Initialize()
+/obj/vehicle/multitile/root/cm_armored/Initialize(mapload)
 	. = ..()
 	GLOB.tank_list += src
 	set_light(0.01)

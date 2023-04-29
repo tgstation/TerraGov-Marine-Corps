@@ -14,7 +14,7 @@
 /obj/structure/supply_drop/rebel
 	faction = FACTION_TERRAGOV_REBEL
 
-/obj/structure/supply_drop/Initialize()
+/obj/structure/supply_drop/Initialize(mapload)
 	. = ..()
 	GLOB.supply_pad_list += src
 

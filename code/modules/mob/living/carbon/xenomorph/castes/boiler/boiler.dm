@@ -39,7 +39,7 @@
 // ***************************************
 // *********** Init
 // ***************************************
-/mob/living/carbon/xenomorph/boiler/Initialize()
+/mob/living/carbon/xenomorph/boiler/Initialize(mapload)
 	. = ..()
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]

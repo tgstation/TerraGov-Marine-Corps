@@ -1586,13 +1586,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
-"akE" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/yellow,
-/turf/open/floor/prison/darkpurple{
-	dir = 1
-	},
-/area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "akF" = (
 /obj/structure/table,
 /obj/item/reagent_scanner,
@@ -4881,6 +4874,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/exterior/valley/valley_wilderness)
+"aAv" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/prison/darkpurple{
+	dir = 1
+	},
+/area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "aAA" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -14558,10 +14558,6 @@
 	dir = 8
 	},
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
-"bLk" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical)
 "bLn" = (
 /obj/machinery/power/apc/super,
 /obj/structure/cable,
@@ -55329,6 +55325,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
+"sBd" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_medical)
 "sBl" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -94321,7 +94321,7 @@ rCV
 rCV
 xqW
 cdw
-bLk
+sBd
 coI
 ciU
 cfw
@@ -108356,7 +108356,7 @@ oQF
 chr
 ciU
 cdw
-bLk
+sBd
 pNQ
 cdw
 aMz
@@ -115495,7 +115495,7 @@ acu
 acu
 rCV
 akk
-akE
+aAv
 soA
 rvL
 akK

@@ -8,7 +8,7 @@
 	var/plantname
 	var/potency = 1
 
-/obj/item/grown/Initialize()
+/obj/item/grown/Initialize(mapload)
 	. = ..()
 
 	var/datum/reagents/R = new/datum/reagents(50)
@@ -95,7 +95,7 @@
 
 	var/potency_divisior = 5
 
-/obj/item/grown/nettle/Initialize()
+/obj/item/grown/nettle/Initialize(mapload)
 	. = ..()
 	force = round(5 + potency / potency_divisior)
 

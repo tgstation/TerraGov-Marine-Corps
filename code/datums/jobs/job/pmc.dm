@@ -140,7 +140,7 @@
 	jobtype = /datum/job/pmc/sniper
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/vp70_pmc
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
 	ears = /obj/item/radio/headset/distress/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/webbing
 	shoes = /obj/item/clothing/shoes/veteran/pmc
