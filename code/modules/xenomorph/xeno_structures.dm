@@ -15,7 +15,7 @@
 		hivenumber = _hivenumber
 	LAZYADDASSOC(GLOB.xeno_structures_by_hive, hivenumber, src)
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
-		LAZYADDASSOC(GLOB.xeno_critical_structures_by_hive, src.hivenumber, src)
+		LAZYADDASSOC(GLOB.xeno_critical_structures_by_hive, hivenumber, src)
 
 /obj/structure/xeno/Destroy()
 	if(!locate(src) in GLOB.xeno_structures_by_hive[hivenumber]+GLOB.xeno_critical_structures_by_hive[hivenumber]) //The rest of the proc is pointless to look through if its not in the lists
