@@ -63,6 +63,7 @@
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_ozelomelyn,
+		/datum/effect_system/smoke_spread/xeno/acid/light,
 	)
 
 	// *** Pheromones *** //

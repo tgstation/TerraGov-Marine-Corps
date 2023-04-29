@@ -33,6 +33,8 @@
 #define DEFILER_OZELOMELYN "Ozelomelyn"
 #define DEFILER_SANGUINAL "Sanguinal"
 
+#define DEFILER_ACID "Acid"
+
 #define PANTHER_NEUROTOXIN "Neurotoxin"
 #define PANTHER_HEMODILE "Hemodile"
 #define PANTHER_TRANSVITOX "Transvitox"
@@ -81,6 +83,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/effect_system/smoke_spread/xeno/acid/light
 		))
 
 //List of toxins improving defile's damage
