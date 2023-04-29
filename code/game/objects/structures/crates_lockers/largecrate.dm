@@ -159,7 +159,7 @@
 	. += span_notice("You need a blowtorch to weld this open!")
 
 /obj/structure/largecrate/random/barrel/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 0.5)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"

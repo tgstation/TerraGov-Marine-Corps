@@ -60,7 +60,7 @@
 /datum/element/debris/proc/on_impact(datum/source, obj/projectile/P)
 	if(!P.ammo.ping)
 		return
-	var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
+	var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, source), 1)
 	var/x_component = sin(angle) * debris_velocity
 	var/y_component = cos(angle) * debris_velocity
 	var/x_component_smoke = sin(angle) * -15
@@ -85,7 +85,7 @@
 		var/pitch = 0
 		if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
 			pitch = 55000
-		playsound(src, P.ammo.sound_bounce, 50, 1, frequency = pitch)
+		playsound(source, P.ammo.sound_bounce, 50, 1, frequency = pitch)
 	addtimer(CALLBACK(src, PROC_REF(remove_ping), src, smoke_visuals, debris_visuals), 0.7 SECONDS)
 
 /datum/element/debris/proc/remove_ping(hit, obj/effect/abstract/particle_holder/smoke_visuals, obj/effect/abstract/particle_holder/debris_visuals)

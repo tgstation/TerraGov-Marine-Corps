@@ -383,7 +383,7 @@
 	resistance_flags = PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 0.5)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"
