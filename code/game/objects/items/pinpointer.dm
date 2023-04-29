@@ -14,7 +14,7 @@
 	///What we're currently tracking
 	var/atom/movable/target
 	///The list of things we're tracking
-	var/list/tracked_list = list()
+	var/list/tracked_list
 	///The hive we're tracking
 	var/tracked_hivenumber = XENO_HIVE_NORMAL
 
