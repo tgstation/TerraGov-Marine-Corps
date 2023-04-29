@@ -1115,6 +1115,13 @@
 	spawn_type = /obj/item/explosive/grenade/incendiary
 	closed_overlay = "grenade_box_overlay_hidp"
 
+/obj/item/storage/box/visual/grenade/trailblazer
+	name = "\improper M45 Trailblazer grenade box"
+	desc = "A secure box holding 25 M45 Trailblazer grenades. Warning: highly flammable!!!"
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/sticky/trailblazer
+	closed_overlay = "grenade_box_overlay_M45"
+
 /obj/item/storage/box/visual/grenade/phosphorus
 	name = "\improper M40 HPDP grenade box"
 	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
