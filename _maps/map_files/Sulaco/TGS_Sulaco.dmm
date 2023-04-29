@@ -356,7 +356,7 @@
 	},
 /area/sulaco/medbay/chemistry)
 "abk" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /obj/item/radio/intercom/general{
 	dir = 1
 	},
@@ -8311,7 +8311,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aQM" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
@@ -8360,7 +8360,7 @@
 /turf/open/floor/cult,
 /area/sulaco/morgue)
 "aRa" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /obj/machinery/alarm{
 	dir = 4
 	},
@@ -8467,7 +8467,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aRG" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aRH" = (
@@ -11233,7 +11233,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "cHd" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -13030,7 +13030,7 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "fjF" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "fkB" = (
@@ -24494,7 +24494,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "uux" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "uuN" = (
