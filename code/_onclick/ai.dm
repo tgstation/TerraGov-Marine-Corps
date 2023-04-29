@@ -228,7 +228,7 @@
 /turf/AICtrlShiftClick(mob/living/silicon/ai/user)
 	var/obj/effect/overlay/temp/laser_target/laser
 	var/area/A = get_area(user.eyeobj.loc)
-	if(user.is_laser_firing)
+	if(HAS_TRAIT(user, TRAIT_IS_FIRING_RAILGUN))
 		to_chat(user, span_warning("The rail guns are already targeting a location, wait for them to finish."))
 		return
 	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(user.eyeobj.loc, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
@@ -248,7 +248,7 @@
 		to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 		return
 	to_chat(user, span_notice("Firing orbital railguns at [loc], COORDINATES: X:[x] Y:[y]"))
-	user.is_laser_firing = TRUE
+	ADD_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 	///how many times we've fired the railgun this cycle
 	var/timesfired = 0
 	var/obj/effect/overlay/temp/laser_target/RGL = new (user.eyeobj.loc, 0, user.name)
@@ -260,7 +260,7 @@
 	while(laser)
 		if(timesfired >= AI_MAX_RAILGUN_SHOTS_FIRED) //fire until we hit defined limit
 			QDEL_NULL(laser)
-			user.is_laser_firing = FALSE
+			REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 			return
 		if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, TRUE, laser, BUSY_ICON_GENERIC)) //delay between shots
 			QDEL_NULL(laser)

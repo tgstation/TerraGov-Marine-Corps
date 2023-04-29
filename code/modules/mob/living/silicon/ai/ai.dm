@@ -16,8 +16,6 @@
 	hud_type = /datum/hud/ai
 	buckle_flags = NONE
 	has_unlimited_silicon_privilege = TRUE
-	///are we already firing a railgun laser
-	var/is_laser_firing = FALSE
 
 	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
 	var/obj/machinery/camera/current
