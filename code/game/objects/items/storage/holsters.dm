@@ -225,7 +225,6 @@
 	desc = "This backpack can hold 11 80mm mortar shells, in addition to the mortar itself."
 	icon_state = "marinepackt"
 	item_state = "marinepackt"
-	base_icon = "marinepackt"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = null
 	max_storage_space = 30
@@ -261,7 +260,6 @@
 	desc = "This backpack has a built in large capacity fuel tank, and can carry its accompanying flamethrower as well as a modest general storage capacity."
 	icon_state = "pyro_bag"
 	item_state = "pyro_bag"
-	base_icon = "pyro_bag"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = null
 	max_storage_space = 16
