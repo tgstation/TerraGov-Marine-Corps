@@ -115,14 +115,6 @@
 
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
-	///Icon state of debris when impacted by a projectile
-	var/debris = null
-	///Amount of debris particles
-	var/debris_amount = 8
-	///Velocity of debris particles
-	var/debris_velocity = -15
-	///If the debris particles have a bloom filter
-	var/debris_bloom = FALSE
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -1006,3 +998,7 @@ Proc for attack log creation, because really why not
 
 /atom/proc/can_slip()
 	return TRUE
+
+///Adds the debris element for projectile impacts
+/atom/proc/add_debris_element()
+	AddElement(/datum/element/debris, null, -15, 8, FALSE)

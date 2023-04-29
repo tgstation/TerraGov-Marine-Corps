@@ -22,9 +22,9 @@
 	var/damageable = TRUE
 	var/deconstructable = TRUE
 	flags_pass = PASSLASER
-	debris = DEBRIS_GLASS
-	debris_amount = 5
-	debris_velocity = -10
+
+/obj/structure/window/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_GLASS, -10, 5, FALSE)
 
 //I hate this as much as you do
 /obj/structure/window/full

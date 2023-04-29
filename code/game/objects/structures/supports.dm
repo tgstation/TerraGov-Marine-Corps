@@ -4,9 +4,6 @@
 	icon = 'icons/turf/wood.dmi'
 	icon_state = "wood0"
 	density = TRUE
-	debris = DEBRIS_WOOD
-	debris_amount = 5
-	debris_velocity = -10
 
 	obj_integrity = 250
 
@@ -15,6 +12,8 @@
 	/// The type of debris to spawn when the ceiling collaspses
 	var/collapsed_type = /turf/closed/mineral
 
+/obj/structure/support/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5, FALSE)
 
 /obj/structure/support/deconstruct(disassembled)
 	collapse()

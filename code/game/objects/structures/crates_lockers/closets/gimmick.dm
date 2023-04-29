@@ -4,9 +4,9 @@
 	icon_state = "cabinet_closed"
 	icon_closed = "cabinet_closed"
 	icon_opened = "cabinet_open"
-	debris = DEBRIS_WOOD
-	debris_amount = 5
-	debris_velocity = -10
+
+/obj/structure/closet/cabinet/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5, FALSE)
 
 /obj/structure/closet/cabinet/update_icon_state()
 	if(!opened)

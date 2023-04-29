@@ -11,8 +11,10 @@
 	var/junctiontype = NONE
 	///used for plasmacutter deconstruction
 	var/open_turf_type = /turf/open/floor/plating
-	debris = null
-	debris_bloom = FALSE
+
+/turf/closed/Initialize(mapload)
+	. = ..()
+	add_debris_element()
 
 /turf/closed/mineral
 	name = "rock"
@@ -20,9 +22,9 @@
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	minimap_color = NONE
-	debris = DEBRIS_ROCK
-	debris_amount = 5
-	debris_velocity = -10
+
+/turf/closed/mineral/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, FALSE)
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
@@ -147,9 +149,9 @@
 	base_icon_state = "junglewall"
 	walltype = "junglewall"
 	open_turf_type = /turf/open/ground/jungle/clear
-	debris = DEBRIS_LEAF
-	debris_amount = 5
-	debris_velocity = -10
+
+/turf/closed/gm/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_LEAF, -10, 5, FALSE)
 
 /turf/closed/gm/tree
 	name = "dense jungle trees"
@@ -217,9 +219,9 @@
 	icon_state = "Single"
 	desc = "It is very thick."
 	open_turf_type = /turf/open/floor/plating/ground/ice
-	debris = DEBRIS_ROCK
-	debris_amount = 5
-	debris_velocity = -10
+
+/turf/closed/ice/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SNOW, -10, 5, FALSE)
 
 /turf/closed/ice/single
 	icon_state = "Single"
@@ -317,9 +319,9 @@
 	icon = 'icons/turf/rockwall.dmi'
 	resistance_flags = PLASMACUTTER_IMMUNE
 	open_turf_type = /turf/open/floor/plating/ground/ice
-	debris = DEBRIS_ROCK
-	debris_amount = 5
-	debris_velocity = -10
+
+/turf/closed/ice_rock/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SNOW, -10, 5, FALSE)
 
 /turf/closed/ice_rock/single
 	icon_state = "single"
@@ -379,8 +381,9 @@
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
 	resistance_flags = PLASMACUTTER_IMMUNE
-	debris = DEBRIS_SPARKS
-	debris_bloom = TRUE
+
+/turf/closed/shuttle/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, TRUE)
 
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"

@@ -12,9 +12,9 @@
 	hit_sound = 'sound/effects/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
-	debris = DEBRIS_WOOD
-	debris_amount = 5
-	debris_velocity = -10
+
+/obj/structure/largecrate/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5, FALSE)
 
 /obj/structure/largecrate/deconstruct(disassembled = TRUE)
 	spawn_stuff()

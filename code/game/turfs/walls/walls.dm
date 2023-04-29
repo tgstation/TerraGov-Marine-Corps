@@ -43,8 +43,9 @@
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 		SMOOTH_GROUP_SHUTTERS,
 	)
-	debris = DEBRIS_SPARKS
-	debris_bloom = TRUE
+
+/turf/closed/wall/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, TRUE)
 
 /turf/closed/wall/Initialize(mapload, ...)
 	. = ..()
