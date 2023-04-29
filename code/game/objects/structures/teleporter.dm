@@ -26,7 +26,7 @@
 		. += "It is not linked to any other teleporter."
 
 
-/obj/machinery/deployable/teleporter/Initialize()
+/obj/machinery/deployable/teleporter/Initialize(mapload)
 	. = ..()
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "teleporter")
 
@@ -159,7 +159,7 @@
 	///References to the number of the teleporter.
 	var/self_tele_tag
 
-/obj/item/teleporter_kit/Initialize()
+/obj/item/teleporter_kit/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
 	cell = new /obj/item/cell/high(src)
@@ -211,7 +211,7 @@
 	name = "\improper ASRS bluespace teleporters"
 	desc = "Two bluespace telepads for moving personnel and equipment across small distances to another prelinked teleporter."
 
-/obj/effect/teleporter_linker/Initialize()
+/obj/effect/teleporter_linker/Initialize(mapload)
 	. = ..()
 	var/obj/item/teleporter_kit/teleporter_a = new(loc)
 	var/obj/item/teleporter_kit/teleporter_b = new(loc)

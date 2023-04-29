@@ -18,7 +18,7 @@
 	var/admin = FALSE
 
 
-/obj/item/alien_embryo/Initialize()
+/obj/item/alien_embryo/Initialize(mapload)
 	. = ..()
 	if(!isliving(loc))
 		return

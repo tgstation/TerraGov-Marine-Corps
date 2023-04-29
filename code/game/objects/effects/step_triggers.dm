@@ -7,7 +7,7 @@
 	invisibility = INVISIBILITY_MAXIMUM // nope cant see this shit
 	anchored = TRUE
 
-/obj/effect/step_trigger/Initialize()
+/obj/effect/step_trigger/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

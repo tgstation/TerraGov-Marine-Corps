@@ -49,7 +49,6 @@
 		if(!table)
 			continue
 		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
-	QUEUE_SMOOTH(src)
 
 /obj/structure/table/Destroy()
 	update_adjacent(loc) //so neighbouring tables get updated correctly
@@ -287,15 +286,15 @@
 	if(!straight_table_check(turn(direction, 90)) || !straight_table_check(turn(direction, -90)))
 		return FALSE
 
-	verbs -=/obj/structure/table/verb/do_flip
-	verbs +=/obj/structure/table/proc/do_put
+	verbs -= /obj/structure/table/verb/do_flip
+	verbs += /obj/structure/table/proc/do_put
 
 	var/list/targets = list(get_step(src, dir), get_step(src, turn(dir, 45)),get_step(src, turn(dir, -45)))
 	for(var/i in get_turf(src))
 		if(isobserver(i))
 			continue
 		var/atom/movable/thing_to_throw = i
-		if(thing_to_throw.anchored)
+		if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY)
 			continue
 		thing_to_throw.throw_at(pick(targets), 1, 1)
 
@@ -341,7 +340,7 @@
 	coverage = 60
 
 
-/obj/structure/table/flipped/Initialize()
+/obj/structure/table/flipped/Initialize(mapload)
 	. = ..()
 	flipped = FALSE //We'll properly flip it in LateInitialize()
 	return INITIALIZE_HINT_LATELOAD
@@ -429,7 +428,7 @@
 	table_status = TABLE_STATUS_WEAKENED
 
 
-/obj/structure/table/reinforced/flipped/Initialize()
+/obj/structure/table/reinforced/flipped/Initialize(mapload)
 	. = ..()
 	flipped = FALSE
 	return INITIALIZE_HINT_LATELOAD
@@ -525,7 +524,7 @@
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
 
-/obj/structure/rack/Initialize()
+/obj/structure/rack/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

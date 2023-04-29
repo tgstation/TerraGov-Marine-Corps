@@ -25,7 +25,7 @@
 	stop_automated_movement_when_pulled = TRUE
 
 
-/mob/living/simple_animal/hostile/retaliate/goat/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/udder)
 
@@ -72,7 +72,7 @@
 	health = 50
 	maxHealth = 50
 
-/mob/living/simple_animal/cow/Initialize()
+/mob/living/simple_animal/cow/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/udder)
 
@@ -129,7 +129,7 @@
 	mob_size = MOB_SIZE_SMALL
 
 
-/mob/living/simple_animal/chick/Initialize()
+/mob/living/simple_animal/chick/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
@@ -185,7 +185,7 @@
 	var/static/chicken_count = 0
 
 
-/mob/living/simple_animal/chicken/Initialize()
+/mob/living/simple_animal/chicken/Initialize(mapload)
 	. = ..()
 	if(!body_color)
 		body_color = pick(validColors)

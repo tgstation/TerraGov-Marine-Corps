@@ -1665,6 +1665,10 @@
 		/obj/item/ammo_magazine/rifle/tx54,
 		/obj/item/ammo_magazine/rifle/tx54/he,
 		/obj/item/ammo_magazine/rifle/tx54/incendiary,
+		/obj/item/ammo_magazine/rifle/tx54/smoke,
+		/obj/item/ammo_magazine/rifle/tx54/smoke/dense,
+		/obj/item/ammo_magazine/rifle/tx54/smoke/tangle,
+		/obj/item/ammo_magazine/rifle/tx54/razor,
 	)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 20, "under_x" = 28, "under_y" = 13, "stock_x" = -1, "stock_y" = 17)

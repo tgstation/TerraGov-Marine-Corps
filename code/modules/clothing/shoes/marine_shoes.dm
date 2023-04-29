@@ -19,7 +19,7 @@
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/boot)
 
-/obj/item/clothing/shoes/marine/Initialize()
+/obj/item/clothing/shoes/marine/Initialize(mapload)
 	. = ..()
 	update_icon()
 

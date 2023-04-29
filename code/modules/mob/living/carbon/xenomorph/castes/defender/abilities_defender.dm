@@ -143,9 +143,6 @@
 	var/mob/living/carbon/xenomorph/defender/defender = X
 	if(defender.fortify)
 		var/datum/action/xeno_action/fortify/fortify_action = X.actions_by_path[/datum/action/xeno_action/fortify]
-		if(fortify_action.cooldown_id)
-			to_chat(X, span_xenowarning("We cannot yet untuck ourselves from our fortified stance!"))
-			return fail_activate()
 
 		fortify_action.set_fortify(FALSE, TRUE)
 		fortify_action.add_cooldown()
@@ -307,6 +304,9 @@
 		CD.set_crest_defense(FALSE, TRUE)
 		CD.add_cooldown()
 		to_chat(X, span_xenowarning("We tuck our lowered crest into ourselves."))
+
+	var/datum/action/xeno_action/activable/forward_charge/combo_cooldown = X.actions_by_path[/datum/action/xeno_action/activable/forward_charge]
+	combo_cooldown.add_cooldown(cooldown_timer)
 
 	set_fortify(TRUE, was_crested)
 	add_cooldown()

@@ -7,17 +7,20 @@
 	///Which hive(number) do we belong to?
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/structure/xeno/Initialize(location, hivenumber)
+/obj/structure/xeno/Initialize(mapload, location, hivenumber)
 	. = ..()
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
+	if(hivenumber) ///because admins can spawn them
+		src.hivenumber = hivenumber
 	LAZYADDASSOC(GLOB.xeno_structures_by_hive, hivenumber, src)
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
 		GLOB.xeno_critical_structures += src
-	if(hivenumber) ///because admins can spawn them
-		src.hivenumber = hivenumber
 
 /obj/structure/xeno/Destroy()
+	if(!locate(src) in GLOB.xeno_structures_by_hive[hivenumber]) //The rest of the proc is pointless to look through if its not in the lists
+		stack_trace("[src] not found in the list of xeno structures!") //We dont want to CRASH because that'd block deletion completely. Just trace it and continue.
+		return ..()
 	GLOB.xeno_structures_by_hive[hivenumber] -= src
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
 		GLOB.xeno_critical_structures -= src
@@ -450,7 +453,7 @@ TUNNEL
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize(loc, creator)
+/obj/structure/xeno/acidwell/Initialize(mapload, loc, creator)
 	. = ..()
 	src.creator = creator
 	RegisterSignal(creator, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator))
@@ -647,7 +650,7 @@ TUNNEL
 	///Countdown to the next time we generate a jelly
 	var/nextjelly = 0
 
-/obj/structure/xeno/resin_jelly_pod/Initialize()
+/obj/structure/xeno/resin_jelly_pod/Initialize(mapload)
 	. = ..()
 	add_overlay(image(icon, "resinpod_inside", layer + 0.01, dir))
 	START_PROCESSING(SSslowprocess, src)
@@ -718,7 +721,7 @@ TUNNEL
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
-/obj/structure/xeno/silo/Initialize()
+/obj/structure/xeno/silo/Initialize(mapload)
 	. = ..()
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
@@ -1097,7 +1100,7 @@ TUNNEL
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)
-		hugger_ammo.hugger_hivenumber = hivenumber
+		hugger_ammo.hivenumber = hivenumber
 	firing = TRUE
 	update_minimap_icon()
 
@@ -1259,7 +1262,7 @@ TUNNEL
 	COOLDOWN_DECLARE(spawner_proxy_alert_cooldown)
 	var/linked_minions = list()
 
-/obj/structure/xeno/spawner/Initialize()
+/obj/structure/xeno/spawner/Initialize(mapload)
 	. = ..()
 	LAZYADDASSOC(GLOB.xeno_spawners_by_hive, hivenumber, src)
 	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, CALLBACK(src, PROC_REF(on_spawn)))
@@ -1367,7 +1370,7 @@ TUNNEL
 	///How long does it take for the plant to be useable
 	var/maturation_time = 2 MINUTES
 
-/obj/structure/xeno/plant/Initialize()
+/obj/structure/xeno/plant/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time)
 

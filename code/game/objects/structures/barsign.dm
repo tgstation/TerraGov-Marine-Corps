@@ -3,7 +3,7 @@
 	icon_state = "off"
 	anchored = TRUE
 
-/obj/structure/sign/double/barsign/Initialize()
+/obj/structure/sign/double/barsign/Initialize(mapload)
 	. = ..()
 	ChangeSign(pick(
 	"pinkflamingo",
@@ -58,7 +58,7 @@
 	desc = "The Drunk Carp, Bar and Grill"
 	icon_state = "thedrunkcarp"
 
-/obj/structure/sign/double/barsign/carp/Initialize()
+/obj/structure/sign/double/barsign/carp/Initialize(mapload)
 	. = ..()
 	ChangeSign("thedrunkcarp")
 

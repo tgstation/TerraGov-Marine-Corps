@@ -40,7 +40,7 @@
 /obj/machinery/computer/communications/bee
 	machine_stat = BROKEN
 
-/obj/machinery/computer/communications/bee/Initialize()
+/obj/machinery/computer/communications/bee/Initialize(mapload)
 	. = ..()
 	update_icon()
 

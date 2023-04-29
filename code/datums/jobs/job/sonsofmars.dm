@@ -783,7 +783,7 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/outfit/job/som/ert/veteran/pyro
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/pyro
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/som
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/som
 	back = /obj/item/ammo_magazine/flamer_tank/backtank
 	suit_store = /obj/item/weapon/gun/flamer/som/mag_harness
 

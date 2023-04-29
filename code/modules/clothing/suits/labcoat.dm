@@ -24,7 +24,7 @@
 	///If the coat is buttoned or not
 	var/open = FALSE
 
-/obj/item/clothing/suit/storage/labcoat/Initialize()
+/obj/item/clothing/suit/storage/labcoat/Initialize(mapload)
 	. = ..()
 	toggle_open()
 

@@ -273,13 +273,6 @@
 		"TGMC Marine Corp? At this time of shift, in this time of year, in this sector of space, localized entirely within your freezer?",
 		"You know, these hamburgers taste quite similar to the ones they have at the Maltese Falcon.")
 
-/obj/item/reagent_containers/food/snacks/burger/packaged_burger/attack_self(mob/user as mob)
-	if (package)
-		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
-		to_chat(user, span_notice("You pull off the wrapping from the squishy hamburger!"))
-		package = FALSE
-		icon_state = "hburger"
-
 /obj/item/reagent_containers/food/snacks/burger/packaged_burger
 	name = "Packaged Cheeseburger"
 	desc = "A soggy microwavable burger. There's no time given for how long to cook it. Packaged by the Nanotrasen Corporation."
@@ -289,6 +282,14 @@
 	package = TRUE
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sodiumchloride = 2)
 	tastes = list("bun" = 4, "soy protein" = 2) //Cheap fridge burgers.
+
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger/attack_self(mob/user as mob)
+	if (package)
+		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
+		to_chat(user, span_notice("You pull off the wrapping from the squishy hamburger!"))
+		package = FALSE
+		icon = 'icons/obj/items/food/burgers.dmi'
+		icon_state = "hburger"
 
 // Human Burger + cheese wedge = cheeseburger
 /obj/item/reagent_containers/food/snacks/burger/attackby(obj/item/I, mob/user, params)
