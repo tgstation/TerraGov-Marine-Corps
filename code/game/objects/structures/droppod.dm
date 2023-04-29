@@ -51,13 +51,12 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(allow_drop))
 	GLOB.droppod_list += src
 	update_icon()
-	setDir(SOUTH)
 	if((!locate(/obj/structure/drop_pod_launcher) in get_turf(src)) && mapload)
 		stack_trace("Droppod [REF(src)] was created without a drop pod launcher under it at [x],[y],[z]")
 		return INITIALIZE_HINT_QDEL
 
 /obj/structure/droppod/Destroy()
-	for(var/atom/movable/ejectee AS in contents) // dump them out, just in case no mobs det deleted
+	for(var/atom/movable/ejectee AS in contents) // dump them out, just in case no mobs get deleted
 		ejectee.forceMove(loc)
 	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
@@ -93,6 +92,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(!silent)
 			balloon_alert(buckling_mob, "Already used")
 		return FALSE
+	setDir(SOUTH) //this is dirty but supply elevator still tehnically being a shuttle forced my hand TODO: undirty this
 	. = ..()
 	if(!.)
 		return
@@ -363,6 +363,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/drop_pod_launcher/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(!istype(attached_clamp.loaded, /obj/structure/droppod))
 		return ..()
+	for(var/atom/movable/ejectee AS in contents) // dump them out, just in case no mobs get deleted
+		ejectee.forceMove(loc)
 	user.visible_message(span_notice("[user] drops [attached_clamp.loaded] onto [src] and it clicks into place!"),
 	span_notice("You drop [attached_clamp.loaded] onto [src] and it clicks into place!"))
 	attached_clamp.loaded.forceMove(get_turf(src))
