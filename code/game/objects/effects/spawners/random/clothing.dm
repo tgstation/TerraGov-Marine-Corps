@@ -4,9 +4,9 @@
 	name = "Random base clothing spawner"
 	icon = 'icons/effects/random/clothing.dmi'
 	icon_state = "random_clothes"
-	loot_subtype_path = /obj/effect/spawner/random/clothing
-	loot = list()
-
+	loot = list(
+		/obj/structure/prop/mainship/errorprop,
+	)
 /obj/effect/spawner/random/clothing/general
 	name = "Random clothing spawner"
 	icon_state = "random_clothes"
@@ -109,7 +109,7 @@
 		/obj/item/clothing/gloves/rainbow = 30,
 		/obj/item/clothing/gloves/red = 30,
 		/obj/item/clothing/gloves/white = 30,
-		/obj/item/clothing/gloves/yellow = 5,
+		/obj/item/clothing/gloves/insulated = 5,
 	)
 
 /obj/effect/spawner/random/clothing/coloredgloves/latex

@@ -279,7 +279,7 @@
 	icon_state = "folded"
 	var/obj/item/roller/held
 
-/obj/item/roller_holder/Initialize()
+/obj/item/roller_holder/Initialize(mapload)
 	. = ..()
 	held = new(src)
 

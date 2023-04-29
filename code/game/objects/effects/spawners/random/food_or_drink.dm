@@ -2,8 +2,9 @@
 	name = "Random base food or drink spawner"
 	icon = 'icons/effects/random/food_or_drink.dmi'
 	icon_state = "random_burger"
-	loot_subtype_path = /obj/effect/spawner/random/food_or_drink
-	loot = list()
+	loot = list(
+		/obj/structure/prop/mainship/errorprop,
+	)
 
 /obj/effect/spawner/random/food_or_drink/donut
 	name = "Random donut spawner"

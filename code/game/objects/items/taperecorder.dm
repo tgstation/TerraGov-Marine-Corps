@@ -17,7 +17,7 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/taperecorder/Initialize()
+/obj/item/taperecorder/Initialize(mapload)
 	. = ..()
 	become_hearing_sensitive()
 

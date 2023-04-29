@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon_state = ""
 	duration = 13
 
-/obj/effect/temp_visual/heavyimpact/Initialize()
+/obj/effect/temp_visual/heavyimpact/Initialize(mapload)
 	. = ..()
 	flick("heavyimpact", src)
 
@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	pixel_y = -48
 	duration = 8
 
-/obj/effect/temp_visual/wraith_warp/Initialize()
+/obj/effect/temp_visual/wraith_warp/Initialize(mapload)
 	. = ..()
 	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
 
@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	plane = GRAVITY_PULSE_PLANE
 	duration = 8
 
-/obj/effect/temp_visual/blink_drive/Initialize()
+/obj/effect/temp_visual/blink_drive/Initialize(mapload)
 	. = ..()
 	var/image/I = image(icon, src, icon_state, 10, pixel_x = -48, pixel_y = -48)
 	overlays += I //we use an overlay so the icon and light source are both in the correct location

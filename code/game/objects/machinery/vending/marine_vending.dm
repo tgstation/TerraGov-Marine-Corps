@@ -53,7 +53,7 @@
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
-			/obj/item/storage/belt/gun/ts34/full = -1,
+			/obj/item/storage/holster/belt/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun/flechette = -1,
@@ -108,6 +108,8 @@
 			/obj/item/weapon/gun/rifle/tx54 = 2,
 			/obj/item/ammo_magazine/rifle/tx54 = 10,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
+			/obj/item/ammo_magazine/rifle/tx54/smoke = 4,
+			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = 2,
 			/obj/item/explosive/grenade = 600,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
@@ -270,7 +272,7 @@
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
-			/obj/item/storage/belt/gun/ts34/full = -1,
+			/obj/item/storage/holster/belt/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun/flechette = -1,
@@ -464,7 +466,7 @@
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
-			/obj/item/storage/belt/gun/ts34/full = -1,
+			/obj/item/storage/holster/belt/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun/flechette = -1,
@@ -670,7 +672,7 @@
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
-			/obj/item/storage/belt/gun/ts34/full = -1,
+			/obj/item/storage/holster/belt/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun/flechette = -1,
@@ -1014,7 +1016,7 @@
 
 	prices = list()
 
-/obj/machinery/vending/lasgun/Initialize()
+/obj/machinery/vending/lasgun/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -1113,7 +1115,6 @@
 		),
 		"Misc" = list(
 			/obj/item/defibrillator = 8,
-			/obj/item/healthanalyzer/gloves = 8,
 			/obj/item/healthanalyzer = 16,
 			/obj/item/bodybag/cryobag = 24,
 		),
@@ -1363,6 +1364,7 @@
 			/obj/item/clothing/under/marine/squad/neck/bravo = -1,
 			/obj/item/clothing/under/marine/squad/neck/alpha = -1,
 			/obj/item/clothing/gloves/marine = -1,
+			/obj/item/clothing/gloves/marine/black = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/shoes/marine/brown/full = -1,
 			/obj/item/clothing/shoes/cowboy = -1,
@@ -1388,8 +1390,8 @@
 			/obj/item/storage/belt/knifepouch = -1,
 			/obj/item/belt_harness/marine = -1,
 			/obj/item/storage/belt/sparepouch = -1,
-			/obj/item/storage/belt/gun/pistol/standard_pistol = -1,
-			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
+			/obj/item/storage/holster/belt/pistol/standard_pistol = -1,
+			/obj/item/storage/holster/belt/revolver/standard_revolver = -1,
 			/obj/item/storage/holster/t19 = -1,
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
@@ -1401,7 +1403,7 @@
 			/obj/item/storage/pouch/magazine/large = -1,
 			/obj/item/storage/pouch/magazine/pistol/large = -1,
 			/obj/item/storage/pouch/shotgun = -1,
-			/obj/item/storage/pouch/flare/full = -1,
+			/obj/item/storage/holster/flarepouch/full = -1,
 			/obj/item/storage/pouch/grenade = -1,
 			/obj/item/storage/pouch/explosive = -1,
 			/obj/item/storage/pouch/medkit = -1,
@@ -1566,7 +1568,7 @@
 			/obj/item/weapon/gun/minigun/smart_minigun = -1,
 			/obj/item/ammo_magazine/minigun_powerpack/smartgun = -1,
 			/obj/item/weapon/gun/launcher/rocket/oneuse = -1,
-			/obj/item/storage/belt/gun/mateba/full = -1,
+			/obj/item/storage/holster/belt/mateba/full = -1,
 			/obj/item/ammo_magazine/revolver/mateba = -1,
 			/obj/item/ammo_magazine/packet/mateba = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle/flak = -1,

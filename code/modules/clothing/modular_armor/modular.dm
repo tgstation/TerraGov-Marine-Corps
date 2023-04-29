@@ -27,7 +27,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/claymore,
-		/obj/item/storage/belt/gun,
+		/obj/item/storage/holster/belt,
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
 		/obj/item/tool/pickaxe/plasmacutter,
@@ -117,7 +117,7 @@
 	///Uniform type that is allowed to be worn with this.
 	var/allowed_uniform_type = /obj/item/clothing/under/marine
 
-/obj/item/clothing/suit/modular/Initialize()
+/obj/item/clothing/suit/modular/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -312,7 +312,7 @@
 	///Current varient selected.
 	var/current_variant
 
-/obj/item/clothing/head/modular/Initialize()
+/obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -399,7 +399,7 @@
 	///Current varient selected.
 	var/current_variant
 
-/obj/item/clothing/mask/gas/modular/Initialize()
+/obj/item/clothing/mask/gas/modular/Initialize(mapload)
 	. = ..()
 	update_icon()
 

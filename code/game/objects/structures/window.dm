@@ -460,7 +460,7 @@
 	icon_state = "ship_window-0"
 	basestate = "ship_window"
 
-/obj/structure/window/framed/mainship/spaceworthy/Initialize()
+/obj/structure/window/framed/mainship/spaceworthy/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/windowshutter/cokpitshutters)
 
@@ -644,7 +644,7 @@
 	resistance_flags = BANISH_IMMUNE
 	icon_state = "window-invincible"
 
-/obj/structure/window/framed/prison/reinforced/hull/Initialize()
+/obj/structure/window/framed/prison/reinforced/hull/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/windowshutter)
 

@@ -83,9 +83,6 @@
 	return 1
 
 /obj/structure/closet/crate/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/powerloader_clamp))
-		return FALSE
-
 	. = ..()
 
 	if(iscablecoil(I))
@@ -164,7 +161,7 @@
 	icon_opened = "open_explosives"
 	icon_closed = "closed_explosives"
 
-/obj/structure/closet/crate/explosives/whiskeyoutpost/Initialize()
+/obj/structure/closet/crate/explosives/whiskeyoutpost/Initialize(mapload)
 	. = ..()
 	new /obj/item/explosive/grenade/stick(src)
 	new /obj/item/explosive/grenade/stick(src)
@@ -184,7 +181,7 @@
 	new /obj/item/explosive/grenade/phosphorus/upp(src)
 	new /obj/item/explosive/grenade/phosphorus/upp(src)
 
-/obj/structure/closet/crate/explosives/whiskeyoutposttwo/Initialize()
+/obj/structure/closet/crate/explosives/whiskeyoutposttwo/Initialize(mapload)
 	. = ..()
 	new /obj/structure/closet/crate/explosives(src)
 	new /obj/item/storage/box/visual/grenade/razorburn(src)
@@ -211,7 +208,7 @@
 	icon_opened = "open_hydro"
 	icon_closed = "closed_hydro"
 
-/obj/structure/closet/crate/hydroponics/prespawned/Initialize()
+/obj/structure/closet/crate/hydroponics/prespawned/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/spray/plantbgone(src)
 	new /obj/item/reagent_containers/spray/plantbgone(src)
@@ -243,7 +240,7 @@
 	name = "RCD crate"
 	desc = "A crate for the storage of the RCD."
 
-/obj/structure/closet/crate/rcd/Initialize()
+/obj/structure/closet/crate/rcd/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
@@ -258,7 +255,7 @@
 	desc = "A crate of emergency rations."
 	name = "Emergency Rations"
 
-/obj/structure/closet/crate/freezer/rations/Initialize()
+/obj/structure/closet/crate/freezer/rations/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/box/donkpockets(src)
 	new /obj/item/storage/box/donkpockets(src)
@@ -270,7 +267,7 @@
 	icon_opened = "open_radioactive"
 	icon_closed = "closed_radioactive"
 
-/obj/structure/closet/crate/radiation/Initialize()
+/obj/structure/closet/crate/radiation/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)

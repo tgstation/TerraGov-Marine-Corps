@@ -29,6 +29,8 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/datum/callback/removal_cbs = list()
 	///list of holders for data relating to tracked zlevel and tracked atum
 	var/list/datum/minimap_updator/updators_by_datum = list()
+	///assoc list of hash = image of images drawn by players
+	var/list/image/drawn_images = list()
 	///list of callbacks we need to invoke late because Initialize happens early
 	var/list/datum/callback/earlyadds = list()
 	///assoc list of minimap objects that are hashed so we have to update as few as possible
@@ -105,6 +107,7 @@ SUBSYSTEM_DEF(minimaps)
 	update_targets_unsorted = SSminimaps.update_targets_unsorted
 	removal_cbs = SSminimaps.removal_cbs
 	updators_by_datum = SSminimaps.updators_by_datum
+	drawn_images = SSminimaps.drawn_images
 
 /datum/controller/subsystem/minimaps/fire(resumed)
 	var/static/iteration = 0
@@ -204,7 +207,7 @@ SUBSYSTEM_DEF(minimaps)
  * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by default
  * * overlay_iconstates: list of iconstates to use as overlay. Used for xeno leader icons.
  */
-/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi', list/overlay_iconstates)
+/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi', list/overlay_list)
 	if(!isatom(target) || !zlevel || !hud_flags || !iconstate || !icon)
 		CRASH("Invalid marker added to subsystem")
 	if(!initialized)
@@ -213,8 +216,7 @@ SUBSYSTEM_DEF(minimaps)
 
 	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x) + minimaps_by_z["[zlevel]"].x_offset, pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y) + minimaps_by_z["[zlevel]"].y_offset)
 
-	for(var/i in overlay_iconstates)
-		blip.overlays += image(icon, i)
+	blip.overlays = overlay_list
 
 	images_by_source[target] = blip
 	for(var/flag in bitfield2list(hud_flags))
@@ -291,6 +293,17 @@ SUBSYSTEM_DEF(minimaps)
 		CRASH("Empty and unusable minimap generated for '[zlevel]-[flags]'") //Can be caused by atoms calling this proc before minimap subsystem initializing.
 	hashed_minimaps[hash] = map
 	return map
+
+///fetches the drawing icon for a minimap flag and returns it, creating it if needed. assumes minimap_flag is ONE flag
+/datum/controller/subsystem/minimaps/proc/get_drawing_image(zlevel, minimap_flag)
+	var/hash = "[zlevel]-[minimap_flag]"
+	if(drawn_images[hash])
+		return drawn_images[hash]
+	var/image/blip = new // could use MA but yolo
+	blip.icon = icon('icons/UI_icons/minimap.dmi')
+	minimaps_by_z["[zlevel]"].images_raw["[minimap_flag]"] += blip
+	drawn_images[hash] = blip
+	return blip
 
 ///Default HUD screen minimap object
 /atom/movable/screen/minimap

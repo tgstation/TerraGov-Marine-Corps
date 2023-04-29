@@ -63,18 +63,20 @@
 	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
 	max_storage_space = 24
 	can_hold = list(
-		/obj/item/stack/medical,
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/storage/pill_bottle,
+		/obj/item/stack/medical,
 		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/pill,
+		/obj/item/storage/pill_bottle,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/tweezers,
 		/obj/item/bodybag,
 		/obj/item/roller,
-		/obj/item/clothing/glasses/hud/health,
-		/obj/item/tweezers,
 		/obj/item/whistle,
 	)
 
@@ -93,7 +95,7 @@
 		/obj/item/tweezers,
 	)
 
-/obj/item/storage/internal/surgery_webbing/Initialize()
+/obj/item/storage/internal/surgery_webbing/Initialize(mapload)
 	. = ..()
 	new /obj/item/tool/surgery/scalpel/manager(src)
 	new /obj/item/tool/surgery/scalpel(src)
@@ -115,21 +117,21 @@
 
 /obj/item/armor_module/storage/uniform/holster/freelancer
 
-/obj/item/armor_module/storage/uniform/holster/freelancer/Initialize()
+/obj/item/armor_module/storage/uniform/holster/freelancer/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/pistol/g22(storage)
 	new /obj/item/ammo_magazine/pistol/g22(storage)
 	new /obj/item/ammo_magazine/pistol/g22(storage)
 	new /obj/item/ammo_magazine/pistol/g22(storage)
 
-/obj/item/armor_module/storage/uniform/holster/vp/Initialize()
+/obj/item/armor_module/storage/uniform/holster/vp/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/pistol/vp70(storage)
 	new /obj/item/ammo_magazine/pistol/vp70(storage)
 	new /obj/item/ammo_magazine/pistol/vp70(storage)
 	new /obj/item/ammo_magazine/pistol/vp70(storage)
 
-/obj/item/armor_module/storage/uniform/holster/highpower/Initialize()
+/obj/item/armor_module/storage/uniform/holster/highpower/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/pistol/highpower(storage)
 	new /obj/item/ammo_magazine/pistol/highpower(storage)
@@ -146,8 +148,6 @@
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
-		/obj/item/weapon/gun/smg/standard_machinepistol,
-		/obj/item/ammo_magazine/smg/standard_machinepistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 		/obj/item/cell/lasgun/lasrifle,
 	)

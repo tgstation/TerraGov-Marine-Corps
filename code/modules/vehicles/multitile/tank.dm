@@ -29,7 +29,7 @@
 	spawn_dir = EAST
 	var/list/spawn_hardpoints = list()
 
-/obj/effect/multitile_spawner/cm_armored/tank/Initialize()
+/obj/effect/multitile_spawner/cm_armored/tank/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 

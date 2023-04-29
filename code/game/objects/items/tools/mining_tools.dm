@@ -102,7 +102,7 @@
 	var/obj/item/cell/rtg/large/cell //The plasma cutter cell is unremovable and recharges over time
 	tool_behaviour = TOOL_WELD_CUTTER
 
-/obj/item/tool/pickaxe/plasmacutter/Initialize()
+/obj/item/tool/pickaxe/plasmacutter/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/rtg/plasma_cutter()
 

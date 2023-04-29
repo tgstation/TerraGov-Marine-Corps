@@ -7,7 +7,7 @@
 	var/icon_full = ""
 
 
-/obj/item/ashtray/Initialize()
+/obj/item/ashtray/Initialize(mapload)
 	. = ..()
 	pixel_y = rand(-5, 5)
 	pixel_x = rand(-6, 6)

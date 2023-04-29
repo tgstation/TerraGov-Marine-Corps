@@ -298,6 +298,15 @@
 
 	return items
 
+///Find the slot an item is equipped to and returns its slot define
+/mob/proc/get_equipped_slot(obj/equipped_item)
+	if(equipped_item == l_hand)
+		. = SLOT_L_HAND
+	else if(equipped_item == r_hand)
+		. = SLOT_R_HAND
+	else if(equipped_item == wear_mask)
+		. = SLOT_WEAR_MASK
+
 /mob/living/proc/unequip_everything()
 	var/list/items = list()
 	items |= get_equipped_items(TRUE)

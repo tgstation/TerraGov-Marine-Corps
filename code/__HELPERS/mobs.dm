@@ -64,7 +64,11 @@
 			. = FALSE
 			break
 
-		if(!(ignore_flags & IGNORE_LOC_CHANGE) && (user.loc != user_loc || target.loc != target_loc))
+		if(!(ignore_flags & IGNORE_USER_LOC_CHANGE) && user.loc != user_loc)
+			. = FALSE
+			break
+
+		if(!(ignore_flags & IGNORE_TARGET_LOC_CHANGE) && target.loc != target_loc)
 			. = FALSE
 			break
 

@@ -189,7 +189,7 @@
 /obj/structure/caspart/leftprong
 	icon_state = "28"
 
-/obj/structure/caspart/leftprong/Initialize()
+/obj/structure/caspart/leftprong/Initialize(mapload)
 	. = ..()
 	var/image/overlay = image('icons/Marine/casship.dmi', src, "29")
 	overlay.pixel_y = 32
@@ -198,7 +198,7 @@
 /obj/structure/caspart/rightprong
 	icon_state = "13"
 
-/obj/structure/caspart/rightprong/Initialize()
+/obj/structure/caspart/rightprong/Initialize(mapload)
 	. = ..()
 	var/image/overlay = image('icons/Marine/casship.dmi', src, "14")
 	overlay.pixel_y = 32
@@ -230,6 +230,9 @@
 /obj/structure/caspart/minigun/Destroy()
 	static_weapon = null
 	return ..()
+
+/obj/structure/caspart/minigun/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	return static_weapon.attack_powerloader(user, attached_clamp)
 
 /obj/structure/caspart/minigun/attackby(obj/item/I, mob/user, params)
 	return static_weapon.attackby(I, user, params)

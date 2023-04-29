@@ -10,7 +10,7 @@
 	var/long_ranged = FALSE
 
 
-/obj/machinery/computer/security/Initialize()
+/obj/machinery/computer/security/Initialize(mapload)
 	. = ..()
 	for(var/i in network)
 		network -= i

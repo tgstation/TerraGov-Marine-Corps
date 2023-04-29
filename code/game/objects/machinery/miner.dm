@@ -58,7 +58,7 @@
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
 	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT
-/obj/machinery/miner/Initialize()
+/obj/machinery/miner/Initialize(mapload)
 	. = ..()
 	init_marker()
 	start_processing()

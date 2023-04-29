@@ -3,8 +3,9 @@
 	name = "Random base misc item spawner"
 	icon = 'icons/effects/random/misc.dmi'
 	icon_state = "random_trash"
-	loot_subtype_path = /obj/effect/spawner/random/misc
-	loot = list()
+	loot = list(
+		/obj/structure/prop/mainship/errorprop,
+	)
 
 /obj/effect/spawner/random/misc/shard
 	name = "Random shard spawner"
