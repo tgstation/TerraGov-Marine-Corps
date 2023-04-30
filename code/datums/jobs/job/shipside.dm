@@ -65,7 +65,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	jobtype = /datum/job/terragov/command/captain
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/belt/gun/pistol/smart_pistol/full
+	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
@@ -179,7 +179,7 @@ Make the TGMC proud!"})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
 	back = /obj/item/storage/backpack/marine/satchel
-	suit_store = /obj/item/storage/belt/gun/pistol/m4a3/fieldcommander
+	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
 /datum/outfit/job/command/fieldcommander/rebel
 	jobtype = /datum/job/terragov/command/fieldcommander/rebel
@@ -254,7 +254,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/terragov/command/staffofficer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/officer
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine/full
@@ -338,7 +338,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	jobtype = /datum/job/terragov/command/pilot
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
@@ -682,7 +682,7 @@ A happy ship is a well-functioning ship."})
 	jobtype = /datum/job/terragov/requisitions/officer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m44/full
+	belt = /obj/item/storage/holster/belt/m44/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/ro_suit
 	wear_suit = /obj/item/clothing/suit/storage/marine/officer/req

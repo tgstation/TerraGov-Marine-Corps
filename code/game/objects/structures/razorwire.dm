@@ -31,7 +31,7 @@
 			salvage.amount = rand(1,4)
 	return ..()
 
-/obj/structure/razorwire/Initialize()
+/obj/structure/razorwire/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

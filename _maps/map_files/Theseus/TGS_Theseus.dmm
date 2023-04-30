@@ -8753,6 +8753,12 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
+"dHL" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "dIf" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -9797,12 +9803,6 @@
 /obj/effect/landmark/start/job/corporateliaison,
 /turf/open/floor/carpet/side,
 /area/mainship/command/corporateliaison)
-"fAI" = (
-/obj/machinery/vending/engivend,
-/turf/open/floor/mainship/green{
-	dir = 8
-	},
-/area/mainship/squads/req)
 "fBV" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9918,31 +9918,6 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_rnr)
-"fHk" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/door_control/old/cic{
-	id = "CIC Lockdown";
-	pixel_x = -7;
-	pixel_y = 9
-	},
-/obj/machinery/door_control/old/cic{
-	id = "bot_armory";
-	name = "Armory Lockdown";
-	pixel_x = -7;
-	pixel_y = -5
-	},
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
-/obj/machinery/door_control/old{
-	id = "cl_shutters";
-	pixel_x = -7;
-	pixel_y = 2
-	},
-/turf/open/floor/mainship/silver{
-	dir = 4
-	},
-/area/mainship/command/cic)
 "fHN" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
@@ -13821,13 +13796,6 @@
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
-/area/mainship/hallways/hangar)
-"mqP" = (
-/obj/machinery/landinglight/ds2{
-	dir = 4
-	},
-/obj/machinery/computer/dropship_picker,
-/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "mra" = (
 /obj/structure/table/mainship/nometal,
@@ -18013,6 +17981,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/delta)
+"trG" = (
+/obj/machinery/landinglight/ds2{
+	dir = 4
+	},
+/obj/machinery/computer/dropship_picker,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "tsA" = (
 /obj/structure/cable,
 /obj/structure/table/mainship/nometal,
@@ -18567,6 +18542,32 @@
 	dir = 4
 	},
 /area/mainship/medical/medical_science)
+"uuR" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/door_control/old/cic{
+	id = "CIC Lockdown";
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/obj/machinery/door_control/old/cic{
+	id = "bot_armory";
+	name = "Armory Lockdown";
+	pixel_x = -7;
+	pixel_y = -5
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/machinery/door_control/old{
+	id = "cl_shutters";
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/obj/item/minimap_tablet,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/command/cic)
 "uwr" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/fancy/cigar,
@@ -35624,7 +35625,7 @@ daP
 xRD
 bkZ
 pRV
-fHk
+uuR
 qsB
 bzs
 cCR
@@ -41285,7 +41286,7 @@ pjZ
 hvu
 rpn
 eTz
-mqP
+trG
 cbZ
 vXp
 wPI
@@ -59519,7 +59520,7 @@ biu
 cbm
 cxA
 erX
-fAI
+dHL
 hfD
 pbV
 jMY
@@ -59531,7 +59532,7 @@ bnD
 jMY
 jFn
 hfD
-fAI
+dHL
 erX
 cxA
 wCe

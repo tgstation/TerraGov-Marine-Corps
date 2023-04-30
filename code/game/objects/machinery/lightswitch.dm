@@ -11,7 +11,7 @@
 	var/area/area = null
 	var/otherarea = null
 
-/obj/machinery/light_switch/Initialize()
+/obj/machinery/light_switch/Initialize(mapload)
 	. = ..()
 	src.area = get_area(src)
 

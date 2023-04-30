@@ -9,7 +9,7 @@
 	var/timerid
 
 
-/obj/effect/temp_visual/Initialize()
+/obj/effect/temp_visual/Initialize(mapload)
 	. = ..()
 	if(randomdir)
 		setDir(pick(GLOB.cardinals))
@@ -87,7 +87,7 @@
 	pixel_y = 150
 	duration = 90 SECONDS
 
-/obj/effect/temp_visual/above_flare/Initialize()
+/obj/effect/temp_visual/above_flare/Initialize(mapload)
 	. = ..()
 	set_light(light_range, light_power)
 	loc.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))

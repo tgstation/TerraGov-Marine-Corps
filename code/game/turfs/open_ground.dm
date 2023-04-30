@@ -71,7 +71,7 @@
 	if(C.on_fire)
 		C.ExtinguishMob()
 
-/turf/open/ground/river/poison/Initialize()
+/turf/open/ground/river/poison/Initialize(mapload)
 	. = ..()
 	if(has_catwalk)
 		return
@@ -113,7 +113,7 @@
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 
-/turf/open/ground/riverdeep/Initialize()
+/turf/open/ground/riverdeep/Initialize(mapload)
 	. = ..()
 	if(!has_catwalk)
 		var/obj/effect/river_overlay/R = new(src)
@@ -318,7 +318,7 @@
 /turf/open/ground/jungle/impenetrable/nobush
 	vines_spawn = FALSE
 
-/turf/open/ground/jungle/impenetrable/Initialize()
+/turf/open/ground/jungle/impenetrable/Initialize(mapload)
 	. = ..()
 	if(vines_spawn)
 		var/obj/structure/bush/B = new(src)

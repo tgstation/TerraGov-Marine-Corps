@@ -521,7 +521,7 @@
 	. = ..()
 	if(.)
 		return
-	return (sunder * -0.01) + 1
+	return 1 - (sunder * 0.01)
 
 /mob/living/carbon/xenomorph/adjust_stagger(amount)
 	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
@@ -570,7 +570,7 @@
 
 	SSminimaps.remove_marker(src)
 	if(makeleader)
-		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon, overlay_iconstates=list(xeno_caste.minimap_leadered_overlay))
+		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon, overlay_list=list(image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_leadered_overlay)))
 	else
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon)
 

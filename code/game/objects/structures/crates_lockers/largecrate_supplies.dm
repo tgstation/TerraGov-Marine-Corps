@@ -4,7 +4,7 @@
 	name = "supply spawner"
 	var/list/supply = list()
 
-/obj/effect/landmark/supplyspawner/Initialize()
+/obj/effect/landmark/supplyspawner/Initialize(mapload)
 	. = ..()
 	if(/turf/open in range(1))
 		var/list/T = list()
@@ -89,7 +89,7 @@
 	name = "supply crate"
 	var/list/supplies = list()
 
-/obj/structure/largecrate/supply/Initialize()
+/obj/structure/largecrate/supply/Initialize(mapload)
 	. = ..()
 	if(length(supplies))
 		for(var/s in supplies)

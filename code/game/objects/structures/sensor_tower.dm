@@ -10,7 +10,7 @@
 	///Which faction controls this sensor tower
 	var/faction
 
-/obj/structure/sensor_tower/Initialize()
+/obj/structure/sensor_tower/Initialize(mapload)
 	. = ..()
 	GLOB.zones_to_control += src
 	update_icon()
@@ -91,7 +91,7 @@
 	///The faction that owns this tower, and considered the defender
 	var/faction = FACTION_SOM
 
-/obj/structure/sensor_tower_patrol/Initialize()
+/obj/structure/sensor_tower_patrol/Initialize(mapload)
 	. = ..()
 	name += " " + num2text(id)
 	towerid = id

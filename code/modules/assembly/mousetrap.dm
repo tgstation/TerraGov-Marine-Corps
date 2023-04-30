@@ -10,7 +10,7 @@
 	attachable = TRUE
 	var/armed = FALSE
 
-/obj/item/assembly/mousetrap/Initialize()
+/obj/item/assembly/mousetrap/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

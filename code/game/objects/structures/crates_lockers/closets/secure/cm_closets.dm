@@ -22,7 +22,7 @@
 	new /obj/item/clothing/under/marine/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 	new /obj/item/storage/backpack/marine/satchel/captain_cloak(src)
-	new /obj/item/storage/belt/gun/mateba/officer/full(src)
+	new /obj/item/storage/holster/belt/mateba/officer/full(src)
 
 
 

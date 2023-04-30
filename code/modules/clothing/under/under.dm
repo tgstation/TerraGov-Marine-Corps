@@ -81,7 +81,7 @@
 	)
 	var/current_variant
 
-/obj/item/clothing/under/Initialize()
+/obj/item/clothing/under/Initialize(mapload)
 	. = ..()
 	attachments_allowed = string_list(attachments_allowed)
 

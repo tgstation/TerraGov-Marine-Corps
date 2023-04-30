@@ -509,7 +509,7 @@
 	aim_slowdown = 0
 	wield_delay = 0.5 SECONDS
 
-/obj/item/weapon/gun/shotgun/double/derringer/Initialize()
+/obj/item/weapon/gun/shotgun/double/derringer/Initialize(mapload)
 	. = ..()
 	if(round(rand(1, 10), 1) != 1)
 		return

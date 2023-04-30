@@ -9,7 +9,7 @@
 	var/selected_mail
 
 
-/obj/machinery/computer/emails/Initialize()
+/obj/machinery/computer/emails/Initialize(mapload)
 	. = ..()
 	email_list = list()
 	var/list/L = subtypesof(email_type)
