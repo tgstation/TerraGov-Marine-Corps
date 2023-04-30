@@ -170,7 +170,7 @@
 	amount = parent.amount-1
 	origin = parent.origin
 	if(merge)
-		lifetime = min(parent.lifetime, lifetime)
+		lifetime = max(parent.lifetime, lifetime)
 		strength = max(parent.strength, strength)
 	else
 		lifetime = parent.lifetime
