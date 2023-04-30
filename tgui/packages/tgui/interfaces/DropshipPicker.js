@@ -14,7 +14,11 @@ export const DropshipPicker = (_props, context) => {
             <ShuttleSelection />
           </Flex.Item>
           <Flex.Item width={'60%'} height={'40%'}>
-            <Box as="img" src={data.assetpath ? resolveAsset(data.assetpath) : ''} height={'284px'}/>
+            <Box
+              as="img"
+              src={data.assetpath ? resolveAsset(data.assetpath) : ''}
+              height={'284px'}
+            />
             <Section
               title={'Description - ' + (data.name ? data.name : 'None')}
               fill>
