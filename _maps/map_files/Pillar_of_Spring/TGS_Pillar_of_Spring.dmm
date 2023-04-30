@@ -4121,7 +4121,6 @@
 	},
 /area/mainship/hallways/hangar/droppod)
 "fgU" = (
-/obj/machinery/floodlight/combat,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -15563,7 +15562,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "tWV" = (
-/obj/machinery/floodlight/combat,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "tXl" = (
@@ -18889,7 +18887,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "yaL" = (
-/obj/machinery/floodlight/combat,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},

@@ -2153,12 +2153,6 @@
 	dir = 1
 	},
 /area/sulaco/bridge)
-"akv" = (
-/obj/machinery/floodlight/combat,
-/turf/open/floor/prison/red{
-	dir = 5
-	},
-/area/sulaco/bridge)
 "akK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
@@ -6984,11 +6978,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
-"aIN" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/floodlight/combat,
-/turf/open/floor/prison,
-/area/sulaco/hallway/dropshipprep)
 "aIP" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -11037,7 +11026,6 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "cvT" = (
-/obj/machinery/floodlight/combat,
 /obj/machinery/door_control/unmeltable{
 	id = "sd_blastdoor";
 	name = "Self Destruct Blast Door Control";
@@ -13881,7 +13869,6 @@
 "gtb" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/machinery/floodlight/combat,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
 "gtk" = (
@@ -15438,7 +15425,6 @@
 "iyo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/machinery/floodlight/combat,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
 "iyJ" = (
@@ -48713,7 +48699,7 @@ aaa
 aaa
 nzi
 aEH
-akv
+qWq
 alD
 ghk
 sOb
@@ -59379,7 +59365,7 @@ aVY
 kYl
 hID
 gtb
-aIN
+cIs
 aWg
 aQw
 wLH
