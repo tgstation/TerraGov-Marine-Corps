@@ -217,7 +217,7 @@
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
 
-/obj/item/clothing/glasses/welding/Initialize()
+/obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
 
@@ -275,7 +275,7 @@
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
 
-/obj/item/clothing/glasses/welding/superior/Initialize()
+/obj/item/clothing/glasses/welding/superior/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_4)
 
@@ -288,7 +288,7 @@
 	item_state = "sunglasses"
 	eye_protection = 1
 
-/obj/item/clothing/glasses/sunglasses/Initialize()
+/obj/item/clothing/glasses/sunglasses/Initialize(mapload)
 	. = ..()
 	if(eye_protection)
 		AddComponent(/datum/component/clothing_tint, TINT_3)
@@ -300,7 +300,7 @@
 	item_state = "blindfold"
 	eye_protection = 2
 
-/obj/item/clothing/glasses/sunglasses/blindfold/Initialize()
+/obj/item/clothing/glasses/sunglasses/blindfold/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_BLIND)
 
@@ -360,7 +360,7 @@
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
-/obj/item/clothing/glasses/sunglasses/sa/Initialize()
+/obj/item/clothing/glasses/sunglasses/sa/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_NONE)
 

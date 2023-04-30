@@ -304,7 +304,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/number_of_states = 10 //How many variations of this item there are.
 	var/initial_icon_state = "cartridge_" //holder for icon_state so we can do random variations without effecting mapper visibility
 
-/obj/item/ammo_casing/Initialize()
+/obj/item/ammo_casing/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-2, 2) //Want to move them just a tad.
 	pixel_y = rand(-2, 2)

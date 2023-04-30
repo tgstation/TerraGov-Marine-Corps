@@ -43,7 +43,7 @@
 		"cold"
 	)
 
-/obj/machinery/door/firedoor/Initialize()
+/obj/machinery/door/firedoor/Initialize(mapload)
 	. = ..()
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
@@ -318,7 +318,7 @@
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_atom = ON_BORDER
 
-/obj/machinery/door/firedoor/border_only/Initialize()
+/obj/machinery/door/firedoor/border_only/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)

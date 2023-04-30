@@ -6,7 +6,7 @@
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
 
-/obj/effect/overlay/beam/Initialize()
+/obj/effect/overlay/beam/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 1 SECONDS)
 
@@ -130,7 +130,7 @@
 	layer = WALL_OBJ_LAYER //Above walls/items, not above mobs
 	icon_state_on = "middle"
 
-/obj/effect/overlay/blinking_laser/marine/lines/Initialize()
+/obj/effect/overlay/blinking_laser/marine/lines/Initialize(mapload)
 	. = ..()
 	dir = pick(CARDINAL_DIRS) //Randomises type, for variation
 

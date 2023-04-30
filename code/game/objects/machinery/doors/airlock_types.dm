@@ -370,7 +370,7 @@
 /obj/machinery/door/airlock/mainship/secure/evac
 	name = "\improper Evacuation Airlock"
 
-/obj/machinery/door/airlock/mainship/secure/evac/Initialize()
+/obj/machinery/door/airlock/mainship/secure/evac/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_EVACUATION_STARTED, PROC_REF(force_open))
 

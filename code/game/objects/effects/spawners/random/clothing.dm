@@ -109,7 +109,7 @@
 		/obj/item/clothing/gloves/rainbow = 30,
 		/obj/item/clothing/gloves/red = 30,
 		/obj/item/clothing/gloves/white = 30,
-		/obj/item/clothing/gloves/yellow = 5,
+		/obj/item/clothing/gloves/insulated = 5,
 	)
 
 /obj/effect/spawner/random/clothing/coloredgloves/latex

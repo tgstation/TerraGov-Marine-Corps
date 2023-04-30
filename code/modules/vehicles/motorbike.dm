@@ -26,7 +26,7 @@
 	var/obj/item/sidecar/attached_sidecar
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
-/obj/vehicle/ridden/motorbike/Initialize()
+/obj/vehicle/ridden/motorbike/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
 	motor_pack = new motor_pack(src)

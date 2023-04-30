@@ -14,6 +14,13 @@
 
 GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 
+//Drawing tool colors
+#define MINIMAP_DRAWING_RED "#ff0000"
+#define MINIMAP_DRAWING_YELLOW "#FFFF00"
+#define MINIMAP_DRAWING_PURPLE "#A020F0"
+#define MINIMAP_DRAWING_BLUE "#0000FF"
+
+
 //Turf colours
 #define MINIMAP_SOLID "#ebe5e5ee"
 #define MINIMAP_DOOR "#451e5eee"

@@ -19,6 +19,6 @@
 	upgrade = XENO_UPGRADE_ZERO
 	flags_pass = PASSTABLE
 
-/mob/living/carbon/xenomorph/warlock/Initialize()
+/mob/living/carbon/xenomorph/warlock/Initialize(mapload)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/energy/xeno/psy_blast]

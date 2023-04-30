@@ -46,7 +46,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	var/obj/machinery/cloning/vats/linked_machine
 	var/obj/item/radio/headset/mainship/mcom/radio //God forgive me
 
-/obj/machinery/cloning_console/vats/Initialize()
+/obj/machinery/cloning_console/vats/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 	radio.use_command = FALSE
@@ -107,7 +107,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	var/grow_timer = 15 MINUTES
 
 
-/obj/machinery/cloning/vats/Initialize()
+/obj/machinery/cloning/vats/Initialize(mapload)
 	. = ..()
 	beaker = new /obj/item/reagent_containers/glass/beaker/biomass
 	update_icon()
