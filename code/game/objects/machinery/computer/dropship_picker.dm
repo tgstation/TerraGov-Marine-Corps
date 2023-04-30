@@ -46,12 +46,25 @@
 	.["dropship_selected"] = dropship_selected
 	.["current_ref"] = current_template_ref
 	var/datum/map_template/shuttle/minidropship/temp = locate(current_template_ref) in SSmapping.minidropship_templates
-	.["current_image"] = temp ? temp.image_url : ""
 	if(temp)
 		.["desc"] = temp.description
 		.["name"] = temp.display_name
+		.["assetpath"] = temp.suffix
 	return .
-	
+
+/obj/machinery/computer/dropship_picker/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/simple/dropshippicker)
+
+/datum/asset/simple/dropshippicker
+	assets = list(
+		"_standard" = 'icons/ui_icons/dropshippicker/_standard.png',
+		"_pill" = 'icons/ui_icons/dropshippicker/_pill.png',
+		"_big" = 'icons/ui_icons/dropshippicker/_big.png',
+		"_food" = 'icons/ui_icons/dropshippicker/_food.png',
+		"_factorio" = 'icons/ui_icons/dropshippicker/_factorio.png',
+	)
+
 /obj/machinery/computer/dropship_picker/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if(.)

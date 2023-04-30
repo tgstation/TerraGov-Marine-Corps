@@ -1,4 +1,5 @@
 import { useBackend } from '../backend';
+import { resolveAsset } from '../assets';
 import { Button, Section, Box, Flex } from '../components';
 import { Window } from '../layouts';
 
@@ -13,9 +14,7 @@ export const DropshipPicker = (_props, context) => {
             <ShuttleSelection />
           </Flex.Item>
           <Flex.Item width={'60%'} height={'40%'}>
-            <Box>
-              <img src={data.current_image} height={'284px'} />
-            </Box>
+            <Box as="img" src={data.assetpath ? resolveAsset(data.assetpath) : ''} height={'284px'}/>
             <Section
               title={'Description - ' + (data.name ? data.name : 'None')}
               fill>
