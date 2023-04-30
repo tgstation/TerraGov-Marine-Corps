@@ -5,7 +5,7 @@
 	power_channel = ENVIRON
 	resistance_flags = DROPSHIP_IMMUNE
 
-/obj/machinery/door/poddoor/shutters/Initialize()
+/obj/machinery/door/poddoor/shutters/Initialize(mapload)
 	. = ..()
 	if(density && closed_layer)
 		layer = closed_layer
@@ -75,7 +75,7 @@
 	use_power = FALSE
 
 
-/obj/machinery/door/poddoor/shutters/timed_late/Initialize()
+/obj/machinery/door/poddoor/shutters/timed_late/Initialize(mapload)
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), PROC_REF(open))
 	return ..()
 

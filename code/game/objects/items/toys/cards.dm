@@ -12,7 +12,7 @@
 	var/card_type = "normal"
 	var/list/cards = list()
 
-/obj/item/toy/deck/Initialize()
+/obj/item/toy/deck/Initialize(mapload)
 	. = ..()
 	populate_deck()
 

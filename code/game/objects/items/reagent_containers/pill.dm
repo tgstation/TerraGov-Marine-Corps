@@ -14,7 +14,7 @@
 	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
 	var/pill_id
 
-/obj/item/reagent_containers/pill/Initialize()
+/obj/item/reagent_containers/pill/Initialize(mapload)
 	. = ..()
 	if(icon_state == "pill1")
 		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)

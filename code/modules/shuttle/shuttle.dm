@@ -327,7 +327,7 @@
 
 	var/spawn_time
 
-/obj/docking_port/stationary/transit/Initialize()
+/obj/docking_port/stationary/transit/Initialize(mapload)
 	. = ..()
 	SSshuttle.transit += src
 	spawn_time = world.time

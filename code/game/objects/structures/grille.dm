@@ -13,7 +13,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 10
 
-/obj/structure/grille/Initialize()
+/obj/structure/grille/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/egrill)
 
@@ -26,7 +26,7 @@
 	var/width = 3
 	max_integrity = 50
 
-/obj/structure/grille/fence/Initialize()
+/obj/structure/grille/fence/Initialize(mapload)
 	. = ..()
 
 	if(width > 1)

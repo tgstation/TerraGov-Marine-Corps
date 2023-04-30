@@ -5,7 +5,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/shields_right.dmi',
 	)
 
-/obj/item/weapon/shield/Initialize()
+/obj/item/weapon/shield/Initialize(mapload)
 	. = ..()
 	set_shield()
 
@@ -163,7 +163,7 @@
 	///Whether it is wired
 	var/is_wired = FALSE
 
-/obj/item/weapon/shield/riot/marine/deployable/Initialize()
+/obj/item/weapon/shield/riot/marine/deployable/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/deployable_item, deployable_item, deploy_time, undeploy_time)
 

@@ -11,7 +11,7 @@
 	///The linked exit point
 	var/obj/effect/landmark/patrol_point/linked_point = null
 
-/obj/structure/patrol_point/Initialize()
+/obj/structure/patrol_point/Initialize(mapload)
 	..()
 
 	return INITIALIZE_HINT_LATELOAD
@@ -93,7 +93,7 @@
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/atom/movable/effect/rappel_rope/Initialize()
+/atom/movable/effect/rappel_rope/Initialize(mapload)
 	. = ..()
 	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE, falloff = 2)
 	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)

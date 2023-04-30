@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/obj/item/encryptionkey/keyslot2 = null
 
 
-/obj/item/radio/headset/Initialize()
+/obj/item/radio/headset/Initialize(mapload)
 	if(keyslot)
 		keyslot = new keyslot(src)
 	if(keyslot2)
@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/Initialize()
+/obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 

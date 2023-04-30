@@ -15,7 +15,7 @@
 	anchored = TRUE
 	coverage = 20
 
-/obj/structure/morgue/Initialize()
+/obj/structure/morgue/Initialize(mapload)
 	. = ..()
 	connected = new tray_path(src)
 

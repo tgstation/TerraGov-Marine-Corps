@@ -14,7 +14,7 @@
 	var/obj/item/toppaper	//The topmost piece of paper.
 	flags_equip_slot = ITEM_SLOT_BELT
 
-/obj/item/clipboard/Initialize()
+/obj/item/clipboard/Initialize(mapload)
 	. = ..()
 	update_icon()
 

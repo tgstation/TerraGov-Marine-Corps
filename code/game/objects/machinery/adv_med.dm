@@ -177,7 +177,7 @@
 	var/delete
 	var/temphtml
 
-/obj/machinery/body_scanconsole/Initialize()
+/obj/machinery/body_scanconsole/Initialize(mapload)
 	. = ..()
 	set_connected(locate(/obj/machinery/bodyscanner, get_step(src, WEST)))
 

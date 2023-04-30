@@ -8,7 +8,7 @@
 	///By how much we wan to refill the target machine
 	var/refill_amount = 30
 
-/obj/item/factory_refill/Initialize()
+/obj/item/factory_refill/Initialize(mapload)
 	. = ..()
 	var/obj/path = initial(refill_type.result)
 	var/matrix/shift = matrix().Scale(0.4,0.4)
@@ -37,7 +37,7 @@
 	///Bool for whether the unboxer is producing things
 	var/on = FALSE
 
-/obj/machinery/unboxer/Initialize()
+/obj/machinery/unboxer/Initialize(mapload)
 	. = ..()
 	add_overlay(image(icon, "direction_arrow"))
 
