@@ -1039,6 +1039,7 @@
 #include "code\game\turfs\walls\resin.dm"
 #include "code\game\turfs\walls\wall_types.dm"
 #include "code\game\turfs\walls\walls.dm"
+#include "code\game\turfs\water.dm"
 #include "code\game\verbs\ooc.dm"
 #include "code\game\verbs\suicide.dm"
 #include "code\game\verbs\who.dm"

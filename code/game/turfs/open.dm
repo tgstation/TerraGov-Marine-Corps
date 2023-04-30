@@ -49,14 +49,6 @@
 	. = ..()
 	. += ceiling_desc()
 
-/turf/open/river
-	can_bloody = FALSE
-	shoefootstep = FOOTSTEP_WATER
-	barefootstep = FOOTSTEP_WATER
-	mediumxenofootstep = FOOTSTEP_WATER
-	heavyxenofootstep = FOOTSTEP_WATER
-
-
 // Beach
 
 /turf/open/beach
@@ -74,95 +66,6 @@
 	name = "coastline"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "sandwater"
-
-/turf/open/beach/water
-	name = "water"
-	icon_state = "water"
-	can_bloody = FALSE
-	shoefootstep = FOOTSTEP_WATER
-	barefootstep = FOOTSTEP_WATER
-	mediumxenofootstep = FOOTSTEP_WATER
-	heavyxenofootstep = FOOTSTEP_WATER
-
-/turf/open/beach/water/New()
-	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1)
-
-/obj/effect/beach_overlay
-	name = "beach_overlay"
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = RIVER_OVERLAY_LAYER
-	plane = FLOOR_PLANE
-
-/turf/open/beach/water/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(has_catwalk || !iscarbon(arrived))
-		return
-	var/mob/living/carbon/C = arrived
-	C.clean_mob()
-	if(!C.get_filter("water_obscuring"))
-		var/icon/carbon_icon = icon(C.icon)
-		var/height_to_use = (64 - carbon_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
-		C.add_filter("water_obscuring", 1, alpha_mask_filter(0, -11 + height_to_use, icon('icons/turf/alpha_64.dmi', "water_alpha"), null, MASK_INVERSE))
-		animate(C.get_filter("water_obscuring"), y = height_to_use, time = 3)
-
-	if(isxeno(C))
-		var/mob/living/carbon/xenomorph/xeno = C
-		xeno.next_move_slowdown += xeno.xeno_caste.water_slowdown
-	else
-		C.next_move_slowdown += 1.75
-
-	if(C.on_fire)
-		C.ExtinguishMob()
-
-/turf/open/beach/water/Exited(atom/movable/leaver, direction)
-	. = ..()
-	if(!iscarbon(leaver))
-		return
-	var/mob/living/carbon/carbon_leaver = leaver
-	if(!carbon_leaver.get_filter("water_obscuring"))
-		return
-	if(istype(get_step(src, direction), type)) //todo replace type with a parent water turf type
-		return
-	var/icon/carbon_icon = icon(carbon_leaver.icon)
-	var/height_to_use = (64 - carbon_icon.Height()) * 0.5
-	animate(carbon_leaver.get_filter("water_obscuring"), y = -11 + height_to_use, time = 3)
-	addtimer(CALLBACK(carbon_leaver, TYPE_PROC_REF(/atom, remove_filter), "water_obscuring"), 0.3 SECONDS)
-
-/turf/open/beach/water2
-	name = "water"
-	icon_state = "water"
-	can_bloody = FALSE
-	shoefootstep = FOOTSTEP_WATER
-	barefootstep = FOOTSTEP_WATER
-	mediumxenofootstep = FOOTSTEP_WATER
-	heavyxenofootstep = FOOTSTEP_WATER
-
-/turf/open/beach/water2/New()
-	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
-
-/turf/open/beach/sea
-	name = "sea"
-	icon_state = "seadeep"
-	can_bloody = FALSE
-	shoefootstep = FOOTSTEP_WATER
-	barefootstep = FOOTSTEP_WATER
-	mediumxenofootstep = FOOTSTEP_WATER
-	heavyxenofootstep = FOOTSTEP_WATER
-
-//Nostromo turfs
-
-/turf/open/nostromowater
-	name = "ocean"
-	desc = "Its a long way down to the ocean from here."
-	icon = 'icons/turf/ground_map.dmi'
-	icon_state = "seadeep"
-	can_bloody = FALSE
-	shoefootstep = FOOTSTEP_WATER
-	barefootstep = FOOTSTEP_WATER
-	mediumxenofootstep = FOOTSTEP_WATER
-	heavyxenofootstep = FOOTSTEP_WATER
 
 //SHUTTLE 'FLOORS'
 //not a child of turf/open/floor because shuttle floors are magic and don't behave like real floors.
