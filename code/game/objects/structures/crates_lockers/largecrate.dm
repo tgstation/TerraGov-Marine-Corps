@@ -7,6 +7,7 @@
 	anchored = FALSE
 	var/dropmetal = TRUE
 	resistance_flags = XENO_DAMAGEABLE
+	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	max_integrity = 40
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/woodhit.ogg'
@@ -22,17 +23,6 @@
 /obj/structure/largecrate/examine(mob/user)
 	. = ..()
 	. += span_notice("You need a crowbar to pry this open!")
-
-
-/obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return TRUE
-
-	if(istype(I, /obj/item/powerloader_clamp))
-		return
-
-	return attack_hand(user)
 
 
 /obj/structure/largecrate/crowbar_act(mob/living/user, obj/item/I)
@@ -109,7 +99,7 @@
 						/obj/item/clothing/shoes/marine
 						)
 
-/obj/structure/largecrate/random/Initialize()
+/obj/structure/largecrate/random/Initialize(mapload)
 	. = ..()
 	if(!num_things) num_things = rand(0,3)
 
@@ -224,7 +214,7 @@
 	return TRUE
 
 
-/obj/structure/largecrate/random/barrel/examine(mob/user)
+/obj/structure/largecrate/random/secure/examine(mob/user)
 	. = ..()
 	. += span_notice("You need something sharp to cut off the straps.")
 
@@ -247,7 +237,7 @@
 					/obj/item/weapon/gun/grenade_launcher/single_shot = /obj/item/explosive/grenade/phosphorus
 					)
 
-/obj/structure/largecrate/guns/Initialize()
+/obj/structure/largecrate/guns/Initialize(mapload)
 	. = ..()
 	var/gun_type
 	var/i = 0

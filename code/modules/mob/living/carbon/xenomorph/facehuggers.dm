@@ -187,11 +187,6 @@
 	if(initial(sterile))
 		. += span_warning("It looks like the proboscis has been removed.")
 
-/obj/item/clothing/mask/facehugger/dropped(mob/user)
-	. = ..()
-	// Whena  xeno removes the hugger from storage we don't want to start the active timer until they drop or throw it
-	if(isxeno(user)) //Set the source mob
-		facehugger_register_source(user)
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
 	if(stat == DEAD)
@@ -582,7 +577,7 @@
 			target.visible_message(span_danger("[src] falls limp after violating [target]'s face!"))
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message(span_danger("[src] frantically claws at [target]'s face before falling down!"),span_danger("[src] frantically claws at your face before falling down! Auugh!"))
-			target.apply_damage(15, BRUTE, "head", updating_health = TRUE)
+			target.apply_damage(15, BRUTE, BODY_ZONE_HEAD, updating_health = TRUE)
 
 
 /obj/item/clothing/mask/facehugger/proc/kill_hugger(melt_timer = 1 MINUTES)
@@ -648,6 +643,8 @@
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
 	go_idle()
+	if(isxeno(user)) //Set the source mob
+		facehugger_register_source(user)
 
 
 /////////////////////////////
@@ -657,7 +654,7 @@
 	stat = UNCONSCIOUS
 	stasis = TRUE
 
-/obj/item/clothing/mask/facehugger/stasis/Initialize()
+/obj/item/clothing/mask/facehugger/stasis/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -668,7 +665,7 @@
 	stat = DEAD
 	sterile = TRUE
 
-/obj/item/clothing/mask/facehugger/dead/Initialize()
+/obj/item/clothing/mask/facehugger/dead/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -698,9 +695,8 @@
 
 	var/mob/living/victim = M
 	do_attack_animation(M)
-	var/armor_block = victim.get_soft_armor("bio", BODY_ZONE_CHEST)
-	victim.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //This should prevent sprinting
-	victim.apply_damage(1, BRUTE, sharp = TRUE) //Token brute for the injection
+	victim.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO) //This should prevent sprinting
+	victim.apply_damage(1, BRUTE, sharp = TRUE, updating_health = TRUE) //Token brute for the injection
 	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 10, no_overdose = TRUE)
 	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
 	victim.visible_message(span_danger("[src] penetrates [victim] with its sharp probscius!"),span_danger("[src] penetrates you with a sharp probscius before falling down!"))
@@ -758,15 +754,13 @@
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
 			new /obj/alien/resin/sticky/thin(sticky_tile)
 
-	var/armor_block
 	for(var/mob/living/target in range(1, loc))
 		if(isxeno(target)) //Xenos aren't affected by sticky resin
 			continue
 
 		target.adjust_stagger(3)
 		target.add_slowdown(15)
-		armor_block = target.get_soft_armor("bio", BODY_ZONE_CHEST)
-		target.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //Small amount of stamina damage; meant to stop sprinting.
+		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
 
 	kill_hugger(0.5 SECONDS)
 

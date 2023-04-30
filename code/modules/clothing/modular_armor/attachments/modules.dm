@@ -78,7 +78,7 @@
 	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility."
 	icon_state = "mod_fire"
 	item_state = "mod_fire_a"
-	hard_armor = list("fire" = 200)
+	soft_armor = list(FIRE = 35)
 	slowdown = 0.4
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn")
@@ -86,9 +86,11 @@
 /obj/item/armor_module/module/fire_proof/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	parent.flags_armor_features |= ARMOR_FIRE_RESISTANT
 
 /obj/item/armor_module/module/fire_proof/on_detach(obj/item/detaching_from, mob/user)
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	parent.flags_armor_features &= ~ARMOR_FIRE_RESISTANT
 	return ..()
 
 /obj/item/armor_module/module/fire_proof/som
@@ -305,7 +307,7 @@
 	var/recharge_timer
 
 
-/obj/item/armor_module/module/eshield/Initialize()
+/obj/item/armor_module/module/eshield/Initialize(mapload)
 	. = ..()
 	spark_system = new()
 	spark_system.set_up(5, 0, src)

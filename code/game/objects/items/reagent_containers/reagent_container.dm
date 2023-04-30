@@ -21,7 +21,7 @@
 	var/free_refills = TRUE
 
 
-/obj/item/reagent_containers/Initialize()
+/obj/item/reagent_containers/Initialize(mapload)
 	. = ..()
 	create_reagents(volume, init_reagent_flags, list_reagents)
 	if(!possible_transfer_amounts)

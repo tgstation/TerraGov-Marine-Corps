@@ -136,6 +136,18 @@ OPERATIONS
 	contains = list(/obj/item/spacecash/c500)
 	cost = 50
 
+/datum/supply_packs/operations/droppod
+	name = "drop pod"
+	contains = list(/obj/structure/droppod)
+	containertype = null
+	cost = 50
+
+/datum/supply_packs/operations/droppod_leader
+	name = "leader drop pod"
+	contains = list(/obj/structure/droppod/leader)
+	containertype = null
+	cost = 100
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -290,18 +302,48 @@ WEAPONS
 /datum/supply_packs/weapons/tx54_airburst
 	name = "GL-54 airburst grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54)
-	cost = 40
+	cost = 20
 
 /datum/supply_packs/weapons/tx54_incendiary
 	name = "GL-54 incendiary grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/incendiary)
 	cost = 60
 
+/datum/supply_packs/weapons/tx54_smoke
+	name = "GL-54 tactical smoke grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/smoke)
+	cost = 12
+
+/datum/supply_packs/weapons/tx54_smoke/dense
+	name = "GL-54 dense smoke grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/smoke/dense)
+	cost = 8
+
+/datum/supply_packs/weapons/tx54_smoke/tangle
+	name = "GL-54 tanglefoot grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/smoke/tangle)
+	cost = 48
+
+/datum/supply_packs/weapons/tx54_razor
+	name = "GL-54 smoke grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/razor)
+	cost = 96
+
 /datum/supply_packs/weapons/tx54_he
 	name = "GL-54 HE grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
 	cost = 100
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/tx55
+	name = "AR-55 OICW Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/tx55)
+	cost = 525
+
+/datum/supply_packs/weapons/tx55/ammo
+	name = "AR-55 OICW rifle magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx55)
+	cost = 25
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "RL-160 Recoilless rifle kit"
@@ -596,7 +638,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/mateba
 	name = "Mateba Autorevolver belt"
-	contains = list(/obj/item/storage/belt/gun/mateba/full)
+	contains = list(/obj/item/storage/holster/belt/mateba/full)
 	notes = "Contains 6 speedloaders"
 	cost = 150
 	available_against_xeno_only = TRUE
@@ -692,6 +734,12 @@ EXPLOSIVES
 	name = "M15 fragmentation grenade box crate"
 	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/M15)
+	cost = 500
+
+/datum/supply_packs/explosives/explosives_trailblazer
+	name = "M45 Trailblazer grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/trailblazer)
 	cost = 500
 
 /datum/supply_packs/explosives/explosives_hsdp
@@ -1192,7 +1240,7 @@ ENGINEERING
 	name = "electrical maintenance supplies"
 	contains = list(
 		/obj/item/storage/toolbox/electrical,
-		/obj/item/clothing/gloves/yellow,
+		/obj/item/clothing/gloves/insulated,
 		/obj/item/cell,
 		/obj/item/cell/high,
 	)

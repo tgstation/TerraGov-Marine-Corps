@@ -68,7 +68,7 @@
 	var/obj/item/held_item = null
 
 
-/mob/living/simple_animal/parrot/Initialize()
+/mob/living/simple_animal/parrot/Initialize(mapload)
 	. = ..()
 	if(!ears)
 		ears = new /obj/item/radio/headset/mainship/mcom(src)
@@ -520,7 +520,7 @@
 	var/memory_saved = FALSE
 
 
-/mob/living/simple_animal/parrot/Poly/Initialize()
+/mob/living/simple_animal/parrot/Poly/Initialize(mapload)
 	ears = new /obj/item/radio/headset/mainship/st(src)
 	available_channels = list(RADIO_TOKEN_ENGINEERING)
 	Read_Memory()
@@ -579,7 +579,7 @@
 	resistance_flags = RESIST_ALL
 
 
-/mob/living/simple_animal/parrot/Poly/ghost/Initialize()
+/mob/living/simple_animal/parrot/Poly/ghost/Initialize(mapload)
 	memory_saved = TRUE
 	return ..()
 

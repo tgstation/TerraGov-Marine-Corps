@@ -32,7 +32,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/claymore/Initialize()
+/obj/item/weapon/claymore/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
@@ -62,7 +62,7 @@
 	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
 	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/claymore/harvester/Initialize()
+/obj/item/weapon/claymore/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/harvester)
 
@@ -118,14 +118,6 @@
 	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
@@ -210,7 +202,7 @@
 		F.loc = get_turf(src)
 	qdel(src) //Delete da old knife
 
-/obj/item/weapon/combat_knife/Initialize()
+/obj/item/weapon/combat_knife/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
@@ -239,7 +231,7 @@
 	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
 	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/combat_knife/harvester/Initialize()
+/obj/item/weapon/combat_knife/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/harvester, 5)
 

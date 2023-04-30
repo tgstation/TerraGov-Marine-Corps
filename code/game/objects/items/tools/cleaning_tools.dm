@@ -17,7 +17,7 @@
 	var/mopcount = 0
 
 
-/obj/item/tool/mop/Initialize()
+/obj/item/tool/mop/Initialize(mapload)
 	. = ..()
 	create_reagents(5)
 
@@ -87,12 +87,9 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/tool/soap/Initialize()
+/obj/item/tool/soap/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 0.3 SECONDS, 0.2 SECONDS)
-
-/obj/item/tool/soap/attack(mob/target, mob/user)
-	return
 
 
 /obj/item/tool/soap/afterattack(atom/target, mob/user as mob, proximity)
@@ -115,9 +112,8 @@
 
 /obj/item/tool/soap/attack(mob/target, mob/user)
 	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_selected == "mouth" )
-		user.visible_message(span_warning(" \the [user] washes \the [target]'s mouth out with soap!"))
+		user.visible_message(span_warning("[user] washes [target]'s mouth out with soap!"))
 		return
-	..()
 
 /obj/item/tool/soap/nanotrasen
 	desc = "A Nanotrasen brand bar of soap. Smells of phoron."
@@ -126,7 +122,7 @@
 /obj/item/tool/soap/deluxe
 	icon_state = "soapdeluxe"
 
-/obj/item/tool/soap/deluxe/Initialize()
+/obj/item/tool/soap/deluxe/Initialize(mapload)
 	. = ..()
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
 

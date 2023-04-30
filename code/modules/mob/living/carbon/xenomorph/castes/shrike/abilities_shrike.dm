@@ -5,6 +5,7 @@
 // ***************************************
 /datum/action/xeno_action/call_of_the_burrowed
 	name = "Call of the Burrowed"
+	desc = "Attempts to summon all currently burrowed larva."
 	action_icon_state = "larva_growth"
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES

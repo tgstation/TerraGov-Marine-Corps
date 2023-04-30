@@ -118,7 +118,7 @@
 	dat = ""
 
 
-/obj/item/book/codebook/Initialize()
+/obj/item/book/codebook/Initialize(mapload)
 	. = ..()
 	var/number
 	var/letter

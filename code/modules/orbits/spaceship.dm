@@ -47,7 +47,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
 
 
-/obj/machinery/computer/navigation/Initialize() //need anything special?
+/obj/machinery/computer/navigation/Initialize(mapload) //need anything special?
 	. = ..()
 	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
 	timer_id = addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 10 MINUTES, TIMER_STOPPABLE) //ship is still heading to area cant change orbit yet if your not at the planet
