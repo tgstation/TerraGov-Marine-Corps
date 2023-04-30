@@ -3,3 +3,4 @@
 #define B17_PRICE 800
 #define MINIGUN_PRICE 800
 #define SADAR_PRICE 1200
+#define PRICE_MODULE 120

@@ -857,7 +857,7 @@ ARMOR
 		/obj/item/clothing/suit/storage/marine/riot,
 		/obj/item/clothing/head/helmet/marine/riot,
 	)
-	cost = 120
+	cost = PRICE_MODULE
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/marine_shield
@@ -921,21 +921,21 @@ ARMOR
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 	)
-	cost = 120
+	cost = PRICE_MODULE
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
 	name = "Jaeger Surt fireproof module"
 	contains = list(
 		/obj/item/armor_module/module/fire_proof,
 	)
-	cost = 120
+	cost = PRICE_MODULE
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
 	name = "Jaeger Tyr mark 2 module"
 	contains = list(
 		/obj/item/armor_module/module/tyr_extra_armor,
 	)
-	cost = 120
+	cost = PRICE_MODULE
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
 	name = "Jaeger Mimir Mark 2 module set"
@@ -943,19 +943,19 @@ ARMOR
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection,
 	)
-	cost = 150
+	cost = PRICE_MODULE *1.25
 
 /datum/supply_packs/armor/modular/attachments/hlin_bombimmune
 	name = "Jaeger Hlin module"
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
-	cost = 120
+	cost = PRICE_MODULE
 
 /datum/supply_packs/armor/modular/attachments/artemis_mark_two
 	name = "Freyr Mark 2 helmet module"
 	contains = list(
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 	)
-	cost = 40
+	cost = PRICE_MODULE /3
 
 /*******************************************************************************
 CLOTHING
