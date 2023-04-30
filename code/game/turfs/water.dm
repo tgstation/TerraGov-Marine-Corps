@@ -65,6 +65,9 @@
 
 /turf/open/ground/water/river
 	name = "river"
+	smoothing_groups = list(
+		SMOOTH_GROUP_RIVER,
+	)
 
 /obj/effect/river_overlay
 	name = "river_overlay"

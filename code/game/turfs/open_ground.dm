@@ -27,6 +27,9 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	smoothing_groups = list(
+		SMOOTH_GROUP_RIVER,
+	)
 
 /turf/open/ground/coast/corner
 	icon_state = "beachcorner"
