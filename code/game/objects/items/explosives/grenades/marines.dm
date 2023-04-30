@@ -318,13 +318,8 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 6
 	light_color = LIGHT_COLOR_FLARE
-	var/fuel = 0
-	var/lower_fuel_limit = 800
-	var/upper_fuel_limit = 1000
-
-/obj/item/explosive/grenade/flare/Initialize()
-	. = ..()
-	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
+	///Lifetime of flare
+	var/fuel = 300
 
 /obj/item/explosive/grenade/flare/flamer_fire_act(burnlevel)
 	if(!fuel) //it's out of fuel, an empty shell.
@@ -438,8 +433,7 @@
 	icon_state = "cas_flare_grenade"
 	item_state = "cas_flare_grenade"
 	hud_state = "grenade_frag"
-	lower_fuel_limit = 25
-	upper_fuel_limit = 30
+	fuel = 30
 	light_power = 3
 	light_color = LIGHT_COLOR_GREEN
 	var/datum/squad/user_squad
@@ -469,8 +463,7 @@
 ///Flares that the tadpole flare launcher launches
 /obj/item/explosive/grenade/flare/strongerflare
 	icon_state = "stronger_flare_grenade"
-	lower_fuel_limit = 10
-	upper_fuel_limit = 20
+	fuel = 120
 	light_system = STATIC_LIGHT//movable light has a max range
 	light_color = LIGHT_COLOR_CYAN
 	///The brightness of the flare
