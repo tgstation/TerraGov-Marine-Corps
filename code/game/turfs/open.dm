@@ -100,6 +100,11 @@
 		return
 	var/mob/living/carbon/C = arrived
 	C.clean_mob()
+	if(!C.get_filter("water_obscuring"))
+		var/icon/carbon_icon = icon(C.icon)
+		var/height_to_use = (64 - carbon_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
+		C.add_filter("water_obscuring", 1, alpha_mask_filter(0, -11 + height_to_use, icon('icons/turf/alpha_64.dmi', "water_alpha"), null, MASK_INVERSE))
+		animate(C.get_filter("water_obscuring"), y = height_to_use, time = 3)
 
 	if(isxeno(C))
 		var/mob/living/carbon/xenomorph/xeno = C
@@ -109,6 +114,20 @@
 
 	if(C.on_fire)
 		C.ExtinguishMob()
+
+/turf/open/beach/water/Exited(atom/movable/leaver, direction)
+	. = ..()
+	if(!iscarbon(leaver))
+		return
+	var/mob/living/carbon/carbon_leaver = leaver
+	if(!carbon_leaver.get_filter("water_obscuring"))
+		return
+	if(istype(get_step(src, direction), type)) //todo replace type with a parent water turf type
+		return
+	var/icon/carbon_icon = icon(carbon_leaver.icon)
+	var/height_to_use = (64 - carbon_icon.Height()) * 0.5
+	animate(carbon_leaver.get_filter("water_obscuring"), y = -11 + height_to_use, time = 3)
+	addtimer(CALLBACK(carbon_leaver, TYPE_PROC_REF(/atom, remove_filter), "water_obscuring"), 0.3 SECONDS)
 
 /turf/open/beach/water2
 	name = "water"
