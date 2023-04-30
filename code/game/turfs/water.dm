@@ -22,7 +22,7 @@
 		var/icon/carbon_icon = icon(C.icon)
 		var/height_to_use = (64 - carbon_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
 		C.add_filter("water_obscuring", 1, alpha_mask_filter(0, -11 + height_to_use, icon('icons/turf/alpha_64.dmi', "water_alpha"), null, MASK_INVERSE))
-		animate(C.get_filter("water_obscuring"), y = height_to_use, time = 3)
+		animate(C.get_filter("water_obscuring"), y = height_to_use, time = C.cached_multiplicative_slowdown + C.next_move_slowdown)
 
 	if(isxeno(C))
 		var/mob/living/carbon/xenomorph/xeno = C
@@ -50,9 +50,8 @@
 			return
 
 	var/icon/carbon_icon = icon(carbon_leaver.icon)
-	var/height_to_use = (64 - carbon_icon.Height()) * 0.5
-	animate(carbon_leaver.get_filter("water_obscuring"), y = -11 + height_to_use, time = 3)
-	addtimer(CALLBACK(carbon_leaver, TYPE_PROC_REF(/atom, remove_filter), "water_obscuring"), 0.3 SECONDS)
+	animate(carbon_leaver.get_filter("water_obscuring"), y = -11 + ((64 - carbon_icon.Height()) * 0.5), time = carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown)
+	addtimer(CALLBACK(carbon_leaver, TYPE_PROC_REF(/atom, remove_filter), "water_obscuring"), carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown)
 
 /turf/open/ground/water/sea
 	name = "water"
