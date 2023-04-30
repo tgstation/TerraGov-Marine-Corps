@@ -37,7 +37,7 @@
 		trackable_hivenumbers |= hivenumber
 
 	if(length(trackable_hivenumbers) == 1)
-		tracked_list = GLOB.xeno_critical_structures_by_hive[1]
+		tracked_list = GLOB.xeno_critical_structures_by_hive[trackable_hivenumbers[1]]
 
 	else if(length(trackable_hivenumbers) > 1)
 		tracked_hivenumber = tgui_input_list(user, "Select the hive you wish to track.", "Pinpointer", trackable_hivenumbers)
