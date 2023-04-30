@@ -12,7 +12,8 @@
 	var/dock_id = SHUTTLE_TADPOLE
 	///if true lock console
 	var/dropship_selected = FALSE
-	var/datum/map_template/shuttle/current_template_ref
+	///currently chosen ref to a template from tgui
+	var/current_template_ref
 
 /obj/machinery/computer/dropship_picker/attack_hand(mob/user)
 	if(dropship_selected)
@@ -51,7 +52,7 @@
 		.["name"] = temp.display_name
 	return .
 	
-/obj/machinery/computer/dropship_picker/ui_act(action, list/params)
+/obj/machinery/computer/dropship_picker/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
@@ -67,10 +68,10 @@
 				return FALSE
 			var/datum/map_template/shuttle/template = locate(current_template_ref) in SSmapping.minidropship_templates
 			var/obj/docking_port/mobile/shuttle = SSshuttle.action_load(template)
-			SSshuttle.loading_shuttle = FALSE
 			SSshuttle.moveShuttleQuickToDock(template.shuttle_id, dock_id)
 			shuttle.setTimer(0)
 			dropship_selected = TRUE
-			to_chat(usr, span_notice("Shuttle selected, console locking."))
+			balloon_alert(usr, "shuttle selected, locking")
+			ui.close()
 	return TRUE
 
