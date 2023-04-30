@@ -231,7 +231,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "ajz" = (
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river2)
 "ajE" = (
 /obj/machinery/mineral/stacking_machine,
@@ -241,7 +241,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand8)
 "ajR" = (
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/sand8)
 "ajY" = (
 /obj/machinery/conveyor{
@@ -419,7 +419,7 @@
 /area/lv624/lazarus/crashed_ship)
 "aoC" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "aoE" = (
 /obj/structure/girder,
@@ -517,7 +517,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
 "are" = (
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river1)
 "arA" = (
 /obj/item/tool/kitchen/utensil/fork{
@@ -618,7 +618,7 @@
 /area/lv624/ground/jungle7)
 "auc" = (
 /obj/docking_port/stationary/crashmode,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "aud" = (
 /obj/docking_port/stationary/crashmode,
@@ -790,7 +790,7 @@
 /area/lv624/ground/sand2)
 "awT" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "awV" = (
 /obj/structure/cargo_container/horizontal{
@@ -1168,7 +1168,7 @@
 /area/lv624/ground/jungle9)
 "aEV" = (
 /obj/structure/girder/displaced,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "aEW" = (
 /obj/structure/cable,
@@ -1257,7 +1257,7 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "aHI" = (
 /obj/machinery/miner/damaged,
@@ -1286,7 +1286,7 @@
 /area/lv624/ground/jungle7)
 "aIQ" = (
 /obj/structure/girder,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "aIW" = (
 /obj/structure/bed/stool,
@@ -1343,7 +1343,7 @@
 /area/lv624/ground/sand8)
 "aKk" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "aKr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1458,14 +1458,14 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "aNo" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "aNr" = (
 /obj/effect/ai_node,
@@ -1487,14 +1487,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river2)
 "aND" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "aNE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1563,7 +1563,7 @@
 /area/lv624/ground/jungle10)
 "aPX" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand2)
 "aQc" = (
 /obj/structure/jungle/vines,
@@ -1582,7 +1582,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "aQo" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand2)
 "aQq" = (
 /obj/structure/sign/science{
@@ -1628,7 +1628,7 @@
 /area/lv624/ground/sand4)
 "aRC" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand8)
 "aRD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1641,7 +1641,7 @@
 /area/lv624/lazarus/bar)
 "aRF" = (
 /obj/structure/jungle/plantbot1,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "aRP" = (
 /obj/structure/window_frame/colony,
@@ -1725,7 +1725,7 @@
 /area/lv624/ground/jungle5)
 "aTC" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "aTU" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -1797,12 +1797,12 @@
 "aVL" = (
 /obj/structure/jungle/vines/heavy,
 /obj/structure/jungle/vines/heavy,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "aVO" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/vines/heavy,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "aVZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1813,7 +1813,7 @@
 /area/lv624/ground/sand8)
 "aWa" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river2)
 "aWb" = (
 /obj/effect/decal/remains/xeno,
@@ -1853,7 +1853,7 @@
 /area/lv624/ground/caves/central2)
 "aXc" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand8)
 "aXf" = (
 /obj/structure/flora/tree/jungle/small,
@@ -1878,7 +1878,7 @@
 /area/shuttle/drop2/lz2)
 "aXW" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "aXX" = (
 /obj/structure/disposalpipe/segment,
@@ -1917,7 +1917,7 @@
 /area/lv624/ground/sand4)
 "aYT" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand8)
 "aYX" = (
 /obj/machinery/floodlight/colony,
@@ -1939,7 +1939,7 @@
 "aZW" = (
 /obj/structure/jungle/vines/heavy,
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "baa" = (
 /obj/item/tool/analyzer,
@@ -2037,7 +2037,7 @@
 /area/lv624/ground/jungle3)
 "bcl" = (
 /obj/structure/girder/displaced,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand8)
 "bcz" = (
 /turf/open/ground/grass/grass2,
@@ -2056,7 +2056,7 @@
 /area/lv624/lazarus/spaceport2)
 "bcX" = (
 /obj/structure/flora/grass/green,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "bcZ" = (
 /obj/structure/jungle/planttop1,
@@ -2112,7 +2112,7 @@
 /area/lv624/lazarus/spaceport2)
 "bdQ" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand8)
 "bea" = (
 /turf/open/floor/plating,
@@ -2136,7 +2136,7 @@
 "beS" = (
 /obj/machinery/floodlight/colony,
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand8)
 "beU" = (
 /obj/structure/catwalk,
@@ -2274,7 +2274,7 @@
 "biq" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "biz" = (
 /obj/structure/flora/grass/both,
@@ -2363,11 +2363,11 @@
 /area/lv624/ground/compound/n)
 "bly" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "blF" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "blH" = (
 /obj/item/ammo_casing,
@@ -2460,7 +2460,7 @@
 /area/lv624/lazarus/hydroponics)
 "boD" = (
 /obj/structure/jungle/vines,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "boL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -3055,7 +3055,7 @@
 /area/lv624/ground/jungle9)
 "bPe" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "bPI" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
@@ -3707,7 +3707,7 @@
 	},
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/item/weapon/harpoon,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "cLI" = (
 /obj/structure/bed/stool,
@@ -3838,7 +3838,7 @@
 /obj/structure/disposalpipe/segment{
 	name = "water pipe"
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "cUf" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -3938,7 +3938,7 @@
 "cXu" = (
 /obj/structure/catwalk,
 /obj/effect/landmark/weed_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "cYq" = (
 /obj/structure/platform_decoration{
@@ -4084,7 +4084,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "dki" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4244,7 +4244,7 @@
 /area/lv624/lazarus/toilet)
 "dtn" = (
 /obj/docking_port/stationary/crashmode,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "dtx" = (
 /obj/machinery/light/small{
@@ -4414,7 +4414,7 @@
 /area/lv624/ground/jungle9)
 "dDY" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "dED" = (
 /obj/structure/cable,
@@ -4642,7 +4642,7 @@
 /area/lv624/lazarus/spaceport)
 "dSi" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "dSp" = (
 /obj/item/bedsheet/rd,
@@ -4743,7 +4743,7 @@
 /area/lv624/ground/jungle1)
 "dYm" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river2)
 "dYR" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -4857,7 +4857,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/lazarus/sandtemple)
 "efi" = (
 /obj/structure/jungle/vines,
@@ -5100,7 +5100,7 @@
 /obj/structure/disposalpipe/broken{
 	dir = 1
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "eyK" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -5450,7 +5450,7 @@
 "fbO" = (
 /obj/item/toy/inflatable_duck,
 /obj/effect/landmark/start/job/survivor,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/lazarus/fitness)
 "fbQ" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -5539,11 +5539,11 @@
 /obj/structure/grille/smoothing,
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "fhu" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "fhy" = (
 /obj/effect/spawner/random/weaponry/gun/shotgun,
@@ -5583,7 +5583,7 @@
 /area/lv624/lazarus/kitchen)
 "fjN" = (
 /obj/structure/flora/ausbushes/palebush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "fjU" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -5784,7 +5784,7 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "fxU" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle1)
 "fye" = (
 /obj/effect/landmark/weed_node,
@@ -5832,7 +5832,7 @@
 /area/lv624/lazarus/bar)
 "fBb" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "fBO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5968,12 +5968,12 @@
 "fNu" = (
 /obj/structure/catwalk,
 /obj/effect/turf_decal/riverdecal/edge,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river2)
 "fOi" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/docking_port/stationary/crashmode,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "fOy" = (
 /obj/machinery/light/small{
@@ -6011,7 +6011,7 @@
 /area/lv624/ground/sand7)
 "fRO" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "fSm" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -6027,7 +6027,7 @@
 /area/lv624/lazarus/bar)
 "fUp" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "fUX" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -6234,7 +6234,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "gdJ" = (
 /obj/machinery/landinglight/ds1/delaythree{
@@ -6340,7 +6340,7 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "ghD" = (
 /obj/effect/spawner/random/medical/heal_pack/bruteweighted,
@@ -6354,7 +6354,7 @@
 	dir = 2
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "ghS" = (
 /turf/open/floor/tile/blue/whiteblue{
@@ -6383,7 +6383,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "gjs" = (
 /obj/structure/jungle/vines,
@@ -6392,7 +6392,7 @@
 /area/lv624/ground/jungle3)
 "gjN" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river2)
 "gkh" = (
 /obj/machinery/light/small,
@@ -6532,7 +6532,7 @@
 "gxf" = (
 /obj/structure/catwalk,
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "gxL" = (
 /obj/structure/table,
@@ -6590,7 +6590,7 @@
 /area/lv624/lazarus/bar)
 "gEp" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "gEU" = (
 /obj/structure/bed,
@@ -6612,7 +6612,7 @@
 /area/lv624/ground/jungle3)
 "gGc" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "gGr" = (
 /obj/structure/table/mainship,
@@ -6719,7 +6719,7 @@
 /area/lv624/lazarus/main_hall)
 "gNL" = (
 /obj/item/toy/inflatable_duck,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle1)
 "gNS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6833,7 +6833,7 @@
 /area/lv624/ground/caves/rock)
 "gVY" = (
 /obj/structure/ore_box,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "gWm" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -6916,7 +6916,7 @@
 	},
 /obj/structure/catwalk,
 /obj/effect/turf_decal/riverdecal,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "hdi" = (
 /obj/effect/decal/cleanable/blood/xtracks,
@@ -7262,7 +7262,7 @@
 "hBg" = (
 /obj/structure/flora/ausbushes/reedbush,
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "hBi" = (
 /obj/structure/bed/chair/wood/wings,
@@ -8078,7 +8078,7 @@
 /area/lv624/lazarus/sandtemple)
 "iEv" = (
 /obj/item/toy/beach_ball,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/lazarus/fitness)
 "iEx" = (
 /obj/effect/spawner/random/engineering/toolbox,
@@ -8282,7 +8282,7 @@
 "iSL" = (
 /obj/structure/catwalk,
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "iSZ" = (
 /obj/structure/barricade/wooden{
@@ -8302,7 +8302,7 @@
 /obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river2)
 "iUR" = (
 /obj/structure/window_frame/wood,
@@ -8356,7 +8356,7 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "iYG" = (
 /obj/structure/table/reinforced,
@@ -8382,7 +8382,7 @@
 /area/lv624/ground/jungle10)
 "jah" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "jaj" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -8502,7 +8502,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "jkh" = (
 /obj/machinery/light/small{
@@ -8617,7 +8617,7 @@
 /area/lv624/lazarus/toilet)
 "jtm" = (
 /obj/structure/flora/ausbushes/palebush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "jtS" = (
 /obj/structure/table/woodentable,
@@ -8885,7 +8885,7 @@
 /area/lv624/ground/river2)
 "jJD" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand7)
 "jJI" = (
 /obj/effect/landmark/weed_node,
@@ -9011,7 +9011,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "jQr" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand8)
 "jRu" = (
 /obj/item/trash/popcorn,
@@ -9117,7 +9117,7 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "jYw" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "jZc" = (
 /obj/structure/jungle/vines/heavy{
@@ -9465,7 +9465,7 @@
 /area/lv624/lazarus/canteen)
 "kth" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river1)
 "ktn" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -10079,7 +10079,7 @@
 	},
 /obj/structure/catwalk,
 /obj/effect/turf_decal/riverdecal,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "ljz" = (
 /obj/structure/jungle/plantbot1,
@@ -10143,7 +10143,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/spaceport2)
 "lne" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand6)
 "lno" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -10204,7 +10204,7 @@
 /area/lv624/lazarus/engineering)
 "lrK" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "lrQ" = (
 /obj/effect/decal/cleanable/blood/gibs,
@@ -10811,7 +10811,7 @@
 "mib" = (
 /obj/docking_port/stationary/crashmode,
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "mic" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -10917,7 +10917,7 @@
 /area/lv624/ground/caves/east1)
 "mlR" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "mlV" = (
 /obj/effect/ai_node,
@@ -11154,7 +11154,7 @@
 /area/lv624/ground/jungle1)
 "mEB" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle1)
 "mEJ" = (
 /obj/structure/flora/ausbushes/fernybush,
@@ -12124,7 +12124,7 @@
 "nVk" = (
 /obj/structure/catwalk,
 /obj/effect/turf_decal/riverdecal,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river1)
 "nVy" = (
 /turf/closed/gm/dense,
@@ -12168,7 +12168,7 @@
 /area/lv624/lazarus/sleep_male)
 "nZT" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "oah" = (
 /turf/closed/wall/r_wall,
@@ -12831,7 +12831,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
 /obj/effect/turf_decal/riverdecal,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "oXa" = (
 /obj/effect/ai_node,
@@ -13438,7 +13438,7 @@
 /area/lv624/lazarus/captain)
 "pSl" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/jungle9)
 "pSp" = (
 /turf/open/floor/plating/icefloor/warnplate,
@@ -13665,7 +13665,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "qgh" = (
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/jungle9)
 "qgr" = (
 /obj/effect/spawner/random/engineering/tool,
@@ -14152,7 +14152,7 @@
 /area/lv624/lazarus/engineering)
 "qPW" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "qPY" = (
 /obj/structure/cable,
@@ -14219,7 +14219,7 @@
 "qUJ" = (
 /obj/structure/catwalk,
 /obj/structure/jungle/vines,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "qUY" = (
 /obj/structure/rack,
@@ -14963,7 +14963,7 @@
 /area/lv624/lazarus/engineering)
 "rLd" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "rLt" = (
 /obj/item/explosive/grenade/flare/civilian,
@@ -15376,7 +15376,7 @@
 /area/lv624/lazarus/corporate_affairs)
 "slb" = (
 /obj/structure/flora/ausbushes,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "slg" = (
 /obj/structure/jungle/vines,
@@ -15877,7 +15877,7 @@
 /area/lv624/lazarus/bar)
 "sZz" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "sZN" = (
 /obj/structure/table,
@@ -15914,7 +15914,7 @@
 /area/lv624/lazarus/main_hall)
 "tca" = (
 /obj/structure/jungle/vines,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "tce" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -16439,7 +16439,7 @@
 /area/lv624/lazarus/spaceport2)
 "tIC" = (
 /obj/structure/jungle/planttop1,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "tIH" = (
 /obj/item/trash/mre,
@@ -16646,7 +16646,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/lazarus/sandtemple)
 "tXY" = (
 /obj/structure/inflatable/wall,
@@ -16657,7 +16657,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "tYg" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "tYo" = (
 /obj/effect/turf_decal/riverdecal,
@@ -16697,7 +16697,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/research)
 "tZS" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "uac" = (
 /obj/effect/ai_node,
@@ -17012,7 +17012,7 @@
 /area/lv624/lazarus/bar)
 "utH" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "utV" = (
 /turf/open/floor/plating,
@@ -17105,7 +17105,7 @@
 /area/lv624/lazarus/fitness)
 "uBF" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "uBN" = (
 /turf/open/floor/tile/whiteyellow/full,
@@ -17591,7 +17591,7 @@
 /area/lv624/ground/jungle3)
 "vpl" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "vpo" = (
 /obj/structure/flora/tree/jungle/small,
@@ -17699,7 +17699,7 @@
 "vsX" = (
 /obj/structure/catwalk,
 /obj/effect/turf_decal/riverdecal,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/river2)
 "vuc" = (
 /obj/effect/turf_decal/tracks/human1/wet,
@@ -17787,7 +17787,7 @@
 "vAz" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river2)
 "vAA" = (
 /obj/effect/ai_node,
@@ -17875,7 +17875,7 @@
 /area/lv624/lazarus/quartstorage)
 "vFU" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "vGi" = (
 /obj/structure/jungle/vines/heavy,
@@ -18022,7 +18022,7 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "vQZ" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "vRg" = (
 /obj/machinery/power/apc/drained{
@@ -18138,7 +18138,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "vYj" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/sand3)
 "vYI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -18508,7 +18508,7 @@
 "wuP" = (
 /obj/structure/catwalk,
 /obj/effect/turf_decal/riverdecal,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "wvm" = (
 /obj/machinery/light{
@@ -18589,7 +18589,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4)
 "wzw" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/caves/central3)
 "wzD" = (
 /obj/effect/ai_node,
@@ -18615,7 +18615,7 @@
 /area/lv624/lazarus/chapel)
 "wAq" = (
 /obj/effect/landmark/xeno_resin_wall,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/caves/central3)
 "wCI" = (
 /obj/item/stack/sheet/wood{
@@ -18665,7 +18665,7 @@
 /area/lv624/ground/filtration)
 "wEq" = (
 /obj/structure/flora/ausbushes/pointybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "wEr" = (
 /obj/structure/cargo_container,
@@ -18906,7 +18906,7 @@
 /area/lv624/lazarus/fitness)
 "wQV" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "wRf" = (
 /obj/effect/landmark/weed_node,
@@ -19027,7 +19027,7 @@
 /area/lv624/ground/jungle10)
 "wWI" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "wWN" = (
 /obj/structure/flora/grass/green,
@@ -19132,7 +19132,7 @@
 /area/lv624/ground/jungle10)
 "xeA" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "xeH" = (
 /obj/structure/jungle/vines/heavy,
@@ -19267,7 +19267,7 @@
 /area/lv624/lazarus/captain)
 "xkb" = (
 /obj/structure/girder,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "xkr" = (
 /obj/effect/decal/remains/xeno,
@@ -19349,10 +19349,10 @@
 "xpz" = (
 /obj/structure/catwalk,
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "xpC" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river3)
 "xpE" = (
 /obj/effect/landmark/weed_node,
@@ -19383,7 +19383,7 @@
 /area/lv624/lazarus/quart)
 "xsf" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "xsD" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -19424,7 +19424,7 @@
 /area/lv624/ground/jungle1)
 "xuF" = (
 /obj/effect/spawner/random/weaponry/melee,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "xuT" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
@@ -19439,7 +19439,7 @@
 /obj/structure/catwalk,
 /obj/effect/turf_decal/riverdecal,
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "xvN" = (
 /obj/structure/rack,
@@ -19686,7 +19686,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "xJa" = (
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/lazarus/fitness)
 "xJk" = (
 /obj/machinery/light{
@@ -19826,7 +19826,7 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "xSn" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "xTa" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -19851,7 +19851,7 @@
 /area/lv624/ground/jungle9)
 "xUE" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/lv624/ground/jungle9)
 "xUK" = (
 /obj/structure/table/reinforced/flipped{
@@ -19895,7 +19895,7 @@
 /area/lv624/lazarus/spaceport2)
 "xXn" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "xXy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -19933,7 +19933,7 @@
 /area/lv624/lazarus/canteen)
 "xZG" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/ground/water/river/autosmooth,
 /area/lv624/ground/river1)
 "xZK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{

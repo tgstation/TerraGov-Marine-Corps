@@ -49,18 +49,9 @@
 	name = "water"
 	icon_state = "water"
 
-/turf/open/ground/water/sea/New()
-	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1)
-
-
 /turf/open/ground/water/sea2
 	name = "water"
 	icon_state = "water"
-
-/turf/open/ground/water/sea2/New()
-	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
 
 /turf/open/ground/water/sea/deep
 	name = "sea"
@@ -81,21 +72,23 @@
 	layer = RIVER_OVERLAY_LAYER
 	plane = FLOOR_PLANE
 
-/turf/open/ground/water/river/Initialize()
-	. = ..()
-	if(!has_catwalk)
-		var/obj/effect/river_overlay/R = new(src)
-		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=RIVER_OVERLAY_LAYER)
+/turf/open/ground/water/river/autosmooth
+	icon = 'icons/turf/floors/river.dmi'
+	icon_state = "river-icon"
+	base_icon_state = "river"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_RIVER)
+	canSmoothWith = list(
+		SMOOTH_GROUP_RIVER,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_LATTICE,
+		SMOOTH_GROUP_GRILLE,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+	)
 
 /turf/open/ground/water/river/deep
 	name = "river"
 	icon_state = "seadeep"
-
-/turf/open/ground/water/river/deep/Initialize()
-	. = ..()
-	if(!has_catwalk)
-		var/obj/effect/river_overlay/R = new(src)
-		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=RIVER_OVERLAY_LAYER)
 
 /turf/open/ground/water/river/poison/Initialize()
 	. = ..()

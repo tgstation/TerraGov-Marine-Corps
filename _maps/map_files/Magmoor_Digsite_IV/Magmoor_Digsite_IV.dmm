@@ -12030,7 +12030,7 @@
 	},
 /area/magmoor/engi/power)
 "iOa" = (
-/turf/open/ground/river,
+/turf/open/ground/water/river,
 /area/magmoor/civilian/pool)
 "iOg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
