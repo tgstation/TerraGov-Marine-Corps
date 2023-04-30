@@ -14,7 +14,7 @@
 	icon_state = "black"
 	icon_closed = "black"
 
-/obj/structure/closet/gmcloset/Initialize()
+/obj/structure/closet/gmcloset/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
@@ -38,7 +38,7 @@
 	icon_state = "mixed"
 	icon_closed = "mixed"
 
-/obj/structure/closet/jcloset/Initialize()
+/obj/structure/closet/jcloset/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/under/rank/janitor(src)
 	new /obj/item/clothing/gloves/black(src)
@@ -62,7 +62,7 @@
 	icon_state = "blue"
 	icon_closed = "blue"
 
-/obj/structure/closet/lawcloset/Initialize()
+/obj/structure/closet/lawcloset/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/under/lawyer/female(src)
 	new /obj/item/clothing/under/lawyer/black(src)

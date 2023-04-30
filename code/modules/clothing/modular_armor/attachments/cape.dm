@@ -16,7 +16,7 @@
 	///True if the hood is up, false if not.
 	var/hood = FALSE
 
-/obj/item/armor_module/greyscale/cape/Initialize()
+/obj/item/armor_module/greyscale/cape/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/attachment_handler, \
 	attachments_by_slot, \

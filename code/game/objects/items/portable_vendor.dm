@@ -160,7 +160,7 @@
 	points = min(max_points, points+0.05)
 
 
-/obj/item/portable_vendor/Initialize()
+/obj/item/portable_vendor/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	update_overlays()

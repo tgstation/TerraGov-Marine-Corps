@@ -13,7 +13,7 @@
 	var/list/option_list
 
 // creates a new set of objects and deletes itself
-/obj/effect/spawner/random_set/Initialize()
+/obj/effect/spawner/random_set/Initialize(mapload)
 	. = ..()
 	if(!prob(spawn_nothing_percentage))
 		var/choice = rand(1, length(option_list)) //chooses an item on the option_list

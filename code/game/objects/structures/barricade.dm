@@ -31,7 +31,7 @@
 	///is this barriade wired?
 	var/is_wired = FALSE
 
-/obj/structure/barricade/Initialize()
+/obj/structure/barricade/Initialize(mapload)
 	. = ..()
 	update_icon()
 	var/static/list/connections = list(

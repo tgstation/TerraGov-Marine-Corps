@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 	var/area/starting_area
 	var/turf/spawnloc
 
-/mob/camera/aiEye/remote/fobdrone/Initialize()
+/mob/camera/aiEye/remote/fobdrone/Initialize(mapload)
 	. = ..()
 	starting_area = get_area(loc)
 

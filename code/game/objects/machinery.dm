@@ -24,7 +24,7 @@
 	///Whether bullets can bypass the object even though it's dense
 	flags_pass = PASSABLE
 
-/obj/machinery/Initialize()
+/obj/machinery/Initialize(mapload)
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()

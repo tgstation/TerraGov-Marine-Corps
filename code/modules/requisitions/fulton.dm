@@ -17,7 +17,7 @@
 	. += "It has [uses] uses remaining."
 
 
-/obj/item/fulton_extraction_pack/Initialize()
+/obj/item/fulton_extraction_pack/Initialize(mapload)
 	. = ..()
 	baloon = new()
 	holder_obj = new()

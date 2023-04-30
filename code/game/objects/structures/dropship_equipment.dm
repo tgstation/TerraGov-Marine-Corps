@@ -30,36 +30,32 @@
 	QDEL_NULL(installed_equipment)
 	return ..()
 
-/obj/effect/attach_point/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(!istype(I, /obj/item/powerloader_clamp))
+//Not calling parent because this isn't the typical pick up/put down
+/obj/effect/attach_point/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	if(attached_clamp.loaded && !istype(attached_clamp.loaded, /obj/structure/dropship_equipment))
 		return
-	var/obj/item/powerloader_clamp/clamp = I
-	if(!istype(clamp.loaded, /obj/structure/dropship_equipment))
-		return TRUE
 
-	var/obj/structure/dropship_equipment/loaded_equipment = clamp.loaded
+	var/obj/structure/dropship_equipment/loaded_equipment = attached_clamp.loaded
 	if(loaded_equipment.equip_category != base_category)
 		to_chat(user, span_warning("[loaded_equipment] doesn't fit on [src]."))
-		return TRUE
+		return
 	if(installed_equipment)
-		return TRUE
+		return
 	if(!density)
 		for(var/atom/thing_to_check AS in loc)
 			if(thing_to_check.density)
 				balloon_alert(user, "Blocked by [thing_to_check]")
-				return TRUE
+				return
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	if(!do_after(user, 7 SECONDS, FALSE, src))
-		return TRUE
-	if(installed_equipment || clamp.loaded != loaded_equipment)
-		return TRUE
+		return
+	if(installed_equipment || attached_clamp.loaded != loaded_equipment)
+		return
 	to_chat(user, span_notice("You install [loaded_equipment] on [src]."))
 	loaded_equipment.forceMove(loc)
-	clamp.loaded = null
+	attached_clamp.loaded = null
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-	clamp.update_icon()
+	attached_clamp.update_icon()
 	installed_equipment = loaded_equipment
 	loaded_equipment.ship_base = src
 
@@ -73,7 +69,6 @@
 	loaded_equipment.pixel_y = equipment_offset_y
 
 	loaded_equipment.update_equipment()
-	return TRUE
 
 
 /obj/effect/attach_point/weapon
@@ -219,67 +214,62 @@
 	ammo_type_used = null
 	return ..()
 
-/obj/structure/dropship_equipment/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(!istype(I, /obj/item/powerloader_clamp))
-		return
-	var/obj/item/powerloader_clamp/clamp = I
-	if(clamp.loaded)
-		if((!(dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
-			return FALSE
-		var/obj/structure/ship_ammo/clamp_ammo = clamp.loaded
+/obj/structure/dropship_equipment/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	if(attached_clamp.loaded)
+		if((!(dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(attached_clamp.loaded, /obj/structure/ship_ammo))
+			return
+		var/obj/structure/ship_ammo/clamp_ammo = attached_clamp.loaded
 		if(istype(type, clamp_ammo.equipment_type) || clamp_ammo.ammo_type != ammo_type_used) //Incompatible ammo
 			to_chat(user, span_warning("[clamp_ammo] doesn't fit in [src]."))
-			return FALSE
+			return
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
-			return FALSE
-		if(ammo_equipped || clamp.loaded != clamp_ammo || !LAZYLEN(clamp.linked_powerloader?.buckled_mobs) || clamp.linked_powerloader.buckled_mobs[1] != user)
-			return FALSE
+			return
+		if(ammo_equipped || attached_clamp.loaded != clamp_ammo || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+			return
 		clamp_ammo.forceMove(src)
-		clamp.loaded = null
+		attached_clamp.loaded = null
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		clamp.update_icon()
+		attached_clamp.update_icon()
 		to_chat(user, span_notice("You load [clamp_ammo] into [src]."))
 		ammo_equipped = clamp_ammo
 		update_equipment()
-		return TRUE //refilled dropship ammo
-	else if((dropship_equipment_flags & USES_AMMO) && ammo_equipped)
+		return //refilled dropship ammo
+	if((dropship_equipment_flags & USES_AMMO) && ammo_equipped)
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
-			return FALSE
-		if(!ammo_equipped || !LAZYLEN(clamp.linked_powerloader?.buckled_mobs) || clamp.linked_powerloader.buckled_mobs[1] != user)
-			return FALSE
+			return
+		if(!ammo_equipped || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+			return
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 		if(!ammo_equipped.ammo_count)
 			ammo_equipped.loc = null
 			to_chat(user, span_notice("You've discarded the empty [ammo_equipped.name] in [src]."))
 			qdel(ammo_equipped)
 		else
-			ammo_equipped.forceMove(clamp.linked_powerloader)
-			clamp.loaded = ammo_equipped
-			clamp.update_icon()
-			to_chat(user, span_notice("You've removed [ammo_equipped] from [src] and loaded it into [clamp]."))
+			ammo_equipped.forceMove(attached_clamp.linked_powerloader)
+			attached_clamp.loaded = ammo_equipped
+			attached_clamp.update_icon()
+			to_chat(user, span_notice("You've removed [ammo_equipped] from [src] and loaded it into [attached_clamp]."))
 		ammo_equipped = null
 		update_icon()
-		return TRUE //emptied or removed dropship ammo
-	else if(dropship_equipment_flags & IS_NOT_REMOVABLE)
+		return //emptied or removed dropship ammo
+	if(dropship_equipment_flags & IS_NOT_REMOVABLE)
 		to_chat(user, span_notice("You cannot remove [src]!"))
-		return FALSE
-	else if(!current_acid)
+		return
+	if(!current_acid)
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
 		if(!do_after(user, duration_time, FALSE, src, BUSY_ICON_BUILD))
-			return FALSE
-		if(clamp.loaded || !LAZYLEN(clamp.linked_powerloader?.buckled_mobs) || clamp.linked_powerloader.buckled_mobs[1] != user)
-			return FALSE
-		forceMove(clamp.linked_powerloader)
-		clamp.loaded = src
+			return
+		if(attached_clamp.loaded || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+			return
+		forceMove(attached_clamp.linked_powerloader)
+		attached_clamp.loaded = src
 		SEND_SIGNAL(src, COMSIG_DROPSHIP_EQUIPMENT_UNEQUIPPED)
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		clamp.update_icon()
-		to_chat(user, span_notice("You've [ship_base ? "uninstalled" : "grabbed"] [clamp.loaded] with [clamp]."))
+		attached_clamp.update_icon()
+		to_chat(user, span_notice("You've [ship_base ? "uninstalled" : "grabbed"] [attached_clamp.loaded] with [attached_clamp]."))
 		if(ship_base)
 			ship_base.installed_equipment = null
 			ship_base = null
@@ -289,9 +279,9 @@
 				if(linked_console?.selected_equipment == src)
 					linked_console.selected_equipment = null
 		update_equipment()
-		return TRUE //removed or uninstalled equipment
-	to_chat(user, span_notice("You cannot touch [src] with the [clamp] due to the acid on [src]."))
-	return TRUE
+		return //removed or uninstalled equipment
+	to_chat(user, span_notice("You cannot touch [src] with the [attached_clamp] due to the acid on [src]."))
+
 
 /obj/structure/dropship_equipment/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
@@ -385,7 +375,7 @@
 	var/obj/machinery/deployable/mounted/sentry/deployed_turret
 	var/sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship
 
-/obj/structure/dropship_equipment/sentry_holder/Initialize()
+/obj/structure/dropship_equipment/sentry_holder/Initialize(mapload)
 	. = ..()
 	if(!deployed_turret)
 		var/obj/new_gun = new sentry_type(src)
@@ -501,7 +491,7 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_mg
 
-/obj/structure/dropship_equipment/mg_holder/Initialize()
+/obj/structure/dropship_equipment/mg_holder/Initialize(mapload)
 	. = ..()
 	if(deployed_mg)
 		return
@@ -542,7 +532,7 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_minigun
 
-/obj/structure/dropship_equipment/minigun_holder/Initialize()
+/obj/structure/dropship_equipment/minigun_holder/Initialize(mapload)
 	. = ..()
 	if(deployed_minigun)
 		return
@@ -583,7 +573,7 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_heavylaser
 
-/obj/structure/dropship_equipment/heavylaser_holder/Initialize()
+/obj/structure/dropship_equipment/heavylaser_holder/Initialize(mapload)
 	. = ..()
 	if(deployed_heavylaser)
 		return
@@ -624,7 +614,7 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_heavyrr
 
-/obj/structure/dropship_equipment/heavy_rr_holder/Initialize()
+/obj/structure/dropship_equipment/heavy_rr_holder/Initialize(mapload)
 	. = ..()
 	if(deployed_heavyrr)
 		return
@@ -665,7 +655,7 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mortar/double/deployed_mortar
 
-/obj/structure/dropship_equipment/mortar_holder/Initialize()
+/obj/structure/dropship_equipment/mortar_holder/Initialize(mapload)
 	. = ..()
 	if(deployed_mortar)
 		return
@@ -877,7 +867,7 @@
 	point_cost = 0
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|IS_NOT_REMOVABLE
 
-/obj/structure/dropship_equipment/weapon/heavygun/radial_cas/Initialize()
+/obj/structure/dropship_equipment/weapon/heavygun/radial_cas/Initialize(mapload)
 	. = ..()
 	ammo_equipped = new /obj/structure/ship_ammo/heavygun(src)
 
@@ -983,7 +973,7 @@
 	point_cost = 100
 	var/obj/machinery/optable/deployed_table
 
-/obj/structure/dropship_equipment/operatingtable/Initialize()
+/obj/structure/dropship_equipment/operatingtable/Initialize(mapload)
 	. = ..()
 	if(!deployed_table)
 		deployed_table = new(src)

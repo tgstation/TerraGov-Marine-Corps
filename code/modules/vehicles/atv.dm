@@ -9,7 +9,7 @@
 	integrity_failure = 0.5
 	var/static/mutable_appearance/atvcover
 
-/obj/vehicle/ridden/atv/Initialize()
+/obj/vehicle/ridden/atv/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/atv)
 	if(!atvcover)

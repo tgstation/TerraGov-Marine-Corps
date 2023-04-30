@@ -17,7 +17,7 @@
 	response_disarm = "rudely paps"
 	response_harm = "kicks"
 
-/mob/living/simple_animal/catslug/Initialize()
+/mob/living/simple_animal/catslug/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/companion)
 

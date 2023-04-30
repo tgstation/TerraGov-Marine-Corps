@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	throw_speed = 3
 	throw_range = 3
 
-/obj/item/stack/sheet/mineral/Initialize()
+/obj/item/stack/sheet/mineral/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-2, 2)
 	pixel_y = rand(-2, 2)
@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	perunit = 3750
 
 
-/obj/item/stack/sheet/mineral/iron/Initialize()
+/obj/item/stack/sheet/mineral/iron/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.iron_recipes
 
@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	sheettype = "sandstone"
 
 
-/obj/item/stack/sheet/mineral/sandstone/Initialize()
+/obj/item/stack/sheet/mineral/sandstone/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.sandstone_recipes
 
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	sheettype = "diamond"
 
 
-/obj/item/stack/sheet/mineral/diamond/Initialize()
+/obj/item/stack/sheet/mineral/diamond/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.diamond_recipes
 
@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	sheettype = "uranium"
 
 
-/obj/item/stack/sheet/mineral/uranium/Initialize()
+/obj/item/stack/sheet/mineral/uranium/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.uranium_recipes
 
@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	perunit = 2000
 
 
-/obj/item/stack/sheet/mineral/plastic/Initialize()
+/obj/item/stack/sheet/mineral/plastic/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.plastic_recipes
 
@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	number_of_extra_variants = 2
 
 
-/obj/item/stack/sheet/mineral/gold/Initialize()
+/obj/item/stack/sheet/mineral/gold/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.gold_recipes
 
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	number_of_extra_variants = 2
 
 
-/obj/item/stack/sheet/mineral/silver/Initialize()
+/obj/item/stack/sheet/mineral/silver/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.silver_recipes
 
