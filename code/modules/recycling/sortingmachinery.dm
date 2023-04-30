@@ -365,7 +365,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 	var/c_mode = 0
 
-/obj/machinery/disposal/deliveryChute/Initialize()
+/obj/machinery/disposal/deliveryChute/Initialize(mapload)
 	. = ..()
 	set_trunk(locate(/obj/structure/disposalpipe/trunk) in loc)
 	if(trunk)

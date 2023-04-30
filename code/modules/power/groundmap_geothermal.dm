@@ -3,6 +3,8 @@
 #define GEOTHERMAL_MEDIUM_DAMAGE 2
 #define GEOTHERMAL_HEAVY_DAMAGE 3
 
+GLOBAL_VAR_INIT(generators_on_ground, 0)
+
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"
 	icon = 'icons/turf/geothermal.dmi'
@@ -26,17 +28,22 @@
 	///whether they should generate corruption if corrupted
 	var/corruption_on = FALSE
 
-/obj/machinery/power/geothermal/Initialize()
+/obj/machinery/power/geothermal/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(activate_corruption))
 	update_icon()
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "generator")
 
-	if(!GLOB.xeno_generators_by_hive)
-		GLOB.xeno_generators_by_hive = list()
-
 	if(corrupted)
-		GLOB.xeno_generators_by_hive[corrupted] += 1
+		corrupt(corrupted)
+
+	if(is_ground_level(z))
+		GLOB.generators_on_ground += 1
+
+/obj/machinery/power/geothermal/Destroy() //just in case
+	if(is_ground_level(z))
+		GLOB.generators_on_ground -= 1
+	return ..()
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -94,8 +101,9 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])) && GLOB.xeno_generators_by_hive[corrupted] > 0)
-			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT / GLOB.xeno_generators_by_hive[corrupted])
+		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
+			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
+			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground)
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
@@ -234,7 +242,6 @@
 		corrupted = 0
 		stop_processing()
 		update_icon()
-		GLOB.xeno_generators_by_hive[corrupted] -= 1
 		return
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
@@ -313,7 +320,6 @@
 
 /obj/machinery/power/geothermal/proc/corrupt(hivenumber)
 	corrupted = hivenumber
-	GLOB.xeno_generators_by_hive[corrupted] += 1
 	is_on = FALSE
 	power_gen_percent = 0
 	cur_tick = 0

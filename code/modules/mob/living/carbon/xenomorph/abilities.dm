@@ -198,7 +198,9 @@
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/xeno_action/activable/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
-	if(toggled)
+
+	var/list/modifiers = params2list(params)
+	if(toggled && !(modifiers[BUTTON] == LEFT_CLICK))
 		dragging = TRUE
 		preshutter_build_resin(get_turf(object))
 
@@ -233,18 +235,18 @@
 
 /// Extra handling to remove the stuff needed for dragging
 /datum/action/xeno_action/activable/secrete_resin/remove_action(mob/living/carbon/xenomorph/X)
-	. = ..()
 	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
-		return
+		return ..()
 	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED))
-
+	update_button_icon() //reason for the double return ..() here is owner gets unassigned in one of the parent procs, so we can't call parent before unregistering signals here
+	return ..()
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_resin
 	action_icon_state = initial(A.name)
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		button.cut_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
 		var/mutable_appearance/number = visual_references[VREF_MUTABLE_BUILDING_COUNTER]
 		number.maptext = MAPTEXT("[SSresinshaping.get_building_points(owner)]")
@@ -286,7 +288,7 @@
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xowner = owner
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		preshutter_build_resin(A)
 	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
@@ -887,8 +889,6 @@
 	set_target(get_turf_on_clickcatcher(object, xeno, params))
 	if(!current_target)
 		return
-	xeno.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
-	span_xenowarning("We spit at \the [current_target]!") )
 
 	SEND_SIGNAL(owner, COMSIG_XENO_FIRE)
 	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
@@ -1166,56 +1166,42 @@
 
 /datum/action/xeno_action/rally_minion
 	name = "Rally Minions"
-	action_icon_state = "rally_minions"
-	desc = "Rallies the minions around you, asking them to follow you if they don't have a leader already. 60 second cooldown."
+	action_icon_state = "minion_agressive"
+	desc = "Rallies the minions around you, asking them to follow you if they don't have a leader already. Rightclick to change minion behaviour."
 	ability_name = "rally minions"
 	plasma_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 10 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+	///If minions should be agressive
+	var/minions_agressive = TRUE
+
+/datum/action/xeno_action/rally_minion/update_button_icon()
+	action_icon_state = minions_agressive ? "minion_agressive" : "minion_passive"
+	return ..()
 
 /datum/action/xeno_action/rally_minion/action_activate()
 	succeed_activate()
 	add_cooldown()
 	owner.emote("roar")
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
-	var/mob/living/carbon/xenomorph/xenoowner = owner
-	var/datum/action/xeno_action/set_agressivity/set_agressivity = xenoowner.actions_by_path[/datum/action/xeno_action/set_agressivity]
-	if(set_agressivity)
-		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.minions_agressive) //New escorting ais should have the same behaviour as old one
+	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive) //New escorting ais should have the same behaviour as old one
 
-/datum/action/xeno_action/set_agressivity
-	name = "Set minions behavior"
-	action_icon_state = "minion_agressive"
-	desc = "Order the minions escorting you to be either agressive or passive."
-	ability_name = "set_agressivity"
-	plasma_cost = 0
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
-	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
-	///If minions should be agressive
-	var/minions_agressive = TRUE
-
-/datum/action/xeno_action/set_agressivity/action_activate()
+/datum/action/xeno_action/rally_minion/alternate_action_activate()
 	minions_agressive = !minions_agressive
 	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
-
-/datum/action/xeno_action/set_agressivity/update_button_icon()
-	action_icon_state = minions_agressive ? "minion_agressive" : "minion_passive"
-	return ..()
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/xenomorph/proc/add_abilities()
 	for(var/action_path in xeno_caste.actions)
 		var/datum/action/xeno_action/action = new action_path()
-		if(SSticker.mode?.flags_xeno_abilities & action.gamemode_flags)
+		if(!SSticker.mode || SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
 			action.give_action(src)
 
 
@@ -1421,6 +1407,9 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU,
 	)
 	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
+
+/datum/action/xeno_action/blessing_menu/should_show()
+	return FALSE // Blessings meni now done through hive status UI!
 
 /datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner

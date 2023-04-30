@@ -279,7 +279,7 @@
 	icon = 'icons/effects/effects.dmi'
 	duration = 4
 
-/obj/effect/temp_visual/shattering_roar/Initialize()
+/obj/effect/temp_visual/shattering_roar/Initialize(mapload)
 	. = ..()
 	flick("smash", src)
 
@@ -319,7 +319,7 @@
 	. = ..()
 	sound_loop = new
 
-/obj/effect/ebeam/zeroform/Initialize()
+/obj/effect/ebeam/zeroform/Initialize(mapload)
 	. = ..()
 	alpha = 0
 	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)

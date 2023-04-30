@@ -19,7 +19,7 @@
 	///Icon for the extra storage overlays.
 	var/show_storage_icon = 'icons/mob/modular/modular_helmet_storage.dmi'
 
-/obj/item/armor_module/storage/Initialize()
+/obj/item/armor_module/storage/Initialize(mapload)
 	. = ..()
 	storage = new storage(src)
 
@@ -132,21 +132,21 @@
 	storage = /obj/item/storage/internal/modular/ammo_mag
 	slowdown = 0.1
 
-/obj/item/armor_module/storage/ammo_mag/freelancer/Initialize()
+/obj/item/armor_module/storage/ammo_mag/freelancer/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 
-/obj/item/armor_module/storage/ammo_mag/freelancer_two/Initialize()
+/obj/item/armor_module/storage/ammo_mag/freelancer_two/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 
-/obj/item/armor_module/storage/ammo_mag/freelancer_three/Initialize()
+/obj/item/armor_module/storage/ammo_mag/freelancer_three/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/tx54(storage)
 	new /obj/item/ammo_magazine/rifle/tx54(storage)
@@ -235,7 +235,7 @@
 	item_state = ""
 	flags_attach_features = ATTACH_APPLY_ON_MOB
 
-/obj/item/armor_module/storage/medical/freelancer/Initialize()
+/obj/item/armor_module/storage/medical/freelancer/Initialize(mapload)
 	. = ..()
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(storage)
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(storage)
@@ -249,16 +249,18 @@
 	max_w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/storage/pill_bottle,
-		/obj/item/clothing/gloves/latex,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/reagent_containers/hypospray/advanced,
-		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/pill,
+		/obj/item/storage/pill_bottle,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/gloves/latex,
 		/obj/item/tweezers,
+		/obj/item/whistle,
 	)
 
 /obj/item/armor_module/storage/medical/som
@@ -330,7 +332,7 @@
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/item/armor_module/storage/boot/full/Initialize()
+/obj/item/armor_module/storage/boot/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/combat_knife(storage)
 

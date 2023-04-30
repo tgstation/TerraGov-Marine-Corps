@@ -59,10 +59,11 @@
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignal(owner, list(
 		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_ATTACK_OBJ,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL), PROC_REF(cancel_stealth))
+
+	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
 
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), PROC_REF(cancel_stealth))
 
@@ -100,6 +101,12 @@
 	can_sneak_attack = FALSE
 	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
 	owner.alpha = 255 //no transparency/translucency
+
+///Signal wrapper to verify that an object is damageable before breaking stealth
+/datum/action/xeno_action/stealth/proc/on_obj_attack(datum/source, obj/attacked)
+	SIGNAL_HANDLER
+	if(attacked.resistance_flags & XENO_DAMAGEABLE)
+		cancel_stealth()
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_cooldown()
 	if(!stealth || can_sneak_attack)

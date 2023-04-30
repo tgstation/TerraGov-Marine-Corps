@@ -169,7 +169,7 @@
 /obj/effect/turf_decal/woodsiding/alt
 	icon_state = "wood_sidingalt"
 
-/obj/effect/turf_decal/woodsiding/Initialize()
+/obj/effect/turf_decal/woodsiding/Initialize(mapload)
 	. = ..()
 	loc.overlays += image(icon, icon_state, dir = src.dir)
 	return INITIALIZE_HINT_QDEL
@@ -180,7 +180,7 @@
 /obj/effect/turf_decal/siding/alt
 	icon_state = "sidingalt"
 
-/obj/effect/turf_decal/siding/Initialize()
+/obj/effect/turf_decal/siding/Initialize(mapload)
 	. = ..()
 	loc.overlays += image(icon, icon_state, dir = src.dir)
 	return INITIALIZE_HINT_QDEL

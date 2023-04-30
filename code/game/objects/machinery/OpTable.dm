@@ -19,7 +19,7 @@
 
 	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/optable/Initialize()
+/obj/machinery/optable/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 

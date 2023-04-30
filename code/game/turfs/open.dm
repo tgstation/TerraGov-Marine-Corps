@@ -341,7 +341,7 @@
 /turf/open/lavaland/lava/single/corners
 	icon_state = "single_corners"
 
-/turf/open/lavaland/lava/Initialize()
+/turf/open/lavaland/lava/Initialize(mapload)
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(current_turf && density)
@@ -386,7 +386,8 @@
 				continue
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
-				L.take_overall_damage(LAVA_TILE_BURN_DAMAGE * clamp(L.get_fire_resist(), 0.2, 1), BURN, updating_health = TRUE)
+				var/damage_amount = max(L.modify_by_armor(LAVA_TILE_BURN_DAMAGE, FIRE), LAVA_TILE_BURN_DAMAGE * 0.3) //snowflakey interaction to stop complete lava immunity
+				L.take_overall_damage(damage_amount, BURN, updating_health = TRUE)
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()

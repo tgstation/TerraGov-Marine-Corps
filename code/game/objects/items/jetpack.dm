@@ -30,7 +30,7 @@
 	///True if you can use shift click/middle click to use it
 	var/selected = FALSE
 
-/obj/item/jetpack_marine/Initialize()
+/obj/item/jetpack_marine/Initialize(mapload)
 	. = ..()
 	update_icon()
 

@@ -25,7 +25,7 @@
 	var/datum/action/innate/remote_fob/eject_metal_action/eject_metal_action
 	var/datum/action/innate/remote_fob/eject_plasteel_action/eject_plasteel_action
 
-/obj/machinery/computer/camera_advanced/remote_fob/Initialize()
+/obj/machinery/computer/camera_advanced/remote_fob/Initialize(mapload)
 	. = ..()
 	metal_cade = new()
 	plast_cade = new()

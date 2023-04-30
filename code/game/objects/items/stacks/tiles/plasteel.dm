@@ -11,7 +11,7 @@
 	flags_atom = CONDUCT
 	max_amount = 60
 
-/obj/item/stack/tile/plasteel/Initialize()
+/obj/item/stack/tile/plasteel/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(1, 14)
 	pixel_y = rand(1, 14)

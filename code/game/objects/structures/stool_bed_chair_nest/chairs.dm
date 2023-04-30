@@ -233,22 +233,22 @@
 	unbuckle_mob(occupant)
 
 	var/def_zone = ran_zone()
-	var/blocked = occupant.get_soft_armor("melee", def_zone)
+	var/armor_modifier = occupant.modify_by_armor(1, MELEE, 0, def_zone)
 	occupant.throw_at(A, 3, propelled)
-	occupant.apply_effect(6, STUN, blocked)
-	occupant.apply_effect(6, WEAKEN, blocked)
-	occupant.apply_effect(6, STUTTER, blocked)
-	occupant.apply_damage(10, BRUTE, def_zone, MELEE)
+	occupant.apply_effect(6 * armor_modifier, STUN)
+	occupant.apply_effect(6 * armor_modifier, WEAKEN)
+	occupant.apply_effect(6 * armor_modifier, STUTTER)
+	occupant.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 	UPDATEHEALTH(occupant)
 	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
 	if(isliving(A))
 		var/mob/living/victim = A
 		def_zone = ran_zone()
-		blocked = victim.get_soft_armor("melee", def_zone)
-		victim.apply_effect(6, STUN, blocked)
-		victim.apply_effect(6, WEAKEN, blocked)
-		victim.apply_effect(6, STUTTER, blocked)
-		victim.apply_damage(10, BRUTE, def_zone, MELEE)
+		armor_modifier = victim.modify_by_armor(1, MELEE, 0, def_zone)
+		victim.apply_effect(6 * armor_modifier, STUN)
+		victim.apply_effect(6 * armor_modifier, WEAKEN)
+		victim.apply_effect(6 * armor_modifier, STUTTER)
+		victim.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 		UPDATEHEALTH(victim)
 	occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
 
@@ -286,7 +286,7 @@
 		INVOKE_ASYNC(src, PROC_REF(fold_down), TRUE)
 		return FALSE
 
-/obj/structure/bed/chair/dropship/passenger/Initialize()
+/obj/structure/bed/chair/dropship/passenger/Initialize(mapload)
 	. = ..()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
 	chairbar.layer = ABOVE_MOB_LAYER
@@ -336,10 +336,6 @@
 /obj/structure/bed/chair/dropship/passenger/rotate()
 	return // no
 
-/obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
-	if(chair_state != DROPSHIP_CHAIR_UNFOLDED)
-		return
-	..()
 
 /obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)

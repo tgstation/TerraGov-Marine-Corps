@@ -56,6 +56,7 @@
 	var/allow_quick_gather
 	///whether this object can change its drawing method (pouches)
 	var/allow_drawing_method
+	///0 = will open the inventory if you click on the storage container, 1 = will draw from the inventory if you click on the storage container
 	var/draw_mode = 0
 	////0 = pick one at a time, 1 = pick all on tile
 	var/collection_mode = 1;

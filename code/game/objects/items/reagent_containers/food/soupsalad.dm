@@ -97,7 +97,7 @@
 	bitesize = 5
 	tastes = list("chaos" = 1)
 
-/obj/item/reagent_containers/food/snacks/soup/mysterysoup/Initialize()
+/obj/item/reagent_containers/food/snacks/soup/mysterysoup/Initialize(mapload)
 	. = ..()
 	var/mysteryselect = pick(1,2,3,4,5,6,7,8,9)
 	switch(mysteryselect)
@@ -219,7 +219,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	tastes = list("tasteless soup" = 1)
 
-/obj/item/reagent_containers/food/snacks/soup/beetsoup/Initialize()
+/obj/item/reagent_containers/food/snacks/soup/beetsoup/Initialize(mapload)
 	. = ..()
 	name = pick("borsch","bortsch","borstch","borsh","borshch","borscht")
 	tastes = list(name = 1)

@@ -20,7 +20,7 @@
 	var/datum/effect_system/spark_spread/spark_system
 	var/chameleon_cooldown
 
-/obj/item/chameleon/Initialize()
+/obj/item/chameleon/Initialize(mapload)
 	. = ..()
 	spark_system = new
 	spark_system.set_up(5, 0, src)

@@ -174,7 +174,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/transquantity = 1
 	flags_armor_protection = NONE
 
-/obj/item/clothing/mask/cigarette/Initialize()
+/obj/item/clothing/mask/cigarette/Initialize(mapload)
 	. = ..()
 	create_reagents(chem_volume, INJECTABLE|NO_REACT, list_reagents) // making the cigarrete a chemical holder with a maximum volume of 30
 
@@ -555,7 +555,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_on = "zippoon"
 	icon_off = "zippo"
 
-/obj/item/tool/lighter/random/Initialize()
+/obj/item/tool/lighter/random/Initialize(mapload)
 	. = ..()
 	clr = pick("r","c","y","g")
 	icon_on = "lighter-[clr]-on"

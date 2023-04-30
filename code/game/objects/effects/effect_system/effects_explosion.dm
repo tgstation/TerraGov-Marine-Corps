@@ -9,7 +9,7 @@
 	light_color = LIGHT_COLOR_LAVA
 	light_on = TRUE
 
-/obj/effect/particle_effect/expl_particles/Initialize()
+/obj/effect/particle_effect/expl_particles/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 

@@ -241,7 +241,7 @@
 		if((user != target) && !H.check_shields(COMBAT_TOUCH_ATTACK, 14, "melee"))
 			return
 
-		if (target != user && prob(target.get_soft_armor("melee", target_zone)))
+		if (target != user && !prob(target.modify_by_armor(100, MELEE, penetration, target_zone)))
 			visible_message(span_danger("[user] tries to stab [target] in \the [hit_area] with [src], but the attack is deflected by armor!"))
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
@@ -344,7 +344,7 @@
 	desc = "Contains inaprovaline - used to stabilize patients."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 
-/obj/item/reagent_containers/syringe/inaprovaline/Initialize()
+/obj/item/reagent_containers/syringe/inaprovaline/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -354,7 +354,7 @@
 	desc = "Contains anti-toxins."
 	list_reagents = list(/datum/reagent/medicine/dylovene = 15)
 
-/obj/item/reagent_containers/syringe/dylovene/Initialize()
+/obj/item/reagent_containers/syringe/dylovene/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -364,7 +364,7 @@
 	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
-/obj/item/reagent_containers/syringe/antiviral/Initialize()
+/obj/item/reagent_containers/syringe/antiviral/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -374,7 +374,7 @@
 	desc = "Contains aggressive drugs meant for torture."
 	list_reagents = list(/datum/reagent/space_drugs = 5, /datum/reagent/toxin/mindbreaker = 5, /datum/reagent/cryptobiolin = 5)
 
-/obj/item/reagent_containers/syringe/drugs/Initialize()
+/obj/item/reagent_containers/syringe/drugs/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -382,7 +382,7 @@
 /obj/item/reagent_containers/syringe/ld50_syringe/choral
 	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 50)
 
-/obj/item/reagent_containers/syringe/ld50_syringe/choral/Initialize()
+/obj/item/reagent_containers/syringe/ld50_syringe/choral/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -392,7 +392,7 @@
 	desc = "Contains inaprovaline & dylovene."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 7, /datum/reagent/medicine/dylovene = 8)
 
-/obj/item/reagent_containers/syringe/mixed/Initialize()
+/obj/item/reagent_containers/syringe/mixed/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
