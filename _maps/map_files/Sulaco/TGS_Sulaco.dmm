@@ -2155,6 +2155,9 @@
 /area/sulaco/bridge)
 "akv" = (
 /obj/machinery/floodlight/combat,
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
 /turf/open/floor/prison/red{
 	dir = 5
 	},
@@ -2494,9 +2497,6 @@
 /turf/open/floor/prison,
 /area/sulaco/bar)
 "amW" = (
-/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
-	dir = 1
-	},
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory{
 	dir = 2
 	},
@@ -10987,7 +10987,6 @@
 /area/sulaco/maintenance/lower_maint)
 "cub" = (
 /obj/structure/sign/prop1,
-/obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/bridge)
 "cuo" = (
@@ -23208,12 +23207,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/marine/chapel/chapel_office)
-"sOb" = (
-/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
-	dir = 1
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/bridge)
 "sOt" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -47688,7 +47681,7 @@ aEH
 acc
 pLJ
 sBO
-sOb
+tbJ
 anY
 apb
 apv
@@ -48716,7 +48709,7 @@ aEH
 akv
 alD
 ghk
-sOb
+tbJ
 aBR
 qWq
 nWn
