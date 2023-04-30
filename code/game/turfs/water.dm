@@ -16,6 +16,8 @@
 		return
 	var/mob/living/carbon/C = arrived
 	C.clean_mob()
+	if(length(canSmoothWith) && !(smoothing_junction & SOUTH_JUNCTION))
+		return
 	if(!C.get_filter("water_obscuring"))
 		var/icon/carbon_icon = icon(C.icon)
 		var/height_to_use = (64 - carbon_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
@@ -38,8 +40,15 @@
 	var/mob/living/carbon/carbon_leaver = leaver
 	if(!carbon_leaver.get_filter("water_obscuring"))
 		return
-	if(istype(get_step(src, direction), type)) //todo replace type with a parent water turf type
-		return
+
+	var/turf/open/new_turf = get_step(src, direction)
+	if(istype(new_turf, /turf/open/ground/water))
+		if(length(new_turf.canSmoothWith))
+			if((new_turf.smoothing_junction & SOUTH_JUNCTION) && !new_turf.has_catwalk)
+				return
+		else if(!new_turf.has_catwalk)
+			return
+
 	var/icon/carbon_icon = icon(carbon_leaver.icon)
 	var/height_to_use = (64 - carbon_icon.Height()) * 0.5
 	animate(carbon_leaver.get_filter("water_obscuring"), y = -11 + height_to_use, time = 3)
