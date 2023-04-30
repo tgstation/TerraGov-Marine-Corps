@@ -3550,7 +3550,7 @@
 	pixel_y = -3
 	},
 /obj/item/paper{
-	desc = wait a minute, isn't project Berserker classified? and who made this?;
+	desc = "wait a minute, isn't project Berserker classified? and who made this?";
 	name = "Project Berserker Wargame";
 	pixel_x = -9
 	},
