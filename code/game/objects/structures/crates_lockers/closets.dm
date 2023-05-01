@@ -48,9 +48,9 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/obj/structure/closet/LateInitialize(mapload)
+/obj/structure/closet/LateInitialize()
 	. = ..()
-	if(mapload && !opened)		// if closed, any item at the crate's loc is put in the contents
+	if(!opened)		// if closed, any item at the crate's loc is put in the contents
 		take_contents()
 		update_icon()
 	PopulateContents()
