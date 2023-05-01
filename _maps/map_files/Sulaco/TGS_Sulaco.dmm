@@ -580,15 +580,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
-"acc" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/turf/open/floor/prison/red{
-	dir = 9
-	},
-/area/sulaco/bridge)
 "acd" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -2153,6 +2144,18 @@
 	dir = 1
 	},
 /area/sulaco/bridge)
+"akv" = (
+/obj/machinery/floodlight/combat,
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/prison/red{
+	dir = 5
+	},
+/area/sulaco/bridge)
 "akK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
@@ -2487,17 +2490,6 @@
 /obj/item/stool,
 /turf/open/floor/prison,
 /area/sulaco/bar)
-"amW" = (
-/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/mainship/cic/armory{
-	dir = 2
-	},
-/turf/open/floor/prison/red/full{
-	dir = 1
-	},
-/area/sulaco/bridge)
 "anc" = (
 /obj/structure/sink{
 	dir = 4
@@ -2634,16 +2626,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
-"anY" = (
-/obj/machinery/door_control/mainship/cic/armory,
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship/hardened{
-	dir = 4
-	},
-/turf/open/floor/prison/red/full{
-	dir = 1
-	},
-/area/sulaco/bridge)
 "anZ" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -8010,20 +7992,6 @@
 /obj/machinery/alarm,
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
-"aOK" = (
-/obj/structure/safe,
-/obj/item/weapon/chainofcommand,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/storage/bible{
-	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
-	name = "Holy Bible"
-	},
-/obj/item/weapon/claymore/mercsword/captain,
-/obj/item/ore/diamond,
-/obj/structure/sign/prop1,
-/obj/item/storage/fancy/cigar,
-/turf/open/floor/wood,
-/area/sulaco/cap_office)
 "aOP" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/command/eva)
@@ -10555,6 +10523,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
+"bML" = (
+/obj/machinery/vending/nanomed{
+	pixel_y = 25
+	},
+/turf/open/floor/prison/red{
+	dir = 5
+	},
+/area/sulaco/bridge)
 "bMV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -10974,11 +10950,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
-"cub" = (
-/obj/structure/sign/prop1,
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/bridge)
 "cuo" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 6
@@ -11025,14 +10996,6 @@
 /obj/item/cell/high,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
-"cvT" = (
-/obj/machinery/door_control/unmeltable{
-	id = "sd_blastdoor";
-	name = "Self Destruct Blast Door Control";
-	pixel_y = 27
-	},
-/turf/open/floor/plating,
-/area/mainship/command/self_destruct)
 "cwp" = (
 /turf/open/floor/prison/red{
 	dir = 1
@@ -12159,6 +12122,14 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
+"dXG" = (
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
+	},
+/turf/open/floor/prison/red/full{
+	dir = 1
+	},
+/area/sulaco/bridge)
 "dYK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -12495,6 +12466,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo)
+"exm" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/red{
+	dir = 1
+	},
+/area/sulaco/bridge)
 "eyu" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -12513,6 +12490,20 @@
 /obj/machinery/computer/secure_data/detective_computer,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"ezt" = (
+/obj/item/weapon/chainofcommand,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/storage/bible{
+	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
+	name = "Holy Bible"
+	},
+/obj/item/weapon/claymore/mercsword/captain,
+/obj/item/ore/diamond,
+/obj/structure/sign/prop1,
+/obj/item/storage/fancy/cigar,
+/obj/structure/safe,
+/turf/open/floor/wood,
+/area/sulaco/cap_office)
 "ezA" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -13638,14 +13629,6 @@
 	dir = 10
 	},
 /area/sulaco/hangar)
-"geL" = (
-/obj/structure/closet/walllocker/emerglocker{
-	dir = 4
-	},
-/turf/open/floor/prison/red/full{
-	dir = 1
-	},
-/area/sulaco/bridge)
 "gfj" = (
 /turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct)
@@ -13866,11 +13849,6 @@
 "gsz" = (
 /turf/open/floor/mainship/terragov,
 /area/space)
-"gtb" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/prison,
-/area/sulaco/hallway/dropshipprep)
 "gtk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/autoname{
@@ -14381,6 +14359,14 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
+"heM" = (
+/obj/machinery/door_control/unmeltable{
+	id = "sd_blastdoor";
+	name = "Self Destruct Blast Door Control";
+	pixel_y = 27
+	},
+/turf/open/floor/plating,
+/area/mainship/command/self_destruct)
 "heV" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray,
@@ -14805,6 +14791,11 @@
 "hID" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/prison,
+/area/sulaco/hallway/dropshipprep)
+"hJn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
 "hKz" = (
@@ -15422,11 +15413,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/lower_foreship)
-"iyo" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/sulaco/hallway/dropshipprep)
 "iyJ" = (
 /turf/closed/wall/indestructible/bulkhead,
 /area/shuttle/distress/arrive_2)
@@ -17108,6 +17094,15 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"kKK" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship/hardened{
+	dir = 4
+	},
+/turf/open/floor/prison/red/full{
+	dir = 1
+	},
+/area/sulaco/bridge)
 "kKP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -17460,12 +17455,6 @@
 	dir = 5
 	},
 /area/sulaco/research)
-"llL" = (
-/obj/machinery/door/airlock/mainship/command/CPToffice,
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/poddoor/opened/bridge,
-/turf/open/floor/plating,
-/area/sulaco/bridge)
 "llY" = (
 /obj/machinery/light/mainship/small{
 	dir = 1
@@ -19787,6 +19776,18 @@
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"ovu" = (
+/obj/structure/closet/walllocker/emerglocker{
+	dir = 4
+	},
+/obj/machinery/door_control/mainship/cic/armory{
+	dir = 1
+	},
+/obj/structure/sign/security,
+/turf/open/floor/prison/red/full{
+	dir = 1
+	},
+/area/sulaco/bridge)
 "ovJ" = (
 /obj/machinery/holopad{
 	active_power_usage = 130;
@@ -20212,6 +20213,11 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
+"oUz" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/sulaco/hallway/dropshipprep)
 "oUY" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
@@ -20255,13 +20261,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"oXE" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/cobweb{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/sulaco/bridge)
 "oYo" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -21220,14 +21219,6 @@
 	dir = 1
 	},
 /area/mainship/living/basketball)
-"qpo" = (
-/obj/machinery/light/mainship/small,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/sulaco/bridge)
 "qpD" = (
 /obj/machinery/door_control/mainship/mech{
 	id = "mech_shutters_2"
@@ -21928,6 +21919,16 @@
 /obj/machinery/firealarm,
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
+"rng" = (
+/obj/machinery/light/mainship,
+/obj/structure/rack,
+/obj/item/weapon/gun/rifle/standard_lmg,
+/obj/item/ammo_magazine/standard_lmg,
+/obj/item/ammo_magazine/standard_lmg,
+/turf/open/floor/prison/red{
+	dir = 6
+	},
+/area/sulaco/bridge)
 "rnR" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -22819,6 +22820,13 @@
 	},
 /turf/open/floor/prison/marked,
 /area/sulaco/firingrange)
+"smf" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/vending/weapon,
+/turf/open/floor/prison/red,
+/area/sulaco/bridge)
 "sng" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -23130,16 +23138,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
-"sJR" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/opened/bridge,
-/turf/open/floor/plating,
-/area/sulaco/bridge)
 "sKM" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -23183,6 +23181,20 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"sMP" = (
+/obj{
+	name = "---Merge conflict marker---"
+	},
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/prison/red{
+	dir = 5
+	},
+/area/sulaco/bridge)
 "sNK" = (
 /obj/machinery/light/mainship,
 /obj/machinery/holopad{
@@ -23287,6 +23299,16 @@
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"sRn" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/prison/red{
+	dir = 9
+	},
+/area/sulaco/bridge)
 "sRW" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/prison,
@@ -23318,6 +23340,13 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
+"sVS" = (
+/obj/machinery/vending/armor_supply,
+/obj/machinery/light/mainship,
+/turf/open/floor/prison/red{
+	dir = 10
+	},
+/area/sulaco/bridge)
 "sVU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -24996,6 +25025,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo)
+"vcX" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/prison/red,
+/area/sulaco/bridge)
 "vdG" = (
 /obj/machinery/holopad,
 /turf/open/floor/prison,
@@ -25959,6 +25992,10 @@
 	},
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering/ce)
+"wzG" = (
+/obj/structure/sign/prop1,
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/bridge)
 "wAh" = (
 /obj/effect/turf_decal/siding{
 	dir = 1
@@ -26681,9 +26718,6 @@
 	dir = 8
 	},
 /area/sulaco/medbay/cmo)
-"xzG" = (
-/turf/open/floor/plating,
-/area/sulaco/bridge)
 "xzL" = (
 /obj/structure/rack,
 /obj/item/circuitboard/computer/arcade,
@@ -27226,6 +27260,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"yjF" = (
+/obj/machinery/door/poddoor/shutters/mainship/cic/armory{
+	dir = 2
+	},
+/turf/open/floor/prison/red/full{
+	dir = 1
+	},
+/area/sulaco/bridge)
 "yjH" = (
 /obj/structure/table/mainship/nometal,
 /obj/structure/paper_bin{
@@ -47671,11 +47713,11 @@ aaa
 aaa
 nzi
 aEH
-acc
+sRn
 pLJ
 sBO
 sOb
-anY
+kKK
 apb
 apv
 dQZ
@@ -47686,10 +47728,10 @@ aqU
 aqU
 aAZ
 aCv
-geL
+ovu
 tbJ
-xzG
-oXE
+arZ
+sVS
 aEH
 qDO
 aaa
@@ -47931,7 +47973,7 @@ gNS
 agA
 asd
 aAU
-amW
+dXG
 aBR
 apu
 asd
@@ -47944,9 +47986,9 @@ auV
 sPp
 aAU
 aBR
-sJR
-xzG
-qpo
+yjF
+exm
+smf
 aEH
 qDO
 aaa
@@ -48188,7 +48230,7 @@ aEH
 aku
 asd
 aAU
-amW
+dXG
 aBR
 apu
 asd
@@ -48201,9 +48243,9 @@ asd
 asr
 aAU
 tOJ
-tbJ
-xzG
-xzG
+yjF
+apu
+vcX
 aEH
 qDO
 aaa
@@ -48445,7 +48487,7 @@ aEH
 agA
 mqC
 aAU
-amW
+dXG
 aBR
 apu
 mqC
@@ -48459,8 +48501,8 @@ azE
 azB
 ldh
 tbJ
-xzG
-xzG
+bML
+rng
 aEH
 qDO
 aaa
@@ -48699,7 +48741,7 @@ aaa
 aaa
 nzi
 aEH
-qWq
+sMP
 alD
 ghk
 sOb
@@ -48717,10 +48759,10 @@ aBR
 soQ
 tbJ
 tbJ
-llL
+tbJ
 aEH
+cyv
 mDu
-wRO
 wRO
 wRO
 wRO
@@ -48958,7 +49000,7 @@ nzi
 aEH
 aEH
 aEH
-cub
+wzG
 aEH
 aBR
 aBR
@@ -50003,7 +50045,7 @@ aCy
 aDi
 nbD
 aFE
-aOK
+ezt
 aDi
 aIy
 aGZ
@@ -59364,7 +59406,7 @@ aZg
 aVY
 kYl
 hID
-gtb
+oUz
 cIs
 aWg
 aQw
@@ -59621,7 +59663,7 @@ aZh
 kVT
 cIs
 piC
-iyo
+hJn
 bcU
 aQh
 bdP
@@ -59878,7 +59920,7 @@ aUF
 cvE
 tKg
 cNl
-iyo
+hJn
 rHI
 aQh
 aQh
@@ -65538,7 +65580,7 @@ aWm
 uWV
 poa
 vCN
-cvT
+heM
 mwI
 tNc
 qxr
