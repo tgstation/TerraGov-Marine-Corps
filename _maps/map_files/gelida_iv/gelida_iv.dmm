@@ -2475,7 +2475,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "bDW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -3008,7 +3008,7 @@
 /obj/structure/platform/gelida{
 	dir = 1
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "bWI" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -5416,7 +5416,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "dzJ" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -10265,7 +10265,7 @@
 /area/gelida/indoors/a_block/security)
 "gJY" = (
 /obj/structure/platform/gelida,
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "gKi" = (
 /obj/structure/fakeplatform{
@@ -10479,7 +10479,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "gQa" = (
 /obj/structure/prop/vehicle/apc{
@@ -11541,7 +11541,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
 "hDu" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "hDw" = (
 /obj/structure/fakeplatform{
@@ -12362,7 +12362,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "igB" = (
 /obj/item/stack/rods,
@@ -19201,7 +19201,7 @@
 	name = "????";
 	stat = 2
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "mIM" = (
 /obj/machinery/light{
@@ -19239,7 +19239,7 @@
 /obj/structure/platform/gelida{
 	dir = 8
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "mJV" = (
 /obj/structure/table/mainship,
@@ -26988,7 +26988,7 @@
 /obj/structure/platform/gelida{
 	dir = 4
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "rKr" = (
 /obj/structure/table/mainship,

@@ -524,7 +524,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/is_weedable()
 	return FALSE
 
-/turf/open/ground/water/is_weedable()
+/turf/open/liquid/water/is_weedable()
 	return FALSE
 
 /turf/open/ground/coast/is_weedable()
@@ -615,7 +615,7 @@
 /turf/open/ground/can_dig_xeno_tunnel()
 	return TRUE
 
-/turf/open/ground/water/can_dig_xeno_tunnel()
+/turf/open/liquid/water/can_dig_xeno_tunnel()
 	return FALSE
 
 /turf/open/floor/plating/ground/snow/can_dig_xeno_tunnel()

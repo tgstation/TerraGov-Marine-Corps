@@ -18,11 +18,11 @@
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "aae" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/maintenance/residential/access/north)
 "aaf" = (
 /obj/structure/lattice,
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/maintenance/residential/access/north)
 "aag" = (
 /turf/open/ground/coast/corner2{
@@ -67,11 +67,11 @@
 	},
 /area/prison/maintenance/residential/access/north)
 "aaq" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/maintenance/residential/ne)
 "aar" = (
 /obj/structure/lattice,
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/maintenance/residential/ne)
 "aas" = (
 /turf/open/ground/coast{
@@ -17085,7 +17085,7 @@
 	},
 /area/prison/cellblock/lowsec/nw)
 "bbp" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/hallway/central)
 "bbq" = (
 /obj/structure/table/reinforced,
@@ -40488,7 +40488,7 @@
 	},
 /area/prison/quarters/research)
 "cTQ" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/residential/central)
 "cTS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -41568,7 +41568,7 @@
 /area/prison/research/secret/dissection)
 "gbA" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/residential/central)
 "gcs" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -41587,7 +41587,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/hallway/entrance)
 "gdP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -41902,7 +41902,7 @@
 /area/prison/cellblock/mediumsec/north)
 "gQs" = (
 /obj/structure/lattice,
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/yard)
 "gQE" = (
 /obj/machinery/vending/cigarette/colony,
@@ -42083,7 +42083,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/yard)
 "hyt" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/yard)
 "hyw" = (
 /obj/effect/landmark/weed_node,
@@ -42165,7 +42165,7 @@
 /area/prison/cellblock/highsec/north/south)
 "hKf" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/hallway/entrance)
 "hKh" = (
 /obj/effect/landmark/weed_node,
@@ -42238,7 +42238,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/engineering)
 "hQI" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/maintenance/residential/se)
 "hSZ" = (
 /obj/machinery/light{
@@ -42454,7 +42454,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "iqK" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/maintenance/residential/nw)
 "irw" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -42553,7 +42553,7 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
 "iFC" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/security/checkpoint/maxsec)
 "iFG" = (
 /turf/open/floor/prison/bright_clean/two,
@@ -42946,7 +42946,7 @@
 "jAs" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/maintenance/residential/nw)
 "jAv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -46298,7 +46298,7 @@
 /area/prison/monorail/west)
 "rZE" = (
 /obj/structure/lattice,
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/hallway/entrance)
 "rZT" = (
 /obj/structure/mirror{
@@ -46349,7 +46349,7 @@
 /turf/open/floor/wood,
 /area/prison/chapel)
 "shF" = (
-/turf/open/ground/water/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/prison/hallway/central)
 "shG" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -46725,7 +46725,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/highsec)
 "sTZ" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/cellblock/maxsec/south)
 "sWh" = (
 /obj/effect/landmark/weed_node,
@@ -46924,7 +46924,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/residential/central)
 "twI" = (
 /obj/structure/cable,
@@ -47155,7 +47155,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/hallway/entrance)
 "udZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -47492,7 +47492,7 @@
 /area/prison/command/office)
 "uZP" = (
 /obj/structure/lattice,
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/maintenance/residential/nw)
 "vcc" = (
 /turf/open/floor/prison/darkred{
@@ -47791,7 +47791,7 @@
 	},
 /area/prison/security/armory/riot)
 "vIX" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/hallway/entrance)
 "vJh" = (
 /obj/structure/cable,
@@ -48037,7 +48037,7 @@
 "wmY" = (
 /obj/structure/lattice,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/prison/hallway/entrance)
 "wnT" = (
 /obj/structure/table/woodentable,

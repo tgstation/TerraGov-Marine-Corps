@@ -759,7 +759,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Mq" = (
-/turf/open/ground/water/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "Nb" = (
 /obj/item/stack/sheet/metal,
