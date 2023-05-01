@@ -254,7 +254,11 @@
 /obj/item/storage/holster/backholster/mortar/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/mortar_kit(src)
+	var/obj/item/new_item_2 = new /obj/item/binoculars/tactical/range(src)
+	var/obj/item/new_item_3 = new /obj/item/hud_tablet/artillery(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item_2)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item_3)
 
 /obj/item/storage/holster/backholster/flamer
 	name = "\improper TGMC flamethrower bag"
