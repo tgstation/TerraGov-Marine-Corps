@@ -1,13 +1,15 @@
 ///The alpha mask used on mobs submerged in liquid turfs
 #define MOB_LIQUID_TURF_MASK "mob_liquid_turf_mask"
+///The height of the mask itself in the icon state. Changes to the icon requires a change to this define
+#define MOB_LIQUID_TURF_MASK_HEIGHT 32
 
 
 /turf/open/liquid //Basic liquid turf parent
 	name = "liquid"
 	icon = 'icons/turf/ground_map.dmi'
 	can_bloody = FALSE
-	///How high up on the mob water overlays sit. Represented as a negative number as initially the mask is hidden. Increasing this requires sprite changes
-	var/mob_liquid_height = -11
+	///How high up on the mob water overlays sit
+	var/mob_liquid_height = 11
 	///How far down the mob visually drops down when in water
 	var/mob_liquid_depth = -5
 
@@ -38,9 +40,9 @@
 	var/height_to_use = (64 - carbon_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
 
 	//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
-	carbon_mob.add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, mob_liquid_height + height_to_use, icon('icons/turf/alpha_64.dmi', "water_alpha"), null, MASK_INVERSE))
+	carbon_mob.add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
 
-	animate(carbon_mob.get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use, time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown)
+	animate(carbon_mob.get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown)
 	animate(carbon_mob, pixel_y = carbon_mob.pixel_y + mob_liquid_depth, time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
 
 /turf/open/liquid/Exited(atom/movable/leaver, direction)
@@ -60,7 +62,7 @@
 			return
 
 	var/icon/carbon_icon = icon(carbon_leaver.icon)
-	animate(carbon_leaver.get_filter(MOB_LIQUID_TURF_MASK), y = mob_liquid_height + ((64 - carbon_icon.Height()) * 0.5), time = carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown)
+	animate(carbon_leaver.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - carbon_icon.Height()) * 0.5) - MOB_LIQUID_TURF_MASK_HEIGHT, time = carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown)
 	animate(carbon_leaver, pixel_y = carbon_leaver.pixel_y - mob_liquid_depth, time = carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(carbon_leaver, TYPE_PROC_REF(/atom, remove_filter), MOB_LIQUID_TURF_MASK), carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown)
 
@@ -107,6 +109,7 @@
 /turf/open/liquid/water/sea/deep
 	name = "sea"
 	icon_state = "seadeep"
+	mob_liquid_height = 20
 
 //Nostromo turfs
 
