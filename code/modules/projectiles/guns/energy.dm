@@ -493,7 +493,7 @@
 	attachable_offset = list("muzzle_x" = 23, "muzzle_y" = 22,"rail_x" = 12, "rail_y" = 22, "under_x" = 16, "under_y" = 14, "stock_x" = 22, "stock_y" = 12)
 
 	akimbo_additional_delay = 0.9
-	wield_delay = 0.6 SECONDS
+	wield_delay = 0.2 SECONDS
 	scatter = 2
 	scatter_unwielded = 4
 	fire_delay = 0.15 SECONDS
