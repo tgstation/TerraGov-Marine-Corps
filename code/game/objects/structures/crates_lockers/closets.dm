@@ -44,16 +44,20 @@
 
 /obj/structure/closet/Initialize(mapload, ...)
 	. = ..()
+
+	if(mapload && !opened)
+		. = INITIALIZE_HINT_LATELOAD
+
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
-	return INITIALIZE_HINT_LATELOAD
-
-
-/obj/structure/closet/LateInitialize()
-	. = ..()
-	if(!opened)		// if closed, any item at the crate's loc is put in the contents
-		take_contents()
-		update_icon()
 	PopulateContents()
+	update_icon()
+
+
+/obj/structure/closet/LateInitialize(mapload)
+	. = ..()	// if closed, any item at the crate's loc is put in the contents
+
+	take_contents()
+
 
 
 /obj/structure/closet/deconstruct(disassembled = TRUE)
