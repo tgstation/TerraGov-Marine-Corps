@@ -527,13 +527,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
-/obj/item/attachable/sgbarrel
-	name = "SG-29 barrel"
-	icon_state = "sg29barrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	flags_attach_features = NONE
-
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot
@@ -953,13 +946,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "\improper SH-15 stock"
 	desc = "The standard stock for the SH-15. Cannot be removed."
 	icon_state = "tx15stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
-/obj/item/attachable/stock/sgstock
-	name = "SG-29 stock"
-	desc = "A standard machinegun stock."
-	icon_state = "sg29stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
