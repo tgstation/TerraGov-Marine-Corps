@@ -102,21 +102,6 @@
 	name = "water"
 	icon_state = "water"
 
-/turf/open/liquid/water/sea2
-	name = "water"
-	icon_state = "water"
-
-/turf/open/liquid/water/sea/deep
-	name = "sea"
-	icon_state = "seadeep"
-	mob_liquid_height = 20
-
-//Nostromo turfs
-
-/turf/open/liquid/water/sea/deep/ocean
-	name = "ocean"
-	desc = "Its a long way down to the ocean from here."
-
 /turf/open/liquid/water/river
 	name = "river"
 	smoothing_groups = list(
@@ -142,27 +127,6 @@
 		SMOOTH_GROUP_GRILLE,
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
-
-/turf/open/liquid/water/river/deep
-	name = "river"
-	icon_state = "seadeep"
-
-/turf/open/liquid/water/river/poison/Initialize()
-	. = ..()
-	if(has_catwalk)
-		return
-	var/obj/effect/river_overlay/R = new(src)
-	R.overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=RIVER_OVERLAY_LAYER)
-
-
-/turf/open/liquid/water/river/poison/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(!isliving(arrived))
-		return
-	var/mob/living/L = arrived
-	L.apply_damage(55, TOX, blocked = BIO)
-	UPDATEHEALTH(L)
-
 
 //Desert River
 /turf/open/liquid/water/river/desertdam
@@ -217,92 +181,6 @@
 
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway/edge
 	icon_state = "shallow_water_cave_waterway_edge"
-
-//TOXIC
-/turf/open/liquid/water/river/desertdam/toxic
-	name = "toxic river"
-	icon_state = "shallow_water_toxic"
-
-//shallow water
-/turf/open/liquid/water/river/desertdam/toxic/shallow_water_toxic
-	icon_state = "shallow_water_toxic"
-
-//shallow water transition to deep
-/turf/open/liquid/water/river/desertdam/toxic/shallow_edge_toxic
-	icon_state = "shallow_to_deep_toxic_water"
-
-/turf/open/liquid/water/river/desertdam/toxic/shallow_edge_toxic/alt
-	icon_state = "shallow_to_deep_toxic_water1"
-
-/turf/open/liquid/water/river/desertdam/toxic/shallow_edge_toxic/edge
-	icon_state = "shallow_to_deep_toxic_edge"
-
-//deep water
-/turf/open/liquid/water/river/desertdam/toxic/deep_water_toxic
-	icon_state = "deep_water_toxic"
-
-//shallow water coast
-/turf/open/liquid/water/river/desertdam/toxic/shallow_water_desert_coast_toxic
-	icon_state = "shallow_water_desert_coast_toxic"
-
-/turf/open/liquid/water/river/desertdam/toxic/shallow_water_desert_coast_toxic/edge
-	icon_state = "shallow_water_desert_coast_toxic_edge"
-
-//desert floor waterway
-/turf/open/liquid/water/river/desertdam/toxic/shallow_water_desert_waterway_toxic
-	icon_state = "desert_waterway_toxic"
-
-/turf/open/liquid/water/river/desertdam/toxic/shallow_water_desert_waterway_toxic/edge
-	icon_state = "desert_waterway_toxic_edge"
-
-//shallow water cave coast
-/turf/open/liquid/water/river/desertdam/toxic/shallow_water_cave_coast_toxic
-	icon_state = "shallow_water_cave_coast_toxic"
-
-/turf/open/liquid/water/river/desertdam/toxic/shallow_water_cave_coast_toxic/edge
-	icon_state = "shallow_water_cave_coast_toxic_edge"
-
-//cave floor waterway
-/turf/open/liquid/water/river/desertdam/toxic/shallow_water_cave_waterway_toxic
-	icon_state = "shallow_water_cave_waterway_toxic"
-
-/turf/open/liquid/water/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge
-	icon_state = "shallow_water_cave_waterway_toxic_edge"
-
-//Sweet refreshing jungle juice
-/turf/open/liquid/water/jungle_water
-	name = "murky water"
-	desc = "thick, murky water"
-	icon = 'icons/misc/beach.dmi'
-	icon_state = "water"
-
-/turf/open/liquid/water/jungle_water/Initialize(mapload, ...)
-	. = ..()
-	for(var/obj/structure/bush/B in src)
-		qdel(B)
-
-
-/turf/open/liquid/water/jungle_water/Entered(atom/movable/arrived, direction)
-	. = ..()
-	if(!istype(arrived, /mob/living))
-		return
-	var/mob/living/L = arrived
-	//slip in the murky water if we try to run through it
-	if(prob(10 + (L.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
-		to_chat(L, pick(span_notice(" You slip on something slimy."), span_notice("You fall over into the murk.")))
-		L.Stun(40)
-		L.Paralyze(20)
-
-	//piranhas
-	if(prob(25))
-		to_chat(L, pick(span_warning(" Something sharp bites you!"),span_warning(" Sharp teeth grab hold of you!"),span_warning(" You feel something take a chunk out of your leg!")))
-		L.apply_damage(1, BRUTE, sharp = TRUE)
-
-
-/turf/open/liquid/water/jungle_water/deep
-	density = TRUE
-	icon_state = "water2"
-
 
 // LAVA
 

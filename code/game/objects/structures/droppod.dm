@@ -1,7 +1,7 @@
 #define DROPPOD_READY 1
 #define DROPPOD_ACTIVE 2
 #define DROPPOD_LANDED 3
-GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/liquid/water/sea/deep, /turf/open/liquid/lava))) // Don't drop at these tiles.
+GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/liquid/lava))) // Don't drop at these tiles.
 
 ///Time drop pod spends in the transit z, mostly for visual flavor
 #define DROPPOD_TRANSIT_TIME 10 SECONDS
