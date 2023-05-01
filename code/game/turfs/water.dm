@@ -1,5 +1,12 @@
 //100% pure aqua
 
+///Default slowdown for mobs moving through water
+#define MOB_WATER_SLOWDOWN 1.75
+///How high up on the mob water overlays sit. Represented as a negative number as initially the mask is hidden. Increasing this requires sprite changes
+#define MOB_WATER_HEIGHT -11
+///How far down the mob visually drops down when in water
+#define MOB_WATER_DEPTH -5
+
 /turf/open/ground/water
 	name = "river"
 	icon_state = "seashallow"
@@ -14,24 +21,25 @@
 	. = ..()
 	if(has_catwalk || !iscarbon(arrived))
 		return
-	var/mob/living/carbon/C = arrived
-	C.clean_mob()
-	if(length(canSmoothWith) && !(smoothing_junction & SOUTH_JUNCTION))
-		return
-	if(!C.get_filter("water_obscuring"))
-		var/icon/carbon_icon = icon(C.icon)
-		var/height_to_use = (64 - carbon_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
-		C.add_filter("water_obscuring", 1, alpha_mask_filter(0, -11 + height_to_use, icon('icons/turf/alpha_64.dmi', "water_alpha"), null, MASK_INVERSE))
-		animate(C.get_filter("water_obscuring"), y = height_to_use, time = C.cached_multiplicative_slowdown + C.next_move_slowdown)
+	var/mob/living/carbon/carbon_mob = arrived
+	carbon_mob.clean_mob()
 
-	if(isxeno(C))
-		var/mob/living/carbon/xenomorph/xeno = C
+	if(carbon_mob.on_fire)
+		carbon_mob.ExtinguishMob()
+
+	if(!(length(canSmoothWith)) || (smoothing_junction & SOUTH_JUNCTION))
+		if(!carbon_mob.get_filter("water_obscuring"))
+			var/icon/carbon_icon = icon(carbon_mob.icon)
+			var/height_to_use = (64 - carbon_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
+			carbon_mob.add_filter("water_obscuring", 1, alpha_mask_filter(0, MOB_WATER_HEIGHT + height_to_use, icon('icons/turf/alpha_64.dmi', "water_alpha"), null, MASK_INVERSE))
+			animate(carbon_mob.get_filter("water_obscuring"), y = height_to_use, time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown)
+			animate(carbon_mob, pixel_y = carbon_mob.pixel_y + MOB_WATER_DEPTH, time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
+
+	if(isxeno(carbon_mob))
+		var/mob/living/carbon/xenomorph/xeno = carbon_mob
 		xeno.next_move_slowdown += xeno.xeno_caste.water_slowdown
 	else
-		C.next_move_slowdown += 1.75
-
-	if(C.on_fire)
-		C.ExtinguishMob()
+		carbon_mob.next_move_slowdown += MOB_WATER_SLOWDOWN
 
 /turf/open/ground/water/Exited(atom/movable/leaver, direction)
 	. = ..()
@@ -50,7 +58,8 @@
 			return
 
 	var/icon/carbon_icon = icon(carbon_leaver.icon)
-	animate(carbon_leaver.get_filter("water_obscuring"), y = -11 + ((64 - carbon_icon.Height()) * 0.5), time = carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown)
+	animate(carbon_leaver.get_filter("water_obscuring"), y = MOB_WATER_HEIGHT + ((64 - carbon_icon.Height()) * 0.5), time = carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown)
+	animate(carbon_leaver, pixel_y = carbon_leaver.pixel_y - MOB_WATER_DEPTH, time = carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(carbon_leaver, TYPE_PROC_REF(/atom, remove_filter), "water_obscuring"), carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown)
 
 /turf/open/ground/water/sea
