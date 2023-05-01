@@ -56,11 +56,17 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		return INITIALIZE_HINT_QDEL
 
 /obj/structure/droppod/Destroy()
-	for(var/atom/movable/ejectee AS in contents) // dump them out, just in case no mobs get deleted
+	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
 		ejectee.forceMove(loc)
 	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
 	GLOB.droppod_list -= src // todo should be active pods only for iterative checks
+	return ..()
+
+
+/obj/structure/droppod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
+		ejectee.forceMove(loc)
 	return ..()
 
 ///Disables launching upon dropship hijack
@@ -359,18 +365,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	icon_state = "launch_bay"
 	density = FALSE
 	resistance_flags = INDESTRUCTIBLE
-
-/obj/structure/drop_pod_launcher/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
-	if(!istype(attached_clamp.loaded, /obj/structure/droppod))
-		return ..()
-	for(var/atom/movable/ejectee AS in contents) // dump them out, just in case no mobs get deleted
-		ejectee.forceMove(loc)
-	user.visible_message(span_notice("[user] drops [attached_clamp.loaded] onto [src] and it clicks into place!"),
-	span_notice("You drop [attached_clamp.loaded] onto [src] and it clicks into place!"))
-	attached_clamp.loaded.forceMove(get_turf(src))
-	attached_clamp.loaded = null
-	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-	attached_clamp.update_icon()
 
 #undef DROPPOD_READY
 #undef DROPPOD_ACTIVE
