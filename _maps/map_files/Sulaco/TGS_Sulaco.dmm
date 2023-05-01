@@ -13000,10 +13000,6 @@
 /obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
-"fjY" = (
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/space/basic,
-/area/space)
 "fkB" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/black,
@@ -77621,7 +77617,7 @@ aaa
 aaa
 aaa
 aaa
-fjY
+aaa
 aaa
 aaa
 aaa
@@ -79933,7 +79929,7 @@ aaa
 aaa
 aaa
 aaa
-fjY
+aaa
 aaa
 aaa
 aaa
