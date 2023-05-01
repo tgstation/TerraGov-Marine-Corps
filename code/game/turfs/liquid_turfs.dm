@@ -33,11 +33,18 @@
 		return
 
 	var/mob/living/carbon/carbon_mob = arrived
-	if(carbon_mob.get_filter(MOB_LIQUID_TURF_MASK))
-		return
-
 	var/icon/carbon_icon = icon(carbon_mob.icon)
 	var/height_to_use = (64 - carbon_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
+
+	if(carbon_mob.get_filter(MOB_LIQUID_TURF_MASK))
+		var/turf/open/liquid/old_turf = old_loc
+		if(!istype(old_turf))
+			CRASH("orphaned liquid alpha mask")
+		if(mob_liquid_height != old_turf.mob_liquid_height)
+			animate(carbon_mob.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - carbon_icon.Height()) * 0.5) - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown)
+		if(mob_liquid_depth != old_turf.mob_liquid_depth)
+			animate(carbon_mob, pixel_y = carbon_mob.pixel_y + mob_liquid_depth - old_turf.mob_liquid_depth, time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
+		return
 
 	//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
 	carbon_mob.add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
@@ -127,6 +134,10 @@
 		SMOOTH_GROUP_GRILLE,
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
+
+/turf/open/liquid/water/river/autosmooth/deep
+	mob_liquid_height = 18
+	mob_liquid_depth = -8
 
 //Desert River
 /turf/open/liquid/water/river/desertdam
