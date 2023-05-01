@@ -231,6 +231,9 @@
 	if(HAS_TRAIT(user, TRAIT_IS_FIRING_RAILGUN))
 		to_chat(user, span_warning("The rail guns are already targeting a location, wait for them to finish."))
 		return
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
+		to_chat(user, span_warning("The operation hasn't started yet."))
+		return
 	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(user.eyeobj.loc, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
 		if(nearby_human.stat != DEAD)
 			to_chat(user, span_warning("Friendly biologicals detected near [loc] target location, aborting."))
@@ -256,7 +259,9 @@
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(!do_after(user, AI_RAILGUN_FIRING_WINDUP_DELAY, TRUE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
 		QDEL_NULL(laser)
+		REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 		return
+	message_admins("[ADMIN_TPMONTY(user)] fired the railgun at [ADMIN_VERBOSEJMP(laser.loc)].")
 	while(laser)
 		if(timesfired >= AI_MAX_RAILGUN_SHOTS_FIRED) //fire until we hit defined limit
 			QDEL_NULL(laser)
@@ -265,7 +270,7 @@
 		if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, TRUE, laser, BUSY_ICON_GENERIC)) //delay between shots
 			QDEL_NULL(laser)
 			break
-		GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(user.eyeobj, user, TRUE)
+		GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(laser.loc, user, TRUE)
 		++timesfired
 
 #undef AI_MAX_RAILGUN_SHOTS_FIRED
