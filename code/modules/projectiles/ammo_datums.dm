@@ -3383,7 +3383,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	var/turf/target_turf = get_turf(victim)
-	drop_nade(target_turf.density ? get_turf(proj) : target_turf, proj.firer)
+	drop_nade(target_turf.density ? proj.loc : target_turf, proj.firer)
 
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
@@ -3405,8 +3405,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
 		P.damage *= 7 //Globs deal much higher damage to mechs.
-	var/turf/T = get_turf(O)
-	drop_nade(T.density ? P.loc : T, P.firer)
+	var/turf/target_turf = get_turf(O)
+	drop_nade(O.density ? P.loc : target_turf, P.firer)
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T, P.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
@@ -3774,13 +3774,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 15
 	max_range = 10
 
-/datum/ammo/grenade_container/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/grenade_container/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/grenade_container/on_hit_obj(obj/O,obj/projectile/P)
-	drop_nade(get_turf(P))
+/datum/ammo/grenade_container/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : O.loc)
 
-/datum/ammo/grenade_container/on_hit_turf(turf/T,obj/projectile/P)
+/datum/ammo/grenade_container/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/grenade_container/do_at_max_range(turf/T, obj/projectile/P)
