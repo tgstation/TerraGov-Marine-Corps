@@ -307,7 +307,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/open/floor/light/LateInitialize(mapload)
+/turf/open/floor/light/LateInitialize()
 	update_icon()
 
 /turf/open/floor/light/plating
@@ -478,7 +478,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/open/floor/grass/LateInitialize(mapload)
+/turf/open/floor/grass/LateInitialize()
 	update_icon()
 	for(var/direction in GLOB.cardinals)
 		if(!istype(get_step(src,direction), /turf/open/floor))

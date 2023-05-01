@@ -20,7 +20,7 @@
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/item/factory_part/LateInitialize(mapload)
+/obj/item/factory_part/LateInitialize()
 	advance_stage()
 
 ///once the part is processed this proc updates iconstate, result, completion etc
