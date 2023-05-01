@@ -2144,18 +2144,6 @@
 	dir = 1
 	},
 /area/sulaco/bridge)
-"akv" = (
-/obj/machinery/floodlight/combat,
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/cobweb{
-	dir = 4
-	},
-/turf/open/floor/prison/red{
-	dir = 5
-	},
-/area/sulaco/bridge)
 "akK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
@@ -13012,6 +13000,10 @@
 /obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
+"fjY" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/space/basic,
+/area/space)
 "fkB" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/black,
@@ -23182,9 +23174,6 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "sMP" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
 /obj/machinery/vending/nanomed{
 	dir = 8
 	},
@@ -77632,7 +77621,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+fjY
 aaa
 aaa
 aaa
@@ -79944,7 +79933,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+fjY
 aaa
 aaa
 aaa
