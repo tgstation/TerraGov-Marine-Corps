@@ -308,9 +308,9 @@
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
 
 //dedicated engineer pyro kit flamer
-/obj/item/weapon/gun/flamer/big_flamer/engineer
-	name = "\improper FL-242 incinerator unit"
-	desc = "The FL-242 is a more light weight incinerator unit designed specifically to fit into its accompanying engineers bag. Can only be used with back mounted fuel tanks however."
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer
+	name = "\improper FL-86 incinerator unit"
+	desc = "The FL-86 is a more light weight incinerator unit designed specifically to fit into its accompanying engineers bag. Can only be used with back mounted fuel tanks however."
 	default_ammo_type = null
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank/backtank,
@@ -318,7 +318,10 @@
 		/obj/item/ammo_magazine/flamer_tank/internal,
 	)
 
-/obj/item/weapon/gun/flamer/big_flamer/engineer/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the backpack to the gun will load the gun with the internal mag.
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/on_exit_storage(obj/item/storage/S)
+	src.MouseDrop_T(S, gun_user)
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the backpack to the gun will load the gun with the internal mag.
 	. = ..()
 	if(!istype(W, /obj/item/storage/holster/backholster/flamer))
 		return

@@ -225,7 +225,8 @@
 	desc = "This backpack can hold 11 80mm mortar shells, in addition to the mortar itself."
 	icon_state = "marinepackt"
 	item_state = "marinepackt"
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_BULKY
+	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = null
 	max_storage_space = 30
 	access_delay = 0
@@ -260,14 +261,14 @@
 	desc = "This backpack has a built in large capacity fuel tank, and can carry its accompanying flamethrower as well as a modest general storage capacity."
 	icon_state = "pyro_bag"
 	item_state = "pyro_bag"
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = null
 	max_storage_space = 16
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_NORMAL
 	access_delay = 0
-	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/engineer,)
-	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/engineer,)
-	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/engineer = 1,)
+	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
+	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
+	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1,)
 	///The internal fuel tank
 	var/obj/item/ammo_magazine/flamer_tank/internal/tank
 
@@ -298,7 +299,7 @@
 
 /obj/item/storage/holster/backholster/flamer/full/Initialize()
 	. = ..()
-	var/obj/item/new_item = new /obj/item/weapon/gun/flamer/big_flamer/engineer(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 //one slot holsters
