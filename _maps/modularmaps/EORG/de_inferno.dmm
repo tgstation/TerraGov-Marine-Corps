@@ -16,10 +16,6 @@
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/wood,
 /area/deathmatch)
-"au" = (
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
 "aC" = (
 /obj/structure/platform,
 /obj/effect/decal/cleanable/dirt,
@@ -933,10 +929,6 @@
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/wood,
 /area/deathmatch)
-"uq" = (
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/plating/asteroidplating,
-/area/deathmatch)
 "ux" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -1350,10 +1342,6 @@
 "MF" = (
 /obj/effect/landmark/deathmatch,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor/wood,
-/area/deathmatch)
-"Nk" = (
-/obj/machinery/roomba/valhalla/eord,
 /turf/open/floor/wood,
 /area/deathmatch)
 "NF" = (
@@ -2134,7 +2122,7 @@ dG
 dG
 tr
 dK
-Nk
+tr
 qV
 eM
 ar
@@ -2300,7 +2288,7 @@ pj
 ce
 et
 eB
-uq
+eB
 cW
 eB
 je
@@ -2363,7 +2351,7 @@ eZ
 Bs
 Bs
 va
-au
+fI
 Bs
 Bs
 fI
@@ -3047,7 +3035,7 @@ IV
 dG
 FN
 tr
-Nk
+tr
 kJ
 dt
 lK
@@ -3524,7 +3512,7 @@ dG
 fL
 UU
 dQ
-uq
+eB
 el
 ng
 uy
@@ -3653,7 +3641,7 @@ fa
 Bs
 Bs
 Bs
-au
+fI
 KS
 eJ
 dG

@@ -332,10 +332,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/industrial,
 /area/deathmatch)
-"Fr" = (
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
 "FE" = (
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
@@ -346,11 +342,6 @@
 "Hh" = (
 /obj/structure/platform,
 /turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
-"Hl" = (
-/obj/structure/desertdam/decals/loose_sand_overlay,
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/industrial,
 /area/deathmatch)
 "Ht" = (
 /turf/open/floor/wood,
@@ -468,13 +459,6 @@
 	dir = 4
 	},
 /turf/open/floor/industrial,
-/area/deathmatch)
-"QN" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "QP" = (
 /obj/structure/inflatable/wall,
@@ -792,7 +776,7 @@ FE
 Ii
 Ua
 Ua
-Hl
+yN
 Ua
 Ua
 Ua
@@ -1095,7 +1079,7 @@ FE
 Ii
 FE
 FE
-Fr
+FE
 FE
 Hh
 FE
@@ -1360,7 +1344,7 @@ ez
 ez
 xm
 FE
-Fr
+FE
 FE
 FE
 YD
@@ -1663,7 +1647,7 @@ zg
 zg
 zg
 zg
-QN
+zg
 zg
 zg
 FE
@@ -2154,7 +2138,7 @@ FE
 FE
 FE
 FE
-Fr
+FE
 FE
 FE
 YD
@@ -2612,7 +2596,7 @@ FE
 FE
 hH
 FE
-Fr
+FE
 FE
 FE
 FE

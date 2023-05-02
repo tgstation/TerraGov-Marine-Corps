@@ -41,10 +41,6 @@
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
-"gj" = (
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/plating/asteroidplating,
-/area/deathmatch)
 "hw" = (
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -93,7 +89,6 @@
 /area/deathmatch)
 "kR" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
-/obj/machinery/roomba/valhalla/eord,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "kU" = (
@@ -121,10 +116,6 @@
 /area/deathmatch)
 "od" = (
 /turf/closed/wall,
-/area/deathmatch)
-"os" = (
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/grime,
 /area/deathmatch)
 "oD" = (
 /obj/effect/decal/cleanable/rune,
@@ -235,11 +226,6 @@
 	color = "#888888";
 	dir = 8
 	},
-/area/deathmatch)
-"yX" = (
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "zr" = (
 /obj/structure/cargo_container{
@@ -1282,7 +1268,7 @@ hw
 od
 My
 Mn
-yX
+MV
 Mn
 od
 od
@@ -1415,7 +1401,7 @@ Ax
 zB
 JT
 JT
-os
+JT
 JT
 JT
 jU
@@ -2519,7 +2505,7 @@ od
 Fp
 Fp
 Fp
-gj
+Fp
 dB
 Fp
 Fp

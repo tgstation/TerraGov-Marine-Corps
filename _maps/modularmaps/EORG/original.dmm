@@ -1417,28 +1417,11 @@
 "LP" = (
 /turf/open/ground/grass,
 /area/deathmatch)
-"On" = (
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
 "QB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
-"RH" = (
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/deathmatch)
-"Sf" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Tu" = (
 /turf/open/ground/coast{
@@ -1454,10 +1437,6 @@
 "TP" = (
 /turf/open/ground/river,
 /area/deathmatch)
-"Ut" = (
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
 "UN" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/structure/window/framed/wood,
@@ -1471,10 +1450,6 @@
 /turf/open/ground/coast{
 	dir = 5
 	},
-/area/deathmatch)
-"Yk" = (
-/obj/machinery/roomba/valhalla/eord,
-/turf/open/floor/mainship/mono,
 /area/deathmatch)
 
 (1,1,1) = {"
@@ -2176,7 +2151,7 @@ KI
 df
 ez
 ez
-Yk
+ez
 ez
 dA
 ae
@@ -2237,7 +2212,7 @@ fI
 fI
 ae
 fI
-Ut
+fI
 fI
 fI
 fI
@@ -2353,7 +2328,7 @@ bk
 xX
 xX
 al
-Sf
+aw
 xX
 ad
 xX
@@ -2897,7 +2872,7 @@ Tu
 VE
 an
 bj
-On
+xX
 al
 xX
 cK
@@ -3053,7 +3028,7 @@ xX
 xX
 cK
 Jm
-On
+xX
 al
 cK
 bT
@@ -3122,7 +3097,7 @@ TP
 TP
 TP
 ap
-RH
+rW
 rW
 GL
 aN
