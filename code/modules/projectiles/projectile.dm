@@ -357,7 +357,7 @@
 	if(QDELETED(src))
 		return PROCESS_KILL
 
-	if(ammo.flags_ammo_behavior & SPECIAL_PROCESS)
+	if(ammo.flags_ammo_behavior & AMMO_SPECIAL_PROCESS)
 		ammo.ammo_process(src, damage)
 
 /obj/projectile/proc/required_moves_calc()

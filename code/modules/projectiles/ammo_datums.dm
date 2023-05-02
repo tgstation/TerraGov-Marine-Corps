@@ -296,7 +296,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/drop_nade(turf/T)
 	return
 
-///called on projectile process() when SPECIAL_PROCESS flag is active
+///called on projectile process() when AMMO_SPECIAL_PROCESS flag is active
 /datum/ammo/proc/ammo_process(obj/projectile/proj, damage)
 	CRASH("ammo_process called with unimplemented process!")
 
@@ -2471,7 +2471,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "tesla"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SPECIAL_PROCESS
 	shell_speed = 0.1
 	damage = 20
 	penetration = 20
@@ -2481,7 +2481,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	zap_beam(proj, 4, damage)
 
 /datum/ammo/energy/tesla/focused
-	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS|AMMO_IFF
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SPECIAL_PROCESS|AMMO_IFF
 	shell_speed = 0.1
 	damage = 10
 	penetration = 10
