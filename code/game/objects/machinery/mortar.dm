@@ -189,7 +189,7 @@
 		var/obj/item/mortal_shell/mortar_shell = I
 
 		if(length(chamber_items) >= max_rounds)
-			user.balloon_alert(user, "You cannot fit more in there.")
+			user.balloon_alert(user, "You cannot fit more.")
 			return
 
 		if(!(I.type in allowed_shells))
@@ -237,9 +237,9 @@
 	var/obj/item/binoculars/tactical/binocs = I
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(binocs.set_mortar(src))
-		to_chat(user, span_notice("You link the mortar to the [binocs] allowing for remote targeting."))
+		balloon_alert(user, "linked")
 		return
-	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
+	balloon_alert(user, "unlinked")
 
 ///Start firing the gun on target and increase tally
 /obj/machinery/deployable/mortar/proc/begin_fire(atom/target, obj/item/mortal_shell/arty_shell)
