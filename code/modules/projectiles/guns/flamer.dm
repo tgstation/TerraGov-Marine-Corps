@@ -338,7 +338,7 @@
 	. = ..()
 	flamerpack.handle_item_insertion(src)
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/proc/connect_tank(var/obj/item/W, var/mob/living/user)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/proc/connect_tank(obj/item/W, mob/living/user)
 	if(!istype(W, /obj/item/storage/holster/backholster/flamer))
 		return
 
