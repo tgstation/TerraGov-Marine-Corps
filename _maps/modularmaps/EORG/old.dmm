@@ -44,7 +44,7 @@
 /area/deathmatch)
 "al" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "am" = (
 /turf/closed/shuttle,
@@ -93,7 +93,7 @@
 /area/deathmatch)
 "aw" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "ax" = (
 /obj/effect/decal/cleanable/blood,
@@ -138,7 +138,7 @@
 /area/deathmatch)
 "aF" = (
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "aG" = (
 /turf/open/ground/coast,
@@ -313,7 +313,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "bo" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "bp" = (
 /obj/effect/ai_node,
@@ -550,7 +550,7 @@
 /area/deathmatch)
 "cn" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "co" = (
 /obj/effect/landmark/deathmatch,
@@ -567,7 +567,7 @@
 /area/deathmatch)
 "do" = (
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "dw" = (
 /turf/open/floor/plating/ground/dirtgrassborder{

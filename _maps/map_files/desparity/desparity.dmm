@@ -187,7 +187,7 @@
 /area/lv624/lazarus/sleep_male)
 "bj" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/lazarus/spaceport)
 "bl" = (
 /obj/structure/closet/crate/secure,
@@ -261,7 +261,7 @@
 /area/lv624/ground/caves/central1)
 "bG" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river3)
 "bH" = (
 /obj/structure/cable,
@@ -497,7 +497,7 @@
 /area/lv624/lazarus/captain)
 "dd" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river3)
 "df" = (
 /obj/structure/table,
@@ -581,7 +581,7 @@
 /area/lv624/ground/jungle5)
 "dy" = (
 /obj/item/toy/beach_ball,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/lazarus/fitness)
 "dz" = (
 /obj/structure/bed,
@@ -817,7 +817,7 @@
 	},
 /area/lv624/lazarus/research)
 "eJ" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/lazarus/spaceport)
 "eK" = (
 /obj/structure/flora/ausbushes/leafybush,
@@ -1475,7 +1475,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle5)
 "hQ" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/lazarus/spaceport)
 "hR" = (
 /obj/structure/lattice,
@@ -2356,7 +2356,7 @@
 /area/lv624/lazarus/fitness)
 "mq" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/lazarus/spaceport)
 "mr" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
@@ -2589,7 +2589,7 @@
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research)
 "nG" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "nI" = (
 /obj/effect/landmark/weed_node,
@@ -3115,7 +3115,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "qw" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -4315,7 +4315,7 @@
 /area/lv624/lazarus/spaceport)
 "wC" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/lazarus/fitness)
 "wD" = (
 /obj/effect/ai_node,
@@ -6203,7 +6203,7 @@
 /area/lv624/lazarus/sleep_male)
 "FJ" = (
 /obj/structure/jungle/vines,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/lazarus/spaceport)
 "FK" = (
 /obj/effect/landmark/weed_node,
@@ -7931,7 +7931,7 @@
 /area/lv624/ground/jungle5)
 "NM" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/jungle9)
 "NO" = (
 /obj/structure/cable,
@@ -8017,7 +8017,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river3)
 "Og" = (
 /obj/effect/ai_node,
@@ -8350,7 +8350,7 @@
 /area/lv624/ground/jungle9)
 "PO" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/jungle9)
 "PP" = (
 /obj/structure/cable,
@@ -8366,7 +8366,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "PT" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/lazarus/fitness)
 "PW" = (
 /turf/open/floor/carpet/side{
@@ -8639,7 +8639,7 @@
 /area/lv624/lazarus/spaceport)
 "Rm" = (
 /obj/effect/turf_decal/riverdecal,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "Rn" = (
 /obj/effect/landmark/weed_node,
@@ -8866,7 +8866,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "Sn" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/jungle9)
 "Sp" = (
 /obj/machinery/sleeper,
@@ -8976,7 +8976,7 @@
 /area/lv624/ground/jungle5)
 "SO" = (
 /obj/structure/lattice,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river3)
 "SP" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -9232,7 +9232,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
 "Ue" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river3)
 "Ug" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
@@ -9861,7 +9861,7 @@
 "Xb" = (
 /obj/item/toy/inflatable_duck,
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/lazarus/fitness)
 "Xd" = (
 /obj/structure/table,

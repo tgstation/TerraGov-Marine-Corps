@@ -26,7 +26,7 @@
 /area/lv624/lazarus/sandtemple)
 "eP" = (
 /obj/structure/flora/grass/brown,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "fB" = (
 /obj/structure/fence,
@@ -141,7 +141,7 @@
 /area/lv624/ground/sand3)
 "qF" = (
 /obj/effect/landmark/weed_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "qK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -158,7 +158,7 @@
 /area/lv624/ground/river3)
 "rc" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand6)
 "sy" = (
 /obj/structure/girder,
@@ -212,7 +212,7 @@
 	dir = 1
 	},
 /obj/structure/jungle/vines,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand6)
 "yc" = (
 /turf/open/floor/plating/ground/dirt,
@@ -282,7 +282,7 @@
 /turf/closed/wall,
 /area/lv624/ground/sand9)
 "JK" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand6)
 "Kb" = (
 /obj/effect/landmark/weed_node,
@@ -301,7 +301,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand6)
 "My" = (
 /obj/effect/decal/cleanable/blood/gibs,
@@ -318,7 +318,7 @@
 /area/lv624/lazarus/sandtemple)
 "PL" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "PY" = (
 /obj/structure/jungle/plantbot1/alien,
@@ -346,14 +346,14 @@
 /area/lv624/ground/sand6)
 "RJ" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "Sm" = (
 /obj/structure/flora/ausbushes/palebush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "SD" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand3)
 "SJ" = (
 /obj/structure/stairs/seamless{
@@ -362,7 +362,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "Tp" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "Tt" = (
 /obj/structure/jungle/vines{
@@ -383,7 +383,7 @@
 /area/lv624/ground/sand9)
 "UN" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "UW" = (
 /obj/docking_port/stationary/crashmode,
