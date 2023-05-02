@@ -1,7 +1,8 @@
 /obj/structure/benchpress
 	name = "weight training bench"
-	desc = "Just looking at this thing makes you feel tired."
+	desc = "Just looking at this thing makes you feel tired. Leftclick to bench, rightclick to change weights"
 	icon = 'icons/obj/structures/benchpress.dmi'
+	icon_state = "benchpress_0"
 	base_icon_state = "benchpress"
 	density = FALSE
 	anchored = TRUE
@@ -18,19 +19,19 @@
 
 /obj/structure/benchpress/update_icon_state()
 	. = ..()
-	icon_state = (obj_flags & IN_USE) ? "[base_icon_state]_u" : "[base_icon_state]_[plates]"
+	icon_state = HAS_TRAIT(src, BENCH_BEING_USED) ? "[base_icon_state]_u" : "[base_icon_state]_[plates]"
 
 /obj/structure/benchpress/update_overlays()
 	. = ..()
 
-	if(obj_flags & IN_USE)
+	if(HAS_TRAIT(src, BENCH_BEING_USED))
 		. += mutable_appearance(icon, "[base_icon_state]_[plates]_anim", plane = GAME_PLANE, layer = ABOVE_MOB_LAYER, alpha = src.alpha)
 
 /obj/structure/benchpress/attack_hand_alternate(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if(obj_flags & IN_USE)
+	if(HAS_TRAIT(src, BENCH_BEING_USED))
 		return
 	if(plates)
 		var/oldplates = plates
@@ -56,11 +57,10 @@
 	. = ..()
 	if(.)
 		return
-	user.unset_interaction()
-	if(obj_flags & IN_USE)
+	if(HAS_TRAIT(src, BENCH_BEING_USED))
 		balloon_alert(user, "wait your turn!")
 		return
-	obj_flags |= IN_USE
+	ADD_TRAIT(src, BENCH_BEING_USED, WEIGHTBENCH_TRAIT) // yea this is meh but IN_USE and interact code are a mess rn and too buggy so less sidestep it
 	update_icon()
 	user.setDir(SOUTH)
 	user.flags_atom |= DIRLOCK
@@ -75,7 +75,7 @@
 /obj/structure/benchpress/proc/finish_press(mob/user)
 	creak_loop.stop(src)
 	playsound(user, 'sound/machines/click.ogg', 60, TRUE)
-	obj_flags &= ~IN_USE
+	REMOVE_TRAIT(src, BENCH_BEING_USED, WEIGHTBENCH_TRAIT)
 	user.flags_atom &= ~DIRLOCK
 	REMOVE_TRAIT(user, TRAIT_IMMOBILE, WEIGHTBENCH_TRAIT)
 	if(plates >= 5 && prob(10))

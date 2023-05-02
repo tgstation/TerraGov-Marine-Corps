@@ -197,6 +197,8 @@
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
+//structure traits
+#define BENCH_BEING_USED "bench_being_used"
 
 // UI traits
 /// Inability to access UI hud elements.
