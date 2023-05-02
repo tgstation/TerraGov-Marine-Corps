@@ -61,6 +61,7 @@
 #define AMMO_PASS_THROUGH_MOVABLE (1<<20) //If the projectile passes through mobs and objects causing damage to them
 #define AMMO_PASS_THROUGH_MOB (1<<21) //If the projectile passes through mobs only causing damage to them
 #define AMMO_SOUND_PITCH (1<<22) //If the projectile ricochet and miss sound is pitched up
+#define AMMO_MASSIVE (1<<23)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features

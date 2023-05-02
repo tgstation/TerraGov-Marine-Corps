@@ -31,6 +31,9 @@
 		
 		if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
 			entry.mechanics_text += "Secondary effect: affects tiles travelled through.<br>"
+		
+		if(ammo.flags_ammo_behavior & AMMO_MASSIVE)
+			entry.mechanics_text += "Can be damaged in flight.<br>"
 
 		if(ammo.penetration)
 			entry.mechanics_text += "Armor penetration: [ammo.penetration]<br>"
