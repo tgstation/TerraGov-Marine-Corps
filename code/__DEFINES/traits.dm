@@ -108,6 +108,7 @@
 #define SHATTERING_ROAR_ABILITY_TRAIT "shattering_roar_ability_trait"
 #define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
 #define VALHALLA_TRAIT "valhalla"
+#define WEIGHTBENCH_TRAIT "weightbench"
 
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"
@@ -137,6 +138,7 @@
 #define TRAIT_TIME_SHIFTED "time_shifted"
 #define TRAIT_LEASHED "leashed"
 #define TRAIT_CAN_VENTCRAWL "can_ventcrawl"
+#define TRAIT_WORKED_OUT "worked_out" //user has a cqc buff from working out
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"

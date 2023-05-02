@@ -352,6 +352,7 @@
 "abs" = (
 /obj/structure/closet,
 /obj/item/toy/plush/lizard,
+/obj/machinery/firealarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
 "abt" = (
@@ -2510,11 +2511,6 @@
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
-"aZl" = (
-/obj/structure/closet,
-/obj/machinery/firealarm,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/starboard_emb)
 "aZD" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -3658,11 +3654,6 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
-"bkN" = (
-/obj/structure/closet,
-/obj/item/toy/plush/carp,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/starboard_emb)
 "bkO" = (
 /obj/machinery/door_control/mainship/checkpoint{
 	dir = 8;
@@ -9430,11 +9421,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
 "eWc" = (
-/obj/structure/closet,
-/obj/item/toy/inflatable_duck,
-/obj/structure/sign/poster{
-	dir = 1
-	},
+/obj/structure/benchpress,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
 "eWx" = (
@@ -58983,7 +58970,7 @@ nRj
 aam
 tDH
 aXM
-aZl
+aXJ
 cfe
 adK
 aiO
@@ -59497,7 +59484,7 @@ acz
 aam
 rbR
 aXM
-bkN
+aXJ
 aZJ
 wKn
 aJP
