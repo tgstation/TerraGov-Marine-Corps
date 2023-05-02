@@ -332,6 +332,13 @@
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the backpack to the gun will load the gun with the internal mag.
 	. = ..()
+	connect_tank(W,user)
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/removed_from_inventory(mob/user)
+	. = ..()
+	flamerpack.handle_item_insertion(src)
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/proc/connect_tank(var/obj/item/W, var/mob/living/user)
 	if(!istype(W, /obj/item/storage/holster/backholster/flamer))
 		return
 
@@ -345,15 +352,9 @@
 
 	update_icon()
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/removed_from_inventory(mob/user)
-	. = ..()
-	flamerpack.handle_item_insertion(src)
-
-
-
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/on_exit_storage(obj/item/storage/S)
 	. = ..()
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer, MouseDrop_T), S, S.loc), 0.1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(connect_tank), S, S.loc), 0.1 SECONDS)
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
