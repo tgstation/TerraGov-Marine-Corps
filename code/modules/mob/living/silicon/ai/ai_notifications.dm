@@ -10,7 +10,7 @@
 	if(!alertnotification)
 		return
 	if (header)
-		A.name = header
+		alertnotification.name = header
 	alertnotification.desc = message
 	alertnotification.action = action
 	alertnotification.target = source
@@ -30,7 +30,7 @@
 	alert_overlay.layer = FLOAT_LAYER
 	alert_overlay.plane = FLOAT_PLANE
 
-	A.add_overlay(alert_overlay)
+	alertnotification.add_overlay(alert_overlay)
 
 ///Receive notifications about OB lasers deployed
 /mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
