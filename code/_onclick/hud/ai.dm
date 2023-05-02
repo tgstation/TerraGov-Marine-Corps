@@ -160,8 +160,8 @@
 	var/action = NOTIFY_AI_ALERT
 
 /atom/movable/screen/alert/ai_notify/Click()
-	var/mob/living/silicon/ai/recipientai = usr
-	if(!istype(recipientai) || usr != owner)
+	var/mob/living/silicon/ai/recipientai = src
+	if(!istype(recipientai) || src != owner)
 		return
 	if(!recipientai.client)
 		return
@@ -172,13 +172,3 @@
 			var/turf/T = get_turf(target)
 			if(T)
 				recipientai.eyeobj.setLoc(T)
-		if(NOTIFY_AI_BOMBARD)
-			var/obj/machinery/computer/camera_advanced/overwatch/main/O = new //OB firing is buried very deeply within the overwatch console, we create an instance to handle firing for the ai
-			if(length(GLOB.active_laser_targets)) //set selected_target manually, can't copy from regular console since it doesn't set selected_target until it gets a UI interaction
-				for(var/obj/effect/overlay/temp/laser_target/LT in GLOB.active_laser_targets)
-					if(!istype(LT))
-						continue
-					O.selected_target = LT
-			var/area/A = get_area(O.selected_target)
-			if(tgui_alert(recipientai, "Fire Orbital Bombardment at [A]?", "Continue?", list("Yes", "No")) != "No")
-				O.handle_bombard()

@@ -60,4 +60,3 @@
 
 // AI notify action types
 #define NOTIFY_AI_ALERT "aijump"
-#define NOTIFY_AI_BOMBARD "aiattack"

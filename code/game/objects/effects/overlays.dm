@@ -1,3 +1,7 @@
+#define LASER_TYPE_CAS "cas_laser"
+#define LASER_TYPE_OB "railgun_laser"
+#define LASER_TYPE_RAILGUN "railgun_laser"
+
 /obj/effect/overlay
 	name = "overlay"
 
@@ -179,7 +183,7 @@
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
 	///what kind of laser we are, used for signals
-	var/lasertype = "railgun"
+	var/lasertype = LASER_TYPE_RAILGUN
 
 /obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
@@ -190,11 +194,11 @@
 	if(squad)
 		squad.squad_laser_targets += src
 	switch(lasertype)
-		if("railgun")
+		if(LASER_TYPE_RAILGUN)
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RAILGUN_LASER_CREATED, src)
-		if("cas")
+		if(LASER_TYPE_CAS)
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
-		if("ob")
+		if(LASER_TYPE_OB)
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/Destroy()
@@ -220,7 +224,7 @@
 
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
-	lasertype = "cas"
+	lasertype = LASER_TYPE_CAS
 
 /obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
@@ -238,7 +242,7 @@
 
 /obj/effect/overlay/temp/laser_target/OB
 	icon_state = "laser_target2"
-	lasertype = "ob"
+	lasertype = LASER_TYPE_OB
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
