@@ -36,6 +36,11 @@
 	color = "#888888"
 	},
 /area/deathmatch)
+"fv" = (
+/obj/machinery/door/poddoor/railing,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
 "fF" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
@@ -63,6 +68,10 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
+/area/deathmatch)
+"jm" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "jJ" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -138,6 +147,10 @@
 /obj/structure/window/framed/mainship/hull,
 /obj/structure/window/framed/wood,
 /turf/open/floor/mainship/mono,
+/area/deathmatch)
+"qH" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/grime,
 /area/deathmatch)
 "rv" = (
 /obj/machinery/door/poddoor/railing,
@@ -226,6 +239,10 @@
 	color = "#888888";
 	dir = 8
 	},
+/area/deathmatch)
+"xE" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "zr" = (
 /obj/structure/cargo_container{
@@ -1083,7 +1100,7 @@ od
 Sf
 Fp
 Fp
-Fp
+jm
 Fp
 Fp
 wH
@@ -1449,7 +1466,7 @@ XY
 zB
 VU
 JT
-JT
+qH
 JT
 VU
 jU
@@ -1977,7 +1994,7 @@ od
 Fp
 wI
 Fp
-Fp
+jm
 Fp
 Fp
 Fp
@@ -2140,7 +2157,7 @@ dj
 Go
 dj
 dj
-dj
+xE
 dj
 dj
 dj
@@ -2265,7 +2282,7 @@ od
 Fp
 Fp
 rv
-rv
+fv
 rv
 Fp
 Fp

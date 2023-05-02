@@ -1276,6 +1276,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/deathmatch)
+"fA" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/ground/grass,
+/area/deathmatch)
 "fI" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
@@ -1381,6 +1385,12 @@
 	dir = 1
 	},
 /area/deathmatch)
+"wa" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/ground/coast{
+	dir = 8
+	},
+/area/deathmatch)
 "xw" = (
 /turf/closed/shuttle/dropship1/edge/alt{
 	dir = 1
@@ -1423,6 +1433,10 @@
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
+"QT" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/grime,
+/area/deathmatch)
 "Tu" = (
 /turf/open/ground/coast{
 	dir = 6
@@ -1450,6 +1464,10 @@
 /turf/open/ground/coast{
 	dir = 5
 	},
+/area/deathmatch)
+"WB" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/ground/river,
 /area/deathmatch)
 
 (1,1,1) = {"
@@ -1765,7 +1783,7 @@ xX
 xX
 tf
 TP
-TP
+WB
 TP
 aq
 am
@@ -1968,7 +1986,7 @@ fI
 eT
 UN
 eJ
-eJ
+QT
 Vo
 eJ
 eJ
@@ -2519,7 +2537,7 @@ TP
 TP
 TP
 TP
-TP
+WB
 TP
 TP
 TP
@@ -2580,7 +2598,7 @@ TP
 ap
 rW
 rW
-rW
+wa
 bT
 TP
 TP
@@ -2834,7 +2852,7 @@ TP
 TP
 TP
 TP
-TP
+WB
 TP
 VE
 an
@@ -3395,7 +3413,7 @@ LP
 LP
 LP
 LP
-LP
+fA
 LP
 LP
 LP

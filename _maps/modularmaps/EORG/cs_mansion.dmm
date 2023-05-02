@@ -257,6 +257,10 @@
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
+"oO" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/wood,
+/area/deathmatch)
 "pq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
@@ -797,6 +801,10 @@
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/floor/grass,
 /area/deathmatch)
+"Mk" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/grass,
+/area/deathmatch)
 "MZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -952,6 +960,11 @@
 	},
 /turf/open/floor/grime,
 /area/deathmatch)
+"Rs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/grime,
+/area/deathmatch)
 "Sr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/riverdecal,
@@ -1010,6 +1023,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
+"Vh" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/grass,
+/area/deathmatch)
 "Vv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -1064,6 +1082,7 @@
 /area/deathmatch)
 "WW" = (
 /obj/item/storage/belt/champion,
+/obj/effect/landmark/eord_roomba,
 /turf/open/floor/grime,
 /area/deathmatch)
 "WY" = (
@@ -1506,7 +1525,7 @@ BK
 yM
 yM
 yM
-BK
+oO
 nP
 BK
 yM
@@ -1523,7 +1542,7 @@ QU
 VE
 Gl
 BC
-Gl
+Mk
 Gl
 BC
 Gl
@@ -1538,7 +1557,7 @@ Gl
 uS
 BC
 Vz
-Vz
+Vh
 Gl
 KR
 FK
@@ -2243,7 +2262,7 @@ Gl
 Gl
 sR
 sR
-Gl
+Mk
 Vz
 sR
 sR
@@ -2306,7 +2325,7 @@ YZ
 Ds
 wz
 Gl
-Gl
+Mk
 Vz
 tG
 BC
@@ -3026,7 +3045,7 @@ sR
 sR
 Vz
 Gl
-Gl
+Mk
 Vz
 Gl
 oD
@@ -3041,7 +3060,7 @@ Gl
 Gl
 Oh
 Oh
-Ky
+Rs
 Oh
 Oh
 Gl
@@ -3059,7 +3078,7 @@ Gl
 Gl
 Gl
 Gl
-Gl
+Mk
 SO
 Vz
 sR

@@ -92,6 +92,13 @@
 /obj/structure/window/framed/wood,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
+"kf" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
 "kz" = (
 /obj/structure/desertdam/decals/loose_sand_overlay/alt,
 /turf/open/floor/industrial,
@@ -169,6 +176,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
+"pD" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
 "pI" = (
 /turf/open/floor/tile,
 /area/deathmatch)
@@ -210,6 +221,11 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/wood,
+/area/deathmatch)
+"ts" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "uf" = (
 /obj/structure/platform{
@@ -309,6 +325,11 @@
 "CS" = (
 /obj/structure/ore_box,
 /turf/open/floor/tile/dark,
+/area/deathmatch)
+"DM" = (
+/obj/structure/desertdam/decals/loose_sand_overlay,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/industrial,
 /area/deathmatch)
 "DN" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -925,7 +946,7 @@ ez
 YD
 Ua
 Yj
-yN
+DM
 Ua
 Ua
 FE
@@ -1008,7 +1029,7 @@ FE
 OP
 FE
 FE
-DV
+ts
 FE
 FE
 QP
@@ -1035,7 +1056,7 @@ mE
 mE
 Hh
 FE
-FE
+pD
 FE
 FE
 FE
@@ -1646,7 +1667,7 @@ LJ
 zg
 zg
 zg
-zg
+kf
 zg
 zg
 zg
@@ -2139,7 +2160,7 @@ FE
 FE
 FE
 FE
-FE
+pD
 FE
 YD
 ez
@@ -2503,7 +2524,7 @@ ZW
 FE
 FE
 FE
-FE
+pD
 FE
 Si
 FE

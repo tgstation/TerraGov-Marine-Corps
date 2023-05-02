@@ -1385,6 +1385,11 @@
 	},
 /turf/open/floor/wood/broken,
 /area/deathmatch)
+"Ok" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
 "Om" = (
 /obj/structure/largecrate/guns/merc,
 /obj/item/tool/crowbar,
@@ -1504,6 +1509,7 @@
 "TZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/sandytile,
+/obj/effect/landmark/eord_roomba,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "Us" = (
@@ -1606,6 +1612,10 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt/desert,
+/area/deathmatch)
+"Yh" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "YJ" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -2557,7 +2567,7 @@ OV
 tr
 tr
 eP
-fI
+Yh
 fI
 Da
 dG
@@ -2595,7 +2605,7 @@ tr
 tr
 tr
 iW
-fI
+Yh
 fI
 Bs
 dG
@@ -2672,7 +2682,7 @@ bN
 dG
 dG
 dG
-Bs
+Ok
 Xz
 th
 pj

@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"as" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/wood,
+/area/deathmatch)
 "aB" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
@@ -26,6 +30,13 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"cR" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
 /area/deathmatch)
 "dg" = (
 /obj/structure/ore_box,
@@ -289,6 +300,12 @@
 	dir = 10
 	},
 /area/deathmatch)
+"CF" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
 "Dq" = (
 /obj/structure/platform{
 	dir = 4
@@ -521,6 +538,10 @@
 "XA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"XG" = (
+/obj/effect/landmark/eord_roomba,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "Yq" = (
@@ -765,7 +786,7 @@ Uv
 uR
 uR
 Gk
-uR
+XG
 uR
 rf
 Gx
@@ -977,7 +998,7 @@ Uv
 Uv
 Uv
 WC
-WV
+CF
 WC
 Uv
 Uv
@@ -1106,7 +1127,7 @@ QI
 LT
 LT
 LT
-LT
+as
 LT
 LT
 LT
@@ -1555,7 +1576,7 @@ Uv
 Uv
 Uv
 WC
-hw
+cR
 WC
 Uv
 Uv
@@ -1671,7 +1692,7 @@ uR
 Gk
 uR
 uR
-uR
+XG
 YW
 gK
 LT
@@ -2176,7 +2197,7 @@ WV
 WV
 WV
 WV
-WV
+CF
 WV
 hw
 WV
@@ -2494,7 +2515,7 @@ Bs
 pl
 pl
 kv
-uR
+XG
 uR
 xg
 uR
