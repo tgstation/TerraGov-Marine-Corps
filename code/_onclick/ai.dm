@@ -1,7 +1,8 @@
-#define AI_MAX_RAILGUN_SHOTS_FIRED 10
+#define AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE 15
+#define AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE 5
 #define AI_RAILGUN_HUMAN_EXCLUSION_RANGE 5
 #define AI_RAILGUN_FIRING_TIME_DELAY 1 SECONDS
-#define AI_RAILGUN_FIRING_WINDUP_DELAY 30 SECONDS
+#define AI_RAILGUN_FIRING_WINDUP_DELAY 15 SECONDS
 
 
 
@@ -254,6 +255,8 @@
 	ADD_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 	///how many times we've fired the railgun this cycle
 	var/timesfired = 0
+	///max times we can fire within a single volley
+	var/maxtimesfired = rand(AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE,AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE)
 	var/obj/effect/overlay/temp/laser_target/RGL = new (user.eyeobj.loc, 0, user.name)
 	laser = RGL
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
@@ -263,7 +266,7 @@
 		return
 	message_admins("[ADMIN_TPMONTY(user)] fired the railgun at [ADMIN_VERBOSEJMP(laser.loc)].")
 	while(laser)
-		if(timesfired >= AI_MAX_RAILGUN_SHOTS_FIRED) //fire until we hit defined limit
+		if(timesfired >= maxtimesfired) //fire until we hit defined limit
 			QDEL_NULL(laser)
 			REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 			return
@@ -273,7 +276,8 @@
 		GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(laser.loc, user, TRUE)
 		++timesfired
 
-#undef AI_MAX_RAILGUN_SHOTS_FIRED
+#undef AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE
+#undef AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE
 #undef AI_RAILGUN_FIRING_TIME_DELAY
 #undef AI_RAILGUN_FIRING_WINDUP_DELAY
 #undef AI_RAILGUN_HUMAN_EXCLUSION_RANGE
