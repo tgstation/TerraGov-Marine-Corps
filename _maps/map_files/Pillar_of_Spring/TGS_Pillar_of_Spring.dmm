@@ -1587,7 +1587,7 @@
 /area/mainship/living/commandbunks)
 "bTS" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
 "bUC" = (
@@ -3440,6 +3440,16 @@
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
+"ekM" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/radio,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "ekT" = (
 /turf/open/floor/mainship/green{
 	dir = 8
@@ -4487,7 +4497,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "fFa" = (
@@ -5436,7 +5446,7 @@
 /area/mainship/squads/general)
 "hbh" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/effect/decal/cleanable/blood/writing{
 	desc = "It looks like a writing in blood. It says, 'I am missing and forgotten.'";
 	dir = 4
@@ -7023,7 +7033,7 @@
 /area/mainship/hallways/port_hallway)
 "jhK" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -7144,16 +7154,6 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/living/tankerbunks)
-"juG" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/radio,
-/obj/item/light_bulb/tube,
-/obj/item/light_bulb/tube,
-/obj/item/light_bulb/tube,
-/obj/item/clothing/glasses/meson,
-/obj/item/clothing/gloves/yellow,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "jwr" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
 	dir = 2
@@ -10409,21 +10409,6 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/lower_medical)
-"ntN" = (
-/obj/machinery/power/apc/mainship/hardened{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/black{
-	dir = 8
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
-	},
-/area/mainship/command/self_destruct)
 "nuj" = (
 /obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship,
@@ -13990,7 +13975,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "sbg" = (
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/structure/droppod/leader,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
@@ -16566,7 +16551,7 @@
 /area/mainship/command/cic)
 "vfU" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -17876,6 +17861,18 @@
 	dir = 1
 	},
 /area/mainship/command/self_destruct)
+"wSj" = (
+/obj/machinery/power/apc/mainship/hardened{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/mainship/command/self_destruct)
 "wSs" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -18416,6 +18413,10 @@
 	name = "Requisitions lockdown";
 	pixel_x = 6;
 	pixel_y = 2
+	},
+/obj/item/minimap_tablet{
+	pixel_x = 9;
+	pixel_y = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
@@ -49292,7 +49293,7 @@ oHV
 uQI
 dla
 mBZ
-vfH
+fXS
 vfH
 bxQ
 vfH
@@ -51374,7 +51375,7 @@ kfm
 kfm
 saT
 soK
-juG
+ekM
 fez
 dcY
 wPV
@@ -51605,7 +51606,7 @@ lon
 bfc
 snn
 mBZ
-vfH
+fXS
 vfH
 bxQ
 vfH
@@ -56246,7 +56247,7 @@ kLR
 bXH
 xmu
 lrn
-ntN
+wSj
 fEf
 nIr
 dDg

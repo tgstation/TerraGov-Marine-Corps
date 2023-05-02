@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 70, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 50
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
@@ -41,7 +42,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	///after the pod finishes it's travelhow long it spends falling
 	var/falltime = 0.6 SECONDS
 
-/obj/structure/droppod/Initialize()
+/obj/structure/droppod/Initialize(mapload)
 	. = ..()
 	interaction_actions = list()
 	interaction_actions += new /datum/action/innate/set_drop_target(src)
@@ -50,6 +51,10 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(allow_drop))
 	GLOB.droppod_list += src
 	update_icon()
+	setDir(SOUTH)
+	if((!locate(/obj/structure/drop_pod_launcher) in get_turf(src)) && mapload)
+		stack_trace("Droppod [REF(src)] was created without a drop pod launcher under it at [x],[y],[z]")
+		return INITIALIZE_HINT_QDEL
 
 /obj/structure/droppod/Destroy()
 	for(var/atom/movable/ejectee AS in contents) // dump them out, just in case no mobs det deleted
@@ -153,11 +158,18 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area."))
 		return
 	#endif
+
+	if(!locate(/obj/structure/drop_pod_launcher) in get_turf(src))
+		to_chat(user, span_notice("Error. Cannot launch [name] without a droppod launcher."))
+		return
+
 	if(!launch_allowed)
 		to_chat(user, span_notice("Error. Ship calibration unavailable. Please %#&ç:*"))
 		return
+
 	if(drop_state != DROPPOD_READY)
 		return
+
 	if(!checklanding(user))
 		return
 
@@ -334,18 +346,29 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /datum/action/innate/set_drop_target/remove_action(mob/M)
 	if(choosing)
-		owner.client?.screen -= SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+		owner.client?.screen -= map
+		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		choosing = FALSE
 	return ..()
 
-/obj/structure/dropprop	//Just a prop for now but if the pods are someday made movable make a requirement to have these on the turf
+/obj/structure/drop_pod_launcher
 	name = "Zeus pod launch bay"
 	desc = "A hatch in the ground wih support for a Zeus drop pod launch."
 	icon = 'icons/obj/structures/droppod.dmi'
 	icon_state = "launch_bay"
 	density = FALSE
-	anchored = TRUE
-	layer = ABOVE_TURF_LAYER
 	resistance_flags = INDESTRUCTIBLE
+
+/obj/structure/drop_pod_launcher/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	if(!istype(attached_clamp.loaded, /obj/structure/droppod))
+		return ..()
+	user.visible_message(span_notice("[user] drops [attached_clamp.loaded] onto [src] and it clicks into place!"),
+	span_notice("You drop [attached_clamp.loaded] onto [src] and it clicks into place!"))
+	attached_clamp.loaded.forceMove(get_turf(src))
+	attached_clamp.loaded = null
+	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+	attached_clamp.update_icon()
 
 #undef DROPPOD_READY
 #undef DROPPOD_ACTIVE

@@ -30,7 +30,7 @@
 		"Alternate Circle" = /datum/greyscale_config/badge/circle2,
 	)
 
-/obj/item/armor_module/greyscale/badge/Initialize()
+/obj/item/armor_module/greyscale/badge/Initialize(mapload)
 	. = ..()
 	update_icon()
 

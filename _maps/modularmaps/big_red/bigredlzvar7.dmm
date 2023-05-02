@@ -741,6 +741,9 @@
 "qt" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "qu" = (
@@ -1256,6 +1259,9 @@
 /area/bigredv2/outside/marshal_office)
 "DV" = (
 /obj/structure/closet/secure_closet/injection,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "Eo" = (
@@ -4513,7 +4519,7 @@ ok
 fW
 ok
 GY
-Ly
+Ws
 qt
 FJ
 FJ
@@ -4553,7 +4559,7 @@ ok
 ok
 ok
 GY
-Ly
+Ws
 Cw
 Ro
 Pg
@@ -4593,7 +4599,7 @@ ok
 ok
 ok
 GY
-Ly
+Ws
 DV
 nh
 Pg

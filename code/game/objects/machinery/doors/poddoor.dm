@@ -11,7 +11,7 @@
 	explosion_block = 6
 	smoothing_groups = list(SMOOTH_GROUP_SHUTTERS)
 
-/obj/machinery/door/poddoor/Initialize()
+/obj/machinery/door/poddoor/Initialize(mapload)
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
@@ -248,7 +248,7 @@
 	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 
 
-/obj/machinery/door/poddoor/timed_late/Initialize()
+/obj/machinery/door/poddoor/timed_late/Initialize(mapload)
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), PROC_REF(open))
 	return ..()
 

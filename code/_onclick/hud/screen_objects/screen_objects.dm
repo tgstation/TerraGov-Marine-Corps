@@ -555,7 +555,7 @@
 	///List of possible screen locs
 	var/static/list/ammo_screen_loc_list = list(ui_ammo1, ui_ammo2, ui_ammo3, ui_ammo4)
 
-/atom/movable/screen/ammo/Initialize()
+/atom/movable/screen/ammo/Initialize(mapload)
 	. = ..()
 	flash_holder = new
 	flash_holder.icon_state = "frame"
@@ -650,7 +650,7 @@
 	deltimer(del_timer)
 	qdel(src)
 
-/atom/movable/screen/arrow/Initialize() //Self-deletes
+/atom/movable/screen/arrow/Initialize(mapload) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	del_timer = addtimer(CALLBACK(src, PROC_REF(kill_arrow)), duration, TIMER_STOPPABLE)

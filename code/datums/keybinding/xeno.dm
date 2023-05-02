@@ -40,6 +40,13 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
+/datum/keybinding/xeno/recycle
+	name = "Recycle"
+	full_name = "Recycle xenomorph"
+	description = "Recycles a fellow dead xenomorph"
+	keybind_signal = COMSIG_XENOABILITY_RECYCLE
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/place_acid_well
 	name = "place_acid_well"
 	full_name = "Place acid well"
@@ -506,7 +513,7 @@
 /datum/keybinding/xeno/call_of_the_burrowed
 	name = "call_of_the_burrowed"
 	full_name = "Call of the Burrowed"
-	description = ""
+	description = "Attempts to summon all currently burrowed larva."
 	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
 
 /datum/keybinding/xeno/psychic_fling

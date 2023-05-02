@@ -15,7 +15,7 @@
 	var/list/HUD_toggled = list(0, 0, 0)
 
 
-/mob/living/silicon/Initialize()
+/mob/living/silicon/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 

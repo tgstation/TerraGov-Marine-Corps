@@ -116,6 +116,6 @@
 	icon_state = "xeno_cocoon_open"
 	anchored = FALSE
 
-/obj/structure/cocoon/opened_cocoon/Initialize()
+/obj/structure/cocoon/opened_cocoon/Initialize(mapload)
 	. = ..()
 	new /obj/structure/bed/nest(loc)

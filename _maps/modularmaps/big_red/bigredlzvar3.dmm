@@ -561,6 +561,9 @@
 /area/bigredv2/outside/space_port)
 "mR" = (
 /obj/structure/closet/secure_closet/injection,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "mX" = (
@@ -639,6 +642,15 @@
 "pm" = (
 /obj/machinery/landinglight/ds1,
 /turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"pp" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/sign/safety/hazard{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "pE" = (
 /obj/structure/window/reinforced,
@@ -1285,7 +1297,6 @@
 /obj/structure/sign/safety/hazard{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Gh" = (
@@ -1413,6 +1424,9 @@
 "Jn" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "Js" = (
@@ -1600,6 +1614,9 @@
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
+"Os" = (
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/northwest)
 "Ow" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -1929,6 +1946,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
+"WL" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/northwest)
 "WN" = (
 /obj/structure/rack,
 /obj/machinery/light{
@@ -2526,7 +2549,7 @@ PV
 fd
 Bk
 Bi
-wT
+Os
 "}
 (13,1,1) = {"
 wT
@@ -2565,8 +2588,8 @@ PV
 PV
 PV
 Bk
-pG
-wT
+WL
+Os
 "}
 (14,1,1) = {"
 wT
@@ -2605,8 +2628,8 @@ PV
 PV
 KK
 Bk
-pG
-wT
+WL
+Os
 "}
 (15,1,1) = {"
 wT
@@ -2645,8 +2668,8 @@ hb
 hb
 Mm
 Bk
-pG
-wT
+WL
+Os
 "}
 (16,1,1) = {"
 wT
@@ -2685,8 +2708,8 @@ qE
 ry
 yc
 Bk
-pG
-wT
+WL
+Os
 "}
 (17,1,1) = {"
 wT
@@ -2725,8 +2748,8 @@ PV
 wV
 yc
 Bk
-pG
-wT
+WL
+Os
 "}
 (18,1,1) = {"
 wT
@@ -2765,8 +2788,8 @@ KH
 CG
 yc
 Bk
-pG
-wT
+WL
+Os
 "}
 (19,1,1) = {"
 wT
@@ -2805,8 +2828,8 @@ PV
 PV
 yc
 Bk
-pG
-wT
+WL
+Os
 "}
 (20,1,1) = {"
 wT
@@ -2845,8 +2868,8 @@ PV
 PV
 yc
 Bk
-Bi
-hI
+WL
+Os
 "}
 (21,1,1) = {"
 wT
@@ -2885,8 +2908,8 @@ PV
 PV
 Wh
 Bk
-Bi
-Mb
+WL
+Os
 "}
 (22,1,1) = {"
 wT
@@ -2925,8 +2948,8 @@ PV
 PV
 yc
 Bk
-Bi
-hI
+WL
+Os
 "}
 (23,1,1) = {"
 wT
@@ -3916,9 +3939,9 @@ iu
 iu
 iu
 iu
-iu
 FT
-om
+wg
+pp
 iu
 iu
 iu
@@ -4078,7 +4101,7 @@ wT
 wT
 hI
 TI
-wT
+hI
 wT
 cR
 wT
@@ -4154,8 +4177,8 @@ wT
 wT
 wT
 wT
-wT
-wT
+hI
+hI
 hI
 TI
 hI
@@ -4435,7 +4458,7 @@ hI
 hI
 TI
 tk
-iD
+tB
 Jn
 RQ
 RQ
@@ -4475,7 +4498,7 @@ hI
 hI
 hI
 tk
-iD
+tB
 HO
 Nr
 HO
@@ -4515,7 +4538,7 @@ Mb
 hI
 hI
 tk
-iD
+tB
 mR
 Pv
 Nr

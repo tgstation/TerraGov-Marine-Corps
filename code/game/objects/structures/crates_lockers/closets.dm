@@ -17,6 +17,7 @@
 	coverage = 40
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
 	resistance_flags = XENO_DAMAGEABLE
+	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	var/drop_material = /obj/item/stack/sheet/metal
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
@@ -43,17 +44,19 @@
 
 /obj/structure/closet/Initialize(mapload, ...)
 	. = ..()
+
+	if(mapload && !opened) // if closed, any item at the crate's loc is put in the contents
+		. = INITIALIZE_HINT_LATELOAD
+
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
-	return INITIALIZE_HINT_LATELOAD
-
-
-/obj/structure/closet/LateInitialize(mapload)
-	. = ..()
-	if(mapload && !opened)		// if closed, any item at the crate's loc is put in the contents
-		take_contents()
-		update_icon()
 	PopulateContents()
+	update_icon()
 
+
+/obj/structure/closet/LateInitialize()
+	. = ..()
+
+	take_contents()
 
 /obj/structure/closet/deconstruct(disassembled = TRUE)
 	dump_contents()
@@ -215,6 +218,14 @@
 		if(!togglelock(user, TRUE))
 			toggle(user)
 
+/obj/structure/closet/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	. = ..()
+	if(.)
+		return
+
+	if(!attached_clamp.loaded && mob_size_counter)
+		to_chat(user, span_warning("There is a creature inside!"))
+		return
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
 	if(!welder.isOn())

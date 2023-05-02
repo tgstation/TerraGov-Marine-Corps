@@ -317,7 +317,6 @@
 	var/upgrade = XENO_UPGRADE_INVALID
 	///sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/sunder = 0
-	var/fire_resist_modifier = 0
 
 	var/obj/structure/xeno/tunnel/start_dig = null
 	///The ammo datum for our spit projectiles. We're born with this, it changes sometimes.

@@ -157,7 +157,7 @@
 		/obj/item/clothing/head/hairflower = "flower_pin",
 	)
 
-/obj/item/clothing/head/helmet/marine/Initialize()
+/obj/item/clothing/head/helmet/marine/Initialize(mapload)
 	. = ..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
 

@@ -303,13 +303,13 @@
 	name = "Light floor"
 	icon_state = "light_on"
 
-/turf/open/floor/light/Initialize()
+/turf/open/floor/light/Initialize(mapload)
 	. = ..()
 	floor_tile = new /obj/item/stack/tile/light
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/open/floor/light/LateInitialize(mapload)
+/turf/open/floor/light/LateInitialize()
 	update_icon()
 
 /turf/open/floor/light/plating
@@ -473,14 +473,14 @@
 	mediumxenofootstep = FOOTSTEP_GRASS
 
 
-/turf/open/floor/grass/Initialize()
+/turf/open/floor/grass/Initialize(mapload)
 	. = ..()
 	floor_tile = new /obj/item/stack/tile/grass
 	icon_state = "grass[pick("1","2","3","4")]"
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/open/floor/grass/LateInitialize(mapload)
+/turf/open/floor/grass/LateInitialize()
 	update_icon()
 	for(var/direction in GLOB.cardinals)
 		if(!istype(get_step(src,direction), /turf/open/floor))
@@ -818,7 +818,7 @@
 	barefootstep = FOOTSTEP_CARPET
 	mediumxenofootstep = FOOTSTEP_CARPET
 
-/turf/open/floor/carpet/Initialize()
+/turf/open/floor/carpet/Initialize(mapload)
 	. = ..()
 	floor_tile = new /obj/item/stack/tile/carpet
 	return INITIALIZE_HINT_LATELOAD
