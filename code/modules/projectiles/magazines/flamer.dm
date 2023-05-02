@@ -125,7 +125,7 @@
 	name = "internal fuel tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, you shouldn't see this though."
 	icon_state = ""
-	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
+	flags_magazine = MAGAZINE_WORN
 	max_rounds = 280
 	current_rounds = 280
 	reload_delay = 0 SECONDS
