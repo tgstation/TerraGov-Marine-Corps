@@ -599,11 +599,11 @@
 		if(!silent)
 			owner.balloon_alert(owner, "[A] is too far away")
 		return FALSE
-	if(A.resistance_flags & UNACIDABLE)
+	if(A.resistance_flags & UNACIDABLE || A.dissolvability(acid_type))
 		if(!silent)
 			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
-	if(A.acid_check(acid_type))
+	if(A.should_apply_acid(acid_type))
 		if(!silent)
 			owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
 		return FALSE
@@ -630,7 +630,7 @@
 		return fail_activate()
 
 	new acid_type(get_turf(A), A, acid_rate)
-	A.A_current_acid = acid_type
+	A.atom_current_acid = acid_type
 
 	succeed_activate()
 

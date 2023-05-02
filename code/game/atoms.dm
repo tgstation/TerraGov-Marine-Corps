@@ -119,7 +119,7 @@
 	var/minimap_color = MINIMAP_SOLID
 
 	///The current acid on this atom
-	var/obj/effect/xenomorph/acid/A_current_acid
+	var/obj/effect/xenomorph/acid/atom_current_acid
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -180,14 +180,10 @@ directive is properly returned.
 	return 1 SECONDS
 
 //returns wether or not we apply a new acid
-/atom/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
-	if(!new_acid)
-		return
-	if(!A_current_acid)
+/atom/proc/should_apply_acid(obj/effect/xenomorph/acid/new_acid)
+	if(!new_acid || !atom_current_acid)
 		return FALSE
-	if(!(initial(new_acid.acid_strength) >= initial(A_current_acid.acid_strength)))
-		return TRUE
-	return FALSE
+	return !(initial(new_acid.acid_strength) >= initial(atom_current_acid.acid_strength))
 
 /atom/proc/on_reagent_change()
 	return
