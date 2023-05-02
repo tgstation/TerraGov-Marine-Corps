@@ -131,7 +131,7 @@
 		return
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	squad_hud.add_to_hud(src)
-	SSminimaps.add_marker(src, src.z, marker_flags, icon_state_on, 'icons/UI_icons/map_blips_large.dmi')
+	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on))
 	set_visuals(faction)
 
 /obj/effect/temp_visual/order/attack_order
