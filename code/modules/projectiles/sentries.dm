@@ -374,6 +374,10 @@
 		if(nearby_xeno.stat == DEAD || HAS_TRAIT(nearby_xeno, TRAIT_TURRET_HIDDEN) || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL)) //So wraiths wont be shot at when in phase shift
 			continue
 		potential_targets += nearby_xeno
+	for (var/atom/movable/target AS in GLOB.targetable_moving_atoms_list)
+		if(QDELETED(target) || z != target.z || get_dist(src, target) > range || HAS_TRAIT(target, TRAIT_TURRET_HIDDEN))
+			continue
+		potential_targets += target
 	return potential_targets.len
 
 ///Checks the range and the path of the target currently being shot at to see if it is eligable for being shot at again. If not it will stop the firing.

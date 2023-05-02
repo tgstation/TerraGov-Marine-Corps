@@ -118,6 +118,8 @@
 
 /obj/projectile/Destroy()
 	STOP_PROCESSING(SSprojectiles, src)
+	if(ammo.flags_ammo_behavior & AMMO_MASSIVE)
+		GLOB.targetable_moving_atoms_list -= src
 	ammo = null
 	shot_from = null
 	original_target = null
@@ -334,6 +336,9 @@
 	if(!suppress_light && ammo.bullet_color)
 		set_light_color(ammo.bullet_color)
 		set_light_on(TRUE)
+
+	if(ammo.flags_ammo_behavior & AMMO_MASSIVE)
+		GLOB.targetable_moving_atoms_list += src	//should targetable_moving_atoms_list be in a sentry_tracker element?
 
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 
@@ -724,7 +729,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return src == proj.original_target
 
 /obj/projectile/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	return ammo.flags_ammo_behavior & AMMO_MASSIVE
+	return ammo.flags_ammo_behavior & AMMO_MASSIVE && (proj.ammo.flags_ammo_behavior ^ ammo.flags_ammo_behavior) & AMMO_XENO //avoid colliding with other xeno ammo or itself
 
 /obj/vehicle/unmanned/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(proj.firer == src)

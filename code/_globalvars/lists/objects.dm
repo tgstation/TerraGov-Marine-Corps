@@ -60,6 +60,8 @@ GLOBAL_LIST_EMPTY(sensor_towers_patrol)
 
 GLOBAL_LIST_EMPTY(unmanned_vehicles)
 
+GLOBAL_LIST_EMPTY(targetable_moving_atoms_list)
+
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,
 	/obj/structure/largecrate/supply,
