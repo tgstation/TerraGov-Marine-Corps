@@ -185,7 +185,7 @@
 	},
 /area/bigredv2/outside/s)
 "rg" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/caves/rock)
 "rC" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{

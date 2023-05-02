@@ -26,7 +26,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "ap" = (
 /obj/structure/closet/crate,
@@ -1154,7 +1154,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "ig" = (
 /obj/machinery/autodoc_console,
@@ -1252,7 +1252,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "iW" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -1425,7 +1425,7 @@
 	},
 /obj/structure/window/reinforced/tinted,
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "jU" = (
 /obj/effect/ai_node,
@@ -1653,7 +1653,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "lN" = (
 /obj/structure/closet/crate,
@@ -1671,7 +1671,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "lQ" = (
 /obj/item/factory_refill/phosnade_refill,
@@ -1885,7 +1885,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "nM" = (
 /obj/docking_port/stationary/crashmode,
@@ -2425,7 +2425,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "rl" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -2611,7 +2611,7 @@
 /obj/structure/platform,
 /obj/effect/forcefield,
 /obj/machinery/atmospherics/components/unary/outlet_injector,
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "sE" = (
 /obj/structure/closet/crate,
@@ -3051,7 +3051,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "vw" = (
 /obj/structure/table/rusticwoodentable,
@@ -3316,7 +3316,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "xj" = (
 /obj/effect/landmark/patrol_point{
@@ -3829,7 +3829,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "Ag" = (
 /obj/item/ammo_magazine/smg/m25,
@@ -6353,7 +6353,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "KR" = (
 /obj/structure/table/mainship,
@@ -6458,7 +6458,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "Lu" = (
 /obj/structure/toilet{
@@ -6935,7 +6935,7 @@
 	dir = 8
 	},
 /obj/structure/platform_decoration,
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Nu" = (
 /obj/structure/barricade/sandbags{
@@ -6980,7 +6980,7 @@
 	dir = 1
 	},
 /obj/structure/platform,
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "NG" = (
 /obj/structure/platform,
@@ -6999,7 +6999,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "NH" = (
 /obj/structure/platform{
@@ -7017,7 +7017,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "NI" = (
 /obj/item/assembly/mousetrap/armed{
@@ -7214,7 +7214,7 @@
 "OH" = (
 /obj/structure/platform,
 /obj/effect/forcefield,
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "OI" = (
 /obj/structure/closet/crate,
@@ -7407,7 +7407,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Px" = (
 /obj/item/ammo_magazine/rifle/m16,
@@ -7502,7 +7502,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "PK" = (
 /obj/machinery/camera/autoname/mainship{
@@ -8009,7 +8009,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "RM" = (
 /obj/structure/platform{
@@ -8025,7 +8025,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "RN" = (
 /obj/structure/platform{
@@ -8037,7 +8037,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "RO" = (
 /obj/structure/platform{
@@ -8053,7 +8053,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "RP" = (
 /obj/machinery/landinglight/ds1/delayone,
@@ -8587,7 +8587,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "TU" = (
 /obj/structure/table/rusticwoodentable,
@@ -8659,7 +8659,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Uh" = (
 /turf/closed/wall,
@@ -8684,7 +8684,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Uo" = (
 /obj/structure/barricade/sandbags{
@@ -8704,7 +8704,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Ur" = (
 /obj/machinery/camera/autoname/mainship{
@@ -8748,7 +8748,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "UC" = (
 /obj/structure/platform{
@@ -8764,7 +8764,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "UF" = (
 /obj/machinery/light{
@@ -8792,7 +8792,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "UK" = (
 /obj/machinery/light{
@@ -8961,7 +8961,7 @@
 	dir = 8;
 	layer = 2.7
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "VC" = (
 /obj/structure/barricade/metal{
@@ -9062,7 +9062,7 @@
 /area/oscar_outpost/base)
 "Wg" = (
 /obj/effect/forcefield,
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Wi" = (
 /obj/machinery/camera/autoname/mainship{
@@ -9113,7 +9113,7 @@
 	dir = 8;
 	layer = 2.7
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Wr" = (
 /obj/structure/barricade/sandbags{
@@ -9408,7 +9408,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "XG" = (
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "XH" = (
 /obj/machinery/camera/autoname/mainship{
@@ -9652,7 +9652,7 @@
 /area/oscar_outpost/village/central)
 "YF" = (
 /obj/structure/window/reinforced/tinted,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "YG" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -9764,7 +9764,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Zh" = (
 /turf/closed/wall,
@@ -9883,7 +9883,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Zt" = (
 /obj/machinery/washing_machine,
