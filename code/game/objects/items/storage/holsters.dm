@@ -271,6 +271,8 @@
 	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1,)
 	///The internal fuel tank
 	var/obj/item/ammo_magazine/flamer_tank/internal/tank
+	///The linked flamerthrower that cannot be dropped
+	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer
 
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -297,10 +299,17 @@
 	. = ..()
 	. += "[tank.current_rounds] units of fuel left!"
 
+/obj/item/storage/holster/backholster/flamer/removed_from_inventory(mob/user)
+	. = ..()
+	tank.loc = null
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flamer)
+	user.dropItemToGround(flamer)
+
 /obj/item/storage/holster/backholster/flamer/full/Initialize()
 	. = ..()
-	var/obj/item/new_item = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
-	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+	flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
+	flamer.flamerpack = src
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flamer)
 
 //one slot holsters
 

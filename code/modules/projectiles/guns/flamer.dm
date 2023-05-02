@@ -317,9 +317,18 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 		/obj/item/ammo_magazine/flamer_tank/internal,
 	)
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/on_exit_storage(obj/item/storage/S)
-	src.MouseDrop_T(S, gun_user)
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/t84stock,
+		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/flamer_nozzle/long,
+	)
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
+	var/obj/item/storage/holster/backholster/flamer/flamerpack
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the backpack to the gun will load the gun with the internal mag.
 	. = ..()
@@ -328,13 +337,18 @@
 
 	var/obj/item/storage/holster/backholster/flamer/D = W
 	var/obj/item/ammo_magazine/flamer_tank/internal/tank = D.tank
-	tank.forceMove(src.loc)
 	if(tank.current_rounds <= 0)
 		to_chat(user, span_warning("The internal fuel tank is empty!"))
 		return
+	tank.forceMove(D.loc)
 	reload(tank, usr)
 
 	update_icon()
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/removed_from_inventory(mob/user)
+	. = ..()
+	flamerpack.handle_item_insertion(src)
+
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
