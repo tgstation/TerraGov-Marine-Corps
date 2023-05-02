@@ -7,13 +7,13 @@ export const DropshipPicker = (_props, context) => {
   const { act, data } = useBackend(context);
 
   return (
-    <Window width={620} height={540} title={'Dropship Selector'}>
+    <Window width={510} height={500} title={'Dropship Selector'}>
       <Window.Content>
         <Flex height={'95%'} direction={'row'}>
-          <Flex.Item width={'40%'}>
+          <Flex.Item width={'45%'}>
             <ShuttleSelection />
           </Flex.Item>
-          <Flex.Item width={'60%'} height={'40%'}>
+          <Flex.Item width={'55%'} height={'35%'}>
             <Box
               as="img"
               src={data.assetpath ? resolveAsset(data.assetpath) : ''}
