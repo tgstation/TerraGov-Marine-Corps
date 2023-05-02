@@ -1,6 +1,7 @@
 #define AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE 15
-#define AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE 5
+#define AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE 8
 #define AI_RAILGUN_HUMAN_EXCLUSION_RANGE 5
+#define AI_RAILGUN_AUTOTARGET_RANGE 7
 #define AI_RAILGUN_FIRING_TIME_DELAY 1 SECONDS
 #define AI_RAILGUN_FIRING_WINDUP_DELAY 15 SECONDS
 
@@ -273,11 +274,22 @@
 		if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, TRUE, laser, BUSY_ICON_GENERIC)) //delay between shots
 			QDEL_NULL(laser)
 			break
-		GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(laser.loc, user, TRUE)
-		++timesfired
+		///used to check if we have valid targets
+		var/list/mob/living/carbon/xenomorph/possible_xenos = list()
+		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(laser.loc, AI_RAILGUN_AUTOTARGET_RANGE))
+			if(target_xeno.stat != DEAD)
+				possible_xenos += target_xeno
+		if(length(possible_xenos))
+			var/mob/living/carbon/xenomorph/nuked_xeno = pick(possible_xenos)
+			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(nuked_xeno.loc, user, TRUE)
+			++timesfired
+		else
+			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(laser.loc, user, TRUE)
+			++timesfired
 
 #undef AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE
 #undef AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE
 #undef AI_RAILGUN_FIRING_TIME_DELAY
 #undef AI_RAILGUN_FIRING_WINDUP_DELAY
 #undef AI_RAILGUN_HUMAN_EXCLUSION_RANGE
+#undef AI_RAILGUN_AUTOTARGET_RANGE
