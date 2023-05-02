@@ -14,7 +14,7 @@
 	var/atom/movable/target
 	var/list/tracked_list
 
-/obj/item/pinpointer/Initialize()
+/obj/item/pinpointer/Initialize(mapload)
 	. = ..()
 	tracked_list = GLOB.xeno_critical_structures
 

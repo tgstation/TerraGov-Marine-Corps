@@ -8,7 +8,7 @@
 	icon_closed ="base"
 	icon_opened = "base"
 
-/obj/structure/closet/secure_closet/guncabinet/Initialize()
+/obj/structure/closet/secure_closet/guncabinet/Initialize(mapload)
 	. = ..()
 	update_icon()
 

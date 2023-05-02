@@ -592,7 +592,7 @@
 	bitesize = 2
 
 
-/obj/item/reagent_containers/food/snacks/pastries/plump_pie/Initialize()
+/obj/item/reagent_containers/food/snacks/pastries/plump_pie/Initialize(mapload)
 	. = ..()
 	var/fey = prob(10)
 	if(fey)

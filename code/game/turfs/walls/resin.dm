@@ -19,7 +19,7 @@
 	resistance_flags = UNACIDABLE
 
 
-/turf/closed/wall/resin/Initialize()
+/turf/closed/wall/resin/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 

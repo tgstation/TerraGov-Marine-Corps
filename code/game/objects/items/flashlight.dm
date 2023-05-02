@@ -20,7 +20,7 @@
 	///If this flashlight affected by nightfall
 	var/nightfall_immune = FALSE
 
-/obj/item/flashlight/Initialize()
+/obj/item/flashlight/Initialize(mapload)
 	. = ..()
 	GLOB.nightfall_toggleable_lights += src
 

@@ -15,7 +15,7 @@
 	var/sword_color
 
 
-/obj/item/weapon/holo/esword/Initialize()
+/obj/item/weapon/holo/esword/Initialize(mapload)
 	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")

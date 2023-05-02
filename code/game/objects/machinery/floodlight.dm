@@ -10,7 +10,7 @@
 	///The brightness of the floodlight
 	var/brightness_on = 8
 
-/obj/machinery/floodlight/Initialize()
+/obj/machinery/floodlight/Initialize(mapload)
 	. = ..()
 	GLOB.nightfall_toggleable_lights += src
 
@@ -46,7 +46,7 @@
 	use_power = 0
 	brightness_on = 6
 
-/obj/machinery/floodlight/landing/Initialize()
+/obj/machinery/floodlight/landing/Initialize(mapload)
 	. = ..()
 	set_light(brightness_on)
 
@@ -59,7 +59,7 @@
 /obj/machinery/floodlight/outpost/oscar
 	brightness_on = 30
 
-/obj/machinery/floodlight/outpost/Initialize()
+/obj/machinery/floodlight/outpost/Initialize(mapload)
 	. = ..()
 	set_light(brightness_on)
 
@@ -67,9 +67,6 @@
 	name = "Installation Light"
 	desc = "A powerful light stationed on the base to provide better visibility."
 
-/obj/machinery/floodlight/landing/Initialize()
-	. = ..()
-	set_light(brightness_on)
 
 /obj/machinery/floodlight/landing/testroom
 	name = "Ambience Light"
@@ -79,7 +76,7 @@
 	resistance_flags = RESIST_ALL
 	brightness_on = 25
 
-/obj/machinery/floodlight/landing/testroom/Initialize()
+/obj/machinery/floodlight/landing/testroom/Initialize(mapload)
 	. = ..()
 	set_light(brightness_on)
 
@@ -97,7 +94,7 @@
 	/// The amount of integrity repaired with every welder act.
 	var/repair_amount = 100
 
-/obj/machinery/floodlight/combat/Initialize()
+/obj/machinery/floodlight/combat/Initialize(mapload)
 	. = ..()
 	cell = new()
 	GLOB.nightfall_toggleable_lights += src
@@ -210,7 +207,7 @@
 	brightness_on = 7
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 
-/obj/machinery/floodlight/colony/Initialize()
+/obj/machinery/floodlight/colony/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_FLOODLIGHT_SWITCH, PROC_REF(floodswitch_powered))
 

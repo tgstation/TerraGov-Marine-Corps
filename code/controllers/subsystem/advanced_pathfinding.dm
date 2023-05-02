@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	///The image added to the creator screen
 	var/image/goal_image
 
-/obj/effect/ai_node/goal/Initialize(loc, mob/creator)
+/obj/effect/ai_node/goal/Initialize(mapload, mob/creator)
 	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_GOAL_SET, identifier, src)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(clean_goal_node))

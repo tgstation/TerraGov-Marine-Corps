@@ -34,7 +34,7 @@
 /area/lv624/ground/caves/central2)
 "gv" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "hQ" = (
 /obj/structure/rack,
@@ -364,7 +364,7 @@
 /area/lv624/ground/caves/central2)
 "SB" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "SE" = (
 /obj/effect/landmark/corpsespawner/colonist,
@@ -408,7 +408,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "VD" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "VF" = (
 /turf/closed/wall/wood,
@@ -457,7 +457,7 @@
 /area/lv624/ground/caves/central2)
 "ZL" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 
 (1,1,1) = {"

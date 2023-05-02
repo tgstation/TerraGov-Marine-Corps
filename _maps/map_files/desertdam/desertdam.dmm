@@ -47,15 +47,15 @@
 	},
 /area/desert_dam/exterior/valley/valley_wilderness)
 "aax" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/desert_dam/exterior/valley/valley_labs)
 "aay" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "aaz" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/valley/valley_labs)
 "aaB" = (
 /obj/structure/desertdam/decals/road/edge/long,
@@ -199,7 +199,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/desert_dam/exterior/valley/valley_labs)
 "abC" = (
 /turf/open/ground/coast/corner2{
@@ -249,7 +249,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -300,7 +300,7 @@
 	id = null;
 	name = "Shutters"
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "acf" = (
 /obj/structure/table,
@@ -315,7 +315,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/desert_dam/exterior/valley/valley_labs)
 "ach" = (
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/valley/valley_labs)
 "aci" = (
 /obj/structure/platform_decoration{
@@ -343,7 +343,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/desert_dam/exterior/valley/valley_labs)
 "acq" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -385,7 +385,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "acE" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -457,7 +457,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -551,7 +551,7 @@
 /area/desert_dam/exterior/river/riverside_central_north)
 "adE" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 4
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -564,7 +564,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "adN" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 8
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -582,7 +582,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -593,7 +593,7 @@
 /area/desert_dam/exterior/valley/valley_crashsite)
 "adV" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/valley/valley_labs)
 "adW" = (
 /obj/structure/platform,
@@ -609,7 +609,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -653,7 +653,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -681,7 +681,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance)
 "aes" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 4
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -792,7 +792,7 @@
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
 "afv" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -801,10 +801,10 @@
 /turf/open/floor/prison,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "afx" = (
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/valley/valley_labs)
 "afz" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -859,7 +859,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "afN" = (
 /turf/open/floor/plating,
@@ -909,7 +909,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "agm" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -956,7 +956,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "agL" = (
 /turf/open/floor/plating/icefloor/warnplate,
@@ -1129,7 +1129,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "ahH" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/valley/valley_labs)
 "ahI" = (
 /obj/structure/barricade/wooden{
@@ -1183,7 +1183,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "ahZ" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -1271,7 +1271,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "aiH" = (
 /turf/open/floor/prison/whitepurple/corner{
@@ -1331,7 +1331,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
 /area/desert_dam/exterior/river_mouth/southern)
@@ -1586,13 +1586,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
-"akE" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/yellow,
-/turf/open/floor/prison/darkpurple{
-	dir = 1
-	},
-/area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "akF" = (
 /obj/structure/table,
 /obj/item/reagent_scanner,
@@ -2537,7 +2530,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "apm" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -3400,7 +3393,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "ata" = (
 /obj/structure/table/reinforced,
@@ -3603,7 +3596,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "atY" = (
 /obj/structure/table,
@@ -3748,7 +3741,7 @@
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "auH" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -4016,7 +4009,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "avU" = (
 /turf/open/floor/tile/dark/yellow2,
@@ -4251,19 +4244,19 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "axl" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
 "axm" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "axn" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -4356,7 +4349,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "axJ" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/valley/valley_labs)
 "axK" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
@@ -4371,7 +4364,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "axO" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 8
 	},
 /area/desert_dam/exterior/valley/valley_labs)
@@ -4881,6 +4874,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/exterior/valley/valley_wilderness)
+"aAv" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/prison/darkpurple{
+	dir = 1
+	},
+/area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "aAA" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -5069,13 +5069,13 @@
 /area/desert_dam/exterior/valley/valley_wilderness)
 "aBO" = (
 /obj/structure/platform_decoration,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/interior/caves/temple)
 "aBR" = (
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/interior/caves/temple)
 "aBV" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -5083,7 +5083,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_wilderness)
 "aBW" = (
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/interior/caves/temple)
 "aBX" = (
 /obj/machinery/floodlight/colony,
@@ -5095,7 +5095,7 @@
 	},
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "aBZ" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -5112,7 +5112,7 @@
 	},
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "aCd" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -5913,13 +5913,13 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aIv" = (
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aIw" = (
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/building/substation/northeast)
 "aIx" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -5942,7 +5942,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aIF" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -6005,7 +6005,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -6045,7 +6045,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -6178,7 +6178,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aKO" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/desert_dam/exterior/river/riverside_central_north)
 "aKR" = (
 /obj/structure/stairs/seamless/platform/alt,
@@ -6589,7 +6589,7 @@
 /turf/closed/wall,
 /area/desert_dam/exterior/valley/valley_northwest)
 "aOe" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/river/riverside_central_north)
 "aOj" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
@@ -6715,7 +6715,7 @@
 /area/shuttle/tri_trans2/alpha)
 "aPg" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -6754,7 +6754,7 @@
 /area/desert_dam/exterior/valley/valley_telecoms)
 "aPv" = (
 /obj/structure/platform_decoration,
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/river/riverside_east)
 "aPw" = (
 /obj/structure/cargo_container/green{
@@ -9366,7 +9366,7 @@
 	},
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "bfW" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -14210,7 +14210,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/caves/east_caves)
 "bIQ" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -14558,10 +14558,6 @@
 	dir = 8
 	},
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
-"bLk" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_hydro)
 "bLn" = (
 /obj/machinery/power/apc/super,
 /obj/structure/cable,
@@ -15266,7 +15262,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "bPn" = (
 /obj/effect/landmark/weed_node,
@@ -15706,7 +15702,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/armory)
 "bRH" = (
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/interior/dam_interior/western_dam_cave)
 "bRI" = (
 /turf/open/ground/coast/corner2{
@@ -16145,7 +16141,7 @@
 "bUC" = (
 /obj/structure/platform,
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/valley/valley_labs)
 "bUE" = (
 /obj/structure/disposalpipe/segment{
@@ -16200,7 +16196,7 @@
 /area/desert_dam/building/security/warden)
 "bUN" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "bUQ" = (
 /obj/machinery/door/airlock/mainship/security/glass,
@@ -16514,13 +16510,13 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_central_north)
 "bWu" = (
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "bWv" = (
 /obj/structure/platform,
@@ -16631,7 +16627,7 @@
 	},
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "bXd" = (
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_central_north)
 "bXg" = (
 /turf/open/floor/plating/ground/dirt{
@@ -16672,12 +16668,12 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
 "bXn" = (
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "bXo" = (
 /obj/structure/platform{
@@ -16717,11 +16713,11 @@
 /area/desert_dam/exterior/river/riverside_central_north)
 "bXs" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_central_north)
 "bXv" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "bXw" = (
 /obj/machinery/door/airlock/mainship/security/glass{
@@ -16851,7 +16847,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -16882,7 +16878,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -17003,7 +16999,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "bYK" = (
 /obj/structure/desertdam/decals/road,
@@ -17151,7 +17147,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "bZt" = (
 /obj/structure/platform{
@@ -17163,7 +17159,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "bZu" = (
 /obj/structure/bed,
@@ -17390,7 +17386,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -17504,13 +17500,13 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "cbx" = (
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "cby" = (
 /obj/structure/platform{
@@ -17528,7 +17524,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -17630,7 +17626,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "cci" = (
 /obj/structure/platform{
@@ -17640,7 +17636,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "ccj" = (
 /obj/structure/platform{
@@ -17650,7 +17646,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -17666,7 +17662,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -18238,7 +18234,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_central_south)
 "cfY" = (
 /obj/structure/platform_decoration{
@@ -18264,7 +18260,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_central_south)
 "cgb" = (
 /obj/structure/platform_decoration{
@@ -18329,7 +18325,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river_mouth/southern)
 "cgu" = (
 /obj/effect/decal/cleanable/dirt,
@@ -18420,7 +18416,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_south)
 "chq" = (
 /obj/structure/desertdam/decals/road/edge{
@@ -18464,13 +18460,13 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "chA" = (
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "chB" = (
 /obj/structure/platform{
@@ -18479,7 +18475,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "chC" = (
 /obj/structure/platform{
@@ -18499,7 +18495,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_south)
 "chT" = (
 /obj/structure/platform{
@@ -18518,7 +18514,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -18565,18 +18561,18 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "cif" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "cig" = (
 /obj/structure/platform{
 	dir = 4
 	},
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "cih" = (
 /turf/open/floor/prison,
@@ -18635,7 +18631,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "ciF" = (
 /obj/structure/platform{
@@ -18681,7 +18677,7 @@
 /turf/open/ground/coast,
 /area/desert_dam/exterior/river/riverside_south)
 "ciQ" = (
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_south)
 "ciR" = (
 /turf/closed/wall/r_wall,
@@ -18722,13 +18718,13 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_south)
 "cjm" = (
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -19078,7 +19074,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "cle" = (
 /obj/structure/platform,
@@ -19090,7 +19086,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "cli" = (
 /obj/structure/platform{
@@ -19121,7 +19117,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/rock)
 "clq" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -19386,7 +19382,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/rock)
 "cmR" = (
 /turf/open/floor/plating/ground/dirt{
@@ -20066,7 +20062,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/rock)
 "crg" = (
 /obj/structure/table,
@@ -20222,7 +20218,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/rock)
 "csh" = (
 /turf/open/floor/tile/dark/yellow2{
@@ -22166,7 +22162,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "cDe" = (
 /obj/machinery/light{
@@ -22349,7 +22345,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "cDT" = (
 /obj/structure/table/mainship,
@@ -22566,7 +22562,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "cFj" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -25409,7 +25405,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_south)
 "cZe" = (
 /obj/structure/largecrate/random/barrel/blue,
@@ -26300,7 +26296,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_south)
 "dgX" = (
 /obj/structure/platform{
@@ -26427,7 +26423,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "diO" = (
 /obj/structure/disposalpipe/segment{
@@ -26443,7 +26439,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/river/riverside_south)
 "djc" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -26933,7 +26929,7 @@
 /area/desert_dam/exterior/river/riverside_south)
 "doO" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_south)
 "doT" = (
 /obj/item/tool/shovel,
@@ -26988,7 +26984,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_south)
 "dpE" = (
 /obj/structure/platform{
@@ -27416,7 +27412,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_east)
 "duz" = (
 /obj/structure/platform{
@@ -28019,7 +28015,7 @@
 /turf/open/floor/freezer,
 /area/desert_dam/building/water_treatment_one/breakroom)
 "dAo" = (
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river_mouth/southern)
 "dAq" = (
 /turf/open/floor/tile/white,
@@ -28470,7 +28466,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "dEo" = (
 /obj/structure/platform{
@@ -28482,7 +28478,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "dEr" = (
 /obj/structure/closet/cabinet,
@@ -28526,7 +28522,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "dEX" = (
 /obj/structure/platform_decoration{
@@ -28552,7 +28548,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "dFf" = (
 /turf/open/floor/wood,
@@ -28632,13 +28628,13 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/rock)
 "dFR" = (
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "dFS" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -28680,7 +28676,7 @@
 /area/desert_dam/exterior/valley/valley_crashsite)
 "dGv" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/rock)
 "dGw" = (
 /obj/structure/platform,
@@ -28690,13 +28686,13 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/rock)
 "dGA" = (
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "dGB" = (
 /obj/structure/platform,
@@ -28706,7 +28702,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "dGC" = (
 /turf/open/floor/prison/green{
@@ -28776,17 +28772,17 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/rock)
 "dHe" = (
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river_mouth/southern)
 "dHg" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "dHh" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -28818,7 +28814,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "dHB" = (
 /obj/structure/platform{
@@ -29084,7 +29080,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_northwest)
 "dJT" = (
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_east)
 "dJX" = (
 /obj/structure/rack,
@@ -29211,7 +29207,7 @@
 /area/desert_dam/exterior/river/riverside_central_south)
 "dLK" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_central_south)
 "dLL" = (
 /obj/structure/platform,
@@ -29267,7 +29263,7 @@
 /area/desert_dam/exterior/river/riverside_east)
 "dLX" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_east)
 "dLY" = (
 /obj/structure/platform,
@@ -29285,11 +29281,11 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/rock)
 "dMq" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/river/riverside_east)
 "dMK" = (
 /obj/structure/disposalpipe/segment{
@@ -29499,7 +29495,7 @@
 /area/desert_dam/interior/dam_interior/hanger)
 "dST" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -29805,25 +29801,25 @@
 /turf/open/floor/freezer,
 /area/desert_dam/building/cafeteria/cold_room)
 "dZL" = (
-/turf/open/ground/river{
+/turf/open/liquid/water{
 	name = "pool"
 	},
 /area/desert_dam/building/dorms/pool)
 "dZM" = (
-/turf/open/ground/river{
+/turf/open/liquid/water{
 	color = "#995555";
 	name = "pool"
 	},
 /area/desert_dam/building/dorms/pool)
 "dZN" = (
-/turf/open/ground/river{
+/turf/open/liquid/water{
 	color = "#990000";
 	name = "pool"
 	},
 /area/desert_dam/building/dorms/pool)
 "dZO" = (
 /obj/item/toy/inflatable_duck,
-/turf/open/ground/river{
+/turf/open/liquid/water{
 	color = "#995555";
 	name = "pool"
 	},
@@ -30071,7 +30067,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/substation/southwest)
 "ebY" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/river/riverside_south)
 "eck" = (
 /obj/structure/disposalpipe/junction{
@@ -30469,7 +30465,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/hanger)
 "ejO" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -30746,7 +30742,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "etf" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -30820,7 +30816,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/workshop)
 "euC" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -30864,7 +30860,7 @@
 /area/desert_dam/building/security/prison)
 "ewM" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -30929,7 +30925,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/floodgate_control)
 "eyS" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -31090,7 +31086,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/hydroponics/hydroponics)
 "eDR" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/river/riverside_east)
 "eEh" = (
 /obj/structure/flora/rock/pile/alt,
@@ -31140,7 +31136,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -31232,7 +31228,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "eIS" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -31477,7 +31473,7 @@
 	},
 /area/desert_dam/building/security/staffroom)
 "ePU" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/interior/dam_interior/western_dam_cave)
 "ePZ" = (
 /obj/effect/landmark/patrol_point{
@@ -31588,7 +31584,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "eSw" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -31923,7 +31919,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "fcA" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 8
 	},
 /area/desert_dam/exterior/river_mouth/southern)
@@ -31963,7 +31959,7 @@
 	},
 /area/desert_dam/exterior/valley/bar_valley_dam)
 "fdL" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -32151,7 +32147,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/interior/caves/temple)
 "fiZ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -32397,7 +32393,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/lab_northeast/east_lab_maintenence)
 "frg" = (
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/interior/dam_interior/western_dam_cave)
 "frj" = (
 /obj/structure/cable,
@@ -32441,7 +32437,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
 "fst" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -32879,7 +32875,7 @@
 /area/desert_dam/exterior/valley/valley_crashsite)
 "fFk" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/valley/valley_labs)
 "fFp" = (
 /obj/effect/ai_node,
@@ -32933,7 +32929,7 @@
 /area/desert_dam/interior/dam_interior/smes_main)
 "fGT" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -33416,7 +33412,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_west_entrance)
 "fTT" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -33481,7 +33477,7 @@
 /area/desert_dam/building/medical/emergency_room)
 "fVD" = (
 /obj/effect/ai_node,
-/turf/open/ground/river{
+/turf/open/liquid/water{
 	color = "#995555";
 	name = "pool"
 	},
@@ -33911,7 +33907,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_northwest)
 "ghQ" = (
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "ghT" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -34270,7 +34266,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "grK" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -34338,13 +34334,13 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_east)
 "gwm" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -34973,7 +34969,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/east_wing_hallway)
 "gTc" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -35244,7 +35240,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/security/northern_hallway)
 "hbr" = (
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "hbs" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -35996,7 +35992,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/tradeship)
 "hyG" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/river/riverside_central_south)
 "hyM" = (
 /obj/effect/landmark/weed_node,
@@ -36184,7 +36180,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
 "hDc" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/desert_dam/exterior/river/riverside_south)
 "hDh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -36260,7 +36256,7 @@
 	},
 /area/desert_dam/building/substation/southwest)
 "hEn" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/river/riverside_central_south)
 "hEp" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
@@ -36450,7 +36446,7 @@
 /area/desert_dam/building/security/southern_hallway)
 "hKl" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -36492,7 +36488,7 @@
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "hLG" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -36822,7 +36818,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/floodgate_control)
 "hUX" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/desert_dam/exterior/river/riverside_central_south)
 "hVa" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -36840,7 +36836,7 @@
 	},
 /area/desert_dam/building/security/southern_hallway)
 "hWg" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -37753,7 +37749,7 @@
 /area/desert_dam/exterior/valley/valley_cargo)
 "ixQ" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "ixY" = (
 /obj/structure/desertdam/decals/road,
@@ -38878,7 +38874,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/hallway)
 "jeo" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
 	},
 /area/desert_dam/exterior/river_mouth/southern)
@@ -39059,7 +39055,7 @@
 /area/desert_dam/building/dorms/restroom)
 "jkB" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "jlg" = (
 /obj/structure/cable,
@@ -39305,7 +39301,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_south)
 "jsP" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -39386,7 +39382,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/desert_dam/exterior/river/riverside_south)
 "jvj" = (
 /obj/structure/desertdam/decals/road{
@@ -40763,7 +40759,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river_mouth/southern)
@@ -40886,7 +40882,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "kln" = (
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_central_south)
 "klv" = (
 /obj/effect/ai_node,
@@ -40915,7 +40911,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -41375,7 +41371,7 @@
 /area/desert_dam/exterior/valley/valley_telecoms)
 "kAh" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -41765,7 +41761,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "kMb" = (
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "kMm" = (
 /obj/structure/cable,
@@ -42179,7 +42175,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "kXU" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 4
 	},
 /area/desert_dam/exterior/river_mouth/southern)
@@ -42420,7 +42416,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/workshop)
 "lea" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -42980,7 +42976,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/east_engineering)
 "lwj" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/river/riverside_south)
 "lwm" = (
 /obj/structure/cable,
@@ -43264,7 +43260,7 @@
 /area/desert_dam/interior/east_engineering)
 "lFQ" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/interior/dam_interior/western_dam_cave)
@@ -43805,7 +43801,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -44334,7 +44330,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/exterior/valley/valley_labs)
 "mrg" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/river_mouth/southern)
 "mrk" = (
 /obj/effect/decal/cleanable/dirt,
@@ -44401,7 +44397,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/substation/northeast)
 "msU" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river_mouth/southern)
@@ -44817,7 +44813,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/north_wing_hallway)
 "mEu" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -44848,7 +44844,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -44871,7 +44867,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/river/riverside_south)
 "mFN" = (
 /obj/structure/desertdam/decals/loose_sand_overlay{
@@ -45498,7 +45494,7 @@
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "nax" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/valley/valley_labs)
 "naz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -46390,7 +46386,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "nDK" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -46483,7 +46479,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/warehouse)
 "nGJ" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -46579,7 +46575,7 @@
 /area/desert_dam/exterior/valley/valley_telecoms)
 "nKM" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_north)
 "nLr" = (
 /obj/structure/platform{
@@ -47228,7 +47224,7 @@
 /area/desert_dam/building/medical/north_wing_hallway)
 "obq" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/river/riverside_south)
 "obs" = (
 /obj/structure/cable,
@@ -48099,7 +48095,7 @@
 	},
 /area/desert_dam/building/medical/north_wing_hallway)
 "oEb" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -48618,7 +48614,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_central_south)
 "oSQ" = (
 /obj/effect/landmark/weed_node,
@@ -49045,7 +49041,7 @@
 	},
 /area/desert_dam/exterior/valley/tradeship)
 "pcJ" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -49271,7 +49267,7 @@
 /area/desert_dam/interior/caves/central_caves)
 "pia" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/river/riverside_south)
 "pib" = (
 /obj/structure/table,
@@ -49732,7 +49728,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -50100,7 +50096,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -50281,7 +50277,7 @@
 /turf/open/floor/bcircuit,
 /area/desert_dam/interior/dam_interior/engine_room)
 "pJE" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river_mouth/southern)
@@ -50358,7 +50354,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/river/riverside_east)
 "pMt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -50542,7 +50538,7 @@
 /area/desert_dam/interior/dam_interior/control_room)
 "pQS" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -51242,7 +51238,7 @@
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "qkn" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_south)
 "qkp" = (
 /obj/effect/decal/cleanable/dirt,
@@ -51823,7 +51819,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "qBV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -51883,7 +51879,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "qDb" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
@@ -52318,7 +52314,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "qSO" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -52495,7 +52491,7 @@
 /area/desert_dam/exterior/landing/landing_pad_three)
 "qXN" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -52897,7 +52893,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_northwest)
 "riy" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river_mouth/southern)
@@ -53494,7 +53490,7 @@
 /area/desert_dam/building/security/northern_hallway)
 "rBI" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river_mouth/southern)
 "rCn" = (
 /obj/effect/decal/cleanable/dirt,
@@ -53676,7 +53672,7 @@
 /turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "rJC" = (
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/rock)
 "rJK" = (
 /obj/structure/desertdam/decals/road{
@@ -53769,7 +53765,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_mining)
 "rLs" = (
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river_mouth/southern)
 "rLx" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -53885,7 +53881,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -53931,7 +53927,7 @@
 	id = null;
 	name = "Shutters"
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -54026,7 +54022,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -54194,7 +54190,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/exterior/landing/landing_pad_two)
 "rWp" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/desert_dam/exterior/river_mouth/southern)
 "rWr" = (
 /obj/effect/decal/cleanable/dirt,
@@ -54799,7 +54795,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "slv" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -55329,6 +55325,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
+"sBd" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_medical)
 "sBl" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -55718,7 +55718,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/river/riverside_east)
 "sPX" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -56013,7 +56013,7 @@
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "tbk" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/valley/valley_labs)
 "tbH" = (
 /obj/effect/landmark/weed_node,
@@ -56232,7 +56232,7 @@
 /area/desert_dam/exterior/valley/valley_civilian)
 "tgS" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "tgV" = (
 /obj/effect/decal/cleanable/dirt,
@@ -56250,7 +56250,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/river/riverside_east)
 "thp" = (
 /obj/item/stack/sheet/wood,
@@ -56341,7 +56341,7 @@
 	name = "Shutters"
 	},
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "tiY" = (
 /obj/structure/platform{
@@ -56353,7 +56353,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "tiZ" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/desert_dam/exterior/river/riverside_east)
 "tjz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -56361,12 +56361,12 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/desert_dam/interior/dam_interior/workshop)
 "tjK" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
 /area/desert_dam/exterior/river_mouth/southern)
 "tjR" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -56834,7 +56834,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -56889,7 +56889,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -57026,7 +57026,7 @@
 /area/desert_dam/building/water_treatment_two/control_room)
 "tDW" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -57221,7 +57221,7 @@
 /area/desert_dam/building/warehouse/loading)
 "tJP" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow,
+/turf/open/liquid/water/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "tKc" = (
 /obj/machinery/computer/intel_computer,
@@ -57268,7 +57268,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -57546,7 +57546,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/medical/break_room)
 "tTZ" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 4
 	},
 /area/desert_dam/interior/dam_interior/western_dam_cave)
@@ -57815,7 +57815,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -57963,7 +57963,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -58796,7 +58796,7 @@
 	corpseuniform = /obj/item/clothing/under/CM_uniform;
 	name = "Marshal Logan Bills"
 	},
-/turf/open/ground/river{
+/turf/open/liquid/water{
 	color = "#990000";
 	name = "pool"
 	},
@@ -59256,7 +59256,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/desert_dam/exterior/river/riverside_east)
 "uPs" = (
 /obj/effect/ai_node,
@@ -59429,7 +59429,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -59830,7 +59830,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/southern_hallway)
 "vih" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/interior/dam_interior/western_dam_cave)
@@ -59928,7 +59928,7 @@
 	},
 /area/desert_dam/building/medical/lobby)
 "vks" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -60099,7 +60099,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "voI" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -60213,7 +60213,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "vsQ" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge,
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge,
 /area/desert_dam/exterior/river/riverside_east)
 "vtn" = (
 /obj/effect/landmark/weed_node,
@@ -60226,7 +60226,7 @@
 /area/desert_dam/interior/east_engineering)
 "vug" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -60622,7 +60622,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/north_wing_hallway)
 "vFL" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/river_mouth/southern)
@@ -61225,7 +61225,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -61588,7 +61588,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -62174,7 +62174,7 @@
 /area/desert_dam/exterior/valley/valley_medical)
 "wxs" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -63081,7 +63081,7 @@
 	},
 /area/desert_dam/building/hydroponics/hydroponics)
 "wWw" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -63231,7 +63231,7 @@
 /area/desert_dam/exterior/valley/north_valley_dam)
 "xbP" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
@@ -63553,7 +63553,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -64144,7 +64144,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -64317,7 +64317,7 @@
 	},
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "xJb" = (
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -64544,7 +64544,7 @@
 "xOK" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "xOL" = (
 /obj/structure/disposalpipe/segment{
@@ -65140,7 +65140,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/river/riverside_east)
@@ -65201,7 +65201,7 @@
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "ygQ" = (
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_south)
@@ -65318,7 +65318,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
+/turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
@@ -94321,7 +94321,7 @@ rCV
 rCV
 xqW
 cdw
-owP
+sBd
 coI
 ciU
 cfw
@@ -98350,7 +98350,7 @@ ciQ
 djx
 dtY
 gdW
-bLk
+eLU
 tLl
 dda
 dea
@@ -108356,7 +108356,7 @@ oQF
 chr
 ciU
 cdw
-owP
+sBd
 pNQ
 cdw
 aMz
@@ -115495,7 +115495,7 @@ acu
 acu
 rCV
 akk
-akE
+aAv
 soA
 rvL
 akK

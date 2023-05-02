@@ -43,6 +43,7 @@
 	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
 	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
+	leash_ball.hivenumber = X.hivenumber
 	var/obj/projectile/newspit = new (get_turf(X))
 
 	newspit.generate_bullet(leash_ball)
@@ -72,7 +73,7 @@
 	var/list/mob/living/carbon/human/leash_victims = list()
 
 /// Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human
-/obj/structure/xeno/aoe_leash/Initialize(mapload)
+/obj/structure/xeno/aoe_leash/Initialize(mapload, _hivenumber)
 	. = ..()
 	for(var/mob/living/carbon/human/victim in GLOB.humans_by_zlevel["[z]"])
 		if(get_dist(src, victim) > leash_radius)
@@ -113,7 +114,7 @@
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
+	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
@@ -234,7 +235,9 @@
 		INVOKE_ASYNC(src, PROC_REF(xeno_burrow_doafter))
 		return
 	UnregisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE)
-	X.fire_resist_modifier += BURROW_FIRE_RESIST_MODIFIER
+	ADD_TRAIT(X, TRAIT_NON_FLAMMABLE, ability_name)
+	X.soft_armor = X.soft_armor.modifyRating(fire = 100)
+	X.hard_armor = X.hard_armor.modifyRating(fire = 100)
 	X.mouse_opacity = initial(X.mouse_opacity)
 	X.density = TRUE
 	X.flags_pass &= ~PASSABLE
@@ -259,7 +262,9 @@
 	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
 	// We register for movement so that we unburrow if bombed
 	var/mob/living/carbon/xenomorph/X = owner
-	X.fire_resist_modifier -= BURROW_FIRE_RESIST_MODIFIER // This makes the xeno immune to fire while burrowed, even if burning beforehand
+	X.soft_armor = X.soft_armor.modifyRating(fire = -100)
+	X.hard_armor = X.hard_armor.modifyRating(fire = -100)
+	REMOVE_TRAIT(X, TRAIT_NON_FLAMMABLE, ability_name)
 	// Update here without waiting for life
 	X.update_icons()
 	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(xeno_burrow))

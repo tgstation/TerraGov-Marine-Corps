@@ -666,10 +666,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks/rebel)
-"aFi" = (
-/obj/effect/spawner/random/machinery/machine_frame,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "aFy" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
@@ -708,6 +704,15 @@
 	dir = 9
 	},
 /area/mainship/command/cic/rebel)
+"aHo" = (
+/obj/structure/table/mainship,
+/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/lower_engineering/rebel)
 "aHq" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -900,10 +905,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/self_destruct/rebel)
-"aQA" = (
-/obj/effect/spawner/random/machinery/machine_frame,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req/rebel)
 "aRy" = (
 /obj/structure/table/mainship,
 /obj/item/healthanalyzer,
@@ -913,10 +914,15 @@
 /obj/item/roller,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
-"aRX" = (
-/obj/machinery/marine_selector/gear/commander,
+"aSk" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	frequency = 1443;
+	name = "Lower Nitrogen Control Console";
+	output_tag = "nit_lower_out";
+	sensors = list("nit_sensor"="Tank")
+	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/numbertwobunks)
+/area/mainship/engineering/port_atmos)
 "aSl" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -1161,17 +1167,6 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
 /area/mainship/squads/req/rebel)
-"beA" = (
-/obj/structure/table/mainship,
-/obj/item/circuitboard/airalarm,
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/item/stock_parts/scanning_module,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/lightreplacer,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "beE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -1298,18 +1293,6 @@
 /obj/item/storage/box/matches,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"blS" = (
-/obj/structure/closet/secure_closet/freezer,
-/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
-/obj/item/reagent_containers/food/drinks/bottle/sake,
-/obj/item/reagent_containers/food/drinks/bottle/sake,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/turf/open/floor/wood,
-/area/mainship/command/corporateliaison)
 "bmf" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /obj/structure/cable,
@@ -1324,6 +1307,14 @@
 	dir = 8
 	},
 /area/mainship/squads/general/rebel)
+"bmk" = (
+/obj/structure/table/mainship,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/machinery/vending/nanomed,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos)
 "bmq" = (
 /obj/machinery/door/airlock/mainship/medical/rebel/glass/chemistry{
 	dir = 2
@@ -1600,6 +1591,15 @@
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
+"bFU" = (
+/obj/structure/table/woodentable,
+/obj/item/storage/bible,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
+/obj/effect/spawner/random/misc/plushie/nospawnninety,
+/turf/open/floor/carpet/side{
+	dir = 5
+	},
+/area/mainship/living/commandbunks/rebel)
 "bFW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -1797,18 +1797,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"bOh" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/pickaxe,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/spawner/random/engineering/pickaxe,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/obj/item/tool/weldpack,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req/rebel)
 "bOv" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -2319,6 +2307,18 @@
 "cjk" = (
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison/rebel)
+"cjH" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/tool/weldpack,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req/rebel)
 "cjO" = (
 /obj/machinery/light{
 	dir = 4
@@ -2639,15 +2639,6 @@
 "cxT" = (
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks/rebel)
-"cye" = (
-/obj/structure/table/mainship,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/machinery/alarm,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos)
 "cyl" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/starboard_umbilical/rebel)
@@ -2882,15 +2873,6 @@
 	dir = 1
 	},
 /area/mainship/squads/general/rebel)
-"cMZ" = (
-/obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
-	name = "Lower Oxygen Supply Console";
-	output_tag = "oxygen_lower_out";
-	sensors = list("oxy_sensor"="Tank")
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos)
 "cNr" = (
 /obj/machinery/sleeper,
 /turf/open/floor/mainship/sterile/dark,
@@ -3208,6 +3190,20 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
+"cZZ" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/machinery/light/small,
+/obj/item/fuelCell/full,
+/obj/item/assembly/prox_sensor,
+/obj/item/fuelCell/full,
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/starboard_missiles/rebel)
 "dan" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -3796,6 +3792,18 @@
 /obj/machinery/vending/tool,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"dEg" = (
+/obj/structure/rack,
+/obj/item/tool/crowbar,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/item/stack/cable_coil,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/assembly/timer,
+/obj/item/assembly/infra,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/medical_science/rebel)
 "dEq" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -3881,6 +3889,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
+"dHd" = (
+/obj/structure/table/mainship,
+/obj/item/clothing/gloves/insulated,
+/obj/item/clothing/glasses/meson,
+/obj/item/light_bulb/tube,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "dHj" = (
 /obj/machinery/computer/camera_advanced/overwatch/rebel/alpha,
 /obj/structure/table/mainship,
@@ -4036,18 +4051,6 @@
 	},
 /turf/open/shuttle/escapepod/four,
 /area/mainship/command/self_destruct/rebel)
-"dNQ" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/pickaxe,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/spawner/random/engineering/pickaxe,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/obj/item/tool/weldpack,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "dNV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -4264,16 +4267,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"dZW" = (
-/obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
-	input_tag = "mix_lower_in";
-	name = "Lower Mixed Air Control";
-	output_tag = "mix_lower_out";
-	sensors = list("mix_sensor"="Tank")
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos)
 "eab" = (
 /obj/machinery/power/port_gen/pacman/mobile_power,
 /turf/open/floor/mainship/mono,
@@ -4433,6 +4426,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
+"eiq" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	frequency = 1443;
+	name = "Lower Oxygen Supply Console";
+	output_tag = "oxygen_lower_out";
+	sensors = list("oxy_sensor"="Tank")
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos)
 "eiB" = (
 /obj/machinery/light{
 	dir = 4
@@ -5289,6 +5291,17 @@
 /obj/item/megaphone,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"eVv" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/structure/table/mainship,
+/obj/machinery/cell_charger,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req/rebel)
 "eVy" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint/rebel{
@@ -5581,6 +5594,12 @@
 	dir = 6
 	},
 /area/mainship/squads/general)
+"fhv" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/tool,
+/obj/machinery/vending/nanomed,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_umbilical/rebel)
 "fic" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -5638,6 +5657,17 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
+"fkN" = (
+/obj/structure/table/mainship,
+/obj/item/circuitboard/airalarm,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/item/stock_parts/scanning_module,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/lightreplacer,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "fkU" = (
 /obj/structure/bookcase,
 /turf/open/floor/wood,
@@ -5795,6 +5825,20 @@
 	dir = 5
 	},
 /area/mainship/squads/general)
+"fqP" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/machinery/light/small,
+/obj/item/fuelCell/full,
+/obj/item/assembly/prox_sensor,
+/obj/item/fuelCell/full,
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/starboard_missiles)
 "fqT" = (
 /obj/structure/table/reinforced,
 /obj/item/autopsy_scanner,
@@ -6500,6 +6544,17 @@
 /obj/machinery/atm,
 /turf/closed/wall/mainship,
 /area/mainship/living/cryo_cells/rebel)
+"fSE" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
+/obj/item/fuelCell/full,
+/obj/item/assembly/signaler,
+/obj/item/fuelCell/full,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "fSG" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -6746,6 +6801,19 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
+"gfR" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	frequency = 1443;
+	input_tag = "waste_lower_in";
+	name = "Lower Deck Waste Tank Control";
+	output_tag = "waste_lower_out";
+	sensors = list("waste_sensor"="Tank")
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos/rebel)
 "ggd" = (
 /obj/docking_port/stationary/ert/target{
 	id = "starboard_target";
@@ -6959,6 +7027,18 @@
 	dir = 8
 	},
 /area/mainship/command/self_destruct)
+"gqX" = (
+/obj/structure/closet/secure_closet/freezer,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/turf/open/floor/wood,
+/area/mainship/command/corporateliaison/rebel)
 "gqY" = (
 /obj/machinery/door/poddoor/railing{
 	id = "supply_elevator_railing"
@@ -7063,15 +7143,6 @@
 	dir = 8
 	},
 /area/mainship/living/cryo_cells/rebel)
-"gvn" = (
-/obj/structure/table/mainship,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/machinery/alarm,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos/rebel)
 "gvM" = (
 /obj/machinery/alarm,
 /turf/open/floor/mainship/mono,
@@ -7255,13 +7326,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"gDb" = (
-/obj/structure/table/mainship,
-/obj/item/clothing/gloves/yellow,
-/obj/item/clothing/glasses/meson,
-/obj/item/light_bulb/tube,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop/rebel)
 "gDk" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/secure{
@@ -7332,6 +7396,13 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"gGJ" = (
+/obj/structure/table/mainship,
+/obj/item/clothing/gloves/insulated,
+/obj/item/clothing/glasses/meson,
+/obj/item/light_bulb/tube,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop/rebel)
 "gGS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -7429,10 +7500,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
-"gLP" = (
-/obj/effect/spawner/random/machinery/machine_frame,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop/rebel)
 "gMl" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
@@ -7460,20 +7527,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/engineering/engineering_workshop/rebel)
-"gMD" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/tool,
-/obj/effect/spawner/random/engineering/tool,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/effect/spawner/random/engineering/powercell,
-/obj/effect/spawner/random/engineering/bomb_supply,
-/obj/machinery/light/small,
-/obj/item/fuelCell/full,
-/obj/item/assembly/prox_sensor,
-/obj/item/fuelCell/full,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_missiles/rebel)
 "gMO" = (
 /obj/machinery/telecomms/receiver/preset_left/rebel,
 /turf/open/floor/mainship/tcomms,
@@ -7960,17 +8013,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"hnR" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/structure/table/mainship,
-/obj/machinery/cell_charger,
-/obj/effect/spawner/random/engineering/powercell,
-/obj/effect/spawner/random/engineering/powercell,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "hok" = (
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 4
@@ -8900,6 +8942,18 @@
 /obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"idv" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/tool/weldpack,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "ied" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8;
@@ -9449,15 +9503,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/hull/lower_hull/rebel)
-"iEm" = (
-/obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
-	name = "Lower Nitrogen Control Console";
-	output_tag = "nit_lower_out";
-	sensors = list("nit_sensor"="Tank")
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos/rebel)
 "iEU" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -9601,13 +9646,6 @@
 	dir = 8
 	},
 /area/mainship/living/cryo_cells)
-"iLN" = (
-/obj/structure/table/mainship,
-/obj/item/clothing/gloves/yellow,
-/obj/item/clothing/glasses/meson,
-/obj/item/light_bulb/tube,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "iMR" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/mainship/green{
@@ -9656,6 +9694,18 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway/rebel)
+"iPg" = (
+/obj/structure/rack,
+/obj/item/tool/crowbar,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/item/stack/cable_coil,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/assembly/timer,
+/obj/item/assembly/infra,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/medical_science)
 "iPi" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -9841,12 +9891,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical/rebel)
-"iZx" = (
-/obj/structure/table/mainship,
-/obj/effect/spawner/random/engineering/tool,
-/obj/machinery/vending/nanomed,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_umbilical/rebel)
 "iZN" = (
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine/research,
@@ -9879,6 +9923,18 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
+"jbf" = (
+/obj/structure/closet/secure_closet/freezer,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/turf/open/floor/wood,
+/area/mainship/command/corporateliaison)
 "jcd" = (
 /obj/machinery/firealarm{
 	dir = 1
@@ -9908,18 +9964,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core/rebel)
-"jgu" = (
-/obj/structure/rack,
-/obj/item/tool/crowbar,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/item/stack/cable_coil,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/assembly/timer,
-/obj/item/assembly/infra,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/medical_science)
 "jgw" = (
 /obj/machinery/vending/nanomed,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -10546,6 +10590,10 @@
 	dir = 9
 	},
 /area/mainship/living/commandbunks)
+"jKc" = (
+/obj/effect/spawner/random/machinery/machine_frame,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop/rebel)
 "jKq" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -10627,17 +10675,6 @@
 /obj/effect/landmark/start/job/requisitionsofficer,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"jMP" = (
-/obj/structure/table/mainship,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/toolbox/electrical{
-	pixel_x = -5;
-	pixel_y = 4
-	},
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/item/flashlight,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms)
 "jNq" = (
 /obj/machinery/door/airlock/mainship/marine/general/smart,
 /obj/structure/cable,
@@ -12129,17 +12166,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
-"kYv" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/structure/table/mainship,
-/obj/machinery/cell_charger,
-/obj/effect/spawner/random/engineering/powercell,
-/obj/effect/spawner/random/engineering/powercell,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req/rebel)
 "kYw" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -12823,7 +12849,7 @@
 /area/mainship/engineering/lower_engineering)
 "lBe" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/rebel)
 "lBn" = (
@@ -13010,6 +13036,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
+"lHh" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	frequency = 1443;
+	name = "Lower Nitrogen Control Console";
+	output_tag = "nit_lower_out";
+	sensors = list("nit_sensor"="Tank")
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos/rebel)
 "lHn" = (
 /obj/item/frame/table,
 /obj/item/frame/table,
@@ -13128,6 +13163,17 @@
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_garden/rebel)
+"lNG" = (
+/obj/structure/table/mainship,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/item/flashlight,
+/turf/open/floor/mainship/mono,
+/area/mainship/command/telecomms)
 "lNT" = (
 /obj/machinery/door/airlock/mainship/command/CPToffice,
 /obj/machinery/door/firedoor/mainship,
@@ -13330,6 +13376,17 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
+"mdc" = (
+/obj/structure/table/mainship,
+/obj/item/circuitboard/airalarm,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/item/stock_parts/scanning_module,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/lightreplacer,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop/rebel)
 "mdp" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/mainship/tcomms,
@@ -13626,6 +13683,11 @@
 /obj/effect/landmark/start/job/researcher,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"mpR" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/snacks/sandwiches/creamcheesebreadslice,
+/turf/open/floor/freezer,
+/area/mainship/living/cafeteria_starboard)
 "mqa" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -13864,15 +13926,6 @@
 	dir = 9
 	},
 /area/mainship/command/corporateliaison)
-"mAg" = (
-/obj/structure/table/woodentable,
-/obj/item/storage/bible,
-/obj/item/reagent_containers/food/drinks/flask/barflask,
-/obj/effect/spawner/random/misc/plushie/nospawnninety,
-/turf/open/floor/carpet/side{
-	dir = 5
-	},
-/area/mainship/living/commandbunks/rebel)
 "mAk" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -13886,6 +13939,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway/rebel)
+"mAs" = (
+/obj/structure/table/mainship,
+/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/lower_engineering)
 "mAP" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -14129,10 +14191,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring/rebel)
-"mPo" = (
-/obj/machinery/marine_selector/gear/commander/rebel,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/numbertwobunks/rebel)
 "mPs" = (
 /obj/machinery/light{
 	dir = 8
@@ -14348,11 +14406,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull/rebel)
-"naF" = (
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sandwiches/creamcheesebreadslice,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard)
 "nba" = (
 /obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/mono,
@@ -14415,6 +14468,15 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"ndr" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/stamp/denied,
+/obj/item/tool/stamp/qm,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req/rebel)
 "ndw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship,
@@ -14904,19 +14966,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles/rebel)
-"nyH" = (
-/obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
-	input_tag = "waste_lower_in";
-	name = "Lower Deck Waste Tank Control";
-	output_tag = "waste_lower_out";
-	sensors = list("waste_sensor"="Tank")
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos)
 "nyQ" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/mainship/black{
@@ -14936,6 +14985,10 @@
 /obj/item/seeds/goldappleseed,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
+"nAZ" = (
+/obj/machinery/marine_selector/gear/commander,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/numbertwobunks)
 "nBv" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship/cargo,
@@ -15011,12 +15064,6 @@
 /obj/machinery/vending/cargo_supply/hvh,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"nEE" = (
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
-/obj/item/reagent_containers/food/drinks/coffee,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard/rebel)
 "nFg" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -15354,6 +15401,16 @@
 /obj/machinery/marine_selector/gear/engi/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
+"nVf" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	frequency = 1443;
+	input_tag = "mix_lower_in";
+	name = "Lower Mixed Air Control";
+	output_tag = "mix_lower_out";
+	sensors = list("mix_sensor"="Tank")
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos/rebel)
 "nVz" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -15487,6 +15544,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
+"obm" = (
+/obj/effect/spawner/random/machinery/machine_frame,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "obv" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/clothing/glasses/welding,
@@ -16119,15 +16180,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"oAm" = (
-/obj/structure/table/mainship,
-/obj/item/tool/extinguisher,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/lower_engineering/rebel)
 "oAu" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -16181,11 +16233,6 @@
 /obj/machinery/door/airlock/mainship/ai/glass,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom/rebel)
-"oCA" = (
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sandwiches/creamcheesebreadslice,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard/rebel)
 "oCO" = (
 /obj/machinery/light{
 	dir = 8
@@ -16269,6 +16316,19 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/starboard_missiles)
+"oEz" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	frequency = 1443;
+	input_tag = "waste_lower_in";
+	name = "Lower Deck Waste Tank Control";
+	output_tag = "waste_lower_out";
+	sensors = list("waste_sensor"="Tank")
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos)
 "oEW" = (
 /obj/structure/cable,
 /obj/machinery/power/apc,
@@ -16955,10 +17015,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
-"pfY" = (
-/obj/effect/spawner/random/machinery/machine_frame,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "pgk" = (
 /obj/machinery/door/airlock/mainship/research/rebel/glass/wing{
 	dir = 1
@@ -17164,7 +17220,7 @@
 /area/mainship/engineering/engineering_workshop/rebel)
 "pqH" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -17311,7 +17367,7 @@
 /area/mainship/hallways/aft_hallway)
 "pxO" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "pxU" = (
@@ -17400,18 +17456,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/upper_engineering)
-"pDr" = (
-/obj/structure/closet/secure_closet/freezer,
-/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
-/obj/item/reagent_containers/food/drinks/bottle/sake,
-/obj/item/reagent_containers/food/drinks/bottle/sake,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/turf/open/floor/wood,
-/area/mainship/command/corporateliaison/rebel)
 "pDB" = (
 /obj/item/tool/mop,
 /obj/machinery/light/small{
@@ -18988,6 +19032,12 @@
 /obj/item/tool/shovel/snow,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
+"qTP" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
+/obj/item/reagent_containers/food/drinks/coffee,
+/turf/open/floor/freezer,
+/area/mainship/living/cafeteria_starboard)
 "qUM" = (
 /obj/item/clothing/under/redpyjamas{
 	pixel_y = 5
@@ -19121,6 +19171,17 @@
 /obj/item/bedsheet/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
+"rak" = (
+/obj/structure/table/mainship,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/item/flashlight,
+/turf/open/floor/mainship/mono,
+/area/mainship/command/telecomms/rebel)
 "rav" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -19194,17 +19255,6 @@
 /obj/structure/sign/evac,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway/rebel)
-"rcJ" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/effect/spawner/random/engineering/tool,
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/effect/spawner/random/engineering/tool,
-/obj/item/fuelCell/full,
-/obj/item/assembly/signaler,
-/obj/item/fuelCell/full,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull/rebel)
 "rdC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -19863,6 +19913,10 @@
 /obj/structure/closet/lasertag/blue,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range/rebel)
+"rIg" = (
+/obj/machinery/marine_selector/gear/commander/rebel,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/numbertwobunks/rebel)
 "rIG" = (
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 4
@@ -20032,15 +20086,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"rTm" = (
-/obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
-	name = "Lower Oxygen Supply Console";
-	output_tag = "oxygen_lower_out";
-	sensors = list("oxy_sensor"="Tank")
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos/rebel)
 "rTn" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
@@ -20137,15 +20182,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
-"rWZ" = (
-/obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
-	name = "Lower Nitrogen Control Console";
-	output_tag = "nit_lower_out";
-	sensors = list("nit_sensor"="Tank")
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos)
 "rXd" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -20504,18 +20540,6 @@
 	dir = 8
 	},
 /area/mainship/living/grunt_rnr)
-"slo" = (
-/obj/structure/rack,
-/obj/item/tool/crowbar,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/item/stack/cable_coil,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/assembly/timer,
-/obj/item/assembly/infra,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/medical_science/rebel)
 "smq" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -20631,6 +20655,17 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/stern_hallway/rebel)
+"spX" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
+/obj/item/fuelCell/full,
+/obj/item/assembly/signaler,
+/obj/item/fuelCell/full,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull/rebel)
 "sqR" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -20889,15 +20924,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing/rebel)
-"sGZ" = (
-/obj/structure/table/mainship,
-/obj/item/tool/extinguisher,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/lower_engineering)
 "sHd" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -21841,7 +21867,7 @@
 /area/mainship/hallways/aft_hallway/rebel)
 "tus" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -22061,19 +22087,6 @@
 /obj/structure/curtain/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
-"tEl" = (
-/obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
-	input_tag = "waste_lower_in";
-	name = "Lower Deck Waste Tank Control";
-	output_tag = "waste_lower_out";
-	sensors = list("waste_sensor"="Tank")
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos/rebel)
 "tFj" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
@@ -22094,6 +22107,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
+"tGF" = (
+/obj/structure/table/mainship,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/machinery/vending/nanomed,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos/rebel)
 "tGI" = (
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
@@ -22164,17 +22185,6 @@
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"tIn" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/effect/spawner/random/engineering/tool,
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/effect/spawner/random/engineering/tool,
-/obj/item/fuelCell/full,
-/obj/item/assembly/signaler,
-/obj/item/fuelCell/full,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
 "tIG" = (
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/mainship/mono,
@@ -22307,17 +22317,6 @@
 /obj/item/ammo_magazine/revolver/standard_revolver,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range/rebel)
-"tPL" = (
-/obj/structure/table/mainship,
-/obj/item/circuitboard/airalarm,
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/item/stock_parts/scanning_module,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/lightreplacer,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop/rebel)
 "tQo" = (
 /turf/open/floor/mainship/black{
 	dir = 10
@@ -22522,14 +22521,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
-"tXF" = (
-/obj/structure/table/mainship,
-/obj/item/tool/wrench,
-/obj/item/tool/crowbar,
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/machinery/vending/nanomed,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos/rebel)
 "tXL" = (
 /obj/machinery/power/smes/preset,
 /obj/structure/cable,
@@ -22694,6 +22685,15 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_umbilical/rebel)
+"ueC" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/machinery/alarm,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos/rebel)
 "ueR" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -23436,16 +23436,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_umbilical)
-"uOL" = (
-/obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
-	input_tag = "mix_lower_in";
-	name = "Lower Mixed Air Control";
-	output_tag = "mix_lower_out";
-	sensors = list("mix_sensor"="Tank")
-	},
+"uOS" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/tool,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos/rebel)
+/area/mainship/hallways/starboard_umbilical)
 "uPz" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -23602,12 +23598,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/command/self_destruct)
-"uWj" = (
-/obj/structure/table/mainship,
-/obj/effect/spawner/random/engineering/tool,
-/obj/machinery/vending/nanomed,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_umbilical)
 "uWq" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/start/job/chiefshipengineer/rebel,
@@ -23776,7 +23766,7 @@
 /area/mainship/command/cic/rebel)
 "vdN" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -24212,6 +24202,12 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/port_garden/rebel)
+"vwR" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
+/obj/item/reagent_containers/food/drinks/coffee,
+/turf/open/floor/freezer,
+/area/mainship/living/cafeteria_starboard/rebel)
 "vwW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -24224,6 +24220,15 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req/rebel)
+"vxh" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/machinery/alarm,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos)
 "vxt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -24610,6 +24615,11 @@
 "vRG" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/starboard_hallway/rebel)
+"vRX" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/snacks/sandwiches/creamcheesebreadslice,
+/turf/open/floor/freezer,
+/area/mainship/living/cafeteria_starboard/rebel)
 "vSA" = (
 /obj/item/trash/cigbutt,
 /turf/open/floor/mainship/black{
@@ -24638,14 +24648,6 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"vTi" = (
-/obj/structure/table/mainship,
-/obj/item/tool/wrench,
-/obj/item/tool/crowbar,
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/machinery/vending/nanomed,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/port_atmos)
 "vTr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -24894,6 +24896,17 @@
 "wgc" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hull/lower_hull/rebel)
+"wgj" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/structure/table/mainship,
+/obj/machinery/cell_charger,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "wgm" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -25209,12 +25222,6 @@
 	dir = 8
 	},
 /area/mainship/shipboard/firing_range/rebel)
-"wpI" = (
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
-/obj/item/reagent_containers/food/drinks/coffee,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard)
 "wpK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -25378,7 +25385,7 @@
 /area/mainship/command/corporateliaison/rebel)
 "wxD" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -25458,6 +25465,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_umbilical)
+"wBd" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	frequency = 1443;
+	name = "Lower Oxygen Supply Console";
+	output_tag = "oxygen_lower_out";
+	sensors = list("oxy_sensor"="Tank")
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos/rebel)
 "wBp" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -25617,17 +25633,6 @@
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison/rebel)
-"wIs" = (
-/obj/structure/table/mainship,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/toolbox/electrical{
-	pixel_x = -5;
-	pixel_y = 4
-	},
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/item/flashlight,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms/rebel)
 "wIG" = (
 /obj/structure/closet/emcloset,
 /obj/item/clothing/mask/gas,
@@ -25953,6 +25958,10 @@
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating,
 /area/mainship/medical/lower_medical)
+"wVv" = (
+/obj/effect/spawner/random/machinery/machine_frame,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "wVH" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -26507,6 +26516,16 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_hallway/rebel)
+"xwh" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	frequency = 1443;
+	input_tag = "mix_lower_in";
+	name = "Lower Mixed Air Control";
+	output_tag = "mix_lower_out";
+	sensors = list("mix_sensor"="Tank")
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/port_atmos)
 "xwm" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -26590,7 +26609,7 @@
 /area/mainship/command/cic/rebel)
 "xBF" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -26905,6 +26924,10 @@
 /obj/machinery/marine_selector/gear/smartgun/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
+"xMO" = (
+/obj/effect/spawner/random/machinery/machine_frame,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req/rebel)
 "xMR" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -26982,7 +27005,7 @@
 /area/mainship/hallways/hangar/rebel)
 "xPx" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -27208,15 +27231,6 @@
 "yam" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/shipboard/port_missiles/rebel)
-"yar" = (
-/obj/structure/table/mainship,
-/obj/item/folder/black_random,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/stamp/denied,
-/obj/item/tool/stamp/qm,
-/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req/rebel)
 "yaI" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -27297,20 +27311,6 @@
 /obj/structure/sign/safety/cryogenic,
 /turf/open/floor/mainship/black/full,
 /area/mainship/living/cryo_cells/rebel)
-"yef" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/tool,
-/obj/effect/spawner/random/engineering/tool,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/effect/spawner/random/engineering/technology_scanner,
-/obj/effect/spawner/random/engineering/powercell,
-/obj/effect/spawner/random/engineering/bomb_supply,
-/obj/machinery/light/small,
-/obj/item/fuelCell/full,
-/obj/item/assembly/prox_sensor,
-/obj/item/fuelCell/full,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_missiles)
 "yeC" = (
 /obj/machinery/light{
 	dir = 1
@@ -31796,7 +31796,7 @@ wgc
 xzi
 nif
 xif
-rTm
+wBd
 rTn
 hrV
 xpb
@@ -32567,7 +32567,7 @@ wgc
 xzi
 nif
 xif
-iEm
+lHh
 uBT
 hrV
 xpb
@@ -32824,7 +32824,7 @@ xzi
 xzi
 xzi
 xif
-tXF
+tGF
 cXJ
 dOC
 dOC
@@ -33338,7 +33338,7 @@ lfQ
 nif
 trM
 xif
-uOL
+nVf
 jzc
 fgk
 fev
@@ -33564,7 +33564,7 @@ nif
 aJm
 vEn
 wcg
-rcJ
+spX
 cfk
 tHC
 wgc
@@ -33595,7 +33595,7 @@ fpX
 nif
 peV
 xif
-gvn
+ueC
 dCo
 sxL
 fgX
@@ -33848,7 +33848,7 @@ hRd
 qJQ
 fWJ
 vmx
-mPo
+rIg
 nif
 kTu
 xif
@@ -34109,7 +34109,7 @@ mwz
 nif
 kTu
 xif
-tEl
+gfR
 ayx
 jzc
 vPt
@@ -34341,7 +34341,7 @@ nif
 nif
 nif
 xRx
-mAg
+bFU
 bls
 duL
 jGo
@@ -35881,7 +35881,7 @@ vxt
 rqI
 uui
 bKD
-pDr
+gqX
 uiw
 oFF
 lbr
@@ -36640,7 +36640,7 @@ hPh
 wNU
 fId
 wNA
-slo
+dEg
 erM
 wNU
 iNC
@@ -37456,7 +37456,7 @@ xRh
 wPY
 pip
 syl
-oAm
+aHo
 wPY
 rgG
 aza
@@ -38213,7 +38213,7 @@ gIs
 qrO
 unm
 bTS
-wIs
+rak
 pvm
 mCV
 whE
@@ -40997,8 +40997,8 @@ ltd
 ydF
 smF
 jrI
-bOh
-kYv
+cjH
+eVv
 bmg
 qEs
 nMH
@@ -41054,8 +41054,8 @@ dnl
 jIG
 olN
 rBB
-gDb
-tPL
+gGJ
+mdc
 qTp
 rBB
 rBB
@@ -41250,7 +41250,7 @@ vEY
 gaB
 qse
 wPF
-yar
+ndr
 sqY
 gaB
 gaB
@@ -41827,7 +41827,7 @@ nQZ
 rBB
 ppV
 iTX
-gLP
+jKc
 rBB
 rBB
 oFj
@@ -42536,7 +42536,7 @@ gaB
 ueS
 bee
 gaB
-aQA
+xMO
 kDf
 arP
 kgR
@@ -45622,7 +45622,7 @@ nnu
 bWT
 rrt
 uQO
-gMD
+cZZ
 qgy
 wsN
 wdC
@@ -47459,7 +47459,7 @@ tGI
 sZj
 neX
 jod
-oCA
+vRX
 unK
 uTG
 wew
@@ -47715,7 +47715,7 @@ tGI
 tGI
 iON
 neX
-nEE
+vwR
 dtE
 xkz
 uTG
@@ -48235,7 +48235,7 @@ vkE
 uTG
 wew
 nif
-iZx
+fhv
 vBH
 myF
 vBH
@@ -48486,7 +48486,7 @@ eiB
 lcR
 ylL
 neX
-oCA
+vRX
 iRN
 vkE
 uTG
@@ -49000,7 +49000,7 @@ uTG
 iuA
 ylL
 neX
-nEE
+vwR
 mBS
 vkE
 uTG
@@ -72535,7 +72535,7 @@ iAA
 eyp
 ucm
 mtR
-cMZ
+eiq
 dAf
 tTK
 eLj
@@ -73306,7 +73306,7 @@ iAA
 eyp
 ucm
 mtR
-rWZ
+aSk
 oPW
 tTK
 eLj
@@ -73563,7 +73563,7 @@ eyp
 eyp
 eyp
 mtR
-vTi
+bmk
 dTU
 qcj
 qcj
@@ -74077,7 +74077,7 @@ qUU
 ucm
 skN
 mtR
-dZW
+xwh
 lXm
 fpr
 eAZ
@@ -74303,7 +74303,7 @@ ucm
 oEW
 jzN
 cpo
-tIn
+fSE
 qfp
 qim
 iAA
@@ -74334,7 +74334,7 @@ xkB
 ucm
 eNF
 mtR
-cye
+vxh
 smu
 coT
 oTl
@@ -74587,7 +74587,7 @@ wJH
 tds
 inb
 bwE
-aRX
+nAZ
 ucm
 xih
 mtR
@@ -74848,7 +74848,7 @@ ozy
 ucm
 xih
 mtR
-nyH
+oEz
 soE
 lXm
 vOf
@@ -76620,7 +76620,7 @@ chs
 kFX
 goP
 hZg
-blS
+jbf
 dvI
 pYa
 khw
@@ -77379,7 +77379,7 @@ uUa
 ydq
 ifY
 kjn
-jgu
+iPg
 tZf
 ydq
 acm
@@ -78195,7 +78195,7 @@ gMl
 tXZ
 gIr
 oxj
-sGZ
+mAs
 tXZ
 xiC
 fJT
@@ -78952,7 +78952,7 @@ sYp
 veo
 brO
 vzK
-jMP
+lNG
 wlg
 iYQ
 oQr
@@ -81736,8 +81736,8 @@ pys
 dtw
 arW
 tlD
-dNQ
-hnR
+idv
+wgj
 iWN
 kvC
 uib
@@ -81793,8 +81793,8 @@ aKg
 xGL
 ntm
 okN
-iLN
-beA
+dHd
+fkN
 tmD
 okN
 okN
@@ -82566,7 +82566,7 @@ cyp
 okN
 etz
 iDo
-aFi
+obm
 okN
 okN
 huu
@@ -83275,7 +83275,7 @@ brK
 adN
 lnz
 brK
-pfY
+wVv
 gYU
 uDk
 tdD
@@ -86361,7 +86361,7 @@ jcG
 knm
 wyq
 uux
-yef
+fqP
 iKS
 oGY
 hcT
@@ -88198,7 +88198,7 @@ nXa
 arV
 oiN
 toD
-naF
+mpR
 oih
 bgM
 bIQ
@@ -88454,7 +88454,7 @@ nXa
 nXa
 jxe
 oiN
-wpI
+qTP
 xJp
 lpj
 bgM
@@ -88974,7 +88974,7 @@ daB
 bgM
 bIQ
 ucm
-uWj
+uOS
 oEr
 vTt
 oEr
@@ -89225,7 +89225,7 @@ ydn
 fLR
 dEH
 oiN
-naF
+mpR
 wOf
 daB
 bgM
@@ -89739,7 +89739,7 @@ bgM
 rbK
 dEH
 oiN
-wpI
+qTP
 prM
 daB
 bgM

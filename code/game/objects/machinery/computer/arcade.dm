@@ -30,7 +30,7 @@
 /obj/machinery/computer/arcade
 	var/turtle = 0
 
-/obj/machinery/computer/arcade/Initialize()
+/obj/machinery/computer/arcade/Initialize(mapload)
 	. = ..()
 	var/name_action
 	var/name_part1

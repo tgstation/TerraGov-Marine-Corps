@@ -8,7 +8,7 @@
 	circuit = /obj/item/circuitboard/computer/air_management
 
 
-/obj/machinery/computer/general_air_control/Initialize()
+/obj/machinery/computer/general_air_control/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 

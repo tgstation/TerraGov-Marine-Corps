@@ -203,12 +203,6 @@
 		return ..()
 	return window.MouseDrop_T(dropping, user)
 
-/obj/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
-	var/obj/structure/window = locate(window_type) in loc
-	if(!window)
-		return ..()
-	return window.MouseDrop_T(dropping, user)
-
 /obj/alien/weeds/weedwall/window/specialclick(mob/living/carbon/user)
 	var/obj/structure/window = locate(window_type) in loc
 	if(!window)

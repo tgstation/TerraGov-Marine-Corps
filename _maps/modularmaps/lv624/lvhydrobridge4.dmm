@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "c" = (
 /obj/structure/grille/broken,
@@ -16,7 +16,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "g" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -41,7 +41,7 @@
 "p" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "q" = (
 /obj/structure/disposalpipe/segment{
@@ -66,7 +66,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /obj/structure/cable,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "w" = (
 /obj/structure/grille/smoothing,
@@ -96,7 +96,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "H" = (
 /obj/structure/disposalpipe/segment{
@@ -106,7 +106,7 @@
 /area/lv624/ground/river2)
 "J" = (
 /obj/structure/grille/smoothing,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river2)
 "K" = (
 /obj/effect/landmark/weed_node,
@@ -117,17 +117,17 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "P" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "R" = (
 /turf/open/floor,
 /area/lv624/ground/river2)
 "V" = (
 /obj/structure/grille/broken,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "W" = (
 /turf/closed/wall,
@@ -140,7 +140,7 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "Z" = (
 /obj/effect/turf_decal/warning_stripes/thin{

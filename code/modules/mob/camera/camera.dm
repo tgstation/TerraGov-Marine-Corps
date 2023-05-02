@@ -14,7 +14,7 @@
 	var/call_life = FALSE //TRUE if Life() should be called on this camera every tick of the mobs subystem, as if it were a living mob
 
 
-/mob/camera/Initialize()
+/mob/camera/Initialize(mapload)
 	. = ..()
 	if(call_life)
 		GLOB.living_cameras += src

@@ -8,6 +8,7 @@
 	density = TRUE
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
+	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	max_integrity = 100
 	///high chance to block bullets, offset by being unanchored
 	coverage = 80
@@ -33,7 +34,7 @@
 	if(result)
 		amount_per_transfer_from_this = result
 
-/obj/structure/reagent_dispensers/Initialize()
+/obj/structure/reagent_dispensers/Initialize(mapload)
 	. = ..()
 	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
 

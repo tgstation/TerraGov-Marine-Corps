@@ -48,7 +48,7 @@
 /area/lv624/ground/caves/central1)
 "jJ" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/caves/central2)
 "km" = (
 /obj/structure/rack,
@@ -259,7 +259,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Ok" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/caves/central2)
 "Rz" = (
 /turf/open/ground/coast{
@@ -303,7 +303,7 @@
 /area/lv624/ground/caves/central1)
 "XM" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/caves/central2)
 "XP" = (
 /obj/structure/rack,
@@ -314,7 +314,7 @@
 /area/lv624/ground/caves/central1)
 "Yu" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/caves/central2)
 
 (1,1,1) = {"
