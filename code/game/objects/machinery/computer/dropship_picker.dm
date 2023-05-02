@@ -9,6 +9,7 @@
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI
 	req_access = list(ACCESS_MARINE_DROPSHIP)
+	/// dock id to dock our chosen shuttle at
 	var/dock_id = SHUTTLE_TADPOLE
 	///if true lock console
 	var/dropship_selected = FALSE
@@ -29,17 +30,15 @@
 		ui.open()
 
 /obj/machinery/computer/dropship_picker/ui_static_data(mob/user)
-	var/data = list()
+	. = list()
 	var/list/shuttles = list()
-	for (var/datum/map_template/shuttle/minidropship/shuttle_template in SSmapping.minidropship_templates)
+	for (var/datum/map_template/shuttle/minidropship/shuttle_template AS in SSmapping.minidropship_templates)
 		shuttles += list(list(
 			"name" = shuttle_template.display_name,
 			"description" = shuttle_template.description,
 			"ref" = REF(shuttle_template),
 		))
-	data["shuttles"] = shuttles
-	
-	return data
+	.["shuttles"] = shuttles
 
 /obj/machinery/computer/dropship_picker/ui_data(mob/user)
 	. = list()
@@ -50,7 +49,6 @@
 		.["desc"] = temp.description
 		.["name"] = temp.display_name
 		.["assetpath"] = temp.suffix
-	return .
 
 /obj/machinery/computer/dropship_picker/ui_assets(mob/user)
 	. = ..()
