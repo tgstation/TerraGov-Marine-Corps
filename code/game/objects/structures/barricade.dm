@@ -347,7 +347,7 @@
 	icon_state = "railing_0"
 	coverage = 25
 	max_integrity = 150
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 15, "bio" = 100, "fire" = 100, "acid" = 10)
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 15, "bio" = 100, "fire" = 100, "acid" = 10) // todo this file is not using armor defines
 	climbable = FALSE
 	stack_type = /obj/item/stack/rods
 	destroyed_stack_amount = 3

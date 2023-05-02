@@ -29,6 +29,13 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
+			/obj/item/cell/lasgun/plasma = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/carbine = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/pistol = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/sniper = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/minigun = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,

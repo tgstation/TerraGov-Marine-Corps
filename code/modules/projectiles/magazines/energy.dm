@@ -43,6 +43,13 @@
 	charge_amount = 25 // 10%, 1 shot
 	charge_delay = 2 SECONDS
 
+/obj/item/cell/lasgun/plasma
+	name = "\improper WML plasma battery"
+	desc = "A plasma containment cell produced by the Kongjian corporation. It doesnßt seem to have an expiry date."
+	charge_overlay = "plasma"
+	icon_state = "plasma"
+	maxcharge = 1000
+
 /obj/item/cell/lasgun/M43/practice
 	name = "\improper M43-P lasgun battery"
 	desc = "A specialized high density battery used to power the M43-P practice lasgun. It lacks any potential to harm someone, but it has the ability to recharge."

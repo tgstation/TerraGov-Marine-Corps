@@ -1,5 +1,9 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
+/*!
+ * TODO SPLIT THIS FILE GODDAM
+ */
+
 GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
 
 /datum/ammo
@@ -2519,7 +2523,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "laser bolt"
 	icon_state = "laser"
 	hud_state = "laser"
-	armor_type = "laser"
+	armor_type = LASER
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
 	shell_speed = 4
 	accurate_range = 15
@@ -2791,6 +2795,219 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? get_step_towards(T, P) : T)
 
+/datum/ammo/energy/plasma
+	name = "laser bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+	armor_type = ENERGY
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+
+/datum/ammo/energy/plasma/minigun_rapid
+	damage = 15
+	penetration = 15
+	sundering = 0.5
+	damage_falloff = 0.8
+	accuracy = 0.9
+	scatter = 10
+
+/datum/ammo/energy/plasma/minigun_incendiary
+	damage = 35
+	penetration = 25
+	sundering = 1
+	damage_falloff = 0.5
+	accuracy = 1
+	scatter = 5
+
+/datum/ammo/energy/plasma/minigun_glob
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ENERGY|AMMO_SUNDERING|AMMO_INCENDIARY
+	damage = 35
+	penetration = 25
+	sundering = 1
+	damage_falloff = 0.5
+	accuracy = 1
+	scatter = 0
+
+/datum/ammo/energy/plasma/minigun_glob/drop_nade(turf/T, radius = 1)
+	if(!T || !isturf(T))
+		return
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(radius, T, 3, 3, 3, 3)
+
+/datum/ammo/energy/plasma/minigun_glob/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/energy/plasma/minigun_glob/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? get_step_towards(O, P) : O, P)
+
+/datum/ammo/energy/plasma/minigun_glob/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? get_step_towards(T, P) : T)
+
+/datum/ammo/energy/plasma/minigun_glob/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? get_step_towards(T, P) : T)
+
+/datum/ammo/energy/plasma/sniper
+	damage = 70
+	penetration = 30
+	sundering = 7
+	damage_falloff = 0.1
+	accuracy = 1.1
+	scatter = -15
+
+/datum/ammo/energy/plasma/rifle_standard
+	damage = 15
+	penetration = 10
+	sundering = 0.5
+	damage_falloff = 0.5
+	accuracy = 1
+	scatter = 0
+
+/datum/ammo/energy/plasma/rifle_marksman
+	damage = 45
+	penetration = 20
+	sundering = 2
+	damage_falloff = 0.2
+	accuracy = 1.1
+	scatter = 0
+
+/datum/ammo/energy/plasma/carbine_standard
+	damage = 20
+	penetration = 10
+	sundering = 0.5
+	damage_falloff = 0.7
+	accuracy = 1.1
+	scatter = 0
+
+/datum/ammo/energy/plasma/carbine_shotgun
+	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_shotgun/additional
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 6
+	damage = 60
+	penetration = 10
+	sundering = 1
+	damage_falloff = 1
+	accuracy = 0.8
+	scatter = 15
+
+/datum/ammo/energy/plasma/carbine_shotgun/additional
+	damage = 20
+	penetration = 5
+	bonus_projectiles_type = null
+
+/datum/ammo/energy/plasma/carbine_trifire
+	damage = 20
+	penetration = 10
+	sundering = 0.5
+	damage_falloff = 0.7
+	accuracy = 1.1
+	scatter = 0
+
+/datum/ammo/energy/plasma/carbine_trifire/one
+	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_trifire
+
+/datum/ammo/energy/plasma/carbine_trifire/two
+	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_trifire/one
+
+/datum/ammo/energy/plasma/carbine_trifire/three
+	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_trifire/two
+
+/datum/ammo/energy/plasma/carbine_trifire/four
+	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_trifire/three
+	bonus_projectiles_amount = 3
+
+/datum/ammo/energy/plasma/carbine_trifire/on_hit_turf(turf/T, obj/projectile/proj)
+	. = ..()
+	if(!bonus_projectiles_type)
+		return
+	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
+
+	// Check for the neightbour tile
+	var/rico_dir_check
+	switch(ricochet_angle)
+		if(-INFINITY to 45)
+			rico_dir_check = EAST
+		if(46 to 135)
+			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
+		if(136 to 225)
+			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
+		if(126 to 315)
+			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
+		if(316 to INFINITY)
+			rico_dir_check = WEST
+
+	var/turf/next_turf = get_step(T, rico_dir_check)
+	if(next_turf.density)
+		ricochet_angle += 180
+
+	bonus_projectiles_amount = 1
+	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle)
+	bonus_projectiles_amount = 0
+
+/datum/ammo/energy/plasma/pistol_standard
+	damage = 20
+	penetration = 10
+	sundering = 0.5
+	damage_falloff = 0.7
+	accuracy = 1.1
+	scatter = 0
+
+/datum/ammo/energy/plasma/pistol_automatic
+	damage = 20
+	penetration = 10
+	sundering = 0.5
+	damage_falloff = 0.7
+	accuracy = 1.1
+	scatter = 0
+
+/datum/ammo/energy/plasma/cannon_standard
+	damage = 20
+	penetration = 10
+	sundering = 0.5
+	damage_falloff = 0.7
+	accuracy = 1.1
+	scatter = 0
+
+/datum/ammo/energy/plasma/cannon_swarm
+	damage = 20
+	penetration = 10
+	sundering = 0.5
+	damage_falloff = 0.7
+	accuracy = 1.1
+	shell_speed = 0.1
+
+/datum/ammo/energy/plasma/cannon_flamer
+	//copy paste of flamer standard code kuro fix this
+	name = "flame"
+	icon_state = "pulse0"
+	hud_state = "flame"
+	hud_state_empty = "flame_empty"
+	damage_type = BURN
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE
+	armor_type = "fire"
+	max_range = 7
+	damage = 31
+	damage_falloff = 0
+	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
+	bullet_color = LIGHT_COLOR_FIRE
+	var/fire_color = "red"
+	var/burntime = 17
+	var/burnlevel = 31
+
+/datum/ammo/energy/plasma/cannon_flamer/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	T.ignite(burntime, burnlevel, fire_color)
+
+/datum/ammo/energy/plasma/cannon_flamer/on_hit_mob(mob/M, obj/projectile/P)
+	drop_flame(get_turf(M))
+
+/datum/ammo/energy/plasma/cannon_flamer/on_hit_obj(obj/O, obj/projectile/P)
+	drop_flame(get_turf(O))
+
+/datum/ammo/energy/plasma/cannon_flamer/on_hit_turf(turf/T, obj/projectile/P)
+	drop_flame(get_turf(T))
+
+/datum/ammo/energy/plasma/cannon_flamer/do_at_max_range(turf/T, obj/projectile/P)
+	drop_flame(get_turf(T))
 
 /datum/ammo/energy/xeno
 	barricade_clear_distance = 0
