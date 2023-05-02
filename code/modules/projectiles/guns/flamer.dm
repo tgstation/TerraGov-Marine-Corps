@@ -349,6 +349,12 @@
 	. = ..()
 	flamerpack.handle_item_insertion(src)
 
+
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/on_exit_storage(obj/item/storage/S)
+	. = ..()
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer, MouseDrop_T), S, S.loc), 0.1 SECONDS)
+
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."

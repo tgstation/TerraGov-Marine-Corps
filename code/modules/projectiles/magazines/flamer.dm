@@ -128,4 +128,4 @@
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	max_rounds = 280
 	current_rounds = 280
-	reload_delay = 1 SECONDS
+	reload_delay = 0 SECONDS
