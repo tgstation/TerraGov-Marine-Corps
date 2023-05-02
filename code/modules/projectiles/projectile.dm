@@ -676,6 +676,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 	bullet_act(proj)
 
+/obj/projectile/bullet_act(obj/projectile/proj)
+	. = ..()
+	ammo.on_hit_obj(proj, src)
+	qdel(src) //boolets are quite brittle by default
+
 /obj/structure/window/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
 		return FALSE
