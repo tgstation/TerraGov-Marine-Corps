@@ -470,6 +470,6 @@
 	. = ..()
 	GLOB.eord_roomba_spawns += src
 
-/obj/effect/landmark/patrol_point/Destroy()
+/obj/effect/landmark/eord_roomba/Destroy()
 	GLOB.eord_roomba_spawns -= src
 	return ..()
