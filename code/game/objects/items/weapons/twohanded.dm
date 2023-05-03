@@ -322,7 +322,7 @@
 	force = 32
 	force_wielded = 60
 	throwforce = 60
-	flags_item = DRAINS_XENO | TWOHANDED
+	flags_item = TWOHANDED
 
 /obj/item/weapon/twohanded/spear/tactical/harvester/Initialize(mapload)
 	. = ..()
@@ -397,7 +397,7 @@
 	attack_speed = 24
 	sharp = IS_SHARP_ITEM_BIG
 	w_class = WEIGHT_CLASS_BULKY
-	flags_item = DRAINS_XENO | TWOHANDED
+	flags_item = TWOHANDED
 
 	/// Lists the information in the codex
 	var/codex_info = {"<b>Reagent info:</b><BR>
