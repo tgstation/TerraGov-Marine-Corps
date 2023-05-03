@@ -8,6 +8,10 @@
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 	///Whether only marines can activate this. left here in case of admins feeling nice or events
 	var/marine_only_activate = TRUE
+	///Tracks when the system was last armed
+	var/arm_time
+
+	var/list/temps = list()
 
 /obj/machinery/self_destruct/Initialize()
 	. = ..()
@@ -57,7 +61,16 @@
 		ui.open()
 
 /obj/machinery/self_destruct/console/ui_data(mob/user)
-	return list("dest_status" = active_state)
+	var/obj/machinery/self_destruct/rod/I = SSevacuation.dest_rods[SSevacuation.dest_index]
+
+	var/list/data = list()
+	data["dest_status"] = active_state
+	if(I.activate_time)
+		data["detonation_pcent"] = round(((world.time - I.activate_time)  / (SELF_DESTRUCT_ROD_STARTUP_TIME)), 0.01)  // percentage of time left to detonation
+		data["detonation_time"] = DisplayTimeText((SELF_DESTRUCT_ROD_STARTUP_TIME) - (world.time - I.activate_time), 10) //amount of time left to detonation
+	else
+		data["detonation_pcent"] = 0
+	return data
 
 
 /obj/machinery/self_destruct/console/ui_act(action, list/params)
