@@ -97,12 +97,12 @@
 /obj/machinery/deployable/reagent_tank/AltClick(mob/user)
 	if(is_refillable())
 		balloon_alert(user, "Dispense mode!")
-		DISABLE_BITFIELD(reagents.reagent_flags, REFILLABLE)
-		ENABLE_BITFIELD(reagents.reagent_flags, DRAINABLE)
+		reagents.reagent_flags &= ~REFILLABLE
+		reagents.reagent_flags |= DRAINABLE
 	else
 		balloon_alert(user, "Refill mode!")
-		DISABLE_BITFIELD(reagents.reagent_flags, DRAINABLE)
-		ENABLE_BITFIELD(reagents.reagent_flags, REFILLABLE)
+		reagents.reagent_flags &= ~DRAINABLE
+		reagents.reagent_flags |= REFILLABLE
 	playsound(src, 'sound/effects/pop.ogg', 100)
 	update_icon()
 
