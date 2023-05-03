@@ -182,22 +182,22 @@
 	. = ..()
 
 	if(firing)
-		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off.")
+		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off")
 		return
 
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
 		if(length(chamber_items) >= max_rounds)
-			user.balloon_alert(user, "You cannot fit more in there.")
+			user.balloon_alert(user, "You cannot fit more")
 			return
 
 		if(!(I.type in allowed_shells))
-			user.balloon_alert(user, "This shell doesn't fit.")
+			user.balloon_alert(user, "This shell doesn't fit")
 			return
 
 		if(busy)
-			user.balloon_alert(user, "Someone else is using this.")
+			user.balloon_alert(user, "Someone else is using this")
 			return
 
 		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
@@ -213,7 +213,7 @@
 		user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
 		span_notice("You load \a [mortar_shell.name] into [src]."))
 		chamber_items += mortar_shell
-		user.balloon_alert(user, "Right click to fire.")
+		user.balloon_alert(user, "Right click to fire")
 		mortar_shell.forceMove(src)
 		user.temporarilyRemoveItemFromInventory(mortar_shell)
 
@@ -237,9 +237,9 @@
 	var/obj/item/binoculars/tactical/binocs = I
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(binocs.set_mortar(src))
-		to_chat(user, span_notice("You link the mortar to the [binocs] allowing for remote targeting."))
+		balloon_alert(user, "linked")
 		return
-	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
+	balloon_alert(user, "unlinked")
 
 ///Start firing the gun on target and increase tally
 /obj/machinery/deployable/mortar/proc/begin_fire(atom/target, obj/item/mortal_shell/arty_shell)
