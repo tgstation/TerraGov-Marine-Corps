@@ -153,23 +153,24 @@
 /mob/proc/throw_item(atom/target)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOB_THROW, target)
+	return TRUE
 
 
 /mob/living/carbon/throw_item(atom/target)
 	. = ..()
 	throw_mode_off()
 	if(is_ventcrawling) //NOPE
-		return
+		return FALSE
 	if(stat || !target)
-		return
+		return FALSE
 	if(target.type == /atom/movable/screen)
-		return
+		return FALSE
 
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_held_item()
 
 	if(!I || (I.flags_item & NODROP))
-		return
+		return FALSE
 
 	var/spin_throw = TRUE
 	if(isgrabitem(I))
