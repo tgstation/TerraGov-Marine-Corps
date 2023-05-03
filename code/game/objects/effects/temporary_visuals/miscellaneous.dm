@@ -91,6 +91,23 @@
 	layer = initial(layer)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
+/obj/effect/temp_visual/ob_impact
+	name = "ob impact animation"
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 0.7 SECONDS
+	density = FALSE
+	opacity = FALSE
+
+/obj/effect/temp_visual/ob_impact/Initialize(mapload, atom/owner)
+	. = ..()
+	appearance = owner.appearance
+	transform = matrix().Turn(-90)
+	layer = initial(layer)
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	pixel_y = 600
+	animate(src, pixel_y = -5, time=5)
+	animate(icon_state=null, icon=null, time=2) // to vanish it immediately
+
 /obj/effect/temp_visual/heavyimpact
 	name = "heavy impact"
 	icon = 'icons/effects/heavyimpact.dmi'
