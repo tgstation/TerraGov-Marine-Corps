@@ -440,9 +440,9 @@
 		orient2hud()
 		return
 
-/obj/item/storage/holster/belt/pistol/examine(mob/user, distance, infix, suffix)
+/obj/item/storage/holster/belt/pistol/Initialize(mapload, ...)
 	. = ..()
-	. += span_notice("To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.")
+	AddComponent(/datum/component/tac_reload_storage)
 
 /obj/item/storage/holster/belt/pistol/m4a3
 	name = "\improper M4A3 holster rig"
