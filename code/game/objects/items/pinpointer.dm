@@ -17,6 +17,8 @@
 	var/list/tracked_list
 	///The hive we're tracking
 	var/tracked_hivenumber = XENO_HIVE_NORMAL
+	///The list of hives we will never track
+	var/static/list/blacklisted_hivenumbers = list(XENO_HIVE_NONE, XENO_HIVE_CORRUPTED, XENO_HIVE_FALLEN)
 
 /obj/item/pinpointer/Initialize(mapload)
 	. = ..()
@@ -30,7 +32,7 @@
 	///The hivenumbers that we're allowed to select structures to track from
 	var/list/trackable_hivenumbers = list()
 	for(var/hivenumber in GLOB.xeno_critical_structures_by_hive)
-		if(hivenumber == XENO_HIVE_FALLEN) //no reason to ever track valhalla beans
+		if(hivenumber in blacklisted_hivenumbers) //no reason to ever track valhalla or admin beans
 			continue
 		if(!length(GLOB.xeno_critical_structures_by_hive[hivenumber])) //hives with no structures don't need tracking either
 			continue
