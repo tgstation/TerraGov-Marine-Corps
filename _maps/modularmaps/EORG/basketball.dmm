@@ -481,7 +481,7 @@
 /area/deathmatch)
 "eo" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "et" = (
 /obj/item/storage/belt/champion,
@@ -762,7 +762,7 @@
 /area/deathmatch)
 "GD" = (
 /obj/item/toy/beach_ball,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "Hf" = (
 /turf/open/floor/mainship/blue{
@@ -807,11 +807,11 @@
 /turf/open/floor/mainship/blue,
 /area/deathmatch)
 "Kh" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "Kr" = (
 /obj/item/toy/inflatable_duck,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "KK" = (
 /obj/structure/closet/lasertag/red,
@@ -859,7 +859,7 @@
 /area/deathmatch)
 "OY" = (
 /obj/machinery/light,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "PK" = (
 /obj/machinery/disposal,

@@ -89,12 +89,12 @@
 /area/lv624/ground/river2)
 "I" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "K" = (
 /obj/structure/flora/ausbushes/reedbush,
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "P" = (
 /obj/machinery/floodlight/colony{
@@ -104,7 +104,7 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "T" = (
 /obj/structure/disposalpipe/segment{

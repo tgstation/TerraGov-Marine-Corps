@@ -118,7 +118,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "bX" = (
 /obj/structure/platform{
@@ -214,7 +214,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "dx" = (
 /obj/structure/platform,
@@ -230,7 +230,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "dz" = (
 /obj/structure/platform{
@@ -401,7 +401,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "es" = (
 /obj/effect/landmark/deathmatch,
@@ -430,7 +430,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "eA" = (
 /obj/machinery/floodlight/landing/hq,
@@ -448,14 +448,14 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "eE" = (
 /obj/structure/prop/mainship/toolboxforacause2020,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "eF" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "eG" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -463,7 +463,7 @@
 /area/deathmatch)
 "eH" = (
 /obj/structure/platform,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "eI" = (
 /obj/structure/largecrate/random/barrel/yellow,
@@ -513,7 +513,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "eS" = (
 /obj/structure/platform{
@@ -654,7 +654,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "hH" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,

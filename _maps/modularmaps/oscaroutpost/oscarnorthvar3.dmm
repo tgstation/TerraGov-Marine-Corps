@@ -435,7 +435,7 @@
 /obj/structure/barricade/metal{
 	dir = 1
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 "cz" = (
 /turf/open/floor/plating/ground/dirt2,
@@ -1761,7 +1761,7 @@
 /area/oscar_outpost/outside/road)
 "mf" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 "mj" = (
 /obj/structure/barricade/sandbags{
@@ -3550,7 +3550,7 @@
 	pixel_y = -3
 	},
 /obj/item/paper{
-	desc = wait a minute, isn't project Berserker classified? and who made this?;
+	desc = "wait a minute, isn't project Berserker classified? and who made this?";
 	name = "Project Berserker Wargame";
 	pixel_x = -9
 	},
@@ -7316,7 +7316,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "ZO" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 "ZU" = (
 /obj/structure/platform/trench{
