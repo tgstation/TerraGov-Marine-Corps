@@ -421,7 +421,13 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som, /obj/item/ammo_magazine/smg/som/ap, /obj/item/ammo_magazine/smg/som/incendiary, /obj/item/ammo_magazine/smg/som/extended)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/som,
+		/obj/item/ammo_magazine/smg/som/ap,
+		/obj/item/ammo_magazine/smg/som/incendiary,
+		/obj/item/ammo_magazine/smg/som/extended,
+		/obj/item/ammo_magazine/smg/som/rad,
+	)
 	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //full auto, fuller auto
 
