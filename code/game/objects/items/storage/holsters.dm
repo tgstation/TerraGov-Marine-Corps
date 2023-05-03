@@ -269,8 +269,6 @@
 	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
 	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
 	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1,)
-	///The internal fuel tank
-	var/obj/item/ammo_magazine/flamer_tank/internal/tank
 	///The linked flamerthrower that cannot be dropped
 	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer
 
@@ -284,24 +282,10 @@
 
 /obj/item/storage/holster/backholster/flamer/Initialize()
 	. = ..()
-	tank = new
 	update_icon()
-
-/obj/item/storage/holster/backholster/flamer/afterattack(obj/O as obj, mob/user as mob, proximity)
-	. = ..()
-	if(!proximity)
-		return
-	//uses the tank's proc to refuel
-	if(istype(O, /obj/structure/reagent_dispensers/fueltank))
-		tank.afterattack(O, user)
-
-/obj/item/storage/holster/backholster/flamer/examine(mob/user)
-	. = ..()
-	. += "[tank.current_rounds] units of fuel left!"
 
 /obj/item/storage/holster/backholster/flamer/removed_from_inventory(mob/user)
 	. = ..()
-	tank.loc = null
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flamer)
 	user.dropItemToGround(flamer)
 

@@ -310,12 +310,12 @@
 //dedicated engineer pyro kit flamer
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer
 	name = "\improper FL-86 incinerator unit"
-	desc = "The FL-86 is a more light weight incinerator unit designed specifically to fit into its accompanying engineers bag. Can only be used with back mounted fuel tanks however."
-	default_ammo_type = null
+	desc = "The FL-86 is a more light weight incinerator unit designed specifically to fit into its accompanying engineers bag. Can only be used with magazine fuel tanks however."
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/flamer_tank/backtank,
-		/obj/item/ammo_magazine/flamer_tank/backtank/X,
-		/obj/item/ammo_magazine/flamer_tank/internal,
+		/obj/item/ammo_magazine/flamer_tank,
+		/obj/item/ammo_magazine/flamer_tank/large,
+		/obj/item/ammo_magazine/flamer_tank/large/X
 	)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
@@ -330,31 +330,9 @@
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
 	var/obj/item/storage/holster/backholster/flamer/flamerpack
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the backpack to the gun will load the gun with the internal mag.
-	. = ..()
-	connect_tank(W,user)
-
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/removed_from_inventory(mob/user)
 	. = ..()
 	flamerpack.handle_item_insertion(src)
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/proc/connect_tank(obj/item/W, mob/living/user)
-	if(!istype(W, /obj/item/storage/holster/backholster/flamer))
-		return
-
-	var/obj/item/storage/holster/backholster/flamer/D = W
-	var/obj/item/ammo_magazine/flamer_tank/internal/tank = D.tank
-	if(tank.current_rounds <= 0)
-		to_chat(user, span_warning("The internal fuel tank is empty!"))
-		return
-	tank.forceMove(D.loc)
-	reload(tank, usr)
-
-	update_icon()
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/on_exit_storage(obj/item/storage/S)
-	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(connect_tank), S, S.loc), 0.1 SECONDS)
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"

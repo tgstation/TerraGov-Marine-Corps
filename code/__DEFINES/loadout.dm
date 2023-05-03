@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/mortal_shell/plasmaloss = list(CAT_ENGSUP, "Tanglefoot Mortar shell", 2, "black"),
 		/obj/item/mortal_shell/smoke = list(CAT_ENGSUP, "Smoke Mortar shell", 1, "black"),
 		/obj/item/mortal_shell/flare = list(CAT_ENGSUP, "Flare Mortar shell", 1, "black"),
-
+		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_ENGSUP, "Flamethrower tank", 4, "black"),
 	))
 
 GLOBAL_LIST_INIT(medic_gear_listed_products, list(
