@@ -14,6 +14,7 @@
 	. = ..()
 	create_reagents(max_volume, container_flags)
 	playsound(src, 'sound/machines/disposalflush.ogg', 50)
+	default_icon_state = initial(internal_item.icon_state)	//For adding overlays, otherwise the game fetches sprites that don't exist
 
 //Using examine() because deployable descriptions are overwritten by the internal object's description
 /obj/machinery/deployable/reagent_tank/examine(mob/user)
@@ -26,34 +27,32 @@
 /obj/machinery/deployable/reagent_tank/update_icon_state()
 	. = ..()
 	//Reset the icon
-	icon_state = initial(internal_item.icon_state)
+	icon_state = default_icon_state
 	//Change the sprite to the one that looks opened to indicate it is in refilling mode
 	if(is_refillable())
 		icon_state += "_open"
 
 /obj/machinery/deployable/reagent_tank/update_overlays()
 	. = ..()
-	//Remove any overlays before we begin
-	overlays.Cut()
 	//If reagents are present, add some overlays
 	if(reagents?.total_volume)
-		var/image/filling = image(icon, src, "[icon_state]")
+		var/image/filling = image(icon, src, "[default_icon_state]")
 		var/percent = round((reagents.total_volume/max_volume) * 100)
 		switch(percent)
 			if(0 to 19)
-				filling.icon_state = "[icon_state]_1"
+				filling.icon_state = "[default_icon_state]_1"
 			if(20 to 39)
-				filling.icon_state = "[icon_state]_2"
+				filling.icon_state = "[default_icon_state]_2"
 			if(40 to 59)
-				filling.icon_state = "[icon_state]_3"
+				filling.icon_state = "[default_icon_state]_3"
 			if(60 to 79)
-				filling.icon_state = "[icon_state]_4"
+				filling.icon_state = "[default_icon_state]_4"
 			if(80 to 99)
-				filling.icon_state = "[icon_state]_5"
+				filling.icon_state = "[default_icon_state]_5"
 			if(99 to INFINITY)
-				filling.icon_state = "[icon_state]_full"
+				filling.icon_state = "[default_icon_state]_full"
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		overlays += filling
+		. += filling
 
 /obj/machinery/deployable/reagent_tank/on_reagent_change()
 	update_icon()
@@ -145,7 +144,6 @@
 
 /obj/item/storage/reagent_tank/update_overlays()
 	. = ..()
-	overlays.Cut()
 	if(reagents.total_volume)
 		var/image/filling = image(icon, src, "[icon_state]")
 		var/percent = round((reagents.total_volume/max_volume) * 100)
@@ -163,7 +161,7 @@
 			if(99 to INFINITY)
 				filling.icon_state = "[icon_state]_full"
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		overlays += filling
+		. += filling
 
 /obj/item/storage/reagent_tank/on_reagent_change()
 	update_icon()
