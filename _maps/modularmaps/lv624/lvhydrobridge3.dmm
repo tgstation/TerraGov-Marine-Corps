@@ -126,7 +126,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "P" = (
-/turf/open/liquid/water/river,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "R" = (
 /turf/open/floor,
@@ -136,7 +136,7 @@
 /area/lv624/ground/river2)
 "V" = (
 /obj/structure/grille/broken,
-/turf/open/liquid/water/river,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "W" = (
 /turf/closed/wall,
@@ -150,6 +150,10 @@
 	},
 /obj/structure/catwalk,
 /turf/open/liquid/water/river,
+/area/lv624/ground/river2)
+"Y" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "Z" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -165,10 +169,10 @@
 X
 a
 a
-a
-a
-a
-a
+Y
+Y
+Y
+Y
 a
 a
 a
@@ -252,7 +256,7 @@ a
 P
 P
 V
-a
+Y
 a
 M
 a
