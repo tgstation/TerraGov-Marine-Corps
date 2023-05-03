@@ -23,7 +23,7 @@
 	var/chew_probability = 1
 
 
-/mob/living/simple_animal/mouse/Initialize()
+/mob/living/simple_animal/mouse/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, 'sound/effects/mousesqueek.ogg', 100, 30)
 	if(!body_color)

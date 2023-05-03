@@ -34,7 +34,7 @@
 	component_parts += new /obj/item/stock_parts/capacitor
 	component_parts += new /obj/item/stock_parts/capacitor
 
-/obj/machinery/power/smes/batteryrack/Initialize()
+/obj/machinery/power/smes/batteryrack/Initialize(mapload)
 	. = ..()
 	add_parts()
 	RefreshParts()

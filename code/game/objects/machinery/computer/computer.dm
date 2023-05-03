@@ -14,7 +14,7 @@
 	///they don't provide good cover
 	coverage = 15
 
-/obj/machinery/computer/Initialize()
+/obj/machinery/computer/Initialize(mapload)
 	. = ..()
 	start_processing()
 	return INITIALIZE_HINT_LATELOAD

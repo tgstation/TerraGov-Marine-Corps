@@ -20,7 +20,7 @@
 /obj/machinery/power/monitor/grid
 	name = "Main Power Grid Monitoring"
 
-/obj/machinery/power/monitor/Initialize()
+/obj/machinery/power/monitor/Initialize(mapload)
 	. = ..()
 	var/obj/structure/cable/attached = null
 	var/turf/T = loc

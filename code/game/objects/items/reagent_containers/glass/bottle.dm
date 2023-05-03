@@ -29,7 +29,7 @@
 		return
 	update_icon()
 
-/obj/item/reagent_containers/glass/bottle/Initialize()
+/obj/item/reagent_containers/glass/bottle/Initialize(mapload)
 	. = ..()
 	if(!icon_state)
 		icon_state = "bottle-[rand(1, 5)]"

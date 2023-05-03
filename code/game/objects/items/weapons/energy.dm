@@ -62,7 +62,7 @@
 	///Force of the weapon when activated
 	var/active_force = 40
 
-/obj/item/weapon/energy/sword/Initialize()
+/obj/item/weapon/energy/sword/Initialize(mapload)
 	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
@@ -126,7 +126,7 @@
 	active_force = 50
 	sword_color = "on"
 
-/obj/item/weapon/energy/sword/som/Initialize()
+/obj/item/weapon/energy/sword/som/Initialize(mapload)
 	. = ..()
 	set_light_range_power_color(2, 1, COLOR_ORANGE)
 

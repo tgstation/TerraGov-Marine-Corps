@@ -99,7 +99,7 @@
 	var/iff_signal = NONE
 
 
-/obj/item/card/id/Initialize()
+/obj/item/card/id/Initialize(mapload)
 	. = ..()
 	marine_buy_choices = GLOB.marine_selector_cats.Copy() //by default you can buy the whole list
 	if(!ishuman(loc))

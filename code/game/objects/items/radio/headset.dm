@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/obj/item/encryptionkey/keyslot2 = null
 
 
-/obj/item/radio/headset/Initialize()
+/obj/item/radio/headset/Initialize(mapload)
 	if(keyslot)
 		keyslot = new keyslot(src)
 	if(keyslot2)
@@ -171,11 +171,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/Initialize()
+/obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/item/radio/headset/mainship/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/LateInitialize()
 	. = ..()
 	camera = new /obj/machinery/camera/headset(src)
 
@@ -523,7 +523,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
 	minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/marine/alpha/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/alpha/LateInitialize()
 	. = ..()
 	camera.network += list("alpha")
 
@@ -551,7 +551,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_BRAVO
 	minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/marine/bravo/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/bravo/LateInitialize()
 	. = ..()
 	camera.network += list("bravo")
 
@@ -579,7 +579,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_CHARLIE
 	minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/marine/charlie/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/charlie/LateInitialize()
 	. = ..()
 	camera.network += list("charlie")
 
@@ -608,7 +608,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_DELTA
 	minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/marine/delta/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/delta/LateInitialize()
 	. = ..()
 	camera.network += list("delta")
 
@@ -645,7 +645,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_ALPHA_REBEL //default frequency is alpha squad channel, not FREQ_COMMON
 	minimap_type = /datum/action/minimap/marine/rebel
 
-/obj/item/radio/headset/mainship/marine/rebel/alpha/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/rebel/alpha/LateInitialize()
 	. = ..()
 	camera.network += list("alpha_rebel")
 
@@ -672,7 +672,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_BRAVO_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
 
-/obj/item/radio/headset/mainship/marine/rebel/bravo/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/rebel/bravo/LateInitialize()
 	. = ..()
 	camera.network += list("bravo_rebel")
 
@@ -699,7 +699,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_CHARLIE_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
 
-/obj/item/radio/headset/mainship/marine/rebel/charlie/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/rebel/charlie/LateInitialize()
 	. = ..()
 	camera.network += list("charlie_rebel")
 
@@ -727,7 +727,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_DELTA_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
 
-/obj/item/radio/headset/mainship/marine/delta/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/rebel/delta/LateInitialize()
 	. = ..()
 	camera.network += list("delta_rebel")
 
@@ -852,7 +852,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_ZULU
 	minimap_type = /datum/action/minimap/som
 
-/obj/item/radio/headset/mainship/som/zulu/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/som/zulu/LateInitialize()
 	. = ..()
 	camera.network += list("zulu")
 
@@ -876,7 +876,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_YANKEE
 	minimap_type = /datum/action/minimap/som
 
-/obj/item/radio/headset/mainship/som/yankee/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/som/yankee/LateInitialize()
 	. = ..()
 	camera.network += list("yankee")
 
@@ -900,7 +900,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_XRAY
 	minimap_type = /datum/action/minimap/som
 
-/obj/item/radio/headset/mainship/som/xray/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/som/xray/LateInitialize()
 	. = ..()
 	camera.network += list("xray")
 
@@ -924,7 +924,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_WHISKEY
 	minimap_type = /datum/action/minimap/som
 
-/obj/item/radio/headset/mainship/som/whiskey/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/som/whiskey/LateInitialize()
 	. = ..()
 	camera.network += list("whiskey")
 

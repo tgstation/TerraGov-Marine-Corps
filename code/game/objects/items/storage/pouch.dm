@@ -11,7 +11,7 @@
 	var/fill_type
 	var/fill_number = 0
 
-/obj/item/storage/pouch/Initialize()
+/obj/item/storage/pouch/Initialize(mapload)
 	. = ..()
 	if(fill_number && fill_type)
 		for(var/i in 1 to fill_number)
@@ -58,7 +58,7 @@
 	icon_state = "large_drop"
 	draw_mode = 0
 
-/obj/item/storage/pouch/general/large/command/Initialize()
+/obj/item/storage/pouch/general/large/command/Initialize(mapload)
 	. = ..()
 	new /obj/item/binoculars/tactical(src)
 	new /obj/item/megaphone(src)
@@ -110,7 +110,7 @@
 		/obj/item/tool/weldingtool,
 	)
 
-/obj/item/storage/pouch/survival/full/Initialize()
+/obj/item/storage/pouch/survival/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/flashlight(src)
 	new /obj/item/reagent_containers/pill/tramadol(src)
@@ -130,7 +130,7 @@
 		/obj/item/storage/pill_bottle,
 	)
 
-/obj/item/storage/pouch/firstaid/combat_patrol/Initialize()
+/obj/item/storage/pouch/firstaid/combat_patrol/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
@@ -139,12 +139,21 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
+/obj/item/storage/pouch/firstaid/combat_patrol_leader/Initialize(mapload)
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/advanced/inaprovaline(src)
+
 /obj/item/storage/pouch/firstaid/som
 	name = "mining first aid pouch"
 	desc = "A basic first aid pouch originally used by miners due to dangerous working conditions on the mining colonies. This one is marked as belonging to the SOM."
 	icon_state = "firstaid_som"
 
-/obj/item/storage/pouch/firstaid/som/full/Initialize()
+/obj/item/storage/pouch/firstaid/som/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
 	new /obj/item/storage/pill_bottle/packet/kelotane(src)
@@ -153,7 +162,7 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
-/obj/item/storage/pouch/firstaid/som/combat_patrol/Initialize()
+/obj/item/storage/pouch/firstaid/som/combat_patrol/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
@@ -161,6 +170,15 @@
 	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+
+/obj/item/storage/pouch/firstaid/som/combat_patrol_leader/Initialize(mapload)
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/advanced/inaprovaline(src)
 
 /obj/item/storage/pouch/pistol
 	name = "sidearm pouch"
@@ -175,11 +193,11 @@
 	)
 	draw_mode = 1
 
-/obj/item/storage/pouch/pistol/vp70/Initialize()
+/obj/item/storage/pouch/pistol/vp70/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/pistol/vp70(src)
 
-/obj/item/storage/pouch/pistol/rt3/Initialize()
+/obj/item/storage/pouch/pistol/rt3/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/pistol/rt3(src)
 
@@ -339,14 +357,14 @@
 	fill_type = /obj/item/explosive/grenade
 	fill_number = 4
 
-/obj/item/storage/pouch/explosive/detpack/Initialize()
+/obj/item/storage/pouch/explosive/detpack/Initialize(mapload)
 	. = ..()
 	new /obj/item/detpack(src)
 	new /obj/item/detpack(src)
 	new /obj/item/detpack(src)
 	new /obj/item/assembly/signaler(src)
 
-/obj/item/storage/pouch/explosive/razorburn/Initialize()
+/obj/item/storage/pouch/explosive/razorburn/Initialize(mapload)
 	. = ..()
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
@@ -374,7 +392,7 @@
 	fill_type = /obj/item/explosive/grenade
 	fill_number = 4
 
-/obj/item/storage/pouch/grenade/combat_patrol/Initialize()
+/obj/item/storage/pouch/grenade/combat_patrol/Initialize(mapload)
 	. = ..()
 	new /obj/item/explosive/grenade/smokebomb(src)
 	new /obj/item/explosive/grenade/smokebomb(src)
@@ -387,7 +405,7 @@
 	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
 	icon_state = "grenade_som"
 
-/obj/item/storage/pouch/grenade/som/combat_patrol/Initialize()
+/obj/item/storage/pouch/grenade/som/combat_patrol/Initialize(mapload)
 	. = ..()
 	new /obj/item/explosive/grenade/smokebomb/som(src)
 	new /obj/item/explosive/grenade/smokebomb/som(src)
@@ -396,7 +414,7 @@
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 
-/obj/item/storage/pouch/grenade/som/ert/Initialize()
+/obj/item/storage/pouch/grenade/som/ert/Initialize(mapload)
 	. = ..()
 	new /obj/item/explosive/grenade/smokebomb/som(src)
 	new /obj/item/explosive/grenade/smokebomb/som(src)
@@ -427,7 +445,7 @@
 /obj/item/storage/pouch/medkit/firstaid
 	desc = "Standard marine first-aid pouch. Contains basic pills, splints, and a stabilizing injector."
 
-/obj/item/storage/pouch/medkit/firstaid/Initialize()
+/obj/item/storage/pouch/medkit/firstaid/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
 	new /obj/item/storage/pill_bottle/packet/kelotane(src)
@@ -437,7 +455,7 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
-/obj/item/storage/pouch/medkit/medic/Initialize()
+/obj/item/storage/pouch/medkit/medic/Initialize(mapload)
 	. = ..()
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
@@ -462,7 +480,7 @@
 /obj/item/storage/pouch/medical_injectors/firstaid
 	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains basic injectors, a stabilizing injector, stimulant injector, and an emergency injector."
 
-/obj/item/storage/pouch/medical_injectors/firstaid/Initialize()
+/obj/item/storage/pouch/medical_injectors/firstaid/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
@@ -473,7 +491,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
-/obj/item/storage/pouch/medical_injectors/medic/Initialize() //corpsman autoinjector pouch gets upgraded, but more general chems.
+/obj/item/storage/pouch/medical_injectors/medic/Initialize(mapload) //corpsman autoinjector pouch gets upgraded, but more general chems.
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
@@ -488,7 +506,7 @@
 	desc = "A specialized medical pouch that can only hold auto-injectors. This one looks to be made out of traditional SOM leather."
 	icon_state = "firstaid_injector_som"
 
-/obj/item/storage/pouch/medical_injectors/som/firstaid/Initialize()
+/obj/item/storage/pouch/medical_injectors/som/firstaid/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
@@ -499,7 +517,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
-/obj/item/storage/pouch/medical_injectors/som/medic/Initialize()
+/obj/item/storage/pouch/medical_injectors/som/medic/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
@@ -514,7 +532,7 @@
 	desc = "A specialized medical pouch that can only hold auto-injectors. This one looks to be made out of a synthetic tan fabric."
 	icon_state = "firstaid_injector_icc"
 
-/obj/item/storage/pouch/medical_injectors/icc/firstaid/Initialize()
+/obj/item/storage/pouch/medical_injectors/icc/firstaid/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
@@ -534,7 +552,7 @@
 
 	can_hold = list(/obj/item/storage/box/combat_lolipop,)
 
-/obj/item/storage/pouch/med_lolipops/Initialize()
+/obj/item/storage/pouch/med_lolipops/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/box/combat_lolipop(src)
 	new /obj/item/storage/box/combat_lolipop/tricord(src)
@@ -552,7 +570,7 @@
 		/obj/item/tweezers,
 	)
 
-/obj/item/storage/pouch/surgery/Initialize()
+/obj/item/storage/pouch/surgery/Initialize(mapload)
 	. = ..()
 	new /obj/item/tool/surgery/scalpel/manager(src)
 	new /obj/item/tool/surgery/scalpel(src)
@@ -603,7 +621,7 @@
 		/obj/item/beacon/supply_beacon,
 	)
 
-/obj/item/storage/pouch/field_pouch/full/Initialize()
+/obj/item/storage/pouch/field_pouch/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/attachable/motiondetector (src)
 	new /obj/item/whistle (src)
@@ -621,7 +639,7 @@
 		/obj/item/cell,
 	)
 
-/obj/item/storage/pouch/electronics/full/Initialize()
+/obj/item/storage/pouch/electronics/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/circuitboard/airlock (src)
 	new /obj/item/circuitboard/apc (src)
@@ -644,13 +662,13 @@
 		/obj/item/stack/sandbags,
 	)
 
-/obj/item/storage/pouch/construction/full/Initialize()
+/obj/item/storage/pouch/construction/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/stack/sandbags_empty/half (src)
 	new /obj/item/stack/barbed_wire/small_stack (src)
 	new /obj/item/tool/shovel/etool (src)
 
-/obj/item/storage/pouch/construction/equippedengineer/Initialize()
+/obj/item/storage/pouch/construction/equippedengineer/Initialize(mapload)
 	. = ..()
 	new /obj/item/stack/sandbags_empty/half (src)
 	new /obj/item/stack/sheet/metal/large_stack (src)
@@ -664,7 +682,7 @@
 	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool. Made with synthetic tan."
 	icon_state = "construction_icc"
 
-/obj/item/storage/pouch/construction/icc/full/Initialize()
+/obj/item/storage/pouch/construction/icc/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/stack/sheet/metal/large_stack (src)
 	new /obj/item/stack/sheet/metal/large_stack (src)
@@ -677,18 +695,22 @@
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "tools"
 	can_hold = list(
-		/obj/item/tool/wirecutters,
-		/obj/item/tool/shovel/etool,
 		/obj/item/tool/screwdriver,
-		/obj/item/tool/crowbar,
+		/obj/item/tool/wirecutters,
 		/obj/item/tool/weldingtool,
-		/obj/item/tool/multitool,
 		/obj/item/tool/wrench,
+		/obj/item/tool/crowbar,
 		/obj/item/stack/cable_coil,
+		/obj/item/tool/multitool,
+		/obj/item/flashlight,
+		/obj/item/t_scanner,
+		/obj/item/tool/analyzer,
+		/obj/item/tool/taperoll/engineering,
 		/obj/item/tool/extinguisher/mini,
+		/obj/item/tool/shovel/etool,
 	)
 
-/obj/item/storage/pouch/tools/full/Initialize()
+/obj/item/storage/pouch/tools/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/tool/screwdriver (src)
 	new /obj/item/tool/wirecutters (src)
@@ -700,7 +722,7 @@
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool. Made with traditional SOM leather."
 	icon_state = "tools_som"
 
-/obj/item/storage/pouch/tools/som/full/Initialize()
+/obj/item/storage/pouch/tools/som/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/tool/screwdriver (src)
 	new /obj/item/tool/wirecutters (src)
@@ -712,7 +734,7 @@
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool. Made with a synthetic tan fiber."
 	icon_state = "tools_icc"
 
-/obj/item/storage/pouch/tools/icc/full/Initialize()
+/obj/item/storage/pouch/tools/icc/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/tool/screwdriver (src)
 	new /obj/item/tool/wirecutters (src)

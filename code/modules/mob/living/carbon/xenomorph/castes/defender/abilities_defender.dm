@@ -143,9 +143,6 @@
 	var/mob/living/carbon/xenomorph/defender/defender = X
 	if(defender.fortify)
 		var/datum/action/xeno_action/fortify/fortify_action = X.actions_by_path[/datum/action/xeno_action/fortify]
-		if(fortify_action.cooldown_id)
-			to_chat(X, span_xenowarning("We cannot yet untuck ourselves from our fortified stance!"))
-			return fail_activate()
 
 		fortify_action.set_fortify(FALSE, TRUE)
 		fortify_action.add_cooldown()
@@ -200,14 +197,20 @@
 	)
 	var/last_crest_bonus = 0
 
+/datum/action/xeno_action/toggle_crest_defense/give_action()
+	. = ..()
+	var/mob/living/carbon/xenomorph/defender/X = owner
+	last_crest_bonus = X.xeno_caste.crest_defense_armor
+
 /datum/action/xeno_action/toggle_crest_defense/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense)
-		var/defensebonus = X.xeno_caste.crest_defense_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 30)
-		last_crest_bonus = defensebonus
+		X.soft_armor = X.soft_armor.modifyAllRatings(-last_crest_bonus)
+		last_crest_bonus = X.xeno_caste.crest_defense_armor
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_crest_bonus)
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
+	else
+		last_crest_bonus = X.xeno_caste.crest_defense_armor
 
 /datum/action/xeno_action/toggle_crest_defense/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/defender/X = owner
@@ -238,17 +241,13 @@
 
 /datum/action/xeno_action/toggle_crest_defense/proc/set_crest_defense(on, silent = FALSE)
 	var/mob/living/carbon/xenomorph/defender/X = owner
-	X.crest_defense = on
 	if(on)
 		if(!silent)
 			to_chat(X, span_xenowarning("We tuck ourselves into a defensive stance."))
 		GLOB.round_statistics.defender_crest_lowerings++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
-		var/defensebonus = X.xeno_caste.crest_defense_armor
 		ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, CREST_DEFENSE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
-		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 30)
-		last_crest_bonus = defensebonus
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_crest_bonus)
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
 	else
 		if(!silent)
@@ -257,9 +256,9 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
 		REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, CREST_DEFENSE_TRAIT)
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_crest_bonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 20)
-		last_crest_bonus = 0
 		X.remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
+
+	X.crest_defense = on
 	X.update_icons()
 
 // ***************************************
@@ -277,13 +276,23 @@
 	)
 	var/last_fortify_bonus = 0
 
+/datum/action/xeno_action/fortify/give_action()
+	. = ..()
+	var/mob/living/carbon/xenomorph/defender/X = owner
+	last_fortify_bonus = X.xeno_caste.fortify_armor
+
 /datum/action/xeno_action/fortify/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.fortify)
-		var/fortifyAB = X.xeno_caste.fortify_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = 130)
-		last_fortify_bonus = fortifyAB
+		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
+
+		last_fortify_bonus = X.xeno_caste.fortify_armor
+
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_fortify_bonus)
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = last_fortify_bonus)
+	else
+		last_fortify_bonus = X.xeno_caste.fortify_armor
 
 /datum/action/xeno_action/fortify/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -308,6 +317,9 @@
 		CD.add_cooldown()
 		to_chat(X, span_xenowarning("We tuck our lowered crest into ourselves."))
 
+	var/datum/action/xeno_action/activable/forward_charge/combo_cooldown = X.actions_by_path[/datum/action/xeno_action/activable/forward_charge]
+	combo_cooldown.add_cooldown(cooldown_timer)
+
 	set_fortify(TRUE, was_crested)
 	add_cooldown()
 	return succeed_activate()
@@ -320,17 +332,15 @@
 		ADD_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 		if(!silent)
 			to_chat(X, span_xenowarning("We tuck ourselves into a defensive stance."))
-		var/fortifyAB = X.xeno_caste.fortify_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = 100)
-		last_fortify_bonus = fortifyAB
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_fortify_bonus)
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = last_fortify_bonus) //double bomb bonus for explosion immunity
 	else
 		if(!silent)
 			to_chat(X, span_xenowarning("We resume our normal stance."))
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 20)
-		last_fortify_bonus = 0
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
 		REMOVE_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+
 	X.fortify = on
 	X.anchored = on
 	playsound(X.loc, 'sound/effects/stonedoor_openclose.ogg', 30, TRUE)

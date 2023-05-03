@@ -98,6 +98,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_game
 
+/datum/config_entry/flag/log_minimap_drawing
+
 /// log mech data
 /datum/config_entry/flag/log_mecha
 

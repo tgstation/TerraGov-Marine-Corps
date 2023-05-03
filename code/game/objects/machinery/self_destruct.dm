@@ -13,7 +13,7 @@
 
 	var/list/temps = list()
 
-/obj/machinery/self_destruct/Initialize()
+/obj/machinery/self_destruct/Initialize(mapload)
 	. = ..()
 	icon_state += "_1"
 

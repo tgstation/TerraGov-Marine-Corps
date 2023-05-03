@@ -18,15 +18,6 @@
 /mob/proc/remove_all_indicators()
 	return
 
-/mob/set_stat(new_stat)
-	. = ..()
-	if(.)
-		remove_all_indicators()
-
-/mob/Logout()
-	remove_all_indicators()
-	return ..()
-
 /** Sets the mob as "thinking" - with indicator and variable thinking_IC */
 /datum/tgui_say/proc/start_thinking()
 	if(!window_open || !client.prefs.show_typing)

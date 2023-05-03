@@ -108,7 +108,7 @@
 	/// List of atoms already hit by that projectile. Will only matter for projectiles capable of passing through multiple atoms
 	var/list/atom/hit_atoms = list()
 
-/obj/projectile/Initialize()
+/obj/projectile/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -357,7 +357,7 @@
 	if(QDELETED(src))
 		return PROCESS_KILL
 
-	if(ammo.flags_ammo_behavior & SPECIAL_PROCESS)
+	if(ammo.flags_ammo_behavior & AMMO_SPECIAL_PROCESS)
 		ammo.ammo_process(src, damage)
 
 /obj/projectile/proc/required_moves_calc()
@@ -947,7 +947,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	///The icon of the laser beam that will be created
 	var/effect_icon = "beam"
 
-/obj/projectile/hitscan/Initialize(loc, effect_icon)
+/obj/projectile/hitscan/Initialize(mapload, effect_icon)
 	. = ..()
 	if(effect_icon)
 		src.effect_icon = effect_icon
@@ -1212,19 +1212,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		//Note, in the case of limbs missing, this will increase average armor if remaining armor is higher than if fully limbed.
 		return armor_val / total_weight
 
-/mob/living/carbon/xenomorph/get_soft_armor(armor_type, proj_def_zone)
-	return ..() * get_sunder()
-
-
 /mob/living/proc/get_hard_armor(armor_type, proj_def_zone)
 	return hard_armor.getRating(armor_type)
 
 /mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
 	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
 	return affected_limb.hard_armor.getRating(armor_type)
-
-/mob/living/carbon/xenomorph/get_hard_armor(armor_type, proj_def_zone)
-	return ..() * get_sunder()
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
 	bullet_ping(proj)

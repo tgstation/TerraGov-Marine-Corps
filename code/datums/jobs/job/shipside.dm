@@ -65,7 +65,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	jobtype = /datum/job/terragov/command/captain
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/belt/gun/pistol/smart_pistol/full
+	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
@@ -138,10 +138,6 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
-/datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
-	. = ..()
-	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, L)
-
 
 /datum/job/terragov/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
@@ -165,6 +161,7 @@ Make the TGMC proud!"})
 			new_human.wear_id.paygrade = "MO4"
 		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "MO5"
+	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, new_mob)
 
 
 /datum/outfit/job/command/fieldcommander
@@ -182,7 +179,7 @@ Make the TGMC proud!"})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
 	back = /obj/item/storage/backpack/marine/satchel
-	suit_store = /obj/item/storage/belt/gun/pistol/m4a3/fieldcommander
+	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
 /datum/outfit/job/command/fieldcommander/rebel
 	jobtype = /datum/job/terragov/command/fieldcommander/rebel
@@ -257,7 +254,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/terragov/command/staffofficer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/officer
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine/full
@@ -341,12 +338,12 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	jobtype = /datum/job/terragov/command/pilot
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
 	shoes = /obj/item/clothing/shoes/marine/full
-	gloves = /obj/item/clothing/gloves/yellow
+	gloves = /obj/item/clothing/gloves/insulated
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
 	r_store = /obj/item/storage/pouch/general/large
@@ -505,7 +502,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	wear_suit = /obj/item/clothing/suit/storage/marine/officer/req
 	shoes = /obj/item/clothing/shoes/marine/full
 	glasses = /obj/item/clothing/glasses/welding/superior
-	gloves = /obj/item/clothing/gloves/yellow
+	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/beret/marine/techofficer
 	r_store = /obj/item/storage/pouch/construction
 	back = /obj/item/storage/backpack/marine/engineerpack
@@ -595,7 +592,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
 	wear_suit = /obj/item/clothing/suit/storage/marine/ship_tech
 	shoes = /obj/item/clothing/shoes/marine/full
-	gloves = /obj/item/clothing/gloves/yellow
+	gloves = /obj/item/clothing/gloves/insulated
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/medium
@@ -685,13 +682,13 @@ A happy ship is a well-functioning ship."})
 	jobtype = /datum/job/terragov/requisitions/officer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m44/full
+	belt = /obj/item/storage/holster/belt/m44/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/ro_suit
 	wear_suit = /obj/item/clothing/suit/storage/marine/officer/req
 	suit_store = /obj/item/weapon/gun/energy/taser
 	shoes = /obj/item/clothing/shoes/marine/full
-	gloves = /obj/item/clothing/gloves/yellow
+	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/marine/satchel
@@ -1133,7 +1130,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/rank/synthetic
 	shoes = /obj/item/clothing/shoes/white
-	gloves = /obj/item/clothing/gloves/yellow
+	gloves = /obj/item/clothing/gloves/insulated
 	r_store = /obj/item/storage/pouch/general/medium
 	l_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/satchel

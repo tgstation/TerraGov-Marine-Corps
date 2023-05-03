@@ -7,20 +7,23 @@
 	///Which hive(number) do we belong to?
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/structure/xeno/Initialize(location, hivenumber)
+/obj/structure/xeno/Initialize(mapload, _hivenumber)
 	. = ..()
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
+	if(_hivenumber) ///because admins can spawn them
+		hivenumber = _hivenumber
 	LAZYADDASSOC(GLOB.xeno_structures_by_hive, hivenumber, src)
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
-		GLOB.xeno_critical_structures += src
-	if(hivenumber) ///because admins can spawn them
-		src.hivenumber = hivenumber
+		LAZYADDASSOC(GLOB.xeno_critical_structures_by_hive, hivenumber, src)
 
 /obj/structure/xeno/Destroy()
+	if(!locate(src) in GLOB.xeno_structures_by_hive[hivenumber]+GLOB.xeno_critical_structures_by_hive[hivenumber]) //The rest of the proc is pointless to look through if its not in the lists
+		stack_trace("[src] not found in the list of (potentially critical) xeno structures!") //We dont want to CRASH because that'd block deletion completely. Just trace it and continue.
+		return ..()
 	GLOB.xeno_structures_by_hive[hivenumber] -= src
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
-		GLOB.xeno_critical_structures -= src
+		GLOB.xeno_critical_structures_by_hive[hivenumber] -= src
 	return ..()
 
 /obj/structure/xeno/ex_act(severity)
@@ -81,7 +84,7 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(trigger_trap),
 	)
 
-/obj/structure/xeno/trap/Initialize(mapload)
+/obj/structure/xeno/trap/Initialize(mapload, _hivenumber)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 	AddElement(/datum/element/connect_loc, listen_connections)
@@ -286,7 +289,7 @@ TUNNEL
 	///What hivelord created that tunnel. Can be null
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
 
-/obj/structure/xeno/tunnel/Initialize(mapload)
+/obj/structure/xeno/tunnel/Initialize(mapload, _hivenumber)
 	. = ..()
 	LAZYADDASSOC(GLOB.xeno_tunnels_by_hive, hivenumber, src)
 	prepare_huds()
@@ -450,9 +453,9 @@ TUNNEL
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize(loc, creator)
+/obj/structure/xeno/acidwell/Initialize(mapload, _creator)
 	. = ..()
-	src.creator = creator
+	creator = _creator
 	RegisterSignal(creator, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator))
 	update_icon()
 	var/static/list/connections = list(
@@ -647,7 +650,7 @@ TUNNEL
 	///Countdown to the next time we generate a jelly
 	var/nextjelly = 0
 
-/obj/structure/xeno/resin_jelly_pod/Initialize()
+/obj/structure/xeno/resin_jelly_pod/Initialize(mapload, _hivenumber)
 	. = ..()
 	add_overlay(image(icon, "resinpod_inside", layer + 0.01, dir))
 	START_PROCESSING(SSslowprocess, src)
@@ -718,7 +721,7 @@ TUNNEL
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
-/obj/structure/xeno/silo/Initialize()
+/obj/structure/xeno/silo/Initialize(mapload, _hivenumber)
 	. = ..()
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
@@ -894,7 +897,7 @@ TUNNEL
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "xeno_turret[firing ? "_firing" : "_passive"]")
 
-/obj/structure/xeno/xeno_turret/Initialize(mapload)
+/obj/structure/xeno/xeno_turret/Initialize(mapload, _hivenumber)
 	. = ..()
 	ammo = GLOB.ammo_list[ammo]
 	potential_hostiles = list()
@@ -1097,7 +1100,7 @@ TUNNEL
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)
-		hugger_ammo.hugger_hivenumber = hivenumber
+		hugger_ammo.hivenumber = hivenumber
 	firing = TRUE
 	update_minimap_icon()
 
@@ -1133,7 +1136,7 @@ TUNNEL
 	///boost amt to be added per tower per cycle
 	var/boost_amount = 0.25
 
-/obj/structure/xeno/evotower/Initialize(mapload)
+/obj/structure/xeno/evotower/Initialize(mapload, _hivenumber)
 	. = ..()
 	GLOB.hive_datums[hivenumber].evotowers += src
 	set_light(2, 2, LIGHT_COLOR_GREEN)
@@ -1164,7 +1167,7 @@ TUNNEL
 	///boost amt to be added per tower per cycle
 	var/boost_amount = 0.2
 
-/obj/structure/xeno/maturitytower/Initialize(mapload)
+/obj/structure/xeno/maturitytower/Initialize(mapload, _hivenumber)
 	. = ..()
 	GLOB.hive_datums[hivenumber].maturitytowers += src
 	set_light(2, 2, LIGHT_COLOR_GREEN)
@@ -1197,7 +1200,7 @@ TUNNEL
 	///Radius (in tiles) of the pheromones given by this tower.
 	var/aura_radius = 32
 
-/obj/structure/xeno/pherotower/Initialize(mapload)
+/obj/structure/xeno/pherotower/Initialize(mapload, _hivenumber)
 	. = ..()
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "phero")
 	GLOB.hive_datums[hivenumber].pherotowers += src
@@ -1259,7 +1262,7 @@ TUNNEL
 	COOLDOWN_DECLARE(spawner_proxy_alert_cooldown)
 	var/linked_minions = list()
 
-/obj/structure/xeno/spawner/Initialize()
+/obj/structure/xeno/spawner/Initialize(mapload, _hivenumber)
 	. = ..()
 	LAZYADDASSOC(GLOB.xeno_spawners_by_hive, hivenumber, src)
 	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, CALLBACK(src, PROC_REF(on_spawn)))
@@ -1367,7 +1370,7 @@ TUNNEL
 	///How long does it take for the plant to be useable
 	var/maturation_time = 2 MINUTES
 
-/obj/structure/xeno/plant/Initialize()
+/obj/structure/xeno/plant/Initialize(mapload, _hivenumber)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time)
 

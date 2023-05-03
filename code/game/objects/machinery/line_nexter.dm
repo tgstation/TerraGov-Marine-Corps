@@ -10,7 +10,7 @@
 	var/last_use
 	var/id
 
-/obj/machinery/line_nexter/Initialize()
+/obj/machinery/line_nexter/Initialize(mapload)
 	. = ..()
 	last_use = world.time
 	var/static/list/connections = list(

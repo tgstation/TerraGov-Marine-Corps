@@ -34,7 +34,7 @@
 	layer = ABOVE_FLY_LAYER
 	var/log_amount = 10
 
-/obj/structure/flora/tree/Initialize()
+/obj/structure/flora/tree/Initialize(mapload)
 	. = ..()
 	AddTransparencyComponent()
 
@@ -107,7 +107,7 @@
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine"
 
-/obj/structure/flora/tree/pine/Initialize()
+/obj/structure/flora/tree/pine/Initialize(mapload)
 	. = ..()
 	icon_state = "[icon_state][rand(1, 3)]"
 
@@ -144,7 +144,7 @@
 /obj/structure/flora/tree/dead/AddTransparencyComponent()
 	AddComponent(/datum/component/largetransparency, 0, 1, 0, 0)
 
-/obj/structure/flora/tree/dead/Initialize()
+/obj/structure/flora/tree/dead/Initialize(mapload)
 	. = ..()
 	icon_state = "[icon_state][rand(1, 6)]"
 
@@ -155,7 +155,7 @@
 	icon_state = "joshua"
 	pixel_x = 0
 
-/obj/structure/flora/tree/joshua/Initialize()
+/obj/structure/flora/tree/joshua/Initialize(mapload)
 	. = ..()
 	icon_state = "[icon_state][rand(1,4)]"
 
@@ -178,7 +178,7 @@
 /obj/structure/flora/tree/jungle/small/AddTransparencyComponent()
 	AddComponent(/datum/component/largetransparency)
 
-/obj/structure/flora/tree/jungle/Initialize()
+/obj/structure/flora/tree/jungle/Initialize(mapload)
 	. = ..()
 	icon_state = "[icon_state][rand(1, 6)]"
 
@@ -192,21 +192,21 @@
 /obj/structure/flora/grass/brown
 	icon_state = "snowgrass1bb"
 
-/obj/structure/flora/grass/brown/Initialize()
+/obj/structure/flora/grass/brown/Initialize(mapload)
 	. = ..()
 	icon_state = "snowgrass[rand(1, 3)]bb"
 
 /obj/structure/flora/grass/green
 	icon_state = "snowgrass1gb"
 
-/obj/structure/flora/grass/green/Initialize()
+/obj/structure/flora/grass/green/Initialize(mapload)
 	. = ..()
 	icon_state = "snowgrass[rand(1, 3)]gb"
 
 /obj/structure/flora/grass/both
 	icon_state = "snowgrassall1"
 
-/obj/structure/flora/grass/both/Initialize()
+/obj/structure/flora/grass/both/Initialize(mapload)
 	. = ..()
 	icon_state = "snowgrassall[rand(1, 3)]"
 
@@ -229,7 +229,7 @@
 	icon_state = "snowbush1"
 	anchored = TRUE
 
-/obj/structure/flora/bush/Initialize()
+/obj/structure/flora/bush/Initialize(mapload)
 	. = ..()
 	icon_state = "snowbush[rand(1, 6)]"
 
@@ -324,112 +324,112 @@
 	icon_state = "firstbush_1"
 	anchored = TRUE
 
-/obj/structure/flora/ausbushes/Initialize()
+/obj/structure/flora/ausbushes/Initialize(mapload)
 	. = ..()
 	icon_state = "firstbush_[rand(1, 4)]"
 
 /obj/structure/flora/ausbushes/reedbush
 	icon_state = "reedbush_1"
 
-/obj/structure/flora/ausbushes/reedbush/Initialize()
+/obj/structure/flora/ausbushes/reedbush/Initialize(mapload)
 	. = ..()
 	icon_state = "reedbush_[rand(1, 4)]"
 
 /obj/structure/flora/ausbushes/leafybush
 	icon_state = "leafybush_1"
 
-/obj/structure/flora/ausbushes/leafybush/Initialize()
+/obj/structure/flora/ausbushes/leafybush/Initialize(mapload)
 	. = ..()
 	icon_state = "leafybush_[rand(1, 3)]"
 
 /obj/structure/flora/ausbushes/palebush
 	icon_state = "palebush_1"
 
-/obj/structure/flora/ausbushes/palebush/Initialize()
+/obj/structure/flora/ausbushes/palebush/Initialize(mapload)
 	. = ..()
 	icon_state = "palebush_[rand(1, 4)]"
 
 /obj/structure/flora/ausbushes/stalkybush
 	icon_state = "stalkybush_1"
 
-/obj/structure/flora/ausbushes/stalkybush/Initialize()
+/obj/structure/flora/ausbushes/stalkybush/Initialize(mapload)
 	. = ..()
 	icon_state = "stalkybush_[rand(1, 3)]"
 
 /obj/structure/flora/ausbushes/grassybush
 	icon_state = "grassybush_1"
 
-/obj/structure/flora/ausbushes/grassybush/Initialize()
+/obj/structure/flora/ausbushes/grassybush/Initialize(mapload)
 	. = ..()
 	icon_state = "grassybush_[rand(1, 4)]"
 
 /obj/structure/flora/ausbushes/fernybush
 	icon_state = "fernybush_1"
 
-/obj/structure/flora/ausbushes/fernybush/Initialize()
+/obj/structure/flora/ausbushes/fernybush/Initialize(mapload)
 	. = ..()
 	icon_state = "fernybush_[rand(1, 3)]"
 
 /obj/structure/flora/ausbushes/sunnybush
 	icon_state = "sunnybush_1"
 
-/obj/structure/flora/ausbushes/sunnybush/Initialize()
+/obj/structure/flora/ausbushes/sunnybush/Initialize(mapload)
 	. = ..()
 	icon_state = "sunnybush_[rand(1, 3)]"
 
 /obj/structure/flora/ausbushes/genericbush
 	icon_state = "genericbush_1"
 
-/obj/structure/flora/ausbushes/genericbush/Initialize()
+/obj/structure/flora/ausbushes/genericbush/Initialize(mapload)
 	. = ..()
 	icon_state = "genericbush_[rand(1, 4)]"
 
 /obj/structure/flora/ausbushes/pointybush
 	icon_state = "pointybush_1"
 
-/obj/structure/flora/ausbushes/pointybush/Initialize()
+/obj/structure/flora/ausbushes/pointybush/Initialize(mapload)
 	. = ..()
 	icon_state = "pointybush_[rand(1, 4)]"
 
 /obj/structure/flora/ausbushes/lavendergrass
 	icon_state = "lavendergrass_1"
 
-/obj/structure/flora/ausbushes/lavendergrass/Initialize()
+/obj/structure/flora/ausbushes/lavendergrass/Initialize(mapload)
 	. = ..()
 	icon_state = "lavendergrass_[rand(1, 4)]"
 
 /obj/structure/flora/ausbushes/ywflowers
 	icon_state = "ywflowers_1"
 
-/obj/structure/flora/ausbushes/ywflowers/Initialize()
+/obj/structure/flora/ausbushes/ywflowers/Initialize(mapload)
 	. = ..()
 	icon_state = "ywflowers_[rand(1, 3)]"
 
 /obj/structure/flora/ausbushes/brflowers
 	icon_state = "brflowers_1"
 
-/obj/structure/flora/ausbushes/brflowers/Initialize()
+/obj/structure/flora/ausbushes/brflowers/Initialize(mapload)
 	. = ..()
 	icon_state = "brflowers_[rand(1, 3)]"
 
 /obj/structure/flora/ausbushes/ppflowers
 	icon_state = "ppflowers_1"
 
-/obj/structure/flora/ausbushes/ppflowers/Initialize()
+/obj/structure/flora/ausbushes/ppflowers/Initialize(mapload)
 	. = ..()
 	icon_state = "ppflowers_[rand(1, 4)]"
 
 /obj/structure/flora/ausbushes/sparsegrass
 	icon_state = "sparsegrass_1"
 
-/obj/structure/flora/ausbushes/sparsegrass/Initialize()
+/obj/structure/flora/ausbushes/sparsegrass/Initialize(mapload)
 	. = ..()
 	icon_state = "sparsegrass_[rand(1, 3)]"
 
 /obj/structure/flora/ausbushes/fullgrass
 	icon_state = "fullgrass_1"
 
-/obj/structure/flora/ausbushes/fullgrass/Initialize()
+/obj/structure/flora/ausbushes/fullgrass/Initialize(mapload)
 	. = ..()
 	icon_state = "fullgrass_[rand(1, 3)]"
 
@@ -444,7 +444,7 @@
 	var/icon_tag = null
 	var/variations = null
 
-/obj/structure/flora/desert/Initialize()
+/obj/structure/flora/desert/Initialize(mapload)
 	. = ..()
 	icon_state = "[icon_tag]_[rand(1,variations)]"
 
@@ -689,7 +689,7 @@
 	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
 	qdel(src)
 
-/obj/structure/jungle/vines/Initialize()
+/obj/structure/jungle/vines/Initialize(mapload)
 	. = ..()
 	icon_state = pick("Light1","Light2","Light3")
 
@@ -697,7 +697,7 @@
 	desc = "A thick, coiled mass of twisted vines."
 	opacity = TRUE
 
-/obj/structure/jungle/vines/heavy/Initialize()
+/obj/structure/jungle/vines/heavy/Initialize(mapload)
 	. = ..()
 	icon_state = pick("Hvy1","Hvy2","Hvy3","Med1","Med2","Med3")
 

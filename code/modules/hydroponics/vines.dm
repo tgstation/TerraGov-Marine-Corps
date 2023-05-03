@@ -268,7 +268,7 @@
 	slowdown_limit = 3
 	limited_growth = 1
 
-/obj/effect/plant_controller/Initialize()
+/obj/effect/plant_controller/Initialize(mapload)
 	. = ..()
 
 	if(!istype(loc,/turf/open/floor))

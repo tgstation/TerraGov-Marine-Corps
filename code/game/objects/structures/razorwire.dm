@@ -31,7 +31,7 @@
 			salvage.amount = rand(1,4)
 	return ..()
 
-/obj/structure/razorwire/Initialize()
+/obj/structure/razorwire/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -71,10 +71,6 @@
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
 
-/obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
-		return TRUE
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/entangled, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
@@ -220,6 +216,8 @@
 
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
+	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+		return TRUE
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
 	if(mover.throwing && istype(mover,/obj/item))

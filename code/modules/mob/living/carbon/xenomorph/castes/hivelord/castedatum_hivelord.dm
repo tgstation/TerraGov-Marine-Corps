@@ -75,6 +75,7 @@
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/create_jelly,
 		/datum/action/xeno_action/place_jelly_pod,
+		/datum/action/xeno_action/activable/recycle,
 	)
 
 /datum/xeno_caste/hivelord/young
@@ -225,4 +226,5 @@
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/create_jelly,
 		/datum/action/xeno_action/place_jelly_pod,
+		/datum/action/xeno_action/activable/recycle,
 	)

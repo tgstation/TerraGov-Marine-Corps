@@ -2794,10 +2794,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
-"pD" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/icy_caves/outpost/outside)
 "pE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -12187,7 +12183,7 @@ WI
 SI
 SI
 WI
-pD
+WI
 WI
 WI
 SI
@@ -16888,7 +16884,7 @@ Dn
 SI
 XO
 WI
-pD
+WI
 WI
 KZ
 tO
@@ -20000,7 +19996,7 @@ JT
 Ai
 WY
 ow
-Er
+ow
 li
 li
 my

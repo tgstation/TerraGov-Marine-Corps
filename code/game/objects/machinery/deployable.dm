@@ -28,11 +28,6 @@
 
 	update_icon()
 
-/obj/machinery/deployable/Destroy()
-	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
-		sentry_status_hud.remove_from_hud(src)
-	return ..()
-
 /obj/machinery/deployable/get_internal_item()
 	return internal_item
 
@@ -64,6 +59,8 @@
 	if(internal_item)
 		QDEL_NULL(internal_item)
 	operator?.unset_interaction()
+	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Remove from the squad HUD
+		sentry_status_hud.remove_from_hud(src)
 	return ..()
 
 /obj/machinery/deployable/examine(mob/user)

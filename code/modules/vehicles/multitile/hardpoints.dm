@@ -31,7 +31,7 @@ Currently only has the tank hardpoints
 	var/max_clips = 1 //1 so they can reload their backups and actually reload once
 	var/buyable = TRUE
 
-/obj/item/hardpoint/Initialize()
+/obj/item/hardpoint/Initialize(mapload)
 	. = ..()
 	if(starter_ammo)
 		ammo = new starter_ammo

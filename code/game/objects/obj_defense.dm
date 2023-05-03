@@ -66,7 +66,7 @@
 
 
 /obj/ex_act(severity)
-	if(resistance_flags & INDESTRUCTIBLE)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	. = ..() //contents explosion
 	if(QDELETED(src))

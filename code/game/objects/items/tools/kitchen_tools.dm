@@ -31,7 +31,7 @@
 	sharp = 0
 	var/loaded      //Descriptive string for currently loaded food object.
 
-/obj/item/tool/kitchen/utensil/Initialize()
+/obj/item/tool/kitchen/utensil/Initialize(mapload)
 	. = ..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
@@ -115,10 +115,6 @@
 	icon_state = "pknife"
 	force = 10
 	throwforce = 10
-
-/obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
-	return ..()
 
 /*
 * Kitchen knives

@@ -458,13 +458,21 @@
 	. = ..()
 	if(health <= 0 && health > -50)
 		clear_fullscreen("robotlow")
-		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/robothalf)
+		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
 	else if(health <= -50)
 		clear_fullscreen("robothalf")
-		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/robotlow)
+		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
 	else
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
+
+/mob/living/carbon/human/species/robot/updatehealth()
+	. = ..()
+
+	if(health > -25)
+		return
+	adjust_stagger(1)
+	adjust_slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self
@@ -485,7 +493,7 @@
 	if(!. || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/howner = owner
-	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 5 SECONDS)
+	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 10 SECONDS)
 	howner.balloon_alert_to_viewers("Repairing")
 
 /datum/species/robot/alpharii

@@ -326,9 +326,9 @@
 /area/mainship/medical/lower_medical)
 "axo" = (
 /obj/machinery/door_display/research_cell/cell{
-	dir = 1
+	pixel_y = 2
 	},
-/turf/open/floor/mainship/sterile/dark,
+/turf/closed/wall/mainship/white,
 /area/mainship/medical/medical_science)
 "axA" = (
 /obj/structure/cable,
@@ -1587,7 +1587,7 @@
 /area/mainship/living/commandbunks)
 "bTS" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
 "bUC" = (
@@ -2594,13 +2594,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/briefing)
-"dig" = (
-/obj/machinery/status_display{
-	pixel_x = 15
-	},
-/obj/effect/soundplayer,
-/turf/closed/wall/mainship,
-/area/mainship/living/briefing)
 "dit" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/mainship/tcomms,
@@ -3447,6 +3440,16 @@
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
+"ekM" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/radio,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/gloves/insulated,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "ekT" = (
 /turf/open/floor/mainship/green{
 	dir = 8
@@ -4494,7 +4497,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "fFa" = (
@@ -5443,7 +5446,7 @@
 /area/mainship/squads/general)
 "hbh" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/effect/decal/cleanable/blood/writing{
 	desc = "It looks like a writing in blood. It says, 'I am missing and forgotten.'";
 	dir = 4
@@ -7030,7 +7033,7 @@
 /area/mainship/hallways/port_hallway)
 "jhK" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -7151,16 +7154,6 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/living/tankerbunks)
-"juG" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/radio,
-/obj/item/light_bulb/tube,
-/obj/item/light_bulb/tube,
-/obj/item/light_bulb/tube,
-/obj/item/clothing/glasses/meson,
-/obj/item/clothing/gloves/yellow,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "jwr" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
 	dir = 2
@@ -10416,21 +10409,6 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/lower_medical)
-"ntN" = (
-/obj/machinery/power/apc/mainship/hardened{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/black{
-	dir = 8
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
-	},
-/area/mainship/command/self_destruct)
 "nuj" = (
 /obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship,
@@ -10502,6 +10480,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"nyw" = (
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/port_hallway)
 "nyy" = (
 /obj/effect/soundplayer,
 /obj/structure/sign/science,
@@ -11121,9 +11106,7 @@
 	},
 /area/mainship/living/briefing)
 "orC" = (
-/obj/machinery/status_display{
-	pixel_x = -15
-	},
+/obj/machinery/status_display,
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/briefing)
@@ -13992,7 +13975,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "sbg" = (
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/structure/droppod/leader,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
@@ -16568,7 +16551,7 @@
 /area/mainship/command/cic)
 "vfU" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -17878,6 +17861,18 @@
 	dir = 1
 	},
 /area/mainship/command/self_destruct)
+"wSj" = (
+/obj/machinery/power/apc/mainship/hardened{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/mainship/command/self_destruct)
 "wSs" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -18043,6 +18038,9 @@
 /area/mainship/engineering/engineering_workshop)
 "xdy" = (
 /obj/effect/landmark/start/job/ai,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "xdN" = (
@@ -18415,6 +18413,10 @@
 	name = "Requisitions lockdown";
 	pixel_x = 6;
 	pixel_y = 2
+	},
+/obj/item/minimap_tablet{
+	pixel_x = 9;
+	pixel_y = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
@@ -41291,12 +41293,12 @@ rGg
 kQn
 fbP
 sXo
-gmc
+axo
 qIt
 nNo
 fFD
 xYE
-axo
+rGg
 gmc
 kEP
 rKn
@@ -49291,7 +49293,7 @@ oHV
 uQI
 dla
 mBZ
-vfH
+fXS
 vfH
 bxQ
 vfH
@@ -49518,7 +49520,7 @@ pyV
 pgh
 pgh
 tBj
-xyS
+hGT
 hUf
 cNy
 hUf
@@ -49785,7 +49787,7 @@ gbM
 gbM
 gbM
 gbM
-ekk
+nyw
 eel
 ekk
 ekx
@@ -50041,7 +50043,7 @@ vAn
 vAn
 eZp
 vmD
-pvX
+vmD
 vmD
 acn
 vmD
@@ -51373,7 +51375,7 @@ kfm
 kfm
 saT
 soK
-juG
+ekM
 fez
 dcY
 wPV
@@ -51604,7 +51606,7 @@ lon
 bfc
 snn
 mBZ
-vfH
+fXS
 vfH
 bxQ
 vfH
@@ -53091,7 +53093,7 @@ kDx
 kDx
 plN
 oLC
-dig
+orC
 gnS
 kwS
 nGn
@@ -56245,7 +56247,7 @@ kLR
 bXH
 xmu
 lrn
-ntN
+wSj
 fEf
 nIr
 dDg

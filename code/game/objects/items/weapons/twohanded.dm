@@ -208,7 +208,7 @@
 	penetration = 35
 	flags_equip_slot = ITEM_SLOT_BACK
 
-/obj/item/weapon/twohanded/fireaxe/som/Initialize()
+/obj/item/weapon/twohanded/fireaxe/som/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 	AddComponent(/datum/component/stun_mitigation, SHIELD_TOGGLE, shield_cover = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60))
@@ -260,7 +260,7 @@
 	edge = 1
 
 
-/obj/item/weapon/twohanded/dualsaber/Initialize()
+/obj/item/weapon/twohanded/dualsaber/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
@@ -324,7 +324,7 @@
 	throwforce = 60
 	flags_item = DRAINS_XENO | TWOHANDED
 
-/obj/item/weapon/twohanded/spear/tactical/harvester/Initialize()
+/obj/item/weapon/twohanded/spear/tactical/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/harvester)
 
@@ -333,7 +333,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	desc = "A TACTICOOL spear. Used for TACTICOOLNESS in combat."
 
-/obj/item/weapon/twohanded/spear/tactical/tacticool/Initialize()
+/obj/item/weapon/twohanded/spear/tactical/tacticool/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/attachment_handler, \
 	list(ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_MUZZLE), \
@@ -410,7 +410,7 @@
 	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
 	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/twohanded/glaive/harvester/Initialize()
+/obj/item/weapon/twohanded/glaive/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/harvester, 60, TRUE)
 
@@ -462,7 +462,7 @@
 	///knockback value
 	var/knockback = 0
 
-/obj/item/weapon/twohanded/rocketsledge/Initialize()
+/obj/item/weapon/twohanded/rocketsledge/Initialize(mapload)
 	. = ..()
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 

@@ -11,18 +11,44 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
+	///What we're currently tracking
 	var/atom/movable/target
+	///The list of things we're tracking
 	var/list/tracked_list
+	///The hive we're tracking
+	var/tracked_hivenumber = XENO_HIVE_NORMAL
 
-/obj/item/pinpointer/Initialize()
+/obj/item/pinpointer/Initialize(mapload)
 	. = ..()
-	tracked_list = GLOB.xeno_critical_structures
+	tracked_list = GLOB.xeno_critical_structures_by_hive[tracked_hivenumber]
+
+/obj/item/pinpointer/Destroy()
+	target = null
+	return ..()
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
+	///The hivenumbers that we're allowed to select structures to track from
+	var/list/trackable_hivenumbers = list()
+	for(var/hivenumber in GLOB.xeno_critical_structures_by_hive)
+		if(hivenumber == XENO_HIVE_FALLEN) //no reason to ever track valhalla beans
+			continue
+		if(!length(GLOB.xeno_critical_structures_by_hive[hivenumber])) //hives with no structures don't need tracking either
+			continue
+		trackable_hivenumbers |= hivenumber
+
+	if(length(trackable_hivenumbers) == 1)
+		tracked_list = GLOB.xeno_critical_structures_by_hive[trackable_hivenumbers[1]]
+
+	else if(length(trackable_hivenumbers) > 1)
+		tracked_hivenumber = tgui_input_list(user, "Select the hive you wish to track.", "Pinpointer", trackable_hivenumbers)
+		if(!tracked_hivenumber)
+			return
+		tracked_list = GLOB.xeno_critical_structures_by_hive[tracked_hivenumber]
+
 	if(!length(tracked_list))
 		to_chat(user, span_warning("No traceable signals found!"))
 		return
-	target = tgui_input_list(user, "Select the item you wish to track.", "Pinpointer", tracked_list)
+	target = tgui_input_list(user, "Select the structure you wish to track.", "Pinpointer", tracked_list)
 	if(QDELETED(target))
 		return
 	var/turf/pinpointer_loc = get_turf(src)

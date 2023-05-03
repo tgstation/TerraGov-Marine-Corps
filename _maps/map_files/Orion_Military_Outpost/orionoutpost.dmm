@@ -249,7 +249,7 @@
 /area/orion_outpost/surface/building/medbay)
 "bF" = (
 /obj/structure/platform,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "bG" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
@@ -1875,7 +1875,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "ky" = (
 /obj/structure/cable,
@@ -2293,7 +2293,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "my" = (
 /obj/structure/cargo_container/hd{
@@ -2686,7 +2686,7 @@
 /area/orion_outpost/surface/building/armory)
 "ok" = (
 /obj/structure/platform,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_north)
 "ol" = (
 /obj/effect/landmark/weed_node,
@@ -3501,7 +3501,7 @@
 /area/orion_outpost/surface/building/barracks)
 "sa" = (
 /obj/structure/cryofeed,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "sc" = (
 /turf/open/floor/mainship/cargo/arrow{
@@ -3575,7 +3575,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_central)
 "ss" = (
 /turf/open/floor/mainship/blue{
@@ -5955,7 +5955,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostsw)
 "Fa" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_central)
 "Fc" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -6155,7 +6155,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "Gl" = (
 /obj/effect/decal/cleanable/blood,
@@ -6921,7 +6921,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "Km" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -7478,7 +7478,7 @@
 /area/orion_outpost/surface/building/medbay)
 "MY" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "MZ" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2,
@@ -7994,7 +7994,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostsw)
 "Pq" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "Pr" = (
 /obj/structure/stairs/seamless/platform/alt,
@@ -8372,7 +8372,7 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "Rx" = (
 /obj/structure/reagent_dispensers/water_cooler,
@@ -8543,7 +8543,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostcent)
 "Su" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_north)
 "Sv" = (
 /turf/open/floor/mainship/blue{
@@ -8712,7 +8712,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_central)
 "Tl" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
@@ -9924,7 +9924,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "Zv" = (
 /obj/structure/cable,
