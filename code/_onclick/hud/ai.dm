@@ -160,8 +160,8 @@
 	var/action = NOTIFY_AI_ALERT
 
 /atom/movable/screen/alert/ai_notify/Click()
-	var/mob/living/silicon/ai/recipientai = src
-	if(!istype(recipientai) || src != owner)
+	var/mob/living/silicon/ai/recipientai = usr
+	if(!istype(recipientai) || usr != owner)
 		return
 	if(!recipientai.client)
 		return
