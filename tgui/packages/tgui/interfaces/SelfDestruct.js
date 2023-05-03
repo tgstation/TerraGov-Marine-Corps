@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, LabeledList, Box, ProgressBar, Section } from '../components';
+import { Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 export const SelfDestruct = (props, context) => {
@@ -34,7 +34,7 @@ export const SelfDestruct = (props, context) => {
               value={detonation_pcent}
               ranges={{
                 good: [1, Infinity],
-                average: [0.3,0.7],
+                average: [0.3, 0.7],
                 bad: [-Infinity, 0.3],
               }}
             />
