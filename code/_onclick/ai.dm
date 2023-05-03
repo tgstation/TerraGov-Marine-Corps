@@ -179,6 +179,14 @@
 	else
 		alarm()
 
+/* Weeds */
+/obj/alien/weeds/node/AICtrlShiftClick(mob/living/silicon/ai/user)
+	var/turf/firedturf = get_turf(src)
+	firedturf.AICtrlShiftClick(user)
+
+/obj/alien/weeds/AICtrlShiftClick(mob/living/silicon/ai/user)
+	var/turf/firedturf = get_turf(src)
+	firedturf.AICtrlShiftClick(user)
 
 /* Turf */
 
@@ -187,7 +195,6 @@
 //
 /mob/living/silicon/ai/TurfAdjacent(turf/T)
 	return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(T))
-
 
 /obj/structure/ladder/attack_ai(mob/living/silicon/ai/AI)
 	var/turf/TU = get_turf(up)
@@ -229,14 +236,14 @@
 
 /turf/AICtrlShiftClick(mob/living/silicon/ai/user)
 	var/obj/effect/overlay/temp/laser_target/laser
-	var/area/A = get_area(user.eyeobj.loc)
+	var/area/A = get_area(loc)
 	if(HAS_TRAIT(user, TRAIT_IS_FIRING_RAILGUN))
 		to_chat(user, span_warning("The rail guns are already targeting a location, wait for them to finish."))
 		return
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
 		to_chat(user, span_warning("The operation hasn't started yet."))
 		return
-	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(user.eyeobj.loc, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
+	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
 		if(nearby_human.stat != DEAD)
 			to_chat(user, span_warning("Friendly biologicals detected near [loc] target location, aborting."))
 			return
@@ -252,13 +259,13 @@
 	else if(!A)
 		to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 		return
-	to_chat(user, span_notice("Firing orbital railguns at [loc], COORDINATES: X:[x] Y:[y]"))
+	to_chat(user, span_notice("Firing orbital railguns at [src], COORDINATES: X:[x] Y:[y]"))
 	ADD_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 	///how many times we've fired the railgun this cycle
 	var/timesfired = 0
 	///max times we can fire within a single volley
 	var/maxtimesfired = rand(AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE,AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE)
-	var/obj/effect/overlay/temp/laser_target/RGL = new (user.eyeobj.loc, 0, user.name)
+	var/obj/effect/overlay/temp/laser_target/RGL = new (src, 0, user.name)
 	laser = RGL
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(!do_after(user, AI_RAILGUN_FIRING_WINDUP_DELAY, TRUE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
@@ -276,15 +283,15 @@
 			break
 		///used to check if we have valid targets
 		var/list/mob/living/carbon/xenomorph/possible_xenos = list()
-		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(laser.loc, AI_RAILGUN_AUTOTARGET_RANGE))
+		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(laser, AI_RAILGUN_AUTOTARGET_RANGE))
 			if(target_xeno.stat != DEAD)
 				possible_xenos += target_xeno
 		if(length(possible_xenos))
 			var/mob/living/carbon/xenomorph/nuked_xeno = pick(possible_xenos)
-			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(nuked_xeno.loc, user, TRUE)
+			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(nuked_xeno, user, TRUE)
 			++timesfired
 		else
-			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(laser.loc, user, TRUE)
+			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(laser, user, TRUE)
 			++timesfired
 
 #undef AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE
