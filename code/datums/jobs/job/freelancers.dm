@@ -292,8 +292,8 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BELT)
@@ -309,9 +309,9 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife, SLOT_IN_BOOT)
 
@@ -406,8 +406,8 @@
 	r_store = /obj/item/storage/pouch/magazine/large
 
 /datum/outfit/job/freelancer/leader/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BELT)
@@ -419,13 +419,13 @@
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife, SLOT_IN_BOOT)

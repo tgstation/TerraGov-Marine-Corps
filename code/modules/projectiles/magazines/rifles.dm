@@ -369,18 +369,7 @@
 	icon_state_mini = "mag_rifle"
 
 //-------------------------------------------------------
-//GL-54 and AR-55
-
-/obj/item/ammo_magazine/rifle/tx55
-	name = "\improper AR-55 magazine (10x24mm)"
-	desc = "A small capacity 10mm rifle magazine. Differs from a AR-18 magazine enough to bypass relevant patents."
-	caliber = CALIBER_10X24_CASELESS
-	icon_state = "tx55"
-	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 36
-	icon_state_mini = "mag_rifle_big"
-
+//GL-54
 /obj/item/ammo_magazine/rifle/tx54
 	name = "\improper 20mm airburst grenade magazine"
 	desc = "A 20mm magazine loaded with airburst grenades. For use with the GL-54 or AR-55."
