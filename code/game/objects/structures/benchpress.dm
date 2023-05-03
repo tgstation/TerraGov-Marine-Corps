@@ -1,6 +1,6 @@
 /obj/structure/benchpress
 	name = "weight training bench"
-	desc = "Just looking at this thing makes you feel tired. Leftclick to bench, rightclick to change weights"
+	desc = "Just looking at this thing makes you feel tired.<br>Left click to bench, right click to change weights."
 	icon = 'icons/obj/structures/benchpress.dmi'
 	icon_state = "benchpress_0"
 	base_icon_state = "benchpress"
