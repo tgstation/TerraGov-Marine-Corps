@@ -312,8 +312,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/ammo_process(obj/projectile/proj, damage)
 	CRASH("ammo_process called with unimplemented process!")
 
-
-
 /*
 //================================================
 					Default Ammo
@@ -633,6 +631,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 18
 	penetration = 0
+
+/datum/ammo/bullet/smg/rad
+	name = "radioactive submachinegun bullet"
+	hud_state = "smg_rad"
+	damage = 15
+	penetration = 15
+	sundering = 1
+
+/datum/ammo/bullet/smg/rad/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+	var/mob/living/living_victim = M
+	if(!prob(living_victim.modify_by_armor(proj.damage, BIO, penetration, proj.def_zone)))
+		return
+	living_victim.apply_radiation(2, 2)
 
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
@@ -2188,30 +2201,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/effects/portal_opening.ogg', 50, 1)
 	for(var/mob/living/victim in hearers(outer_range, T))
 		var/strength
-		var/datum/looping_sound/geiger/geiger_counter = new(null, FALSE)
+		var/sound_level
 		if(get_dist(victim, T) <= inner_range)
 			strength = rad_strength
-			geiger_counter.severity = 4
+			sound_level = 4
 		else if(get_dist(victim, T) <= mid_range)
 			strength = rad_strength * 0.7
-			geiger_counter.severity = 3
+			sound_level = 3
 		else
 			strength = rad_strength * 0.3
-			geiger_counter.severity = 2
-		irradiate(victim, strength)
-		geiger_counter.start(victim)
-	explosion(T, 0, 0, 3, 0)
+			sound_level = 2
 
-///Applies the actual rad effects
-/datum/ammo/rocket/som/rad/proc/irradiate(mob/living/victim, strength)
-	var/effective_strength = max(victim.modify_by_armor(strength, BIO), strength * 0.25)
-	victim.adjustCloneLoss(effective_strength)
-	victim.adjustStaminaLoss(effective_strength * 7)
-	victim.adjust_stagger(effective_strength / 2)
-	victim.add_slowdown(effective_strength / 2)
-	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
-	victim.adjust_radiation(effective_strength * 20) //Radiation status effect, duration is in deciseconds
-	to_chat(victim, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))
+		strength = victim.modify_by_armor(strength, BIO, 25)
+		victim.apply_radiation(strength, sound_level)
+
+	explosion(T, 0, 0, 3, 0)
 
 /datum/ammo/rocket/atgun_shell
 	name = "high explosive ballistic cap shell"
@@ -3383,7 +3387,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	var/turf/target_turf = get_turf(victim)
-	drop_nade(target_turf.density ? get_turf(proj) : target_turf, proj.firer)
+	drop_nade(target_turf.density ? proj.loc : target_turf, proj.firer)
 
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
@@ -3405,8 +3409,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
 		P.damage *= 7 //Globs deal much higher damage to mechs.
-	var/turf/T = get_turf(O)
-	drop_nade(T.density ? P.loc : T, P.firer)
+	var/turf/target_turf = get_turf(O)
+	drop_nade(O.density ? P.loc : target_turf, P.firer)
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T, P.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
@@ -3774,13 +3778,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 15
 	max_range = 10
 
-/datum/ammo/grenade_container/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/grenade_container/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/grenade_container/on_hit_obj(obj/O,obj/projectile/P)
-	drop_nade(get_turf(P))
+/datum/ammo/grenade_container/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : O.loc)
 
-/datum/ammo/grenade_container/on_hit_turf(turf/T,obj/projectile/P)
+/datum/ammo/grenade_container/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/grenade_container/do_at_max_range(turf/T, obj/projectile/P)
