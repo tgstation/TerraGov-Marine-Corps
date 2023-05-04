@@ -14,8 +14,8 @@
 
 /obj/structure/platform/Initialize(mapload)
 	. = ..()
-	if(dir == SOUTH)
-		layer = ABOVE_MOB_LAYER
+	apply_overlays()
+	icon_state = ""
 
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_enter),
@@ -23,14 +23,67 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
+///clears and sets overlays based on current dir
+/obj/structure/platform/proc/apply_overlays()
+	overlays.Cut()
+	var/image/new_overlay
+	//surely there is an easier way than this boilerplate
+	if(dir & EAST)
+		new_overlay = image(icon, src, initial(icon_state), layer, EAST)
+		new_overlay.pixel_x = 32
+		overlays += new_overlay
+		//add_overlay()
+
+	if(dir & WEST)
+		new_overlay = image(icon, src, initial(icon_state), layer, WEST)
+		new_overlay.pixel_x = -32
+		overlays += new_overlay
+
+	if(dir & NORTH)
+		new_overlay = image(icon, src, initial(icon_state), layer, NORTH)
+		new_overlay.pixel_y = 32
+		new_overlay.layer = ABOVE_MOB_LAYER //perspective
+		overlays += new_overlay
+
+	if(dir & SOUTH)
+		new_overlay = image(icon, src, initial(icon_state), layer, SOUTH)
+		new_overlay.pixel_y = -32
+		overlays += new_overlay
+
+	if(CHECK_MULTIPLE_BITFIELDS(dir, NORTHEAST))
+		new_overlay = image(icon, src, initial(icon_state), layer, NORTHEAST)
+		new_overlay.pixel_y = 32
+		new_overlay.pixel_x = 32
+		new_overlay.layer = ABOVE_MOB_LAYER
+		overlays += new_overlay
+
+	if(CHECK_MULTIPLE_BITFIELDS(dir, NORTHWEST))
+		new_overlay = image(icon, src, initial(icon_state), layer, NORTHWEST)
+		new_overlay.pixel_y = 32
+		new_overlay.pixel_x = -32
+		new_overlay.layer = ABOVE_MOB_LAYER
+		overlays += new_overlay
+
+	if(CHECK_MULTIPLE_BITFIELDS(dir, SOUTHEAST))
+		new_overlay = image(icon, src, initial(icon_state), layer, SOUTHEAST)
+		new_overlay.pixel_y = -32
+		new_overlay.pixel_x = 32
+		overlays += new_overlay
+
+	if(CHECK_MULTIPLE_BITFIELDS(dir, SOUTHWEST))
+		new_overlay = image(icon, src, initial(icon_state), layer, SOUTHWEST)
+		new_overlay.pixel_y = -32
+		new_overlay.pixel_x = -32
+		overlays += new_overlay
+
+
+
 ///Applies slowdown when entering if applicable
 /obj/structure/platform/proc/on_enter(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SIGNAL_HANDLER
 	if(arrived.throwing)
 		return NONE
 	if((arrived.status_flags & INCORPOREAL))
-		return
-	if(!(flags_atom & ON_BORDER))
 		return
 	if(!ismob(arrived))
 		return
@@ -42,7 +95,8 @@
 	var/mob/arriving_mob = arrived
 	var/old_loc_dir = get_dir(src, old_loc)
 	if(old_loc_dir & dir)
-		arriving_mob.client.move_delay += climb_slowdown //applied directly to client movedelay as mob delay would only apply after an additional movement
+		arriving_mob.client.move_delay = world.time + climb_slowdown //applied directly to client movedelay as mob delay would only apply after an additional movement
+		arriving_mob.balloon_alert_to_viewers("enter")
 
 ///Applies slowdown when exiting if applicable
 /obj/structure/platform/proc/on_exit(datum/source, atom/movable/exiting, direction, list/knownblockers)
@@ -51,14 +105,13 @@
 		return NONE
 	if((exiting.status_flags & INCORPOREAL))
 		return
-	if(!(flags_atom & ON_BORDER))
-		return
 	if(!ismob(exiting))
 		return
 
 	var/mob/exiting_mob = exiting
 	if(direction & dir)
-		exiting_mob.client.move_delay += climb_slowdown
+		exiting_mob.client.move_delay = world.time + climb_slowdown
+		exiting_mob.balloon_alert_to_viewers("exit")
 
 /obj/structure/platform/rockcliff
 	icon_state = "rockcliff"
