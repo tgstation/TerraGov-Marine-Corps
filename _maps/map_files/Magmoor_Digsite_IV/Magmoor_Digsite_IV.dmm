@@ -36,7 +36,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby/east)
 "aaE" = (
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -2657,7 +2657,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "bSx" = (
-/obj/structure/fakeplatform/magmoor,
+/obj/structure/platform/magmoor,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
 "bSz" = (
@@ -2680,7 +2680,7 @@
 /turf/closed/mineral/smooth,
 /area/magmoor/cave/north)
 "bUx" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -3256,7 +3256,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "cqp" = (
-/obj/structure/fakeplatform,
+/obj/structure/platform,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/east)
@@ -3662,7 +3662,7 @@
 /turf/open/floor/plating,
 /area/magmoor/compound/north)
 "cGt" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -3839,7 +3839,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/magmoor/research/serverroom)
 "cPc" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -4291,7 +4291,7 @@
 /area/magmoor/compound)
 "dfR" = (
 /obj/effect/ai_node,
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -4532,7 +4532,7 @@
 	},
 /area/magmoor/security/arrivals/south)
 "dmj" = (
-/obj/structure/fakeplatform,
+/obj/structure/platform,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/north)
 "dmB" = (
@@ -4572,7 +4572,7 @@
 	},
 /area/magmoor/engi/atmos)
 "doa" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -5224,7 +5224,7 @@
 	},
 /area/magmoor/research/containment)
 "dGY" = (
-/obj/structure/fakeplatform,
+/obj/structure/platform,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound)
 "dHd" = (
@@ -6887,7 +6887,7 @@
 /area/magmoor/security/infocenter)
 "eQr" = (
 /obj/effect/ai_node,
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -7225,7 +7225,7 @@
 	},
 /area/magmoor/civilian/arrival)
 "fcN" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -7234,7 +7234,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -7590,7 +7590,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/mosque)
 "fsP" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -8980,7 +8980,7 @@
 	on = 1;
 	welded = 1
 	},
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -12979,7 +12979,7 @@
 	},
 /area/magmoor/compound)
 "jsD" = (
-/obj/structure/fakeplatform,
+/obj/structure/platform,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound)
 "jsF" = (
@@ -13374,7 +13374,7 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)
 "jHV" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -13823,7 +13823,7 @@
 /turf/open/floor/mainship/purple,
 /area/magmoor/research/rnd/lobby)
 "jZD" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -14753,7 +14753,7 @@
 	},
 /area/magmoor/mining)
 "kMW" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -14782,7 +14782,7 @@
 	},
 /area/magmoor/civilian/clean/shower)
 "kOf" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -15079,7 +15079,7 @@
 /turf/open/floor/wood,
 /area/magmoor/command/office/main)
 "kZU" = (
-/obj/structure/fakeplatform,
+/obj/structure/platform,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
 "laA" = (
@@ -15935,10 +15935,10 @@
 	},
 /area/magmoor/compound/southeast)
 "lHF" = (
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 1
 	},
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -16706,7 +16706,7 @@
 /turf/open/lavaland/basalt/dirt/autosmoothing,
 /area/magmoor/compound/northwest)
 "mlF" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/dirttosand,
@@ -16786,7 +16786,7 @@
 /turf/open/floor/concrete/lines,
 /area/magmoor/cave/north)
 "mpm" = (
-/obj/structure/fakeplatform,
+/obj/structure/platform,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/south)
 "mpr" = (
@@ -16908,7 +16908,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "mvt" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -17654,10 +17654,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "mXJ" = (
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 8
 	},
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 6
 	},
 /turf/open/floor/mainship/mono,
@@ -19093,7 +19093,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "ocP" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -19212,10 +19212,10 @@
 	},
 /area/magmoor/engi/storage)
 "ohR" = (
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 1
 	},
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -19454,7 +19454,7 @@
 	},
 /area/magmoor/compound/west)
 "orp" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -20769,7 +20769,7 @@
 	},
 /area/magmoor/research/rnd)
 "pij" = (
-/obj/structure/fakeplatform,
+/obj/structure/platform,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/west)
 "pik" = (
@@ -21222,7 +21222,7 @@
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "puC" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -21502,7 +21502,7 @@
 /area/magmoor/hydroponics/north)
 "pCT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -21648,7 +21648,7 @@
 	},
 /area/magmoor/civilian/mosque)
 "pIy" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -21883,7 +21883,7 @@
 /turf/open/lavaland/catwalk,
 /area/magmoor/compound/southwest)
 "pQx" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -23842,7 +23842,7 @@
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
 "rtQ" = (
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -24557,7 +24557,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby/east)
 "rUm" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -24628,7 +24628,7 @@
 	dir = 1;
 	welded = 1
 	},
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -26519,7 +26519,7 @@
 /area/magmoor/compound/east)
 "tpg" = (
 /obj/structure/cable,
-/obj/structure/fakeplatform/magmoor,
+/obj/structure/platform/magmoor,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
 "tpi" = (
@@ -26584,7 +26584,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound)
 "tsa" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -26896,10 +26896,10 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/cook)
 "tEr" = (
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 4
 	},
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 6
 	},
 /turf/open/floor/mainship/mono,
@@ -28575,7 +28575,7 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -28604,7 +28604,7 @@
 	},
 /area/magmoor/medical/treatment)
 "uNU" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -28816,7 +28816,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "uUR" = (
-/obj/structure/fakeplatform,
+/obj/structure/platform,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
@@ -29635,7 +29635,7 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "vDo" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -30470,7 +30470,7 @@
 	},
 /area/magmoor/cargo/processing/south)
 "wkJ" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -30770,7 +30770,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/west)
 "wvD" = (
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -31831,7 +31831,7 @@
 	},
 /area/magmoor/engi)
 "xcC" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -32376,7 +32376,7 @@
 /turf/open/lavaland/basalt/dirt/autosmoothing,
 /area/magmoor/compound/east)
 "xvY" = (
-/obj/structure/fakeplatform{
+/obj/structure/platform{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -33598,7 +33598,7 @@
 /area/magmoor/command/conference)
 "yld" = (
 /obj/structure/cable,
-/obj/structure/fakeplatform/magmoor{
+/obj/structure/platform/magmoor{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
