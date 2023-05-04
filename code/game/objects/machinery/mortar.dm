@@ -503,7 +503,7 @@
 	fade = 1 SECONDS
 	fadein = 4
 	position = generator(GEN_VECTOR, list(-7, -16), list(-7, -10), NORMAL_RAND)
-	velocity = list(20, -1)
+	velocity = list(25, -1)
 	color = "#fbebd3" //coloring in a sorta dark dusty look
 	drift = generator(GEN_SPHERE, 0, 1.5, NORMAL_RAND)
 	friction = 0.3
@@ -511,7 +511,7 @@
 	grow = 0.05
 
 /particles/howitzer_dust/east
-	velocity = list(-20, -1)
+	velocity = list(-25, -1)
 	position = generator(GEN_VECTOR, list(7, -16), list(7, -10), NORMAL_RAND)
 
 /particles/howitzer_dust/north
