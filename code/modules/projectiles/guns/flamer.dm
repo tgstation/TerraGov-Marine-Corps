@@ -315,7 +315,7 @@
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank,
 		/obj/item/ammo_magazine/flamer_tank/large,
-		/obj/item/ammo_magazine/flamer_tank/large/X
+		/obj/item/ammo_magazine/flamer_tank/large/X,
 	)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,

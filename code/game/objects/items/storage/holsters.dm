@@ -258,7 +258,7 @@
 
 /obj/item/storage/holster/backholster/flamer
 	name = "\improper TGMC flamethrower bag"
-	desc = "This backpack has a built in large capacity fuel tank, and can carry its accompanying flamethrower as well as a modest general storage capacity."
+	desc = "This backpack can carry its accompanying flamethrower as well as a modest general storage capacity."
 	icon_state = "pyro_bag"
 	item_state = "pyro_bag"
 	w_class = WEIGHT_CLASS_BULKY
