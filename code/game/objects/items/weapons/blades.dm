@@ -50,7 +50,6 @@
 	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-	flags_item = DRAINS_XENO
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
 	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
@@ -219,7 +218,6 @@
 	item_state = "vali_knife"
 	force = 25
 	throwforce = 15
-	flags_item = DRAINS_XENO
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
 	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>

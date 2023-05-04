@@ -1714,8 +1714,8 @@
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 36 //codex
 	wield_delay = 1 SECONDS
-	default_ammo_type = /obj/item/ammo_magazine/rifle/tx55
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx55)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_carbine)
 	attachable_allowed = list(
 		/obj/item/attachable/scope/optical,
 		/obj/item/weapon/gun/rifle/tx54/mini,

@@ -98,7 +98,7 @@
 	SIGNAL_HANDLER
 	var/sucked_one = FALSE
 	for(var/obj/item/sucker in loc)
-		if(sucker.flags_item & NO_VACUUM)
+		if(sucker.anchored)
 			continue
 		sucked_one = TRUE
 		sucker.store_in_cryo()
@@ -154,6 +154,6 @@
 
 /obj/machinery/roomba/valhalla/suck_items()
 	for(var/obj/item/sucker in loc)
-		if(sucker.flags_item & NO_VACUUM)
+		if(sucker.anchored)
 			continue
 		qdel(sucker)
