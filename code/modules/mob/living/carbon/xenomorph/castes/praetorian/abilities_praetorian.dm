@@ -85,9 +85,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(T.density)
 		return
 	var/is_blocked = FALSE
+	var/list/acided_objs = list()
 	for (var/obj/O in T)
 		if(is_type_in_typecache(O, GLOB.acid_spray_hit))
 			O.acid_spray_act(owner)
+			acided_objs += O
 		if(!O.CanPass(source_spray, get_turf(source_spray)))
 			is_blocked = TRUE
 	if(is_blocked)
@@ -98,7 +100,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/xenomorph/spray/spray = new(T, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner)
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
-		A.acid_spray_act(owner)
+		if(!acided_objs.Find(A))
+			A.acid_spray_act(owner)
 		if(((A.density && !(A.flags_pass & PASSPROJECTILE) && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
 			is_blocked = TRUE
 	if(!is_blocked)
