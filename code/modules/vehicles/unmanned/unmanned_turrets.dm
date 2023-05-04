@@ -35,6 +35,6 @@
 	turret_pattern = PATTERN_DROID
 	turret_type = TURRET_TYPE_DROIDLASER
 	ammo_type = /datum/ammo/energy/lasgun/marine/overcharge
-	fire_delay = 2.5
+	fire_delay = 0.25 SECONDS
 	current_rounds = 300
 	max_rounds = 300
