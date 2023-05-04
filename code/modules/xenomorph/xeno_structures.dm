@@ -600,9 +600,6 @@ TUNNEL
 
 	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
 
-	for(var/obj/item/explosive/grenade/sticky/trailblazer/fire_bomb in stepper.contents)
-		fire_bomb.clean_refs()
-		qdel(fire_bomb)
 	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
 		sticky_bomb.clean_refs()
 		qdel(sticky_bomb)
