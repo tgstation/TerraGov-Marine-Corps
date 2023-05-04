@@ -1012,7 +1012,7 @@
 
 	product_ads = "Power cell running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-		/obj/item/cell/lasgun/lasrifle = 10,
+		/obj/item/cell/lasgun/lasrifle = 10, /obj/item/cell/lasgun/volkite/powerpack/marine = 2,
 	)
 
 
@@ -1417,6 +1417,7 @@
 			/obj/item/storage/pouch/field_pouch = -1,
 			/obj/item/storage/pouch/general/large = -1,
 			/obj/item/storage/pouch/document = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
 		),
 		"Headwear" = list(
 			/obj/item/clothing/head/modular/style/beret = -1,
