@@ -17,6 +17,30 @@
 	creak_loop = new
 	update_icon()
 
+/obj/structure/benchpress/wrench_act(mob/living/user, obj/item/tool)
+	tool.play_tool_sound(src)
+	if(anchored)
+		balloon_alert(user, "unsecured")
+		anchored = FALSE
+	else
+		balloon_alert(user, "secured")
+		anchored = TRUE
+	return TRUE
+
+/obj/structure/benchpress/crowbar_act(mob/living/user, obj/item/tool)
+	if(anchored)
+		balloon_alert(user, "unsecure first!")
+		return FALSE
+	tool.play_tool_sound(src)
+	balloon_alert(user, "deconstructing...")
+	if(!do_after(user, 10 SECONDS, target = src))
+		return FALSE
+	new /obj/item/stack/sheet/metal(get_turf(src))
+	new /obj/item/stack/rods(get_turf(src))
+	new /obj/item/stack/rods(get_turf(src))
+	qdel(src)
+	return TRUE
+
 /obj/structure/benchpress/update_icon_state()
 	. = ..()
 	icon_state = HAS_TRAIT(src, BENCH_BEING_USED) ? "[base_icon_state]_u" : "[base_icon_state]_[plates]"
@@ -100,26 +124,3 @@
 	user.set_skills(user.skills.modifyRating(cqc=-1))
 	to_chat(user, span_boldnotice("You no longer feel as fit as you used to!"))
 
-/obj/structure/benchpress/wrench_act(mob/living/user, obj/item/tool)
-	tool.play_tool_sound(src)
-	if(anchored)
-		balloon_alert(user, "unsecured")
-		anchored = FALSE
-	else
-		balloon_alert(user, "secured")
-		anchored = TRUE
-	return TRUE
-
-/obj/structure/benchpress/crowbar_act(mob/living/user, obj/item/tool)
-	if(anchored)
-		balloon_alert(user, "unsecure first!")
-		return FALSE
-	tool.play_tool_sound(src)
-	balloon_alert(user, "deconstructing...")
-	if(!do_after(user, 10 SECONDS, target = src))
-		return FALSE
-	new /obj/item/stack/sheet/metal(get_turf(src))
-	new /obj/item/stack/rods(get_turf(src))
-	new /obj/item/stack/rods(get_turf(src))
-	qdel(src)
-	return TRUE
