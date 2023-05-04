@@ -6,23 +6,13 @@
 	desc = "A square metal surface resting on four legs."
 	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "platform"
-	climbable = TRUE
-	anchored = TRUE
-	density = TRUE
 	coverage = 10
 	layer = OBJ_LAYER
-	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
-	interaction_flags = INTERACT_CHECK_INCAPACITATED //no dexterity flag so xenos can climb them
 	flags_atom = ON_BORDER
-	resistance_flags = XENO_DAMAGEABLE	//TEMP PATCH UNTIL XENO AI PATHFINDING IS BETTER, SET THIS TO INDESTRUCTIBLE ONCE IT IS - Tivi
-	obj_integrity = 1000	//Ditto
-	max_integrity = 1000	//Ditto
+	resistance_flags = RESIST_ALL
+	var/climb_slowdown = 0.5 SECONDS
 
-/obj/structure/platform/gelida
-	coverage = 0
-	climb_delay = 5 //halved time because on gelida platforms are everywhere
-	obj_integrity = 50 //ditto
-	max_integrity = 50	//ditto
+/obj/structure/platform/gelida //toremove
 
 /obj/structure/platform/Initialize(mapload)
 	. = ..()
@@ -39,41 +29,51 @@
 			I.pixel_x = -16
 	overlays += I
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+		COMSIG_ATOM_ENTERED = PROC_REF(on_enter),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exit),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/structure/platform/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
+/obj/structure/platform/proc/on_enter(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SIGNAL_HANDLER
-	if(O.throwing)
+	if(arrived.throwing)
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
+	if((arrived.status_flags & INCORPOREAL))
+		return
+	if(!(flags_atom & ON_BORDER))
+		return
+	if(!ismob(arrived))
+		return
+	if(!isturf(old_loc))
+		return
+	if(get_dist(src, old_loc) != 1)
+		return
+
+	var/mob/arriving_mob = arrived
+	var/old_loc_dir = get_dir(src, old_loc)
+	if(old_loc_dir & dir)
+		arriving_mob.client.move_delay += climb_slowdown
+
+/obj/structure/platform/proc/on_exit(datum/source, atom/movable/exiting, direction, list/knownblockers)
+	SIGNAL_HANDLER
+	if(exiting.throwing)
 		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
+	if((exiting.status_flags & INCORPOREAL))
+		return
+	if(!(flags_atom & ON_BORDER))
+		return
+	if(!ismob(exiting))
+		return
 
-/obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(mover?.throwing)
-		return TRUE
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
-		return TRUE
-
-	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) & dir))
-		return TRUE
+	var/mob/exiting_mob = exiting
+	if(direction & dir)
+		exiting_mob.client.move_delay += climb_slowdown
 
 /obj/structure/platform_decoration
 	name = "platform"
 	desc = "A square metal surface resting on four legs."
-	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "platform_deco"
-	anchored = TRUE
-	density = FALSE
 	layer = 3.5
-	flags_atom = ON_BORDER
-	resistance_flags = UNACIDABLE
 
 /obj/structure/platform_decoration/Initialize(mapload)
 	. = ..()
