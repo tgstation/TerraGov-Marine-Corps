@@ -115,11 +115,14 @@
 		SMOOTH_GROUP_RIVER,
 	)
 
-/obj/effect/river_overlay
-	name = "river_overlay"
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = RIVER_OVERLAY_LAYER
-	plane = FLOOR_PLANE
+/turf/open/liquid/water/river/deep
+	icon_state = "seashallow_deep"
+	mob_liquid_height = 18
+	mob_liquid_depth = -8
+
+/turf/open/liquid/water/river/deep/Initialize(mapload)
+	. = ..()
+	icon_state = "seashallow"
 
 /turf/open/liquid/water/river/autosmooth
 	icon = 'icons/turf/floors/river.dmi'
@@ -136,6 +139,7 @@
 	)
 
 /turf/open/liquid/water/river/autosmooth/deep
+	icon_state = "river_deep-icon"
 	mob_liquid_height = 18
 	mob_liquid_depth = -8
 
