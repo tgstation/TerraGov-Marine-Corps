@@ -3,6 +3,21 @@ import { resolveAsset } from '../assets';
 import { Button, Section, Box, Flex } from '../components';
 import { Window } from '../layouts';
 
+type DropshipEntry = {
+  name: string;
+  description: string;
+  ref: string;
+};
+
+type DropshipPickerData = {
+  name: string;
+  desc: string;
+  assetpath: string;
+  current_ref: string;
+  dropship_selected: boolean;
+  shuttles: DropshipEntry[];
+};
+
 export const DropshipPicker = (_props, context) => {
   const { act, data } = useBackend<DropshipPickerData>(context);
 
@@ -39,12 +54,13 @@ export const DropshipPicker = (_props, context) => {
 };
 
 const ShuttleSelection = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<DropshipPickerData>(context);
 
   return (
     <Section title="Available Models" fill>
       {data.shuttles.map((shuttle) => (
         <Button
+          key={shuttle.ref}
           selected={shuttle.ref === data.current_ref}
           width={'100%'}
           onClick={() => act('pickship', { ref: shuttle.ref })}>
