@@ -7,7 +7,7 @@
 	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "platform"
 	coverage = 10
-	layer = OBJ_LAYER
+	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = RESIST_ALL
 	var/climb_slowdown = 0.5 SECONDS
