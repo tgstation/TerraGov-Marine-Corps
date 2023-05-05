@@ -474,7 +474,8 @@
 	icon_state = "cas_flare_grenade"
 	item_state = "cas_flare_grenade"
 	hud_state = "grenade_frag"
-	fuel = 30
+	lower_fuel_limit = 25
+	upper_fuel_limit = 30
 	light_power = 3
 	light_color = LIGHT_COLOR_GREEN
 	var/datum/squad/user_squad
@@ -504,7 +505,8 @@
 ///Flares that the tadpole flare launcher launches
 /obj/item/explosive/grenade/flare/strongerflare
 	icon_state = "stronger_flare_grenade"
-	fuel = 120
+	lower_fuel_limit = 10
+	upper_fuel_limit = 20
 	light_system = STATIC_LIGHT//movable light has a max range
 	light_color = LIGHT_COLOR_CYAN
 	///The brightness of the flare
