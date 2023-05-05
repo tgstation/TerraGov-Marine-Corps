@@ -852,6 +852,11 @@ EXPLOSIVES
 	cost = 100
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/explosives/customnade
+	name = "custom grenade casing"
+	contains = list(/obj/item/explosive/grenade/chem_grenade, /obj/item/explosive/grenade/chem_grenade)
+	cost = 250
+
 /*******************************************************************************
 ARMOR
 *******************************************************************************/
