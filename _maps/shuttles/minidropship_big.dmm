@@ -108,6 +108,12 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"A" = (
+/obj/structure/window/framed/mainship/hull{
+	canSmoothWith = list(30,62,81,66,37,34)
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
 "C" = (
 /obj/structure/barricade/plasteel,
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
@@ -146,6 +152,12 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"N" = (
+/turf/closed/wall/mainship{
+	canSmoothWith = list(81,66,62,67,34);
+	smoothing_groups = list(34)
+	},
 /area/shuttle/minidropship)
 "Q" = (
 /obj/structure/window/framed/mainship/hull,
@@ -195,18 +207,18 @@ e
 I
 a
 a
-j
+N
 b
 I
 "}
 (2,1,1) = {"
 j
-Q
+A
 b
 b
-j
+N
 E
-j
+N
 b
 b
 "}
@@ -245,12 +257,12 @@ i
 "}
 (6,1,1) = {"
 j
-Q
+A
 b
 b
-j
+N
 S
-j
+N
 b
 b
 "}
@@ -261,7 +273,7 @@ T
 h
 a
 a
-j
+N
 b
 h
 "}
