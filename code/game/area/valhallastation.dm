@@ -273,6 +273,11 @@
 	name = "Xeno Cave"
 	icon_state = "north"
 
+/area/centcom/valhalla/medical/chemistry
+	name = "Chemistry"
+	icon_state = "medbay"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+
 ///////////WORK IN PROGRESS//////////
 
 /area/centcom/valhalla/quartermaster/miningdock

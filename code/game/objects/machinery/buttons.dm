@@ -273,6 +273,29 @@
 		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
 	linked = new xeno_wanted(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 
+/obj/machinery/button/valhalla/guns
+	name = "Gun + magazine spawner"
+	var/gun_types
+
+/obj/machinery/button/valhalla/guns/Initialize(mapload)
+	. = ..()
+	gun_types = subtypesof(/obj/item/weapon/gun)
+
+/obj/machinery/button/valhalla/guns/attack_hand(mob/living/user)
+	var/gun_wanted = tgui_input_list(user, "What gun to spawn?", "Gun spawn", gun_types)
+	if(!gun_wanted)
+		return
+	var/mag_wanted = tgui_input_number(user, "How many times to spawn its possible magazines?", "Magazine count", max_value = 3)
+
+	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+		to_chat(user, span_warning("An error occured, yell at the coders."))
+		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
+	
+	var/obj/item/weapon/gun/gun = new gun_wanted(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+	for(var/I in 1 to mag_wanted)
+		for(var/path in gun.allowed_ammo_types)
+			new path(gun.loc)
+
 /obj/machinery/button/valhalla/xeno_button
 	name = "Marine spawner"
 	///The list of outfits we can equip on the humans we're spawning
