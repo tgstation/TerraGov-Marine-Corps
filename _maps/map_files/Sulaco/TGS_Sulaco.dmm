@@ -4205,26 +4205,16 @@
 /turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "auQ" = (
-/obj/structure/platform,
 /turf/open/floor/prison/darkyellow{
 	dir = 10
 	},
 /area/sulaco/briefing)
-"auR" = (
-/obj/structure/platform,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison,
-/area/sulaco/briefing)
 "auS" = (
-/obj/structure/platform,
 /turf/open/floor/prison/darkpurple{
 	dir = 6
 	},
 /area/sulaco/briefing)
 "auT" = (
-/obj/structure/platform_decoration{
-	dir = 1
-	},
 /turf/open/floor/prison/darkpurple,
 /area/sulaco/briefing)
 "auU" = (
@@ -4338,7 +4328,6 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge/office)
 "avu" = (
-/obj/structure/platform_decoration,
 /turf/open/floor/prison/darkyellow,
 /area/sulaco/briefing)
 "avv" = (
@@ -4616,16 +4605,6 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/sulaco/briefing)
-"aws" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "awu" = (
@@ -4785,15 +4764,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
-"axE" = (
-/obj/structure/bed/chair/nometal{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/sulaco/briefing)
 "axF" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -5283,6 +5253,9 @@
 	id = "bar";
 	name = "Briefing Shutters"
 	},
+/obj/structure/platform{
+	dir = 9
+	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aAf" = (
@@ -5290,6 +5263,9 @@
 	dir = 1
 	},
 /obj/machinery/door/window/secure/bridge{
+	dir = 1
+	},
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -5305,6 +5281,9 @@
 /obj/machinery/flasher_button{
 	id = "brief";
 	name = "Settle The Fuck Down!"
+	},
+/obj/structure/platform{
+	dir = 5
 	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
@@ -5580,6 +5559,9 @@
 /obj/structure/table/reinforced,
 /obj/item/megaphone,
 /obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -61597,7 +61579,7 @@ apN
 aug
 avG
 axi
-auR
+axi
 aAf
 anr
 aBT
@@ -62112,8 +62094,8 @@ aui
 aPd
 apW
 auT
-aws
-axE
+wOA
+aBz
 jXo
 mDu
 mDu
