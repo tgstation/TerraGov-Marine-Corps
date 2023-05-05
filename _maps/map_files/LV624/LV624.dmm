@@ -15889,6 +15889,11 @@
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/lv624/ground/jungle9)
+"sZg" = (
+/obj/structure/jungle/vines,
+/obj/structure/platform,
+/turf/closed/gm/dense,
+/area/lv624/lazarus/sandtemple)
 "sZl" = (
 /obj/structure/showcase,
 /obj/structure/window/reinforced,
@@ -16155,6 +16160,13 @@
 "tnW" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/ruin)
+"tok" = (
+/obj/structure/jungle/vines,
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/closed/wall/r_wall/chigusa,
+/area/lv624/lazarus/sandtemple)
 "tpt" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -53223,7 +53235,7 @@ vSk
 mNI
 bzv
 qfl
-pfG
+tok
 vCy
 vCy
 vCy
@@ -53400,7 +53412,7 @@ iwX
 sab
 jxC
 eez
-oRZ
+bUv
 vCy
 vCy
 vCy
@@ -53577,7 +53589,7 @@ bOl
 bOl
 bsq
 tXS
-qfl
+thG
 vCy
 vCy
 vCy
@@ -54993,7 +55005,7 @@ bsq
 bsq
 uQw
 uQw
-aiO
+sZg
 vCy
 vCy
 vCy
@@ -55170,7 +55182,7 @@ bOl
 bOl
 bsq
 uQw
-qfl
+thG
 vCy
 vCy
 vCy
@@ -55347,7 +55359,7 @@ iwX
 iwX
 iwX
 siU
-qfl
+thG
 vCy
 vCy
 vCy
