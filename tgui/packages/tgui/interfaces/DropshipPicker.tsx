@@ -4,7 +4,7 @@ import { Button, Section, Box, Flex } from '../components';
 import { Window } from '../layouts';
 
 export const DropshipPicker = (_props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<DropshipPickerData>(context);
 
   return (
     <Window width={510} height={500} title={'Dropship Selector'}>
@@ -44,13 +44,12 @@ const ShuttleSelection = (props, context) => {
   return (
     <Section title="Available Models" fill>
       {data.shuttles.map((shuttle) => (
-        <Box key={shuttle.ref}>
-          <Button
-            selected={shuttle.ref === data.current_ref}
-            onClick={() => act('pickship', { ref: shuttle.ref })}>
-            {shuttle.name}
-          </Button>
-        </Box>
+        <Button
+          selected={shuttle.ref === data.current_ref}
+          width={'100%'}
+          onClick={() => act('pickship', { ref: shuttle.ref })}>
+          {shuttle.name}
+        </Button>
       ))}
     </Section>
   );
