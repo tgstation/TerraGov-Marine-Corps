@@ -94,8 +94,7 @@
 	var/mob/arriving_mob = arrived
 	var/old_loc_dir = get_dir(src, old_loc)
 	if(old_loc_dir & dir)
-		arriving_mob.client.move_delay = world.time + climb_slowdown //applied directly to client movedelay as mob delay would only apply after an additional movement
-		arriving_mob.balloon_alert_to_viewers("enter")
+		arriving_mob.client.move_delay += climb_slowdown //applied directly to client movedelay as mob delay would only apply after an additional movement
 
 ///Applies slowdown when exiting if applicable
 /obj/structure/platform/proc/on_exit(datum/source, atom/movable/exiting, direction, list/knownblockers)
@@ -109,8 +108,7 @@
 
 	var/mob/exiting_mob = exiting
 	if(direction & dir)
-		exiting_mob.client.move_delay = world.time + climb_slowdown
-		exiting_mob.balloon_alert_to_viewers("exit")
+		exiting_mob.client.move_delay += climb_slowdown
 
 /obj/structure/platform/rockcliff
 	icon_state = "rockcliff"
