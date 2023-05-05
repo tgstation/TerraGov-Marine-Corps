@@ -8,10 +8,7 @@
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 	///Whether only marines can activate this. left here in case of admins feeling nice or events
 	var/marine_only_activate = TRUE
-	///Tracks when the system was last armed
-	var/arm_time
-
-	var/list/temps = list()
+	
 
 /obj/machinery/self_destruct/Initialize(mapload)
 	. = ..()
