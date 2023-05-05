@@ -134,12 +134,6 @@
 /obj/structure/platform_decoration/metalplatform_deco
 	icon_state = "metalplatform_deco"
 
-/obj/structure/platform/platform2
-	icon_state = "platform2"
-
-/obj/structure/platform_decoration/platform2_deco
-	icon_state = "platform2_deco"
-
 /obj/structure/platform/trench
 	icon_state = "platformtrench"
 	name = "trench wall"
