@@ -168,22 +168,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/recall/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 
-	var/datum/action/xeno_action/activable/banish/banish_check = owner.actions_by_path[/datum/action/xeno_action/activable/banish]
-	if(!banish_check) //Mainly for when we transition on upgrading
-		return FALSE
+
 
 	if(!banish_check.banishment_target)
 		if(!silent)
 			to_chat(owner,span_xenodanger("We have no targets banished!"))
 		return FALSE
 
-
-/datum/action/xeno_action/recall/action_activate()
-	. = ..()
-	var/datum/action/xeno_action/activable/banish/banish_check = owner.actions_by_path[/datum/action/xeno_action/activable/banish]
-	banish_check.banish_deactivate()
-	succeed_activate()
-	add_cooldown()
 
 ///Return TRUE if we have a block, return FALSE otherwise
 /proc/turf_block_check(atom/subject, atom/target, ignore_can_pass = FALSE, ignore_density = FALSE, ignore_closed_turf = FALSE, ignore_invulnerable = FALSE, ignore_objects = FALSE, ignore_mobs = FALSE, ignore_space = FALSE)
