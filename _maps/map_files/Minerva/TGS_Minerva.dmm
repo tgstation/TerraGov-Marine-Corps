@@ -1213,6 +1213,9 @@
 /area/mainship/squads/req)
 "dB" = (
 /obj/machinery/vending/tool,
+/obj/structure/platform{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "dC" = (
@@ -3083,9 +3086,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "iO" = (
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -7434,6 +7434,9 @@
 /area/mainship/squads/req)
 "vW" = (
 /obj/machinery/vending/uniform_supply,
+/obj/structure/platform{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "vX" = (
@@ -7530,9 +7533,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "wk" = (
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
@@ -7731,6 +7731,12 @@
 	dir = 8
 	},
 /area/mainship/living/briefing)
+"wP" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/tankerbunks)
 "wQ" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8;
@@ -8788,9 +8794,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
@@ -9796,9 +9799,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lounge)
 "CK" = (
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
@@ -26035,10 +26035,10 @@ ce
 lU
 mA
 vW
-oI
+wP
 OE
 OE
-oI
+wP
 dB
 mA
 Wr
