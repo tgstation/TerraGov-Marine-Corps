@@ -542,6 +542,7 @@
 	resistance_flags = RESIST_ALL
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
+	var/last_firing_ai = 0 //same thing as last_firing but only cares when the AI last fired
 	var/obj/structure/ship_ammo/railgun/rail_gun_ammo
 
 /obj/structure/ship_rail_gun/Initialize()
@@ -561,6 +562,7 @@
 	flick("Railgun_firing",src)
 	cannon_busy = TRUE
 	last_firing = world.time
+	last_firing_ai = world.time
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + rand(-4, 4), T.y + rand(-4, 4), T.z)

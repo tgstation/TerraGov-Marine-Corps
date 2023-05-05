@@ -1,9 +1,9 @@
-#define AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE 15
-#define AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE 8
+#define AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE 20
+#define AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE 10
 #define AI_RAILGUN_HUMAN_EXCLUSION_RANGE 5
 #define AI_RAILGUN_AUTOTARGET_RANGE 6
-#define AI_RAILGUN_FIRING_TIME_DELAY 1 SECONDS
-#define AI_RAILGUN_FIRING_WINDUP_DELAY 15 SECONDS
+#define AI_RAILGUN_FIRING_TIME_DELAY 0.9 SECONDS
+#define AI_RAILGUN_FIRING_WINDUP_DELAY 8 SECONDS
 
 
 
@@ -253,7 +253,7 @@
 	if(A.ceiling > CEILING_METAL)
 		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
 		return
-	if((GLOB.marine_main_ship?.rail_gun?.last_firing + COOLDOWN_RAILGUN_FIRE) > world.time)
+	if((GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE) > world.time)
 		to_chat(user, "[icon2html(src, user)] [span_warning("The rail gun hasn't cooled down yet!")]")
 		return
 	else if(!A)
@@ -267,12 +267,13 @@
 	var/maxtimesfired = rand(AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE,AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE)
 	var/obj/effect/overlay/temp/laser_target/RGL = new (src, 0, user.name)
 	laser = RGL
-	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+	playsound(src, 'sound/effects/angry_beep.ogg', 55)
 	if(!do_after(user, AI_RAILGUN_FIRING_WINDUP_DELAY, TRUE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
 		QDEL_NULL(laser)
 		REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 		return
 	message_admins("[ADMIN_TPMONTY(user)] fired the railgun at [ADMIN_VERBOSEJMP(laser.loc)].")
+	playsound(src, 'sound/effects/confirm_beep.ogg', 55)
 	while(laser)
 		if(timesfired >= maxtimesfired) //fire until we hit defined limit
 			QDEL_NULL(laser)
@@ -280,6 +281,7 @@
 			return
 		if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, TRUE, laser, BUSY_ICON_GENERIC)) //delay between shots
 			QDEL_NULL(laser)
+			REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 			break
 		///used to check if we have valid targets
 		var/list/mob/living/carbon/xenomorph/possible_xenos = list()
