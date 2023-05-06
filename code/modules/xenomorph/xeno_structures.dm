@@ -605,10 +605,11 @@ TUNNEL
 			sticky_bomb.clean_refs()
 			qdel(sticky_bomb)
 			if(isxeno(stepper))
-				charges--
-				charges--
+				charges-= 2
+				acid_smoke = new(get_turf(stepper))
+				acid_smoke.set_up(1, src)
+				acid_smoke.start()
 				update_icon()
-				return
 	if(isxeno(stepper))
 		if(!(stepper.on_fire))
 			return
