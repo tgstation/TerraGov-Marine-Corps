@@ -118,9 +118,6 @@
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
 
-	///The current acid on this atom
-	var/obj/effect/xenomorph/acid/atom_current_acid
-
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -179,11 +176,14 @@ directive is properly returned.
 /atom/proc/get_acid_delay()
 	return 1 SECONDS
 
-//returns wether or not we apply a new acid
 /atom/proc/should_apply_acid(obj/effect/xenomorph/acid/new_acid)
-	if(!new_acid || !atom_current_acid)
+	if(!new_acid)
+		return TRUE
+	if(!current_acid)
 		return FALSE
-	return !(initial(new_acid.acid_strength) >= initial(atom_current_acid.acid_strength))
+	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
+		return FALSE
+	return TRUE
 
 /atom/proc/on_reagent_change()
 	return
@@ -950,12 +950,12 @@ Proc for attack log creation, because really why not
 /atom/proc/specialclick(mob/living/carbon/user)
 	return
 
-
-//Consolidating HUD infrastructure
 /atom/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
-		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
+		var/image/new_hud = image('icons/mob/hud.dmi', src, "")
+		new_hud.appearance_flags = KEEP_APART
+		hud_list[hud] = new_hud
 
 /**
  * If this object has lights, turn it on/off.

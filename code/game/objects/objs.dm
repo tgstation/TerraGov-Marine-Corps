@@ -96,7 +96,7 @@
 
 /obj/get_acid_delay()
 	. = ..()
-	if(density || isstructure(src))
+	if(density)
 		return 4 SECONDS
 
 /obj/proc/updateUsrDialog()

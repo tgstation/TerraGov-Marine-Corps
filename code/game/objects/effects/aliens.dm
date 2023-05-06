@@ -126,10 +126,10 @@
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
-	var/acid_strength = REGULAR_ACID_STRENGTH
+	var/acid_strength = REGULAR_ACID_STRENGTH //how fast something will melt when subject to this acid.
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
 	var/strength_t = 4
-	var/acid_melt_multiplier
+	var/acid_melt_multiplier //How much faster or slower acid melts specific objects/turfs.
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
