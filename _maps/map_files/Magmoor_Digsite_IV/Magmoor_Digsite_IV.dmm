@@ -596,7 +596,7 @@
 "axl" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 5
 	},
 /turf/open/floor/grass,
@@ -4275,7 +4275,7 @@
 /area/magmoor/civilian/dorms)
 "dgR" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/platform/magmoor,
+/obj/structure/platform/metalplatform,
 /turf/open/floor/grass,
 /area/magmoor/civilian/rnr)
 "dhb" = (
@@ -4376,7 +4376,7 @@
 "djf" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/item/grown/sunflower,
-/obj/structure/platform/magmoor,
+/obj/structure/platform/metalplatform,
 /turf/open/floor/grass,
 /area/magmoor/civilian/rnr)
 "djh" = (
@@ -4997,7 +4997,7 @@
 "dBK" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 6
 	},
 /turf/open/floor/grass,
@@ -7972,7 +7972,7 @@
 /area/magmoor/civilian/mosque)
 "fJh" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 8
 	},
 /turf/open/floor/grass,
@@ -12738,7 +12738,7 @@
 /area/magmoor/compound/east)
 "jpv" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -13173,7 +13173,7 @@
 /area/magmoor/command/lobby)
 "jGv" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 10
 	},
 /turf/open/floor/grass,
@@ -13667,7 +13667,7 @@
 "jZV" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/brflowers,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 8
 	},
 /turf/open/floor/grass,
@@ -13912,7 +13912,7 @@
 "kja" = (
 /obj/structure/flora/grass/green,
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 9
 	},
 /turf/open/floor/grass,
@@ -14173,7 +14173,7 @@
 /area/magmoor/compound/southwest)
 "kvP" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 11
 	},
 /turf/open/floor/grass,
@@ -15066,7 +15066,7 @@
 "lfa" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 10
 	},
 /turf/open/floor/grass,
@@ -15439,7 +15439,7 @@
 /area/magmoor/engi/thermal)
 "lta" = (
 /obj/structure/flora/ausbushes/brflowers,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 7
 	},
 /turf/open/floor/grass,
@@ -20400,7 +20400,7 @@
 /area/magmoor/compound/south)
 "pdo" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 4
 	},
 /turf/open/floor/grass,
@@ -21215,7 +21215,7 @@
 /area/magmoor/research/rnd/lobby)
 "pCm" = (
 /obj/structure/flora/ausbushes/pointybush,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 4
 	},
 /turf/open/floor/grass,
@@ -22570,7 +22570,7 @@
 "qAP" = (
 /obj/structure/flora/ausbushes/palebush,
 /obj/item/grown/sunflower,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 9
 	},
 /turf/open/floor/grass,
@@ -28200,7 +28200,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 6
 	},
 /turf/open/floor/grass,
@@ -30393,7 +30393,7 @@
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/item/grown/sunflower,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 5
 	},
 /turf/open/floor/grass,
@@ -33129,7 +33129,7 @@
 /area/magmoor/compound/southeast)
 "ykb" = (
 /obj/structure/flora/ausbushes/genericbush,
-/obj/structure/platform/magmoor{
+/obj/structure/platform/metalplatform{
 	dir = 1
 	},
 /turf/open/floor/grass,
