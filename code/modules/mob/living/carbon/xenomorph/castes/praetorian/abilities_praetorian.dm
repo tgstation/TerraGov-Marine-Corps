@@ -86,10 +86,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 	var/is_blocked = FALSE
 	for (var/obj/O in T)
-		if(is_type_in_typecache(O, GLOB.acid_spray_hit))
-			O.acid_spray_act(owner)
 		if(!O.CanPass(source_spray, get_turf(source_spray)))
 			is_blocked = TRUE
+			O.acid_spray_act(owner)
+			break
 	if(is_blocked)
 		return
 
