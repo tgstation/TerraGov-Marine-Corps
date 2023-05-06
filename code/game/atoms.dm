@@ -950,12 +950,12 @@ Proc for attack log creation, because really why not
 /atom/proc/specialclick(mob/living/carbon/user)
 	return
 
+
+//Consolidating HUD infrastructure
 /atom/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
-		var/image/new_hud = image('icons/mob/hud.dmi', src, "")
-		new_hud.appearance_flags = KEEP_APART
-		hud_list[hud] = new_hud
+		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
 
 /**
  * If this object has lights, turn it on/off.
