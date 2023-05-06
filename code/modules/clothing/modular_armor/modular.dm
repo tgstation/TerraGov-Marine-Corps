@@ -413,6 +413,7 @@
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/module/motion_detector,
 	)
 
 	///optional assoc list of colors we can color this armor
@@ -595,6 +596,7 @@
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/visor/marine,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/module/motion_detector,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -634,6 +636,7 @@
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/visor/marine/skirmisher,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/module/motion_detector,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/skirmisher, /obj/item/armor_module/storage/helmet)
@@ -657,6 +660,7 @@
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/visor/marine/assault,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/module/motion_detector,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/assault, /obj/item/armor_module/storage/helmet)
@@ -681,6 +685,7 @@
 		/obj/item/armor_module/armor/visor/marine/eva,
 		/obj/item/armor_module/armor/visor/marine/eva/skull,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/module/motion_detector,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva, /obj/item/armor_module/storage/helmet)
@@ -705,12 +710,10 @@
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine/eod,
-
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/module/motion_detector,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eod, /obj/item/armor_module/storage/helmet)
@@ -734,6 +737,7 @@
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/visor/marine/scout,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/module/motion_detector,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout, /obj/item/armor_module/storage/helmet)
@@ -757,6 +761,7 @@
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/visor/marine/helljumper,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/module/motion_detector,
 	)
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/helljumper, /obj/item/armor_module/storage/helmet)
 
@@ -778,6 +783,7 @@
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/module/motion_detector,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
@@ -813,6 +819,7 @@
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/module/motion_detector,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	visorless_offset_x = 0
