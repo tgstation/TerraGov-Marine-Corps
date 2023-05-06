@@ -109,8 +109,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "A" = (
-/obj/structure/window/framed/mainship/hull{
-	canSmoothWith = list(30,62,81,66,37,34)
+/obj/structure/window/framed/mainship/canterbury{
+	name = "reinforced orbital insertion safety window";
+	max_integrity = 900
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
@@ -152,16 +153,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
-"N" = (
-/turf/closed/wall/mainship{
-	canSmoothWith = list(81,66,62,67,34);
-	smoothing_groups = list(34)
-	},
-/area/shuttle/minidropship)
-"Q" = (
-/obj/structure/window/framed/mainship/hull,
-/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "S" = (
 /obj/structure/barricade/plasteel{
@@ -207,23 +198,23 @@ e
 I
 a
 a
-N
+b
 b
 I
 "}
 (2,1,1) = {"
-j
+b
 A
 b
 b
-N
+b
 E
-N
+b
 b
 b
 "}
 (3,1,1) = {"
-Q
+A
 f
 Z
 j
@@ -234,7 +225,7 @@ n
 i
 "}
 (4,1,1) = {"
-Q
+A
 y
 c
 D
@@ -245,7 +236,7 @@ g
 C
 "}
 (5,1,1) = {"
-Q
+A
 v
 u
 b
@@ -256,13 +247,13 @@ L
 i
 "}
 (6,1,1) = {"
-j
+b
 A
 b
 b
-N
+b
 S
-N
+b
 b
 b
 "}
@@ -273,7 +264,7 @@ T
 h
 a
 a
-N
+b
 b
 h
 "}
