@@ -13706,6 +13706,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"Oj" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/structure/benchpress,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "Ol" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/poddoor/mainship/ai/exterior{
@@ -26041,7 +26048,7 @@ OE
 oI
 dB
 mA
-Wr
+Oj
 eA
 eA
 eA
