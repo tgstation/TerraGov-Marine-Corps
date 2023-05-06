@@ -109,10 +109,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "A" = (
-/obj/structure/window/framed/mainship/canterbury{
-	name = "reinforced orbital insertion safety window";
-	max_integrity = 900
-	},
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "C" = (

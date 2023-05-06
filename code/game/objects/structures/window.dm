@@ -674,3 +674,11 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	deconstructable = FALSE
 	max_integrity = 300
+
+/obj/structure/window/framed/mainship/canterbury/dropship
+	name = "orbital insertion safety window"
+	max_integrity = 300 // 13 hunter lsashes
+
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced
+	name = "reinforced orbital insertion safety window"
+	max_integrity = 600 // 25 hunter slashes
