@@ -327,11 +327,21 @@
 
 /obj/structure/ob_ammo/warhead
 	name = "theoretical orbital ammo"
+	interaction_flags = INTERACT_CHECK_INCAPACITATED | INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR //xeno climby
+	hard_armor = list(MELEE = 100, BULLET = 80, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 100, ACID = 100) // only booms
+	climb_delay = 0.5 SECONDS //i imagine them as waist high so they should be just easy to vault over
 	var/warhead_kind
 
 ///Explode the warhead
 /obj/structure/ob_ammo/warhead/proc/warhead_impact()
 	return
+
+/obj/structure/ob_ammo/warhead/ex_act(severity)
+	if(severity < EXPLODE_LIGHT && severity > EXPLODE_NONE)
+		visible_message(span_danger("A chain reaction is triggered in [src]!"))
+		warhead_impact(loc)
+		qdel(src)
+	return ..()
 
 /obj/structure/ob_ammo/warhead/explosive
 	name = "\improper HE orbital warhead"
