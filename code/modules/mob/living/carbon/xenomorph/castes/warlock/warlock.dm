@@ -22,3 +22,6 @@
 /mob/living/carbon/xenomorph/warlock/Initialize(mapload)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/energy/xeno/psy_blast]
+
+/mob/living/carbon/xenomorph/warlock/get_liquid_slowdown()
+	return WARLOCK_WATER_SLOWDOWN
