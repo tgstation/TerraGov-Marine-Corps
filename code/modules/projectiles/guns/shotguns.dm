@@ -101,14 +101,14 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t39stock)
 
 	fire_delay = 14 //one shot every 1.4 seconds.
-	accuracy_mult = 1.20
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.65
 	scatter = 3
 	scatter_unwielded = 12
 	damage_mult = 0.7  //30% less damage. Faster firerate.
-	recoil = 0 //It has a stock on the sprite.
-	recoil_unwielded = 2
-	wield_delay = 1 SECONDS
+	recoil = 2
+	recoil_unwielded = 4
+	wield_delay = 0.8 SECONDS
 	akimbo_additional_delay = 0.9
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
