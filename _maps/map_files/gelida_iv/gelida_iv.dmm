@@ -18880,9 +18880,7 @@
 	dir = 7
 	},
 /turf/open/floor/prison/darkbrown/full,
-/area/gelida/indoors/c_block/garage{
-	dir = 7
-	})
+/area/gelida/indoors/c_block/garage)
 "mJj" = (
 /obj/structure/stairs/seamless,
 /obj/effect/landmark/xeno_resin_door,

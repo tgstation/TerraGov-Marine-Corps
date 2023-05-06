@@ -1264,9 +1264,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/ground/outpostsw{
-	dir = 5
-	})
+/area/orion_outpost/ground/outpostsw)
 "gY" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/mainship/mono,
