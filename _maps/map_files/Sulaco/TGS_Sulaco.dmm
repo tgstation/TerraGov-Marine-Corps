@@ -16459,8 +16459,8 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay)
 "jPf" = (
-/obj/machinery/light/mainship,
-/turf/open/floor/prison/green/full,
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/prison,
 /area/sulaco/marine)
 "jPn" = (
 /obj/structure/largecrate/guns,
@@ -48606,8 +48606,8 @@ yiY
 cyo
 aLF
 nps
+aLk
 jPf
-aLf
 aLf
 wKB
 iRd
