@@ -1,6 +1,9 @@
-/*
-* Platforms
-*/
+///Slowdown applied when exiting this structure's turf
+#define ENTRY_SLOWDOWN (1<<0)
+///Slowdown applied when entering this structure's turf
+#define EXIT_SLOWDOWN (1<<1)
+
+
 /obj/structure/platform
 	name = "platform"
 	desc = "A square metal surface resting on four legs."
@@ -11,18 +14,31 @@
 	flags_atom = ON_BORDER
 	resistance_flags = RESIST_ALL
 	obj_flags = PROJ_IGNORE_DENSITY
+	///How much slowdown is applied by this platform
 	var/climb_slowdown = 0.5 SECONDS
+	///Dictates the slowdown behavior of this platform
+	var/platform_flags = ENTRY_SLOWDOWN|EXIT_SLOWDOWN
+
 
 /obj/structure/platform/Initialize(mapload)
 	. = ..()
 	apply_overlays()
 	icon_state = ""
 
-	var/static/list/connections = list(
+	if(!platform_flags)
+		return
+
+	var/static/list/entry_and_exit = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_enter),
 		COMSIG_ATOM_EXITED = PROC_REF(on_exit),
 	)
-	AddElement(/datum/element/connect_loc, connections)
+
+	var/static/list/entry_only = list(COMSIG_ATOM_ENTERED = PROC_REF(on_enter))
+
+	var/static/list/exit_only = list(COMSIG_ATOM_EXITED = PROC_REF(on_exit))
+
+
+	AddElement(/datum/element/connect_loc, (platform_flags & ENTRY_SLOWDOWN) ? (platform_flags & EXIT_SLOWDOWN) ? entry_and_exit : entry_only : exit_only)
 
 ///clears and sets overlays based on current dir
 /obj/structure/platform/proc/apply_overlays()
