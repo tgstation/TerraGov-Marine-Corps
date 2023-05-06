@@ -60,7 +60,7 @@
 	if(!carbon_leaver.get_filter(MOB_LIQUID_TURF_MASK))
 		return
 
-	var/turf/open/liquid/new_turf = get_step(src, direction)
+	var/turf/open/liquid/new_turf = carbon_leaver.loc
 	if(istype(new_turf))
 		if(length(new_turf.canSmoothWith))
 			if(!new_turf.has_catwalk && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
