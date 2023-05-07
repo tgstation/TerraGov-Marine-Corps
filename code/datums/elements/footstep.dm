@@ -1,4 +1,5 @@
 //#define SHOULD_DISABLE_FOOTSTEPS(source) ((SSlag_switch.measures[DISABLE_FOOTSTEPS] && !(HAS_TRAIT(source, TRAIT_BYPASS_MEASURES))) || HAS_TRAIT(source, TRAIT_SILENT_FOOTSTEPS))
+#define DEFAULT_FOOTSTEP_SOUND_RANGE 11
 
 ///Footstep element. Plays footsteps at parents location when it is appropriate.
 /datum/element/footstep
@@ -17,7 +18,7 @@
 	///Whether or not to add variation to the sounds played
 	var/sound_vary = FALSE
 
-/datum/element/footstep/Attach(datum/target, footstep_type = FOOTSTEP_MOB_BAREFOOT, volume = 0.5, e_range = -8, sound_vary = FALSE)
+/datum/element/footstep/Attach(datum/target, footstep_type = FOOTSTEP_MOB_BAREFOOT, volume = 0.5, e_range = 0, sound_vary = FALSE)
 	. = ..()
 	if(!ismovable(target))
 		return ELEMENT_INCOMPATIBLE
@@ -128,7 +129,7 @@
 		playsound(source_loc, pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
 			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume,
 			sound_vary,
-			GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range)
+			DEFAULT_FOOTSTEP_SOUND_RANGE +GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range + range_adjustment)
 		return
 
 	if((source.wear_suit?.flags_armor_protection | source.w_uniform?.flags_armor_protection | source.shoes?.flags_armor_protection) & FEET) //We are not disgusting barefoot bandits
@@ -137,14 +138,14 @@
 		playsound(source_loc, pick(footstep_sounds[source_loc.shoefootstep][1]),
 			footstep_sounds[source_loc.shoefootstep][2] * volume * volume_multiplier,
 			sound_vary,
-			footstep_sounds[source_loc.shoefootstep][3] + e_range + range_adjustment, falloff = 1)
+			DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[source_loc.shoefootstep][3] + e_range + range_adjustment, falloff = 1)
 
 	else
 		var/static/list/bare_footstep_sounds = GLOB.barefootstep
 		playsound(source_loc, pick(GLOB.barefootstep[source_loc.barefootstep][1]),
 			GLOB.barefootstep[source_loc.barefootstep][2] * volume * volume_multiplier,
 			sound_vary,
-			GLOB.barefootstep[source_loc.barefootstep][3] + e_range + range_adjustment, falloff = 1)
+			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[source_loc.barefootstep][3] + e_range + range_adjustment, falloff = 1)
 
 ///Prepares a footstep for machine walking
 ///datum/element/footstep/proc/play_simplestep_machine(atom/movable/source)

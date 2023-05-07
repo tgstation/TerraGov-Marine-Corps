@@ -45,7 +45,7 @@
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(fireman_carry_grabbed)) // Fireman carry
 	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
-	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, 3)
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
