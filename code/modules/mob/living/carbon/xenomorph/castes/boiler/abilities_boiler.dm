@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/xeno_action/create_boiler_bomb/New(Target)
 	. = ..()
-	desc = "Creates a Boiler Bombard of the type currently selected. Reduces bombard cooldown by [BOILER_BOMBARD_COOLDOWN_REDUCTION] seconds for each stored. Begins to emit light at [BOILER_LUMINOSITY_THRESHOLD] globs stored."
+	desc = "Creates a Boiler Bombard of the type currently selected. Reduces bombard cooldown by [BOILER_BOMBARD_COOLDOWN_REDUCTION] seconds for each stored. Begins to emit light when surpassing [BOILER_LUMINOSITY_THRESHOLD] globs stored."
 
 /datum/action/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
