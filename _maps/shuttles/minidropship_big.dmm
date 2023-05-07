@@ -40,9 +40,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"j" = (
-/turf/closed/wall/mainship,
-/area/shuttle/minidropship)
 "k" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -214,7 +211,7 @@ b
 A
 f
 Z
-j
+b
 s
 c
 k

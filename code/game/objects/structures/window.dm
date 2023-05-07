@@ -677,7 +677,15 @@
 
 /obj/structure/window/framed/mainship/canterbury/dropship
 	name = "orbital insertion safety window"
-	max_integrity = 300 // 13 hunter lsashes
+	max_integrity = 300 // 13 hunter slashes
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
 
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced
 	name = "reinforced orbital insertion safety window"
