@@ -20,6 +20,9 @@
 	var/corrosive_ammo = 0
 	var/neuro_ammo = 0
 
+/mob/living/carbon/xenomorph/boiler/get_liquid_slowdown()
+	return BOILER_WATER_SLOWDOWN
+
 ///updates the boiler's glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
 /mob/living/carbon/xenomorph/boiler/proc/update_boiler_glow()
 	var/current_ammo = corrosive_ammo + neuro_ammo
@@ -39,7 +42,7 @@
 // ***************************************
 // *********** Init
 // ***************************************
-/mob/living/carbon/xenomorph/boiler/Initialize()
+/mob/living/carbon/xenomorph/boiler/Initialize(mapload)
 	. = ..()
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]

@@ -63,7 +63,7 @@
 	max_integrity = 40
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
-/obj/structure/mopbucket/Initialize()
+/obj/structure/mopbucket/Initialize(mapload)
 	. = ..()
 	create_reagents(100, OPENCONTAINER)
 
@@ -118,7 +118,7 @@
 	icon_state = "jarshelf_0"
 	var/randomise = 1 //Random icon
 
-/obj/structure/xenoautopsy/jar_shelf/Initialize()
+/obj/structure/xenoautopsy/jar_shelf/Initialize(mapload)
 	. = ..()
 	if(randomise)
 		icon_state = "jarshelf_[rand(0,9)]"
@@ -127,27 +127,74 @@
 	name = "cryo tank"
 	icon_state = "tank_empty"
 	desc = "It is empty."
+	density = TRUE
+	max_integrity = 100
+	resistance_flags = UNACIDABLE
+	hit_sound = 'sound/effects/Glasshit.ogg'
+	destroy_sound = "shatter"
+	///Whatever is contained in the tank
+	var/obj/occupant
+	///What this tank is replaced by when broken
+	var/obj/structure/broken_state = /obj/structure/xenoautopsy/tank/escaped
+
+
+/obj/structure/xenoautopsy/tank/deconstruct(disassembled = TRUE)
+	if(!broken_state)
+		return ..()
+
+	new broken_state(loc)
+	new /obj/item/shard(loc)
+
+	if(occupant)
+		occupant = new occupant(loc) //needed for the hugger variant
+
+	return ..()
+
+/obj/structure/xenoautopsy/tank/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel(src)
+		if(EXPLODE_HEAVY)
+			take_damage(100)
+		if(EXPLODE_LIGHT)
+			take_damage(50)
+
+/obj/structure/xenoautopsy/tank/Destroy()
+	occupant = null
+	return ..()
 
 /obj/structure/xenoautopsy/tank/escaped
 	name = "broken cryo tank"
 	icon_state = "tank_escaped"
 	desc = "Something broke it..."
+	broken_state = null
 
 /obj/structure/xenoautopsy/tank/broken
 	icon_state = "tank_broken"
 	desc = "Something broke it..."
+	broken_state = null
 
 /obj/structure/xenoautopsy/tank/alien
 	icon_state = "tank_alien"
 	desc = "There is something big inside..."
+	occupant = /obj/item/alien_embryo
 
 /obj/structure/xenoautopsy/tank/hugger
 	icon_state = "tank_hugger"
 	desc = "There is something spider-like inside..."
+	occupant = /obj/item/clothing/mask/facehugger
+
+/obj/structure/xenoautopsy/tank/hugger/deconstruct(disassembled = TRUE)
+	. = ..()
+
+	var/obj/item/clothing/mask/facehugger/hugger = occupant
+	hugger.go_active()
 
 /obj/structure/xenoautopsy/tank/larva
 	icon_state = "tank_larva"
 	desc = "There is something worm-like inside..."
+	occupant = /obj/item/alien_embryo
+	broken_state = /obj/structure/xenoautopsy/tank/broken
 
 /obj/item/alienjar
 	name = "sample jar"
@@ -155,7 +202,7 @@
 	icon_state = "jar_sample"
 	desc = "Used to store organic samples inside for preservation."
 
-/obj/item/alienjar/Initialize()
+/obj/item/alienjar/Initialize(mapload)
 	. = ..()
 
 	var/image/sample_image = image('icons/obj/alien_autopsy.dmi', "sample_[rand(0,11)]")

@@ -274,7 +274,7 @@
 	},
 /area/mainship/patrol_base/som)
 "ef" = (
-/obj/structure/prop/mainship/prop_so{
+/obj/structure/prop/mainship/prop_so/som{
 	dir = 1
 	},
 /obj/structure/bed/chair/office/dark{
@@ -827,7 +827,7 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
 "lY" = (
-/obj/structure/prop/mainship/prop_so{
+/obj/structure/prop/mainship/prop_so/som{
 	dir = 1
 	},
 /turf/open/floor/mainship/office,
@@ -990,14 +990,14 @@
 /turf/open/floor/mainship/black/corner,
 /area/mainship/patrol_base)
 "pp" = (
-/obj/structure/prop/mainship/prop_so,
+/obj/structure/prop/mainship/prop_so/som,
 /turf/open/floor/mainship/silver,
 /area/mainship/patrol_base/som)
 "pw" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/structure/prop/mainship/prop_so{
+/obj/structure/prop/mainship/prop_so/som{
 	dir = 4
 	},
 /turf/open/floor/mainship/office,

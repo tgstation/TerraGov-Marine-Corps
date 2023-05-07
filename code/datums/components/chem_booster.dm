@@ -332,7 +332,7 @@
 		wearer.balloon_alert(wearer, "You need to be holding a harvester")
 		return
 
-	if(!CHECK_BITFIELD(held_item.flags_item, DRAINS_XENO))
+	if(!held_item.GetComponent(/datum/component/harvester))
 		wearer.balloon_alert(wearer, "You need to be holding a harvester")
 		return
 

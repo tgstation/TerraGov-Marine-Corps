@@ -682,6 +682,9 @@
 "sd" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "sf" = (
@@ -1985,6 +1988,9 @@
 /area/bigredv2/outside/marshal_office)
 "ZA" = (
 /obj/structure/closet/secure_closet/injection,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ZU" = (
@@ -4389,7 +4395,7 @@ DP
 sf
 DP
 VA
-oA
+Di
 sd
 qP
 qP
@@ -4429,7 +4435,7 @@ DP
 DP
 DP
 VA
-oA
+Di
 DZ
 hy
 SO
@@ -4469,7 +4475,7 @@ DP
 DP
 DP
 VA
-oA
+Di
 ZA
 iK
 SO

@@ -64,7 +64,7 @@
 	///If TRUE, we'll clear a recipe we click on instead of dispensing it
 	var/clearing_recipe = FALSE
 
-/obj/machinery/chem_dispenser/Initialize()
+/obj/machinery/chem_dispenser/Initialize(mapload)
 	. = ..()
 	dispensable_reagents = sortList(dispensable_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
 	if(emagged_reagents)
@@ -525,7 +525,7 @@
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 
-/obj/machinery/chem_dispenser/valhalla/Initialize()
+/obj/machinery/chem_dispenser/valhalla/Initialize(mapload)
 	. = ..()
 	qdel(cell)
 	cell = new /obj/item/cell/infinite

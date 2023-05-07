@@ -73,7 +73,7 @@
 	name = "dropshipcrash"
 	id = "dropshipcrash"
 
-/obj/docking_port/stationary/marine_dropship/crash_target/Initialize()
+/obj/docking_port/stationary/marine_dropship/crash_target/Initialize(mapload)
 	. = ..()
 	SSshuttle.crash_targets += src
 
@@ -740,7 +740,7 @@
 	possible_destinations = "lz1;lz2;alamo"
 	opacity = FALSE
 
-/obj/machinery/computer/shuttle/marine_dropship/one/Initialize()
+/obj/machinery/computer/shuttle/marine_dropship/one/Initialize(mapload)
 	. = ..()
 	for(var/trait in SSmapping.configs[SHIP_MAP].environment_traits)
 		if(ZTRAIT_DOUBLE_SHIPS in trait)
@@ -832,6 +832,9 @@
 	density = TRUE
 	resistance_flags = RESIST_ALL
 	opacity = TRUE
+
+/obj/structure/dropship_piece/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /obj/structure/dropship_piece/ex_act(severity)
 	return
@@ -1261,7 +1264,7 @@
 	var/compatible_control_flags = NONE
 
 
-/obj/machinery/computer/shuttle/shuttle_control/Initialize()
+/obj/machinery/computer/shuttle/shuttle_control/Initialize(mapload)
 	. = ..()
 	GLOB.shuttle_controls_list += src
 

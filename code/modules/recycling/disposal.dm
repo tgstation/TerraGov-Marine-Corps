@@ -25,7 +25,7 @@
 	var/disposal_pressure = 0
 
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/Initialize()
+/obj/machinery/disposal/Initialize(mapload)
 	. = ..()
 	set_trunk(locate(/obj/structure/disposalpipe/trunk) in loc)
 	if(!trunk)
@@ -573,7 +573,7 @@
 	resistance_flags = RESIST_ALL
 
 	//New pipe, set the icon_state as on map
-/obj/structure/disposalpipe/Initialize()
+/obj/structure/disposalpipe/Initialize(mapload)
 	. = ..()
 	base_icon_state = icon_state
 	GLOB.disposal_list += src
@@ -770,7 +770,7 @@
 	icon_state = "pipe-s"
 
 
-/obj/structure/disposalpipe/segment/Initialize()
+/obj/structure/disposalpipe/segment/Initialize(mapload)
 	. = ..()
 
 	if(icon_state == "pipe-s")
@@ -787,7 +787,7 @@
 	icon_state = "pipe-u"
 
 
-/obj/structure/disposalpipe/up/Initialize()
+/obj/structure/disposalpipe/up/Initialize(mapload)
 	. = ..()
 	dpdir = dir
 	update()
@@ -831,7 +831,7 @@
 	icon_state = "pipe-d"
 
 
-/obj/structure/disposalpipe/down/Initialize()
+/obj/structure/disposalpipe/down/Initialize(mapload)
 	. = ..()
 	dpdir = dir
 	update()
@@ -943,7 +943,7 @@
 	icon_state = "pipe-j1"
 
 
-/obj/structure/disposalpipe/junction/Initialize()
+/obj/structure/disposalpipe/junction/Initialize(mapload)
 	. = ..()
 	if(icon_state == "pipe-j1")
 		dpdir = dir|turn(dir, -90)|turn(dir, 180)
@@ -990,7 +990,7 @@
 	var/sort_tag = ""
 	var/partial = 0
 
-/obj/structure/disposalpipe/tagger/Initialize()
+/obj/structure/disposalpipe/tagger/Initialize(mapload)
 	. = ..()
 	dpdir = dir|turn(dir, 180)
 	if(sort_tag)
@@ -1049,7 +1049,7 @@
 	var/negdir = 0
 	var/sortdir = 0
 
-/obj/structure/disposalpipe/sortjunction/Initialize()
+/obj/structure/disposalpipe/sortjunction/Initialize(mapload)
 	. = ..()
 	if(sortType)
 		GLOB.tagger_locations |= sortType
@@ -1157,7 +1157,7 @@
 	icon_state = "pipe-t"
 	var/obj/linked 	//The linked obj/machinery/disposal or obj/disposaloutlet
 
-/obj/structure/disposalpipe/trunk/Initialize()
+/obj/structure/disposalpipe/trunk/Initialize(mapload)
 	. = ..()
 	dpdir = dir
 	getlinked()
@@ -1252,7 +1252,7 @@
 	dpdir = 0 //Broken pipes have dpdir = 0 so they're not found as 'real' pipes i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-/obj/structure/disposalpipe/broken/Initialize()
+/obj/structure/disposalpipe/broken/Initialize(mapload)
 	. = ..()
 	update()
 
@@ -1279,7 +1279,7 @@
 	var/turf/target	//This will be where the output objects are 'thrown' to.
 	var/mode = 0
 
-/obj/structure/disposaloutlet/Initialize()
+/obj/structure/disposaloutlet/Initialize(mapload)
 	. = ..()
 
 	target = get_ranged_target_turf(src, dir, 10)

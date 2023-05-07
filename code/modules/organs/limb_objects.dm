@@ -6,7 +6,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/bodyparts_right.dmi',
 	)
 
-/obj/item/limb/Initialize(loc, mob/living/carbon/human/H)
+/obj/item/limb/Initialize(mapload, mob/living/carbon/human/H)
 	. = ..()
 	if(!istype(H))
 		return

@@ -13,13 +13,20 @@
 	)
 	var/last_agility_bonus = 0
 
+/datum/action/xeno_action/toggle_agility/give_action()
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	last_agility_bonus = X.xeno_caste.agility_speed_armor
+
 /datum/action/xeno_action/toggle_agility/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.agility)
-		var/armor_change = X.xeno_caste.agility_speed_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(armor_change)
-		last_agility_bonus = armor_change
+		X.soft_armor = X.soft_armor.modifyAllRatings(-last_agility_bonus)
+		last_agility_bonus = X.xeno_caste.agility_speed_armor
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_agility_bonus)
 		X.add_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY , TRUE, 0, NONE, TRUE, X.xeno_caste.agility_speed_increase)
+	else
+		last_agility_bonus = X.xeno_caste.agility_speed_armor
 
 /datum/action/xeno_action/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -33,20 +40,18 @@
 
 	GLOB.round_statistics.warrior_agility_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_agility_toggles")
+
 	if(X.agility)
 		to_chat(X, span_xenowarning("We lower ourselves to all fours and loosen our armored scales to ease our movement."))
 		X.add_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY , TRUE, 0, NONE, TRUE, X.xeno_caste.agility_speed_increase)
-		var/armor_change = X.xeno_caste.agility_speed_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(armor_change)
-		last_agility_bonus = armor_change
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_agility_bonus)
 		owner.toggle_move_intent(MOVE_INTENT_RUN) //By default we swap to running when activating agility
 	else
 		to_chat(X, span_xenowarning("We raise ourselves to stand on two feet, hard scales setting back into place."))
 		X.remove_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY)
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_agility_bonus)
-		last_agility_bonus = 0
-	X.update_icons()
 
+	X.update_icons()
 	add_cooldown()
 	return succeed_activate()
 

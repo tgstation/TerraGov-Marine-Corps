@@ -733,6 +733,9 @@
 /area/bigredv2/outside/space_port)
 "tg" = (
 /obj/structure/closet/secure_closet/injection,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "to" = (
@@ -846,6 +849,9 @@
 "wR" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "wS" = (
@@ -4388,7 +4394,7 @@ GX
 VL
 GX
 pB
-Ym
+yn
 wR
 dw
 dw
@@ -4428,7 +4434,7 @@ GX
 GX
 GX
 pB
-Ym
+yn
 Wk
 lY
 fU
@@ -4468,7 +4474,7 @@ GX
 GX
 GX
 pB
-Ym
+yn
 tg
 aZ
 fU

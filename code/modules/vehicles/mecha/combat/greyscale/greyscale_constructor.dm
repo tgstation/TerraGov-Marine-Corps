@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	/// list(STRING-list(STRING-STRING)) of visor palettes. first string is category, second is name
 	var/static/list/available_visor_colors = VISOR_PALETTES_LIST
 
-/obj/machinery/computer/mech_builder/Initialize()
+/obj/machinery/computer/mech_builder/Initialize(mapload)
 	. = ..()
 	mech_view = new
 	update_ui_view()
@@ -274,7 +274,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			var/new_name = params["new_name"]
 			if(!new_name)
 				return FALSE
-			if(CHAT_FILTER_CHECK(new_name) || NON_ASCII_CHECK(new_name))
+			if(is_ic_filtered(new_name) || NON_ASCII_CHECK(new_name))
 				tgui_alert(usr, "You cannot set a name that contains a word prohibited in IC chat!")
 				return
 			selected_name = new_name

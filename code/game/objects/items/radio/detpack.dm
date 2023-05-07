@@ -26,7 +26,7 @@
 	var/datum/radio_frequency/radio_connection
 
 
-/obj/item/detpack/Initialize()
+/obj/item/detpack/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 

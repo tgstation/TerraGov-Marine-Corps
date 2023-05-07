@@ -84,7 +84,7 @@
 	orient_right = TRUE
 	icon_state = "cryo_rear-r"
 
-/obj/structure/cryofeed/Initialize()
+/obj/structure/cryofeed/Initialize(mapload)
 	. = ..()
 	if(orient_right)
 		icon_state = "cryo_rear[orient_right ? "-r" : ""]"
@@ -115,7 +115,7 @@
 /obj/machinery/cryopod/right/rebel
 	frequency = FREQ_COMMON_REBEL
 
-/obj/machinery/cryopod/Initialize()
+/obj/machinery/cryopod/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 	radio.set_frequency(frequency)

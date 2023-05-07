@@ -23,6 +23,9 @@
 	var/deconstructable = TRUE
 	flags_pass = PASSLASER
 
+/obj/structure/window/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_GLASS, -10, 5)
+
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10
@@ -457,7 +460,7 @@
 	icon_state = "ship_window-0"
 	basestate = "ship_window"
 
-/obj/structure/window/framed/mainship/spaceworthy/Initialize()
+/obj/structure/window/framed/mainship/spaceworthy/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/windowshutter/cokpitshutters)
 
@@ -641,7 +644,7 @@
 	resistance_flags = BANISH_IMMUNE
 	icon_state = "window-invincible"
 
-/obj/structure/window/framed/prison/reinforced/hull/Initialize()
+/obj/structure/window/framed/prison/reinforced/hull/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/windowshutter)
 

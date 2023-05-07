@@ -27,7 +27,7 @@
 		if(EXPLODE_LIGHT)
 			return
 
-/obj/structure/Initialize()
+/obj/structure/Initialize(mapload)
 	. = ..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on

@@ -16,7 +16,7 @@
 	active_power_usage = 1000
 
 
-/obj/machinery/gibber/Initialize()
+/obj/machinery/gibber/Initialize(mapload)
 	. = ..()
 	overlays += image('icons/obj/kitchen.dmi', "grjam")
 
@@ -95,106 +95,96 @@
 	go_out()
 
 /obj/machinery/gibber/proc/go_out()
-	if (!src.occupant)
+	if (!occupant)
 		return
 	for(var/obj/O in src)
-		O.loc = src.loc
-	if (src.occupant.client)
-		src.occupant.client.eye = src.occupant.client.mob
-		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
-	src.occupant = null
+		O.loc = loc
+	if (occupant.client)
+		occupant.client.eye = occupant.client.mob
+		occupant.client.perspective = MOB_PERSPECTIVE
+	occupant.loc = loc
+	occupant = null
 	update_icon()
 
 
-
+///Gibs the victim, and sets the output
 /obj/machinery/gibber/proc/startgibbing(mob/user as mob)
-	if(src.operating)
+	if(operating)
 		return
-	if(!src.occupant)
+	if(!occupant)
 		visible_message(span_warning(" You hear a loud metallic grinding sound."))
 		return
 	use_power(active_power_usage)
 	visible_message(span_warning(" You hear a loud squelchy grinding sound."))
-	src.operating = 1
+	playsound(loc, 'sound/machines/juicer.ogg', 50, TRUE)
+	operating = TRUE
 	update_icon()
 
 	var/totalslabs = 3
-	var/obj/item/reagent_containers/food/snacks/meat/allmeat[totalslabs]
+	var/typeofmeat = /obj/item/reagent_containers/food/snacks/meat
+	var/list/allmeat = list()
+	var/sourcename = occupant.name
+	var/sourcenutriment = 0
+	var/sourcetotalreagents = 0
+	var/gibtype = /obj/effect/decal/cleanable/blood/gibs
 
-	if( istype(src.occupant, /mob/living/carbon/human/) )
-		var/mob/living/carbon/human/H = occupant
-		var/sourcename = src.occupant.real_name
-		var/sourcejob = src.occupant.job?.title
-		var/sourcenutriment = H.nutrition / 15
-		var/sourcetotalreagents = src.occupant.reagents.total_volume
-
-		for(var/i=1 to totalslabs)
-			var/obj/item/reagent_containers/food/snacks/meat/human/newmeat = new
-			newmeat.name = sourcename + newmeat.name
-			newmeat.subjectname = sourcename
-			newmeat.subjectjob = sourcejob
-			newmeat.reagents.add_reagent(/datum/reagent/consumable/nutriment, sourcenutriment / totalslabs) // Thehehe. Fat guys go first
-			src.occupant.reagents.trans_to(newmeat, round (sourcetotalreagents / totalslabs, 1)) // Transfer all the reagents from the
-			allmeat[i] = newmeat
-
-
-		log_combat(user, src.occupant, "gibbed") //One shall not simply gib a mob unnoticed!
-
-		occupant.death(silent = TRUE)
-		src.occupant.ghostize()
-
-	else if(istype(occupant, /mob/living/carbon) || istype(occupant, /mob/living/simple_animal))
-
+	if(iscarbon(occupant))
 		var/mob/living/carbon/C = occupant
-		var/sourcename = src.occupant.name
-		var/sourcenutriment = C.nutrition / 15
-		var/sourcetotalreagents = 0
+		sourcenutriment = C.nutrition / 15
+		sourcetotalreagents = occupant.reagents.total_volume
 
-		if(ismonkey(occupant))
-			totalslabs = 3
-			sourcetotalreagents = src.occupant.reagents.total_volume
-		else if(istype(occupant, /mob/living/carbon/xenomorph)) // why are you gibbing aliens? oh well DELICIOUS
-			totalslabs = 2
-		else if(istype(occupant, /mob/living/simple_animal/cow) || istype(occupant, /mob/living/simple_animal/hostile/bear))
-			totalslabs = 2
-		else
+		if(ishuman(occupant))
+			typeofmeat = /obj/item/reagent_containers/food/snacks/meat/human
+			sourcename = occupant.real_name
+		else if(ismonkey(occupant))
+			typeofmeat = /obj/item/reagent_containers/food/snacks/meat/monkey
+		else if(isxeno(occupant))
+			totalslabs = 4
+			typeofmeat = /obj/item/reagent_containers/food/snacks/meat/xeno
+			gibtype = /obj/effect/decal/cleanable/blood/gibs/xeno
+	else
+		if(istype(occupant, /mob/living/simple_animal/cow) || istype(occupant, /mob/living/simple_animal/hostile/bear))
+			totalslabs = 4
+			sourcenutriment = 26
+		else //whatever else
 			totalslabs = 1
-			sourcenutriment = C.nutrition / 30 // small animals don't have as much nutrition
+			sourcenutriment = 13
 
-		for(var/i=1 to totalslabs)
-			var/obj/item/reagent_containers/food/snacks/meat/newmeat = new
-			newmeat.name = "[sourcename]-[newmeat.name]"
+	for(var/i=1 to totalslabs)
+		var/obj/item/reagent_containers/food/snacks/meat/newmeat = new typeofmeat
+		newmeat.name = "[sourcename]-[newmeat.name]"
+		newmeat.reagents.add_reagent(/datum/reagent/consumable/nutriment, sourcenutriment / totalslabs)
+		if(iscarbon(occupant))
+			occupant.reagents.trans_to(newmeat, round (sourcetotalreagents / totalslabs, 1))
+		allmeat += newmeat
 
-			newmeat.reagents.add_reagent(/datum/reagent/consumable/nutriment, sourcenutriment / totalslabs)
+	if(occupant.client)
+		log_combat(occupant, user, "gibbed")
 
-			// Transfer reagents from the old mob to the meat
-			if( istype(src.occupant, /mob/living/carbon/) )
-				src.occupant.reagents.trans_to(newmeat, round(sourcetotalreagents / totalslabs, 1))
-
-			allmeat[i] = newmeat
-
-		if(occupant.client) // Gibbed a cow with a client in it? log that shit
-			log_combat(occupant, user, "gibbed")
-
-		occupant.death(silent = TRUE)
-		occupant.ghostize()
-
+	occupant.death(silent = TRUE)
+	occupant.ghostize()
 	qdel(occupant)
 	occupant = null
 
-	spawn(src.gibtime)
-		playsound(src.loc, 'sound/effects/splat.ogg', 25, 1)
-		operating = 0
-		for (var/i=1 to totalslabs)
-			var/obj/item/meatslab = allmeat[i]
-			var/turf/Tx = locate(src.x - i, src.y, src.z)
-			meatslab.loc = src.loc
-			meatslab.throw_at(Tx,i,3,src)
-			if (!Tx.density)
-				new /obj/effect/decal/cleanable/blood/gibs(Tx,i)
-		src.operating = 0
-		update_icon()
+	addtimer(CALLBACK(src, PROC_REF(make_meat), allmeat, totalslabs, gibtype), gibtime)
+
+///Creates the output
+/obj/machinery/gibber/proc/make_meat(list/meatlist, meat_produced, gibtype)
+	var/turf/T = get_turf(src)
+	var/list/turf/nearby_turfs = RANGE_TURFS(3, T) - T
+
+	for(var/i=1 to meat_produced)
+		var/obj/item/meatslab = meatlist[i]
+		meatslab.forceMove(loc)
+		meatslab.throw_at(pick(nearby_turfs),i,3)
+		for(var/turfs=1 to meat_produced)
+			var/turf/gibturf = pick(nearby_turfs)
+			if(!gibturf.density && (src in view(gibturf)))
+				new gibtype(gibturf,i)
+
+	playsound(loc, 'sound/effects/splat.ogg', 50, TRUE)
+	operating = FALSE
+	update_icon()
 
 /obj/machinery/gibber/nopower
 	use_power = NO_POWER_USE

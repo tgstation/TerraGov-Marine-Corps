@@ -151,7 +151,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
 	var/list/variants_by_parent_type = list()
 
-/obj/item/attachable/Initialize()
+/obj/item/attachable/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/attachment, slot, icon, PROC_REF(on_attach), PROC_REF(on_detach), PROC_REF(activate), PROC_REF(can_attach), pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
 
@@ -404,7 +404,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	sharp = IS_SHARP_ITEM_ACCURATE
 	variants_by_parent_type = list(/obj/item/weapon/gun/shotgun/pump/t35 = "bayonetknife_t35")
 
-/obj/item/attachable/bayonetknife/Initialize()
+/obj/item/attachable/bayonetknife/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
@@ -1014,10 +1014,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"
-	desc = "A specialized stock for the SH-35."
+	desc = "A specialized stock for the SH-39."
 	icon_state = "t39stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
+	size_mod = 1
+	flags_attach_features = ATTACH_REMOVABLE
+	wield_delay_mod = 0.2 SECONDS
+	accuracy_mod = 0.15
+	recoil_mod = -2
+	scatter_mod = -2
 
 /obj/item/attachable/stock/t60stock
 	name = "MG-60 stock"

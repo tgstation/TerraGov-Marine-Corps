@@ -17,7 +17,7 @@
 	var/id = null     		// id of door it controls.
 	var/list/obj/machinery/targets = list()
 
-/obj/machinery/door_display/Initialize()
+/obj/machinery/door_display/Initialize(mapload)
 	. = ..()
 	switch(dir)
 		if(NORTH)
