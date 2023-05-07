@@ -143,6 +143,8 @@
 #define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
 ///quieter footsteps
 #define TRAIT_LIGHT_STEP "light_step"
+///noisier footsteps
+#define TRAIT_HEAVY_STEP "heavy_step"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"

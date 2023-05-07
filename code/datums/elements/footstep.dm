@@ -57,7 +57,7 @@
 	if(!istype(turf))
 		return
 
-	if(source.buckled || source.throwing || source.is_ventcrawling || source.lying_angle || (source.flags_pass & HOVERING) || HAS_TRAIT(source, TRAIT_IMMOBILE))
+	if(source.buckled || source.throwing || source.is_ventcrawling || source.lying_angle || CHECK_MULTIPLE_BITFIELDS(source.flags_pass, HOVERING) || HAS_TRAIT(source, TRAIT_IMMOBILE))
 		return
 
 	if(ishuman(source))
@@ -87,6 +87,10 @@
 
 	var/volume_multiplier = 1
 	var/range_adjustment = 0
+
+	if(HAS_TRAIT(source, TRAIT_HEAVY_STEP))
+		volume_multiplier += 0.3
+		range_adjustment = 3
 
 	if(HAS_TRAIT(source, TRAIT_LIGHT_STEP))
 		volume_multiplier -= 0.5
@@ -133,6 +137,10 @@
 
 	var/volume_multiplier = 1
 	var/range_adjustment = 0
+
+	if(HAS_TRAIT(source, TRAIT_HEAVY_STEP))
+		volume_multiplier += 0.3
+		range_adjustment = 3
 
 	if(HAS_TRAIT(source, TRAIT_LIGHT_STEP))
 		volume_multiplier -= 0.5
