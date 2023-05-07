@@ -347,7 +347,7 @@
 	desc = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
 	ability_name = "regenerate skin"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED|XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY|XACT_KEYBIND_USE_ABILITY
-	plasma_cost = 160
+	plasma_cost = 80
 	cooldown_timer = 1 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
