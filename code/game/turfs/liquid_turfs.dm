@@ -65,7 +65,7 @@
 	if(!mob_leaver.get_filter(MOB_LIQUID_TURF_MASK))
 		return
 
-	var/turf/open/liquid/new_turf = carbon_leaver.loc
+	var/turf/open/liquid/new_turf = mob_leaver.loc
 	if(istype(new_turf))
 		if(length(new_turf.canSmoothWith))
 			if(!new_turf.has_catwalk && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
@@ -73,8 +73,8 @@
 		else if(!new_turf.has_catwalk)
 			return
 
-	var/icon/carbon_icon = icon(mob_leaver.icon)
-	animate(mob_leaver.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - carbon_icon.Height()) * 0.5) - MOB_LIQUID_TURF_MASK_HEIGHT, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
+	var/icon/mob_icon = icon(mob_leaver.icon)
+	animate(mob_leaver.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - MOB_LIQUID_TURF_MASK_HEIGHT, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
 	animate(mob_leaver, pixel_y = mob_leaver.pixel_y - mob_liquid_depth, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(mob_leaver, TYPE_PROC_REF(/atom, remove_filter), MOB_LIQUID_TURF_MASK), mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
 
