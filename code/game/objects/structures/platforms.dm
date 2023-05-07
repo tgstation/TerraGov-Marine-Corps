@@ -23,7 +23,7 @@
 /obj/structure/platform/Initialize(mapload)
 	. = ..()
 	update_icon()
-	icon_state = ""
+	icon_state = null
 
 	if(!platform_flags)
 		return
