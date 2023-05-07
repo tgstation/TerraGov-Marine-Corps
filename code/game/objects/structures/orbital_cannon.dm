@@ -553,7 +553,7 @@
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 
-/obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user, ignore_cooldown = FALSE)
+/obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user, ignore_cooldown = FALSE, ai_operation = FALSE)
 	if(cannon_busy && !ignore_cooldown)
 		return
 	if(!rail_gun_ammo?.ammo_count)
@@ -561,8 +561,10 @@
 		return
 	flick("Railgun_firing",src)
 	cannon_busy = TRUE
-	last_firing = world.time
-	last_firing_ai = world.time
+	if(ai_operation)
+		last_firing_ai = world.time
+	else
+		last_firing = world.time
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + rand(-4, 4), T.y + rand(-4, 4), T.z)

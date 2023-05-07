@@ -1,9 +1,11 @@
 #define AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE 20
 #define AI_MAX_RAILGUN_SHOTS_FIRED_LOWER_RANGE 10
-#define AI_RAILGUN_HUMAN_EXCLUSION_RANGE 5
+#define AI_RAILGUN_HUMAN_EXCLUSION_RANGE 6
 #define AI_RAILGUN_AUTOTARGET_RANGE 6
 #define AI_RAILGUN_FIRING_TIME_DELAY 0.9 SECONDS
 #define AI_RAILGUN_FIRING_WINDUP_DELAY 8 SECONDS
+#define AI_RAILGUN_HUMAN_EXCLUSION_NEGATIVE -4
+#define AI_RAILGUN_HUMAN_EXCLUSION_POSITIVE 4
 
 
 
@@ -240,15 +242,11 @@
 	if(HAS_TRAIT(user, TRAIT_IS_FIRING_RAILGUN))
 		to_chat(user, span_warning("The rail guns are already targeting a location, wait for them to finish."))
 		return
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
-		to_chat(user, span_warning("The operation hasn't started yet."))
-		return
-	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
-		if(nearby_human.stat != DEAD)
-			to_chat(user, span_warning("Friendly biologicals detected near [loc] target location, aborting."))
-			return
 	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A)) //can't fire the railgun off the ground level, or at the DS
 		to_chat(user, span_warning("Incompatible target location."))
+		return
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
+		to_chat(user, span_warning("The operation hasn't started yet."))
 		return
 	if(A.ceiling > CEILING_METAL)
 		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
@@ -288,12 +286,38 @@
 		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(laser, AI_RAILGUN_AUTOTARGET_RANGE))
 			if(target_xeno.stat != DEAD)
 				possible_xenos += target_xeno
-		if(length(possible_xenos))
-			var/mob/living/carbon/xenomorph/nuked_xeno = pick(possible_xenos)
-			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(nuked_xeno, user, TRUE)
+		//used to calculate nearby human mobs for avoidance purposes
+		var/mob/living/carbon/human/possible_humans = list()
+		//used for calculating zombies
+		var/mob/living/carbon/human/possible_zombies = list()
+		for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(laser, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
+			if(iszombie(nearby_human)) //count zombies separately
+				possible_zombies += nearby_human
+			else if(nearby_human.stat != DEAD)
+				possible_humans += nearby_human
+		if(length(possible_zombies))
+			var/mob/living/carbon/human/nuked_zombie = pick(possible_zombies)
+			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(nuked_zombie, user, TRUE, TRUE)
 			++timesfired
+		else if(length(possible_xenos))
+			var/mob/living/carbon/xenomorph/nuked_xeno = pick(possible_xenos)
+			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(nuked_xeno, user, TRUE, TRUE)
+			++timesfired
+		else if(length(possible_humans))
+			var/turf/targetturf = get_turf(laser)
+			while(possible_humans)
+				possible_humans = list()
+				for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(targetturf, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
+					if(nearby_human.stat != DEAD)
+						possible_humans += nearby_human
+				if(length(possible_humans))
+					targetturf = locate(targetturf.x + rand(AI_RAILGUN_HUMAN_EXCLUSION_NEGATIVE, AI_RAILGUN_HUMAN_EXCLUSION_POSITIVE), targetturf.y + rand(AI_RAILGUN_HUMAN_EXCLUSION_NEGATIVE, AI_RAILGUN_HUMAN_EXCLUSION_POSITIVE), targetturf.z)
+				else
+					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(targetturf, user, TRUE, TRUE)
+					++timesfired
+					break
 		else
-			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(laser, user, TRUE)
+			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(laser, user, TRUE, TRUE)
 			++timesfired
 
 #undef AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE
@@ -302,3 +326,5 @@
 #undef AI_RAILGUN_FIRING_WINDUP_DELAY
 #undef AI_RAILGUN_HUMAN_EXCLUSION_RANGE
 #undef AI_RAILGUN_AUTOTARGET_RANGE
+#undef AI_RAILGUN_HUMAN_EXCLUSION_NEGATIVE
+#undef AI_RAILGUN_HUMAN_EXCLUSION_POSITIVE
