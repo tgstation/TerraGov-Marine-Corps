@@ -427,7 +427,7 @@
 	wield_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.2
 	mode_list = list(
@@ -444,7 +444,7 @@
 /datum/lasrifle/base/energy_rifle_mode/standard
 	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -454,7 +454,7 @@
 /datum/lasrifle/base/energy_rifle_mode/overcharge
 	rounds_per_shot = 30
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
-	fire_delay = 0.45 SECONDS
+	fire_delay = 0.35 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
