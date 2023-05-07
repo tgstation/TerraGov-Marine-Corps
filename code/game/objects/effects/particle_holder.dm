@@ -5,6 +5,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = ABOVE_ALL_MOB_LAYER
 	vis_flags = VIS_INHERIT_PLANE
+	appearance_flags = KEEP_APART|TILE_BOUND
 	///typepath of the last location we're in, if it's different when moved then we need to update vis contents
 	var/last_attached_location_type
 	///the main item we're attached to at the moment, particle holders hold particles for something

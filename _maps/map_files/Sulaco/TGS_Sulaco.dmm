@@ -15183,6 +15183,11 @@
 	dir = 9
 	},
 /area/sulaco/research)
+"ifi" = (
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 1
+	},
+/area/mainship/living/basketball)
 "ifF" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray,
@@ -16454,8 +16459,8 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay)
 "jPf" = (
-/obj/machinery/light/mainship,
-/turf/open/floor/prison/green/full,
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/prison,
 /area/sulaco/marine)
 "jPn" = (
 /obj/structure/largecrate/guns,
@@ -19760,7 +19765,6 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/structure/bed/chair/nometal,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -21257,7 +21261,7 @@
 	},
 /area/sulaco/hallway/central_hall)
 "qoV" = (
-/obj/structure/bed/chair/nometal,
+/obj/structure/benchpress,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -45529,7 +45533,7 @@ rVm
 hMt
 xHk
 iVT
-qoV
+ifi
 vIO
 vIO
 vIO
@@ -48602,8 +48606,8 @@ yiY
 cyo
 aLF
 nps
+aLk
 jPf
-aLf
 aLf
 wKB
 iRd
