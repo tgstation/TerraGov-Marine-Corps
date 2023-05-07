@@ -377,6 +377,8 @@
 	icon_state = "cavewall0"
 	walltype = "cavewall"
 
+/turf/closed/wall/desertcavewall/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
 
 //Prison wall
 
@@ -410,3 +412,9 @@
 				icon_state = "wood_variant"
 	else
 		icon_state = "[walltype][junction]"
+
+/turf/closed/wall/wood/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
+// Reinforced Wood Wall
+

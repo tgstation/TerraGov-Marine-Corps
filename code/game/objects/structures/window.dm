@@ -23,6 +23,9 @@
 	var/deconstructable = TRUE
 	flags_pass = PASSLASER
 
+/obj/structure/window/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_GLASS, -10, 5)
+
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10

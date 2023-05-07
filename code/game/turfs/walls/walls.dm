@@ -33,6 +33,9 @@
 	var/obj/effect/acid_hole/acided_hole //the acid hole inside the wall
 
 
+/turf/closed/wall/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+
 /turf/closed/wall/Initialize(mapload, ...)
 	. = ..()
 

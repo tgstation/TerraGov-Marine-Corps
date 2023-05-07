@@ -12,6 +12,10 @@
 	///used for plasmacutter deconstruction
 	var/open_turf_type = /turf/open/floor/plating
 
+/turf/closed/Initialize(mapload)
+	. = ..()
+	add_debris_element()
+
 /turf/closed/mineral
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
@@ -19,6 +23,9 @@
 	smoothing_behavior = NONE
 	smoothing_groups = NONE
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
+
+/turf/closed/mineral/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
@@ -118,6 +125,9 @@
 	walltype = "jungle"
 	open_turf_type = /turf/open/ground/jungle/clear
 
+/turf/closed/gm/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_LEAF, -10, 5)
+
 /turf/closed/gm/tree
 	name = "dense jungle trees"
 	icon_state = "jungletree"
@@ -185,6 +195,9 @@
 	icon_state = "Single"
 	desc = "It is very thick."
 	open_turf_type = /turf/open/floor/plating/ground/ice
+
+/turf/closed/ice/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SNOW, -10, 5, 1)
 
 /turf/closed/ice/single
 	icon_state = "Single"
@@ -283,6 +296,9 @@
 	resistance_flags = PLASMACUTTER_IMMUNE
 	open_turf_type = /turf/open/floor/plating/ground/ice
 
+/turf/closed/ice_rock/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SNOW, -10, 5, 1)
+
 /turf/closed/ice_rock/single
 	icon_state = "single"
 
@@ -342,6 +358,9 @@
 	plane = FLOOR_PLANE
 	smoothing_behavior = NO_SMOOTHING
 	resistance_flags = PLASMACUTTER_IMMUNE
+
+/turf/closed/shuttle/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"
