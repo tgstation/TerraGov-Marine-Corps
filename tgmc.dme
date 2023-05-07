@@ -933,6 +933,7 @@
 #include "code\game\objects\structures\barricade.dm"
 #include "code\game\objects\structures\barsign.dm"
 #include "code\game\objects\structures\bedsheet_bin.dm"
+#include "code\game\objects\structures\benchpress.dm"
 #include "code\game\objects\structures\bookcase.dm"
 #include "code\game\objects\structures\cargo_container.dm"
 #include "code\game\objects\structures\cas_plane_parts.dm"

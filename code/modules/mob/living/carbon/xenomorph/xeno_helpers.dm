@@ -38,3 +38,5 @@
 	if(rally_minion)
 		rally_minion.remove_action(src)
 
+/mob/living/carbon/xenomorph/get_liquid_slowdown()
+	return XENO_WATER_SLOWDOWN

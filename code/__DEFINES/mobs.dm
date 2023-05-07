@@ -846,3 +846,14 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"
 #define AURA_HUMAN_FOCUS "focus"
+
+//slowdown defines for liquid turfs
+
+///Default slowdown for mobs moving through liquid
+#define MOB_WATER_SLOWDOWN 1.75
+///Slowdown for xenos moving through liquid
+#define XENO_WATER_SLOWDOWN 1.3
+///Slowdown for boilers moving through liquid
+#define BOILER_WATER_SLOWDOWN 0
+///Slowdown for warlocks moving through liquid
+#define WARLOCK_WATER_SLOWDOWN 0

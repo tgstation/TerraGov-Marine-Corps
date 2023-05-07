@@ -3,11 +3,12 @@
 ///The height of the mask itself in the icon state. Changes to the icon requires a change to this define
 #define MOB_LIQUID_TURF_MASK_HEIGHT 32
 
-
 /turf/open/liquid //Basic liquid turf parent
 	name = "liquid"
 	icon = 'icons/turf/ground_map.dmi'
 	can_bloody = FALSE
+	///Multiplier on any slowdown applied to a mob moving through this turf
+	var/slowdown_multiplier = 1
 	///How high up on the mob water overlays sit
 	var/mob_liquid_height = 11
 	///How far down the mob visually drops down when in water
@@ -26,41 +27,45 @@
 		return FALSE
 	. = TRUE
 
-	if(!iscarbon(arrived))
+	if(!ismob(arrived))
 		return
 
 	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
 		return
 
-	var/mob/living/carbon/carbon_mob = arrived
-	var/icon/carbon_icon = icon(carbon_mob.icon)
-	var/height_to_use = (64 - carbon_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
+	var/mob/arrived_mob = arrived
+	var/icon/mob_icon = icon(arrived_mob.icon)
+	var/height_to_use = (64 - mob_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
 
-	if(carbon_mob.get_filter(MOB_LIQUID_TURF_MASK))
+	if(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK))
 		var/turf/open/liquid/old_turf = old_loc
 		if(!istype(old_turf))
 			CRASH("orphaned liquid alpha mask")
 		if(mob_liquid_height != old_turf.mob_liquid_height)
-			animate(carbon_mob.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - carbon_icon.Height()) * 0.5) - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown)
+			animate(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown)
 		if(mob_liquid_depth != old_turf.mob_liquid_depth)
-			animate(carbon_mob, pixel_y = carbon_mob.pixel_y + mob_liquid_depth - old_turf.mob_liquid_depth, time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
+			animate(arrived_mob, pixel_y = arrived_mob.pixel_y + mob_liquid_depth - old_turf.mob_liquid_depth, time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
+
+		arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier) //slowdown applied after the animate as it will effect the timing
 		return
 
 	//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
-	carbon_mob.add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
+	arrived_mob.add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
 
-	animate(carbon_mob.get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown)
-	animate(carbon_mob, pixel_y = carbon_mob.pixel_y + mob_liquid_depth, time = carbon_mob.cached_multiplicative_slowdown + carbon_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
+	animate(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown)
+	animate(arrived_mob, pixel_y = arrived_mob.pixel_y + mob_liquid_depth, time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
+
+	arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier)
 
 /turf/open/liquid/Exited(atom/movable/leaver, direction)
 	. = ..()
-	if(!iscarbon(leaver))
+	if(!ismob(leaver))
 		return
-	var/mob/living/carbon/carbon_leaver = leaver
-	if(!carbon_leaver.get_filter(MOB_LIQUID_TURF_MASK))
+	var/mob/mob_leaver = leaver
+	if(!mob_leaver.get_filter(MOB_LIQUID_TURF_MASK))
 		return
 
-	var/turf/open/liquid/new_turf = get_step(src, direction)
+	var/turf/open/liquid/new_turf = mob_leaver.loc
 	if(istype(new_turf))
 		if(length(new_turf.canSmoothWith))
 			if(!new_turf.has_catwalk && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
@@ -68,13 +73,10 @@
 		else if(!new_turf.has_catwalk)
 			return
 
-	var/icon/carbon_icon = icon(carbon_leaver.icon)
-	animate(carbon_leaver.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - carbon_icon.Height()) * 0.5) - MOB_LIQUID_TURF_MASK_HEIGHT, time = carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown)
-	animate(carbon_leaver, pixel_y = carbon_leaver.pixel_y - mob_liquid_depth, time = carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown, flags = ANIMATION_PARALLEL)
-	addtimer(CALLBACK(carbon_leaver, TYPE_PROC_REF(/atom, remove_filter), MOB_LIQUID_TURF_MASK), carbon_leaver.cached_multiplicative_slowdown + carbon_leaver.next_move_slowdown)
-
-///Default slowdown for mobs moving through water
-#define MOB_WATER_SLOWDOWN 1.75
+	var/icon/mob_icon = icon(mob_leaver.icon)
+	animate(mob_leaver.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - MOB_LIQUID_TURF_MASK_HEIGHT, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
+	animate(mob_leaver, pixel_y = mob_leaver.pixel_y - mob_liquid_depth, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown, flags = ANIMATION_PARALLEL)
+	addtimer(CALLBACK(mob_leaver, TYPE_PROC_REF(/atom, remove_filter), MOB_LIQUID_TURF_MASK), mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
 
 /turf/open/liquid/water
 	name = "river"
@@ -98,12 +100,6 @@
 
 	if(carbon_mob.on_fire)
 		carbon_mob.ExtinguishMob()
-
-	if(isxeno(carbon_mob))
-		var/mob/living/carbon/xenomorph/xeno = carbon_mob
-		xeno.next_move_slowdown += xeno.xeno_caste.water_slowdown
-	else
-		carbon_mob.next_move_slowdown += MOB_WATER_SLOWDOWN
 
 /turf/open/liquid/water/sea
 	name = "water"
@@ -142,6 +138,7 @@
 	icon_state = "river_deep-icon"
 	mob_liquid_height = 18
 	mob_liquid_depth = -8
+	slowdown_multiplier = 1.5
 
 //Desert River
 /turf/open/liquid/water/river/desertdam
@@ -210,6 +207,7 @@
 	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA
 	minimap_color = MINIMAP_LAVA
+	slowdown_multiplier = 1.5
 
 /turf/open/liquid/lava/is_weedable()
 	return FALSE
