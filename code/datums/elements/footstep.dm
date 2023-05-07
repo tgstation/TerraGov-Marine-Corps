@@ -60,9 +60,9 @@
 	if(source.buckled || source.throwing || source.is_ventcrawling || source.lying_angle || (source.flags_pass & HOVERING) || HAS_TRAIT(source, TRAIT_IMMOBILE))
 		return
 
-	if(iscarbon(source))
-		var/mob/living/carbon/carbon_source = source
-		if(!carbon_source.get_limb(BODY_ZONE_L_LEG) && !carbon_source.get_limb(BODY_ZONE_R_LEG))
+	if(ishuman(source))
+		var/mob/living/carbon/human/human_source = source
+		if(!human_source.get_limb(BODY_ZONE_L_LEG) && !human_source.get_limb(BODY_ZONE_R_LEG))
 			return
 
 	steps_for_living[source] += 1
@@ -101,7 +101,7 @@
 		return
 
 	var/turf_footstep
-	if(locate(/obj/alien/weeds) in source_loc)
+	if(locate(/obj/alien/weeds) in source_loc) //TODO replace this horribleness
 		turf_footstep = FOOTSTEP_RESIN
 	else switch(footstep_type)
 		if(FOOTSTEP_XENO_MEDIUM)
@@ -146,7 +146,7 @@
 			pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
 			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume * volume_multiplier,
 			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE +GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range + range_adjustment,
+			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range + range_adjustment,
 		)
 		return
 
