@@ -1,4 +1,3 @@
-//#define SHOULD_DISABLE_FOOTSTEPS(source) ((SSlag_switch.measures[DISABLE_FOOTSTEPS] && !(HAS_TRAIT(source, TRAIT_BYPASS_MEASURES))) || HAS_TRAIT(source, TRAIT_SILENT_FOOTSTEPS))
 #define DEFAULT_FOOTSTEP_SOUND_RANGE 11
 
 ///Footstep element. Plays footsteps at parents location when it is appropriate.
@@ -41,10 +40,6 @@
 			footstep_sounds = GLOB.xenomediumstep
 		if(FOOTSTEP_XENO_HEAVY)
 			footstep_sounds = GLOB.xenoheavystep
-		//if(FOOTSTEP_OBJ_ROBOT)
-		//	footstep_sounds = GLOB.shoefootstep
-		//	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_simplestep_machine))
-		//	return
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_simplestep))
 	steps_for_living[target] = 0
 
@@ -55,6 +50,9 @@
 
 ///Prepares a footstep for living mobs. Determines if it should get played. Returns the turf it should get played on. Note that it is always a /turf/open
 /datum/element/footstep/proc/prepare_step(mob/living/source)
+	if(HAS_TRAIT(source, TRAIT_SILENT_FOOTSTEPS))
+		return
+
 	var/turf/open/turf = get_turf(source)
 	if(!istype(turf))
 		return
@@ -62,12 +60,11 @@
 	if(source.buckled || source.throwing || source.is_ventcrawling || source.lying_angle || (source.flags_pass & HOVERING) || HAS_TRAIT(source, TRAIT_IMMOBILE))
 		return
 
-	//if(iscarbon(source))
-	//	var/mob/living/carbon/carbon_source = source
-	//	if(!carbon_source.get_bodypart(BODY_ZONE_L_LEG) && !carbon_source.get_bodypart(BODY_ZONE_R_LEG))
-	//		return
-	//	if(carbon_source.m_intent == MOVE_INTENT_WALK)
-	//		return// stealth
+	if(iscarbon(source))
+		var/mob/living/carbon/carbon_source = source
+		if(!carbon_source.get_limb(BODY_ZONE_L_LEG) && !carbon_source.get_limb(BODY_ZONE_R_LEG))
+			return
+
 	steps_for_living[source] += 1
 	var/steps = steps_for_living[source]
 
@@ -83,15 +80,26 @@
 /datum/element/footstep/proc/play_simplestep(mob/living/source)
 	SIGNAL_HANDLER
 
-	//if(SHOULD_DISABLE_FOOTSTEPS(source))
-	//	return
-
 	var/turf/open/source_loc = prepare_step(source)
 	if(!source_loc)
 		return
+
+	var/volume_multiplier = 1
+	var/range_adjustment = 0
+
+	if(HAS_TRAIT(source, TRAIT_LIGHT_STEP))
+		volume_multiplier -= 0.5
+		range_adjustment = -3
+
+	if(source.m_intent == MOVE_INTENT_WALK)
+		volume_multiplier -= 0.5
+		range_adjustment = -3
+
+
 	if(isfile(footstep_sounds) || istext(footstep_sounds))
-		playsound(source_loc, footstep_sounds, volume, sound_vary, falloff = 1)
+		playsound(source_loc, footstep_sounds, volume * volume_multiplier, sound_vary, DEFAULT_FOOTSTEP_SOUND_RANGE + e_range + range_adjustment)
 		return
+
 	var/turf_footstep
 	if(locate(/obj/alien/weeds) in source_loc)
 		turf_footstep = FOOTSTEP_RESIN
@@ -106,57 +114,57 @@
 			turf_footstep = source_loc.shoefootstep
 	if(!turf_footstep)
 		return
-	playsound(source_loc, pick(footstep_sounds[turf_footstep][1]), footstep_sounds[turf_footstep][2] * volume, sound_vary, footstep_sounds[turf_footstep][3] + e_range, falloff = 1)
+	playsound(
+		source_loc,
+		pick(footstep_sounds[turf_footstep][1]),
+		footstep_sounds[turf_footstep][2] * volume * volume_multiplier,
+		sound_vary,
+		DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[turf_footstep][3] + e_range + range_adjustment,
+	)
 
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
-
-	//if(SHOULD_DISABLE_FOOTSTEPS(source) || !momentum_change)
-	//	return
-
-	var/volume_multiplier = 1
-	var/range_adjustment = 0
-
-	//if(HAS_TRAIT(source, TRAIT_LIGHT_STEP))
-	//	volume_multiplier = 0.6
-	//	range_adjustment = -2
 
 	var/turf/open/source_loc = prepare_step(source)
 	if(!source_loc)
 		return
 
+	var/volume_multiplier = 1
+	var/range_adjustment = 0
+
+	if(HAS_TRAIT(source, TRAIT_LIGHT_STEP))
+		volume_multiplier -= 0.5
+		range_adjustment = -3
+
+	if(source.m_intent == MOVE_INTENT_WALK)
+		volume_multiplier -= 0.5
+		range_adjustment = -3
+
 	if(locate(/obj/alien/weeds) in source_loc) //TODO replace this horrible snowflake check
-		playsound(source_loc, pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
-			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume,
+		playsound(
+			source_loc,
+			pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
+			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume * volume_multiplier,
 			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE +GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range + range_adjustment)
+			DEFAULT_FOOTSTEP_SOUND_RANGE +GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range + range_adjustment,
+		)
 		return
 
 	if((source.wear_suit?.flags_armor_protection | source.w_uniform?.flags_armor_protection | source.shoes?.flags_armor_protection) & FEET) //We are not disgusting barefoot bandits
-		//cache for sanic speed (lists are references anyways)
-		var/static/list/footstep_sounds = GLOB.shoefootstep
-		playsound(source_loc, pick(footstep_sounds[source_loc.shoefootstep][1]),
+		var/static/list/footstep_sounds = GLOB.shoefootstep //static is faster
+		playsound(
+			source_loc,
+			pick(footstep_sounds[source_loc.shoefootstep][1]),
 			footstep_sounds[source_loc.shoefootstep][2] * volume * volume_multiplier,
 			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[source_loc.shoefootstep][3] + e_range + range_adjustment, falloff = 1)
-
+			DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[source_loc.shoefootstep][3] + e_range + range_adjustment,
+		)
 	else
 		var/static/list/bare_footstep_sounds = GLOB.barefootstep
-		playsound(source_loc, pick(GLOB.barefootstep[source_loc.barefootstep][1]),
+		playsound(
+			source_loc,
+			pick(GLOB.barefootstep[source_loc.barefootstep][1]),
 			GLOB.barefootstep[source_loc.barefootstep][2] * volume * volume_multiplier,
 			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[source_loc.barefootstep][3] + e_range + range_adjustment, falloff = 1)
-
-///Prepares a footstep for machine walking
-///datum/element/footstep/proc/play_simplestep_machine(atom/movable/source)
-//	SIGNAL_HANDLER
-
-	//if (SHOULD_DISABLE_FOOTSTEPS(source))
-	//	return
-
-//	var/turf/open/source_loc = get_turf(source)
-//	if(!istype(source_loc))
-//		return
-//	playsound(source_loc, footstep_sounds, 50, falloff_distance = 1, vary = sound_vary)
-
-//#undef SHOULD_DISABLE_FOOTSTEPS
+			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[source_loc.barefootstep][3] + e_range + range_adjustment,
+		)
