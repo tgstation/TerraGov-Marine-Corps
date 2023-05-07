@@ -159,7 +159,6 @@
 				required_ticks = initial(required_ticks)
 			if(MINER_AUTOMATED)
 				upgrade = new /obj/item/minerupgrade/automatic
-				stop_processing()
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
