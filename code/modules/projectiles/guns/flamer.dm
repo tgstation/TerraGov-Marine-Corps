@@ -333,6 +333,8 @@
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/removed_from_inventory(mob/user)
 	. = ..()
 	flamerpack.handle_item_insertion(src)
+	flamerpack.refuel(chamber_items[1], user)
+	src.update_ammo_count()
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"

@@ -258,7 +258,7 @@
 
 /obj/item/storage/holster/backholster/flamer
 	name = "\improper TGMC flamethrower bag"
-	desc = "This backpack can carry its accompanying flamethrower as well as a modest general storage capacity."
+	desc = "This backpack can carry its accompanying flamethrower as well as a modest general storage capacity. Automatically refuels it's accompanying flamethrower."
 	icon_state = "pyro_bag"
 	item_state = "pyro_bag"
 	w_class = WEIGHT_CLASS_BULKY
@@ -269,6 +269,9 @@
 	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
 	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
 	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1,)
+		///The internal fuel tank
+	var/obj/item/ammo_magazine/flamer_tank/internal/tank
+
 	///The linked flamerthrower that cannot be dropped
 	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer
 
@@ -282,7 +285,44 @@
 
 /obj/item/storage/holster/backholster/flamer/Initialize()
 	. = ..()
+	tank = new
 	update_icon()
+
+/obj/item/storage/holster/backholster/flamer/MouseDrop_T(obj/item/W, mob/living/user)
+	. = ..()
+	if(istype(W,/obj/item/ammo_magazine/flamer_tank))
+		refuel(W, user)
+
+/obj/item/storage/holster/backholster/flamer/afterattack(obj/O as obj, mob/user as mob, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	//uses the tank's proc to refuel
+	if(istype(O, /obj/structure/reagent_dispensers/fueltank))
+		tank.afterattack(O, user)
+	if(istype(O,/obj/item/ammo_magazine/flamer_tank))
+		refuel(O, user)
+
+/obj/item/storage/holster/backholster/flamer/proc/refuel(obj/item/W, mob/living/user)
+	var/obj/item/ammo_magazine/flamer_tank/flamer_tank = W
+	if(get_dist(user, flamer_tank) > 1)
+		return
+	if(flamer_tank.current_rounds >= flamer_tank.max_rounds)
+		to_chat(user, span_warning("[flamer_tank] is already full."))
+		return
+	if(tank.current_rounds == 0)
+		to_chat(user, span_warning("The [tank] is empty!"))
+		return
+	var/liquid_transfer_amount = min(tank.current_rounds, flamer_tank.max_rounds - flamer_tank.current_rounds)
+	tank.current_rounds -= liquid_transfer_amount
+	flamer_tank.current_rounds += liquid_transfer_amount
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	to_chat(user, span_notice("[flamer_tank] is refilled with [lowertext(tank.caliber)]."))
+	update_icon()
+
+/obj/item/storage/holster/backholster/flamer/examine(mob/user)
+	. = ..()
+	. += "[tank.current_rounds] units of fuel left!"
 
 /obj/item/storage/holster/backholster/flamer/removed_from_inventory(mob/user)
 	. = ..()
