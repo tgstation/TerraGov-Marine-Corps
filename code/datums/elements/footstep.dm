@@ -77,6 +77,7 @@
 
 	return turf
 
+///Plays footsteps for anything that isn't human
 /datum/element/footstep/proc/play_simplestep(mob/living/source)
 	SIGNAL_HANDLER
 
@@ -122,6 +123,7 @@
 		DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[turf_footstep][3] + e_range + range_adjustment,
 	)
 
+///Plays footsteps for humans
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
