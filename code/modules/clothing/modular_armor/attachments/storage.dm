@@ -328,6 +328,7 @@
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/stack/throwing_knife,
 		/obj/item/storage/box/MRE,
 	)
@@ -336,6 +337,9 @@
 	. = ..()
 	new /obj/item/weapon/combat_knife(storage)
 
+/obj/item/armor_module/storage/boot/som_knife/Initialize(mapload)
+	. = ..()
+	new /obj/item/attachable/bayonetknife/som(storage)
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."
