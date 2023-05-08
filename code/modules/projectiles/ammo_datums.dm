@@ -1044,7 +1044,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 100
 
 /datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+	victim.AddComponent(/datum/component/timed_tracking)
 
 /datum/ammo/bullet/shotgun/tracker
 	name = "shotgun tracker shell"
@@ -1057,7 +1057,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 100
 
 /datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+	victim.AddComponent(/datum/component/timed_tracking)
 
 
 /datum/ammo/bullet/shotgun/mech
