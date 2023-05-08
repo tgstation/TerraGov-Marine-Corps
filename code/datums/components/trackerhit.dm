@@ -1,6 +1,6 @@
 /datum/component/timed_tracking
 
-/datum/component/timed_tracking/Initialize(track_time = 8 SECONDS, image_override, flag_override)
+/datum/component/timed_tracking/Initialize(track_time = 12 SECONDS, image_override, flag_override)
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
