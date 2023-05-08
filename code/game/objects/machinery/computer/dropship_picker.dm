@@ -57,7 +57,6 @@
 /datum/asset/simple/dropshippicker
 	assets = list(
 		"_standard" = 'icons/ui_icons/dropshippicker/_standard.png',
-		"_pill" = 'icons/ui_icons/dropshippicker/_pill.png',
 		"_big" = 'icons/ui_icons/dropshippicker/_big.png',
 		"_food" = 'icons/ui_icons/dropshippicker/_food.png',
 		"_factorio" = 'icons/ui_icons/dropshippicker/_factorio.png',

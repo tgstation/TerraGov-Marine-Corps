@@ -129,11 +129,6 @@
 	///shuttle switch console name
 	var/display_name = "Tadpole Standard Model"
 
-/datum/map_template/shuttle/minidropship/pill
-	suffix = "_pill"
-	description = "A horribly unsafe yet tiny and compact Tadpole model. Does not sport anything useful for combat. Do not leave during transit. Bought by the TGMC, and only technically legal."
-	display_name = "Tadpole Pill Model"
-
 /datum/map_template/shuttle/minidropship/old
 	suffix = "_big"
 	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
