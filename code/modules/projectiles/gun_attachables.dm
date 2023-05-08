@@ -416,7 +416,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	AddElement(/datum/element/scalping)
 
 /obj/item/attachable/bayonetknife/som
-	name = "\improper SOM bayonet"
+	name = "\improper S20 SOM bayonet"
 	desc = "A large knife that is the standard issue combat knife of the SOM. Can be attached to a variety of weapons at will or used as a standard knife."
 	icon_state = "bayonetknife_som"
 	item_state = "bayonetknife"
