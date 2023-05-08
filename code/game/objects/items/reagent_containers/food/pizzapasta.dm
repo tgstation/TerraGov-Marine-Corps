@@ -311,55 +311,49 @@
 		update_icon()
 
 
-/obj/item/pizzabox/margherita/Initialize()
+/obj/item/pizzabox/margherita/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita(src)
 	boxtag = "Margherita Deluxe"
 
 
-/obj/item/pizzabox/vegetable/Initialize()
-	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza(src)
-	boxtag = "Gourmet Vegatable"
-
-
-/obj/item/pizzabox/mushroom/Initialize()
+/obj/item/pizzabox/mushroom/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/mushroompizza(src)
 	boxtag = "Mushroom Special"
 
 
-/obj/item/pizzabox/meat/Initialize()
+/obj/item/pizzabox/meat/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
 
-/obj/item/pizzabox/donkpocket/Initialize()
+/obj/item/pizzabox/donkpocket/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/donkpocket(src)
 	boxtag = "Bangin' Donk"
 
-/obj/item/pizzabox/ants/Initialize()
+/obj/item/pizzabox/ants/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/ants(src)
 	boxtag = "Anthill Deluxe"
 
-/obj/item/pizzabox/dank/Initialize()
+/obj/item/pizzabox/dank/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/dank(src)
 	boxtag = "Fresh Herbs"
 
-/obj/item/pizzabox/vegetable/Initialize()
+/obj/item/pizzabox/vegetable/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza(src)
 	boxtag = "Gourmet Vegetable"
 
-/obj/item/pizzabox/sassysage/Initialize()
+/obj/item/pizzabox/sassysage/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/sassysage(src)
 	boxtag = "Sausage Lovers"
 
-/obj/item/pizzabox/pineapple/Initialize()
+/obj/item/pizzabox/pineapple/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/pineapple(src)
 	boxtag = "Honolulu Chew"
@@ -456,7 +450,7 @@
 		/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza,
 	)
 
-/obj/item/pizzabox/random/Initialize()
+/obj/item/pizzabox/random/Initialize(mapload)
 	. = .. ()
 	var/pizza_type = pick(pizza_choices)
 	pizza = new pizza_type(src)

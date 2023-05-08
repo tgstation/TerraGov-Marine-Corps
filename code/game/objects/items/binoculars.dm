@@ -43,7 +43,7 @@
 	/// Selected mortar index
 	var/selected_mortar = 1
 
-/obj/item/binoculars/tactical/Initialize()
+/obj/item/binoculars/tactical/Initialize(mapload)
 	. = ..()
 	update_icon()
 

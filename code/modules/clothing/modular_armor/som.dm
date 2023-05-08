@@ -43,10 +43,16 @@
 	allowed_uniform_type = /obj/item/clothing/under
 
 /obj/item/clothing/suit/modular/som/engineer
-	starting_attachments = list(/obj/item/armor_module/storage/engineering)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/engineering,
+	)
 
 /obj/item/clothing/suit/modular/som/shield
-	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
 
 /obj/item/clothing/suit/modular/som/light
 	name = "\improper SOM scout armor"
@@ -57,7 +63,10 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/modular/som/light/shield
-	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
 
 
 /obj/item/clothing/suit/modular/som/heavy
@@ -71,17 +80,26 @@
 /obj/item/clothing/suit/modular/som/heavy/pyro
 	starting_attachments = list(
 		/obj/item/armor_module/module/fire_proof/som,
-		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/medical/som,
 	)
 
 /obj/item/clothing/suit/modular/som/heavy/lorica
-	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor/som)
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
 
 /obj/item/clothing/suit/modular/som/heavy/mithridatius
-	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/som)
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
 
 /obj/item/clothing/suit/modular/som/heavy/shield
-	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
 
 /obj/item/clothing/suit/modular/som/heavy/leader
 	name = "\improper SOM Gorgon pattern assault armor"

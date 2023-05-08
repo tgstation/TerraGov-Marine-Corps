@@ -79,6 +79,11 @@
 	if(CONFIG_GET(flag/log_game))
 		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
 
+/proc/log_minimap_drawing(text)
+	LAZYADD(GLOB.game_log, "\[[stationTimestamp()]\] MINIMAP_DRAW: [text]")
+	if(CONFIG_GET(flag/log_minimap_drawing))
+		WRITE_LOG(GLOB.world_game_log, "MINIMAP_DRAW: [text]")
+
 /proc/log_mecha(text)
 	if (CONFIG_GET(flag/log_mecha))
 		WRITE_LOG(GLOB.world_mecha_log, "MECHA: [text]")
@@ -222,6 +227,8 @@
 	WRITE_LOG(GLOB.config_error_log, text)
 	SEND_TEXT(world.log, text)
 
+/proc/log_filter_raw(text)
+	WRITE_LOG(GLOB.filter_log, "FILTER: [text]")
 
 /proc/log_paper(text)
 	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")

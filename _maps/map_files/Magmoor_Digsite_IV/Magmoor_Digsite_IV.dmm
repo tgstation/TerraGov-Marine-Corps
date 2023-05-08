@@ -304,7 +304,7 @@
 /area/magmoor/landing/two)
 "akM" = (
 /obj/item/ammo_casing,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
@@ -692,7 +692,7 @@
 /area/magmoor/civilian/arrival/east)
 "aAC" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
@@ -950,7 +950,7 @@
 /area/magmoor/cave/rock)
 "aLW" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "aMe" = (
@@ -1148,7 +1148,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound)
 "aUs" = (
 /obj/structure/powerloader_wreckage,
@@ -2348,7 +2348,7 @@
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "bIS" = (
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -2732,7 +2732,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment/corner,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "bWp" = (
 /turf/open/floor/mainship/orange,
@@ -2884,7 +2884,7 @@
 /area/magmoor/civilian/arrival/east)
 "cdt" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/orange{
 	dir = 4
@@ -3064,7 +3064,7 @@
 "cjH" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/item/ammo_casing,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3671,7 +3671,7 @@
 /area/magmoor/compound)
 "cGv" = (
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/southeast)
 "cHL" = (
 /obj/structure/reagent_dispensers/water_cooler,
@@ -4342,7 +4342,7 @@
 /obj/structure/disposalpipe/water_pipe{
 	dir = 8
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "dhx" = (
 /obj/structure/flora/pottedplant/twentytwo,
@@ -4688,7 +4688,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "drW" = (
@@ -4766,7 +4766,7 @@
 /area/magmoor/cave/west)
 "dsZ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -5634,8 +5634,8 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/mainship/red,
 /area/magmoor/security/storage)
 "dWD" = (
@@ -5700,7 +5700,7 @@
 /area/magmoor/security/infocenter)
 "dYI" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "dZt" = (
@@ -5917,7 +5917,7 @@
 /obj/structure/disposalpipe/down{
 	dir = 1
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "eip" = (
 /obj/structure/cable,
@@ -5982,7 +5982,7 @@
 /area/magmoor/compound/south)
 "ekY" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -6276,7 +6276,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "ewF" = (
 /obj/structure/bed/chair{
@@ -7497,7 +7497,7 @@
 "fnN" = (
 /obj/structure/barricade/guardrail,
 /obj/structure/lattice,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "fnO" = (
 /obj/structure/bed/chair/office/dark,
@@ -7579,7 +7579,7 @@
 	},
 /area/magmoor/engi/storage)
 "fsn" = (
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "fss" = (
@@ -8438,7 +8438,7 @@
 "fXI" = (
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "fXS" = (
@@ -10259,7 +10259,7 @@
 /area/magmoor/civilian/rnr)
 "htt" = (
 /obj/structure/disposalpipe/water_pipe,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "htN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -10303,7 +10303,7 @@
 "hvN" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/lattice,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "hvO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10330,7 +10330,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/southwest)
 "hxE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -10393,7 +10393,7 @@
 /area/magmoor/compound/north)
 "hzY" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/item/storage/firstaid,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
@@ -10694,7 +10694,7 @@
 /area/magmoor/security/storage)
 "hNe" = (
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "hNi" = (
 /obj/structure/bed,
@@ -10849,13 +10849,13 @@
 /area/magmoor/medical/patient)
 "hTW" = (
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/northeast)
 "hTX" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/southeast)
 "hUg" = (
 /obj/structure/disposalpipe/segment{
@@ -10881,7 +10881,7 @@
 	},
 /area/magmoor/compound/east)
 "hVl" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "hVo" = (
@@ -11271,7 +11271,7 @@
 	pixel_y = 4
 	},
 /obj/item/ammo_casing,
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /obj/item/shard{
 	pixel_x = -9
 	},
@@ -11470,7 +11470,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "iqR" = (
 /turf/closed/mineral/smooth,
@@ -12009,7 +12009,7 @@
 "iMG" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "iNq" = (
 /turf/open/floor/grass,
@@ -12030,7 +12030,7 @@
 	},
 /area/magmoor/engi/power)
 "iOa" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/magmoor/civilian/pool)
 "iOg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -12309,7 +12309,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/flour,
 /obj/item/tool/kitchen/rollingpin,
-/obj/effect/spawner/random/kitchenknife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "iZM" = (
@@ -13006,7 +13006,7 @@
 /area/magmoor/command/commandroom)
 "jtd" = (
 /obj/machinery/light,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "jto" = (
@@ -13178,7 +13178,7 @@
 /area/magmoor/command/commandroom)
 "jAj" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)
 "jAA" = (
@@ -13819,7 +13819,7 @@
 /area/magmoor/engi/power)
 "jZC" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/purple,
 /area/magmoor/research/rnd/lobby)
 "jZD" = (
@@ -14203,7 +14203,7 @@
 	dir = 1
 	},
 /obj/structure/lattice,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "knJ" = (
 /obj/structure/cable,
@@ -14582,7 +14582,7 @@
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/item/ammo_casing,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/mainship/blue{
@@ -14641,7 +14641,7 @@
 	},
 /area/magmoor/compound/south)
 "kFU" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -15154,7 +15154,7 @@
 /area/magmoor/cargo/processing/south)
 "lcq" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "lcu" = (
 /obj/structure/bed/chair/office/light{
@@ -15325,7 +15325,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "liW" = (
 /obj/structure/table/reinforced,
@@ -15488,7 +15488,9 @@
 /turf/open/floor/concrete/lines,
 /area/magmoor/compound/southwest)
 "loR" = (
-/obj/structure/closet/fireaxecabinet,
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = -1
+	},
 /turf/closed/wall/r_wall,
 /area/magmoor/engi/atmos)
 "loS" = (
@@ -16173,7 +16175,7 @@
 /area/magmoor/cave/north)
 "lRX" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research)
 "lSA" = (
@@ -16272,9 +16274,9 @@
 /area/magmoor/compound/south)
 "lUZ" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/tile/dark/red2,
 /area/magmoor/security/infocenter)
 "lVp" = (
@@ -16482,6 +16484,10 @@
 "mbC" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/closet/fireaxecabinet{
+	pixel_x = 32;
+	pixel_y = -1
+	},
 /turf/open/floor/mainship/orange/full,
 /area/magmoor/engi)
 "mca" = (
@@ -17468,7 +17474,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound)
 "mQL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -17622,7 +17628,7 @@
 /area/magmoor/research/serverroom)
 "mVN" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -17669,7 +17675,7 @@
 	},
 /area/magmoor/medical/treatment)
 "mYd" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -17735,7 +17741,7 @@
 /area/magmoor/civilian/clean/shower)
 "naD" = (
 /obj/structure/lattice,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "naO" = (
 /obj/structure/table/woodentable{
@@ -18167,7 +18173,7 @@
 /area/magmoor/medical/treatment)
 "noU" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 1
 	},
@@ -18616,7 +18622,7 @@
 	},
 /area/magmoor/engi/power)
 "nGp" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -20084,7 +20090,7 @@
 /area/magmoor/research)
 "oMg" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "oMm" = (
 /obj/structure/table/reinforced,
@@ -20167,7 +20173,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "oOf" = (
 /turf/open/floor/concrete/edge,
@@ -21170,7 +21176,7 @@
 /obj/structure/disposalpipe/water_pipe{
 	dir = 10
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "psU" = (
 /obj/structure/bed/chair{
@@ -21213,7 +21219,7 @@
 /obj/structure/disposalpipe/water_pipe{
 	dir = 4
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "puC" = (
 /obj/structure/fakeplatform{
@@ -21391,7 +21397,7 @@
 /obj/structure/table/woodentable{
 	flipped = 1
 	},
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "pzo" = (
@@ -22093,7 +22099,7 @@
 "qbq" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/east)
 "qbs" = (
 /obj/structure/curtain/medical,
@@ -22508,7 +22514,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/northeast)
 "qpo" = (
 /obj/structure/cargo_container/hd_blue{
@@ -22617,7 +22623,7 @@
 /area/magmoor/engi/storage)
 "qtZ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -23889,7 +23895,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "ruF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -24078,7 +24084,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "rCt" = (
 /obj/machinery/iv_drip,
@@ -24094,7 +24100,7 @@
 /area/magmoor/compound/north)
 "rCK" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/lobby)
 "rCS" = (
@@ -24262,7 +24268,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "rJI" = (
 /obj/structure/filingcabinet,
@@ -24524,7 +24530,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "rSQ" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/machinery/alarm,
 /turf/open/floor/mainship/silver{
 	dir = 1
@@ -24823,7 +24829,7 @@
 	},
 /area/magmoor/civilian/rnr)
 "sfI" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
@@ -25333,7 +25339,7 @@
 /turf/open/floor/engine,
 /area/magmoor/engi/atmos)
 "syD" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound)
 "syN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -25678,9 +25684,6 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bar)
 "sLD" = (
-/obj/structure/closet/fireaxecabinet{
-	pixel_x = 32
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1;
@@ -25935,7 +25938,7 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/mining)
 "sVr" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/northeast)
 "sWk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -26261,7 +26264,7 @@
 /area/magmoor/civilian/bar)
 "thl" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
@@ -26398,7 +26401,7 @@
 /area/magmoor/compound/north)
 "tkP" = (
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "tkS" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -26480,7 +26483,7 @@
 /obj/structure/table/mainship,
 /obj/item/book/manual/medical_diagnostics_manual,
 /obj/structure/cable,
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
 "tnD" = (
@@ -26685,7 +26688,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "twX" = (
-/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "twY" = (
@@ -26779,7 +26782,7 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "tzI" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
 "tzN" = (
@@ -26875,7 +26878,7 @@
 /area/magmoor/cave/north)
 "tDp" = (
 /obj/structure/lattice,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/cave/north)
 "tDx" = (
 /obj/machinery/alarm{
@@ -26929,7 +26932,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/east)
 "tFK" = (
 /obj/item/stack/sheet/wood,
@@ -26995,7 +26998,7 @@
 "tHE" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/southwest)
 "tHM" = (
 /obj/structure/bed/chair/office/dark{
@@ -27418,7 +27421,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/east)
 "tYu" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/cave/northwest)
 "tYF" = (
 /turf/open/lavaland/basalt/cave/autosmooth,
@@ -28218,7 +28221,7 @@
 /area/magmoor/civilian/dorms)
 "uzu" = (
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "uzK" = (
 /obj/structure/cable,
@@ -28330,11 +28333,11 @@
 /area/magmoor/civilian/jani)
 "uDn" = (
 /obj/structure/lattice,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "uDu" = (
 /obj/structure/lattice,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound)
 "uDD" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -28774,7 +28777,7 @@
 	dir = 4
 	},
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "uUg" = (
 /obj/effect/landmark/weed_node,
@@ -29604,7 +29607,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "vCX" = (
 /obj/structure/cable,
@@ -29798,7 +29801,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
 "vKV" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/wood,
 /area/magmoor/civilian/jani)
 "vKY" = (
@@ -30063,7 +30066,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
 "vTr" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/east)
 "vTP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -30096,7 +30099,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "vUH" = (
 /obj/structure/cable,
@@ -30136,7 +30139,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "vVM" = (
@@ -30238,7 +30241,7 @@
 /turf/closed/wall,
 /area/magmoor/command/lobby)
 "waE" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/west)
 "waT" = (
 /obj/effect/landmark/weed_node,
@@ -30352,7 +30355,7 @@
 /area/magmoor/research/rnd/lobby)
 "weQ" = (
 /obj/structure/lattice,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "weS" = (
 /obj/machinery/landinglight/ds2/delaythree{
@@ -30393,7 +30396,7 @@
 "wgq" = (
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
 "wgs" = (
@@ -31588,7 +31591,7 @@
 	},
 /area/magmoor/compound/north)
 "wVe" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -31637,7 +31640,7 @@
 /area/magmoor/medical/chemistry)
 "wXI" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby/east)
 "wXM" = (
@@ -31894,7 +31897,7 @@
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/cargo/processing/south)
 "xfk" = (
-/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /obj/structure/table/reinforced,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)
@@ -32028,7 +32031,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "xkp" = (
 /obj/structure/bed/chair/wheelchair,
@@ -32066,7 +32069,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
@@ -32204,7 +32207,7 @@
 	dir = 8
 	},
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "xrl" = (
 /obj/structure/window/reinforced{
@@ -32244,7 +32247,7 @@
 	},
 /area/magmoor/research/containment)
 "xrM" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "xrO" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -32395,7 +32398,7 @@
 	},
 /area/magmoor/cargo/processing/south)
 "xwh" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/southeast)
 "xwt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -32469,7 +32472,7 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "xyy" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/cave/north)
 "xyD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -32494,7 +32497,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "xzj" = (
 /obj/structure/barricade/guardrail,
@@ -32549,7 +32552,7 @@
 /area/magmoor/civilian/jani)
 "xAG" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby)
 "xAV" = (
@@ -32893,7 +32896,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/surgery)
 "xMO" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/southwest)
 "xMR" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
@@ -32942,7 +32945,7 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "xOX" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/cave/west)
 "xOY" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -33018,7 +33021,7 @@
 /area/magmoor/cargo/processing/south)
 "xRm" = (
 /obj/structure/disposalpipe/segment/corner,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 "xRq" = (
 /obj/docking_port/stationary/crashmode,
@@ -33146,7 +33149,7 @@
 	dir = 4
 	},
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound)
 "xVy" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
@@ -33170,7 +33173,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
 "xWF" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/cave/south)
 "xWG" = (
 /obj/effect/ai_node,
@@ -33183,7 +33186,7 @@
 	},
 /area/magmoor/compound)
 "xXw" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/cave/northeast)
 "xXT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -33336,7 +33339,7 @@
 /area/magmoor/civilian/mosque)
 "ydd" = (
 /obj/structure/barricade/guardrail,
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound)
 "ydh" = (
 /turf/open/floor/mainship/black{
@@ -33601,7 +33604,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
 "ylo" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
 "ylq" = (
 /obj/machinery/power/monitor{
@@ -33613,7 +33616,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/magmoor/engi/thermal)
 "ylX" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -33622,7 +33625,7 @@
 	},
 /area/magmoor/civilian/arrival)
 "ymj" = (
-/turf/open/lavaland/lava/autosmoothing,
+/turf/open/liquid/lava/autosmoothing,
 /area/magmoor/volcano)
 
 (1,1,1) = {"

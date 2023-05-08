@@ -80,7 +80,7 @@
 		),
 	)
 
-/obj/item/reagent_containers/food/snacks/protein_pack/Initialize()
+/obj/item/reagent_containers/food/snacks/protein_pack/Initialize(mapload)
 	. = ..()
 	//list of picked variables
 	var/list/picked = pick(flavor_list[faction])

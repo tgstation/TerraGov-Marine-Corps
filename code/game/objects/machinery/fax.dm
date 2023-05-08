@@ -19,7 +19,7 @@
 	var/selected = "Nanotrasen"
 
 
-/obj/machinery/faxmachine/Initialize()
+/obj/machinery/faxmachine/Initialize(mapload)
 	. = ..()
 	GLOB.faxmachines += src
 

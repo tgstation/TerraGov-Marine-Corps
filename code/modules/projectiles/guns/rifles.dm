@@ -1665,6 +1665,10 @@
 		/obj/item/ammo_magazine/rifle/tx54,
 		/obj/item/ammo_magazine/rifle/tx54/he,
 		/obj/item/ammo_magazine/rifle/tx54/incendiary,
+		/obj/item/ammo_magazine/rifle/tx54/smoke,
+		/obj/item/ammo_magazine/rifle/tx54/smoke/dense,
+		/obj/item/ammo_magazine/rifle/tx54/smoke/tangle,
+		/obj/item/ammo_magazine/rifle/tx54/razor,
 	)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 20, "under_x" = 28, "under_y" = 13, "stock_x" = -1, "stock_y" = 17)
@@ -1710,8 +1714,8 @@
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 36 //codex
 	wield_delay = 1 SECONDS
-	default_ammo_type = /obj/item/ammo_magazine/rifle/tx55
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx55)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_carbine)
 	attachable_allowed = list(
 		/obj/item/attachable/scope/optical,
 		/obj/item/weapon/gun/rifle/tx54/mini,

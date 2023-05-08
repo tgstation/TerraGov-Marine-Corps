@@ -7,7 +7,7 @@
 	var/alarms = list("Fire"=list(), "Atmosphere"=list(), "Power"=list())
 
 
-/obj/machinery/computer/station_alert/Initialize()
+/obj/machinery/computer/station_alert/Initialize(mapload)
 	. = ..()
 	GLOB.alert_consoles += src
 

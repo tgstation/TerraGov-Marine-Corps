@@ -52,6 +52,7 @@
 	desc = "A huge chunk of metal used to seperate space from the ship"
 	walltype = "gwall"
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
 	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
@@ -134,6 +135,7 @@
 
 /turf/closed/wall/desert/invincible
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 //tyson
 /turf/closed/wall/tyson
@@ -349,6 +351,8 @@
 	icon_state = "cavewall0"
 	walltype = "cavewall"
 
+/turf/closed/wall/desertcavewall/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
 
 //Prison wall
 
@@ -371,13 +375,16 @@
 	walltype = "woodwall"
 	explosion_block = 1
 
+/turf/closed/wall/wood/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 // Reinforced Wood Wall
 
 /turf/closed/wall/wood/reinforced
 	name = "reinforced wood wall"
 	desc = "A reinforced wooden wall"
 	icon = 'icons/turf/walls/woodrwall.dmi'
-	icon_state = "woodrwall-0"
+	icon_state = "wall-reinforced"
 	base_icon_state = "woodrwall"
 	walltype = "woodrwall"
 	max_integrity = 3000

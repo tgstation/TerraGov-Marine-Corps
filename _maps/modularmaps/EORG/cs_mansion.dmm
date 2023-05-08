@@ -365,7 +365,7 @@
 /area/deathmatch)
 "to" = (
 /obj/structure/table/gamblingtable,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/wood,
 /area/deathmatch)
 "tq" = (
@@ -989,7 +989,7 @@
 /area/deathmatch)
 "Tz" = (
 /obj/structure/closet/cabinet,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/wood,
 /area/deathmatch)
 "Un" = (

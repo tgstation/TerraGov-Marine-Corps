@@ -52,21 +52,22 @@
 		return FALSE
 
 	if(istype(A, /obj/item/storage/pill_bottle) && is_open_container()) //this should only run if its a pillbottle
+		var/obj/item/storage/pill_bottle/bottle = A
 		if(reagents.total_volume >= volume)
 			to_chat(user, span_warning("[src] is full."))
 			return  //early returning if its full
 
-		if(!length(A.contents))
+		if(!length(bottle.contents))
 			return //early returning if its empty
-		var/obj/item/pill = A.contents[1]
+		var/obj/item/pill = bottle.contents[1]
 
 		if((pill.reagents.total_volume + reagents.total_volume) > volume)
 			to_chat(user, span_warning("[src] cannot hold that much more."))
 			return // so it doesnt let people have hypos more filled than their volume
 		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
-		to_chat(user, span_notice("You dissolve [pill] from [A] in [src]."))
-		A.contents -= pill
+		to_chat(user, span_notice("You dissolve [pill] from [bottle] in [src]."))
+		bottle.remove_from_storage(pill,null,user)
 		qdel(pill)
 		return
 
@@ -419,6 +420,7 @@
 /obj/item/reagent_containers/hypospray/advanced/inaprovaline
 	name = "inaprovaline hypospray"
 	desc = "A hypospray loaded with inaprovaline."
+	amount_per_transfer_from_this = 15
 	list_reagents = list(
 		/datum/reagent/medicine/inaprovaline = 60,
 	)

@@ -16,7 +16,7 @@
 	/// The mob controlling the droid remotely
 	var/datum/weakref/remote_user
 
-/obj/vehicle/unmanned/droid/Initialize()
+/obj/vehicle/unmanned/droid/Initialize(mapload)
 	. = ..()
 	antenna = new
 

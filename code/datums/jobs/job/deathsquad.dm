@@ -17,7 +17,7 @@
 	jobtype = /datum/job/deathsquad/standard
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/mateba/notmarine
+	belt = /obj/item/storage/holster/belt/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
 	shoes = /obj/item/clothing/shoes/veteran/pmc/commando
@@ -71,7 +71,7 @@
 	jobtype = /datum/job/deathsquad/standard/energy
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/mateba/notmarine
+	belt = /obj/item/storage/holster/belt/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
 	shoes = /obj/item/clothing/shoes/veteran/pmc/commando
@@ -120,7 +120,7 @@
 	jobtype = /datum/job/deathsquad/leader
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/mateba/notmarine
+	belt = /obj/item/storage/holster/belt/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
 	shoes = /obj/item/clothing/shoes/veteran/pmc/commando
@@ -180,7 +180,7 @@
 	name = "Deathsquad Gunner"
 	jobtype = /datum/job/deathsquad/gunner
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/mateba/notmarine
+	belt = /obj/item/storage/holster/belt/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
 	shoes = /obj/item/clothing/shoes/veteran/pmc/commando

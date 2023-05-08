@@ -17,7 +17,7 @@
 	var/cameraticks = 0
 
 
-/obj/machinery/computer/camera_advanced/Initialize()
+/obj/machinery/computer/camera_advanced/Initialize(mapload)
 	. = ..()
 	off_action = new
 	jump_action = new
@@ -307,7 +307,7 @@
 	var/icon_state_on = "cas_camera"
 	hud_possible = list(SQUAD_HUD_TERRAGOV)
 
-/mob/camera/aiEye/remote/hud/Initialize()
+/mob/camera/aiEye/remote/hud/Initialize(mapload)
 	. = ..()
 	prepare_huds()
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
@@ -325,7 +325,7 @@
 	///List of current aura defines we're emitting, for overlay purposes
 	var/list/current_aura_list = list()
 
-/mob/camera/aiEye/remote/hud/overwatch/Initialize()
+/mob/camera/aiEye/remote/hud/overwatch/Initialize(mapload)
 	..()
 	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
 	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))

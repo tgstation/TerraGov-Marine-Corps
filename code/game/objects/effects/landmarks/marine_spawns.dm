@@ -2,7 +2,7 @@
 /obj/effect/landmark/start/job
 	var/job
 
-/obj/effect/landmark/start/job/Initialize()
+/obj/effect/landmark/start/job/Initialize(mapload)
 	. = ..()
 	GLOB.spawns_by_job[job] += list(loc)
 

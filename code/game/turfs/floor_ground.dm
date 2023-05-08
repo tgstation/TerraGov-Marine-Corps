@@ -39,7 +39,7 @@
 /turf/open/floor/plating/ground/dirt/typethree
 	icon_state = "desert3"
 
-/turf/open/floor/plating/ground/dirt/Initialize()
+/turf/open/floor/plating/ground/dirt/Initialize(mapload)
 	. = ..()
 	if(rand(0,15) == 0)
 		icon_state = "desert[pick("0","1","2","3")]"
@@ -48,7 +48,7 @@
 	name = "desert"
 	icon_state = "desert5"
 
-/turf/open/floor/plating/ground/dirt/desert/Initialize()
+/turf/open/floor/plating/ground/dirt/desert/Initialize(mapload)
 	. = ..()
 	icon_state = "desert[pick("5","6")]"
 
@@ -133,14 +133,14 @@
 /turf/open/ground/grass/grassalt
 	icon_state = "dgrass0"
 
-/turf/open/ground/grass/grassalt/Initialize()
+/turf/open/ground/grass/grassalt/Initialize(mapload)
 	. = ..()
 	icon_state = "dgrass[pick("0","1","2","3","4")]"
 
 /turf/open/ground/grass/grassalt/tall
 	icon_state = "fullgrass0"
 
-/turf/open/ground/grass/grassalt/tall/Initialize()
+/turf/open/ground/grass/grassalt/tall/Initialize(mapload)
 	. = ..()
 	icon_state = "fullgrass[pick("0","1","2","3","4")]"
 
@@ -174,7 +174,7 @@
 	name = "sand"
 	icon_state = "mars_sand"
 
-/turf/open/floor/plating/ground/mars/random/Initialize()
+/turf/open/floor/plating/ground/mars/random/Initialize(mapload)
 	. = ..()
 	dir = pick(GLOB.alldirs)
 
@@ -208,7 +208,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "mars1"
 
-/turf/open/floor/plating/ground/mars/alt/Initialize()
+/turf/open/floor/plating/ground/mars/alt/Initialize(mapload)
 	. = ..()
 	icon_state = "mars[pick("1","2","3","4","5")]"
 
@@ -225,7 +225,7 @@
 	minimap_color = MINIMAP_ICE
 
 //Randomize ice floor sprite
-/turf/open/floor/plating/ground/ice/Initialize()
+/turf/open/floor/plating/ground/ice/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 
@@ -268,7 +268,7 @@
 	barefootstep = FOOTSTEP_SAND
 	shoefootstep = FOOTSTEP_SAND
 
-/turf/open/floor/plating/ground/desertdam/desert/Initialize()
+/turf/open/floor/plating/ground/desertdam/desert/Initialize(mapload)
 	. = ..()
 	icon_state = "desert[pick("0","1","2","3","4","5","6","7")]"
 
@@ -352,7 +352,7 @@
 	name = "cave"
 	icon_state = "inner_cave_full0"
 
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor/Initialize()
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor/Initialize(mapload)
 	. = ..()
 	icon_state = "inner_cave_full[pick("0","1")]"
 

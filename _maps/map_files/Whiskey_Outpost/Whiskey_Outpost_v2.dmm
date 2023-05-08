@@ -311,8 +311,8 @@
 /area/whiskey_outpost/outside/north)
 "bn" = (
 /obj/machinery/optable,
-/obj/effect/spawner/random/surgical,
-/obj/effect/spawner/random/organ,
+/obj/effect/spawner/random/medical/surgical,
+/obj/effect/spawner/random/medical/organ,
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -551,7 +551,7 @@
 	},
 /area/whiskey_outpost)
 "cx" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "cz" = (
 /turf/open/floor/mainship/orange{
@@ -637,10 +637,10 @@
 	},
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/glass/beaker/noreact,
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = -2
 	},
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = -3;
 	pixel_y = 4
 	},
@@ -1345,7 +1345,7 @@
 /area/whiskey_outpost/outside/south)
 "gf" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/east)
 "gg" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -1411,7 +1411,7 @@
 	},
 /area/whiskey_outpost)
 "gr" = (
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "gs" = (
@@ -1513,7 +1513,7 @@
 	},
 /area/whiskey_outpost)
 "gU" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/east)
 "gV" = (
 /turf/open/floor/mainship/orange{
@@ -1591,7 +1591,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/north)
 "hq" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "hs" = (
 /obj/structure/largecrate/supply/explosives/mines,
@@ -1711,7 +1711,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "il" = (
 /obj/machinery/floodlight/outpost,
@@ -2505,7 +2505,7 @@
 "lS" = (
 /obj/structure/catwalk,
 /obj/effect/turf_decal/riverdecal,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/south)
 "lU" = (
 /obj/effect/turf_decal/grassdecal/corner2,
@@ -2689,10 +2689,10 @@
 	pixel_y = 10
 	},
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/pillbottle,
+/obj/effect/spawner/random/medical/pillbottle,
 /obj/item/storage/pill_bottle/alkysine{
 	pixel_x = -8
 	},
@@ -2830,7 +2830,7 @@
 /area/whiskey_outpost)
 "nJ" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "nK" = (
 /obj/structure/barricade/sandbags,
@@ -3138,7 +3138,7 @@
 /area/whiskey_outpost)
 "oR" = (
 /obj/effect/spawner/gibspawner/human,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/south)
 "oS" = (
 /turf/open/floor/mainship/blue{
@@ -4022,7 +4022,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "tq" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "tt" = (
@@ -4043,7 +4043,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "tz" = (
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "tA" = (
@@ -4069,7 +4069,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "tE" = (
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "tK" = (
@@ -4131,7 +4131,7 @@
 /area/whiskey_outpost/outside/north)
 "tT" = (
 /obj/structure/platform,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "tU" = (
 /obj/structure/platform_decoration{
@@ -4886,7 +4886,7 @@
 /area/whiskey_outpost/outside/north)
 "yv" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/south)
 "yw" = (
 /turf/open/floor/plating/asteroidfloor,
@@ -4896,7 +4896,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/north)
 "yz" = (
-/obj/effect/spawner/random/organ,
+/obj/effect/spawner/random/medical/organ,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "yF" = (
@@ -5033,7 +5033,7 @@
 /area/whiskey_outpost/outside/south)
 "zy" = (
 /obj/effect/spawner/gibspawner/human,
-/obj/effect/spawner/random/organ,
+/obj/effect/spawner/random/medical/organ,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "zD" = (
@@ -5273,7 +5273,7 @@
 "AR" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "AW" = (
 /obj/structure/platform{
@@ -5493,7 +5493,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "Co" = (
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "Cp" = (
@@ -5637,7 +5637,7 @@
 /obj/item/healthanalyzer,
 /obj/item/healthanalyzer,
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/pillbottle,
+/obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "Df" = (
@@ -5759,12 +5759,12 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost)
 "Ea" = (
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "Eb" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "Ec" = (
 /obj/machinery/vending/MarineMed/Blood,
@@ -5802,7 +5802,7 @@
 /area/whiskey_outpost/outside/south)
 "Eo" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/east)
 "Eq" = (
 /obj/item/weapon/gun/tl102/hsg_nest,
@@ -5899,7 +5899,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "Fa" = (
 /obj/structure/platform_decoration{
@@ -6042,7 +6042,7 @@
 /area/whiskey_outpost/outside/west)
 "Gn" = (
 /obj/effect/spawner/gibspawner/human,
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Gp" = (
@@ -6064,7 +6064,7 @@
 /area/whiskey_outpost/outside/south)
 "Gz" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/south)
 "GC" = (
 /turf/open/ground/coast/corner2{
@@ -6348,7 +6348,7 @@
 /area/whiskey_outpost/outside/west)
 "IB" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "ID" = (
 /obj/effect/turf_decal/grassdecal/corner{
@@ -6378,13 +6378,13 @@
 /area/whiskey_outpost/outside/south)
 "IW" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "IY" = (
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "IZ" = (
 /obj/structure/barricade/metal{
@@ -6399,15 +6399,15 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/east)
 "Jb" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/east)
 "Je" = (
 /obj/structure/lattice,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/east)
 "Jf" = (
 /turf/open/floor/plating/ground/dirt,
@@ -6493,7 +6493,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/east)
 "JB" = (
 /turf/open/floor/plating/asteroidwarning{
@@ -6546,11 +6546,11 @@
 /area/whiskey_outpost)
 "JT" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "JX" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "JY" = (
 /obj/effect/decal/cleanable/dirt,
@@ -6564,7 +6564,7 @@
 /area/whiskey_outpost)
 "Kl" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/east)
 "Kn" = (
 /obj/effect/turf_decal/grassdecal{
@@ -6654,7 +6654,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/east)
 "KN" = (
 /obj/structure/fence,
@@ -7022,7 +7022,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "Nu" = (
 /obj/item/storage/firstaid/toxin,
@@ -7148,7 +7148,7 @@
 /area/whiskey_outpost/outside/north)
 "Ol" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "Om" = (
 /obj/machinery/floodlight/outpost,
@@ -7178,7 +7178,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost)
 "Ow" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/south)
 "Oz" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -7551,7 +7551,7 @@
 	pixel_y = 10
 	},
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/surgical,
+/obj/effect/spawner/random/medical/surgical,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "RP" = (
@@ -7585,7 +7585,7 @@
 /area/whiskey_outpost/outside/south)
 "RU" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/south)
 "RV" = (
 /obj/effect/turf_decal/grassdecal,
@@ -7641,7 +7641,7 @@
 "Sj" = (
 /obj/item/clothing/suit/surgical,
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = -2
 	},
 /obj/item/armor_module/storage/uniform/white_vest,
@@ -7710,7 +7710,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "SL" = (
 /obj/vehicle/unmanned/heavy,
@@ -7815,7 +7815,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "TG" = (
 /obj/structure/flora/tree/jungle,
@@ -7831,7 +7831,7 @@
 /area/whiskey_outpost/outside/west)
 "TM" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/south)
 "TN" = (
 /obj/effect/turf_decal/lvsanddecal/full,
@@ -7865,7 +7865,7 @@
 	dir = 8
 	},
 /obj/structure/platform,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "TY" = (
 /obj/structure/bed,
@@ -7917,7 +7917,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "Ul" = (
 /obj/effect/ai_node,
@@ -8028,7 +8028,7 @@
 	desc = "A premium single-malt whiskey. To celebrate your impending doom";
 	name = "\improper Whiskey Outpost Whiskey"
 	},
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = 3;
 	pixel_y = 4
 	},
@@ -8347,7 +8347,7 @@
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "XV" = (
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)

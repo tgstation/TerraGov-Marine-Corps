@@ -4,7 +4,7 @@
 	allow_drawing_method = FALSE /// Unable to set draw_mode ourselves
 	var/obj/master_item
 
-/obj/item/storage/internal/Initialize()
+/obj/item/storage/internal/Initialize(mapload)
 	. = ..()
 	master_item = loc
 	name = master_item.name

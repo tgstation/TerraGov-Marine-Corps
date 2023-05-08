@@ -66,7 +66,7 @@
 
 
 /obj/ex_act(severity)
-	if(resistance_flags & INDESTRUCTIBLE)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	. = ..() //contents explosion
 	if(QDELETED(src))
@@ -100,7 +100,6 @@
 		return
 	playsound(loc, P.hitsound, 50, 1)
 	visible_message(span_warning("\the [src] is damaged by \the [P]!"), visible_message_flags = COMBAT_MESSAGE)
-	bullet_ping(P)
 	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, turn(P.dir, 180), P.ammo.penetration)
 
 
@@ -125,10 +124,10 @@
 
 
 /obj/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(X.status_flags & INCORPOREAL) //Ghosts can't attack machines
 		return FALSE
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_OBJ, src)
-	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
 		return FALSE
 	if(!(resistance_flags & XENO_DAMAGEABLE))
