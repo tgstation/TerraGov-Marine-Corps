@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Flex, Section } from '../components';
+import { Button, Flex, Section } from '../components';
 import { Window } from '../layouts';
 
 type DoorDisplayData = {
@@ -51,7 +51,6 @@ export const DoorDisplay = (props, context) => {
 
 const FlashControl = (props, context) => {
   const { act, data } = useBackend<DoorDisplayData>(context);
-  const { ship_status, fuel_left, fuel_max } = data;
   return (
     <>
       <Button
