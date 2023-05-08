@@ -223,6 +223,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "flx150"
 	item_state = "flx150"
+	ammo_datum_type = /datum/ammo/flamethrower/blue
 	mode_list = list(
 		"Standard" = /datum/flamer/base/flamer_mode/standard/blue,
 		"Over" = /datum/flamer/base/flamer_mode/over/blue,
