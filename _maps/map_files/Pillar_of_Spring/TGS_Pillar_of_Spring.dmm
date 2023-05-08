@@ -324,12 +324,6 @@
 	dir = 1
 	},
 /area/mainship/medical/lower_medical)
-"axo" = (
-/obj/machinery/door_display/research_cell/cell{
-	pixel_y = 2
-	},
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/medical_science)
 "axA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5252,9 +5246,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gPQ" = (
-/obj/machinery/flasher{
-	id = "Containment Cell 3";
-	pixel_y = 30
+/obj/machinery/flasher/cell1{
+	pixel_y = 32
 	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 1
@@ -12968,6 +12961,9 @@
 /obj/item/tool/extinguisher,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
+/obj/machinery/door_display/research_cell/cell/cell1{
+	pixel_y = 2
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "qIG" = (
@@ -41295,12 +41291,12 @@ rGg
 kQn
 fbP
 sXo
-axo
+gmc
 qIt
 nNo
 fFD
-xYE
 rGg
+xYE
 gmc
 kEP
 rKn

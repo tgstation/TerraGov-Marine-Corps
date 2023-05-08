@@ -19,9 +19,11 @@
 
 /obj/machinery/flasher/cell1
 	name = "Cell 1 Flash"
+	id = "Containment Cell 1"
 
 /obj/machinery/flasher/cell2
 	name = "Cell 2 Flash"
+	id = "Containment Cell 1"
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
 	name = "portable flasher"
