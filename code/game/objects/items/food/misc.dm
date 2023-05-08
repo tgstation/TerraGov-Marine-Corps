@@ -177,27 +177,6 @@
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/powercrepe
-	name = "Powercrepe"
-	desc = "With great power, comes great crepes.  It looks like a pancake filled with jelly but packs quite a punch."
-	icon_state = "powercrepe"
-	item_state = "powercrepe"
-	food_reagents = list(
-		/datum/reagent/consumable/nutriment = 10,
-		/datum/reagent/consumable/nutriment/vitamin = 5,
-		/datum/reagent/consumable/cherryjelly = 5,
-	)
-	force = 30
-	throwforce = 15
-	block_chance = 55
-	armour_penetration = 80
-	wound_bonus = -50
-	attack_verb_continuous = list("slaps", "slathers")
-	attack_verb_simple = list("slap", "slather")
-	w_class = WEIGHT_CLASS_BULKY
-	tastes = list("cherry" = 1, "crepe" = 1)
-	foodtypes = GRAIN | FRUIT | SUGAR
-
 /obj/item/food/branrequests
 	name = "Bran Requests Cereal"
 	desc = "A dry cereal that satiates your requests for bran. Tastes uniquely like raisins and salt."

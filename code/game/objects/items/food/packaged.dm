@@ -87,61 +87,6 @@
 	foodtypes = NUTS
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/canned/envirochow
-	name = "dog eat dog envirochow"
-	desc = "The first pet food product that is made fully sustainable by employing ancient British animal husbandry techniques."
-	icon_state = "envirochow"
-	trash_type = /obj/item/trash/can/food/envirochow
-	food_reagents = list(
-		/datum/reagent/consumable/nutriment/protein = 9,
-		/datum/reagent/consumable/nutriment/vitamin = 4,
-	)
-	tastes = list("dog food" = 5, "狗肉" = 3)
-	foodtypes = MEAT | GROSS
-
-/obj/item/food/canned/envirochow/attack_animal(mob/living/simple_animal/user, list/modifiers)
-	if(!check_buffability(user))
-		return ..()
-	apply_buff(user)
-
-/obj/item/food/canned/envirochow/attack_basic_mob(mob/living/basic/user, list/modifiers)
-	if(!check_buffability(user))
-		return ..()
-	apply_buff(user)
-
-/obj/item/food/canned/envirochow/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
-	if(!proximity_flag)
-		return
-	if(!check_buffability(target))
-		return
-	apply_buff(target, user)
-
-///This proc checks if the mob is able to recieve the buff.
-/obj/item/food/canned/envirochow/proc/check_buffability(mob/living/hungry_pet)
-	if(!isanimal_or_basicmob(hungry_pet)) // Not a pet
-		return FALSE
-	if(!is_drainable()) // Can is not open
-		return FALSE
-	if(hungry_pet.stat) // Parrot deceased
-		return FALSE
-	if(hungry_pet.mob_biotypes & (MOB_BEAST|MOB_REPTILE|MOB_BUG))
-		return TRUE
-	else
-		return FALSE // Humans, robots & spooky ghosts not allowed
-
-///This makes the animal eat the food, and applies the buff status effect to them.
-/obj/item/food/canned/envirochow/proc/apply_buff(mob/living/simple_animal/hungry_pet, mob/living/dog_mom)
-	hungry_pet.apply_status_effect(/datum/status_effect/limited_buff/health_buff) //the status effect keeps track of the stacks
-	hungry_pet.visible_message(
-		span_notice("[hungry_pet] chows down on [src]."),
-		span_nicegreen("You chow down on [src]."),
-		span_notice("You hear sloppy eating noises."))
-	SEND_SIGNAL(src, COMSIG_FOOD_CONSUMED, hungry_pet, dog_mom ? dog_mom : hungry_pet) //If there is no dog mom, we assume the pet fed itself.
-	playsound(loc, 'sound/items/eatfood.ogg', rand(30, 50), TRUE)
-	qdel(src)
-
-
 // DONK DINNER: THE INNOVATIVE WAY TO GET YOUR DAILY RECOMMENDED ALLOWANCE OF SALT... AND THEN SOME!
 /obj/item/food/ready_donk
 	name = "\improper Ready-Donk: Bachelor Chow"

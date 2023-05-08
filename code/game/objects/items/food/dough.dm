@@ -62,6 +62,16 @@
 /obj/item/food/doughslice/make_processable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/bait/doughball, 5, 3 SECONDS, screentip_verb = "Slice")
 
+/obj/item/food/bait/doughball
+	name = "doughball"
+	desc = "Small piece of dough. Simple but effective fishing bait."
+	icon = 'icons/obj/fishing.dmi'
+	icon_state = "doughball"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1)
+	tastes = list("dough" = 1)
+	foodtypes = GRAIN
+	w_class = WEIGHT_CLASS_TINY
+
 /obj/item/food/bun
 	name = "bun"
 	desc = "A base for any self-respecting burger."
