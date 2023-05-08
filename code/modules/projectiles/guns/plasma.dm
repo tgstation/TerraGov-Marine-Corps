@@ -32,6 +32,7 @@
 	fire_delay = 0.15
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	rounds_per_shot = 7
+	radial_icon_state = "plasma_weak"
 
 /datum/lasrifle/base/plasma_rifle_mode/minigun_incendiary
 	fire_sound = ""
@@ -41,6 +42,7 @@
 	fire_delay = 0.35
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	rounds_per_shot = 29
+	radial_icon_state = "plasma_fire"
 
 /datum/lasrifle/base/plasma_rifle_mode/minigun_glob
 	fire_sound = ""
@@ -50,6 +52,7 @@
 	fire_delay = 0.15
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	rounds_per_shot = 100
+	radial_icon_state = "plasma_cannon"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/sniper
 	name = "\improper PL-02 plasma sniper rifle"
@@ -89,6 +92,7 @@
 	fire_delay = 0.15
 	heat_per_fire = 1
 	rounds_per_shot = 20
+	radial_icon_state = "plasma_weak"
 
 /datum/lasrifle/base/plasma_rifle_mode/rifle_marksman
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_marksman
@@ -97,6 +101,7 @@
 	fire_delay = 0.45
 	heat_per_fire = 2
 	rounds_per_shot = 40
+	radial_icon_state = "plasma_strong"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/carbine
 	name = "\improper PL-51 plasma carbine"
@@ -115,29 +120,32 @@
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/carbine_standard
-	ammo_datum_type = /datum/ammo/energy/plasma/rifle_marksman
+	ammo_datum_type = /datum/ammo/energy/plasma/carbine_standard/four
 	icon_state = "plasma_carbine"
 	fire_mode = GUN_FIREMODE_BURSTFIRE
 	fire_delay = 0.3
 	burst_amount = 3
 	heat_per_fire = 1
 	rounds_per_shot = 15
+	radial_icon_state = "plasma_bouncy"
 
 /datum/lasrifle/base/plasma_rifle_mode/carbine_shotgun
-	ammo_datum_type = /datum/ammo/energy/plasma/rifle_marksman
+	ammo_datum_type = /datum/ammo/energy/plasma/carbine_shotgun
 	icon_state = "plasma_carbine"
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	fire_delay = 0.45
 	heat_per_fire = 10
 	rounds_per_shot = 66
+	radial_icon_state = "plasma_strong"
 
 /datum/lasrifle/base/plasma_rifle_mode/carbine_trifire
-	ammo_datum_type = /datum/ammo/energy/plasma/carbine_trifire/four
+	ammo_datum_type = /datum/ammo/energy/plasma/carbine_trifire
 	icon_state = "plasma_carbine"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.15
 	heat_per_fire = 3
 	rounds_per_shot = 25
+	radial_icon_state = "plasma_multi"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/pistol
 	name = "\improper PL-85 plasma pistol"
@@ -147,6 +155,7 @@
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/pistol_standard,
 		"Automatic" = /datum/lasrifle/base/plasma_rifle_mode/pistol_automatic,
+		"Tri-fire" = /datum/lasrifle/base/plasma_rifle_mode/pistol_trifire,
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/pistol_standard
@@ -156,6 +165,7 @@
 	fire_delay = 0.15
 	heat_per_fire = 3
 	rounds_per_shot = 25
+	radial_icon_state = "plasma_weak"
 
 /datum/lasrifle/base/plasma_rifle_mode/pistol_automatic
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_automatic
@@ -164,6 +174,16 @@
 	fire_delay = 0.15
 	heat_per_fire = 3
 	rounds_per_shot = 25
+	radial_icon_state = "plasma_strong"
+
+/datum/lasrifle/base/plasma_rifle_mode/pistol_trifire
+	ammo_datum_type = /datum/ammo/energy/plasma/pistol_trifire/four
+	icon_state = "plasma_pistol"
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_delay = 0.15
+	heat_per_fire = 3
+	rounds_per_shot = 25
+	radial_icon_state = "plasma_multi"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon
 	name = "\improper PL-96 plasma cannon"
@@ -181,11 +201,14 @@
 /datum/lasrifle/base/plasma_rifle_mode/cannon_standard
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_standard
 	icon_state = "plasma_cannon"
+	radial_icon_state = "plasma_cannon"
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_swarm
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_swarm
 	icon_state = "plasma_cannon"
+	radial_icon_state = "plasma_swarm"
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_flamer
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_flamer
 	icon_state = "plasma_cannon"
+	radial_icon_state = "plasma_fire"
