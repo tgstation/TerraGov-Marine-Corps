@@ -377,11 +377,11 @@
 		shield_health = shield_left
 		switch(shield_left / max_shield_health)
 			if(0 to 0.33)
-				affected.add_filter("eshield", 1, outline_filter(1, shield_color_low))
+				affected.add_filter("eshield", 2, outline_filter(1, shield_color_low))
 			if(0.33 to 0.66)
-				affected.add_filter("eshield", 1, outline_filter(1, shield_color_mid))
+				affected.add_filter("eshield", 2, outline_filter(1, shield_color_mid))
 			if(0.66 to 1)
-				affected.add_filter("eshield", 1, outline_filter(1, shield_color_full))
+				affected.add_filter("eshield", 2, outline_filter(1, shield_color_full))
 		spark_system.start()
 	else
 		shield_health = 0
@@ -420,7 +420,7 @@
 		return
 	var/mob/living/affected = parent.loc
 	affected.remove_filter("eshield")
-	affected.add_filter("eshield", 1, outline_filter(1, new_color))
+	affected.add_filter("eshield", 2, outline_filter(1, new_color))
 
 //original Martian design, donutsteel
 /obj/item/armor_module/module/eshield/som
