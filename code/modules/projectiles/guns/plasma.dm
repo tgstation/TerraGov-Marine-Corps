@@ -4,9 +4,12 @@
 	default_ammo_type = /obj/item/cell/lasgun/plasma
 	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma)
 	heat_per_fire = 5
+	muzzle_flash_color = COLOR_BLUE
+	muzzleflash_iconstate = "muzzle_flash_pulse"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/minigun
 	name = "\improper PL-73 plasma thrower"
+	desc = "The PL-73 Plasma Thrower is a high-quality weapon designed to deliver powerful performance in even the most challenging combat situations. With its sleek, durable design and intuitive controls, this plasma gun is the ultimate choice for those who demand the very best.\n\nFeaturing three distinct fire modes - rapid, incendiary, and glob - the PL-73 is capable of unleashing a devastating array of plasma-based attacks. Whether you're looking to overwhelm your enemies with a barrage of rapid-fire plasma bolts, ignite the surrounding area with intense heat and flames, or deliver a massive plasma ball that explodes on impact, the PL-73 has you covered.\n\nConstructed from only the highest quality materials, this weapon is built to last. Its ergonomic design and intuitive controls make it easy to handle, even in the heat of battle. So if you're looking for a powerful and reliable plasma gun that can help you take on even the toughest opponents, look no further than the PL-73 Plasma Thrower."
 	icon_state = "plasma_minigun"
 	item_state = "plasma_minigun"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -56,6 +59,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/sniper
 	name = "\improper PL-02 plasma sniper rifle"
+	desc = "Introducing the PL-02 Plasma Sniper Rifle, the ultimate long-range weapon for those who demand nothing but the best. With its advanced features and sleek design, the PL-02 is the perfect addition to any marksman's arsenal. This powerful plasma rifle is designed for precision and accuracy, allowing you to take out your enemies from a distance with ease. Its advanced targeting system and high-powered scope make it easy to acquire and track targets, while its powerful plasma bolts deliver devastating damage. Constructed from high-quality materials, the PL-02 is built to last and can withstand even the toughest of environments. If you're looking for a reliable and powerful sniper rifle that can take out targets from a distance, look no further than the PL-02 Plasma Sniper Rifle."
 	icon_state = "plasma_sniper"
 	item_state = "plasma_sniper"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -69,6 +73,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle
 	name = "\improper PL-38 plasma rifle"
+	desc = "Introducing the PL-38 Plasma Rifle, a versatile weapon for any combat situation. With its sleek design and advanced features, the PL-38 is the perfect addition to any soldier's arsenal. This powerful plasma rifle is built for speed and accuracy, allowing you to take out your enemies with ease. Its advanced targeting system and high-powered scope make it easy to acquire and track targets, while its marksman and standard firemodes give you the flexibility to adapt to any situation. Constructed from high-quality materials, the PL-38 is built to withstand even the toughest of combat environments. Whether you're on the front lines of battle or engaging in covert operations, the PL-38 Plasma Rifle is the weapon of choice for any soldier looking for a reliable and powerful plasma rifle."
 	icon_state = "plasma_rifle"
 	item_state = "plasma_rifle"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -105,6 +110,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/carbine
 	name = "\improper PL-51 plasma carbine"
+	desc = "Introducing the PL-51 Plasma Carbine, a compact and lightweight weapon designed for close to mid-range combat. With its sleek design and advanced features, the PL-51 is the perfect addition to any soldier's arsenal. This powerful plasma carbine is built for speed and agility, allowing you to quickly take out your enemies in close quarters combat. Its advanced targeting system and high-powered scope make it easy to acquire and track targets, while its standard, shotgun, and tri-fire firemodes give you the flexibility to adapt to any combat situation. Constructed from high-quality materials, the PL-51 is built to withstand even the toughest of environments. Whether you're engaging in urban combat or fighting in tight spaces, the PL-51 Plasma Carbine is the weapon of choice for any soldier looking for a reliable and versatile plasma carbine."
 	icon_state = "plasma_carbine"
 	item_state = "plasma_carbine"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -149,6 +155,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/pistol
 	name = "\improper PL-85 plasma pistol"
+	desc = "Introducing the PL-85 Plasma Pistol, a sleek and reliable weapon for any combat situation. With its compact design and advanced features, the PL-85 is the perfect sidearm for any soldier. This powerful plasma pistol is built for speed and accuracy, allowing you to take out your enemies with ease. Its advanced targeting system and high-powered scope make it easy to acquire and track targets, while its standard and automatic fire firemodes give you the flexibility to adapt to any combat situation. Constructed from high-quality materials, the PL-85 is built to withstand even the toughest of environments. Whether you're engaged in close quarters combat or need a reliable sidearm for backup, the PL-85 Plasma Pistol is the weapon of choice for any soldier looking for a dependable and powerful plasma pistol."
 	icon_state = "plasma_pistol"
 	item_state = "plasma_pistol"
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_standard
@@ -187,6 +194,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon
 	name = "\improper PL-96 plasma cannon"
+	desc = "Introducing the PL-96 Plasma Cannon, a devastating heavy weapon designed for maximum destruction. With its imposing size and advanced features, the PL-96 is the ultimate weapon for obliterating your enemies. This powerful plasma cannon is built for firepower and versatility, allowing you to take out multiple enemies at once with its swarm firemode, or engulf your foes in flames with its devastating flamer firemode. Its advanced targeting system makes it easy to acquire and track targets, while its standard firemode gives you the precision you need for long-range combat. Constructed from high-quality materials, the PL-96 is built to withstand even the most intense combat environments. Whether you're engaging in large-scale battles or need to take out heavily armored targets, the PL-96 Plasma Cannon is the weapon of choice for any soldier looking for a powerful and versatile plasma cannon."
 	icon_state = "plasma_cannon"
 	item_state = "plasma_cannon"
 	flags_equip_slot = ITEM_SLOT_BACK
