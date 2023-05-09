@@ -45,7 +45,7 @@
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a hard necked veteran officer loaded up with riot gear and a bad temper directed to investigate the TGMC distress signal sent nearby. Go bust some heads!")]</p>")
 		return
-    if(prob(45))
+    if(prob(30))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/spacecops/colonial_marshall)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a gunslinging,revolver spinning, hard eyed colonial marshall tagging along with the local response team on your way to take up your post on a nearbye colony that went dark. Make sure your colonists are alright!")]</p>")
