@@ -180,7 +180,6 @@
 
 /datum/outfit/job/spacecops/riot_officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
