@@ -302,7 +302,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_ACCESSORY)
-    H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), SLOT_IN_ACCESSORY)
 
