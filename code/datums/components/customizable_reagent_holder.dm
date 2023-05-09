@@ -40,8 +40,6 @@
 	if (!atom_parent.reagents && !replacement)
 		return COMPONENT_INCOMPATIBLE
 
-	atom_parent.flags_1 |= HAS_CONTEXTUAL_SCREENTIPS_1
-
 	src.replacement = replacement
 	src.fill_type = fill_type
 	src.max_ingredients = max_ingredients
