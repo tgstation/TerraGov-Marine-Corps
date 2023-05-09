@@ -177,8 +177,6 @@
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/medkit/firstaid
 	back = /obj/item/storage/backpack/lightpack
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/grenade_launcher/single_shot, SLOT_L_HAND)
-	H.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/metal, SLOT_R_HAND)
 
 /datum/outfit/job/spacecops/riot_officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -211,6 +209,8 @@
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/metal, SLOT_R_HAND)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/grenade_launcher/single_shot, SLOT_L_HAND)
 
 
 /datum/job/spacecops/tactical_officer
