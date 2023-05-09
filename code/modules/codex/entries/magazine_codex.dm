@@ -4,32 +4,30 @@
 
 	traits += "<U>Basic statistics for this magazine is as follows</U>:<br>"
 
-	traits += "<br>Caliber: [caliber]"
+	traits += "Caliber: [caliber]<br>"
 
-	traits += "It can normally hold [max_rounds] rounds."
+	traits += "Ammo capacity: [max_rounds]<br>"
 
 	if(reload_delay)
-		traits += "it has a [reload_delay] second reload delay."
+		traits += "Reload delay: [reload_delay] seconds<br>"
 
 	if(fill_delay)
-		traits += "it has a [fill_delay] second fill delay."
+		traits += "Fill delay: [fill_delay] seconds<br>"
 
 	if(scatter_mod)
-		traits += "it has a [scatter_mod] wielded scatter modifier."
+		traits += "Wielded scatter modifier: [scatter_mod]<br>"
 
 	if(scatter_unwielded_mod)
-		traits += "it has a [scatter_unwielded_mod] unwielded scatter modifier."
+		traits += "Unwielded scatter modifier: [scatter_unwielded_mod]<br>"
 
 	if(aim_speed_mod)
-		traits += "it has a [aim_speed_mod] wielded movement speed modifier."
+		traits += "Wielded movement speed modifier: [aim_speed_mod]<br>"
 
 	if(wield_delay_mod)
-		traits += "it has a [wield_delay_mod] second wield delay modifier."
+		traits += "Wield delay modifier: [wield_delay_mod] seconds<br>"
 
 	if(flags_magazine & MAGAZINE_WORN)
-		traits += "This magazine is worn instead of inserted into a gun."
-
-	traits += "<br>"
+		traits += "This magazine is worn instead of inserted into a gun.<br>"
 
 	traits += "<U>Basic statistics for ammunition in this magazine are as follows</U>:<br>"
 	if(default_ammo.damage)
@@ -38,14 +36,14 @@
 	if(default_ammo.damage_type)
 		traits += "Damage type: [default_ammo.damage_type]<br>"
 
-	if(default_ammo.penetration)
-		traits += "Armor penetration: [default_ammo.penetration]<br>"
-
 	if(default_ammo.armor_type)
 		traits += "Armor type: [default_ammo.armor_type]<br>"
 
+	if(default_ammo.penetration)
+		traits += "Armor penetration: [default_ammo.penetration]<br>"
+
 	if(default_ammo.sundering)
-		traits += "Sundering amount: [default_ammo.sundering]"
+		traits += "Sundering amount: [default_ammo.sundering]<br>"
 
 	if(default_ammo.damage_falloff)
 		traits += "Damage falloff: [default_ammo.damage_falloff] per tile<br>"
@@ -80,8 +78,7 @@
 		traits += "Fires [default_ammo.bonus_projectiles_amount] additional projectiles<br>"
 		traits += "Additional projectiles have a scatter of [default_ammo.bonus_projectiles_scatter]<br>"
 
-	traits += "<br>"
-	traits += "<U>Special behavior</U>:"
+	traits += "<U>Special behavior</U>:<br>"
 	traits += get_additional_codex_info()
 
 	. += jointext(traits, "<br>")
@@ -91,37 +88,37 @@
 	return
 
 /obj/item/ammo_magazine/shotgun/get_additional_codex_info()
-	. += "<br>Slugs applies stun, knockback, slowdown and stagger against mobs on hit, up to 5 tiles away.<br>"
+	. += "Slugs applies stun, knockback, slowdown and stagger against mobs on hit, up to 5 tiles away.<br>"
 
 /obj/item/ammo_magazine/shotgun/buckshot/get_additional_codex_info()
-	. += "<br>Buckshot applies stun, knockback, slowdown and stagger against mobs on hit, up to 3 tiles away.<br>"
+	. += "Buckshot applies stun, knockback, slowdown and stagger against mobs on hit, up to 3 tiles away.<br>"
 
 /obj/item/ammo_magazine/shotgun/incendiary/get_additional_codex_info()
-	. += "<br>Incendiary slugs applies knockback and slowdown against mobs on hit, up to 5 tiles away.<br>"
+	. += "Incendiary slugs applies knockback and slowdown against mobs on hit, up to 5 tiles away.<br>"
 
 /obj/item/ammo_magazine/rifle/tx54/get_additional_codex_info()
-	. += "<br>20mm airburst grenades release a number of piercing sub munitions when they detonate. Submunitions inflict damage, sunder, stagger and slow.<br>"
+	. += "20mm airburst grenades release a number of piercing sub munitions when they detonate. Submunitions inflict damage, sunder, stagger and slow.<br>"
 
 /obj/item/ammo_magazine/rifle/tx54/he/get_additional_codex_info()
-	. += "<br>20mm high explosive grenades instantly detonate on impact on the turf targeted, creating a small explosion.<br>"
+	. += "20mm high explosive grenades instantly detonate on impact on the turf targeted, creating a small explosion.<br>"
 
 /obj/item/ammo_magazine/rifle/tx54/incendiary/get_additional_codex_info()
-	. += "<br>20mm incendiary grenades release a number of piercing sub munitions when they detonate. Submunitions burn any mob they hit, and leave fire in turfs crossed.<br>"
+	. += "20mm incendiary grenades release a number of piercing sub munitions when they detonate. Submunitions burn any mob they hit, and leave fire in turfs crossed.<br>"
 
 /obj/item/ammo_magazine/rifle/tx54/smoke/get_additional_codex_info()
-	. += "<br>20mm tactical smoke grenades release a number of piercing sub munitions when they detonate. Submunitions release smoke on turfs crossed, creating a smokescreen.<br>"
+	. += "20mm tactical smoke grenades release a number of piercing sub munitions when they detonate. Submunitions release smoke on turfs crossed, creating a smokescreen.<br>"
 
 /obj/item/ammo_magazine/rifle/tx54/smoke/dense/get_additional_codex_info()
-	. += "<br>20mm dense smoke grenades release a number of piercing sub munitions when they detonate. Submunitions release smoke on turfs crossed, creating a dense smokescreen.<br>"
+	. += "20mm dense smoke grenades release a number of piercing sub munitions when they detonate. Submunitions release smoke on turfs crossed, creating a dense smokescreen.<br>"
 
 /obj/item/ammo_magazine/rifle/tx54/smoke/tangle/get_additional_codex_info()
-	. += "<br>20mm tanglefoor smoke grenades release a number of piercing sub munitions when they detonate. Submunitions release smoke on turfs crossed, creating a smokescreen of plasma draining Tanglefoot gas.<br>"
+	. += "20mm tanglefoor smoke grenades release a number of piercing sub munitions when they detonate. Submunitions release smoke on turfs crossed, creating a smokescreen of plasma draining Tanglefoot gas.<br>"
 
 /obj/item/ammo_magazine/rifle/tx54/razor/get_additional_codex_info()
-	. += "<br>20mm razorburn grenades release a number of piercing sub munitions when they detonate. Submunitions release razorburn foam on turfs crossed, creating areas of razorwire after a short delay.<br>"
+	. += "20mm razorburn grenades release a number of piercing sub munitions when they detonate. Submunitions release razorburn foam on turfs crossed, creating areas of razorwire after a short delay.<br>"
 
 /obj/item/ammo_magazine/smg/som/rad/get_additional_codex_info()
-	. += "<br>Contains radioactive ammunition. Has a chance to irradiate mobs on hit, scaling with bio armour.<br>"
+	. += "Contains radioactive ammunition. Has a chance to irradiate mobs on hit, scaling with bio armour.<br>"
 
 /obj/item/ammo_magazine/rocket/som/rad/get_additional_codex_info()
-	. += "<br>Releases a large radioactive as well as high explosive blast on impact. Irradiates all mobs caught in the radius. Effects scale with distance to the blast.<br>"
+	. += "Releases a large radioactive as well as high explosive blast on impact. Irradiates all mobs caught in the radius. Effects scale with distance to the blast.<br>"
