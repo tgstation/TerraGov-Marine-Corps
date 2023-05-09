@@ -910,7 +910,7 @@ Currently only has the tank hardpoints
 
 //Special ammo magazines for hardpoint modules. Some aren't here since you can use normal magazines on them
 /obj/item/ammo_magazine/tank
-	flags_magazine = 0 //No refilling
+	flags_magazine = NONE //No refilling
 	var/point_cost = 0
 
 /obj/item/ammo_magazine/tank/ltb_cannon
