@@ -1269,6 +1269,7 @@
 #include "code\modules\codex\entries\engineering_codex.dm"
 #include "code\modules\codex\entries\guns_codex.dm"
 #include "code\modules\codex\entries\machinery_codex.dm"
+#include "code\modules\codex\entries\magazine_codex.dm"
 #include "code\modules\codex\entries\medical_codex.dm"
 #include "code\modules\codex\entries\misc_codex.dm"
 #include "code\modules\codex\entries\mobs_codex.dm"
