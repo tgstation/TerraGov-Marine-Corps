@@ -222,6 +222,5 @@
 
 	return interact(user)
 
-/obj/structure/get_acid_delay()
-	. = ..()
+/obj/structure/proc/get_acid_delay()
 	return 4 SECONDS

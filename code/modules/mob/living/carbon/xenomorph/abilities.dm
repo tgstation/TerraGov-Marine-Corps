@@ -630,7 +630,7 @@
 		return fail_activate()
 
 	new acid_type(get_turf(A), A, acid_rate)
-	A.atom_current_acid = acid_type
+	A.current_acid = acid_type
 
 	succeed_activate()
 
