@@ -9500,10 +9500,8 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/upper_engineering)
 "mjo" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/punching_bag,
+/obj/machinery/camera/autoname/mainship,
+/obj/structure/benchpress,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "mka" = (
@@ -12822,6 +12820,11 @@
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},
+/obj/structure/table/mainship/nometal,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/weapon/gun/rifle/m412,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "qAM" = (
@@ -14778,11 +14781,10 @@
 	},
 /area/mainship/squads/general)
 "teh" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/weapon/gun/rifle/m412,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/punching_bag,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "tem" = (
@@ -59282,7 +59284,7 @@ hUz
 hUz
 imx
 nJG
-teh
+bDv
 aFl
 bDv
 uLb
@@ -59539,7 +59541,7 @@ esN
 esN
 unX
 nJG
-pgv
+mjo
 bDv
 bDv
 bDv
@@ -59796,9 +59798,9 @@ nWT
 esN
 unX
 nJG
-mjo
-qAJ
 kbW
+qAJ
+teh
 kbW
 kbW
 vSE

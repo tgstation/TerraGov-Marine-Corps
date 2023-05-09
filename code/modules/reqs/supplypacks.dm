@@ -340,11 +340,6 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/tx55)
 	cost = 525
 
-/datum/supply_packs/weapons/tx55/ammo
-	name = "AR-55 OICW rifle magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx55)
-	cost = 25
-
 /datum/supply_packs/weapons/recoillesskit
 	name = "RL-160 Recoilless rifle kit"
 	contains = list(/obj/item/storage/holster/backholster/rpg/full)
@@ -714,8 +709,20 @@ EXPLOSIVES
 
 /datum/supply_packs/explosives/explosives_razor
 	name = "Razorburn grenade box crate"
-	notes = "Containers 20 razor burns"
+	notes = "Contains 15 razor burns"
 	contains = list(/obj/item/storage/box/visual/grenade/razorburn)
+	cost = 500
+
+/datum/supply_packs/explosives/explosives_sticky
+	name = "M40 adhesive charge grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/sticky)
+	cost = 500
+
+/datum/supply_packs/explosives/explosives_smokebomb
+	name = "M40 HSDP smokebomb grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/smokebomb)
 	cost = 500
 
 /datum/supply_packs/explosives/explosives_hedp
@@ -741,6 +748,12 @@ EXPLOSIVES
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/trailblazer)
 	cost = 500
+
+/datum/supply_packs/explosives/explosives_cloak
+	name = "M40-2 SCDP grenade box crate"
+	notes = "contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/cloak)
+	cost = 700
 
 /datum/supply_packs/explosives/explosives_hsdp
 	name = "M40 HSDP white phosphorous grenade box crate"

@@ -100,7 +100,7 @@
 /area/lv624/ground/caves/central2)
 "jb" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "jl" = (
 /obj/structure/closet/cabinet,
@@ -311,7 +311,7 @@
 /area/lv624/ground/caves/central1)
 "vz" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "vE" = (
 /turf/open/floor/wood/broken/four,
@@ -360,7 +360,7 @@
 /area/lv624/ground/caves/central1)
 "zz" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "zK" = (
 /obj/machinery/miner/damaged/platinum,
@@ -405,7 +405,7 @@
 /area/lv624/ground/caves/central2)
 "Ge" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Gm" = (
 /obj/item/ammo_casing/shell,
@@ -564,7 +564,7 @@
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "TR" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "UI" = (
 /obj/effect/decal/cleanable/blood/drip,

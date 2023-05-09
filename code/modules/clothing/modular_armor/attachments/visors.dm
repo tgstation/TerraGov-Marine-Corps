@@ -12,6 +12,8 @@
 	greyscale_config = /datum/greyscale_config/visors
 	greyscale_colors = COLOR_VERY_LIGHT_GRAY
 	secondary_color = TRUE
+	appearance_flags = KEEP_APART|TILE_BOUND
+
 	///whether this helmet should be using its emissive overlay or not
 	var/visor_emissive_on = TRUE
 	///Whether or not the helmet is allowed to turn its emissive on or off.
