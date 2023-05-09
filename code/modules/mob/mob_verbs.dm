@@ -135,6 +135,7 @@
 		/datum/job/pmc,
 		/datum/job/special_forces,
 		/datum/job/icc,
+		/datum/job/spacecops,
 	)
 
 	// List of HvH factions - these are handled differently, using the quick loadout outfits.

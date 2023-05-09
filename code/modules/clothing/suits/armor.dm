@@ -42,7 +42,7 @@
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/holster/blade
+		/obj/item/storage/holster/blade,
 	)
 
 /obj/item/clothing/suit/armor/vest/admiral
@@ -58,7 +58,6 @@
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armorsec"
 	item_state = "armorsec"
-	slowdown = SLOWDOWN_ARMOR_MEDIUM //prevents powergaming marine by swapping armor.
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "Warden's jacket"
