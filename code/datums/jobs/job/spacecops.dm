@@ -224,8 +224,8 @@
 	outfit = /datum/outfit/job/spacecops/tactical_officer
 	multiple_outfits = TRUE
 		outfits = list(
-		/datum/outfit/job/spacecops/tactical_officer
-		/datum/outfit/job/spacecops/tactical_officer/m16
+		/datum/outfit/job/spacecops/tactical_officer,
+		/datum/outfit/job/spacecops/tactical_officer/m16,
 	)
 
 /datum/outfit/job/spacecops/tactical_officer
