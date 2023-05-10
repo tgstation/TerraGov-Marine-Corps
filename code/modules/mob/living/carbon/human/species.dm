@@ -466,12 +466,11 @@
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
 
-/mob/living/carbon/human/species/robot/updatehealth()
+/mob/living/carbon/human/species/robot/Life()
 	. = ..()
-
 	if(health > -25)
 		return
-	adjust_stagger(1)
+	adjust_stagger(2, capped = 10)
 	adjust_slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
