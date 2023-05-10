@@ -184,7 +184,9 @@
 /turf/closed/shuttle/dropship_white/engine_corner,
 /area/shuttle/ert/pmc)
 "P" = (
-/turf/closed/shuttle/ert/engines/right/two,
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
 /area/shuttle/ert/pmc)
 "Q" = (
 /turf/closed/shuttle/dropship_white/backhatch,
@@ -200,7 +202,9 @@
 	},
 /area/shuttle/ert/pmc)
 "U" = (
-/turf/closed/shuttle/ert/engines/right/three,
+/turf/closed/shuttle/ert/engines/right/three{
+	dir = 1
+	},
 /area/shuttle/ert/pmc)
 "V" = (
 /turf/closed/shuttle/ert/engines/left{
@@ -213,10 +217,14 @@
 	},
 /area/shuttle/ert/pmc)
 "X" = (
-/turf/closed/shuttle/ert/engines/left/three,
+/turf/closed/shuttle/ert/engines/left/three{
+	dir = 1
+	},
 /area/shuttle/ert/pmc)
 "Y" = (
-/turf/closed/shuttle/ert/engines/left/two,
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
 /area/shuttle/ert/pmc)
 
 (1,1,1) = {"
