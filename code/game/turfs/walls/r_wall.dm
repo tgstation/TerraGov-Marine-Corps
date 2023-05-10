@@ -18,7 +18,7 @@
 
 /turf/closed/wall/r_wall/dissolvability(obj/effect/xenomorph/acid/acid)
 	if(initial(acid.acid_strength) < STRONG_ACID_STRENGTH)
-		return FALSE
+		return 0
 	return 0.5
 
 //Just different looking wall

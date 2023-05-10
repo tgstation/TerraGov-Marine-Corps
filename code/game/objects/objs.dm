@@ -94,9 +94,9 @@
 	return 0
 
 /obj/get_acid_delay()
-	. = ..()
 	if(density)
 		return 4 SECONDS
+	return ..()
 
 /obj/proc/updateUsrDialog()
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))
