@@ -382,8 +382,8 @@
 	gloves = /obj/item/clothing/gloves/swat
 	head = /obj/item/clothing/head/helmet/swat
 	suit_store = /obj/item/weapon/gun/rifle/m16/spec_op
-	r_store = /obj/item/flashlight
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_store = /obj/item/flashlight
 	back = /obj/item/storage/backpack/lightpack
 
 
