@@ -26,7 +26,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/rank/security/holster
+	w_uniform = /obj/item/clothing/under/rank/security2/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
@@ -75,7 +75,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/rank/security/holster
+	w_uniform = /obj/item/clothing/under/rank/security2/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
@@ -125,7 +125,7 @@
 	belt = /obj/item/storage/belt/shotgun/mixed
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/rank/security/holster
+	w_uniform = /obj/item/clothing/under/rank/security2/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
@@ -133,7 +133,7 @@
 	suit_store = /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
 	r_store = /obj/item/flashlight
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	back = /obj/item/storage/backpack/Security
+	back = /obj/item/storage/backpack/security
 
 /datum/outfit/job/spacecops/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -276,7 +276,7 @@
 
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/pistol
+	belt = /obj/item/storage/holster/belt/revolver/standard_revolver
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
 	w_uniform = /obj/item/clothing/under/CM_uniform/holster
@@ -330,7 +330,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/rank/head_of_security/corp/holster
+	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	shoes = /obj/item/clothing/shoes/swat
 	wear_suit = /obj/item/clothing/suit/armor/swat
