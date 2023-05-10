@@ -438,7 +438,7 @@
 	plane = GAME_PLANE
 
 /turf/closed/shuttle/ert/engines/left
-	icon_state = "ertshuttle_exterior_engine_left"
+	icon_state = "leftengine_1"
 
 /turf/closed/shuttle/ert/engines/left/two
 	icon_state = "leftengine_2"
@@ -447,7 +447,7 @@
 	icon_state = "leftengine_3"
 
 /turf/closed/shuttle/ert/engines/right
-	icon_state = "ertshuttle_exterior_engine_right"
+	icon_state = "rightengine_1"
 
 /turf/closed/shuttle/ert/engines/right/two
 	icon_state = "rightengine_2"
