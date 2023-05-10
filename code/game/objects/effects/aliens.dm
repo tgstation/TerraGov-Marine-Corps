@@ -124,12 +124,18 @@
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
+	///the target atom for being melted
 	var/atom/acid_t
+	///the current tick on destruction stage, currently used to determine what messages to output
 	var/ticks = 0
-	var/acid_strength = REGULAR_ACID_STRENGTH //how fast something will melt when subject to this acid.
-	var/acid_damage = 125 //acid damage on pick up, subject to armor
-	var/strength_t = 4 //stages of meltage, currently used to determine what messages to output
-	var/acid_melt_multiplier //How much faster or slower acid melts specific objects/turfs.
+	///how fast something will melt when subject to this acid.
+	var/acid_strength = REGULAR_ACID_STRENGTH
+	///acid damage on pick up, subject to armor
+	var/acid_damage = 125
+	///stages of meltage, currently used to determine what messages to output
+	var/strength_t = 4
+	///How much faster or slower acid melts specific objects/turfs.
+	var/acid_melt_multiplier
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak

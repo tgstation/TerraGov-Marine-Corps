@@ -603,7 +603,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
-	if(A.should_apply_acid(acid_type))
+	if(!A.should_apply_acid(acid_type))
 		if(!silent)
 			owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
 		return FALSE
