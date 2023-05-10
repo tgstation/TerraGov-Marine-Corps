@@ -165,9 +165,9 @@
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
 	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
-	shoes = /obj/item/clothing/shoes/combat
+	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/riot
-	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/helmet/riot
 	suit_store = /obj/item/weapon/gun/smg/m25
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
@@ -326,7 +326,7 @@
 	w_uniform = /obj/item/clothing/under/CM_uniform
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/det_suit
-	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/det_hat
 	suit_store = /obj/item/weapon/gun/energy/lasgun/M43
 	r_store = /obj/item/flashlight
