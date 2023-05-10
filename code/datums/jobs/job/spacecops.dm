@@ -223,7 +223,7 @@
 	title = "Colonial Tactical Specialist"
 	outfit = /datum/outfit/job/spacecops/tactical_officer
 	multiple_outfits = TRUE
-		outfits = list(
+	outfits = list(
 		/datum/outfit/job/spacecops/tactical_officer,
 		/datum/outfit/job/spacecops/tactical_officer/m16,
 	)
@@ -275,7 +275,7 @@
 //m16 tactical officer
 /datum/outfit/job/spacecops/tactical_officer
 	name = "Colonial Tactical Specialist"
-	jobtype = /datum/job/spacecops/tactical_officer
+	jobtype = /datum/job/spacecops/tactical_officer/m16
 
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	id = /obj/item/card/id/silver
