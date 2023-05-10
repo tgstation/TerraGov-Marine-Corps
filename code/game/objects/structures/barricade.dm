@@ -380,6 +380,9 @@
 	barricade_type = "wooden"
 	can_wire = FALSE
 
+/obj/structure/barricade/wooden/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 /obj/structure/barricade/wooden/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -440,6 +443,9 @@
 	var/build_state = BARRICADE_METAL_FIRM
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
+
+/obj/structure/barricade/metal/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /obj/structure/barricade/metal/update_overlays()
 	. = ..()
@@ -747,13 +753,15 @@
 	closed = TRUE
 	can_wire = TRUE
 	climbable = TRUE
-
 	///What state is our barricade in for construction steps?
 	var/build_state = BARRICADE_PLASTEEL_FIRM
 	var/busy = FALSE //Standard busy check
 	///ehther we react with other cades next to us ie when opening or so
 	var/linked = FALSE
 	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
+
+/obj/structure/barricade/plasteel/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /obj/structure/barricade/plasteel/handle_barrier_chance(mob/living/M)
 	if(closed)
