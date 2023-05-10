@@ -10,6 +10,11 @@
  * actual updating of marker locations is handled by [/datum/controller/subsystem/minimaps/proc/on_move]
  * and zlevel changes are handled in [/datum/controller/subsystem/minimaps/proc/on_z_change]
  * tracking of the actual atoms you want to be drawn on is done by means of datums holding info pertaining to them with [/datum/hud_displays]
+ *
+ * Todo
+ * *: batch images on add to remove list additons in fire()
+ * *: add fetching of images to allow stuff like adding/removing xeno crowns easily
+ * *: add a system for viscontents so things like minimap draw are more responsive
  */
 SUBSYSTEM_DEF(minimaps)
 	name = "Minimaps"
@@ -201,27 +206,23 @@ SUBSYSTEM_DEF(minimaps)
  * Adds an atom we want to track with blips to the subsystem
  * Arguments:
  * * target: atom we want to track
- * * zlevel: zlevel we want this atom to be tracked for
  * * hud_flags: tracked HUDs we want this atom to be displayed on
- * * iconstate: iconstate for the blip we want to be used for this tracked atom
- * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by default
- * * overlay_iconstates: list of iconstates to use as overlay. Used for xeno leader icons.
+ * * marker: image or mutable_appearance we want to be using on the map
  */
-/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi', list/overlay_list)
-	if(!isatom(target) || !zlevel || !hud_flags || !iconstate || !icon)
+/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, hud_flags = NONE, image/blip)
+	if(!isatom(target) || !hud_flags || !blip)
 		CRASH("Invalid marker added to subsystem")
 	if(!initialized)
-		earlyadds += CALLBACK(src, PROC_REF(add_marker), target, zlevel, hud_flags, iconstate, icon)
+		earlyadds += CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip)
 		return
 
-	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x) + minimaps_by_z["[zlevel]"].x_offset, pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y) + minimaps_by_z["[zlevel]"].y_offset)
-
-	blip.overlays = overlay_list
+	blip.pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x) + minimaps_by_z["[target.z]"].x_offset
+	blip.pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y) + minimaps_by_z["[target.z]"].y_offset
 
 	images_by_source[target] = blip
 	for(var/flag in bitfield2list(hud_flags))
-		minimaps_by_z["[zlevel]"].images_assoc["[flag]"][target] = blip
-		minimaps_by_z["[zlevel]"].images_raw["[flag]"] += blip
+		minimaps_by_z["[target.z]"].images_assoc["[flag]"][target] = blip
+		minimaps_by_z["[target.z]"].images_raw["[flag]"] += blip
 	if(ismovableatom(target))
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))

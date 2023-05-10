@@ -107,6 +107,11 @@
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
+/obj/item/weapon/claymore/mercsword/machete/alt
+	name = "machete"
+	desc = "A nice looking machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
+	icon_state = "machete_alt"
+
 //FC's sword.
 
 /obj/item/weapon/claymore/mercsword/officersword
