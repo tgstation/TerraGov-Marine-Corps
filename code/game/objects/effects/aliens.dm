@@ -169,7 +169,8 @@
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
 	ticks += delta_time * (acid_strength * acid_melt_multiplier)
-
+	if(!strength_t)
+		return
 	if(ticks >= strength_t)
 		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
 		playsound(src, "acid_hit", 25)
