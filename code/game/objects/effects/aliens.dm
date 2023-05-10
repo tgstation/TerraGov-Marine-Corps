@@ -162,8 +162,6 @@
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	if(!acid_melt_multiplier)
-		return
 	ticks += delta_time * (acid_strength * acid_melt_multiplier)
 
 	if(ticks >= strength_t)
