@@ -26,7 +26,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/under/rank/security/holster
+	w_uniform = /obj/item/clothing/under/rank/security/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
@@ -34,7 +34,7 @@
 	suit_store = /obj/item/weapon/gun/rifle/m16
 	r_store = /obj/item/flashlight
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	back = /obj/item/storage/backpack/Security
+	back = /obj/item/storage/backpack/security
 
 /datum/outfit/job/spacecops/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -75,7 +75,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/under/rank/security/holster
+	w_uniform = /obj/item/clothing/under/rank/security/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
@@ -83,7 +83,7 @@
 	suit_store = /obj/item/weapon/gun/energy/lasgun/M43
 	r_store = /obj/item/flashlight
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	back = /obj/item/storage/backpack/Security
+	back = /obj/item/storage/backpack/security
 
 /datum/outfit/job/spacecops/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -125,7 +125,7 @@
 	belt = /obj/item/storage/belt/shotgun/mixed/Initialize(mapload, ...)
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/under/rank/security/holster
+	w_uniform = /obj/item/clothing/under/rank/security/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
@@ -229,7 +229,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/swat
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	head = /obj/item/clothing/head/swat
+	head = /obj/item/clothing/head/helmet/swat
 	suit_store = /obj/item/weapon/gun/shotgun/combat
 	r_store = /obj/item/storage/pouch/grenade
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
