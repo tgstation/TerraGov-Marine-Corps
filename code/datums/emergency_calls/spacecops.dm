@@ -6,7 +6,7 @@
 	var/max_specialists = 1
 
 /datum/emergency_call/spacecops/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B> You are a member of the local Law enforcement unit stationed on a large nearbye colony world, having arms and training above the civilian level with some exceptional gear given due to budget stimulus.</b>")
+	to_chat(H, "<B> You are a member of the local law enforcement unit stationed on a large nearby colony world, having arms and training above the civilian level with some exceptional gear given due to budget stimulus.</b>")
 	to_chat(H, "<B>Usually, you spend most of your time patrolling the sector for criminal or terrorist activity in addition to eating donuts.</b>")
 	to_chat(H, "")
 	to_chat(H, "<B>However, recently, one of the local settlements recently went dark, broadcasting a distress signal, just as a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name] showed up in orbit, and the two are probably linked.</b>")
