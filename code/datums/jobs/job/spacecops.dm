@@ -166,9 +166,9 @@
 	mask = /obj/item/clothing/mask/gas/swat
 	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
 	shoes = /obj/item/clothing/shoes/combat
-	wear_suit = /obj/item/clothing/suit/storage/marine/riot
+	wear_suit = /obj/item/clothing/suit/armor/riot
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	head = /obj/item/clothing/head/helmet/marine/riot
+	head = /obj/item/clothing/head/helmet/riot
 	suit_store = /obj/item/weapon/gun/smg/m25
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/medkit/firstaid
