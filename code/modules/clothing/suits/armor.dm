@@ -43,6 +43,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/holster/blade,
+		/obj/item/weapon/gun/,
 	)
 
 /obj/item/clothing/suit/armor/vest/admiral
@@ -93,7 +94,7 @@
 	icon_state = "riot"
 	item_state = "swat"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	slowdown = 1.2
+	slowdown = 1.0
 	soft_armor = list(MELEE = 65, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
