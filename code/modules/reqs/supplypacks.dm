@@ -921,7 +921,7 @@ ARMOR
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
-		/obj/item/armor_module/module/fire_proof/helmet,
+		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -942,7 +942,7 @@ ARMOR
 	name = "Jaeger Surt fireproof module"
 	contains = list(
 		/obj/item/armor_module/module/fire_proof,
-		/obj/item/armor_module/module/fire_proof/helmet,
+		/obj/item/armor_module/module/fire_proof_helmet,
 	)
 	cost = 120
 

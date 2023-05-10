@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(module, list(
 	desc = "An unfinished Surt pyrotechnical insulation system module."
 	result = list(
 		/obj/item/armor_module/module/fire_proof,
-		/obj/item/armor_module/module/fire_proof/helmet,
+		/obj/item/armor_module/module/fire_proof_helmet,
 	)
 
 /obj/item/factory_part/module_surt/Initialize(mapload)
