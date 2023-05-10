@@ -99,6 +99,16 @@
 	icon_state = "mod_fire_som"
 	item_state = "mod_fire_som_a"
 
+/obj/item/armor_module/module/fire_proof/helmet
+	name = "\improper Surt Pyrotechnical Insulation Helmet System"
+	desc = "Designed for mounting on a modular helmet. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival."
+	icon_state = "mod_fire_head"
+	item_state = "mod_fire_head_a"
+	soft_armor = list(FIRE = 35)
+	slowdown = 0
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mod_fire_head_xn")
+
 /**
  * Extra armor module
 */
