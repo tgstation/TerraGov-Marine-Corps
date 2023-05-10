@@ -46,7 +46,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/taser, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/tool/taperoll/police, SLOT_IN_BELT)
-    
+	
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
@@ -104,7 +104,7 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
-    
+	
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
@@ -147,7 +147,7 @@
 
 /datum/outfit/job/spacecops/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-    
+	
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
@@ -273,9 +273,9 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/impact, SLOT_IN_BACKPACK)
 	
 //m16 tactical officer
-/datum/outfit/job/spacecops/tactical_officer
+/datum/outfit/job/spacecops/tactical_officer/m16
 	name = "Colonial Tactical Specialist"
-	jobtype = /datum/job/spacecops/tactical_officer/m16
+	jobtype = /datum/job/spacecops/tactical_officer
 
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	id = /obj/item/card/id/silver
