@@ -599,7 +599,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "[A] is too far away")
 		return FALSE
-	if(A.resistance_flags & UNACIDABLE || !(A.dissolvability(acid_type)))
+	if(A.resistance_flags & UNACIDABLE || A.dissolvability(acid_type) != 0)
 		if(!silent)
 			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
