@@ -399,6 +399,7 @@
 	sharp = IS_SHARP_ITEM_BIG
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = TWOHANDED
+	resistance_flags = NONE
 
 	/// Lists the information in the codex
 	var/codex_info = {"<b>Reagent info:</b><BR>
