@@ -348,13 +348,13 @@
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y -= 14
+			pixel_y = 14
 		if(SOUTH)
-			pixel_y += 26
+			pixel_y = 26
 		if(EAST)
-			pixel_x -= 19
+			pixel_x = 19
 		if(WEST)
-			pixel_x += 21
+			pixel_x = 21
 
 /obj/machinery/vending/nanomed/tadpolemed
 	name = "Flight surgeon medical equipment dispenser"

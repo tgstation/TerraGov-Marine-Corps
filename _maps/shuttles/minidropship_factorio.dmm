@@ -52,10 +52,6 @@
 	pixel_y = 6
 	},
 /obj/item/storage/toolbox/mechanical,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 17;
-	dir = 8
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "t" = (
