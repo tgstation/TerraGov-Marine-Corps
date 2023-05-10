@@ -122,7 +122,7 @@
 
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/shotgun/mixed/Initialize(mapload, ...)
+	belt = /obj/item/storage/belt/shotgun/mixed
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
 	w_uniform = /obj/item/clothing/under/rank/security/holster
@@ -222,7 +222,7 @@
 
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/shotgun/mixed/Initialize(mapload, ...)
+	belt = /obj/item/storage/belt/shotgun/mixed
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
 	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
