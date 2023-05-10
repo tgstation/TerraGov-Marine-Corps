@@ -104,10 +104,7 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "I" = (
-/obj/structure/window/framed/mainship/canterbury{
-	name = "orbital insertion safety window";
-	max_integrity = 300
-	},
+/obj/structure/window/framed/mainship/canterbury/dropship,
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},
