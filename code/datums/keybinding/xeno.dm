@@ -40,6 +40,13 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
+/datum/keybinding/xeno/recycle
+	name = "Recycle"
+	full_name = "Recycle xenomorph"
+	description = "Recycles a fellow dead xenomorph"
+	keybind_signal = COMSIG_XENOABILITY_RECYCLE
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/place_acid_well
 	name = "place_acid_well"
 	full_name = "Place acid well"

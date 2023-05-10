@@ -13,6 +13,8 @@
 	var/reinforcement = null
 	var/icon_prefix = "girder"
 
+/obj/structure/girder/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 #define GIRDER_DECONSTRUCTING (new_state < girder_state)
 

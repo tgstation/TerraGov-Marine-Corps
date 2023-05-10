@@ -12849,7 +12849,7 @@
 /area/mainship/engineering/lower_engineering)
 "lBe" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/rebel)
 "lBn" = (
@@ -17220,7 +17220,7 @@
 /area/mainship/engineering/engineering_workshop/rebel)
 "pqH" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -17367,7 +17367,7 @@
 /area/mainship/hallways/aft_hallway)
 "pxO" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "pxU" = (
@@ -21867,7 +21867,7 @@
 /area/mainship/hallways/aft_hallway/rebel)
 "tus" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -23766,7 +23766,7 @@
 /area/mainship/command/cic/rebel)
 "vdN" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -25385,7 +25385,7 @@
 /area/mainship/command/corporateliaison/rebel)
 "wxD" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -26609,7 +26609,7 @@
 /area/mainship/command/cic/rebel)
 "xBF" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -27005,7 +27005,7 @@
 /area/mainship/hallways/hangar/rebel)
 "xPx" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light{
 	dir = 1
 	},

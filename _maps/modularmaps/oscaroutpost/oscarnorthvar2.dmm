@@ -1204,7 +1204,7 @@
 /area/oscar_outpost)
 "mf" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 "mk" = (
 /obj/structure/stairs,
@@ -1261,7 +1261,7 @@
 	pixel_y = -3
 	},
 /obj/item/paper{
-	desc = wait a minute, isn't project Berserker classified? and who made this?;
+	desc = "wait a minute, isn't project Berserker classified? and who made this?";
 	name = "Project Berserker Wargame";
 	pixel_x = -9
 	},
@@ -2632,7 +2632,7 @@
 	pixel_y = -3
 	},
 /obj/item/paper{
-	desc = wait a minute, isn't project Berserker classified? and who made this?;
+	desc = "wait a minute, isn't project Berserker classified? and who made this?";
 	name = "Project Berserker Wargame";
 	pixel_x = -9
 	},
@@ -3462,7 +3462,7 @@
 /obj/structure/barricade/metal{
 	dir = 1
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 "GR" = (
 /obj/item/weapon/gun/tl102/hsg_nest{
@@ -5726,7 +5726,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "ZO" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 "ZW" = (
 /obj/machinery/vending/nanomed{

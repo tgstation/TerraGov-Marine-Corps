@@ -4365,7 +4365,7 @@
 /area/oscar_outpost)
 "Yh" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 "Yi" = (
 /obj/machinery/camera/autoname/mainship{
@@ -4560,7 +4560,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
 "ZO" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 
 (1,1,1) = {"
