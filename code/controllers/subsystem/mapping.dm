@@ -286,7 +286,7 @@ SUBSYSTEM_DEF(mapping)
 		shuttle_templates[S.shuttle_id] = S
 		map_templates[S.shuttle_id] = S
 	
-	for(var/datum/map_template/shuttle/drop_path AS in typesof(/datum/map_template/shuttle/minidropship))
+	for(var/drop_path in typesof(/datum/map_template/shuttle/minidropship))
 		var/datum/map_template/shuttle/drop = new drop_path()
 		minidropship_templates += drop
 
