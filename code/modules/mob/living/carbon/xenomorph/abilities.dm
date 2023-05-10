@@ -599,7 +599,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "[A] is too far away")
 		return FALSE
-	if(A.resistance_flags & UNACIDABLE || A.dissolvability(acid_type) != 0)
+	if(A.resistance_flags & UNACIDABLE || A.dissolvability(acid_type) == 0)
 		if(!silent)
 			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
@@ -617,12 +617,11 @@
 	if(!A.dissolvability(acid_type))
 		X.balloon_alert(X, "We cant melt this")
 		return fail_activate()
-	var/wait_time = A.get_acid_delay()
 
 	X.face_atom(A)
 	to_chat(X, span_xenowarning("We begin generating enough acid to melt through the [A]"))
 
-	if(!do_after(X, wait_time, TRUE, A, BUSY_ICON_HOSTILE))
+	if(!do_after(X, A.get_acid_delay(), TRUE, A, BUSY_ICON_HOSTILE))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))

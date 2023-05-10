@@ -172,7 +172,7 @@ directive is properly returned.
 		return loc.return_gas()
 
 ///returns if we can melt an object, but also the speed at which it happens. 1 just means we melt it. 0,5 means we need a higher strength acid. higher than 1 just makes it melt faster
-/atom/proc/dissolvability(acid_strength)
+/atom/proc/dissolvability(obj/effect/xenomorph/acid/acid)
 	return 1
 
 //returns how long it takes to apply acid on this atom

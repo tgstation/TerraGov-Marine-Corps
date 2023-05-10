@@ -505,5 +505,5 @@
 /turf/closed/wall/get_acid_delay()
 	return 5 SECONDS
 
-/turf/closed/wall/dissolvability(acid_strength)
+/turf/closed/wall/dissolvability(obj/effect/xenomorph/acid/acid)
 	return 0.5
