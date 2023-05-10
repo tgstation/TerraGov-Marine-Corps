@@ -1,6 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/closed/shuttle/ert/engines/left,
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
+	},
 /area/shuttle/minidropship)
 "b" = (
 /turf/template_noop,
@@ -10,13 +12,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "f" = (
-/turf/closed/shuttle/ert/engines/right,
-/area/shuttle/minidropship)
-"h" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 16
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
 	},
-/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "k" = (
 /obj/structure/dropship_piece/tadpole/engine{
@@ -30,7 +28,7 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/turf/closed/wall/mainship/outer,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "l" = (
 /turf/open/floor/mainship/floor,
@@ -54,17 +52,30 @@
 	pixel_y = 6
 	},
 /obj/item/storage/toolbox/mechanical,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 17;
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "t" = (
 /obj/structure/table/mainship,
 /obj/item/stack/sheet/metal/medium_stack,
 /obj/item/tool/extinguisher/mini,
+/obj/machinery/vending/nanomed/tadpolemed{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "u" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
 /turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"w" = (
+/obj/machinery/camera/autoname/mainship{
+	pixel_y = 16
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "x" = (
 /obj/structure/barricade/plasteel{
@@ -95,24 +106,13 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/turf/closed/wall/mainship/outer,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "B" = (
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "F" = (
 /turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/minidropship)
-"I" = (
-/obj/structure/window/framed/mainship/canterbury/dropship,
-/obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlock"
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "J" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
@@ -172,7 +172,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "Z" = (
-/obj/structure/window/framed/mainship/canterbury/dropship,
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 
@@ -188,9 +188,9 @@ F
 a
 "}
 (2,1,1) = {"
-Z
-Z
-B
+F
+F
+w
 q
 q
 q
@@ -218,7 +218,7 @@ u
 P
 q
 c
-I
+F
 "}
 (5,1,1) = {"
 Z
@@ -228,13 +228,13 @@ q
 l
 q
 B
-h
+B
 X
 "}
 (6,1,1) = {"
-Z
-Z
-B
+F
+F
+w
 q
 q
 q

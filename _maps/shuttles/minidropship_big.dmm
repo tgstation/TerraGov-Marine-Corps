@@ -67,11 +67,13 @@
 /obj/docking_port/mobile/marine_dropship/minidropship,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"r" = (
+/turf/closed/shuttle/ert/engines/right/two,
+/area/shuttle/minidropship)
 "s" = (
 /obj/machinery/camera/autoname/mainship,
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/vending/nanomed/tadpolemed{
-	name = "Flight surgeon medical equipment dispenser";
 	pixel_x = -3;
 	pixel_y = 28
 	},
@@ -148,6 +150,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"M" = (
+/turf/closed/shuttle/ert/engines/left/two,
+/area/shuttle/minidropship)
+"O" = (
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
+	},
+/area/shuttle/minidropship)
 "S" = (
 /obj/structure/barricade/plasteel{
 	dir = 4
@@ -167,6 +177,11 @@
 	equipment_offset_y = 25
 	},
 /turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"V" = (
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
+	},
 /area/shuttle/minidropship)
 "Z" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -193,8 +208,8 @@ I
 a
 a
 b
-b
-I
+M
+V
 "}
 (2,1,1) = {"
 b
@@ -259,6 +274,6 @@ h
 a
 a
 b
-b
-h
+r
+O
 "}
