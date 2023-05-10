@@ -126,7 +126,9 @@
 	max_storage_space = 5
 	can_hold = list(/obj/item/reagent_containers, /obj/item/reagent_scanner)
 	max_integrity = 200
+	///Properties relating to reagents for this container; whether you can check if reagents are visible, if it is refillable, etc.
 	var/container_flags = TRANSPARENT
+	///Maximum units of reagents this container can hold
 	var/max_volume = 3000
 	///List of reagents this dispenser will start with
 	var/list/starting_reagents
@@ -177,16 +179,16 @@
 
 /obj/item/storage/reagent_tank/attempt_draw_object(mob/living/user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		balloon_alert(user, "[src] must be deployed!")
+		balloon_alert(user, "Not deployed")
 		return FALSE
 	return ..()
 
 /obj/item/storage/reagent_tank/do_quick_equip(mob/user)
-	balloon_alert(user, "[src] must be deployed!")
+	balloon_alert(user, "Not deployed")
 
 /obj/item/storage/reagent_tank/can_be_inserted(obj/item/W, warning)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		balloon_alert(usr, "Deploy [src] to store [W]!")
+		balloon_alert(usr, "Not deployed")
 		return FALSE
 	return ..()
 
