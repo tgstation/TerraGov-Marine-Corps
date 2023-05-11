@@ -1601,6 +1601,7 @@
 			/obj/item/storage/belt/grenade/b17 = -1,
 			/obj/item/armor_module/module/valkyrie_autodoc = -1,
 			/obj/item/armor_module/module/fire_proof = -1,
+			/obj/item/armor_module/module/fire_proof_helmet = -1,
 			/obj/item/armor_module/module/tyr_extra_armor = -1,
 			/obj/item/armor_module/module/tyr_head = -1,
 			/obj/item/attachable/shoulder_mount = -1,

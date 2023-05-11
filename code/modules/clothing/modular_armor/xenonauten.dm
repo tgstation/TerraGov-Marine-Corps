@@ -174,6 +174,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
@@ -210,6 +211,9 @@
 
 /obj/item/clothing/head/modular/m10x/tyr
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head)
+
+/obj/item/clothing/head/modular/m10x/surt
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/fire_proof_helmet)
 
 /obj/item/clothing/head/modular/m10x/heavy
 	name = "\improper M10XE pattern marine helmet"
