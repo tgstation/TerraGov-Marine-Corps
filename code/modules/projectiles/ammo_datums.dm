@@ -2663,16 +2663,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/spread
 	name = "additional laser blast"
-	icon_state = "laser2"
-	shell_speed = 2
-	accuracy_var_low = 9
-	accuracy_var_high = 9
-	accurate_range = 5
-	max_range = 8
-	damage = 35
-	penetration = 20
-	sundering = 1
-	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"

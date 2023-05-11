@@ -552,11 +552,11 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	icon_state = "tec"
 	item_state = "tec"
-	max_shots = 40 //codex stuff
+	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	rounds_per_shot = 15
+	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	ammo_level_icon = "te"
@@ -585,7 +585,9 @@
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
-	burst_delay = 0.15 SECONDS
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.15 SECONDS
+	autoburst_delay = 0.35 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
 	damage_falloff_mult = 0.5
@@ -599,8 +601,8 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/weapon/gun/grenade_launcher/underslung,)
 
-/datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
-	rounds_per_shot = 15
+/datum/lasrifle/base/energy_carbine_mode/auto_burst_standard
+	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
 	burst_amount = 4
@@ -611,10 +613,11 @@
 
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic
 	message_to_user = "You set the laser carbine's charge mode to standard automatic fire."
+	burst_amount = 1
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /datum/lasrifle/base/energy_carbine_mode/base/spread
-	rounds_per_shot = 60
+	rounds_per_shot = 50
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/blast
 	fire_delay = 1.5 SECONDS
 	burst_amount = 1
