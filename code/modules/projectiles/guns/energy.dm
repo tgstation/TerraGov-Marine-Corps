@@ -398,10 +398,10 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	icon_state = "ter"
 	item_state = "ter"
-	max_shots = 50 //codex stuff
+	max_shots = 60 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	rounds_per_shot = 12
+	rounds_per_shot = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	turret_flags = TURRET_INACCURATE
@@ -445,7 +445,7 @@
 	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/flamer/mini_flamer)
 
 /datum/lasrifle/base/energy_rifle_mode/standard
-	rounds_per_shot = 12
+	rounds_per_shot = 10
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
@@ -455,7 +455,7 @@
 
 
 /datum/lasrifle/base/energy_rifle_mode/overcharge
-	rounds_per_shot = 30
+	rounds_per_shot = 24
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
 	fire_delay = 0.45 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
@@ -603,7 +603,7 @@
 
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard
 	rounds_per_shot = 12
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/carbine
 	fire_delay = 0.2 SECONDS
 	burst_amount = 4
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
@@ -614,6 +614,7 @@
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic
 	message_to_user = "You set the laser carbine's charge mode to standard automatic fire."
 	burst_amount = 1
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /datum/lasrifle/base/energy_carbine_mode/base/spread

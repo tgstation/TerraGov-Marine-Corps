@@ -2632,7 +2632,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 20
 	penetration = 10
-	sundering = 1
+	sundering = 1.5
 	max_range = 30
 	hitscan_effect_icon = "beam"
 
@@ -2644,6 +2644,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 2
 	hitscan_effect_icon = "beam_heavy"
+
+/datum/ammo/energy/lasgun/marine/carbine
+	sundering = 1
+	max_range = 20
 
 /datum/ammo/energy/lasgun/marine/blast
 	name = "wide range laser blast"
