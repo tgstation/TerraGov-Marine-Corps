@@ -742,7 +742,7 @@
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
-	movement_acc_penalty_mult = 7.25
+	movement_acc_penalty_mult = 6
 	damage_falloff_mult = 0.3
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,

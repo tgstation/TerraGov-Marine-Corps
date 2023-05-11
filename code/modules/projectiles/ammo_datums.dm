@@ -2670,13 +2670,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
-	damage = 15
+	damage = 18
 	penetration = 15
 
 /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	name = "efficient machine laser bolt"
 	hud_state = "laser_efficiency"
-	damage = 8.5
+	damage = 10
 	sundering = 1.5
 	hitscan_effect_icon = "beam_particle"
 
