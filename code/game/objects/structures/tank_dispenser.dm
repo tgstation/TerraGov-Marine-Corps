@@ -19,7 +19,7 @@
 	oxygentanks = 0
 
 
-/obj/structure/dispenser/Initialize()
+/obj/structure/dispenser/Initialize(mapload)
 	. = ..()
 	update_icon()
 

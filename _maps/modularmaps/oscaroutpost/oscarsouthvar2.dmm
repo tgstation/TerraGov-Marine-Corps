@@ -6,6 +6,9 @@
 /area/oscar_outpost/village/abandonedbase)
 "ao" = (
 /obj/structure/table/mainship,
+/obj/structure/platform{
+	dir = 4
+	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "aB" = (
@@ -49,12 +52,6 @@
 "bK" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/oscar_outpost/village/abandonedbase)
-"bP" = (
-/obj/structure/platform_decoration{
-	dir = 1
-	},
-/turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "bQ" = (
 /obj/structure/rack,
@@ -292,10 +289,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/grayscale/black,
-/area/oscar_outpost/village/abandonedbase)
-"eP" = (
-/obj/structure/platform_decoration,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "eR" = (
@@ -781,9 +774,6 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "jj" = (
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/stairs/seamless{
 	dir = 1
 	},
@@ -1043,8 +1033,7 @@
 	id = "UPPreq1";
 	name = "Req Line Shutters";
 	pixel_x = 7;
-	pixel_y = 1;
-
+	pixel_y = 1
 	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -1162,15 +1151,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
-"oy" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/stairs/seamless{
-	dir = 1
-	},
-/turf/open/floor/grayscale/black,
-/area/oscar_outpost/village/abandonedbase)
 "oS" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/reagent_containers/spray/cleaner{
@@ -1233,6 +1213,9 @@
 "pv" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/weaponry/gun,
+/obj/structure/platform{
+	dir = 8
+	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "pw" = (
@@ -1342,6 +1325,14 @@
 /obj/item/tool/pen,
 /obj/structure/table/mainship,
 /obj/structure/window,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"qq" = (
+/obj/structure/table/mainship,
+/obj/item/megaphone,
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "qu" = (
@@ -1677,13 +1668,6 @@
 /obj/machinery/loadout_vendor,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
-"vV" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/sign/poster,
-/turf/open/floor/grayscale/black,
-/area/oscar_outpost/village/abandonedbase)
 "vW" = (
 /obj/effect/turf_decal/warning_stripes/smallstripevertical{
 	pixel_x = -8
@@ -1808,15 +1792,13 @@
 	id = "UPPreq1";
 	name = "Req Line Shutters";
 	pixel_x = 7;
-	pixel_y = -2;
-
+	pixel_y = -2
 	},
 /obj/structure/table/mainship,
 /obj/machinery/line_nexter_control{
 	id = "UPPreqturn";
 	pixel_x = -6;
-	pixel_y = -2;
-
+	pixel_y = -2
 	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -1828,6 +1810,9 @@
 "yJ" = (
 /obj/structure/flora/pottedplant{
 	layer = 3.1
+	},
+/obj/structure/platform{
+	dir = 8
 	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -2354,10 +2339,6 @@
 /obj/effect/spawner/random/misc/structure/directional_window/east,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
-"Gb" = (
-/obj/structure/platform,
-/turf/open/floor/grayscale/black,
-/area/oscar_outpost/village/abandonedbase)
 "Gc" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
@@ -2572,6 +2553,15 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"JS" = (
+/obj/structure/flora/pottedplant{
+	layer = 3.1
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
 "JX" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -2595,11 +2585,6 @@
 "Ku" = (
 /obj/effect/spawner/random/misc/structure/table_or_rack,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/grayscale/black,
-/area/oscar_outpost/village/abandonedbase)
-"KD" = (
-/obj/structure/platform,
-/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "KE" = (
@@ -2969,6 +2954,9 @@
 "Qa" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight/lamp,
+/obj/structure/platform{
+	dir = 5
+	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Qj" = (
@@ -3399,9 +3387,6 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Xd" = (
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/sign/poster,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -3439,6 +3424,9 @@
 /obj/structure/table/mainship,
 /obj/item/flashlight/lamp,
 /obj/effect/spawner/random/engineering/cable,
+/obj/structure/platform{
+	dir = 9
+	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "XI" = (
@@ -5462,11 +5450,11 @@ Eq
 Zx
 fi
 ry
-eP
-Yn
-Yn
-jj
 uf
+uf
+uf
+jj
+lx
 Eq
 Xn
 Xn
@@ -5493,7 +5481,7 @@ Yz
 Op
 fi
 Op
-Gb
+uf
 XD
 pv
 yJ
@@ -5524,8 +5512,8 @@ uf
 vF
 Sq
 uf
-KD
-nE
+Fg
+qq
 uf
 uf
 Xt
@@ -5555,10 +5543,10 @@ Eq
 Op
 fi
 Op
-Gb
+uf
 Qa
 ao
-yJ
+JS
 uf
 Eq
 Xn
@@ -5586,11 +5574,11 @@ Eq
 Op
 fi
 Op
-bP
-lx
-lx
-oy
 uf
+uf
+uf
+jj
+Yn
 Eq
 Xn
 Xn
@@ -5621,7 +5609,7 @@ YU
 bW
 KY
 KY
-vV
+Xd
 Eq
 Xn
 Xn

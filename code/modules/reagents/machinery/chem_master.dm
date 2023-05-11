@@ -40,7 +40,7 @@
 	)
 
 
-/obj/machinery/chem_master/Initialize()
+/obj/machinery/chem_master/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(240)
 	reagents = R

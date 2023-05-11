@@ -1,6 +1,8 @@
 //The Marine mortar, the T-50S Mortar
 //Works like a contemporary crew weapon mortar
 
+//TODO SPLIT THIS FILE INTO A FOLDER BECAUSE ITS ARTY NOT MORTAR NOW
+
 #define TALLY_MORTAR  1
 #define TALLY_HOWITZER 2
 #define TALLY_ROCKET_ARTY 3
@@ -182,22 +184,22 @@
 	. = ..()
 
 	if(firing)
-		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off.")
+		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off")
 		return
 
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
 		if(length(chamber_items) >= max_rounds)
-			user.balloon_alert(user, "You cannot fit more in there.")
+			user.balloon_alert(user, "You cannot fit more")
 			return
 
 		if(!(I.type in allowed_shells))
-			user.balloon_alert(user, "This shell doesn't fit.")
+			user.balloon_alert(user, "This shell doesn't fit")
 			return
 
 		if(busy)
-			user.balloon_alert(user, "Someone else is using this.")
+			user.balloon_alert(user, "Someone else is using this")
 			return
 
 		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
@@ -213,7 +215,7 @@
 		user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
 		span_notice("You load \a [mortar_shell.name] into [src]."))
 		chamber_items += mortar_shell
-		user.balloon_alert(user, "Right click to fire.")
+		user.balloon_alert(user, "Right click to fire")
 		mortar_shell.forceMove(src)
 		user.temporarilyRemoveItemFromInventory(mortar_shell)
 
@@ -237,9 +239,9 @@
 	var/obj/item/binoculars/tactical/binocs = I
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(binocs.set_mortar(src))
-		to_chat(user, span_notice("You link the mortar to the [binocs] allowing for remote targeting."))
+		balloon_alert(user, "linked")
 		return
-	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
+	balloon_alert(user, "unlinked")
 
 ///Start firing the gun on target and increase tally
 /obj/machinery/deployable/mortar/proc/begin_fire(atom/target, obj/item/mortal_shell/arty_shell)
@@ -262,8 +264,11 @@
 	var/obj/projectile/shell = new /obj/projectile(loc)
 	var/datum/ammo/ammo = GLOB.ammo_list[arty_shell.ammo_type]
 	shell.generate_bullet(ammo)
-	var/shell_range = min(get_dist_euclide(src,target), ammo.max_range)
+	var/shell_range = min(get_dist_euclide(src, target), ammo.max_range)
 	shell.fire_at(target, src, src, shell_range, ammo.shell_speed)
+
+	perform_firing_visuals()
+
 	var/fall_time = (shell_range/(ammo.shell_speed * 5)) - 0.5 SECONDS
 	//prevent runtime
 	if(fall_time < 0.5 SECONDS)
@@ -272,7 +277,7 @@
 	current_shots++
 	addtimer(CALLBACK(src, PROC_REF(falling), target, shell), fall_time)
 	addtimer(CALLBACK(src, PROC_REF(return_cam)), fall_time + 2 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(cool_off)), cool_off_time)
+	addtimer(VARSET_CALLBACK(src, firing, FALSE), cool_off_time)
 
 ///Proc called by tactical binoculars to send targeting information.
 /obj/machinery/deployable/mortar/proc/recieve_target(turf/T, mob/user)
@@ -281,15 +286,16 @@
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
+///perform any individual sprite-specific visuals here
+/obj/machinery/deployable/mortar/proc/perform_firing_visuals()
+	SHOULD_NOT_SLEEP(TRUE)
+	return
+
 ///Returns the impact camera to the mortar
 /obj/machinery/deployable/mortar/proc/return_cam()
 	current_shots--
 	if(current_shots <= 0)
 		impact_cam.forceMove(src)
-
-///Allows the mortar to be fired again
-/obj/machinery/deployable/mortar/proc/cool_off()
-	firing = FALSE
 
 ///Begins fall animation for projectile and plays fall sound
 /obj/machinery/deployable/mortar/proc/falling(turf/T, obj/projectile/shell)
@@ -338,7 +344,7 @@
 	if(!isturf(target))
 		user.balloon_alert(user, "You cannot fire the gun to this target.")
 		return
-	setDir(get_dir(src, target))
+	setDir(get_cardinal_dir(src, target))
 
 	var/area/A = get_area(target)
 	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
@@ -396,7 +402,7 @@
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
-/obj/item/mortar_kit/Initialize()
+/obj/item/mortar_kit/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/deployable_item, deployable_item, 1 SECONDS)
 
@@ -473,6 +479,49 @@
 		to_chat(user, span_warning("You unanchored the gun from the ground. It may be moved."))
 
 
+/obj/machinery/deployable/mortar/howitzer/perform_firing_visuals()
+	var/particle_type = /particles/howitzer_dust
+	switch(dir)
+		if(NORTH)
+			particle_type = /particles/howitzer_dust/north
+		if(SOUTH)
+			particle_type = /particles/howitzer_dust/south
+		if(EAST)
+			particle_type = /particles/howitzer_dust/east
+	var/obj/effect/abstract/particle_holder/dust = new(src, particle_type)
+	addtimer(VARSET_CALLBACK(dust.particles, count, 0), 5)
+	QDEL_IN(dust, 3 SECONDS)
+
+/particles/howitzer_dust
+	icon = 'icons/effects/particles/smoke.dmi'
+	icon_state = list("smoke_1" = 1, "smoke_2" = 1, "smoke_3" = 2)
+	width = 150
+	height = 200
+	count = 40
+	spawning = 30
+	lifespan = 1 SECONDS
+	fade = 1 SECONDS
+	fadein = 4
+	position = generator(GEN_VECTOR, list(-7, -16), list(-7, -10), NORMAL_RAND)
+	velocity = list(25, -1)
+	color = "#fbebd3" //coloring in a sorta dark dusty look
+	drift = generator(GEN_SPHERE, 0, 1.5, NORMAL_RAND)
+	friction = 0.3
+	gravity = list(0, 0.55)
+	grow = 0.05
+
+/particles/howitzer_dust/east
+	velocity = list(-25, -1)
+	position = generator(GEN_VECTOR, list(7, -16), list(7, -10), NORMAL_RAND)
+
+/particles/howitzer_dust/north
+	velocity =  generator(GEN_VECTOR, list(10, -20), list(-10, -20), SQUARE_RAND)
+	position = list(16, -16)
+
+/particles/howitzer_dust/south
+	velocity =  generator(GEN_VECTOR, list(10, 20), list(-10, 20), SQUARE_RAND)
+	position = list(16, 16)
+
 /obj/item/mortar_kit/rocket_arty
 	name = "\improper TA-120R rocket artillery"
 	desc = "A manual, crew-operated and towable rocket artillery piece, will rain down a volley of 132mm rockets on any of your foes."
@@ -512,7 +561,10 @@
 	w_class = WEIGHT_CLASS_HUGE
 	deployable_item = /obj/machinery/deployable/mortar/howitzer/mlrs
 
-/obj/machinery/deployable/mortar/howitzer/mlrs
+/obj/machinery/deployable/mortar/howitzer/mlrs/perform_firing_visuals()
+	return
+
+/obj/machinery/deployable/mortar/howitzer/mlrs //TODO why in the seven hells is this a howitzer child??????
 	pixel_x = 0
 	anchored = FALSE // You can move this.
 	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
@@ -758,7 +810,7 @@
 	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	storage_slots = 16
 
-/obj/item/storage/box/mlrs_rockets/Initialize()
+/obj/item/storage/box/mlrs_rockets/Initialize(mapload)
 	. = ..()
 	new /obj/item/mortal_shell/rocket/mlrs(src)
 	new /obj/item/mortal_shell/rocket/mlrs(src)

@@ -88,6 +88,7 @@
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,

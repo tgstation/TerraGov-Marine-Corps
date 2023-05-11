@@ -32,7 +32,7 @@
 /area/deathmatch)
 "ai" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "aj" = (
 /obj/effect/landmark/deathmatch,
@@ -58,7 +58,7 @@
 /area/deathmatch)
 "ao" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "ap" = (
 /turf/open/ground/coast{
@@ -97,11 +97,11 @@
 /area/deathmatch)
 "ax" = (
 /obj/structure/dropship_piece/one/front/left,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "ay" = (
 /obj/structure/dropship_piece/one/front,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "az" = (
 /obj/structure/dropship_piece/one/front,
@@ -146,11 +146,11 @@
 /area/deathmatch)
 "aH" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "aI" = (
 /obj/structure/dropship_piece/one/cockpit/left,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "aJ" = (
 /turf/closed/shuttle/dropship1/window,
@@ -231,11 +231,11 @@
 /area/deathmatch)
 "ba" = (
 /obj/structure/dropship_piece/one/weapon/leftleft,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "bb" = (
 /obj/structure/dropship_piece/one/weapon/leftright,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "bc" = (
 /turf/closed/shuttle/dropship1/interiorwindow,
@@ -664,12 +664,7 @@
 	dir = 1
 	},
 /area/deathmatch)
-"cL" = (
-/obj/structure/platform_decoration,
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
 "cM" = (
-/obj/structure/platform,
 /obj/machinery/light,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
@@ -681,29 +676,14 @@
 	},
 /area/deathmatch)
 "cO" = (
-/obj/structure/platform,
 /obj/machinery/light,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
 /area/deathmatch)
-"cP" = (
-/obj/structure/platform_decoration{
-	dir = 1
-	},
-/turf/open/ground/coast/corner,
-/area/deathmatch)
 "cQ" = (
 /obj/machinery/door/airlock/dropship_hatch/right,
 /turf/open/shuttle/dropship/floor,
-/area/deathmatch)
-"cR" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/ground/coast/corner{
-	dir = 1
-	},
 /area/deathmatch)
 "cS" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -716,14 +696,6 @@
 /obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/shuttle/dropship/floor,
 /area/deathmatch)
-"cU" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/ground/coast{
-	dir = 6
-	},
-/area/deathmatch)
 "cV" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/plating/ground/dirt,
@@ -733,34 +705,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/deathmatch)
-"cX" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/ground/coast{
-	dir = 10
-	},
-/area/deathmatch)
 "cY" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/deathmatch)
-"cZ" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/ground/river,
 /area/deathmatch)
 "db" = (
 /obj/machinery/vending/nanomed{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
-/area/deathmatch)
-"dd" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/ground/river,
 /area/deathmatch)
 "df" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -804,43 +756,19 @@
 /area/deathmatch)
 "do" = (
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
-/turf/open/ground/river,
-/area/deathmatch)
-"dp" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/ground/coast{
-	dir = 5
-	},
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "dq" = (
 /obj/structure/dropship_piece/one/corner/rearleft,
 /obj/structure/dropship_piece/one/corner/rearleft,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "ds" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/deathmatch)
-"dt" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/ground/coast{
-	dir = 9
-	},
-/area/deathmatch)
-"du" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/deathmatch)
 "dv" = (
 /obj/structure/dropship_piece/one/rearwing/lefttop,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "dw" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -851,18 +779,7 @@
 /obj/structure/flora/stump,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
-"dy" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
-/area/deathmatch)
 "dz" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -871,15 +788,9 @@
 "dA" = (
 /turf/open/floor/stairs/rampbottom,
 /area/deathmatch)
-"dB" = (
-/obj/structure/platform_decoration{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
 "dC" = (
 /obj/structure/dropship_piece/one/rearwing/leftbottom,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "dD" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -950,33 +861,9 @@
 "dT" = (
 /turf/open/floor/wood,
 /area/deathmatch)
-"dV" = (
-/obj/structure/platform_decoration,
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/deathmatch)
-"dW" = (
-/obj/structure/platform,
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
-"dX" = (
-/obj/structure/platform,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/deathmatch)
 "dY" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
-"dZ" = (
-/obj/structure/platform_decoration{
-	dir = 1
-	},
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
 /area/deathmatch)
 "ea" = (
 /turf/closed/shuttle/dropship1/enginefour{
@@ -1004,31 +891,6 @@
 /turf/open/ground/coast{
 	dir = 4
 	},
-/area/deathmatch)
-"ef" = (
-/obj/structure/platform,
-/turf/open/ground/river,
-/area/deathmatch)
-"eg" = (
-/obj/structure/platform,
-/turf/open/ground/coast{
-	dir = 9
-	},
-/area/deathmatch)
-"eh" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform,
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
-/area/deathmatch)
-"ei" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "ej" = (
 /turf/closed/shuttle/dropship1/interiormisc,
@@ -1090,37 +952,8 @@
 	dir = 4
 	},
 /area/deathmatch)
-"ew" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/ground/river,
-/area/deathmatch)
-"ex" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/deathmatch)
-"ey" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
 "ez" = (
 /turf/open/floor/mainship/mono,
-/area/deathmatch)
-"eA" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/ground/coast/corner,
 /area/deathmatch)
 "eB" = (
 /obj/structure/dropship_piece/one/engine/leftbottom,
@@ -1131,40 +964,6 @@
 "eC" = (
 /obj/structure/dropship_piece/one/engine/rightbottom,
 /turf/open/ground/grass,
-/area/deathmatch)
-"eD" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/ground/coast/corner{
-	dir = 1
-	},
-/area/deathmatch)
-"eE" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
-"eF" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/ground/coast/corner,
-/area/deathmatch)
-"eG" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/ground/coast,
-/area/deathmatch)
-"eH" = (
-/obj/structure/platform_decoration{
-	dir = 4
-	},
-/turf/open/ground/coast{
-	dir = 6
-	},
 /area/deathmatch)
 "eI" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -1187,7 +986,7 @@
 "eM" = (
 /obj/structure/dropship_piece/one/engine/righttop,
 /obj/structure/dropship_piece/one/engine/righttop,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "eO" = (
 /obj/structure/window/framed/mainship/hull,
@@ -1261,11 +1060,11 @@
 /area/deathmatch)
 "ff" = (
 /obj/structure/dropship_piece/one/engine/leftbottom,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "fg" = (
 /obj/structure/dropship_piece/one/engine/rightbottom,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "fv" = (
 /obj/structure/sink{
@@ -1279,10 +1078,22 @@
 "fI" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
+"hc" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/closed/wall,
+/area/deathmatch)
 "hA" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
+/area/deathmatch)
+"hC" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "hM" = (
 /turf/open/floor/plating/asteroidwarning,
@@ -1312,6 +1123,13 @@
 "lu" = (
 /turf/open/floor/freezer,
 /area/deathmatch)
+"mX" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/platform,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "nc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -1339,6 +1157,13 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/grime,
+/area/deathmatch)
+"ru" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "rN" = (
 /obj/machinery/door/window/right,
@@ -1381,17 +1206,45 @@
 	dir = 1
 	},
 /area/deathmatch)
+"xv" = (
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/closed/wall,
+/area/deathmatch)
 "xw" = (
 /turf/closed/shuttle/dropship1/edge/alt{
 	dir = 1
 	},
 /area/deathmatch)
+"xy" = (
+/obj/structure/platform,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "xX" = (
 /turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"ys" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"zV" = (
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "CG" = (
 /obj/structure/window/framed/wood,
 /turf/open/floor/wood,
+/area/deathmatch)
+"Dj" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "GL" = (
 /turf/open/ground/coast/corner{
@@ -1417,6 +1270,24 @@
 "LP" = (
 /turf/open/ground/grass,
 /area/deathmatch)
+"MV" = (
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"Nw" = (
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/closed/wall,
+/area/deathmatch)
+"Os" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "QB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -1435,7 +1306,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "TP" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "UN" = (
 /obj/structure/window/framed/mainship/requisitions,
@@ -1450,6 +1321,18 @@
 /turf/open/ground/coast{
 	dir = 5
 	},
+/area/deathmatch)
+"VP" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"WP" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/closed/wall,
 /area/deathmatch)
 
 (1,1,1) = {"
@@ -2000,16 +1883,16 @@ aw
 xX
 af
 aw
-cL
-cR
-cX
-dd
-dd
-dd
-dd
-dd
-dt
-dy
+xX
+cK
+bT
+TP
+TP
+TP
+TP
+TP
+ap
+GL
 xX
 fI
 dJ
@@ -2049,14 +1932,14 @@ ci
 ci
 ci
 cM
-as
-ez
-ez
-ez
-ez
-ez
-ez
-as
+xv
+hC
+hC
+hC
+hC
+hC
+hC
+WP
 dz
 xX
 fI
@@ -2241,14 +2124,14 @@ ca
 ca
 ca
 cO
-as
-cS
-ez
-ez
-ez
-ez
-cS
-as
+Nw
+ru
+Os
+Os
+Os
+Os
+ru
+hc
 dz
 dF
 xX
@@ -2288,24 +2171,24 @@ xX
 xX
 al
 af
-cP
-cU
-cZ
-cZ
-cZ
-cZ
-cZ
-dp
-du
-dB
+ag
+Tu
+TP
+TP
+TP
+TP
+TP
+VE
+bj
+xX
 af
 ag
 an
 Tu
 TP
-ef
-ez
-ew
+TP
+mX
+TP
 TP
 TP
 VE
@@ -2351,9 +2234,9 @@ Tu
 TP
 ao
 TP
-eg
-ez
-ex
+ap
+mX
+rW
 bT
 TP
 TP
@@ -2398,11 +2281,11 @@ ai
 TP
 TP
 ap
-dV
-eh
-ez
-ey
-eD
+rW
+GL
+mX
+xX
+cK
 bT
 TP
 ao
@@ -2446,11 +2329,11 @@ TP
 TP
 TP
 aq
-dW
+xX
+MV
 ez
-ez
-ez
-eE
+ys
+xX
 tf
 TP
 TP
@@ -2494,11 +2377,11 @@ TP
 aH
 TP
 VE
-dX
-ez
+bj
+Dj
 er
-ez
-eF
+xy
+ag
 Tu
 TP
 TP
@@ -2542,11 +2425,11 @@ TP
 TP
 TP
 ap
-dW
+xX
+zV
 ez
-ez
-ez
-eG
+VP
+tf
 TP
 TP
 TP
@@ -2590,11 +2473,11 @@ TP
 TP
 TP
 VE
-dZ
-ei
+bj
+xX
 es
-eA
-eH
+ag
+Tu
 TP
 ao
 TP

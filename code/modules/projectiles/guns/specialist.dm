@@ -72,7 +72,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 
-/obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize()
+/obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize(mapload)
 	. = ..()
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 	integrated_laze = new(src)
@@ -350,6 +350,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -423,7 +424,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	obj_flags = AUTOBALANCE_CHECK
 
-/obj/item/weapon/gun/minigun/Initialize()
+/obj/item/weapon/gun/minigun/Initialize(mapload)
 	. = ..()
 	if(obj_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.miniguns_in_use += src

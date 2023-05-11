@@ -17,7 +17,7 @@
 	var/mopcount = 0
 
 
-/obj/item/tool/mop/Initialize()
+/obj/item/tool/mop/Initialize(mapload)
 	. = ..()
 	create_reagents(5)
 
@@ -87,7 +87,7 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/tool/soap/Initialize()
+/obj/item/tool/soap/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 0.3 SECONDS, 0.2 SECONDS)
 
@@ -122,7 +122,7 @@
 /obj/item/tool/soap/deluxe
 	icon_state = "soapdeluxe"
 
-/obj/item/tool/soap/deluxe/Initialize()
+/obj/item/tool/soap/deluxe/Initialize(mapload)
 	. = ..()
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
 

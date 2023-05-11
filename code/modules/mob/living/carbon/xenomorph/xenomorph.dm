@@ -74,10 +74,12 @@
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
 	if(z) //Larva are initiated in null space
-		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
+		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon))
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, PROC_REF(handle_weeds_adjacent_removed))
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, PROC_REF(handle_weeds_on_movement))
 	handle_weeds_on_movement()
+
+	AddElement(/datum/element/footstep, FOOTSTEP_XENO_MEDIUM, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health
 /mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
@@ -89,6 +91,10 @@
 		CRASH("error finding datum")
 	if(xeno_caste)
 		xeno_caste.on_caste_removed(src)
+
+		soft_armor = soft_armor.detachArmor(getArmor(arglist(xeno_caste.soft_armor)))
+		hard_armor = hard_armor.detachArmor(getArmor(arglist(xeno_caste.hard_armor)))
+
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
@@ -100,9 +106,10 @@
 		plasma_stored = max(plasma_stored, xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
 		health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
-	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
-	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
-	warding_aura = 0 //Resets aura for reapplying armor
+
+	//detaching and attaching preserves any tempory armor modifiers on the xeno
+	soft_armor = soft_armor.attachArmor(getArmor(arglist(xeno_caste.soft_armor)))
+	hard_armor = hard_armor.attachArmor(getArmor(arglist(xeno_caste.hard_armor)))
 
 ///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff while maintaining current health percent.
 /mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
@@ -124,10 +131,6 @@
 
 	maxHealth = new_max_health
 	updatehealth()
-
-/mob/living/carbon/xenomorph/set_armor_datum()
-	return //Handled in set_datum()
-
 
 /mob/living/carbon/xenomorph/proc/generate_nicknumber()
 	//We don't have a nicknumber yet, assign one to stick with us

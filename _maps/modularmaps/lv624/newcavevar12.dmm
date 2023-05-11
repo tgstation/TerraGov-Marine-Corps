@@ -159,11 +159,11 @@
 /area/lv624/ground/caves/central1)
 "En" = (
 /obj/effect/landmark/weed_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "EZ" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Fa" = (
 /obj/structure/rack,
@@ -233,10 +233,10 @@
 /area/lv624/ground/caves/central1)
 "Ws" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Wy" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "WN" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -245,7 +245,7 @@
 /area/lv624/ground/caves/central1)
 "WS" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "XU" = (
 /obj/effect/ai_node,

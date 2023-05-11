@@ -95,7 +95,7 @@
 		/obj/item/tweezers,
 	)
 
-/obj/item/storage/internal/surgery_webbing/Initialize()
+/obj/item/storage/internal/surgery_webbing/Initialize(mapload)
 	. = ..()
 	new /obj/item/tool/surgery/scalpel/manager(src)
 	new /obj/item/tool/surgery/scalpel(src)
@@ -117,21 +117,21 @@
 
 /obj/item/armor_module/storage/uniform/holster/freelancer
 
-/obj/item/armor_module/storage/uniform/holster/freelancer/Initialize()
+/obj/item/armor_module/storage/uniform/holster/freelancer/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/pistol/g22(storage)
 	new /obj/item/ammo_magazine/pistol/g22(storage)
 	new /obj/item/ammo_magazine/pistol/g22(storage)
 	new /obj/item/ammo_magazine/pistol/g22(storage)
 
-/obj/item/armor_module/storage/uniform/holster/vp/Initialize()
+/obj/item/armor_module/storage/uniform/holster/vp/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/pistol/vp70(storage)
 	new /obj/item/ammo_magazine/pistol/vp70(storage)
 	new /obj/item/ammo_magazine/pistol/vp70(storage)
 	new /obj/item/ammo_magazine/pistol/vp70(storage)
 
-/obj/item/armor_module/storage/uniform/holster/highpower/Initialize()
+/obj/item/armor_module/storage/uniform/holster/highpower/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/pistol/highpower(storage)
 	new /obj/item/ammo_magazine/pistol/highpower(storage)

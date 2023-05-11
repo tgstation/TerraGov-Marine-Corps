@@ -9,7 +9,7 @@
 	plane = FLOOR_PLANE
 	//	flags = CONDUCT
 
-/obj/structure/lattice/Initialize()
+/obj/structure/lattice/Initialize(mapload)
 	. = ..()
 	if(!isspaceturf(loc))
 		qdel(src)
@@ -81,13 +81,10 @@
 	smoothing_groups = list(SMOOTH_GROUP_LATTICE)
 	canSmoothWith = list(SMOOTH_GROUP_LATTICE)
 
-/obj/structure/catwalk/Initialize()
+/obj/structure/catwalk/Initialize(mapload)
 	. = ..()
 	layer = CATWALK_LAYER
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open))
 		var/turf/open/O = T
-		var/obj/effect/river_overlay/R = locate() in T // remove any river overlays
-		if(R)
-			qdel(R)
 		O.has_catwalk = TRUE

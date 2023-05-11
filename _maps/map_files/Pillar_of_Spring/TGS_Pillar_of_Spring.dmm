@@ -1587,7 +1587,7 @@
 /area/mainship/living/commandbunks)
 "bTS" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
 "bUC" = (
@@ -4497,7 +4497,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "fFa" = (
@@ -5446,7 +5446,7 @@
 /area/mainship/squads/general)
 "hbh" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/effect/decal/cleanable/blood/writing{
 	desc = "It looks like a writing in blood. It says, 'I am missing and forgotten.'";
 	dir = 4
@@ -7033,7 +7033,7 @@
 /area/mainship/hallways/port_hallway)
 "jhK" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -9500,10 +9500,8 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/upper_engineering)
 "mjo" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/punching_bag,
+/obj/machinery/camera/autoname/mainship,
+/obj/structure/benchpress,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "mka" = (
@@ -12822,6 +12820,11 @@
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},
+/obj/structure/table/mainship/nometal,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/weapon/gun/rifle/m412,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "qAM" = (
@@ -13975,7 +13978,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "sbg" = (
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/structure/droppod/leader,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
@@ -14778,11 +14781,10 @@
 	},
 /area/mainship/squads/general)
 "teh" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/weapon/gun/rifle/m412,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/punching_bag,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "tem" = (
@@ -16551,7 +16553,7 @@
 /area/mainship/command/cic)
 "vfU" = (
 /obj/structure/droppod,
-/obj/structure/dropprop,
+/obj/structure/drop_pod_launcher,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -18413,6 +18415,10 @@
 	name = "Requisitions lockdown";
 	pixel_x = 6;
 	pixel_y = 2
+	},
+/obj/item/minimap_tablet{
+	pixel_x = 9;
+	pixel_y = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
@@ -59278,7 +59284,7 @@ hUz
 hUz
 imx
 nJG
-teh
+bDv
 aFl
 bDv
 uLb
@@ -59535,7 +59541,7 @@ esN
 esN
 unX
 nJG
-pgv
+mjo
 bDv
 bDv
 bDv
@@ -59792,9 +59798,9 @@ nWT
 esN
 unX
 nJG
-mjo
-qAJ
 kbW
+qAJ
+teh
 kbW
 kbW
 vSE

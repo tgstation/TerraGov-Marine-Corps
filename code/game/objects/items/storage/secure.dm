@@ -133,7 +133,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 
 
-/obj/item/storage/secure/briefcase/Initialize()
+/obj/item/storage/secure/briefcase/Initialize(mapload)
 	. = ..()
 	new /obj/item/paper(src)
 	new /obj/item/tool/pen(src)

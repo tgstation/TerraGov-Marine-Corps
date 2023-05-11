@@ -413,7 +413,7 @@
 	///the item left behind when this is used up
 	var/trash_item = /obj/item/trash/mre
 
-/obj/item/storage/box/MRE/Initialize()
+/obj/item/storage/box/MRE/Initialize(mapload)
 	. = ..()
 	pickflavor()
 
@@ -1115,6 +1115,20 @@
 	spawn_type = /obj/item/explosive/grenade/incendiary
 	closed_overlay = "grenade_box_overlay_hidp"
 
+/obj/item/storage/box/visual/grenade/trailblazer
+	name = "\improper M45 Trailblazer grenade box"
+	desc = "A secure box holding 25 M45 Trailblazer grenades. Warning: highly flammable!!!"
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/sticky/trailblazer
+	closed_overlay = "grenade_box_overlay_M45"
+
+/obj/item/storage/box/visual/grenade/sticky
+	name = "\improper M40 adhesive charge grenade box"
+	desc = "A secure box holding 25 M40 adhesive charge grenades. Highly explosive and sticky."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/sticky
+	closed_overlay = "grenade_box_overlay_sticky"
+
 /obj/item/storage/box/visual/grenade/phosphorus
 	name = "\improper M40 HPDP grenade box"
 	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
@@ -1138,6 +1152,13 @@
 	spawn_type = /obj/item/explosive/grenade/smokebomb/cloak
 	closed_overlay = "grenade_box_overlay_cloak"
 
+/obj/item/storage/box/visual/grenade/smokebomb
+	name = "\improper M40 HSDP grenade box"
+	desc = "A secure box holding 25 M40 HSDP smoke grenades. Don't blindly shoot into the smoke."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb
+	closed_overlay = "grenade_box_overlay_smokebomb"
+
 /obj/item/storage/box/visual/grenade/drain
 	name = "\improper M40-T grenade box"
 	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
@@ -1153,6 +1174,14 @@
 	spawn_number = 15
 	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
 	closed_overlay = "grenade_box_overlay_razorburn"
+
+/obj/item/storage/box/visual/grenade/razorburn_large
+	name = "razorburn canister box"
+	desc = "A secure box holding 10 razorburn canisters. Used for quick flank coverage."
+	storage_slots = 10
+	spawn_number = 10
+	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_large
+	closed_overlay = "grenade_box_overlay_razorburn_large"
 
 /obj/item/storage/box/visual/grenade/teargas
 	name = "\improper M66 teargas grenade box"

@@ -270,7 +270,7 @@
 //	 bitesize = 3														//This is the amount each bite consumes.
 
 
-///obj/item/reagent_containers/food/snacks/burger/xeno/Initialize()		//Absolute pathing for procs, please.
+///obj/item/reagent_containers/food/snacks/burger/xeno/Initialize(mapload)		//Absolute pathing for procs, please.
 //	 . = ..()															//Calls the parent proc, don't forget to add this.
 
 
@@ -433,7 +433,7 @@
 	bitesize = 3
 
 
-/obj/item/reagent_containers/food/snacks/organ/Initialize()
+/obj/item/reagent_containers/food/snacks/organ/Initialize(mapload)
 	list_reagents = list(/datum/reagent/consumable/nutriment = rand(3,5), /datum/reagent/toxin = rand(1,3))
 	return ..()
 
@@ -525,16 +525,6 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/toxin/sleeptoxin = 3)
 	tastes = list("meat" = 1, "salmon" = 1)
 	bitesize = 3
-
-/obj/item/reagent_containers/food/snacks/xenomeat
-	name = "meat"
-	desc = "A slab of meat"
-	icon = 'icons/obj/items/food/meat.dmi'
-	icon_state = "xenomeat"
-	filling_color = "#43DE18"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
-	tastes = list("meat" = 1, "acid" = 1)
-	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/raw_lizard_sausage
 	name = "raw Lizard blood sausage"
@@ -709,7 +699,7 @@
 	tastes = list("popcorn" = 3, "butter" = 1)
 
 
-/obj/item/reagent_containers/food/snacks/popcorn/Initialize()
+/obj/item/reagent_containers/food/snacks/popcorn/Initialize(mapload)
 	. = ..()
 	unpopped = rand(1,10)
 
@@ -1068,7 +1058,7 @@
 	bitesize = 2
 	tastes = list("mushroom" = 1, "biscuit" = 1)
 
-/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit/Initialize()
+/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit/Initialize(mapload)
 	if(prob(10))
 		name = "exceptional plump helmet biscuit"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
@@ -1265,10 +1255,13 @@
 	desc = "A synthetic slab of flesh."
 
 /obj/item/reagent_containers/food/snacks/meat/human
-	name = "-meat"
-	var/subjectname = ""
-	var/subjectjob = null
+	desc = "A slab of meat. Looks kinda like pork..."
 
+/obj/item/reagent_containers/food/snacks/meat/xeno
+	icon_state = "xenomeat"
+	filling_color = "#43DE18"
+	tastes = list("meat" = 1, "acid" = 1)
+	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/meat/monkey
 	//same as plain meat
@@ -1315,7 +1308,7 @@
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 
-/obj/item/reagent_containers/food/snacks/rawmeatball/Initialize()
+/obj/item/reagent_containers/food/snacks/rawmeatball/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meatball, rand(40 SECONDS, 50 SECONDS), TRUE, TRUE)
 
@@ -1393,7 +1386,7 @@
 	var/variation = null
 
 
-/obj/item/reagent_containers/food/snacks/upp/Initialize()
+/obj/item/reagent_containers/food/snacks/upp/Initialize(mapload)
 	if(!variation)
 		variation = pick("fish","rice")
 
@@ -1563,7 +1556,7 @@
 	var/next_succ = 0
 	var/mob/living/carbon/owner
 
-/obj/item/reagent_containers/food/snacks/lollipop/Initialize()
+/obj/item/reagent_containers/food/snacks/lollipop/Initialize(mapload)
 	. = ..()
 	head = mutable_appearance('icons/obj/items/lollipop.dmi', "lollipop_head")
 	change_head_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))

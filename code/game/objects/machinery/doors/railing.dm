@@ -19,7 +19,7 @@
 	density = FALSE
 
 
-/obj/machinery/door/poddoor/railing/Initialize()
+/obj/machinery/door/poddoor/railing/Initialize(mapload)
 	. = ..()
 	if(dir == SOUTH)
 		closed_layer = ABOVE_MOB_LAYER
@@ -38,7 +38,7 @@
 
 /obj/machinery/door/poddoor/railing/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/moveblockers)
 	SIGNAL_HANDLER
-	if(!mover.throwing || !density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL) || (isitem(mover) && mover.throwing))
 		return NONE
 	moveblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT

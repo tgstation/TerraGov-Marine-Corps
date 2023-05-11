@@ -9,7 +9,7 @@
 	///amount of currently stored mines
 	var/stored_mines = 0
 
-/obj/item/minelayer/Initialize()
+/obj/item/minelayer/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/minelayer, 1 SECONDS)
 

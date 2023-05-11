@@ -19,7 +19,7 @@
 	///Icon for the extra storage overlays.
 	var/show_storage_icon = 'icons/mob/modular/modular_helmet_storage.dmi'
 
-/obj/item/armor_module/storage/Initialize()
+/obj/item/armor_module/storage/Initialize(mapload)
 	. = ..()
 	storage = new storage(src)
 
@@ -132,21 +132,21 @@
 	storage = /obj/item/storage/internal/modular/ammo_mag
 	slowdown = 0.1
 
-/obj/item/armor_module/storage/ammo_mag/freelancer/Initialize()
+/obj/item/armor_module/storage/ammo_mag/freelancer/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 
-/obj/item/armor_module/storage/ammo_mag/freelancer_two/Initialize()
+/obj/item/armor_module/storage/ammo_mag/freelancer_two/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 
-/obj/item/armor_module/storage/ammo_mag/freelancer_three/Initialize()
+/obj/item/armor_module/storage/ammo_mag/freelancer_three/Initialize(mapload)
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/tx54(storage)
 	new /obj/item/ammo_magazine/rifle/tx54(storage)
@@ -235,7 +235,7 @@
 	item_state = ""
 	flags_attach_features = ATTACH_APPLY_ON_MOB
 
-/obj/item/armor_module/storage/medical/freelancer/Initialize()
+/obj/item/armor_module/storage/medical/freelancer/Initialize(mapload)
 	. = ..()
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(storage)
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(storage)
@@ -328,14 +328,18 @@
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/stack/throwing_knife,
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/item/armor_module/storage/boot/full/Initialize()
+/obj/item/armor_module/storage/boot/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/combat_knife(storage)
 
+/obj/item/armor_module/storage/boot/som_knife/Initialize(mapload)
+	. = ..()
+	new /obj/item/attachable/bayonetknife/som(storage)
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."
