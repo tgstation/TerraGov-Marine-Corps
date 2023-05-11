@@ -3419,7 +3419,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T.density ? P.loc : T, P.firer)
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
-	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro/transparent()
 
 /datum/ammo/xeno/boiler_gas/drop_nade(turf/T, atom/firer, range = 1)
 	set_smoke()
@@ -3466,7 +3466,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	airburst(victim, proj)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
-	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid/transparent()
 
 /datum/ammo/xeno/boiler_gas/lance
 	name = "pressurized glob of gas"

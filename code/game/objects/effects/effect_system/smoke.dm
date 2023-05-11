@@ -309,6 +309,10 @@
 	opacity = FALSE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
 
+/obj/effect/particle_effect/smoke/xeno/burn/transparent
+	alpha = 120
+	opacity = FALSE
+
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
 	color = "#ffbf58" //Mustard orange?
@@ -324,6 +328,10 @@
 	alpha = 60
 	opacity = FALSE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
+
+/obj/effect/particle_effect/smoke/xeno/neuro/transparent
+	alpha = 120
+	opacity = FALSE
 
 /obj/effect/particle_effect/smoke/xeno/toxic
 	lifetime = 2
@@ -386,6 +394,9 @@
 /datum/effect_system/smoke_spread/xeno/acid/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/light
 
+/datum/effect_system/smoke_spread/xeno/acid/transparent
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/transparent
+
 /datum/effect_system/smoke_spread/xeno/neuro
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro
 
@@ -394,6 +405,9 @@
 
 /datum/effect_system/smoke_spread/xeno/neuro/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
+
+/datum/effect_system/smoke_spread/xeno/neuro/transparent
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/transparent
 
 /datum/effect_system/smoke_spread/xeno/toxic
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/toxic
