@@ -3,7 +3,7 @@
 	base_probability = 20
 	alignement_factor = -2
 	///number of available special weapon dudes
-	var/max_specialists = 1
+	var/max_specialists = 3
 
 /datum/emergency_call/spacecops/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B> You are a member of the local law enforcement unit stationed on a large nearby colony world, having arms and training above the civilian level with some exceptional gear given due to budget stimulus.</b>")
