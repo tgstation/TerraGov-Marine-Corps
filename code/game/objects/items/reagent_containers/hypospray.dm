@@ -596,6 +596,14 @@
 	)
 	description_overlay = "Qk"
 
+/obj/item/reagent_containers/hypospray/advanced/big/isotonic
+	name = "big isotonic hypospray"
+	desc = "A hypospray loaded with Saline-Glucose solution. A chemical that replenishes blood."
+	list_reagents = list(
+		/datum/reagent/medicine/isotonic = 120,
+	)
+	description_overlay = "Is"
+
 /obj/item/reagent_containers/hypospray/advanced/big/hypervene
 	name = "big hypervene hypospray"
 	desc = "A hypospray loaded with hypervene. A chemical that purges all chemicals from the bloodstream."

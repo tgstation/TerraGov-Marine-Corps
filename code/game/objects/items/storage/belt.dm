@@ -332,7 +332,7 @@
 	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/isotonic(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/imialky(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
