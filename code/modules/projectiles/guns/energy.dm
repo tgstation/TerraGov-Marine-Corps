@@ -638,7 +638,7 @@
 	icon_state = "tes"
 	item_state = "tes"
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 12 //codex stuff
+	max_shots = 20 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
 	rounds_per_shot = 50
@@ -682,7 +682,7 @@
 	)
 
 /datum/lasrifle/base/energy_sniper_mode/standard
-	rounds_per_shot = 50
+	rounds_per_shot = 30
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
@@ -691,7 +691,7 @@
 	icon_state = "tes"
 
 /datum/lasrifle/base/energy_sniper_mode/heat
-	rounds_per_shot = 150
+	rounds_per_shot = 100
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_heat
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
