@@ -118,6 +118,10 @@
 /obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"R" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
 "S" = (
 /obj/machinery/door_control{
 	id = "minidropship_podlock";
@@ -214,7 +218,7 @@ u
 P
 q
 c
-F
+R
 "}
 (5,1,1) = {"
 Z

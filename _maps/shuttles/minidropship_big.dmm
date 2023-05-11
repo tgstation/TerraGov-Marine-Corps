@@ -100,6 +100,10 @@
 /obj/structure/table/mainship,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"x" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
 "y" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /turf/open/floor/plating/plating_catwalk,
@@ -259,7 +263,7 @@ b
 b
 S
 b
-b
+x
 b
 "}
 (7,1,1) = {"
