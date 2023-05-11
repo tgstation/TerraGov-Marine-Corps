@@ -315,6 +315,8 @@
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/storage/pill_bottle,
 		/obj/item/reagent_containers/hypospray,
 	)
 
