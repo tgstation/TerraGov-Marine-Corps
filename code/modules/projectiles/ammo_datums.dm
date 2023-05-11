@@ -2653,7 +2653,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "wide range laser blast"
 	icon_state = "heavylaser2"
 	hud_state = "laser_spread"
-	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/spread
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/blast/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 5
 	accuracy_var_low = 9
@@ -2665,13 +2665,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	hitscan_effect_icon = "pu_laser"
 
-/datum/ammo/energy/lasgun/marine/spread
+/datum/ammo/energy/lasgun/marine/blast/spread
 	name = "additional laser blast"
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
 	damage = 18
 	penetration = 15
+	sundering = 1
 
 /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	name = "efficient machine laser bolt"
@@ -2697,7 +2698,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 30
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
-	sundering = 4
+	sundering = 5
 	max_range = 40
 	damage_falloff = 0
 	hitscan_effect_icon = "beam_heavy"
@@ -2718,6 +2719,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "pistol laser bolt"
 	damage = 20
 	penetration = 5
+	sundering = 1
 	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler

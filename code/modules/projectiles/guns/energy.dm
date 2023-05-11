@@ -534,7 +534,7 @@
 	radial_icon_state = "laser_disabler"
 
 /datum/lasrifle/base/energy_pistol_mode/heat
-	rounds_per_shot = 110
+	rounds_per_shot = 100
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol/heat
 	fire_delay = 0.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
