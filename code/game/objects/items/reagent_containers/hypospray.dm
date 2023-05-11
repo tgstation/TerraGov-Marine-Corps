@@ -595,3 +595,11 @@
 		/datum/reagent/medicine/quickclot = 120,
 	)
 	description_overlay = "Qk"
+
+/obj/item/reagent_containers/hypospray/advanced/big/hypervene
+	name = "big hypervene hypospray"
+	desc = "A hypospray loaded with hypervene. A chemical that purges all chemicals from the bloodstream."
+	list_reagents = list(
+		/datum/reagent/medicine/hypervene = 120,
+	)
+	description_overlay = "Hy"

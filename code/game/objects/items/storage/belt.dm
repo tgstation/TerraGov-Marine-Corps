@@ -336,7 +336,7 @@
 	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/imialky(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
-	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/hypervene(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/security
