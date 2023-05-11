@@ -871,6 +871,7 @@
 	accuracy_mult_unwielded = 0.5
 	scatter = 2
 	scatter_unwielded = 80
+	movement_acc_penalty_mult = 6
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
