@@ -22,3 +22,5 @@
 /mob/living/carbon/xenomorph/warlock/Initialize()
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/energy/xeno/psy_blast]
+	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+

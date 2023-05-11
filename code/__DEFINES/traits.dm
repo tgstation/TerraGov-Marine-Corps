@@ -137,6 +137,12 @@
 #define TRAIT_TIME_SHIFTED "time_shifted"
 #define TRAIT_LEASHED "leashed"
 #define TRAIT_CAN_VENTCRAWL "can_ventcrawl"
+///Makes no footsteps at all
+#define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
+///quieter footsteps
+#define TRAIT_LIGHT_STEP "light_step"
+///noisier footsteps
+#define TRAIT_HEAVY_STEP "heavy_step"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
