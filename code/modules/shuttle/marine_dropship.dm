@@ -502,7 +502,7 @@
 		M.unlock_all()
 		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
-			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors[(M.mode != SHUTTLE_IGNITING) ? "and preventing it from flight." : ", but we are unable to prevent it from flight as it is currently taking off!"]"))
+			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors[(M.mode != SHUTTLE_IGNITING) ? "and preventing it from flying." : ", but we are unable to prevent it from flying as it is already taking off!"]"))
 			if(M.mode != SHUTTLE_IGNITING)
 				M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 				M.do_start_hijack_timer()
