@@ -30,10 +30,10 @@
 	dir = 1;
 	pixel_x = 23
 	},
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "f" = (
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "l" = (
 /obj/machinery/door/poddoor/mainship/open{
@@ -81,9 +81,7 @@
 	id = "minidropship_podlock"
 	},
 /obj/machinery/vending/boozeomat,
-/turf/open/floor/mainship/white{
-	dir = 1
-	},
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "v" = (
 /obj/machinery/processor,
@@ -261,7 +259,7 @@
 	dir = 1;
 	pixel_x = -23
 	},
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "Z" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/right{
