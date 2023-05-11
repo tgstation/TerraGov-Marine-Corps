@@ -318,6 +318,7 @@
 		/obj/item/reagent_containers/pill,
 		/obj/item/storage/pill_bottle,
 		/obj/item/reagent_containers/hypospray,
+		/obj/item/stack/medical,
 	)
 
 /obj/item/storage/belt/hypospraybelt/Initialize(mapload)  //The belt, with all it's magic inside!
