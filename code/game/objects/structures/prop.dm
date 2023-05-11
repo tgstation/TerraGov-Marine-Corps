@@ -993,7 +993,8 @@
 	icon_state = "surplus_armor-broken"
 
 ///BROKEN VEHICLE PROPS
-
+/obj/structure/prop/vehicle
+	layer = TANK_BARREL_LAYER
 /obj/structure/prop/vehicle/van
 	name = "van"
 	desc = "An old van, seems to be broken down."
@@ -1004,7 +1005,6 @@
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/van/Initialize(mapload)
 	. = ..()
@@ -1026,7 +1026,6 @@
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/truck/destructible
 	max_integrity = 150
@@ -1049,7 +1048,6 @@
 	bound_height = 64
 	bound_width = 64
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/crane/destructible
 	max_integrity = 300
@@ -1072,7 +1070,6 @@
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/crawler/destructible
 	max_integrity = 200
@@ -1104,7 +1101,6 @@
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/tank/north
 	icon = 'icons/Marine/tank_propns.dmi'
@@ -1174,7 +1170,6 @@
 
 /obj/structure/prop/vehicle/tank/east/decoration/armor
 	icon_state = "caustic_armor"
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/tank/east/decoration/armor/causticarmor
 	icon_state = "caustic_armor"
@@ -1275,7 +1270,6 @@
 
 /obj/structure/prop/vehicle/tank/north/barrel
 	icon_state = "ltb_cannon_0"
-	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/tank/north/barrel/broken
@@ -1303,7 +1297,6 @@
 
 /obj/structure/prop/vehicle/tank/north/decoration/armor
 	icon_state = "caustic_armor"
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/tank/north/decoration/armor/causticarmor
 	icon_state = "caustic_armor"
@@ -1399,7 +1392,6 @@
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/apc/Initialize(mapload)
 	. = ..()

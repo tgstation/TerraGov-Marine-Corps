@@ -28,10 +28,6 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "ay" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
@@ -42,10 +38,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/blue2,
-/area/deathmatch)
-"aT" = (
-/obj/structure/platform,
-/turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "bB" = (
 /obj/effect/decal/cleanable/dirt,
@@ -64,6 +56,12 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
+"bW" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/deathmatch)
 "bZ" = (
 /obj/machinery/light{
 	dir = 4
@@ -71,10 +69,6 @@
 /turf/open/floor/stairs,
 /area/deathmatch)
 "cc" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
@@ -160,6 +154,12 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
+/area/deathmatch)
+"eo" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/closed/wall/mainship/gray,
 /area/deathmatch)
 "eq" = (
 /obj/effect/landmark/deathmatch,
@@ -365,12 +365,6 @@
 "jg" = (
 /turf/open/floor/tile/arrival,
 /area/deathmatch)
-"jm" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/deathmatch)
 "js" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/pen,
@@ -439,12 +433,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
-"li" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/snow/layer1,
-/area/deathmatch)
 "lk" = (
 /obj/structure/ore_box,
 /turf/open/floor/stairs,
@@ -472,11 +460,16 @@
 /area/deathmatch)
 "lE" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/structure/platform,
 /turf/open/floor/plating,
 /area/deathmatch)
 "lH" = (
 /obj/structure/inflatable/wall,
 /turf/open/floor/stairs,
+/area/deathmatch)
+"lX" = (
+/obj/structure/platform,
+/turf/open/floor/plating,
 /area/deathmatch)
 "mg" = (
 /obj/structure/closet/cabinet,
@@ -498,12 +491,6 @@
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
 /turf/open/floor/tile/cmo,
-/area/deathmatch)
-"mK" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
 "mO" = (
 /obj/effect/decal/cleanable/dirt,
@@ -577,8 +564,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
+"os" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray/outer,
+/area/deathmatch)
 "ot" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
+/obj/structure/platform{
+	dir = 4
+	},
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "oy" = (
@@ -620,12 +616,11 @@
 	dir = 1
 	},
 /area/deathmatch)
-"pG" = (
+"py" = (
 /obj/structure/platform{
-	dir = 1
+	dir = 6
 	},
-/obj/structure/ore_box,
-/turf/open/floor/plating/ground/snow/layer2,
+/turf/closed/wall/mainship/gray/outer,
 /area/deathmatch)
 "pI" = (
 /obj/structure/bed/chair/sofa/right{
@@ -654,6 +649,9 @@
 	dir = 4
 	},
 /obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/stairs{
@@ -692,9 +690,6 @@
 	},
 /area/deathmatch)
 "qW" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
@@ -799,14 +794,24 @@
 	},
 /area/deathmatch)
 "tl" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
 "tn" = (
 /turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"tv" = (
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"tA" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray/outer,
 /area/deathmatch)
 "tD" = (
 /obj/structure/rack,
@@ -998,14 +1003,9 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
-"yh" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/deathmatch)
 "yo" = (
 /obj/structure/window/framed/mainship/gray/toughened,
+/obj/structure/platform,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "yz" = (
@@ -1017,6 +1017,9 @@
 	},
 /obj/structure/barricade/guardrail{
 	dir = 1
+	},
+/obj/structure/platform{
+	dir = 8
 	},
 /turf/open/floor/stairs{
 	color = "#888888"
@@ -1043,17 +1046,6 @@
 /turf/open/floor/tile/arrival{
 	dir = 5
 	},
-/area/deathmatch)
-"ze" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/fence,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "zf" = (
 /obj/structure/table,
@@ -1171,12 +1163,6 @@
 /turf/open/floor/tile/dark/blue2/corner,
 /area/deathmatch)
 "AM" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 5
 	},
@@ -1235,6 +1221,7 @@
 /area/deathmatch)
 "CQ" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/platform,
 /turf/open/floor/plating,
 /area/deathmatch)
 "CT" = (
@@ -1447,6 +1434,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs,
 /area/deathmatch)
+"HX" = (
+/obj/structure/platform,
+/turf/closed/wall/mainship/gray/outer,
+/area/deathmatch)
+"If" = (
+/obj/structure/platform,
+/turf/closed/wall/mainship/gray,
+/area/deathmatch)
 "Ij" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -1483,12 +1478,6 @@
 	},
 /area/deathmatch)
 "Jz" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 9
 	},
@@ -1549,12 +1538,6 @@
 	dir = 10
 	},
 /area/deathmatch)
-"KQ" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/snow/layer1,
-/area/deathmatch)
 "Ld" = (
 /obj/machinery/gibber,
 /turf/open/floor/tile/cmo,
@@ -1614,6 +1597,12 @@
 /turf/open/floor/tile/arrival{
 	dir = 5
 	},
+/area/deathmatch)
+"Ma" = (
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/closed/wall/mainship/gray/outer,
 /area/deathmatch)
 "Mc" = (
 /obj/effect/landmark/deathmatch,
@@ -1804,10 +1793,6 @@
 	dir = 6
 	},
 /area/deathmatch)
-"Qc" = (
-/obj/structure/platform,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/deathmatch)
 "Qj" = (
 /obj/structure/table/woodentable,
 /obj/machinery/recharger,
@@ -1849,15 +1834,6 @@
 "QY" = (
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 8
-	},
-/area/deathmatch)
-"Rb" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
-	dir = 1
 	},
 /area/deathmatch)
 "Rw" = (
@@ -1925,14 +1901,17 @@
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/stairs,
 /area/deathmatch)
+"Sy" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/deathmatch)
 "Sz" = (
 /obj/machinery/light,
 /turf/open/floor/tile/arrival,
 /area/deathmatch)
 "SS" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
@@ -1971,12 +1950,6 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/deathmatch)
-"TS" = (
-/obj/structure/platform_decoration{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "Uc" = (
 /obj/structure/table/woodentable,
@@ -2088,13 +2061,6 @@
 "WY" = (
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
-"WZ" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/effect/landmark/deathmatch,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/deathmatch)
 "Xa" = (
 /obj/structure/inflatable/popped,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -2142,12 +2108,6 @@
 /area/deathmatch)
 "Xw" = (
 /turf/open/floor/stairs,
-/area/deathmatch)
-"Xx" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "XI" = (
 /obj/structure/inflatable/popped,
@@ -2203,12 +2163,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
-"YH" = (
+"YU" = (
 /obj/structure/platform{
 	dir = 4
 	},
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/stairs,
+/turf/closed/wall/mainship/gray,
 /area/deathmatch)
 "YV" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -2398,7 +2357,7 @@ Cq
 gM
 Nm
 CQ
-mK
+uX
 zR
 WK
 IQ
@@ -2446,7 +2405,7 @@ PH
 zl
 Nm
 CQ
-mK
+uX
 pU
 uX
 WK
@@ -2494,7 +2453,7 @@ TH
 Nm
 Nm
 CQ
-mK
+uX
 ss
 WK
 uX
@@ -2541,8 +2500,8 @@ uS
 dY
 KK
 Xo
-Mr
-yh
+lX
+WK
 WK
 WK
 WK
@@ -2591,8 +2550,8 @@ tn
 Xo
 lE
 Jz
-li
-jm
+uX
+WK
 WK
 WK
 WK
@@ -2638,9 +2597,9 @@ wM
 oU
 Xo
 Hk
-Mr
-Mr
-yh
+bW
+Sy
+WK
 uX
 uX
 WK
@@ -2835,9 +2794,9 @@ jg
 Nm
 Xw
 Lf
-Rb
-YH
-Rb
+Np
+tJ
+Np
 OQ
 rp
 gN
@@ -3371,9 +3330,9 @@ Xv
 Le
 Le
 Nm
-Nm
-Nm
-Nm
+YU
+YU
+YU
 Nm
 Xw
 rp
@@ -3418,10 +3377,10 @@ ZD
 Xv
 ct
 Sr
-Nm
+If
 AM
-WZ
-Xx
+gE
+WK
 Nm
 HB
 HB
@@ -3466,7 +3425,7 @@ ZD
 Xv
 Le
 Le
-Nm
+If
 Jz
 tl
 WK
@@ -3515,8 +3474,8 @@ Xv
 kj
 jg
 Nm
-Nm
-yh
+eo
+WK
 WK
 WK
 WK
@@ -3563,8 +3522,8 @@ nQ
 ga
 wG
 Un
-Nm
-yh
+If
+WK
 WK
 IQ
 uX
@@ -3707,8 +3666,8 @@ NN
 ZJ
 sa
 Sz
-Nm
-pG
+If
+rl
 Md
 uX
 WK
@@ -3747,9 +3706,9 @@ qt
 Nm
 Nm
 Xv
-Xv
-Xv
-Xv
+tA
+tA
+tA
 Xv
 Ye
 ZJ
@@ -3794,11 +3753,11 @@ Nm
 Nm
 Nm
 Nm
-Xv
+HX
 AM
-KQ
+uX
 ay
-Xv
+os
 zg
 sw
 ZJ
@@ -3842,17 +3801,17 @@ LW
 oh
 IC
 Xl
-Xv
-yh
+HX
+WK
 uX
-aT
-Xv
+WK
+os
 LY
 TC
 Cb
 VK
-Nm
-yh
+If
+WK
 WK
 WK
 WK
@@ -3890,17 +3849,17 @@ Ky
 nc
 Ky
 eH
-Xv
-yh
+HX
 WK
-aT
-Xv
-Xv
-Xv
-Xv
-Xv
-Xv
-ze
+WK
+WK
+Ma
+tA
+tA
+tA
+tA
+py
+xB
 xB
 do
 xB
@@ -3938,16 +3897,16 @@ Ky
 io
 Ky
 Ld
-Xv
-yh
+HX
 WK
-TS
-Xx
-Xx
-Xx
-Xx
-Xx
-Xx
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
 FT
 WK
 WK
@@ -3986,8 +3945,8 @@ EJ
 zV
 ln
 WR
-Xv
-yh
+HX
+WK
 uX
 uX
 WK
@@ -4007,8 +3966,8 @@ KH
 (37,1,1) = {"
 Xv
 Xv
-Xv
-Xv
+tA
+tA
 Xv
 Xv
 ih
@@ -4034,8 +3993,8 @@ Ky
 Ky
 Ky
 Lw
-Xv
-yh
+HX
+WK
 WK
 WK
 WK
@@ -4055,9 +4014,9 @@ KH
 (38,1,1) = {"
 KH
 RE
-Xx
+WK
 cc
-Xv
+os
 Xv
 PW
 QV
@@ -4082,8 +4041,8 @@ Ky
 RZ
 mE
 zV
-Xv
-yh
+HX
+WK
 WK
 WK
 WK
@@ -4104,8 +4063,8 @@ KH
 KH
 WK
 WK
-Qc
-ot
+uX
+tv
 Zb
 fy
 pf
@@ -4129,9 +4088,9 @@ Ky
 Ky
 Nm
 Xv
-Xv
-Xv
-yh
+tA
+py
+WK
 WK
 WK
 WK
@@ -4152,8 +4111,8 @@ KH
 KH
 ds
 tI
-Qc
-ot
+uX
+tv
 ia
 WY
 WY
@@ -4176,10 +4135,10 @@ Nm
 vU
 tn
 Nm
-Xv
+HX
 AM
-Xx
-FT
+WK
+WK
 WK
 uX
 WK
@@ -4200,14 +4159,14 @@ KH
 KH
 kV
 WK
-Qc
-ot
+uX
+tv
 dH
 Yn
 xj
 oU
-Xv
-yh
+HX
+WK
 Xv
 NS
 jT
@@ -4224,8 +4183,8 @@ dZ
 JG
 QY
 KK
-Xv
-yh
+HX
+WK
 WK
 WK
 WK
@@ -4248,14 +4207,14 @@ KH
 KH
 WK
 Bx
-aT
-Xv
+WK
+Ma
 ot
-Xv
+tA
 ot
 ot
-Xv
-mK
+py
+uX
 Xv
 vU
 WY
@@ -4272,8 +4231,8 @@ vM
 vM
 WY
 tn
-Xv
-yh
+HX
+WK
 uX
 WK
 WK
@@ -4296,14 +4255,14 @@ KH
 KH
 WK
 WK
-TS
-Xx
-KQ
-Xx
-KQ
-KQ
-Xx
-FT
+WK
+WK
+uX
+WK
+uX
+uX
+WK
+WK
 Xv
 pM
 vM
@@ -4320,8 +4279,8 @@ WY
 vM
 vM
 bL
-Xv
-mK
+HX
+uX
 WK
 WK
 uX
@@ -4368,8 +4327,8 @@ Lo
 Eq
 xo
 cA
-Xv
-yh
+HX
+WK
 WK
 WK
 WK
@@ -4416,8 +4375,8 @@ nK
 vL
 Ej
 oU
-Xv
-yh
+HX
+WK
 WK
 uX
 WK
