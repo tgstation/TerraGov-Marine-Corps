@@ -731,13 +731,14 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 24, "under_x" = 30, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 
-	aim_slowdown = 1
-	wield_delay = 1.5 SECONDS
+	aim_slowdown = 0.7
+	wield_delay = 0.8 SECONDS
 	scatter = 1
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
+	movement_acc_penalty_mult = 7.25
 	damage_falloff_mult = 0.3
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,

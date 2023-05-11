@@ -2683,6 +2683,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "efficient machine laser bolt"
 	hud_state = "laser_efficiency"
 	damage = 8.5
+	sundering = 1.5
 	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/autolaser/swarm
