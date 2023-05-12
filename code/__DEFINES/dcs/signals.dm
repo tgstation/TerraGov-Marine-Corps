@@ -804,6 +804,14 @@
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
 #define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
 
+#define COMSIG_XENOABILITY_STRINGSATTACHED "xenoability_stringsattached"
+#define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"
+#define COMSIG_XENOABILITY_PUPPET "xenoability_puppet"
+#define COMSIG_XENOABILITY_REFURBISHHUSK "xenoability_refurbishhusk"
+#define COMSIG_XENOABILITY_DREADFULPRESENCE "xenoability_dreadfulpresence"
+#define COMSIG_XENOABILITY_PINCUSHION "xenoability_pincushion"
+#define COMSIG_XENOABILITY_FLAY "xenoability_flay"
+
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
 #define COMSIG_PARRY_TRIGGER "parry_trigger"
@@ -916,3 +924,6 @@
 
 // widow spiderling mark signals
 #define COMSIG_SPIDERLING_MARK "spiderling_mark"
+//puppet
+#define COMSIG_PUPPET_SEEK "puppetseek" // seek target and attack
+#define COMSIG_PUPPET_SEEK_CLOSEST "puppetseekclosest"
