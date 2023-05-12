@@ -123,7 +123,8 @@
 /datum/strippable_item/hand/right/alternate_action(atom/source, mob/user)
 	return strippable_alternate_action_strap(get_item(source), source, user)
 
-/proc/get_strippable_alternate_action_strap(obj/item/item, atom/source)
+/// Getter proc for the alternate action for removing nodrop traits from items with straps
+/datum/strippable_item/proc/get_strippable_alternate_action_strap(obj/item/item, atom/source)
 	if(!istype(item, /obj/item/weapon/twohanded/fireaxe/som) && !istype(item, /obj/item/weapon/shield))
 		return
 
@@ -132,7 +133,8 @@
 	else
 		return "tighten_strap"
 
-/proc/strippable_alternate_action_strap(obj/item/item, atom/source, mob/user)
+/// The proc that actually does the alternate action
+/datum/strippable_item/proc/strippable_alternate_action_strap(obj/item/item, atom/source, mob/user)
 	if(!istype(item, /obj/item/weapon/twohanded/fireaxe/som) && !istype(item, /obj/item/weapon/shield))
 		return
 

@@ -50,16 +50,6 @@ GLOBAL_LIST_INIT(strippable_human_layout, list(
 	),
 ))
 
-/mob/living/carbon/human/proc/should_strip(mob/user)
-	if(user.pulling != src || user.grab_state != GRAB_AGGRESSIVE)
-		return TRUE
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/human_user = user
-		return !human_user.can_be_firemanned(src)
-
-	return TRUE
-
 /datum/strippable_item/mob_item_slot/eyes
 	key = STRIPPABLE_ITEM_EYES
 	item_slot = ITEM_SLOT_EYES
@@ -123,7 +113,7 @@ GLOBAL_LIST_INIT(strippable_human_layout, list(
 
 /datum/strippable_item/mob_item_slot/pocket
 	/// Which pocket we're referencing. Used for visible text.
-	var/pocket_side
+	var/pocket_side = "yell at coders!!!!!"
 
 /datum/strippable_item/mob_item_slot/pocket/get_obscuring(atom/source)
 	return isnull(get_item(source)) \
@@ -157,6 +147,7 @@ GLOBAL_LIST_INIT(strippable_human_layout, list(
 
 	return result
 
+/// Warns the pocket owner that their pocket is being fumbled with
 /datum/strippable_item/mob_item_slot/pocket/proc/warn_owner(atom/owner)
 	to_chat(owner, "<span class='warning'>You feel your [pocket_side] pocket being fumbled with!</span>")
 
