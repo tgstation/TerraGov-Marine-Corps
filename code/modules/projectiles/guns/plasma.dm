@@ -26,6 +26,23 @@
 		"Incendiary" = /datum/lasrifle/base/plasma_rifle_mode/minigun_incendiary,
 		"Glob" = /datum/lasrifle/base/plasma_rifle_mode/minigun_glob
 	)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+	)
 
 /datum/lasrifle/base/plasma_rifle_mode/minigun_rapid
 	fire_sound = ""
@@ -70,6 +87,23 @@
 	fire_delay = 0.8
 	aim_fire_delay = 0.2
 	aim_speed_modifier = 0.4
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle
 	name = "\improper PL-38 plasma rifle"
@@ -88,6 +122,23 @@
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/rifle_standard,
 		"Marksman" = /datum/lasrifle/base/plasma_rifle_mode/rifle_marksman,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/rifle_standard
@@ -123,6 +174,23 @@
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/carbine_standard,
 		"Shotgun" = /datum/lasrifle/base/plasma_rifle_mode/carbine_shotgun,
 		"Tri-fire" = /datum/lasrifle/base/plasma_rifle_mode/carbine_trifire,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/carbine_standard
@@ -164,6 +232,18 @@
 		"Automatic" = /datum/lasrifle/base/plasma_rifle_mode/pistol_automatic,
 		"Tri-fire" = /datum/lasrifle/base/plasma_rifle_mode/pistol_trifire,
 	)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/attachable/lace,
+	)
 
 /datum/lasrifle/base/plasma_rifle_mode/pistol_standard
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_standard
@@ -204,6 +284,23 @@
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/cannon_standard,
 		"Swarm" = /datum/lasrifle/base/plasma_rifle_mode/cannon_swarm,
 		"Flamer" = /datum/lasrifle/base/plasma_rifle_mode/cannon_flamer,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_standard
