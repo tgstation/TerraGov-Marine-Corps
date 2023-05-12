@@ -128,7 +128,7 @@
 		return FALSE
 	if(length(puppets) >= owner_xeno.xeno_caste.max_puppets)
 		owner_xeno.balloon_alert(owner_xeno, "cant have more than [owner_xeno.xeno_caste.max_puppets]!")
-		return false
+		return FALSE
 	if(HAS_TRAIT(target, TRAIT_PSY_DRAINED))
 		if(!silent)
 			to_chat(owner, span_notice("This one has is drained of all psychic energy, of no use to us."))
@@ -139,7 +139,7 @@
 			to_chat(owner_xeno, span_notice("We need to be next to our victim."))
 		return FALSE
 
-	if(!HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE) || victim.stat != DEAD)
+	if(!HAS_TRAIT(target_human, TRAIT_UNDEFIBBABLE) || target_human.stat != DEAD)
 		to_chat(owner_xeno, span_notice("The body is not ready for stitching!"))
 		return FALSE
 	
