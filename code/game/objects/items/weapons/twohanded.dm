@@ -8,7 +8,7 @@
 	var/unwieldsound
 	flags_item = TWOHANDED
 
-/obj/item/weapon/twohanded/mob_can_equip(mob/user)
+/obj/item/weapon/twohanded/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	unwield(user)
 	return ..()
 

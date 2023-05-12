@@ -47,6 +47,7 @@
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
+	AddElement(/datum/element/strippable, GLOB.strippable_human_items, GLOB.strippable_human_layout)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
@@ -182,41 +183,6 @@
 		dam_zone = ran_zone(dam_zone)
 		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE)
 
-/mob/living/carbon/human/show_inv(mob/living/user)
-	var/obj/item/clothing/under/suit
-	if(istype(w_uniform, /obj/item/clothing/under))
-		suit = w_uniform
-
-	user.set_interaction(src)
-	var/dat = {"
-	<BR><B>Head(Mask):</B> <A href='?src=[REF(src)];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=[REF(src)];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=[REF(src)];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Gloves:</B> <A href='?src=[REF(src)];item=[SLOT_GLOVES]'>[(gloves ? gloves : "Nothing")]</A>
-	<BR><B>Eyes:</B> <A href='?src=[REF(src)];item=[SLOT_GLASSES]'>[(glasses ? glasses : "Nothing")]</A>
-	<BR><B>Left Ear:</B> <A href='?src=[REF(src)];item=[SLOT_EARS]'>[(wear_ear ? wear_ear : "Nothing")]</A>
-	<BR><B>Head:</B> <A href='?src=[REF(src)];item=[SLOT_HEAD]'>[(head ? head : "Nothing")]</A>
-	<BR><B>Shoes:</B> <A href='?src=[REF(src)];item=[SLOT_SHOES]'>[(shoes ? shoes : "Nothing")]</A>
-	<BR><B>Belt:</B> <A href='?src=[REF(src)];item=[SLOT_BELT]'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
-	<BR><B>Uniform:</B> <A href='?src=[REF(src)];item=[SLOT_W_UNIFORM]'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=[REF(src)];sensor=1'>Sensors</A>" : "") : ""]
-	<BR><B>(Exo)Suit:</B> <A href='?src=[REF(src)];item=[SLOT_WEAR_SUIT]'>[(wear_suit ? wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=[REF(src)];item=[SLOT_BACK]'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
-	<BR><B>ID:</B> <A href='?src=[REF(src)];item=[SLOT_WEAR_ID]'>[(wear_id ? wear_id : "Nothing")]</A>
-	<BR><B>Suit Storage:</B> <A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
-	<BR>
-	[handcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : ""]
-	[internal ? "<BR><A href='?src=[REF(src)];internal=1'>Remove Internal</A>" : ""]
-	<BR><A href='?src=[REF(src)];splints=1'>Remove Splints</A>
-	<BR><A href='?src=[REF(src)];pockets=1'>Empty Pockets</A>
-	<BR>
-	<BR><A href='?src=[REF(user)];refresh=1'>Refresh</A>
-	<BR>"}
-
-	var/datum/browser/browser = new(user, "mob[name]", "<div align='center'>[name]</div>", 380, 540)
-	browser.set_content(dat)
-	browser.open(FALSE)
-
-
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(if_no_id = "No id", if_no_job = "No job")
@@ -318,11 +284,11 @@
 	. = ..()
 	if(.)
 		return
-	if(href_list["refresh"])
+/*	if(href_list["refresh"])
 		if(interactee && (in_range(src, usr)))
 			show_inv(interactee)
 
-	if(href_list["item"])
+	if(href_list["item"]) //code that does the actual stripping, im here!
 		var/slot = text2num(href_list["item"])
 		if(usr.incapacitated() || !Adjacent(usr))
 			return
@@ -429,7 +395,7 @@
 		if(!do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 			return
 		w_uniform.set_sensors(usr)
-
+*/
 	if(href_list["squadfireteam"])
 		if(usr.incapacitated() || get_dist(usr, src) >= 7 || !hasHUD(usr,"squadleader"))
 			return

@@ -248,8 +248,8 @@
 	item_state = "gun_sling"
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
-	time_to_equip = 2 SECONDS
-	time_to_unequip = 1 SECONDS
+	equip_delay_self = 2 SECONDS
+	strip_delay = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
 	///The current attacher. Gets remade for every new item
 	var/datum/component/reequip/reequip_component
