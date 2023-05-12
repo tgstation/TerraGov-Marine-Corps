@@ -601,17 +601,16 @@ TUNNEL
 	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
 
 	var/grenade_removed = FALSE
-	if(charges >= 1)
-		for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
-			sticky_bomb.clean_refs()
-			sticky_bomb.forceMove(loc)
-			grenade_removed = TRUE
-		if(grenade_removed)
-			charges -= 1
-			acid_smoke = new(get_turf(stepper))
-			acid_smoke.set_up(0, src)
-			acid_smoke.start()
-			update_icon()
+	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
+		sticky_bomb.clean_refs()
+		sticky_bomb.forceMove(loc)
+		grenade_removed = TRUE
+	if(grenade_removed)
+		charges -= 1
+		acid_smoke = new(get_turf(stepper))
+		acid_smoke.set_up(0, src)
+		acid_smoke.start()
+		update_icon()
 	if(isxeno(stepper))
 		if(!(stepper.on_fire))
 			return
