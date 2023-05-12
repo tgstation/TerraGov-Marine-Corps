@@ -262,6 +262,11 @@
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()
+					var/datum/status_effect/stacking/melting/debuff = L.has_status_effect(STATUS_EFFECT_MELTING)
+					if(debuff)
+						debuff.add_stacks(5)
+					else
+						L.apply_status_effect(STATUS_EFFECT_MELTING, 5)
 				. = TRUE
 
 /turf/open/liquid/lava/attackby(obj/item/C, mob/user, params)

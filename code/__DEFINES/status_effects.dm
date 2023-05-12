@@ -71,6 +71,8 @@
 
 #define STATUS_EFFECT_REPAIR_MODE /datum/status_effect/incapacitating/repair_mode //affected is blinded and stunned, but heals over time
 
+#define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting //damage and sunder over time
+
 /////////////
 // NEUTRAL //
 /////////////

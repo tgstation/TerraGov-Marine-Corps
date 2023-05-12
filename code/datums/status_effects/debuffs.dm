@@ -420,7 +420,7 @@
 /datum/status_effect/incapacitating/irradiated
 	id = "irradiated"
 	status_type = STATUS_EFFECT_REFRESH
-	tick_interval = 20
+	tick_interval = 2 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/irradiated
 	///Some effects only apply to carbons
 	var/mob/living/carbon/carbon_owner
@@ -530,3 +530,82 @@
 	if(stacks > 0)
 		resist_debuff() // We repeat ourselves as long as the debuff persists.
 		return
+
+
+// ***************************************
+// *********** Melting
+// ***************************************
+///amount of damage done per tick by the melting status effect
+#define STATUS_EFFECT_MELTING_DAMAGE 10
+///Sunder inflicted per tick by the melting status effect
+#define STATUS_EFFECT_MELTING_SUNDER_DAMAGE 10
+
+/datum/status_effect/stacking/melting
+	id = "melting"
+	tick_interval = 2 SECONDS
+	stacks = 1
+	max_stacks = 30
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/melting
+	///Owner of the debuff is limited to carbons.
+	var/mob/living/carbon/debuff_owner
+	///Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/stacking/melting/can_gain_stacks()
+	if(owner.status_flags & GODMODE)
+		return FALSE
+	return ..()
+
+/datum/status_effect/stacking/melting/on_creation(mob/living/new_owner, stacks_to_apply)
+	if(new_owner.status_flags & GODMODE)
+		qdel(src)
+		return
+	. = ..()
+	debuff_owner = new_owner
+	debuff_owner.balloon_alert(debuff_owner, "Melting!")
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
+	particle_holder = new(debuff_owner, /particles/melting_status)
+	particle_holder.particles.spawning = 1 + round(stacks / 2)
+
+/datum/status_effect/stacking/melting/on_remove()
+	debuff_owner = null
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/datum/status_effect/stacking/melting/tick()
+	. = ..()
+	if(!debuff_owner)
+		return
+
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	particle_holder.particles.spawning = 1 + round(stacks / 2)
+
+	debuff_owner.adjustFireLoss(STATUS_EFFECT_MELTING_DAMAGE)
+
+	if(!isxeno(debuff_owner))
+		return
+	var/mob/living/carbon/xenomorph/xenomorph_owner = debuff_owner
+	xenomorph_owner.adjust_sunder(STATUS_EFFECT_MELTING_SUNDER_DAMAGE)
+
+/atom/movable/screen/alert/status_effect/melting
+	name = "Melting"
+	desc = "You are melting away!"
+	icon_state = "melting"
+
+/particles/melting_status
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "drip"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 10
+	fade = 8
+	velocity = list(0, 0)
+	position = generator(GEN_SPHERE, 16, 16, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(-0.1, 0), list(0.1, 0))
+	gravity = list(0, -0.4)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(1, 1), NORMAL_RAND)
+	friction = -0.05
+	color = "#cc5200"
