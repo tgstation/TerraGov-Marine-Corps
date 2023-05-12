@@ -120,24 +120,27 @@
 
 /datum/action/xeno_action/activable/refurbish_husk/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	var/mob/living/carbon/human/target_human = target
 	if(!ishuman(target))
 		if(!silent)
 			to_chat(owner, span_xenowarning("We dont know this things biology!"))
 		return FALSE
+	if(length(puppets) >= owner_xeno.xeno_caste.max_puppets)
+		owner_xeno.balloon_alert(owner_xeno, "cant have more than [owner_xeno.xeno_caste.max_puppets]!")
+		return false
 	if(HAS_TRAIT(target, TRAIT_PSY_DRAINED))
 		if(!silent)
 			to_chat(owner, span_notice("This one has is drained of all psychic energy, of no use to us."))
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	var/mob/living/carbon/human/target_human = target
 	if(!owner_xeno.Adjacent(target_human))
 		if(!silent)
 			to_chat(owner_xeno, span_notice("We need to be next to our victim."))
 		return FALSE
 
-	if(target_human.stat != DEAD)
-		to_chat(owner_xeno, span_notice("They need to be dead!"))
+	if(!HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE) || victim.stat != DEAD)
+		to_chat(owner_xeno, span_notice("The body is not ready for stitching!"))
 		return FALSE
 	
 
