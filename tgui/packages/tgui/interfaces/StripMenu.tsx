@@ -11,14 +11,6 @@ type AlternateAction = {
 };
 
 const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
-  enable_internals: {
-    text: 'Enable internals',
-  },
-
-  disable_internals: {
-    text: 'Disable internals',
-  },
-
   adjust_sensors: {
     text: 'Adjust suit sensors',
   },
