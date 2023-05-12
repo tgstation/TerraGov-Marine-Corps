@@ -34,7 +34,7 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.1 SECONDS
 	scatter = 3
 
 	placed_overlay_iconstate = "flamer"
@@ -46,10 +46,11 @@
 		/obj/item/ammo_magazine/flamer_tank/large,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 	)
-	var/list/datum/flamer/base/mode_list = list(
-		"Standard" = /datum/flamer/base/flamer_mode/standard,
-		"Over" = /datum/flamer/base/flamer_mode/over,
-		"Blast" = /datum/flamer/base/flamer_mode/blast,
+	///Flamethrower modes
+	var/list/datum/flamer_mode/mode_list = list(
+		"Standard" = /datum/flamer_mode/standard,
+		"Over" = /datum/flamer_mode/over,
+		"Blast" = /datum/flamer_mode/blast,
 	)
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
@@ -65,7 +66,7 @@
 	for(var/mode in mode_list)
 		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].radial_icon), icon_state = initial(mode_list[mode].radial_icon_state)))
 
-	var/datum/flamer/base/choice = mode_list[show_radial_menu(user, user, available_modes, null, 64, tooltips = TRUE)]
+	var/datum/flamer_mode/choice = mode_list[show_radial_menu(user, user, available_modes, null, 64, tooltips = TRUE)]
 	if(!choice)
 		return
 	playsound(user, 'sound/weapons/guns/interact/flamethrower_on.ogg', 5, FALSE, 2)
@@ -90,7 +91,7 @@
 
 	in_chamber = get_ammo_object(chamber_items[current_chamber_position])
 
-/datum/flamer/base
+/datum/flamer_mode
 	///how much fuel the gun uses on this mode when shot.
 	var/rounds_per_shot = 1
 	///the ammo datum this mode is.
@@ -111,22 +112,22 @@
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "flamer"
 
-/datum/flamer/base/flamer_mode/standard
+/datum/flamer_mode/standard
 	ammo_datum_type = /datum/ammo/flamethrower
 	message_to_user = "You set the flamethrowers mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	radial_icon_state = "flamer"
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.1 SECONDS
 	scatter = 3
 
-/datum/flamer/base/flamer_mode/over
+/datum/flamer_mode/over
 	ammo_datum_type = /datum/ammo/flamethrower/over
 	message_to_user = "You set the laser rifle's charge mode to over fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	radial_icon_state = "flamer_over"
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.1 SECONDS
 
-/datum/flamer/base/flamer_mode/blast
+/datum/flamer_mode/blast
 	ammo_datum_type = /datum/ammo/flamethrower/blast
 	message_to_user = "You set the laser rifle's charge mode to blast fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -225,18 +226,18 @@
 	item_state = "flx150"
 	ammo_datum_type = /datum/ammo/flamethrower/blue
 	mode_list = list(
-		"Standard" = /datum/flamer/base/flamer_mode/standard/blue,
-		"Over" = /datum/flamer/base/flamer_mode/over/blue,
-		"Blast" = /datum/flamer/base/flamer_mode/blast/blue,
+		"Standard" = /datum/flamer_mode/standard/blue,
+		"Over" = /datum/flamer_mode/over/blue,
+		"Blast" = /datum/flamer_mode/blast/blue,
 	)
 
-/datum/flamer/base/flamer_mode/standard/blue
+/datum/flamer_mode/standard/blue
 	ammo_datum_type = /datum/ammo/flamethrower/blue
 
-/datum/flamer/base/flamer_mode/over/blue
+/datum/flamer_mode/over/blue
 	ammo_datum_type = /datum/ammo/flamethrower/over/blue
 
-/datum/flamer/base/flamer_mode/blast/blue
+/datum/flamer_mode/blast/blue
 	ammo_datum_type = /datum/ammo/flamethrower/blast/blue
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
@@ -415,7 +416,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "hydrocannon"
 
-	fire_delay = 1.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	fire_sound = 'sound/effects/extinguish.ogg'
 
 	ammo_datum_type = /datum/ammo/water
