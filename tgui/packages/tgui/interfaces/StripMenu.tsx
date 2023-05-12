@@ -1,8 +1,6 @@
-import { range } from 'common/collections';
 import { BooleanLike, classes } from 'common/react';
-import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Stack, Table } from '../components';
+import { Button, Flex, Table } from '../components';
 import { Window } from '../layouts';
 
 type AlternateAction = {
@@ -13,6 +11,12 @@ type AlternateAction = {
 const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
   adjust_sensors: {
     text: 'Adjust suit sensors',
+  },
+  loosen_strap: {
+    text: 'Loosen strap',
+  },
+  tighten_strap: {
+    text: 'Tighten strap',
   },
 };
 
@@ -270,11 +274,7 @@ export const StripMenu = (props, context) => {
 
   return (
     <Window title={`Stripping ${data.name}`} width={500} height={580}>
-      <Window.Content
-        scrollable
-        fitted
-        // Remove the nanotrasen logo from the window
-        style={{ 'background-image': 'none' }}>
+      <Window.Content scrollable fitted>
         <Table mt={1} className="strip-menu-table" fontSize="1.1em">
           {contents}
         </Table>

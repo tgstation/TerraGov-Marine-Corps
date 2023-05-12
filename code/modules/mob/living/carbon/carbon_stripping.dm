@@ -66,7 +66,7 @@
 
 	var/mob/mob_source = source
 
-	if(!do_after(user, equipping.equip_delay_other, source))
+	if(!do_after(user, equipping.equip_delay_other, source, BUSY_ICON_FRIENDLY))
 		return FALSE
 
 	if(!mob_source.can_put_in_hand(equipping, hand_index))
@@ -101,10 +101,45 @@
 
 	return finish_unequip_mob(item, source, user)
 
+
+
 /datum/strippable_item/hand/left
 	key = STRIPPABLE_ITEM_LHAND
 	hand_index = 1
 
+/datum/strippable_item/hand/left/get_alternate_action(atom/source, mob/user)
+	return get_strippable_alternate_action_strap(get_item(source), source)
+
+/datum/strippable_item/hand/left/alternate_action(atom/source, mob/user)
+	return strippable_alternate_action_strap(get_item(source), source, user)
+
 /datum/strippable_item/hand/right
 	key = STRIPPABLE_ITEM_RHAND
 	hand_index = 2
+
+/datum/strippable_item/hand/right/get_alternate_action(atom/source, mob/user)
+	return get_strippable_alternate_action_strap(get_item(source), source)
+
+/datum/strippable_item/hand/right/alternate_action(atom/source, mob/user)
+	return strippable_alternate_action_strap(get_item(source), source, user)
+
+/proc/get_strippable_alternate_action_strap(obj/item/item, atom/source)
+	if(!istype(item, /obj/item/weapon/twohanded/fireaxe/som) && !istype(item, /obj/item/weapon/shield))
+		return
+
+	if(CHECK_BITFIELD(item.flags_item, NODROP))
+		return "loosen_strap"
+	else
+		return "tighten_strap"
+
+/proc/strippable_alternate_action_strap(obj/item/item, atom/source, mob/user)
+	if(!istype(item, /obj/item/weapon/twohanded/fireaxe/som) && !istype(item, /obj/item/weapon/shield))
+		return
+
+	user.balloon_alert_to_viewers("[CHECK_BITFIELD(item.flags_item, NODROP) ? "Loosening" : "Tightening"] strap...")
+
+	if(!do_after(user, 3 SECONDS, TRUE, source, BUSY_ICON_FRIENDLY))
+		return
+
+	TOGGLE_BITFIELD(item.flags_item, NODROP)
+	user.balloon_alert_to_viewers("[CHECK_BITFIELD(item.flags_item, NODROP) ? "Loosened" : "Tightened"] strap")

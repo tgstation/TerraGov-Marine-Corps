@@ -13,7 +13,8 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	/datum/strippable_item/mob_item_slot/suit_storage,
 	/datum/strippable_item/mob_item_slot/id,
 	/datum/strippable_item/mob_item_slot/belt,
-	/datum/strippable_item/mob_item_slot/pocket/,
+	/datum/strippable_item/mob_item_slot/pocket/left,
+	/datum/strippable_item/mob_item_slot/pocket/right,
 	/datum/strippable_item/hand/left,
 	/datum/strippable_item/hand/right,
 	/datum/strippable_item/mob_item_slot/handcuffs,
@@ -44,7 +45,7 @@ GLOBAL_LIST_INIT(strippable_human_layout, list(
 		new /datum/strippable_item_layout("belt", TRUE),
 		new /datum/strippable_item_layout("left_pocket", TRUE),
 		new /datum/strippable_item_layout("right_pocket", TRUE),
-		new /datum/strippable_item_layout("id", TRUE),
+		new /datum/strippable_item_layout("id"),
 		new /datum/strippable_item_layout("handcuffs"),
 	),
 ))
@@ -147,7 +148,7 @@ GLOBAL_LIST_INIT(strippable_human_layout, list(
 	var/log_message = "[key_name(source)] is being pickpocketed of [item] by [key_name(user)] ([pocket_side])"
 	source.log_message(log_message, LOG_ATTACK, color="red")
 	user.log_message(log_message, LOG_ATTACK, color="red", log_globally=FALSE)
-	item.add_fingerprint(src)
+	item.add_fingerprint(user, "tried to pickpocket [key_name(source)]")
 
 	var/result = start_unequip_mob(item, source, user, POCKET_STRIP_DELAY)
 
