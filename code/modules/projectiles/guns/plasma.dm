@@ -20,12 +20,15 @@
 	rounds_per_shot = 7
 	wield_delay = 1.1
 	aim_slowdown = 0.7
+	force = 30
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	mode_list = list(
 		"Rapid" = /datum/lasrifle/base/plasma_rifle_mode/minigun_rapid,
 		"Incendiary" = /datum/lasrifle/base/plasma_rifle_mode/minigun_incendiary,
 		"Glob" = /datum/lasrifle/base/plasma_rifle_mode/minigun_glob
 	)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 19, "under_x" = 18, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -82,11 +85,16 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	ammo_datum_type = /datum/ammo/energy/plasma/sniper
+	wield_delay = 0.8
+	aim_slowdown = 0.9
 	heat_per_fire = 10
 	rounds_per_shot = 67
 	fire_delay = 0.8
 	aim_fire_delay = 0.2
 	aim_speed_modifier = 0.4
+	force = 25
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 19, "under_x" = 18, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -112,17 +120,18 @@
 	item_state = "plasma_rifle"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	wield_delay = 0.45
-	aim_slowdown = 0.6
+	wield_delay = 0.4
+	aim_slowdown = 0.5
+	fire_delay = 0.15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
-	fire_delay = 0.15
-	heat_per_fire = 1
-	rounds_per_shot = 20
+	force = 20
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/rifle_standard,
 		"Marksman" = /datum/lasrifle/base/plasma_rifle_mode/rifle_marksman,
 	)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 19, "under_x" = 18, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -169,12 +178,15 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	wield_delay = 0.3
 	aim_slowdown = 0.4
-	burst_delay = 0.05
+	burst_delay = 0.10
+	force = 25
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/carbine_standard,
 		"Shotgun" = /datum/lasrifle/base/plasma_rifle_mode/carbine_shotgun,
 		"Tri-fire" = /datum/lasrifle/base/plasma_rifle_mode/carbine_trifire,
 	)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 19, "under_x" = 18, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -199,6 +211,8 @@
 	fire_mode = GUN_FIREMODE_BURSTFIRE
 	fire_delay = 0.3
 	burst_amount = 3
+	burst_delay = 0.10 SECONDS
+	extra_delay = 0.25 SECONDS
 	heat_per_fire = 1
 	rounds_per_shot = 15
 	radial_icon_state = "plasma_bouncy"
@@ -227,11 +241,14 @@
 	icon_state = "plasma_pistol"
 	item_state = "plasma_pistol"
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_standard
+	force = 15
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/pistol_standard,
 		"Automatic" = /datum/lasrifle/base/plasma_rifle_mode/pistol_automatic,
 		"Tri-fire" = /datum/lasrifle/base/plasma_rifle_mode/pistol_trifire,
 	)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 19, "under_x" = 18, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -279,12 +296,15 @@
 	item_state = "plasma_cannon"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
+	force = 35
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_standard
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/cannon_standard,
 		"Swarm" = /datum/lasrifle/base/plasma_rifle_mode/cannon_swarm,
 		"Flamer" = /datum/lasrifle/base/plasma_rifle_mode/cannon_flamer,
 	)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 19, "under_x" = 18, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -305,15 +325,27 @@
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_standard
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_standard
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_delay = 1.2
+	heat_per_fire = 25
+	rounds_per_shot = 100
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_cannon"
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_swarm
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_swarm
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_delay = 2.0
+	heat_per_fire = 35
+	rounds_per_shot = 150
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_swarm"
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_flamer
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_flamer
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_delay = 1.5
+	heat_per_fire = 15
+	rounds_per_shot = 75
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_fire"

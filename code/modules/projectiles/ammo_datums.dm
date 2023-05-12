@@ -2821,6 +2821,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.5
 	accuracy = 1
 	scatter = 5
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE
+
+	///Fire burn time
+	var/heat = 12
+	///Fire damage
+	var/burn_damage = 9
+	///Fire color
+	var/fire_color = "green"
 
 /datum/ammo/energy/plasma/minigun_glob
 	icon_state = "plasma_ball_big"
@@ -2956,28 +2964,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	scatter = 0
 
 /datum/ammo/energy/plasma/pistol_standard
-	damage = 20
+	damage = 35
 	penetration = 10
-	sundering = 0.5
-	damage_falloff = 0.7
+	sundering = 1
+	damage_falloff = 0.5
 	accuracy = 1.1
 	scatter = 0
 
 /datum/ammo/energy/plasma/pistol_automatic
-	damage = 20
+	damage = 10
 	penetration = 10
 	sundering = 0.5
-	damage_falloff = 0.7
+	damage_falloff = 0.5
 	accuracy = 1.1
 	scatter = 0
 
 /datum/ammo/energy/plasma/pistol_trifire
 	icon_state = "plasma_ball_small"
 	hud_state = "plasma_sphere"
-	damage = 20
+	damage = 10
 	penetration = 10
 	sundering = 0.5
-	damage_falloff = 0.7
+	damage_falloff = 0.5
 	accuracy = 1.1
 	scatter = 0
 
@@ -3024,20 +3032,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/plasma/cannon_standard
 	icon_state = "plasma_ball_small"
-	damage = 20
-	penetration = 10
-	sundering = 0.5
-	damage_falloff = 0.7
+	damage = 90
+	penetration = 25
+	sundering = 5
+	damage_falloff = 0.4
 	accuracy = 1.1
 	scatter = 0
 
 /datum/ammo/energy/plasma/cannon_swarm
 	icon_state = "plasma_ball_big"
 	hud_state = "plasma_sphere"
-	damage = 20
-	penetration = 10
-	sundering = 0.5
-	damage_falloff = 0.7
+	damage = 130
+	penetration = 35
+	sundering = 10
+	damage_falloff = 0.4
 	accuracy = 1.1
 	shell_speed = 0.1
 
@@ -3053,9 +3061,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
 	bullet_color = LIGHT_COLOR_FIRE
-	var/fire_color = "red"
-	var/burntime = 17
-	var/burnlevel = 31
+	var/fire_color = "green"
+	var/burntime = 13
+	var/burnlevel = 25
 
 /datum/ammo/energy/plasma/cannon_flamer/drop_flame(turf/T)
 	if(!istype(T))
