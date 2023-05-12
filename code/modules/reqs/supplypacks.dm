@@ -340,11 +340,6 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/tx55)
 	cost = 525
 
-/datum/supply_packs/weapons/tx55/ammo
-	name = "AR-55 OICW rifle magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx55)
-	cost = 25
-
 /datum/supply_packs/weapons/recoillesskit
 	name = "RL-160 Recoilless rifle kit"
 	contains = list(/obj/item/storage/holster/backholster/rpg/full)
@@ -926,8 +921,10 @@ ARMOR
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
@@ -945,6 +942,7 @@ ARMOR
 	name = "Jaeger Surt fireproof module"
 	contains = list(
 		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/fire_proof_helmet,
 	)
 	cost = 120
 

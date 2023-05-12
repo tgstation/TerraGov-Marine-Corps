@@ -276,15 +276,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		else if(hud_type == DATA_HUD_SQUAD_SOM)
 			marker_flags = MINIMAP_FLAG_MARINE_SOM
 	if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
-		SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
+		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 		return
 	if(wearer.stat == DEAD)
-		SSminimaps.add_marker(wearer, wearer.z, marker_flags, "defibbable")
+		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
 		return
 	if(wearer.assigned_squad)
-		SSminimaps.add_marker(wearer, wearer.z, marker_flags, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon)
+		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon))
 		return
-	SSminimaps.add_marker(wearer, wearer.z, marker_flags, wearer.job.minimap_icon)
+	SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon))
 
 ///Change the minimap icon to a dead icon
 /obj/item/radio/headset/mainship/proc/set_dead_on_minimap()
@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
-	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "defibbable")
+	SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
 
 ///Change the minimap icon to a undefibbable icon
 /obj/item/radio/headset/mainship/proc/set_undefibbable_on_minimap()
@@ -314,7 +314,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
-	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
+	SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()

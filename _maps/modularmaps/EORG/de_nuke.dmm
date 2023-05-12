@@ -205,10 +205,6 @@
 	dir = 9
 	},
 /area/deathmatch)
-"vW" = (
-/obj/structure/platform,
-/turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
 "wl" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
@@ -265,6 +261,12 @@
 	color = "#888888"
 	},
 /area/deathmatch)
+"Aw" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall,
+/area/deathmatch)
 "Ax" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -292,6 +294,12 @@
 /turf/open/floor/stairs/rampbottom{
 	dir = 8
 	},
+/area/deathmatch)
+"Ei" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Fc" = (
 /obj/structure/table/reinforced,
@@ -422,7 +430,7 @@
 /area/deathmatch)
 "QR" = (
 /obj/structure/platform{
-	dir = 8
+	dir = 9
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
@@ -431,11 +439,6 @@
 	dir = 2
 	},
 /turf/open/floor/plating/asteroidwarning,
-/area/deathmatch)
-"TU" = (
-/obj/structure/platform,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Uc" = (
 /obj/machinery/door/poddoor/railing{
@@ -467,6 +470,13 @@
 	name = "Blocker"
 	},
 /turf/closed/wall,
+/area/deathmatch)
+"WO" = (
+/obj/effect/landmark/deathmatch,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Xe" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -1652,8 +1662,8 @@ dj
 Ax
 od
 Mn
-vW
-od
+Mn
+Aw
 od
 od
 od
@@ -1700,8 +1710,8 @@ od
 od
 od
 My
-TU
-Mn
+MV
+Ei
 Mn
 Mn
 Wj
@@ -1796,8 +1806,8 @@ MV
 Mn
 Mn
 Mn
-vW
 Mn
+Ei
 od
 Mn
 Wj
@@ -1843,7 +1853,7 @@ Mn
 Mn
 od
 Mn
-vW
+Mn
 QR
 Mn
 od
@@ -1891,8 +1901,8 @@ Mn
 Mn
 od
 Mn
-vW
-My
+Mn
+WO
 ZA
 od
 Fp
@@ -1939,8 +1949,8 @@ My
 Mn
 od
 Mn
-vW
 Mn
+Ei
 QO
 od
 Fp
@@ -1987,8 +1997,8 @@ bi
 sr
 od
 MV
-vW
-od
+Mn
+Aw
 od
 od
 Fp

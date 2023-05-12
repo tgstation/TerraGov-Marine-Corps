@@ -367,6 +367,9 @@
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
 
+/obj/structure/table/woodentable/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 /obj/structure/table/fancywoodentable
 	name = "fancy wooden table"
 	desc = "An expensive fancy wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -376,6 +379,9 @@
 	table_prefix = "fwood"
 	parts = /obj/item/frame/table/fancywood
 
+/obj/structure/table/fancywoodentable/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 /obj/structure/table/rusticwoodentable
 	name = "rustic wooden table"
 	desc = "A rustic wooden surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -384,6 +390,9 @@
 	base_icon_state = "rustic_table"
 	table_prefix = "pwood"
 	parts = /obj/item/frame/table/rusticwood
+
+/obj/structure/table/rusticwoodentable/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
 
 /obj/structure/table/black
 	name = "black metal table"

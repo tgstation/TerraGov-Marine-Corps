@@ -121,6 +121,7 @@
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,

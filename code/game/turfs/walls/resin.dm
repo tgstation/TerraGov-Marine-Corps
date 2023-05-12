@@ -17,6 +17,8 @@
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
+/turf/closed/wall/resin/add_debris_element()
+	AddElement(/datum/element/debris, null, -15, 8, 0.7)
 
 /turf/closed/wall/resin/Initialize(mapload)
 	. = ..()
