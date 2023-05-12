@@ -3676,14 +3676,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE
 	armor_type = "fire"
 	max_range = 4
-	damage = 10
+	damage = 6
 	damage_falloff = 0
 	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
 	shell_speed = 0.6
 	bullet_color = LIGHT_COLOR_FIRE
 	ping = null
 	var/fire_color = "red"
-	var/burntime = 0.5 SECONDS
+	var/burntime = 0.3 SECONDS
 	var/burnlevel = 30
 
 /datum/ammo/flamethrower/drop_flame(turf/T)
@@ -3718,7 +3718,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE|AMMO_IFF
 	max_range = 5
 	shell_speed = 0.3
-	damage = 6
+	damage = 4
 
 /datum/ammo/flamethrower/blast
 	damage = 20
@@ -3735,8 +3735,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "flame_blue"
 	fire_color = "blue"
 	bullet_color = COLOR_DISABLER_BLUE
-	damage = 15
-	burntime = 0.5 SECONDS
+	damage = 8
+	burntime = 0.4 SECONDS
 	burnlevel = 40
 
 /datum/ammo/flamethrower/over/blue
@@ -3745,8 +3745,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "flame_blue"
 	fire_color = "blue"
 	bullet_color = COLOR_DISABLER_BLUE
-	damage = 10
-	burntime = 0.5 SECONDS
+	damage = 6
+	burntime = 0.4 SECONDS
 	burnlevel = 40
 
 /datum/ammo/flamethrower/blast/blue
@@ -3756,7 +3756,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_color = "blue"
 	bullet_color = COLOR_DISABLER_BLUE
 	damage = 25
-	burntime = 0.5 SECONDS
+	burntime = 0.4 SECONDS
 	burnlevel = 40
 
 /datum/ammo/water

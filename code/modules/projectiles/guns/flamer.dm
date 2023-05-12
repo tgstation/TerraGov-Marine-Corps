@@ -35,7 +35,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 	fire_delay = 0.1 SECONDS
-	scatter = 3
+	scatter = 10
 
 	placed_overlay_iconstate = "flamer"
 
@@ -118,7 +118,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	radial_icon_state = "flamer"
 	fire_delay = 0.1 SECONDS
-	scatter = 3
+	scatter = 10
 
 /datum/flamer_mode/over
 	ammo_datum_type = /datum/ammo/flamethrower/over
@@ -126,6 +126,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	radial_icon_state = "flamer_over"
 	fire_delay = 0.1 SECONDS
+	scatter = 10
 
 /datum/flamer_mode/blast
 	ammo_datum_type = /datum/ammo/flamethrower/blast
