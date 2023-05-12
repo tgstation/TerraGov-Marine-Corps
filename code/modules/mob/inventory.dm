@@ -148,6 +148,7 @@
 	W.dropped(src)
 	return FALSE
 
+/// Returns if we're able to put something in a hand of a mob
 /mob/proc/can_put_in_hand(I, hand_index)
 	if(!put_in_hand_check(I))
 		return FALSE
