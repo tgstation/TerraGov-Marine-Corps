@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Xenos now make footsteps"
+  - balance: "Walking instead of running reduces footstep volume and range. Some xenos have naturally reduced footsteps or none at all"
+  - refactor: "refactored footstep code"
