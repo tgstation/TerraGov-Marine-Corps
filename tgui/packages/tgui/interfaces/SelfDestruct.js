@@ -66,7 +66,8 @@ export const SelfDestruct = (props, context) => {
               </>
             )) ||
             (dest_status === 0 && <span className="idle">OFFLINE</span>) || (
-              <span className="bad">ERROR</span>)}
+              <span className="bad">ERROR</span>
+            )}
         </Section>
       </Window.Content>
     </Window>
