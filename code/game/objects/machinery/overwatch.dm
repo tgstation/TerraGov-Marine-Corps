@@ -86,6 +86,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	current_order = null
 	selected_target = null
 	current_squad = null
+	marked_lase = null
 	return ..()
 
 /obj/machinery/computer/camera_advanced/overwatch/give_actions(mob/living/user)
