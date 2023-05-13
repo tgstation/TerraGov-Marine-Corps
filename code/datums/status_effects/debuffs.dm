@@ -609,3 +609,74 @@
 	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(1, 1), NORMAL_RAND)
 	friction = -0.05
 	color = "#cc5200"
+
+// ***************************************
+// *********** Microwave
+// ***************************************
+///amount of damage done per tick by the microwave status effect
+#define MICROWAVE_STATUS_DAMAGE_MULT 10
+
+/datum/status_effect/stacking/microwave
+	id = "microwaved"
+	tick_interval = 1 SECONDS
+	stacks = 1
+	max_stacks = 30
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/microwave
+	///Owner of the debuff is limited to carbons.
+	var/mob/living/carbon/debuff_owner
+	///Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/stacking/microwave/can_gain_stacks()
+	if(owner.status_flags & GODMODE)
+		return FALSE
+	return ..()
+
+/datum/status_effect/stacking/microwave/on_creation(mob/living/new_owner, stacks_to_apply)
+	if(new_owner.status_flags & GODMODE)
+		qdel(src)
+		return
+	. = ..()
+	debuff_owner = new_owner
+	debuff_owner.balloon_alert(debuff_owner, "microwaved!")
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
+	particle_holder = new(debuff_owner, /particles/microwave_status)
+	particle_holder.particles.spawning = 1 + round(stacks / 2)
+
+/datum/status_effect/stacking/microwave/on_remove()
+	debuff_owner = null
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/datum/status_effect/stacking/microwave/tick()
+	. = ..()
+	if(!debuff_owner)
+		return
+
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	particle_holder.particles.spawning = 1 + round(stacks / 2)
+
+	debuff_owner.adjustFireLoss(max(stacks * MICROWAVE_STATUS_DAMAGE_MULT, 25))
+
+/atom/movable/screen/alert/status_effect/microwave
+	name = "Microwave"
+	desc = "You are burning from the inside!"
+	icon_state = "melting"
+
+/particles/microwave_status
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "x"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 10
+	fade = 8
+	velocity = list(0, 0)
+	position = generator(GEN_SPHERE, 16, 16, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(-0.1, 0), list(0.1, 0))
+	gravity = list(0, -0.4)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(1, 1), NORMAL_RAND)
+	friction = -0.05
+	color = "#a7cc00"
