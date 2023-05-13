@@ -392,6 +392,10 @@
 
 
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
+	if(CHAT_FILTER_CHECK(message) || NON_ASCII_CHECK(message))
+		to_chat(sender, span_boldnotice("Message invalid. Check your message does not contain filtered words or characters."))
+		return
+
 	var/header = "AUTOMATED CIC NOTICE:"
 	if(sender)
 		header = "CIC SQUAD MESSAGE FROM [sender.real_name]:"
