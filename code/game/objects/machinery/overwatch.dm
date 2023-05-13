@@ -412,7 +412,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				if(istype(target) && target.stat != DEAD && target.mind && !is_banned_from(target.ckey, SQUAD_LEADER))
 					sl_candidates += target
 			var/new_lead = tgui_input_list(usr, "Choose a new Squad Leader", null, sl_candidates)
-			if(!new_lead || new_lead == "Cancel") return
+			if(!new_lead || new_lead == "Cancel")
+				return
 			change_lead(new_lead)
 		if("insubordination")
 			mark_insubordination()
