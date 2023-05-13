@@ -600,21 +600,22 @@ TUNNEL
 
 	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
 
+	var/charges_reduced = FALSE
 	if(isxeno(stepper))
+		if(charges == 0)
+			return
 		for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
 			if(sticky_bomb.stuck_to == stepper)
 				sticky_bomb.clean_refs()
 				sticky_bomb.forceMove(loc)
+				charges -= 1
 		if(!(stepper.on_fire))
 			return
-		acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
-		acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
-		acid_smoke.start()
 		stepper.ExtinguishMob()
-		charges--
-		update_icon()
-		return
+		charges -= 1
 
+	if(isxeno(stepper))
+		return
 	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
 	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
 	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
@@ -627,11 +628,15 @@ TUNNEL
 	span_danger("We are immersed in [src]'s acid!") , null, 5)
 	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
 	new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
-	acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
-	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
-	acid_smoke.start()
 	charges = 0
-	update_icon()
+
+	if(charges -= 1)
+		charges_reduced = TRUE
+	if(charges_reduced)
+		acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
+		acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
+		acid_smoke.start()
+		update_icon()
 
 /obj/structure/xeno/resin_jelly_pod
 	name = "Resin jelly pod"
