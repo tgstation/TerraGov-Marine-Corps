@@ -799,7 +799,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				attempt_spotlight(source, target, params)
 			if(MESSAGE_NEAR)
 				var/input = tgui_input_text(source, "Please write a message to announce to all marines nearby:", "CIC Proximity Message")
-				for(var/mob/living/carbon/human/target in GLOB.human_mob_list)
+				for(var/mob/living/carbon/human/target in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
 					if(!target)
 						return
 					if(get_dist(target, target) > WORLD_VIEW_NUM*2)
