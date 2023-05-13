@@ -295,14 +295,17 @@
 
 /obj/item/storage/holster/backholster/flamer/afterattack(obj/O as obj, mob/user as mob, proximity)
 	. = ..()
-	if(!proximity)
-		return
 	//uses the tank's proc to refuel
 	if(istype(O, /obj/structure/reagent_dispensers/fueltank))
 		tank.afterattack(O, user)
 	if(istype(O,/obj/item/ammo_magazine/flamer_tank))
 		refuel(O, user)
 
+/* Used to refuel the attached FL-86 flamer when it is put into the backpack
+ *
+ * param1 - The flamer tank, the actual tank we are refilling
+ * param2 - The person wearing the backpack
+*/
 /obj/item/storage/holster/backholster/flamer/proc/refuel(obj/item/W, mob/living/user)
 	var/obj/item/ammo_magazine/flamer_tank/flamer_tank = W
 	if(get_dist(user, flamer_tank) > 1)
@@ -310,7 +313,7 @@
 	if(flamer_tank.current_rounds >= flamer_tank.max_rounds)
 		to_chat(user, span_warning("[flamer_tank] is already full."))
 		return
-	if(tank.current_rounds == 0)
+	if(tank.current_rounds <= 0)
 		to_chat(user, span_warning("The [tank] is empty!"))
 		return
 	var/liquid_transfer_amount = min(tank.current_rounds, flamer_tank.max_rounds - flamer_tank.current_rounds)
