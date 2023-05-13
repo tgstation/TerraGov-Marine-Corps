@@ -405,34 +405,36 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					to_chat(usr, "[icon2html(src, usr)] [span_notice("No location is ignored anymore.")]")
 
 		if("change_lead")
+			if(operator != usr)
+				return
 			if(!current_squad)
-				to_chat(usr, "[icon2html(src, usr)] [span_warning("No squad selected!")]")
+				to_chat(usr, "[icon2html(src, operator)] [span_warning("No squad selected!")]")
 				return
 			var/sl_candidates = list()
 			for(var/mob/living/carbon/human/target in current_squad.get_all_members())
 				if(istype(target) && target.stat != DEAD && target.mind && !is_banned_from(target.ckey, SQUAD_LEADER))
 					sl_candidates += target
-			var/new_lead = tgui_input_list(usr, "Choose a new Squad Leader", null, sl_candidates)
+			var/new_lead = tgui_input_list(operator, "Choose a new Squad Leader", null, sl_candidates)
 			if(!new_lead || new_lead == "Cancel")
 				return
-			change_lead(new_lead)
+			change_lead(operator, new_lead)
 		if("insubordination")
 			mark_insubordination()
 		if("squad_transfer")
 			if(!current_squad)
-				to_chat(usr, "[icon2html(src, usr)] [span_warning("No squad selected!")]")
+				to_chat(operator, "[icon2html(src, usr)] [span_warning("No squad selected!")]")
 				return
 			var/datum/squad/S = current_squad
-			var/mob/living/carbon/human/transfer_marine = tgui_input_list(usr, "Choose marine to transfer", null, current_squad.get_all_members())
+			var/mob/living/carbon/human/transfer_marine = tgui_input_list(operator, "Choose marine to transfer", null, current_squad.get_all_members())
 
 			if(!transfer_marine)
 				return
 			if(S != current_squad)
 				return //don't change overwatched squad, idiot.
 
-			var/datum/squad/new_squad = tgui_input_list(usr, "Choose the marine's new squad", null,  watchable_squads)
+			var/datum/squad/new_squad = tgui_input_list(operator, "Choose the marine's new squad", null,  watchable_squads)
 
-			transfer_squad(transfer_marine, new_squad)
+			transfer_squad(operator, transfer_marine, new_squad)
 		if("dropbomb")
 			handle_bombard()
 		if("shootrailgun")
@@ -608,8 +610,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 ///Lets anyone using an overwatch console know that an OB has just been lased
 /obj/machinery/computer/camera_advanced/overwatch/proc/alert_lase(datum/source, obj/effect/overlay/temp/laser_target/cas/OB/incoming_laser)
-	to_chat(usr, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
-	usr.playsound_local(usr, 'sound/effects/binoctarget.ogg', 15)
+	to_chat(source, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
+	source.playsound_local(source, 'sound/effects/binoctarget.ogg', 15)
 
 ///About to fire
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
@@ -626,33 +628,33 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		target.ceiling_debris_check(5)
 		GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target,user)
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/change_lead(mob/living/carbon/human/target)
-	if(!usr || usr != operator)
+/obj/machinery/computer/camera_advanced/overwatch/proc/change_lead(datum/source, mob/living/carbon/human/target)
+	if(!source || source != operator)
 		return
 	if(!istype(target) || !target.mind || target.stat == DEAD) //marines_list replaces mob refs of gibbed marines with just a name string
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("[target] is KIA!")]")
+		to_chat(source, "[icon2html(src, source)] [span_warning("[target] is KIA!")]")
 		return
 	var/datum/squad/target_squad = target.assigned_squad
 	if(target == target_squad.squad_leader)
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("[target] is already the Squad Leader!")]")
+		to_chat(source, "[icon2html(src, source)] [span_warning("[target] is already the Squad Leader!")]")
 		return
 	if(is_banned_from(target.ckey, SQUAD_LEADER))
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("[target] is unfit to lead!")]")
+		to_chat(source, "[icon2html(src, source)] [span_warning("[target] is unfit to lead!")]")
 		return
 	if(target_squad.squad_leader)
 		target_squad.message_squad("Acting Squad Leader updated to [target.real_name].")
-		if(issilicon(usr))
-			to_chat(usr, span_boldnotice("Squad Leader [target_squad.squad_leader] of squad '[target_squad]' has been [target_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [target.real_name]! Logging to enlistment files."))
+		if(issilicon(source))
+			to_chat(source, span_boldnotice("Squad Leader [target_squad.squad_leader] of squad '[target_squad]' has been [target_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [target.real_name]! Logging to enlistment files."))
 		visible_message(span_boldnotice("Squad Leader [target_squad.squad_leader] of squad '[target_squad]' has been [target_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [target.real_name]! Logging to enlistment files."))
 		target_squad.demote_leader()
 	else
 		target_squad.message_squad("Acting Squad Leader updated to [target.real_name].")
-		if(issilicon(usr))
-			to_chat(usr, span_boldnotice("[target.real_name] is the new Squad Leader of squad '[target_squad]'! Logging to enlistment file."))
+		if(issilicon(source))
+			to_chat(source, span_boldnotice("[target.real_name] is the new Squad Leader of squad '[target_squad]'! Logging to enlistment file."))
 		visible_message(span_boldnotice("[target.real_name] is the new Squad Leader of squad '[target_squad]'! Logging to enlistment file."))
 
 	to_chat(target, "[icon2html(src, target)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[ismarineleaderjob(target.job) ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [target_squad.name]. Your headset has access to the command channel (:v).</B></font>")
-	to_chat(usr, "[icon2html(src, usr)] [target.real_name] is [target_squad]'s new leader!")
+	to_chat(source, "[icon2html(src, source)] [target.real_name] is [target_squad]'s new leader!")
 	target_squad.promote_leader(target)
 
 
@@ -685,31 +687,31 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						wanted_marine.sec_hud_set_security_status()
 					return
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/transfer_squad(mob/living/carbon/human/transfer_marine, datum/squad/new_squad)
-	if(!usr || usr != operator)
+/obj/machinery/computer/camera_advanced/overwatch/proc/transfer_squad(datum/source, mob/living/carbon/human/transfer_marine, datum/squad/new_squad)
+	if(!source || source != operator)
 		return
 
 	if(!transfer_marine.job)
 		CRASH("[transfer_marine] selected for transfer without a job.")
 
 	if(!istype(transfer_marine)) //gibbed
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("[transfer_marine] is KIA.")]")
+		to_chat(source, "[icon2html(src, source)] [span_warning("[transfer_marine] is KIA.")]")
 		return
 
 	if(!istype(transfer_marine.wear_id, /obj/item/card/id))
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("Transfer aborted. [transfer_marine] isn't wearing an ID.")]")
+		to_chat(source, "[icon2html(src, source)] [span_warning("Transfer aborted. [transfer_marine] isn't wearing an ID.")]")
 		return
 
 	if(!new_squad)
 		return
 
 	if(ismarineleaderjob(transfer_marine.job) && new_squad.current_positions[/datum/job/terragov/squad/leader] >= SQUAD_MAX_POSITIONS(transfer_marine.job.total_positions))
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("Transfer aborted. [new_squad] can't have another [transfer_marine.job.title].")]")
+		to_chat(source, "[icon2html(src, source)] [span_warning("Transfer aborted. [new_squad] can't have another [transfer_marine.job.title].")]")
 		return
 
 	var/datum/squad/old_squad = transfer_marine.assigned_squad
 	if(new_squad == old_squad)
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("[transfer_marine] is already in [new_squad]!")]")
+		to_chat(source, "[icon2html(src, source)] [span_warning("[transfer_marine] is already in [new_squad]!")]")
 		return
 
 	if(old_squad)
@@ -732,8 +734,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		headset.set_frequency(new_squad.radio_freq)
 
 	transfer_marine.hud_set_job()
-	if(issilicon(usr))
-		to_chat(usr, span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
+	if(issilicon(source))
+		to_chat(source, span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	visible_message(span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
@@ -751,16 +753,16 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		var/choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
 			if(MESSAGE_SINGLE)
-				var/input = tgui_input_text(usr, "Please write a message to announce to this marine:", "CIC Message")
+				var/input = tgui_input_text(source, "Please write a message to announce to this marine:", "CIC Message")
 				current_squad.message_member(target, input, source)
 			if(ASL)
 				if(target == target.assigned_squad.squad_leader)
 					target.assigned_squad.demote_leader()
 					return
-				change_lead(target)
+				change_lead(source, target)
 			if(SWITCH_SQUAD)
 				var/datum/squad/desired_squad = squad_select(source, target)
-				transfer_squad(target, desired_squad)
+				transfer_squad(source, target, desired_squad)
 	else if(istype(A, /obj/effect/overlay/temp/laser_target/cas/OB))
 		var/obj/effect/overlay/temp/laser_target/cas/OB/target = A
 		var/list/radial_options = list(
@@ -792,7 +794,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(ORBITAL_SPOTLIGHT)
 				attempt_spotlight(source, target, params)
 			if(MESSAGE_NEAR)
-				var/input = tgui_input_text(usr, "Please write a message to announce to all marines nearby:", "CIC Proximity Message")
+				var/input = tgui_input_text(source, "Please write a message to announce to all marines nearby:", "CIC Proximity Message")
 				for(var/mob/living/carbon/human/target in GLOB.human_mob_list)
 					if(!target)
 						return
@@ -809,13 +811,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				var/datum/squad/chosen_squad = squad_select(source, target)
 				switch(choice)
 					if(MESSAGE_SQUAD)
-						var/input = tgui_input_text(usr, "Please write a message to announce to the squad:", "Squad Message")
+						var/input = tgui_input_text(source, "Please write a message to announce to the squad:", "Squad Message")
 						chosen_squad.message_squad(input, source)
 					if(SWITCH_SQUAD_NEAR)
 						for(var/mob/living/carbon/human/target in GLOB.human_mob_list)
 							if(!target.faction == faction || get_dist(target, target) > 9)
 								continue
-							transfer_squad(target, chosen_squad)
+							transfer_squad(source, target, chosen_squad)
 
 ///Radial squad select menu.
 /obj/machinery/computer/camera_advanced/overwatch/proc/squad_select(datum/source, atom/A)
