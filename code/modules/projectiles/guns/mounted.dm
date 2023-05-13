@@ -167,7 +167,8 @@
 	deployed_scatter_change = -10
 	fire_delay = 0.4 SECONDS
 	burst_amount = 12
-	burst_delay = 0.25 SECONDS
+	burst_delay = 0.2 SECONDS
+	burst_scatter_mult = 0.65
 	extra_delay = 1.5 SECONDS
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
