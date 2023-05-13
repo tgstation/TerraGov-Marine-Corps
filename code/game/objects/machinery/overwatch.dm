@@ -563,6 +563,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	for(var/datum/squad/squad AS in watchable_squads)
 		squad.message_squad(txt)
 
+///Checks and warnings before OB starts to fire
 /obj/machinery/computer/camera_advanced/overwatch/proc/handle_bombard()
 	if(!usr)
 		return
@@ -603,15 +604,17 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	addtimer(CALLBACK(src, PROC_REF(do_fire_bombard), T, usr), 3.1 SECONDS)
 
+///Lets anyone using an overwatch console know that an OB has just been lased
 /obj/machinery/computer/camera_advanced/overwatch/proc/alert_lase(datum/source, obj/effect/overlay/temp/laser_target/cas/OB/incoming_laser)
 	to_chat(usr, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	usr.playsound_local(usr, 'sound/effects/binoctarget.ogg', 15)
 
+///About to fire
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
 	visible_message(span_boldnotice("Orbital bombardment has fired! Impact imminent!"))
-	send_to_squads("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
 	addtimer(CALLBACK(src, PROC_REF(do_land_bombard), T, user), 2.5 SECONDS)
 
+///Randomises OB impact location a little and tells the OB cannon to fire
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_land_bombard(turf/T, user)
 	busy = FALSE
 	var/x_offset = rand(-2,2) //Little bit of randomness.
