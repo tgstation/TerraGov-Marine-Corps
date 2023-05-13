@@ -738,6 +738,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 ///Quick-select radial menu for Overwatch
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_radial(datum/source, atom/A, params)
+	SIGNAL_HANDLER
 	if(ishuman(A))
 		var/list/radial_options = list(
 			MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_single"),
