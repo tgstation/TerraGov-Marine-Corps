@@ -564,11 +564,6 @@
 		flick(icon_deny, src)
 		return
 
-	if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(R.product_path, GLOB.hvh_restricted_items_list))
-		to_chat(user, span_warning("This item is banned by the Space Geneva Convention."))
-		flick(icon_deny, src)
-		return
-
 	if(R.category == CAT_HIDDEN && !extended_inventory)
 		return
 
