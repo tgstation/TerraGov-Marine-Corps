@@ -282,6 +282,13 @@
 	icon = null
 	},
 /area/deathmatch)
+"hl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
 "hp" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/decal/cleanable/dirt,
@@ -501,6 +508,12 @@
 "nc" = (
 /obj/structure/bed/stool,
 /turf/open/floor/tile/cmo,
+/area/deathmatch)
+"ne" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
 /area/deathmatch)
 "np" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -1214,6 +1227,11 @@
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
+"Cw" = (
+/obj/effect/landmark/deathmatch,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
 "CD" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/deathmatch,
@@ -1248,6 +1266,10 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
+/area/deathmatch)
+"DE" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "DM" = (
 /obj/machinery/status_display,
@@ -1400,6 +1422,10 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Hc" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
 "Hg" = (
 /obj/structure/table/woodentable,
@@ -1742,6 +1768,10 @@
 	dir = 8
 	},
 /area/deathmatch)
+"Pr" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
 "Pt" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark2,
@@ -1801,6 +1831,7 @@
 "Qo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/eord_roomba,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Qt" = (
@@ -2491,7 +2522,7 @@ QY
 dZ
 dZ
 dZ
-dZ
+ne
 dZ
 dZ
 zm
@@ -2555,7 +2586,7 @@ WK
 WK
 WK
 WK
-WK
+Pr
 WK
 WK
 uX
@@ -3165,7 +3196,7 @@ vO
 ro
 AR
 Ye
-ZJ
+DE
 We
 ZJ
 jg
@@ -3615,7 +3646,7 @@ ZJ
 ZJ
 Mw
 ZJ
-ZJ
+DE
 ZJ
 jg
 yo
@@ -3743,7 +3774,7 @@ Nm
 Xv
 ZD
 Xv
-mO
+hl
 tn
 Nm
 Nm
@@ -3759,7 +3790,7 @@ uX
 ay
 os
 zg
-sw
+Cw
 ZJ
 jg
 yo
@@ -4026,7 +4057,7 @@ OC
 CD
 ZF
 vM
-tn
+Hc
 Nm
 Xv
 Xv

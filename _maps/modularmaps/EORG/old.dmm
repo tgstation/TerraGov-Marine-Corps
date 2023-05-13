@@ -333,6 +333,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/landmark/eord_roomba,
 /turf/open/floor,
 /area/deathmatch)
 "bt" = (
@@ -577,6 +578,12 @@
 "fY" = (
 /turf/closed/wall/sulaco,
 /area/deathmatch)
+"gz" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/ground/coast{
+	dir = 4
+	},
+/area/deathmatch)
 "kU" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -606,6 +613,10 @@
 /turf/open/floor/mainship/emerald{
 	dir = 6
 	},
+/area/deathmatch)
+"uM" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/ground/grass,
 /area/deathmatch)
 "vt" = (
 /obj/structure/barricade/guardrail{
@@ -651,6 +662,10 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
+/area/deathmatch)
+"ZQ" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 
 (1,1,1) = {"
@@ -1092,7 +1107,7 @@ bu
 bu
 bR
 bu
-bu
+uM
 bu
 as
 aR
@@ -1117,7 +1132,7 @@ cg
 cd
 Ci
 cd
-cg
+ZQ
 kU
 cl
 as
@@ -1666,7 +1681,7 @@ ab
 aA
 aA
 aA
-aA
+gz
 aA
 aA
 aA
@@ -2209,7 +2224,7 @@ bt
 bu
 bu
 bu
-bu
+uM
 bu
 bu
 bu
@@ -2223,7 +2238,7 @@ aL
 fY
 fY
 fY
-bu
+uM
 bu
 au
 bu
@@ -2542,7 +2557,7 @@ fY
 bt
 bu
 bu
-bu
+uM
 bu
 bu
 bu
