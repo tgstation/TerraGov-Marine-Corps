@@ -600,18 +600,11 @@ TUNNEL
 
 	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
 
-	var/grenade_removed = FALSE
-	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
-		sticky_bomb.clean_refs()
-		sticky_bomb.forceMove(loc)
-		grenade_removed = TRUE
-	if(grenade_removed)
-		charges -= 1
-		acid_smoke = new(get_turf(stepper))
-		acid_smoke.set_up(0, src)
-		acid_smoke.start()
-		update_icon()
 	if(isxeno(stepper))
+		for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
+			if(sticky_bomb.stuck_to == stepper)
+				sticky_bomb.clean_refs()
+				sticky_bomb.forceMove(loc)
 		if(!(stepper.on_fire))
 			return
 		acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
@@ -626,6 +619,10 @@ TUNNEL
 	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
 	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
 	stepper.ExtinguishMob()
+	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
+		if(sticky_bomb.stuck_to == stepper)
+			sticky_bomb.clean_refs()
+			sticky_bomb.forceMove(loc)
 	stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
 	span_danger("We are immersed in [src]'s acid!") , null, 5)
 	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
