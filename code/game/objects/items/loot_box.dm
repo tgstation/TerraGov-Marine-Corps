@@ -404,7 +404,7 @@
 	rare_list = list(
 		/obj/item/storage/box/loot/tl102_pack,
 		/obj/item/storage/box/loot/mortar_pack,
-		/obj/item/storage/box/loot/howitzer_pack,
+		/obj/structure/closet/crate/loot/howitzer_pack,
 		/obj/item/storage/box/loot/sentry_pack,
 		/obj/item/storage/box/loot/agl_pack,
 	)
@@ -415,13 +415,13 @@
 		/obj/item/storage/box/loot/recoilless_pack,
 	)
 	common_list = list(
-		/obj/item/storage/box/loot/autosniper_pack,
-		/obj/item/storage/box/loot/thermobaric_pack,
-		/obj/item/storage/box/loot/tesla_pack,
-		/obj/item/storage/box/loot/tx54_pack,
+		obj/item/storage/box/loot/autosniper_pack,
+		obj/item/storage/box/loot/thermobaric_pack,
+		obj/item/storage/box/loot/tesla_pack,
+		obj/item/storage/box/loot/tx54_pack,
 	)
 
-// Crates the lootbox uses.
+// Box the lootbox uses.
 
 /obj/item/storage/box/loot
 	name = "\improper generic equipment"
@@ -432,6 +432,16 @@
 	storage_slots = 21
 	can_hold = list() // Holds absolutely nothing after you take it out.
 	foldable = null
+
+// Crate for lootboxes. Use for large items.
+
+/obj/structure/closet/crate/loot
+	name = "\improper generic equipment"
+	desc = "A large crate containing some kind of equipment."
+	icon = 'icons/obj/structures/crates.dmi'
+	icon_state = "closed_basic"
+	icon_opened = "open_basic"
+	icon_closed = "closed_basic"
 
 /obj/item/storage/box/loot/Initialize(mapload)
 	. = ..()
@@ -567,7 +577,7 @@
 	new /obj/item/mortar_kit(src)
 	new /obj/item/mortar_kit(src)
 
-/obj/item/storage/box/loot/howitzer_pack/Initialize(mapload)
+/obj/structure/closet/crate/loot/howitzer_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/mortar_kit/howitzer(src)
 	new /obj/item/mortar_kit/howitzer(src)
