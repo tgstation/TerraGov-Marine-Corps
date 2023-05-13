@@ -75,10 +75,10 @@
 /obj/item/armor_module/module/fire_proof
 	name = "\improper Surt Pyrotechnical Insulation System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility."
+	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniac's first stop to survival. Will impact mobility."
 	icon_state = "mod_fire"
 	item_state = "mod_fire_a"
-	hard_armor = list("fire" = 200)
+	soft_armor = list(FIRE = 35)
 	slowdown = 0.4
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn")
@@ -86,9 +86,11 @@
 /obj/item/armor_module/module/fire_proof/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	parent.flags_armor_features |= ARMOR_FIRE_RESISTANT
 
 /obj/item/armor_module/module/fire_proof/on_detach(obj/item/detaching_from, mob/user)
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	parent.flags_armor_features &= ~ARMOR_FIRE_RESISTANT
 	return ..()
 
 /obj/item/armor_module/module/fire_proof/som
@@ -96,6 +98,17 @@
 	desc = "Designed for mounting on modular SOM armor. Provides excellent resistance to fire and prevents combustion. As it is not a sealed system, it does not completely protect the user from the heat of fire. Will impact mobility."
 	icon_state = "mod_fire_som"
 	item_state = "mod_fire_som_a"
+
+/obj/item/armor_module/module/fire_proof_helmet
+
+	name = "\improper Surt Pyrotechnical Insulation Helmet System"
+	desc = "Designed for mounting on a modular helmet. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniac's first stop to survival."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_fire_head"
+	item_state = "mod_fire_head_a"
+	soft_armor = list(FIRE = 35)
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mod_fire_head_xn")
 
 /**
  * Extra armor module
@@ -305,7 +318,7 @@
 	var/recharge_timer
 
 
-/obj/item/armor_module/module/eshield/Initialize()
+/obj/item/armor_module/module/eshield/Initialize(mapload)
 	. = ..()
 	spark_system = new()
 	spark_system.set_up(5, 0, src)
@@ -375,11 +388,11 @@
 		shield_health = shield_left
 		switch(shield_left / max_shield_health)
 			if(0 to 0.33)
-				affected.add_filter("eshield", 1, outline_filter(1, shield_color_low))
+				affected.add_filter("eshield", 2, outline_filter(1, shield_color_low))
 			if(0.33 to 0.66)
-				affected.add_filter("eshield", 1, outline_filter(1, shield_color_mid))
+				affected.add_filter("eshield", 2, outline_filter(1, shield_color_mid))
 			if(0.66 to 1)
-				affected.add_filter("eshield", 1, outline_filter(1, shield_color_full))
+				affected.add_filter("eshield", 2, outline_filter(1, shield_color_full))
 		spark_system.start()
 	else
 		shield_health = 0
@@ -418,7 +431,7 @@
 		return
 	var/mob/living/affected = parent.loc
 	affected.remove_filter("eshield")
-	affected.add_filter("eshield", 1, outline_filter(1, new_color))
+	affected.add_filter("eshield", 2, outline_filter(1, new_color))
 
 //original Martian design, donutsteel
 /obj/item/armor_module/module/eshield/som

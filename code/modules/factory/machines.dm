@@ -17,7 +17,7 @@
 	var/processiconstate = "heater"
 	COOLDOWN_DECLARE(process_cooldown)
 
-/obj/machinery/factory/Initialize()
+/obj/machinery/factory/Initialize(mapload)
 	. = ..()
 	add_overlay(image(icon, "direction_arrow"))
 

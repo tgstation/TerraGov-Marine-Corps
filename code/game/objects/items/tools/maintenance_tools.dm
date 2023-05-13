@@ -46,7 +46,7 @@
 	return(BRUTELOSS)
 
 
-/obj/item/tool/screwdriver/Initialize()
+/obj/item/tool/screwdriver/Initialize(mapload)
 	if(random_color)
 		set_greyscale_config(/datum/greyscale_config/screwdriver)
 		var/our_color = pick(screwdriver_colors)
@@ -80,7 +80,7 @@
 	tool_behaviour = TOOL_WIRECUTTER
 
 
-/obj/item/tool/wirecutters/Initialize()
+/obj/item/tool/wirecutters/Initialize(mapload)
 	. = ..()
 	if(prob(50))
 		icon_state = "cutters-y"
@@ -101,6 +101,7 @@
 /obj/item/tool/weldingtool
 	name = "blowtorch"
 	icon = 'icons/obj/items/items.dmi'
+	desc = "Used for welding and repairing various things."
 	icon_state = "welder"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -121,7 +122,7 @@
 	var/status = TRUE //When welder is secured on unsecured
 
 
-/obj/item/tool/weldingtool/Initialize()
+/obj/item/tool/weldingtool/Initialize(mapload)
 	. = ..()
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 
@@ -360,7 +361,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	var/max_fuel = 500 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
 
-/obj/item/tool/weldpack/Initialize()
+/obj/item/tool/weldpack/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
@@ -461,7 +462,7 @@
 	///Are we currently recharging something.
 	var/recharging = FALSE
 
-/obj/item/tool/handheld_charger/Initialize()
+/obj/item/tool/handheld_charger/Initialize(mapload)
 	. = ..()
 	cell = null
 

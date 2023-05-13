@@ -32,7 +32,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/claymore/Initialize()
+/obj/item/weapon/claymore/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
@@ -50,7 +50,6 @@
 	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-	flags_item = DRAINS_XENO
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
 	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
@@ -62,7 +61,7 @@
 	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
 	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/claymore/harvester/Initialize()
+/obj/item/weapon/claymore/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/harvester)
 
@@ -108,6 +107,11 @@
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
+/obj/item/weapon/claymore/mercsword/machete/alt
+	name = "machete"
+	desc = "A nice looking machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
+	icon_state = "machete_alt"
+
 //FC's sword.
 
 /obj/item/weapon/claymore/mercsword/officersword
@@ -118,14 +122,6 @@
 	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
@@ -210,7 +206,7 @@
 		F.loc = get_turf(src)
 	qdel(src) //Delete da old knife
 
-/obj/item/weapon/combat_knife/Initialize()
+/obj/item/weapon/combat_knife/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
@@ -227,7 +223,6 @@
 	item_state = "vali_knife"
 	force = 25
 	throwforce = 15
-	flags_item = DRAINS_XENO
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
 	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
@@ -239,7 +234,7 @@
 	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
 	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/combat_knife/harvester/Initialize()
+/obj/item/weapon/combat_knife/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/harvester, 5)
 

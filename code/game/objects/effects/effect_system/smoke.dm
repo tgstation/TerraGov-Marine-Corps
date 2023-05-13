@@ -19,9 +19,10 @@
 	var/bio_protection = 1 // how unefficient its effects are against protected target from 0 to 1.
 	var/datum/effect_system/smoke_spread/cloud // for associated chemical smokes.
 	var/fraction = 0.2
-	var/smoke_can_spread_through = FALSE
 	///Delay in ticks before this smoke can affect a given mob again, applied in living's effect_smoke
 	var/minimum_effect_delay = 1 SECONDS
+	///The original source of the smoke. Used for smoke spread checks
+	var/origin
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -30,6 +31,7 @@
 
 /obj/effect/particle_effect/smoke/Initialize(mapload, range, smoketime, smokecloud)
 	. = ..()
+	origin = src
 	if(smokecloud)
 		cloud = smokecloud
 		LAZYADD(cloud.smokes, src)
@@ -118,6 +120,7 @@
 		reagents.copy_to(C, reagents.total_volume, fraction / LAZYLEN(cloud.smoked_mobs))
 	LAZYCLEARLIST(cloud.smoked_mobs)
 
+///Attempts to spread smoke to the surrounding cardinal turfs
 /obj/effect/particle_effect/smoke/proc/spread_smoke()
 	var/turf/t_loc = get_turf(src)
 	if(!t_loc)
@@ -125,42 +128,59 @@
 	var/list/newsmokes = list()
 	for(var/a in get_adjacent_open_turfs(src))
 		var/turf/T = a
-		if(check_airblock(T)) //smoke can't spread that way
+		var/obj/effect/particle_effect/smoke/new_smoke
+		var/can_spread = TRUE
+		for(var/atom/movable/moveable in T)
+			if(!moveable.CanPass(src, T))
+				can_spread = FALSE
+				break
+			if(!(moveable.type == src.type))
+				continue
+			new_smoke = moveable
+			if(origin == new_smoke.origin) //part of the same smoke bloom
+				can_spread = FALSE
+				break
+
+		if(!can_spread)
 			continue
-		apply_smoke_effect(T)
-		var/obj/effect/particle_effect/smoke/S = new type(T, null, null, cloud)
-		reagents.copy_to(S, reagents.total_volume)
-		S.copy_stats(src)
-		S.setDir(pick(GLOB.cardinals))
-		if(S.amount > 0)
-			newsmokes.Add(S)
+
+		if(new_smoke)
+			new_smoke.copy_stats(src, TRUE)
 		else
-			S.lifetime += rand(-1,1)
+			new_smoke = new type(T, null, null, cloud)
+			reagents.copy_to(new_smoke, reagents.total_volume)
+			new_smoke.copy_stats(src)
+
+
+		new_smoke.setDir(pick(GLOB.cardinals))
+
+		apply_smoke_effect(T)
+
+		if(new_smoke.amount > 0)
+			newsmokes.Add(new_smoke)
+		else
+			new_smoke.lifetime += rand(-1,1)
 	lifetime += rand(-1,1)
 
 	if(length(newsmokes))
 		addtimer(CALLBACK(src, PROC_REF(spawn_smoke), newsmokes), expansion_speed) //the smoke spreads rapidly but not instantly
 
-/obj/effect/particle_effect/smoke/proc/copy_stats(obj/effect/particle_effect/smoke/parent)
+///Copies key stats from a parent smoke to a newly created smoke
+/obj/effect/particle_effect/smoke/proc/copy_stats(obj/effect/particle_effect/smoke/parent, merge = FALSE)
 	amount = parent.amount-1
-	lifetime = parent.lifetime
-	strength = parent.strength
+	origin = parent.origin
+	if(merge)
+		lifetime = max(parent.lifetime, lifetime)
+		strength = max(parent.strength, strength)
+	else
+		lifetime = parent.lifetime
+		strength = parent.strength
 	if(lifetime)
 		fraction = INVERSE(lifetime)
 
 /obj/effect/particle_effect/smoke/proc/spawn_smoke(list/newsmokes)
 	for(var/obj/effect/particle_effect/smoke/SM in newsmokes)
 		SM.spread_smoke()
-
-//proc to check if smoke can expand to another turf
-/obj/effect/particle_effect/smoke/proc/check_airblock(turf/T)
-	for(var/obj/effect/particle_effect/smoke/foundsmoke in T)
-		if(istype(foundsmoke, src) || !foundsmoke?.smoke_can_spread_through) //Don't spread smoke through itself or, unless specified, through other smokes.
-			return TRUE
-	for(var/atom/movable/M in T)
-		if(!M.CanPass(src, T))
-			return TRUE
-	return FALSE
 
 /////////////////////////////////////////////
 // Smoke spread
@@ -201,7 +221,7 @@
 /datum/effect_system/smoke_spread/start()
 	if(!QDELETED(holder))
 		location = get_turf(holder)
-	new smoke_type(location, range, lifetime, src)
+	new smoke_type(location, range, lifetime)
 
 /////////////////////////////////////////////
 // Bad smoke
@@ -303,29 +323,24 @@
 /obj/effect/particle_effect/smoke/xeno/neuro/light
 	alpha = 60
 	opacity = FALSE
-	smoke_can_spread_through = TRUE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
 /obj/effect/particle_effect/smoke/xeno/toxic
 	lifetime = 2
-	smoke_can_spread_through = TRUE
 	color = "#00B22C"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_TOXIC|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/hemodile
-	smoke_can_spread_through = TRUE
 	color = "#0287A1"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/transvitox
-	smoke_can_spread_through = TRUE
 	color = "#abf775"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 //Toxic smoke when the Defiler successfully uses Defile
 /obj/effect/particle_effect/smoke/xeno/sanguinal
 	color = "#bb0a1e" //Blood red
-	smoke_can_spread_through = TRUE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_SANGUINAL|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 ///Xeno ozelomelyn in smoke form for Defiler.

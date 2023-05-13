@@ -30,9 +30,12 @@
 	var/message = stripped_input(user, "Shout a message?", "Megaphone")
 	if(!message)
 		return
-	if(CHAT_FILTER_CHECK(message))
+	var/filter_result = CAN_BYPASS_FILTER(user) ? null : is_ic_filtered(message)
+	if(filter_result)
 		to_chat(user, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
+		log_filter("IC", message, filter_result)
 		return
 	message = capitalize(message)
 	user.log_talk(message, LOG_SAY, "(megaphone)")

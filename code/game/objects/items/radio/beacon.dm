@@ -10,7 +10,7 @@
 	var/code = "electronic"
 
 
-/obj/item/radio/beacon/Initialize()
+/obj/item/radio/beacon/Initialize(mapload)
 	. = ..()
 	GLOB.beacon_list += src
 

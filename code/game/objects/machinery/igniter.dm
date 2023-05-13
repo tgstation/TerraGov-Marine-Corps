@@ -25,7 +25,7 @@
 	icon_state = "igniter[on]"
 
 
-/obj/machinery/igniter/Initialize()
+/obj/machinery/igniter/Initialize(mapload)
 	. = ..()
 	icon_state = "igniter[on]"
 

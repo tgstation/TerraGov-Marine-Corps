@@ -80,7 +80,7 @@
 	burst_amount = 1
 	autoburst_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_mult = 0.3
+	burst_accuracy_bonus = -0.3
 	burst_scatter_mult = 25
 
 /obj/item/weapon/gun/smg/standard_machinepistol/compact
@@ -421,7 +421,13 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som, /obj/item/ammo_magazine/smg/som/ap, /obj/item/ammo_magazine/smg/som/incendiary, /obj/item/ammo_magazine/smg/som/extended)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/som,
+		/obj/item/ammo_magazine/smg/som/ap,
+		/obj/item/ammo_magazine/smg/som/incendiary,
+		/obj/item/ammo_magazine/smg/som/extended,
+		/obj/item/ammo_magazine/smg/som/rad,
+	)
 	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //full auto, fuller auto
 
@@ -458,7 +464,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_mult = -0.3
+	burst_accuracy_bonus = -0.3
 	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7

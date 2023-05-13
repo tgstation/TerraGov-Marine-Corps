@@ -16,10 +16,11 @@
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/boot,
 		/obj/item/armor_module/storage/boot/full,
+		/obj/item/armor_module/storage/boot/som_knife,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/boot)
 
-/obj/item/clothing/shoes/marine/Initialize()
+/obj/item/clothing/shoes/marine/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -113,7 +114,7 @@
 	item_state = "som"
 
 /obj/item/clothing/shoes/marine/som/knife
-	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+	starting_attachments = list(/obj/item/armor_module/storage/boot/som_knife)
 
 /obj/item/clothing/shoes/sectoid
 	name = "psionic field"

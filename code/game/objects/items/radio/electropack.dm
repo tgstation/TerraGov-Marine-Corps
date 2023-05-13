@@ -17,7 +17,7 @@
 	var/code = 2
 	var/frequency = FREQ_ELECTROPACK
 
-/obj/item/electropack/Initialize()
+/obj/item/electropack/Initialize(mapload)
 	. = ..()
 	SSradio.add_object(src, frequency, RADIO_SIGNALER)
 

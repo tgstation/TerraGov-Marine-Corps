@@ -67,7 +67,7 @@
 /area/deathmatch)
 "hy" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/wood,
 /area/deathmatch)
 "iq" = (
@@ -160,9 +160,6 @@
 	height = 1;
 	id = "cs_militia_1";
 	pixel_y = 8
-	},
-/obj/structure/platform{
-	dir = 4
 	},
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
@@ -306,7 +303,7 @@
 /turf/closed/wall/wood,
 /area/deathmatch)
 "EV" = (
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
 	},
@@ -353,15 +350,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/deathmatch)
-"IO" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/effect/landmark/deathmatch,
-/turf/open/floor/plating/asteroidplating{
-	color = "#888888"
-	},
 /area/deathmatch)
 "Jj" = (
 /obj/structure/window/framed/wood,
@@ -459,7 +447,7 @@
 	},
 /area/deathmatch)
 "Uv" = (
-/turf/closed/desertdamrockwall,
+/turf/closed/mineral/smooth/desertdamrockwall,
 /area/deathmatch)
 "US" = (
 /obj/structure/bed/chair/wood/wings{
@@ -471,15 +459,6 @@
 /obj/effect/landmark/deathmatch,
 /obj/structure/flora/desert/grass/three,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/deathmatch)
-"Vq" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/effect/landmark/deathmatch,
-/turf/open/floor/plating/asteroidplating{
-	color = "#888888"
-	},
 /area/deathmatch)
 "Vu" = (
 /obj/structure/ladder{
@@ -739,8 +718,8 @@ Uv
 WC
 WC
 WC
-Dq
-Vq
+WV
+NB
 WV
 WC
 Uv
@@ -787,8 +766,8 @@ Uv
 WC
 WV
 WV
-WV
-WV
+GB
+GB
 WV
 WC
 Uv
@@ -1353,8 +1332,8 @@ QI
 QI
 Uv
 WC
-WV
-WV
+Dq
+Dq
 WV
 WV
 WV
@@ -1401,8 +1380,8 @@ QI
 QI
 Uv
 WC
-GB
-IO
+WV
+NB
 hw
 WC
 WC
@@ -1696,8 +1675,8 @@ WV
 WV
 WV
 WV
-WV
-WV
+Dq
+Dq
 WV
 hw
 WC
@@ -1744,8 +1723,8 @@ hw
 WC
 WC
 WV
-GB
-GB
+WV
+WV
 WC
 WC
 WC
@@ -2133,7 +2112,7 @@ WC
 WC
 WV
 sv
-Vq
+NB
 WC
 Uv
 "}
@@ -2180,8 +2159,8 @@ WV
 WV
 hw
 WV
-WV
-WV
+GB
+GB
 WC
 Uv
 "}

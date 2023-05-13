@@ -1,5 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - bugfix: "fixed random_available_channel runtiming from accessing a invalid index on channel_list, hopefully"
-  - bugfix: "Hopefully the maptext for secrete resin will no longer cause all xenos to spawn without any abilities randomly."

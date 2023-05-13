@@ -27,29 +27,35 @@
 	probability = 40
 	repeatable = FALSE
 
-	var/datum/looping_sound/acidrain/midsound = new(list(), FALSE, TRUE)
+	var/datum/looping_sound/acidrain/sound_active_acidrain = new(list(), FALSE, TRUE)
 
 /datum/weather/acid_rain/telegraph()
 	. = ..()
-	var/list/eligible_areas = list()
-	for (var/z in impacted_z_levels)
-		eligible_areas += SSmapping.areas_in_z["[z]"]
+	var/list/impacted_mobs = list()
+	var/list/eligible_mobs = list()
+	for(var/z in impacted_z_levels)
+		eligible_mobs += GLOB.humans_by_zlevel["[z]"]
+	for(var/i in 1 to length(eligible_mobs))
+		var/mob/impacted_mob = eligible_mobs[i]
+		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+			continue
+		impacted_mobs |= impacted_mob
+		CHECK_TICK
 
-	midsound.output_atoms = eligible_areas
+	sound_active_acidrain.output_atoms = impacted_mobs
 
 /datum/weather/acid_rain/start()
 	. = ..()
-	midsound.start()
+	sound_active_acidrain.start()
 
 /datum/weather/acid_rain/end()
 	. = ..()
-	midsound.stop()
+	sound_active_acidrain.stop()
 
 /datum/weather/acid_rain/weather_act(mob/living/L)
 	if(L.stat == DEAD)
 		return
-	var/resist = L.get_soft_armor("acid")
-	if(prob(max(0,100-resist)))
+	if(prob(L.modify_by_armor(100, ACID)))
 		L.adjustFireLoss(7)
 		to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))
 	L.clean_mob()

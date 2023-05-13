@@ -46,7 +46,7 @@
 	mediumxenofootstep = FOOTSTEP_CATWALK
 
 
-/turf/open/floor/plating/plating_catwalk/Initialize()
+/turf/open/floor/plating/plating_catwalk/Initialize(mapload)
 	. = ..()
 	icon_state = base_state
 	update_turf_overlay()

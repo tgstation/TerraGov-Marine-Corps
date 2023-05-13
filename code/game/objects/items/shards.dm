@@ -28,7 +28,7 @@
 	return ..()
 
 
-/obj/item/shard/Initialize()
+/obj/item/shard/Initialize(mapload)
 	. = ..()
 	shardsize = pick("large", "medium", "small")
 	switch(shardsize)

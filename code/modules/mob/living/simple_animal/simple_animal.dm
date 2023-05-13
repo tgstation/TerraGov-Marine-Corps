@@ -51,10 +51,7 @@
 	var/melee_damage_type = BRUTE //Damage type of a simple mob's melee attack, should it do damage.
 	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1) // 1 for full damage , 0 for none , -1 for 1:1 heal from that source
 
-	//Gibber thingy
-	var/nutrition = NUTRITION_WELLFED
-
-/mob/living/simple_animal/Initialize()
+/mob/living/simple_animal/Initialize(mapload)
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
 	if(gender == PLURAL)
@@ -313,7 +310,7 @@
 	set waitfor = FALSE
 	if(speak_chance)
 		if(prob(speak_chance) || override)
-			if(speak && length(speak))
+			if(length(speak))
 				if((emote_hear && length(emote_hear)) || (emote_see && length(emote_see)))
 					var/length = speak.len
 					if(emote_hear && length(emote_hear))
@@ -332,11 +329,11 @@
 				else
 					say(pick(speak), forced = "poly")
 			else
-				if(!(emote_hear && length(emote_hear)) && (emote_see && length(emote_see)))
+				if(!length(emote_hear) && length(emote_see))
 					emote("me", 1, pick(emote_see))
-				if((emote_hear && length(emote_hear)) && !(emote_see && length(emote_see)))
+				if(length(emote_hear) && !length(emote_see))
 					emote("me", 2, pick(emote_hear))
-				if((emote_hear && length(emote_hear)) && (emote_see && length(emote_see)))
+				if(length(emote_hear) && length(emote_see))
 					var/length = length(emote_hear) + emote_see.len
 					var/pick = rand(1,length)
 					if(pick <= length(emote_see))

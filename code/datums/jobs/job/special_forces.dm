@@ -3,7 +3,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/special_forces_standard
-
+	faction = FACTION_SPECFORCE
 
 //Special forces Standard
 /datum/job/special_forces/standard

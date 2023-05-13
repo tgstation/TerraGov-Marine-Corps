@@ -9,6 +9,7 @@
 
 
 /obj/item/inflatable/attack_self(mob/user)
+	. = ..()
 	balloon_alert(user, "Inflating...")
 	if(!do_after(user, 3 SECONDS, TRUE, src))
 		balloon_alert(user, "Interrupted!")
@@ -73,7 +74,7 @@
 		visible_message(span_danger("[user] pierces [src] with [I]!"))
 		deflate(TRUE)
 
-
+///Handles the structure deflating
 /obj/structure/inflatable/proc/deflate(violent = FALSE)
 	set waitfor = 0
 	if(deflated)
@@ -84,7 +85,7 @@
 	flick("wall_[violent ? "popping" : "deflating"]", src)
 	addtimer(CALLBACK(src, PROC_REF(post_deflate), violent), violent ? 1 SECONDS : 5 SECONDS)
 
-
+///Creates the appropriate item after deflation
 /obj/structure/inflatable/proc/post_deflate(violent = FALSE)
 	if(violent)
 		new popped_variant(get_turf(src))
@@ -141,7 +142,7 @@
 	///Are we currently busy opening/closing?
 	var/switching_states = FALSE
 
-/obj/structure/inflatable/door/Initialize()
+/obj/structure/inflatable/door/Initialize(mapload)
 	. = ..()
 	if((locate(/mob/living) in loc) && !open)
 		toggle_state()
@@ -195,7 +196,6 @@
 	open = !open
 	flick("door_[open ? "opening" : "closing"]", src)
 	density = !density
-	opacity = !opacity
 	update_icon()
 	addtimer(VARSET_CALLBACK(src, switching_states, FALSE), 1 SECONDS)
 

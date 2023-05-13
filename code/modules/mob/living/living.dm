@@ -80,7 +80,7 @@
 	. = ..()
 	update_cloak()
 
-/mob/living/Initialize()
+/mob/living/Initialize(mapload)
 	. = ..()
 	register_init_signals()
 	update_move_intent_effects()
@@ -372,6 +372,9 @@
 				mob_swap_mode = PHASING
 			else if((move_resist >= MOVE_FORCE_VERY_STRONG || move_resist > L.move_force) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap_mode = SWAPPING
+			///if we're moving diagonally, but the mob isn't on the diagonal destination turf we have no reason to shuffle/push them
+			if(moving_diagonally && (get_dir(src, L) in GLOB.cardinals) && get_step(src, dir).Enter(src, loc))
+				mob_swap_mode = PHASING
 			if(mob_swap_mode)
 				//switch our position with L
 				if(loc && !loc.Adjacent(L.loc))
@@ -385,11 +388,10 @@
 				L.flags_pass |= PASSMOB
 				flags_pass |= PASSMOB
 
-				var/move_failed = FALSE
-				if(!Move(oldLloc) || (mob_swap_mode == SWAPPING && !L.Move(oldloc)))
-					L.forceMove(oldLloc)
-					forceMove(oldloc)
-					move_failed = TRUE
+				if(!moving_diagonally) //the diagonal move already does this for us
+					Move(oldLloc)
+				if(mob_swap_mode == SWAPPING)
+					L.Move(oldloc)
 
 				if(!src_passmob)
 					flags_pass &= ~PASSMOB
@@ -398,8 +400,7 @@
 
 				now_pushing = FALSE
 
-				if(!move_failed)
-					return TURF_ENTER_ALREADY_MOVED
+				return TURF_ENTER_ALREADY_MOVED
 
 		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
 			return

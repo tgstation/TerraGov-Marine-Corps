@@ -470,7 +470,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER 0.25 //multiplies top level explosive damage by this amount.
-#define XENO_EXPLOSION_GIB_THRESHOLD 5 //under this level of bomb armour, devestating explosion will gib xenos
+#define XENO_EXPLOSION_GIB_THRESHOLD 0.95 //if your effective bomb armour is less than 5, devestating explosions will gib xenos
 
 #define KING_SUMMON_TIMER_DURATION 5 MINUTES
 
@@ -655,9 +655,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE 0
 #define BOILER_LUMINOSITY_BASE_COLOR LIGHT_COLOR_GREEN
-#define BOILER_LUMINOSITY_AMMO 1 //don't set this to 0. How much each 'piece' of ammo in reserve glows by.
+#define BOILER_LUMINOSITY_AMMO 0.5 //don't set this to 0. How much each 'piece' of ammo in reserve glows by.
 #define BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR LIGHT_COLOR_YELLOW
 #define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR LIGHT_COLOR_GREEN
+#define BOILER_BOMBARD_COOLDOWN_REDUCTION 1.5 //Amount of seconds each glob stored reduces bombard cooldown by
+#define	BOILER_LUMINOSITY_THRESHOLD 2 //Amount of ammo needed to start glowing
 
 //Hivelord defines
 #define HIVELORD_TUNNEL_DISMANTLE_TIME 3 SECONDS
@@ -724,7 +726,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Widow Defines
 #define WIDOW_SPEED_BONUS 1 // How much faster widow moves while she has wall_speedup element
-#define BURROW_FIRE_RESIST_MODIFIER 20 // How much fire resistance widow and spiderlings have while burrowed
 #define WIDOW_WEB_HOOK_RANGE 10 // how far the web hook can reach
 #define WIDOW_WEB_HOOK_MIN_RANGE 3 // the minimum range that the hook must travel to use the ability
 #define WIDOW_WEB_HOOK_SPEED 3 // how fast widow yeets herself when using web hook
@@ -817,8 +818,10 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define SCREWYHUD_HEALTHY 3
 
 //do_mob() flags
-#define IGNORE_LOC_CHANGE (1<<0)
-#define IGNORE_HAND (1<<1)
+#define IGNORE_LOC_CHANGE (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE)
+#define IGNORE_USER_LOC_CHANGE (1<<0)
+#define IGNORE_TARGET_LOC_CHANGE (1<<1)
+#define IGNORE_HAND (1<<2)
 
 #define TIER_ONE_YOUNG_THRESHOLD 60
 #define TIER_ONE_MATURE_THRESHOLD TIER_ONE_YOUNG_THRESHOLD + 120
@@ -845,3 +848,14 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"
 #define AURA_HUMAN_FOCUS "focus"
+
+//slowdown defines for liquid turfs
+
+///Default slowdown for mobs moving through liquid
+#define MOB_WATER_SLOWDOWN 1.75
+///Slowdown for xenos moving through liquid
+#define XENO_WATER_SLOWDOWN 1.3
+///Slowdown for boilers moving through liquid
+#define BOILER_WATER_SLOWDOWN 0
+///Slowdown for warlocks moving through liquid
+#define WARLOCK_WATER_SLOWDOWN 0

@@ -15,7 +15,7 @@
 	var/w_items = 0			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
-/obj/structure/toilet/Initialize()
+/obj/structure/toilet/Initialize(mapload)
 	. = ..()
 	open = round(rand(0, 1))
 	update_icon()
@@ -166,7 +166,7 @@
 	var/mobpresent = 0
 	var/is_washing = FALSE
 
-/obj/machinery/shower/Initialize()
+/obj/machinery/shower/Initialize(mapload)
 	. = ..()
 	create_reagents(2)
 	var/static/list/connections = list(
@@ -324,7 +324,7 @@
 	anchored = TRUE
 	var/busy = 0 	//Something's being washed at the moment
 
-/obj/structure/sink/Initialize()
+/obj/structure/sink/Initialize(mapload)
 	. = ..()
 	switch(dir)
 		if(WEST)

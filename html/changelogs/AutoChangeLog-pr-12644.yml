@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - code_imp: "Removed pointless .0 for some vars"

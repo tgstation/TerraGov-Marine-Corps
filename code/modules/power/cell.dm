@@ -2,7 +2,7 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/cell/Initialize()
+/obj/item/cell/Initialize(mapload)
 	. = ..()
 	charge = maxcharge
 	if(self_recharge)

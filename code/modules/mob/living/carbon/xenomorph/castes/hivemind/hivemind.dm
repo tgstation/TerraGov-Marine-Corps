@@ -37,8 +37,8 @@
 	var/minimum_health = -300
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
-	. = ..()
 	core = new(loc, hivenumber)
+	. = ..()
 	core.parent = src
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, PROC_REF(return_to_core))
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, PROC_REF(change_form))

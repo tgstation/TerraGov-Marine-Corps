@@ -64,7 +64,7 @@
 	///If TRUE, we'll clear a recipe we click on instead of dispensing it
 	var/clearing_recipe = FALSE
 
-/obj/machinery/chem_dispenser/Initialize()
+/obj/machinery/chem_dispenser/Initialize(mapload)
 	. = ..()
 	dispensable_reagents = sortList(dispensable_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
 	if(emagged_reagents)
@@ -156,7 +156,7 @@
 
 	var/list/beakerContents = list()
 	var/beakerCurrentVolume = 0
-	if(beaker && beaker.reagents && length(beaker.reagents.reagent_list))
+	if(beaker?.reagents && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents += list(list("name" = R.name, "volume" = R.volume))	 // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
@@ -525,7 +525,7 @@
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 
-/obj/machinery/chem_dispenser/valhalla/Initialize()
+/obj/machinery/chem_dispenser/valhalla/Initialize(mapload)
 	. = ..()
 	qdel(cell)
 	cell = new /obj/item/cell/infinite

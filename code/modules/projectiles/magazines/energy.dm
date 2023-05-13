@@ -107,10 +107,10 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
-	slowdown = 0.3
-	maxcharge = 4800
+	slowdown = 0.2
+	maxcharge = 3000
 	self_recharge = TRUE
-	charge_amount = 32
+	charge_amount = 100
 	charge_delay = 2 SECONDS
 
 ///Handles draining power from the powerpack, returns the value of the charge drained to MouseDrop where it's added to the cell.

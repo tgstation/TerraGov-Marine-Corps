@@ -217,7 +217,7 @@
 
 /mob/living/carbon/human/take_blood(obj/O, amount)
 
-	if(species && species.species_flags & NO_BLOOD)
+	if(species?.species_flags & NO_BLOOD)
 		return
 
 	. = ..()

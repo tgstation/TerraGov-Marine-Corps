@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/can_be_pulled(user, force)
 	return ..(user, move_resist) // xenos can always be pulled regardless of move force
 
-/mob/living/carbon/human/get_reagent_tags()
+/mob/living/carbon/xenomorph/get_reagent_tags()
 	. = ..()
 	return .|IS_XENO
 
@@ -24,10 +24,6 @@
 	if(!actions_by_path[/datum/action/xeno_action/rally_minion])
 		var/datum/action/xeno_action/rally_minion/rally = new /datum/action/xeno_action/rally_minion
 		rally.give_action(src)
-	if(!actions_by_path[/datum/action/xeno_action/set_agressivity])
-		var/datum/action/xeno_action/set_agressivity/minions_behaviour = new /datum/action/xeno_action/set_agressivity
-		minions_behaviour.give_action(src)
-
 
 
 ///Helper proc for removing the rally hive ability appropriately
@@ -41,7 +37,6 @@
 
 	if(rally_minion)
 		rally_minion.remove_action(src)
-	var/datum/action/xeno_action/set_agressivity/minions_behaviour = actions_by_path[/datum/action/xeno_action/set_agressivity]
-	if(minions_behaviour)
-		minions_behaviour.remove_action(src)
 
+/mob/living/carbon/xenomorph/get_liquid_slowdown()
+	return XENO_WATER_SLOWDOWN

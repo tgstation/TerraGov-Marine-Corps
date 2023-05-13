@@ -55,7 +55,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/larva_position = 0
 
 
-/mob/dead/observer/Initialize()
+/mob/dead/observer/Initialize(mapload)
 	invisibility = GLOB.observer_default_invisibility
 
 	if(icon_state in GLOB.ghost_forms_with_directions_list)

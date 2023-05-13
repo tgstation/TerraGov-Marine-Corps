@@ -1,0 +1,4 @@
+author: "Losenis"
+delete-after: True
+changes:
+  - balance: "Gyroscopic stabilizer no longer has a 10% damage penalty per marine the bullet on aim mode goes through."

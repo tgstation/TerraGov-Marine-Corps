@@ -13,7 +13,7 @@
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
 
-/obj/structure/ladder/Initialize()
+/obj/structure/ladder/Initialize(mapload)
 	. = ..()
 	cam = new /obj/machinery/camera(src)
 	cam.network = list("LADDER")

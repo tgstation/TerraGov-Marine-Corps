@@ -13,9 +13,6 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "ae" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -29,6 +26,9 @@
 	},
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -86,6 +86,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/deathmatch)
 "an" = (
@@ -94,6 +97,9 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -106,6 +112,9 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -187,6 +196,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/deathmatch)
 "ax" = (
@@ -201,12 +213,14 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "az" = (
 /obj/effect/turf_decal/warning_stripes/nscenter,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "aA" = (
@@ -215,10 +229,10 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "aB" = (
-/obj/structure/platform,
 /turf/open/floor/mainship/green,
 /area/deathmatch)
 "aC" = (
@@ -227,7 +241,6 @@
 	},
 /area/deathmatch)
 "aD" = (
-/obj/structure/platform,
 /obj/machinery/scoreboard{
 	id = "basketball";
 	pixel_y = 30
@@ -251,25 +264,9 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "aI" = (
-/obj/structure/platform,
 /turf/open/floor/mainship/red,
 /area/deathmatch)
-"aJ" = (
-/obj/structure/platform,
-/turf/open/floor/mainship/blue,
-/area/deathmatch)
-"aK" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/mainship/red{
-	dir = 1
-	},
-/area/deathmatch)
 "aL" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
@@ -324,6 +321,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "aT" = (
@@ -338,6 +336,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "aV" = (
@@ -452,6 +451,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/deathmatch)
 "cd" = (
@@ -481,7 +483,7 @@
 /area/deathmatch)
 "eo" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "et" = (
 /obj/item/storage/belt/champion,
@@ -509,7 +511,7 @@
 /area/deathmatch)
 "gE" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "hr" = (
@@ -762,7 +764,7 @@
 /area/deathmatch)
 "GD" = (
 /obj/item/toy/beach_ball,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "Hf" = (
 /turf/open/floor/mainship/blue{
@@ -793,25 +795,21 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "JU" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
 /area/deathmatch)
 "JV" = (
-/obj/structure/platform,
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/blue,
 /area/deathmatch)
 "Kh" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "Kr" = (
 /obj/item/toy/inflatable_duck,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "KK" = (
 /obj/structure/closet/lasertag/red,
@@ -822,18 +820,12 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Ms" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
 /area/deathmatch)
 "MX" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -859,7 +851,7 @@
 /area/deathmatch)
 "OY" = (
 /obj/machinery/light,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "PK" = (
 /obj/machinery/disposal,
@@ -899,6 +891,7 @@
 "SS" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
+/obj/structure/platform,
 /turf/open/floor/wood,
 /area/deathmatch)
 "Tn" = (
@@ -942,7 +935,6 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Uo" = (
-/obj/structure/platform,
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/red,
 /area/deathmatch)
@@ -998,7 +990,7 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/plushie/fiftyfifty,
+/obj/effect/spawner/random/misc/plushie/fiftyfifty,
 /turf/open/floor/grass,
 /area/deathmatch)
 "Xx" = (
@@ -1112,7 +1104,7 @@ ap
 ap
 HC
 aS
-aK
+YI
 aX
 bc
 aX
@@ -1160,7 +1152,7 @@ HL
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1208,7 +1200,7 @@ au
 ak
 ak
 ay
-aK
+YI
 aR
 bc
 aR
@@ -1256,7 +1248,7 @@ av
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1304,7 +1296,7 @@ av
 HL
 OO
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1352,7 +1344,7 @@ av
 HL
 HL
 SS
-aK
+YI
 Zn
 uB
 rX
@@ -1400,7 +1392,7 @@ aO
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1496,7 +1488,7 @@ HL
 HL
 aV
 SS
-aK
+YI
 Zn
 uB
 Zn
@@ -1544,7 +1536,7 @@ aV
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1592,7 +1584,7 @@ HL
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 Zn
@@ -1640,7 +1632,7 @@ HL
 HL
 aG
 SS
-aK
+YI
 Zn
 uB
 Zn
@@ -1688,7 +1680,7 @@ HL
 HL
 HL
 SS
-aK
+YI
 Zn
 bc
 rX
@@ -1736,7 +1728,7 @@ HL
 HL
 HL
 SS
-aK
+YI
 Zn
 xx
 Zn
@@ -1784,7 +1776,7 @@ HL
 HL
 HL
 SS
-aK
+YI
 aR
 bc
 Bd
@@ -2440,7 +2432,7 @@ aa
 SK
 bc
 aQ
-aJ
+QG
 ca
 HL
 HL
@@ -2488,7 +2480,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2536,7 +2528,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2584,7 +2576,7 @@ aH
 ue
 uB
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2632,7 +2624,7 @@ aH
 ue
 xx
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2680,7 +2672,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2728,7 +2720,7 @@ aH
 ue
 uB
 ue
-aJ
+QG
 ca
 aV
 HL
@@ -2824,7 +2816,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2872,7 +2864,7 @@ aH
 ue
 uB
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -2920,7 +2912,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 al
 HL
@@ -2968,7 +2960,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -3016,7 +3008,7 @@ aH
 aQ
 bc
 aQ
-aJ
+QG
 ao
 ap
 ap
@@ -3064,7 +3056,7 @@ aH
 ue
 bc
 ue
-aJ
+QG
 ca
 HL
 HL
@@ -3112,7 +3104,7 @@ aH
 aW
 bc
 aW
-aJ
+QG
 aw
 Tt
 ak

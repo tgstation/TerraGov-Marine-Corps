@@ -18,7 +18,7 @@
 	///The type of material we're made from and what we drop when destroyed
 	var/material_type
 
-/obj/structure/mineral_door/Initialize()
+/obj/structure/mineral_door/Initialize(mapload)
 	. = ..()
 	if((locate(/mob/living) in loc) && !open)	//If we build a door below ourselves, it starts open.
 		toggle_state()
@@ -76,11 +76,10 @@
 
 
 /obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
-	if((W.flags_item & NOBLUDGEON) && !W.force)
-		attack_hand(user)
+	. = ..()
+	if(QDELETED(src))
 		return
 
-	user.changeNext_move(W.attack_speed)
 	var/multiplier = 1
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
@@ -92,9 +91,8 @@
 			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 	if(W.damtype == BURN && istype(src, /obj/structure/mineral_door/resin)) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1 //generally means we do double damage to resin doors
-	user.do_attack_animation(src, used_item = W)
-	if(!istype(W, /obj/item/tool/pickaxe/plasmacutter))
-		to_chat(user, "You hit [src] with [name]!")
+
+	take_damage(max(0, W.force * multiplier - W.force), W.damtype)
 
 /obj/structure/mineral_door/Destroy()
 	if(material_type)
@@ -151,14 +149,16 @@
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			new /obj/flamer_fire(get_turf(src), 25, 25)
+			var/turf/T = get_turf(src)
+			T.ignite(25, 25)
 			visible_message(span_danger("[src] suddenly combusts!"))
 	return ..()
 
 
 /obj/structure/mineral_door/transparent/phoron/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
-		new /obj/flamer_fire(get_turf(src), 25, 25)
+		var/turf/T = get_turf(src)
+		T.ignite(25, 25)
 
 
 /obj/structure/mineral_door/transparent/diamond
@@ -175,3 +175,5 @@
 	trigger_sound = 'sound/effects/doorcreaky.ogg'
 	max_integrity = 100
 
+/obj/structure/mineral_door/wood/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)

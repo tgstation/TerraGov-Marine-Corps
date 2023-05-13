@@ -15,7 +15,7 @@
 	///Set this to true if this object isn't destroyed when the weeds under it is.
 	var/ignore_weed_destruction = FALSE
 
-/obj/alien/Initialize()
+/obj/alien/Initialize(mapload)
 	. = ..()
 	if(!ignore_weed_destruction)
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
@@ -82,7 +82,7 @@
 
 	ignore_weed_destruction = TRUE
 
-/obj/alien/resin/sticky/Initialize()
+/obj/alien/resin/sticky/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
@@ -150,7 +150,10 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
+	soft_armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 15, BIO = 0, FIRE = 0, ACID = 0)
 	trigger_sound = "alien_resin_move"
+	hit_sound = "alien_resin_move"
+	destroy_sound = "alien_resin_move"
 
 	///The delay before the door closes automatically after being open
 	var/close_delay = 10 SECONDS
@@ -158,7 +161,7 @@
 	var/closetimer
 
 
-/obj/structure/mineral_door/resin/Initialize()
+/obj/structure/mineral_door/resin/Initialize(mapload)
 	. = ..()
 	if(!locate(/obj/alien/weeds) in loc)
 		new /obj/alien/weeds(loc)
@@ -340,7 +343,7 @@
 	if(!isxeno(hit_atom))
 		return
 	var/mob/living/carbon/xenomorph/X = hit_atom
-	if(X.fire_resist_modifier <= -20 || X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+	if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	X.visible_message(span_notice("[X] is splattered with jelly!"))
 	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)

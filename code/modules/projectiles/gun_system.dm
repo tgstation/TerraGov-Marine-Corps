@@ -209,10 +209,10 @@
 	var/min_scatter = -360
 	///Minimum scatter when wielded
 	var/min_scatter_unwielded = -360
-	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
+	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing, based off burst size
 	var/burst_scatter_mult = 1
-	///Additive number added to accuracy_mult. Defaults to 0 (no change).
-	var/burst_accuracy_mult = 0
+	///Additive number added to accuracy_mult.
+	var/burst_accuracy_bonus = 0
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
 	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing while moving.
@@ -416,8 +416,8 @@
 	unwield(user)
 	if(ishandslot(slot))
 		set_gun_user(user)
-		return ..()
-	set_gun_user(null)
+	else
+		set_gun_user(null)
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
@@ -445,6 +445,7 @@
 		COMSIG_KB_FIREMODE,
 		COMSIG_KB_GUN_SAFETY,
 		COMSIG_KB_UNIQUEACTION,
+		COMSIG_KB_AUTOEJECT,
 		COMSIG_PARENT_QDELETING,
 		COMSIG_RANGED_ACCURACY_MOD_CHANGED,
 		COMSIG_RANGED_SCATTER_MOD_CHANGED,
@@ -487,6 +488,7 @@
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, PROC_REF(unload_gun))
 	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, PROC_REF(do_toggle_firemode))
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, PROC_REF(toggle_gun_safety_keybind))
+	RegisterSignal(gun_user, COMSIG_KB_AUTOEJECT, PROC_REF(toggle_auto_eject_keybind))
 
 
 ///Null out gun user to prevent hard del
@@ -1439,7 +1441,7 @@
 	var/num_of_casings
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && istype(chamber_items[current_chamber_position], /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/mag = magazine
-		num_of_casings = (mag && mag.used_casings) ? mag.used_casings : 1
+		num_of_casings = (mag?.used_casings) ? mag.used_casings : 1
 	else
 		num_of_casings = 1
 	var/sound_to_play = type_of_casings == "shell" ? 'sound/bullets/bulletcasing_shotgun_fall1.ogg' : pick('sound/bullets/bulletcasing_fall2.ogg','sound/bullets/bulletcasing_fall1.ogg')
@@ -1710,10 +1712,10 @@
 
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST)
 		if(wielded_fire)
-			gun_accuracy_mult += burst_accuracy_mult
+			gun_accuracy_mult += burst_accuracy_bonus
 			gun_scatter += burst_amount * burst_scatter_mult
 		else
-			gun_accuracy_mult += burst_accuracy_mult * 2
+			gun_accuracy_mult += burst_accuracy_bonus * 2
 			gun_scatter += burst_amount * burst_scatter_mult * 2
 
 	if(dual_wield) //akimbo firing gives terrible scatter
@@ -1778,20 +1780,6 @@
 	if(!QDELETED(flash_loc))
 		flash_loc.vis_contents -= muzzle_flash
 	muzzle_flash.applied = FALSE
-
-/obj/item/weapon/gun/on_enter_storage(obj/item/I)
-	if(istype(I,/obj/item/storage/belt/gun))
-		var/obj/item/storage/belt/gun/GB = I
-		if(!GB.current_gun)
-			GB.current_gun = src //If there's no active gun, we want to make this our icon.
-			GB.update_gun_icon()
-
-/obj/item/weapon/gun/on_exit_storage(obj/item/I)
-	if(istype(I,/obj/item/storage/belt/gun))
-		var/obj/item/storage/belt/gun/GB = I
-		if(GB.current_gun == src)
-			GB.current_gun = null
-			GB.update_gun_icon()
 
 //For letting xenos turn off the flashlights on any guns left lying around.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)

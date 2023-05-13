@@ -163,7 +163,7 @@ SUBSYSTEM_DEF(automatedfire)
 	name = "debug turret slow"
 	firerate = 25
 
-/obj/structure/turret_debug/Initialize()
+/obj/structure/turret_debug/Initialize(mapload)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
 	target = locate(x+5, y, z)
