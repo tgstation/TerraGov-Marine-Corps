@@ -597,7 +597,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		log_attack("[key_name(usr)] fired a [warhead_type]in for squad [current_squad] in [AREACOORD(T)].")
 		message_admins("[ADMIN_TPMONTY(usr)] fired a [warhead_type]for squad [current_squad] in [ADMIN_VERBOSEJMP(T)].")
 	visible_message(span_boldnotice("Orbital bombardment request accepted. Orbital cannons are now calibrating."))
-	send_to_squads("!!ORBITAL BOMBARDMENT INBOUND AT [get_area(selected_target)]!!")
+	send_to_squads("ORBITAL BOMBARDMENT INBOUND AT [get_area(selected_target)]! Type: [warhead_type]!")
 	if(selected_target)
 		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //mostly used to warn xenos as the new ob sounds have a quiet beginning
 
