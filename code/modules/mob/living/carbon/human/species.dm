@@ -466,13 +466,11 @@
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
 
-/mob/living/carbon/human/species/robot/updatehealth()
-	. = ..()
-
-	if(health > -25)
+/datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
+	if(H.health > -25) //Staggerslowed if below crit threshold.
 		return
-	adjust_stagger(1)
-	adjust_slowdown(1)
+	H.adjust_stagger(2, capped = 10)
+	H.adjust_slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self

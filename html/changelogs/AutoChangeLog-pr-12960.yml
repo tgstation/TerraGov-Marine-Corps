@@ -1,0 +1,4 @@
+author: "Losenis"
+delete-after: True
+changes:
+  - balance: "Projectile sunder is no longer multiplied by the % of remaining armor of the struck xeno"
