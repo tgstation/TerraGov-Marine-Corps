@@ -83,7 +83,7 @@
 
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()
-	if(dangerous)
+	if(active)
 		overlays += new /obj/effect/overlay/danger
 
 
