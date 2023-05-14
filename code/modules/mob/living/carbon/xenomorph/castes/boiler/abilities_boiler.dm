@@ -171,12 +171,56 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	return ..()
 
 // ***************************************
+// *********** Rooting
+// ***************************************
+
+/datum/action/xeno_action/root
+	name = "Root in place"
+	action_icon_state = "burrow"
+	desc = "Root ourselves in place, ready to bombard."
+	ability_name = "root"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ROOT,
+	)
+
+/datum/action/xeno_action/root/action_activate()
+	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
+
+	if(HAS_TRAIT_FROM(xeno_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		xeno_owner.balloon_alert_to_viewers("Rooting out of place...")
+		if(!do_after(xeno_owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+			xeno_owner.balloon_alert(owner, "Interrupted!")
+			return fail_activate()
+		xeno_owner.balloon_alert(owner, "Unrooted!")
+		set_rooted(FALSE)
+		return succeed_activate()
+
+	xeno_owner.balloon_alert_to_viewers("Rooting into place...")
+	if(!do_after(xeno_owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+		xeno_owner.balloon_alert(owner, "Interrupted!")
+		return fail_activate()
+
+	xeno_owner.balloon_alert_to_viewers("Rooted into place!")
+	set_rooted(TRUE)
+	return succeed_activate()
+
+/datum/action/xeno_action/root/proc/set_rooted(on)
+	var/mob/living/carbon/xenomorph/boiler/xeno_owner = owner
+	if(on)
+		ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
+		xeno_owner.set_bombard_pointer()
+	else
+		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
+		xeno_owner.reset_bombard_pointer()
+	xeno_owner.anchored = on
+
+// ***************************************
 // *********** Gas cloud bombs
 // ***************************************
 /datum/action/xeno_action/activable/bombard
 	name = "Bombard"
 	action_icon_state = "bombard"
-	desc = "Launch a glob of neurotoxin or acid. Must remain stationary for a few seconds to use."
+	desc = "Launch a glob of neurotoxin or acid. Must be rooted."
 	ability_name = "bombard"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
@@ -189,55 +233,18 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/xeno_action/activable/bombard/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
-	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if(X.selected_ability == src)
-		X.set_bombard_pointer()
 	return ..()
 
 /datum/action/xeno_action/activable/bombard/on_activation()
-	var/mob/living/carbon/xenomorph/boiler/X = owner
-	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
-	if(current_ammo <= 0)
-		to_chat(X, span_notice("We have nothing prepared to fire."))
-		return FALSE
-
-	X.visible_message(span_notice("\The [X] begins digging their claws into the ground."), \
-	span_notice("We begin digging ourselves into place."), null, 5)
-	if(!do_after(X, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
-		on_deactivation()
-		X.selected_ability = null
-		X.update_action_button_icons()
-		X.reset_bombard_pointer()
-		return FALSE
-
-	X.visible_message(span_notice("\The [X] digs itself into the ground!"), \
-		span_notice("We dig ourselves into place! If we move, we must wait again to fire."), null, 5)
-	X.set_bombard_pointer()
-	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/bombard/proc.on_ranged_attack)
-
+	RegisterSignal(owner, COMSIG_MOB_ATTACK_RANGED, TYPE_PROC_REF(/datum/action/xeno_action/activable/bombard, on_ranged_attack))
 
 /datum/action/xeno_action/activable/bombard/on_deactivation()
-	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if(X.selected_ability == src)
-		X.reset_bombard_pointer()
-		to_chat(X, span_notice("We relax our stance."))
-	UnregisterSignal(X, COMSIG_MOB_ATTACK_RANGED)
-
+	UnregisterSignal(owner, COMSIG_MOB_ATTACK_RANGED)
 
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
 	SIGNAL_HANDLER
-	if(can_use_ability(A))
+	if(can_use_ability(A, TRUE))
 		INVOKE_ASYNC(src, PROC_REF(use_ability), A)
-
-
-/mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
-	. = ..()
-	if(selected_ability?.type == /datum/action/xeno_action/activable/bombard)
-		var/datum/action/xeno_action/activable/bomb = actions_by_path[/datum/action/xeno_action/activable/bombard]
-		bomb.on_deactivation()
-		selected_ability.button.icon_state = "template"
-		selected_ability = null
-		update_action_button_icons()
 
 /mob/living/carbon/xenomorph/boiler/proc/set_bombard_pointer()
 	if(client)
@@ -253,10 +260,31 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return FALSE
 	var/turf/T = get_turf(A)
 	var/turf/S = get_turf(owner)
+	var/mob/living/carbon/xenomorph/boiler/xeno_owner = owner
+
+	if(!HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		if(!silent)
+			to_chat(owner, span_warning("We need to be rooted to fire!"))
+		return FALSE
+
+	if(istype(xeno_owner.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
+		if(xeno_owner.corrosive_ammo <= 0)
+			to_chat(xeno_owner, span_warning("We have no corrosive globules available."))
+			return FALSE
+	else
+		if(xeno_owner.neuro_ammo <= 0)
+			to_chat(xeno_owner, span_warning("We have no neurotoxin globules available."))
+			return FALSE
+
+	if(!HAS_TRAIT_FROM(xeno_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		to_chat(xeno_owner, span_warning("We need to be rooted to the ground to fire!"))
+		return FALSE
+
 	if(!isturf(T) || T.z != S.z)
 		if(!silent)
 			to_chat(owner, span_warning("This is not a valid target."))
 		return FALSE
+
 	if(get_dist(T, S) <= 5) //Magic number
 		if(!silent)
 			to_chat(owner, span_warning("We are too close! We must be at least 7 meters from the target due to the trajectory arc."))
@@ -268,15 +296,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	if(!istype(target))
 		return
-
-	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
-		if(X.corrosive_ammo <= 0)
-			to_chat(X, span_warning("We have no corrosive globules available."))
-			return
-	else
-		if(X.neuro_ammo <= 0)
-			to_chat(X, span_warning("We have no neurotoxin globules available."))
-			return
 
 	to_chat(X, span_xenonotice("We begin building up pressure."))
 
@@ -306,7 +325,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	X.update_boiler_glow()
 	update_button_icon()
 	add_cooldown()
-	X.reset_bombard_pointer()
+
 
 // ***************************************
 // *********** Acid spray
