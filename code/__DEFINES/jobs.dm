@@ -60,7 +60,7 @@
 #define SQUAD_SMARTGUNNER "Squad Smartgunner"
 #define SQUAD_CORPSMAN "Squad Corpsman"
 #define SQUAD_ENGINEER "Squad Engineer"
-#define SQUAD_MARINE "Squad Marine"
+#define SQUAD_MARINE "Squad Marine \[Recommended]"
 #define SQUAD_VATGROWN "Squad VatGrown"
 #define SILICON_AI "AI"
 
