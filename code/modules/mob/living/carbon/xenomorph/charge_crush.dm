@@ -498,9 +498,9 @@
 	charger.Paralyze(0.5 SECONDS)
 	charger.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, sharp = TRUE, updating_health = TRUE) //Armor is being ignored here.
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-	var/charge_damage = (CHARGE_SPEED(charge_datum) * 50)  // 2.1 * 45 = 94.5 max damage to inflict.
-	take_damage(charge_damage)
+	var/charge_damage = (CHARGE_SPEED(charge_datum) * 45)  // 2.1 * 45 = 94.5 max damage to inflict.
 	charger.adjust_sunder(10)
+	take_damage(charge_damage)
 	update_icon()
 	return PRECRUSH_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.
 
