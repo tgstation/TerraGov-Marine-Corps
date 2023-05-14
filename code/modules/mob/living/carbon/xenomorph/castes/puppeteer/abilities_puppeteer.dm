@@ -24,11 +24,11 @@
 	var/mob/living/carbon/human/target_human = target
 	if(!owner_xeno.Adjacent(target_human))
 		if(!silent)
-			to_chat(owner_xeno, span_notice("We need to be next to our victim."))
+			to_chat(owner_xeno, span_xenonotice("We need to be next to our victim."))
 		return FALSE
 
 	if(target_human.stat == DEAD)
-		to_chat(owner_xeno, span_notice("Dead meat is bad meat!"))
+		to_chat(owner_xeno, span_xenonotice("Dead meat is bad meat!"))
 		return FALSE
 
 	if(!.)
@@ -43,7 +43,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(target_human)
 	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB)
-	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] tears into [target_human]!"))
+	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] flays and rips skin and flesh from [target_human]!"))
 	playsound(target_human, "alien_claw_flesh", 25, TRUE)
 	target_human.emote("scream")
 	owner_xeno.emote("roar")
@@ -83,6 +83,7 @@
 	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
 	playsound(xeno.loc, 'sound/bullets/spear_armor1.ogg', 25, 1)
+	xeno.visible_message(span_xenonotice("We discharge a spinal spike from our body."))
 
 	var/obj/projectile/spine = new /obj/projectile(current_turf)
 	spine.generate_bullet(/datum/ammo/xeno/spine)
@@ -93,7 +94,7 @@
 // ***************************************
 // *********** Dreadful Presence
 // ***************************************
-/datum/action/xeno_action/activable/dreadful_presence
+/datum/action/xeno_action/dreadful_presence
 	name = "Dreadful Presence"
 	action_icon_state = "dreadful_presence"
 	desc = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
@@ -102,6 +103,21 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DREADFULPRESENCE,
 	)
+
+/datum/action/xeno_action/dreadful_presence/action_activate()
+	var/obj/effect/overlay/dread/effect = new
+	owner.vis_contents += effect
+	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
+		to_chat(human, span_userdanger("oh god what the fuck oh god oh god"))
+		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob/living/carbon/human, emote), "scream"), rand(0.55, 0.7))
+		human.apply_status_effect(/datum/status_effect/dread, 8 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(clear_effect), effect), 3 SECONDS)
+	add_cooldown()
+	succeed_activate()
+
+/datum/action/xeno_action/dreadful_presence/proc/clear_effect(atom/effect)
+	owner.vis_contents -= effect
+	qdel(effect)
 
 // ***************************************
 // *********** Refurbish Husk
@@ -131,16 +147,16 @@
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_PSY_DRAINED))
 		if(!silent)
-			to_chat(owner, span_notice("This one has is drained of all psychic energy, of no use to us."))
+			to_chat(owner, span_xenonotice("This one has is drained of all psychic energy, of no use to us."))
 		return FALSE
 
 	if(!owner_xeno.Adjacent(target_human))
 		if(!silent)
-			to_chat(owner_xeno, span_notice("We need to be next to our victim."))
+			to_chat(owner_xeno, span_xenonotice("We need to be next to our victim."))
 		return FALSE
 
 	if(!HAS_TRAIT(target_human, TRAIT_UNDEFIBBABLE) || target_human.stat != DEAD)
-		to_chat(owner_xeno, span_notice("The body is not ready for stitching!"))
+		to_chat(owner_xeno, span_xenonotice("The body is not yet ready for stitching!"))
 		return FALSE
 	
 
@@ -177,12 +193,48 @@
 /datum/action/xeno_action/activable/puppet
 	name = "Stitch Puppet"
 	action_icon_state = "stitch_puppet"
-	desc = "Uses 350 biomass to create a flesh homunculus to do your bidding."
+	desc = "Uses 350 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
 	plasma_cost = 350
 	cooldown_timer = 120 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUPPET,
 	)
+
+/datum/action/xeno_action/activable/puppet/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(isclosedturf(target))
+		if(!silent)
+			target.balloon_alert(owner_xeno, "THATS A FUCKING WALL")
+		return FALSE
+
+	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
+	if(length(huskaction.puppets) >= owner_xeno.xeno_caste.max_puppets)
+		owner_xeno.balloon_alert(owner_xeno, "cant have more than [owner_xeno.xeno_caste.max_puppets]!")
+		return FALSE
+
+	if(!owner_xeno.Adjacent(target))
+		if(!silent)
+			to_chat(owner_xeno, span_xenonotice("We need to be next to where we want to create a puppet."))
+		return FALSE
+
+	if(!.)
+		return
+	owner_xeno.face_atom(target)
+	//reverse gib here
+	owner_xeno.visible_message(span_danger("[owner_xeno] begins flavor text here!"))
+	if(!do_after(owner_xeno, 8 SECONDS, FALSE, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+		//cancel effects
+		return FALSE
+	//cancel effects
+	succeed_activate()
+
+/datum/action/xeno_action/activable/puppet/use_ability(atom/target)
+	var/turf/target_turf = get_turf(target)
+
+	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
+	huskaction.add_puppet(new /mob/living/carbon/xenomorph/puppet(target_turf, owner))
+	add_cooldown()
 
 // ***************************************
 // *********** Organic Bomb
@@ -192,6 +244,7 @@
 	action_icon_state = "organic_bomb"
 	desc = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
 	cooldown_timer = 30 SECONDS
+	plasma_cost = 75
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ORGANICBOMB,
@@ -216,6 +269,7 @@
 
 /datum/action/xeno_action/activable/organic_bomb/proc/start_exploding(mob/living/puppet)
 	SIGNAL_HANDLER
+	puppet.visible_message(span_danger("[puppet] bloats and slowly unfurls its stitched body!"))
 	if(do_after(puppet, 1.5 SECONDS, FALSE, puppet, BUSY_ICON_DANGER))
 		fucking_explode(puppet)
 /datum/action/xeno_action/activable/organic_bomb/proc/fucking_explode(mob/living/puppet)
@@ -223,7 +277,7 @@
 	UnregisterSignal(puppet, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_MOB_DEATH))
 	if(QDELETED(puppet))
 		return
-	puppet.visible_message(span_danger("[puppet] ruptures, exploding into a spray of acid!"))
+	puppet.visible_message(span_danger("[puppet] ruptures, releasing corrosive acid!"))
 	var/turf/our_turf = get_turf(puppet)
 	playsound(our_turf, 'sound/bullets/acid_impact1.ogg', 50, 1)
 	puppet.gib()

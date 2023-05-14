@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/puppet
 	caste_base_type = /mob/living/carbon/xenomorph/puppet
 	name = "Puppet"
-	desc = "A grotesque flesh puppet."
+	desc = "A reanimated body, crudely pieced together and held in place by an ominous energy tethered to some unknown force."
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Puppet Running"
 	health = 150

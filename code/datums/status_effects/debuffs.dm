@@ -530,3 +530,30 @@
 	if(stacks > 0)
 		resist_debuff() // We repeat ourselves as long as the debuff persists.
 		return
+
+
+// ***************************************
+// *********** dread
+// ***************************************
+/atom/movable/screen/alert/status_effect/dread
+	name = "Dread"
+	desc = "A dreadful presence. You are slowed down until this expires."
+	icon_state = "dread"
+
+/datum/status_effect/dread
+	id = "dread"
+	status_type = STATUS_EFFECT_REFRESH
+	tick_interval = 20
+	alert_type = /atom/movable/screen/alert/status_effect/dread
+
+/datum/status_effect/dread/on_creation(mob/living/new_owner, set_duration)
+	. = ..()
+	if(set_duration)
+		duration = set_duration
+
+/datum/status_effect/dread/tick()
+	. = ..()
+	var/mob/living/living_owner = owner
+	living_owner.adjust_slowdown(1)
+	living_owner.do_jitter_animation(250)
+	
