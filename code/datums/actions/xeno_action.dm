@@ -90,6 +90,11 @@
 			X.balloon_alert(X, "Cannot while in crest defense")
 		return FALSE
 
+	if(!(flags_to_check & XACT_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		if(!silent)
+			X.balloon_alert(X, "Cannot while rooted")
+		return FALSE
+
 	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
 			X.balloon_alert(X, "Cannot do this here")

@@ -33,6 +33,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
+	use_state_flags = XACT_USE_ROOTED
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -56,7 +57,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
 	desc = "Switches Boiler Bombard type between available glob types."
-	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
+	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING|XACT_USE_ROOTED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_BOMB,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL,
@@ -134,7 +135,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	action_icon = 'icons/xeno/actions_boiler_glob.dmi'
 	desc = "Creates a Boiler Bombard of the type currently selected."
 	plasma_cost = 200
-	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
+	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING|XACT_USE_ROOTED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB,
 	)
@@ -182,6 +183,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ROOT,
 	)
+	use_state_flags = XACT_USE_ROOTED
 
 /datum/action/xeno_action/root/action_activate()
 	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
@@ -220,12 +222,13 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/activable/bombard
 	name = "Bombard"
 	action_icon_state = "bombard"
-	desc = "Launch a glob of neurotoxin or acid. Must be rooted."
+	desc = "Launch a glob of neurotoxin or acid. Must be rooted to use."
 	ability_name = "bombard"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
 	)
 	target_flags = XABB_TURF_TARGET
+	use_state_flags = XACT_USE_ROOTED
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -332,3 +335,4 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 /datum/action/xeno_action/activable/spray_acid/line/boiler
 	cooldown_timer = 9 SECONDS
+	use_state_flags = XACT_USE_ROOTED

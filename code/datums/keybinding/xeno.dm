@@ -229,7 +229,7 @@
 	full_name = "Boiler: Root in place"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_ROOT
-	hotkey_keys = list("G")
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/bombard
 	name = "bombard"
