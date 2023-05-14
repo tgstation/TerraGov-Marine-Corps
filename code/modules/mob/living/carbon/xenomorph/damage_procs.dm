@@ -38,7 +38,7 @@
 	adjust_stagger(max(0, ex_slowdown - 2)) //Stagger 2 less than slowdown
 
 	//Sunder
-	adjust_sunder(max(0, 50 * (3 - severity) * bomb_sunder_multiplier * get_sunder()))
+	adjust_sunder(max(0, 50 * (3 - severity) * bomb_sunder_multiplier))
 
 	//Damage
 	var/ex_damage = 40 + rand(0, 20) + 50*(4 - severity)  //changed so overall damage stays similar
