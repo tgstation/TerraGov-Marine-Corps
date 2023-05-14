@@ -30,7 +30,7 @@
 	/// Vertical offset from the console of the origin tile when using it
 	var/y_offset = 0
 	/// Turfs that can be landed on
-	var/list/whitelist_turfs = list(/turf/open/ground, /turf/open/floor)
+	var/list/whitelist_turfs = list(/turf/open/ground, /turf/open/floor, /turf/open/liquid/water)
 	/// Are we able to see hidden ports when using the console
 	var/see_hidden = FALSE
 	/// Delay of the place_action

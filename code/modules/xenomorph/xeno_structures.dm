@@ -600,6 +600,17 @@ TUNNEL
 
 	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
 
+	if(charges >= 2)
+		for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
+			sticky_bomb.clean_refs()
+			qdel(sticky_bomb)
+		charges -= 2
+		acid_smoke = new(get_turf(stepper))
+		acid_smoke.set_up(1, src)
+		acid_smoke.start()
+		update_icon()
+		if(!charges)
+			return
 	if(isxeno(stepper))
 		if(!(stepper.on_fire))
 			return

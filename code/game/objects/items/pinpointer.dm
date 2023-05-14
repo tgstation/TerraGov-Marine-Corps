@@ -18,7 +18,7 @@
 	///The hive we're tracking
 	var/tracked_hivenumber = XENO_HIVE_NORMAL
 	///The list of hives we will never track
-	var/static/list/blacklisted_hivenumbers = list(XENO_HIVE_NONE, XENO_HIVE_CORRUPTED, XENO_HIVE_FALLEN)
+	var/static/list/blacklisted_hivenumbers = list(XENO_HIVE_NONE, XENO_HIVE_ADMEME, XENO_HIVE_FALLEN)
 
 /obj/item/pinpointer/Initialize(mapload)
 	. = ..()

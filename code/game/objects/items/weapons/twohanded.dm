@@ -351,6 +351,7 @@
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -398,6 +399,7 @@
 	sharp = IS_SHARP_ITEM_BIG
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = TWOHANDED
+	resistance_flags = NONE
 
 	/// Lists the information in the codex
 	var/codex_info = {"<b>Reagent info:</b><BR>

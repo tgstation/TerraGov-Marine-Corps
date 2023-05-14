@@ -64,7 +64,10 @@ export const SelfDestruct = (props, context) => {
                   onClick={() => act('dest_cancel')}
                 />
               </>
-            )) || <span className="bad">ERROR</span>}
+            )) ||
+            (dest_status === 0 && <span className="idle">OFFLINE</span>) || (
+              <span className="bad">ERROR</span>
+            )}
         </Section>
       </Window.Content>
     </Window>

@@ -347,6 +347,7 @@
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	mask = /obj/item/clothing/mask/gas/tactical
+	head = /obj/item/clothing/head/modular/m10x/surt
 	belt = /obj/item/storage/holster/m25
 	back = /obj/item/ammo_magazine/flamer_tank/backtank
 	suit_store = /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
@@ -1238,6 +1239,7 @@
 	name = "V-62 Flamethrower Operator"
 	desc = "Smells like victory. Equipped with an V-62 incinerator and wide nozzle, V-11 equipped for rapid burst fire, heavy armor upgraded with a 'Hades' fireproof module, and a backtank of fuel. Has better than average range and can quickly burn down large areas. It suffers from significant slowdown, lacks an integrated extinguisher, and undisciplined use can result in rapidly consuming all available fuel."
 
+	head = /obj/item/clothing/head/modular/som/hades
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/pyro
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/som
 	back = /obj/item/ammo_magazine/flamer_tank/backtank

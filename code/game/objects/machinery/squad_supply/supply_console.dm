@@ -78,13 +78,13 @@
 			refresh_pad()
 		if("set_x")
 			var/new_x = text2num(params["set_x"])
-			if(!new_x)
+			if(!isnum(new_x))
 				return
 			x_offset = new_x
 
 		if("set_y")
 			var/new_y = text2num(params["set_y"])
-			if(!new_y)
+			if(!isnum(new_y))
 				return
 			y_offset = new_y
 
