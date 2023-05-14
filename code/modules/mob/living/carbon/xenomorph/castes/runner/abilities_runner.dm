@@ -227,10 +227,14 @@
 
 /datum/action/xeno_action/evasion/can_use_action(silent = FALSE, override_flags)
 	. = ..()
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
 
 	if(evade_active) //Can't evade while we're already evading.
 		if(!silent)
-			owner.balloon_alert(owner, "Already evading")
+			xeno_owner.balloon_alert(xeno_owner, "Already evading")
+		return FALSE
+	if(xeno_owner.on_fire)
+		xeno_owner.balloon_alert(xeno_owner, "Can't while on fire!")
 		return FALSE
 
 /datum/action/xeno_action/evasion/action_activate()
