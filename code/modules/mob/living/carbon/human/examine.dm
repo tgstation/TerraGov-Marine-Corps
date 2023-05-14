@@ -21,7 +21,7 @@
 		else if(stat || !client)
 			msg += "[span_xenowarning("It doesn't seem responsive.")]\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, incrementing at the 20th and 45th cycle of metabolism\n"
+			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, incrementing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 			msg += "Hemodile: Slows down the target, doubling in power with each other xeno-based toxin present.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
