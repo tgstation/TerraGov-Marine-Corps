@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "c" = (
 /obj/structure/grille/broken,
@@ -71,7 +71,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "y" = (
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "A" = (
@@ -116,7 +116,7 @@
 "M" = (
 /obj/structure/flora/ausbushes/reedbush,
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "N" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -126,7 +126,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "P" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "R" = (
 /turf/open/floor,
@@ -136,7 +136,7 @@
 /area/lv624/ground/river2)
 "V" = (
 /obj/structure/grille/broken,
-/turf/open/ground/river,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "W" = (
 /turf/closed/wall,
@@ -149,7 +149,11 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
+/area/lv624/ground/river2)
+"Y" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "Z" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -165,10 +169,10 @@
 X
 a
 a
-a
-a
-a
-a
+Y
+Y
+Y
+Y
 a
 a
 a
@@ -252,7 +256,7 @@ a
 P
 P
 V
-a
+Y
 a
 M
 a

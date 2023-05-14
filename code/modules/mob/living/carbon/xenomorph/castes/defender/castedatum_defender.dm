@@ -86,8 +86,7 @@
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 33, BULLET = 33, LASER = 28, ENERGY = 25, BOMB = 20
-	, BIO = 25, FIRE = 33, ACID = 25)
+	soft_armor = list(MELEE = 33, BULLET = 33, LASER = 28, ENERGY = 25, BOMB = 20, BIO = 25, FIRE = 33, ACID = 25)
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 26

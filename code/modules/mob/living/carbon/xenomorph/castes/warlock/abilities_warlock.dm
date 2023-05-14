@@ -77,7 +77,7 @@
 /datum/action/xeno_action/activable/psychic_shield/alternate_action_activate()
 	if(can_use_ability(null, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 		INVOKE_ASYNC(src, PROC_REF(use_ability))
-	
+
 
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -188,7 +188,7 @@
 	///All the projectiles currently frozen by this obj
 	var/list/frozen_projectiles = list()
 
-/obj/effect/xeno/shield/Initialize(loc, creator)
+/obj/effect/xeno/shield/Initialize(mapload, creator)
 	. = ..()
 	owner = creator
 	dir = owner.dir
@@ -456,7 +456,7 @@
 	///The particle type this ability uses
 	var/channel_particle = /particles/crush_warning
 
-/obj/effect/xeno/crush_warning/Initialize()
+/obj/effect/xeno/crush_warning/Initialize(mapload)
 	. = ..()
 	particle_holder = new(src, channel_particle)
 	particle_holder.pixel_y = 0
@@ -470,7 +470,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_x = -16
 
-/obj/effect/xeno/crush_orb/Initialize()
+/obj/effect/xeno/crush_orb/Initialize(mapload)
 	. = ..()
 	flick("orb_charge", src)
 

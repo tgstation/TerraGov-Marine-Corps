@@ -6,7 +6,7 @@
 	display_order = JOB_DISPLAY_ORDER_XENOMORPH
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_SHOW_OPEN_POSITIONS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
-	job_points_needed  = 10 //Redefined via config.
+	job_points_needed = 10 //Redefined via config.
 	faction = FACTION_XENO
 	exp_type = EXP_TYPE_SPECIAL
 	html_description = {"
@@ -52,7 +52,7 @@
 
 /datum/job/xenomorph/after_spawn(mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
 	. = ..()
-	SSminimaps.add_marker(xeno, xeno.z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno.xeno_caste.minimap_icon)
+	SSminimaps.add_marker(xeno, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno.xeno_caste.minimap_icon))
 
 /datum/job/xenomorph/queen
 	title = ROLE_XENO_QUEEN

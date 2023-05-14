@@ -8,8 +8,8 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
 	)
 	item_state = "cell"
-	force = 5.0
-	throwforce = 5.0
+	force = 5
+	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -33,7 +33,7 @@
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = 500
 
-/obj/item/cell/crap/empty/Initialize()
+/obj/item/cell/crap/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 
@@ -41,7 +41,7 @@
 	name = "security borg rechargable D battery"
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 
-/obj/item/cell/secborg/empty/Initialize()
+/obj/item/cell/secborg/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 
@@ -54,7 +54,7 @@
 	icon_state = "hcell"
 	maxcharge = 10000
 
-/obj/item/cell/high/empty/Initialize()
+/obj/item/cell/high/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 
@@ -63,7 +63,7 @@
 	icon_state = "scell"
 	maxcharge = 20000
 
-/obj/item/cell/super/empty/Initialize()
+/obj/item/cell/super/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 
@@ -72,7 +72,7 @@
 	icon_state = "hpcell"
 	maxcharge = 30000
 
-/obj/item/cell/hyper/empty/Initialize()
+/obj/item/cell/hyper/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 

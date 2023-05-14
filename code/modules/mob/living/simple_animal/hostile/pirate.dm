@@ -42,7 +42,7 @@
 	speed = 1
 
 
-/mob/living/simple_animal/hostile/pirate/melee/Initialize()
+/mob/living/simple_animal/hostile/pirate/melee/Initialize(mapload)
 	. = ..()
 	set_light(2)
 

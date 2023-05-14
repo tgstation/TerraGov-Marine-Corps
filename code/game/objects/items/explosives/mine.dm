@@ -25,7 +25,7 @@ Stepping directly on the mine will also blow it up
 	/// Tripwire holds reference to the tripwire obj that is used to trigger an explosion
 	var/obj/effect/mine_tripwire/tripwire
 
-/obj/item/explosive/mine/Initialize()
+/obj/item/explosive/mine/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -68,10 +68,7 @@ Stepping directly on the mine will also blow it up
 
 	if(armed)
 		return
-
-	user.visible_message(span_notice("[user] starts deploying [src]."), \
-	span_notice("You start deploying [src]."))
-	if(!do_after(user, 40, TRUE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
 		user.visible_message(span_notice("[user] stops deploying [src]."), \
 	span_notice("You stop deploying \the [src]."))
 		return
@@ -177,7 +174,7 @@ Stepping directly on the mine will also blow it up
 	resistance_flags = UNACIDABLE
 	var/obj/item/explosive/mine/linked_mine
 
-/obj/effect/mine_tripwire/Initialize()
+/obj/effect/mine_tripwire/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

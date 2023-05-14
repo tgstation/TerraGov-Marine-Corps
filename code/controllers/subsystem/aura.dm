@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(aura)
 		return
 	if(!type || !range || !strength || !duration || !faction)
 		return
-	. =  new /datum/aura_bearer(center, type, range, strength, duration, faction, hivenumber)
+	. = new /datum/aura_bearer(center, type, range, strength, duration, faction, hivenumber)
 	active_auras += .
 
 ///The thing that actually pushes out auras to nearby mobs.

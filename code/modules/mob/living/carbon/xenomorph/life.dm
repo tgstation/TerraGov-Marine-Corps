@@ -47,7 +47,7 @@
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
-		adjustFireLoss((fire_stacks + 3) * get_fire_resist())
+		apply_damage((fire_stacks + 3), BURN, blocked = FIRE)
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
@@ -189,7 +189,7 @@
 		return
 
 	// Health Hud
-	if(hud_used && hud_used.healths)
+	if(hud_used?.healths)
 		if(stat != DEAD)
 			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, get_crit_threshold(), list("full", "critical"))
 			hud_used.healths.icon_state = "health[bucket]"
@@ -197,7 +197,7 @@
 			hud_used.healths.icon_state = "health_dead"
 
 	// Plasma Hud
-	if(hud_used && hud_used.alien_plasma_display)
+	if(hud_used?.alien_plasma_display)
 		if(stat != DEAD)
 			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
 			hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
@@ -213,14 +213,14 @@
 	var/env_temperature = loc.return_temperature()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * get_fire_resist()) //Might be too high, check in testing.
+			apply_damage(((env_temperature - (T0C + 66) ) * 0.2), BURN, blocked = FIRE)
 			updatehealth() //unused while atmos is off
-			if(hud_used && hud_used.fire_icon)
+			if(hud_used?.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
 			if(prob(20))
 				to_chat(src, span_warning("We feel a searing heat!"))
 		else
-			if(hud_used && hud_used.fire_icon)
+			if(hud_used?.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
 
 /mob/living/carbon/xenomorph/updatehealth()
@@ -243,11 +243,6 @@
 		world << span_debuginfo("Regen: Final slowdown is: <b>[slowdown]</b>")
 		#endif
 	return slowdown
-
-/mob/living/carbon/xenomorph/adjust_stagger(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
-		return FALSE
-	return ..()
 
 /mob/living/carbon/xenomorph/proc/set_frenzy_aura(new_aura)
 	if(frenzy_aura == new_aura)

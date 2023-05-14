@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	///Groundside minimap for overwatch
 	var/datum/action/minimap/marine/external/cic_mini
 
-/obj/machinery/computer/camera_advanced/overwatch/Initialize()
+/obj/machinery/computer/camera_advanced/overwatch/Initialize(mapload)
 	. = ..()
 	send_attack_order = new
 	send_defend_order = new
@@ -639,7 +639,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					if(!findtext(R.fields["ma_crim"],"Insubordination."))
 						R.fields["criminal"] = "*Arrest*"
 						if(R.fields["ma_crim"] == "None")
-							R.fields["ma_crim"]	= "Insubordination."
+							R.fields["ma_crim"] = "Insubordination."
 						else
 							R.fields["ma_crim"] += "Insubordination."
 						if(issilicon(usr))
@@ -762,7 +762,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	light_range = 15	//This is a HUGE light.
 	light_power = SQRTWO
 
-/obj/effect/overwatch_light/Initialize()
+/obj/effect/overwatch_light/Initialize(mapload)
 	. = ..()
 	set_light(light_range, light_power)
 	playsound(src,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)

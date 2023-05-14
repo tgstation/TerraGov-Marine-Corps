@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"as" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/wood,
+/area/deathmatch)
 "aB" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
@@ -26,6 +30,13 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"cR" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
 /area/deathmatch)
 "dg" = (
 /obj/structure/ore_box,
@@ -67,7 +78,7 @@
 /area/deathmatch)
 "hy" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/wood,
 /area/deathmatch)
 "iq" = (
@@ -160,9 +171,6 @@
 	height = 1;
 	id = "cs_militia_1";
 	pixel_y = 8
-	},
-/obj/structure/platform{
-	dir = 4
 	},
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
@@ -289,6 +297,12 @@
 	dir = 10
 	},
 /area/deathmatch)
+"CF" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
 "Dq" = (
 /obj/structure/platform{
 	dir = 4
@@ -306,7 +320,7 @@
 /turf/closed/wall/wood,
 /area/deathmatch)
 "EV" = (
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
 	},
@@ -353,15 +367,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/deathmatch)
-"IO" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/effect/landmark/deathmatch,
-/turf/open/floor/plating/asteroidplating{
-	color = "#888888"
-	},
 /area/deathmatch)
 "Jj" = (
 /obj/structure/window/framed/wood,
@@ -459,7 +464,7 @@
 	},
 /area/deathmatch)
 "Uv" = (
-/turf/closed/desertdamrockwall,
+/turf/closed/mineral/smooth/desertdamrockwall,
 /area/deathmatch)
 "US" = (
 /obj/structure/bed/chair/wood/wings{
@@ -471,15 +476,6 @@
 /obj/effect/landmark/deathmatch,
 /obj/structure/flora/desert/grass/three,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/deathmatch)
-"Vq" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/effect/landmark/deathmatch,
-/turf/open/floor/plating/asteroidplating{
-	color = "#888888"
-	},
 /area/deathmatch)
 "Vu" = (
 /obj/structure/ladder{
@@ -521,6 +517,10 @@
 "XA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"XG" = (
+/obj/effect/landmark/eord_roomba,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "Yq" = (
@@ -739,8 +739,8 @@ Uv
 WC
 WC
 WC
-Dq
-Vq
+WV
+NB
 WV
 WC
 Uv
@@ -765,7 +765,7 @@ Uv
 uR
 uR
 Gk
-uR
+XG
 uR
 rf
 Gx
@@ -787,8 +787,8 @@ Uv
 WC
 WV
 WV
-WV
-WV
+GB
+GB
 WV
 WC
 Uv
@@ -977,7 +977,7 @@ Uv
 Uv
 Uv
 WC
-WV
+CF
 WC
 Uv
 Uv
@@ -1106,7 +1106,7 @@ QI
 LT
 LT
 LT
-LT
+as
 LT
 LT
 LT
@@ -1353,8 +1353,8 @@ QI
 QI
 Uv
 WC
-WV
-WV
+Dq
+Dq
 WV
 WV
 WV
@@ -1401,8 +1401,8 @@ QI
 QI
 Uv
 WC
-GB
-IO
+WV
+NB
 hw
 WC
 WC
@@ -1555,7 +1555,7 @@ Uv
 Uv
 Uv
 WC
-hw
+cR
 WC
 Uv
 Uv
@@ -1671,7 +1671,7 @@ uR
 Gk
 uR
 uR
-uR
+XG
 YW
 gK
 LT
@@ -1696,8 +1696,8 @@ WV
 WV
 WV
 WV
-WV
-WV
+Dq
+Dq
 WV
 hw
 WC
@@ -1744,8 +1744,8 @@ hw
 WC
 WC
 WV
-GB
-GB
+WV
+WV
 WC
 WC
 WC
@@ -2133,7 +2133,7 @@ WC
 WC
 WV
 sv
-Vq
+NB
 WC
 Uv
 "}
@@ -2176,12 +2176,12 @@ WV
 WV
 WV
 WV
-WV
+CF
 WV
 hw
 WV
-WV
-WV
+GB
+GB
 WC
 Uv
 "}
@@ -2494,7 +2494,7 @@ Bs
 pl
 pl
 kv
-uR
+XG
 uR
 xg
 uR

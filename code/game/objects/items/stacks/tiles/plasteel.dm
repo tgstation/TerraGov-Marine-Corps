@@ -4,14 +4,14 @@
 	desc = "Those could work as a pretty decent throwing weapon"
 	icon_state = "tile"
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 6.0
-	throwforce = 8.0
+	force = 6
+	throwforce = 8
 	throw_speed = 3
 	throw_range = 6
 	flags_atom = CONDUCT
 	max_amount = 60
 
-/obj/item/stack/tile/plasteel/Initialize()
+/obj/item/stack/tile/plasteel/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(1, 14)
 	pixel_y = rand(1, 14)

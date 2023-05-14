@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Sentinel spit now travels properly instead of stopping at the tile you aimed"

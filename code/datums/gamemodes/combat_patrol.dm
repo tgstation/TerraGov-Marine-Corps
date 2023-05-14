@@ -55,7 +55,7 @@
 	if(!.)
 		return
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/som/squad/veteran)
-	scaled_job.job_points_needed  = 5 //Every 5 non vets join, a new vet slot opens
+	scaled_job.job_points_needed = 5 //Every 5 non vets join, a new vet slot opens
 
 /datum/game_mode/combat_patrol/announce()
 	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")

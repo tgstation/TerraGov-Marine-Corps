@@ -425,6 +425,7 @@
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
 		animate(src, alpha = 13, time = 3 SECONDS) //Fade out gradually.
 		bodybag_occupant.alpha = 0
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
 
 
 /obj/structure/closet/bodybag/tarp/open()
@@ -445,12 +446,6 @@
 	if(mob_to_stuff.stat == DEAD) //Only the dead for bodybags.
 		return FALSE
 	return TRUE
-
-
-/obj/structure/closet/bodybag/tarp/close()
-	. = ..()
-	if(bodybag_occupant)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
 
 
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)

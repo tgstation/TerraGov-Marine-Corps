@@ -7,7 +7,7 @@
 	var/alarms = list("Fire"=list(), "Atmosphere"=list(), "Power"=list())
 
 
-/obj/machinery/computer/station_alert/Initialize()
+/obj/machinery/computer/station_alert/Initialize(mapload)
 	. = ..()
 	GLOB.alert_consoles += src
 
@@ -78,7 +78,7 @@
 	for (var/I in L)
 		if (I == A.name)
 			var/list/alarm = L[I]
-			var/list/srcs  = alarm[3]
+			var/list/srcs = alarm[3]
 			if (origin in srcs)
 				srcs -= origin
 			if (length(srcs) == 0)

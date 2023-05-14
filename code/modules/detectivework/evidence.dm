@@ -108,7 +108,7 @@
 	desc = "Used to take fingerprints."
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "fingerprint0"
-	var/amount = 10.0
+	var/amount = 10
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',

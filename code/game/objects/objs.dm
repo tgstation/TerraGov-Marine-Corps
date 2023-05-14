@@ -41,7 +41,7 @@
 	///Odds of a projectile hitting the object, if the object is dense and has THROWPROJECTILE
 	var/coverage = 50
 
-/obj/Initialize()
+/obj/Initialize(mapload)
 	. = ..()
 	if(islist(soft_armor))
 		soft_armor = getArmor(arglist(soft_armor))
@@ -74,7 +74,7 @@
 			GLOB.all_req_one_access[txt_access] = req_one_access
 		else
 			req_one_access = GLOB.all_req_one_access[txt_access]
-
+	add_debris_element()
 
 /obj/Destroy()
 	hard_armor = null
@@ -86,11 +86,6 @@
 /obj/proc/setAnchored(anchorvalue)
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
 	anchored = anchorvalue
-
-/obj/ex_act()
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-	return ..()
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 	return

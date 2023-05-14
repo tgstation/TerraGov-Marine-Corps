@@ -10,13 +10,6 @@
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "cameracase"
 
-/obj/item/frame/camera/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(iswrench(I))
-		new /obj/item/stack/sheet/metal(loc, 2)
-		qdel(src)
-
 /obj/item/frame/camera/proc/try_build(turf/wall, mob/user)
 	if(get_dist(wall, user) > 1)
 		return

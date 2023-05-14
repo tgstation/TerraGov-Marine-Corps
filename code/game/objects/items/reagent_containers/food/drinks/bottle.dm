@@ -44,7 +44,7 @@
 	var/datum/limb/affecting = user.zone_selected //Find what the player is aiming at
 
 	//apply damage
-	var/weaken_duration =  target.apply_damage(force, BRUTE, affecting, MELEE, updating_health = TRUE)
+	var/weaken_duration = target.apply_damage(force, BRUTE, affecting, MELEE, updating_health = TRUE)
 
 	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
 
@@ -209,7 +209,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"
 	desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
-	icon_state = "grenadinebottle"
+	icon_state = "grenadine"
 	center_of_mass = list("x"=16, "y"=6)
 	list_reagents = list(/datum/reagent/consumable/drink/grenadine = 100)
 

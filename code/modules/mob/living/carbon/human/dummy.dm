@@ -6,7 +6,7 @@
 
 INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 
-/mob/living/carbon/human/dummy/Initialize()
+/mob/living/carbon/human/dummy/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)// just dummies, shouldnt register
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")

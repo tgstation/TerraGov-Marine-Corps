@@ -304,7 +304,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 			a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 
 
-	if(hud_used && hud_used.action_intent)
+	if(hud_used?.action_intent)
 		hud_used.action_intent.icon_state = "[a_intent]"
 
 
@@ -464,3 +464,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 /mob/proc/set_skills(datum/skills/new_skillset)
 	skills = new_skillset
 	SEND_SIGNAL(src, COMSIG_MOB_SKILLS_CHANGED, skills)
+
+///Returns the slowdown applied to the mob when moving through liquids like water
+/mob/proc/get_liquid_slowdown()
+	return MOB_WATER_SLOWDOWN

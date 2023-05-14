@@ -17,7 +17,7 @@
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
-/obj/effect/acid_hole/Initialize()
+/obj/effect/acid_hole/Initialize(mapload)
 	. = ..()
 	if(iswallturf(loc))
 		var/turf/closed/wall/W = loc

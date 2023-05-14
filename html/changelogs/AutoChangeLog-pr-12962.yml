@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - bugfix: "Fixed some floating signs in Desparity."
+  - bugfix: "Made CAS unable to bombard xenos in Desparity's crashed ship area."

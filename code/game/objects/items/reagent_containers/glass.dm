@@ -17,7 +17,7 @@
 	var/label_text = ""
 
 
-/obj/item/reagent_containers/glass/Initialize()
+/obj/item/reagent_containers/glass/Initialize(mapload)
 	. = ..()
 	base_name = name
 
@@ -209,7 +209,7 @@
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 30)
 
 
-/obj/item/reagent_containers/glass/beaker/cryoxadone/Initialize()
+/obj/item/reagent_containers/glass/beaker/cryoxadone/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -218,7 +218,7 @@
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 10, /datum/reagent/medicine/clonexadone = 10, /datum/reagent/medicine/saline_glucose = 5, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/medicine/quickclot = 5, /datum/reagent/medicine/dexalinplus = 5, /datum/reagent/medicine/spaceacillin = 5, /datum/reagent/medicine/bihexajuline = 5)
 
 
-/obj/item/reagent_containers/glass/beaker/cryomix/Initialize()
+/obj/item/reagent_containers/glass/beaker/cryomix/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -227,7 +227,7 @@
 	list_reagents = list(/datum/reagent/toxin/acid = 60)
 
 
-/obj/item/reagent_containers/glass/beaker/sulphuric/Initialize()
+/obj/item/reagent_containers/glass/beaker/sulphuric/Initialize(mapload)
 	. = ..()
 	update_icon()
 

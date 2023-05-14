@@ -57,7 +57,7 @@
 
 
 /obj/effect/plantsegment/attack_hand(mob/living/user)
-	.  = ..()
+	. = ..()
 	if(.)
 		return
 	if(user.a_intent == INTENT_HELP && seed && harvest)
@@ -268,7 +268,7 @@
 	slowdown_limit = 3
 	limited_growth = 1
 
-/obj/effect/plant_controller/Initialize()
+/obj/effect/plant_controller/Initialize(mapload)
 	. = ..()
 
 	if(!istype(loc,/turf/open/floor))

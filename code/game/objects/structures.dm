@@ -2,7 +2,7 @@
 	icon = 'icons/obj/structures/structures.dmi'
 	var/climbable = FALSE
 	var/climb_delay = 50
-	var/flags_barrier = 0
+	var/flags_barrier = NONE
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	obj_flags = CAN_BE_HIT
 	anchored = TRUE
@@ -27,7 +27,7 @@
 		if(EXPLODE_LIGHT)
 			return
 
-/obj/structure/Initialize()
+/obj/structure/Initialize(mapload)
 	. = ..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
@@ -104,7 +104,7 @@
 				to_chat(user, span_warning("You cannot leap this way."))
 				return
 			for(var/atom/movable/A in target)
-				if(A && A.density && !(A.flags_atom & ON_BORDER))
+				if(A?.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface
@@ -142,7 +142,7 @@
 				to_chat(user, span_warning("You cannot leap this way."))
 				return
 			for(var/atom/movable/A in target)
-				if(A && A.density && !(A.flags_atom & ON_BORDER))
+				if(A?.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface

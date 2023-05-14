@@ -10,9 +10,9 @@
 	faction = list("Lizard")
 	attacktext = "bites"
 	melee_damage = 1
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "shoos"
-	response_harm   = "stomps on"
+	response_harm = "stomps on"
 	density = FALSE
 	flags_pass = PASSTABLE|PASSMOB
 	mob_size = MOB_SIZE_SMALL

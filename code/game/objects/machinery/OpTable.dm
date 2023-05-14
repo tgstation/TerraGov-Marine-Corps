@@ -12,14 +12,14 @@
 	idle_power_usage = 1
 	active_power_usage = 5
 	var/mob/living/carbon/human/victim = null
-	var/strapped = 0.0
+	var/strapped = 0
 	buckle_flags = CAN_BUCKLE
 	buckle_lying = 90
 	var/obj/item/tank/anesthetic/anes_tank
 
 	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/optable/Initialize()
+/obj/machinery/optable/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 

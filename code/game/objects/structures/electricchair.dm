@@ -2,9 +2,9 @@
 	name = "electric chair"
 	desc = "Looks absolutely SHOCKING!"
 	icon_state = "echair1"
-	var/last_time = 1.0
+	var/last_time = 1
 
-/obj/structure/bed/chair/e_chair/Initialize()
+/obj/structure/bed/chair/e_chair/Initialize(mapload)
 	. = ..()
 	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
 

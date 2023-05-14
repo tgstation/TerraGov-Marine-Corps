@@ -45,7 +45,7 @@
 	var/can_hear_flags = NONE
 
 
-/obj/machinery/holopad/Initialize()
+/obj/machinery/holopad/Initialize(mapload)
 	. = ..()
 	if(on_network)
 		holopads += src

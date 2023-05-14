@@ -26,16 +26,16 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "ap" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "ar" = (
@@ -273,6 +273,9 @@
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 5
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "bM" = (
@@ -338,10 +341,10 @@
 /area/oscar_outpost/outside/underground)
 "cv" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "cw" = (
@@ -457,16 +460,16 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "di" = (
@@ -506,7 +509,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "dA" = (
-/obj/effect/spawner/random/plushie/fiftyfifty,
+/obj/effect/spawner/random/misc/plushie/fiftyfifty,
 /turf/open/floor,
 /area/oscar_outpost/base)
 "dD" = (
@@ -596,6 +599,12 @@
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
+"eq" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "er" = (
 /obj/item/storage/backpack/marine/radiopack,
 /obj/item/storage/backpack/marine/radiopack,
@@ -623,10 +632,10 @@
 /area/oscar_outpost/outside/east)
 "et" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "eu" = (
@@ -664,8 +673,8 @@
 /area/oscar_outpost)
 "eK" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "eM" = (
@@ -679,7 +688,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "eT" = (
-/obj/item/clothing/suit/storage/marine/smartgunner/fancy,
+/obj/item/clothing/suit/storage/marine/smartgunner,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
@@ -687,6 +696,12 @@
 /obj/structure/table/rusticwoodentable,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
+"fd" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "ff" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -696,6 +711,18 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
+"fn" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "fo" = (
 /obj/structure/window,
 /turf/open/floor/tile/dark,
@@ -703,7 +730,7 @@
 "fp" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/glasses/welding,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "fr" = (
@@ -771,6 +798,12 @@
 /obj/item/reagent_containers/food/condiment/saltshaker,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"fQ" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "fR" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -824,10 +857,10 @@
 	},
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/glass/beaker/noreact,
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = -2
 	},
-/obj/effect/spawner/random/pillbottle{
+/obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = -3;
 	pixel_y = 4
 	},
@@ -845,6 +878,9 @@
 	dir = 4
 	},
 /obj/structure/barricade/metal,
+/obj/structure/platform{
+	dir = 6
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "gp" = (
@@ -900,11 +936,12 @@
 /area/oscar_outpost/base)
 "gu" = (
 /obj/structure/barricade/metal,
+/obj/structure/platform,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "gw" = (
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
@@ -962,9 +999,9 @@
 "gD" = (
 /obj/effect/turf_decal/warning_stripes/linethick,
 /obj/structure/rack,
-/obj/effect/spawner/random/structure/gascan,
-/obj/effect/spawner/random/structure/gascan,
-/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
 /turf/open/floor/plating,
 /area/oscar_outpost/outside/underground)
 "gE" = (
@@ -1010,13 +1047,19 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"hc" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/base)
 "hl" = (
 /obj/effect/turf_decal/warning_stripes/linethick,
 /obj/structure/rack,
-/obj/effect/spawner/random/structure/gascan,
-/obj/effect/spawner/random/structure/gascan,
-/obj/effect/spawner/random/structure/gascan,
-/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
 /turf/open/floor/plating,
 /area/oscar_outpost/outside/underground)
 "hm" = (
@@ -1030,14 +1073,14 @@
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/east)
 "hs" = (
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -9;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 9;
 	pixel_y = 7
 	},
@@ -1154,12 +1197,21 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "ig" = (
 /obj/machinery/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
+"ij" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "ik" = (
 /obj/machinery/factory/heater{
 	anchored = 1
@@ -1239,20 +1291,13 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "iU" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 5
 	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "iW" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -1269,10 +1314,10 @@
 /area/oscar_outpost/outside/road)
 "ja" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "jb" = (
@@ -1315,6 +1360,18 @@
 /obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
+"jm" = (
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
+"jn" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "jw" = (
 /obj/item/ammo_magazine/tl102/hsg_nest,
 /obj/item/ammo_magazine/tl102/hsg_nest,
@@ -1348,18 +1405,18 @@
 /area/oscar_outpost/village/south)
 "jA" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "jE" = (
@@ -1398,7 +1455,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "jN" = (
-/obj/effect/spawner/random/structure/m42c/oscaroutpost,
+/obj/effect/spawner/random/misc/structure/m42c/oscaroutpost,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "jO" = (
@@ -1424,8 +1481,8 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/tinted,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "jU" = (
 /obj/effect/ai_node,
@@ -1465,10 +1522,10 @@
 /area/oscar_outpost/base)
 "kw" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -1615,16 +1672,16 @@
 /area/oscar_outpost/village/fairgrounds)
 "lC" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "lD" = (
@@ -1633,7 +1690,7 @@
 /area/oscar_outpost/village/south)
 "lE" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "lG" = (
@@ -1653,7 +1710,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "lN" = (
 /obj/structure/closet/crate,
@@ -1671,7 +1728,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "lQ" = (
 /obj/item/factory_refill/phosnade_refill,
@@ -1750,6 +1807,9 @@
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 10
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "mQ" = (
@@ -1781,6 +1841,15 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/village/fairgrounds)
+"nf" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "nh" = (
 /obj/structure/sign/poster,
 /turf/closed/mineral/smooth,
@@ -1802,6 +1871,12 @@
 	},
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
+"nm" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "no" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -1815,7 +1890,7 @@
 "np" = (
 /obj/machinery/power/apc/hyper,
 /obj/structure/cable,
-/obj/effect/spawner/random/structure/powergenerator/superweighted,
+/obj/effect/spawner/random/engineering/structure/powergenerator/superweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "nt" = (
@@ -1862,31 +1937,15 @@
 /area/oscar_outpost/village/south)
 "nG" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
-/obj/effect/spawner/random/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"nH" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform_decoration{
-	dir = 9
-	},
-/obj/structure/platform_decoration{
-	dir = 6
-	},
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "nM" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt,
@@ -1930,6 +1989,24 @@
 "nZ" = (
 /obj/machinery/landinglight/ds1,
 /turf/open/floor/plating/asteroidfloor,
+/area/oscar_outpost)
+"oc" = (
+/obj/structure/prop/mainship/gelida/miner,
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 16
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 32
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 48
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 64
+	},
+/obj/effect/forcefield,
+/obj/structure/platform,
+/turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "oe" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -2061,18 +2138,18 @@
 /area/oscar_outpost/base)
 "oX" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2109,9 +2186,9 @@
 /area/oscar_outpost/base)
 "pp" = (
 /obj/item/tool/hand_labeler,
-/obj/effect/spawner/random/beaker/bluespace,
+/obj/effect/spawner/random/medical/beaker/bluespace,
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/beaker/bluespace,
+/obj/effect/spawner/random/medical/beaker/bluespace,
 /turf/open/floor/mainship/sterile/side,
 /area/oscar_outpost/village/central)
 "pq" = (
@@ -2206,6 +2283,13 @@
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/underground)
+"qb" = (
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "qe" = (
 /obj/machinery/optable,
 /obj/machinery/light{
@@ -2218,7 +2302,7 @@
 /area/oscar_outpost/base)
 "qh" = (
 /obj/structure/cable,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/tool/extinguisher/mini,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
@@ -2240,7 +2324,7 @@
 /area/oscar_outpost/village/east)
 "qk" = (
 /obj/structure/table,
-/obj/effect/spawner/random/outdoors_snacks{
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks{
 	name = "expired Tabasco bottle";
 	pixel_x = -2;
 	pixel_y = 20
@@ -2290,30 +2374,30 @@
 /area/oscar_outpost)
 "qy" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
-/obj/effect/spawner/random/structure/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "qz" = (
@@ -2334,8 +2418,8 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "qH" = (
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
@@ -2410,6 +2494,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"rb" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/oscar_outpost)
 "re" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -2425,7 +2515,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "rl" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -2436,12 +2526,30 @@
 /obj/structure/closet/crate,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
+"ro" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
+"rr" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "rt" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/structure/grenade{
+/obj/effect/spawner/random/weaponry/explosive/grenade{
 	pixel_x = 7
 	},
-/obj/effect/spawner/random/structure/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -2455,6 +2563,9 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/obj/structure/platform{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -2497,12 +2608,12 @@
 	pixel_y = 10
 	},
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/surgical,
+/obj/effect/spawner/random/medical/surgical,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "rJ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "rM" = (
@@ -2607,11 +2718,17 @@
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/ground/grass,
 /area/oscar_outpost/village/fairgrounds)
+"sx" = (
+/obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "sz" = (
-/obj/structure/platform,
 /obj/effect/forcefield,
 /obj/machinery/atmospherics/components/unary/outlet_injector,
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "sE" = (
 /obj/structure/closet/crate,
@@ -2699,22 +2816,22 @@
 /area/oscar_outpost/village/south)
 "ts" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
-/obj/effect/spawner/random/structure/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
+/obj/effect/spawner/random/weaponry/explosive/grenade/incendiaryweighted,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -2738,7 +2855,7 @@
 /obj/item/reagent_containers/food/snacks/grown/tomato{
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/snacks/carrotcakeslice{
+/obj/item/reagent_containers/food/snacks/pastries/carrotcakeslice{
 	pixel_x = 6
 	},
 /obj/machinery/light/small,
@@ -2779,10 +2896,10 @@
 /area/oscar_outpost)
 "tD" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "tF" = (
@@ -2827,18 +2944,18 @@
 /area/oscar_outpost/village/south)
 "tP" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "tX" = (
@@ -2853,6 +2970,16 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
+/area/oscar_outpost)
+"uc" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
+	},
+/turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "ue" = (
 /obj/structure/window,
@@ -2925,7 +3052,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
 "ux" = (
-/obj/effect/spawner/random/structure/m42c/oscaroutpost,
+/obj/effect/spawner/random/misc/structure/m42c/oscaroutpost,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "uA" = (
@@ -2935,6 +3062,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"uB" = (
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "uD" = (
 /obj/structure/closet/crate,
 /obj/machinery/light{
@@ -2982,10 +3115,10 @@
 /area/oscar_outpost)
 "uY" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "uZ" = (
@@ -3030,28 +3163,21 @@
 /area/oscar_outpost/base)
 "vu" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "vv" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/platform_decoration,
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "vw" = (
 /obj/structure/table/rusticwoodentable,
@@ -3154,6 +3280,9 @@
 /obj/machinery/atmospherics/pipe/manifold/general{
 	dir = 1
 	},
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "wc" = (
@@ -3166,10 +3295,10 @@
 /area/oscar_outpost/village/south)
 "wf" = (
 /obj/structure/closet/crate,
-/obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "wk" = (
@@ -3195,6 +3324,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"wp" = (
+/obj/effect/ai_node,
+/obj/structure/platform,
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "wr" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
@@ -3262,6 +3396,14 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"wZ" = (
+/obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "xa" = (
 /obj/structure/table/mainship,
 /obj/structure/window,
@@ -3310,13 +3452,6 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/oscar_outpost)
-"xi" = (
-/obj/structure/platform_decoration,
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "xj" = (
 /obj/effect/landmark/patrol_point{
@@ -3449,6 +3584,13 @@
 /obj/item/clothing/under/color/green,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
+"xR" = (
+/obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "xT" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -3472,10 +3614,10 @@
 /area/oscar_outpost/village/south)
 "yb" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "yc" = (
@@ -3539,6 +3681,16 @@
 	dir = 8
 	},
 /area/oscar_outpost)
+"yv" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "yz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -3551,10 +3703,10 @@
 /area/storage/testroom)
 "yC" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "yD" = (
@@ -3584,7 +3736,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "yK" = (
-/obj/effect/spawner/random/structure/m42c/oscaroutpost,
+/obj/effect/spawner/random/misc/structure/m42c/oscaroutpost,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "yL" = (
@@ -3595,6 +3747,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"yM" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "yQ" = (
 /obj/machinery/roomba,
 /obj/effect/ai_node,
@@ -3829,7 +3987,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "Ag" = (
 /obj/item/ammo_magazine/smg/m25,
@@ -3900,10 +4058,10 @@
 /area/oscar_outpost)
 "Au" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
@@ -3982,36 +4140,40 @@
 /area/oscar_outpost)
 "AL" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor,
 /area/oscar_outpost/village)
+"AM" = (
+/obj/structure/platform,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "AP" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -4022,6 +4184,9 @@
 "AS" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4
+	},
+/obj/structure/platform{
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
@@ -4070,8 +4235,8 @@
 /area/oscar_outpost/village)
 "Be" = (
 /obj/structure/closet/crate,
-/obj/item/tool/pickaxe,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /obj/item/tool/shovel{
 	pixel_x = 13
 	},
@@ -4165,39 +4330,39 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
 "BE" = (
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -6;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 8;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -6;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 8;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -6;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 8;
 	pixel_y = 7
 	},
@@ -4262,7 +4427,7 @@
 /area/oscar_outpost)
 "BR" = (
 /obj/machinery/chem_dispenser,
-/obj/effect/spawner/random/beaker/bluespace,
+/obj/effect/spawner/random/medical/beaker/bluespace,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
@@ -4338,10 +4503,10 @@
 /area/oscar_outpost)
 "Cm" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/packaged_burger{
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger{
 	pixel_y = 11
 	},
-/obj/item/reagent_containers/food/snacks/packaged_burger{
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger{
 	pixel_x = -8
 	},
 /obj/item/clothing/mask/cigarette/cigar/cohiba{
@@ -4367,7 +4532,7 @@
 /area/oscar_outpost/village)
 "Co" = (
 /obj/structure/bed/chair/sofa,
-/obj/effect/spawner/random/gun/sidearms{
+/obj/effect/spawner/random/weaponry/gun/sidearms{
 	pixel_x = 1;
 	pixel_y = -12
 	},
@@ -4416,7 +4581,7 @@
 /obj/item/stack/sheet/wood{
 	layer = 3.1
 	},
-/obj/effect/spawner/random/ammo/sidearm{
+/obj/effect/spawner/random/weaponry/ammo/sidearm{
 	layer = 3.1;
 	pixel_x = 14
 	},
@@ -4566,6 +4731,12 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"Dp" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "Ds" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/ground/grass,
@@ -4609,10 +4780,10 @@
 /area/oscar_outpost/village/east)
 "DF" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "DH" = (
@@ -4695,7 +4866,7 @@
 	pixel_x = 9;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/trash{
+/obj/effect/spawner/random/misc/trash{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -4711,6 +4882,9 @@
 	},
 /obj/structure/barricade/metal{
 	dir = 8
+	},
+/obj/structure/platform{
+	dir = 9
 	},
 /turf/open/floor/plating,
 /area/oscar_outpost)
@@ -4817,6 +4991,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/platform,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "Es" = (
@@ -4833,6 +5008,9 @@
 /area/oscar_outpost/outside/west)
 "Ex" = (
 /obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -4902,7 +5080,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "EL" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "EM" = (
@@ -4911,8 +5089,8 @@
 /area/oscar_outpost/village)
 "EQ" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -4962,6 +5140,10 @@
 "Fg" = (
 /obj/structure/barricade/metal{
 	dir = 8
+	},
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
@@ -5046,18 +5228,18 @@
 /area/oscar_outpost/village)
 "FC" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -5332,10 +5514,10 @@
 /area/oscar_outpost/village)
 "GG" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /obj/item/ammo_magazine/pistol/m1911,
 /obj/item/ammo_magazine/pistol/m1911,
 /obj/item/ammo_magazine/pistol/m1911,
@@ -5368,8 +5550,8 @@
 /area/oscar_outpost/village)
 "GI" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "GJ" = (
@@ -5414,18 +5596,18 @@
 /area/oscar_outpost/village)
 "GV" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "GY" = (
@@ -5436,6 +5618,9 @@
 "Hc" = (
 /obj/structure/barricade/metal{
 	dir = 8
+	},
+/obj/structure/platform{
+	dir = 10
 	},
 /turf/open/floor/plating,
 /area/oscar_outpost)
@@ -5522,12 +5707,12 @@
 /area/oscar_outpost/village)
 "Hr" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "Hs" = (
@@ -5622,6 +5807,12 @@
 /obj/item/trash/buritto,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"HV" = (
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "HX" = (
 /obj/machinery/door/window{
 	dir = 8
@@ -5661,6 +5852,10 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
+"Ij" = (
+/obj/structure/platform,
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "Ik" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -5687,30 +5882,30 @@
 /area/oscar_outpost/outside/road)
 "Io" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Ir" = (
@@ -5758,51 +5953,51 @@
 /area/oscar_outpost/village)
 "Iu" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -5940,18 +6135,18 @@
 /area/oscar_outpost/village/east)
 "IT" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "IU" = (
@@ -6009,66 +6204,66 @@
 /area/oscar_outpost/village)
 "Jn" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Jo" = (
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -6096,10 +6291,10 @@
 /area/oscar_outpost/village)
 "Jx" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/pastatomato{
+/obj/item/reagent_containers/food/snacks/pizzapasta/pastatomato{
 	pixel_y = 10
 	},
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
 "Jz" = (
@@ -6137,16 +6332,16 @@
 /area/oscar_outpost/village/central)
 "JL" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "JN" = (
@@ -6166,6 +6361,9 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/structure/platform{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/oscar_outpost)
@@ -6328,13 +6526,13 @@
 /area/oscar_outpost/village/south)
 "KI" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/packaged_burger{
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger{
 	pixel_y = 2
 	},
-/obj/item/reagent_containers/food/snacks/packaged_burger{
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger{
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/snacks/packaged_burger{
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger{
 	pixel_y = 15
 	},
 /turf/open/floor/wood,
@@ -6344,16 +6542,10 @@
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "KQ" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "KR" = (
 /obj/structure/table/mainship,
@@ -6437,6 +6629,13 @@
 "Li" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/oscar_outpost/outside/rock)
+"Lj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/platform,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "Lk" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/closed/wall/r_wall,
@@ -6458,7 +6657,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "Lu" = (
 /obj/structure/toilet{
@@ -6484,27 +6683,27 @@
 /area/oscar_outpost/village)
 "LD" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms{
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms{
 	pixel_x = -3;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "LE" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms{
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms{
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -6527,7 +6726,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "LG" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
@@ -6536,10 +6735,10 @@
 /area/oscar_outpost/village/fairgrounds)
 "LK" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox{
+/obj/effect/spawner/random/engineering/toolbox{
 	pixel_y = -4
 	},
-/obj/effect/spawner/random/toolbox{
+/obj/effect/spawner/random/engineering/toolbox{
 	pixel_y = 8
 	},
 /turf/open/floor,
@@ -6594,15 +6793,15 @@
 /area/oscar_outpost/village/central)
 "LT" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
-/obj/effect/spawner/random/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "LU" = (
@@ -6823,6 +7022,15 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
+"ME" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "MH" = (
 /obj/item/stool{
 	pixel_y = 20
@@ -6860,14 +7068,14 @@
 /area/oscar_outpost/village/fairgrounds)
 "MT" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "MV" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "MW" = (
@@ -6930,13 +7138,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"Ns" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/obj/structure/platform_decoration,
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "Nu" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
@@ -6975,49 +7176,23 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
-"NF" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform,
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "NG" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 9
 	},
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "NH" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 9
 	},
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "NI" = (
 /obj/item/assembly/mousetrap/armed{
@@ -7163,10 +7338,10 @@
 /area/oscar_outpost/base)
 "OA" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox{
+/obj/effect/spawner/random/engineering/toolbox{
 	pixel_y = -6
 	},
-/obj/effect/spawner/random/toolbox{
+/obj/effect/spawner/random/engineering/toolbox{
 	pixel_y = 7
 	},
 /turf/open/floor,
@@ -7179,10 +7354,10 @@
 /obj/item/tool/shovel{
 	pixel_x = 9
 	},
-/obj/item/tool/pickaxe{
+/obj/effect/spawner/random/engineering/pickaxe{
 	pixel_x = 3
 	},
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /obj/item/tool/hatchet{
 	pixel_x = -10
 	},
@@ -7211,11 +7386,6 @@
 /obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
-"OH" = (
-/obj/structure/platform,
-/obj/effect/forcefield,
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "OI" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/under/color/white,
@@ -7332,8 +7502,8 @@
 /area/oscar_outpost/outside/rock)
 "Pg" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Ph" = (
@@ -7343,16 +7513,16 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Pi" = (
-/obj/effect/spawner/random/melee{
+/obj/effect/spawner/random/weaponry/melee{
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/melee{
+/obj/effect/spawner/random/weaponry/melee{
 	pixel_y = 17
 	},
-/obj/effect/spawner/random/melee{
+/obj/effect/spawner/random/weaponry/melee{
 	pixel_y = 19
 	},
-/obj/effect/spawner/random/melee{
+/obj/effect/spawner/random/weaponry/melee{
 	pixel_y = 21
 	},
 /turf/open/floor/wood,
@@ -7366,7 +7536,7 @@
 /area/oscar_outpost/village/east)
 "Pl" = (
 /obj/machinery/camera/autoname/mainship,
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "Pm" = (
@@ -7403,12 +7573,6 @@
 /obj/structure/cable,
 /turf/closed/wall,
 /area/oscar_outpost/village/south)
-"Pw" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "Px" = (
 /obj/item/ammo_magazine/rifle/m16,
 /obj/item/attachable/bayonet,
@@ -7448,7 +7612,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/village/fairgrounds)
 "Pz" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "PA" = (
@@ -7495,15 +7659,6 @@
 /obj/structure/largecrate/supply/weapons/flamers,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
-"PJ" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "PK" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -7555,7 +7710,7 @@
 /area/oscar_outpost/outside/underground)
 "PR" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /obj/item/ammo_magazine/pistol/m1911,
 /obj/item/ammo_magazine/pistol/m1911,
 /obj/item/ammo_magazine/pistol/m1911,
@@ -7568,10 +7723,10 @@
 /area/oscar_outpost/village)
 "PT" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox{
+/obj/effect/spawner/random/engineering/toolbox{
 	pixel_y = -5
 	},
-/obj/effect/spawner/random/toolbox{
+/obj/effect/spawner/random/engineering/toolbox{
 	pixel_y = 8
 	},
 /turf/open/floor,
@@ -7644,51 +7799,51 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Ql" = (
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -7704,39 +7859,39 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Qt" = (
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -6;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 8;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -6;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 8;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -6;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 8;
 	pixel_y = 7
 	},
@@ -7761,16 +7916,16 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "Qz" = (
-/obj/effect/spawner/random/outdoors_snacks{
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks{
 	pixel_y = 14
 	},
-/obj/effect/spawner/random/outdoors_snacks{
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks{
 	pixel_y = 9
 	},
-/obj/effect/spawner/random/outdoors_snacks{
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks{
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
 /obj/structure/closet/crate,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
@@ -7837,7 +7992,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "QV" = (
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "QW" = (
@@ -7855,7 +8010,7 @@
 /area/oscar_outpost)
 "QZ" = (
 /obj/item/tool/screwdriver,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "Rc" = (
@@ -7866,14 +8021,14 @@
 /area/oscar_outpost/base)
 "Rd" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Rg" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
-/obj/effect/spawner/random/gun/rifles{
+/obj/effect/spawner/random/weaponry/gun/rifles{
 	pixel_y = 1
 	},
 /turf/open/floor/wood,
@@ -7891,7 +8046,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/underground)
 "Rl" = (
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "Rm" = (
@@ -7915,7 +8070,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "Rs" = (
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
@@ -7956,11 +8111,11 @@
 /area/oscar_outpost/base)
 "RE" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/ammo/rifle{
+/obj/effect/spawner/random/weaponry/ammo/rifle{
 	pixel_x = 2;
 	pixel_y = 12
 	},
-/obj/effect/spawner/random/ammo/rifle{
+/obj/effect/spawner/random/weaponry/ammo/rifle{
 	pixel_x = -13;
 	pixel_y = 10
 	},
@@ -7974,14 +8129,14 @@
 /area/oscar_outpost)
 "RH" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
-/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "RJ" = (
@@ -7993,67 +8148,37 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "RK" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 6
 	},
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "RM" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "RN" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "RO" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 6
 	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "RP" = (
 /obj/machinery/landinglight/ds1/delayone,
@@ -8083,18 +8208,18 @@
 /area/oscar_outpost/village/south)
 "Sb" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
-/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
+/obj/effect/spawner/random/engineering/fuelcell/fullweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "Se" = (
@@ -8162,24 +8287,24 @@
 /area/oscar_outpost)
 "So" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -8193,25 +8318,25 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "Su" = (
@@ -8397,39 +8522,39 @@
 /area/oscar_outpost/base)
 "Td" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -6;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 8;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -6;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 8;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -6;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 8;
 	pixel_y = 7
 	},
@@ -8437,16 +8562,16 @@
 /area/oscar_outpost/village/fairgrounds)
 "Tg" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/outdoors_snacks{
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks{
 	pixel_y = 14
 	},
-/obj/effect/spawner/random/outdoors_snacks{
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks{
 	pixel_y = 9
 	},
-/obj/effect/spawner/random/outdoors_snacks{
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks{
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "Tk" = (
@@ -8494,6 +8619,9 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 8
+	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "Tv" = (
@@ -8520,18 +8648,24 @@
 	},
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
+"TB" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "TD" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "TE" = (
@@ -8580,14 +8714,10 @@
 	},
 /area/oscar_outpost/outside/road)
 "TS" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "TU" = (
 /obj/structure/table/rusticwoodentable,
@@ -8649,17 +8779,10 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "Uf" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/platform_decoration{
-	dir = 8
-	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Uh" = (
 /turf/closed/wall,
@@ -8677,15 +8800,6 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
-"Uk" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform_decoration{
-	dir = 1
-	},
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "Uo" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
@@ -8694,18 +8808,6 @@
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
-"Up" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/platform_decoration{
-	dir = 5
-	},
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "Ur" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -8744,28 +8846,6 @@
 /obj/structure/bed,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/east)
-"UB" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
-"UC" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform_decoration{
-	dir = 6
-	},
-/obj/structure/platform_decoration{
-	dir = 9
-	},
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "UF" = (
 /obj/machinery/light{
 	dir = 1
@@ -8785,15 +8865,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
-"UJ" = (
-/obj/structure/platform_decoration{
-	dir = 1
-	},
-/obj/structure/platform_decoration{
-	dir = 4
-	},
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "UK" = (
 /obj/machinery/light{
 	dir = 4
@@ -8869,8 +8940,8 @@
 /area/oscar_outpost/village/east)
 "Vf" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "Vj" = (
@@ -8891,18 +8962,18 @@
 /area/oscar_outpost)
 "Vn" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "Vp" = (
@@ -8956,13 +9027,6 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/oscar_outpost)
-"VB" = (
-/obj/structure/platform{
-	dir = 8;
-	layer = 2.7
-	},
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "VC" = (
 /obj/structure/barricade/metal{
 	dir = 4
@@ -8974,6 +9038,9 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "VG" = (
@@ -8993,7 +9060,7 @@
 /area/oscar_outpost)
 "VI" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/beer/oscaroutpost,
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "VM" = (
@@ -9013,7 +9080,7 @@
 /area/oscar_outpost/village/fairgrounds)
 "VQ" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/food_or_drink/cheesewedge,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "VT" = (
@@ -9062,7 +9129,7 @@
 /area/oscar_outpost/base)
 "Wg" = (
 /obj/effect/forcefield,
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Wi" = (
 /obj/machinery/camera/autoname/mainship{
@@ -9092,15 +9159,15 @@
 /area/oscar_outpost)
 "Wn" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "Wo" = (
@@ -9113,7 +9180,7 @@
 	dir = 8;
 	layer = 2.7
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Wr" = (
 /obj/structure/barricade/sandbags{
@@ -9148,7 +9215,7 @@
 /area/oscar_outpost/village/fairgrounds)
 "Wx" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "Wy" = (
@@ -9181,6 +9248,18 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"WF" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "WL" = (
 /obj/item/bedsheet/captain,
 /obj/item/stack/sheet/metal,
@@ -9226,6 +9305,18 @@
 /obj/item/bedsheet/clown,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/south)
+"WY" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "WZ" = (
 /turf/closed/mineral/smooth,
 /area/oscar_outpost/outside/rock)
@@ -9254,13 +9345,30 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"Xc" = (
+/obj/structure/prop/mainship/gelida/miner,
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 16
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 32
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 48
+	},
+/obj/structure/prop/mainship/gelida/miner{
+	pixel_y = 64
+	},
+/obj/structure/platform,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "Xd" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/mainship,
 /area/oscar_outpost/base)
 "Xf" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 7
 	},
@@ -9282,14 +9390,14 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "Xi" = (
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -9;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 9;
 	pixel_y = 7
 	},
@@ -9338,31 +9446,31 @@
 /area/oscar_outpost/village/east)
 "Xv" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "Xw" = (
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 9;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -9;
 	pixel_y = 7
 	},
@@ -9408,7 +9516,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "XG" = (
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "XH" = (
 /obj/machinery/camera/autoname/mainship{
@@ -9418,7 +9526,7 @@
 /area/oscar_outpost/village/fairgrounds)
 "XI" = (
 /obj/structure/table,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "XJ" = (
@@ -9448,13 +9556,19 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "XM" = (
-/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/south)
 "XN" = (
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/mainship/sterile/corner,
 /area/oscar_outpost/village/central)
+"XP" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost)
 "XQ" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/curtain/medical,
@@ -9462,7 +9576,7 @@
 /area/oscar_outpost/village/south)
 "XR" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/outdoors_snacks,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "XV" = (
@@ -9489,6 +9603,18 @@
 "XY" = (
 /obj/structure/barricade/metal{
 	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
+"Yb" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
@@ -9577,8 +9703,8 @@
 /area/oscar_outpost)
 "Yu" = (
 /obj/machinery/optable,
-/obj/effect/spawner/random/surgical,
-/obj/effect/spawner/random/organ,
+/obj/effect/spawner/random/medical/surgical,
+/obj/effect/spawner/random/medical/organ,
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -9652,7 +9778,7 @@
 /area/oscar_outpost/village/central)
 "YF" = (
 /obj/structure/window/reinforced/tinted,
-/turf/open/ground/river/desertdam/clean/deep_water_clean,
+/turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "YG" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -9683,17 +9809,17 @@
 /area/oscar_outpost)
 "YN" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -9760,20 +9886,14 @@
 /obj/machinery/vending/marineFood,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
-"Zf" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/lavaland/lava,
-/area/oscar_outpost)
 "Zh" = (
 /turf/closed/wall,
 /area/oscar_outpost/village/east)
 "Zj" = (
 /obj/item/storage/box/syringes,
 /obj/item/reagent_containers/dropper,
-/obj/effect/spawner/random/beaker/largeweighted,
-/obj/effect/spawner/random/beaker/largeweighted,
+/obj/effect/spawner/random/medical/beaker/largeweighted,
+/obj/effect/spawner/random/medical/beaker/largeweighted,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile/corner,
 /area/oscar_outpost/village/central)
@@ -9878,12 +9998,9 @@
 /area/oscar_outpost/base)
 "Zs" = (
 /obj/structure/platform_decoration{
-	dir = 4
-	},
-/obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/lavaland/lava,
+/turf/open/liquid/lava,
 /area/oscar_outpost)
 "Zt" = (
 /obj/machinery/washing_machine,
@@ -9961,13 +10078,13 @@
 /obj/item/ammo_magazine/rifle/m16,
 /obj/item/ammo_magazine/rifle/m16,
 /obj/item/ammo_magazine/rifle/m16,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -9976,38 +10093,38 @@
 /area/oscar_outpost/village/central)
 "ZG" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "ZH" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
-/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "ZK" = (
@@ -11018,8 +11135,8 @@ zX
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11027,8 +11144,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11036,8 +11153,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11045,8 +11162,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -11054,8 +11170,9 @@ XG
 XG
 XG
 XG
-OH
-OP
+XG
+Wg
+hc
 OP
 OP
 CP
@@ -11270,17 +11387,8 @@ zX
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
-XG
-XG
-XG
-XV
-TV
-TV
-TV
-Pw
 XG
 XG
 XG
@@ -11288,8 +11396,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11297,8 +11405,17 @@ XG
 XV
 TV
 TV
+Ij
+XG
+XG
+XG
+XG
+XG
+XV
 TV
-Pw
+TV
+Ij
+XG
 XG
 XG
 XG
@@ -11522,8 +11639,8 @@ GD
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11531,8 +11648,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11540,8 +11657,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11549,8 +11666,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -11558,7 +11674,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 AS
 OP
 OP
@@ -11774,8 +11891,8 @@ GD
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11783,8 +11900,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11792,8 +11909,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -11801,8 +11918,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -11810,7 +11926,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 wb
 zf
 Tx
@@ -12026,8 +12143,8 @@ GD
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12035,8 +12152,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12044,8 +12161,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12053,8 +12170,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -12062,7 +12178,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 wb
 zf
 Lx
@@ -12278,8 +12395,8 @@ GD
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12287,8 +12404,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12296,8 +12413,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12305,8 +12422,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -12314,7 +12430,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 wb
 zf
 Tx
@@ -12530,8 +12647,8 @@ FU
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12539,8 +12656,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12548,8 +12665,8 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12557,8 +12674,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -12566,7 +12682,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 wb
 zf
 Tx
@@ -12782,8 +12899,8 @@ FU
 XV
 TV
 TV
-TV
-Pw
+Ij
+XG
 XG
 XG
 XG
@@ -12791,8 +12908,17 @@ XG
 XV
 TV
 TV
+Ij
+XG
+XG
+XG
+XG
+XG
+XV
 TV
-Pw
+nm
+XP
+XG
 XG
 XG
 XG
@@ -12800,17 +12926,7 @@ XG
 XV
 TV
 TV
-TV
-Pw
-XG
-XG
-XG
-XG
-XV
-TV
-TV
-TV
-Pw
+Ij
 XG
 XG
 XG
@@ -12818,7 +12934,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 wb
 zf
 Tx
@@ -13034,25 +13151,7 @@ FU
 XV
 TV
 TV
-TV
-Pw
-XG
-XG
-XG
-XG
-XV
-TV
-TV
-TV
-Pw
-XG
-XG
-XG
-XG
-XV
-TV
-XG
-XG
+Ij
 XG
 XG
 XG
@@ -13061,8 +13160,25 @@ XG
 XV
 TV
 TV
+Ij
+XG
+XG
+XG
+XG
+XG
+XV
+Ij
+XG
+XG
+XG
+XG
+XG
+XG
+XG
+XV
 TV
-Pw
+TV
+Ij
 XG
 XG
 XG
@@ -13070,7 +13186,8 @@ XG
 XG
 XG
 XG
-OH
+XG
+Wg
 mO
 zf
 Tx
@@ -13536,41 +13653,41 @@ hQ
 DB
 Zn
 Ng
-bk
+AM
 KQ
-Ns
-Zf
-Zf
-Ns
+XG
+XG
+XG
+XG
 TS
-OY
+ij
 Ng
-OY
+Lj
 KQ
-Ns
-Zf
-Zf
-Ns
+XG
+XG
+XG
+XG
 TS
-OY
+ij
 Ng
-OY
+Lj
 KQ
-Ns
-Zf
-Zf
-Ns
+XG
+XG
+XG
+XG
 TS
-OY
+ij
 Vu
 Er
 KQ
-Ns
-Zf
-Zf
-Ns
+XG
+XG
+XG
+XG
 TS
-XY
+rr
 XY
 qn
 CM
@@ -13789,38 +13906,38 @@ Yp
 Zn
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+fQ
+XG
+uB
+fQ
+XG
+uB
 bk
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+fQ
+XG
+uB
+fQ
+XG
+uB
 bk
 Vu
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+fQ
+XG
+uB
+fQ
+XG
+uB
 bk
 Vw
 XY
-TV
-NF
+fQ
+XG
 Eb
 Hc
-NF
+XG
 Eb
 bk
 XY
@@ -14293,38 +14410,38 @@ Yp
 mr
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 KZ
@@ -14545,38 +14662,38 @@ Yp
 Zn
 Ng
 Km
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 bk
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 bk
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 bk
 Pm
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 XY
@@ -15049,38 +15166,38 @@ Em
 Zn
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Vw
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Vw
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 AB
 Pm
@@ -15301,38 +15418,38 @@ Yp
 Zn
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 AB
 TV
 AB
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Vw
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 XY
@@ -15805,37 +15922,37 @@ Ev
 Zn
 Ng
 bk
-TV
+Ij
 NG
-TV
-TV
+Dp
+Ij
 RK
-TV
+Dp
 bk
 jZ
 bk
-jZ
+wp
 NG
-TV
-TV
+Dp
+Ij
 RK
-TV
+Dp
 bk
 Vw
 bk
-TV
+Ij
 NG
-TV
-TV
+Dp
+Ij
 RK
-TV
+Dp
 bk
 jZ
 XY
-jZ
+wp
 NG
 Ex
-TV
+Ij
 RK
 Ex
 bk
@@ -16058,10 +16175,10 @@ Zn
 Ng
 AB
 bk
-Wm
+ro
 qx
 bk
-Wm
+ro
 bk
 AB
 Ng
@@ -16070,16 +16187,16 @@ qx
 Tu
 bk
 bk
-Wm
+ro
 qx
 AB
 Ng
 AB
 bk
-Wm
+ro
 bk
 bk
-UK
+Yb
 bk
 AB
 Ng
@@ -17570,25 +17687,25 @@ Zn
 Ng
 bk
 bk
-OY
+ME
 PD
 bk
-OY
+ME
 bk
 bk
 Ng
 AB
 PD
-OY
+ME
 bk
 bk
-AB
+sx
 PD
 bk
 Ng
 bk
 bk
-AB
+sx
 bk
 bk
 rx
@@ -17597,10 +17714,10 @@ bk
 Ng
 KZ
 bk
-bk
+jn
 JS
 CQ
-bk
+jn
 XY
 bk
 AB
@@ -17821,37 +17938,37 @@ eg
 mr
 Ng
 bk
-TV
+Ij
 iU
-TV
-TV
+Dp
+Ij
 RM
-TV
+Dp
 bk
 Ng
 bk
-TV
+Ij
 iU
-TV
-TV
+Dp
+Ij
 RM
-jZ
+xR
 bk
 IF
 bk
-jZ
+wp
 iU
-TV
-TV
+Dp
+Ij
 iU
-TV
+Dp
 bk
 Ng
 XY
-TV
+Ij
 RM
 Ex
-TV
+Ij
 iU
 Ex
 AB
@@ -18325,38 +18442,38 @@ Yp
 Zn
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Vw
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 bk
@@ -18577,38 +18694,38 @@ eg
 Zn
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 AB
 bk
 AB
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 bk
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 AB
 bk
 Ol
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 bk
@@ -19081,38 +19198,38 @@ BU
 BU
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Vw
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 bk
@@ -19333,38 +19450,38 @@ Gy
 FU
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Ng
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 TV
 bk
-TV
-NF
-TV
-TV
-NF
-TV
+Ij
+XG
+Dp
+Ij
+XG
+Dp
 bk
 Ng
 XY
-TV
-NF
+Ij
+XG
 Ex
-TV
-NF
+Ij
+XG
 Ex
 bk
 bk
@@ -19837,37 +19954,37 @@ Gy
 FU
 Ng
 bk
-TV
+Ij
 NG
-TV
-TV
+Dp
+Ij
 NG
-TV
+Dp
 bk
 TV
 bk
-TV
+Ij
 NG
-TV
-TV
+Dp
+Ij
 NG
-TV
+Dp
 bk
 bk
 bk
-TV
+Ij
 NG
-TV
-TV
+Dp
+Ij
 NG
-TV
+Dp
 bk
 Vw
 XY
-TV
+Ij
 NG
 Ex
-TV
+Ij
 NG
 Ex
 bk
@@ -20090,37 +20207,37 @@ FU
 Ng
 AB
 bk
-Wm
+uc
 qx
 bk
-Wm
+uc
 bk
 AB
 Ng
 bk
 qx
-Wm
+uc
 bk
 bk
-AB
+wZ
 qx
 bk
 Yl
 bk
 bk
-bk
+qb
 AB
 bk
-Wm
+uc
 qx
 AB
 Vw
 Tk
 se
-nx
+yv
 gC
 Ye
-nx
+yv
 gC
 kE
 bk
@@ -20342,11 +20459,11 @@ FU
 Ng
 Ng
 uh
-Ng
-Ng
-Ng
-Ng
-Ng
+rb
+rb
+rb
+rb
+rb
 Gp
 Ng
 Ng
@@ -20369,11 +20486,11 @@ Ng
 Ng
 Ng
 Gp
-Ng
-Ng
-Ng
-Ng
-Ng
+rb
+rb
+rb
+rb
+rb
 Gp
 Gp
 Ng
@@ -20593,13 +20710,13 @@ Gy
 FU
 Vp
 bk
-bk
+AM
 NH
-PJ
-PJ
+XG
+XG
 RN
 Uf
-bk
+eq
 bk
 bk
 PD
@@ -20622,11 +20739,11 @@ bk
 XY
 gu
 vv
-PJ
+XG
 RN
-PJ
+XG
 RO
-XY
+rr
 bk
 Ng
 WZ
@@ -20846,13 +20963,13 @@ FU
 Vp
 bk
 bk
-bk
-bk
-bk
-bk
-NF
-bk
-bk
+TB
+TB
+TB
+fd
+XG
+HV
+jn
 bk
 bk
 bk
@@ -20871,10 +20988,10 @@ bk
 bk
 bk
 bk
-Tk
+WY
 gm
-NF
-JS
+XG
+WF
 Fg
 Fg
 Fg
@@ -21101,10 +21218,10 @@ bk
 NW
 NW
 NW
-Sm
-Uk
-UB
-UB
+Xc
+XG
+XG
+XG
 Wg
 NW
 NW
@@ -21122,9 +21239,9 @@ bk
 NW
 NW
 NW
-tx
-Up
-UB
+oc
+vv
+XG
 Zs
 Wg
 NW
@@ -21353,8 +21470,8 @@ bk
 NW
 bk
 bk
-Sm
-Pw
+Xc
+XG
 XG
 XG
 Wg
@@ -21374,8 +21491,8 @@ bk
 NW
 bk
 bk
-tx
-Pw
+oc
+XG
 XG
 XG
 Wg
@@ -21605,10 +21722,10 @@ bk
 NW
 NW
 NW
-Sm
+Xc
 KQ
-Ns
-Zf
+XG
+XG
 Wg
 NW
 NW
@@ -21626,10 +21743,10 @@ bk
 NW
 NW
 NW
-tx
+oc
 KQ
-xi
-Zf
+XG
+XG
 Wg
 NW
 NW
@@ -21858,9 +21975,9 @@ bk
 Fp
 bk
 bk
-bk
-UC
-bk
+fd
+RK
+jm
 bk
 bk
 Fp
@@ -21879,9 +21996,9 @@ bk
 Fp
 bk
 bk
-bk
-nH
-JS
+fd
+NG
+WF
 bk
 bk
 Fp
@@ -22111,7 +22228,7 @@ bk
 bk
 Oi
 bk
-bk
+nf
 bk
 bk
 bk
@@ -22132,7 +22249,7 @@ bk
 bk
 bk
 bk
-bk
+nf
 XY
 bk
 bk
@@ -22362,9 +22479,9 @@ bk
 Fp
 bk
 bk
-bk
+yM
 iU
-bk
+HV
 bk
 bk
 Fp
@@ -22383,9 +22500,9 @@ bk
 Fp
 bk
 bk
-bk
+yM
 iU
-Tk
+fn
 bk
 bk
 Fp
@@ -22613,10 +22730,10 @@ bk
 NW
 NW
 NW
-Sm
-Up
-UJ
-VB
+Xc
+vv
+XG
+XG
 Wp
 NW
 NW
@@ -22634,10 +22751,10 @@ bk
 NW
 NW
 NW
-tx
-Up
-UJ
-VB
+oc
+vv
+XG
+XG
 Wg
 NW
 NW
@@ -22865,8 +22982,8 @@ bk
 NW
 bk
 bk
-Sm
-Pw
+Xc
+XG
 XG
 XG
 Wg
@@ -22886,8 +23003,8 @@ bk
 NW
 bk
 bk
-tx
-Pw
+oc
+XG
 XG
 XG
 Wg
@@ -23117,10 +23234,10 @@ bk
 NW
 NW
 NW
-Sm
+Xc
 KQ
-Zf
-Zf
+XG
+XG
 Wg
 NW
 NW
@@ -23138,10 +23255,10 @@ bk
 NW
 NW
 NW
-tx
+oc
 KQ
-Zf
-Zf
+XG
+XG
 Wg
 NW
 NW
@@ -23370,16 +23487,9 @@ bk
 bk
 bk
 bk
-bk
-bk
-bk
-bk
-bk
-bk
-bk
-bk
-AB
-bk
+TB
+TB
+TB
 bk
 bk
 bk
@@ -23392,8 +23502,15 @@ bk
 bk
 bk
 bk
+AB
 bk
 bk
+bk
+bk
+bk
+TB
+TB
+TB
 bk
 bk
 bk

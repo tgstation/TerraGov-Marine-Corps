@@ -5,10 +5,10 @@
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
 
-	var/recording = 0.0
-	var/playing = 0.0
-	var/timerecorded = 0.0
-	var/playsleepseconds = 0.0
+	var/recording = 0
+	var/playing = 0
+	var/timerecorded = 0
+	var/playsleepseconds = 0
 	var/list/storedinfo = new/list()
 	var/list/timestamp = new/list()
 	var/canprint = 1
@@ -17,7 +17,7 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/taperecorder/Initialize()
+/obj/item/taperecorder/Initialize(mapload)
 	. = ..()
 	become_hearing_sensitive()
 

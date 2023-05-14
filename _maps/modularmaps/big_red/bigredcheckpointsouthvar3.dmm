@@ -16,7 +16,7 @@
 /area/bigredv2/outside/southcheckpoint)
 "d" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)
 "e" = (
@@ -73,7 +73,7 @@
 /area/bigredv2/outside/southcheckpoint)
 "q" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)
 "s" = (
@@ -86,7 +86,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)
 "u" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "v" = (
@@ -96,7 +96,7 @@
 /area/bigredv2/outside/southcheckpoint)
 "w" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "z" = (
@@ -115,7 +115,7 @@
 /area/bigredv2/outside/southcheckpoint)
 "B" = (
 /obj/structure/table/mainship,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/misc/handcuffs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)
 "E" = (
@@ -125,7 +125,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)
 "F" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)
 "G" = (
@@ -135,7 +135,7 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "I" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/southcheckpoint)
 "L" = (
@@ -159,7 +159,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)
 "Q" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "R" = (
@@ -181,7 +181,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)
 "W" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)
 "X" = (

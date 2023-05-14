@@ -24,7 +24,7 @@
 	/// Whether CAS is usable or not.
 	var/cas_usable
 
-/obj/structure/caspart/caschair/Initialize()
+/obj/structure/caspart/caschair/Initialize(mapload)
 	. = ..()
 	set_cockpit_overlay("cockpit_closed")
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, PROC_REF(receive_laser_cas))
@@ -199,7 +199,7 @@
 	///Minimap for the pilot to know where the marines have ran off to
 	var/datum/action/minimap/marine/external/cas_mini
 
-/obj/docking_port/mobile/marine_dropship/casplane/Initialize()
+/obj/docking_port/mobile/marine_dropship/casplane/Initialize(mapload)
 	. = ..()
 	off_action = new
 	cas_mini = new
@@ -417,13 +417,13 @@
 	.["active_weapon_name"] = null
 	.["active_weapon_ammo"] = null
 	.["active_weapon_max_ammo"] = null
-	.["active_weapon_ammo_name"] =  null
+	.["active_weapon_ammo_name"] = null
 	if(active_weapon)
 		.["active_weapon_name"] = sanitize(copytext(active_weapon?.name,1,MAX_MESSAGE_LEN))
 		if(active_weapon.ammo_equipped)
 			.["active_weapon_ammo"] = active_weapon.ammo_equipped.ammo_count
 			.["active_weapon_max_ammo"] = active_weapon.ammo_equipped.max_ammo_count
-			.["active_weapon_ammo_name"] =  active_weapon.ammo_equipped.name
+			.["active_weapon_ammo_name"] = active_weapon.ammo_equipped.name
 
 /obj/docking_port/mobile/marine_dropship/casplane/getStatusText()
 	switch(mode)

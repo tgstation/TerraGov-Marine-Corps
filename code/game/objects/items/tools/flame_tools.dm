@@ -174,7 +174,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/transquantity = 1
 	flags_armor_protection = NONE
 
-/obj/item/clothing/mask/cigarette/Initialize()
+/obj/item/clothing/mask/cigarette/Initialize(mapload)
 	. = ..()
 	create_reagents(chem_volume, INJECTABLE|NO_REACT, list_reagents) // making the cigarrete a chemical holder with a maximum volume of 30
 
@@ -316,7 +316,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		die()
 		return
 
-	if(reagents && reagents.total_volume)	//	check if it has any reagents at all
+	if(reagents?.total_volume)	//	check if it has any reagents at all
 		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob //TODO WHAT BAYCODER USED A : UNIRONICALLY
 			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
@@ -555,7 +555,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_on = "zippoon"
 	icon_off = "zippo"
 
-/obj/item/tool/lighter/random/Initialize()
+/obj/item/tool/lighter/random/Initialize(mapload)
 	. = ..()
 	clr = pick("r","c","y","g")
 	icon_on = "lighter-[clr]-on"

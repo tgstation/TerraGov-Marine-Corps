@@ -11,7 +11,7 @@
 		/obj/item/ammo_magazine/tl102,
 	)
 
-/obj/item/storage/box/tl102/Initialize()
+/obj/item/storage/box/tl102/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/tl102(src) //gun itself
 	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
@@ -39,7 +39,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 1 SECONDS
 	accuracy_mult = 1.2 //it's got a bipod
-	burst_accuracy_mult = 1
+	burst_accuracy_bonus = 1
 	burst_scatter_mult = 0
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
@@ -83,7 +83,7 @@
 		/obj/item/ammo_magazine/tl102,
 		/obj/item/ammo_magazine/tl102/hsg_nest,
 	)
-	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 /obj/item/weapon/gun/tl102/hsg_nest/sandless
@@ -140,7 +140,7 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "minigun_nest"
 
-	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
@@ -348,7 +348,7 @@
 	force = 40
 	aim_slowdown = 1.2
 	wield_delay = 2 SECONDS
-	fire_sound =  'sound/weapons/guns/fire/t27.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t27.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -365,6 +365,7 @@
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/unremovable/mmg,
 		/obj/item/attachable/stock/t27,
@@ -453,9 +454,17 @@
 	max_w_class = WEIGHT_CLASS_BULKY
 	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
 
-/obj/machinery/deployable/mounted/moveable/atgun/Initialize()
+/obj/machinery/deployable/mounted/moveable/atgun/Initialize(mapload)
 	. = ..()
 	sponson = new sponson(src)
+
+/obj/machinery/deployable/mounted/moveable/atgun/attackby(obj/item/I, mob/user, params)
+	var/obj/item/weapon/gun/standard_atgun/internal_gun = internal_item
+	if(user.interactee == src && (I.type in internal_gun.allowed_ammo_types))
+		balloon_alert(user, "Busy manning!")
+		return
+
+	return . = ..()
 
 /obj/machinery/deployable/mounted/moveable/atgun/attack_hand_alternate(mob/living/user)
 	return sponson.open(user)

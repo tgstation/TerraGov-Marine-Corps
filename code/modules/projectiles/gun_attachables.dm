@@ -32,24 +32,24 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
-	force = 1.0
+	force = 1
 	///ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK the particular 'slot' the attachment can attach to. must always be a singular slot.
 	var/slot = null
 
 	///Modifier to firing accuracy, works off a multiplier.
-	var/accuracy_mod 	= 0
+	var/accuracy_mod = 0
 	///Modifier to firing accuracy but for when scoped in, works off a multiplier.
 	var/scoped_accuracy_mod = 0
 	///Modifier to firing accuracy but for when onehanded.
 	var/accuracy_unwielded_mod = 0
 	///Modifer to the damage mult, works off a multiplier.
-	var/damage_mod 		= 0
+	var/damage_mod = 0
 	///Modifier to damage falloff, works off a multiplier.
 	var/damage_falloff_mod = 0
 	///Flat number that adjusts the amount of mêlée force the weapon this is attached to has.
-	var/melee_mod 		= 0
+	var/melee_mod = 0
 	///Increases or decreases scatter chance.
-	var/scatter_mod 	= 0
+	var/scatter_mod = 0
 	///Increases or decreases scatter chance but for onehanded firing.
 	var/scatter_unwielded_mod = 0
 	///Maximum scatter
@@ -69,27 +69,29 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Minimum scatter when unwielded
 	var/min_scatter_unwielded_mod = 0
 	///If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
-	var/recoil_mod 		= 0
+	var/recoil_mod = 0
 	///If positive, adds recoil, if negative, lowers it. but for onehanded firing. Recoil can't go below 0.
 	var/recoil_unwielded_mod = 0
-	///Modifier to scatter from wielded burst fire, works off a multiplier.
+	///Additive to burst scatter modifier from burst fire, works off a multiplier.
 	var/burst_scatter_mod = 0
+	///additive modifier to burst fire accuracy.
+	var/burst_accuracy_mod = 0
 	///Adds silenced to weapon. changing its fire sound, muzzle flash, and volume. TRUE or FALSE
-	var/silence_mod 	= FALSE
+	var/silence_mod = FALSE
 	///Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
-	var/light_mod 		= 0
+	var/light_mod = 0
 	///Changes firing delay. Cannot go below 0.
-	var/delay_mod 		= 0
+	var/delay_mod = 0
 	///Changes burst firing delay. Cannot go below 0.
 	var/burst_delay_mod = 0
 	///Changes amount of shots in a burst
-	var/burst_mod 		= 0
+	var/burst_mod = 0
 	///Increases the weight class.
-	var/size_mod 		= 0
+	var/size_mod = 0
 	///Changes the slowdown amount when wielding a weapon by this value.
-	var/aim_speed_mod	= 0
+	var/aim_speed_mod = 0
 	///How long ADS takes (time before firing)
-	var/wield_delay_mod	= 0
+	var/wield_delay_mod = 0
 	///Changes the speed of projectiles fired
 	var/attach_shell_speed_mod = 0
 	///Modifies accuracy/scatter penalty when firing onehanded while moving.
@@ -149,7 +151,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
 	var/list/variants_by_parent_type = list()
 
-/obj/item/attachable/Initialize()
+/obj/item/attachable/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/attachment, slot, icon, PROC_REF(on_attach), PROC_REF(on_detach), PROC_REF(activate), PROC_REF(can_attach), pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
 
@@ -236,6 +238,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.aim_slowdown					+= aim_speed_mod
 		master_gun.wield_delay					+= wield_delay_mod
 		master_gun.burst_scatter_mult			+= burst_scatter_mod
+		master_gun.burst_accuracy_bonus			+= burst_accuracy_mod
 		master_gun.movement_acc_penalty_mult	+= movement_acc_penalty_mod
 		master_gun.shell_speed_mod				+= attach_shell_speed_mod
 		master_gun.scope_zoom					+= scope_zoom_mod
@@ -286,6 +289,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.aim_slowdown					-= aim_speed_mod
 		master_gun.wield_delay					-= wield_delay_mod
 		master_gun.burst_scatter_mult			-= burst_scatter_mod
+		master_gun.burst_accuracy_bonus			-= burst_accuracy_mod
 		master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
 		master_gun.shell_speed_mod				-= attach_shell_speed_mod
 		master_gun.scope_zoom					-= scope_zoom_mod
@@ -352,6 +356,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "bayonet"
 	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Slightly reduces the accuracy of the gun when mounted."
 	icon_state = "bayonet"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
+	)
 	force = 20
 	throwforce = 10
 	attach_delay = 10 //Bayonets attach/detach quickly.
@@ -381,12 +389,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "M-22 bayonet"
 	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
 	icon_state = "bayonetknife"
-	item_state = "combat_knife"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
+	)
 	force = 25
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6
-	attack_speed = 7
+	attack_speed = 8
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -400,9 +411,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	sharp = IS_SHARP_ITEM_ACCURATE
 	variants_by_parent_type = list(/obj/item/weapon/gun/shotgun/pump/t35 = "bayonetknife_t35")
 
-/obj/item/attachable/bayonetknife/Initialize()
+/obj/item/attachable/bayonetknife/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
+
+/obj/item/attachable/bayonetknife/som
+	name = "\improper S20 SOM bayonet"
+	desc = "A large knife that is the standard issue combat knife of the SOM. Can be attached to a variety of weapons at will or used as a standard knife."
+	icon_state = "bayonetknife_som"
+	item_state = "bayonetknife"
+	force = 30
 
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
@@ -1010,10 +1028,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"
-	desc = "A specialized stock for the SH-35."
+	desc = "A specialized stock for the SH-39."
 	icon_state = "t39stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
+	size_mod = 1
+	flags_attach_features = ATTACH_REMOVABLE
+	wield_delay_mod = 0.2 SECONDS
+	accuracy_mod = 0.15
+	recoil_mod = -2
+	scatter_mod = -2
 
 /obj/item/attachable/stock/t60stock
 	name = "MG-60 stock"
@@ -1108,7 +1132,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	burst_scatter_mod = -1
 	accuracy_unwielded_mod = -0.05
 	scatter_unwielded_mod = 3
-	aim_speed_mod	= -0.1
+	aim_speed_mod = -0.1
 	aim_mode_movement_mult = -0.2
 
 
@@ -1139,7 +1163,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_unwielded_mod = -2
 	recoil_unwielded_mod = -1
 	aim_mode_movement_mult = -0.5
-	shot_marine_damage_falloff = -0.1
 
 /obj/item/attachable/lasersight
 	name = "laser sight"
@@ -1194,11 +1217,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability. \nIncreases scatter and decreases accuracy."
 	icon_state = "rapidfire"
 	slot = ATTACHMENT_SLOT_UNDER
-	accuracy_mod = -0.10
 	burst_mod = 2
-	scatter_mod = 3
-	accuracy_unwielded_mod = -0.20
-	scatter_unwielded_mod = 5
+	burst_scatter_mod = 1
+	burst_accuracy_mod = -0.1
 
 
 //Foldable/deployable attachments
@@ -1288,7 +1309,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.25
 	recoil_mod = -2
 	scatter_mod = -6
-	scatter_unwielded_mod =  4
+	scatter_unwielded_mod = 4
 	accuracy_unwielded_mod = -0.1
 
 /obj/item/attachable/foldable/t19stock
@@ -1390,6 +1411,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "build_a_sentry_attachment"
 	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it to the rail of a gun and deploy. Its that easy!"
 	slot = ATTACHMENT_SLOT_RAIL
+	size_mod = 1
 	pixel_shift_x = 10
 	pixel_shift_y = 18
 	///Deploy time for the build-a-sentry
@@ -1688,7 +1710,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun = attached_to
 	master_gun.wield_delay					+= wield_delay_mod
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING,  COMSIG_MOB_CLICK_RIGHT))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_AUTOEJECT, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING,  COMSIG_MOB_CLICK_RIGHT))
 	var/datum/action/item_action/toggle/new_action = new /datum/action/item_action/toggle(src, master_gun)
 	if(!isliving(user))
 		return
