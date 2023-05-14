@@ -334,6 +334,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		to_chat(M, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
 		CHECK_TICK
 
+	for(var/obj/effect/landmark/eord_roomba/landmark in GLOB.eord_roomba_spawns)
+		new /obj/machinery/roomba/valhalla/eord(get_turf(landmark))
 
 /datum/game_mode/proc/orphan_hivemind_collapse()
 	return

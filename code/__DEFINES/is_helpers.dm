@@ -21,7 +21,7 @@
 
 #define isspaceturf(A) (istype(A, /turf/open/space))
 
-#define islava(A) (istype(A, /turf/open/lavaland/lava))
+#define islava(A) (istype(A, /turf/open/liquid/lava))
 
 #define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
 

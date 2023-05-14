@@ -349,11 +349,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
-"abs" = (
-/obj/structure/closet,
-/obj/item/toy/plush/lizard,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/starboard_emb)
 "abt" = (
 /obj/structure/bed/chair/office/light,
 /obj/effect/landmark/start/job/requisitionsofficer,
@@ -2510,11 +2505,6 @@
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
-"aZl" = (
-/obj/structure/closet,
-/obj/machinery/firealarm,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/starboard_emb)
 "aZD" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -3658,11 +3648,6 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
-"bkN" = (
-/obj/structure/closet,
-/obj/item/toy/plush/carp,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/starboard_emb)
 "bkO" = (
 /obj/machinery/door_control/mainship/checkpoint{
 	dir = 8;
@@ -6903,11 +6888,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
-"bTK" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/computer/security/marinemainship_network,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/cic)
 "bTL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9429,14 +9409,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
-"eWc" = (
-/obj/structure/closet,
-/obj/item/toy/inflatable_duck,
-/obj/structure/sign/poster{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/living/starboard_emb)
 "eWx" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -10072,6 +10044,14 @@
 	dir = 4
 	},
 /area/mainship/engineering/lower_engine_monitoring)
+"fXj" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/secure_data,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/cic)
 "fYx" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/power/terminal{
@@ -12794,6 +12774,14 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
+"kJs" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/green{
+	dir = 5
+	},
+/area/mainship/command/cic)
 "kLp" = (
 /obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/carpet/side,
@@ -13027,6 +13015,12 @@
 /obj/effect/turf_decal/warning_stripes/leader,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/delta)
+"leF" = (
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/green{
+	dir = 6
+	},
+/area/mainship/command/cic)
 "leS" = (
 /obj/machinery/computer/camera_advanced/overwatch/req,
 /turf/open/floor/mainship/green{
@@ -13527,17 +13521,6 @@
 /obj/structure/prop/mainship/sensor_computer2/sd,
 /turf/open/floor/mainship/green{
 	dir = 1
-	},
-/area/mainship/command/cic)
-"lNZ" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/machinery/light/mainship{
-	dir = 1
-	},
-/turf/open/floor/mainship/green{
-	dir = 5
 	},
 /area/mainship/command/cic)
 "lOP" = (
@@ -16031,15 +16014,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
-"qaA" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/machinery/light/mainship,
-/turf/open/floor/mainship/green{
-	dir = 6
-	},
-/area/mainship/command/cic)
 "qbG" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -16989,6 +16963,10 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"rxN" = (
+/obj/structure/benchpress,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/starboard_emb)
 "ryJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -18290,11 +18268,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
-"tRD" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/computer/secure_data,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/cic)
 "tSb" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -19057,6 +19030,12 @@
 	dir = 1
 	},
 /area/mainship/hull/port_hull)
+"vnm" = (
+/obj/structure/closet,
+/obj/item/toy/plush/lizard,
+/obj/machinery/firealarm,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/starboard_emb)
 "vnI" = (
 /turf/open/floor/mainship/orange{
 	dir = 10
@@ -20285,6 +20264,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
+"xDd" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/security/marinemainship_network,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/cic)
 "xDQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
@@ -33814,13 +33801,13 @@ wPV
 eFi
 fPA
 bYT
-lNZ
+kJs
 wgT
 wgT
 wgT
 wgT
 wgT
-qaA
+leF
 bYT
 qOi
 wPV
@@ -34071,13 +34058,13 @@ arE
 wPV
 wPV
 pBS
-tRD
+fXj
 tmp
 lEm
 mvV
 nHq
 tmp
-bTK
+xDd
 pBS
 wPV
 wPV
@@ -58208,7 +58195,7 @@ aaa
 aai
 aak
 aXM
-abs
+vnm
 iaS
 adK
 ahZ
@@ -58979,7 +58966,7 @@ nRj
 aam
 tDH
 aXM
-aZl
+aXJ
 cfe
 adK
 aiO
@@ -59236,7 +59223,7 @@ smO
 aam
 rbR
 aXM
-eWc
+rxN
 cfe
 xae
 xae
@@ -59493,7 +59480,7 @@ acz
 aam
 rbR
 aXM
-bkN
+aXJ
 aZJ
 wKn
 aJP

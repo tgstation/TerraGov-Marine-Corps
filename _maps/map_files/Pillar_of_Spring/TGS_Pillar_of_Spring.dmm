@@ -1585,6 +1585,11 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
+"bTK" = (
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "bTS" = (
 /obj/structure/droppod,
 /obj/structure/drop_pod_launcher,
@@ -4120,11 +4125,6 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar/droppod)
-"fgU" = (
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/hallways/hangar)
 "fgW" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/marinemainship{
@@ -8195,6 +8195,9 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"kQq" = (
+/turf/open/floor/mainship/office,
+/area/mainship/hallways/hangar)
 "kQr" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/misc/plushie/nospawnninetynine,
@@ -9392,6 +9395,20 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"mbt" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light/mainship/small{
+	dir = 4
+	},
+/obj/structure/table/mainship/nometal,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/weapon/gun/rifle/m412,
+/turf/open/floor/plating/mainship,
+/area/mainship/shipboard/firing_range)
 "mbM" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/fuelCell/full,
@@ -10956,6 +10973,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/living/briefing)
+"oiP" = (
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "ojv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -12663,6 +12685,11 @@
 	dir = 4
 	},
 /area/space)
+"qqH" = (
+/obj/machinery/camera/autoname/mainship,
+/obj/structure/benchpress,
+/turf/open/floor/plating/mainship,
+/area/mainship/shipboard/firing_range)
 "qqP" = (
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/wood,
@@ -12814,15 +12841,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"qAJ" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/light/mainship/small{
-	dir = 4
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/shipboard/firing_range)
 "qAM" = (
 /obj/effect/ai_node,
 /turf/open/floor/carpet/side{
@@ -14776,14 +14794,6 @@
 	dir = 1
 	},
 /area/mainship/squads/general)
-"teh" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/weapon/gun/rifle/m412,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/turf/open/floor/plating/mainship,
-/area/mainship/shipboard/firing_range)
 "tem" = (
 /obj/machinery/dropship_part_fabricator,
 /turf/open/floor/mainship/cargo,
@@ -15561,9 +15571,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
-"tWV" = (
-/turf/open/floor/mainship/office,
-/area/mainship/hallways/hangar)
 "tXl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
@@ -18886,11 +18893,6 @@
 "yaz" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
-"yaL" = (
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/mainship/hallways/hangar)
 "ybm" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
@@ -49497,7 +49499,7 @@ wXN
 vZK
 pwa
 ttb
-yaL
+oiP
 tzk
 aWk
 dpY
@@ -49753,8 +49755,8 @@ uKp
 hiK
 kBO
 pBR
-tWV
-tWV
+kQq
+kQq
 tzk
 aWk
 dpY
@@ -50011,7 +50013,7 @@ bdS
 pDT
 qhv
 ubh
-fgU
+bTK
 tzk
 aWk
 dpY
@@ -59279,7 +59281,7 @@ hUz
 hUz
 imx
 nJG
-teh
+bDv
 aFl
 bDv
 uLb
@@ -59536,7 +59538,7 @@ esN
 esN
 unX
 nJG
-pgv
+qqH
 bDv
 bDv
 bDv
@@ -59793,9 +59795,9 @@ nWT
 esN
 unX
 nJG
-mjo
-qAJ
 kbW
+mbt
+mjo
 kbW
 kbW
 vSE

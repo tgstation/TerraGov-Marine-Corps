@@ -1,0 +1,5 @@
+author: "Scarlet-Oduko"
+delete-after: True
+changes:
+  - rscadd: "Acid wells remove sticky grenades"
+  - code_imp: "Changes to grenade code, specifically clear_refs"

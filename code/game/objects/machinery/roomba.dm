@@ -98,7 +98,7 @@
 	SIGNAL_HANDLER
 	var/sucked_one = FALSE
 	for(var/obj/item/sucker in loc)
-		if(sucker.flags_item & NO_VACUUM)
+		if(sucker.anchored)
 			continue
 		sucked_one = TRUE
 		sucker.store_in_cryo()
@@ -154,6 +154,20 @@
 
 /obj/machinery/roomba/valhalla/suck_items()
 	for(var/obj/item/sucker in loc)
-		if(sucker.flags_item & NO_VACUUM)
+		if(sucker.anchored)
 			continue
 		qdel(sucker)
+
+/obj/machinery/roomba/valhalla/eord
+	name = "final boss roomba"
+	desc = "You weep in terror at the sight of this perfect feat of engineering. It sucks up both items and dead creatures alike."
+	resistance_flags = RESIST_ALL
+
+/obj/machinery/roomba/valhalla/eord/suck_items()
+	for(var/obj/item/sucker in loc)
+		qdel(sucker)
+		counter++
+	for(var/mob/sucked in loc)
+		if(sucked.stat != CONSCIOUS)
+			qdel(sucked)
+			counter++

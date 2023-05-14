@@ -74,7 +74,7 @@
 			GLOB.all_req_one_access[txt_access] = req_one_access
 		else
 			req_one_access = GLOB.all_req_one_access[txt_access]
-
+	add_debris_element()
 
 /obj/Destroy()
 	hard_armor = null

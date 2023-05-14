@@ -125,20 +125,20 @@
 
 /obj/item/explosive/grenade/rad/prime()
 	var/turf/impact_turf = get_turf(src)
-	playsound(impact_turf, 'sound/effects/portal_opening.ogg', 50, 1)
 
+	playsound(impact_turf, 'sound/effects/portal_opening.ogg', 50, 1)
 	for(var/mob/living/victim in hearers(outer_range, src))
 		var/strength
-		var/datum/looping_sound/geiger/geiger_counter = new(null, FALSE)
+		var/sound_level
 		if(get_dist(victim, impact_turf) <= inner_range)
 			strength = rad_strength
-			geiger_counter.severity = 3
+			sound_level = 3
 		else
 			strength = rad_strength * 0.6
-			geiger_counter.severity = 2
-		irradiate(victim, strength)
-		geiger_counter.start(victim)
+			sound_level = 2
 
+		strength = victim.modify_by_armor(strength, BIO, 25)
+		victim.apply_radiation(strength, sound_level)
 	qdel(src)
 
 ///Applies the actual effects of the rad grenade
