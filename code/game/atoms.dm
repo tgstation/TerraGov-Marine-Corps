@@ -181,7 +181,9 @@ directive is properly returned.
 
 ///returns if we are able to apply acid to the atom, also checks if there is already a stronger acid on this atom
 /atom/proc/should_apply_acid(obj/effect/xenomorph/acid/new_acid)
-	if(!new_acid || !current_acid)
+	if(!new_acid)
+		return FALSE
+	if(!current_acid)
 		return TRUE
 	return initial(new_acid.acid_strength) >= initial(current_acid.acid_strength)
 
