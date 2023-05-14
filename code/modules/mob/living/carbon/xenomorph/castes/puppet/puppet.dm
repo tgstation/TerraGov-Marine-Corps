@@ -16,6 +16,10 @@
 	density = FALSE
 	var/mob/living/carbon/xenomorph/master
 
+/mob/living/carbon/xenomorph/puppet/handle_special_state() //prevent us from using different run/walk sprites
+	icon_state = "[xeno_caste.caste_name] Running"
+	return TRUE
+
 /mob/living/carbon/xenomorph/puppet/Initialize(mapload, mob/living/carbon/xenomorph/puppeteer)
 	. = ..()
 	master = puppeteer
