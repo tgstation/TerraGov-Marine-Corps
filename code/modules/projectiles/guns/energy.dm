@@ -578,10 +578,9 @@
 	max_shots = 40 //codex stuff
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
-	ammo_diff = null
 	rounds_per_shot = 15
-	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_firemode = GUN_FIREMODE_AUTOBURST
+	gun_firemode_list = list(GUN_FIREMODE_AUTOBURST)
 	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -607,15 +606,14 @@
 	scatter = 1
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
-	burst_amount = 1
+	burst_amount = 4
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
 	damage_falloff_mult = 0.5
 	movement_acc_penalty_mult = 4
 	mode_list = list(
-		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
-		//"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
+		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst,
 		"Spread" = /datum/lasrifle/base/energy_carbine_mode/base/spread,
 		"Impact" = /datum/lasrifle/base/energy_carbine_mode/base/impact,
 		"Cripple" = /datum/lasrifle/base/energy_carbine_mode/base/cripple,
@@ -624,7 +622,7 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/weapon/gun/grenade_launcher/underslung,)
 
-/datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
+/datum/lasrifle/base/energy_carbine_mode/auto_burst
 	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
@@ -633,10 +631,6 @@
 	message_to_user = "You set the laser carbine's charge mode to standard auto burst fire."
 	fire_mode = GUN_FIREMODE_AUTOBURST
 	icon_state = "tec"
-
-/datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic
-	message_to_user = "You set the laser carbine's charge mode to standard automatic fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /datum/lasrifle/base/energy_carbine_mode/base/spread
 	rounds_per_shot = 60
