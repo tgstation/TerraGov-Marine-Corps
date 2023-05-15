@@ -84,7 +84,7 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "v" = (
-/obj/machinery/processor,
+/obj/machinery/gibber,
 /obj/machinery/light{
 	dir = 8
 	},
