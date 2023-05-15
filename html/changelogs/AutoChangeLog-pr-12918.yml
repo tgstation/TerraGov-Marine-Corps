@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - imageadd: "Implemented OrcaCora's CAS plane sprite."
