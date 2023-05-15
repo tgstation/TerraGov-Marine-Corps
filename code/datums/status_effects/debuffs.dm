@@ -652,7 +652,7 @@
 	QDEL_NULL(particle_holder)
 	return ..()
 
-/datum/status_effect/stacking/microwave/add_stacks
+/datum/status_effect/stacking/microwave/add_stacks(stacks_added)
 	. = ..()
 	TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
 
@@ -693,12 +693,15 @@
 
 
 //MUTE
-///amount of armour reduced by the shatter status effect
-#define SHATTER_STATUS_EFFECT_ARMOR_MOD -20
+///armor multiplier for the shatter status effect
+#define SHATTER_STATUS_EFFECT_ARMOR_MULT 0.8
 
 /datum/status_effect/shatter
-	id = "mute"
+	id = "shatter"
 	alert_type = /atom/movable/screen/alert/status_effect/shatter
+	duration = 10 SECONDS
+	///A holder for the exact armor modified by this status effect
+	var/datum/armor/armor_modifier
 	///Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
@@ -711,19 +714,21 @@
 	if(set_duration)
 		duration = set_duration
 
-	particle_holder = new(debuff_owner, /particles/microwave_status)
-	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	particle_holder = new(owner, /particles/microwave_status)
 	return ..()
 
 /datum/status_effect/shatter/on_apply()
 	. = ..()
 	if(!.)
 		return
-	owner.soft_armor = owner.soft_armor.modifyAllRatings(SHATTER_STATUS_EFFECT_ARMOR_MOD)
+	armor_modifier = owner.soft_armor
+	owner.soft_armor = owner.soft_armor.scaleAllRatings(SHATTER_STATUS_EFFECT_ARMOR_MULT)
+	armor_modifier = armor_modifier.detachArmor(owner.soft_armor)
 
 /datum/status_effect/shatter/on_remove()
-	owner.soft_armor = owner.soft_armor.modifyAllRatings(-SHATTER_STATUS_EFFECT_ARMOR_MOD)
+	owner.soft_armor = owner.soft_armor.attachArmor(armor_modifier)
 	QDEL_NULL(particle_holder)
+	QDEL_NULL(armor_modifier) //this might not be needed
 	return ..()
 
 /atom/movable/screen/alert/status_effect/shatter
