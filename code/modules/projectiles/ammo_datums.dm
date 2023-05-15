@@ -2645,6 +2645,49 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 2
 	hitscan_effect_icon = "beam_heavy"
 
+/datum/ammo/energy/lasgun/marine/weakening
+	name = "weakening laser bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 40
+	penetration = 10
+	sundering = 0
+	damage_type = STAMINA
+	hitscan_effect_icon = "beam_heavy"
+	///percentage of xenos total plasma to drain when hit by a pepperball
+	var/drain_multiplier = 0.05
+	///Flat plasma to drain, unaffected by caste plasma amount.
+	var/plasma_drain = 25
+
+/datum/ammo/energy/lasgun/marine/weakening/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 6, slowdown = 1)
+
+	if(!isxeno(M))
+		return
+	var/mob/living/carbon/xenomorph/xeno_victim = M
+	xeno_victim.use_plasma((plasma_drain + (drain_multiplier * xeno_victim.xeno_caste.plasma_max)) * xeno_victim.xeno_caste.plasma_regen_limit)
+
+/datum/ammo/energy/lasgun/marine/microwave
+	name = "microwave laser bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 40
+	penetration = 20
+	sundering = 2
+	hitscan_effect_icon = "beam_heavy"
+
+/datum/ammo/energy/lasgun/marine/microwave/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	var/datum/status_effect/stacking/microwave/debuff = living_victim.has_status_effect(STATUS_EFFECT_MICROWAVE)
+
+	if(debuff)
+		debuff.add_stacks(1)
+	else
+		living_victim.apply_status_effect(STATUS_EFFECT_MICROWAVE, 1)
+
 /datum/ammo/energy/lasgun/marine/blast
 	name = "wide range laser blast"
 	icon_state = "heavylaser2"

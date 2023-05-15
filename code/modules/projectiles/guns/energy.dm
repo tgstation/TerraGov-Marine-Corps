@@ -436,6 +436,8 @@
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_rifle_mode/standard,
 		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/overcharge,
+		"Weakening" = /datum/lasrifle/base/energy_rifle_mode/weakening,
+		"Microwave" = /datum/lasrifle/base/energy_rifle_mode/microwave,
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
@@ -463,6 +465,27 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 	radial_icon_state = "laser_overcharge"
+
+/datum/lasrifle/base/energy_rifle_mode/weakening
+	rounds_per_shot = 30
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/weakening
+	fire_delay = 0.45 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
+	message_to_user = "You set the laser rifle's charge mode to weakening."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "ter"
+	radial_icon_state = "laser_overcharge" //todo
+
+
+/datum/lasrifle/base/energy_rifle_mode/microwave
+	rounds_per_shot = 30
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/microwave
+	fire_delay = 0.45 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
+	message_to_user = "You set the laser rifle's charge mode to microwave."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "ter"
+	radial_icon_state = "laser_overcharge" //todo
 
 ///TE Standard Laser Pistol
 

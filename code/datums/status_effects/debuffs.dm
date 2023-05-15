@@ -645,7 +645,7 @@
 	debuff_owner.balloon_alert(debuff_owner, "microwaved!")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/microwave_status)
-	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	particle_holder.particles.spawning = stacks * 5
 
 /datum/status_effect/stacking/microwave/on_remove()
 	debuff_owner = null
