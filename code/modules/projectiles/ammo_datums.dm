@@ -2675,6 +2675,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 2
 	hitscan_effect_icon = "beam_heavy"
+	///number of microwave stacks to apply when hitting mobvs
+	var/microwave_stacks = 1
 
 /datum/ammo/energy/lasgun/marine/microwave/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
@@ -2684,9 +2686,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/datum/status_effect/stacking/microwave/debuff = living_victim.has_status_effect(STATUS_EFFECT_MICROWAVE)
 
 	if(debuff)
-		debuff.add_stacks(1)
+		debuff.add_stacks(microwave_stacks)
 	else
-		living_victim.apply_status_effect(STATUS_EFFECT_MICROWAVE, 1)
+		living_victim.apply_status_effect(STATUS_EFFECT_MICROWAVE, microwave_stacks)
 
 /datum/ammo/energy/lasgun/marine/blast
 	name = "wide range laser blast"
@@ -2746,21 +2748,46 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 15
 	penetration = 15
 
-/datum/ammo/energy/lasgun/marine/autolaser/efficiency
-	name = "efficient machine laser bolt"
+/datum/ammo/energy/lasgun/marine/autolaser/burst
+	name = "burst machine laser bolt"
 	hud_state = "laser_efficiency"
-	damage = 8.5
+	damage = 12
 	hitscan_effect_icon = "beam_particle"
 
-/datum/ammo/energy/lasgun/marine/autolaser/swarm
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
-	name = "swarm laser bolt"
-	icon_state = "swarm_laser"
-	hud_state = "plasma_sphere"
-	max_range = 40
-	shell_speed = 0.1
+/datum/ammo/energy/lasgun/marine/autolaser/charge
+	name = "charged machine laser bolt"
+	hud_state = "laser_efficiency"
+	damage = 50
+	penetration = 30
+	sundering = 3
+	hitscan_effect_icon = "beam_particle"
+
+/datum/ammo/energy/lasgun/marine/autolaser/charge/on_hit_turf(turf/T, obj/projectile/proj)
+	if(istype(T, /turf/closed/wall))
+		var/turf/closed/wall/wall_victim = T
+		wall_victim.take_damage((proj.damage))
+
+/datum/ammo/energy/lasgun/marine/autolaser/melting
+	name = "melting machine laser bolt"
+	hud_state = "laser_efficiency"
 	damage = 15
-	bullet_color = COLOR_TESLA_BLUE
+	penetration = 20
+	sundering = 0
+	hitscan_effect_icon = "beam_particle"
+	///number of melting stacks to apply when hitting mobvs
+	var/melt_stacks = 3
+
+/datum/ammo/energy/lasgun/marine/autolaser/melting/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
+
+	if(debuff)
+		debuff.add_stacks(melt_stacks)
+	else
+		living_victim.apply_status_effect(STATUS_EFFECT_MELTING, melt_stacks)
 
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"

@@ -296,6 +296,8 @@
 	var/radial_icon = 'icons/mob/radial.dmi'
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
+	///windup before firing
+	var/windup_delay = 0
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	if(!user)
@@ -319,6 +321,7 @@
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
 	rounds_per_shot = initial(choice.rounds_per_shot)
+	windup_delay = initial(choice.windup_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
@@ -664,6 +667,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
 	radial_icon_state = "laser_spread"
+
 //TE Standard Sniper
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
@@ -775,15 +779,23 @@
 	wield_delay = 1.5 SECONDS
 	scatter = 1
 	fire_delay = 0.2 SECONDS
+	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
 	damage_falloff_mult = 0.3
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,
-		"Efficiency mode" = /datum/lasrifle/base/energy_mg_mode/standard/efficiency,
-		"Swarm mode" = /datum/lasrifle/base/energy_mg_mode/standard/swarm,
+		"Burst" = /datum/lasrifle/base/energy_mg_mode/standard/burst,
+		"Charge" = /datum/lasrifle/base/energy_mg_mode/standard/charge,
+		"Melting" = /datum/lasrifle/base/energy_mg_mode/standard/melting,
 	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)
+	. = ..()
+	if(shots_fired)
+		projectile_to_fire.damage *= (1 + shots_fired * 0.2)
 
 /datum/lasrifle/base/energy_mg_mode/standard
 	rounds_per_shot = 4
@@ -794,17 +806,30 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tem"
 
-/datum/lasrifle/base/energy_mg_mode/standard/efficiency
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
-	fire_delay = 0.15 SECONDS
-	rounds_per_shot = 3
-	message_to_user = "You set the machine laser's charge mode to efficiency mode."
+/datum/lasrifle/base/energy_mg_mode/standard/burst
+	rounds_per_shot = 12
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/burst
+	fire_delay = 0.6 SECONDS
+	burst_amount = 4
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	message_to_user = "You set the machine laser's charge mode to burst."
+	fire_mode = GUN_FIREMODE_BURSTFIRE
+	icon_state = "tem"
 	radial_icon_state = "laser_disabler"
 
-/datum/lasrifle/base/energy_mg_mode/standard/swarm
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/swarm
-	fire_delay = 0.15 SECONDS
-	message_to_user = "You set the machine laser's charge mode to swarm mode."
+
+/datum/lasrifle/base/energy_mg_mode/standard/charge
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/charge
+	fire_delay = 0.6 SECONDS
+	windup_delay = 0.6 SECONDS
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	message_to_user = "You set the machine laser's charge mode to charge."
+	radial_icon_state = "laser_swarm"
+
+/datum/lasrifle/base/energy_mg_mode/standard/melting
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/melting
+	fire_delay = 0.3 SECONDS
+	message_to_user = "You set the machine laser's charge mode to melting."
 	radial_icon_state = "laser_swarm"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/xray
