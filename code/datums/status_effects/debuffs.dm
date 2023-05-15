@@ -615,12 +615,15 @@
 // ***************************************
 ///amount of damage done per tick by the microwave status effect
 #define MICROWAVE_STATUS_DAMAGE_MULT 10
+#define MICROWAVE_STATUS_DURATION 10 SECONDS
 
 /datum/status_effect/stacking/microwave
 	id = "microwaved"
+	status_type == STATUS_EFFECT_REFRESH
 	tick_interval = 1 SECONDS
 	stacks = 1
 	max_stacks = 30
+	stack_decay = 0
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/microwave
 	///Owner of the debuff is limited to carbons.
@@ -649,8 +652,15 @@
 	QDEL_NULL(particle_holder)
 	return ..()
 
+/datum/status_effect/stacking/microwave/add_stacks
+	. = ..()
+	TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
+
 /datum/status_effect/stacking/microwave/tick()
 	. = ..()
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MICROWAVE_STATUS))
+		return qdel(src)
+
 	if(!debuff_owner)
 		return
 
