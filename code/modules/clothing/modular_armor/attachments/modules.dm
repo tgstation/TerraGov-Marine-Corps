@@ -592,6 +592,12 @@
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 
+/obj/item/armor_module/module/antenna/Destroy()
+	if(beacon_datum)
+		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(beacon_datum)
+	return ..()
+
 /obj/item/armor_module/module/antenna/activate(mob/living/user)
 	var/turf/location = get_turf(src)
 	if(beacon_datum)

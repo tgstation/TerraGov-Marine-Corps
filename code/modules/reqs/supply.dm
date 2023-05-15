@@ -639,6 +639,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 
+/obj/item/storage/backpack/marine/radiopack/Destroy()
+	if(beacon_datum)
+		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(beacon_datum)
+	return ..()
+
 /obj/item/storage/backpack/marine/radiopack/examine(mob/user)
 	. = ..()
 	. += span_notice("Right-Click with empty hand to open requisitions interface.")
