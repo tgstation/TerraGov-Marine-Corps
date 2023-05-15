@@ -2717,6 +2717,30 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	hitscan_effect_icon = "pu_laser"
 
+/datum/ammo/energy/lasgun/marine/impact
+	name = "impact laser blast"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 40
+	penetration = 10
+	sundering = 0
+	hitscan_effect_icon = "beam_heavy"
+
+/datum/ammo/energy/lasgun/marine/impact/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 3, knockback = 3)
+
+/datum/ammo/energy/lasgun/marine/cripple
+	name = "impact laser blast"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 40
+	penetration = 10
+	sundering = 0
+	hitscan_effect_icon = "beam_heavy"
+
+/datum/ammo/energy/lasgun/marine/cripple/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, slowdown = 1)
+
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
 	damage = 15

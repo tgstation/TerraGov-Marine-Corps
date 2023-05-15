@@ -615,8 +615,10 @@
 	movement_acc_penalty_mult = 4
 	mode_list = list(
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
-		"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
+		//"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
 		"Spread" = /datum/lasrifle/base/energy_carbine_mode/base/spread,
+		"Impact" = /datum/lasrifle/base/energy_carbine_mode/base/impact,
+		"Cripple" = /datum/lasrifle/base/energy_carbine_mode/base/cripple,
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
@@ -647,6 +649,27 @@
 	icon_state = "tec"
 	radial_icon_state = "laser_spread"
 
+/datum/lasrifle/base/energy_carbine_mode/base/impact
+	rounds_per_shot = 60
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/impact
+	fire_delay = 1.5 SECONDS
+	burst_amount = 1
+	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
+	message_to_user = "You set the laser carbine's charge mode to impact."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tec"
+	radial_icon_state = "laser_spread"
+
+/datum/lasrifle/base/energy_carbine_mode/base/cripple
+	rounds_per_shot = 60
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/cripple
+	fire_delay = 1.5 SECONDS
+	burst_amount = 1
+	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
+	message_to_user = "You set the laser carbine's charge mode to cripple."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tec"
+	radial_icon_state = "laser_spread"
 //TE Standard Sniper
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
