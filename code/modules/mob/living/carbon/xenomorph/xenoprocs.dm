@@ -404,7 +404,7 @@
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
-		take_damage(2 * X.xeno_caste.acid_spray_structure_damage, "acid", "acid")
+	take_damage(2 * X.xeno_caste.acid_spray_structure_damage, "acid", "acid")
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
