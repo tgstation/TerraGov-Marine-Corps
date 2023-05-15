@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.IgniteMob()
 
 
-/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
+/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target, origin_override)
 	var/effect_icon = ""
 	var/proj_type = /obj/projectile
 	if(istype(main_proj, /obj/projectile/hitscan))
@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(target, main_proj.firer, source, range, speed, new_angle, TRUE)
+		new_proj.fire_at(target, main_proj.firer, source, range, speed, new_angle, TRUE, loc_override = origin_override)
 
 ///A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
 /datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, atom/shooter, atom/source, projectile_amount, range, speed, angle, target)
@@ -2805,13 +2805,86 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "sniper heat bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
-	shell_speed = 2.5
 	damage = 40
 	penetration = 0
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
+
+/datum/ammo/energy/lasgun/marine/shatter
+	name = "sniper heat bolt"
+	icon_state = "microwavelaser"
+	hud_state = "laser_heat"
+	damage = 40
+	penetration = 20
+	accurate_range_min = 5
+	sundering = 15
+	hitscan_effect_icon = "u_laser_beam"
+	///number of melting stacks to apply when hitting mobvs
+	var/shatter_duration = 8 SECONDS
+
+/datum/ammo/energy/lasgun/marine/shatter/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+
+/datum/ammo/energy/lasgun/marine/ricochet
+	name = "sniper heat bolt"
+	icon_state = "microwavelaser"
+	hud_state = "laser_heat"
+	damage = 80
+	penetration = 20
+	accurate_range_min = 5
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
+	sundering = 1
+	hitscan_effect_icon = "u_laser_beam"
+
+/datum/ammo/energy/lasgun/marine/ricochet/one
+	damage = 70
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet
+
+/datum/ammo/energy/lasgun/marine/ricochet/two
+	damage = 60
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/one
+
+/datum/ammo/energy/lasgun/marine/ricochet/three
+	damage = 50
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/two
+
+/datum/ammo/energy/lasgun/marine/ricochet/four
+	damage = 40
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/three
+
+/datum/ammo/energy/lasgun/marine/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
+	. = ..()
+	if(!bonus_projectiles_type)
+		return
+	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
+
+	// Check for the neightbour tile
+	var/rico_dir_check
+	switch(ricochet_angle)
+		if(-INFINITY to 45)
+			rico_dir_check = EAST
+		if(46 to 135)
+			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
+		if(136 to 225)
+			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
+		if(126 to 315)
+			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
+		if(316 to INFINITY)
+			rico_dir_check = WEST
+
+	var/turf/next_turf = get_step(T, rico_dir_check)
+	if(next_turf.density)
+		ricochet_angle += 180
+
+	bonus_projectiles_amount = 1
+	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle, TRUE, next_turf)
+	bonus_projectiles_amount = 0
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"

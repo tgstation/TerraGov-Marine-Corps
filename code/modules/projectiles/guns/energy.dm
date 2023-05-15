@@ -719,6 +719,8 @@
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
+		"Shatter" = /datum/lasrifle/base/energy_sniper_mode/shatter,
+		"Ricochet" = /datum/lasrifle/base/energy_sniper_mode/ricochet,
 	)
 
 /datum/lasrifle/base/energy_sniper_mode/standard
@@ -736,6 +738,26 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_heat
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to wave heat."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tes"
+	radial_icon_state = "laser_heat"
+
+/datum/lasrifle/base/energy_sniper_mode/shatter
+	rounds_per_shot = 100
+	fire_delay = 1 SECONDS
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/shatter
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the sniper rifle's charge mode to shatter."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tes"
+	radial_icon_state = "laser_heat"
+
+/datum/lasrifle/base/energy_sniper_mode/ricochet
+	rounds_per_shot = 100
+	fire_delay = 1 SECONDS
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/ricochet/four
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the sniper rifle's charge mode to ricochet."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 	radial_icon_state = "laser_heat"

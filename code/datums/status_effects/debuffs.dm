@@ -700,6 +700,7 @@
 	id = "shatter"
 	alert_type = /atom/movable/screen/alert/status_effect/shatter
 	duration = 10 SECONDS
+	status_type = STATUS_EFFECT_REPLACE
 	///A holder for the exact armor modified by this status effect
 	var/datum/armor/armor_modifier
 	///Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
@@ -714,7 +715,7 @@
 	if(set_duration)
 		duration = set_duration
 
-	particle_holder = new(owner, /particles/microwave_status)
+	particle_holder = new(owner, /particles/shattered_status)
 	return ..()
 
 /datum/status_effect/shatter/on_apply()
