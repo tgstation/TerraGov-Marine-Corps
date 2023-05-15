@@ -172,7 +172,7 @@ directive is properly returned.
 		return loc.return_gas()
 
 ///returns if we can melt an object, but also the speed at which it happens. 1 just means we melt it. 0,5 means we need a higher strength acid. higher than 1 just makes it melt faster
-/atom/proc/dissolvability(obj/effect/xenomorph/acid/acid)
+/atom/proc/dissolvability(acid_strength)
 	return 1
 
 //returns how long it takes to apply acid on this atom
@@ -180,12 +180,10 @@ directive is properly returned.
 	return 1 SECONDS
 
 ///returns if we are able to apply acid to the atom, also checks if there is already a stronger acid on this atom
-/atom/proc/should_apply_acid(obj/effect/xenomorph/acid/new_acid)
-	if(!new_acid)
-		return FALSE
+/atom/proc/should_apply_acid(acid_strength)
 	if(!current_acid)
 		return TRUE
-	return initial(new_acid.acid_strength) >= initial(current_acid.acid_strength)
+	return acid_strength >= current_acid.acid_strength
 
 /atom/proc/on_reagent_change()
 	return

@@ -599,7 +599,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "[A] is too far away")
 		return FALSE
-	if(A.resistance_flags & UNACIDABLE || A.dissolvability(acid_type) == 0)
+	if(A.resistance_flags & UNACIDABLE || A.dissolvability(initial(acid_type.acid_strength)) == 0)
 		if(!silent)
 			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
@@ -614,7 +614,7 @@
 
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!A.dissolvability(acid_type))
+	if(!A.dissolvability(initial(acid_type.acid_strength)))
 		X.balloon_alert(X, "We cant melt this")
 		return fail_activate()
 
@@ -627,7 +627,7 @@
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
-	new acid_type(get_turf(A), A, A.dissolvability(acid_type))
+	new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)))
 	A.current_acid = acid_type
 
 	succeed_activate()

@@ -16,8 +16,8 @@
 /turf/closed/wall/r_wall/get_acid_delay()
 	return 10 SECONDS
 
-/turf/closed/wall/r_wall/dissolvability(obj/effect/xenomorph/acid/acid)
-	if(initial(acid.acid_strength) < STRONG_ACID_STRENGTH)
+/turf/closed/wall/r_wall/dissolvability(acid_strength)
+	if(acid_strength < STRONG_ACID_STRENGTH)
 		return 0
 	return 0.5
 
