@@ -84,7 +84,7 @@
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()
 	if(active && dangerous)
-		overlays += new /obj/effect/overlay/danger
+		. += new /obj/effect/overlay/danger
 
 
 /obj/item/explosive/grenade/proc/prime()
