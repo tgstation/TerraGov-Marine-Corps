@@ -168,6 +168,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, PROC_REF(send_order))
 	RegisterSignal(user, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
+
 	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(attempt_radial))
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, PROC_REF(alert_lase))
 
@@ -614,8 +615,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 ///Lets anyone using an overwatch console know that an OB has just been lased
 /obj/machinery/computer/camera_advanced/overwatch/proc/alert_lase(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
-	to_chat(source, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
-	source.playsound_local(source, 'sound/effects/binoctarget.ogg', 15)
+	SIGNAL_HANDLER
+	if(!usr)
+		return
+	to_chat(usr, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
+	usr.playsound_local(source, 'sound/effects/binoctarget.ogg', 15)
 
 ///About to fire
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
@@ -744,9 +748,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
 
-///Quick-select radial menu for Overwatch
+///Signal handler for radial menu
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_radial(datum/source, atom/A, params)
 	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(do_radial), source, A, params)
+
+///Quick-select radial menu for Overwatch
+/obj/machinery/computer/camera_advanced/overwatch/proc/do_radial(datum/source, atom/A, params)
 	if(ishuman(A))
 		var/list/radial_options = list(
 			MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_single"),
@@ -805,7 +813,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					if(get_dist(target, target) > WORLD_VIEW_NUM*2)
 						continue
 					current_squad.message_member(target, input, source)
-			if(SQUAD_ACTIONS)
+			if(SQUAD_ACTIONS) //This doesnt work??
 				radial_options = list(
 					MESSAGE_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"),
 					SWITCH_SQUAD_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad_near"),
@@ -844,8 +852,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 ///This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_spotlight(datum/source, atom/A, params)
-	SIGNAL_HANDLER
-
 	if(!powered())
 		return 0
 
