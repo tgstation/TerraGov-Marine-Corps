@@ -615,14 +615,14 @@
 // ***************************************
 ///amount of damage done per tick by the microwave status effect
 #define MICROWAVE_STATUS_DAMAGE_MULT 10
+///duration of the microwave effect. Refreshed on application
 #define MICROWAVE_STATUS_DURATION 10 SECONDS
 
 /datum/status_effect/stacking/microwave
 	id = "microwaved"
-	status_type == STATUS_EFFECT_REFRESH
 	tick_interval = 1 SECONDS
 	stacks = 1
-	max_stacks = 30
+	max_stacks = null
 	stack_decay = 0
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/microwave
