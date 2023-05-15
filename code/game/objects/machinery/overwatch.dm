@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	///Groundside minimap for overwatch
 	var/datum/action/minimap/marine/external/cic_mini
 	///Ref of the lase that's had an OB warning mark placed on the minimap
-	var/obj/effect/overlay/temp/laser_target/cas/OB/marked_lase
+	var/obj/effect/overlay/temp/laser_target/OB/marked_lase
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
@@ -613,7 +613,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	addtimer(CALLBACK(src, PROC_REF(do_fire_bombard), T, usr), 3.1 SECONDS)
 
 ///Lets anyone using an overwatch console know that an OB has just been lased
-/obj/machinery/computer/camera_advanced/overwatch/proc/alert_lase(datum/source, obj/effect/overlay/temp/laser_target/cas/OB/incoming_laser)
+/obj/machinery/computer/camera_advanced/overwatch/proc/alert_lase(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
 	to_chat(source, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	source.playsound_local(source, 'sound/effects/binoctarget.ogg', 15)
 
@@ -767,8 +767,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(SWITCH_SQUAD)
 				var/datum/squad/desired_squad = squad_select(source, target)
 				transfer_squad(source, target, desired_squad)
-	else if(istype(A, /obj/effect/overlay/temp/laser_target/cas/OB))
-		var/obj/effect/overlay/temp/laser_target/cas/OB/target = A
+	else if(istype(A, /obj/effect/overlay/temp/laser_target/OB))
+		var/obj/effect/overlay/temp/laser_target/OB/target = A
 		var/list/radial_options = list(
 			MARK_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_mark_ob"),
 			FIRE_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_fire_ob"),
