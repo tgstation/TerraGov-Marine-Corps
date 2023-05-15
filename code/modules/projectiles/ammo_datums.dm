@@ -2886,6 +2886,34 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle, TRUE, next_turf)
 	bonus_projectiles_amount = 0
 
+/datum/ammo/energy/lasgun/marine/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
+	var/new_range = proj.proj_max_range - proj.distance_travelled
+	if(new_range <= 0)
+		return
+
+	var/dir_to_proj = get_dir(T, proj)
+	if(ISDIAGONALDIR(dir_to_proj))
+		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
+		for(var/direction in cardinals)
+			var/turf/turf_to_check = get_step(T, direction)
+			if(turf_to_check.density)
+				cardinals -= direction
+		dir_to_proj = pick(cardinals)
+
+	var/perpendicular_angle = Get_Angle(T, get_step(T, dir_to_proj))
+	var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
+
+	if(new_angle < -360)
+		new_angle += 720 //north is 0 instead of 360
+	else if(new_angle < 0)
+		new_angle += 360
+	else if(new_angle > 360)
+		new_angle -= 360
+
+	bonus_projectiles_amount = 1
+	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, new_range, proj.projectile_speed, new_angle, TRUE, get_step(T, dir_to_proj))
+	bonus_projectiles_amount = 0
+
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
 	damage = 20
