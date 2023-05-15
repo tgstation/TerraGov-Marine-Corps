@@ -312,6 +312,35 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/ammo_process(obj/projectile/proj, damage)
 	CRASH("ammo_process called with unimplemented process!")
 
+///bounces the projectile by creating a new projectile and calculating an angle of reflection
+/datum/ammo/proc/reflect(turf/T, obj/projectile/proj)
+	var/new_range = proj.proj_max_range - proj.distance_travelled
+	if(new_range <= 0)
+		return
+
+	var/dir_to_proj = get_dir(T, proj)
+	if(ISDIAGONALDIR(dir_to_proj))
+		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
+		for(var/direction in cardinals)
+			var/turf/turf_to_check = get_step(T, direction)
+			if(turf_to_check.density)
+				cardinals -= direction
+		dir_to_proj = pick(cardinals)
+
+	var/perpendicular_angle = Get_Angle(T, get_step(T, dir_to_proj))
+	var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
+
+	if(new_angle < -360)
+		new_angle += 720 //north is 0 instead of 360
+	else if(new_angle < 0)
+		new_angle += 360
+	else if(new_angle > 360)
+		new_angle -= 360
+
+	bonus_projectiles_amount = 1
+	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, new_range, proj.projectile_speed, new_angle, TRUE, get_step(T, dir_to_proj))
+	bonus_projectiles_amount = 0
+
 /*
 //================================================
 					Default Ammo
@@ -560,31 +589,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
-	. = ..()
-	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
-
-	// Check for the neightbour tile
-	var/rico_dir_check
-	switch(ricochet_angle)
-		if(-INFINITY to 45)
-			rico_dir_check = EAST
-		if(46 to 135)
-			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
-		if(136 to 225)
-			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
-		if(126 to 315)
-			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
-		if(316 to INFINITY)
-			rico_dir_check = WEST
-
-	var/turf/next_turf = get_step(T, rico_dir_check)
-	if(next_turf.density)
-		ricochet_angle += 180
-
-	bonus_projectiles_amount = 1
-	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle)
-	bonus_projectiles_amount = 0
-
+	reflect(T, proj)
 
 /*
 //================================================
@@ -2859,60 +2864,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/three
 
 /datum/ammo/energy/lasgun/marine/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
-	. = ..()
-	if(!bonus_projectiles_type)
-		return
-	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
-
-	// Check for the neightbour tile
-	var/rico_dir_check
-	switch(ricochet_angle)
-		if(-INFINITY to 45)
-			rico_dir_check = EAST
-		if(46 to 135)
-			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
-		if(136 to 225)
-			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
-		if(126 to 315)
-			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
-		if(316 to INFINITY)
-			rico_dir_check = WEST
-
-	var/turf/next_turf = get_step(T, rico_dir_check)
-	if(next_turf.density)
-		ricochet_angle += 180
-
-	bonus_projectiles_amount = 1
-	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle, TRUE, next_turf)
-	bonus_projectiles_amount = 0
-
-/datum/ammo/energy/lasgun/marine/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
-	var/new_range = proj.proj_max_range - proj.distance_travelled
-	if(new_range <= 0)
-		return
-
-	var/dir_to_proj = get_dir(T, proj)
-	if(ISDIAGONALDIR(dir_to_proj))
-		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
-		for(var/direction in cardinals)
-			var/turf/turf_to_check = get_step(T, direction)
-			if(turf_to_check.density)
-				cardinals -= direction
-		dir_to_proj = pick(cardinals)
-
-	var/perpendicular_angle = Get_Angle(T, get_step(T, dir_to_proj))
-	var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
-
-	if(new_angle < -360)
-		new_angle += 720 //north is 0 instead of 360
-	else if(new_angle < 0)
-		new_angle += 360
-	else if(new_angle > 360)
-		new_angle -= 360
-
-	bonus_projectiles_amount = 1
-	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, new_range, proj.projectile_speed, new_angle, TRUE, get_step(T, dir_to_proj))
-	bonus_projectiles_amount = 0
+	reflect(T, proj)
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
