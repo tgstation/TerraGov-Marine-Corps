@@ -2654,13 +2654,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "weakening laser bolt"
 	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
-	damage = 40
+	damage = 30
 	penetration = 10
 	sundering = 0
 	damage_type = STAMINA
 	hitscan_effect_icon = "blue_beam"
-	///percentage of xenos total plasma to drain when hit by a pepperball
-	var/drain_multiplier = 0.05
 	///Flat plasma to drain, unaffected by caste plasma amount.
 	var/plasma_drain = 25
 
@@ -2670,7 +2668,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!isxeno(M))
 		return
 	var/mob/living/carbon/xenomorph/xeno_victim = M
-	xeno_victim.use_plasma((plasma_drain + (drain_multiplier * xeno_victim.xeno_caste.plasma_max)) * xeno_victim.xeno_caste.plasma_regen_limit)
+	xeno_victim.use_plasma(plasma_drain * xeno_victim.xeno_caste.plasma_regen_limit)
 
 /datum/ammo/energy/lasgun/marine/microwave
 	name = "microwave laser bolt"
@@ -2728,7 +2726,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "impact laser blast"
 	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
-	damage = 40
+	damage = 35
 	penetration = 10
 	sundering = 0
 	hitscan_effect_icon = "pu_laser"
@@ -2740,7 +2738,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "impact laser blast"
 	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
-	damage = 40
+	damage = 20
 	penetration = 10
 	sundering = 0
 	hitscan_effect_icon = "blue_beam"
@@ -2750,7 +2748,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
-	damage = 15
+	damage = 18
 	penetration = 15
 
 /datum/ammo/energy/lasgun/marine/autolaser/burst
@@ -2779,7 +2777,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 0
 	hitscan_effect_icon = "beam_solar"
 	///number of melting stacks to apply when hitting mobvs
-	var/melt_stacks = 3
+	var/melt_stacks = 2
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
@@ -2810,23 +2808,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
 	damage = 40
-	penetration = 0
+	penetration = 10
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
 
 /datum/ammo/energy/lasgun/marine/shatter
-	name = "sniper heat bolt"
+	name = "sniper shattering bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
 	damage = 40
-	penetration = 20
+	penetration = 30
 	accurate_range_min = 5
-	sundering = 15
+	sundering = 10
 	hitscan_effect_icon = "pu_laser"
 	///number of melting stacks to apply when hitting mobvs
-	var/shatter_duration = 8 SECONDS
+	var/shatter_duration = 5 SECONDS
 
 /datum/ammo/energy/lasgun/marine/shatter/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
@@ -2836,22 +2834,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 /datum/ammo/energy/lasgun/marine/ricochet
-	name = "sniper heat bolt"
+	name = "sniper laser bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
-	damage = 80
-	penetration = 20
-	accurate_range_min = 5
+	damage = 100
+	penetration = 30
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
 
 /datum/ammo/energy/lasgun/marine/ricochet/one
-	damage = 70
+	damage = 80
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet
 
 /datum/ammo/energy/lasgun/marine/ricochet/two
-	damage = 60
+	damage = 65
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/one
 
 /datum/ammo/energy/lasgun/marine/ricochet/three

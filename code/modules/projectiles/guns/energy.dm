@@ -401,10 +401,10 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	icon_state = "ter"
 	item_state = "ter"
-	max_shots = 50 //codex stuff
+	max_shots = 60
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	rounds_per_shot = 12
+	rounds_per_shot = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	turret_flags = TURRET_INACCURATE
@@ -450,7 +450,7 @@
 	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/flamer/mini_flamer)
 
 /datum/lasrifle/base/energy_rifle_mode/standard
-	rounds_per_shot = 12
+	rounds_per_shot = 10
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
@@ -460,7 +460,7 @@
 
 
 /datum/lasrifle/base/energy_rifle_mode/overcharge
-	rounds_per_shot = 30
+	rounds_per_shot = 24
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
 	fire_delay = 0.45 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
@@ -470,9 +470,9 @@
 	radial_icon_state = "laser_overcharge"
 
 /datum/lasrifle/base/energy_rifle_mode/weakening
-	rounds_per_shot = 30
+	rounds_per_shot = 24
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/weakening
-	fire_delay = 0.45 SECONDS
+	fire_delay = 0.4 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to weakening."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -578,10 +578,9 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	icon_state = "tec"
 	item_state = "tec"
-	max_shots = 40 //codex stuff
-	load_method = CELL //codex stuff
+	max_shots = 50
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
-	rounds_per_shot = 15
+	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOBURST
 	gun_firemode_list = list(GUN_FIREMODE_AUTOBURST)
 	ammo_level_icon = "te"
@@ -610,7 +609,9 @@
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
 	burst_amount = 4
-	burst_delay = 0.15 SECONDS
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.15 SECONDS
+	autoburst_delay = 0.35 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
 	damage_falloff_mult = 0.5
@@ -626,7 +627,7 @@
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/weapon/gun/grenade_launcher/underslung,)
 
 /datum/lasrifle/base/energy_carbine_mode/auto_burst
-	rounds_per_shot = 15
+	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
 	burst_amount = 4
@@ -636,7 +637,7 @@
 	icon_state = "tec"
 
 /datum/lasrifle/base/energy_carbine_mode/base/spread
-	rounds_per_shot = 60
+	rounds_per_shot = 50
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/blast
 	fire_delay = 1.5 SECONDS
 	burst_amount = 1
@@ -647,9 +648,9 @@
 	radial_icon_state = "laser_spread"
 
 /datum/lasrifle/base/energy_carbine_mode/base/impact
-	rounds_per_shot = 60
+	rounds_per_shot = 50
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/impact
-	fire_delay = 1.5 SECONDS
+	fire_delay = 1 SECONDS
 	burst_amount = 1
 	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
 	message_to_user = "You set the laser carbine's charge mode to impact."
@@ -658,9 +659,9 @@
 	radial_icon_state = "laser_impact"
 
 /datum/lasrifle/base/energy_carbine_mode/base/cripple
-	rounds_per_shot = 60
+	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/cripple
-	fire_delay = 1.5 SECONDS
+	fire_delay = 0.3 SECONDS
 	burst_amount = 1
 	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
 	message_to_user = "You set the laser carbine's charge mode to cripple."
@@ -678,10 +679,10 @@
 	icon_state = "tes"
 	item_state = "tes"
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 12 //codex stuff
+	max_shots = 20
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
-	rounds_per_shot = 50
+	rounds_per_shot = 30
 	damage_falloff_mult = 0
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -724,7 +725,7 @@
 	)
 
 /datum/lasrifle/base/energy_sniper_mode/standard
-	rounds_per_shot = 50
+	rounds_per_shot = 30
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
@@ -733,7 +734,7 @@
 	icon_state = "tes"
 
 /datum/lasrifle/base/energy_sniper_mode/heat
-	rounds_per_shot = 150
+	rounds_per_shot = 100
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_heat
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -753,7 +754,7 @@
 	radial_icon_state = "laser_charge"
 
 /datum/lasrifle/base/energy_sniper_mode/ricochet
-	rounds_per_shot = 100
+	rounds_per_shot = 45
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/ricochet/four
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -801,7 +802,7 @@
 	wield_delay = 1.5 SECONDS
 	scatter = 1
 	fire_delay = 0.2 SECONDS
-	burst_delay = 0.2 SECONDS
+	burst_delay = 0.25 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
@@ -816,8 +817,8 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)
 	. = ..()
-	if(shots_fired)
-		projectile_to_fire.damage *= (1 + shots_fired * 0.2)
+	if(shots_fired) //this specifically boosts the burst fire mode
+		projectile_to_fire.damage *= (1 + shots_fired)
 
 /datum/lasrifle/base/energy_mg_mode/standard
 	rounds_per_shot = 4
@@ -829,9 +830,9 @@
 	icon_state = "tem"
 
 /datum/lasrifle/base/energy_mg_mode/standard/burst
-	rounds_per_shot = 12
+	rounds_per_shot = 8
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/burst
-	fire_delay = 0.6 SECONDS
+	fire_delay = 0.45 SECONDS
 	burst_amount = 4
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the machine laser's charge mode to burst."
@@ -841,14 +842,16 @@
 
 
 /datum/lasrifle/base/energy_mg_mode/standard/charge
+	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/charge
-	fire_delay = 0.6 SECONDS
-	windup_delay = 0.6 SECONDS
+	fire_delay = 0.5 SECONDS
+	windup_delay = 0.5 SECONDS
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	message_to_user = "You set the machine laser's charge mode to charge."
 	radial_icon_state = "laser_charge"
 
 /datum/lasrifle/base/energy_mg_mode/standard/melting
+	rounds_per_shot = 18
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/melting
 	fire_delay = 0.3 SECONDS
 	message_to_user = "You set the machine laser's charge mode to melting."

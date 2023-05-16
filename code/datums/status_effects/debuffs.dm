@@ -536,13 +536,13 @@
 // *********** Melting
 // ***************************************
 ///amount of damage done per tick by the melting status effect
-#define STATUS_EFFECT_MELTING_DAMAGE 10
+#define STATUS_EFFECT_MELTING_DAMAGE 5
 ///Sunder inflicted per tick by the melting status effect
-#define STATUS_EFFECT_MELTING_SUNDER_DAMAGE 10
+#define STATUS_EFFECT_MELTING_SUNDER_DAMAGE 5
 
 /datum/status_effect/stacking/melting
 	id = "melting"
-	tick_interval = 2 SECONDS
+	tick_interval = 1 SECONDS
 	stacks = 1
 	max_stacks = 30
 	consumed_on_threshold = FALSE
