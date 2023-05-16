@@ -273,7 +273,6 @@
 	var/obj/item/ammo_magazine/flamer_tank/internal/tank
 
 	///The linked flamerthrower that cannot be dropped
-	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer
 
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -329,8 +328,7 @@
 
 /obj/item/storage/holster/backholster/flamer/full/Initialize()
 	. = ..()
-	flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
-	flamer.flamerpack = src
+	var/flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flamer)
 
 //one slot holsters

@@ -328,11 +328,12 @@
 		/obj/item/attachable/flamer_nozzle/long,
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
-	var/obj/item/storage/holster/backholster/flamer/flamerpack
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/on_enter_storage(obj/item/storage/S)
-	flamerpack.refuel(chamber_items[1], loc.loc)
-	src.update_ammo_count()
+	if (istype(S, /obj/item/storage/holster/backholster/flamer))
+		var/obj/item/storage/holster/backholster/flamer/flamerpack = S
+		flamerpack.refuel(chamber_items[1], flamerpack.loc) // loc is the person wearing the backpack
+		src.update_ammo_count()
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
