@@ -125,7 +125,7 @@
 
 /// Getter proc for the alternate action for removing nodrop traits from items with straps
 /datum/strippable_item/proc/get_strippable_alternate_action_strap(obj/item/item, atom/source)
-	if(!istype(item, /obj/item/weapon/twohanded/fireaxe/som) && !istype(item, /obj/item/weapon/shield))
+	if(!istype(item, /obj/item/weapon/twohanded/fireaxe/som) && !istype(item, /obj/item/weapon/shield) && !istype(item, /obj/item/weapon/twohanded/rocketsledge))
 		return
 
 	if(CHECK_BITFIELD(item.flags_item, NODROP))
@@ -135,7 +135,7 @@
 
 /// The proc that actually does the alternate action
 /datum/strippable_item/proc/strippable_alternate_action_strap(obj/item/item, atom/source, mob/user)
-	if(!istype(item, /obj/item/weapon/twohanded/fireaxe/som) && !istype(item, /obj/item/weapon/shield))
+	if(!istype(item, /obj/item/weapon/twohanded/fireaxe/som) && !istype(item, /obj/item/weapon/shield) && !istype(item, /obj/item/weapon/twohanded/rocketsledge))
 		return
 
 	user.balloon_alert_to_viewers("[CHECK_BITFIELD(item.flags_item, NODROP) ? "Loosening" : "Tightening"] strap...")
