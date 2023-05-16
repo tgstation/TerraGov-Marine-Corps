@@ -172,58 +172,16 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	return ..()
 
 // ***************************************
-// *********** Rooting
-// ***************************************
-
-/datum/action/xeno_action/root
-	name = "Root in place"
-	action_icon_state = "burrow"
-	desc = "Root ourselves in place, ready to bombard."
-	ability_name = "root"
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ROOT,
-	)
-	use_state_flags = XACT_USE_ROOTED
-
-/datum/action/xeno_action/root/action_activate()
-	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		owner.balloon_alert_to_viewers("Rooting out of place...")
-		if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
-			owner.balloon_alert(owner, "Interrupted!")
-			return fail_activate()
-		owner.balloon_alert(owner, "Unrooted!")
-		set_rooted(FALSE)
-		return succeed_activate()
-
-	owner.balloon_alert_to_viewers("Rooting into place...")
-	if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
-		owner.balloon_alert(owner, "Interrupted!")
-		return fail_activate()
-
-	owner.balloon_alert_to_viewers("Rooted into place!")
-	set_rooted(TRUE)
-	return succeed_activate()
-
-/datum/action/xeno_action/root/proc/set_rooted(on)
-	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
-	if(on)
-		ADD_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
-		boiler_owner.set_bombard_pointer()
-	else
-		REMOVE_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
-		boiler_owner.reset_bombard_pointer()
-	boiler_owner.anchored = on
-
-// ***************************************
 // *********** Gas cloud bombs
 // ***************************************
 /datum/action/xeno_action/activable/bombard
-	name = "Bombard"
+	name = "Bombard/Root"
 	action_icon_state = "bombard"
 	desc = "Launch a glob of neurotoxin or acid. Must be rooted to use."
 	ability_name = "bombard"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ROOT,
 	)
 	target_flags = XABB_TURF_TARGET
 	use_state_flags = XACT_USE_ROOTED
@@ -326,6 +284,39 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	boiler_owner.update_boiler_glow()
 	update_button_icon()
 	add_cooldown()
+
+
+/datum/action/xeno_action/activable/bombard/alternate_action_activate()
+	INVOKE_ASYNC(src, PROC_REF(root))
+	return COMSIG_KB_ACTIVATED
+
+/datum/action/xeno_action/activable/bombard/proc/root()
+	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		owner.balloon_alert_to_viewers("Rooting out of place...")
+		if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+			owner.balloon_alert(owner, "Interrupted!")
+			return
+		owner.balloon_alert(owner, "Unrooted!")
+		set_rooted(FALSE)
+		return
+
+	owner.balloon_alert_to_viewers("Rooting into place...")
+	if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+		owner.balloon_alert(owner, "Interrupted!")
+		return
+
+	owner.balloon_alert_to_viewers("Rooted into place!")
+	set_rooted(TRUE)
+
+/datum/action/xeno_action/activable/bombard/proc/set_rooted(on)
+	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
+	if(on)
+		ADD_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
+		boiler_owner.set_bombard_pointer()
+	else
+		REMOVE_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
+		boiler_owner.reset_bombard_pointer()
+	boiler_owner.anchored = on
 
 
 // ***************************************
