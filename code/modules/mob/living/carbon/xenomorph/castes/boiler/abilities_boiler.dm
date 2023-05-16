@@ -186,35 +186,33 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	use_state_flags = XACT_USE_ROOTED
 
 /datum/action/xeno_action/root/action_activate()
-	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
-
-	if(HAS_TRAIT_FROM(xeno_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		xeno_owner.balloon_alert_to_viewers("Rooting out of place...")
-		if(!do_after(xeno_owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
-			xeno_owner.balloon_alert(owner, "Interrupted!")
+	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		owner.balloon_alert_to_viewers("Rooting out of place...")
+		if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+			owner.balloon_alert(owner, "Interrupted!")
 			return fail_activate()
-		xeno_owner.balloon_alert(owner, "Unrooted!")
+		owner.balloon_alert(owner, "Unrooted!")
 		set_rooted(FALSE)
 		return succeed_activate()
 
-	xeno_owner.balloon_alert_to_viewers("Rooting into place...")
-	if(!do_after(xeno_owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
-		xeno_owner.balloon_alert(owner, "Interrupted!")
+	owner.balloon_alert_to_viewers("Rooting into place...")
+	if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+		owner.balloon_alert(owner, "Interrupted!")
 		return fail_activate()
 
-	xeno_owner.balloon_alert_to_viewers("Rooted into place!")
+	owner.balloon_alert_to_viewers("Rooted into place!")
 	set_rooted(TRUE)
 	return succeed_activate()
 
 /datum/action/xeno_action/root/proc/set_rooted(on)
-	var/mob/living/carbon/xenomorph/boiler/xeno_owner = owner
+	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
 	if(on)
-		ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
-		xeno_owner.set_bombard_pointer()
+		ADD_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
+		boiler_owner.set_bombard_pointer()
 	else
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
-		xeno_owner.reset_bombard_pointer()
-	xeno_owner.anchored = on
+		REMOVE_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
+		boiler_owner.reset_bombard_pointer()
+	boiler_owner.anchored = on
 
 // ***************************************
 // *********** Gas cloud bombs
@@ -263,24 +261,24 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return FALSE
 	var/turf/T = get_turf(A)
 	var/turf/S = get_turf(owner)
-	var/mob/living/carbon/xenomorph/boiler/xeno_owner = owner
+	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
 
 	if(!HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		if(!silent)
 			to_chat(owner, span_warning("We need to be rooted to fire!"))
 		return FALSE
 
-	if(istype(xeno_owner.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
-		if(xeno_owner.corrosive_ammo <= 0)
-			to_chat(xeno_owner, span_warning("We have no corrosive globules available."))
+	if(istype(boiler_owner.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
+		if(boiler_owner.corrosive_ammo <= 0)
+			to_chat(boiler_owner, span_warning("We have no corrosive globules available."))
 			return FALSE
 	else
-		if(xeno_owner.neuro_ammo <= 0)
-			to_chat(xeno_owner, span_warning("We have no neurotoxin globules available."))
+		if(boiler_owner.neuro_ammo <= 0)
+			to_chat(boiler_owner, span_warning("We have no neurotoxin globules available."))
 			return FALSE
 
-	if(!HAS_TRAIT_FROM(xeno_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		to_chat(xeno_owner, span_warning("We need to be rooted to the ground to fire!"))
+	if(!HAS_TRAIT_FROM(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		to_chat(boiler_owner, span_warning("We need to be rooted to the ground to fire!"))
 		return FALSE
 
 	if(!isturf(T) || T.z != S.z)
@@ -294,38 +292,38 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return FALSE
 
 /datum/action/xeno_action/activable/bombard/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/boiler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
 	var/turf/target = get_turf(A)
 
 	if(!istype(target))
 		return
 
-	to_chat(X, span_xenonotice("We begin building up pressure."))
+	to_chat(boiler_owner, span_xenonotice("We begin building up pressure."))
 
-	if(!do_after(X, 2 SECONDS, FALSE, target, BUSY_ICON_DANGER))
-		to_chat(X, span_warning("We decide not to launch."))
+	if(!do_after(boiler_owner, 2 SECONDS, FALSE, target, BUSY_ICON_DANGER))
+		to_chat(boiler_owner, span_warning("We decide not to launch."))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, XACT_IGNORE_PLASMA))
 		return fail_activate()
 
-	X.visible_message(span_xenowarning("\The [X] launches a huge glob of acid hurling into the distance!"), \
+	boiler_owner.visible_message(span_xenowarning("\The [boiler_owner] launches a huge glob of acid hurling into the distance!"), \
 	span_xenowarning("We launch a huge glob of acid hurling into the distance!"), null, 5)
 
-	var/obj/projectile/P = new /obj/projectile(X.loc)
-	P.generate_bullet(X.ammo)
-	P.fire_at(target, X, null, X.ammo.max_range, X.ammo.shell_speed)
-	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
-	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
+	var/obj/projectile/P = new /obj/projectile(boiler_owner.loc)
+	P.generate_bullet(boiler_owner.ammo)
+	P.fire_at(target, boiler_owner, null, boiler_owner.ammo.max_range, boiler_owner.ammo.shell_speed)
+	playsound(boiler_owner, 'sound/effects/blobattack.ogg', 25, 1)
+	if(istype(boiler_owner.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		GLOB.round_statistics.boiler_acid_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_acid_smokes")
-		X.corrosive_ammo--
+		boiler_owner.corrosive_ammo--
 	else
 		GLOB.round_statistics.boiler_neuro_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
-		X.neuro_ammo--
+		boiler_owner.neuro_ammo--
 
-	X.update_boiler_glow()
+	boiler_owner.update_boiler_glow()
 	update_button_icon()
 	add_cooldown()
 
