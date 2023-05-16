@@ -391,8 +391,14 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_MP
 
-/datum/skills/pilot
-	name = PILOT_OFFICER
+/datum/skills/caspilot
+	name = CAS_PILOT
+	pilot = SKILL_PILOT_TRAINED
+	powerloader = SKILL_POWERLOADER_PRO
+	leadership = SKILL_LEAD_TRAINED
+
+/datum/skills/tadpilot
+	name = TAD_PILOT
 	pilot = SKILL_PILOT_TRAINED
 	powerloader = SKILL_POWERLOADER_PRO
 	leadership = SKILL_LEAD_TRAINED

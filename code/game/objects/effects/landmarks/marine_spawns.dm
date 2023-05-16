@@ -18,9 +18,13 @@
 	icon_state = "IO"
 	job = /datum/job/terragov/command/staffofficer
 
-/obj/effect/landmark/start/job/pilotofficer
+/obj/effect/landmark/start/job/caspilot
 	icon_state = "PO"
-	job = /datum/job/terragov/command/pilot
+	job = /datum/job/terragov/command/caspilot
+
+/obj/effect/landmark/start/job/tadpilot
+	icon_state = "PO"
+	job = /datum/job/terragov/command/tadpilot
 
 /obj/effect/landmark/start/job/chiefshipengineer
 	icon_state = "CSE"

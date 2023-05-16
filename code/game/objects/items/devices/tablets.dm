@@ -59,7 +59,11 @@
 				dat += " field commander's"
 				network = list("marinesl", "marine")
 				req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
-			if(/datum/job/terragov/command/pilot)
+			if(/datum/job/terragov/command/caspilot)
+				dat += " pilot's"
+				network = list("dropship1", "dropship2")
+				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+			if(/datum/job/terragov/command/tadpilot)
 				dat += " pilot's"
 				network = list("dropship1", "dropship2")
 				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)

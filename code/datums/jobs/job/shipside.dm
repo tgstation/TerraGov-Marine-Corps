@@ -267,17 +267,17 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/terragov/command/staffofficer/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
-//Pilot Officer
-/datum/job/terragov/command/pilot
-	title = PILOT_OFFICER
+//Condor Pilot
+/datum/job/terragov/command/caspilot
+	title = CAS_PILOT
 	paygrade = "WO"
 	comm_title = "PO"
-	total_positions = 2
+	total_positions = 1
 	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/pilot
-	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
-	outfit = /datum/outfit/job/command/pilot
+	skills_type = /datum/skills/caspilot
+	display_order = JOB_DISPLAY_ORDER_CAS_PILOT
+	outfit = /datum/outfit/job/command/caspilot
 	exp_requirements = XP_REQ_INTERMEDIATE
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
@@ -291,7 +291,36 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
-		<b>Duty</b>: Choose between the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
+		<b>Duty</b>: Pilot the Condor a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets.
+	"}
+	minimap_icon = "pilot"
+
+
+//Tadpole Pilot
+/datum/job/terragov/command/tadpilot
+	title = TAD_PILOT
+	paygrade = "WO"
+	comm_title = "PO"
+	total_positions = 1
+	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
+	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	skills_type = /datum/skills/tadpilot
+	display_order = JOB_DISPLAY_ORDER_TAD_PILOT
+	outfit = /datum/outfit/job/command/tadpilot
+	exp_requirements = XP_REQ_INTERMEDIATE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>: Medium<br /><br />
+		<b>You answer to the</b> acting Command Staff<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Duty</b>: Pilot the Tadpole, a versatile dropship capable of fulfilling roles ranging from an ambulance to a mobile bunker.
 	"}
 	minimap_icon = "pilot"
 
@@ -333,9 +362,26 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 "})
 
 
-/datum/outfit/job/command/pilot
-	name = PILOT_OFFICER
-	jobtype = /datum/job/terragov/command/pilot
+/datum/outfit/job/command/caspilot
+	name = CAS_PILOT
+	jobtype = /datum/job/terragov/command/caspilot
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/officer/pilot
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/insulated
+	glasses = /obj/item/clothing/glasses/sunglasses/aviator
+	head = /obj/item/clothing/head/helmet/marine/pilot
+	r_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/hud_tablet/pilot
+	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/job/command/tadpilot
+	name = TAD_PILOT
+	jobtype = /datum/job/terragov/command/tadpilot
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
