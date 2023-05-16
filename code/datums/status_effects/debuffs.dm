@@ -692,7 +692,9 @@
 	color = "#a7cc00"
 
 
-//MUTE
+// ***************************************
+// *********** Shatter
+// ***************************************
 ///armor multiplier for the shatter status effect
 #define SHATTER_STATUS_EFFECT_ARMOR_MULT 0.8
 
@@ -728,8 +730,8 @@
 
 /datum/status_effect/shatter/on_remove()
 	owner.soft_armor = owner.soft_armor.attachArmor(armor_modifier)
+	armor_modifier = null
 	QDEL_NULL(particle_holder)
-	QDEL_NULL(armor_modifier) //this might not be needed
 	return ..()
 
 /atom/movable/screen/alert/status_effect/shatter
