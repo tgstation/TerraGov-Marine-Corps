@@ -136,6 +136,18 @@ OPERATIONS
 	contains = list(/obj/item/spacecash/c500)
 	cost = 50
 
+/datum/supply_packs/operations/droppod
+	name = "drop pod"
+	contains = list(/obj/structure/droppod)
+	containertype = null
+	cost = 50
+
+/datum/supply_packs/operations/droppod_leader
+	name = "leader drop pod"
+	contains = list(/obj/structure/droppod/leader)
+	containertype = null
+	cost = 100
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -327,11 +339,6 @@ WEAPONS
 	name = "AR-55 OICW Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx55)
 	cost = 525
-
-/datum/supply_packs/weapons/tx55/ammo
-	name = "AR-55 OICW rifle magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx55)
-	cost = 25
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "RL-160 Recoilless rifle kit"
@@ -702,8 +709,20 @@ EXPLOSIVES
 
 /datum/supply_packs/explosives/explosives_razor
 	name = "Razorburn grenade box crate"
-	notes = "Containers 20 razor burns"
+	notes = "Contains 15 razor burns"
 	contains = list(/obj/item/storage/box/visual/grenade/razorburn)
+	cost = 500
+
+/datum/supply_packs/explosives/explosives_sticky
+	name = "M40 adhesive charge grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/sticky)
+	cost = 500
+
+/datum/supply_packs/explosives/explosives_smokebomb
+	name = "M40 HSDP smokebomb grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/smokebomb)
 	cost = 500
 
 /datum/supply_packs/explosives/explosives_hedp
@@ -723,6 +742,18 @@ EXPLOSIVES
 	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/M15)
 	cost = 500
+
+/datum/supply_packs/explosives/explosives_trailblazer
+	name = "M45 Trailblazer grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/trailblazer)
+	cost = 500
+
+/datum/supply_packs/explosives/explosives_cloak
+	name = "M40-2 SCDP grenade box crate"
+	notes = "contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/cloak)
+	cost = 700
 
 /datum/supply_packs/explosives/explosives_hsdp
 	name = "M40 HSDP white phosphorous grenade box crate"
@@ -890,8 +921,10 @@ ARMOR
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
@@ -909,6 +942,7 @@ ARMOR
 	name = "Jaeger Surt fireproof module"
 	contains = list(
 		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/fire_proof_helmet,
 	)
 	cost = 120
 

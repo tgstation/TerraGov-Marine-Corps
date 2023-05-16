@@ -33,6 +33,10 @@
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
+"l" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river/autosmooth/deep,
+/area/lv624/ground/river2)
 "m" = (
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
@@ -89,12 +93,12 @@
 /area/lv624/ground/river2)
 "I" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "K" = (
 /obj/structure/flora/ausbushes/reedbush,
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "P" = (
 /obj/machinery/floodlight/colony{
@@ -104,7 +108,7 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "T" = (
 /obj/structure/disposalpipe/segment{
@@ -122,9 +126,9 @@ P
 I
 I
 I
-I
-I
-I
+l
+l
+l
 I
 I
 I
@@ -205,10 +209,10 @@ s
 P
 I
 I
-I
-I
-I
-I
+l
+l
+l
+l
 I
 K
 I

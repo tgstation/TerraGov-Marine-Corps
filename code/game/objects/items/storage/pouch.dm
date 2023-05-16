@@ -42,7 +42,6 @@
 	desc = "A general purpose pouch used to carry small items."
 	icon_state = "small_drop"
 	draw_mode = 1
-
 	bypass_w_limit = list(/obj/item/ammo_magazine/packet)
 
 /obj/item/storage/pouch/general/medium

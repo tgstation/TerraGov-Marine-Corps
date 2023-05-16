@@ -517,8 +517,8 @@
 
 /obj/item/storage/belt/marine/oicw/Initialize(mapload)
 	. = ..()
-	new /obj/item/ammo_magazine/rifle/tx55(src)
-	new /obj/item/ammo_magazine/rifle/tx55(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
 	new /obj/item/ammo_magazine/rifle/tx54/incendiary(src)
 	new /obj/item/ammo_magazine/rifle/tx54/incendiary(src)
 	new /obj/item/ammo_magazine/rifle/tx54(src)

@@ -382,7 +382,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "zz" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/caves/rock)
 "zI" = (
 /obj/structure/cable,

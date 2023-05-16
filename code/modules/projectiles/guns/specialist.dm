@@ -350,6 +350,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -866,6 +867,37 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/som/rad
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som/rad
+
+//ICC RPG
+/obj/item/weapon/gun/launcher/rocket/icc
+	name = "\improper MP-IRL rocket launcher"
+	desc = "The Man Portable-Infantry Rocket Launcher is a man portable warhead launcher employed by the ICC. Being capable of firing a wide variety of 83m rear-mounted rockets to provide excellent tactical flexibility in a compact package."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "iccrpg"
+	item_state = "iccrpg"
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED
+	caliber = CALIBER_84MM //codex
+	load_method = MAGAZINE //codex
+	default_ammo_type = /obj/item/ammo_magazine/rocket/icc
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rocket/icc,
+		/obj/item/ammo_magazine/rocket/icc/light,
+		/obj/item/ammo_magazine/rocket/icc/heat,
+		/obj/item/ammo_magazine/rocket/icc/thermobaric,
+	)
+	wield_delay = 1 SECONDS
+	aim_slowdown = 1
+	attachable_allowed = list()
+	reload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
+	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
+	fire_sound = "rpg_fire"
+
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	windup_delay = 0.6 SECONDS
+	recoil = 2
+	scatter = -1
+	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
 
 //-------------------------------------------------------
 //RG-220 Railgun

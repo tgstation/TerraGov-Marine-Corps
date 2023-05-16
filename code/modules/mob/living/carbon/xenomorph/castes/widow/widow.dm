@@ -15,6 +15,10 @@
 	old_x = -16
 	max_buckled_mobs = 5
 
+/mob/living/carbon/xenomorph/widow/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_LIGHT_STEP, XENO_TRAIT)
+
 /mob/living/carbon/xenomorph/widow/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(!force)
 		return FALSE

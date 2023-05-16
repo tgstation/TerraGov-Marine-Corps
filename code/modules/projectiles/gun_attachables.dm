@@ -356,6 +356,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "bayonet"
 	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Slightly reduces the accuracy of the gun when mounted."
 	icon_state = "bayonet"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
+	)
 	force = 20
 	throwforce = 10
 	attach_delay = 10 //Bayonets attach/detach quickly.
@@ -385,12 +389,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "M-22 bayonet"
 	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
 	icon_state = "bayonetknife"
-	item_state = "combat_knife"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
+	)
 	force = 25
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6
-	attack_speed = 7
+	attack_speed = 8
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -407,6 +414,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/bayonetknife/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
+
+/obj/item/attachable/bayonetknife/som
+	name = "\improper S20 SOM bayonet"
+	desc = "A large knife that is the standard issue combat knife of the SOM. Can be attached to a variety of weapons at will or used as a standard knife."
+	icon_state = "bayonetknife_som"
+	item_state = "bayonetknife"
+	force = 30
 
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
@@ -1014,10 +1028,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"
-	desc = "A specialized stock for the SH-35."
+	desc = "A specialized stock for the SH-39."
 	icon_state = "t39stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
+	size_mod = 1
+	flags_attach_features = ATTACH_REMOVABLE
+	wield_delay_mod = 0.2 SECONDS
+	accuracy_mod = 0.15
+	recoil_mod = -2
+	scatter_mod = -2
 
 /obj/item/attachable/stock/t60stock
 	name = "MG-60 stock"
@@ -1143,7 +1163,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_unwielded_mod = -2
 	recoil_unwielded_mod = -1
 	aim_mode_movement_mult = -0.5
-	shot_marine_damage_falloff = -0.1
 
 /obj/item/attachable/lasersight
 	name = "laser sight"

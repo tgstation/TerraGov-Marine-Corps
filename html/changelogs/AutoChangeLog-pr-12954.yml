@@ -1,0 +1,5 @@
+author: "DeltaFire15"
+delete-after: True
+changes:
+  - bugfix: "The self destruct core no longer requires admin intervention to finish / blow up the ship."
+  - bugfix: "The time display on the self destruct UI should be more sane now."

@@ -73,7 +73,7 @@
 	var/list/mob/living/carbon/human/leash_victims = list()
 
 /// Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human
-/obj/structure/xeno/aoe_leash/Initialize(mapload, location, hivenumber)
+/obj/structure/xeno/aoe_leash/Initialize(mapload, _hivenumber)
 	. = ..()
 	for(var/mob/living/carbon/human/victim in GLOB.humans_by_zlevel["[z]"])
 		if(get_dist(src, victim) > leash_radius)

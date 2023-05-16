@@ -23,6 +23,9 @@
 	var/deconstructable = TRUE
 	flags_pass = PASSLASER
 
+/obj/structure/window/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_GLASS, -10, 5)
+
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10
@@ -356,7 +359,7 @@
 	basestate = "rwindow"
 	max_integrity = 1500
 	reinf = TRUE
-	resistance_flags = 10 // I have no clue what those are.
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
