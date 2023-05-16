@@ -327,11 +327,6 @@
 	. = ..()
 	. += "[tank.current_rounds] units of fuel left!"
 
-/obj/item/storage/holster/backholster/flamer/removed_from_inventory(mob/user)
-	. = ..()
-	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flamer)
-	user.dropItemToGround(flamer)
-
 /obj/item/storage/holster/backholster/flamer/full/Initialize()
 	. = ..()
 	flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)

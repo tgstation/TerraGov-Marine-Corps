@@ -330,10 +330,8 @@
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
 	var/obj/item/storage/holster/backholster/flamer/flamerpack
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/removed_from_inventory(mob/user)
-	. = ..()
-	flamerpack.handle_item_insertion(src)
-	flamerpack.refuel(chamber_items[1], user)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/on_enter_storage(obj/item/storage/S)
+	flamerpack.refuel(chamber_items[1], loc.loc)
 	src.update_ammo_count()
 
 /obj/item/weapon/gun/flamer/mini_flamer
