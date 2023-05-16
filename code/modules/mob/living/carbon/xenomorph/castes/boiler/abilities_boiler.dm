@@ -213,7 +213,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	X.visible_message(span_notice("\The [X] digs itself into the ground!"), \
 		span_notice("We dig ourselves into place! If we move, we must wait again to fire."), null, 5)
 	X.set_bombard_pointer()
-	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/bombard/proc.on_ranged_attack)
+	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, TYPE_PROC_REF(/datum/action/xeno_action/activable/bombard, on_ranged_attack))
 
 
 /datum/action/xeno_action/activable/bombard/on_deactivation()
