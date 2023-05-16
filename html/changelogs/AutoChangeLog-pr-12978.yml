@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "New ICC RPG. Statistically identical to the SOM one."
+  - bugfix: "ICC Medic now gets a defib, and the ICC Sharpshooter rifle loadout now gets the proper amount of ammo."
