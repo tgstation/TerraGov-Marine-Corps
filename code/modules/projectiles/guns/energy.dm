@@ -504,6 +504,7 @@
 	max_shots = 30 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_diff = null
+	ammo_level_icon = null
 	rounds_per_shot = 20
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -560,7 +561,7 @@
 	radial_icon_state = "laser_disabler"
 
 /datum/lasrifle/base/energy_pistol_mode/heat
-	rounds_per_shot = 110
+	rounds_per_shot = 100
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol/heat
 	fire_delay = 0.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -773,7 +774,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 150 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
-	ammo_diff = null
 	rounds_per_shot = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -798,14 +798,15 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 24, "under_x" = 30, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 
-	aim_slowdown = 1
-	wield_delay = 1.5 SECONDS
+	aim_slowdown = 0.7
+	wield_delay = 0.8 SECONDS
 	scatter = 1
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.25 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
+	movement_acc_penalty_mult = 6
 	damage_falloff_mult = 0.3
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	mode_list = list(

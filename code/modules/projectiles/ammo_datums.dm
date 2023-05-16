@@ -2637,7 +2637,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 20
 	penetration = 10
-	sundering = 1
+	sundering = 1.5
 	max_range = 30
 	hitscan_effect_icon = "beam"
 
@@ -2697,7 +2697,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "wide range laser blast"
 	icon_state = "heavylaser2"
 	hud_state = "laser_spread"
-	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/spread
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/blast/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 5
 	accuracy_var_low = 9
@@ -2706,21 +2706,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 8
 	damage = 35
 	penetration = 20
-	sundering = 1
 	hitscan_effect_icon = "pu_laser"
 
-/datum/ammo/energy/lasgun/marine/spread
+/datum/ammo/energy/lasgun/marine/blast/spread
 	name = "additional laser blast"
-	icon_state = "laser2"
-	shell_speed = 2
-	accuracy_var_low = 9
-	accuracy_var_high = 9
-	accurate_range = 5
-	max_range = 8
-	damage = 35
-	penetration = 20
-	sundering = 1
-	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/impact
 	name = "impact laser blast"
@@ -2750,6 +2739,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "machine laser bolt"
 	damage = 18
 	penetration = 15
+	sundering = 1
 
 /datum/ammo/energy/lasgun/marine/autolaser/burst
 	name = "burst machine laser bolt"
@@ -2798,7 +2788,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 30
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
-	sundering = 4
+	sundering = 5
 	max_range = 40
 	damage_falloff = 0
 	hitscan_effect_icon = "beam_heavy"
@@ -2866,6 +2856,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "pistol laser bolt"
 	damage = 20
 	penetration = 5
+	sundering = 1
 	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
