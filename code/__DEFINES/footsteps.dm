@@ -10,6 +10,7 @@
 #define FOOTSTEP_SNOW "snow"
 #define FOOTSTEP_ICE "ice"
 #define FOOTSTEP_CONCRETE "concrete"
+#define FOOTSTEP_GRAVEL "gravel"
 //barefoot and claw sounds
 #define FOOTSTEP_HARD "hard"
 //misc footstep sounds
@@ -90,7 +91,26 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/concrete3.ogg',
 		'sound/effects/footstep/concrete4.ogg',
 		'sound/effects/footstep/concrete5.ogg'), 100, 1),
+	FOOTSTEP_GRAVEL = list(list(
+		'sound/effects/footstep/gravel_1.ogg',
+		'sound/effects/footstep/gravel_2.ogg',
+		'sound/effects/footstep/gravel_3.ogg',
+		'sound/effects/footstep/gravel_4.ogg',
+		'sound/effects/footstep/gravel_5.ogg',
+		'sound/effects/footstep/gravel_6.ogg',
+		'sound/effects/footstep/gravel_7.ogg',
+		'sound/effects/footstep/gravel_8.ogg',
+		'sound/effects/footstep/gravel_9.ogg',
+		'sound/effects/footstep/gravel_11.ogg',
+		'sound/effects/footstep/gravel_12.ogg',
+		'sound/effects/footstep/gravel_13.ogg',
+		'sound/effects/footstep/gravel_14.ogg',
+		'sound/effects/footstep/gravel_15.ogg',
+		'sound/effects/footstep/gravel_16.ogg',
+		'sound/effects/footstep/gravel_17.ogg',
+		'sound/effects/footstep/gravel_18.ogg'), 75, 1),
 ))
+
 //bare footsteps lists
 GLOBAL_LIST_INIT(barefootstep, list(
 	FOOTSTEP_WOOD = list(list(
@@ -122,7 +142,7 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/asteroid2.ogg',
 		'sound/effects/footstep/asteroid3.ogg',
 		'sound/effects/footstep/asteroid4.ogg',
-		'sound/effects/footstep/asteroid5.ogg'), 75, 0),
+		'sound/effects/footstep/asteroid5.ogg'), 60, 0),
 	FOOTSTEP_GRASS = list(list(
 		'sound/effects/footstep/grass1.ogg',
 		'sound/effects/footstep/grass2.ogg',
@@ -160,6 +180,24 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/hardbarefoot3.ogg',
 		'sound/effects/footstep/hardbarefoot4.ogg',
 		'sound/effects/footstep/hardbarefoot5.ogg'), 80, -1),
+	FOOTSTEP_GRAVEL = list(list(
+		'sound/effects/footstep/gravel_1.ogg',
+		'sound/effects/footstep/gravel_2.ogg',
+		'sound/effects/footstep/gravel_3.ogg',
+		'sound/effects/footstep/gravel_4.ogg',
+		'sound/effects/footstep/gravel_5.ogg',
+		'sound/effects/footstep/gravel_6.ogg',
+		'sound/effects/footstep/gravel_7.ogg',
+		'sound/effects/footstep/gravel_8.ogg',
+		'sound/effects/footstep/gravel_9.ogg',
+		'sound/effects/footstep/gravel_11.ogg',
+		'sound/effects/footstep/gravel_12.ogg',
+		'sound/effects/footstep/gravel_13.ogg',
+		'sound/effects/footstep/gravel_14.ogg',
+		'sound/effects/footstep/gravel_15.ogg',
+		'sound/effects/footstep/gravel_16.ogg',
+		'sound/effects/footstep/gravel_17.ogg',
+		'sound/effects/footstep/gravel_18.ogg'), 60, 1),
 ))
 
 //claw footsteps lists
@@ -232,6 +270,24 @@ GLOBAL_LIST_INIT(xenomediumstep, list(
 		'sound/effects/footstep/concrete3.ogg',
 		'sound/effects/footstep/concrete4.ogg',
 		'sound/effects/footstep/concrete5.ogg'), 70, 1),
+	FOOTSTEP_GRAVEL = list(list(
+		'sound/effects/footstep/gravel_1.ogg',
+		'sound/effects/footstep/gravel_2.ogg',
+		'sound/effects/footstep/gravel_3.ogg',
+		'sound/effects/footstep/gravel_4.ogg',
+		'sound/effects/footstep/gravel_5.ogg',
+		'sound/effects/footstep/gravel_6.ogg',
+		'sound/effects/footstep/gravel_7.ogg',
+		'sound/effects/footstep/gravel_8.ogg',
+		'sound/effects/footstep/gravel_9.ogg',
+		'sound/effects/footstep/gravel_11.ogg',
+		'sound/effects/footstep/gravel_12.ogg',
+		'sound/effects/footstep/gravel_13.ogg',
+		'sound/effects/footstep/gravel_14.ogg',
+		'sound/effects/footstep/gravel_15.ogg',
+		'sound/effects/footstep/gravel_16.ogg',
+		'sound/effects/footstep/gravel_17.ogg',
+		'sound/effects/footstep/gravel_18.ogg'), 55, 1),
 ))
 
 //heavy footsteps list

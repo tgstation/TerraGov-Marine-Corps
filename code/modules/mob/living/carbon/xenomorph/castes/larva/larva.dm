@@ -20,6 +20,10 @@
 
 	var/base_icon_state = "Larva"
 
+/mob/living/carbon/xenomorph/larva/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+
 // ***************************************
 // *********** Mob overrides
 // ***************************************
