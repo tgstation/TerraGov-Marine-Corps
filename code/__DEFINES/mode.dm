@@ -58,10 +58,6 @@
 
 #define MODE_GENERIC_DRAW_NUKE "DRAW: Nuclear Explosion"
 
-#define MODE_CIVIL_WAR_LOYALIST_MAJOR "Loyalist Major Victory"
-#define MODE_CIVIL_WAR_REBEL_MAJOR "Rebel Major Victory"
-#define MODE_CIVIL_WAR_DRAW "Civil War Draw"
-
 #define MODE_COMBAT_PATROL_MARINE_MAJOR "Marine Major Victory"
 #define MODE_COMBAT_PATROL_MARINE_MINOR "Marine Minor Victory"
 #define MODE_COMBAT_PATROL_SOM_MAJOR "Sons of Mars Major Victory"

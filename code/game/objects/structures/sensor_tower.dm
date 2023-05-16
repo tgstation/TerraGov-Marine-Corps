@@ -19,13 +19,6 @@
 	GLOB.zones_to_control -= src
 	return ..()
 
-/obj/structure/sensor_tower/update_icon_state()
-	icon_state = initial(icon_state)
-	switch(faction)
-		if(FACTION_TERRAGOV)
-			icon_state += "_loyalist"
-		if(FACTION_TERRAGOV_REBEL)
-			icon_state += "_rebel"
 
 /obj/structure/sensor_tower/attack_hand(mob/living/user)
 	if(!ishuman(user))
@@ -54,9 +47,6 @@
 		if(FACTION_TERRAGOV)
 			SSminimaps.remove_marker(src)
 			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "loyalist_zone"))
-		if(FACTION_TERRAGOV_REBEL)
-			SSminimaps.remove_marker(src)
-			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "rebel_zone"))
 		else
 			SSminimaps.remove_marker(src)
 			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "neutral_zone"))

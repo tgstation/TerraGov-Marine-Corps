@@ -992,9 +992,6 @@
 		)
 	)
 
-/obj/machinery/vending/cargo_supply/hvh/rebel
-	req_one_access = list(ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
-
 /obj/machinery/vending/lasgun
 	name = "\improper Terra Experimental cell field charger"
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
@@ -1122,8 +1119,6 @@
 		),
 	)
 
-/obj/machinery/vending/MarineMed/rebel
-	req_one_access = ALL_MARINE_REBEL_ACCESS
 
 /obj/machinery/vending/MarineMed/valhalla
 	resistance_flags = INDESTRUCTIBLE
@@ -1197,8 +1192,6 @@
 		/obj/item/reagent_containers/blood/empty = 10,
 	)
 
-/obj/machinery/vending/MarineMed/Blood/rebel
-	req_one_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
 	. = ..()
@@ -1333,9 +1326,6 @@
 
 /obj/machinery/vending/armor_supply/loyalist
 	faction = FACTION_TERRAGOV
-
-/obj/machinery/vending/armor_supply/rebel
-	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/vending/armor_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE

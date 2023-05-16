@@ -96,7 +96,6 @@
 
 //Shuttle control flags
 #define SHUTTLE_MARINE_PRIMARY_DROPSHIP (1<<0)
-#define SHUTTLE_REBEL_PRIMARY_DROPSHIP  (1<<1)
 
 //Shuttle name defines used for a whole load of stuff
 #define SHUTTLE_ALAMO "alamo"

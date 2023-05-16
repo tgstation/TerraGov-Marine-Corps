@@ -184,8 +184,6 @@
 	turret_flags = TURRET_HAS_CAMERA|TURRET_IMMOBILE
 	density = FALSE
 
-/obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
-	sentry_iff_signal = TGMC_REBEL_IFF
 
 /obj/item/weapon/gun/sentry/big_sentry/fob_sentry
 	max_integrity = INFINITY //Good luck killing it
@@ -197,8 +195,6 @@
 	default_ammo_type = /obj/item/ammo_magazine/sentry/fob_sentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/fob_sentry)
 
-/obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel
-	sentry_iff_signal = TGMC_REBEL_IFF
 
 /obj/item/storage/box/minisentry
 	name = "\improper ST-580 point defense sentry crate"

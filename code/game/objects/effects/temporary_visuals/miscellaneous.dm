@@ -154,7 +154,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 /obj/effect/temp_visual/order
 	icon = 'icons/Marine/marine-items.dmi'
 	var/icon_state_on
-	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_REBEL, SQUAD_HUD_SOM)
+	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM)
 	duration = ORDER_DURATION
 	layer = TURF_LAYER
 
@@ -165,16 +165,12 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	var/hud_type
 	if(faction == FACTION_TERRAGOV)
 		hud_type = DATA_HUD_SQUAD_TERRAGOV
-	else if(faction == FACTION_TERRAGOV_REBEL)
-		hud_type = DATA_HUD_SQUAD_REBEL
 	else if(faction == FACTION_SOM)
 		hud_type = DATA_HUD_SQUAD_SOM
 	else
 		return
 	if(hud_type == DATA_HUD_SQUAD_TERRAGOV)
 		marker_flags = MINIMAP_FLAG_MARINE
-	else if(hud_type == DATA_HUD_SQUAD_REBEL)
-		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	else
@@ -206,8 +202,6 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	var/hud_type
 	if(faction == FACTION_TERRAGOV)
 		hud_type = SQUAD_HUD_TERRAGOV
-	else if(faction == FACTION_TERRAGOV_REBEL)
-		hud_type = SQUAD_HUD_REBEL
 	else if(faction == FACTION_SOM)
 		hud_type = SQUAD_HUD_SOM
 	else

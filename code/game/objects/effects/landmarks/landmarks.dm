@@ -61,11 +61,6 @@
 	GLOB.latejoin += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/start/latejoinrebel/Initialize(mapload)
-	. = ..()
-	GLOB.latejoinrebel += loc
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/start/latejoinsom/Initialize(mapload)
 	. = ..()
 	GLOB.latejoinsom += loc
@@ -403,10 +398,6 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry"
 
-/obj/effect/landmark/fob_sentry_rebel/Initialize(mapload)
-	. = ..()
-	GLOB.fob_sentries_rebel_loc += loc
-	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/sensor_tower
 	name = "Sensor tower"

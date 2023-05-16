@@ -478,9 +478,6 @@
 	icon_state = "sentry_system_installed"
 	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
 
-/obj/structure/dropship_equipment/sentry_holder/rebel
-	sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
-
 
 /obj/structure/dropship_equipment/mg_holder
 	name = "machinegun deployment system"

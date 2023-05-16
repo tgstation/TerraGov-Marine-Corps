@@ -4,7 +4,6 @@ GLOBAL_LIST_INIT(diagonals, list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 
 //Spawnpoints.
 GLOBAL_LIST_EMPTY(latejoin)
-GLOBAL_LIST_EMPTY(latejoinrebel)
 GLOBAL_LIST_EMPTY(latejoinsom)
 GLOBAL_LIST_EMPTY(latejoin_gateway)
 GLOBAL_LIST_EMPTY(latejoin_cryo)

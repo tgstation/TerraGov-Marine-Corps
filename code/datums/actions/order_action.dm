@@ -89,8 +89,6 @@
 	var/hud_type
 	if(faction == FACTION_TERRAGOV)
 		hud_type = DATA_HUD_SQUAD_TERRAGOV
-	else if(faction == FACTION_TERRAGOV_REBEL)
-		hud_type = DATA_HUD_SQUAD_REBEL
 	else if(faction == FACTION_SOM)
 		hud_type = DATA_HUD_SQUAD_SOM
 	else

@@ -120,7 +120,6 @@
 		if(mode.flags_round_type & MODE_WIN_POINTS)
 			stat("Points needed to win:", mode.win_points_needed)
 			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
-			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
 		var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
 		if(issensorcapturegamemode(SSticker.mode))
 			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)

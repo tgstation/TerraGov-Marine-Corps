@@ -134,8 +134,6 @@
 		return
 	if(!user.assigned_squad)
 		return
-	var/headset_type = faction == FACTION_TERRAGOV_REBEL ? /obj/item/radio/headset/mainship/marine/rebel : /obj/item/radio/headset/mainship/marine
-	user.equip_to_slot_or_del(new headset_type(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 
 /// Will check if the selected category can be bought according to the category choices left
 /proc/can_buy_category(category, category_choices)

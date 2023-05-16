@@ -40,8 +40,6 @@
 /obj/machinery/loadout_vendor/loyalist
 	faction = FACTION_TERRAGOV
 
-/obj/machinery/loadout_vendor/rebel
-	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/loadout_vendor/valhalla
 	resistance_flags = INDESTRUCTIBLE

@@ -75,8 +75,6 @@
 	var/marker_flags
 	if(iff_signal == TGMC_LOYALIST_IFF)
 		marker_flags = MINIMAP_FLAG_MARINE
-	else if(iff_signal == TGMC_REBEL_IFF)
-		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(iff_signal == SOM_IFF)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	else

@@ -86,15 +86,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 
 /datum/game_mode/proc/pre_setup()
-	if(flags_round_type & MODE_TWO_HUMAN_FACTIONS)
-		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list)
-			new /obj/machinery/computer/shuttle/shuttle_control/dropship/rebel(T)
-		for(var/turf/T AS in GLOB.lz2_shuttle_console_turfs_list)
-			new /obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist(T)
-	else
-		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list + GLOB.lz2_shuttle_console_turfs_list)
-			new /obj/machinery/computer/shuttle/shuttle_control/dropship(T)
-
 	setup_blockers()
 	GLOB.balance.Initialize()
 

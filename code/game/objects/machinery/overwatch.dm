@@ -116,28 +116,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	desc = "Big Brother Requisition demands to see money flowing into the void that is greed."
 	circuit = /obj/item/circuitboard/computer/supplyoverwatch
 
-/obj/machinery/computer/camera_advanced/overwatch/rebel
-	faction = FACTION_TERRAGOV_REBEL
-	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
-
-/obj/machinery/computer/camera_advanced/overwatch/rebel/main
-	icon_state = "overwatch_main"
-	name = "Main Overwatch Console"
-	desc = "State of the art machinery for general overwatch purposes."
-
-/obj/machinery/computer/camera_advanced/overwatch/rebel/alpha
-	name = "Alpha Overwatch Console"
-
-/obj/machinery/computer/camera_advanced/overwatch/rebel/bravo
-	name = "Bravo Overwatch Console"
-
-/obj/machinery/computer/camera_advanced/overwatch/rebel/charlie
-	name = "Charlie Overwatch Console"
-
-/obj/machinery/computer/camera_advanced/overwatch/rebel/delta
-	name = "Delta Overwatch Console"
-
-
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
 	. = ..()
 	eyeobj.visible_icon = TRUE
