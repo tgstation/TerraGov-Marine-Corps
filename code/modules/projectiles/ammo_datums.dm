@@ -2630,7 +2630,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
-	damage = 20
+	damage = 25
 	penetration = 10
 	sundering = 1
 	max_range = 30
