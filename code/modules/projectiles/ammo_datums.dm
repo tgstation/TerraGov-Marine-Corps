@@ -2658,7 +2658,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0
 	damage_type = STAMINA
-	hitscan_effect_icon = "beam_heavy"
+	hitscan_effect_icon = "blue_beam"
 	///percentage of xenos total plasma to drain when hit by a pepperball
 	var/drain_multiplier = 0.05
 	///Flat plasma to drain, unaffected by caste plasma amount.
@@ -2679,7 +2679,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 20
 	sundering = 2
-	hitscan_effect_icon = "beam_heavy"
+	hitscan_effect_icon = "beam_grass"
 	///number of microwave stacks to apply when hitting mobvs
 	var/microwave_stacks = 1
 
@@ -2731,7 +2731,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 10
 	sundering = 0
-	hitscan_effect_icon = "beam_heavy"
+	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/impact/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, max_range = 3, knockback = 3)
@@ -2743,7 +2743,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 10
 	sundering = 0
-	hitscan_effect_icon = "beam_heavy"
+	hitscan_effect_icon = "blue_beam"
 
 /datum/ammo/energy/lasgun/marine/cripple/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, slowdown = 1)
@@ -2757,7 +2757,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "burst machine laser bolt"
 	hud_state = "laser_efficiency"
 	damage = 12
-	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/autolaser/charge
 	name = "charged machine laser bolt"
@@ -2765,7 +2764,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	penetration = 30
 	sundering = 3
-	hitscan_effect_icon = "beam_particle"
+	hitscan_effect_icon = "beam_heavy"
 
 /datum/ammo/energy/lasgun/marine/autolaser/charge/on_hit_turf(turf/T, obj/projectile/proj)
 	if(istype(T, /turf/closed/wall))
@@ -2778,7 +2777,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 15
 	penetration = 20
 	sundering = 0
-	hitscan_effect_icon = "beam_particle"
+	hitscan_effect_icon = "beam_solar"
 	///number of melting stacks to apply when hitting mobvs
 	var/melt_stacks = 3
 
@@ -2825,7 +2824,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	accurate_range_min = 5
 	sundering = 15
-	hitscan_effect_icon = "u_laser_beam"
+	hitscan_effect_icon = "pu_laser"
 	///number of melting stacks to apply when hitting mobvs
 	var/shatter_duration = 8 SECONDS
 

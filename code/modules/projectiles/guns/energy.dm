@@ -477,7 +477,7 @@
 	message_to_user = "You set the laser rifle's charge mode to weakening."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
-	radial_icon_state = "laser_overcharge" //todo
+	radial_icon_state = "laser_disabler"
 
 
 /datum/lasrifle/base/energy_rifle_mode/microwave
@@ -488,7 +488,7 @@
 	message_to_user = "You set the laser rifle's charge mode to microwave."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
-	radial_icon_state = "laser_overcharge" //todo
+	radial_icon_state = "laser_microwave"
 
 ///TE Standard Laser Pistol
 
@@ -655,7 +655,7 @@
 	message_to_user = "You set the laser carbine's charge mode to impact."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
-	radial_icon_state = "laser_spread"
+	radial_icon_state = "laser_impact"
 
 /datum/lasrifle/base/energy_carbine_mode/base/cripple
 	rounds_per_shot = 60
@@ -666,7 +666,7 @@
 	message_to_user = "You set the laser carbine's charge mode to cripple."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
-	radial_icon_state = "laser_spread"
+	radial_icon_state = "laser_disabler"
 
 //TE Standard Sniper
 
@@ -750,7 +750,7 @@
 	message_to_user = "You set the sniper rifle's charge mode to shatter."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
-	radial_icon_state = "laser_heat"
+	radial_icon_state = "laser_charge"
 
 /datum/lasrifle/base/energy_sniper_mode/ricochet
 	rounds_per_shot = 100
@@ -760,7 +760,7 @@
 	message_to_user = "You set the sniper rifle's charge mode to ricochet."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
-	radial_icon_state = "laser_heat"
+	radial_icon_state = "laser_ricochet"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 	name = "\improper Terra Experimental laser machine gun"
@@ -837,7 +837,7 @@
 	message_to_user = "You set the machine laser's charge mode to burst."
 	fire_mode = GUN_FIREMODE_BURSTFIRE
 	icon_state = "tem"
-	radial_icon_state = "laser_disabler"
+	radial_icon_state = "laser_spread"
 
 
 /datum/lasrifle/base/energy_mg_mode/standard/charge
@@ -846,13 +846,13 @@
 	windup_delay = 0.6 SECONDS
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	message_to_user = "You set the machine laser's charge mode to charge."
-	radial_icon_state = "laser_swarm"
+	radial_icon_state = "laser_charge"
 
 /datum/lasrifle/base/energy_mg_mode/standard/melting
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/melting
 	fire_delay = 0.3 SECONDS
 	message_to_user = "You set the machine laser's charge mode to melting."
-	radial_icon_state = "laser_swarm"
+	radial_icon_state = "laser_heat"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/xray
 	name = "\improper Terra Experimental X-Ray laser rifle"
