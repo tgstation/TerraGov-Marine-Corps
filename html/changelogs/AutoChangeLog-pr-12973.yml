@@ -1,0 +1,6 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Supply beacons now lose their signal when the source of the signal is destoryed"
+  - bugfix: "Fixed the req console keeping dead signals in the list"
+  - bugfix: "Fixed a signal override in the req console"

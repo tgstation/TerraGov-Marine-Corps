@@ -10,6 +10,10 @@
 /obj/structure/cargo_container/green,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
+"bq" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
 "ch" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor/industrial,
@@ -54,10 +58,9 @@
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/tile,
 /area/deathmatch)
-"hy" = (
-/obj/effect/ai_node,
+"hD" = (
 /obj/structure/platform{
-	dir = 8
+	dir = 10
 	},
 /turf/open/floor/tile,
 /area/deathmatch)
@@ -99,6 +102,10 @@
 /obj/structure/window/framed/wood,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
+"kh" = (
+/obj/structure/cargo_container/horizontal,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
 "kz" = (
 /obj/structure/desertdam/decals/loose_sand_overlay/alt,
 /turf/open/floor/industrial,
@@ -106,6 +113,24 @@
 "kE" = (
 /obj/effect/ai_node,
 /turf/open/floor/industrial,
+/area/deathmatch)
+"kP" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"lq" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"lI" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/open/floor/tile,
 /area/deathmatch)
 "lK" = (
 /obj/structure/stairs{
@@ -126,11 +151,6 @@
 "mE" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
-"mH" = (
-/obj/structure/largecrate/guns/merc,
-/obj/structure/platform,
-/turf/open/floor/tile,
 /area/deathmatch)
 "nl" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -163,12 +183,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
-"oi" = (
-/obj/structure/platform_decoration{
-	dir = 5
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
 "px" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -185,20 +199,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "pY" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/tile,
-/area/deathmatch)
-"qg" = (
-/obj/structure/ore_box,
-/obj/structure/platform{
-	dir = 9
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
-"qP" = (
-/obj/structure/desertdam/decals/loose_sand_overlay/alt,
 /obj/structure/platform{
 	dir = 8
 	},
@@ -231,30 +231,36 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/deathmatch)
+"rA" = (
+/obj/structure/ore_box,
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"tN" = (
+/obj/structure/largecrate/guns/merc,
+/obj/structure/platform,
+/turf/open/floor/tile,
+/area/deathmatch)
 "uf" = (
 /obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
+"vG" = (
+/obj/structure/ore_box,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
 "wz" = (
 /obj/structure/cargo_container/green{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
-"wC" = (
-/obj/structure/ore_box,
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
-"wF" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/tile,
 /area/deathmatch)
 "wG" = (
 /obj/structure/platform_decoration{
@@ -266,15 +272,16 @@
 /obj/structure/cargo_container,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
-"wP" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/deathmatch)
 "xb" = (
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/tile/yellow/full,
+/area/deathmatch)
+"xf" = (
+/obj/structure/desertdam/decals/loose_sand_overlay/alt,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/tile,
 /area/deathmatch)
 "xg" = (
 /obj/vehicle/train/cargo/trolley,
@@ -289,6 +296,11 @@
 "xn" = (
 /turf/open/floor/tile/dark,
 /area/deathmatch)
+"xQ" = (
+/obj/structure/desertdam/decals/loose_sand_overlay,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/industrial,
+/area/deathmatch)
 "yN" = (
 /obj/structure/desertdam/decals/loose_sand_overlay,
 /turf/open/floor/industrial,
@@ -300,6 +312,12 @@
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"ze" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile,
 /area/deathmatch)
 "zg" = (
 /obj/structure/platform{
@@ -336,22 +354,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
-"Cz" = (
-/obj/structure/cargo_container/horizontal{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
-"CS" = (
-/obj/structure/ore_box,
+"Cc" = (
+/obj/structure/desertdam/decals/loose_sand_overlay,
 /obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/deathmatch)
-"Da" = (
-/obj/structure/platform{
-	dir = 6
+	dir = 8
 	},
 /turf/open/floor/tile,
 /area/deathmatch)
@@ -411,14 +417,14 @@
 /obj/structure/platform_decoration,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
-"Jb" = (
-/obj/structure/cargo_container/horizontal,
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
 "Jg" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"Ji" = (
+/obj/structure/platform,
+/turf/open/floor/tile,
 /area/deathmatch)
 "Jv" = (
 /obj/structure/cargo_container/ch_red,
@@ -432,15 +438,29 @@
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/floor/tile,
 /area/deathmatch)
+"JS" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
+"Lu" = (
+/obj/structure/largecrate/random,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile,
+/area/deathmatch)
 "LF" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
-"Mz" = (
+"Mo" = (
+/obj/structure/ore_box,
 /obj/structure/platform{
-	dir = 10
+	dir = 4
 	},
-/turf/open/floor/tile,
+/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "MP" = (
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
@@ -453,12 +473,10 @@
 /obj/structure/desertdam/decals/loose_sand_overlay,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
-"NI" = (
-/obj/structure/desertdam/decals/loose_sand_overlay,
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/tile,
+"NA" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Oi" = (
 /obj/effect/decal/cleanable/rune,
@@ -534,11 +552,6 @@
 /obj/structure/window/framed/wood,
 /turf/open/floor/wood,
 /area/deathmatch)
-"TZ" = (
-/obj/structure/largecrate/random/barrel/yellow,
-/obj/structure/platform,
-/turf/open/floor/tile,
-/area/deathmatch)
 "Ua" = (
 /turf/open/floor/industrial,
 /area/deathmatch)
@@ -551,28 +564,17 @@
 /obj/machinery/door/window/right,
 /turf/open/floor/wood,
 /area/deathmatch)
-"VG" = (
-/obj/structure/largecrate/random,
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/tile,
-/area/deathmatch)
-"WT" = (
-/obj/structure/cargo_container/horizontal{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
-"Xk" = (
-/obj/structure/platform,
-/turf/open/floor/tile,
-/area/deathmatch)
 "XI" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
 	},
 /turf/open/floor/industrial,
+/area/deathmatch)
+"XP" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Yh" = (
 /obj/structure/desertdam/decals/loose_sand_overlay/alt,
@@ -582,8 +584,20 @@
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/industrial,
 /area/deathmatch)
+"Yu" = (
+/obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/tile,
+/area/deathmatch)
 "YD" = (
 /turf/closed/wall/desert,
+/area/deathmatch)
+"YX" = (
+/obj/structure/largecrate/random/barrel/yellow,
+/obj/structure/platform,
+/turf/open/floor/tile,
 /area/deathmatch)
 "Ze" = (
 /obj/structure/ore_box,
@@ -710,7 +724,7 @@ pI
 pI
 AM
 pI
-mH
+tN
 FE
 FE
 FE
@@ -806,7 +820,7 @@ pI
 pI
 jk
 pI
-Xk
+Ji
 FE
 FE
 FE
@@ -850,11 +864,11 @@ YD
 YD
 YD
 YD
-wF
-wF
-wF
-wF
-Da
+ze
+ze
+ze
+ze
+lI
 FE
 FE
 ZW
@@ -901,9 +915,9 @@ YD
 FE
 FE
 FE
-Cz
-WT
-Jb
+lq
+kP
+kh
 FE
 FE
 FE
@@ -964,7 +978,7 @@ ez
 YD
 Ua
 Yj
-yN
+xQ
 Ua
 Ua
 FE
@@ -977,7 +991,7 @@ FE
 FE
 FE
 FE
-qg
+rA
 uf
 uf
 uf
@@ -1047,7 +1061,7 @@ FE
 OP
 FE
 FE
-DV
+NA
 FE
 FE
 QP
@@ -1074,7 +1088,7 @@ mE
 mE
 FE
 BV
-FE
+bq
 FE
 FE
 FE
@@ -1685,7 +1699,7 @@ mE
 FE
 FE
 FE
-FE
+bq
 FE
 FE
 FE
@@ -1729,14 +1743,14 @@ YD
 YD
 pY
 pY
-hy
+Yu
 pY
 pY
 pY
 pY
 pY
 pY
-qP
+xf
 FE
 hH
 FE
@@ -1912,9 +1926,9 @@ YD
 YD
 YD
 YD
-wP
+JS
 Nh
-CS
+vG
 YD
 YD
 YD
@@ -2055,10 +2069,10 @@ pI
 pI
 pI
 pI
-wF
-wF
+ze
+ze
 pI
-wF
+ze
 Zp
 pI
 pI
@@ -2102,8 +2116,8 @@ YD
 pI
 pI
 AM
-Xk
-oi
+Ji
+XP
 FE
 FE
 FE
@@ -2150,7 +2164,7 @@ YD
 pI
 Jy
 pI
-Xk
+Ji
 FE
 aL
 FE
@@ -2178,7 +2192,7 @@ FE
 FE
 FE
 FE
-FE
+bq
 FE
 YD
 ez
@@ -2198,7 +2212,7 @@ YD
 pI
 pI
 pI
-Xk
+Ji
 FE
 wz
 FE
@@ -2246,7 +2260,7 @@ YD
 gA
 qR
 pI
-Xk
+Ji
 FE
 nE
 eX
@@ -2294,7 +2308,7 @@ YD
 pI
 pI
 ht
-TZ
+YX
 FE
 FE
 FE
@@ -2342,7 +2356,7 @@ YD
 pI
 pI
 ak
-Xk
+Ji
 FE
 FE
 FE
@@ -2391,7 +2405,7 @@ pI
 ak
 gA
 SO
-Mz
+hD
 FE
 FE
 Ii
@@ -2439,7 +2453,7 @@ Sp
 AM
 pI
 Oi
-Xk
+Ji
 FE
 FE
 FE
@@ -2483,11 +2497,11 @@ YD
 FE
 Ii
 HM
-wF
-wF
-VG
-wF
-Da
+ze
+ze
+Lu
+ze
+lI
 FE
 FE
 FE
@@ -2508,7 +2522,7 @@ zg
 zg
 zg
 zg
-wC
+Mo
 YD
 YD
 YD
@@ -2542,7 +2556,7 @@ ZW
 FE
 FE
 FE
-FE
+bq
 FE
 Si
 FE
@@ -2697,7 +2711,7 @@ YD
 pY
 Sp
 pY
-NI
+Cc
 pY
 pY
 YD
