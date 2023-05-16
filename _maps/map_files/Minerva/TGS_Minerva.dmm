@@ -1448,7 +1448,7 @@
 "ei" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
-/obj/effect/landmark/start/job/pilotofficer,
+/obj/effect/landmark/start/job/caspilot,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "ej" = (

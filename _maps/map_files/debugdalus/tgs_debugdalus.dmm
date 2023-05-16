@@ -900,7 +900,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "adW" = (
-/obj/effect/landmark/start/job/pilotofficer,
+/obj/effect/landmark/start/job/tadpilot,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "adZ" = (

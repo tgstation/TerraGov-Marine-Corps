@@ -24174,8 +24174,8 @@
 /area/sulaco/security)
 "tUA" = (
 /obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/pilotofficer,
-/obj/effect/landmark/start/job/pilotofficer,
+/obj/effect/landmark/start/job/caspilot,
+/obj/effect/landmark/start/job/tadpilot,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "tVZ" = (
