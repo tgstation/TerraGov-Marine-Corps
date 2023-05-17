@@ -449,7 +449,7 @@
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
-	H.voice_filter = initial(voice_filter)
+	H.voice_filter = initial(H.voice_filter)
 	H.health_threshold_crit = -50
 	var/datum/action/repair_self/repair_action = H.actions_by_path[/datum/action/repair_self]
 	repair_action.remove_action(H)
