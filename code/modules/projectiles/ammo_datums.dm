@@ -2706,6 +2706,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 8
 	damage = 35
 	penetration = 20
+	sundering = 1
 	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/blast/spread
