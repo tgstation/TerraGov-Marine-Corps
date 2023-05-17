@@ -71,9 +71,9 @@
 		"5" = image(icon = 'icons/obj/structures/benchpress.dmi', icon_state = "benchpress_5"),
 	)
 	var/choice = show_radial_menu(user, src, radial_options, null, 64, null, TRUE, TRUE)
-	plates = text2num(choice)
 	if(!choice)
 		return
+	plates = text2num(choice)
 	update_icon()
 	flick("swap_[plates]", src)
 
