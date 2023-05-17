@@ -556,4 +556,3 @@
 	var/mob/living/living_owner = owner
 	living_owner.adjust_slowdown(1)
 	living_owner.do_jitter_animation(250)
-	
