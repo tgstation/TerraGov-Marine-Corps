@@ -453,24 +453,21 @@
 	repair_action.remove_action(H)
 	qdel(repair_action)
 
-
-/mob/living/carbon/human/species/robot/handle_regular_hud_updates()
-	. = ..()
-	if(health <= 0 && health > -50)
-		clear_fullscreen("robotlow")
-		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
-	else if(health <= -50)
-		clear_fullscreen("robothalf")
-		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
-	else
-		clear_fullscreen("robothalf")
-		clear_fullscreen("robotlow")
-
 /datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health > -25) //Staggerslowed if below crit threshold.
 		return
 	H.adjust_stagger(2, capped = 10)
 	H.adjust_slowdown(1)
+	if(H.health <= 0 && H.health > -50)
+		H.clear_fullscreen("robotlow")
+		H.overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
+	else if(H.health <= -50)
+		H.clear_fullscreen("robothalf")
+		H.overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
+	else
+		H.clear_fullscreen("robothalf")
+		H.clear_fullscreen("robotlow")
+
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self
