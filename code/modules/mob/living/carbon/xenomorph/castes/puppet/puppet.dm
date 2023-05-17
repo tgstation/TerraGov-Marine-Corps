@@ -98,3 +98,7 @@
 
 	change_action(MOVING_TO_ATOM, pick(possible_victims))
 	return TRUE
+
+/datum/ai_behavior/puppet/proc/change_order(mob/living/source)
+	return
+//todo

@@ -328,7 +328,7 @@
 	//	KEYBINDING_NORMAL = COMSIG_XENOABILITY_DREADFULPRESENCE,
 	//)
 
-/datum/action/xeno_action/puppeteer_orders/use_ability(mob/living/victim)
+/datum/action/xeno_action/puppeteer_orders/action_activate(mob/living/victim)
 	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_order_images_list, radius = 35)
 	if(choice)
 		return
