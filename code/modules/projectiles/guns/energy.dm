@@ -473,7 +473,7 @@
 	rounds_per_shot = 24
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/weakening
 	fire_delay = 0.4 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the laser rifle's charge mode to weakening."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
@@ -484,7 +484,7 @@
 	rounds_per_shot = 30
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/microwave
 	fire_delay = 0.45 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the laser rifle's charge mode to microwave."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
@@ -653,7 +653,7 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/impact
 	fire_delay = 1 SECONDS
 	burst_amount = 1
-	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the laser carbine's charge mode to impact."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
@@ -664,7 +664,7 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/cripple
 	fire_delay = 0.3 SECONDS
 	burst_amount = 1
-	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the laser carbine's charge mode to cripple."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
@@ -748,7 +748,7 @@
 	rounds_per_shot = 100
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/shatter
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to shatter."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
@@ -835,7 +835,7 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/burst
 	fire_delay = 0.45 SECONDS
 	burst_amount = 4
-	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
 	message_to_user = "You set the machine laser's charge mode to burst."
 	fire_mode = GUN_FIREMODE_BURSTFIRE
 	icon_state = "tem"
@@ -846,6 +846,7 @@
 	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/charge
 	fire_delay = 0.5 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
 	windup_delay = 0.5 SECONDS
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	message_to_user = "You set the machine laser's charge mode to charge."
@@ -855,6 +856,7 @@
 	rounds_per_shot = 18
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/melting
 	fire_delay = 0.3 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the machine laser's charge mode to melting."
 	radial_icon_state = "laser_heat"
 
