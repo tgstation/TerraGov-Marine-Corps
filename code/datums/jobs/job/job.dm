@@ -300,7 +300,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
 		job.outfit.handle_id(src)
 
-		get_role_outfit(job)
+		equip_role_outfit(job)
 
 	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)
@@ -310,19 +310,16 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	hud_set_job(faction)
 
-/mob/living/carbon/human/proc/get_role_outfit(datum/job/assigned_role)
+///finds and equips a valid outfit for a specified job and species
+/mob/living/carbon/human/proc/equip_role_outfit(datum/job/assigned_role)
 	if(!assigned_role.multiple_outfits)
 		assigned_role.outfit.equip(src)
 		return
 
 	var/list/valid_outfits
 
-	var/species_type = SPECIES_HUMAN
-	if(isrobot(src))
-		species_type = SPECIES_COMBAT_ROBOT
-
 	for(var/datum/outfit/variant AS in assigned_role.outfits)
-		if(variant.species == species_type)
+		if(variant.species == src.species.species_type)
 			valid_outfits += variant
 
 	var/datum/outfit/chosen_variant = pick(valid_outfits)
