@@ -147,7 +147,6 @@
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/M43
-	ammo_diff = null
 	rounds_per_shot = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -243,7 +242,6 @@
 	item_state = "tx73"
 	max_shots = 50 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
-	ammo_diff = null
 	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -403,7 +401,6 @@
 	item_state = "ter"
 	max_shots = 60
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
-	ammo_diff = null
 	rounds_per_shot = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -503,7 +500,6 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	max_shots = 30 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
-	ammo_diff = null
 	ammo_level_icon = null
 	rounds_per_shot = 20
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
@@ -682,7 +678,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 20
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
-	ammo_diff = null
 	rounds_per_shot = 30
 	damage_falloff_mult = 0
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
@@ -712,7 +707,7 @@
 
 	aim_slowdown = 0.7
 	wield_delay = 0.7 SECONDS
-	scatter = 0
+	scatter = -4
 	scatter_unwielded = 10
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.2
