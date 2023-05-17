@@ -86,7 +86,7 @@
 		reset_fire()
 		return
 	RegisterSignal(source, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
-	RegisterSignal(source, COMSIG_MOB_MOUxSEDRAG, PROC_REF(change_target))
+	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
 	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
