@@ -59,7 +59,7 @@
 	maxcharge = 600
 /obj/item/cell/lasgun/lasrifle/recharger
 	name = "\improper Terra Experimental recharger battery"
-	desc = "A prototype high density battery reverse-engineered from captured Volkite equipment. Due to developmental constrains and less than stellar jury-rigging, as well as space taken up by the recharger component, it boasts sub-par capacity."
+	desc = "A prototype high density battery reverse-engineered from captured Volkite equipment. Due to developmental constraints and less than stellar jury-rigging, as well as space taken up by the recharger component, it boasts sub-par capacity."
 	icon_state = "ter"
 	maxcharge = 450
 	self_recharge = TRUE
