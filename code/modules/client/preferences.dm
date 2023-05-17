@@ -136,6 +136,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Whether to mute xeno health alerts from when other xenos are badly hurt.
 	var/mute_xeno_health_alert_messages = TRUE
 
+	///whether the user wants to hear tts
+	var/sound_tts = TRUE
+	///What tts voice should be used
+	var/tts_voice
+
 	/// Chat on map
 	var/chat_on_map = TRUE
 	var/see_chat_non_mob = FALSE

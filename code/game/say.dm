@@ -54,7 +54,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return TRUE
 
 
-/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language, list/message_mods = list())
+/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language, list/message_mods = list(), tts_message, list/tts_filter)
+	var/found_client = FALSE
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
 	for(var/atom/movable/hearing_movable as anything in get_hearers_in_view(range, source))
 		if(!hearing_movable)//theoretically this should use as anything because it shouldnt be able to get nulls but there are reports that it does.
@@ -62,6 +63,22 @@ GLOBAL_LIST_INIT(freqtospan, list(
 			continue
 		hearing_movable.Hear(rendered, src, message_language, message, , spans, message_mods)
 
+		if(!found_client && length(hearing_movable.client_mobs_in_contents))
+			found_client = TRUE
+
+	var/tts_message_to_use = tts_message
+	if(!tts_message_to_use)
+		tts_message_to_use = message
+
+	var/list/filter = list()
+	if(length(voice_filter) > 0)
+		filter += voice_filter
+
+	if(length(tts_filter) > 0)
+		filter += tts_filter.Join(",")
+
+	if(voice && found_client)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), message_range = range)
 
 #define CMSG_FREQPART compose_freq(speaker, radio_freq)
 #define CMSG_JOBPART compose_job(speaker, message_language, raw_message, radio_freq)

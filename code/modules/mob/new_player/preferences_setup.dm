@@ -10,6 +10,8 @@
 	grad_style = pick(GLOB.hair_gradients_list)
 	good_eyesight = pick(list(FALSE, TRUE))
 	citizenship = pick(CITIZENSHIP_CHOICES)
+	if(SStts.tts_enabled)
+		tts_voice = pick(SStts.available_speakers)
 	religion = pick(RELIGION_CHOICES)
 	randomize_hair_color("hair")
 	randomize_hair_color("grad")
@@ -206,6 +208,8 @@
 
 	character.citizenship = citizenship
 	character.religion = religion
+
+	character.voice = tts_voice
 
 	character.moth_wings = moth_wings
 	character.underwear = underwear
