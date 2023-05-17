@@ -139,7 +139,9 @@ SUBSYSTEM_DEF(mapping)
 	var/list/parsed_maps = list()
 	for (var/file in files)
 		var/full_path = "_maps/[path]/[file]"
+		message_admins("test1")
 		var/datum/parsed_map/pm = new(file(full_path))
+		message_admins("testyay")
 		var/bounds = pm?.bounds
 		if (!bounds)
 			errorList |= full_path

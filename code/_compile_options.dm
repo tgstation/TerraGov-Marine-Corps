@@ -60,7 +60,7 @@
 #ifdef CITESTING
 #define TESTING
 #endif
-#define TESTING
+
 //#define SHADOW_DEBUG
 
 #ifdef TGS

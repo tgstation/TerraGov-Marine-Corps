@@ -449,9 +449,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	canary.use_variable()
 	//the actual loop.
 
-	//the actual loop.
-
-	while (1)
 	while (1)
 		tickdrift = max(0, MC_AVERAGE_FAST(tickdrift, (((REALTIMEOFDAY - init_timeofday) - (world.time - init_time)) / world.tick_lag)))
 		var/starting_tick_usage = TICK_USAGE
