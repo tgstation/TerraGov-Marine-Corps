@@ -2659,7 +2659,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 0
 	damage_type = STAMINA
 	hitscan_effect_icon = "blue_beam"
-	///Flat plasma to drain, unaffected by caste plasma amount.
+	///plasma drained per hit
 	var/plasma_drain = 25
 
 /datum/ammo/energy/lasgun/marine/weakening/on_hit_mob(mob/M, obj/projectile/proj)

@@ -672,7 +672,7 @@
 /atom/movable/screen/alert/status_effect/microwave
 	name = "Microwave"
 	desc = "You are burning from the inside!"
-	icon_state = "melting" //placeholder
+	icon_state = "microwave"
 
 /particles/microwave_status
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -737,7 +737,7 @@
 /atom/movable/screen/alert/status_effect/shatter
 	name = "Shattered"
 	desc = "Your armor has been shattered!"
-	icon_state = "melting" //placeholder
+	icon_state = "shatter"
 
 /particles/shattered_status
 	icon = 'icons/effects/particles/generic_particles.dmi'
