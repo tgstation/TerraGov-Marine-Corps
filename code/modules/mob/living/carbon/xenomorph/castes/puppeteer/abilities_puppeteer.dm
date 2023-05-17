@@ -60,7 +60,7 @@
 /datum/action/xeno_action/activable/pincushion
 	name = "Pincushion"
 	action_icon_state = "pincushion"
-	desc = "Launch a spine from your tail. This attack will help deter any tall as well as support your puppets and teammates in direct combat."
+	desc = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
 	cooldown_timer = 5 SECONDS
 	//target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
@@ -254,7 +254,7 @@
 	. = ..()
 	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
 	if(length(huskaction.puppets) <= 0)
-		owner.balloon_alert(owner, "No puppets")
+		owner.balloon_alert(owner, "no puppets")
 		return fail_activate()
 	if(!istype(victim, /mob/living/carbon/xenomorph/puppet) || !(victim in huskaction.puppets))
 		victim.balloon_alert(owner, "not our puppet")
@@ -315,3 +315,21 @@
 /datum/action/xeno_action/blessing/frenzy
 /datum/action/xeno_action/blessing/ward
 /datum/action/xeno_action/blessing/fury
+
+// ***************************************
+// *********** Orders
+// ***************************************
+
+/datum/action/xeno_action/puppeteer_orders
+	name = "Give Orders to Puppets"
+	action_icon_state = "1"
+	desc = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
+	//keybinding_signals = list(
+	//	KEYBINDING_NORMAL = COMSIG_XENOABILITY_DREADFULPRESENCE,
+	//)
+
+/datum/action/xeno_action/puppeteer_orders/use_ability(mob/living/victim)
+	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_order_images_list, radius = 35)
+	if(choice)
+		return
+	SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ORDER, choice)

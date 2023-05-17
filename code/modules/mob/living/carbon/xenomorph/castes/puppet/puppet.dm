@@ -29,6 +29,8 @@
 	. = ..()
 	if(get_dist(src, master) > 15)
 		adjustBruteLoss(15)
+	else
+		adjustBruteLoss(-5)
 //widow code again hooray
 /datum/ai_behavior/puppet
 	target_distance = 7
@@ -42,6 +44,7 @@
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, PROC_REF(fucking_die))
 	RegisterSignal(escorted_atom, COMSIG_PUPPET_SEEK_CLOSEST, PROC_REF(seek_and_attack_closest))
 	RegisterSignal(escorted_atom, COMSIG_PUPPET_SEEK, PROC_REF(seek_and_attack))
+	RegisterSignal(escorted_atom, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
 
 /datum/ai_behavior/puppet/proc/fucking_die(mob/living/source)
 	SIGNAL_HANDLER

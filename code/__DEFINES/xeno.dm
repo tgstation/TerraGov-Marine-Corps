@@ -38,6 +38,10 @@
 #define TRAP_ACID_NORMAL "acid"
 #define TRAP_ACID_STRONG "strong acid"
 
+#define PUPPET_RECALL "recall puppet"
+#define PUPPET_ATTACK "attack order"
+#define PUPPET_SCOUT "scouting order"
+
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 		/obj/alien/weeds/node,
@@ -106,6 +110,13 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 		RESIN_WALL = image('icons/mob/actions.dmi', icon_state = RESIN_WALL),
 		STICKY_RESIN = image('icons/mob/actions.dmi', icon_state = STICKY_RESIN),
 		RESIN_DOOR = image('icons/mob/actions.dmi', icon_state = RESIN_DOOR)
+		))
+
+//List of puppeteer order images
+GLOBAL_LIST_INIT(puppeteer_order_images_list, list(
+		PUPPET_ATTACK = image('icons/mob/actions.dmi', icon_state = "enrage"),
+		PUPPET_SCOUT = image('icons/mob/actions.dmi', icon_state = "17"),
+		PUPPET_RECALL = image('icons/mob/actions.dmi', icon_state = "rally")
 		))
 
 //xeno upgrade flags
