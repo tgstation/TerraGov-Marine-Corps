@@ -43,10 +43,10 @@ SUBSYSTEM_DEF(mapping)
 			var/client/C = i
 			winset(C, null, "mainwindow.title='[CONFIG_GET(string/title)] - [SSmapping.configs[SHIP_MAP].map_name]'")
 
-/datum/controller/subsystem/mapping/Initialize(timeofday)
+/datum/controller/subsystem/mapping/Initialize()
 	HACK_LoadMapConfig()
 	if(initialized)
-		return
+		return SS_INIT_SUCCESS
 
 	for(var/i in ALL_MAPTYPES)
 		var/datum/map_config/MC = configs[i]
@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(mapping)
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
 	initialize_reserved_level(transit.z_value)
-	return ..()
+	return SS_INIT_SUCCESS
 
 //Loads the number of players we had last round, for use in modular mapping
 /datum/controller/subsystem/mapping/proc/load_last_round_playercount()
@@ -134,7 +134,6 @@ SUBSYSTEM_DEF(mapping)
 
 	if (!islist(files))  // handle single-level maps
 		files = list(files)
-
 	// check that the total z count of all maps matches the list of traits
 	var/total_z = 0
 	var/list/parsed_maps = list()

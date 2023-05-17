@@ -4,9 +4,9 @@ SUBSYSTEM_DEF(modularmapping)
 	flags = SS_NO_FIRE
 	var/list/obj/effect/spawner/modularmap/markers = list()
 
-/datum/controller/subsystem/modularmapping/Initialize(start_timeofday)
+/datum/controller/subsystem/modularmapping/Initialize()
 	for(var/obj/effect/spawner/modularmap/map AS in markers)
 		map.load_modularmap()
 	markers = null
 	repopulate_sorted_areas() //adds all the modular map areas to the list
-	return ..()
+	return SS_INIT_SUCCESS
