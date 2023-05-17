@@ -78,7 +78,10 @@
 		return
 	current_firer = source
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
-		if(!INVOKE_ASYNC(src, PROC_REF(fire)) || windup_checked == WEAPON_WINDUP_CHECKING)
+		var/fire_return // todo fix: code expecting return values from async
+		ASYNC
+			fire_return = fire()
+		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
 		return
