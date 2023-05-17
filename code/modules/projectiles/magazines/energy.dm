@@ -62,6 +62,9 @@
 	desc = "A prototype high density battery reverse-engineered from captured Volkite equipment. Due to developmental constrains and less than stellar jury-rigging, as well as space taken up by the recharger component, it boasts sub-par capacity."
 	icon_state = "ter"
 	maxcharge = 450
+	self_recharge = TRUE
+	charge_amount = 12 //balanced around recharging 1 standard laser rifle shot per second
+	charge_delay = 1 SECONDS
 /obj/item/cell/lasgun/fob_sentry/cell
 	maxcharge = INFINITY
 
