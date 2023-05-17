@@ -41,14 +41,14 @@
 		qdel(src)
 		return TRUE
 
-	else if(ishuman(M) )
+	else if(ishuman(M))
 
 		var/mob/living/carbon/human/H = M
 		if(H.species.species_flags & ROBOTIC_LIMBS)
 			to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 			return
 
-		user.visible_message(span_warning("[user] attempts to force [M] to swallow [src]."))
+		user.balloon_alert_to_viewers("feeding pill...")
 
 		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating(SKILL_MEDICAL))
 
@@ -56,7 +56,7 @@
 			return
 
 		user.dropItemToGround(src) //icon update
-		visible_message("<span class='warning'>[user] forces [M] to swallow [src].")
+		M.balloon_alert_to_viewers("swallows pill")
 
 		var/rgt_list_text = get_reagent_list_text()
 
