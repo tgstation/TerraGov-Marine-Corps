@@ -708,7 +708,10 @@
 		return
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
-		if(!INVOKE_ASYNC(src, PROC_REF(Fire)) || windup_checked == WEAPON_WINDUP_CHECKING)
+		var/fire_return // todo fix: code expecting return values from async
+		ASYNC
+			fire_return = Fire()
+		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
 		return
