@@ -269,7 +269,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		listening |= player_mob
 		the_dead[player_mob] = TRUE
 
-	if(voice && found_client)
+	if(voice && found_client) // tivi todo found client no work
 		var/tts_message_to_use = tts_message
 		if(!tts_message_to_use)
 			tts_message_to_use = message_raw

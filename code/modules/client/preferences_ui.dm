@@ -63,6 +63,7 @@
 			data["species"] = species || "Human"
 			data["good_eyesight"] = good_eyesight
 			data["citizenship"] = citizenship
+			data["tts_voice"] = tts_voice
 			data["religion"] = religion
 			data["h_style"] = h_style
 			data["grad_style"] = grad_style
@@ -101,6 +102,7 @@
 			data["windowflashing"] = windowflashing
 			data["auto_fit_viewport"] = auto_fit_viewport
 			data["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
+			data["sound_tts"] = sound_tts
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
 			data["tgui_input"] = tgui_input
@@ -496,6 +498,23 @@
 			if(choice)
 				religion = choice
 
+		if("tts_voice")
+			var/list/voices
+			if(SStts.tts_enabled)
+				voices = SStts.available_speakers
+			else if(fexists("data/cached_tts_voices.json"))
+				var/list/text_data = rustg_file_read("data/cached_tts_voices.json")
+				voices = json_decode(text_data)
+			if(!length(voices))
+				return
+			var/choice = tgui_input_list(ui.user, "What do you sound like?", "TTS", voices)
+			if(choice)
+				tts_voice = choice
+				if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+					return
+				TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
+				INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE)
+
 		if("squad")
 			var/new_squad = params["newValue"]
 			if(!(new_squad in SELECTABLE_SQUADS))
@@ -548,6 +567,9 @@
 
 		if("mute_xeno_health_alert_messages")
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
+
+		if("sound_tts")
+			sound_tts = !sound_tts
 
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy

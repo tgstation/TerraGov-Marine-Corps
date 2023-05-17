@@ -139,7 +139,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///whether the user wants to hear tts
 	var/sound_tts = TRUE
 	///What tts voice should be used
-	var/tts_voice
+	var/tts_voice = "Male 01" // tivi todo auto swap, also make this randomized, also randomly select
+
 
 	/// Chat on map
 	var/chat_on_map = TRUE

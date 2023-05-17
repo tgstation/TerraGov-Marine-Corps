@@ -58,6 +58,13 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Enabled'}
               />
               <ToggleFieldPreference
+                label="Play Text-to-Speech"
+                value="sound_tts"
+                action="sound_tts"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
                 label="Fullscreen mode"
                 value="fullscreen_mode"
                 action="fullscreen_mode"

@@ -6,4 +6,4 @@
 		to_chat(src, span_notice("You are resurrecting, hold still..."))
 
 	if(SStts.tts_enabled && !voice)
-		voice = pick(SStts.available_speakers)
+		voice = random_tts_voice(gender)

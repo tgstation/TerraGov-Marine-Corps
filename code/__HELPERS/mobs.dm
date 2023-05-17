@@ -37,6 +37,12 @@
 
 	return pick(valid_facialhairstyles)
 
+///returns a random tts voice based on gender. Assumes theres 30 voices, not actually how many there are but yolo
+/proc/random_tts_voice(gender)
+	var/number = "[rand(1,30)]"
+	if(length(number) >= 1)
+		number = "0" + number
+	return "[gender]" + number
 
 /proc/get_playable_species()
 	return GLOB.roundstart_species
