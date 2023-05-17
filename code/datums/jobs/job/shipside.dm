@@ -108,6 +108,11 @@ Godspeed, captain! And remember, you are not above the law."})
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/fieldcommander
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/command/fieldcommander,
+		/datum/outfit/job/command/fieldcommander_robot,
+	)
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
@@ -132,6 +137,10 @@ Godspeed, captain! And remember, you are not above the law."})
 	access = ALL_MARINE_REBEL_ACCESS
 	minimal_access = ALL_MARINE_REBEL_ACCESS
 	outfit = /datum/outfit/job/command/fieldcommander/rebel
+	outfits = list(
+		/datum/outfit/job/command/fieldcommander,
+		/datum/outfit/job/command/fieldcommander_robot/rebel,
+	)
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
@@ -181,10 +190,31 @@ Make the TGMC proud!"})
 	back = /obj/item/storage/backpack/marine/satchel
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
+/datum/outfit/job/command/fieldcommander_robot
+	name = FIELD_COMMANDER
+	jobtype = /datum/job/terragov/command/fieldcommander
+	species = SPECIES_COMBAT_ROBOT
+
+	id = /obj/item/card/id/dogtag/fc
+	belt = /obj/item/storage/holster/blade/officer/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot
+	shoes = null
+	gloves = null
+	head = null
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/fieldcommand
+	back = /obj/item/storage/backpack/marine/satchel
+	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+
 /datum/outfit/job/command/fieldcommander/rebel
 	jobtype = /datum/job/terragov/command/fieldcommander/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
+/datum/outfit/job/command/fieldcommander_robot/rebel
+	jobtype = /datum/job/terragov/command/fieldcommander/rebel
+	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 //Staff Officer
 /datum/job/terragov/command/staffofficer

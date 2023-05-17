@@ -859,3 +859,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define BOILER_WATER_SLOWDOWN 0
 ///Slowdown for warlocks moving through liquid
 #define WARLOCK_WATER_SLOWDOWN 0
+
+#define SPECIES_HUMAN "species_human"
+
+#define SPECIES_COMBAT_ROBOT "species_combat_robot"
