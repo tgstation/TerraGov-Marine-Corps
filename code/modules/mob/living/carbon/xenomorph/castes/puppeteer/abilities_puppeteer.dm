@@ -269,9 +269,13 @@
 
 /datum/action/xeno_action/activable/organic_bomb/proc/start_exploding(mob/living/puppet)
 	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(start_exploding_async))
+
+/datum/action/xeno_action/activable/organic_bomb/proc/start_exploding_async(mob/living/puppet)
 	puppet.visible_message(span_danger("[puppet] bloats and slowly unfurls its stitched body!"))
 	if(do_after(puppet, 1.5 SECONDS, FALSE, puppet, BUSY_ICON_DANGER))
 		fucking_explode(puppet)
+
 /datum/action/xeno_action/activable/organic_bomb/proc/fucking_explode(mob/living/puppet)
 	SIGNAL_HANDLER
 	UnregisterSignal(puppet, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_MOB_DEATH))
