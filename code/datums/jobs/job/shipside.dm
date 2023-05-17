@@ -202,7 +202,7 @@ Make the TGMC proud!"})
 	wear_suit = /obj/item/clothing/suit/modular/robot
 	shoes = null
 	gloves = null
-	head = null
+	head = /obj/item/clothing/head/modular/robot
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
 	back = /obj/item/storage/backpack/marine/satchel
