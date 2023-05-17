@@ -146,7 +146,6 @@ SUBSYSTEM_DEF(mapping)
 			continue
 		parsed_maps[pm] = total_z  // save the start Z of this file
 		total_z += bounds[MAP_MAXZ] - bounds[MAP_MINZ] + 1
-
 	if (!length(traits))  // null or empty - default
 		for (var/i in 1 to total_z)
 			traits += list(default_traits)
@@ -156,7 +155,6 @@ SUBSYSTEM_DEF(mapping)
 			traits.Cut(total_z + 1)
 		while (total_z > length(traits))  // fall back to defaults on extra levels
 			traits += list(default_traits)
-
 	// preload the relevant space_level datums
 	var/start_z = world.maxz + 1
 	var/i = 0
