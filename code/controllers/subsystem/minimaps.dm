@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(minimaps)
 	///assoc list of minimap objects that are hashed so we have to update as few as possible
 	var/list/hashed_minimaps = list()
 
-/datum/controller/subsystem/minimaps/Initialize(start_timeofday)
+/datum/controller/subsystem/minimaps/Initialize()
 	for(var/level=1 to length(SSmapping.z_list))
 		minimaps_by_z["[level]"] = new /datum/hud_displays
 		if(!is_mainship_level(level) && !is_ground_level(level))
@@ -99,7 +99,7 @@ SUBSYSTEM_DEF(minimaps)
 	for(var/i=1 to length(earlyadds)) //lateload icons
 		earlyadds[i].Invoke()
 	earlyadds = null //then clear them
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/minimaps/stat_entry(msg)
 	msg = "Upd:[length(update_targets_unsorted)] Mark: [length(removal_cbs)]"
