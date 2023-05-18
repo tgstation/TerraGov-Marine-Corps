@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(excavation)
 	init_order = INIT_ORDER_EXCAVATION
 	flags = SS_BACKGROUND | SS_NO_INIT
 	wait = 5 MINUTES
+	//todo fix this being default priority, make it something super low
 
 	///Landmarks that can spawn excavation sites
 	var/list/excavation_site_spawners = list()

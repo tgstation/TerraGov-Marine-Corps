@@ -43,10 +43,10 @@ SUBSYSTEM_DEF(mapping)
 			var/client/C = i
 			winset(C, null, "mainwindow.title='[CONFIG_GET(string/title)] - [SSmapping.configs[SHIP_MAP].map_name]'")
 
-/datum/controller/subsystem/mapping/Initialize(timeofday)
+/datum/controller/subsystem/mapping/Initialize()
 	HACK_LoadMapConfig()
 	if(initialized)
-		return
+		return SS_INIT_SUCCESS
 
 	for(var/i in ALL_MAPTYPES)
 		var/datum/map_config/MC = configs[i]
@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(mapping)
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
 	initialize_reserved_level(transit.z_value)
-	return ..()
+	return SS_INIT_SUCCESS
 
 //Loads the number of players we had last round, for use in modular mapping
 /datum/controller/subsystem/mapping/proc/load_last_round_playercount()
@@ -134,7 +134,6 @@ SUBSYSTEM_DEF(mapping)
 
 	if (!islist(files))  // handle single-level maps
 		files = list(files)
-
 	// check that the total z count of all maps matches the list of traits
 	var/total_z = 0
 	var/list/parsed_maps = list()
@@ -147,7 +146,6 @@ SUBSYSTEM_DEF(mapping)
 			continue
 		parsed_maps[pm] = total_z  // save the start Z of this file
 		total_z += bounds[MAP_MAXZ] - bounds[MAP_MINZ] + 1
-
 	if (!length(traits))  // null or empty - default
 		for (var/i in 1 to total_z)
 			traits += list(default_traits)
@@ -157,7 +155,6 @@ SUBSYSTEM_DEF(mapping)
 			traits.Cut(total_z + 1)
 		while (total_z > length(traits))  // fall back to defaults on extra levels
 			traits += list(default_traits)
-
 	// preload the relevant space_level datums
 	var/start_z = world.maxz + 1
 	var/i = 0
