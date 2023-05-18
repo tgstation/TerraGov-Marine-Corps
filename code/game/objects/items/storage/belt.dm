@@ -342,7 +342,7 @@
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
-		new /obj/item/reagent_containers/hypospray/advanced/big/combat(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/combat(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/security
