@@ -217,18 +217,18 @@
 
 	if(!opened && bodybag_occupant)
 		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-		balloon_alert(user, "jolts out of the bag")
+		balloon_alert(bodybag_occupant, "jolts out of the bag")
 		open()
 
 /obj/structure/closet/bodybag/flamer_fire_act(burnlevel)
 	if(!opened && bodybag_occupant)
-		balloon_alert(user, "fire forces you out")
+		balloon_alert(bodybag_occupant, "fire forces you out")
 		open()
 		bodybag_occupant.flamer_fire_act(burnlevel)
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
-		balloon_alert(user, "blows you out")
+		balloon_alert(bodybag_occupant, "blows you out")
 		open()
 		bodybag_occupant.ex_act(severity)
 	switch(severity)
@@ -243,7 +243,7 @@
 			var/mob/living/carbon/human/H = bodybag_occupant
 			SEND_SIGNAL(H, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_puddle.acid_damage, acid_puddle.slow_amt) //tarp isn't acid proof; pass it on to the occupant
 
-		balloon_alert(user, "acid forces you out")
+		balloon_alert(bodybag_occupant, "acid forces you out")
 		open() //Get out
 
 /obj/structure/closet/bodybag/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -253,7 +253,7 @@
 
 	if((CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID)) && !opened && bodybag_occupant)
 		bodybag_occupant.effect_smoke(S) //tarp *definitely* isn't acid/phosphorous smoke proof, lol.
-		balloon_alert(user, "smoke forces you out")
+		balloon_alert(bodybag_occupant, "smoke forces you out")
 		open() //Get out
 
 

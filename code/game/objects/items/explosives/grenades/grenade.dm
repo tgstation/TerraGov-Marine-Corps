@@ -149,4 +149,4 @@
 	victim.add_slowdown(effective_strength / 2)
 	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
 	victim.adjust_radiation(effective_strength * 20) //Radiation status effect, duration is in deciseconds
-	balloon_alert(user, "weakened by radiation")
+	balloon_alert(victim, "weakened by radiation")
