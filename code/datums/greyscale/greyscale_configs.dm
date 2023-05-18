@@ -69,6 +69,7 @@
 //Kama
 
 /datum/greyscale_config/kama
+	icon_file = 'icons/mob/modular/kama.dmi'
 	json_config = 'code/datums/greyscale/json_configs/kama.json'
 
 /*
