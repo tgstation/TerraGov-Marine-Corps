@@ -13,7 +13,6 @@
 	secondary_color = TRUE
 	attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
 	starting_attachments = list(/obj/item/armor_module/greyscale/cape_highlight)
-	appearance_flags = KEEP_APART|TILE_BOUND
 	///True if the hood is up, false if not.
 	var/hood = FALSE
 
