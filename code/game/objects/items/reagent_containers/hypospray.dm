@@ -612,7 +612,7 @@
 	)
 	description_overlay = "Hy"
 
-/obj/item/reagent_containers/hypospray/advanced/big/hypervene
+/obj/item/reagent_containers/hypospray/advanced/big/combat
 	name = "big combat hypospray"
 	desc = "A hypospray loaded with BKTT mix. Useful for quick application of healing and painkilling chemicals in combat."
 	list_reagents = list(
