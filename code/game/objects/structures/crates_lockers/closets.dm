@@ -290,7 +290,7 @@
 		return
 	else
 		step_towards(O, loc)
-		balloon_alert_to_viewers("[user] stuffs [O] into [src]!")
+		balloon_alert_to_viewers("[O] is stuffed into [src]")
 
 /obj/structure/closet/relaymove(mob/user, direct)
 	if(!isturf(loc))

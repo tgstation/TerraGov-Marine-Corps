@@ -78,13 +78,13 @@
 
 		switch(power_gen_percent) //Flavor text!
 			if(10)
-				balloon_alert_to_viewers("[src] begins to whirr as it powers up")
+				balloon_alert_to_viewers("begins to whirr as it powers up")
 				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
 			if(50)
-				balloon_alert_to_viewers("[src] hums as it reaches half capacity")
+				balloon_alert_to_viewers("hums as it reaches half capacity")
 				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.5
 			if(100)
-				balloon_alert_to_viewers("[src] rumbles as it reaches full strength")
+				balloon_alert_to_viewers("rumbles as it reaches full strength")
 				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE
 
 
@@ -132,8 +132,8 @@
 		return FALSE
 
 	if(fusion_cell.fuel_amount <= 10)
-		balloon_alert_to_viewers("[src] Fuel levels critically low.")
-	balloon_alert_to_viewers("[user] turns the generator on.")
+		balloon_alert_to_viewers("Fuel levels critically low")
+	balloon_alert_to_viewers("turns the generator on")
 	fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
 
 	is_on = TRUE
@@ -164,12 +164,12 @@
 		var/obj/item/tool/weldingtool/WT = O
 		if(WT.remove_fuel(1, user))
 			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-				balloon_alert_to_viewers("[user] fumbles around with [src]'s internals")
+				balloon_alert_to_viewers("fumbles with [src]'s internals")
 				var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					return FALSE
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			balloon_alert_to_viewers("[user] starts welding [src]'s damage")
+			balloon_alert_to_viewers("starts welding some damage")
 			add_overlay(GLOB.welding_sparks)
 			if(!do_after(user, 20 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS) , TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return FALSE
@@ -178,7 +178,7 @@
 				return FALSE
 			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 			buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
-			balloon_alert_to_viewers("[user] starts welds [src]'s damage")
+			balloon_alert_to_viewers("[user] starts welds some damage")
 			cut_overlay(GLOB.welding_sparks)
 			update_icon()
 			return TRUE
@@ -189,34 +189,34 @@
 /obj/machinery/power/fusion_engine/wirecutter_act(mob/living/user, obj/item/O)
 	if(buildstate == FUSION_ENGINE_MEDIUM_DAMAGE && !is_on)
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			balloon_alert_to_viewers("[user] fumbles around with [src]'s wiring")
+			balloon_alert_to_viewers("fumbles with [src]'s wiring")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		balloon_alert_to_viewers("[user] starts securing [src]'s wiring")
+		balloon_alert_to_viewers("starts securing [src]'s wiring")
 		if(!do_after(user,  10 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 2 SECONDS), TRUE, src, BUSY_ICON_BUILD) || buildstate != FUSION_ENGINE_MEDIUM_DAMAGE || is_on)
 			return FALSE
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		buildstate = FUSION_ENGINE_LIGHT_DAMAGE
-		balloon_alert_to_viewers("[user] secures [src]'s wiring")
+		balloon_alert_to_viewers("secures [src]'s wiring")
 		update_icon()
 		return TRUE
 
 /obj/machinery/power/fusion_engine/wrench_act(mob/living/user, obj/item/O)
 	if(buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			balloon_alert_to_viewers("[user] fumbles around with [src]'s tubing")
+			balloon_alert_to_viewers("fumbles with [src]'s tubing")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		balloon_alert_to_viewers("[user] starts repairing [src]'s tubing")
+		balloon_alert_to_viewers("starts repairing [src]'s tubing")
 		if(!do_after(user,  15 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS), TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
 			return FALSE
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		buildstate = FUSION_ENGINE_NO_DAMAGE
-		balloon_alert_to_viewers("[user] repairs [src]'s tubing")
+		balloon_alert_to_viewers("repairs [src]'s tubing")
 		update_icon()
 		return TRUE
 
@@ -231,15 +231,15 @@
 		balloon_alert(user, "There is no cell to remove")
 	else
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			balloon_alert_to_viewers("[user] fumbles around with [src]'s fuel bay")
+			balloon_alert_to_viewers("fumbles with [src]'s fuel bay")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-		balloon_alert_to_viewers("[user] starts prying [src]'s fuel bay open")
+		balloon_alert_to_viewers("starts prying [src]'s fuel bay open")
 		if(!do_after(user, 10 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 2 SECONDS), TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
 			return FALSE
-		balloon_alert_to_viewers("[user] pries [src]'s fuel bay open and removes the cell")
+		balloon_alert_to_viewers("pries [src]'s fuel bay open and removes the cell")
 		fusion_cell.update_icon()
 		user.put_in_hands(fusion_cell)
 		fusion_cell = null

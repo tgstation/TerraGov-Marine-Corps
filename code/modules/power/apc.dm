@@ -396,7 +396,7 @@
 		var/obj/item/stack/cable_coil/C = I
 
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("fumbles")
+			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -410,7 +410,7 @@
 			balloon_alert(user, "Not enough wires")
 			return
 
-		user.balloon_alert_to_viewers("starts wiring [src]")
+		balloon_alert_to_viewers("starts wiring [src]")
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || terminal || !opened || has_electronics == APC_ELECTRONICS_SECURED)
@@ -432,25 +432,25 @@
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("Fumbles around with [I]")
+			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		user.balloon_alert_to_viewers("Tries to insert APC board into [src]")
+		balloon_alert_to_viewers("Tries to insert APC board into [src]")
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		has_electronics = APC_ELECTRONICS_INSTALLED
-		user.balloon_alert_to_viewers("Inserts APC board into [src]")
+		balloon_alert_to_viewers("Inserts APC board into [src]")
 		electronics = I
 		qdel(I)
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && (machine_stat & BROKEN))
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("Fumbles around with [I]")
+			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -459,7 +459,7 @@
 
 	else if(istype(I, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("Fumbles around with [I]")
+			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -468,12 +468,12 @@
 			balloon_alert(user, "Cannot, electronics still inside")
 			return
 
-		user.balloon_alert_to_viewers("Begins replacing [src]'s front panel")
+		balloon_alert_to_viewers("Begins replacing front panel")
 
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		user.balloon_alert_to_viewers("Replaces [src]'s front panel")
+		balloon_alert_to_viewers("Replaces front panel")
 		qdel(I)
 		DISABLE_BITFIELD(machine_stat, BROKEN)
 		if(opened == APC_COVER_REMOVED)
@@ -482,21 +482,21 @@
 
 	else if(istype(I, /obj/item/frame/apc) && opened)
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("Fumbles around with [I]")
+			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(opened == APC_COVER_REMOVED)
 			opened = APC_COVER_OPENED
-		user.balloon_alert_to_viewers("Replaces [src]'s front panel")
+		balloon_alert_to_viewers("Replaces [src]'s front panel")
 		qdel(I)
 		update_icon()
 
 	else
 		if(((machine_stat & BROKEN)) && !opened && I.force >= 5)
 			opened = APC_COVER_REMOVED
-			user.balloon_alert_to_viewers("Knocks down [src]'s panel")
+			balloon_alert_to_viewers("Knocks down [src]'s panel")
 			update_icon()
 		else
 			if(issilicon(user))
@@ -504,7 +504,7 @@
 
 			if(!opened && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(I) || iswirecutter(I)))
 				return attack_hand(user)
-			user.balloon_alert_to_viewers("Hits [src] with [I]")
+			balloon_alert_to_viewers("Hits [src] with [I]")
 
 
 /obj/machinery/power/apc/crowbar_act(mob/user, obj/item/I)
@@ -515,7 +515,7 @@
 				balloon_alert(user, "Disconnect the wires")
 				return
 			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-				user.balloon_alert_to_viewers("Fumbles around removing cell from [src]")
+				balloon_alert_to_viewers("Fumbles around removing cell from [src]")
 				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
@@ -525,10 +525,10 @@
 				if(has_electronics == APC_ELECTRONICS_INSTALLED)
 					has_electronics = APC_ELECTRONICS_MISSING
 					if(machine_stat & BROKEN)
-						user.balloon_alert_to_viewers("Removes [src]'s charred control board")
+						balloon_alert_to_viewers("Removes the charred control board")
 						return
 					else
-						user.balloon_alert_to_viewers("Removes [src]'s control board")
+						balloon_alert_to_viewers("Removes the control board")
 						new /obj/item/circuitboard/apc(loc)
 						return
 		else if(opened != APC_COVER_REMOVED)
@@ -557,11 +557,11 @@
 	if(opened)
 		if(cell)
 			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-				user.balloon_alert_to_viewers("Fumbles around with [I]")
+				balloon_alert_to_viewers("fumbles")
 				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
-			user.balloon_alert_to_viewers("Removes cell from [src]")
+			balloon_alert_to_viewers("Removes cell")
 			var/turf/T = get_turf(user)
 			cell.forceMove(T)
 			cell.update_icon()
@@ -587,7 +587,6 @@
 			update_icon()
 	else
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN)?"open":"close"] the panel on [src]."))
 		balloon_alert(user, "wires [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
 		update_icon()
 
@@ -603,24 +602,24 @@
 		return
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		user.balloon_alert_to_viewers("Fumbles around with [I]")
+		balloon_alert_to_viewers("fumbles")
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	if(!I.tool_start_check(user, amount = 3))
 		return
-	user.balloon_alert_to_viewers("[user.name] welds [src]")
+	balloon_alert_to_viewers("welds [src]")
 
 	if(!I.use_tool(src, user, 50, volume = 50, amount = 3))
 		return
 
 	if((machine_stat & BROKEN) || opened == APC_COVER_REMOVED)
 		new /obj/item/stack/sheet/metal(loc)
-		user.balloon_alert_to_viewers("cuts apart [src]")
+		balloon_alert_to_viewers("cuts apart [src]")
 	else
 		new /obj/item/frame/apc(loc)
-		user.balloon_alert_to_viewers("cuts [src] from the wall")
+		balloon_alert_to_viewers("cuts [src] from the wall")
 	qdel(src)
 	return TRUE
 
@@ -633,11 +632,11 @@
 
 	if(opened && cell && !issilicon(user))
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("Fumbles around with [src]")
+			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
-		user.balloon_alert_to_viewers("removes [src] from [src]")
+		balloon_alert_to_viewers("removes [src] from [src]")
 		user.put_in_hands(cell)
 		cell.update_icon()
 		set_cell(null)
@@ -732,7 +731,7 @@
 		if("lock")
 			if(usr.has_unlimited_silicon_privilege)
 				if((machine_stat & (BROKEN|MAINT)))
-					balloon_alert(usr, "APC not responsive")
+					balloon_alert(usr, "APC unresponsive")
 				else
 					locked = !locked
 					update_icon()

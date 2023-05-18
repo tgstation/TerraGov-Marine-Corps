@@ -68,10 +68,10 @@
 	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
 		for(var/datum/reagent/X in I.reagents.reagent_list)
 			if(X.medbayblacklist)
-				user.balloon_alert(user, "Harmful substance detected")
+				balloon_alert(user, "Harmful substance detected")
 				return
 		if(beaker)
-			user.balloon_alert(user, "Beaker already loaded")
+			balloon_alert(user, "Beaker already loaded")
 			return
 		user.transferItemToLoc(I, src)
 		beaker = I

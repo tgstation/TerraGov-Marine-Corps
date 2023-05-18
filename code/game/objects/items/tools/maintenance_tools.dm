@@ -263,7 +263,7 @@
 			playsound(loc, 'sound/items/weldingtool_on.ogg', 25)
 			welding = 1
 			if(M)
-				balloon_alert(M, "Turns [src] on")
+				balloon_alert(M, "Turns on")
 			set_light(1, LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
@@ -487,7 +487,7 @@
 		if(cell.charge >= cell.maxcharge)
 			balloon_alert(user, "Fully charged")
 			return
-	balloon_alert(user, "Stops charging the cell")
+	balloon_alert(user, "Stops charging")
 
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
@@ -496,7 +496,7 @@
 	if(!istype(I, /obj/item/cell))
 		return
 	if(istype(I, /obj/item/cell/rtg/large))
-		balloon_alert(user, "Too large to fit")
+		balloon_alert(user, "Too large")
 		return
 	if(!user.drop_held_item())
 		return

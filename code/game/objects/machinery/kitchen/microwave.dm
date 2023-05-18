@@ -50,21 +50,21 @@
 	. = ..()
 
 	if(broken == 2 && isscrewdriver(I))
-		balloon_alert_to_viewers("[user] starts to fix the microwave")
+		balloon_alert_to_viewers("starts to fix the microwave")
 
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		balloon_alert_to_viewers("[user] fixes part of the microwave")
+		balloon_alert_to_viewers("fixes part of the microwave")
 		broken = 1
 
 	else if(broken == 1 && iswrench(I))
-		balloon_alert_to_viewers("[user] starts to fix part of the microwave")
+		balloon_alert_to_viewers("starts to fix part of the microwave")
 
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		balloon_alert_to_viewers("[user] fixes the microwave")
+		balloon_alert_to_viewers("fixes the microwave")
 		icon_state = "mw"
 		broken = 0
 		dirty = 0
@@ -79,12 +79,12 @@
 			balloon_alert(user, "Very dirty")
 			return TRUE
 
-		balloon_alert_to_viewers("[user] starts cleaning [src]")
+		balloon_alert_to_viewers("starts cleaning [src]")
 
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		balloon_alert_to_viewers("[user] cleans the [src]")
+		balloon_alert_to_viewers("cleans the [src]")
 		dirty = 0
 		broken = 0
 		icon_state = "mw"

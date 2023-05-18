@@ -337,7 +337,7 @@
 				return
 
 			beaker = I
-			balloon_alert(user, "You set [I] on the machine")
+			balloon_alert(user, "Sets [I] on the machine")
 			update_icon()
 			updateUsrDialog()
 			return
@@ -359,7 +359,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 		cell = I
-		balloon_alert(user, "You insert \the [cell]")
+		balloon_alert(user, "Inserts")
 		overlays.Cut()
 		start_processing()
 		update_icon()
@@ -368,7 +368,7 @@
 /obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	overlays.Cut()
-	balloon_alert_to_viewers("[user] [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "opens" : "closes"] the battery compartment.")
+	balloon_alert_to_viewers("[CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "opens" : "closes"] the battery compartment")
 	update_icon()
 	return TRUE
 
@@ -377,7 +377,7 @@
 		return FALSE
 	cell.forceMove(loc)
 	cell = null
-	balloon_alert_to_viewers("[user] pries out the battery.")
+	balloon_alert_to_viewers("pries out battery.")
 	stop_processing()
 	overlays.Cut()
 	update_icon()

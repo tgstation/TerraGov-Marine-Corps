@@ -112,7 +112,7 @@
 
 /obj/item/tool/soap/attack(mob/target, mob/user)
 	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_selected == "mouth" )
-		balloon_alert_to_viewers("[user] washes [target]'s mouth")
+		balloon_alert_to_viewers("washes mouth out with soap")
 		return
 
 /obj/item/tool/soap/nanotrasen
