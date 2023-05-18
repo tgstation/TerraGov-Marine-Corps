@@ -33,8 +33,6 @@
 	icon_state = "m43_e"
 	maxcharge = 1600
 
-
-
 /obj/item/cell/lasgun/pulse
 	name = "\improper M19C4 pulse battery"
 	desc = "An advanced, ultrahigh capacity battery used to power the M19C4 pulse rifle system; Uses pulse-based energy rather than laser energy, massively increasing its firepower. It can also recharge on its own."
