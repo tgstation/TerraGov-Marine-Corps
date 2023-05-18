@@ -502,12 +502,8 @@
 		return
 
 	I.forceMove(src)
-	var/replace_install = "You replace the cell in \the [src]"
-	if(!cell)
-		replace_install = "You install a cell in \the [src]"
-	else
-		cell.update_icon()
-		user.put_in_hands(cell)
+	cell.update_icon()
+	user.put_in_hands(cell)
 	cell = I
 	balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
