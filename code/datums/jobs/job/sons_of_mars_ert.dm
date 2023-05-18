@@ -739,14 +739,11 @@
 	head = /obj/item/clothing/head/modular/som/hades
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/pyro
 	suit_store = /obj/item/weapon/twohanded/fireaxe/som
-	belt = /obj/item/storage/belt/marine/som
+	belt = /obj/item/storage/belt/sparepouch/som
 	back = /obj/item/weapon/gun/flamer/som/mag_harness
 
 /datum/outfit/job/som/ert/veteran/breacher_flamer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/som, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/som, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/som, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/som, SLOT_IN_BELT)
