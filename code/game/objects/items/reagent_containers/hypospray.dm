@@ -600,7 +600,7 @@
 	name = "big isotonic hypospray"
 	desc = "A hypospray loaded with Saline-Glucose solution. A chemical that replenishes blood."
 	list_reagents = list(
-		/datum/reagent/medicine/isotonic = 120,
+		/datum/reagent/medicine/saline_glucose = 120,
 	)
 	description_overlay = "Is"
 
@@ -608,6 +608,6 @@
 	name = "big hypervene hypospray"
 	desc = "A hypospray loaded with hypervene. A chemical that purges all chemicals from the bloodstream."
 	list_reagents = list(
-		/datum/reagent/medicine/hypervene = 120,
+		/datum/reagent/hypervene = 120,
 	)
 	description_overlay = "Hy"
