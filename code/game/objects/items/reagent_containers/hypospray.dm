@@ -611,3 +611,14 @@
 		/datum/reagent/hypervene = 120,
 	)
 	description_overlay = "Hy"
+
+/obj/item/reagent_containers/hypospray/advanced/big/hypervene
+	name = "big combat hypospray"
+	desc = "A hypospray loaded with BKTT mix. Useful for quick application of healing and painkilling chemicals in combat."
+	list_reagents = list(
+		/datum/reagent/medicine/bicaridine = 40,
+		/datum/reagent/medicine/kelotane = 40,
+		/datum/reagent/medicine/tricordrazine = 20,
+		/datum/reagent/medicine/tramadol = 20,
+	)
+	description_overlay = "Cm"
