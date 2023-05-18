@@ -7,7 +7,7 @@
 	prefered_slot = SLOT_W_UNIFORM
 	greyscale_config = /datum/greyscale_config/kama
 	greyscale_colors = COLOR_VERY_LIGHT_GRAY
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 	attach_delay = 0 SECONDS
 	detach_delay = 0 SECONDS
 	secondary_color = TRUE
