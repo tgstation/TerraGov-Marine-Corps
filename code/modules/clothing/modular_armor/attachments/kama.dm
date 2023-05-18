@@ -3,7 +3,7 @@
 	desc = "A chromatic kama to improve on the design of the 7E badge, this kama is capable of two colors, for all your fashion needs. Hanged from the belt, it serves to flourish the lower extremities.  \n Interact with facepaint to color. Attaches onto a uniform."
 	icon_state = "kama"
 	slot = ATTACHMENT_SLOT_KAMA
-	attachment_layer = CAPE_LAYER
+	attachment_layer = KAMA_LAYER
 	prefered_slot = SLOT_W_UNIFORM
 	greyscale_config = /datum/greyscale_config/kama
 	greyscale_colors = COLOR_VERY_LIGHT_GRAY
