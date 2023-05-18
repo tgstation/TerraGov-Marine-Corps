@@ -377,7 +377,7 @@
 	else if(iswelder(I))
 		var/obj/item/tool/weldingtool/T = I
 		if(T.welding)
-			balloon_alert(user, "You are stupid")
+			balloon_alert(user, "That was stupid")
 			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
 			explosion(src, light_impact_range = 3)
 			qdel(src)
