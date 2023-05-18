@@ -3170,7 +3170,7 @@
 "qQ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/computer3frame/nuke_disk_candidate,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "qS" = (
@@ -4132,7 +4132,7 @@
 /turf/open/ground,
 /area/space)
 "xc" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/computer3frame/nuke_disk_candidate,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "xq" = (
@@ -4833,7 +4833,7 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/west1)
 "Iu" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/computer3frame/nuke_disk_candidate,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
 "Ix" = (

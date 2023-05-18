@@ -12619,7 +12619,7 @@
 	},
 /area/desert_dam/interior/dam_interior/atmos_storage)
 "bDC" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/computer3frame/nuke_disk_candidate,
 /turf/open/floor/prison/green{
 	dir = 1
 	},
@@ -24478,7 +24478,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/computer3frame/nuke_disk_candidate,
 /turf/open/floor/prison,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dda" = (
@@ -57556,7 +57556,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/warehouse/warehouse)
 "uwC" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/computer3frame/nuke_disk_candidate,
 /obj/machinery/light,
 /turf/open/floor/mainship/blue{
 	dir = 6

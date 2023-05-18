@@ -474,7 +474,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
 "FI" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/computer3frame/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Gl" = (

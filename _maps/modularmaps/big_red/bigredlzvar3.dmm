@@ -1889,6 +1889,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
+"Vc" = (
+/obj/structure/computer3frame/nuke_disk_candidate,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
 "Vj" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tech_supply,
@@ -5226,7 +5230,7 @@ So
 iD
 gw
 gf
-gf
+Vc
 gf
 iD
 JS

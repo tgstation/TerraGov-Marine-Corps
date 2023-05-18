@@ -204,10 +204,15 @@
 //list of disk gens we want to spawn for nuke related gamemodes. Could just use subtypes, but using a list in case more gen related stuff is added in the future
 GLOBAL_LIST_INIT(nuke_disk_generator_types, list(/obj/machinery/computer/nuke_disk_generator/red, /obj/machinery/computer/nuke_disk_generator/green, /obj/machinery/computer/nuke_disk_generator/blue))
 
+/obj/structure/computer3frame/nuke_disk_candidate
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "nuke_rand"
+
 //Randomised spawn points for nuke disk generators
 /obj/structure/computer3frame/nuke_disk_candidate/Initialize(mapload)
 	. = ..()
 	GLOB.nuke_disk_spawn_locs += src
+	icon_state = "tank0"
 
 /obj/structure/computer3frame/nuke_disk_candidate/Destroy()
 	GLOB.nuke_disk_spawn_locs -= src

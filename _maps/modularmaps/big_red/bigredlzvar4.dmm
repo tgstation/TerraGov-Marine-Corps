@@ -2007,6 +2007,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"ZZ" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/computer3frame/nuke_disk_candidate,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
 
 (1,1,1) = {"
 mL
@@ -5163,7 +5168,7 @@ ay
 oA
 Om
 vp
-wF
+ZZ
 vp
 oA
 lR

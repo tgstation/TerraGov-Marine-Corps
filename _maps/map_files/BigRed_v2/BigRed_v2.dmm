@@ -8531,7 +8531,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "eIX" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/computer3frame/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "eKb" = (

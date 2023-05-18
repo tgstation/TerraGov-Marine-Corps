@@ -492,6 +492,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
+"mm" = (
+/obj/structure/computer3frame/nuke_disk_candidate,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
 "ms" = (
 /obj/structure/window/reinforced,
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -5124,7 +5128,7 @@ er
 Sw
 fo
 bc
-bc
+mm
 bc
 Sw
 jc
