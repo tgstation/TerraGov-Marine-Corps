@@ -610,6 +610,7 @@
 	list_reagents = list(
 		/datum/reagent/hypervene = 120,
 	)
+	amount_per_transfer_from_this = 3
 	description_overlay = "Hy"
 
 /obj/item/reagent_containers/hypospray/advanced/big/combat
