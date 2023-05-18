@@ -119,8 +119,8 @@
 		return FALSE
 
 	if(is_wired)
-		X.visible_message(span_danger("The barbed wire slices into [X]!"),
-		span_danger("The barbed wire slices into us!"), null, 5)
+		balloon_alert_to_viewers("Barbed wire slices into [X]", ignored_mobs = X)
+		balloon_alert(X, "Wire slices into us")
 		X.apply_damage(10, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
 
 	return ..()
@@ -130,7 +130,7 @@
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+			balloon_alert(user, "Can't, it's melting")
 			return
 
 	if(istype(I, /obj/item/stack/barbed_wire))
@@ -165,8 +165,7 @@
 		return TRUE
 
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
-	user.visible_message(span_notice("[user] removes the barbed wire on [src]."),
-	span_notice("You remove the barbed wire on [src]."))
+	balloon_alert_to_viewers("Removes the barbed wire")
 	modify_max_integrity(max_integrity - 50)
 	can_wire = TRUE
 	is_wired = FALSE
@@ -514,8 +513,7 @@
 		return
 
 	if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to attach armor plates to [src]."),
-		span_notice("You fumble around figuring out how to attach armor plates on [src]."))
+		balloon_alert_to_viewers("[user] fumbles around with [src]")
 		var/fumbling_time = 2 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
