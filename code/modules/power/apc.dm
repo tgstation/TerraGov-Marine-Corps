@@ -389,14 +389,14 @@
 			return
 
 		locked = !locked
-		user.balloon_alert_to_viewers("[locked ? "locks" : "unlocks"] [src]")
+		balloon_alert_to_viewers("[locked ? "locks" : "unlocks"] [src]")
 		update_icon()
 
 	else if(iscablecoil(I) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
 		var/obj/item/stack/cable_coil/C = I
 
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("[user] fumbles around with [src]")
+			user.balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return

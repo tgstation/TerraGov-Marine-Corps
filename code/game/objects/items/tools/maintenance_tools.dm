@@ -286,7 +286,7 @@
 		heat = 0
 		if(M)
 			if(!message)
-				balloon_alert(M, "Switches [src] off")
+				balloon_alert(M, "Switches off")
 			else
 				balloon_alert(M, "Out of fuel")
 			if(M.r_hand == src)
@@ -402,7 +402,7 @@
 		FT.current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		FT.caliber = CALIBER_FUEL
-		balloon_alert(user, "Refills [FT] with [lowertext(FT.caliber)]")
+		balloon_alert(user, "Refills with [lowertext(FT.caliber)]")
 		FT.update_icon()
 
 	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
@@ -414,7 +414,7 @@
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		RS.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		balloon_alert(user, "Refills [RS]")
+		balloon_alert(user, "Refills")
 		RS.update_icon()
 
 	else
