@@ -92,12 +92,12 @@
 	max_w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
-		/obj/item/storage/syringe_case,
-		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 	)
 
@@ -316,6 +316,7 @@
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
