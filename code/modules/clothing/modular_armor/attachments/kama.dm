@@ -13,7 +13,6 @@
 	secondary_color = TRUE
 	attachments_by_slot = list(ATTACHMENT_SLOT_KAMA_HIGHLIGHT)
 	starting_attachments = list(/obj/item/armor_module/greyscale/kama_highlight)
-	appearance_flags = KEEP_APART|TILE_BOUND
 
 /obj/item/armor_module/greyscale/kama/Initialize(mapload)
 	. = ..()
