@@ -358,7 +358,7 @@
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	TIMER_COOLDOWN_START(user, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
-	balloon_alert_to_viewers("[src] begins to shake violently", ignored_mobs = user)
+	balloon_alert_to_viewers("Begins to shake violently", ignored_mobs = user)
 	balloon_alert(user, "You push on the door... [DisplayTimeText(breakout_time)] until escape")
 	if(!do_after(user, breakout_time, target = src))
 		if(!opened) //Didn't get opened in the meatime.
@@ -414,7 +414,7 @@
 		return FALSE
 
 	locked = !locked
-	balloon_alert_to_viewers("[user] [locked ? null : "un"]locks [src]")
+	balloon_alert_to_viewers("[locked ? null : "un"]locked")
 	update_icon()
 	return TRUE
 

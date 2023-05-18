@@ -119,7 +119,6 @@
 		return FALSE
 
 	if(is_wired)
-		balloon_alert_to_viewers("Barbed wire slices into [X]", ignored_mobs = X)
 		balloon_alert(X, "Wire slices into us")
 		X.apply_damage(10, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
 

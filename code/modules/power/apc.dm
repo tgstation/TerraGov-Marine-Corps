@@ -389,7 +389,7 @@
 			return
 
 		locked = !locked
-		balloon_alert_to_viewers("[locked ? "locks" : "unlocks"] [src]")
+		balloon_alert_to_viewers("[locked ? "locked" : "unlocked"]")
 		update_icon()
 
 	else if(iscablecoil(I) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
@@ -426,7 +426,7 @@
 		if(!C.use(10))
 			return
 
-		user.balloon_alert_to_viewers("Wires [src]")
+		balloon_alert_to_viewers("Wired]")
 		make_terminal()
 		terminal.connect_to_network()
 
