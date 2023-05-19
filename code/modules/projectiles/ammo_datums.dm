@@ -1342,7 +1342,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 21
 	damage = 100
 	penetration = 30
-	sundering = 100
+	sundering = 50
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 2, knockback = 3)
@@ -1351,9 +1351,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "smart armor piercing railgun slug"
 	hud_state = "railgun_smart"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
-	damage = 75
+	damage = 100
 	penetration = 20
-	sundering = 50
+	sundering = 20
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 3, slowdown = 3)
