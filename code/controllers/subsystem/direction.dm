@@ -35,13 +35,13 @@ SUBSYSTEM_DEF(direction)
 	mobs_in_processing = SSdirection.mobs_in_processing
 	last_faction_id = SSdirection.last_faction_id
 
-/datum/controller/subsystem/direction/Initialize(start_timeofday)
-	. = ..()
+/datum/controller/subsystem/direction/Initialize()
 	// Static squads/factions can be defined here for tracking
 	init_squad(TRACKING_ID_MARINE_COMMANDER)
 	for (var/hivenumber in GLOB.hive_datums)
 		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-		init_squad(hivenumber, HS.living_xeno_ruler, )
+		init_squad(hivenumber, HS.living_xeno_ruler)
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/direction/stat_entry()

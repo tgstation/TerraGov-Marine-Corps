@@ -1471,7 +1471,6 @@
 	pixel_x = -4;
 	pixel_y = -10
 	},
-/obj/structure/sign/hydro,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle5)
 "hQ" = (
@@ -3877,10 +3876,6 @@
 "ud" = (
 /turf/open/floor/wood,
 /area/lv624/lazarus/spaceport)
-"ue" = (
-/obj/structure/sign/hydro,
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
-/area/lv624/ground/jungle9)
 "uf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -7336,12 +7331,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
-"Ll" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/sign/hydro,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "Ln" = (
 /obj/structure/flora/ausbushes/genericbush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -8516,10 +8505,6 @@
 /obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport2)
-"QJ" = (
-/obj/structure/sign/hydro,
-/turf/open/ground/grass/weedable,
-/area/lv624/ground/jungle5)
 "QK" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -8710,11 +8695,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
-"RE" = (
-/obj/effect/ai_node,
-/obj/structure/sign/hydro,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "RF" = (
 /obj/machinery/sleeper,
 /turf/open/floor/tile/blue/taupeblue{
@@ -9594,10 +9574,6 @@
 	},
 /turf/open/floor/tile,
 /area/lv624/lazarus/medbay)
-"VL" = (
-/obj/structure/sign/hydro,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "VM" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = 7;
@@ -11767,7 +11743,7 @@ km
 wM
 JY
 JY
-wM
+JY
 wM
 tH
 wM
@@ -16247,7 +16223,7 @@ JH
 oy
 JH
 JH
-Ll
+JH
 OZ
 rn
 Zp
@@ -16351,7 +16327,7 @@ ft
 GQ
 ft
 ft
-VL
+ft
 Du
 EH
 Zp
@@ -16455,7 +16431,7 @@ ft
 GQ
 ft
 ft
-RE
+Du
 EH
 EH
 EH
@@ -16559,7 +16535,7 @@ ft
 gY
 ft
 ft
-VL
+ft
 EH
 EH
 EH
@@ -16663,7 +16639,7 @@ ft
 GQ
 ft
 ft
-ue
+EH
 EH
 EH
 ft
@@ -16976,7 +16952,7 @@ CB
 wK
 ph
 ph
-QJ
+Ya
 eX
 Om
 Om

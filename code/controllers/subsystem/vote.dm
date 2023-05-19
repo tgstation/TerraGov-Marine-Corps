@@ -218,7 +218,7 @@ SUBSYSTEM_DEF(vote)
 /// Start the vote, and prepare the choices to send to everyone
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, ignore_delay = FALSE, popup_override = FALSE)
 	//Server is still intializing.
-	if(!Master.current_runlevel)
+	if(!MC_RUNNING(init_stage))
 		to_chat(usr, span_warning("Cannot start vote, server is not done initializing."))
 		return FALSE
 	var/lower_admin = FALSE

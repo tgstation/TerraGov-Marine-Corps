@@ -65,6 +65,12 @@
 	icon_state = "helljumper"
 	item_state = "helljumper"
 
+/obj/item/clothing/suit/modular/jaeger/ranger
+	name = "\improper Jaeger Ranger medium exoskeleton"
+	desc = "A Ranger-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a moderate amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	icon_state = "ranger"
+	item_state = "ranger"
+
 // Light
 
 /obj/item/clothing/suit/modular/jaeger/light
@@ -142,6 +148,7 @@
 		/obj/item/armor_module/greyscale/visor/marine/eod,
 		/obj/item/armor_module/greyscale/visor/marine/assault,
 		/obj/item/armor_module/greyscale/visor/marine/helljumper,
+		/obj/item/armor_module/greyscale/visor/marine/ranger,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -213,3 +220,10 @@
 	icon_state = "helljumper"
 	item_state = "helljumper"
 	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/helljumper, /obj/item/armor_module/storage/helmet)
+
+/obj/item/clothing/head/modular/marine/ranger
+	name = "Jaeger Pattern Ranger Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Ranger markings"
+	icon_state = "ranger"
+	item_state = "ranger"
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/ranger, /obj/item/armor_module/storage/helmet)

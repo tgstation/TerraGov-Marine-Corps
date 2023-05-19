@@ -491,14 +491,14 @@
 	if(!istype(TU))
 		return
 	if(is_ground_level(TU.z))
-		target = new(src, name, user_squad)//da lazer is stored in the grenade
+		target = new(src, null, name, user_squad)//da lazer is stored in the grenade
 
 /obj/item/explosive/grenade/flare/cas/process()
 	. = ..()
 	var/turf/TU = get_turf(src)
 	if(is_ground_level(TU.z))
 		if(!target && active)
-			target = new(src, name, user_squad)
+			target = new(src, null, name, user_squad)
 
 /obj/item/explosive/grenade/flare/cas/turn_off()
 	QDEL_NULL(target)

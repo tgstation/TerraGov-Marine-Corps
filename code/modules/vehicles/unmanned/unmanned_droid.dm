@@ -47,6 +47,9 @@
 		UnregisterSignal(user, COMSIG_UNMANNED_COORDINATES)
 
 /obj/vehicle/unmanned/droid/Destroy()
+	if(beacon_datum)
+		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(beacon_datum)
 	if(!remote_user) //No remote user, no need to do this.
 		return ..()
 	var/mob/living/living_user = remote_user.resolve()

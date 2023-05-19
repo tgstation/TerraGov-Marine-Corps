@@ -206,9 +206,9 @@
 /turf/open/lavaland/basalt
 	name = "basalt"
 	icon_state = "basalt"
-	shoefootstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
-	mediumxenofootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_GRAVEL
+	barefootstep = FOOTSTEP_GRAVEL
+	mediumxenofootstep = FOOTSTEP_GRAVEL
 
 /turf/open/lavaland/basalt/cave
 	name = "cave"
