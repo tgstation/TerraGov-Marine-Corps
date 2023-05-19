@@ -130,7 +130,7 @@
 		if(PUPPET_SEEK_CLOSEST)
 			return seek_and_attack_closest()
 		if(PUPPET_RECALL)
-			escorted_atom = master_ref.resolve()
+			escorted_atom = master_ref?.resolve()
 			base_action = ESCORTING_ATOM
 			change_action(ESCORTING_ATOM, escorted_atom)
 			too_far_escort = TRUE
