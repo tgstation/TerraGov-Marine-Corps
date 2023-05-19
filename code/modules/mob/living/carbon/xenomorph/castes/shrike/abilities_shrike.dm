@@ -409,6 +409,8 @@
 	targetturf = locate(targetturf.x + rand(1, 6), targetturf.y + rand(1, 6), targetturf.z)
 	if(do_after(owner, VORTEX_PUSH_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		for(var/atom/movable/victim in range(VORTEX_RANGE, owner.loc))
+			if(victim == owner)
+				continue
 			if(victim.anchored)
 				continue
 			if((isliving(victim)))
@@ -417,4 +419,30 @@
 					continue
 				victim.throw_at(targetturf, 6, 1, owner, FALSE)
 
+	if(do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+		for(var/atom/movable/victim in view(VORTEX_RANGE, owner.loc))
+			if(victim.anchored)
+				continue
+			if((isliving(victim)))
+				var/mob/livingtarget = victim
+				if(livingtarget.stat == DEAD)
+					continue
+			victim.throw_at(owner, 6, 1, owner, FALSE)
 
+	for(var/turf/affected_tile in range(VORTEX_RANGE, owner.loc))
+		affected_tile.Shake(4, 4, 5 SECONDS)
+		for(var/i in affected_tile)
+			var/atom/movable/affected = i
+			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
+				affected.Shake(4, 4, 20)
+				continue
+			if(ishuman(affected))
+				var/mob/living/carbon/human/H = affected
+				if(H.stat == DEAD)
+					continue
+				H.apply_effects(0, 1)
+				shake_camera(H, 2, 1)
+			var/throwlocation = affected.loc
+			for(var/x in 1 to 6)
+				throwlocation = get_step(throwlocation, owner.dir)
+			affected.throw_at(owner, 6, 1, owner, FALSE)
