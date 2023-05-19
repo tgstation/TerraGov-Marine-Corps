@@ -1225,6 +1225,7 @@
 #include "code\modules\clothing\modular_armor\attachments\arm_plates.dm"
 #include "code\modules\clothing\modular_armor\attachments\badges.dm"
 #include "code\modules\clothing\modular_armor\attachments\cape.dm"
+#include "code\modules\clothing\modular_armor\attachments\kama.dm"
 #include "code\modules\clothing\modular_armor\attachments\chest_plates.dm"
 #include "code\modules\clothing\modular_armor\attachments\leg_plates.dm"
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"
