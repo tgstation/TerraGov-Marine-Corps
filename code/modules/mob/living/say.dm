@@ -82,6 +82,18 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 
 	var/static/list/one_character_prefix = list(MODE_HEADSET = TRUE, MODE_ROBOT = TRUE, MODE_WHISPER = TRUE, MODE_SING = TRUE)
 
+
+	var/datum/saymode/saymode = get_saymode(message, talk_key)
+	var/message_mode = get_message_mode(message)
+	var/original_message = message
+	var/in_critical = InCritical()
+
+	if(one_character_prefix[message_mode])
+		message = copytext_char(message, 2)
+	else if(message_mode || saymode)
+		message = copytext_char(message, 3)
+	message = trim_left(message)
+
 	var/list/filter_result
 	var/list/soft_filter_result
 	if(client && !forced)
@@ -114,17 +126,6 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[message]\"")
 		SSblackbox.record_feedback("tally", "passed_soft_ic_blocked_words", 1, lowertext(config.soft_ic_filter_regex.match))
 		log_filter("Soft IC (Passed)", message, filter_result)
-
-	var/datum/saymode/saymode = get_saymode(message, talk_key)
-	var/message_mode = get_message_mode(message)
-	var/original_message = message
-	var/in_critical = InCritical()
-
-	if(one_character_prefix[message_mode])
-		message = copytext_char(message, 2)
-	else if(message_mode || saymode)
-		message = copytext_char(message, 3)
-	message = trim_left(message)
 
 	if(stat == DEAD)
 		say_dead(original_message)
