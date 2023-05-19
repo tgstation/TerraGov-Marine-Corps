@@ -543,8 +543,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	lifespan = 0.7 SECONDS
 	fade = 8 SECONDS
 	grow = 0.1
-	drift = generator(GEN_CIRCLE, 0, 10)
-	scale = 0.5
+	drift = generator(GEN_CIRCLE, 0, 5)
+	scale = 0.3
 	spin = generator(GEN_NUM, -20, 20)
 	velocity = list(50, 0)
 	friction = generator(GEN_NUM, 0.1, 0.5)
@@ -588,8 +588,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -100
 	placed_overlay_iconstate = "sadar"
 	windup_delay = 0.4 SECONDS
-	///the smoke effect after firing
-	var/obj/effect/abstract/particle_holder/backblast
 	///removes backblast damage if false
 	var/backblastdamage = TRUE
 
@@ -602,9 +600,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	var/angle = Get_Angle(loc, target)
 	var/x_component = sin(angle) * -30
 	var/y_component = cos(angle) * -30
-	backblast = new(blast_source, /particles/backblast)
+	var/obj/effect/abstract/particle_holder/backblast = new(blast_source, /particles/backblast)
 	backblast.particles.velocity = list(x_component, y_component)
-	QDEL_NULL_IN(src, backblast, 0.7 SECONDS)
+	addtimer(VARSET_CALLBACK(backblast.particles, count, 0), 5)
+	QDEL_IN(backblast, 0.7 SECONDS)
 
 	if(!backblastdamage)
 		return
