@@ -1,3 +1,5 @@
+#define WITHER_RANGE 15
+
 /mob/living/carbon/xenomorph/puppet
 	caste_base_type = /mob/living/carbon/xenomorph/puppet
 	name = "Puppet"
@@ -13,7 +15,6 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -1
 	flags_pass = PASSXENO
-	density = FALSE
 	var/mob/living/carbon/xenomorph/master
 
 /mob/living/carbon/xenomorph/puppet/handle_special_state() //prevent us from using different run/walk sprites
@@ -27,24 +28,25 @@
 
 /mob/living/carbon/xenomorph/puppet/Life()
 	. = ..()
-	if(get_dist(src, master) > 15)
+	if(get_dist(src, master) > WITHER_RANGE)
 		adjustBruteLoss(15)
 	else
 		adjustBruteLoss(-5)
 //widow code again hooray
 /datum/ai_behavior/puppet
 	target_distance = 7
-	base_action = ESCORTING_ATOM
-	//The atom that will be used in only_set_escorted_atom proc, by default this atom is the spiderling's widow
-	var/datum/weakref/default_escorted_atom
+	base_action = IDLE
+	identifier = IDENTIFIER_XENO
+	///should we go back to escorting the puppeteer if we stray too far
+	var/too_far_escort = TRUE
+	var/datum/weakref/master_ref
 
 /datum/ai_behavior/puppet/New(loc, parent_to_assign, escorted_atom)
 	. = ..()
-	default_escorted_atom = WEAKREF(escorted_atom)
+	master_ref = WEAKREF(escorted_atom)
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, PROC_REF(fucking_die))
-	RegisterSignal(escorted_atom, COMSIG_PUPPET_SEEK_CLOSEST, PROC_REF(seek_and_attack_closest))
-	RegisterSignal(escorted_atom, COMSIG_PUPPET_SEEK, PROC_REF(seek_and_attack))
 	RegisterSignal(escorted_atom, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
+	change_order(null, PUPPET_RECALL)
 
 /datum/ai_behavior/puppet/proc/fucking_die(mob/living/source)
 	SIGNAL_HANDLER
@@ -59,11 +61,32 @@
 		return
 	if(isliving(atom_to_walk_to))
 		var/mob/living/victim = atom_to_walk_to
-		if(victim.stat != CONSCIOUS)
-			change_action(ESCORTING_ATOM, escorted_atom)
+		if(victim.stat == DEAD)
+			late_initialize()
 			return
 	mob_parent.face_atom(atom_to_walk_to)
 	mob_parent.UnarmedAttack(atom_to_walk_to, mob_parent)
+
+//xeno code go
+/datum/ai_behavior/puppet/look_for_new_state()
+	switch(current_action)
+		if(MOVING_TO_NODE, FOLLOWING_PATH)
+			if(get_dist(mob_parent, escorted_atom) > WITHER_RANGE && too_far_escort)
+				change_order(null, PUPPET_RECALL)
+				return
+			if(!change_order(null, PUPPET_SEEK_CLOSEST))
+				change_action(MOVING_TO_NODE)
+				return
+		if(IDLE)
+			if(!change_order(null, PUPPET_SEEK_CLOSEST))
+				return
+		if(ESCORTING_ATOM)
+			if(!escorted_atom)
+				escorted_atom = master_ref.resolve()
+		if(MOVING_TO_ATOM)
+			if(!atom_to_walk_to) //edge case
+				late_initialize()
+	return ..()
 
 /datum/ai_behavior/puppet/register_action_signals(action_type)
 	if(action_type == MOVING_TO_ATOM)
@@ -80,14 +103,13 @@
 	return ..()
 
 /datum/ai_behavior/puppet/proc/seek_and_attack_closest(mob/living/source)
-	var/victim = get_nearest_target(mob_parent, 9, TARGET_HUMAN, mob_parent.faction)
+	var/victim = get_nearest_target(mob_parent, target_distance, TARGET_HUMAN, mob_parent.faction)
 	if(!victim)
 		return FALSE
 	change_action(MOVING_TO_ATOM, victim)
 	return TRUE
 
-/datum/ai_behavior/puppet/proc/seek_and_attack(mob/living/source)
-	SIGNAL_HANDLER
+/datum/ai_behavior/puppet/proc/seek_and_attack()
 	var/list/mob/living/carbon/human/possible_victims = list()
 	for(var/mob/living/carbon/human/victim in cheap_get_humans_near(mob_parent, 9))
 		if(victim.stat == DEAD)
@@ -99,6 +121,54 @@
 	change_action(MOVING_TO_ATOM, pick(possible_victims))
 	return TRUE
 
-/datum/ai_behavior/puppet/proc/change_order(mob/living/source)
-	return
-//todo
+/datum/ai_behavior/puppet/proc/change_order(mob/living/source, order, atom/target)
+	SIGNAL_HANDLER
+	if(!order)
+		stack_trace("puppet AI was somehow passed a null order")
+		return FALSE
+	switch(order)
+		if(PUPPET_SEEK_CLOSEST)
+			return seek_and_attack_closest()
+		if(PUPPET_RECALL)
+			escorted_atom = master_ref.resolve()
+			base_action = ESCORTING_ATOM
+			change_action(ESCORTING_ATOM, escorted_atom)
+			too_far_escort = TRUE
+			return TRUE
+		if(PUPPET_ATTACK)
+			too_far_escort = TRUE
+			if(target)
+				change_action(MOVING_TO_ATOM, target)
+				return TRUE
+			else
+				return seek_and_attack()
+		if(PUPPET_SCOUT)
+			too_far_escort = FALSE
+			base_action = MOVING_TO_NODE
+			change_action(MOVING_TO_NODE)
+			return TRUE
+
+//stripped down xeno AI (basicmobs when?)
+/datum/ai_behavior/puppet/deal_with_obstacle(datum/source, direction)
+	var/turf/obstacle_turf = get_step(mob_parent, direction)
+	if(obstacle_turf.flags_atom & AI_BLOCKED)
+		return
+	for(var/thing in obstacle_turf.contents)
+		if(istype(thing, /obj/structure/window_frame))
+			LAZYINCREMENT(mob_parent.do_actions, obstacle_turf)
+			addtimer(CALLBACK(src, PROC_REF(climb_window_frame), obstacle_turf), 2 SECONDS)
+			return COMSIG_OBSTACLE_DEALT_WITH
+		if(isobj(thing)) //WE BASH EVERYTHING OORAH
+			var/obj/obstacle = thing
+			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
+				INVOKE_ASYNC(src, PROC_REF(attack_target), null, obstacle)
+				return COMSIG_OBSTACLE_DEALT_WITH
+	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
+		return COMSIG_OBSTACLE_DEALT_WITH
+
+/datum/ai_behavior/puppet/proc/climb_window_frame(turf/window_turf)
+	mob_parent.loc = window_turf
+	mob_parent.last_move_time = world.time
+	LAZYDECREMENT(mob_parent.do_actions, window_turf)
+
+#undef WITHER_RANGE

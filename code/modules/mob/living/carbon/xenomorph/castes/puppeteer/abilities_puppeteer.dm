@@ -155,10 +155,11 @@
 			to_chat(owner_xeno, span_xenonotice("We need to be next to our victim."))
 		return FALSE
 
+#ifndef TESTING
 	if(!HAS_TRAIT(target_human, TRAIT_UNDEFIBBABLE) || target_human.stat != DEAD)
 		to_chat(owner_xeno, span_xenonotice("The body is not yet ready for stitching!"))
 		return FALSE
-	
+#endif
 
 	if(!.)
 		return
@@ -259,7 +260,7 @@
 	if(!istype(victim, /mob/living/carbon/xenomorph/puppet) || !(victim in huskaction.puppets))
 		victim.balloon_alert(owner, "not our puppet")
 		return fail_activate()
-	if(!SEND_SIGNAL(owner, COMSIG_PUPPET_SEEK_CLOSEST))
+	if(!SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ORDER, PUPPET_SEEK_CLOSEST))
 		return fail_activate()
 	victim.balloon_alert(owner, "success")
 	RegisterSignal(victim, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(start_exploding))
@@ -334,6 +335,9 @@
 
 /datum/action/xeno_action/puppeteer_orders/action_activate(mob/living/victim)
 	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_order_images_list, radius = 35)
-	if(choice)
+	if(!choice)
 		return
-	SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ORDER, choice)
+	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ORDER, choice))
+		owner.balloon_alert(owner, "success")
+	else
+		owner.balloon_alert(owner, "fail")

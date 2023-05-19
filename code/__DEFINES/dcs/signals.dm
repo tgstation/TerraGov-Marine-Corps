@@ -925,6 +925,4 @@
 // widow spiderling mark signals
 #define COMSIG_SPIDERLING_MARK "spiderling_mark"
 //puppet
-#define COMSIG_PUPPET_SEEK "puppetseek" // seek target and attack
-#define COMSIG_PUPPET_SEEK_CLOSEST "puppetseekclosest"
 #define COMSIG_PUPPET_CHANGE_ORDER "puppetchangeorder"
