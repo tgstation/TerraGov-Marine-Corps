@@ -344,44 +344,63 @@
 	GLOB.round_statistics.xeno_acid_wells++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_acid_wells")
 
-/datum/action/xeno_action/activable/gravity_grenade
-	name = "Throw gravity grenade"
-	action_icon_state = "gas mine"
-	desc = "Throw a gravity grenades thats sucks everyone and everything in a radius inward."
-	plasma_cost = 500
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAV_NADE,
-	)
-	cooldown_timer = 1 MINUTES
 
-/datum/action/xeno_action/activable/gravity_grenade/use_ability(atom/A)
-	var/turf/T = get_turf(owner)
+// ***************************************
+// *********** Psychic Vortex
+// ***************************************
+#define VORTEX_RANGE 6
+#define VORTEX_PULL_WINDUP_TIME 2 SECONDS
+#define VORTEX_PUSH_WINDUP_TIME 1 SECONDS
+/datum/action/xeno_action/activable/psychic_vortex
+	name = "Pyschic vortex"
+	action_icon_state = "vortex"
+	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
+	ability_name = "Psychic vortex"
+	plasma_cost = 500
+	cooldown_timer = 3 MINUTES
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_VORTEX,
+	)
+
+/datum/action/xeno_action/activable/psychic_vortex/on_cooldown_finish()
+	to_chat(owner, span_notice("Our mind is ready to unleash another chaotic vortex of energy."))
+	return ..()
+
+/datum/action/xeno_action/activable/psychic_vortex/use_ability(atom/target)
 	succeed_activate()
 	add_cooldown()
-	var/obj/item/explosive/grenade/gravity/nade = new(T)
-	nade.throw_at(A, 5, 1, owner, TRUE)
-	nade.activate(owner)
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 2 SECONDS)
+	var/mob/living/carbon/xenomorph/xeno = owner
+	owner.icon_state = "[xeno.xeno_caste.caste_name][xeno.is_a_rouny ? " rouny" : ""] Screeching"
+	if(target) // Keybind use doesn't have a target
+		owner.face_atom(target)
 
-	owner.visible_message(span_warning("[owner] vomits up a roaring fleshy lump and throws it at [A]!"), span_warning("We vomit up a roaring fleshy lump and throws it at [A]!"))
-
-
-/obj/item/explosive/grenade/gravity
-	name = "gravity grenade"
-	desc = "A fleshy mass that seems way too heavy for its size. It seems to be vibrating."
-	arm_sound = 'sound/voice/predalien_roar.ogg'
-	greyscale_colors = "#3aaacc"
-	greyscale_config = /datum/greyscale_config/xenogrenade
-	det_time = 20
-
-/obj/item/explosive/grenade/gravity/prime()
-	new /obj/effect/overlay/temp/emp_pulse(loc)
-	playsound(loc, 'sound/effects/EMPulse.ogg', 50)
-	for(var/atom/movable/victim in view(3, loc))//yes this throws EVERYONE
-		if(victim.anchored)
-			continue
-		if(isliving(victim))
-			var/mob/living/livingtarget = victim
-			if(livingtarget.stat == DEAD)
+	if(!do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+		for(var/atom/movable/victim in view(VORTEX_RANGE, owner.loc))
+			if(victim.anchored)
 				continue
-		victim.throw_at(src, 5, 1, null, TRUE)
-	qdel(src)
+			if((isliving(victim)))
+				var/mob/livingtarget = victim
+				if(livingtarget.stat == DEAD)
+					continue
+				victim.throw_at(owner, 6, 1, owner, FALSE)
+
+	for(var/turf/affected_tile in view(VORTEX_RANGE, owner.loc))
+		affected_tile.Shake(4, 4, 3 SECONDS)
+		for(var/i in affected_tile)
+			var/atom/movable/affected = i
+			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
+				affected.Shake(4, 4, 20)
+				continue
+			if(ishuman(affected))
+				var/mob/living/carbon/human/H = affected
+				if(H.stat == DEAD)
+					continue
+				H.apply_effects(1, 1)
+				shake_camera(H, 2, 1)
+			var/throwlocation = affected.loc
+			for(var/x in 1 to 6)
+				throwlocation = get_step(throwlocation, owner.dir)
+			affected.throw_at(owner, 6, 1, owner, FALSE)
+
