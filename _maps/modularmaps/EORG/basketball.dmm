@@ -601,6 +601,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
+"rr" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "rF" = (
 /obj/machinery/light{
 	dir = 4
@@ -645,6 +649,10 @@
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
+"vK" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/wood,
+/area/deathmatch)
 "wK" = (
 /obj/machinery/disposal,
 /turf/open/floor/mainship/sterile/plain,
@@ -673,6 +681,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/landmark/eord_roomba,
 /turf/open/floor/mainship,
 /area/deathmatch)
 "yq" = (
@@ -686,6 +695,10 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
+/area/deathmatch)
+"zd" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/ground/river,
 /area/deathmatch)
 "zl" = (
 /obj/structure/bed/chair{
@@ -782,6 +795,11 @@
 /area/deathmatch)
 "HL" = (
 /turf/open/floor/wood,
+/area/deathmatch)
+"In" = (
+/obj/structure/sink,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "IC" = (
 /turf/closed/wall/mainship/outer,
@@ -978,6 +996,10 @@
 "WF" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
+/area/deathmatch)
+"WU" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/mainship,
 /area/deathmatch)
 "Xi" = (
 /obj/effect/landmark/deathmatch,
@@ -1318,7 +1340,7 @@ aa
 ey
 IS
 IS
-IS
+WU
 cP
 hr
 hr
@@ -1401,7 +1423,7 @@ HL
 bI
 bI
 aa
-bf
+In
 bd
 aZ
 bc
@@ -1432,7 +1454,7 @@ HL
 HL
 HL
 HL
-HL
+vK
 HL
 HL
 HL
@@ -2119,7 +2141,7 @@ it
 aa
 Zc
 JI
-HL
+vK
 WF
 nu
 Xu
@@ -2710,7 +2732,7 @@ aa
 bb
 Kh
 Kh
-Kh
+zd
 Kh
 aa
 hr
@@ -2776,7 +2798,7 @@ HL
 HL
 HL
 HL
-HL
+vK
 HL
 aG
 HL
@@ -2793,7 +2815,7 @@ HL
 bI
 bI
 cP
-bb
+rr
 bg
 et
 bg

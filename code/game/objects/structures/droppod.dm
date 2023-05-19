@@ -366,6 +366,16 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	density = FALSE
 	resistance_flags = INDESTRUCTIBLE
 
+/obj/structure/drop_pod_launcher/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	if(!istype(attached_clamp.loaded, /obj/structure/droppod))
+		return ..()
+	user.visible_message(span_notice("[user] drops [attached_clamp.loaded] onto [src] and it clicks into place!"),
+	span_notice("You drop [attached_clamp.loaded] onto [src] and it clicks into place!"))
+	attached_clamp.loaded.forceMove(get_turf(src))
+	attached_clamp.loaded = null
+	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+	attached_clamp.update_icon()
+
 #undef DROPPOD_READY
 #undef DROPPOD_ACTIVE
 #undef DROPPOD_LANDED

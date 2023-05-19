@@ -1,0 +1,4 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - bugfix: "Turrets can no longer be portalled to bypass the range restriction."

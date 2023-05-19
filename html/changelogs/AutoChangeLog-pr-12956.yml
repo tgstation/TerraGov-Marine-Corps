@@ -1,0 +1,4 @@
+author: "JackTheJackhammer"
+delete-after: True
+changes:
+  - bugfix: "Surt Helm now can be placed on MK.I Jaeger Helm"

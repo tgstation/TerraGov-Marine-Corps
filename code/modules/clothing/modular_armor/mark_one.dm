@@ -31,6 +31,7 @@
 		/obj/item/armor_module/greyscale/visor/marine/old/eva/skull,
 		/obj/item/armor_module/greyscale/visor/marine/old/eod,
 		/obj/item/armor_module/greyscale/visor/marine/old/assault,
+		/obj/item/armor_module/module/fire_proof_helmet,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/old, /obj/item/armor_module/storage/helmet)

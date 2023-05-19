@@ -422,7 +422,7 @@
 /area/lv624/lazarus/crashed_ship
 	name = "\improper Crashed Ship"
 	icon_state = "shuttlered"
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	always_unpowered = TRUE
 	minimap_color = MINIMAP_AREA_SHIP
 
