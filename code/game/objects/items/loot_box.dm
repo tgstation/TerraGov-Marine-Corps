@@ -416,6 +416,7 @@
 	)
 	common_list = list(
 		/obj/item/storage/box/loot/autosniper_pack,
+
 		/obj/item/storage/box/loot/thermobaric_pack,
 		/obj/item/storage/box/loot/tesla_pack,
 		/obj/item/storage/box/loot/tx54_pack,
