@@ -351,6 +351,7 @@
 #define VORTEX_RANGE 6
 #define VORTEX_PULL_WINDUP_TIME 2 SECONDS
 #define VORTEX_PUSH_WINDUP_TIME 1 SECONDS
+#define VORTEX_ABILITY_TRAIT
 /datum/action/xeno_action/activable/psychic_vortex
 	name = "Pyschic vortex"
 	action_icon_state = "vortex"
@@ -370,7 +371,7 @@
 /datum/action/xeno_action/activable/psychic_vortex/use_ability(atom/target)
 	succeed_activate()
 	add_cooldown()
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 2 SECONDS)
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
 	var/mob/living/carbon/xenomorph/xeno = owner
 	owner.icon_state = "[xeno.xeno_caste.caste_name][xeno.is_a_rouny ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
@@ -386,8 +387,8 @@
 					continue
 				victim.throw_at(owner, 6, 1, owner, FALSE)
 
-	for(var/turf/affected_tile in view(VORTEX_RANGE, owner.loc))
-		affected_tile.Shake(4, 4, 3 SECONDS)
+	for(var/turf/affected_tile in range(VORTEX_RANGE, owner.loc))
+		affected_tile.Shake(4, 4, 5 SECONDS)
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
@@ -403,4 +404,17 @@
 			for(var/x in 1 to 6)
 				throwlocation = get_step(throwlocation, owner.dir)
 			affected.throw_at(owner, 6, 1, owner, FALSE)
+
+	var/turf/targetturf = get_turf(owner)
+	targetturf = locate(targetturf.x + rand(1, 6), targetturf.y + rand(1, 6), targetturf.z)
+	if(do_after(owner, VORTEX_PUSH_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+		for(var/atom/movable/victim in range(VORTEX_RANGE, owner.loc))
+			if(victim.anchored)
+				continue
+			if((isliving(victim)))
+				var/mob/livingtarget = victim
+				if(livingtarget.stat == DEAD)
+					continue
+				victim.throw_at(targetturf, 6, 1, owner, FALSE)
+
 
