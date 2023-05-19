@@ -59,7 +59,7 @@
 	else if(fexists("data/cached_tts_voices.json"))
 		var/list/text_data = rustg_file_read("data/cached_tts_voices.json")
 		to_check = json_decode(text_data)
-	if(!to_check)
+	if(!length(to_check))
 		to_check = list("Female 01")
 	return sanitize_inlist(value, to_check, pick(to_check))
 
