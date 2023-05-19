@@ -543,7 +543,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	if(!.)
 		return FALSE
 	if(!istype(equipping, /obj/item/radio/headset))
-		to_chat(user, "<span class='warning'>[equipping] won't fit!</span>")
+		to_chat(user, span_warning("[equipping] won't fit!"))
 		return FALSE
 
 	return TRUE
@@ -566,7 +566,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 	parrot_source.ears = radio
 
-	to_chat(user, "<span class='notice'>You fit [radio] onto [source].</span>")
+	to_chat(user, span_notice("You fit [radio] onto [source]"))
 
 	parrot_source.available_channels.Cut()
 
