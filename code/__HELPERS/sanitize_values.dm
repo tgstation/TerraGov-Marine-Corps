@@ -52,16 +52,16 @@
 		return L[1]
 
 ///a wrapper with snowflake handling for tts
-/proc/sanitize_inlist_tts(value)
+/proc/sanitize_inlist_tts(value, gender)
 	var/list/to_check
 	if(SStts.tts_enabled)
 		to_check = SStts.available_speakers
 	else if(fexists("data/cached_tts_voices.json"))
 		var/list/text_data = rustg_file_read("data/cached_tts_voices.json")
 		to_check = json_decode(text_data)
-		if(!to_check)
-			to_check = list("invalid")
-	return sanitize_inlist(value, to_check, "invalid")
+	if(!to_check)
+		to_check = list("Female 01")
+	return sanitize_inlist(value, to_check, pick(to_check))
 
 /proc/sanitize_inlist_assoc(value, list/L, default)
 	for(var/i in L)
