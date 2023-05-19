@@ -149,6 +149,7 @@
 		/obj/item/armor_module/greyscale/visor/marine/assault,
 		/obj/item/armor_module/greyscale/visor/marine/helljumper,
 		/obj/item/armor_module/greyscale/visor/marine/ranger,
+		/obj/item/armor_module/greyscale/visor/marine/traditional,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -227,3 +228,10 @@
 	icon_state = "ranger"
 	item_state = "ranger"
 	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/ranger, /obj/item/armor_module/storage/helmet)
+
+/obj/item/clothing/head/modular/marine/traditional
+	name = "Jaeger Pattern Traditional Ranger Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has traditional Ranger markings"
+	icon_state = "traditional"
+	item_state = "traditional"
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/traditional, /obj/item/armor_module/storage/helmet)
