@@ -11,7 +11,7 @@
 	good_eyesight = pick(list(FALSE, TRUE))
 	citizenship = pick(CITIZENSHIP_CHOICES)
 	religion = pick(RELIGION_CHOICES)
-	tts_voice = random_tts_voice(gender)
+	tts_voice = random_tts_voice()
 	randomize_hair_color("hair")
 	randomize_hair_color("grad")
 	randomize_hair_color("facial")
