@@ -674,6 +674,11 @@ WEAPONS
 	cost = 50
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/rechargemag
+	name = "Terra Experimental recharger battery"
+	contains = list(/obj/item/cell/lasgun/lasrifle/recharger)
+	cost = 60
+
 /datum/supply_packs/weapons/xray_gun
 	name = "TE-X Laser Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/xray)
