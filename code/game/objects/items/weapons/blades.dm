@@ -50,7 +50,6 @@
 	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-	flags_item = DRAINS_XENO
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
 	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
@@ -107,6 +106,11 @@
 /obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/claymore/mercsword/machete/alt
+	name = "machete"
+	desc = "A nice looking machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
+	icon_state = "machete_alt"
 
 //FC's sword.
 
@@ -219,7 +223,6 @@
 	item_state = "vali_knife"
 	force = 25
 	throwforce = 15
-	flags_item = DRAINS_XENO
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
 	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>

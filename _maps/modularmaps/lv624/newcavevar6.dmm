@@ -360,7 +360,7 @@
 /area/lv624/ground/caves/central2)
 "Au" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "AF" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -413,7 +413,7 @@
 /area/lv624/ground/caves/central2)
 "Dr" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "DE" = (
 /obj/effect/turf_decal/tile/full/black,
@@ -652,7 +652,7 @@
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
 "Un" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Uy" = (
 /obj/structure/window_frame/colony,

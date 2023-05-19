@@ -94,7 +94,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "ee" = (
 /obj/effect/decal/cleanable/dirt,
@@ -451,7 +451,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "uU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -704,7 +704,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Hk" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "Hz" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -950,9 +950,6 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"TQ" = (
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "TY" = (
@@ -1554,7 +1551,7 @@ HK
 vi
 nZ
 EV
-TQ
+lU
 Yk
 lU
 lU

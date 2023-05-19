@@ -20,7 +20,7 @@
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/item/factory_part/LateInitialize(mapload)
+/obj/item/factory_part/LateInitialize()
 	advance_stage()
 
 ///once the part is processed this proc updates iconstate, result, completion etc
@@ -456,7 +456,10 @@ GLOBAL_LIST_INIT(module, list(
 /obj/item/factory_part/module_surt
 	name = "\improper Surt pyrotechnical insulation system"
 	desc = "An unfinished Surt pyrotechnical insulation system module."
-	result = /obj/item/armor_module/module/fire_proof
+	result = list(
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/fire_proof_helmet,
+	)
 
 /obj/item/factory_part/module_surt/Initialize(mapload)
 	. = ..()

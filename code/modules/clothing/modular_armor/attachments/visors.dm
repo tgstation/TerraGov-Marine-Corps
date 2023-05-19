@@ -12,6 +12,8 @@
 	greyscale_config = /datum/greyscale_config/visors
 	greyscale_colors = COLOR_VERY_LIGHT_GRAY
 	secondary_color = TRUE
+	appearance_flags = KEEP_APART|TILE_BOUND
+
 	///whether this helmet should be using its emissive overlay or not
 	var/visor_emissive_on = TRUE
 	///Whether or not the helmet is allowed to turn its emissive on or off.
@@ -70,6 +72,16 @@
 	name = "\improper Jaeger Pattern hell Jumper visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Hell Jumper class of helmet."
 	icon_state = "helljumper_visor"
+
+/obj/item/armor_module/greyscale/visor/marine/ranger
+	name = "\improper Jaeger Pattern Ranger visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Ranger class of helmet."
+	icon_state = "ranger_visor"
+
+/obj/item/armor_module/greyscale/visor/marine/traditional
+	name = "\improper Jaeger Pattern Traditional Ranger visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Traditional Ranger class of helmet."
+	icon_state = "traditional_visor"
 
 /obj/item/armor_module/greyscale/visor/marine/eva
 	name = "\improper Jaeger Pattern EVA visor"

@@ -288,3 +288,17 @@
 		. = shield_check.Invoke(attack_type, ., damage_type, silent, penetration)
 		if(!.)
 			break
+
+///Applies radiation effects to a mob
+/mob/living/proc/apply_radiation(rad_strength = 7, sound_level = null)
+	var/datum/looping_sound/geiger/geiger_counter = new(null, TRUE)
+	geiger_counter.severity = sound_level ? sound_level : clamp(round(rad_strength * 0.15, 1), 1, 4)
+	geiger_counter.start(src)
+
+	adjustCloneLoss(rad_strength)
+	adjustStaminaLoss(rad_strength * 7)
+	adjust_stagger(rad_strength / 2)
+	add_slowdown(rad_strength / 2)
+	blur_eyes(rad_strength) //adds a visual indicator that you've just been irradiated
+	adjust_radiation(rad_strength * 20) //Radiation status effect, duration is in deciseconds
+	to_chat(src, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))

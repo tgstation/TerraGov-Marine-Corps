@@ -1,0 +1,4 @@
+author: "JackTheJackhammer"
+delete-after: True
+changes:
+  - bugfix: "Weight Benches no longer disappear when unselecting the radial wheel."

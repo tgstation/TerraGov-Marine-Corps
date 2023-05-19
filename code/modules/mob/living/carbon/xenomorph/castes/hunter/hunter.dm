@@ -14,6 +14,10 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 
+/mob/living/carbon/xenomorph/hunter/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+
 /mob/living/carbon/xenomorph/hunter/apply_alpha_channel(image/I)
 	I.alpha = src.alpha
 	return I

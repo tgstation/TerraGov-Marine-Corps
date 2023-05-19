@@ -426,23 +426,9 @@
 	name = "generic pistol belt"
 	desc = "A pistol belt that is not a revolver belt"
 
-/obj/item/storage/holster/belt/pistol/attackby_alternate(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/weapon/gun/pistol))
-		return ..()
-	var/obj/item/weapon/gun/pistol/gun = I
-	for(var/obj/item/ammo_magazine/mag in contents)
-		if(!(mag.type in gun.allowed_ammo_types))
-			continue
-		if(user.l_hand && user.r_hand || length(gun.chamber_items))
-			gun.tactical_reload(mag, user)
-		else
-			gun.reload(mag, user)
-		orient2hud()
-		return
-
-/obj/item/storage/holster/belt/pistol/examine(mob/user, distance, infix, suffix)
+/obj/item/storage/holster/belt/pistol/Initialize(mapload, ...)
 	. = ..()
-	. += span_notice("To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.")
+	AddComponent(/datum/component/tac_reload_storage)
 
 /obj/item/storage/holster/belt/pistol/m4a3
 	name = "\improper M4A3 holster rig"

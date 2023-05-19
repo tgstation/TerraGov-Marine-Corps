@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed alamo being unable to be called down if you touch the console as it is taking off"

@@ -358,7 +358,7 @@
 ///Change minimap icon if its on or off
 /obj/machinery/nuclearbomb/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke[timer_enabled ? "_on" : "_off"]", 'icons/UI_icons/map_blips_large.dmi')
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "nuke[timer_enabled ? "_on" : "_off"]"))
 
 #undef NUKE_STAGE_NONE
 #undef NUKE_STAGE_COVER_REMOVED

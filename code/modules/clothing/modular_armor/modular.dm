@@ -84,6 +84,10 @@
 		/obj/item/armor_module/armor/legs/marine/helljumper,
 		/obj/item/armor_module/armor/arms/marine/helljumper,
 
+		/obj/item/armor_module/armor/chest/marine/ranger,
+		/obj/item/armor_module/armor/legs/marine/ranger,
+		/obj/item/armor_module/armor/arms/marine/ranger,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -291,6 +295,7 @@
 	)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,

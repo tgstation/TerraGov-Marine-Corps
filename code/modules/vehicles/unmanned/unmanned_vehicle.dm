@@ -70,7 +70,7 @@
 		max_rounds = initial(spawn_equipped_type.max_rounds)
 		update_icon()
 	hud_set_uav_ammo()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "uav")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "uav"))
 
 /obj/vehicle/unmanned/Destroy()
 	. = ..()
