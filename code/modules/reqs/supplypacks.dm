@@ -604,15 +604,15 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/flamer_tank/large)
 	cost = 60
 
-/datum/supply_packs/weapons/napalm_X
-	name = "FL-84 X fuel tank"
-	contains = list(/obj/item/ammo_magazine/flamer_tank/large/X)
-	cost = 300
-
 /datum/supply_packs/weapons/back_fuel_tank
 	name = "Standard back fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank)
 	cost = 200
+
+/datum/supply_packs/weapons/flamer_x
+	name = "FL-X-150 flamethrower"
+	contains = list(/obj/item/weapon/gun/flamer/big_flamer/flx)
+	cost = 600
 
 /datum/supply_packs/weapons/rpgoneuse
 	name = "RL-72 Disposable RPG"
