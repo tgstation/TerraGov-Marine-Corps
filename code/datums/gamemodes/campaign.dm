@@ -7,6 +7,12 @@
 	blacklist_ship_maps = null
 	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
 	bioscan_interval = 3 MINUTES
+	///The current round type being played
+	var/current_round
+	///List of possible round types that can be selected for the next round, by faction
+	var/list/potential_rounds = list()
+	///Score of points earned by faction
+	var/list/victory_points = list()
 
 /datum/game_mode/hvh/campaign/announce()
 	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")
