@@ -425,6 +425,7 @@
 #include "code\datums\emergency_calls\xenocorrupted.dm"
 #include "code\datums\emergency_calls\xenozeta.dm"
 #include "code\datums\gamemodes\_game_mode.dm"
+#include "code\datums\gamemodes\campaign.dm"
 #include "code\datums\gamemodes\civil_war.dm"
 #include "code\datums\gamemodes\combat_patrol.dm"
 #include "code\datums\gamemodes\crash.dm"

@@ -106,4 +106,4 @@
 //❤ - Cyberboss
 /proc/load_new_z_level(file, name)
 	var/datum/map_template/template = new(file, name)
-	template.load_new_z()
+	return template.load_new_z()
