@@ -365,6 +365,10 @@
 
 		stat("Number of living marines:", "[SSticker.mode.count_humans_and_xenos()[1]]")
 
+		if(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
+			stat("Railgun status:", "Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds.")
+		else
+			stat("Railgun status:", "Railgun is ready to fire.")
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()
