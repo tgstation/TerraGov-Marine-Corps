@@ -200,18 +200,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/activable/bombard/on_deactivation()
 	UnregisterSignal(owner, COMSIG_MOB_ATTACK_RANGED)
 
+/// Signal proc for clicking at a distance
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
 	SIGNAL_HANDLER
 	if(can_use_ability(A, TRUE))
 		INVOKE_ASYNC(src, PROC_REF(use_ability), A)
-
-/mob/living/carbon/xenomorph/boiler/proc/set_bombard_pointer()
-	if(client)
-		client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
-
-/mob/living/carbon/xenomorph/boiler/proc/reset_bombard_pointer()
-	if(client)
-		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 
 /datum/action/xeno_action/activable/bombard/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -228,25 +221,25 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	if(istype(boiler_owner.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		if(boiler_owner.corrosive_ammo <= 0)
-			to_chat(boiler_owner, span_warning("We have no corrosive globules available."))
+			boiler_owner.balloon_alert(boiler_owner, "No corrosive globules.")
 			return FALSE
 	else
 		if(boiler_owner.neuro_ammo <= 0)
-			to_chat(boiler_owner, span_warning("We have no neurotoxin globules available."))
+			boiler_owner.balloon_alert(boiler_owner, "No neurotoxin globules.")
 			return FALSE
 
 	if(!HAS_TRAIT_FROM(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		to_chat(boiler_owner, span_warning("We need to be rooted to the ground to fire!"))
+		boiler_owner.balloon_alert(boiler_owner, "We need to be rooted to the ground to fire!")
 		return FALSE
 
 	if(!isturf(T) || T.z != S.z)
 		if(!silent)
-			to_chat(owner, span_warning("This is not a valid target."))
+			boiler_owner.balloon_alert(boiler_owner, "Invalid target.")
 		return FALSE
 
 	if(get_dist(T, S) <= 5) //Magic number
 		if(!silent)
-			to_chat(owner, span_warning("We are too close! We must be at least 7 meters from the target due to the trajectory arc."))
+			boiler_owner.balloon_alert(boiler_owner, "Too close!")
 		return FALSE
 
 /datum/action/xeno_action/activable/bombard/use_ability(atom/A)
@@ -290,6 +283,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	INVOKE_ASYNC(src, PROC_REF(root))
 	return COMSIG_KB_ACTIVATED
 
+/// The alternative action of bombard, rooting. It begins the rooting/unrooting process.
 /datum/action/xeno_action/activable/bombard/proc/root()
 	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		owner.balloon_alert_to_viewers("Rooting out of place...")
@@ -308,14 +302,18 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	owner.balloon_alert_to_viewers("Rooted into place!")
 	set_rooted(TRUE)
 
+/// Proc that actually does the rooting, makes us immobile and anchors us in place. Similar to defender's fortify.
 /datum/action/xeno_action/activable/bombard/proc/set_rooted(on)
 	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
 	if(on)
 		ADD_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
-		boiler_owner.set_bombard_pointer()
+		if(boiler_owner.client)
+			boiler_owner.client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
 	else
 		REMOVE_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
-		boiler_owner.reset_bombard_pointer()
+		if(boiler_owner.client)
+			boiler_owner.client.mouse_pointer_icon = initial(boiler_owner.client.mouse_pointer_icon)
+
 	boiler_owner.anchored = on
 
 
