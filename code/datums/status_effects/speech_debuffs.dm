@@ -81,11 +81,9 @@
 
 /datum/status_effect/speech/stutter/apply_speech(original_char, modified_char)
 	if(prob(stutter_prob) && !no_stutter.Find(original_char))
-		if(prob(10))
-			modified_char = "[modified_char]-[modified_char]-[modified_char]-[modified_char]"
-		else if(prob(20))
+		if(prob(15))
 			modified_char = "[modified_char]-[modified_char]-[modified_char]"
-		if(prob(95))
+		else if(prob(70))
 			modified_char = "[modified_char]-[modified_char]"
 
 	return modified_char

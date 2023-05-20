@@ -339,7 +339,6 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	if(!(end in list("!", ".", "?", ":", "\"", "-")))
 		message += "."
 
-	SEND_SIGNAL(src, COMSIG_LIVING_TREAT_MESSAGE, args)
 	tts_filter = list()
 	var/list/data = list(message, tts_message, tts_filter)
 	SEND_SIGNAL(src, COMSIG_LIVING_TREAT_MESSAGE, data)
