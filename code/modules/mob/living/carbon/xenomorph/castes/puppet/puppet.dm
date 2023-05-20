@@ -83,7 +83,7 @@
 			if(!change_order(null, PUPPET_SEEK_CLOSEST))
 				return
 		if(ESCORTING_ATOM)
-			if(!escorted_atom)
+			if(!escorted_atom && master_ref)
 				escorted_atom = master_ref.resolve()
 		if(MOVING_TO_ATOM)
 			if(!atom_to_walk_to) //edge case
