@@ -59,14 +59,4 @@
 /datum/game_mode/hvh/campaign/campaign/proc/load_new_map(file, name)
 	var/datum/space_level/new_level = load_new_z_level(file, name)
 	SSminimaps.generate_minimap(new_level.z_value)
-
-	for(var/area/area_to_lit AS in SSmapping.areas_in_z[new_level.z_value]) //todo: make a proc for the lighting stuff specifically, as this is also done post setup
-		switch(area_to_lit.ceiling)
-			if(CEILING_NONE to CEILING_GLASS)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 200)
-			if(CEILING_METAL)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 100)
-			if(CEILING_UNDERGROUND to CEILING_UNDERGROUND_METAL)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 75)
-			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
+	set_lighting(new_level.z_value)

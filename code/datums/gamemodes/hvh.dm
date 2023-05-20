@@ -23,16 +23,8 @@
 
 /datum/game_mode/hvh/post_setup()
 	. = ..()
-	for(var/area/area_to_lit AS in GLOB.sorted_areas)
-		switch(area_to_lit.ceiling)
-			if(CEILING_NONE to CEILING_GLASS)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 200)
-			if(CEILING_METAL)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 100)
-			if(CEILING_UNDERGROUND to CEILING_UNDERGROUND_METAL)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 75)
-			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
+	for(var/z_num = 1 to length(SSmapping.z_list))
+		set_lighting(z_num)
 
 /datum/game_mode/hvh/scale_roles()
 	. = ..()
@@ -101,8 +93,21 @@
 /datum/game_mode/hvh/campaign/proc/intro_sequence()
 	return
 
+///Sets the lighting for a z level to a higher level
+/datum/game_mode/hvh/proc/set_lighting(z_level_num)
+for(var/area/area_to_lit AS in SSmapping.areas_in_z[z_level_num])
+		switch(area_to_lit.ceiling)
+			if(CEILING_NONE to CEILING_GLASS)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 200)
+			if(CEILING_METAL)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 100)
+			if(CEILING_UNDERGROUND to CEILING_UNDERGROUND_METAL)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 75)
+			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
+
 ///checks how many marines and SOM are still alive
-/datum/game_mode/hvh/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND), count_flags)
+/datum/game_mode/hvh/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND), count_flags) //todo: either make this not ground exclusive, or make new Z's not away levels
 	var/list/som_alive = list()
 	var/list/som_dead = list()
 	var/list/tgmc_alive = list()
