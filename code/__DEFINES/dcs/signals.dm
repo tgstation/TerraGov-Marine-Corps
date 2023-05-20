@@ -926,3 +926,4 @@
 #define COMSIG_SPIDERLING_MARK "spiderling_mark"
 //puppet
 #define COMSIG_PUPPET_CHANGE_ORDER "puppetchangeorder"
+#define COMSIG_PUPPET_CHANGE_ALL_ORDER "puppetglobalorder"

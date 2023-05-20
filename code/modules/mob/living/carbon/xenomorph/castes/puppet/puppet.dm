@@ -45,12 +45,14 @@
 	. = ..()
 	master_ref = WEAKREF(escorted_atom)
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, PROC_REF(fucking_die))
-	RegisterSignal(escorted_atom, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
+	RegisterSignal(escorted_atom, COMSIG_PUPPET_CHANGE_ALL_ORDER, PROC_REF(change_order))
+	RegisterSignal(mob_parent, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
 	change_order(null, PUPPET_RECALL)
 
 /datum/ai_behavior/puppet/proc/fucking_die(mob/living/source)
 	SIGNAL_HANDLER
-	mob_parent.death() //die
+	if(!QDELETED(mob_parent))
+		mob_parent.death() //die
 
 ///Signal handler to try to attack our target (widow code my beloved (fuck tgmc AI))
 /datum/ai_behavior/puppet/proc/attack_target(datum/source)

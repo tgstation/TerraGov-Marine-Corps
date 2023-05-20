@@ -83,7 +83,7 @@
 	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
 	playsound(xeno.loc, 'sound/bullets/spear_armor1.ogg', 25, 1)
-	xeno.visible_message(span_xenonotice("We discharge a spinal spike from our body."))
+	xeno.visible_message(span_warning("[xeno] shoots a spike!"), span_xenonotice("We discharge a spinal spike from our body."))
 
 	var/obj/projectile/spine = new /obj/projectile(current_turf)
 	spine.generate_bullet(/datum/ammo/xeno/spine)
@@ -99,7 +99,7 @@
 	action_icon_state = "dreadful_presence"
 	desc = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
 	plasma_cost = 50
-	cooldown_timer = 35 SECONDS
+	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DREADFULPRESENCE,
 	)
@@ -126,7 +126,7 @@
 	name = "Refurbish Husk"
 	action_icon_state = "refurbish_husk"
 	desc = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
-	cooldown_timer = 60 SECONDS
+	cooldown_timer = 25 SECONDS
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REFURBISHHUSK,
@@ -196,7 +196,7 @@
 	action_icon_state = "stitch_puppet"
 	desc = "Uses 350 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
 	plasma_cost = 350
-	cooldown_timer = 120 SECONDS
+	cooldown_timer = 25 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUPPET,
 	)
@@ -245,7 +245,7 @@
 	action_icon_state = "organic_bomb"
 	desc = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
 	cooldown_timer = 30 SECONDS
-	plasma_cost = 75
+	plasma_cost = 100
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ORGANICBOMB,
@@ -260,7 +260,8 @@
 	if(!istype(victim, /mob/living/carbon/xenomorph/puppet) || !(victim in huskaction.puppets))
 		victim.balloon_alert(owner, "not our puppet")
 		return fail_activate()
-	if(!SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ORDER, PUPPET_SEEK_CLOSEST))
+	if(!SEND_SIGNAL(victim, COMSIG_PUPPET_CHANGE_ORDER, PUPPET_SEEK_CLOSEST))
+		victim.balloon_alert(owner, "fail")
 		return fail_activate()
 	victim.balloon_alert(owner, "success")
 	RegisterSignal(victim, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(start_exploding))
@@ -270,7 +271,7 @@
 
 /datum/action/xeno_action/activable/organic_bomb/proc/start_exploding(mob/living/puppet)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(start_exploding_async))
+	INVOKE_ASYNC(src, PROC_REF(start_exploding_async), puppet)
 
 /datum/action/xeno_action/activable/organic_bomb/proc/start_exploding_async(mob/living/puppet)
 	puppet.visible_message(span_danger("[puppet] bloats and slowly unfurls its stitched body!"))
@@ -337,7 +338,7 @@
 	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_order_images_list, radius = 35)
 	if(!choice)
 		return
-	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ORDER, choice))
+	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ALL_ORDER, choice))
 		owner.balloon_alert(owner, "success")
 	else
 		owner.balloon_alert(owner, "fail")
