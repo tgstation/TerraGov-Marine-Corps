@@ -503,6 +503,10 @@
 	. = ..()
 	update_stats()
 
+/obj/item/storage/box/visual/Destroy()
+	. = ..()
+	contents_weight = null
+
 /// Updates certain vars used primarily (but not exclusively) for the creation of the overlays.
 /obj/item/storage/box/visual/proc/update_stats()
 	SHOULD_CALL_PARENT(TRUE)
