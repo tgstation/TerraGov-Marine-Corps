@@ -52,6 +52,8 @@
 		"Over" = /datum/flamer_mode/over,
 		"Blast" = /datum/flamer_mode/blast,
 	)
+	windup_delay = 0.5 SECONDS
+	windup_sound = 'sound/weapons/guns/interact/flamethrower_on.ogg'
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
 
