@@ -1235,6 +1235,7 @@
 			/obj/item/clothing/suit/modular/jaeger = -1,
 			/obj/item/clothing/suit/modular/jaeger/eva = -1,
 			/obj/item/clothing/suit/modular/jaeger/helljumper = -1,
+			/obj/item/clothing/suit/modular/jaeger/ranger = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy/assault = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy/eod = -1,
@@ -1244,6 +1245,8 @@
 			/obj/item/clothing/head/modular/marine/eva = -1,
 			/obj/item/clothing/head/modular/marine/eva/skull = -1,
 			/obj/item/clothing/head/modular/marine/helljumper = -1,
+			/obj/item/clothing/head/modular/marine/ranger = -1,
+			/obj/item/clothing/head/modular/marine/traditional = -1,
 			/obj/item/clothing/head/modular/marine/gungnir = -1,
 			/obj/item/clothing/head/modular/marine/assault = -1,
 			/obj/item/clothing/head/modular/marine/eod = -1,
@@ -1297,6 +1300,7 @@
 			/obj/item/armor_module/armor/chest/marine/assault = -1,
 			/obj/item/armor_module/armor/chest/marine/assault/eod = -1,
 			/obj/item/armor_module/armor/chest/marine/helljumper = -1,
+			/obj/item/armor_module/armor/chest/marine/ranger = -1,
 		),
 		"Jaeger Mk.I armpiece" = list(
 			/obj/item/armor_module/armor/arms/marine/skirmisher = -1,
@@ -1306,6 +1310,7 @@
 			/obj/item/armor_module/armor/arms/marine/assault = -1,
 			/obj/item/armor_module/armor/arms/marine/eod = -1,
 			/obj/item/armor_module/armor/arms/marine/helljumper = -1,
+			/obj/item/armor_module/armor/arms/marine/ranger = -1,
 		),
 		"Jaeger Mk.I legpiece" = list(
 			/obj/item/armor_module/armor/legs/marine/skirmisher = -1,
@@ -1316,6 +1321,7 @@
 			/obj/item/armor_module/armor/legs/marine/eod = -1,
 			/obj/item/armor_module/armor/legs/marine/scout = -1,
 			/obj/item/armor_module/armor/legs/marine/helljumper = -1,
+			/obj/item/armor_module/armor/legs/marine/ranger = -1,
 		),
 		"Jaeger Mk.I helmets" = list(
 			/obj/item/clothing/head/modular/marine/old/skirmisher = -1,
@@ -1375,6 +1381,7 @@
 			/obj/item/armor_module/greyscale/cape/half = -1,
 			/obj/item/armor_module/greyscale/cape/scarf = -1,
 			/obj/item/armor_module/greyscale/cape/short = -1,
+			/obj/item/armor_module/greyscale/kama = -1,
 			/obj/item/armor_module/module/pt_belt = -1,
 		),
 		"Webbings" = list(

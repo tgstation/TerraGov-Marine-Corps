@@ -1,0 +1,4 @@
+author: "Losenis"
+delete-after: True
+changes:
+  - rscadd: "Terra Experimental recharger battery. Req-only, 60 points, 75% capacity of normal battery, recharges 12 energy per second (1 standard lasgun rifle shot)"
