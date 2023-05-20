@@ -26,19 +26,19 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(issynth(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, span_warning("Your programming restricts operating explosive devices."))
+		balloon_alert(user, "Can't wear this")
 		return TRUE
 	if(user.alpha != 255)
-		to_chat(user, span_warning("Your cloak prevents you from detonating [src]!"))
+		balloon_alert(user, "Can't, your cloak prevents you")
 		return TRUE
 	if(activator.wear_suit != src)
-		to_chat(activator, span_warning("Due to the rigging of this device, it can only be detonated while worn.")) //If you are going to use this, you have to accept death. No armor allowed.
+		balloon_alert(user, "Can only be detonated while worn")
 		return FALSE
 	if(istype(activator.l_hand, /obj/item/weapon/shield/riot) || istype(activator.r_hand, /obj/item/weapon/shield/riot) || istype(activator.back, /obj/item/weapon/shield/riot))
-		to_chat(activator, span_warning("Your bulky shield prevents you from reaching the detonator!"))
+		balloon_alert(user, "Can't, your shield prevents you")
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BOMBVEST_SHIELD_DROP))
-		to_chat(activator, span_warning("You dropped a shield too recently to detonate, wait a few seconds!"))
+		balloon_alert(user, "Can't, dropped shield too recently")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		return
@@ -91,7 +91,7 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(activator.wear_suit != src)
-		to_chat(activator, span_warning("Due to the rigging of this device, it can only be detonated while worn."))
+		balloon_alert(user, "Can only be detonated while worn")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		return
