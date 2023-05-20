@@ -3,6 +3,24 @@
 	to_chat(new_mob, span_danger("This is a place for everyone to experiment and RP. Standard rules applies here. Do not blow up the vendors, do not grief,\
 	do not try to lag the server with explosions. Alternatively, don't fill the xeno asteroid with walls or other structures."))
 
+/datum/job/fallen/return_spawn_type(datum/preferences/prefs)
+	switch(prefs?.species)
+		if("Combat Robot")
+			if(prefs?.robot_type == "Basic")
+				return /mob/living/carbon/human/species/robot
+			if(prefs?.robot_type == "Hammerhead")
+				return /mob/living/carbon/human/species/robot/alpharii
+			if(prefs?.robot_type == "Chilvaris")
+				return /mob/living/carbon/human/species/robot/charlit
+			if(prefs?.robot_type == "Ratcher")
+				return /mob/living/carbon/human/species/robot/deltad
+			if(prefs?.robot_type == "Sterling")
+				return /mob/living/carbon/human/species/robot/bravada
+		if("Vatborn")
+			return /mob/living/carbon/human/species/vatborn
+		else
+			return /mob/living/carbon/human
+
 ///Delete the mob when you log out or when it's dead
 /datum/job/fallen/proc/delete_mob(mob/living/source)
 	SIGNAL_HANDLER
