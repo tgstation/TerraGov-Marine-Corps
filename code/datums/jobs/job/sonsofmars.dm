@@ -21,7 +21,7 @@
 
 /datum/job/som/squad/radio_help_message(mob/M)
 	. = ..()
-	if(istype(SSticker.mode, /datum/game_mode/combat_patrol))
+	if(istype(SSticker.mode, /datum/game_mode/hvh/combat_patrol))
 		if(issensorcapturegamemode(SSticker.mode))
 			to_chat(M, span_highdanger("Your platoon has orders to defend sensor towers in the AO and prevent them from reactivation by TerraGov forces until heavy reeinforcement arrives. High Command considers the successful prevention of the reactivation of the sensor towers a major victory"))
 		else
