@@ -334,6 +334,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 
 
 /mob/living/proc/treat_message(message, tts_message, tts_filter, capitalize_message = TRUE)
+	RETURN_TYPE(/list)
 	// check for and apply punctuation
 	var/end = copytext(message, length(message))
 	if(!(end in list("!", ".", "?", ":", "\"", "-")))
@@ -353,7 +354,14 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		message = capitalize(message)
 		tts_message = capitalize(tts_message)
 
-	return list(message = message, tts_message = tts_message, tts_filter = tts_filter)
+	///caps the length of individual letters to 3: ex: heeeeeeyy -> heeeyy
+	/// prevents TTS from choking on unrealistic text while keeping emphasis
+	var/static/regex/length_regex = regex(@"(.+)\1\1\1", "gi")
+	while(length_regex.Find(tts_message))
+		var/replacement = tts_message[length_regex.index]+tts_message[length_regex.index]+tts_message[length_regex.index]
+		tts_message = replacetext(tts_message, length_regex.match, replacement, length_regex.index)
+
+	return list("message" = message, "tts_message" = tts_message, "tts_filter" = tts_filter)
 
 
 /mob/living/proc/radio(message, message_mode, list/spans, language)
