@@ -19365,13 +19365,13 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/ice_colony/underground/maintenance/east)
 "bQx" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 4
+/turf/closed/shuttle/ert/engines/left/three{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bQy" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 4
+/turf/closed/shuttle/ert/engines/right/three{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bQz" = (
@@ -19438,9 +19438,6 @@
 	dir = 4
 	},
 /area/ice_colony/surface/excavationbarracks)
-"bQN" = (
-/turf/closed/shuttle/ert/engines/left,
-/area/ice_colony/underground/responsehangar)
 "bQO" = (
 /turf/closed/shuttle/dropship_white/backhatch,
 /area/ice_colony/underground/responsehangar)
@@ -19481,9 +19478,6 @@
 /turf/closed/shuttle/dropship_white/backhatch{
 	dir = 4
 	},
-/area/ice_colony/underground/responsehangar)
-"bQV" = (
-/turf/closed/shuttle/ert/engines/right,
 /area/ice_colony/underground/responsehangar)
 "bQW" = (
 /obj/structure/cable,
@@ -27801,7 +27795,6 @@
 	dir = 8
 	},
 /obj/effect/landmark/corpsespawner/security{
-	corpsebelt = null;
 	corpsesuit = /obj/item/clothing/suit/storage/CMB;
 	corpseuniform = /obj/item/clothing/under/CM_uniform;
 	name = "Deputy Edgar Nogi"
@@ -29432,7 +29425,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/security{
-	corpsebelt = null;
 	corpsesuit = /obj/item/clothing/suit/storage/CMB;
 	corpseuniform = /obj/item/clothing/under/CM_uniform;
 	name = "Deputy Edgar Nogi"
@@ -30270,6 +30262,11 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
+"skQ" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/ice_colony/underground/responsehangar)
 "snp" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/open/floor/plating/ground/ice,
@@ -32518,6 +32515,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
+"vYZ" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
+/area/ice_colony/underground/responsehangar)
 "vZw" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -73771,8 +73773,8 @@ blf
 bFQ
 bNY
 bQx
+skQ
 bQG
-bQN
 rYI
 bRj
 aGB
@@ -75043,8 +75045,8 @@ blf
 bKd
 bOM
 bQy
+vYZ
 bQH
-bQV
 rYI
 bRj
 aGB

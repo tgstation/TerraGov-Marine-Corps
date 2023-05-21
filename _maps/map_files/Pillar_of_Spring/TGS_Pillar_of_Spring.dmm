@@ -6092,7 +6092,7 @@
 	},
 /area/mainship/command/self_destruct)
 "hWb" = (
-/turf/closed/shuttle/ert/engines/right{
+/turf/closed/shuttle/ert/engines/right/two{
 	dir = 1
 	},
 /area/space)
@@ -13998,7 +13998,9 @@
 /area/mainship/medical/medical_science)
 "sau" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert/engines/right,
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
+	},
 /area/space)
 "saT" = (
 /obj/item/reagent_containers/food/drinks/coffee,
@@ -15059,7 +15061,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "tvM" = (
-/turf/closed/shuttle/ert/engines/left{
+/turf/closed/shuttle/ert/engines/left/two{
 	dir = 1
 	},
 /area/space)
@@ -18506,7 +18508,9 @@
 /area/mainship/hull/lower_hull)
 "xEZ" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert/engines/left,
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
+	},
 /area/space)
 "xFF" = (
 /obj/structure/cable,
