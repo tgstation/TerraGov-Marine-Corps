@@ -502,9 +502,8 @@
 		return
 
 	I.forceMove(src)
-	cell.update_icon()
-	user.put_in_hands(cell)
 	cell = I
+	cell.update_icon()
 	balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
 	icon_state = "handheldcharger_black"
