@@ -1,0 +1,5 @@
+author: "shelteredfreak"
+delete-after: True
+changes:
+  - qol: "Updates Xeno Toxin hud examine description info."
+  - qol: "Updates Defiler Select Reagent ability description info."

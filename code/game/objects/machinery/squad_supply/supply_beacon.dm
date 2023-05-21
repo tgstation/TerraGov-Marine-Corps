@@ -143,7 +143,7 @@
 	var/faction = ""
 
 /datum/supply_beacon/New(_name, turf/_drop_location, _faction, life_time = 0 SECONDS)
-	name= _name
+	name =  _name
 	drop_location = _drop_location
 	faction = _faction
 	GLOB.supply_beacon[name] = src
@@ -152,5 +152,5 @@
 
 /// Remove that beacon from the list of glob supply beacon
 /datum/supply_beacon/Destroy()
-	GLOB.supply_beacon[name] = null
+	GLOB.supply_beacon -= name
 	return ..()

@@ -167,9 +167,10 @@
 /obj/structure/orbital_cannon/proc/handle_ob_firing_effects(target, ob_sound = 'sound/effects/OB_incoming.ogg')
 	flick("OBC_firing",src)
 	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
-	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
-		var/mob/M = i
+	for(var/mob/M AS in hearers(WARHEAD_FALLING_SOUND_RANGE, target))
 		M.playsound_local(target, ob_sound, falloff = 2)
+
+	new /obj/effect/temp_visual/ob_impact(target, tray.warhead)
 
 /obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user)
 	set waitfor = FALSE
