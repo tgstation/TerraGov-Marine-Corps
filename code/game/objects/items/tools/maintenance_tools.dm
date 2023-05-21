@@ -501,6 +501,11 @@
 	if(!user.drop_held_item())
 		return
 
+	if(cell) //hotswapping
+		cell.update_icon()
+		user.put_in_hands(cell)
+		cell = null
+
 	I.forceMove(src)
 	cell = I
 	cell.update_icon()
