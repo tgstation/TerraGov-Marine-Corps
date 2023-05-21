@@ -2812,7 +2812,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 15
 	penetration = 15
 	sundering = 0.5
-	damage_falloff = 0.8
+	damage_falloff = 0.5
 	accuracy = 0.9
 	scatter = 10
 
@@ -2869,7 +2869,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 70
 	penetration = 30
 	sundering = 7
-	damage_falloff = 0.1
+	damage_falloff = 0
 	accuracy = 1.1
 	scatter = -15
 
@@ -2877,7 +2877,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 15
 	penetration = 10
 	sundering = 0.5
-	damage_falloff = 0.5
+	damage_falloff = 0.25
 	accuracy = 1
 	scatter = 0
 
@@ -2887,7 +2887,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 45
 	penetration = 20
 	sundering = 2
-	damage_falloff = 0.2
+	damage_falloff = 0.15
 	accuracy = 1.1
 	scatter = 0
 
@@ -2896,7 +2896,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 10
 	sundering = 0.5
-	damage_falloff = 0.7
+	damage_falloff = 0.25
 	accuracy = 1.1
 	scatter = 0
 
@@ -2948,7 +2948,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 60
 	penetration = 10
 	sundering = 1
-	damage_falloff = 1
+	damage_falloff = 0.5
 	accuracy = 0.8
 	scatter = 15
 
@@ -2963,7 +2963,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 10
 	sundering = 0.5
-	damage_falloff = 0.7
+	damage_falloff = 0.25
 	accuracy = 1.1
 	scatter = 0
 
@@ -3039,7 +3039,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 90
 	penetration = 25
 	sundering = 5
-	damage_falloff = 0.4
+	damage_falloff = 0.25
 	accuracy = 1.1
 	scatter = 0
 
@@ -3049,7 +3049,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 130
 	penetration = 35
 	sundering = 10
-	damage_falloff = 0.4
+	damage_falloff = 0.25
 	accuracy = 1.1
 	shell_speed = 0.1
 
