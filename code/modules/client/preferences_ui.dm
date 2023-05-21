@@ -508,12 +508,13 @@
 			if(!length(voices))
 				return
 			var/choice = tgui_input_list(ui.user, "What do you sound like?", "TTS", voices)
-			if(choice)
-				tts_voice = choice
-				if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
-					return
-				TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
-				INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE)
+			if(!choice)
+				return
+			tts_voice = choice
+			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+				return
+			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE)
 
 		if("squad")
 			var/new_squad = params["newValue"]
