@@ -28,9 +28,11 @@
 	var/winning_faction
 	///specific round outcome
 	var/outcome
+	///number of VP's earned from this round, can vary based on outcome
+	var/points_earned = 0
 
-/datum/game_round/Initialize(initiating_faction)
-	SHOULD_CALL_PARENT(TRUE)
+/datum/game_round/New(initiating_faction)
+	. = ..()
 	faction = initiating_faction
 	play_selection_intro()
 
@@ -78,17 +80,19 @@
 /datum/game_round/proc/apply_outcome()
 	switch(outcome)
 		if(GAME_ROUND_OUTCOME_MAJOR_VICTORY)
-			return apply_major_victory()
+			apply_major_victory()
 		if(GAME_ROUND_OUTCOME_MINOR_VICTORY)
-			return apply_minor_victory()
+			apply_minor_victory()
 		if(GAME_ROUND_OUTCOME_DRAW)
-			return apply_draw()
+			apply_draw()
 		if(GAME_ROUND_OUTCOME_MINOR_LOSS)
-			return apply_minor_loss()
+			apply_minor_loss()
 		if(GAME_ROUND_OUTCOME_MAJOR_LOSS)
-			return apply_major_loss()
+			apply_major_loss()
 		else
 			CRASH("game round ended with no outcome set")
+
+	apply_victory_points(points_earned)
 
 ///Apply outcomes for major win
 /datum/game_round/proc/apply_major_victory()
@@ -109,3 +113,8 @@
 ///Apply outcomes for major loss
 /datum/game_round/proc/apply_major_loss()
 	return
+
+///gives any victory points earned in the round
+/datum/game_round/proc/apply_victory_points(points)
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	mode.stat_list[winning_faction].victory_points += points

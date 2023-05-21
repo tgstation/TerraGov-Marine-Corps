@@ -90,12 +90,12 @@
 			to_chat(player, output)
 
 ///plays the intro sequence if any
-/datum/game_mode/hvh/campaign/proc/intro_sequence()
+/datum/game_mode/hvh/proc/intro_sequence()
 	return
 
 ///Sets the lighting for a z level to a higher level
 /datum/game_mode/hvh/proc/set_lighting(z_level_num)
-for(var/area/area_to_lit AS in SSmapping.areas_in_z[z_level_num])
+	for(var/area/area_to_lit AS in SSmapping.areas_in_z[z_level_num])
 		switch(area_to_lit.ceiling)
 			if(CEILING_NONE to CEILING_GLASS)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 200)
