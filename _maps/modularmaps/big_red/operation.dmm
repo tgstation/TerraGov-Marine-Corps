@@ -1053,7 +1053,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "Lq" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},

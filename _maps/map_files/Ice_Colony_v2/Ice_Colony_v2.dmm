@@ -50,7 +50,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aaL" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -25680,7 +25680,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "kgh" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "kgl" = (
@@ -25912,7 +25912,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "kwg" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -29817,7 +29817,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/wood,
 /area/ice_colony/surface/clinic/treatment)
 "rBH" = (

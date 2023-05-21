@@ -8,7 +8,7 @@
 /turf/open/space/sea,
 /area/space)
 "aac" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
@@ -1734,7 +1734,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/bioengineering)
 "ahe" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/bioengineering)
 "ahf" = (
@@ -26455,7 +26455,7 @@
 /turf/open/floor/prison/red/full,
 /area/prison/security/checkpoint/highsec/s)
 "bFf" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/highsec/s)
 "bFh" = (
@@ -42740,7 +42740,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/maxsec/panopticon)
 "jdI" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison,
 /area/prison/security/head)
 "jej" = (

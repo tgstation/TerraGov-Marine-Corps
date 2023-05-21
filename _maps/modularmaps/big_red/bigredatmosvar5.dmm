@@ -552,7 +552,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "EB" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "EF" = (

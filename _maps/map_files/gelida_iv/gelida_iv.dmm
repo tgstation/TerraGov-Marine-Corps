@@ -8060,7 +8060,7 @@
 /area/gelida/indoors/lone_buildings/engineering)
 "flF" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
 "flJ" = (
@@ -12320,7 +12320,7 @@
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "ijG" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "ijV" = (
@@ -16755,7 +16755,7 @@
 "loy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "loB" = (
@@ -23213,7 +23213,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "pzF" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -35284,7 +35284,7 @@
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
 "xDW" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},

@@ -3277,7 +3277,7 @@
 	},
 /area/magmoor/research)
 "cnE" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
@@ -13820,7 +13820,7 @@
 	dir = 8
 	},
 /obj/structure/table/mainship,
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
 "kdc" = (
@@ -15921,7 +15921,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound)
 "lGP" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/mining/storage)
 "lGS" = (
@@ -20269,7 +20269,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -26297,7 +26297,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
 "tva" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/purple{
 	dir = 4
 	},

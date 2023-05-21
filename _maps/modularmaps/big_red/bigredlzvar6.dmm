@@ -1554,7 +1554,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "Mn" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "Mu" = (

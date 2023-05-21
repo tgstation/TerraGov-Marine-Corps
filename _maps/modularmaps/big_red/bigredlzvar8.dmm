@@ -402,7 +402,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "lF" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "lH" = (

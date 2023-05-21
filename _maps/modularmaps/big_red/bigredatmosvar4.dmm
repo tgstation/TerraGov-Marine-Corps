@@ -503,7 +503,7 @@
 /turf/open/liquid/water/river,
 /area/bigredv2/caves/rock)
 "Uu" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "UR" = (

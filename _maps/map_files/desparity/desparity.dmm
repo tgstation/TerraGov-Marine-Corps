@@ -758,7 +758,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
 "ew" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/purple2,
 /area/lv624/lazarus/research)
 "ex" = (
@@ -8135,7 +8135,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
 "OI" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/lv624/lazarus/medbay)
 "OL" = (
@@ -8394,7 +8394,7 @@
 /turf/open/floor/tile/hydro,
 /area/lv624/lazarus/hydroponics)
 "Qn" = (
-/obj/structure/computer3frame/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
