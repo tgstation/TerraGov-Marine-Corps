@@ -14,6 +14,13 @@
 	///Score of points earned by faction
 	var/list/victory_points = list()
 
+/datum/game_mode/hvh/campaign/New()
+	. = ..()
+	for(var/faction in factions)
+		potential_rounds[faction] = list()
+		victory_points[faction] = list()
+
+
 /datum/game_mode/hvh/campaign/announce()
 	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")
 	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
@@ -38,7 +45,7 @@
 
 //End game checks
 /datum/game_mode/hvh/campaign/check_finished(game_status) //todo: add the actual logic once the persistance stuff is done
-	if(!round_finished)
+	if(!round_finished) //some assumptions here about key rounds hard setting the end
 		return FALSE
 
 	//switch(round_finished)
@@ -61,20 +68,25 @@
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
+///selects the next round to be played
+/datum/game_mode/hvh/campaign/campaign/proc/select_next_round(mob/selector)
+	var/choice = tgui_input_list(ui.user, "What course of action would you like to take?", "Mission selection", potential_rounds[selector.faction])
+	if(!choice)
+		return
+	load_new_round(choice, selector.faction)
+
 ///sets up the newly selected round
 /datum/game_mode/hvh/campaign/campaign/proc/load_new_round(datum/game_round/new_round, acting_faction)
 	current_round = new new_round(acting_faction)
 	var/datum/space_level/new_map = current_round.load_map()
 	set_lighting(new_map.z_value)
 
-	//possibly wrap the 4 below into the round datum instead of gamemode
-	//play fluff message for round selection
-
-	//probs link the 2 below into one specific proc
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_global_signal), COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), current_round.shutter_delay)
-	//play fluff message for when round starts
+	addtimer(CALLBACK(current_round, TYPE_PROC_REF(/datum/game_round, start_round)), current_round.shutter_delay)
 
 ///ends the current round and cleans up
 /datum/game_mode/hvh/campaign/campaign/proc/end_current_round()
 	send_global_signal(COMSIG_GLOB_CLOSE_TIMED_SHUTTERS)
+	//forcemove everyone by faction back to their spawn points, to clear out the z-level
+	//delete all existing patrol points
 	current_round.apply_outcome() //todo: have this actually make sense
+	check_finished() //check if the game should end
