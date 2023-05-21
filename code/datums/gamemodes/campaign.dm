@@ -8,7 +8,7 @@
 	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
 	bioscan_interval = 3 MINUTES
 	///The current round type being played
-	var/current_round
+	var/game_round/current_round
 	///List of possible round types that can be selected for the next round, by faction
 	var/list/potential_rounds = list()
 	///Score of points earned by faction
@@ -66,3 +66,4 @@
 	var/datum/space_level/new_level = load_new_z_level(file, name)
 	SSminimaps.generate_minimap(new_level.z_value)
 	set_lighting(new_level.z_value)
+
