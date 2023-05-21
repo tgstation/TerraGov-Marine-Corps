@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(server_maint)
 	flags = SS_POST_FIRE_TIMING
 	priority = FIRE_PRIORITY_SERVER_MAINT
 	init_order = INIT_ORDER_SERVER_MAINT
+	init_stage = INITSTAGE_EARLY
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	var/list/currentrun
 	var/cleanup_ticker = 0
@@ -15,10 +16,10 @@ SUBSYSTEM_DEF(server_maint)
 	world.hub_password = ""
 
 
-/datum/controller/subsystem/server_maint/Initialize(timeofday)
+/datum/controller/subsystem/server_maint/Initialize()
 	if(CONFIG_GET(flag/hub))
 		world.update_hub_visibility(TRUE)
-	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/server_maint/fire(resumed = FALSE)

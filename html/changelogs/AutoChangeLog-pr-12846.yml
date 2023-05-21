@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - qol: "Made the AI capable of firing shipside railguns at the ground."

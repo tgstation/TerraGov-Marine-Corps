@@ -218,3 +218,6 @@
 //added to escaped humans
 #define TRAIT_HAS_ESCAPED "escaped_marine"
 #define TRAIT_HAS_BEEN_TARGETED "been_targeted"
+
+//added to AIs firing railguns
+#define TRAIT_IS_FIRING_RAILGUN "firing_railgun"
