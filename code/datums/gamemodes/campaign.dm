@@ -61,9 +61,20 @@
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
-///Generates a new z level for the round
-/datum/game_mode/hvh/campaign/campaign/proc/load_new_map(file, name)
-	var/datum/space_level/new_level = load_new_z_level(file, name)
-	SSminimaps.generate_minimap(new_level.z_value)
-	set_lighting(new_level.z_value)
+///sets up the newly selected round
+/datum/game_mode/hvh/campaign/campaign/proc/load_new_round(datum/game_round/new_round, acting_faction)
+	current_round = new new_round(acting_faction)
+	var/datum/space_level/new_map = current_round.load_map()
+	set_lighting(new_map.z_value)
 
+	//possibly wrap the 4 below into the round datum instead of gamemode
+	//play fluff message for round selection
+
+	//probs link the 2 below into one specific proc
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_global_signal), COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), current_round.shutter_delay)
+	//play fluff message for when round starts
+
+///ends the current round and cleans up
+/datum/game_mode/hvh/campaign/campaign/proc/end_current_round()
+	send_global_signal(COMSIG_GLOB_CLOSE_TIMED_SHUTTERS)
+	current_round.apply_outcome() //todo: have this actually make sense
