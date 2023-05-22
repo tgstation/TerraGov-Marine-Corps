@@ -45,6 +45,14 @@
 	name = "[core_name] ([str])"
 	label = str
 
+/obj/item/reagent_containers/hypospray/proc/overlay(mob/user)
+	var/str = copytext(reject_bad_text(input(user,"Hypospray overlay text?", "Set overlay", "")), 1, MAX_NAME_HYPO)
+	if(!length(str))
+		to_chat(user, span_notice("Invalid text."))
+		return
+	to_chat(user, span_notice("You overlay [src] as \"[str]\"."))
+	description_overlay = str
+
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
 	if(!istype(user))
 		return FALSE
@@ -230,6 +238,9 @@
 	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
+	<B><A href='?src=\ref[src];overlayer=1'>Activate Overlayer</A></B><BR>
+	<B>Current Overlay:</B> [description_overlay]<BR>
+	<BR>
 	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode (Toggles between injecting and draining):</B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]</A><BR>
 	<BR>
@@ -251,6 +262,9 @@
 	var/dat = {"
 	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
+	<BR>
+	<B><A href='?src=\ref[src];overlayer=1'>Activate Overlayer</A></B><BR>
+	<B>Current Overlay:</B> [description_overlay]<BR>
 	<BR>
 	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode:</A></B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]<BR>
@@ -284,6 +298,10 @@
 
 	else if(href_list["autolabeler"])
 		label(usr)
+
+	else if(href_list["overlayer"])
+		overlay(usr)
+		update_icon()
 
 	else if(href_list["set_transfer"])
 		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", list(30, 20, 15, 10, 5, 3, 1))
