@@ -31,7 +31,7 @@
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/helmet
-	suit_store = /obj/item/weapon/gun/smg/mp7
+	suit_store = /obj/item/weapon/gun/smg/mp7/mag_harness
 	r_store = /obj/item/flashlight
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/security
@@ -46,7 +46,8 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/g22, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/tool/taperoll/police, SLOT_IN_BELT)
-
+	
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol(H), SLOT_IN_ACCESSORY)
