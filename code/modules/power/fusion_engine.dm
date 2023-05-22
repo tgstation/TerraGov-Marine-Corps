@@ -119,6 +119,7 @@
 	if(is_on)
 		balloon_alert_to_viewers("[usr] shuts off the generator.")
 		power_gen_percent = 0
+		is_on = FALSE
 		cur_tick = 0
 		update_icon()
 		stop_processing()
