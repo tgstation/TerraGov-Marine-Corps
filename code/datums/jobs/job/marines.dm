@@ -33,6 +33,8 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
@@ -99,7 +101,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	title = SQUAD_ENGINEER
 	paygrade = "E3"
 	comm_title = "Eng"
-	total_positions = 12
+	total_positions = 4
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
 	skills_type = /datum/skills/combat_engineer
@@ -112,6 +114,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
+	job_points_needed = 5
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
@@ -172,7 +175,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	title = SQUAD_CORPSMAN
 	paygrade = "E3"
 	comm_title = "Med"
-	total_positions = 16
+	total_positions = 5
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/combat_medic
@@ -185,6 +188,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
 	)
+	job_points_needed = 5
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
