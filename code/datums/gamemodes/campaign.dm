@@ -21,7 +21,7 @@
 	///Victory points earned by this faction
 	var/victory_points = 0
 	///Dictates how many respawns this faction has access to overall
-	var/supply_points = 30
+	var/attrition_points = 30
 	///Future rounds this faction can currently choose from
 	var/list/datum/game_round/potential_rounds = list()
 	///Rounds this faction has succesfully completed
@@ -94,24 +94,25 @@
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
 ///selects the next round to be played
-/datum/game_mode/hvh/campaign/campaign/proc/select_next_round(mob/selector)
+/datum/game_mode/hvh/campaign/proc/select_next_round(mob/selector)
 	var/choice = tgui_input_list(selector, "What course of action would you like to take?", "Mission selection", stat_list[selector.faction].potential_rounds) //needs ui linked
 	if(!choice)
 		return
 	load_new_round(choice, selector.faction)
 
 ///sets up the newly selected round
-/datum/game_mode/hvh/campaign/campaign/proc/load_new_round(datum/game_round/new_round, acting_faction)
+/datum/game_mode/hvh/campaign/proc/load_new_round(datum/game_round/new_round, acting_faction)
 	current_round = new new_round(acting_faction)
 	var/datum/space_level/new_map = current_round.load_map()
+	current_round.play_selection_intro()
 	set_lighting(new_map.z_value)
 
 	addtimer(CALLBACK(current_round, TYPE_PROC_REF(/datum/game_round, start_round)), current_round.shutter_delay)
 
 ///ends the current round and cleans up
-/datum/game_mode/hvh/campaign/campaign/proc/end_current_round()
+/datum/game_mode/hvh/campaign/proc/end_current_round()
 	send_global_signal(COMSIG_GLOB_CLOSE_TIMED_SHUTTERS)
 	//forcemove everyone by faction back to their spawn points, to clear out the z-level
 	//delete all existing patrol points
-	current_round.apply_outcome() //todo: have this actually make sense
+	//current_round.apply_outcome() //currently done inside the round datum
 	check_finished() //check if the game should end
