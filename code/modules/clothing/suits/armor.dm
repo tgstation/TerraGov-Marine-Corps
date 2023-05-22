@@ -43,7 +43,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/holster/blade,
-		/obj/item/weapon/gun/,
+		/obj/item/weapon/gun,
 	)
 
 /obj/item/clothing/suit/armor/vest/admiral
