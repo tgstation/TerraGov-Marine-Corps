@@ -48,6 +48,7 @@
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 	update_boiler_glow()
 	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, PROC_REF(gib_explode))
+	RegisterSignal(src, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_stat_change))
 
 // ***************************************
 // *********** Gibbing behaviour
@@ -57,3 +58,9 @@
 	visible_message(span_danger("[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!"))
 	smoke.set_up(2, get_turf(src))
 	smoke.start()
+
+/mob/living/carbon/xenomorph/boiler/proc/on_stat_change(datum/source, old_state, new_state)
+	SIGNAL_HANDLER
+	if(HAS_TRAIT_FROM(src, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
+		anchored = FALSE
