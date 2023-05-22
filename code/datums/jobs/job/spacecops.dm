@@ -240,7 +240,7 @@
 	wear_suit = /obj/item/clothing/suit/armor/swat
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/modular/m10x
-	suit_store = /obj/item/weapon/gun/shotgun/combat
+	suit_store = /obj/item/weapon/gun/shotgun/combat/mag_harness
 	r_store = /obj/item/flashlight
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
