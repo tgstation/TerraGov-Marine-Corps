@@ -8374,9 +8374,9 @@
 /obj/effect/spawner/random/engineering/powercell,
 /obj/effect/spawner/random/engineering/bomb_supply,
 /obj/machinery/light/mainship/small,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/item/assembly/prox_sensor,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/effect/decal/cleanable/cobweb{
 	dir = 8
 	},
@@ -13311,9 +13311,9 @@
 /obj/effect/spawner/random/engineering/powercell,
 /obj/effect/spawner/random/engineering/bomb_supply,
 /obj/machinery/light/mainship/small,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/item/assembly/prox_sensor,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/structure/sign/poster,
 /turf/open/floor/mainship/orange{
 	dir = 10
@@ -16566,9 +16566,9 @@
 /area/mainship/engineering/engine_core)
 "WL" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -16583,9 +16583,9 @@
 /area/mainship/engineering/engine_core)
 "WN" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "WO" = (
@@ -16896,9 +16896,9 @@
 /area/mainship/engineering/engine_core)
 "XO" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
