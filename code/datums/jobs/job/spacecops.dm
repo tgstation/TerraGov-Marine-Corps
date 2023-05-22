@@ -89,7 +89,7 @@
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/helmet
-	suit_store = /obj/item/weapon/gun/energy/lasgun/M43
+	suit_store = /obj/item/weapon/gun/energy/lasgun/M43/mag_harness
 	r_store = /obj/item/flashlight
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/security
@@ -344,7 +344,7 @@
 	wear_suit = /obj/item/clothing/suit/armor/det_suit
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/det_hat
-	suit_store = /obj/item/weapon/gun/energy/lasgun/M43
+	suit_store = /obj/item/weapon/gun/energy/lasgun/M43/mag_harness
 	r_store = /obj/item/flashlight
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
