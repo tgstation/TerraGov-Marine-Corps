@@ -4441,7 +4441,9 @@
 /area/mainship/medical/operating_room_two)
 "nf" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert/engines/right,
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
+	},
 /area/space)
 "ng" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -8894,7 +8896,9 @@
 /area/mainship/squads/general)
 "zX" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert/engines/left,
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
+	},
 /area/space)
 "zY" = (
 /obj/machinery/vending/weapon,
@@ -12256,7 +12260,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "JZ" = (
-/turf/closed/shuttle/ert/engines/right{
+/turf/closed/shuttle/ert/engines/right/two{
 	dir = 1
 	},
 /area/space)
@@ -14655,7 +14659,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Rb" = (
-/turf/closed/shuttle/ert/engines/left{
+/turf/closed/shuttle/ert/engines/left/two{
 	dir = 1
 	},
 /area/space)
@@ -15743,7 +15747,9 @@
 	dir = 6
 	},
 /obj/effect/ai_node,
-/turf/open/floor/mainship/floor,
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
+	},
 /area/mainship/shipboard/weapon_room)
 "Up" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
