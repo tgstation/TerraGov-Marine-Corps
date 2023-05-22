@@ -11,6 +11,17 @@
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 240
 	attack_speed = 4
+	var/description_overlay = ""
+
+/obj/item/reagent_containers/glass/bottle/update_overlays()
+	. = ..()
+	if(isturf(loc) || !description_overlay)
+		return
+	var/mutable_appearance/lab = mutable_appearance('icons/misc/12x12.dmi')
+	lab.pixel_x = 16
+	lab.maptext = MAPTEXT(description_overlay)
+	lab.maptext_width = 16
+	. += lab
 
 /obj/item/reagent_containers/glass/bottle/on_reagent_change()
 	update_icon()
@@ -56,6 +67,7 @@
 	if (!is_open_container())
 		var/image/lid = image(icon, src, "lid_bottle")
 		overlays += lid
+	return ..()
 
 /obj/item/reagent_containers/glass/bottle/inaprovaline
 	name = "\improper Inaprovaline bottle"
@@ -237,4 +249,6 @@
 /obj/item/reagent_containers/glass/bottle/isotonic
 	name = "\improper Isotonic Solution bottle"
 	desc = "A small bottle. Contains Isotonic Solution."
+	icon_state = "bottle-2"
 	list_reagents = list(/datum/reagent/medicine/saline_glucose = 240)
+	description_overlay = "Is"
