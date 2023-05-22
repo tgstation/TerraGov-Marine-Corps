@@ -302,7 +302,7 @@
 
 /obj/item/storage/holster/backholster/flamer/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
 	. = ..()
-	if (istype(item, /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer))
+	if (istype(holstered_item, item))
 		var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer = item
 		refuel(flamer.chamber_items[1], user)
 		flamer.update_ammo_count()
