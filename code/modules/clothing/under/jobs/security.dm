@@ -49,6 +49,9 @@
 	item_state = "r_suit"
 	siemens_coefficient = 0.9
 	adjustment_variants = list()
+	
+	/obj/item/clothing/under/rank/security2/holster
+		starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /obj/item/clothing/under/rank/security/corp
 	icon_state = "sec_corporate"
@@ -63,6 +66,8 @@
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "swatunder"
 	siemens_coefficient = 0.9
+	/obj/item/clothing/under/tactical/holster
+		starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /*
 * Detective
