@@ -18,6 +18,8 @@
 /datum/faction_stats
 	///The faction associated with these stats
 	var/faction
+	///The decision maker for this leader
+	var/mob/faction_leader
 	///Victory points earned by this faction
 	var/victory_points = 0
 	///Dictates how many respawns this faction has access to overall
@@ -32,6 +34,20 @@
 	. = ..()
 	faction = new_faction
 
+///Returns the faction's leader, selecting one if none is available
+/datum/faction_stats/proc/get_selector()
+	if(!faction_leader || faction_leader.stat != CONSCIOUS || !(faction_leader.client))
+		choose_faction_leader()
+
+	return faction_leader
+
+///Elects a new faction leader
+/datum/faction_stats/proc/choose_faction_leader()
+	faction_leader = pick(GLOB.alive_human_list_faction[faction]) //placeholder rng pick for now
+
+/////////////////////////
+
+
 /datum/game_mode/hvh/campaign/New()
 	. = ..()
 	for(var/faction in factions)
@@ -41,6 +57,11 @@
 	to_chat(world, "<b>The current game mode is - Campaign!</b>")
 	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
+
+/datum/game_mode/hvh/campaign/post_setup()
+	. = ..()
+	for(var/datum/faction_stats/choice in stat_list)
+		choice.choose_faction_leader()
 
 /datum/game_mode/hvh/campaign/setup_blockers() //to be updated
 	. = ..()
@@ -61,6 +82,10 @@
 
 //End game checks
 /datum/game_mode/hvh/campaign/check_finished(game_status) //todo: add the actual logic once the persistance stuff is done
+	if(round_finished)
+		message_admins("Round finished: [round_finished]")
+		return TRUE
+
 	//placeholder/fall back win condition
 	for(var/faction in factions)
 		if(stat_list[faction].victory_points >= CAMPAIGN_MAX_VICTORY_POINTS)
@@ -69,23 +94,8 @@
 					round_finished = MODE_COMBAT_PATROL_SOM_MINOR
 				if(FACTION_TERRAGOV)
 					round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
-
-	//if(!round_finished) //some assumptions here about key rounds hard setting the end
-	//	return FALSE
-
-	//switch(round_finished)
-	//	if(MODE_COMBAT_PATROL_SOM_MAJOR)
-
-	//	if(MODE_COMBAT_PATROL_SOM_MINOR)
-
-	//	if(MODE_COMBAT_PATROL_MARINE_MAJOR)
-
-	//	if(MODE_COMBAT_PATROL_MARINE_MINOR)
-
-	//	if(MODE_COMBAT_PATROL_DRAW)
-
-	message_admins("Round finished: [round_finished]")
-	return TRUE
+		message_admins("Round finished: [round_finished]")
+		return TRUE
 
 /datum/game_mode/hvh/campaign/declare_completion() //todo: update fluff message
 	. = ..()
@@ -94,8 +104,8 @@
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
 ///selects the next round to be played
-/datum/game_mode/hvh/campaign/proc/select_next_round(mob/selector)
-	var/choice = tgui_input_list(selector, "What course of action would you like to take?", "Mission selection", stat_list[selector.faction].potential_rounds) //needs ui linked
+/datum/game_mode/hvh/campaign/proc/select_next_round(mob/selector) //basic placeholder
+	var/choice = tgui_input_list(selector, "What course of action would you like to take?", "Mission selection", stat_list[selector.faction].potential_rounds)
 	if(!choice)
 		return
 	load_new_round(choice, selector.faction)
@@ -111,8 +121,16 @@
 
 ///ends the current round and cleans up
 /datum/game_mode/hvh/campaign/proc/end_current_round()
+	if(check_finished()) //check if the game should end
+		return
 	send_global_signal(COMSIG_GLOB_CLOSE_TIMED_SHUTTERS)
-	//forcemove everyone by faction back to their spawn points, to clear out the z-level
-	//delete all existing patrol points
-	//current_round.apply_outcome() //currently done inside the round datum
-	check_finished() //check if the game should end
+
+	for(var/faction in factions)
+		for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction]) //forcemove everyone by faction back to their spawn points, to clear out the z-level
+			human_mob.revive(TRUE)
+			human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job]))
+
+	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
+		qdel(exit_point) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
+
+	select_next_round(stat_list[current_round.winning_faction].get_selector()) //winning team chooses new round
