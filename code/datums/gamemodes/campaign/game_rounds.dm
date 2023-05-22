@@ -30,8 +30,6 @@
 	var/winning_faction
 	///specific round outcome
 	var/outcome
-	///number of VP's earned from this round, can vary based on outcome
-	var/points_earned = 0
 	///The current gamemode. Var as its referred to often
 	var/datum/game_mode/hvh/campaign/mode
 
@@ -57,6 +55,7 @@
 /datum/game_round/process()
 	if(!check_round_progress())
 		return
+	end_round()
 	return PROCESS_KILL
 
 ///Generates a new z level for the round
@@ -153,7 +152,7 @@
 	mode.stat_list[hostile_faction].attrition_points += hostile_team_points
 
 ///checks how many marines and SOM are still alive
-/datum/game_round/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND), count_flags) //todo: either make this not ground exclusive, or make new Z's not away levels
+/datum/game_round/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_AWAY), count_flags) //todo: make new Z's not away levels, or ensure ground and away is consistant in behavior
 	var/list/team_one_alive = list()
 	var/list/team_one_dead = list()
 	var/list/team_two_alive = list()
@@ -195,7 +194,7 @@
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	///Delay from shutter drop until game timer starts
-	var/game_timer_delay = 5 MINUTES
+	var/game_timer_delay = 1 MINUTES //test num
 
 /datum/game_round/tdm/start_round()
 	. = ..()
@@ -226,29 +225,21 @@
 			return TRUE
 		message_admins("Round finished: [GAME_ROUND_OUTCOME_MAJOR_LOSS]") //starting team wiped the hostile team
 		outcome = GAME_ROUND_OUTCOME_MAJOR_LOSS
-		winning_faction = starting_faction
-		points_earned = 3
 		return TRUE
 
 	if(!num_team_one)
 		message_admins("Round finished: [GAME_ROUND_OUTCOME_MAJOR_VICTORY]") //hostile team wiped the starting team
 		outcome = GAME_ROUND_OUTCOME_MAJOR_VICTORY
-		winning_faction = hostile_faction
-		points_earned = 3
 		return TRUE
 
 	//minor victories for more kills or draw for equal kills
 	if(num_dead_team_two > num_dead_team_one)
 		message_admins("Round finished: [GAME_ROUND_OUTCOME_MINOR_LOSS]") //starting team got more kills
 		outcome = GAME_ROUND_OUTCOME_MINOR_LOSS
-		winning_faction = starting_faction
-		points_earned = 1
 		return TRUE
 	if(num_dead_team_one > num_dead_team_two)
 		message_admins("Round finished: [GAME_ROUND_OUTCOME_MINOR_VICTORY]") //hostile team got more kills
 		outcome = GAME_ROUND_OUTCOME_MINOR_VICTORY
-		winning_faction = hostile_faction
-		points_earned = 1
 		return TRUE
 
 	message_admins("Round finished: [GAME_ROUND_OUTCOME_DRAW]") //equal number of kills, or any other edge cases
@@ -256,22 +247,27 @@
 	return TRUE
 
 /datum/game_round/tdm/apply_major_victory()
+	winning_faction = starting_faction
 	modify_attrition_points(20, 5)
 	apply_victory_points(3, 0)
 
 /datum/game_round/tdm/apply_minor_victory()
+	winning_faction = starting_faction
 	modify_attrition_points(15, 10)
 	apply_victory_points(1, 0)
 
 /datum/game_round/tdm/apply_draw()
+	winning_faction = pick(starting_faction, hostile_faction)
 	modify_attrition_points(10, 10)
 	apply_victory_points(0, 0)
 
 /datum/game_round/tdm/apply_minor_loss()
+	winning_faction = hostile_faction
 	modify_attrition_points(15, 10)
 	apply_victory_points(0, 1)
 
 /datum/game_round/tdm/apply_major_loss()
+	winning_faction = hostile_faction
 	modify_attrition_points(20, 5)
 	apply_victory_points(0, 3)
 
@@ -285,3 +281,14 @@
 ///Triggers the game to end
 /datum/game_round/tdm/proc/set_game_end()
 	max_time_reached = TRUE
+
+///test rounds
+/datum/game_round/tdm/lv624
+	name = "Combat patrol 2"
+	map_name = "LV-624"
+	map_file = '_maps/map_files/LV624/LV624.dmm'
+
+/datum/game_round/tdm/desparity
+	name = "Combat patrol 3"
+	map_name = "Desparity"
+	map_file = '_maps/map_files/desparity/desparity.dmm'

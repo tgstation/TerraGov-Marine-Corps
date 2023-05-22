@@ -10,43 +10,9 @@
 	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
 	bioscan_interval = 3 MINUTES
 	///The current round type being played
-	var/datum/game_round/current_round
+	var/datum/game_round/current_round = /datum/game_round/tdm
 	///campaign stats organised by faction
 	var/list/datum/faction_stats/stat_list = list()
-
-//stats/points/etc recorded by faction
-/datum/faction_stats
-	///The faction associated with these stats
-	var/faction
-	///The decision maker for this leader
-	var/mob/faction_leader
-	///Victory points earned by this faction
-	var/victory_points = 0
-	///Dictates how many respawns this faction has access to overall
-	var/attrition_points = 30
-	///Future rounds this faction can currently choose from
-	var/list/datum/game_round/potential_rounds = list()
-	///Rounds this faction has succesfully completed
-	var/list/datum/game_round/finished_rounds = list()
-	//probs add persistant rewards here as well
-
-/datum/faction_stats/New(new_faction)
-	. = ..()
-	faction = new_faction
-
-///Returns the faction's leader, selecting one if none is available
-/datum/faction_stats/proc/get_selector()
-	if(!faction_leader || faction_leader.stat != CONSCIOUS || !(faction_leader.client))
-		choose_faction_leader()
-
-	return faction_leader
-
-///Elects a new faction leader
-/datum/faction_stats/proc/choose_faction_leader()
-	faction_leader = pick(GLOB.alive_human_list_faction[faction]) //placeholder rng pick for now
-
-/////////////////////////
-
 
 /datum/game_mode/hvh/campaign/New()
 	. = ..()
@@ -58,8 +24,15 @@
 	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
 
+/datum/game_mode/hvh/campaign/pre_setup()
+	. = ..()
+
 /datum/game_mode/hvh/campaign/post_setup()
 	. = ..()
+	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //normal ground map is still loaded
+		qdel(exit_point)
+	load_new_round(current_round, factions[1]) //we store the initial round in current_round. This might work better in post_setup, needs testing
+
 	for(var/datum/faction_stats/choice in stat_list)
 		choice.choose_faction_leader()
 
@@ -94,8 +67,8 @@
 					round_finished = MODE_COMBAT_PATROL_SOM_MINOR
 				if(FACTION_TERRAGOV)
 					round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
-		message_admins("Round finished: [round_finished]")
-		return TRUE
+			message_admins("Round finished: [round_finished]")
+			return TRUE
 
 /datum/game_mode/hvh/campaign/declare_completion() //todo: update fluff message
 	. = ..()
@@ -128,7 +101,7 @@
 	for(var/faction in factions)
 		for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction]) //forcemove everyone by faction back to their spawn points, to clear out the z-level
 			human_mob.revive(TRUE)
-			human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job]))
+			human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job.type]))
 
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		qdel(exit_point) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
