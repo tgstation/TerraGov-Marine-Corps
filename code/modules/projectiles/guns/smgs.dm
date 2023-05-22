@@ -277,6 +277,11 @@
 	scatter = 3
 	scatter_unwielded = 7
 	damage_mult = 1.2
+	
+/obj/item/weapon/gun/smg/mp7/mag_harness
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+	)
 
 //-------------------------------------------------------
 //SKORPION //Based on the same thing.
