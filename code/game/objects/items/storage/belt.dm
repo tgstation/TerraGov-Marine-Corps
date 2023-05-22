@@ -301,38 +301,42 @@
 	new /obj/item/tool/research/xeno_analyzer(src)
 	new /obj/item/healthanalyzer(src)
 
-/obj/item/storage/belt/hypospraybelt
-	name = "\improper M276 pattern hypospray belt"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers."
-	icon_state = "hypospraybelt"
+/obj/item/storage/belt/reagentbelt
+	name = "\improper M276 pattern Reagent belt"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport reagent containers. Popular among those who hoard reagents and only dispense the absolute necessary for long-term viability, and disdained by the patients for the same reasons."
+	icon_state = "reagentbelt"
 	item_state = "medicbag"
 	storage_slots = 21
 	max_storage_space = 42
 	max_w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/hypospray,
 	)
 
-/obj/item/storage/belt/hypospraybelt/Initialize(mapload)  //The belt, with all it's magic inside!
+/obj/item/storage/belt/reagentbelt/Initialize(mapload)  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
 	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
 	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/dexalin(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/imialky(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
-	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
+	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
+	new /obj/item/reagent_containers/glass/bottle/isotonic(src)
+	new /obj/item/reagent_containers/glass/bottle/spaceacillin(src)
+	new /obj/item/reagent_containers/glass/bottle/imidazoline(src)
+	new /obj/item/reagent_containers/glass/bottle/alkysine(src)
+	new /obj/item/reagent_containers/glass/bottle/quickclot(src)
+	new /obj/item/reagent_containers/glass/bottle/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/advanced(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/security

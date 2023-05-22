@@ -74,24 +74,28 @@
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
 	icon_state = "bottle19"
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 240)
+	description_overlay = "In"
 
 /obj/item/reagent_containers/glass/bottle/kelotane
 	name = "\improper Kelotane bottle"
 	desc = "A small bottle. Contains kelotane - used to treat burned areas."
 	icon_state = "bottle15"
 	list_reagents = list(/datum/reagent/medicine/kelotane = 240)
+	description_overlay = "Ke"
 
 /obj/item/reagent_containers/glass/bottle/dexalin
 	name = "\improper Dexaline bottle"
 	desc = "A small bottle. Contains dexalin - used to supply blood with oxygen."
 	icon_state = "bottle10"
 	list_reagents = list(/datum/reagent/medicine/dexalin = 240)
+	description_overlay = "Dx"
 
 /obj/item/reagent_containers/glass/bottle/spaceacillin
 	name = "\improper Spaceacillin bottle"
 	desc = "A small bottle. Contains spaceacillin - used to treat infected wounds."
 	icon_state = "bottle8"
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 240)
+	description_overlay = "Sp"
 
 /obj/item/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
@@ -122,6 +126,7 @@
 	desc = "A small bottle of dylovene. Used to counter poisons. Basically an anti-toxin."
 	icon_state = "bottle16"
 	list_reagents = list(/datum/reagent/medicine/dylovene = 240)
+	description_overlay = "Dy"
 
 /obj/item/reagent_containers/glass/bottle/mutagen
 	name = "unstable mutagen bottle"
@@ -192,12 +197,14 @@
 	desc = "A very small bottle. Contains Hypervene - A purge chem for flushing toxins. Causes pain and vomiting."
 	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/hypervene = 240)
+	description_overlay = "Hy"
 
 /obj/item/reagent_containers/glass/bottle/tricordrazine
 	name = "\improper Tricordrazine bottle"
 	desc = "A small bottle. Contains tricordrazine - used as a generic treatment for injuries."
 	icon_state = "bottle-5"
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 240)
+	description_overlay = "Ti"
 
 /obj/item/reagent_containers/glass/bottle/meralyne
 	name = "\improper Meralyne bottle"
@@ -271,4 +278,4 @@
 	desc = "A small bottle. Contains Quickclot, a compound which temporarily halts internal bleeding, but does not fully heal it."
 	icon_state = "bottle-2"
 	list_reagents = list(/datum/reagent/medicine/quickclot = 240)
-	description_overlay = "Im"
+	description_overlay = "Qk"
