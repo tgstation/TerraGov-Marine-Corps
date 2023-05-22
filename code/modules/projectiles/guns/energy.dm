@@ -186,9 +186,7 @@
 //variant with mag harness
 
 /obj/item/weapon/gun/energy/lasgun/M43/mag_harness
-	starting_attachment_types = list(
-	/obj/item/attachable/magnetic_harness,
-	)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 
 //-------------------------------------------------------
