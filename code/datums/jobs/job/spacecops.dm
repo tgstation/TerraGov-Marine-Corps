@@ -26,7 +26,7 @@
 	belt = /obj/item/storage/belt/security
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/rank/security2
+	w_uniform = /obj/item/clothing/under/rank/security2/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
@@ -47,6 +47,9 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/tool/taperoll/police, SLOT_IN_BELT)
 
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol(H), SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/mp7, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/mp7, SLOT_IN_BACKPACK)
@@ -80,7 +83,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/rank/security2
+	w_uniform = /obj/item/clothing/under/rank/security2/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
@@ -104,6 +107,11 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BACKPACK)
 
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/g22(H), SLOT_IN_ACCESSORY)
+	
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BACKPACK)
@@ -125,7 +133,7 @@
 	belt = /obj/item/storage/belt/shotgun/mixed
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/rank/security2
+	w_uniform = /obj/item/clothing/under/rank/security2/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/vest/security
 	gloves = /obj/item/clothing/gloves/black
@@ -138,8 +146,11 @@
 /datum/outfit/job/spacecops/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	
-
-
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol(H), SLOT_IN_ACCESSORY)
+	
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BACKPACK)
@@ -150,6 +161,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
+
 //Space cops Riot officer
 /datum/job/spacecops/riot_officer
 	title = "Colonial Riot Specialist"
@@ -164,7 +176,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
+	w_uniform = /obj/item/clothing/under/tactical/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/riot
 	gloves = /obj/item/clothing/gloves/black
@@ -183,10 +195,10 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/g22(H), SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol(H), SLOT_IN_ACCESSORY)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BACKPACK)
@@ -223,11 +235,11 @@
 	belt = /obj/item/storage/belt/shotgun/mixed
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
+	w_uniform = /obj/item/clothing/under/tactical/holster
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/swat
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	head = /obj/item/clothing/head/helmet/swat
+	head = /obj/item/clothing/head/modular/m10x
 	suit_store = /obj/item/weapon/gun/shotgun/combat
 	r_store = /obj/item/flashlight
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
@@ -236,11 +248,12 @@
 /datum/outfit/job/spacecops/tactical_officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/mgoggles, SLOT_IN_HEAD)
 	
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/g22(H), SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol(H), SLOT_IN_ACCESSORY)
 	
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
@@ -268,12 +281,12 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
+	w_uniform = /obj/item/clothing/under/tactical/holster
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/swat
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	head = /obj/item/clothing/head/helmet/swat
-	suit_store = /obj/item/weapon/gun/rifle/m16
+	head = /obj/item/clothing/head/modular/m10x
+	suit_store = /obj/item/weapon/gun/rifle/m16/ugl
 	r_store = /obj/item/flashlight
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
@@ -281,6 +294,8 @@
 /datum/outfit/job/spacecops/tactical_officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/mgoggles, SLOT_IN_HEAD)
+	
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
@@ -323,7 +338,7 @@
 	belt = /obj/item/storage/holster/belt/revolver/standard_revolver
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/CM_uniform
+	w_uniform = /obj/item/clothing/under/CM_uniform/holster
 	shoes = /obj/item/clothing/shoes/jackboots
 	wear_suit = /obj/item/clothing/suit/armor/det_suit
 	gloves = /obj/item/clothing/gloves/black
@@ -344,6 +359,11 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_BELT)
+	
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb, SLOT_IN_ACCESSORY)
 
 	H.equip_to_slot_or_del(new /obj/item/detective_scanner, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb, SLOT_IN_BACKPACK)
@@ -377,7 +397,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/swat
-	w_uniform = /obj/item/clothing/under/syndicate/tacticool/holster
+	w_uniform = /obj/item/clothing/under/tactical/holster
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	shoes = /obj/item/clothing/shoes/swat
 	wear_suit = /obj/item/clothing/suit/armor/swat
