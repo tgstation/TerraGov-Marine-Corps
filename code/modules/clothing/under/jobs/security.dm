@@ -67,7 +67,7 @@
 	icon_state = "swatunder"
 	siemens_coefficient = 0.9
 /obj/item/clothing/under/tactical/holster
-		starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /*
 * Detective
