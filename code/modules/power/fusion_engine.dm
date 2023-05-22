@@ -123,7 +123,6 @@
 		balloon_alert_to_viewers("[usr] shuts off the generator.")
 		is_on = FALSE
 		power_gen_percent = 0
-		cur_tick = 0
 		update_icon()
 		stop_processing()
 		return TRUE
@@ -141,7 +140,6 @@
 	fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
 
 	is_on = TRUE
-	cur_tick = 0
 	update_icon()
 	start_processing()
 	return TRUE
