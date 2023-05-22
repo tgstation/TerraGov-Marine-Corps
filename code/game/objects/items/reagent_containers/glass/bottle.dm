@@ -172,27 +172,26 @@
 	desc = "A small bottle. Contains Bicaridine - Used to treat brute damage by doctors."
 	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 240)
+	description_overlay = "Bi"
 
 /obj/item/reagent_containers/glass/bottle/tramadol
 	name = "\improper Tramadol bottle"
 	desc = "A small bottle. Contains Tramadol - Used as a basic painkiller."
 	icon_state = "bottle18"
-	volume = 60
 	list_reagents = list(/datum/reagent/medicine/tramadol = 240)
+	description_overlay = "Ta"
 
 /obj/item/reagent_containers/glass/bottle/oxycodone
 	name = "\improper Oxycodone bottle"
 	desc = "A very small bottle. Contains Oxycodone - Used as an Extreme Painkiller."
 	icon_state = "bottle2"
-	volume = 60
-	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
-
+	list_reagents = list(/datum/reagent/medicine/oxycodone = 240)
+	description_overlay = "Ox"
 /obj/item/reagent_containers/glass/bottle/hypervene
 	name = "\improper Hypervene bottle"
 	desc = "A very small bottle. Contains Hypervene - A purge chem for flushing toxins. Causes pain and vomiting."
 	icon_state = "bottle3"
-	volume = 10
-	list_reagents = list(/datum/reagent/hypervene = 10)
+	list_reagents = list(/datum/reagent/hypervene = 240)
 
 /obj/item/reagent_containers/glass/bottle/tricordrazine
 	name = "\improper Tricordrazine bottle"
@@ -248,7 +247,28 @@
 
 /obj/item/reagent_containers/glass/bottle/isotonic
 	name = "\improper Isotonic Solution bottle"
-	desc = "A small bottle. Contains Isotonic Solution."
+	desc = "A small bottle. Contains Isotonic Solution, a compound able to replenish blood."
 	icon_state = "bottle-2"
 	list_reagents = list(/datum/reagent/medicine/saline_glucose = 240)
 	description_overlay = "Is"
+
+/obj/item/reagent_containers/glass/bottle/alkysine
+	name = "\improper Alkysine bottle"
+	desc = "A small bottle. Contains Alkysine, a chemical which heals damaged neurons. Does not provide skill."
+	icon_state = "bottle-2"
+	list_reagents = list(/datum/reagent/medicine/alkysine = 240)
+	description_overlay = "Al"
+
+/obj/item/reagent_containers/glass/bottle/imidazoline
+	name = "\improper Iimidazoline bottle"
+	desc = "A small bottle. Contains Imidazoline, a chemical which heals eyesight."
+	icon_state = "bottle-2"
+	list_reagents = list(/datum/reagent/medicine/imidazoline = 240)
+	description_overlay = "Im"
+
+/obj/item/reagent_containers/glass/bottle/quickclot
+	name = "\improper Quickclot bottle"
+	desc = "A small bottle. Contains Quickclot, a compound which temporarily halts internal bleeding, but does not fully heal it."
+	icon_state = "bottle-2"
+	list_reagents = list(/datum/reagent/medicine/quickclot = 240)
+	description_overlay = "Im"
