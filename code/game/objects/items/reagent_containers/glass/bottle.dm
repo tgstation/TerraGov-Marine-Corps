@@ -233,3 +233,8 @@
 	desc = "A small bottle. Contains Doctor's Delight."
 	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/consumable/drink/doctor_delight = 60)
+
+/obj/item/reagent_containers/glass/bottle/isotonic
+	name = "\improper Isotonic Solution bottle"
+	desc = "A small bottle. Contains Isotonic Solution."
+	list_reagents = list(/datum/reagent/medicine/saline_glucose = 240)
