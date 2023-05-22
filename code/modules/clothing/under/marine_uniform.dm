@@ -377,6 +377,9 @@
 	icon_state = "marshal"
 	has_sensor = 2
 
+/obj/item/clothing/under/CM_uniform/holster
+		starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"
 	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Nanotrasen corporation. Expertly crafted to make you look like a prick."
