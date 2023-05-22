@@ -61,25 +61,25 @@
 	name = "\improper Inaprovaline bottle"
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
 	icon_state = "bottle19"
-	list_reagents = list(/datum/reagent/medicine/inaprovaline = 60)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 240)
 
 /obj/item/reagent_containers/glass/bottle/kelotane
 	name = "\improper Kelotane bottle"
 	desc = "A small bottle. Contains kelotane - used to treat burned areas."
 	icon_state = "bottle15"
-	list_reagents = list(/datum/reagent/medicine/kelotane = 60)
+	list_reagents = list(/datum/reagent/medicine/kelotane = 240)
 
 /obj/item/reagent_containers/glass/bottle/dexalin
 	name = "\improper Dexaline bottle"
 	desc = "A small bottle. Contains dexalin - used to supply blood with oxygen."
 	icon_state = "bottle10"
-	list_reagents = list(/datum/reagent/medicine/dexalin = 60)
+	list_reagents = list(/datum/reagent/medicine/dexalin = 240)
 
 /obj/item/reagent_containers/glass/bottle/spaceacillin
 	name = "\improper Spaceacillin bottle"
 	desc = "A small bottle. Contains spaceacillin - used to treat infected wounds."
 	icon_state = "bottle8"
-	list_reagents = list(/datum/reagent/medicine/spaceacillin = 60)
+	list_reagents = list(/datum/reagent/medicine/spaceacillin = 240)
 
 /obj/item/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
@@ -109,7 +109,7 @@
 	name = "dylovene bottle"
 	desc = "A small bottle of dylovene. Used to counter poisons. Basically an anti-toxin."
 	icon_state = "bottle16"
-	list_reagents = list(/datum/reagent/medicine/dylovene = 60)
+	list_reagents = list(/datum/reagent/medicine/dylovene = 240)
 
 /obj/item/reagent_containers/glass/bottle/mutagen
 	name = "unstable mutagen bottle"
@@ -159,14 +159,14 @@
 	name = "\improper Bicaridine bottle"
 	desc = "A small bottle. Contains Bicaridine - Used to treat brute damage by doctors."
 	icon_state = "bottle3"
-	list_reagents = list(/datum/reagent/medicine/bicaridine = 60)
+	list_reagents = list(/datum/reagent/medicine/bicaridine = 240)
 
 /obj/item/reagent_containers/glass/bottle/tramadol
 	name = "\improper Tramadol bottle"
 	desc = "A small bottle. Contains Tramadol - Used as a basic painkiller."
 	icon_state = "bottle18"
 	volume = 60
-	list_reagents = list(/datum/reagent/medicine/tramadol = 60)
+	list_reagents = list(/datum/reagent/medicine/tramadol = 240)
 
 /obj/item/reagent_containers/glass/bottle/oxycodone
 	name = "\improper Oxycodone bottle"
@@ -186,7 +186,7 @@
 	name = "\improper Tricordrazine bottle"
 	desc = "A small bottle. Contains tricordrazine - used as a generic treatment for injuries."
 	icon_state = "bottle-5"
-	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
+	list_reagents = list(/datum/reagent/medicine/tricordrazine = 240)
 
 /obj/item/reagent_containers/glass/bottle/meralyne
 	name = "\improper Meralyne bottle"
