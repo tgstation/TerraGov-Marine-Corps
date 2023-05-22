@@ -182,6 +182,13 @@
 //variant without ugl attachment
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
 	starting_attachment_types = list()
+	
+//variant with mag harness
+
+/obj/item/weapon/gun/energy/lasgun/M43/mag_harness
+	starting_attachment_types = list(
+	/obj/item/attachable/magnetic_harness,
+	)
 
 
 //-------------------------------------------------------
