@@ -65,6 +65,11 @@
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.4
+	
+/obj/item/weapon/gun/shotgun/combat/mag_harness
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+	)
 
 
 //-------------------------------------------------------
