@@ -80,7 +80,8 @@
 /datum/game_mode/hvh/campaign/proc/select_next_round(mob/selector) //basic placeholder
 	var/choice = tgui_input_list(selector, "What course of action would you like to take?", "Mission selection", stat_list[selector.faction].potential_rounds)
 	if(!choice)
-		return
+		choice = pick(stat_list[selector.faction].potential_rounds) //placeholder pick
+	//probably have some time limit on the choice, so need some logic for that
 	load_new_round(choice, selector.faction)
 
 ///sets up the newly selected round
