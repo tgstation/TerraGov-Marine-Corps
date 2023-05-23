@@ -150,6 +150,8 @@
 	READ_FILE(S["parallax"], parallax)
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["sound_tts"], sound_tts)
+	READ_FILE(S["volume_tts"], volume_tts)
+	READ_FILE(S["sound_tts_blips"], sound_tts_blips)
 
 	READ_FILE(S["key_bindings"], key_bindings)
 	READ_FILE(S["custom_emotes"], custom_emotes)
@@ -204,6 +206,8 @@
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 	sound_tts = sanitize_integer(sound_tts, FALSE, TRUE, initial(sound_tts))
+	volume_tts = sanitize_integer(volume_tts, 0, 100, initial(volume_tts))
+	sound_tts_blips = sanitize_integer(sound_tts_blips, FALSE, TRUE, initial(sound_tts_blips))
 
 	key_bindings = sanitize_islist(key_bindings, list())
 	custom_emotes = sanitize_is_full_emote_list(custom_emotes)
@@ -271,6 +275,8 @@
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 	sound_tts = sanitize_integer(sound_tts, FALSE, TRUE, initial(sound_tts))
+	volume_tts = sanitize_integer(volume_tts, 0, 100, initial(volume_tts))
+	sound_tts_blips = sanitize_integer(sound_tts_blips, FALSE, TRUE, initial(sound_tts_blips))
 
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
@@ -317,6 +323,8 @@
 	WRITE_FILE(S["parallax"], parallax)
 	WRITE_FILE(S["tooltips"], tooltips)
 	WRITE_FILE(S["sound_tts"], sound_tts)
+	WRITE_FILE(S["volume_tts"], volume_tts)
+	WRITE_FILE(S["sound_tts_blips"], sound_tts_blips)
 
 	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)

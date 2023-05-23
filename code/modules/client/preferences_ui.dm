@@ -103,6 +103,8 @@
 			data["auto_fit_viewport"] = auto_fit_viewport
 			data["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			data["sound_tts"] = sound_tts
+			data["volume_tts"] = volume_tts
+			data["sound_tts_blips"] = sound_tts_blips
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
 			data["tgui_input"] = tgui_input
@@ -571,6 +573,16 @@
 
 		if("sound_tts")
 			sound_tts = !sound_tts
+
+		if("volume_tts")
+			var/new_vol = text2num(params["newValue"])
+			if(!isnum(new_vol))
+				return
+			new_vol = round(new_vol)
+			volume_tts = clamp(new_vol, 0, 100)
+
+		if("sound_tts_blips")
+			sound_tts_blips = !sound_tts_blips
 
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy

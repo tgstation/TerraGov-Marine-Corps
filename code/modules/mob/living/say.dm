@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 /mob/living/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
 	if(!client)
-		return
+		return FALSE
 
 	// Create map text prior to modifying message for goonchat
 	if (client?.prefs.chat_on_map && stat != UNCONSCIOUS && !isdeaf(src) && (client.prefs.see_chat_non_mob || ismob(speaker)))
@@ -238,8 +238,8 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	// Recompose message for AI hrefs, language incomprehension.
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
 	message = hear_intercept(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
-	show_message(message, 2, deaf_message, deaf_type, avoid_highlight)
-	return message
+	var/message_success = show_message(message, 2, deaf_message, deaf_type, avoid_highlight)
+	return message_success
 
 
 /mob/living/proc/hear_intercept(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
@@ -253,14 +253,12 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		eavesdrop_range = EAVESDROP_EXTRA_RANGE
 	var/list/listening = get_hearers_in_view(message_range+eavesdrop_range, source)
 	var/list/the_dead = list()
-	var/found_client = FALSE
 	for(var/_M in GLOB.player_list)
 		var/mob/player_mob = _M
 		if(player_mob.stat != DEAD) //not dead, not important
 			continue
 		if(!player_mob.client || !client) //client is so that ghosts don't have to listen to mice
 			continue
-		found_client = TRUE
 		if(player_mob.z != z || get_dist(player_mob, src) > 7) //they're out of range of normal hearing
 			if(!(player_mob.client.prefs.toggles_chat & CHAT_GHOSTEARS))
 				continue
@@ -269,7 +267,28 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		listening |= player_mob
 		the_dead[player_mob] = TRUE
 
-	if(voice && found_client) // tivi todo found client no work
+	var/eavesdropping
+	var/eavesrendered
+	if(eavesdrop_range)
+		eavesdropping = stars(message_raw)
+		eavesrendered = compose_message(src, message_language, eavesdropping, null, spans, message_mode)
+
+	var/list/listened = list()
+	var/rendered = compose_message(src, message_language, message_raw, null, spans, message_mode)
+	for(var/atom/movable/listening_movable as anything in listening)
+		if(!listening_movable)
+			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
+			continue
+		var/heard
+		if(eavesdrop_range && get_dist(source, listening_movable) > eavesdrop_range && !(the_dead[listening_movable]))
+			heard = listening_movable.Hear(eavesrendered, src, message_language, eavesdropping, null, spans, message_mode)
+		else
+			heard = listening_movable.Hear(rendered, src, message_language, message_raw, null, spans, message_mode)
+		if(heard)
+			listened += listening_movable
+	//Note, TG has a found_client var they use, piggybacking on unrelated say popups and runechat code
+	//we dont do that since it'd probably be much more expensive to loop over listeners instead of just doing
+	if(voice)
 		var/tts_message_to_use = tts_message
 		if(!tts_message_to_use)
 			tts_message_to_use = message_raw
@@ -281,23 +300,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(length(tts_filter) > 0)
 			filter += tts_filter.Join(",")
 
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), message_range = message_range)
-
-	var/eavesdropping
-	var/eavesrendered
-	if(eavesdrop_range)
-		eavesdropping = stars(message_raw)
-		eavesrendered = compose_message(src, message_language, eavesdropping, null, spans, message_mode)
-
-	var/rendered = compose_message(src, message_language, message_raw, null, spans, message_mode)
-	for(var/atom/movable/listening_movable as anything in listening)
-		if(!listening_movable)
-			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
-			continue
-		if(eavesdrop_range && get_dist(source, listening_movable) > eavesdrop_range && !(the_dead[listening_movable]))
-			listening_movable.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mode)
-		else
-			listening_movable.Hear(rendered, src, message_language, message_raw, null, spans, message_mode)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, message_range = message_range)
 
 /mob/living/GetVoice()
 	return name
