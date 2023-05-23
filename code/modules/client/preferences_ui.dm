@@ -252,13 +252,15 @@
 
 		if("synthetic_type")
 			var/choice = tgui_input_list(ui.user, "What kind of synthetic do you want to play with?", "Synthetic type choice", SYNTH_TYPES)
-			if(choice)
-				synthetic_type = choice
+			if(!choice)
+				return
+			synthetic_type = choice
 
 		if("robot_type")
 			var/choice = tgui_input_list(ui.user, "What model of robot do you want to play with?", "Robot model choice", ROBOT_TYPES)
-			if(choice)
-				robot_type = choice
+			if(!choice)
+				return
+			robot_type = choice
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -299,8 +301,9 @@
 
 		if("ethnicity")
 			var/choice = tgui_input_list(ui.user, "What ethnicity do you want to play with?", "Ethnicity choice", GLOB.ethnicities_list)
-			if(choice)
-				ethnicity = choice
+			if(!choice)
+				return
+			ethnicity = choice
 
 		if("species")
 			var/choice = tgui_input_list(ui.user, "What species do you want to play with?", "Species choice", get_playable_species())
@@ -398,8 +401,9 @@
 
 		if("ui")
 			var/choice = tgui_input_list(ui.user, "What UI style do you want?", "UI style choice", UI_STYLES)
-			if(choice)
-				ui_style = choice
+			if(!choice)
+				return
+			ui_style = choice
 
 		if("uicolor")
 			var/ui_style_color_new = input(user, "Choose your UI color, dark colors are not recommended!", "UI Color") as null|color
@@ -423,8 +427,9 @@
 
 				valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 			var/choice = tgui_input_list(ui.user, "What hair style do you want?", "Hair style choice", valid_hairstyles)
-			if(choice)
-				h_style = choice
+			if(!choice)
+				return
+			h_style = choice
 
 		if("haircolor")
 			var/new_color = input(user, "Choose your character's hair colour:", "Hair Color") as null|color
@@ -467,8 +472,9 @@
 				valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
 			var/choice = tgui_input_list(ui.user, "What facial hair style do you want?", "Facial hair style choice", valid_facialhairstyles)
-			if(choice)
-				f_style = choice
+			if(!choice)
+				return
+			f_style = choice
 
 		if("facialcolor")
 			var/facial_color = input(user, "Choose your character's facial-hair colour:", "Facial Hair Color") as null|color
@@ -488,13 +494,15 @@
 
 		if("citizenship")
 			var/choice = tgui_input_list(ui.user, "Where do you hail from?", "Place of Origin", CITIZENSHIP_CHOICES)
-			if(choice)
-				citizenship = choice
+			if(!choice)
+				return
+			citizenship = choice
 
 		if("religion")
 			var/choice = tgui_input_list(ui.user, "What religion do you belive in?", "Belief", RELIGION_CHOICES)
-			if(choice)
-				religion = choice
+			if(!choice)
+				return
+			religion = choice
 
 		if("squad")
 			var/new_squad = params["newValue"]
