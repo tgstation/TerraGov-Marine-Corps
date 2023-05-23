@@ -45,12 +45,12 @@
 	name = "[core_name] ([str])"
 	label = str
 
-/obj/item/reagent_containers/hypospray/proc/overlay(mob/user)
-	var/str = copytext(reject_bad_text(input(user,"Hypospray overlay text?", "Set overlay", "")), 1, MAX_NAME_HYPO)
+/obj/item/reagent_containers/hypospray/proc/tag(mob/user)
+	var/str = copytext(reject_bad_text(input(user,"Hypospray tag text?", "Set tag", "")), 1, MAX_NAME_HYPO)
 	if(!length(str))
 		to_chat(user, span_notice("Invalid text."))
 		return
-	to_chat(user, span_notice("You overlay [src] as \"[str]\"."))
+	to_chat(user, span_notice("You tag [src] as \"[str]\"."))
 	description_overlay = str
 
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
@@ -238,8 +238,8 @@
 	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
-	<B><A href='?src=\ref[src];overlayer=1'>Activate Overlayer</A></B><BR>
-	<B>Current Overlay:</B> [description_overlay]<BR>
+	<B><A href='?src=\ref[src];tagger=1'>Activate Tagger</A></B><BR>
+	<B>Current Tag:</B> [description_overlay]<BR>
 	<BR>
 	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode (Toggles between injecting and draining):</B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]</A><BR>
@@ -263,8 +263,8 @@
 	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
-	<B><A href='?src=\ref[src];overlayer=1'>Activate Overlayer</A></B><BR>
-	<B>Current Overlay:</B> [description_overlay]<BR>
+	<B><A href='?src=\ref[src];tagger=1'>Activate Tagger</A></B><BR>
+	<B>Current Tag:</B> [description_overlay]<BR>
 	<BR>
 	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode:</A></B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]<BR>
@@ -299,8 +299,8 @@
 	else if(href_list["autolabeler"])
 		label(usr)
 
-	else if(href_list["overlayer"])
-		overlay(usr)
+	else if(href_list["tagger"])
+		tag(usr)
 		update_icon()
 
 	else if(href_list["set_transfer"])
