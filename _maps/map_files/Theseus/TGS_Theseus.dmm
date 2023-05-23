@@ -13759,7 +13759,7 @@
 /area/mainship/squads/delta)
 "mmZ" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engine_core)
@@ -17554,7 +17554,7 @@
 /area/mainship/command/cic)
 "syT" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engine_core)
 "syY" = (
@@ -19762,7 +19762,7 @@
 /area/mainship/living/starboard_garden)
 "wIK" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -20530,7 +20530,7 @@
 /area/mainship/command/bridge)
 "xVy" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engine_core)
@@ -20551,7 +20551,7 @@
 /area/mainship/living/cryo_cells)
 "xZM" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},

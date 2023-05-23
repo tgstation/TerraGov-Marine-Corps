@@ -584,11 +584,11 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "atx" = (
-/obj/item/fuelCell{
+/obj/item/fuel_cell{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/item/fuelCell{
+/obj/item/fuel_cell{
 	pixel_x = -10;
 	pixel_y = 18
 	},
@@ -11234,11 +11234,11 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "hzP" = (
-/obj/item/fuelCell{
+/obj/item/fuel_cell{
 	pixel_x = -8;
 	pixel_y = 16
 	},
-/obj/item/fuelCell{
+/obj/item/fuel_cell{
 	pixel_x = 8;
 	pixel_y = 16
 	},
