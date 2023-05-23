@@ -382,6 +382,14 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
 	cqc = SKILL_CQC_TRAINED
+	melee_weapons = SKILL_MELEE_DEFAULT
+	firearms = SKILL_FIREARMS_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	smartgun = SKILL_SMART_TRAINED
 
 /datum/skills/so
 	name = STAFF_OFFICER
