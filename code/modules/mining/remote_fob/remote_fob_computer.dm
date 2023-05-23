@@ -7,7 +7,7 @@
 	icon = 'icons/Marine/remotefob.dmi'
 	icon_state = "fobpc"
 	interaction_flags = INTERACT_MACHINE_DEFAULT
-	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)
+	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER)
 	resistance_flags = RESIST_ALL
 	networks = FALSE
 	off_action = new/datum/action/innate/camera_off/remote_fob

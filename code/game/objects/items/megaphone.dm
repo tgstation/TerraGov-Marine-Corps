@@ -28,7 +28,7 @@
 	if (user.get_active_held_item() != src)
 		return
 	if(spamcheck > world.time)
-		to_chat(user, span_warning("\The [src] needs to recharge!"))
+		balloon_alert(user, "cooldown")
 		return
 	playsound(loc, 'sound/items/megaphone.ogg', 100, FALSE, TRUE)
 	spamcheck = world.time + 20

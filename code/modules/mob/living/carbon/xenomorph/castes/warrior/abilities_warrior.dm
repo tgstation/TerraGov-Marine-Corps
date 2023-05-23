@@ -430,7 +430,7 @@
 	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
-	Shake(4, 4, 2 SECONDS)
+	Shake(duration = 0.5 SECONDS)
 
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
@@ -480,7 +480,7 @@
 	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
-	Shake(4, 4, 2 SECONDS)
+	Shake(duration = 0.5 SECONDS)
 	return TRUE
 
 /obj/vehicle/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
@@ -490,7 +490,7 @@
 	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
-	Shake(4, 4, 2 SECONDS)
+	Shake(duration = 0.5 SECONDS)
 	return TRUE
 
 /mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
@@ -543,7 +543,7 @@
 
 	apply_damage(damage, STAMINA, updating_health = TRUE) //Armor penetrating stamina also applies.
 	shake_camera(src, 2, 1)
-	Shake(4, 4, 2 SECONDS)
+	Shake(duration = 0.5 SECONDS)
 
 	return TRUE
 

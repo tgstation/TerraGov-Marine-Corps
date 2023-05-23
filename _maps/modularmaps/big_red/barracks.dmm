@@ -559,7 +559,7 @@
 /turf/open/floor/tile/dark/blue2/corner,
 /area/bigredv2/outside/admin_building)
 "xM" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
 "xT" = (
