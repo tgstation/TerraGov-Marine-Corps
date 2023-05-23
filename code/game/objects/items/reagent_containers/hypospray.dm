@@ -48,9 +48,9 @@
 /obj/item/reagent_containers/hypospray/proc/overlay(mob/user)
 	var/str = copytext(reject_bad_text(input(user,"Hypospray tag text?", "Set tag", "")), 1, MAX_NAME_HYPO)
 	if(!length(str))
-		to_chat(user, span_notice("Invalid text."))
+		user.balloon_alert(user, "Invalid text.")
 		return
-	to_chat(user, span_notice("You tag [src] as \"[str]\"."))
+	user.balloon_alert(user, "You tag [src] as \"[str]\".")
 	description_overlay = str
 
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
