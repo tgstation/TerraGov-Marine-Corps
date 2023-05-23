@@ -23,7 +23,7 @@
 
 /datum/game_mode/hvh/post_setup()
 	. = ..()
-	for(var/z_num = 1 to length(SSmapping.z_list))
+	for(var/z_num in SSmapping.areas_in_z)
 		set_lighting(z_num)
 
 /datum/game_mode/hvh/scale_roles()
@@ -95,7 +95,7 @@
 
 ///Sets the lighting for a z level to a higher level
 /datum/game_mode/hvh/proc/set_lighting(z_level_num)
-	for(var/area/area_to_lit AS in SSmapping.areas_in_z[z_level_num])
+	for(var/area/area_to_lit AS in SSmapping.areas_in_z["[z_level_num]"])
 		switch(area_to_lit.ceiling)
 			if(CEILING_NONE to CEILING_GLASS)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 200)

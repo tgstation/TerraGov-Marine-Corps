@@ -47,6 +47,8 @@
 		hostile_faction = faction
 
 	play_selection_intro()
+	var/datum/space_level/new_map = load_map()
+	mode.set_lighting(new_map.z_value) //this some how was getting called before New?
 
 /datum/game_round/Destroy(force, ...)
 	STOP_PROCESSING(SSslowprocess, src)
@@ -223,23 +225,23 @@
 			message_admins("Round finished: [GAME_ROUND_OUTCOME_DRAW]") //everyone died at the same time, no one wins
 			outcome = GAME_ROUND_OUTCOME_DRAW
 			return TRUE
-		message_admins("Round finished: [GAME_ROUND_OUTCOME_MAJOR_LOSS]") //starting team wiped the hostile team
-		outcome = GAME_ROUND_OUTCOME_MAJOR_LOSS
+		message_admins("Round finished: [GAME_ROUND_OUTCOME_MAJOR_VICTORY]") //starting team wiped the hostile team
+		outcome = GAME_ROUND_OUTCOME_MAJOR_VICTORY
 		return TRUE
 
 	if(!num_team_one)
-		message_admins("Round finished: [GAME_ROUND_OUTCOME_MAJOR_VICTORY]") //hostile team wiped the starting team
-		outcome = GAME_ROUND_OUTCOME_MAJOR_VICTORY
+		message_admins("Round finished: [GAME_ROUND_OUTCOME_MAJOR_LOSS]") //hostile team wiped the starting team
+		outcome = GAME_ROUND_OUTCOME_MAJOR_LOSS
 		return TRUE
 
 	//minor victories for more kills or draw for equal kills
 	if(num_dead_team_two > num_dead_team_one)
-		message_admins("Round finished: [GAME_ROUND_OUTCOME_MINOR_LOSS]") //starting team got more kills
-		outcome = GAME_ROUND_OUTCOME_MINOR_LOSS
+		message_admins("Round finished: [GAME_ROUND_OUTCOME_MINOR_VICTORY]") //starting team got more kills
+		outcome = GAME_ROUND_OUTCOME_MINOR_VICTORY
 		return TRUE
 	if(num_dead_team_one > num_dead_team_two)
-		message_admins("Round finished: [GAME_ROUND_OUTCOME_MINOR_VICTORY]") //hostile team got more kills
-		outcome = GAME_ROUND_OUTCOME_MINOR_VICTORY
+		message_admins("Round finished: [GAME_ROUND_OUTCOME_MINOR_LOSS]") //hostile team got more kills
+		outcome = GAME_ROUND_OUTCOME_MINOR_LOSS
 		return TRUE
 
 	message_admins("Round finished: [GAME_ROUND_OUTCOME_DRAW]") //equal number of kills, or any other edge cases
