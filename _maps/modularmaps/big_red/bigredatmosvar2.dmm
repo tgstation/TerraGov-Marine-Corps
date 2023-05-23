@@ -239,7 +239,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "pX" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "qd" = (

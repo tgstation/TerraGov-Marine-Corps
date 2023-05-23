@@ -584,11 +584,11 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "atx" = (
-/obj/item/fuelCell{
+/obj/item/fuel_cell{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/item/fuelCell{
+/obj/item/fuel_cell{
 	pixel_x = -10;
 	pixel_y = 18
 	},
@@ -8058,6 +8058,11 @@
 	},
 /turf/closed/wall,
 /area/gelida/indoors/lone_buildings/engineering)
+"flF" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/prison,
+/area/gelida/indoors/a_block/security)
 "flJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -11234,11 +11239,11 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "hzP" = (
-/obj/item/fuelCell{
+/obj/item/fuel_cell{
 	pixel_x = -8;
 	pixel_y = 16
 	},
-/obj/item/fuelCell{
+/obj/item/fuel_cell{
 	pixel_x = 8;
 	pixel_y = 16
 	},
@@ -12315,7 +12320,7 @@
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "ijG" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "ijV" = (
@@ -16747,6 +16752,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_1)
+"loy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/cargo)
 "loB" = (
 /obj/item/stack/sheet/wood/large_stack,
 /obj/machinery/power/apc/drained,
@@ -23202,7 +23213,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "pzF" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -35273,7 +35284,7 @@
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
 "xDW" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -55564,7 +55575,7 @@ mGt
 nwc
 nwc
 qWU
-mKq
+flF
 haP
 haP
 dbp
@@ -58944,7 +58955,7 @@ cbT
 oaK
 vst
 oaK
-oaK
+loy
 kzY
 nZO
 oaK

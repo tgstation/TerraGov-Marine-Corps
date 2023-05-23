@@ -17790,7 +17790,7 @@
 /obj/effect/spawner/random/engineering/tech_supply,
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/tool,
-/obj/item/fuelCell/random,
+/obj/item/fuel_cell/random,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/port)
 "xkj" = (

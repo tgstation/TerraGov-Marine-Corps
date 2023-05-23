@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Nuke disk generators are now randomised in location, based on a list of possible spawn points"

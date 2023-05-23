@@ -807,18 +807,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(proj.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
 				pitch = 55000
 			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1, frequency = pitch)
-		on_dodged_bullet(proj)
 
 	return FALSE
-
-
-/mob/living/proc/on_dodged_bullet(obj/projectile/proj)
-		visible_message(span_avoidharm("[proj] misses [src]!"),
-		span_avoidharm("[proj] narrowly misses you!"), null, 4)
-
-/mob/living/carbon/xenomorph/on_dodged_bullet(obj/projectile/proj)
-		visible_message(span_avoidharm("[proj] misses [src]!"),
-		span_avoidharm("[proj] narrowly misses us!"), null, 4)
 
 
 /mob/living/do_projectile_hit(obj/projectile/proj)
