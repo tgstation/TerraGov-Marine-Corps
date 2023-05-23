@@ -233,29 +233,3 @@
 	desc = "A small bottle. Contains Doctor's Delight."
 	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/consumable/drink/doctor_delight = 60)
-
-//Charger bottles for hypo
-/obj/item/reagent_containers/glass/bottle/hypocharge/bicaridine
-	name = "\improper Bicaridine bottle"
-	desc = "A small bottle. Contains Bicaridine - Used to treat brute damage by doctors."
-	icon_state = "bottle3"
-	list_reagents = list(/datum/reagent/medicine/bicaridine = 120)
-
-/obj/item/reagent_containers/glass/bottle/hypocharge/kelotane
-	name = "\improper Kelotane bottle"
-	desc = "A small bottle. Contains kelotane - used to treat burned areas."
-	icon_state = "bottle15"
-	list_reagents = list(/datum/reagent/medicine/kelotane = 120)
-
-/obj/item/reagent_containers/glass/bottle/hypocharge/tramadol
-	name = "\improper Tramadol bottle"
-	desc = "A small bottle. Contains Tramadol - Used as a basic painkiller."
-	icon_state = "bottle18"
-	volume = 60
-	list_reagents = list(/datum/reagent/medicine/tramadol = 120)
-
-/obj/item/reagent_containers/glass/bottle/hypocharge/tricordrazine
-	name = "\improper Tricordrazine bottle"
-	desc = "A small bottle. Contains tricordrazine - used as a generic treatment for injuries."
-	icon_state = "bottle-5"
-	list_reagents = list(/datum/reagent/medicine/tricordrazine = 120)
