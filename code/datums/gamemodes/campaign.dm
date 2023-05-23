@@ -86,10 +86,6 @@
 ///sets up the newly selected round
 /datum/game_mode/hvh/campaign/proc/load_new_round(datum/game_round/new_round, acting_faction)
 	current_round = new new_round(acting_faction)
-	var/datum/space_level/new_map = current_round.load_map()
-	current_round.play_selection_intro()
-	set_lighting(new_map.z_value)
-
 	addtimer(CALLBACK(current_round, TYPE_PROC_REF(/datum/game_round, start_round)), current_round.shutter_delay)
 
 ///ends the current round and cleans up
