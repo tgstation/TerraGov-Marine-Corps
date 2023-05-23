@@ -160,3 +160,17 @@
 		D.update_icon()
 	else
 		to_chat(user, span_warning("This cell is already at maximum charge!"))
+
+/obj/item/cell/lasgun/volkite/powerpack/marine
+	name = "\improper TE powerpack"
+	desc = "A recently developed mass produced side pouch which charges any TE technological achievement."
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "lasgun_pouch"
+	charge_overlay = "lasgun_cell"
+	flags_atom = CONDUCT
+	flags_equip_slot = ITEM_SLOT_POCKET
+	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
+	w_class = WEIGHT_CLASS_BULKY
+	slowdown = 0
+	maxcharge = 2400
+	self_recharge = FALSE
