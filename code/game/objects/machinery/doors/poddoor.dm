@@ -250,6 +250,7 @@
 
 /obj/machinery/door/poddoor/timed_late/Initialize(mapload)
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), PROC_REF(open))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CLOSE_TIMED_SHUTTERS, PROC_REF(close))
 	return ..()
 
 

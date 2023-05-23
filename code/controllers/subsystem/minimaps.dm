@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/datum/minimap_updator/updators_by_datum = list()
 	///assoc list of hash = image of images drawn by players
 	var/list/image/drawn_images = list()
-	///list of callbacks we need to invoke late because Initialize happens early
+	///list of callbacks we need to invoke late because Initialize happens early, or a Z-level was loaded after init
 	var/list/datum/callback/earlyadds = list()
 	///assoc list of minimap objects that are hashed so we have to update as few as possible
 	var/list/hashed_minimaps = list()
@@ -47,9 +47,6 @@ SUBSYSTEM_DEF(minimaps)
 
 	initialized = TRUE
 
-	for(var/i=1 to length(earlyadds)) //lateload icons
-		earlyadds[i].Invoke()
-	earlyadds = null //then clear them
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/minimaps/stat_entry(msg)
@@ -141,6 +138,14 @@ SUBSYSTEM_DEF(minimaps)
 
 	minimaps_by_z["[level]"].hud_image = icon_gen //done making the image!
 
+	//lateload icons
+	if(!earlyadds["[level]"])
+		return
+
+	for(var/i=1 to length(earlyadds["[level]"]))
+		earlyadds["[level]"][i].Invoke()
+	earlyadds["[level]"] = null //then clear them
+
 /**
  * Adds an atom to the processing updators that will have blips drawn on them
  * Arguments:
@@ -216,8 +221,11 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/add_marker(atom/target, hud_flags = NONE, image/blip)
 	if(!isatom(target) || !hud_flags || !blip)
 		CRASH("Invalid marker added to subsystem")
-	if(!initialized)
-		earlyadds += CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip)
+
+	if(!initialized || !(minimaps_by_z["[target.z]"])) //the minimap doesn't exist yet, z level was probably loaded after init
+		if(!(earlyadds["[target.z]"]))
+			earlyadds["[target.z]"] = list()
+		earlyadds["[target.z]"] += CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip)
 		return
 
 	blip.pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x) + minimaps_by_z["[target.z]"].x_offset

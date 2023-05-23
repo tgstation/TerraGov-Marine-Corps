@@ -47,8 +47,7 @@
 		hostile_faction = faction
 
 	play_selection_intro()
-	var/datum/space_level/new_map = load_map()
-	mode.set_lighting(new_map.z_value) //this some how was getting called before New?
+	load_map()
 
 /datum/game_round/Destroy(force, ...)
 	STOP_PROCESSING(SSslowprocess, src)
@@ -64,7 +63,7 @@
 /datum/game_round/proc/load_map()
 	var/datum/space_level/new_level = load_new_z_level(map_file, map_name)
 	SSminimaps.generate_minimap(new_level.z_value)
-	return new_level
+	mode.set_lighting(new_level.z_value)
 
 ///Checks round end criteria, and ends the round if met
 /datum/game_round/proc/check_round_progress()
