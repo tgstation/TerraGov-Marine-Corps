@@ -20,20 +20,12 @@
 // DATUM
 /datum/world_topic
 	var/keyword
-	var/log = TRUE
-	var/key_valid
-	var/require_comms_key = FALSE
+	var/log = FALSE
 
 
 /datum/world_topic/proc/TryRun(list/input)
-	key_valid = config && (CONFIG_GET(string/comms_key) == input["key"])
 	input -= "key"
-	if(require_comms_key && !key_valid)
-		. = "Bad Key"
-		if (input["format"] == "json")
-			. = list("error" = .)
-	else
-		. = Run(input)
+	. = Run(input)
 	if (input["format"] == "json")
 		. = json_encode(.)
 	else if(islist(.))
@@ -86,36 +78,3 @@
 	.["hard_popcap"] = CONFIG_GET(number/hard_popcap) || 0
 	.["extreme_popcap"] = CONFIG_GET(number/extreme_popcap) || 0
 	.["popcap"] = max(CONFIG_GET(number/soft_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/extreme_popcap)) //generalized field for this concept for use across ss13 codebases
-
-/datum/world_topic/playerlist_ext
-	keyword = "playerlist_ext"
-	require_comms_key = TRUE
-
-/datum/world_topic/playerlist_ext/Run(list/input)
-	. = list()
-	var/list/players = list()
-	var/list/disconnected_observers = list()
-
-	for(var/mob/M in GLOB.dead_mob_list)
-		if(!M.ckey)
-			continue
-		if (M.client)
-			continue
-		var/ckey = ckey(M.ckey)
-		disconnected_observers[ckey] = ckey
-
-	for(var/client/C as anything in GLOB.clients)
-		var/ckey = C.ckey
-		players[ckey] = ckey
-		. += ckey
-
-	for(var/mob/M in GLOB.alive_living_list)
-		if(!M.ckey)
-			continue
-		var/ckey = ckey(M.ckey)
-		if(players[ckey])
-			continue
-		if(disconnected_observers[ckey])
-			continue
-		players[ckey] = ckey
-		. += ckey
