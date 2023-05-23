@@ -45,14 +45,6 @@
 	name = "[core_name] ([str])"
 	label = str
 
-/obj/item/reagent_containers/hypospray/proc/overlay(mob/user)
-	var/str = copytext(reject_bad_text(input(user,"Hypospray tag text?", "Set tag", "")), 1, MAX_NAME_HYPO)
-	if(!length(str))
-		user.balloon_alert(user, "Invalid text.")
-		return
-	user.balloon_alert(user, "You tag [src] as \"[str]\".")
-	description_overlay = str
-
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
 	if(!istype(user))
 		return FALSE
@@ -300,7 +292,13 @@
 		label(usr)
 
 	else if(href_list["overlayer"])
-		overlay(usr)
+		var/mob/user = usr
+		var/str = copytext(reject_bad_text(input(user,"Hypospray tag text?", "Set tag", "")), 1, MAX_NAME_HYPO)
+		if(!length(str))
+			user.balloon_alert(user, "Invalid text.")
+			return
+		user.balloon_alert(user, "You tag [src] as \"[str]\".")
+		description_overlay = str
 		update_icon()
 
 	else if(href_list["set_transfer"])
