@@ -19,7 +19,7 @@
 	var/datum/action/innate/remote_fob/plast_cade/plast_cade
 	var/plasteel_remaining = 100
 	var/datum/action/innate/remote_fob/toggle_wiring/toggle_wiring //whether or not new barricades will be wired
-	var/do_wiring = FALSE
+	var/do_wiring = TRUE
 	var/datum/action/innate/remote_fob/sentry/sentry
 	var/sentry_remaining = 0
 	var/datum/action/innate/remote_fob/eject_metal_action/eject_metal_action
