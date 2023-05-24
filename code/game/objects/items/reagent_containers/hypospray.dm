@@ -32,18 +32,9 @@
 	if(tgui_alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(user.loc))
-		to_chat(user, span_notice("You flush the contents of [src]."))
+		user.balloon_alert(user, "You flush the contents of [src].")
 		reagents.reaction(user.loc)
 		reagents.clear_reagents()
-
-/obj/item/reagent_containers/hypospray/proc/label(mob/user)
-	var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
-	if(!length(str))
-		to_chat(user, span_notice("Invalid text."))
-		return
-	to_chat(user, span_notice("You label [src] as \"[str]\"."))
-	name = "[core_name] ([str])"
-	label = str
 
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
 	if(!istype(user))
@@ -54,7 +45,7 @@
 	if(istype(A, /obj/item/storage/pill_bottle) && is_open_container()) //this should only run if its a pillbottle
 		var/obj/item/storage/pill_bottle/bottle = A
 		if(reagents.total_volume >= volume)
-			to_chat(user, span_warning("[src] is full."))
+			user.balloon_alert(user, "[src] is full.")
 			return  //early returning if its full
 
 		if(!length(bottle.contents))
@@ -62,11 +53,11 @@
 		var/obj/item/pill = bottle.contents[1]
 
 		if((pill.reagents.total_volume + reagents.total_volume) > volume)
-			to_chat(user, span_warning("[src] cannot hold that much more."))
+			user.balloon_alert(user, "[src] cannot hold that much more.")
 			return // so it doesnt let people have hypos more filled than their volume
 		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
-		to_chat(user, span_notice("You dissolve [pill] from [bottle] in [src]."))
+		user.balloon_alert(user, "You dissolve [pill] from [bottle] in [src].")
 		bottle.remove_from_storage(pill,null,user)
 		qdel(pill)
 		return
@@ -77,10 +68,10 @@
 		return
 
 	if(!reagents.total_volume)
-		to_chat(user, span_warning("[src] is empty."))
+		user.balloon_alert(user, "[src] is empty.")
 		return
 	if(!A.is_injectable() && !ismob(A))
-		to_chat(user, span_warning("You cannot directly fill [A]."))
+		user.balloon_alert(user, "You cannot directly fill [A].")
 		return
 	if(skilllock && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_NOVICE)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
@@ -107,8 +98,8 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		to_chat(user, "[span_notice("You inject [M] with [src]")].")
-		to_chat(M, span_warning("You feel a tiny prick!"))
+		user.balloon_alert(user, "You inject [M] with [src]")
+		M.balloon_alert(user, "You feel a tiny prick!")
 
 	// /mob/living/carbon/human/attack_hand causes
 	// changeNext_move(7) which creates a delay
@@ -118,7 +109,7 @@
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 	reagents.reaction(A, INJECT, min(amount_per_transfer_from_this, reagents.total_volume) / reagents.total_volume)
 	var/trans = reagents.trans_to(A, amount_per_transfer_from_this)
-	to_chat(user, span_notice("[trans] units injected. [reagents.total_volume] units remaining in [src]. "))
+	to_chat(user, span_notice("[trans] units injected. [reagents.total_volume] units remaining in [src]. ")) // better to not balloon
 
 	return TRUE
 
@@ -134,15 +125,15 @@
 	if(!A.reagents)
 		return FALSE
 	if(reagents.holder_full())
-		to_chat(user, span_warning("[src] is full."))
+		user.balloon_alert(user, "[src] is full.")
 		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 		update_icon() //So we now display as Inject
 		return FALSE
 	if(!A.reagents.total_volume)
-		to_chat(user, "<span class='warning'>[A] is empty.")
+		user.balloon_alert(user, "<span class='warning'>[A] is empty.")
 		return
 	if(!A.is_drawable())
-		to_chat(user, span_warning("You cannot directly remove reagents from this object."))
+		user.balloon_alert(user, "You cannot directly remove reagents from this object.")
 		return
 
 	if(iscarbon(A))
@@ -158,18 +149,18 @@
 	var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
 	var/mob/living/carbon/C = A
 	if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
-		to_chat(user, span_warning("There is already a blood sample in [src]."))
+		user.balloon_alert(user, "There is already a blood sample in [src].")
 		return
 	if(!C.blood_type)
-		to_chat(user, span_warning("You are unable to locate any blood."))
+		user.balloon_alert(user, "You are unable to locate any blood.")
 		return
 	if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
-		to_chat(user, span_warning("This body doesn't have enough blood to draw from."))
+		user.balloon_alert(user, "This body doesn't have enough blood to draw from.")
 		return
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		if(H.species.species_flags & NO_BLOOD)
-			to_chat(user, span_warning("You are unable to locate any blood."))
+			user.balloon_alert(user, "You are unable to locate any blood.")
 			return
 		else
 			C.take_blood(src,amount)
@@ -183,7 +174,7 @@
 ///Checks if a container is drawable, then draw reagents from the container
 /obj/item/reagent_containers/hypospray/proc/draw_reagent(atom/A, mob/living/user)
 	var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
-	to_chat(user, span_notice("You fill [src] with [trans] units of the solution."))
+	user.balloon_alert(user, "You fill [src] with [trans] units of the solution.")
 	on_reagent_change()
 
 /obj/item/reagent_containers/hypospray/on_reagent_change()
@@ -283,13 +274,21 @@
 	if(href_list["inject_mode"])
 		if(inject_mode)
 			to_chat(usr, span_notice("[src] has been set to draw mode. It will now drain reagents."))
+
 		else
 			to_chat(usr, span_notice("[src] has been set to inject mode. It will now inject reagents."))
 		inject_mode = !inject_mode
 		update_icon()
 
 	else if(href_list["autolabeler"])
-		label(usr)
+		var/mob/user = usr
+		var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
+		if(!length(str))
+			user.balloon_alert(user, "Invalid text.")
+			return
+		user.balloon_alert(user, "You label [src] as \"[str]\".")
+		name = "[core_name] ([str])"
+		label = str
 
 	else if(href_list["overlayer"])
 		var/mob/user = usr
