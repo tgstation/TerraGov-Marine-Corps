@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - code_imp: "megaphones now work automatically when talking based on if you are holding it"
