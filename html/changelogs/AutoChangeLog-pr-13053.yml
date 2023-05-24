@@ -1,0 +1,4 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - rscdel: "Removes signalers from FC and SL vendors"
