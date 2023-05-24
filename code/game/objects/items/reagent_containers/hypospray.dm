@@ -562,7 +562,7 @@
 	)
 	description_overlay = "Ti"
 
-obj/item/reagent_containers/hypospray/advanced/big/combatmix
+/obj/item/reagent_containers/hypospray/advanced/big/combatmix
 	name = "big combat mix hypospray"
 	desc = "A hypospray loaded with combat mix. There's a tag that reads BKTT 40:40:20:20."
 	amount_per_transfer_from_this = 15
