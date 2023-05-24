@@ -192,7 +192,6 @@
 
 /* Xenos */
 /mob/living/carbon/xenomorph/AIMiddleClick(mob/living/silicon/ai/user)
-	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, "ai_ping")
 	var/turf/clickedturf = get_turf(src)
 	///list of receivers to send the ping to
 	var/list/receivers = (GLOB.alive_human_list + GLOB.ai_list)
@@ -201,15 +200,41 @@
 		return
 	user.last_pinged_marines = world.time
 	for(var/mob/M in receivers)
-		if(M.z != src || M.stat == DEAD)
+		if(M.z != src.z || M.stat == DEAD)
 			continue
 		var/newdistance = get_dist(src, M) //calculate the distance between receiver and xeno
+		///string to hold the general direction to the targetted xeno
+		var/generaldirection = "north"
 		playsound(M, 'sound/machines/twobeep.ogg', 30, 1)
 		to_chat(M, span_notice("<b>ALERT! The ship AI has detected Hostile/Unknown: [name] at: [AREACOORD_NO_Z(src)].</b>"))
-		if(newdistance <= 40)
-			to_chat(M, span_notice("AI telemetry indicates that [name] is [newdistance] units away."))
-	SSminimaps.add_marker(clickedturf, MINIMAP_FLAG_MARINE, blip)
-	addtimer(CALLBACK(clickedturf, PROC_REF(SSminimaps.remove_marker(clickedturf))), cooldown_length, TIMER_STOPPABLE))
+		///used to store distances for calculating shortest cardinal
+		var/distancecardinal = null
+		///used to save the dir
+		var/savedirection
+		if(newdistance <= 40 && newdistance != 0)
+			for(var/dirn in GLOB.alldirs)
+				var/targetturf = get_step(src, dirn)
+				if(get_dist(dirn, M) <= distancecardinal || distancecardinal == null)
+					distancecardinal = get_dist(dirn, M)
+					savedirection = dirn
+					switch(savedirection)
+						if(NORTH)
+							generaldirection = "north"
+						if(SOUTH)
+							generaldirection = "south"
+						if(EAST)
+							generaldirection = "east"
+						if(WEST)
+							generaldirection = "west"
+						if(NORTHEAST)
+							generaldirection = "northeast"
+						if(SOUTHEAST)
+							generaldirection = "southeast"
+						if(NORTHWEST)
+							generaldirection = "northwest"
+						if(SOUTHWEST)
+							generaldirection = "southwest"
+		to_chat(M, span_notice("AI telemetry indicates that [name] is [get_dist(src, M)] units away to the [generaldirection]."))
 
 /* Turf */
 
