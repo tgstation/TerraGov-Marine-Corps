@@ -32,7 +32,7 @@
 	if(tgui_alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(user.loc))
-		user.balloon_alert(user, "You flush the contents of [src].")
+		user.balloon_alert(user, "Flushes hypospray.")
 		reagents.reaction(user.loc)
 		reagents.clear_reagents()
 
@@ -45,7 +45,7 @@
 	if(istype(A, /obj/item/storage/pill_bottle) && is_open_container()) //this should only run if its a pillbottle
 		var/obj/item/storage/pill_bottle/bottle = A
 		if(reagents.total_volume >= volume)
-			user.balloon_alert(user, "[src] is full.")
+			balloon_alert(user, "Hypospray is full.")
 			return  //early returning if its full
 
 		if(!length(bottle.contents))
@@ -53,7 +53,7 @@
 		var/obj/item/pill = bottle.contents[1]
 
 		if((pill.reagents.total_volume + reagents.total_volume) > volume)
-			user.balloon_alert(user, "[src] cannot hold that much more.")
+			balloon_alert(user, "Can't hold that much.")
 			return // so it doesnt let people have hypos more filled than their volume
 		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
@@ -68,10 +68,10 @@
 		return
 
 	if(!reagents.total_volume)
-		user.balloon_alert(user, "[src] is empty.")
+		balloon_alert(user, "Hypospray is Empty.")
 		return
 	if(!A.is_injectable() && !ismob(A))
-		user.balloon_alert(user, "You cannot directly fill [A].")
+		balloon_alert(user, "Can't fill [A].")
 		return
 	if(skilllock && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_NOVICE)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
@@ -98,7 +98,7 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		user.balloon_alert(user, "You inject [M] with [src]")
+		balloon_alert(user, "Injects [M]")
 		to_chat(M, span_warning("You feel a tiny prick!")) // inject self doubleposting
 
 	// /mob/living/carbon/human/attack_hand causes
@@ -125,15 +125,15 @@
 	if(!A.reagents)
 		return FALSE
 	if(reagents.holder_full())
-		user.balloon_alert(user, "[src] is full.")
+		balloon_alert(user, "Hypospray is full.")
 		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 		update_icon() //So we now display as Inject
 		return FALSE
 	if(!A.reagents.total_volume)
-		user.balloon_alert(user, "<span class='warning'>[A] is empty.")
+		balloon_alert(user, "Hypospray is empty.")
 		return
 	if(!A.is_drawable())
-		user.balloon_alert(user, "You cannot directly remove reagents from this object.")
+		balloon_alert(user, "Can't remove reagents.")
 		return
 
 	if(iscarbon(A))
@@ -149,18 +149,18 @@
 	var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
 	var/mob/living/carbon/C = A
 	if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
-		user.balloon_alert(user, "There is already a blood sample in [src].")
+		balloon_alert(user, "Already have a blood sample.")
 		return
 	if(!C.blood_type)
-		user.balloon_alert(user, "You are unable to locate any blood.")
+		balloon_alert(user, "Can't locate blood.")
 		return
 	if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
-		user.balloon_alert(user, "This body doesn't have enough blood to draw from.")
+		balloon_alert(user, "No blood to draw.")
 		return
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		if(H.species.species_flags & NO_BLOOD)
-			user.balloon_alert(user, "You are unable to locate any blood.")
+			balloon_alert(user, "Can't locate blood.")
 			return
 		else
 			C.take_blood(src,amount)
@@ -174,7 +174,8 @@
 ///Checks if a container is drawable, then draw reagents from the container
 /obj/item/reagent_containers/hypospray/proc/draw_reagent(atom/A, mob/living/user)
 	var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
-	user.balloon_alert(user, "You fill [src] with [trans] units of the solution.")
+	balloon_alert(user, "Fills with [trans] units.")
+
 	on_reagent_change()
 
 /obj/item/reagent_containers/hypospray/on_reagent_change()
