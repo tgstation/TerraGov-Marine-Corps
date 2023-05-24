@@ -203,12 +203,13 @@
 	for(var/mob/M in receivers)
 		if(M.z != src || M.stat == DEAD)
 			continue
-		SSminimaps.add_marker(clickedturf, MINIMAP_FLAG_MARINE, blip)
 		var/newdistance = get_dist(src, M) //calculate the distance between receiver and xeno
 		playsound(M, 'sound/machines/twobeep.ogg', 30, 1)
 		to_chat(M, span_notice("<b>ALERT! The ship AI has detected Hostile/Unknown: [name] at: [AREACOORD_NO_Z(src)].</b>"))
 		if(newdistance <= 40)
 			to_chat(M, span_notice("AI telemetry indicates that [name] is [newdistance] units away."))
+	SSminimaps.add_marker(clickedturf, MINIMAP_FLAG_MARINE, blip)
+	addtimer(CALLBACK(clickedturf, PROC_REF(SSminimaps.remove_marker(clickedturf))), cooldown_length, TIMER_STOPPABLE))
 
 /* Turf */
 
