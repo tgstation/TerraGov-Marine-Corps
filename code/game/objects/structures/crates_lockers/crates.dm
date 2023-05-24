@@ -11,7 +11,7 @@
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
-	/// This determines if the crate is rigged with cable coil to be unopenable
+	/// This determines if the crate is rigged with cable coil to prank someone with an electropack (I guess?)
 	var/rigged = FALSE
 
 /obj/structure/closet/crate/can_close()
