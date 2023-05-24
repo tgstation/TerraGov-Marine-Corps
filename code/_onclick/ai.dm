@@ -190,6 +190,26 @@
 	var/turf/firedturf = get_turf(src)
 	firedturf.AICtrlShiftClick(user)
 
+/* Xenos */
+/mob/living/carbon/xenomorph/AIMiddleClick(mob/living/silicon/ai/user)
+	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, "ai_ping")
+	var/turf/clickedturf = get_turf(src)
+	///list of receivers to send the ping to
+	var/list/receivers = (GLOB.alive_human_list + GLOB.ai_list)
+	if((user.last_pinged_marines + COOLDOWN_AI_PING) > world.time)
+		to_chat(user, "You must wait before pinging again")
+		return
+	user.last_pinged_marines = world.time
+	for(var/mob/M in receivers)
+		if(M.z != src || M.stat == DEAD)
+			continue
+		SSminimaps.add_marker(clickedturf, MINIMAP_FLAG_MARINE, blip)
+		var/newdistance = get_dist(src, M) //calculate the distance between receiver and xeno
+		playsound(M, 'sound/machines/twobeep.ogg', 30, 1)
+		to_chat(M, span_notice("<b>ALERT! The ship AI has detected Hostile/Unknown: [name] at: [AREACOORD_NO_Z(src)].</b>"))
+		if(newdistance <= 40)
+			to_chat(M, span_notice("AI telemetry indicates that [name] is [newdistance] units away."))
+
 /* Turf */
 
 //

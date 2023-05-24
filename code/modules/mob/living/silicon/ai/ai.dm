@@ -56,8 +56,11 @@
 	///Linked artillery for remote targeting.
 	var/obj/machinery/deployable/mortar/linked_artillery
 
-	///Referenec to the AIs minimap.
+	///Reference to the AIs minimap.
 	var/datum/action/minimap/ai/mini
+
+	///used for cooldown when AI pings the location of a xeno or xeno structure
+	var/last_pinged_marines
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
