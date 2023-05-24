@@ -164,3 +164,8 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define ERROR_NO_SUPPORT 7
 /// Failed to other blockers such as egg, power plant , coocon , traps
 #define ERROR_CONSTRUCT 8
+/// Too far from silo
+#define ERROR_NEAR_SILO 9
+/// No silos
+#define ERROR_NO_SILO 10
+

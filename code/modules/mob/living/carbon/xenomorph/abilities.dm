@@ -1,3 +1,5 @@
+#define RESIN_SILO_BUILD_RANGE 50
+
 // ***************************************
 // *********** Universal abilities
 // ***************************************
@@ -198,7 +200,6 @@
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/xeno_action/activable/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
-
 	var/list/modifiers = params2list(params)
 	if(toggled && !(modifiers[BUTTON] == LEFT_CLICK))
 		dragging = TRUE
@@ -310,6 +311,24 @@
 
 /// A version of build_resin with the plasma drain and distance checks removed.
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
+	//xeno owner of this ability
+	var/mob/living/carbon/xenomorph/xowner = owner
+	//holder for silos that we use later
+	var/obj/structure/xeno/selectedsilo
+	//distance between the user and a silo
+	var/silo_distance
+	var/area/targetarea = get_area(T)
+	for(var/obj/structure/xeno/silo/global_silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) //scan the existing resin silos, store the one that's the shortest distance away
+		var/newdistance = get_dist(T, global_silo)
+		if(newdistance <= silo_distance || silo_distance == null)
+			silo_distance = newdistance
+			selectedsilo = global_silo
+	if(silo_distance >= RESIN_SILO_BUILD_RANGE && targetarea != get_area(selectedsilo) && targetarea.ceiling < CEILING_UNDERGROUND) //if true build regular instead of speedbuild
+		if(get_dist(owner, T) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
+			build_resin(get_turf(owner))
+		else
+			build_resin(get_turf(T))
+		return
 	if(!SSresinshaping.get_building_points(owner))
 		owner.balloon_alert(owner, "You have used all your quick-build points! Wait until the marines have landed!")
 		return
@@ -332,6 +351,12 @@
 			return
 		if(ERROR_FOG)
 			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
+			return
+		if(ERROR_NEAR_SILO)
+			owner.balloon_alert(owner, span_notice("Too far from silo!"))
+			return
+		if(ERROR_NO_SILO)
+			owner.balloon_alert(owner, span_notice("No silo!"))
 			return
 		// it fails a lot here when dragging , so its to prevent spam
 		if(ERROR_CONSTRUCT)
@@ -376,6 +401,12 @@
 		if(ERROR_FOG)
 			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
 			return
+		if(ERROR_NEAR_SILO)
+			owner.balloon_alert(owner, span_notice("Too far from silo!"))
+			return
+		if(ERROR_NO_SILO)
+			owner.balloon_alert(owner, span_notice("No silo!"))
+			return
 		// it fails a lot here when dragging , so its to prevent spam
 		if(ERROR_CONSTRUCT)
 			return
@@ -404,6 +435,12 @@
 			return
 		if(ERROR_FOG)
 			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
+			return
+		if(ERROR_NEAR_SILO)
+			owner.balloon_alert(owner, span_notice("Too far from silo!"))
+			return
+		if(ERROR_NO_SILO)
+			owner.balloon_alert(owner, span_notice("No silo!"))
 			return
 		// it fails a lot here when dragging , so its to prevent spam
 		if(ERROR_CONSTRUCT)

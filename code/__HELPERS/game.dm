@@ -14,7 +14,6 @@
 
 /// Checks all conditions if a spot is valid for construction , will return TRUE
 /proc/is_valid_for_resin_structure(turf/target, needs_support = FALSE, mob/builder)
-
 	if(!target || !istype(target))
 		return ERROR_JUST_NO
 	var/obj/alien/weeds/alien_weeds = locate() in target
@@ -26,6 +25,8 @@
 		return ERROR_CANT_WEED
 	for(var/obj/effect/forcefield/fog/F in range(1, target))
 		return ERROR_FOG
+	if(!length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
+		return ERROR_NO_SILO
 	for(var/mob/living/carbon/xenomorph/blocker in target)
 		if(blocker.stat != DEAD && !CHECK_BITFIELD(blocker.xeno_caste.caste_flags, CASTE_IS_BUILDER))
 			return ERROR_BLOCKER
