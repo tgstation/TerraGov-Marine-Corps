@@ -57,7 +57,7 @@
 			return // so it doesnt let people have hypos more filled than their volume
 		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
-		user.balloon_alert(user, "You dissolve [pill] from [bottle] in [src].")
+		to_chat(user, span_notice("You dissolve [pill] from [bottle] in [src]."))
 		bottle.remove_from_storage(pill,null,user)
 		qdel(pill)
 		return
@@ -99,7 +99,7 @@
 	if(ismob(A))
 		var/mob/M = A
 		user.balloon_alert(user, "You inject [M] with [src]")
-		M.balloon_alert(user, "You feel a tiny prick!")
+		to_chat(M, span_warning("You feel a tiny prick!")) // inject self doubleposting
 
 	// /mob/living/carbon/human/attack_hand causes
 	// changeNext_move(7) which creates a delay
