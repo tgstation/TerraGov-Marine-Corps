@@ -21769,6 +21769,13 @@
 	dir = 4
 	},
 /area/ice_colony/surface/hangar/hallway)
+"cEY" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ice_colony/underground/engineering/substation)
 "cGg" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -54543,7 +54550,7 @@ btz
 lHO
 bSV
 caD
-aqv
+cEY
 buE
 btz
 rOI
