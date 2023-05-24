@@ -900,6 +900,9 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/green/corner{
 	dir = 4
 	},
@@ -8393,6 +8396,9 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/green/corner,
 /area/mainship/squads/req)
 "dbD" = (
@@ -13008,12 +13014,6 @@
 /obj/effect/turf_decal/warning_stripes/leader,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/delta)
-"leS" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
 "lff" = (
 /turf/open/floor/mainship/purple{
 	dir = 8
@@ -63622,7 +63622,7 @@ bnF
 aAP
 bnF
 bnF
-leS
+bnF
 bnF
 jiQ
 jiQ
@@ -63630,7 +63630,7 @@ jiQ
 cni
 jiQ
 bnF
-leS
+bnF
 bnF
 bnF
 twq
