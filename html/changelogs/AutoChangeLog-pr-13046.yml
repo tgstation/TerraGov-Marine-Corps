@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "The shipside generators work again"
-  - code_imp: "Cleaned up engine code and added docs"

@@ -1,0 +1,120 @@
+2023-05-24:
+  Barnet2:
+  - rscdel: Removed Chigusa from selectable maps.
+  BlueHNT:
+  - rscadd: hypo overlay Overlay [not a joke]
+  David-Stormwell:
+  - rscadd: Added a Lasgun energy pouch which may charge or act as a cell for your
+      TE guns! -Cabled icon sprites courtesy of OrcaOrca.
+  DeltaFire15:
+  - bugfix: Combat robot crit staggerslow now behaves consistently.
+  - bugfix: The self destruct core no longer requires admin intervention to finish
+      / blow up the ship.
+  - bugfix: The time display on the self destruct UI should be more sane now.
+  JackTheJackhammer:
+  - bugfix: Surt Helm now can be placed on MK.I Jaeger Helm
+  - bugfix: Weight Benches no longer disappear when unselecting the radial wheel.
+  - bugfix: By placing the howitzer in a crate, howitzers gained by lootbox can now
+      be used.
+  Lewdcifer:
+  - rscadd: Squad Leaders can now use the FOB construction drone.
+  Losenis:
+  - balance: Gyroscopic stabilizer no longer has a 10% damage penalty per marine the
+      bullet on aim mode goes through.
+  - balance: Projectile sunder is no longer multiplied by the % of remaining armor
+      of the struck xeno
+  - rscadd: Terra Experimental recharger battery. Req-only, 60 points, 75% capacity
+      of normal battery, recharges 12 energy per second (1 standard lasgun rifle shot)
+  - qol: Recharger lascells in valhalla req vendor
+  - balance: Engi and corpsman slot now scales on pop of marines
+  Lumipharon:
+  - rscadd: Surt now comes with a helmet module to protect your walnut from overheating
+  - bugfix: fixed a couple of runtimes
+  - qol: Magazines now have codex entries detailing magazine and ammo stats
+  - balance: King can no longer summon across z-levels
+  - rscadd: Nuke disk generators are now randomised in location, based on a list of
+      possible spawn points
+  - rscadd: Added a melee oriented SOM ERT variant
+  - bugfix: Prison station no longer has a pool leading directly to deep space
+  - rscadd: Platforms now apply slowdown when crossed, but do not require climbing
+      at all. All platforms are now functional instead of some being cosmetic
+  - bugfix: fixed coverage for platforms working in the wrong direction
+  - bugfix: fixed some pref bugs
+  - balance: Psylance no longer does bonus damage to objects other than mechs
+  - bugfix: Larva no longer walk around on legs
+  - soundadd: Added some new footstep sounds for basalt
+  - bugfix: fixed flares sometimes having full tile opacity
+  - bugfix: fixed some greyscale attachments showing entirely black
+  - rscadd: Robots and vatborn have now been accepted in valhalla
+  - balance: Tanglefoot gas now quickly removes xeno smoke occupying the same space
+  - balance: Xenos now make footsteps
+  - balance: Walking instead of running reduces footstep volume and range. Some xenos
+      have naturally reduced footsteps or none at all
+  - refactor: refactored footstep code
+  MacBlaze1:
+  - bugfix: fixed acid spray not deleting razorwire
+  Naaanii:
+  - bugfix: Turrets can no longer be portalled to bypass the range restriction.
+  - rscdel: Removes signalers from FC and SL vendors
+  Pariah919:
+  - rscadd: New ICC RPG. Statistically identical to the SOM one.
+  - bugfix: ICC Medic now gets a defib, and the ICC Sharpshooter rifle loadout now
+      gets the proper amount of ammo.
+  RipGrayson:
+  - imageadd: Implemented OrcaCora's CAS plane sprite.
+  - qol: Made the AI capable of firing shipside railguns at the ground.
+  - qol: Added balloon_alerts to many things and objects
+  - bugfix: Fixed some floating signs in Desparity.
+  - bugfix: Made CAS unable to bombard xenos in Desparity's crashed ship area.
+  Scarlet-Oduko:
+  - rscadd: Acid wells remove sticky grenades
+  - code_imp: Changes to grenade code, specifically clear_refs
+  TiviPlus:
+  - admin: LOOC/MOOC/XOOC is now filtered
+  - code_imp: megaphones now work automatically when talking based on if you are holding
+      it
+  - rscadd: Atest
+  - bugfix: Maybe fix radio keys being filtered
+  - qol: OB cannon impact now has a visual animation
+  - qol: Removed some unneeded tochats
+  Xander3359:
+  - bugfix: Vali Claymore is no longer immune to acid.
+  ivanmixo:
+  - bugfix: Made the weather sound preference actually work
+  - bugfix: Fixed alamo being unable to be called down if you touch the console as
+      it is taking off
+  - bugfix: Fixed nades erroniously appearing primed when they aren't
+  - bugfix: Pods fit in the pod launchers again
+  - bugfix: Automatic votes cancel any ongoing voting when they start
+  - code_imp: Addressed more 515 compat stuff the regex missed
+  - rscadd: Added an EORD roomba
+  - bugfix: Fixed handheld cell chargers
+  - bugfix: Fixed atom shaking
+  - bugfix: Fixed runner being able to start evasion while on fire
+  - qol: Changed the light mode common radio color to green
+  - bugfix: Toned the shakes down
+  - balance: Defiler's tentacle now staggers instead of a stun
+  - bugfix: The shipside generators work again
+  - code_imp: Cleaned up engine code and added docs
+  - balance: Supply beacons now lose their signal when the source of the signal is
+      destoryed
+  - bugfix: Fixed the req console keeping dead signals in the list
+  - bugfix: Fixed a signal override in the req console
+  mc-oofert:
+  - rscadd: automatic docking sizes for mobile ports
+  - rscadd: 4 new dropships
+  - rscadd: dropship picker console
+  - bugfix: ert engines in maps
+  novaepee:
+  - code_imp: remove unneeded override in cape highlight
+  novaepee, Fitz A. Sholl:
+  - rscadd: Ranger Medium Jaegar armor
+  - rscadd: 6E chameleon kama
+  novaepee, Fitz Sholl:
+  - rscadd: Traditional Ranger Helmet
+  shelteredfreak:
+  - qol: Updates Xeno Toxin hud examine description info.
+  - qol: Updates Defiler Select Reagent ability description info.
+  tyeagg:
+  - balance: dropship fabricator is indestructible
+  - bugfix: thermo backblast not removing

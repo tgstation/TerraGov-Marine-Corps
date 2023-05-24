@@ -1,4 +1,0 @@
-author: "JackTheJackhammer"
-delete-after: True
-changes:
-  - bugfix: "By placing the howitzer in a crate, howitzers gained by lootbox can now be used."
