@@ -695,8 +695,8 @@
 // ***************************************
 // *********** Shatter
 // ***************************************
-///armor multiplier for the shatter status effect
-#define SHATTER_STATUS_EFFECT_ARMOR_MULT 0.8
+///Percentage reduction of armor removed by the shatter status effect
+#define SHATTER_STATUS_EFFECT_ARMOR_MULT 0.2
 
 /datum/status_effect/shatter
 	id = "shatter"
@@ -724,9 +724,8 @@
 	. = ..()
 	if(!.)
 		return
-	armor_modifier = owner.soft_armor
-	owner.soft_armor = owner.soft_armor.scaleAllRatings(SHATTER_STATUS_EFFECT_ARMOR_MULT)
-	armor_modifier = armor_modifier.detachArmor(owner.soft_armor)
+	armor_modifier = owner.soft_armor.scaleAllRatings(SHATTER_STATUS_EFFECT_ARMOR_MULT)
+    owner.soft_armor = owner.soft_armor.detachArmor(armor_modifier)
 
 /datum/status_effect/shatter/on_remove()
 	owner.soft_armor = owner.soft_armor.attachArmor(armor_modifier)
