@@ -19,16 +19,17 @@
 	switch(prefs?.species)
 		if("Combat Robot")
 			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
-				if(prefs && prefs.robot_type == "Basic")
-					return /mob/living/carbon/human/species/robot
-				if(prefs && prefs.robot_type == "Alpharii")
-					return /mob/living/carbon/human/species/robot/alpharii
-				if(prefs && prefs.robot_type == "Charlit")
-					return /mob/living/carbon/human/species/robot/charlit
-				if(prefs && prefs.robot_type == "Deltad")
-					return /mob/living/carbon/human/species/robot/deltad
-				if(prefs && prefs.robot_type == "Bravada")
-					return /mob/living/carbon/human/species/robot/bravada
+				switch(prefs?.robot_type)
+					if("Basic")
+						return /mob/living/carbon/human/species/robot
+					if("Alpharii")
+						return /mob/living/carbon/human/species/robot/alpharii
+					if("Charlit")
+						return /mob/living/carbon/human/species/robot/charlit
+					if("Deltad")
+						return /mob/living/carbon/human/species/robot/deltad
+					if("Bravada")
+						return /mob/living/carbon/human/species/robot/bravada
 			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
 			return /mob/living/carbon/human
 		if("Vatborn")
