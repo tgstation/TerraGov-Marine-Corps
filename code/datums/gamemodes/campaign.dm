@@ -42,21 +42,28 @@
 	//var/datum/game_mode/hvh/campaign/D = SSticker.mode
 	//addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, respawn_wave)), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
 	//addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
-	//TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
-///datum/game_mode/hvh/campaign/intro_sequence() //update this, new fluff message etc etc
-	//op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-	//op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-	//for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-	//	if(human.faction == FACTION_TERRAGOV)
-	//		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
-	//	else
-	//		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
+datum/game_mode/hvh/campaign/intro_sequence() //update this, new fluff message etc etc, make it faction generic
+	op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+	op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		if(human.faction == factions[1])
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "campaign intro here<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
+		else //assuming only 2 factions
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "campaign intro here<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
+
+/datum/game_mode/hvh/campaign/process()
+	if(round_finished)
+		return PROCESS_KILL
+
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0 || current_round.round_state != GAME_ROUND_STATE_ACTIVE)
+		return
+	announce_bioscans_marine_som() //todo: make this faction neutral
 
 //End game checks
 /datum/game_mode/hvh/campaign/check_finished(game_status) //todo: add the actual logic once the persistance stuff is done
 	if(round_finished)
-		message_admins("Round finished: [round_finished]")
+		message_admins("check_finished called when game already over")
 		return TRUE
 
 	//placeholder/fall back win condition
@@ -88,6 +95,7 @@
 /datum/game_mode/hvh/campaign/proc/load_new_round(datum/game_round/new_round, acting_faction)
 	current_round = new new_round(acting_faction)
 	addtimer(CALLBACK(current_round, TYPE_PROC_REF(/datum/game_round, start_round)), current_round.shutter_delay)
+	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
 ///ends the current round and cleans up
 /datum/game_mode/hvh/campaign/proc/end_current_round()

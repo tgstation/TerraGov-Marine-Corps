@@ -75,6 +75,7 @@
 	START_PROCESSING(SSslowprocess, src) //this may be excessive
 	send_global_signal(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE)
 	play_start_intro()
+	round_state = GAME_ROUND_STATE_ACTIVE
 
 ///Round end wrap up
 /datum/game_round/proc/end_round()
@@ -82,6 +83,7 @@
 	STOP_PROCESSING(SSslowprocess, src)
 	apply_outcome() //figure out where best to put this
 	play_outro()
+	round_state = GAME_ROUND_STATE_FINISHED
 	mode.end_current_round()
 
 ///Intro when the round is selected
@@ -95,16 +97,16 @@
 	var/op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == FACTION_TERRAGOV)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
 		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
 
 
 ///Outro when the round is finished
 /datum/game_round/proc/play_outro() //todo: make generic
 	to_chat(world, span_round_header("|[outcome]|"))
 	log_game("[outcome]\nRound: [name]")
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
+	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the [starting_faction] and [hostile_faction], and their struggle on [map_name]."))
 
 ///Applies the correct outcome for the round
 /datum/game_round/proc/apply_outcome()
