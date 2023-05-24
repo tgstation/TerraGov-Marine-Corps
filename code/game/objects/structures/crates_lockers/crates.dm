@@ -11,8 +11,6 @@
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
-	/// This determines if the crate is rigged with cable coil to prank someone with an electropack (I guess?)
-	var/rigged = FALSE
 
 /obj/structure/closet/crate/can_close()
 	. = ..()
@@ -38,13 +36,6 @@
 	if(!.)
 		return
 
-	if(rigged && locate(/obj/item/electropack) in src && iscarbon(user)) //haha get pranked i guess
-		if(user.electrocute_act(17, src))
-			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(5, 1, src)
-			s.start()
-			return
-
 	if(climbable)
 		structure_shaken()
 		climbable = FALSE //Open crate is not a surface that works when climbing around
@@ -54,36 +45,6 @@
 	if(!.)
 		return
 	climbable = TRUE
-
-/obj/structure/closet/crate/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(iscablecoil(I))
-		var/obj/item/stack/cable_coil/C = I
-		if(rigged)
-			to_chat(user, span_notice("[src] is already rigged!"))
-			return
-		if(!C.use(1))
-			return
-
-		to_chat(user, span_notice("You rig [src]."))
-		rigged = TRUE
-
-	else if(istype(I, /obj/item/electropack))
-		if(!rigged)
-			return
-
-		to_chat(user, span_notice("You attach [I] to [src]."))
-		user.drop_held_item()
-		I.forceMove(src)
-
-	else if(iswirecutter(I))
-		if(!rigged)
-			return
-
-		to_chat(user, span_notice("You cut away the wiring."))
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		rigged = FALSE
 
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"
