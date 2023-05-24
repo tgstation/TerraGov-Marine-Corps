@@ -224,7 +224,6 @@
 	name = "\improper TGMC mortar bag"
 	desc = "This backpack can hold 11 80mm mortar shells, in addition to the mortar itself."
 	icon_state = "marinepackt"
-	item_state = "marinepackt"
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = null
@@ -260,7 +259,6 @@
 	name = "\improper TGMC flamethrower bag"
 	desc = "This backpack can carry its accompanying flamethrower as well as a modest general storage capacity. Automatically refuels it's accompanying flamethrower."
 	icon_state = "pyro_bag"
-	item_state = "pyro_bag"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = null
 	max_storage_space = 16
@@ -312,8 +310,9 @@
  * param1 - The flamer tank, the actual tank we are refilling
  * param2 - The person wearing the backpack
 */
-/obj/item/storage/holster/backholster/flamer/proc/refuel(obj/item/W, mob/living/user)
-	var/obj/item/ammo_magazine/flamer_tank/flamer_tank = W
+/obj/item/storage/holster/backholster/flamer/proc/refuel(obj/item/ammo_magazine/flamer_tank/flamer_tank, mob/living/user)
+	if(!istype(flamer_tank,/obj/item/ammo_magazine/flamer_tank))
+		return
 	if(get_dist(user, flamer_tank) > 1)
 		return
 	if(flamer_tank.current_rounds >= flamer_tank.max_rounds)
