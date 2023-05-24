@@ -305,7 +305,8 @@
 
 /obj/item/storage/belt/hypospraybelt
 	name = "\improper M276 pattern hypospray belt"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers. You could probably fit a syringe case too."	icon_state = "hypospraybelt"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers. You could probably fit a syringe case too."
+	icon_state = "hypospraybelt"
 	item_state = "medicbag"
 	storage_slots = 21
 	max_storage_space = 42
