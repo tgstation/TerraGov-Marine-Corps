@@ -725,7 +725,7 @@
 	if(!.)
 		return
 	armor_modifier = owner.soft_armor.scaleAllRatings(SHATTER_STATUS_EFFECT_ARMOR_MULT)
-    owner.soft_armor = owner.soft_armor.detachArmor(armor_modifier)
+	owner.soft_armor = owner.soft_armor.detachArmor(armor_modifier)
 
 /datum/status_effect/shatter/on_remove()
 	owner.soft_armor = owner.soft_armor.attachArmor(armor_modifier)
