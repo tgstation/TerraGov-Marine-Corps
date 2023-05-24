@@ -20,11 +20,11 @@
 			to_chat(src, span_warning("You cannot speak in IC (muted)."))
 			return
 	if(!ishuman(user))
-		to_chat(user, span_warning("You don't know how to use this!"))
+		balloon_alert(user, "Can't use this")
 		return
 
 	if(spamcheck)
-		to_chat(user, span_warning("\The [src] needs to recharge!"))
+		balloon_alert(user, "Wait for recharge")
 		return
 
 	var/message = stripped_input(user, "Shout a message?", "Megaphone")

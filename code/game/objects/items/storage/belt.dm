@@ -898,9 +898,9 @@
 	can_hold = list(/obj/item/explosive/grenade)
 
 /obj/item/storage/belt/grenade/som
-	name="\improper S16 pattern grenade rig"
-	desc="A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
-	icon_state="grenadebelt_som"
+	name = "\improper S16 pattern grenade rig"
+	desc = "A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
+	icon_state = "grenadebelt_som"
 
 /obj/item/storage/belt/grenade/standard/Initialize(mapload)
 	. = ..()
@@ -941,16 +941,16 @@
 	new /obj/item/explosive/grenade(src)
 
 /obj/item/storage/belt/sparepouch
-	name= "\improper G8 general utility pouch"
-	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
+	name = "\improper G8 general utility pouch"
+	desc = "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = WEIGHT_CLASS_NORMAL
-	icon_state= "sparepouch"
-	item_state= "sparepouch"
+	icon_state = "sparepouch"
+	item_state = "sparepouch"
 
 /obj/item/storage/belt/sparepouch/som
-	name= "standard utility pouch"
-	desc= "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
-	icon_state= "sparepouch_som"
-	item_state= "som_belt"
+	name = "standard utility pouch"
+	desc = "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
+	icon_state = "sparepouch_som"
+	item_state = "som_belt"

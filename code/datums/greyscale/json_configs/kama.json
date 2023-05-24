@@ -1,0 +1,18 @@
+{
+	"kama": [
+		{
+			"type": "icon_state",
+			"icon_state": "kama_color1",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"kama_highlight": [
+		{
+			"type": "icon_state",
+			"icon_state": "kama_color2",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	]
+}

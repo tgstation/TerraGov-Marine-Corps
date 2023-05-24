@@ -499,9 +499,12 @@
 	if(!istype(I, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
 		return ..()
 	var/obj/item/weapon/gun/grenade_launcher/single_shot/flare/flare_gun = I
+	if(flare_gun.in_chamber)
+		return
 	for(var/obj/item/flare in contents)
+		remove_from_storage(flare, get_turf(user), user)
+		user.put_in_any_hand_if_possible(flare)
 		flare_gun.reload(flare, user)
-		orient2hud()
 		return
 
 /obj/item/storage/holster/flarepouch/full/Initialize(mapload)

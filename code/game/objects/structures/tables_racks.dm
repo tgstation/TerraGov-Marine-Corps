@@ -48,7 +48,7 @@
 		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
 		if(!table)
 			continue
-		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
+		INVOKE_NEXT_TICK(table, TYPE_PROC_REF(/atom, update_icon))
 
 /obj/structure/table/Destroy()
 	update_adjacent(loc) //so neighbouring tables get updated correctly

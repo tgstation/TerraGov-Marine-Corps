@@ -213,4 +213,4 @@
 
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2) //SFX
 	playsound(loc, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1) //SFX
-	Shake(4, 4, 2 SECONDS)
+	Shake(duration = 0.5 SECONDS)

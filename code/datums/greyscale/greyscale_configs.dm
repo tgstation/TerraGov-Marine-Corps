@@ -66,6 +66,12 @@
 /datum/greyscale_config/cape/scarf
 	json_config = 'code/datums/greyscale/json_configs/scarf.json'
 
+//Kama
+
+/datum/greyscale_config/kama
+	icon_file = 'icons/mob/modular/kama.dmi'
+	json_config = 'code/datums/greyscale/json_configs/kama.json'
+
 /*
  * COLORABLE BADGES
  */

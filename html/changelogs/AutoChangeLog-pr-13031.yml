@@ -1,0 +1,4 @@
+author: "Losenis"
+delete-after: True
+changes:
+  - qol: "Recharger lascells in valhalla req vendor"
