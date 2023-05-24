@@ -1,15 +1,3 @@
-#define GAME_ROUND_STATE_NEW "game round state new"
-
-#define GAME_ROUND_STATE_ACTIVE "game round state active"
-
-#define GAME_ROUND_STATE_FINISHED "game round state finished"
-
-#define GAME_ROUND_OUTCOME_MAJOR_VICTORY "game round outcome major victory"
-#define GAME_ROUND_OUTCOME_MINOR_VICTORY "game round outcome minor victory"
-#define GAME_ROUND_OUTCOME_DRAW "game round outcome draw"
-#define GAME_ROUND_OUTCOME_MINOR_LOSS "game round outcome minor loss"
-#define GAME_ROUND_OUTCOME_MAJOR_LOSS "game round outcome major loss"
-
 ///round code
 /datum/game_round
 	///name of the round
@@ -151,8 +139,8 @@
 
 ///Modifies a faction's attrition points
 /datum/game_round/proc/modify_attrition_points(start_team_points, hostile_team_points)
-	mode.stat_list[starting_faction].attrition_points += start_team_points
-	mode.stat_list[hostile_faction].attrition_points += hostile_team_points
+	mode.stat_list[starting_faction].total_attrition_points += start_team_points
+	mode.stat_list[hostile_faction].total_attrition_points += hostile_team_points
 
 ///checks how many marines and SOM are still alive
 /datum/game_round/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_AWAY), count_flags) //todo: make new Z's not away levels, or ensure ground and away is consistant in behavior

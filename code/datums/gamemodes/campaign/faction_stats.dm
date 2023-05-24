@@ -7,7 +7,9 @@
 	///Victory points earned by this faction
 	var/victory_points = 0
 	///Dictates how many respawns this faction has access to overall
-	var/attrition_points = 30
+	var/total_attrition_points = 30
+	///How many attrition points have been dedicated to the current round
+	var/active_attrition_points = 0
 	///Future rounds this faction can currently choose from
 	var/list/datum/game_round/potential_rounds = list(/datum/game_round/tdm, /datum/game_round/tdm/lv624, /datum/game_round/tdm/desparity) //placeholders
 	///Rounds this faction has succesfully completed

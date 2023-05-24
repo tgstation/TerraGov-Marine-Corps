@@ -30,6 +30,16 @@
 		return FALSE
 	check_hive_status(usr)
 
+/datum/action/observer_action/campaign_respawn
+	name = "Respawn"
+	action_icon_state = "larva_queue"
+
+/datum/action/observer_action/campaign_respawn/action_activate()
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	if(!istype(mode))
+		return
+	mode.attrition_respawn(owner)
+
 /datum/action/observer_action/join_larva_queue
 	name = "Join Larva Queue"
 	action_icon_state = "larva_queue"
