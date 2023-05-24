@@ -466,6 +466,24 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_BELT,\
 )
 
+/// A list of equip slots that are valid for quick equip preferences
+#define VALID_EQUIP_SLOTS list(\
+	SLOT_S_STORE,\
+	SLOT_WEAR_SUIT,\
+	SLOT_BELT,\
+	SLOT_BACK,\
+	SLOT_IN_BACKPACK,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_HEAD,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_IN_ACCESSORY,\
+	SLOT_IN_BELT,\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+)
+
 #define ITEM_NOT_EQUIPPED 0
 #define ITEM_EQUIPPED_CARRIED 1 //To hands, a storage or the likes.
 #define ITEM_EQUIPPED_WORN 2 //Actually worn on the body.
