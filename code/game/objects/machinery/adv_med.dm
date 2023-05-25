@@ -204,23 +204,26 @@
 	return TRUE
 
 /obj/machinery/body_scanconsole/ui_data(mob/user)
-	var/list/data = list(
-		"patient" = connected.occupant.name,
-		"dead" = (connected.occupant.stat == DEAD || HAS_TRAIT(connected.occupant, TRAIT_FAKEDEATH)),
-		"health" = connected.occupant.health,
-		"total_brute" = round(connected.occupant.getBruteLoss()),
-		"total_burn" = round(connected.occupant.getFireLoss()),
-		"toxin" = round(connected.occupant.getToxLoss()),
-		"oxy" = round(connected.occupant.getOxyLoss()),
-		"clone" = round(connected.occupant.getCloneLoss()),
+	var/list/data = list()
 
-		"revivable" = connected.occupant.getBruteLoss() + connected.occupant.getFireLoss() + connected.occupant.getToxLoss() + connected.occupant.getOxyLoss() + connected.occupant.getCloneLoss() <= 200,
+	if(!connected.occupant)
+		return data
 
-		"blood_type" = connected.occupant.blood_type,
-		"blood_amount" = connected.occupant.blood_volume,
+	data["patient"] = connected.occupant.name
+	data["dead"] = (connected.occupant.stat == DEAD || HAS_TRAIT(connected.occupant, TRAIT_FAKEDEATH))
+	data["health"] = connected.occupant.health
+	data["total_brute"] = round(connected.occupant.getBruteLoss())
+	data["total_burn"] = round(connected.occupant.getFireLoss())
+	data["toxin"] = round(connected.occupant.getToxLoss())
+	data["oxy"] = round(connected.occupant.getOxyLoss())
+	data["clone"] = round(connected.occupant.getCloneLoss())
 
-		"hugged" = (locate(/obj/item/alien_embryo) in connected.occupant)
-	)
+	data["revivable"] = connected.occupant.getBruteLoss() + connected.occupant.getFireLoss() + connected.occupant.getToxLoss() + connected.occupant.getOxyLoss() + connected.occupant.getCloneLoss() <= 200
+
+	data["blood_type"] = connected.occupant.blood_type
+	data["blood_amount"] = connected.occupant.blood_volume
+
+	data["hugged"] = locate(/obj/item/alien_embryo) in connected.occupant
 
 	switch(connected.occupant.stat)
 		if(CONSCIOUS)
