@@ -13,7 +13,7 @@
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
 	muzzle_flash = null
-	aim_slowdown = 0.85
+	aim_slowdown = 1
 	general_codex_key = "flame weapons"
 	attachable_allowed = list( //give it some flexibility.
 		/obj/item/attachable/flashlight,
