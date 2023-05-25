@@ -174,3 +174,22 @@
 	slowdown = 0
 	maxcharge = 2400
 	self_recharge = FALSE
+
+/obj/item/cell/lasgun/volkite/powerpack/marine/attack_self(mob/user)
+	if(charge >= maxcharge)
+		balloon_alert(user, "Fully charged")
+		return
+
+	if(user.do_actions)
+		balloon_alert(user, "Too busy")
+		return
+
+	balloon_alert(user, "Begins charging the cell")
+	while(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		charge = min(charge + 40, maxcharge)
+		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
+		flick("handheldcharger_black_pumping", src)
+		if(charge >= maxcharge)
+			balloon_alert(user, "Fully charged")
+			return
+	balloon_alert(user, "Stops charging")
