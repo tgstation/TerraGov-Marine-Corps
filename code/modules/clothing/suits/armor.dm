@@ -78,8 +78,8 @@
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.9
-	strip_delay = 20
 	equip_delay_self = 20
+	unequip_delay_self = 20
 	allowed = list(
 		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
@@ -101,8 +101,8 @@
 	flags_item = SYNTH_RESTRICTED
 	siemens_coefficient = 0.5
 	permeability_coefficient = 0.7
-	strip_delay = 20
 	equip_delay_self = 20
+	unequip_delay_self = 20
 
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"

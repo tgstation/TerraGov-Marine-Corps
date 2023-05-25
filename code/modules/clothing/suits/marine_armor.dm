@@ -40,8 +40,8 @@
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	w_class = WEIGHT_CLASS_HUGE
-	strip_delay = 2 SECONDS
 	equip_delay_self = 2 SECONDS
+	unequip_delay_self = 2 SECONDS
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/clothing/suit/storage/marine/Initialize(mapload)

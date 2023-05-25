@@ -82,6 +82,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	///How long it takes to equip this item yoursef
 	var/equip_delay_self = 0 SECONDS
+	/// How long it takes to unequip this item yourself
+	var/unequip_delay_self = 0 SECONDS
 	///How long an item takes to put on another person
 	var/equip_delay_other = 2 SECONDS
 	///How long an item takes to remove from another person

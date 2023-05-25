@@ -249,7 +249,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	equip_delay_self = 2 SECONDS
-	strip_delay = 1 SECONDS
+	unequip_delay_self = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
 	///The current attacher. Gets remade for every new item
 	var/datum/component/reequip/reequip_component
