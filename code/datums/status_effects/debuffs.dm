@@ -614,7 +614,7 @@
 // *********** Microwave
 // ***************************************
 ///amount of damage done per tick by the microwave status effect
-#define MICROWAVE_STATUS_DAMAGE_MULT 10
+#define MICROWAVE_STATUS_DAMAGE_MULT 5
 ///duration of the microwave effect. Refreshed on application
 #define MICROWAVE_STATUS_DURATION 10 SECONDS
 
@@ -654,7 +654,8 @@
 
 /datum/status_effect/stacking/microwave/add_stacks(stacks_added)
 	. = ..()
-	TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
+	if(stacks > 3)
+		TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
 
 /datum/status_effect/stacking/microwave/tick()
 	. = ..()
