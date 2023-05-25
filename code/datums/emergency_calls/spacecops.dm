@@ -1,6 +1,6 @@
 /datum/emergency_call/spacecops
 	name = "Colonial Law Enforcement Bureau Investigation Unit"
-	base_probability = 20
+	base_probability = 15
 	alignement_factor = -2
 	///number of available special weapon dudes
 	var/max_specialists = 3
