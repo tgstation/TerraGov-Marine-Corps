@@ -137,14 +137,12 @@
 	///How much faster or slower acid melts specific objects/turfs.
 	var/acid_melt_multiplier
 
-//Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
 	acid_strength = WEAK_ACID_STRENGTH
 	acid_damage = 75
 	icon_state = "acid_weak"
 
-//Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
 	acid_strength = STRONG_ACID_STRENGTH

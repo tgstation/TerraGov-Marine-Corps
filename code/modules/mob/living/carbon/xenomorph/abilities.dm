@@ -603,7 +603,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
-	if(!A.should_apply_acid(acid_type))
+	if(!A.should_apply_acid(initial(acid_type.acid_strength)) || initial(acid_type.acid_strength) == initial(A.current_acid?.acid_strength))
 		if(!silent)
 			owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
 		return FALSE
@@ -615,7 +615,6 @@
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!A.dissolvability(initial(acid_type.acid_strength)))
-		X.balloon_alert(X, "We cant melt this")
 		return fail_activate()
 
 	X.face_atom(A)
@@ -627,8 +626,8 @@
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
-	new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)))
-	A.current_acid = acid_type
+	QDEL_NULL(A.current_acid)
+	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)))
 
 	succeed_activate()
 

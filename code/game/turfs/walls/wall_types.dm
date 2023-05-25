@@ -259,6 +259,7 @@
 	name = "mineral wall"
 	desc = "This shouldn't exist"
 	icon_state = ""
+	resistance_flags = UNACIDABLE
 	var/mineral
 	var/last_event = 0
 	var/active = null
