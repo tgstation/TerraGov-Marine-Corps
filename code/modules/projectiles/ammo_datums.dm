@@ -3680,10 +3680,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 0.6
 	bullet_color = LIGHT_COLOR_FIRE
 	ping = null
+	sundering = 1
 	var/fire_color = "red"
 	var/burntime = 0.3 SECONDS
 	var/burnlevel = 30
-	sundering = 1
 
 /datum/ammo/flamethrower/drop_flame(turf/T)
 	if(!istype(T))

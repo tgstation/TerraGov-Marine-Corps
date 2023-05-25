@@ -54,6 +54,7 @@
 	)
 	windup_delay = 0.4 SECONDS
 	windup_sound = 'sound/weapons/guns/interact/flamethrower_on.ogg'
+	turret_range = 5
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
 
@@ -79,6 +80,7 @@
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
 	rounds_per_shot = initial(choice.rounds_per_shot)
+	turret_range = initial(choice.turret_range)
 	scatter = initial(choice.scatter)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
@@ -109,6 +111,7 @@
 	var/message_to_user = ""
 	///Used to change the gun firemode, like automatic, semi-automatic and burst.
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	var/turret_range
 	///Which icon file the radial menu will use.
 	var/radial_icon = 'icons/mob/radial.dmi'
 	///The icon state the radial menu will use.
@@ -121,6 +124,7 @@
 	radial_icon_state = "flamer"
 	fire_delay = 0.1 SECONDS
 	scatter = 10
+	turret_range = 5
 
 /datum/flamer_mode/over
 	ammo_datum_type = /datum/ammo/flamethrower/over
@@ -129,6 +133,7 @@
 	radial_icon_state = "flamer_over"
 	fire_delay = 0.1 SECONDS
 	scatter = 10
+	turret_range = 7
 
 /datum/flamer_mode/blast
 	ammo_datum_type = /datum/ammo/flamethrower/blast
@@ -137,6 +142,7 @@
 	radial_icon_state = "flamer_blast"
 	fire_delay = 2 SECONDS
 	rounds_per_shot = 10
+	turret_range = 5
 
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"
