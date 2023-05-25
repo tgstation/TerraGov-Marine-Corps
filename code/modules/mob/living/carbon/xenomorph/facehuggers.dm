@@ -593,7 +593,6 @@
 	remove_danger_overlay() //Remove the danger overlay
 
 	update_icon()
-	visible_message("\icon[src] [span_danger("\The [src] curls up into a ball!")]")
 	playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.

@@ -154,10 +154,10 @@
 			upper_right = locate(owner.x + 2, owner.y + 1, owner.z)
 
 	for(var/turf/affected_tile AS in block(lower_left, upper_right)) //everything in the 2x3 block is found.
-		affected_tile.Shake(4, 4, 2 SECONDS)
+		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/atom/movable/affected in affected_tile)
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(4, 4, 20)
+				affected.Shake(duration = 0.5 SECONDS)
 				continue
 			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected

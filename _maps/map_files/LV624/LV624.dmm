@@ -3112,7 +3112,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/rock)
 "bTH" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "bTL" = (
@@ -7367,7 +7367,7 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop2/lz2)
 "hIs" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "hIR" = (
@@ -8486,6 +8486,7 @@
 "jjr" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "jjR" = (
@@ -12660,7 +12661,7 @@
 /area/lv624/ground/filtration)
 "oHK" = (
 /obj/item/frame/table/wood,
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "oHO" = (
@@ -15463,6 +15464,12 @@
 /obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
+"sre" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/lv624/lazarus/research)
 "srR" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
@@ -42321,7 +42328,7 @@ exl
 uYP
 rdh
 sSs
-bba
+sre
 cwq
 eLr
 uxW

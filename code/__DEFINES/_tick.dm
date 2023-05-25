@@ -16,8 +16,6 @@
 #define TICK_LIMIT_TO_RUN (Master.current_ticklimit - TICK_MIN_RUNTIME)
 /// Tick limit for MC while running
 #define TICK_LIMIT_MC (TICK_LIMIT_RUNNING - TICK_MIN_RUNTIME)
-/// Tick limit while initializing
-#define TICK_LIMIT_MC_INIT_DEFAULT (100 - TICK_BYOND_RESERVE)
 
 /// for general usage of tick_usage
 #define TICK_USAGE world.tick_usage

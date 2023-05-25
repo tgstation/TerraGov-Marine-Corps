@@ -88,7 +88,7 @@
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
 		if(user)
-			to_chat(user, span_notice("It won't budge!"))
+			balloon_alert(user, "Won't budge")
 		return FALSE
 	return TRUE
 
@@ -97,12 +97,12 @@
 	for(var/obj/structure/closet/closet in loc)
 		if(closet != src && !closet.wall_mounted)
 			if(user)
-				to_chat(user, span_danger("There's more than one closet here, it's too cramped to close.") )
+				balloon_alert(user, "Can't close, too cramped")
 			return FALSE
 	for(var/mob/living/mob_to_stuff in loc)
 		if(mob_to_stuff.anchored || mob_to_stuff.mob_size > max_mob_size)
 			if(user)
-				to_chat(user, span_danger("[mob_to_stuff] is preventing [src] from closing."))
+				balloon_alert(user, "Can't close, [mob_to_stuff] in the way")
 			return FALSE
 	return TRUE
 
@@ -185,7 +185,7 @@
 
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
-		visible_message(span_warning(" [user] destroys the [src]. "))
+		balloon_alert_to_viewers("[user] destroys the [src]")
 		dump_contents()
 		qdel(src)
 
@@ -224,7 +224,7 @@
 		return
 
 	if(!attached_clamp.loaded && mob_size_counter)
-		to_chat(user, span_warning("There is a creature inside!"))
+		balloon_alert(user, "Can't, creature is inside")
 		return
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
@@ -233,20 +233,20 @@
 
 	if(opened)
 		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
-			to_chat(user, span_notice("You need more welding fuel to complete this task."))
+			balloon_alert(user, "Need more welding fuel")
 			return TRUE
 		if(drop_material)
 			new drop_material(drop_location())
-		visible_message(span_notice("\The [src] has been cut apart by [user] with [welder]."), "You hear welding.")
+		balloon_alert_to_viewers("\The [src] is cut apart by [user]!")
 		qdel(src)
 		return TRUE
 
 	if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
-		to_chat(user, span_notice("You need more welding fuel to complete this task."))
+		balloon_alert(user, "Need more welding fuel")
 		return TRUE
 	welded = !welded
 	update_icon()
-	visible_message(span_warning("[src] has been [welded ? "welded shut" : "unwelded"] by [user.name]."), "You hear welding.")
+	balloon_alert_to_viewers("[src] has been [welded ? "welded shut" : "unwelded"]")
 	return TRUE
 
 
@@ -254,13 +254,11 @@
 	if(opened)
 		return FALSE
 	if(isspaceturf(loc) && !anchored)
-		to_chat(user, span_warning("You need a firmer floor to wrench [src] down."))
+		balloon_alert(user, "Need firmer floor")
 		return TRUE
 	setAnchored(!anchored)
 	wrenchy_tool.play_tool_sound(src, 75)
-	user.visible_message(span_notice("[user] [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground."), \
-					span_notice("You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground."), \
-					span_italics("You hear a ratchet."))
+	balloon_alert_to_viewers("[user] [anchored ? "anchors" : "unanchors"] the [src]")
 	return TRUE
 
 
@@ -292,9 +290,7 @@
 		return
 	else
 		step_towards(O, loc)
-		user.visible_message(span_danger("[user] stuffs [O] into [src]!"))
-
-
+		balloon_alert_to_viewers("[O] is stuffed into [src]")
 
 /obj/structure/closet/relaymove(mob/user, direct)
 	if(!isturf(loc))
@@ -307,7 +303,7 @@
 	user.changeNext_move(5)
 
 	if(!open())
-		to_chat(user, span_notice("It won't budge!"))
+		balloon_alert(user, "Won't budge")
 		if(!lastbang)
 			lastbang = TRUE
 			for(var/mob/M in hearers(src, null))
@@ -333,7 +329,7 @@
 	if(ishuman(usr))
 		src.toggle(usr)
 	else
-		to_chat(usr, span_warning("This mob type can't use this verb."))
+		balloon_alert(usr, "Can't do this")
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
@@ -362,17 +358,15 @@
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	TIMER_COOLDOWN_START(user, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
-	user.visible_message(span_warning("[src] begins to shake violently!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
-		span_italics("You hear banging from [src]."))
+	balloon_alert_to_viewers("Begins to shake violently", ignored_mobs = user)
+	balloon_alert(user, "You push on the door... [DisplayTimeText(breakout_time)] until escape")
 	if(!do_after(user, breakout_time, target = src))
 		if(!opened) //Didn't get opened in the meatime.
-			to_chat(user, span_warning("You fail to break out of [src]!"))
+			balloon_alert(user, "You fail to break out of [src]")
 		return FALSE
 	if(opened || (!locked && !welded) ) //Did get opened in the meatime.
 		return TRUE
-	user.visible_message(span_danger("[user] successfully broke out of [src]!"),
-		span_notice("You successfully break out of [src]!"))
+	balloon_alert_to_viewers("breaks out")
 	return bust_open()
 
 
@@ -403,25 +397,24 @@
 		return FALSE
 	if(!user.dextrous)
 		if(!silent)
-			to_chat(user, span_warning("You don't have the dexterity to do this!"))
+			balloon_alert(user, "Not enough dexterity")
 		return
 	if(opened)
 		if(!silent)
-			to_chat(user, span_notice("Close \the [src] first."))
+			balloon_alert(user, "Close \the [src] first.")
 		return
 	if(broken)
 		if(!silent)
-			to_chat(user, span_warning("\The [src] is broken!"))
+			balloon_alert(user, "Cannot, [src] is broken")
 		return FALSE
 
 	if(!allowed(user))
 		if(!silent)
-			to_chat(user, span_notice("Access Denied"))
+			balloon_alert(user, "Access Denied")
 		return FALSE
 
 	locked = !locked
-	user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
-						span_notice("You [locked ? null : "un"]lock [src]."))
+	balloon_alert_to_viewers("[locked ? null : "un"]locked")
 	update_icon()
 	return TRUE
 
@@ -489,8 +482,8 @@
 	SIGNAL_HANDLER
 	SetStun(origin.closet_stun_delay)//Action delay when going out of a closet
 	if(!lying_angle && IsStun())
-		visible_message(span_warning("[src] suddenly gets out of [origin]!"),
-		span_warning("You get out of [origin] and get your bearings!"))
+		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = usr)
+		balloon_alert(usr, "Need to get bearings")
 	origin.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 	UnregisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED)
 

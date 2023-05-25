@@ -24,9 +24,9 @@ SUBSYSTEM_DEF(resinshaping)
 	active = FALSE
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED))
 
-/datum/controller/subsystem/resinshaping/Initialize(start_timeofday)
-	..()
+/datum/controller/subsystem/resinshaping/Initialize()
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(toggle_off))
+	return SS_INIT_SUCCESS
 
 /// Retrieves a mob's building points using their ckey. Only works for mobs with clients.
 /datum/controller/subsystem/resinshaping/proc/get_building_points(mob/the_builder)
