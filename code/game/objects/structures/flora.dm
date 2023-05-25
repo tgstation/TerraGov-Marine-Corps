@@ -2,7 +2,6 @@
 	anchored = TRUE
 	max_integrity = 25
 	coverage = 30
-	resistance_flags = UNACIDABLE
 	var/on_fire = FALSE
 
 /obj/structure/flora/ex_act(severity)

@@ -183,7 +183,7 @@ directive is properly returned.
 /atom/proc/should_apply_acid(acid_strength)
 	if(!current_acid)
 		return TRUE
-	return acid_strength >= initial(current_acid.acid_strength)
+	return acid_strength >= current_acid.acid_strength
 
 /atom/proc/on_reagent_change()
 	return
