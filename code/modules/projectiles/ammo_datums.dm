@@ -3671,9 +3671,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE|AMMO_SUNDERING
 	armor_type = "fire"
-	max_range = 4
+	max_range = 5
 	damage = 8
 	damage_falloff = 0
 	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
@@ -3683,6 +3683,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/fire_color = "red"
 	var/burntime = 0.3 SECONDS
 	var/burnlevel = 30
+	sundering = 1
 
 /datum/ammo/flamethrower/drop_flame(turf/T)
 	if(!istype(T))
@@ -3714,12 +3715,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/flamethrower/over
 	icon_state = "flamer_over"
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE|AMMO_IFF
-	max_range = 5
+	max_range = 7
 	shell_speed = 0.3
 	damage = 6
 
 /datum/ammo/flamethrower/blast
 	damage = 20
+	sundering = 10
 
 /datum/ammo/flamethrower/blast/drop_flame(turf/T)
 	if(!istype(T))
@@ -3767,6 +3769,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_EXPLOSIVE
 	bullet_color = null
+	ping = null
 
 /datum/ammo/water/proc/splash(turf/extinguished_turf, splash_direction)
 	var/obj/flamer_fire/current_fire = locate(/obj/flamer_fire) in extinguished_turf

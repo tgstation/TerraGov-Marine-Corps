@@ -30,7 +30,7 @@
 		ATTACHMENT_SLOT_MAGAZINE,
 	)
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_AUTO_EJECT
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
@@ -52,7 +52,7 @@
 		"Over" = /datum/flamer_mode/over,
 		"Blast" = /datum/flamer_mode/blast,
 	)
-	windup_delay = 0.5 SECONDS
+	windup_delay = 0.4 SECONDS
 	windup_sound = 'sound/weapons/guns/interact/flamethrower_on.ogg'
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
@@ -189,6 +189,8 @@
 	damage_mult = 0.75
 
 	wield_delay_mod = 0.2 SECONDS
+	windup_delay = 0 SECONDS
+	mode_list = null
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
 	flags_attach_features = NONE
@@ -430,5 +432,8 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	mode_list = null
+	windup_delay = 0
+	scatter = 0
 
 #undef FLAMER_WATER
