@@ -36,7 +36,7 @@
 	blood_overlay_type = "armor"
 	permeability_coefficient = 0.8
 	flags_armor_protection = CHEST
-	soft_armor = list(MELEE = 20, BULLET = 30, LASER = 25, ENERGY = 10, BOMB = 15, BIO = 0, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 20, BULLET = 30, LASER = 25, ENERGY = 10, BOMB = 15, BIO = 0, FIRE = 10, ACID = 15)
 	allowed = list (
 		/obj/item/flashlight,
 		/obj/item/binoculars,
@@ -60,6 +60,7 @@
 	icon_state = "armorsec"
 	item_state = "armorsec"
 	slowdown = SLOWDOWN_ARMOR_LIGHT //prevents powergaming marine by swapping armor.
+	flags_armor_protection = CHEST|GROIN
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "Warden's jacket"
@@ -96,8 +97,7 @@
 	item_state = "swat"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	slowdown = 0.9
-	soft_armor = list(MELEE = 60, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 10, FIRE = 10, ACID = 15)
-	hard_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
+	soft_armor = list(MELEE = 75, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 10, FIRE = 10, ACID = 30)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
 	flags_item = SYNTH_RESTRICTED
@@ -144,7 +144,7 @@
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST|GROIN
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list(MELEE = 50, BULLET = 15, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 50, BULLET = 15, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, FIRE = 10, ACID = 20)
 
 /obj/item/clothing/suit/armor/rugged
 	name = "rugged armor"
