@@ -250,8 +250,6 @@
 
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
-	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
-		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return
 	if(!hive.check_ruler() && caste_base_type != /mob/living/carbon/xenomorph/larva) // Larva can evolve without leaders at round start.
@@ -262,6 +260,9 @@
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
+
+	if(!client || !ckey)
+		return
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
 		to_chat(src, span_xenodanger("Our carapace crackles and our tendons strengthen. We are ready to evolve!"))
