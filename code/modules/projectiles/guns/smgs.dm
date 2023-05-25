@@ -274,8 +274,8 @@
 	burst_delay = 0.2 SECONDS
 	burst_amount = 4
 	accuracy_mult_unwielded = 0.9
-	scatter = 3
-	scatter_unwielded = 7
+	scatter = 2
+	scatter_unwielded = 6
 	damage_mult = 1.2
 	
 /obj/item/weapon/gun/smg/mp7/mag_harness
