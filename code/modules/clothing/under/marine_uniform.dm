@@ -378,7 +378,7 @@
 	has_sensor = 2
 
 /obj/item/clothing/under/CM_uniform/holster
-		starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"

@@ -28,6 +28,9 @@
 	item_state = "r_suit"
 	siemens_coefficient = 0.9
 
+/obj/item/clothing/under/rank/security/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
 /obj/item/clothing/under/rank/security/white
 	name = "white security jumpsuit"
 	desc = "A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood."
@@ -49,9 +52,6 @@
 	item_state = "r_suit"
 	siemens_coefficient = 0.9
 	adjustment_variants = list()
-	
-/obj/item/clothing/under/rank/security2/holster
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /obj/item/clothing/under/rank/security/corp
 	icon_state = "sec_corporate"
@@ -79,6 +79,9 @@
 	item_state = "det"
 	siemens_coefficient = 0.9
 	adjustment_variants = list()
+
+/obj/item/clothing/under/rank/det/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /obj/item/clothing/under/rank/det/black
 	icon_state = "detective2"

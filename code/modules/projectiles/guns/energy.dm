@@ -178,15 +178,21 @@
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
 	fire_delay = 3
+	default_ammo_type = /obj/item/cell/lasgun/M43
+	allowed_ammo_types = list(/obj/item/cell/lasgun/M43,/obj/item/cell/lasgun/M43/highcap)
 
 //variant without ugl attachment
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
 	starting_attachment_types = list()
-	
+
 //variant with mag harness
 
 /obj/item/weapon/gun/energy/lasgun/M43/mag_harness
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness,/obj/item/attachable/stock/lasgun)
+
+//special gun for the marshall
+/obj/item/weapon/gun/energy/lasgun/M43/marshalls_special
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness,/obj/item/attachable/pulselens)
 
 
 //-------------------------------------------------------
