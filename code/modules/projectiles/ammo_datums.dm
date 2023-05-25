@@ -2814,7 +2814,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 5
 	sundering = 10
 	hitscan_effect_icon = "pu_laser"
-	///number of melting stacks to apply when hitting mobvs
+	///shatter effection duration when hitting mobs
 	var/shatter_duration = 5 SECONDS
 
 /datum/ammo/energy/lasgun/marine/shatter/on_hit_mob(mob/M, obj/projectile/proj)
