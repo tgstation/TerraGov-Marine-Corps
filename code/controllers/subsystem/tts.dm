@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(tts)
 		if(get_dist(listening_mob, turf_source) <= range)
 			listening_mob.playsound_local(
 				turf_source,
-				vol = (listening_mob == target)? 60 : 85,
+				vol = sound_volume,
 //				falloff_exponent = SOUND_FALLOFF_EXPONENT,
 				channel = channel,
 //				pressure_affected = TRUE,
