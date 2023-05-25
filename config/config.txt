@@ -29,7 +29,7 @@ ALLOW_SHUTDOWN
 #AGGRESSIVE_CHANGELOG
 
 ## Link to a HTTP server that's been set up on a server. Docker-compose file can be found in tools/tts
-TTS_HTTP_URL http://localhost:5002
+#TTS_HTTP_URL http://localhost:5002
 
 ## Token that can be used to prevent misuse of your TTS server that you've set up.
 TTS_HTTP_TOKEN coolio
