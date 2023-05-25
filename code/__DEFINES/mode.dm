@@ -68,16 +68,6 @@
 #define MODE_COMBAT_PATROL_SOM_MINOR "Sons of Mars Minor Victory"
 #define MODE_COMBAT_PATROL_DRAW "DRAW: Mutual Annihilation"
 
-#define GAME_ROUND_STATE_NEW "game round state new"
-#define GAME_ROUND_STATE_ACTIVE "game round state active"
-#define GAME_ROUND_STATE_FINISHED "game round state finished"
-
-#define GAME_ROUND_OUTCOME_MAJOR_VICTORY "game round outcome major victory"
-#define GAME_ROUND_OUTCOME_MINOR_VICTORY "game round outcome minor victory"
-#define GAME_ROUND_OUTCOME_DRAW "game round outcome draw"
-#define GAME_ROUND_OUTCOME_MINOR_LOSS "game round outcome minor loss"
-#define GAME_ROUND_OUTCOME_MAJOR_LOSS "game round outcome major loss"
-
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
 #define CRASH_EVAC_COMPLETED "CRASH_EVAC_COMPLETED"
@@ -169,3 +159,14 @@
 
 #define SENSOR_CAP_ADDITION_TIME_BONUS 3 MINUTES //additional time granted by capturing a sensor tower
 #define SENSOR_CAP_TIMER_PAUSED "paused"
+
+//game round defines
+#define GAME_ROUND_STATE_NEW "game round state new"
+#define GAME_ROUND_STATE_ACTIVE "game round state active"
+#define GAME_ROUND_STATE_FINISHED "game round state finished"
+
+#define GAME_ROUND_OUTCOME_MAJOR_VICTORY "game round outcome major victory"
+#define GAME_ROUND_OUTCOME_MINOR_VICTORY "game round outcome minor victory"
+#define GAME_ROUND_OUTCOME_DRAW "game round outcome draw"
+#define GAME_ROUND_OUTCOME_MINOR_LOSS "game round outcome minor loss"
+#define GAME_ROUND_OUTCOME_MAJOR_LOSS "game round outcome major loss"
