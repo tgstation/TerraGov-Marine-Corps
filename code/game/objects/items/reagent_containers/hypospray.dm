@@ -71,7 +71,7 @@
 		balloon_alert(user, "Hypospray is Empty.")
 		return
 	if(!A.is_injectable() && !ismob(A))
-		balloon_alert(user, "Can't fill [A].")
+		A.balloon_alert(user, "Can't fill.")
 		return
 	if(skilllock && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_NOVICE)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
@@ -287,7 +287,7 @@
 		if(!length(str))
 			user.balloon_alert(user, "Invalid text.")
 			return
-		user.balloon_alert(user, "You label [src] as \"[str]\".")
+		balloon_alert(user, "Labeled \"[str]\".")
 		name = "[core_name] ([str])"
 		label = str
 
