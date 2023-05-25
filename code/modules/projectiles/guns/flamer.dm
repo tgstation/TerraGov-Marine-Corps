@@ -24,6 +24,7 @@
 		/obj/item/attachable/flamer_nozzle/wide,
 		/obj/item/attachable/flamer_nozzle/wide/red,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
 		)
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_MUZZLE,
