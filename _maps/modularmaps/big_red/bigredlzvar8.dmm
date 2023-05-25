@@ -401,6 +401,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
+"lF" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
 "lH" = (
 /obj/structure/window/reinforced,
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -5157,7 +5161,7 @@ zE
 GD
 Cn
 WH
-WH
+lF
 WH
 GD
 Cz

@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Larva no longer walk around on legs"
-  - soundadd: "Added some new footstep sounds for basalt"

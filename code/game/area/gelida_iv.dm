@@ -413,6 +413,20 @@
 	name = "Atmospheric Processor - Filtration System"
 	icon_state = "mechbay"
 
+/area/gelida/powergen
+	name = "Underground Power Generation"
+	icon_state = "ass_line"
+	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
+	outside = FALSE
+
+/area/gelida/cavestructuretwo
+	name = "Underground Abandoned Structure"
+	icon_state = "garage"
+	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
+	outside = FALSE
+
 /area/gelida/caves
 	outside = FALSE
 	ceiling = CEILING_DEEP_UNDERGROUND
