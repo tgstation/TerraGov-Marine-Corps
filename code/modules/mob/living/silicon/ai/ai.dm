@@ -1,4 +1,5 @@
 #define MAX_COMMAND_MESSAGE_LGTH 300
+#define AI_PING_RADIUS 30
 
 ///This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.
 /mob/living/silicon/ai
@@ -517,3 +518,40 @@
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+
+/mob/living/silicon/ai/proc/ai_ping(atom/A, cooldown = COOLDOWN_AI_PING_NORMAL)
+///list of receivers to send the ping to
+	var/list/receivers = (GLOB.alive_human_list + GLOB.ai_list)
+	if(is_mainship_level(A.z))
+		cooldown = COOLDOWN_AI_PING_EXTRA_LOW
+	if((last_pinged_marines + cooldown) > world.time)
+		to_chat(src, span_alert("You must wait before issuing an alert again"))
+		return
+	last_pinged_marines = world.time
+	to_chat(src, span_alert("<b>You issue an alert for [A.name] to all living personnel.</b>"))
+	for(var/mob/M in receivers)
+		if(M.z != A.z || M.stat == DEAD || isAI(M))
+			continue
+		var/newdistance = get_dist(A, M) //calculate the distance between receiver and xeno
+		///string to hold the general direction to the targetted xeno
+		var/generaldirection = "north"
+		///used to store distances for calculating shortest cardinal
+		if(newdistance <= AI_PING_RADIUS && newdistance != 0)
+			///time for calculations
+
+			if(A.x - M.x <= 0 && A.y - M.y <= 0)
+				generaldirection = pick("southwest","south","west") ///to avoid upsetting balance we give very general directions
+			else if(A.x - M.x <= 0 && A.y - M.y >= 0)
+				generaldirection = pick("northwest","north","west")
+			else if(A.x - M.x >= 0 && A.y - M.y <= 0)
+				generaldirection = pick("southeast","south","east")
+			else if(A.x - M.x >= 0 && A.y - M.y >= 0)
+				generaldirection = pick("northeast","north","east")
+
+			//all of this works, trust me
+			playsound(M, 'sound/machines/high_tech_confirm.ogg', 45, 1)
+			to_chat(M, span_alert("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))
+			to_chat(M, span_alert("AI telemetry indicates that <b>[A.name]</b> is <b>[newdistance]</b> units away to the <b>[generaldirection]</b>."))
+		else
+			playsound(M, 'sound/machines/twobeep.ogg', 35, 1)
+			to_chat(M, span_notice("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))
