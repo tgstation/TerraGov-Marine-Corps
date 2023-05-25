@@ -1,0 +1,4 @@
+author: "CCorvet"
+delete-after: True
+changes:
+  - spellcheck: "PD sentry description says accurate max ammo"
