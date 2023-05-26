@@ -114,7 +114,7 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
-	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_POSTATTACK_LIVING, src, apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen), damage_mod) //This should slicey dicey
 
 	return TRUE
 

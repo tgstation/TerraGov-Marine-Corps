@@ -18,3 +18,7 @@
 /mob/living/carbon/xenomorph/puppeteer/Initialize(mapload)
 	. = ..()
 	GLOB.huds[DATA_HUD_XENO_HEART].add_hud_to(src)
+	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack))
+	
+/mob/living/carbon/xenomorph/puppeteer/proc/postattack(mob/living/source, useless, damage)
+	plasma_stored = min(plasma_stored + round(damage / 0.8), xeno_caste.plasma_max)

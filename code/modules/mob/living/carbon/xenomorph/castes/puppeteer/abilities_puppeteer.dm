@@ -110,7 +110,7 @@
 	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
 		to_chat(human, span_userdanger("oh god what the fuck oh god oh god"))
 		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob/living/carbon/human, emote), "scream"), rand(0.55, 0.7))
-		human.apply_status_effect(/datum/status_effect/dread, 8 SECONDS)
+		human.apply_status_effect(/datum/status_effect/dread, 6 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(clear_effect), effect), 3 SECONDS)
 	add_cooldown()
 	succeed_activate()
@@ -180,13 +180,18 @@
 /// Adds a puppet to our list, this is basically just widow code
 /datum/action/xeno_action/activable/refurbish_husk/proc/add_puppet(mob/living/carbon/xenomorph/puppet/new_puppet)
 	RegisterSignal(new_puppet, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(remove_puppet))
+	RegisterSignal(new_puppet, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack)) //harvesting claws
 	puppets += new_puppet
 
 /// Cleans up puppet from our list
 /datum/action/xeno_action/activable/refurbish_husk/proc/remove_puppet(datum/source)
 	SIGNAL_HANDLER
 	puppets -= source
-	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING, COMSIG_XENOMORPH_POSTATTACK_LIVING))
+
+/datum/action/xeno_action/activable/refurbish_husk/proc/postattack(mob/living/source, useless, damage)
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.plasma_stored = min(owner_xeno.plasma_stored + round(damage / 0.9), owner_xeno.xeno_caste.plasma_max)
 
 // ***************************************
 // *********** Stitch Puppet
@@ -197,6 +202,7 @@
 	desc = "Uses 350 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
 	plasma_cost = 350
 	cooldown_timer = 25 SECONDS
+	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUPPET,
 	)
@@ -293,10 +299,10 @@
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
 			new /obj/effect/xenomorph/spray(acid_tile, 10 SECONDS, 16)
 // ***************************************
-// *********** Mimicry
+// *********** Articulate
 // ***************************************
-/datum/action/xeno_action/activable/mimicry
-	name = "Mimicry"
+/datum/action/xeno_action/activable/articulate
+	name = "Articulate"
 	action_icon_state = "mimicry"
 	desc = "Takes direct control of a Puppet’s vocal chords. Allows you to speak directly through your puppet to the talls."
 	cooldown_timer = 10 SECONDS
