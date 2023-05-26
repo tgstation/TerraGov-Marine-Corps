@@ -313,7 +313,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	CRASH("ammo_process called with unimplemented process!")
 
 ///bounces the projectile by creating a new projectile and calculating an angle of reflection
-/datum/ammo/proc/reflect(turf/T, obj/projectile/proj)
+/datum/ammo/proc/reflect(turf/T, obj/projectile/proj, scatter_variance)
 	var/new_range = proj.proj_max_range - proj.distance_travelled
 	if(new_range <= 0)
 		return
@@ -328,7 +328,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		dir_to_proj = pick(cardinals)
 
 	var/perpendicular_angle = Get_Angle(T, get_step(T, dir_to_proj))
-	var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
+	var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180) + rand(-scatter_variance, scatter_variance))
 
 	if(new_angle < -360)
 		new_angle += 720 //north is 0 instead of 360
@@ -338,7 +338,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		new_angle -= 360
 
 	bonus_projectiles_amount = 1
-	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, new_range, proj.projectile_speed, new_angle, TRUE, get_step(T, dir_to_proj))
+	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, new_range, proj.projectile_speed, new_angle, null, get_step(T, dir_to_proj))
 	bonus_projectiles_amount = 0
 
 /*
@@ -572,6 +572,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/revolver/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
+	bonus_projectiles_scatter = 0
 
 /datum/ammo/bullet/revolver/ricochet/one
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet
@@ -589,7 +590,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
-	reflect(T, proj)
+	reflect(T, proj, 10)
 
 /*
 //================================================
@@ -2833,6 +2834,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
+	bonus_projectiles_scatter = 0
 
 /datum/ammo/energy/lasgun/marine/ricochet/one
 	damage = 80
@@ -2851,7 +2853,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/three
 
 /datum/ammo/energy/lasgun/marine/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
-	reflect(T, proj)
+	reflect(T, proj, 5)
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
