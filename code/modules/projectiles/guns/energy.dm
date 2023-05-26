@@ -192,7 +192,7 @@
 
 //special gun for the marshall
 /obj/item/weapon/gun/energy/lasgun/M43/marshalls_special
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness,/obj/item/attachable/heatlens)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness,/obj/item/attachable/focuslens)
 
 
 //-------------------------------------------------------
