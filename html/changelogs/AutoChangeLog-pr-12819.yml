@@ -1,6 +1,0 @@
-author: "mc-oofert"
-delete-after: True
-changes:
-  - rscadd: "automatic docking sizes for mobile ports"
-  - rscadd: "4 new dropships"
-  - rscadd: "dropship picker console"

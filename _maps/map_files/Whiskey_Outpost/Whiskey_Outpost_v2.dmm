@@ -420,16 +420,16 @@
 /area/whiskey_outpost)
 "bE" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/tile/yellow{
 	dir = 5
 	},

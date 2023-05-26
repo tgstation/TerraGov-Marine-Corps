@@ -921,8 +921,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/datum/job/valhalla_job = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What job would you like to have?", "Join Valhalla", GLOB.jobs_fallen_marine)
 	if(!valhalla_job)
 		return
-	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen/marine]))
+
 	valhalla_job = SSjob.GetJobType(valhalla_job)
+	var/spawn_type = valhalla_job.return_spawn_type(client.prefs)
+	var/mob/living/carbon/human/new_fallen = new spawn_type(pick(GLOB.spawns_by_job[/datum/job/fallen/marine]))
 
 	log_game("[key_name(usr)] has joined Valhalla as a Marine.")
 	client.prefs.copy_to(new_fallen)

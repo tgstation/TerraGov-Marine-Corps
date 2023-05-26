@@ -3201,9 +3201,9 @@
 /obj/effect/spawner/random/engineering/powercell,
 /obj/effect/spawner/random/engineering/bomb_supply,
 /obj/machinery/light/small,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/item/assembly/prox_sensor,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles/rebel)
 "dan" = (
@@ -5836,9 +5836,9 @@
 /obj/effect/spawner/random/engineering/powercell,
 /obj/effect/spawner/random/engineering/bomb_supply,
 /obj/machinery/light/small,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/item/assembly/prox_sensor,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
 "fqT" = (
@@ -6552,9 +6552,9 @@
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/technology_scanner,
 /obj/effect/spawner/random/engineering/tool,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/item/assembly/signaler,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "fSG" = (
@@ -7496,6 +7496,12 @@
 	dir = 4
 	},
 /area/mainship/command/cic/rebel)
+"gLJ" = (
+/obj/structure/lattice,
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
+	},
+/area/space)
 "gLL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8846,6 +8852,11 @@
 /obj/item/reagent_containers/glass/fertilizer/ez,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
+"hWf" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
+/area/space)
 "hWt" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -10175,6 +10186,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
+"joK" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/space)
 "joU" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/mainship/mono,
@@ -10639,7 +10655,7 @@
 /area/mainship/living/cafeteria_starboard)
 "jLM" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
@@ -11138,6 +11154,12 @@
 /obj/machinery/computer/squad_changer,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"kcv" = (
+/obj/structure/lattice,
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
+	},
+/area/space)
 "kcM" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 2;
@@ -11505,7 +11527,7 @@
 /area/mainship/hull/lower_hull/rebel)
 "kwP" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "kwS" = (
@@ -12593,7 +12615,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "lnQ" = (
@@ -12699,7 +12721,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "ltV" = (
@@ -15209,7 +15231,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core/rebel)
 "nJU" = (
@@ -15501,7 +15523,7 @@
 /area/mainship/medical/medical_science)
 "nZv" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core/rebel)
@@ -15868,7 +15890,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core/rebel)
 "onb" = (
@@ -20270,7 +20292,7 @@
 /area/mainship/command/corporateliaison)
 "sas" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core/rebel)
 "saK" = (
@@ -20677,9 +20699,9 @@
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/technology_scanner,
 /obj/effect/spawner/random/engineering/tool,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /obj/item/assembly/signaler,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull/rebel)
 "sqR" = (
@@ -30795,8 +30817,8 @@ nKn
 dSv
 juv
 wsG
-iOM
-eTJ
+joK
+gLJ
 mFp
 mFp
 mFp
@@ -32080,8 +32102,8 @@ dOC
 dOC
 juv
 wsG
-iOM
-eTJ
+joK
+gLJ
 mFp
 mFp
 mFp
@@ -33365,8 +33387,8 @@ fev
 dOC
 juv
 wsG
-iOM
-eTJ
+joK
+gLJ
 mFp
 mFp
 mFp
@@ -36461,8 +36483,8 @@ juv
 juv
 juv
 wsG
-iOM
-eTJ
+joK
+gLJ
 mFp
 mFp
 mFp
@@ -36718,8 +36740,8 @@ juv
 juv
 juv
 wsG
-rWC
-qKD
+hWf
+kcv
 mFp
 mFp
 mFp
@@ -37232,8 +37254,8 @@ juv
 juv
 juv
 wsG
-iOM
-eTJ
+joK
+gLJ
 mFp
 mFp
 mFp
@@ -37489,8 +37511,8 @@ juv
 juv
 juv
 wsG
-rWC
-qKD
+hWf
+kcv
 tRq
 tRq
 tRq
@@ -38003,8 +38025,8 @@ juv
 juv
 juv
 wsG
-iOM
-eTJ
+joK
+gLJ
 mFp
 mFp
 mFp
@@ -38260,8 +38282,8 @@ juv
 juv
 juv
 wsG
-rWC
-qKD
+hWf
+kcv
 tRq
 tRq
 tRq
@@ -42629,8 +42651,8 @@ juv
 juv
 juv
 wsG
-iOM
-eTJ
+joK
+gLJ
 tRq
 tRq
 tRq
@@ -42886,8 +42908,8 @@ juv
 juv
 juv
 wsG
-rWC
-qKD
+hWf
+kcv
 tRq
 tRq
 tRq
@@ -43400,8 +43422,8 @@ juv
 juv
 juv
 wsG
-iOM
-eTJ
+joK
+gLJ
 tRq
 tRq
 tRq
@@ -43657,8 +43679,8 @@ juv
 juv
 juv
 wsG
-rWC
-qKD
+hWf
+kcv
 tRq
 tRq
 tRq
@@ -44171,8 +44193,8 @@ juv
 juv
 juv
 wsG
-iOM
-eTJ
+joK
+gLJ
 tRq
 tRq
 tRq
@@ -44428,8 +44450,8 @@ juv
 juv
 juv
 wsG
-rWC
-qKD
+hWf
+kcv
 tRq
 tRq
 tRq
@@ -47501,8 +47523,8 @@ bgL
 wgc
 juv
 wsG
-rWC
-qKD
+hWf
+kcv
 tRq
 mFp
 mFp
@@ -48786,8 +48808,8 @@ wnQ
 wgc
 juv
 wsG
-rWC
-qKD
+hWf
+kcv
 mFp
 mFp
 mFp
@@ -50071,8 +50093,8 @@ xMR
 wgc
 juv
 wsG
-rWC
-qKD
+hWf
+kcv
 mFp
 mFp
 mFp

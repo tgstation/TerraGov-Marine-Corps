@@ -58,6 +58,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/Destroy()
 	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
 		ejectee.forceMove(loc)
+	//because we get put in the contents at some point, and don't want to get deleted if the pod gets shot out during that time
+	for(var/atom/movable/ejectee AS in contents)
+		ejectee.forceMove(loc)
 	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
 	GLOB.droppod_list -= src // todo should be active pods only for iterative checks

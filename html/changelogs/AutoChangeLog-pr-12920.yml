@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Made the weather sound preference actually work"

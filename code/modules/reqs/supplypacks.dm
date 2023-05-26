@@ -1312,8 +1312,8 @@ ENGINEERING
 	cost = 30
 
 /datum/supply_packs/engineering/floodlight
-	name = "Combat Grade Floodlight"
-	contains = list(/obj/machinery/floodlight/combat)
+	name = "Deployable Floodlight"
+	contains = list(/obj/item/deployable_floodlight)
 	cost = 30
 
 /datum/supply_packs/engineering/advanced_generator

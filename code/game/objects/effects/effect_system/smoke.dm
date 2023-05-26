@@ -296,6 +296,13 @@
 	expansion_speed = 3
 	smoke_traits = SMOKE_XENO
 
+/obj/effect/particle_effect/smoke/xeno/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PLASMALOSS)
+		lifetime -= 2
+
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
 	lifetime = 6
