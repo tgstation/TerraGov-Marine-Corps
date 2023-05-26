@@ -408,10 +408,6 @@
 /mob/proc/stripPanelUnequip(obj/item/I, mob/M)
 	return
 
-// The mob is trying to place an item on someone
-/mob/proc/stripPanelEquip(obj/item/I, mob/M)
-	return
-
 //returns the item in a given slot
 /mob/proc/get_item_by_slot(slot_id)
 	return

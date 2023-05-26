@@ -544,22 +544,6 @@
 			if(isidcard(I))
 				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
 
-/mob/living/carbon/human/stripPanelEquip(obj/item/I, mob/M, slot_to_process)
-	if(I && !(I.flags_item & ITEM_ABSTRACT))
-		if(I.flags_item & NODROP)
-			to_chat(src, span_warning("You can't put \the [I.name] on [M], it's stuck to your hand!"))
-			return
-		if(!I.mob_can_equip(M, slot_to_process, TRUE))
-			to_chat(src, span_warning("You can't put \the [I.name] on [M]!"))
-			return
-		visible_message(span_notice("[src] tries to put [I] on [M]."), null , null, 5)
-		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC))
-			if(!M.get_item_by_slot(slot_to_process))
-				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
-					dropItemToGround(I)
-					if(!QDELETED(I)) //Might be self-deleted?
-						M.equip_to_slot_if_possible(I, slot_to_process, 1, 0, 1, 1)
-
 
 /mob/living/carbon/human/proc/equipOutfit(outfit, visualsOnly = FALSE)
 	var/datum/outfit/O = null
