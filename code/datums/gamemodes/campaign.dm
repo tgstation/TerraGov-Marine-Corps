@@ -29,7 +29,7 @@
 
 /datum/game_mode/hvh/campaign/post_setup()
 	. = ..()
-	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //normal ground map is still loaded
+	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //normal ground map is still loaded, will need to see if we can even stop that...
 		qdel(exit_point)
  	load_new_round(current_round, factions[1]) //we store the initial round in current_round. This might work better in post_setup, needs testing
 
@@ -38,10 +38,7 @@
 
 /datum/game_mode/hvh/campaign/setup_blockers() //to be updated
 	. = ..()
-	//Starts the round timer when the game starts proper
-	//var/datum/game_mode/hvh/campaign/D = SSticker.mode
-	//addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, respawn_wave)), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
-	//addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
+	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
 
 /datum/game_mode/hvh/campaign/intro_sequence() //update this, new fluff message etc etc, make it faction generic
 	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
