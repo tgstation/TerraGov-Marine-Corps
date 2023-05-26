@@ -116,7 +116,7 @@
 		return
 
 	var/list/fire_modes = list()
-	fire_modes += "<U>Fire modes</U>:<br>"
+	fire_modes += "<br><U>Fire modes</U>:<br>"
 
 	for(var/num AS in mode_list)
 		var/datum/lasrifle/base/mode = mode_list[num]
