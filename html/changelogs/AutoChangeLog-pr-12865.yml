@@ -1,7 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes:
-  - rscadd: "deployable floodlight"
-  - balance: "combat floodlights are now deployables"
-  - balance: "combat floodlights now last forever not needing cells"
-  - imageadd: "deployable floodlight item sprite"

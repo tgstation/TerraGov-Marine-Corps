@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixed crates picking up decals and other things they shouldn't"
-  - code_imp: "Made crate code better and added docs"

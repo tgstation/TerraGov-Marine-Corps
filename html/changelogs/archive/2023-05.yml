@@ -129,3 +129,27 @@
   - balance: Extended the preshutter no build zone on Gelida some
   - balance: Gelida landing zones now start with flares
   - bugfix: Fixed Gelida LZ areas being reversed
+2023-05-26:
+  CCorvet:
+  - spellcheck: PD sentry description says accurate max ammo
+  Mrrpip:
+  - bugfix: Gives an APC to a area that didn't have it on Ice Colony
+  RipGrayson:
+  - balance: Removed colony disk generators again.
+  Skye:
+  - qol: Adds a single tip to the xeno section, regarding tier slots.
+  TiviPlus:
+  - rscadd: Added text so speech
+  grinkgo:
+  - balance: Theseus RO area is now more open and less cringe to navigate and use
+  ivanmixo:
+  - bugfix: Fixed crates picking up decals and other things they shouldn't
+  - code_imp: Made crate code better and added docs
+  - bugfix: Fixed an invalid bitfield in the bitfield list
+  - bugfix: Fixed pod deleting you if they get shot out before you land
+  tyeagg:
+  - rscadd: deployable floodlight
+  - balance: combat floodlights are now deployables
+  - balance: combat floodlights now last forever not needing cells
+  - imageadd: deployable floodlight item sprite
+  - imageadd: fixed extra pixels container sprites had

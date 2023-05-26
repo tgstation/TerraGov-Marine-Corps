@@ -1,4 +1,0 @@
-author: "Mrrpip"
-delete-after: True
-changes:
-  - bugfix: "Gives an APC to a area that didn't have it on Ice Colony"
