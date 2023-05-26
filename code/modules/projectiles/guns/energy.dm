@@ -188,11 +188,11 @@
 //variant with mag harness
 
 /obj/item/weapon/gun/energy/lasgun/M43/mag_harness
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness,/obj/item/attachable/stock/lasgun)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness,/obj/item/attachable/stock/lasgun,/obj/item/attachable/pulselens)
 
 //special gun for the marshall
 /obj/item/weapon/gun/energy/lasgun/M43/marshalls_special
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness,/obj/item/attachable/pulselens)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness,/obj/item/attachable/heatlens)
 
 
 //-------------------------------------------------------
