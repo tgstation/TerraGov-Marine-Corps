@@ -296,6 +296,8 @@
 	var/radial_icon_state = "laser"
 	///windup before firing
 	var/windup_delay = 0
+	///codex description
+	var/description = ""
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	if(!user)
@@ -377,6 +379,7 @@
 	message_to_user = "You set the tesla shock rifle's power mode mode to standard."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tesla"
+	description = "Fires a slow moving ball of energy that shocks any living thing nearby. Minimal damage, but drains plasma rapidly from xenomorphs."
 
 /datum/lasrifle/base/tesla_mode/focused
 	rounds_per_shot = 100
@@ -387,6 +390,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tesla"
 	radial_icon_state = "laser_overcharge"
+	description = "Fires an sophisticated IFF tesla ball, but with reduces shock range."
 
 //TE Tier 1 Series//
 
@@ -454,6 +458,7 @@
 	message_to_user = "You set the laser rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
+	description = "Fire a standard automatic laser pulse. Better armour penetration and sunder than common projectiles."
 
 
 /datum/lasrifle/base/energy_rifle_mode/overcharge
@@ -465,6 +470,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 	radial_icon_state = "laser_overcharge"
+	description = "Fires a powerful overcharged laser pulse. Deals heavy damage with superior penetration at the cost of slower fire rate."
 
 /datum/lasrifle/base/energy_rifle_mode/weakening
 	rounds_per_shot = 24
@@ -475,6 +481,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 	radial_icon_state = "laser_disabler"
+	description = "Fires a pulse of energy that inflicts slowdown, and deals stamina damage to humans, or drains plasma from xenomorphs."
 
 
 /datum/lasrifle/base/energy_rifle_mode/microwave
@@ -486,6 +493,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 	radial_icon_state = "laser_microwave"
+	description = "Fires a deadly pulse of microwave radiation, dealing moderate damage but applying a 'microwave' effect that deals strong damage over time."
 
 ///TE Standard Laser Pistol
 
@@ -545,6 +553,7 @@
 	message_to_user = "You set the laser pistol's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tep"
+	description = "Fires a standard laser pulse. Moderate damage."
 
 /datum/lasrifle/base/energy_pistol_mode/disabler
 	rounds_per_shot = 80
@@ -555,6 +564,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tep"
 	radial_icon_state = "laser_disabler"
+	description = "Fires a disabling pulse that drains stamina. Ineffective against xenomorphs."
 
 /datum/lasrifle/base/energy_pistol_mode/heat
 	rounds_per_shot = 100
@@ -565,6 +575,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tep"
 	radial_icon_state = "laser_heat"
+	description = "Fires an incendiary laser pulse that ignites living targets."
 
 //TE Standard Laser Carbine
 
@@ -632,6 +643,7 @@
 	message_to_user = "You set the laser carbine's charge mode to standard auto burst fire."
 	fire_mode = GUN_FIREMODE_AUTOBURST
 	icon_state = "tec"
+	description = "Fires a rapid pulse laser, dealing good damage per second, but suffers from increased scatter and poorer falloff."
 
 /datum/lasrifle/base/energy_carbine_mode/base/spread
 	rounds_per_shot = 50
@@ -643,6 +655,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
 	radial_icon_state = "laser_spread"
+	description = "Fire a 3 strong laser pulse dealing heavy damage with good penetration, but with a very slow rate of fire."
 
 /datum/lasrifle/base/energy_carbine_mode/base/impact
 	rounds_per_shot = 50
@@ -654,6 +667,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
 	radial_icon_state = "laser_impact"
+	description = "Fires an experimental laser pulse designed to apply significant kinetic force on a target, applying strong knockback, but modest direct damage."
 
 /datum/lasrifle/base/energy_carbine_mode/base/cripple
 	rounds_per_shot = 15
@@ -665,6 +679,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
 	radial_icon_state = "laser_disabler"
+	description = "Fires a laser pulse dealing moderate damage and slowdown."
 
 //TE Standard Sniper
 
@@ -728,6 +743,7 @@
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
+	description = "Fires a single strong laser pulse, with good damage and penetration, and no falloff."
 
 /datum/lasrifle/base/energy_sniper_mode/heat
 	rounds_per_shot = 100
@@ -738,6 +754,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 	radial_icon_state = "laser_heat"
+	description = "Fires an incendiary laser pulse, designed to ignite victims at range."
 
 /datum/lasrifle/base/energy_sniper_mode/shatter
 	rounds_per_shot = 100
@@ -748,6 +765,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 	radial_icon_state = "laser_charge"
+	description = "Fires a devestating laser pulse that significantly degrades the victims armor, at the cost of lower direct damage."
 
 /datum/lasrifle/base/energy_sniper_mode/ricochet
 	rounds_per_shot = 45
@@ -758,6 +776,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 	radial_icon_state = "laser_ricochet"
+	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 	name = "\improper Terra Experimental laser machine gun"
@@ -824,6 +843,7 @@
 	message_to_user = "You set the machine laser's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tem"
+	description = "Fires a rapid laser pulse with slightly reduced damage, but improved penetration and vastly improved energy efficiency."
 
 /datum/lasrifle/base/energy_mg_mode/standard/burst
 	rounds_per_shot = 8
@@ -835,6 +855,7 @@
 	fire_mode = GUN_FIREMODE_BURSTFIRE
 	icon_state = "tem"
 	radial_icon_state = "laser_spread"
+	description = "Fires a series of laser pulses in quick succession. Each pulse in a burst is more powerful than the last."
 
 
 /datum/lasrifle/base/energy_mg_mode/standard/charge
@@ -846,6 +867,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	message_to_user = "You set the machine laser's charge mode to charge."
 	radial_icon_state = "laser_charge"
+	description = "Fires a powerful laser pulse after a brief charge up."
 
 /datum/lasrifle/base/energy_mg_mode/standard/melting
 	rounds_per_shot = 18
@@ -854,6 +876,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the machine laser's charge mode to melting."
 	radial_icon_state = "laser_heat"
+	description = "Fires an unusual laser pulse that applies a melting effect which severely sunders xenomorph armor over time, as well as applying further damage."
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/xray
 	name = "\improper Terra Experimental X-Ray laser rifle"
@@ -906,6 +929,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tex"
 	radial_icon_state = "laser_heat"
+	description = "Fires an incendiary laser pulse designed to ignite a victim."
 
 /datum/lasrifle/base/energy_rifle_mode/xray/piercing
 	rounds_per_shot = 30
@@ -914,6 +938,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the xray rifle's charge mode to piercing mode."
 	radial_icon_state = "laser"
+	description = "Fires a powerful xray laser pulse. Completely penetrates a victims armour, as well as any solid substance in the way."
 
 //Martian death rays
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite
