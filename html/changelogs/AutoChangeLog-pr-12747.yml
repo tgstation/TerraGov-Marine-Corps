@@ -1,0 +1,7 @@
+author: "MacBlaze1"
+delete-after: True
+changes:
+  - rscadd: "Added a Flamethrower holster backpack for engineers that they can buy and use in their vendors."
+  - rscadd: "Added a mortar holster backpack that allows engineers to carry ammo and move their mortars."
+  - rscadd: "Added the two backpacks to the engineers backpack options."
+  - balance: "added mortar shells to engi vendor"
