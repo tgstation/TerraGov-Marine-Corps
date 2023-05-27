@@ -622,7 +622,7 @@
 	id = "microwaved"
 	tick_interval = 1 SECONDS
 	stacks = 1
-	max_stacks = null
+	max_stacks = 30
 	stack_decay = 0
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/microwave
@@ -667,7 +667,7 @@
 		return
 
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
-	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	particle_holder.particles.spawning = 1 + (stacks * 2)
 
 	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT)
 
