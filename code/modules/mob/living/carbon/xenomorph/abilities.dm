@@ -337,9 +337,6 @@
 		if(ERROR_FOG)
 			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
 			return
-		if(ERROR_NEAR_SILO)
-			owner.balloon_alert(owner, span_notice("Too far from silo!"))
-			return
 		if(ERROR_NO_SILO)
 			owner.balloon_alert(owner, span_notice("No silo!"))
 			return
@@ -389,9 +386,6 @@
 		if(ERROR_FOG)
 			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
 			return
-		if(ERROR_NEAR_SILO)
-			owner.balloon_alert(owner, span_notice("Too far from silo!"))
-			return
 		if(ERROR_NO_SILO)
 			owner.balloon_alert(owner, span_notice("No silo!"))
 			return
@@ -423,9 +417,6 @@
 			return
 		if(ERROR_FOG)
 			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
-			return
-		if(ERROR_NEAR_SILO)
-			owner.balloon_alert(owner, span_notice("Too far from silo!"))
 			return
 		if(ERROR_NO_SILO)
 			owner.balloon_alert(owner, span_notice("No silo!"))
