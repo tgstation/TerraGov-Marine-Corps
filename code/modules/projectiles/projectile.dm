@@ -84,12 +84,6 @@
 
 	var/distance_travelled = 0
 
-	/// How maany times this projectile has bounced off something
-	var/ricochet_count = 0
-
-	/// The maximum number of times this can bounce
-	var/ricochet_limit = 0
-
 	var/projectile_speed = 1 //Tiles travelled per full tick.
 	var/armor_type = null
 
