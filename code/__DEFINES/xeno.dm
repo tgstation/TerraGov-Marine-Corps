@@ -168,4 +168,6 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define ERROR_NEAR_SILO 9
 /// No silos
 #define ERROR_NO_SILO 10
+/// failed build prereqs
+#define ERROR_INVALID_AREA 11
 

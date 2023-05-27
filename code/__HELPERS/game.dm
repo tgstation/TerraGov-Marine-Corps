@@ -1,3 +1,5 @@
+#define RESIN_SILO_BUILD_RANGE 45
+
 //supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
 #define RANGE_TURFS(RADIUS, CENTER) \
 	block( \
@@ -21,6 +23,8 @@
 		return ERROR_NOT_ALLOWED
 	if(!alien_weeds)
 		return ERROR_NO_WEED
+	if(get_build_prereqs(target))
+		return ERROR_INVALID_AREA
 	if(!target.is_weedable())
 		return ERROR_CANT_WEED
 	for(var/obj/effect/forcefield/fog/F in range(1, target))
@@ -41,6 +45,22 @@
 				return NO_ERROR
 		return ERROR_NO_SUPPORT
 	return NO_ERROR
+
+/proc/get_build_prereqs(turf/selectedturf)
+	//holder for silos that we use later
+	var/obj/structure/xeno/selectedsilo
+	//distance between the user and a silo
+	var/silo_distance
+	var/area/targetarea = get_area(selectedturf)
+	for(var/obj/structure/xeno/silo/global_silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) //scan the existing resin silos, store the one that's the shortest distance away
+		var/newdistance = get_dist(selectedturf, global_silo)
+		if(newdistance <= silo_distance || silo_distance == null)
+			silo_distance = newdistance
+			selectedsilo = global_silo
+	if(silo_distance >= 50 && targetarea != get_area(selectedsilo) && targetarea.ceiling < CEILING_UNDERGROUND) //if true build regular instead of speedbuild
+		return TRUE
+	else
+		return FALSE
 
 /proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
 	if(!centre)
@@ -146,3 +166,5 @@
 		else if(isliving(M.current))
 			return M.current.stat != DEAD
 	return FALSE
+
+#undef RESIN_SILO_BUILD_RANGE
