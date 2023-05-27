@@ -871,7 +871,7 @@
 		playsound(src, 'sound/weapons/guns/interact/gun_overheat.ogg', 25, 1, 5)
 		//overheat gives you half the cooldown time
 		var/overheat_time = heat_amount/cool_amount*0.5
-		overheat_timer = addtimer(CALLBACK(src, .proc/complete_overheat, overheat_smoke), overheat_time, TIMER_STOPPABLE)
+		overheat_timer = addtimer(CALLBACK(src, PROC_REF(complete_overheat), overheat_smoke), overheat_time, TIMER_STOPPABLE)
 		heat_meter.animate_change(0, overheat_time)
 		return NONE
 	heat_meter.animate_change(heat_amount/100, fire_delay)
