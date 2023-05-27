@@ -633,6 +633,7 @@
 	var/mob/living/carbon/debuff_owner
 	///Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	COOLDOWN_DECLARE(cooldown_microwave_status)
 
 /datum/status_effect/stacking/microwave/can_gain_stacks()
 	if(owner.status_flags & GODMODE)
@@ -647,7 +648,7 @@
 	debuff_owner.balloon_alert(debuff_owner, "microwaved!")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/microwave_status)
-	TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
+	COOLDOWN_START(src, cooldown_microwave_status, MICROWAVE_STATUS_DURATION)
 	return ..()
 
 /datum/status_effect/stacking/microwave/on_remove()
@@ -658,12 +659,12 @@
 /datum/status_effect/stacking/microwave/add_stacks(stacks_added)
 	. = ..()
 	particle_holder.particles.spawning = min(stacks * 5, 25)
-	if(stacks > 6)
-		TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
+	if(stacks_added > 0 && stacks > 6)
+		COOLDOWN_START(src, cooldown_microwave_status, MICROWAVE_STATUS_DURATION)
 
 /datum/status_effect/stacking/microwave/tick()
 	. = ..()
-	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_MICROWAVE_STATUS))
+	if(COOLDOWN_TIMELEFT(src, cooldown_microwave_status) <= 0)
 		return qdel(src)
 
 	if(!debuff_owner)

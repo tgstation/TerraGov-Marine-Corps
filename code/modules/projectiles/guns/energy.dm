@@ -441,7 +441,7 @@
 		"Standard" = /datum/lasrifle/base/energy_rifle_mode/standard,
 		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/overcharge,
 		"Weakening" = /datum/lasrifle/base/energy_rifle_mode/weakening,
-		//"Microwave" = /datum/lasrifle/base/energy_rifle_mode/microwave,
+		"Microwave" = /datum/lasrifle/base/energy_rifle_mode/microwave,
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
