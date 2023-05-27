@@ -658,6 +658,7 @@
 
 /datum/status_effect/stacking/microwave/add_stacks(stacks_added)
 	. = ..()
+	particle_holder.particles.spawning = max(stacks * 5, 15)
 	if(stacks > 3)
 		TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
 
@@ -670,7 +671,6 @@
 		return
 
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
-	particle_holder.particles.spawning = max(stacks * 5, 15)
 
 	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT)
 
