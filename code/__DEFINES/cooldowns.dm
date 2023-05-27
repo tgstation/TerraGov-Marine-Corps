@@ -49,7 +49,6 @@
 #define COOLDOWN_ITEM_TRICK "cooldown_item_trick"
 #define COOLDOWN_RAVAGER_FLAMER_ACT "cooldown_ravager_flamer_act"
 #define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
-#define COOLDOWN_MICROWAVE_STATUS "cooldown_microwave_status"
 #define COOLDOWN_TRY_TTS "cooldown_try_tts"
 
 //Mecha cooldowns
