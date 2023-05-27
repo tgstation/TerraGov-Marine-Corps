@@ -233,6 +233,10 @@
 		balloon_alert(src, "We cannot evolve with a belly full")
 		return FALSE
 
+	if(HAS_TRAIT_FROM(src, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		balloon_alert(src, "We cannot evolve while rooted to the ground")
+		return FALSE
+
 	if(xeno_caste.hardcore)
 		balloon_alert(src, "Nuh-uhh")
 		return FALSE
