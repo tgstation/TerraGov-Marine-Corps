@@ -619,7 +619,7 @@
 ///amount of damage done per tick by the microwave status effect
 #define MICROWAVE_STATUS_DAMAGE_MULT 5
 ///duration of the microwave effect. Refreshed on application
-#define MICROWAVE_STATUS_DURATION 10 SECONDS
+#define MICROWAVE_STATUS_DURATION 5 SECONDS
 
 /datum/status_effect/stacking/microwave
 	id = "microwaved"
@@ -648,7 +648,7 @@
 	debuff_owner.balloon_alert(debuff_owner, "microwaved!")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/microwave_status)
-	particle_holder.particles.spawning = stacks * 5
+	particle_holder.particles.spawning = max(stacks * 5, 15)
 	TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
 
 /datum/status_effect/stacking/microwave/on_remove()
@@ -670,7 +670,7 @@
 		return
 
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
-	particle_holder.particles.spawning = 1 + (stacks * 2)
+	particle_holder.particles.spawning = max(stacks * 5, 15)
 
 	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT)
 
