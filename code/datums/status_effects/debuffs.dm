@@ -561,6 +561,9 @@
 	if(new_owner.status_flags & GODMODE)
 		qdel(src)
 		return
+	if(new_owner.has_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING))
+		return
+
 	. = ..()
 	debuff_owner = new_owner
 	debuff_owner.balloon_alert(debuff_owner, "Melting!")
