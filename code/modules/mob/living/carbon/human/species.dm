@@ -454,10 +454,6 @@
 	qdel(repair_action)
 
 /datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
-	if(H.health > -25) //Staggerslowed if below crit threshold.
-		return
-	H.adjust_stagger(2, capped = 10)
-	H.adjust_slowdown(1)
 	if(H.health <= 0 && H.health > -50)
 		H.clear_fullscreen("robotlow")
 		H.overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
@@ -467,7 +463,10 @@
 	else
 		H.clear_fullscreen("robothalf")
 		H.clear_fullscreen("robotlow")
-
+	if(H.health > -25) //Staggerslowed if below crit threshold.
+		return
+	H.adjust_stagger(2, capped = 10)
+	H.adjust_slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self
