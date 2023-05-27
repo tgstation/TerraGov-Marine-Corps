@@ -220,7 +220,8 @@ SUBSYSTEM_DEF(minimaps)
 		minimaps_by_z["[target.z]"].images_assoc["[flag]"][target] = blip
 		minimaps_by_z["[target.z]"].images_raw["[flag]"] += blip
 		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
-			updator.raw_blips += blip
+			if(target.z == updator.ztarget)
+				updator.raw_blips += blip
 	if(ismovableatom(target))
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
