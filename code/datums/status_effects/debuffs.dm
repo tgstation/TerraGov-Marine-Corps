@@ -643,13 +643,12 @@
 	if(new_owner.status_flags & GODMODE)
 		qdel(src)
 		return
-	. = ..()
 	debuff_owner = new_owner
 	debuff_owner.balloon_alert(debuff_owner, "microwaved!")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/microwave_status)
-	particle_holder.particles.spawning = min(stacks * 5, 25)
 	TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
+	return ..()
 
 /datum/status_effect/stacking/microwave/on_remove()
 	debuff_owner = null
