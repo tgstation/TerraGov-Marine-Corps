@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "Allow marines to put packaged or unpackaged MRE meal back inside of MRE"
+  - balance: "Permit marines to have more storage by not forcing marines to use backpack | satchel space for MRE food"
