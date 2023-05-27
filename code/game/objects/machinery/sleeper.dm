@@ -29,7 +29,7 @@
 				qdel(src)
 
 
-/obj/machinery/sleep_console/Initialize()
+/obj/machinery/sleep_console/Initialize(mapload)
 	. = ..()
 	if(orient == "RIGHT")
 		icon_state = "sleeperconsole-r"
@@ -166,7 +166,7 @@
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
 
-/obj/machinery/sleeper/Initialize()
+/obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"

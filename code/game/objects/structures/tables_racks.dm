@@ -48,8 +48,7 @@
 		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
 		if(!table)
 			continue
-		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
-	QUEUE_SMOOTH(src)
+		INVOKE_NEXT_TICK(table, TYPE_PROC_REF(/atom, update_icon))
 
 /obj/structure/table/Destroy()
 	update_adjacent(loc) //so neighbouring tables get updated correctly
@@ -287,15 +286,15 @@
 	if(!straight_table_check(turn(direction, 90)) || !straight_table_check(turn(direction, -90)))
 		return FALSE
 
-	verbs -=/obj/structure/table/verb/do_flip
-	verbs +=/obj/structure/table/proc/do_put
+	verbs -= /obj/structure/table/verb/do_flip
+	verbs += /obj/structure/table/proc/do_put
 
 	var/list/targets = list(get_step(src, dir), get_step(src, turn(dir, 45)),get_step(src, turn(dir, -45)))
 	for(var/i in get_turf(src))
 		if(isobserver(i))
 			continue
 		var/atom/movable/thing_to_throw = i
-		if(thing_to_throw.anchored)
+		if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY)
 			continue
 		thing_to_throw.throw_at(pick(targets), 1, 1)
 
@@ -341,13 +340,13 @@
 	coverage = 60
 
 
-/obj/structure/table/flipped/Initialize()
+/obj/structure/table/flipped/Initialize(mapload)
 	. = ..()
 	flipped = FALSE //We'll properly flip it in LateInitialize()
 	return INITIALIZE_HINT_LATELOAD
 
 
-/obj/structure/table/flipped/LateInitialize(mapload)
+/obj/structure/table/flipped/LateInitialize()
 	. = ..()
 	if(!flipped)
 		flip(dir, TRUE)
@@ -368,6 +367,9 @@
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
 
+/obj/structure/table/woodentable/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 /obj/structure/table/fancywoodentable
 	name = "fancy wooden table"
 	desc = "An expensive fancy wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -377,6 +379,9 @@
 	table_prefix = "fwood"
 	parts = /obj/item/frame/table/fancywood
 
+/obj/structure/table/fancywoodentable/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 /obj/structure/table/rusticwoodentable
 	name = "rustic wooden table"
 	desc = "A rustic wooden surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -385,6 +390,9 @@
 	base_icon_state = "rustic_table"
 	table_prefix = "pwood"
 	parts = /obj/item/frame/table/rusticwood
+
+/obj/structure/table/rusticwoodentable/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
 
 /obj/structure/table/black
 	name = "black metal table"
@@ -429,13 +437,13 @@
 	table_status = TABLE_STATUS_WEAKENED
 
 
-/obj/structure/table/reinforced/flipped/Initialize()
+/obj/structure/table/reinforced/flipped/Initialize(mapload)
 	. = ..()
 	flipped = FALSE
 	return INITIALIZE_HINT_LATELOAD
 
 
-/obj/structure/table/reinforced/flipped/LateInitialize(mapload)
+/obj/structure/table/reinforced/flipped/LateInitialize()
 	. = ..()
 	if(!flipped)
 		flip(dir, TRUE)
@@ -525,7 +533,7 @@
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
 
-/obj/structure/rack/Initialize()
+/obj/structure/rack/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

@@ -98,6 +98,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_game
 
+/datum/config_entry/flag/log_minimap_drawing
+
 /// log mech data
 /datum/config_entry/flag/log_mecha
 
@@ -295,16 +297,11 @@ Master controller and performance related.
 			FPS.ValidateAndSet(10 / config_entry_value)
 		sync_validate = FALSE
 
-/datum/config_entry/number/tick_limit_mc_init	//SSinitialization throttling
-	config_entry_value = TICK_LIMIT_MC_INIT_DEFAULT
-	min_val = 0 //oranges warned us
-	integer = FALSE
-
 /datum/config_entry/flag/resume_after_initializations
 
 /datum/config_entry/flag/resume_after_initializations/ValidateAndSet(str_val)
 	. = ..()
-	if(. && Master.current_runlevel)
+	if(. && MC_RUNNING())
 		world.sleep_offline = !config_entry_value
 
 /datum/config_entry/flag/tickcomp

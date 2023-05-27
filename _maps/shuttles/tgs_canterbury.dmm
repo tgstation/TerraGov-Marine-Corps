@@ -255,8 +255,8 @@
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
 "aT" = (
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
 /obj/item/tool/extinguisher/mini,
 /obj/item/stack/sheet/glass{
 	amount = 50;
@@ -436,8 +436,8 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bC" = (
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/random,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/random,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bD" = (
@@ -848,6 +848,10 @@
 /obj/machinery/marine_selector/clothes/synth,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
+"YI" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
 
 (1,1,1) = {"
 aa
@@ -936,7 +940,7 @@ by
 bI
 cs
 cJ
-cJ
+YI
 cd
 bo
 cm

@@ -68,7 +68,7 @@
 	var/obj/item/held_item = null
 
 
-/mob/living/simple_animal/parrot/Initialize()
+/mob/living/simple_animal/parrot/Initialize(mapload)
 	. = ..()
 	if(!ears)
 		ears = new /obj/item/radio/headset/mainship/mcom(src)
@@ -517,13 +517,16 @@
 	desc = "Poly the Parrot. An expert on quantum cracker theory."
 	speak = list("Poly wanna cracker!", ":e Check the engines, you chucklefucks!",":e Set up the engines, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?")
 	speak_chance = 3
+	voice_filter = "rubberband=pitch=1.5"
 	var/memory_saved = FALSE
 
 
-/mob/living/simple_animal/parrot/Poly/Initialize()
+/mob/living/simple_animal/parrot/Poly/Initialize(mapload)
 	ears = new /obj/item/radio/headset/mainship/st(src)
 	available_channels = list(RADIO_TOKEN_ENGINEERING)
 	Read_Memory()
+	if(SStts.tts_enabled)
+		voice = pick(SStts.available_speakers)
 	return ..()
 
 
@@ -579,7 +582,7 @@
 	resistance_flags = RESIST_ALL
 
 
-/mob/living/simple_animal/parrot/Poly/ghost/Initialize()
+/mob/living/simple_animal/parrot/Poly/ghost/Initialize(mapload)
 	memory_saved = TRUE
 	return ..()
 

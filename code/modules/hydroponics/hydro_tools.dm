@@ -180,7 +180,7 @@
 	volume = 10
 
 
-/obj/item/reagent_containers/glass/fertilizer/Initialize()
+/obj/item/reagent_containers/glass/fertilizer/Initialize(mapload)
 	. = ..()
 
 	pixel_x = rand(-5.0, 5)

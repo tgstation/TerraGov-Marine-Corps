@@ -16,7 +16,7 @@
 	///True if the hood is up, false if not.
 	var/hood = FALSE
 
-/obj/item/armor_module/greyscale/cape/Initialize()
+/obj/item/armor_module/greyscale/cape/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/attachment_handler, \
 	attachments_by_slot, \
@@ -65,10 +65,10 @@
 /obj/item/armor_module/greyscale/cape_highlight
 	name = "Cape Highlight"
 	desc = "A cape to improve on the design of the 7E badge, this cape is capable of six colors, for all your fashion needs. This variation of the cape functions more as a scarf. \n Interact with facepaint to color. Attaches onto a uniform. Activate it to toggle the hood."
-	icon_state = "highlight"
+	icon_state = "cape_highlight"
 	slot = ATTACHMENT_SLOT_CAPE_HIGHLIGHT
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
-	icon_state = "cape_highlight"
+
 	greyscale_config = /datum/greyscale_config/cape
 	greyscale_colors = COLOR_MAROON
 	secondary_color = TRUE

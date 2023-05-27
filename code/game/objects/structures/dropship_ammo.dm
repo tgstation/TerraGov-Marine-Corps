@@ -11,13 +11,14 @@
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	coverage = 20
+	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	///Time before the ammo impacts
 	var/travelling_time = 10 SECONDS
 	///type of equipment that accept this type of ammo.
 	var/equipment_type
 	var/ammo_count
 	var/max_ammo_count
-	var/ammo_name = "round" //what to call the ammo in the ammo transfering message
+	var/ammo_name = "rounds" //what to call the ammo in the ammo transfering message
 	var/ammo_id
 	///whether the ammo inside this magazine can be transfered to another magazine.
 	var/transferable_ammo = FALSE
@@ -41,34 +42,33 @@
 	///CAS impact prediction type to use. Explosive, incendiary, etc
 	var/prediction_type = CAS_AMMO_HARMLESS
 
-// todo this needs a refactor and needs to call parent first not last
-/obj/structure/ship_ammo/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/powerloader_clamp))
-		var/obj/item/powerloader_clamp/PC = I
-		if(PC.linked_powerloader)
-			if(PC.loaded)
-				if(istype(PC.loaded, /obj/structure/ship_ammo))
-					var/obj/structure/ship_ammo/SA = PC.loaded
-					if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
-						if(ammo_count < max_ammo_count)
-							var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
-							ammo_count += transf_amt
-							SA.ammo_count -= transf_amt
-							playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-							to_chat(user, span_notice("You transfer [transf_amt] [ammo_name] to [src]."))
-							if(!SA.ammo_count)
-								PC.loaded = null
-								PC.update_icon()
-								qdel(SA)
-			else
-				forceMove(PC.linked_powerloader)
-				PC.loaded = src
-				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				PC.update_icon()
-				to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
-				update_icon()
-		return TRUE
-	return ..()
+
+/obj/structure/ship_ammo/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	. = ..()
+	if(.)
+		return
+
+	if(!attached_clamp.loaded || !istype(attached_clamp.loaded, type))
+		return
+
+	var/obj/structure/ship_ammo/SA = attached_clamp.loaded
+
+	if(!SA.transferable_ammo || !SA.ammo_count) //not transferable
+		return
+
+	var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
+	if(!transf_amt)
+		return
+
+	ammo_count += transf_amt
+	SA.ammo_count -= transf_amt
+	to_chat(user, span_notice("You transfer [transf_amt] [ammo_name] to [src]."))
+	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+	if(!SA.ammo_count)
+		attached_clamp.loaded = null
+		attached_clamp.update_icon()
+		qdel(SA)
+
 
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)

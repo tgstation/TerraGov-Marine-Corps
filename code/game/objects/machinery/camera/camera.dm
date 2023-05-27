@@ -307,7 +307,7 @@
 
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
-/obj/machinery/camera/autoname/Initialize()
+/obj/machinery/camera/autoname/Initialize(mapload)
 	. = ..()
 	var/static/list/id_by_area = list()
 	var/area/A = get_area(src)

@@ -20,7 +20,7 @@
 	var/loaded_tray = FALSE
 	var/ob_cannon_busy = FALSE
 
-/obj/structure/orbital_cannon/Initialize()
+/obj/structure/orbital_cannon/Initialize(mapload)
 	. = ..()
 	if(!GLOB.marine_main_ship.orbital_cannon)
 		GLOB.marine_main_ship.orbital_cannon = src
@@ -167,9 +167,10 @@
 /obj/structure/orbital_cannon/proc/handle_ob_firing_effects(target, ob_sound = 'sound/effects/OB_incoming.ogg')
 	flick("OBC_firing",src)
 	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
-	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
-		var/mob/M = i
+	for(var/mob/M AS in hearers(WARHEAD_FALLING_SOUND_RANGE, target))
 		M.playsound_local(target, ob_sound, falloff = 2)
+
+	new /obj/effect/temp_visual/ob_impact(target, tray.warhead)
 
 /obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user)
 	set waitfor = FALSE
@@ -257,67 +258,51 @@
 	if(fuel_amt)
 		. += image("cannon_tray_[fuel_amt]")
 
+//Not calling parent because this isn't the typical pick up/put down
+/obj/structure/orbital_tray/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	if(attached_clamp.loaded && istype(attached_clamp.loaded, /obj/structure/ob_ammo))
+		var/obj/structure/ob_ammo/OA = attached_clamp.loaded
 
-/obj/structure/orbital_tray/attackby(obj/item/I, mob/user, params)
-	. = ..()
+		if(OA.is_solid_fuel)
+			if(fuel_amt >= 6)
+				to_chat(user, span_warning("[src] can't accept more solid fuel."))
+				return
 
-
-	if(istype(I, /obj/item/powerloader_clamp))
-		var/obj/item/powerloader_clamp/PC = I
-
-		if(!PC.linked_powerloader)
-			return TRUE
-
-		if(PC.loaded)
-			if(!istype(PC.loaded, /obj/structure/ob_ammo))
-				return TRUE
-
-			var/obj/structure/ob_ammo/OA = PC.loaded
-			if(OA.is_solid_fuel)
-				if(fuel_amt >= 6)
-					to_chat(user, span_warning("[src] can't accept more solid fuel."))
-					return
-
-				if(!warhead)
-					to_chat(user, span_warning("A warhead must be placed in [src] first."))
-					return
-
-				to_chat(user, span_notice("You load [OA] into [src]."))
-				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-				fuel_amt++
-				PC.loaded = null
-				PC.update_icon()
-				qdel(OA)
-				update_icon()
-			else
-				if(warhead)
-					to_chat(user, span_warning("[src] already has a warhead."))
-					return
-
-				to_chat(user, span_notice("You load [OA] into [src]."))
-				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-				warhead = OA
-				OA.forceMove(src)
-				PC.loaded = null
-				PC.update_icon()
-				update_icon()
+			if(!warhead)
+				to_chat(user, span_warning("A warhead must be placed in [src] first."))
+				return
+			fuel_amt++
+			qdel(OA)
 		else
-			if(fuel_amt)
-				var/obj/structure/ob_ammo/ob_fuel/OF = new(PC.linked_powerloader)
-				PC.loaded = OF
-				fuel_amt--
-			else if(warhead)
-				warhead.forceMove(PC.linked_powerloader)
-				PC.loaded = warhead
-				warhead = null
-			else
-				return TRUE
-			PC.update_icon()
-			playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-			to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
-			update_icon()
+			if(warhead)
+				to_chat(user, span_warning("[src] already has a warhead."))
+				return
+			warhead = OA
 
-		return TRUE
+		to_chat(user, span_notice("You load [OA] into [src]."))
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+
+		if(!QDELETED(OA))
+			OA.forceMove(src)
+
+		attached_clamp.loaded = null
+		attached_clamp.update_icon()
+		update_icon()
+		return
+
+	if(fuel_amt)
+		var/obj/structure/ob_ammo/ob_fuel/OF = new(attached_clamp.linked_powerloader)
+		attached_clamp.loaded = OF
+		fuel_amt--
+	else if(warhead)
+		warhead.forceMove(attached_clamp.linked_powerloader)
+		attached_clamp.loaded = warhead
+		warhead = null
+
+	attached_clamp.update_icon()
+	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	to_chat(user, span_notice("You grab [attached_clamp.loaded] with [attached_clamp]."))
+	update_icon()
 
 
 /obj/structure/ob_ammo
@@ -327,27 +312,9 @@
 	climbable = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
 	resistance_flags = XENO_DAMAGEABLE
+	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	coverage = 100
 	var/is_solid_fuel = 0
-
-/obj/structure/ob_ammo/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/powerloader_clamp))
-		var/obj/item/powerloader_clamp/PC = I
-		if(!PC.linked_powerloader)
-			return TRUE
-
-		if(PC.loaded)
-			return TRUE
-
-		forceMove(PC.linked_powerloader)
-		PC.loaded = src
-		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		PC.update_icon()
-		to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
-		update_icon()
-		return TRUE
 
 /obj/structure/ob_ammo/examine(mob/user)
 	. = ..()
@@ -427,7 +394,7 @@
 	icon_state = "ob_fuel"
 	is_solid_fuel = TRUE
 
-/obj/structure/ob_ammo/ob_fuel/Initialize()
+/obj/structure/ob_ammo/ob_fuel/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
@@ -542,9 +509,10 @@
 	resistance_flags = RESIST_ALL
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
+	var/last_firing_ai = 0 //same thing as last_firing but only cares when the AI last fired
 	var/obj/structure/ship_ammo/railgun/rail_gun_ammo
 
-/obj/structure/ship_rail_gun/Initialize()
+/obj/structure/ship_rail_gun/Initialize(mapload)
 	. = ..()
 	if(!GLOB.marine_main_ship.rail_gun)
 		GLOB.marine_main_ship.rail_gun = src
@@ -552,15 +520,18 @@
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 
-/obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user)
-	if(cannon_busy)
+/obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user, ignore_cooldown = FALSE, ai_operation = FALSE)
+	if(cannon_busy && !ignore_cooldown)
 		return
 	if(!rail_gun_ammo?.ammo_count)
 		to_chat(user, span_warning("[src] has ran out of ammo."))
 		return
 	flick("Railgun_firing",src)
 	cannon_busy = TRUE
-	last_firing = world.time
+	if(ai_operation)
+		last_firing_ai = world.time
+	else
+		last_firing = world.time
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + rand(-4, 4), T.y + rand(-4, 4), T.z)

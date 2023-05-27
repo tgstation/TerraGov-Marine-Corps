@@ -81,7 +81,7 @@
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	else
 		marker_flags = MINIMAP_FLAG_MARINE
-	SSminimaps.add_marker(src, z, marker_flags, "sentry[firing ? "_firing" : "_passive"]")
+	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "sentry[firing ? "_firing" : "_passive"]"))
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
 	. = ..()

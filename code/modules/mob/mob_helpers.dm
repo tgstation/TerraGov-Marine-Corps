@@ -464,3 +464,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 /mob/proc/set_skills(datum/skills/new_skillset)
 	skills = new_skillset
 	SEND_SIGNAL(src, COMSIG_MOB_SKILLS_CHANGED, skills)
+
+///Returns the slowdown applied to the mob when moving through liquids like water
+/mob/proc/get_liquid_slowdown()
+	return MOB_WATER_SLOWDOWN

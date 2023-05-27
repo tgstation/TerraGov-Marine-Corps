@@ -92,7 +92,7 @@
 		C.forceMove(loc)
 
 
-/obj/item/moneybag/vault/Initialize()
+/obj/item/moneybag/vault/Initialize(mapload)
 	. = ..()
 	new /obj/item/coin/silver(src)
 	new /obj/item/coin/silver(src)

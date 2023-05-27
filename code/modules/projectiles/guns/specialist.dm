@@ -72,7 +72,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 
-/obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize()
+/obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize(mapload)
 	. = ..()
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 	integrated_laze = new(src)
@@ -350,6 +350,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -423,7 +424,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	obj_flags = AUTOBALANCE_CHECK
 
-/obj/item/weapon/gun/minigun/Initialize()
+/obj/item/weapon/gun/minigun/Initialize(mapload)
 	. = ..()
 	if(obj_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.miniguns_in_use += src
@@ -543,8 +544,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	lifespan = 0.7 SECONDS
 	fade = 8 SECONDS
 	grow = 0.1
-	drift = generator(GEN_CIRCLE, 0, 10)
-	scale = 0.5
+	drift = generator(GEN_CIRCLE, 0, 5)
+	scale = 0.3
 	spin = generator(GEN_NUM, -20, 20)
 	velocity = list(50, 0)
 	friction = generator(GEN_NUM, 0.1, 0.5)
@@ -587,8 +588,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -100
 	placed_overlay_iconstate = "sadar"
 	windup_delay = 0.4 SECONDS
-	///the smoke effect after firing
-	var/obj/effect/abstract/particle_holder/backblast
 	///removes backblast damage if false
 	var/backblastdamage = TRUE
 
@@ -601,9 +600,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	var/angle = Get_Angle(loc, target)
 	var/x_component = sin(angle) * -30
 	var/y_component = cos(angle) * -30
-	backblast = new(blast_source, /particles/backblast)
+	var/obj/effect/abstract/particle_holder/backblast = new(blast_source, /particles/backblast)
 	backblast.particles.velocity = list(x_component, y_component)
-	QDEL_NULL_IN(src, backblast, 0.7 SECONDS)
+	addtimer(VARSET_CALLBACK(backblast.particles, count, 0), 5)
+	QDEL_IN(backblast, 0.7 SECONDS)
 
 	if(!backblastdamage)
 		return
@@ -866,6 +866,37 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/som/rad
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som/rad
+
+//ICC RPG
+/obj/item/weapon/gun/launcher/rocket/icc
+	name = "\improper MP-IRL rocket launcher"
+	desc = "The Man Portable-Infantry Rocket Launcher is a man portable warhead launcher employed by the ICC. Being capable of firing a wide variety of 83m rear-mounted rockets to provide excellent tactical flexibility in a compact package."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "iccrpg"
+	item_state = "iccrpg"
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED
+	caliber = CALIBER_84MM //codex
+	load_method = MAGAZINE //codex
+	default_ammo_type = /obj/item/ammo_magazine/rocket/icc
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rocket/icc,
+		/obj/item/ammo_magazine/rocket/icc/light,
+		/obj/item/ammo_magazine/rocket/icc/heat,
+		/obj/item/ammo_magazine/rocket/icc/thermobaric,
+	)
+	wield_delay = 1 SECONDS
+	aim_slowdown = 1
+	attachable_allowed = list()
+	reload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
+	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
+	fire_sound = "rpg_fire"
+
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	windup_delay = 0.6 SECONDS
+	recoil = 2
+	scatter = -1
+	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
 
 //-------------------------------------------------------
 //RG-220 Railgun

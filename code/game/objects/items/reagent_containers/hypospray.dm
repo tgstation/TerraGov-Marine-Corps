@@ -24,7 +24,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced
 	name = "Advanced hypospray"
-	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
 	core_name = "hypospray"
 
 
@@ -230,6 +230,9 @@
 	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
+	<B><A href='?src=\ref[src];overlayer=1'>Activate Tagger</A></B><BR>
+	<B>Current Tag:</B> [description_overlay]<BR>
+	<BR>
 	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode (Toggles between injecting and draining):</B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]</A><BR>
 	<BR>
@@ -251,6 +254,9 @@
 	var/dat = {"
 	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
+	<BR>
+	<B><A href='?src=\ref[src];overlayer=1'>Activate Tagger</A></B><BR>
+	<B>Current Tag:</B> [description_overlay]<BR>
 	<BR>
 	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode:</A></B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]<BR>
@@ -284,6 +290,16 @@
 
 	else if(href_list["autolabeler"])
 		label(usr)
+
+	else if(href_list["overlayer"])
+		var/mob/user = usr
+		var/str = copytext(reject_bad_text(input(user,"Hypospray tag text?", "Set tag", "")), 1, MAX_NAME_HYPO)
+		if(!length(str))
+			user.balloon_alert(user, "Invalid text.")
+			return
+		user.balloon_alert(user, "You tag [src] as \"[str]\".")
+		description_overlay = str
+		update_icon()
 
 	else if(href_list["set_transfer"])
 		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", list(30, 20, 15, 10, 5, 3, 1))
@@ -420,6 +436,7 @@
 /obj/item/reagent_containers/hypospray/advanced/inaprovaline
 	name = "inaprovaline hypospray"
 	desc = "A hypospray loaded with inaprovaline."
+	amount_per_transfer_from_this = 15
 	list_reagents = list(
 		/datum/reagent/medicine/inaprovaline = 60,
 	)
@@ -507,7 +524,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
-	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer and digital labeler. Handy. This one is a 120 unit version."
+	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy. This one is a 120 unit version."
 	item_state = "hypomed"
 	icon_state = "hypomed"
 	core_name = "hypospray"

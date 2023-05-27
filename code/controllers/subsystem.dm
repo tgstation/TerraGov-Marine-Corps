@@ -1,18 +1,34 @@
 
 /datum/controller/subsystem
 	// Metadata; you should define these.
-	name = "fire coderbus" //name of the subsystem
-	var/init_order = INIT_ORDER_DEFAULT		//order of initialization. Higher numbers are initialized first, lower numbers later. Use defines in __DEFINES/subsystems.dm for easy understanding of order.
-	var/wait = 20			//time to wait (in deciseconds) between each call to fire(). Must be a positive integer.
-	var/priority = FIRE_PRIORITY_DEFAULT	//When mutiple subsystems need to run in the same tick, higher priority subsystems will run first and be given a higher share of the tick before MC_TICK_CHECK triggers a sleep
 
-	var/flags = 0			//see MC.dm in __DEFINES Most flags must be set on world start to take full effect. (You can also restart the mc to force them to process again)
+	/// Name of the subsystem - you must change this
+	name = "fire coderbus"
 
-	var/initialized = FALSE	//set to TRUE after it has been initialized, will obviously never be set if the subsystem doesn't initialize
+	/// Order of initialization. Higher numbers are initialized first, lower numbers later. Use or create defines such as [INIT_ORDER_DEFAULT] so we can see the order in one file.
+	var/init_order = INIT_ORDER_DEFAULT
 
-	//set to 0 to prevent fire() calls, mostly for admin use or subsystems that may be resumed later
-	//	use the SS_NO_FIRE flag instead for systems that never fire to keep it from even being added to the list
+	/// Time to wait (in deciseconds) between each call to fire(). Must be a positive integer.
+	var/wait = 20
+
+	/// Priority Weight: When mutiple subsystems need to run in the same tick, higher priority subsystems will be given a higher share of the tick before MC_TICK_CHECK triggers a sleep, higher priority subsystems also run before lower priority subsystems
+	var/priority = FIRE_PRIORITY_DEFAULT
+
+	/// [Subsystem Flags][SS_NO_INIT] to control binary behavior. Flags must be set at compile time or before preinit finishes to take full effect. (You can also restart the mc to force them to process again)
+	var/flags = NONE
+
+	/// Which stage does this subsystem init at. Earlier stages can fire while later stages init.
+	var/init_stage = INITSTAGE_MAIN
+
+	/// This var is set to TRUE after the subsystem has been initialized.
+	var/initialized = FALSE
+
+	/// Set to 0 to prevent fire() calls, mostly for admin use or subsystems that may be resumed later
+	/// use the [SS_NO_FIRE] flag instead for systems that never fire to keep it from even being added to list that is checked every tick
 	var/can_fire = TRUE
+
+	///Bitmap of what game states can this subsystem fire at. See [RUNLEVELS_DEFAULT] for more details.
+	var/runlevels = RUNLEVELS_DEFAULT //points of the game at which the SS can fire
 
 	// Bookkeeping variables; probably shouldn't mess with these.
 
@@ -46,8 +62,6 @@
 	var/datum/controller/subsystem/queue_next
 	/// Previous subsystem in the queue of subsystems to run this tick
 	var/datum/controller/subsystem/queue_prev
-
-	var/runlevels = RUNLEVELS_DEFAULT	//points of the game at which the SS can fire
 
 	var/static/list/failure_strikes //How many times we suspect a subsystem type has crashed the MC, 3 strikes and you're out!
 
@@ -179,13 +193,8 @@
 
 
 //used to initialize the subsystem AFTER the map has loaded
-/datum/controller/subsystem/Initialize(start_timeofday)
-	initialized = TRUE
-	var/time = (REALTIMEOFDAY - start_timeofday) / 10
-	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, span_notice("[msg]"))
-	log_world(msg)
-	return time
+/datum/controller/subsystem/Initialize()
+	return SS_INIT_NONE
 
 //hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
 /datum/controller/subsystem/stat_entry(msg)
@@ -194,7 +203,7 @@
 
 
 
-	if(can_fire && !(SS_NO_FIRE & flags))
+	if(can_fire && !(SS_NO_FIRE & flags) && init_stage <= Master.init_stage_completed)
 		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
 	else
 		msg = "OFFLINE\t[msg]"

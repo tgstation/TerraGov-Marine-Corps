@@ -22,7 +22,7 @@
 	set_focus(null)
 	return ..()
 
-/mob/Initialize()
+/mob/Initialize(mapload)
 	GLOB.mob_list += src
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
@@ -108,40 +108,42 @@
 
 /mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
-		return
+		return FALSE
 
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	to_chat(src, msg)
+	return TRUE
 
 
 /mob/living/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
-		return
+		return FALSE
 
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type == EMOTE_VISIBLE && eye_blind) //Vision related
 			if(!alt_msg)
-				return
+				return FALSE
 			else
 				msg = alt_msg
 				type = alt_type
 
 		if(type == EMOTE_AUDIBLE && isdeaf(src)) //Hearing related
 			if(!alt_msg)
-				return
+				return FALSE
 			else
 				msg = alt_msg
 				type = alt_type
 				if(type == EMOTE_VISIBLE && eye_blind)
-					return
+					return FALSE
 
 	if(stat == UNCONSCIOUS && type == EMOTE_AUDIBLE)
 		to_chat(src, "<i>... You can almost hear something ...</i>")
-		return
+		return FALSE
 	to_chat(src, msg, avoid_highlighting = avoid_highlight)
+	return TRUE
 
 /**
  * Show a message to all player mobs who sees this atom
@@ -342,9 +344,9 @@
 	//This is quite horrible, there's probably a better way to do it.
 	//Each actual inventory slot has more than one slot define associated with it.
 	//The defines below are for specific items in specific slots, which allows for a much more specific draw order, i.e. drawing a weapon from a slot which would otherwise be lower in the order
-	if(slot == SLOT_IN_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun))))
+	if(slot == SLOT_IN_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon))))
 		return FALSE
-	if(slot == SLOT_IN_S_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun) || istype(I, /obj/item/storage/belt/knifepouch))))
+	if(slot == SLOT_IN_S_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/knifepouch))))
 		return FALSE
 	if(slot == SLOT_IN_B_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon))))
 		return FALSE

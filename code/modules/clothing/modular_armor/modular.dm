@@ -27,7 +27,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/claymore,
-		/obj/item/storage/belt/gun,
+		/obj/item/storage/holster/belt,
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
 		/obj/item/tool/pickaxe/plasmacutter,
@@ -84,6 +84,10 @@
 		/obj/item/armor_module/armor/legs/marine/helljumper,
 		/obj/item/armor_module/armor/arms/marine/helljumper,
 
+		/obj/item/armor_module/armor/chest/marine/ranger,
+		/obj/item/armor_module/armor/legs/marine/ranger,
+		/obj/item/armor_module/armor/arms/marine/ranger,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -117,7 +121,7 @@
 	///Uniform type that is allowed to be worn with this.
 	var/allowed_uniform_type = /obj/item/clothing/under/marine
 
-/obj/item/clothing/suit/modular/Initialize()
+/obj/item/clothing/suit/modular/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -291,6 +295,7 @@
 	)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -312,7 +317,7 @@
 	///Current varient selected.
 	var/current_variant
 
-/obj/item/clothing/head/modular/Initialize()
+/obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -399,7 +404,7 @@
 	///Current varient selected.
 	var/current_variant
 
-/obj/item/clothing/mask/gas/modular/Initialize()
+/obj/item/clothing/mask/gas/modular/Initialize(mapload)
 	. = ..()
 	update_icon()
 

@@ -264,7 +264,7 @@
 			var/userinput = tgui_input_text(usr, "Choose a new exosuit name", "Rename exosuit", max_length = MAX_NAME_LEN)
 			if(!userinput)
 				return
-			if(CHAT_FILTER_CHECK(userinput) || NON_ASCII_CHECK(userinput))
+			if(is_ic_filtered(userinput) || NON_ASCII_CHECK(userinput))
 				tgui_alert(usr, "You cannot set a name that contains a word prohibited in IC chat!")
 				return
 			name = userinput

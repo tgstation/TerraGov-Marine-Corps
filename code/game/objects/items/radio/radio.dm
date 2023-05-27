@@ -318,7 +318,7 @@
 /obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
-		return
+		return FALSE
 
 	if(message_mode == MODE_WHISPER || message_mode == MODE_WHISPER_CRIT)
 		// radios don't pick up whispers very well
@@ -326,9 +326,9 @@
 	else if(ismob(speaker) && loc == speaker)
 		var/mob/M = speaker
 		if(M.l_hand == src && message_mode != MODE_L_HAND)
-			return
+			return FALSE
 		else if(M.r_hand == src && message_mode != MODE_R_HAND)
-			return
+			return FALSE
 
 	talk_into(speaker, raw_message, , spans, language = message_language)
 
@@ -386,7 +386,7 @@
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
 
-/obj/item/radio/off/Initialize()
+/obj/item/radio/off/Initialize(mapload)
 	. = ..()
 	set_listening(FALSE)
 

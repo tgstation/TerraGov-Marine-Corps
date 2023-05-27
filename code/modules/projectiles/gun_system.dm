@@ -708,7 +708,10 @@
 		return
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
-		if(!INVOKE_ASYNC(src, PROC_REF(Fire)) || windup_checked == WEAPON_WINDUP_CHECKING)
+		var/fire_return // todo fix: code expecting return values from async
+		ASYNC
+			fire_return = Fire()
+		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
 		return
@@ -1780,20 +1783,6 @@
 	if(!QDELETED(flash_loc))
 		flash_loc.vis_contents -= muzzle_flash
 	muzzle_flash.applied = FALSE
-
-/obj/item/weapon/gun/on_enter_storage(obj/item/I)
-	if(istype(I,/obj/item/storage/belt/gun))
-		var/obj/item/storage/belt/gun/GB = I
-		if(!GB.current_gun)
-			GB.current_gun = src //If there's no active gun, we want to make this our icon.
-			GB.update_gun_icon()
-
-/obj/item/weapon/gun/on_exit_storage(obj/item/I)
-	if(istype(I,/obj/item/storage/belt/gun))
-		var/obj/item/storage/belt/gun/GB = I
-		if(GB.current_gun == src)
-			GB.current_gun = null
-			GB.update_gun_icon()
 
 //For letting xenos turn off the flashlights on any guns left lying around.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)

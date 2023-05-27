@@ -121,7 +121,7 @@
 	resistance_flags = RESIST_ALL
 
 
-/obj/structure/prop/mainship/deadai/Initialize()
+/obj/structure/prop/mainship/deadai/Initialize(mapload)
 	. = ..()
 	icon_state = pick(
 		"ai_dead",
@@ -316,7 +316,7 @@
 /obj/structure/prop/mainship/name_stencil/C
 	icon_state = "TGMC4"
 
-/obj/structure/prop/mainship/name_stencil/Initialize()
+/obj/structure/prop/mainship/name_stencil/Initialize(mapload)
 	. = ..()
 	name = SSmapping.configs[SHIP_MAP].map_name
 
@@ -612,6 +612,9 @@
 	resistance_flags = RESIST_ALL
 	density = TRUE
 
+/obj/structure/prop/mainship/prop_so/som
+	icon_state = "officersomprop"
+
 /obj/structure/prop/mainship/prop_tech
 	name = "Technician"
 	desc = "A hard working technician maintaining the vehicles of the base, as well as the base itself. They seem to be very busy investigating something right now."
@@ -780,7 +783,7 @@
 		MECH_GREY_L_ARM = MECH_ASSAULT,
 	)
 
-/obj/structure/prop/mainship/halfbuilt_mech/Initialize()
+/obj/structure/prop/mainship/halfbuilt_mech/Initialize(mapload)
 	. = ..()
 	var/default_colors = MECH_GREY_PRIMARY_DEFAULT + MECH_GREY_SECONDARY_DEFAULT
 	var/default_visor = MECH_GREY_VISOR_DEFAULT
@@ -911,7 +914,7 @@
 	desc = "A storage device for AIs. Patent pending."
 	icon_state = "aicard"
 
-/obj/item/prop/aicard/Initialize()
+/obj/item/prop/aicard/Initialize(mapload)
 	. = ..()
 	if(prob(50))
 		icon_state = "aicard-404"
@@ -928,7 +931,7 @@
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "dogtag"
 
-/obj/item/prop/dogtag/random/Initialize()
+/obj/item/prop/dogtag/random/Initialize(mapload)
 	. = ..()
 	name = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 
@@ -990,7 +993,8 @@
 	icon_state = "surplus_armor-broken"
 
 ///BROKEN VEHICLE PROPS
-
+/obj/structure/prop/vehicle
+	layer = TANK_BARREL_LAYER
 /obj/structure/prop/vehicle/van
 	name = "van"
 	desc = "An old van, seems to be broken down."
@@ -1001,9 +1005,8 @@
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
-/obj/structure/prop/vehicle/van/Initialize()
+/obj/structure/prop/vehicle/van/Initialize(mapload)
 	. = ..()
 	if(dir & (NORTH|SOUTH))
 		bound_height = 64
@@ -1023,7 +1026,6 @@
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/truck/destructible
 	max_integrity = 150
@@ -1046,7 +1048,6 @@
 	bound_height = 64
 	bound_width = 64
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/crane/destructible
 	max_integrity = 300
@@ -1069,7 +1070,6 @@
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/crawler/destructible
 	max_integrity = 200
@@ -1101,7 +1101,6 @@
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/tank/north
 	icon = 'icons/Marine/tank_propns.dmi'
@@ -1171,7 +1170,6 @@
 
 /obj/structure/prop/vehicle/tank/east/decoration/armor
 	icon_state = "caustic_armor"
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/tank/east/decoration/armor/causticarmor
 	icon_state = "caustic_armor"
@@ -1272,7 +1270,6 @@
 
 /obj/structure/prop/vehicle/tank/north/barrel
 	icon_state = "ltb_cannon_0"
-	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/tank/north/barrel/broken
@@ -1300,7 +1297,6 @@
 
 /obj/structure/prop/vehicle/tank/north/decoration/armor
 	icon_state = "caustic_armor"
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/tank/north/decoration/armor/causticarmor
 	icon_state = "caustic_armor"
@@ -1396,9 +1392,8 @@
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_MOB_LAYER
 
-/obj/structure/prop/vehicle/apc/Initialize()
+/obj/structure/prop/vehicle/apc/Initialize(mapload)
 	. = ..()
 	if(dir == EAST || dir == WEST)
 		bound_height = 64
@@ -1720,7 +1715,7 @@
 	///var to control vendor appearance, can be vendor_broken, vendor_working or vendor_blank
 	var/vendorstate = VENDOR_BROKEN
 
-/obj/structure/prop/tgbrokenvendor/Initialize()
+/obj/structure/prop/tgbrokenvendor/Initialize(mapload)
 	. = ..()
 	vendorstate = pick(VENDOR_BROKEN, VENDOR_BLANK)
 	if(vendorstate == VENDOR_BROKEN)

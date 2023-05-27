@@ -880,6 +880,9 @@
 /area/bigredv2/outside/marshal_office)
 "we" = (
 /obj/structure/closet/secure_closet/injection,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ws" = (
@@ -1050,6 +1053,9 @@
 "AI" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "AP" = (
@@ -1966,6 +1972,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"Zk" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "Zo" = (
@@ -4381,7 +4392,7 @@ Xr
 Xr
 OH
 LG
-fF
+Av
 AI
 hq
 hq
@@ -4421,7 +4432,7 @@ OH
 Xr
 Xr
 LG
-fF
+Av
 uk
 CO
 yZ
@@ -4461,7 +4472,7 @@ oT
 Xr
 Xr
 LG
-fF
+Av
 we
 oP
 yZ
@@ -5149,7 +5160,7 @@ bB
 fF
 Rr
 nX
-ql
+Zk
 nX
 fF
 aM

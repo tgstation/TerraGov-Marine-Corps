@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(events)
 	///the latest an event can happen after a previous event
 	var/frequency_upper = 15 MINUTES
 
-/datum/controller/subsystem/events/Initialize(time, zlevel)
+/datum/controller/subsystem/events/Initialize()
 	if(CONFIG_GET(flag/events_disallowed))
 		can_fire = 0
 	for(var/type in typesof(/datum/round_event_control))
@@ -25,8 +25,7 @@ SUBSYSTEM_DEF(events)
 			continue				//don't want this one! leave it for the garbage collector
 		control += E				//add it to the list of all events (controls)
 	reschedule()
-	return ..()
-
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/events/fire(resumed = 0)
 	if(!resumed)

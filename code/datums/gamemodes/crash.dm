@@ -133,6 +133,8 @@
 	shuttle_landed = TRUE
 	shuttle.crashing = FALSE
 
+	generate_nuke_disk_spawners()
+
 /datum/game_mode/infestation/crash/check_finished(force_end)
 	if(round_finished)
 		return TRUE

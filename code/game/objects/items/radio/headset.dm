@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/obj/item/encryptionkey/keyslot2 = null
 
 
-/obj/item/radio/headset/Initialize()
+/obj/item/radio/headset/Initialize(mapload)
 	if(keyslot)
 		keyslot = new keyslot(src)
 	if(keyslot2)
@@ -71,14 +71,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 					keyslot2 = null
 
 			recalculateChannels()
-			to_chat(user, span_notice("You pop out the encryption keys in the headset."))
+			balloon_alert_to_viewers("pops out keys")
 
 		else
-			to_chat(user, span_warning("This headset doesn't have any unique encryption keys!  How useless..."))
+			balloon_alert(user, "No keys to remove")
 
 	else if(istype(I, /obj/item/encryptionkey))
 		if(keyslot && keyslot2)
-			to_chat(user, span_warning("The headset can't hold another key!"))
+			balloon_alert(user, "Can't, headset is full")
 			return
 
 		if(!keyslot)
@@ -135,13 +135,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	if(command)
 		use_command = !use_command
-		to_chat(user, span_notice("You toggle high-volume mode [use_command ? "on" : "off"]."))
+		balloon_alert(user, "toggles loud mode")
 
 /obj/item/radio/headset/attack_self(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
 		return
 	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
-	to_chat(user, span_notice("You toggle supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"]."))
+	balloon_alert(user, "toggles supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"].")
 
 /obj/item/radio/headset/vendor_equip(mob/user)
 	..()
@@ -171,11 +171,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/Initialize()
+/obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/item/radio/headset/mainship/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/LateInitialize()
 	. = ..()
 	camera = new /obj/machinery/camera/headset(src)
 
@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /// Make the headset lose its keysloy
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
-	to_chat(user, span_warning("[src] violently buzzes and explodes in your face as its tampering mechanisms are triggered!"))
+	balloon_alert_to_viewers("Explodes")
 	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
 	user.ex_act(EXPLODE_LIGHT)
 	qdel(src)
@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(wearer.mind && wearer.assigned_squad && !sl_direction)
 		enable_sl_direction()
 	add_minimap()
-	to_chat(wearer, span_notice("You toggle the Squad HUD on."))
+	balloon_alert(wearer, "toggles squad HUD on")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(sl_direction)
 		disable_sl_direction()
 	remove_minimap()
-	to_chat(wearer, span_notice("You toggle the Squad HUD off."))
+	balloon_alert(wearer, "toggles squad HUD off")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/radio/headset/mainship/proc/add_minimap()
@@ -276,15 +276,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		else if(hud_type == DATA_HUD_SQUAD_SOM)
 			marker_flags = MINIMAP_FLAG_MARINE_SOM
 	if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
-		SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
+		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 		return
 	if(wearer.stat == DEAD)
-		SSminimaps.add_marker(wearer, wearer.z, marker_flags, "defibbable")
+		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
 		return
 	if(wearer.assigned_squad)
-		SSminimaps.add_marker(wearer, wearer.z, marker_flags, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon)
+		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon))
 		return
-	SSminimaps.add_marker(wearer, wearer.z, marker_flags, wearer.job.minimap_icon)
+	SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon))
 
 ///Change the minimap icon to a dead icon
 /obj/item/radio/headset/mainship/proc/set_dead_on_minimap()
@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
-	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "defibbable")
+	SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
 
 ///Change the minimap icon to a undefibbable icon
 /obj/item/radio/headset/mainship/proc/set_undefibbable_on_minimap()
@@ -314,7 +314,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
-	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
+	SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()
@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/proc/enable_sl_direction()
 	if(!headset_hud_on)
-		to_chat(wearer, span_warning("You need to turn the HUD on first!"))
+		balloon_alert(wearer, "turn it on first")
 		return
 
 	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
@@ -337,7 +337,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
 
 	sl_direction = TRUE
-	to_chat(wearer, span_notice("You toggle the SL directional display on."))
+	balloon_alert(wearer, "toggles SL finder on")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
@@ -355,7 +355,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 
 	sl_direction = FALSE
-	to_chat(wearer, span_notice("You toggle the SL directional display off."))
+	balloon_alert(wearer, "toggles SL finder off")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, TRUE)
 
 
@@ -523,7 +523,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
 	minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/marine/alpha/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/alpha/LateInitialize()
 	. = ..()
 	camera.network += list("alpha")
 
@@ -551,7 +551,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_BRAVO
 	minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/marine/bravo/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/bravo/LateInitialize()
 	. = ..()
 	camera.network += list("bravo")
 
@@ -579,7 +579,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_CHARLIE
 	minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/marine/charlie/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/charlie/LateInitialize()
 	. = ..()
 	camera.network += list("charlie")
 
@@ -608,7 +608,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_DELTA
 	minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/marine/delta/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/delta/LateInitialize()
 	. = ..()
 	camera.network += list("delta")
 
@@ -645,7 +645,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_ALPHA_REBEL //default frequency is alpha squad channel, not FREQ_COMMON
 	minimap_type = /datum/action/minimap/marine/rebel
 
-/obj/item/radio/headset/mainship/marine/rebel/alpha/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/rebel/alpha/LateInitialize()
 	. = ..()
 	camera.network += list("alpha_rebel")
 
@@ -672,7 +672,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_BRAVO_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
 
-/obj/item/radio/headset/mainship/marine/rebel/bravo/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/rebel/bravo/LateInitialize()
 	. = ..()
 	camera.network += list("bravo_rebel")
 
@@ -699,7 +699,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_CHARLIE_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
 
-/obj/item/radio/headset/mainship/marine/rebel/charlie/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/rebel/charlie/LateInitialize()
 	. = ..()
 	camera.network += list("charlie_rebel")
 
@@ -727,7 +727,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_DELTA_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
 
-/obj/item/radio/headset/mainship/marine/rebel/delta/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/rebel/delta/LateInitialize()
 	. = ..()
 	camera.network += list("delta_rebel")
 
@@ -852,7 +852,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_ZULU
 	minimap_type = /datum/action/minimap/som
 
-/obj/item/radio/headset/mainship/som/zulu/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/som/zulu/LateInitialize()
 	. = ..()
 	camera.network += list("zulu")
 
@@ -876,7 +876,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_YANKEE
 	minimap_type = /datum/action/minimap/som
 
-/obj/item/radio/headset/mainship/som/yankee/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/som/yankee/LateInitialize()
 	. = ..()
 	camera.network += list("yankee")
 
@@ -900,7 +900,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_XRAY
 	minimap_type = /datum/action/minimap/som
 
-/obj/item/radio/headset/mainship/som/xray/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/som/xray/LateInitialize()
 	. = ..()
 	camera.network += list("xray")
 
@@ -924,7 +924,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_WHISKEY
 	minimap_type = /datum/action/minimap/som
 
-/obj/item/radio/headset/mainship/som/whiskey/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/som/whiskey/LateInitialize()
 	. = ..()
 	camera.network += list("whiskey")
 

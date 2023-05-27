@@ -369,6 +369,10 @@
 
 		stat("Number of living marines:", "[SSticker.mode.count_humans_and_xenos()[1]]")
 
+		if(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
+			stat("Railgun status:", "Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds.")
+		else
+			stat("Railgun status:", "Railgun is ready to fire.")
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()
@@ -494,9 +498,12 @@
 	var/text = stripped_input(owner, "Maximum message length [MAX_COMMAND_MESSAGE_LGTH]", "Send message to squad", max_length = MAX_COMMAND_MESSAGE_LGTH)
 	if(!text)
 		return
-	if(CHAT_FILTER_CHECK(text))
+	var/filter_result = CAN_BYPASS_FILTER(owner) ? null : is_ic_filtered(text)
+	if(filter_result)
 		to_chat(owner, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[text]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
+		log_filter("IC", text, filter_result)
 		return
 	if(!can_use_action())
 		return

@@ -8,6 +8,7 @@
 	dextrous = TRUE
 
 	initial_language_holder = /datum/language_holder/synthetic
+	voice_filter = "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=1,rubberband=pitch=0.8"
 
 	var/obj/machinery/camera/builtInCamera = null
 	var/obj/item/radio/headset/mainship/mcom/silicon/radio = null
@@ -15,9 +16,11 @@
 	var/list/HUD_toggled = list(0, 0, 0)
 
 
-/mob/living/silicon/Initialize()
+/mob/living/silicon/Initialize(mapload)
 	. = ..()
 	radio = new(src)
+	if(SStts.tts_enabled)
+		voice = pick(SStts.available_speakers)
 
 
 /mob/living/silicon/Destroy()

@@ -102,7 +102,7 @@
 	var/obj/item/cell/rtg/large/cell //The plasma cutter cell is unremovable and recharges over time
 	tool_behaviour = TOOL_WELD_CUTTER
 
-/obj/item/tool/pickaxe/plasmacutter/Initialize()
+/obj/item/tool/pickaxe/plasmacutter/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/rtg/plasma_cutter()
 
@@ -169,7 +169,7 @@
 		if(custom_string)
 			to_chat(user, span_notice(custom_string))
 		else
-			to_chat(user, span_notice("You start cutting apart the [name] with [src]."))
+			balloon_alert(user, "Starts cutting apart")
 	return TRUE
 
 /obj/item/tool/pickaxe/plasmacutter/proc/cut_apart(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string)
@@ -185,7 +185,7 @@
 	if(custom_string)
 		to_chat(user, span_notice(custom_string))
 	else
-		to_chat(user, span_notice("You cut apart the [name] with [src]."))
+		balloon_alert(user, "Cuts apart")
 
 /obj/item/tool/pickaxe/plasmacutter/proc/debris(location, metal = 0, rods = 0, wood = 0, wires = 0, shards = 0, plasteel = 0)
 	if(metal)

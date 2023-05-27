@@ -142,7 +142,7 @@
 	///Are we currently busy opening/closing?
 	var/switching_states = FALSE
 
-/obj/structure/inflatable/door/Initialize()
+/obj/structure/inflatable/door/Initialize(mapload)
 	. = ..()
 	if((locate(/mob/living) in loc) && !open)
 		toggle_state()
@@ -196,7 +196,6 @@
 	open = !open
 	flick("door_[open ? "opening" : "closing"]", src)
 	density = !density
-	opacity = !opacity
 	update_icon()
 	addtimer(VARSET_CALLBACK(src, switching_states, FALSE), 1 SECONDS)
 

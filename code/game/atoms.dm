@@ -29,10 +29,11 @@
 	///Lazy assoc list for managing filters attached to us
 	var/list/filter_data
 
-	var/list/display_icons // related to do_after/do_mob overlays, I can't get my hopes high.
+	///Related to do_after/do_mob overlays, I can't get my hopes high.
+	var/list/display_icons
 
-	var/list/atom_colours	 //used to store the different colors on an atom
-							//its inherent color, the colored paint applied on it, special color effect etc...
+	///used to store the different colors on an atom. its inherent color, the colored paint applied on it, special color effect etc...
+	var/list/atom_colours
 
 	///This atom's HUD (med/sec, etc) images. Associative list.
 	var/list/image/hud_list
@@ -40,7 +41,8 @@
 	///How much does this atom block the explosion's shock wave.
 	var/explosion_block = 0
 
-	var/list/managed_overlays //overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
+	///overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
+	var/list/managed_overlays
 
 	var/datum/component/orbiter/orbiters
 	var/datum/proximity_monitor/proximity_monitor
@@ -753,7 +755,7 @@ Proc for attack log creation, because really why not
 
 
 ///called if Initialize returns INITIALIZE_HINT_LATELOAD
-/atom/proc/LateInitialize(mapload)
+/atom/proc/LateInitialize()
 	set waitfor = FALSE
 
 
@@ -934,12 +936,12 @@ Proc for attack log creation, because really why not
 /atom/proc/specialclick(mob/living/carbon/user)
 	return
 
-
-//Consolidating HUD infrastructure
 /atom/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
-		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
+		var/image/new_hud = image('icons/mob/hud.dmi', src, "")
+		new_hud.appearance_flags = KEEP_APART
+		hud_list[hud] = new_hud
 
 /**
  * If this object has lights, turn it on/off.
@@ -998,3 +1000,7 @@ Proc for attack log creation, because really why not
 
 /atom/proc/can_slip()
 	return TRUE
+
+///Adds the debris element for projectile impacts
+/atom/proc/add_debris_element()
+	AddElement(/datum/element/debris, null, -15, 8, 0.7)

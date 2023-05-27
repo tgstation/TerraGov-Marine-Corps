@@ -759,7 +759,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Mq" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "Nb" = (
 /obj/item/stack/sheet/metal,
@@ -904,9 +904,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"UN" = (
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "UO" = (
@@ -1531,7 +1528,7 @@ Kn
 GE
 UO
 Uf
-UN
+vr
 Um
 vr
 vr

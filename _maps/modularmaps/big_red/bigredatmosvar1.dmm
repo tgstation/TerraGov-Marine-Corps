@@ -185,7 +185,7 @@
 	},
 /area/bigredv2/outside/s)
 "rg" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/caves/rock)
 "rC" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -273,7 +273,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "xP" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "yu" = (

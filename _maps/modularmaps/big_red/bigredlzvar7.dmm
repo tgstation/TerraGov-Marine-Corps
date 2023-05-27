@@ -741,6 +741,9 @@
 "qt" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "qu" = (
@@ -1009,6 +1012,11 @@
 	dir = 10
 	},
 /area/bigredv2/outside/nw)
+"yW" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
 "zj" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 8
@@ -1256,6 +1264,9 @@
 /area/bigredv2/outside/marshal_office)
 "DV" = (
 /obj/structure/closet/secure_closet/injection,
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "Eo" = (
@@ -4513,7 +4524,7 @@ ok
 fW
 ok
 GY
-Ly
+Ws
 qt
 FJ
 FJ
@@ -4553,7 +4564,7 @@ ok
 ok
 ok
 GY
-Ly
+Ws
 Cw
 Ro
 Pg
@@ -4593,7 +4604,7 @@ ok
 ok
 ok
 GY
-Ly
+Ws
 DV
 nh
 Pg
@@ -5281,7 +5292,7 @@ kl
 Ly
 uf
 qu
-Rs
+yW
 qu
 Ly
 qo

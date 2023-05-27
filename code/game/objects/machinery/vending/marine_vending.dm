@@ -53,7 +53,7 @@
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
-			/obj/item/storage/belt/gun/ts34/full = -1,
+			/obj/item/storage/holster/belt/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun/flechette = -1,
@@ -108,9 +108,12 @@
 			/obj/item/weapon/gun/rifle/tx54 = 2,
 			/obj/item/ammo_magazine/rifle/tx54 = 10,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
+			/obj/item/ammo_magazine/rifle/tx54/smoke = 4,
+			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = 2,
 			/obj/item/explosive/grenade = 600,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
+			/obj/item/explosive/grenade/sticky/trailblazer = 75,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/smokebomb = 25,
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
@@ -217,6 +220,7 @@
 			/obj/item/compass = -1,
 			/obj/item/tool/hand_labeler = -1,
 			/obj/item/toy/deck/kotahi = -1,
+			/obj/item/deployable_floodlight = 5,
 		),
 	)
 
@@ -270,7 +274,7 @@
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
-			/obj/item/storage/belt/gun/ts34/full = -1,
+			/obj/item/storage/holster/belt/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun/flechette = -1,
@@ -410,6 +414,7 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/deployable_floodlight = 5,
 		),
 	)
 
@@ -464,7 +469,7 @@
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
-			/obj/item/storage/belt/gun/ts34/full = -1,
+			/obj/item/storage/holster/belt/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun/flechette = -1,
@@ -522,6 +527,7 @@
 			/obj/item/explosive/grenade = -1,
 			/obj/item/explosive/grenade/m15 = -1,
 			/obj/item/explosive/grenade/sticky = -1,
+			/obj/item/explosive/grenade/sticky/trailblazer = -1,
 			/obj/item/explosive/grenade/incendiary = -1,
 			/obj/item/explosive/grenade/smokebomb/cloak = -1,
 			/obj/item/explosive/grenade/smokebomb/drain = -1,
@@ -622,6 +628,7 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/deployable_floodlight = -1,
 		),
 	)
 
@@ -670,7 +677,7 @@
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
-			/obj/item/storage/belt/gun/ts34/full = -1,
+			/obj/item/storage/holster/belt/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun/flechette = -1,
@@ -801,6 +808,7 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/deployable_floodlight = -1,
 		),
 	)
 
@@ -1008,13 +1016,13 @@
 
 	product_ads = "Power cell running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-		/obj/item/cell/lasgun/lasrifle = 10,
+		/obj/item/cell/lasgun/lasrifle = 10, /obj/item/cell/lasgun/volkite/powerpack/marine = 2,
 	)
 
 
 	prices = list()
 
-/obj/machinery/vending/lasgun/Initialize()
+/obj/machinery/vending/lasgun/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -1231,6 +1239,7 @@
 			/obj/item/clothing/suit/modular/jaeger = -1,
 			/obj/item/clothing/suit/modular/jaeger/eva = -1,
 			/obj/item/clothing/suit/modular/jaeger/helljumper = -1,
+			/obj/item/clothing/suit/modular/jaeger/ranger = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy/assault = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy/eod = -1,
@@ -1240,6 +1249,8 @@
 			/obj/item/clothing/head/modular/marine/eva = -1,
 			/obj/item/clothing/head/modular/marine/eva/skull = -1,
 			/obj/item/clothing/head/modular/marine/helljumper = -1,
+			/obj/item/clothing/head/modular/marine/ranger = -1,
+			/obj/item/clothing/head/modular/marine/traditional = -1,
 			/obj/item/clothing/head/modular/marine/gungnir = -1,
 			/obj/item/clothing/head/modular/marine/assault = -1,
 			/obj/item/clothing/head/modular/marine/eod = -1,
@@ -1293,6 +1304,7 @@
 			/obj/item/armor_module/armor/chest/marine/assault = -1,
 			/obj/item/armor_module/armor/chest/marine/assault/eod = -1,
 			/obj/item/armor_module/armor/chest/marine/helljumper = -1,
+			/obj/item/armor_module/armor/chest/marine/ranger = -1,
 		),
 		"Jaeger Mk.I armpiece" = list(
 			/obj/item/armor_module/armor/arms/marine/skirmisher = -1,
@@ -1302,6 +1314,7 @@
 			/obj/item/armor_module/armor/arms/marine/assault = -1,
 			/obj/item/armor_module/armor/arms/marine/eod = -1,
 			/obj/item/armor_module/armor/arms/marine/helljumper = -1,
+			/obj/item/armor_module/armor/arms/marine/ranger = -1,
 		),
 		"Jaeger Mk.I legpiece" = list(
 			/obj/item/armor_module/armor/legs/marine/skirmisher = -1,
@@ -1312,6 +1325,7 @@
 			/obj/item/armor_module/armor/legs/marine/eod = -1,
 			/obj/item/armor_module/armor/legs/marine/scout = -1,
 			/obj/item/armor_module/armor/legs/marine/helljumper = -1,
+			/obj/item/armor_module/armor/legs/marine/ranger = -1,
 		),
 		"Jaeger Mk.I helmets" = list(
 			/obj/item/clothing/head/modular/marine/old/skirmisher = -1,
@@ -1362,6 +1376,7 @@
 			/obj/item/clothing/under/marine/squad/neck/bravo = -1,
 			/obj/item/clothing/under/marine/squad/neck/alpha = -1,
 			/obj/item/clothing/gloves/marine = -1,
+			/obj/item/clothing/gloves/marine/black = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/shoes/marine/brown/full = -1,
 			/obj/item/clothing/shoes/cowboy = -1,
@@ -1370,6 +1385,7 @@
 			/obj/item/armor_module/greyscale/cape/half = -1,
 			/obj/item/armor_module/greyscale/cape/scarf = -1,
 			/obj/item/armor_module/greyscale/cape/short = -1,
+			/obj/item/armor_module/greyscale/kama = -1,
 			/obj/item/armor_module/module/pt_belt = -1,
 		),
 		"Webbings" = list(
@@ -1387,8 +1403,8 @@
 			/obj/item/storage/belt/knifepouch = -1,
 			/obj/item/belt_harness/marine = -1,
 			/obj/item/storage/belt/sparepouch = -1,
-			/obj/item/storage/belt/gun/pistol/standard_pistol = -1,
-			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
+			/obj/item/storage/holster/belt/pistol/standard_pistol = -1,
+			/obj/item/storage/holster/belt/revolver/standard_revolver = -1,
 			/obj/item/storage/holster/t19 = -1,
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
@@ -1412,6 +1428,7 @@
 			/obj/item/storage/pouch/field_pouch = -1,
 			/obj/item/storage/pouch/general/large = -1,
 			/obj/item/storage/pouch/document = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
 		),
 		"Headwear" = list(
 			/obj/item/clothing/head/modular/style/beret = -1,
@@ -1534,6 +1551,7 @@
 	products = list(
 		"Weapon" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
+			/obj/item/cell/lasgun/lasrifle/recharger = -1,
 			/obj/item/weapon/gun/rifle/railgun = -1,
 			/obj/item/ammo_magazine/railgun = -1,
 			/obj/item/ammo_magazine/railgun/smart = -1,
@@ -1565,7 +1583,7 @@
 			/obj/item/weapon/gun/minigun/smart_minigun = -1,
 			/obj/item/ammo_magazine/minigun_powerpack/smartgun = -1,
 			/obj/item/weapon/gun/launcher/rocket/oneuse = -1,
-			/obj/item/storage/belt/gun/mateba/full = -1,
+			/obj/item/storage/holster/belt/mateba/full = -1,
 			/obj/item/ammo_magazine/revolver/mateba = -1,
 			/obj/item/ammo_magazine/packet/mateba = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle/flak = -1,
@@ -1596,6 +1614,7 @@
 			/obj/item/storage/belt/grenade/b17 = -1,
 			/obj/item/armor_module/module/valkyrie_autodoc = -1,
 			/obj/item/armor_module/module/fire_proof = -1,
+			/obj/item/armor_module/module/fire_proof_helmet = -1,
 			/obj/item/armor_module/module/tyr_extra_armor = -1,
 			/obj/item/armor_module/module/tyr_head = -1,
 			/obj/item/attachable/shoulder_mount = -1,

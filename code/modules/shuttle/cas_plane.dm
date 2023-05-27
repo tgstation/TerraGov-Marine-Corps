@@ -24,7 +24,7 @@
 	/// Whether CAS is usable or not.
 	var/cas_usable
 
-/obj/structure/caspart/caschair/Initialize()
+/obj/structure/caspart/caschair/Initialize(mapload)
 	. = ..()
 	set_cockpit_overlay("cockpit_closed")
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, PROC_REF(receive_laser_cas))
@@ -199,7 +199,7 @@
 	///Minimap for the pilot to know where the marines have ran off to
 	var/datum/action/minimap/marine/external/cas_mini
 
-/obj/docking_port/mobile/marine_dropship/casplane/Initialize()
+/obj/docking_port/mobile/marine_dropship/casplane/Initialize(mapload)
 	. = ..()
 	off_action = new
 	cas_mini = new

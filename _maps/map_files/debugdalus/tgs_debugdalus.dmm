@@ -866,15 +866,15 @@
 /area/mainship/engineering/engineering_workshop)
 "adP" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "adQ" = (
 /obj/structure/table/mainship,
 /obj/machinery/light,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "adR" = (
@@ -2747,6 +2747,10 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"xBy" = (
+/obj/machinery/computer/dropship_picker,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "xFR" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -3805,7 +3809,7 @@ bOu
 bOu
 bOu
 bOu
-dwY
+xBy
 ldZ
 bgb
 rmt

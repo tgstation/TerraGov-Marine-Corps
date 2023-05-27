@@ -279,7 +279,7 @@
 	icon = 'icons/effects/effects.dmi'
 	duration = 4
 
-/obj/effect/temp_visual/shattering_roar/Initialize()
+/obj/effect/temp_visual/shattering_roar/Initialize(mapload)
 	. = ..()
 	flick("smash", src)
 
@@ -319,7 +319,7 @@
 	. = ..()
 	sound_loop = new
 
-/obj/effect/ebeam/zeroform/Initialize()
+/obj/effect/ebeam/zeroform/Initialize(mapload)
 	. = ..()
 	alpha = 0
 	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)
@@ -485,6 +485,8 @@
 	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = X.hivenumber)
 	var/list/allxenos = X.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+		if(sister.z != owner.z)
+			continue
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
 	if(!do_after(X, 10 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
@@ -494,10 +496,14 @@
 		return fail_activate()
 
 	allxenos = X.hive.get_all_xenos() //refresh the list to account for any changes during the channel
+	var/sisters_teleported = 0
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.remove_filter("summonoutline")
-		sister.forceMove(get_turf(X))
-	log_game("[key_name(owner)] has summoned hive ([length(allxenos)] Xenos) in [AREACOORD(owner)]")
+		if(sister.z == owner.z)
+			sister.forceMove(get_turf(X))
+			sisters_teleported ++
+
+	log_game("[key_name(owner)] has summoned hive ([sisters_teleported] Xenos) in [AREACOORD(owner)]")
 	X.emote("roar")
 
 	add_cooldown()
