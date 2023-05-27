@@ -648,7 +648,7 @@
 	debuff_owner.balloon_alert(debuff_owner, "microwaved!")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/microwave_status)
-	particle_holder.particles.spawning = max(stacks * 5, 15)
+	particle_holder.particles.spawning = min(stacks * 5, 15)
 	TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
 
 /datum/status_effect/stacking/microwave/on_remove()
@@ -658,7 +658,7 @@
 
 /datum/status_effect/stacking/microwave/add_stacks(stacks_added)
 	. = ..()
-	particle_holder.particles.spawning = max(stacks * 5, 15)
+	particle_holder.particles.spawning = min(stacks * 5, 15)
 	if(stacks > 3)
 		TIMER_COOLDOWN_START(src, COOLDOWN_MICROWAVE_STATUS, MICROWAVE_STATUS_DURATION)
 
@@ -672,7 +672,7 @@
 
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
 
-	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT)
+	debuff_owner.adjustFireLoss(min(stacks, 3) * MICROWAVE_STATUS_DAMAGE_MULT)
 
 /atom/movable/screen/alert/status_effect/microwave
 	name = "Microwave"
