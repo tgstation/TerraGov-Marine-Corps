@@ -229,11 +229,12 @@
 		return
 	owner_xeno.face_atom(target)
 	//reverse gib here
-	owner_xeno.visible_message(span_danger("[owner_xeno] begins flavor text here!"))
+	owner_xeno.visible_message(span_warning("[owner_xeno] begins to vomit out biomass and skillfully sews various bits and pieces together!"))
 	if(!do_after(owner_xeno, 8 SECONDS, FALSE, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
 		//cancel effects
 		return FALSE
 	//cancel effects
+	owner_xeno.visible_message(span_warning("[owner_xeno] forms a repulsive puppet!"))
 	succeed_activate()
 
 /datum/action/xeno_action/activable/puppet/use_ability(atom/target)
@@ -346,5 +347,10 @@
 		return
 	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ALL_ORDER, choice))
 		owner.balloon_alert(owner, "success")
+		switch(choice) //visible message stuff
+			if(PUPPET_ATTACK)
+				owner.visible_message(span_warning("[owner] swiftly manipulates the psychic strings of the puppets, ordering them to attack!"))
+			if(PUPPET_RECALL)
+				owner.visible_message(span_warning("[owner] quickly manipulates the psychic strings of the puppets, drawing them near!"))
 	else
 		owner.balloon_alert(owner, "fail")
