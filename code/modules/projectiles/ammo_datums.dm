@@ -2855,6 +2855,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/marine/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
 	reflect(T, proj, 5)
 
+/datum/ammo/energy/lasgun/marine/ricochet/on_hit_obj(obj/O, obj/projectile/proj)
+	reflect(get_turf(O), proj, 5)
+
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
 	damage = 20
