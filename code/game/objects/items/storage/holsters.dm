@@ -220,6 +220,123 @@
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
+/obj/item/storage/holster/backholster/mortar
+	name = "\improper TGMC mortar bag"
+	desc = "This backpack can hold 11 80mm mortar shells, in addition to the mortar itself."
+	icon_state = "marinepackt"
+	w_class = WEIGHT_CLASS_BULKY
+	max_w_class = WEIGHT_CLASS_NORMAL
+	storage_slots = null
+	max_storage_space = 30
+	access_delay = 0
+	holsterable_allowed = list(/obj/item/mortar_kit,)
+	bypass_w_limit = list(/obj/item/mortar_kit,)
+	storage_type_limits = list(/obj/item/mortar_kit = 1,)
+	can_hold = list(
+		/obj/item/mortal_shell/he,
+		/obj/item/mortal_shell/incendiary,
+		/obj/item/mortal_shell/smoke,
+		/obj/item/mortal_shell/flare,
+		/obj/item/mortal_shell/plasmaloss,
+		/obj/item/mortar_kit,
+	)
+
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
+
+
+/obj/item/storage/holster/backholster/mortar/full/Initialize()
+	. = ..()
+	var/obj/item/new_item = new /obj/item/mortar_kit(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/backholster/flamer
+	name = "\improper TGMC flamethrower bag"
+	desc = "This backpack can carry its accompanying flamethrower as well as a modest general storage capacity. Automatically refuels it's accompanying flamethrower."
+	icon_state = "pyro_bag"
+	w_class = WEIGHT_CLASS_BULKY
+	storage_slots = null
+	max_storage_space = 16
+	max_w_class = WEIGHT_CLASS_NORMAL
+	access_delay = 0
+	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
+	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
+	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1,)
+		///The internal fuel tank
+	var/obj/item/ammo_magazine/flamer_tank/internal/tank
+
+	///The linked flamerthrower that cannot be dropped
+
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
+
+/obj/item/storage/holster/backholster/flamer/Initialize()
+	. = ..()
+	tank = new
+	update_icon()
+
+/obj/item/storage/holster/backholster/flamer/MouseDrop_T(obj/item/W, mob/living/user)
+	. = ..()
+	if(istype(W,/obj/item/ammo_magazine/flamer_tank))
+		refuel(W, user)
+
+/obj/item/storage/holster/backholster/flamer/afterattack(obj/O as obj, mob/user as mob, proximity)
+	. = ..()
+	//uses the tank's proc to refuel
+	if(istype(O, /obj/structure/reagent_dispensers/fueltank))
+		tank.afterattack(O, user)
+	if(istype(O,/obj/item/ammo_magazine/flamer_tank))
+		refuel(O, user)
+
+/obj/item/storage/holster/backholster/flamer/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
+	. = ..()
+	if(holstered_item == item)
+		var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer = item
+		refuel(flamer.chamber_items[1], user)
+		flamer.update_ammo_count()
+
+/* Used to refuel the attached FL-86 flamer when it is put into the backpack
+ *
+ * param1 - The flamer tank, the actual tank we are refilling
+ * param2 - The person wearing the backpack
+*/
+/obj/item/storage/holster/backholster/flamer/proc/refuel(obj/item/ammo_magazine/flamer_tank/flamer_tank, mob/living/user)
+	if(!istype(flamer_tank,/obj/item/ammo_magazine/flamer_tank))
+		return
+	if(get_dist(user, flamer_tank) > 1)
+		return
+	if(flamer_tank.current_rounds >= flamer_tank.max_rounds)
+		to_chat(user, span_warning("[flamer_tank] is already full."))
+		return
+	if(tank.current_rounds <= 0)
+		to_chat(user, span_warning("The [tank] is empty!"))
+		return
+	var/liquid_transfer_amount = min(tank.current_rounds, flamer_tank.max_rounds - flamer_tank.current_rounds)
+	tank.current_rounds -= liquid_transfer_amount
+	flamer_tank.current_rounds += liquid_transfer_amount
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	to_chat(user, span_notice("[flamer_tank] is refilled with [lowertext(tank.caliber)]."))
+	update_icon()
+
+/obj/item/storage/holster/backholster/flamer/examine(mob/user)
+	. = ..()
+	. += "[tank.current_rounds] units of fuel left!"
+
+/obj/item/storage/holster/backholster/flamer/full/Initialize()
+	. = ..()
+	var/flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flamer)
+
 //one slot holsters
 
 ///swords
@@ -382,9 +499,12 @@
 	if(!istype(I, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
 		return ..()
 	var/obj/item/weapon/gun/grenade_launcher/single_shot/flare/flare_gun = I
+	if(flare_gun.in_chamber)
+		return
 	for(var/obj/item/flare in contents)
+		remove_from_storage(flare, get_turf(user), user)
+		user.put_in_any_hand_if_possible(flare)
 		flare_gun.reload(flare, user)
-		orient2hud()
 		return
 
 /obj/item/storage/holster/flarepouch/full/Initialize(mapload)

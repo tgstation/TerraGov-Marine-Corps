@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Added a new ability to boiler lets the boiler \"root\" itself in place, unable to be moved. Being rooted is now required to bombard."

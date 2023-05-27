@@ -891,3 +891,11 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /proc/cmp_antag_category(datum/antagonist/A,datum/antagonist/B)
 	return sorttext(B.roundend_category,A.roundend_category)
+
+///Generates nuke disk consoles from a list of valid locations
+/datum/game_mode/proc/generate_nuke_disk_spawners()
+	for(var/obj/machinery/computer/nuke_disk_generator AS in GLOB.nuke_disk_generator_types)
+		var/spawn_loc = pick(GLOB.nuke_disk_spawn_locs)
+		new nuke_disk_generator(get_turf(spawn_loc))
+		GLOB.nuke_disk_spawn_locs -= spawn_loc
+		qdel(spawn_loc)

@@ -94,18 +94,17 @@
 	new /obj/effect/decal/cleanable/crayon(target, colour, shadeColour, drawtype)
 	uses--
 	if(uses <= 0)
-		to_chat(user, span_warning("You used up your crayon!"))
+		balloon_alert_to_viewers("used up the crayon")
 		qdel(src)
 
 /obj/item/toy/crayon/attack(mob/living/M, mob/living/user)
 	if(M != user)
 		return ..()
 
-	user.visible_message("[user] took a bite of \the [src] and swallowed it.",
-	"You took a bit of \the [src] and swallowed it.")
+	balloon_alert_to_viewers("takes a bite of \the [src] and swallows it")
 	uses -= 5
 	if(uses <= 0)
-		to_chat(user, span_warning("You ate the whole crayon!"))
+		balloon_alert(user, "eats the whole crayon")
 		qdel(src)
 
 	M.adjustToxLoss(1) // add a little bit of toxic damage

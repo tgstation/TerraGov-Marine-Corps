@@ -28,6 +28,7 @@
 		/obj/item/stack/sheet,
 		/obj/item/stack/sandbags,
 		/obj/item/stack/snow,
+		/obj/item/cell/lasgun/volkite/powerpack,
 	)
 
 /obj/item/armor_module/storage/uniform/black_vest
