@@ -146,6 +146,7 @@
 
 				new disk_type(get_turf(src))
 				visible_message(span_notice("[src] beeps as it finishes printing the disc."))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_GENERATED, src)
 				busy = FALSE
 				return
 
