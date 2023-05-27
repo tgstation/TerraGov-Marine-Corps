@@ -155,6 +155,7 @@
 /obj/machinery/computer/nuke_disk_generator/proc/print_disc()
 	disk = new disk_type(loc)
 	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_GENERATED, src)
 	reprintable = TRUE
 
 ///Change minimap icon if its on or off

@@ -168,6 +168,7 @@
 	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The wiring is destroyed, nobody will be able to repair this computer!")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MINI_DROPSHIP_DESTROYED, src)
 	var/datum/effect_system/spark_spread/s2 = new /datum/effect_system/spark_spread
 	s2.set_up(3, 1, src)
 	s2.start()

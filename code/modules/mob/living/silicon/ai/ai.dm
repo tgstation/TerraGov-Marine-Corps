@@ -87,9 +87,17 @@
 	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, PROC_REF(send_order))
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
 
+	///register the various signals we need for alerts
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, PROC_REF(receive_laser_ob))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, PROC_REF(receive_laser_cas))
+	RegisterSignal(SSdcs, COMSIG_GLOB_RAILGUN_LASER_CREATED, PROC_REF(receive_laser_railgun))
 	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, PROC_REF(shuttle_takeoff_notification))
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, PROC_REF(receive_lockdown_warning))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MINI_DROPSHIP_DESTROYED, PROC_REF(receive_tad_warning))
+	RegisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED, PROC_REF(show_disk_complete))
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(show_nuke_start))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED, PROC_REF(show_fresh_clone))
+	RegisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED, PROC_REF(ping_ai))
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
@@ -119,7 +127,14 @@
 
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_RAILGUN_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_MINI_DROPSHIP_DESTROYED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -134,18 +149,6 @@
 /mob/living/silicon/ai/proc/set_order(datum/source, datum/action/innate/order/order)
 	SIGNAL_HANDLER
 	current_order = order
-
-
-///Receive fire support laser notifications
-/mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
-	SIGNAL_HANDLER
-	to_chat(src, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
-	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
-
-/mob/living/silicon/ai/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
-	SIGNAL_HANDLER
-	to_chat(src, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
-	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
 ///This gives the stupid computer a notification whenever the dropship takes off. Crutch for a supercomputer.
 /mob/living/silicon/ai/proc/shuttle_takeoff_notification(datum/source, shuttleId, D)
