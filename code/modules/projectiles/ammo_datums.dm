@@ -2805,6 +2805,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "plasma"
 	hud_state_empty = "battery_empty"
 	armor_type = ENERGY
+	bullet_color = COLOR_DISABLER_BLUE
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
 
 /datum/ammo/energy/plasma/minigun_rapid
@@ -2884,6 +2885,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/plasma/rifle_marksman
 	icon_state = "plasma_big"
 	hud_state = "plasma_blast"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
 	damage = 45
 	penetration = 20
 	sundering = 2
@@ -3036,6 +3038,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/plasma/cannon_standard
 	icon_state = "plasma_ball_small"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
 	damage = 90
 	penetration = 25
 	sundering = 5
@@ -3043,7 +3046,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 1.1
 	scatter = 0
 
-/datum/ammo/energy/plasma/cannon_swarm
+/datum/ammo/energy/plasma/cannon_heavy
 	icon_state = "plasma_ball_big"
 	hud_state = "plasma_sphere"
 	damage = 130

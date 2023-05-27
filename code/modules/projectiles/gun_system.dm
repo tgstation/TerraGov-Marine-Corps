@@ -868,6 +868,7 @@
 	if(heat_amount >= 100)
 		STOP_PROCESSING(SSprocessing, src)
 		var/obj/effect/abstract/particle_holder/overheat_smoke = new(src, /particles/overheat_smoke)
+		playsound(src, 'sound/weapons/guns/interact/gun_overheat.ogg', 25, 1, 5)
 		//overheat gives you half the cooldown time
 		var/overheat_time = heat_amount/cool_amount*0.5
 		overheat_timer = addtimer(CALLBACK(src, .proc/complete_overheat, overheat_smoke), overheat_time, TIMER_STOPPABLE)
@@ -1023,7 +1024,6 @@
 /obj/item/weapon/gun/process(delta_time)
 	heat_amount = max(0, heat_amount - cool_amount*delta_time)
 	heat_meter.animate_change(heat_amount/100, 5)
-	message_admins("2:[heat_amount]")
 	if(!heat_amount)
 		return PROCESS_KILL
 

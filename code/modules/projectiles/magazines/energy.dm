@@ -48,6 +48,7 @@
 	desc = "A plasma containment cell produced by the Kongjian corporation. It doesnßt seem to have an expiry date."
 	charge_overlay = "plasma"
 	icon_state = "plasma"
+	icon_state_mini = "mag_plasma"
 	maxcharge = 1000
 
 /obj/item/cell/lasgun/M43/practice

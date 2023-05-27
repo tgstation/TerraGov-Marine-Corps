@@ -4,7 +4,7 @@
 	default_ammo_type = /obj/item/cell/lasgun/plasma
 	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma)
 	heat_per_fire = 5
-	muzzle_flash_color = COLOR_BLUE
+	muzzle_flash_color = COLOR_DISABLER_BLUE
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/minigun
@@ -14,9 +14,12 @@
 	item_state = "plasma_minigun"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
+	unload_sound = 'sound/weapons/guns/interact/plasma_unload_2.ogg'
+	reload_sound = 'sound/weapons/guns/interact/plasma_reload_3.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/minigun_rapid
 	heat_per_fire = 0.5
-	fire_delay = 0.15
+	fire_delay = 0.15 SECONDS
 	rounds_per_shot = 7
 	wield_delay = 1.1
 	aim_slowdown = 0.7
@@ -48,31 +51,31 @@
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/minigun_rapid
-	fire_sound = ""
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
 	icon_state = "plasma_minigun"
 	ammo_datum_type = /datum/ammo/energy/plasma/minigun_rapid
 	heat_per_fire = 0.5
-	fire_delay = 0.15
+	fire_delay = 0.15 SECONDS
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	rounds_per_shot = 7
 	radial_icon_state = "plasma_weak"
 
 /datum/lasrifle/base/plasma_rifle_mode/minigun_incendiary
-	fire_sound = ""
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
 	icon_state = "plasma_minigun"
 	ammo_datum_type = /datum/ammo/energy/plasma/minigun_incendiary
 	heat_per_fire = 5
-	fire_delay = 0.35
+	fire_delay = 0.35 SECONDS
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	rounds_per_shot = 29
 	radial_icon_state = "plasma_fire"
 
 /datum/lasrifle/base/plasma_rifle_mode/minigun_glob
-	fire_sound = ""
+	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
 	icon_state = "plasma_minigun"
 	ammo_datum_type = /datum/ammo/energy/plasma/minigun_glob
 	heat_per_fire = 25
-	fire_delay = 0.15
+	fire_delay = 0.15 SECONDS
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	rounds_per_shot = 100
 	radial_icon_state = "plasma_cannon"
@@ -84,12 +87,15 @@
 	item_state = "plasma_sniper"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_blast.ogg'
+	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
+	reload_sound = 'sound/weapons/guns/interact/plasma_reload_3.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/sniper
 	wield_delay = 0.8
 	aim_slowdown = 0.9
 	heat_per_fire = 10
 	rounds_per_shot = 67
-	fire_delay = 0.8
+	fire_delay = 0.8 SECONDS
 	aim_fire_delay = 0.2
 	aim_speed_modifier = 0.4
 	force = 25
@@ -120,9 +126,12 @@
 	item_state = "plasma_rifle"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
+	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
+	reload_sound = 'sound/weapons/guns/interact/plasma_reload_2.ogg'
 	wield_delay = 0.4
 	aim_slowdown = 0.5
-	fire_delay = 0.15
+	fire_delay = 0.15 SECONDS
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
 	force = 20
@@ -151,19 +160,21 @@
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/rifle_standard
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
 	icon_state = "plasma_rifle"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 0.15
+	fire_delay = 0.15 SECONDS
 	heat_per_fire = 1
 	rounds_per_shot = 20
 	radial_icon_state = "plasma_weak"
 
 /datum/lasrifle/base/plasma_rifle_mode/rifle_marksman
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_marksman
 	icon_state = "plasma_rifle"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 0.45
+	fire_delay = 0.45 SECONDS
 	heat_per_fire = 2
 	rounds_per_shot = 40
 	radial_icon_state = "plasma_strong"
@@ -175,11 +186,17 @@
 	item_state = "plasma_carbine"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	wield_delay = 0.3
-	aim_slowdown = 0.4
-	burst_delay = 0.10
-	force = 25
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
+	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
+	reload_sound = 'sound/weapons/guns/interact/plasma_reload_3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
+	ammo_datum_type = /datum/ammo/energy/plasma/carbine_standard/four
+	icon_state = "plasma_carbine"
+	gun_firemode = GUN_FIREMODE_AUTOBURST
+	fire_delay = 0.3 SECONDS
+	burst_amount = 3
+	heat_per_fire = 1
+	rounds_per_shot = 15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/carbine_standard,
@@ -206,29 +223,32 @@
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/carbine_standard
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/carbine_standard/four
 	icon_state = "plasma_carbine"
-	fire_mode = GUN_FIREMODE_BURSTFIRE
-	fire_delay = 0.3
+	fire_mode = GUN_FIREMODE_AUTOBURST
+	fire_delay = 0.3 SECONDS
 	burst_amount = 3
 	heat_per_fire = 1
 	rounds_per_shot = 15
 	radial_icon_state = "plasma_bouncy"
 
 /datum/lasrifle/base/plasma_rifle_mode/carbine_shotgun
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/carbine_shotgun
 	icon_state = "plasma_carbine"
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	fire_delay = 0.45
+	fire_delay = 0.45 SECONDS
 	heat_per_fire = 10
 	rounds_per_shot = 66
 	radial_icon_state = "plasma_strong"
 
 /datum/lasrifle/base/plasma_rifle_mode/carbine_trifire
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/carbine_trifire
 	icon_state = "plasma_carbine"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 0.15
+	fire_delay = 0.15 SECONDS
 	heat_per_fire = 3
 	rounds_per_shot = 25
 	radial_icon_state = "plasma_multi"
@@ -238,6 +258,9 @@
 	desc = "Introducing the PL-85 Plasma Pistol, a sleek and reliable weapon for any combat situation. With its compact design and advanced features, the PL-85 is the perfect sidearm for any soldier. This powerful plasma pistol is built for speed and accuracy, allowing you to take out your enemies with ease. Its advanced targeting system and high-powered scope make it easy to acquire and track targets, while its standard and automatic fire firemodes give you the flexibility to adapt to any combat situation. Constructed from high-quality materials, the PL-85 is built to withstand even the toughest of environments. Whether you're engaged in close quarters combat or need a reliable sidearm for backup, the PL-85 Plasma Pistol is the weapon of choice for any soldier looking for a dependable and powerful plasma pistol."
 	icon_state = "plasma_pistol"
 	item_state = "plasma_pistol"
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
+	unload_sound = 'sound/weapons/guns/interact/plasma_unload_1.ogg'
+	reload_sound = 'sound/weapons/guns/interact/plasma_reload_1.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_standard
 	force = 15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -261,28 +284,31 @@
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/pistol_standard
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_standard
 	icon_state = "plasma_pistol"
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	fire_delay = 0.15
+	fire_delay = 0.15 SECONDS
 	heat_per_fire = 3
 	rounds_per_shot = 25
 	radial_icon_state = "plasma_weak"
 
 /datum/lasrifle/base/plasma_rifle_mode/pistol_automatic
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_automatic
 	icon_state = "plasma_pistol"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 0.15
+	fire_delay = 0.15 SECONDS
 	heat_per_fire = 3
 	rounds_per_shot = 25
 	radial_icon_state = "plasma_strong"
 
 /datum/lasrifle/base/plasma_rifle_mode/pistol_trifire
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_trifire/four
 	icon_state = "plasma_pistol"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 0.15
+	fire_delay = 0.15 SECONDS
 	heat_per_fire = 3
 	rounds_per_shot = 25
 	radial_icon_state = "plasma_multi"
@@ -294,12 +320,19 @@
 	item_state = "plasma_cannon"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
+	unload_sound = 'sound/weapons/guns/interact/plasma_unload_2.ogg'
+	reload_sound = 'sound/weapons/guns/interact/plasma_reload_1.ogg'
 	force = 35
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_standard
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	fire_delay = 1.2 SECONDS
+	heat_per_fire = 25
+	rounds_per_shot = 100
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/cannon_standard,
-		"Swarm" = /datum/lasrifle/base/plasma_rifle_mode/cannon_swarm,
+		"Heavy" = /datum/lasrifle/base/plasma_rifle_mode/cannon_heavy,
 		"Flamer" = /datum/lasrifle/base/plasma_rifle_mode/cannon_flamer,
 	)
 	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 16,"rail_x" = 25, "rail_y" = 26, "under_x" = 42, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
@@ -322,27 +355,30 @@
 	)
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_standard
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_standard
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 1.2
+	fire_delay = 1.2 SECONDS
 	heat_per_fire = 25
 	rounds_per_shot = 100
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_cannon"
 
-/datum/lasrifle/base/plasma_rifle_mode/cannon_swarm
-	ammo_datum_type = /datum/ammo/energy/plasma/cannon_swarm
+/datum/lasrifle/base/plasma_rifle_mode/cannon_heavy
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_blast.ogg'
+	ammo_datum_type = /datum/ammo/energy/plasma/cannon_heavy
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 2.0
+	fire_delay = 2
 	heat_per_fire = 35
 	rounds_per_shot = 150
 	icon_state = "plasma_cannon"
-	radial_icon_state = "plasma_swarm"
+	radial_icon_state = "laser_swarm"
 
 /datum/lasrifle/base/plasma_rifle_mode/cannon_flamer
+	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_flamer
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 1.5
+	fire_delay = 1.5 SECONDS
 	heat_per_fire = 15
 	rounds_per_shot = 75
 	icon_state = "plasma_cannon"
