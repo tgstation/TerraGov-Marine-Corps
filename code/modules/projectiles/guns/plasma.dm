@@ -21,7 +21,7 @@
 	heat_per_fire = 0.5
 	fire_delay = 0.15 SECONDS
 	rounds_per_shot = 7
-	wield_delay = 1.1
+	wield_delay = 1.1 SECONDS
 	aim_slowdown = 0.7
 	force = 30
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -91,12 +91,12 @@
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_3.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/sniper
-	wield_delay = 0.8
+	wield_delay = 0.8 SECONDS
 	aim_slowdown = 0.9
 	heat_per_fire = 10
 	rounds_per_shot = 67
 	fire_delay = 0.8 SECONDS
-	aim_fire_delay = 0.2
+	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 0.4
 	force = 25
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -129,7 +129,7 @@
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_2.ogg'
-	wield_delay = 0.4
+	wield_delay = 0.4 SECONDS
 	aim_slowdown = 0.5
 	fire_delay = 0.15 SECONDS
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
