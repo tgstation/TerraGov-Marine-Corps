@@ -1,4 +1,4 @@
-#define RESIN_SILO_BUILD_RANGE 45
+#define RESIN_SILO_BUILD_RANGE 40
 
 //supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
 #define RANGE_TURFS(RADIUS, CENTER) \
