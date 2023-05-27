@@ -127,7 +127,7 @@ directive is properly returned.
 //===========================================================================
 /atom/Destroy()
 	if(reagents)
-		qdel(reagents)
+		QDEL_NULL(reagents)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
