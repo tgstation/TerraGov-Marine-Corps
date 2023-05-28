@@ -364,19 +364,19 @@
 		hidden_slots |= I.flags_inv_hide
 
 	if(hidden_slots & HIDEMASK)
-		obscured |= SLOT_WEAR_MASK
+		obscured |= ITEM_SLOT_MASK
 	if(hidden_slots & HIDEEYES)
-		obscured |= SLOT_GLASSES
+		obscured |= ITEM_SLOT_EYES
 	if(hidden_slots & HIDEEARS)
-		obscured |= SLOT_EARS
+		obscured |= ITEM_SLOT_EARS
 	if(hidden_slots & HIDEGLOVES)
-		obscured |= SLOT_GLOVES
+		obscured |= ITEM_SLOT_GLOVES
 	if(hidden_slots & HIDEJUMPSUIT)
-		obscured |= SLOT_WEAR_SUIT
+		obscured |= ITEM_SLOT_ICLOTHING
 	if(hidden_slots & HIDESHOES)
-		obscured |= SLOT_SHOES
+		obscured |= ITEM_SLOT_FEET
 	if(hidden_slots & HIDESUITSTORAGE)
-		obscured |= SLOT_S_STORE
+		obscured |= ITEM_SLOT_SUITSTORE
 
 	return obscured
 
