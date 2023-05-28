@@ -1,4 +1,4 @@
-/**
+/*
 Mines and other explosive traps
 
 Mines use invisible /obj/effect/mine_trigger objects that tell the mine to explode when something crosses over it
@@ -464,6 +464,89 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	fire_stacks = 10
 	fire_color = "green"
 
+/* Improvised explosives - You craft them */
+/obj/item/mine/scrap
+	name = "eviscerator mine"
+	desc = "Cobbled together from scrap metal, gunpowder, and a proximity sensor."
+	icon_state = "scrap"
+	detonation_message = "clicks and rattles."
+	detonation_sound = 'sound/machines/triple_beep.ogg'
+	range = 2
+	angle = 360
+	detonation_delay = 0.5 SECONDS
+	disarm_delay = 1 SECONDS
+	undeploy_delay = 2 SECONDS
+	deploy_delay = 2 SECONDS
+	shrapnel_type = /datum/ammo/bullet/claymore_shrapnel/scrap
+	shrapnel_range = 4
+	volatile = TRUE
+
+/obj/item/mine/scrap/assembly
+	///How much gunpowder is needed for the mine to be operational
+	var/gunpowder_amount_required = 20
+	///How much gunpowder is in the mine
+	var/gunpowder_amount = 20
+	///How many rods are needed for the mine to be operational
+	var/rods_amount_required = 4
+	///How many rods have been added to this mine
+	var/rods_amount = 4
+	///Whether or not a proximity sensor has been added to the assembly
+	var/has_proximity_sensor = TRUE
+
+/obj/item/mine/scrap/assembly/examine(mob/user)
+	. = ..()
+	if(gunpowder_amount < gunpowder_amount_required)
+		. += "Currently has [span_bold("[gunpowder_amount]")] out of [span_bold("[gunpowder_amount_required]")] gunpowder."
+	if(rods_amount < rods_amount_required)
+		. += "Currently has [span_bold("[rods_amount]")] out of [span_bold("[rods_amount_required]")] rods."
+	if(!has_proximity_sensor)
+		. += "Lacks a proximity sensor."
+
+/obj/item/mine/scrap/assembly/update_icon()
+	. = ..()
+	if(gunpowder_amount < gunpowder_amount_required || rods_amount < rods_amount_required || !has_proximity_sensor)
+		icon_state = "[initial(icon_state)]_assembly"
+
+/obj/item/mine/scrap/assembly/setup(mob/living/user)
+	if(gunpowder_amount < gunpowder_amount_required || rods_amount < rods_amount_required || !has_proximity_sensor)
+		balloon_alert(user, "Not finished!")
+		return FALSE
+	..()
+
+/obj/item/mine/scrap/assembly/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/ammo_magazine/handful))
+		//Marines can no longer use chem machines to make gunpowder, so we're going to apply a simple mechanic of recycling bullets
+		if(gunpowder_amount >= gunpowder_amount_required)
+			return balloon_alert(user, "Already full!")
+		var/obj/item/ammo_magazine/handful/bullets = I
+		if(bullets.current_rounds < 1)
+			return balloon_alert(user, "Not enough usable gunpowder!")
+		var/caliber_bonus = 1
+		if(bullets.caliber == (CALIBER_12G || CALIBER_410))
+			caliber_bonus = 4
+		//The gunpowder to bullet ratio is 1:1, so using something like bullets from your rifle are straightforward
+		//However, shotgun shells are packed with a lot more so they have a multiplier; 4 gunpowder from each shotgun shell
+		var/amount_to_transfer = min(bullets.current_rounds * caliber_bonus, gunpowder_amount_required - gunpowder_amount)
+		bullets.current_rounds -= ROUND_UP(amount_to_transfer/caliber_bonus)	//Round up instead of down since you're not summoning gunpowder out of thin air
+		gunpowder_amount += amount_to_transfer
+		if(!bullets.current_rounds)	//Delete the handful stack if we used it all
+			qdel(bullets)
+		return TRUE
+	if(istype(I, /obj/item/stack/rods))
+		if(rods_amount >= rods_amount_required)
+			return balloon_alert(user, "Already full!")
+		var/obj/item/stack/rods = I
+		if(rods.amount < 1)
+			return balloon_alert(user, "Not enough usable rods!")
+		var/amount_to_transfer = min(rods.amount, rods_amount_required - rods_amount)
+		rods_amount += amount_to_transfer
+		rods.change_stack(user, rods.amount - amount_to_transfer)
+		return TRUE
+	if(istype(I, /obj/item/assembly/prox_sensor))
+		has_proximity_sensor = TRUE
+		qdel(I)
+
 /* Exotic mines - Rather than just explode, these have special effects */
 /obj/item/mine/radiation
 	name = "radiation mine"
@@ -505,12 +588,12 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(istype(I, /obj/item/stack/sheet/mineral/uranium))
 		if(current_fuel >= max_fuel)
 			return balloon_alert(user, "Already full!")
-		var/obj/item/stack/sheet/mineral/uranium/uranium = I
+		var/obj/item/stack/uranium = I
 		if(uranium.amount < 1)
 			return balloon_alert(user, "Not enough usable fuel!")
 		var/amount_to_transfer = min(uranium.amount, max_fuel - current_fuel)
-		uranium.amount -= amount_to_transfer
 		current_fuel += amount_to_transfer
+		uranium.change_stack(user, uranium.amount - amount_to_transfer)
 		return TRUE
 
 /obj/item/mine/radiation/disarm()

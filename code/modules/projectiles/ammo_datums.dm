@@ -1786,6 +1786,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/claymore_shrapnel/pmc
 	bonus_projectiles_scatter = 3
 
+/datum/ammo/bullet/claymore_shrapnel/scrap
+	damage = 15
+	penetration = 5
+	bonus_projectiles_amount = 40
+	shrapnel_chance = 100	//Hope marines got their tetanus shots
+
 /*
 //================================================
 					Rocket Ammo
