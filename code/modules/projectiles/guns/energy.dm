@@ -723,7 +723,7 @@
 	wield_delay = 0.7 SECONDS
 	scatter = -4
 	scatter_unwielded = 10
-	fire_delay = 1 SECONDS
+	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
 	movement_acc_penalty_mult = 6
@@ -736,7 +736,7 @@
 
 /datum/lasrifle/base/energy_sniper_mode/standard
 	rounds_per_shot = 30
-	fire_delay = 1 SECONDS
+	fire_delay = 0.8 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
@@ -768,7 +768,7 @@
 
 /datum/lasrifle/base/energy_sniper_mode/ricochet
 	rounds_per_shot = 45
-	fire_delay = 1 SECONDS
+	fire_delay = 0.8 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/ricochet/four
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to ricochet."

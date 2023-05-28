@@ -2772,7 +2772,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 0
 	hitscan_effect_icon = "beam_solar"
 	///number of melting stacks to apply when hitting mobs
-	var/melt_stacks = 1
+	var/melt_stacks = 2
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
