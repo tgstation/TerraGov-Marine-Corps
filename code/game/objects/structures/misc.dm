@@ -160,7 +160,8 @@
 
 ///Releases whatever is inside the tank
 /obj/structure/xenoautopsy/tank/proc/release_occupant()
-	new occupant(loc)
+	if(occupant)
+		new occupant(loc)
 
 /obj/structure/xenoautopsy/tank/escaped
 	name = "broken cryo tank"
