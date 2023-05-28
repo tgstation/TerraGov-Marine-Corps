@@ -153,3 +153,35 @@
   - balance: combat floodlights now last forever not needing cells
   - imageadd: deployable floodlight item sprite
   - imageadd: fixed extra pixels container sprites had
+2023-05-28:
+  BlueHNT:
+  - code_imp: unnecessary proc/label
+  - code_imp: replace to_chat with balloons
+  Lumipharon:
+  - bugfix: Large cells no longer fit in small cell chargers
+  - bugfix: fixed nuke disk gens being destructable before the ship crashes
+  - bugfix: fixed an exploit with attachments
+  MacBlaze1:
+  - rscadd: Added a Flamethrower holster backpack for engineers that they can buy
+      and use in their vendors.
+  - rscadd: Added a mortar holster backpack that allows engineers to carry ammo and
+      move their mortars.
+  - rscadd: Added the two backpacks to the engineers backpack options.
+  - balance: added mortar shells to engi vendor
+  Pariah919:
+  - balance: Autocannon reworked, it now has a new sprite by Crow, it now does bonus
+      damage to walls, it does much less sunder and damage, now fires much faster
+      and with an autoburst.
+  RipGrayson:
+  - qol: The AI now receives alerts about important events.
+  - code_imp: Created a modified version of the ghost notification system for AI use.
+  ivanmixo:
+  - balance: Added a new ability to boiler lets the boiler "root" itself in place,
+      unable to be moved. Being rooted is now required to bombard.
+  - config: Commented out TTS in default config
+  novaepee:
+  - rscadd: Allow marines to put packaged or unpackaged MRE meal back inside of MRE
+  - balance: Permit marines to have more storage by not forcing marines to use backpack
+      | satchel space for MRE food
+  tyeagg:
+  - code_imp: remove unused ricochet vars
