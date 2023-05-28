@@ -2738,7 +2738,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hitscan_effect_icon = "blue_beam"
 
 /datum/ammo/energy/lasgun/marine/cripple/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, slowdown = 1)
+	staggerstun(M, proj, slowdown = 1.5)
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
