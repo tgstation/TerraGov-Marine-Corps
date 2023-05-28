@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - code_imp: "Chemicals don't try to react when some of them are removed."
