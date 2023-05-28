@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - qol: "The AI now receives alerts about important events."
-  - code_imp: "Created a modified version of the ghost notification system for AI use."
