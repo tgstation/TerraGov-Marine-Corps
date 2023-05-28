@@ -316,6 +316,7 @@
 
 
 	gun_firemode = initial(choice.fire_mode)
+	gun_firemode_list = list(gun_firemode)
 	ammo_datum_type = initial(choice.ammo_datum_type)
 	fire_delay = initial(choice.fire_delay)
 	burst_amount = initial(choice.burst_amount)
