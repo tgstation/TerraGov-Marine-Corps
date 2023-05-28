@@ -323,6 +323,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				H.UpdateDamageIcon()
 			limb_count++
 		UPDATEHEALTH(H)
+		QDEL_NULL(current_acid)
 	return
 
 ///Called to return an item to equip using the quick equip hotkey. Base proc returns the item itself, overridden for storage behavior.

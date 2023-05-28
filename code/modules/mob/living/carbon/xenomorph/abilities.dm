@@ -599,6 +599,10 @@
 		if(!silent)
 			owner.balloon_alert(owner, "[A] is too far away")
 		return FALSE
+	if(ismob(A))
+		if(!silent)
+			owner.balloon_alert(owner, "We can't melt [A]")
+		return FALSE
 	if(A.resistance_flags & UNACIDABLE || !A.dissolvability(initial(acid_type.acid_strength)))
 		if(!silent)
 			owner.balloon_alert(owner, "We cannot dissolve [A]")
@@ -606,10 +610,6 @@
 	if(!A.should_apply_acid(initial(acid_type.acid_strength)) || initial(acid_type.acid_strength) <= A.current_acid?.acid_strength)
 		if(!silent)
 			owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
-		return FALSE
-	if(ismob(A))
-		if(!silent)
-			owner.balloon_alert(owner, "We can't melt [A]")
 		return FALSE
 
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)

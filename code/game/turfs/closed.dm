@@ -18,6 +18,7 @@
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	minimap_color = NONE
+	resistance_flags = UNACIDABLE
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
