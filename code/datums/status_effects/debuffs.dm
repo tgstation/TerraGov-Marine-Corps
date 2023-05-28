@@ -617,7 +617,7 @@
 // *********** Microwave
 // ***************************************
 ///amount of damage done per tick by the microwave status effect
-#define MICROWAVE_STATUS_DAMAGE_MULT 2
+#define MICROWAVE_STATUS_DAMAGE_MULT 4
 ///duration of the microwave effect. Refreshed on application
 #define MICROWAVE_STATUS_DURATION 5 SECONDS
 
@@ -625,7 +625,7 @@
 	id = "microwaved"
 	tick_interval = 1 SECONDS
 	stacks = 1
-	max_stacks = 30
+	max_stacks = 5
 	stack_decay = 0
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/microwave
@@ -658,8 +658,8 @@
 
 /datum/status_effect/stacking/microwave/add_stacks(stacks_added)
 	. = ..()
-	particle_holder.particles.spawning = min(stacks * 5, 25)
-	if(stacks_added > 0 && stacks > 6)
+	particle_holder.particles.spawning = stacks * 6
+	if(stacks_added > 0 && stacks >= max_stacks) //proc is run even if stacks are not actually added
 		COOLDOWN_START(src, cooldown_microwave_status, MICROWAVE_STATUS_DURATION)
 
 /datum/status_effect/stacking/microwave/tick()
@@ -672,7 +672,7 @@
 
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
 
-	debuff_owner.adjustFireLoss(min(stacks, 6) * MICROWAVE_STATUS_DAMAGE_MULT)
+	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT)
 
 /atom/movable/screen/alert/status_effect/microwave
 	name = "Microwave"
