@@ -69,3 +69,8 @@
 		return SSradio.saymodes["a"]
 	else
 		return SSradio.saymodes[talk_key]
+
+/mob/living/carbon/xenomorph/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language, list/message_mods = list())
+	. = ..()
+	playsound(loc, "alien_talk", 25, 1)
+
