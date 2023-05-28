@@ -314,6 +314,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 ///bounces the projectile by creating a new projectile and calculating an angle of reflection
 /datum/ammo/proc/reflect(turf/T, obj/projectile/proj, scatter_variance)
+	if(!bonus_projectiles_type)
+		return
+
 	var/new_range = proj.proj_max_range - proj.distance_travelled
 	if(new_range <= 0)
 		return
