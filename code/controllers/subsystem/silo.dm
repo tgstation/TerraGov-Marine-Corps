@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(silo)
 	current_larva_spawn_rate *= SSmonitor.gamestate == SHIPSIDE ? 3 : 1
 	current_larva_spawn_rate *= SSticker.mode.silo_scaling
 	//We scale the rate based on the current ratio of humans to xenos
-	current_larva_spawn_rate *= clamp(round((active_humans / active_xenos xenos) / (LARVA_POINTS_REGULAR / xeno_job.job_points_needed), 0.01), 0.5, 1)
+	current_larva_spawn_rate *= clamp(round((active_humans / active_xenos) / (LARVA_POINTS_REGULAR / xeno_job.job_points_needed), 0.01), 0.5, 1)
 
 	current_larva_spawn_rate += larva_spawn_rate_temporary_buff
 
