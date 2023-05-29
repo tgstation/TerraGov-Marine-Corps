@@ -1722,6 +1722,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	new_action.set_toggle(TRUE)
 	new_action.update_button_icon()
 	update_icon(user)
+	RegisterSignal(master_gun, COMSIG_ITEM_REMOVED_INVENTORY, TYPE_PROC_REF(/obj/item/weapon/gun, drop_connected_mag))
 
 ///This is called when an attachment gun (src) detaches from a gun.
 /obj/item/weapon/gun/proc/on_detach(obj/item/attached_to, mob/user)
@@ -1736,6 +1737,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(master_gun.active_attachable == src)
 		master_gun.active_attachable = null
 	master_gun.wield_delay					-= wield_delay_mod
+	UnregisterSignal(master_gun, COMSIG_ITEM_REMOVED_INVENTORY)
 	master_gun = null
 	attached_to:gunattachment = null
 	update_icon(user)
