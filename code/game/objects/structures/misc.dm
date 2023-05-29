@@ -145,8 +145,7 @@
 	new broken_state(loc)
 	new /obj/item/shard(loc)
 
-	if(occupant)
-		occupant = new occupant(loc) //needed for the hugger variant
+	release_occupant()
 
 	return ..()
 
@@ -159,9 +158,10 @@
 		if(EXPLODE_LIGHT)
 			take_damage(50)
 
-/obj/structure/xenoautopsy/tank/Destroy()
-	occupant = null
-	return ..()
+///Releases whatever is inside the tank
+/obj/structure/xenoautopsy/tank/proc/release_occupant()
+	if(occupant)
+		new occupant(loc)
 
 /obj/structure/xenoautopsy/tank/escaped
 	name = "broken cryo tank"
@@ -184,10 +184,8 @@
 	desc = "There is something spider-like inside..."
 	occupant = /obj/item/clothing/mask/facehugger
 
-/obj/structure/xenoautopsy/tank/hugger/deconstruct(disassembled = TRUE)
-	. = ..()
-
-	var/obj/item/clothing/mask/facehugger/hugger = occupant
+/obj/structure/xenoautopsy/tank/hugger/release_occupant()
+	var/obj/item/clothing/mask/facehugger/hugger = new occupant(loc)
 	hugger.go_active()
 
 /obj/structure/xenoautopsy/tank/larva
