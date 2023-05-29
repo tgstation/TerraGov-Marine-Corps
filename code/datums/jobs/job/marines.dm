@@ -256,6 +256,9 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	outfit = /datum/outfit/job/marine/smartgunner
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 	)
 	job_points_needed = 10 //Redefined via config.
