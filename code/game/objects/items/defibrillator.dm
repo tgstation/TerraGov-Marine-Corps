@@ -153,7 +153,7 @@
 	if(user.do_actions) //Currently deffibing
 		return
 
-	if(defib_cooldown > world.time)
+	if(defib_cooldown > world.time) //Both for pulling the paddles out (2 seconds) and shocking (1 second)
 		return
 
 	defib_cooldown = world.time + 2 SECONDS
