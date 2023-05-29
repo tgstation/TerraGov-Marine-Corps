@@ -156,7 +156,7 @@
 	if(defib_cooldown > world.time)
 		return
 
-	defib_cooldown = world.time + 2 SECONDS // Fast for using the paddles
+	defib_cooldown = world.time + 2 SECONDS
 
 	var/defib_heal_amt = damage_threshold
 
