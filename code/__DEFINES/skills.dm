@@ -84,9 +84,9 @@
 #define SKILL_MEDICAL_NOVICE 1 //Premed or paramedic. Recognizing chemicals. SL, survivors.
 #define SKILL_MEDICAL_PRACTICED 2 //Beginning intern, Squad Corpsman, IO.
 #define SKILL_MEDICAL_COMPETENT 3 //General practitioner. Survivor doc, early synth.
-#define SKILL_MEDICAL_EXPERT 4 //Surgeons. CMO, MO, synth.
-#define SKILL_MEDICAL_MASTER 5 //Modern-day Aesculapius. Spatial agent only now.
-//higher levels means faster syringe use and better defibrillation
+#define SKILL_MEDICAL_EXPERT 4 //Doctors
+#define SKILL_MEDICAL_MASTER 5 //Synthetic, CMO and Spatial Agent. Shortens the defib time greatly.
+//higher levels means better defib and faster syringe use
 
 //surgery skill
 #define SKILL_SURGERY_DEFAULT 0 //untrained, really slow
@@ -124,8 +124,8 @@
 #define SKILL_LEAD_NOVICE 0 //Anyone but the above. Using SL items is possible but painfully slow
 #define SKILL_LEAD_BEGINNER 1 //All non-Standard Marines
 #define SKILL_LEAD_TRAINED 2 //PO, CMO, etc
-#define SKILL_LEAD_EXPERT 3 //SL, SO
-#define SKILL_LEAD_MASTER 4 //XO, CO
+#define SKILL_LEAD_EXPERT 3 //Squad Leader and SO
+#define SKILL_LEAD_MASTER 4 //Captain
 
 //melee_weapons skill
 //buff to melee weapon attack damage(+30% dmg per level)

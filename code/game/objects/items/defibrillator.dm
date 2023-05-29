@@ -105,8 +105,10 @@
 	playsound(get_turf(src), "sparks", 25, TRUE, 4)
 	if(ready)
 		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 30, 0)
+		w_class = WEIGHT_CLASS_BULKY // Gone are the days of storing open defibrillators inside your backpack, now everyone will flock to defib gloves.
 	else
 		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 30, 0)
+		w_class = WEIGHT_CLASS_NORMAL
 	update_icon()
 
 
@@ -151,10 +153,10 @@
 	if(user.do_actions) //Currently deffibing
 		return
 
-	if(defib_cooldown > world.time) //Both for pulling the paddles out (2 seconds) and shocking (1 second)
+	if(defib_cooldown > world.time)
 		return
 
-	defib_cooldown = world.time + 2 SECONDS
+	defib_cooldown = world.time + 2 SECONDS // Fast for using the paddles
 
 	var/defib_heal_amt = damage_threshold
 
@@ -194,7 +196,7 @@
 	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
 		return
-	
+
 	var/mob/dead/observer/G = H.get_ghost()
 	if(G)
 		G.reenter_corpse()
@@ -207,7 +209,15 @@
 	span_notice("You start setting up the paddles on [H]'s chest."))
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 
-	if(!do_mob(user, H, 7 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	// A bit to see how long the shocking will take. Medical 5 will shorten the time from 7 to 3.5
+	var/skillmod = user.skills.getRating(SKILL_MEDICAL)
+	var/dtimer
+	if(skillmod == SKILL_MEDICAL_MASTER)
+		dtimer = 3.5 SECONDS
+	else if(skillmod < SKILL_MEDICAL_MASTER)
+		dtimer = 7 SECONDS
+
+	if(!do_mob(user, H, dtimer, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		user.visible_message(span_warning("[user] stops setting up the paddles on [H]'s chest."),
 		span_warning("You stop setting up the paddles on [H]'s chest."))
 		return
