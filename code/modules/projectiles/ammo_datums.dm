@@ -2726,7 +2726,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/impact/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 3, knockback = 3)
+	var/knockback_dist = round(LERP(3, 1, proj.distance_travelled / 6), 1)
+	staggerstun(M, proj, max_range = 6, knockback = knockback_dist)
 
 /datum/ammo/energy/lasgun/marine/cripple
 	name = "impact laser blast"
