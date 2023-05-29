@@ -20,6 +20,26 @@
 	var/outcome
 	///The current gamemode. Var as its referred to often
 	var/datum/game_mode/hvh/campaign/mode
+	///The victory conditions for this reward, for display purposes
+	var/win_condition = ""
+	///Victory point rewards for the round type
+	var/list/victory_point_rewards = list(
+		GAME_ROUND_OUTCOME_MAJOR_VICTORY = list(0, 0),
+		GAME_ROUND_OUTCOME_MINOR_VICTORY = list(0, 0),
+		GAME_ROUND_OUTCOME_DRAW = list(0, 0),
+		GAME_ROUND_OUTCOME_MINOR_LOSS = list(0, 0),
+		GAME_ROUND_OUTCOME_MAJOR_LOSS = list(0, 0),
+	)
+	///attrition point rewards for the round type
+	var/list/attrition_point_rewards = list(
+		GAME_ROUND_OUTCOME_MAJOR_VICTORY = list(0, 0),
+		GAME_ROUND_OUTCOME_MINOR_VICTORY = list(0, 0),
+		GAME_ROUND_OUTCOME_DRAW = list(0, 0),
+		GAME_ROUND_OUTCOME_MINOR_LOSS = list(0, 0),
+		GAME_ROUND_OUTCOME_MAJOR_LOSS = list(0, 0),
+	)
+	///Any additional reward flags, for display purposes
+	var/additional_rewards = null //maybe getting ugh, but might need some reward datum, so they're not tied to a specific round type
 
 /datum/game_round/New(initiating_faction)
 	. = ..()
@@ -112,25 +132,28 @@
 		else
 			CRASH("game round ended with no outcome set")
 
+	modify_attrition_points(attrition_point_rewards[outcome][1], attrition_point_rewards[outcome][2])
+	apply_victory_points(victory_point_rewards[outcome][1], victory_point_rewards[outcome][2])
+
 ///Apply outcomes for major win
 /datum/game_round/proc/apply_major_victory()
-	return
+	winning_faction = starting_faction
 
 ///Apply outcomes for minor win
 /datum/game_round/proc/apply_minor_victory()
-	return
+	winning_faction = starting_faction
 
 ///Apply outcomes for draw
 /datum/game_round/proc/apply_draw()
-	return
+	winning_faction = hostile_faction
 
 ///Apply outcomes for minor loss
 /datum/game_round/proc/apply_minor_loss()
-	return
+	winning_faction = hostile_faction
 
 ///Apply outcomes for major loss
 /datum/game_round/proc/apply_major_loss()
-	return
+	winning_faction = hostile_faction
 
 ///gives any victory points earned in the round
 /datum/game_round/proc/apply_victory_points(start_team_points, hostile_team_points)
@@ -178,6 +201,21 @@
 	name = "Combat patrol"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm'
+	win_condition = "<U>Major Victory</U>: Wipe out all hostiles in the area of operation.<br> <U>Minor Victory</U>: Eliminate more hostiles than you lose."
+	victory_point_rewards = list(
+		GAME_ROUND_OUTCOME_MAJOR_VICTORY = list(3, 0),
+		GAME_ROUND_OUTCOME_MINOR_VICTORY = list(1, 0),
+		GAME_ROUND_OUTCOME_DRAW = list(0, 0),
+		GAME_ROUND_OUTCOME_MINOR_LOSS = list(0, 1),
+		GAME_ROUND_OUTCOME_MAJOR_LOSS = list(0, 3),
+	)
+	attrition_point_rewards = list(
+		GAME_ROUND_OUTCOME_MAJOR_VICTORY = list(20, 5),
+		GAME_ROUND_OUTCOME_MINOR_VICTORY = list(15, 10),
+		GAME_ROUND_OUTCOME_DRAW = list(10, 10),
+		GAME_ROUND_OUTCOME_MINOR_LOSS = list(10, 15),
+		GAME_ROUND_OUTCOME_MAJOR_LOSS = list(5, 20),
+	)
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.
@@ -237,30 +275,21 @@
 	outcome = GAME_ROUND_OUTCOME_DRAW
 	return TRUE
 
+//todo: remove these if nothing new is added
 /datum/game_round/tdm/apply_major_victory()
-	winning_faction = starting_faction
-	modify_attrition_points(20, 5)
-	apply_victory_points(3, 0)
+	. = ..()
 
 /datum/game_round/tdm/apply_minor_victory()
-	winning_faction = starting_faction
-	modify_attrition_points(15, 10)
-	apply_victory_points(1, 0)
+	. = ..()
 
 /datum/game_round/tdm/apply_draw()
 	winning_faction = pick(starting_faction, hostile_faction)
-	modify_attrition_points(10, 10)
-	apply_victory_points(0, 0)
 
 /datum/game_round/tdm/apply_minor_loss()
-	winning_faction = hostile_faction
-	modify_attrition_points(15, 10)
-	apply_victory_points(0, 1)
+	. = ..()
 
 /datum/game_round/tdm/apply_major_loss()
-	winning_faction = hostile_faction
-	modify_attrition_points(20, 5)
-	apply_victory_points(0, 3)
+	. = ..()
 
 ///round timer
 /datum/game_round/tdm/proc/set_game_timer()
@@ -277,7 +306,7 @@
 /datum/game_round/tdm/lv624
 	name = "Combat patrol 2"
 	map_name = "LV-624"
-	map_file = '_maps/map_files/LV624/LV624.dmm'
+	map_file = '_maps/map_files/LV624/LV624.dmm' //todo: make modulars work with late load
 
 /datum/game_round/tdm/desparity
 	name = "Combat patrol 3"
