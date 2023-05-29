@@ -105,10 +105,8 @@
 	playsound(get_turf(src), "sparks", 25, TRUE, 4)
 	if(ready)
 		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 30, 0)
-		w_class = WEIGHT_CLASS_BULKY // Gone are the days of storing open defibrillators inside your backpack, now everyone will flock to defib gloves.
 	else
 		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 30, 0)
-		w_class = WEIGHT_CLASS_NORMAL
 	update_icon()
 
 
