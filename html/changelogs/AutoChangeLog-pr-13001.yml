@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "fixed not being an explicitly spawned species not giving robots a damage screen overlay"

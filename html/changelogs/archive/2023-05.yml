@@ -185,3 +185,15 @@
       | satchel space for MRE food
   tyeagg:
   - code_imp: remove unused ricochet vars
+2023-05-29:
+  QualityVan:
+  - bugfix: You can dump snow off shovels again
+  - code_imp: Chemicals don't try to react when some of them are removed.
+  TiviPlus:
+  - code_imp: optimized overlays
+  - code_imp: Minimap has been heavily optimized
+  - rscadd: Roomba gets TTS
+  - code_imp: Improved some clicking code
+  - code_imp: optimized runechat
+  - bugfix: fixed not being an explicitly spawned species not giving robots a damage
+      screen overlay
