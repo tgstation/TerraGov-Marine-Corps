@@ -864,11 +864,13 @@
 		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
 
 /mob/proc/set_stat(new_stat)
+	SHOULD_CALL_PARENT(TRUE)
 	if(new_stat == stat)
 		return
 	remove_all_indicators()
 	. = stat //old stat
 	stat = new_stat
+	SEND_SIGNAL(src, COMSIG_MOB_STAT_CHANGED, ., new_stat)
 
 ///clears the client mob in our client_mobs_in_contents list
 /mob/proc/clear_client_in_contents()

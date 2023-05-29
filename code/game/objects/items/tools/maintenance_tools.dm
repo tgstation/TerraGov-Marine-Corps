@@ -495,7 +495,7 @@
 
 	if(!istype(I, /obj/item/cell))
 		return
-	if(istype(I, /obj/item/cell/rtg/large))
+	if(I.w_class > WEIGHT_CLASS_NORMAL)
 		balloon_alert(user, "Too large")
 		return
 	if(!user.drop_held_item())

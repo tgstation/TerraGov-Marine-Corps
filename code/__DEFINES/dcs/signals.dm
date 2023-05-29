@@ -22,6 +22,7 @@
 #define COMSIG_GLOB_NUKE_STOP "!nuke_stop"
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
 #define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
+#define COMSIG_GLOB_DISK_GENERATED "!disk_produced"
 
 /// from /obj/machinery/setAnchored(): (machine, anchoredstate)
 #define COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE "!machinery_anchored_change"
@@ -46,16 +47,27 @@
 #define COMSIG_GLOB_LIGHT_OFF "item_light_off"
 ///Sent when the floodlight switch is powered
 #define COMSIG_GLOB_FLOODLIGHT_SWITCH "!floodlight_switch_power_change"
+/// Sent when the xenos lock the dropship controls
+#define COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED "!dropship_locked"
+/// Sent when the xenos destroy the tadpole controls
+#define COMSIG_GLOB_MINI_DROPSHIP_DESTROYED "!tad_ruined"
 
 //Signals for fire support
 #define COMSIG_GLOB_OB_LASER_CREATED "!ob_laser_sent"
 #define COMSIG_GLOB_CAS_LASER_CREATED "!cas_laser_sent"
+#define COMSIG_GLOB_RAILGUN_LASER_CREATED "!railgun_laser_sent"
 
 //Signals for shuttle
 #define COMSIG_GLOB_SHUTTLE_TAKEOFF "!shuttle_take_off"
 
 /// sent after world.maxx and/or world.maxy are expanded: (has_exapnded_world_maxx, has_expanded_world_maxy)
 #define COMSIG_GLOB_EXPANDED_WORLD_BOUNDS "!expanded_world_bounds"
+
+///called after a clone is produced and leaves his vat
+#define COMSIG_GLOB_CLONE_PRODUCED "!clone_produced"
+
+///called when an AI is requested by a holopad
+#define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
 
 //////////////////////////////////////////////////////////////////
 
@@ -370,6 +382,7 @@
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbing)
 #define COMSIG_MOB_REVIVE "mob_revive"							//from base of mob/on_revive(): ()
+#define COMSIG_MOB_STAT_CHANGED "stat_changed"					//from base of mob/stat_change(): (old_stat, new_stat)
 #define COMSIG_MOB_MOUSEDOWN "mob_mousedown"					//from /client/MouseDown(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_MOUSEUP "mob_mouseup"						//from /client/MouseUp(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_MOUSEDRAG "mob_mousedrag"				//from /client/MouseDrag(): (atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -688,6 +701,7 @@
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL "xenoability_toggle_bomb_radial"
 #define COMSIG_XENOABILITY_CREATE_BOMB "xenoability_create_bomb"
+#define COMSIG_XENOABILITY_ROOT "xenoability_root"
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"

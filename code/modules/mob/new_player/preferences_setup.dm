@@ -136,7 +136,6 @@
 	if(!previewJob)
 		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		copy_to(mannequin)
-		COMPILE_OVERLAYS(mannequin)
 		parent.show_character_previews(new /mutable_appearance(mannequin))
 		unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		return
@@ -152,7 +151,6 @@
 		mannequin.job = previewJob
 		previewJob.equip_dummy(mannequin, preference_source = parent)
 
-	COMPILE_OVERLAYS(mannequin)
 	parent.show_character_previews(new /mutable_appearance(mannequin))
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 

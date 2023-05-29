@@ -146,6 +146,7 @@
 
 				new disk_type(get_turf(src))
 				visible_message(span_notice("[src] beeps as it finishes printing the disc."))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_GENERATED, src)
 				busy = FALSE
 				return
 
@@ -211,6 +212,7 @@ GLOBAL_LIST_INIT(nuke_disk_generator_types, list(/obj/machinery/computer/nuke_di
 	desc = "Some dusty old computer. Looks non-functional"
 	density = TRUE
 	anchored = TRUE
+	resistance_flags = RESIST_ALL
 
 //Randomised spawn points for nuke disk generators
 /obj/structure/nuke_disk_candidate/Initialize(mapload)
