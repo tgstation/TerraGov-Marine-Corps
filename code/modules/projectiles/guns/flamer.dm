@@ -187,6 +187,7 @@
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 	)
+	starting_attachment_types = null
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
