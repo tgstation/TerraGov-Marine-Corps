@@ -183,7 +183,7 @@
 
 	var/n_name = stripped_input(usr, "What would you like to label the bundle?", "Bundle Labelling")
 	if((loc == usr && usr.stat == 0))
-		name = "[(n_name ? text("[n_name]") : "paper")]"
+		name = "[(n_name ? "[n_name]" : "paper")]"
 
 /obj/item/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"

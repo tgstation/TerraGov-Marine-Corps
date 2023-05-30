@@ -713,11 +713,11 @@
 				if(!(comment_to_add) || usr.stat || usr.restrained() || !(hasHUD(usr,"medical")))
 					return
 				var/counter = 1
-				while(medical_record.fields[text("com_[]", counter)])
+				while(medical_record.fields["com_[]", counter])
 					counter++
 				if(istype(usr, /mob/living/carbon/human))
 					var/mob/living/carbon/human/U = usr
-					medical_record.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[comment_to_add]")
+					medical_record.fields["com_[counter]"] = "Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[comment_to_add]"
 
 	if(href_list["medholocard"])
 		if(!species?.count_human)
