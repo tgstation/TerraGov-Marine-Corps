@@ -1072,6 +1072,7 @@
 	gender = pick(MALE, FEMALE)
 	name = species.random_name(gender)
 	real_name = name
+	voice = random_tts_voice()
 
 	if(!(species.species_flags & HAS_NO_HAIR))
 		switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))

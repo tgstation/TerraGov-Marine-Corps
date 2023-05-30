@@ -8486,7 +8486,6 @@
 "jjr" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
-/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "jjR" = (
@@ -15464,12 +15463,6 @@
 /obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
-"sre" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/lv624/lazarus/research)
 "srR" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
@@ -42328,7 +42321,7 @@ exl
 uYP
 rdh
 sSs
-sre
+tUO
 cwq
 eLr
 uxW
