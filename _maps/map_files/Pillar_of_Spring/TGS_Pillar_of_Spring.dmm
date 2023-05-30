@@ -11926,6 +11926,9 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "pvW" = (
@@ -13874,12 +13877,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"rUm" = (
-/obj/structure/bed/chair/nometal{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/mainship/hull/lower_hull)
 "rUw" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -15573,6 +15570,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -43634,7 +43632,7 @@ bsG
 rKn
 tCK
 rKn
-rUm
+rKn
 rKn
 rKn
 rKn
