@@ -197,3 +197,14 @@
   - code_imp: optimized runechat
   - bugfix: fixed not being an explicitly spawned species not giving robots a damage
       screen overlay
+2023-05-30:
+  Losenis:
+  - balance: 'xray rifle standard shot firerate now 0.25 (Comparison: AR12 has 0.2)'
+  Lumipharon:
+  - bugfix: fixed an issue with facehugger cryo tanks
+  - bugfix: Detonating the groundside nuke shipside no longer results in a marine
+      victory
+  QualityVan:
+  - bugfix: Attached guns can be loaded with worn magazines
+  ivanmixo:
+  - bugfix: Fixed an add_fingerprint runtime

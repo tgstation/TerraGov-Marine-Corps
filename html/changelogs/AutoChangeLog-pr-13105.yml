@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Detonating the groundside nuke shipside no longer results in a marine victory"
