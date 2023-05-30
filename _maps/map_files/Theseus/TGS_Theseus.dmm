@@ -1055,6 +1055,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "adF" = (
+/obj/vehicle/unmanned/droid/ripley,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "adG" = (

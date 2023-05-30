@@ -4192,6 +4192,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"mq" = (
+/obj/vehicle/unmanned/droid/ripley,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "mr" = (
 /obj/machinery/vending/snack,
 /obj/machinery/light/mainship,
@@ -27320,7 +27324,7 @@ eH
 fm
 fQ
 ug
-gY
+mq
 gY
 gY
 gY

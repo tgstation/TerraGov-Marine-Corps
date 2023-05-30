@@ -145,3 +145,56 @@
 
 /datum/action/antenna/action_activate()
 	SEND_SIGNAL(owner, COMSIG_UNMANNED_COORDINATES)
+
+/obj/vehicle/unmanned/droid/ripley
+	name = "XN-27-C cargo droid"
+	desc = "A cargo droid, rigged with experimental technology to allow AI control. The claw is not standard and cannot grasp warheads."
+	icon = 'icons/obj/powerloader.dmi'
+	icon_state = "ai_powerloader"
+	move_delay = 7
+	max_integrity = 550
+	spawn_equipped_type = null
+	unmanned_flags = GIVE_NIGHT_VISION
+	turret_pattern = NO_PATTERN
+	soft_armor = list(MELEE = 60, BULLET = 20, LASER = 10, ENERGY = 20, BOMB = 80, BIO = 0, FIRE = 100, ACID = 100)
+	//what the ripley is currently carrying
+	var/atom/movable/cargo
+	///used to prevent spam grabbing and dropping by the AI
+	COOLDOWN_DECLARE(clamp_cooldown)
+
+/obj/vehicle/unmanned/droid/ripley/on_remote_toggle(datum/source, is_on, mob/user)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_UNMANNED_ABILITY_UPDATED, CARGO_ABILITY)
+
+/obj/vehicle/unmanned/droid/ripley/proc/handle_cargo(mob/user, atom/target, params)
+	///used to hold whatever we're grabbing
+	var/obj/clamptarget = target
+	if(cargo)
+		to_chat(user, "You unload [cargo].")
+		cargo.forceMove(drop_location())
+		cargo = null
+		return
+	if(ismob(clamptarget) || istype(clamptarget, /obj/vehicle/unmanned/droid) || istype(clamptarget, /obj/machinery/nuclearbomb) || isturf(clamptarget))
+		return
+	if(!Adjacent(target) || clamptarget.anchored == TRUE)
+		return
+	if(!COOLDOWN_CHECK(src, clamp_cooldown))
+		return
+	if(locate(/mob) in clamptarget.contents) //keep the droid from loading people or mobs in its cargo
+		to_chat(user, "[icon2html(src, user)][span_notice("[target] contains a living organism, cannot load.")]")
+		return
+	if(!cargo)
+		balloon_alert_to_viewers("Loads [clamptarget]")
+		clamptarget.anchored = TRUE
+		cargo = clamptarget
+		clamptarget.forceMove(src)
+		clamptarget.anchored = initial(clamptarget.anchored)
+		to_chat(user, "[icon2html(src, user)][span_notice("[target] successfully loaded.")]") //AIs usually can't see balloon_alerts, send them a to_chat instead
+	COOLDOWN_START(src, clamp_cooldown, 2 SECONDS)
+	playsound(src, 'sound/mecha/hydraulic.ogg', 50, FALSE, -6)
+
+/obj/vehicle/unmanned/droid/ripley/Destroy()
+	if(cargo)
+		cargo.forceMove(get_turf(src))
+		cargo = null
+	. = ..()

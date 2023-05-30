@@ -8535,6 +8535,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/vehicle/unmanned/droid/ripley,
 /turf/open/floor/mainship/green{
 	dir = 5
 	},

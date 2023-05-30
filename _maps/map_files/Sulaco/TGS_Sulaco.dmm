@@ -24377,6 +24377,11 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"umA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/vehicle/unmanned/droid/ripley,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "umL" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -53441,7 +53446,7 @@ aaa
 nzi
 mDu
 bOh
-vRR
+umA
 bPM
 bPM
 dyW
