@@ -881,7 +881,7 @@
 
 
 /datum/lasrifle/base/energy_mg_mode/standard/charge
-	rounds_per_shot = 12
+	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/charge
 	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
