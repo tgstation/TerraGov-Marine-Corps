@@ -1733,6 +1733,11 @@ VEHICLES
 	contains = list(/obj/vehicle/unmanned/droid/scout)
 	cost = 300
 
+/datum/supply_packs/vehicles/droid_powerloader
+	name = "Powerloader droid"
+	contains = list(/obj/vehicle/unmanned/droid/ripley)
+	cost = 300
+
 /datum/supply_packs/vehicles/droid_weapon
 	name = "Droid weapon"
 	contains = list(/obj/item/uav_turret/droid)

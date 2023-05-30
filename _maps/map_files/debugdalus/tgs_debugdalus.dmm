@@ -1284,7 +1284,7 @@
 	dir = 8
 	},
 /obj/vehicle/unmanned/droid,
-/turf/open/floor/mainship,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/command/telecomms)
 "agd" = (
 /obj/structure/prop/mainship/mapping_computer,
@@ -2404,7 +2404,7 @@
 /area/mainship/hallways/exoarmor)
 "gUp" = (
 /obj/vehicle/unmanned/droid/ripley,
-/turf/open/floor/mainship,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/hallways/hangar)
 "hni" = (
 /obj/structure/cable,
@@ -2749,7 +2749,7 @@
 	dir = 8
 	},
 /obj/vehicle/unmanned/droid/scout,
-/turf/open/floor/mainship,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/command/telecomms)
 "xsM" = (
 /obj/machinery/light{

@@ -18700,6 +18700,10 @@
 	dir = 8
 	},
 /area/sulaco/marine)
+"mWM" = (
+/obj/machinery/computer/mech_bay_power_console,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "mYf" = (
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
@@ -24380,7 +24384,7 @@
 "umA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/vehicle/unmanned/droid/ripley,
-/turf/open/floor/prison/plate,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/sulaco/cargo)
 "umL" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -53703,7 +53707,7 @@ aaa
 nzi
 mDu
 bOh
-bPM
+mWM
 bPM
 bPM
 fCm
