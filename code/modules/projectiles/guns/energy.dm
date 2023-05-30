@@ -844,7 +844,7 @@
 	scatter_unwielded = 30
 	movement_acc_penalty_mult = 6
 	damage_falloff_mult = 0.3
-	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
+	windup_sound = 'sound/weapons/guns/fire/laser_charge_up.ogg'
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,
 		"Burst" = /datum/lasrifle/base/energy_mg_mode/standard/burst,
@@ -883,10 +883,10 @@
 /datum/lasrifle/base/energy_mg_mode/standard/charge
 	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/charge
-	fire_delay = 0.5 SECONDS
+	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
 	windup_delay = 0.5 SECONDS
-	fire_mode = GUN_FIREMODE_SEMIAUTO
+	fire_mode = GUN_FIREMODE_AUTOMATIC
 	message_to_user = "You set the machine laser's charge mode to charge."
 	radial_icon_state = "laser_charge"
 	description = "Fires a powerful laser pulse after a brief charge up."
