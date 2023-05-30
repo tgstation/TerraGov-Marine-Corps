@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "Xenos may now lift on the benchpress"
+  - qol: "Which faction lifted how much is now logged as an end of round stat"
+  - bugfix: "fixed breaking an arm not stopping the lift animation of the benchpress"
