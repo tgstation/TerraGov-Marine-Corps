@@ -210,16 +210,15 @@
 	icon_state = "tl84"
 	item_state = "tl84"
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
-	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13, "under_x" = 31, "under_y" = 15)
+	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13, "under_x" = 31, "under_y" = 11)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/stock/t84stock,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 	)
-	starting_attachment_types = list(/obj/item/attachable/stock/t84stock, /obj/item/weapon/gun/flamer/hydro_cannon)
+	starting_attachment_types = list(/obj/item/weapon/gun/flamer/hydro_cannon)
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
 	starting_attachment_types = list(
@@ -233,6 +232,12 @@
 	desc = "The FL-X-150 flamethrower is an advanced flamethrower that outputs more powerful and longer lasting flames, it is much more effective at area control and urban combat."
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
 	icon = 'icons/Marine/gun64.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
 	icon_state = "flx150"
 	item_state = "flx150"
 	ammo_datum_type = /datum/ammo/flamethrower/blue
