@@ -29,8 +29,6 @@
 		return ERROR_CANT_WEED
 	for(var/obj/effect/forcefield/fog/F in range(1, target))
 		return ERROR_FOG
-	if(!length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
-		return ERROR_NO_SILO
 	for(var/mob/living/carbon/xenomorph/blocker in target)
 		if(blocker.stat != DEAD && !CHECK_BITFIELD(blocker.xeno_caste.caste_flags, CASTE_IS_BUILDER))
 			return ERROR_BLOCKER
@@ -51,12 +49,18 @@
 	var/obj/structure/xeno/selectedsilo
 	//distance between the user and a silo
 	var/silo_distance
+	///area where we're attempting to build at
 	var/area/targetarea = get_area(selectedturf)
 	for(var/obj/structure/xeno/silo/global_silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) //scan the existing resin silos, store the one that's the shortest distance away
+		//distance between the turf our xeno is in and the nearest silo
 		var/newdistance = get_dist(selectedturf, global_silo)
-		if(newdistance <= silo_distance || silo_distance == null)
+		if(newdistance <= silo_distance || silo_distance == null) //go through the list of silos and compare distance, we only want the one that's the shortest distance away
+			///store the silo distance
 			silo_distance = newdistance
+			///set the selected silo as the one we're currently on
 			selectedsilo = global_silo
+	if(!length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])) //always return true if we have no silos
+		return TRUE
 	if(silo_distance >= 50 && targetarea != get_area(selectedsilo) && targetarea.ceiling < CEILING_UNDERGROUND) //if true build regular instead of speedbuild
 		return TRUE
 	else

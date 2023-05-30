@@ -337,9 +337,6 @@
 		if(ERROR_FOG)
 			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
 			return
-		if(ERROR_NO_SILO)
-			owner.balloon_alert(owner, span_notice("No silo!"))
-			return
 		if(ERROR_INVALID_AREA)
 			owner.balloon_alert(owner, span_notice("Can't build here"))
 			return
@@ -386,9 +383,6 @@
 		if(ERROR_FOG)
 			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
 			return
-		if(ERROR_NO_SILO)
-			owner.balloon_alert(owner, span_notice("No silo!"))
-			return
 		// it fails a lot here when dragging , so its to prevent spam
 		if(ERROR_CONSTRUCT)
 			return
@@ -417,9 +411,6 @@
 			return
 		if(ERROR_FOG)
 			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
-			return
-		if(ERROR_NO_SILO)
-			owner.balloon_alert(owner, span_notice("No silo!"))
 			return
 		// it fails a lot here when dragging , so its to prevent spam
 		if(ERROR_CONSTRUCT)
