@@ -1,0 +1,5 @@
+author: "Skye"
+delete-after: True
+changes:
+  - qol: "A secret has been revealed! You can now find the mech bay's APC on the Thesseus map."
+  - bugfix: "Added wires to the power monitoring computers in Thesseus and Minerva's engineering zones."
