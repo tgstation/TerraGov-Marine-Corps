@@ -293,7 +293,7 @@
 	var/mob/living/carbon/xenomorph/xowner = owner
 	var/turf/selectedturf = get_turf(xowner)
 	if(SSmonitor.gamestate != SHUTTERS_CLOSED)
-		if(get_build_prereqs())
+		if(selectedturf.get_build_prereqs())
 			if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 				build_resin(get_turf(owner))
 			else
