@@ -378,6 +378,7 @@
 		owner.face_atom(target)
 
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
 	if(!do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		for(var/atom/movable/victim in view(VORTEX_RANGE, owner.loc))
 			if(victim.anchored)
@@ -419,6 +420,7 @@
 				if(livingtarget.stat == DEAD)
 					continue
 				victim.throw_at(targetturf, 5, 1, owner, FALSE)
+				finish_charging()
 
 	if(do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		for(var/atom/movable/victim in view(VORTEX_RANGE, owner.loc))
@@ -447,3 +449,7 @@
 			for(var/x in 1 to 5)
 				throwlocation = get_step(throwlocation, owner.dir)
 			affected.throw_at(owner, 5, 1, owner, FALSE)
+
+/datum/action/xeno_action/activable/psychic_vortex/proc/finish_charging()
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
+
