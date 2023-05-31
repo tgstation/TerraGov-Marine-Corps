@@ -180,7 +180,7 @@
 		cargo.forceMove(drop_location())
 		cargo = null
 		return
-	if(ismob(clamptarget) || isvehicle(clamptarget) ||  isturf(clamptarget), istype(clamptarget, /obj/machinery/nuclearbomb))
+	if(ismob(clamptarget) || isvehicle(clamptarget) ||  isturf(clamptarget) || istype(clamptarget, /obj/machinery/nuclearbomb))
 		return
 	if(!Adjacent(target) || clamptarget.anchored == TRUE)
 		return
