@@ -543,7 +543,6 @@
 /datum/status_effect/stacking/melting
 	id = "melting"
 	tick_interval = 1 SECONDS
-	stacks = 1
 	max_stacks = 30
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/melting
@@ -624,7 +623,6 @@
 /datum/status_effect/stacking/microwave
 	id = "microwaved"
 	tick_interval = 1 SECONDS
-	stacks = 1
 	max_stacks = 5
 	stack_decay = 0
 	consumed_on_threshold = FALSE
@@ -672,7 +670,7 @@
 
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
 
-	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT)
+	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT * (debuff_owner.mob_size > 1 ? 1 : 0.5)) //this shreds humans otherwise
 
 /atom/movable/screen/alert/status_effect/microwave
 	name = "Microwave"
