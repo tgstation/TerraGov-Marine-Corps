@@ -348,7 +348,7 @@
 // ***************************************
 // *********** Psychic Vortex
 // ***************************************
-#define VORTEX_RANGE 5
+#define VORTEX_RANGE 3
 #define VORTEX_PULL_WINDUP_TIME 2 SECONDS
 #define VORTEX_PUSH_WINDUP_TIME 1 SECONDS
 /datum/action/xeno_action/activable/psychic_vortex
@@ -386,15 +386,15 @@
 				var/mob/living_target = victim
 				if(living_target.stat == DEAD)
 					continue
-			victim.throw_at(owner, 5, 1, owner, FALSE)
+			victim.throw_at(owner, 3, 1, owner, FALSE)
 		return fail_activate()
 
 	for(var/turf/affected_tile in range(VORTEX_RANGE, owner.loc))
-		affected_tile.Shake(4, 4, 1 SECONDS)
+		affected_tile.Shake(3, 3, 1 SECONDS)
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(4, 4, 10)
+				affected.Shake(3, 3, 10)
 				continue
 			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected
@@ -403,12 +403,12 @@
 				H.apply_effects(1, 1)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
-			for(var/x in 1 to 5)
+			for(var/x in 1 to 3)
 				throwlocation = get_step(throwlocation, owner.dir)
-			affected.throw_at(owner, 5, 1, owner, FALSE)
+			affected.throw_at(owner, 3, 1, owner, FALSE)
 
 	var/turf/targetturf = get_turf(owner)
-	targetturf = locate(targetturf.x + rand(1, 5), targetturf.y + rand(1, 5), targetturf.z)
+	targetturf = locate(targetturf.x + rand(1, 3), targetturf.y + rand(1, 3), targetturf.z)
 	if(do_after(owner, VORTEX_PUSH_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		for(var/atom/movable/victim in range(VORTEX_RANGE, owner.loc))
 			if(victim == owner)
@@ -419,8 +419,9 @@
 				var/mob/living_target = victim
 				if(living_target.stat == DEAD)
 					continue
-			victim.throw_at(targetturf, 5, 1, owner, FALSE)
+			victim.throw_at(targetturf, 3, 1, owner, FALSE)
 
+	playsound(owner, 'sound/effects/supermatter.ogg', 60)
 	if(!do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		for(var/atom/movable/victim in view(VORTEX_RANGE, owner.loc))
 			if(victim.anchored)
@@ -429,15 +430,16 @@
 				var/mob/living_target = victim
 				if(living_target.stat == DEAD)
 					continue
-			victim.throw_at(owner, 5, 1, owner, FALSE)
+			victim.throw_at(owner, 3, 1, owner, FALSE)
 		return fail_activate()
+	finish_charging()
 
 	for(var/turf/affected_tile in range(VORTEX_RANGE, owner.loc))
-		affected_tile.Shake(4, 4, 1 SECONDS)
+		affected_tile.Shake(3, 3, 1 SECONDS)
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(4, 4, 10)
+				affected.Shake(3, 3, 10)
 				continue
 			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected
@@ -446,13 +448,13 @@
 				H.apply_effects(0, 1)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
-			for(var/x in 1 to 5)
+			for(var/x in 1 to 3)
 				throwlocation = get_step(throwlocation, owner.dir)
-			affected.throw_at(owner, 5, 1, owner, FALSE)
-
-
+			affected.throw_at(owner, 3, 1, owner, FALSE)
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/finish_charging()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
 
-
+/datum/action/xeno_action/activable/psychic_vortex/fail_activate()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
