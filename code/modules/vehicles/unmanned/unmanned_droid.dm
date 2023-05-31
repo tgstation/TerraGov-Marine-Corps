@@ -171,7 +171,12 @@
 /obj/vehicle/unmanned/droid/ripley/proc/handle_cargo(mob/user, atom/target, params)
 	///used to hold whatever we're grabbing
 	var/obj/clamptarget = target
-	if(cargo)
+	if(!COOLDOWN_CHECK(src, clamp_cooldown))
+		return
+	if(cargo && Adjacent(target) && istype(target, /obj/structure/closet))
+		var/obj/structure/closet/attackedcloset = clamptarget
+		attackedcloset.toggle()
+	else if(cargo)
 		to_chat(user, "You unload [cargo].")
 		cargo.forceMove(drop_location())
 		cargo = null
@@ -179,8 +184,6 @@
 	if(ismob(clamptarget) || istype(clamptarget, /obj/vehicle/unmanned/droid) || istype(clamptarget, /obj/machinery/nuclearbomb) || isturf(clamptarget))
 		return
 	if(!Adjacent(target) || clamptarget.anchored == TRUE)
-		return
-	if(!COOLDOWN_CHECK(src, clamp_cooldown))
 		return
 	if(locate(/mob) in clamptarget.contents) //keep the droid from loading people or mobs in its cargo
 		to_chat(user, "[icon2html(src, user)][span_notice("[target] contains a living organism, cannot load.")]")
