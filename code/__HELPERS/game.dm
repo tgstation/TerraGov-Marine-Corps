@@ -23,8 +23,6 @@
 		return ERROR_NOT_ALLOWED
 	if(!alien_weeds)
 		return ERROR_NO_WEED
-	if(target.get_build_prereqs())
-		return ERROR_INVALID_AREA
 	if(!target.is_weedable())
 		return ERROR_CANT_WEED
 	for(var/obj/effect/forcefield/fog/F in range(1, target))
@@ -34,6 +32,9 @@
 			return ERROR_BLOCKER
 	if(!target.check_alien_construction(null, TRUE))
 		return ERROR_CONSTRUCT
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
+		if(target.get_build_prereqs())
+			return ERROR_INVALID_AREA
 	if(needs_support)
 		for(var/D in GLOB.cardinals)
 			var/turf/TS = get_step(target,D)

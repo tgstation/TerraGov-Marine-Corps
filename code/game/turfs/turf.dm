@@ -957,19 +957,12 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 ///runs a series of checks involving silos, returns true if we're some place we shouldn't speedbuild or if we have no silos
 /turf/proc/get_build_prereqs()
-	var/obj/structure/xeno/selectedsilo
-	var/silo_distance
 	var/area/targetarea = get_area(src)
 	if(targetarea.ceiling >= CEILING_UNDERGROUND)
 		return FALSE
-	for(var/obj/structure/xeno/silo/global_silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
-		var/newdistance = get_dist(src, global_silo)
-		if(newdistance <= silo_distance || silo_distance == null)
-			silo_distance = newdistance
-			selectedsilo = global_silo
-	if(!length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
-		return TRUE
-	if(silo_distance >= 50 && targetarea != get_area(selectedsilo))
-		return TRUE
-	else
-		return FALSE
+	for(var/obj/structure/xeno/silo/global_silo AS in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
+		if(get_dist(src, global_silo) <= 50)
+			return FALSE
+		if(targetarea == get_area(global_silo))
+			return FALSE
+	return TRUE
