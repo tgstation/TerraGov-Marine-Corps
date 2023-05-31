@@ -166,6 +166,8 @@
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_UNMANNED_ABILITY_UPDATED, CARGO_ABILITY)
 
+
+///grab an eligible atom and store it, if we already have an atom place it on the ground
 /obj/vehicle/unmanned/droid/ripley/proc/handle_cargo(mob/user, atom/target, params)
 	///used to hold whatever we're grabbing
 	var/obj/clamptarget = target
