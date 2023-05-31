@@ -383,8 +383,8 @@
 			if(victim.anchored)
 				continue
 			if((isliving(victim)))
-				var/mob/livingtarget = victim
-				if(livingtarget.stat == DEAD)
+				var/mob/living_target = victim
+				if(living_target.stat == DEAD)
 					continue
 				victim.throw_at(owner, 5, 1, owner, FALSE)
 
@@ -393,7 +393,7 @@
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(4, 4, 20)
+				affected.Shake(4, 4, 10)
 				continue
 			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected
@@ -415,8 +415,8 @@
 			if(victim.anchored)
 				continue
 			if((isliving(victim)))
-				var/mob/livingtarget = victim
-				if(livingtarget.stat == DEAD)
+				var/mob/living_target = victim
+				if(living_target.stat == DEAD)
 					continue
 				victim.throw_at(targetturf, 5, 1, owner, FALSE)
 
@@ -425,8 +425,8 @@
 			if(victim.anchored)
 				continue
 			if((isliving(victim)))
-				var/mob/livingtarget = victim
-				if(livingtarget.stat == DEAD)
+				var/mob/living_target = victim
+				if(living_target.stat == DEAD)
 					continue
 			victim.throw_at(owner, 5, 1, owner, FALSE)
 
@@ -435,7 +435,7 @@
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(4, 4, 20)
+				affected.Shake(4, 4, 10)
 				continue
 			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected
@@ -447,6 +447,8 @@
 			for(var/x in 1 to 5)
 				throwlocation = get_step(throwlocation, owner.dir)
 			affected.throw_at(owner, 5, 1, owner, FALSE)
+
+
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/finish_charging()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
