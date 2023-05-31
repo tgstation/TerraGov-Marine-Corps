@@ -382,11 +382,12 @@
 		for(var/atom/movable/victim in view(VORTEX_RANGE, owner.loc))
 			if(victim.anchored)
 				continue
-			if((isliving(victim)))
+			if(isliving(victim))
 				var/mob/living_target = victim
 				if(living_target.stat == DEAD)
 					continue
-				victim.throw_at(owner, 5, 1, owner, FALSE)
+			victim.throw_at(owner, 5, 1, owner, FALSE)
+		return fail_activate()
 
 	for(var/turf/affected_tile in range(VORTEX_RANGE, owner.loc))
 		affected_tile.Shake(4, 4, 1 SECONDS)
@@ -414,21 +415,22 @@
 				continue
 			if(victim.anchored)
 				continue
-			if((isliving(victim)))
+			if(isliving(victim))
 				var/mob/living_target = victim
 				if(living_target.stat == DEAD)
 					continue
-				victim.throw_at(targetturf, 5, 1, owner, FALSE)
+			victim.throw_at(targetturf, 5, 1, owner, FALSE)
 
-	if(do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+	if(!do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		for(var/atom/movable/victim in view(VORTEX_RANGE, owner.loc))
 			if(victim.anchored)
 				continue
-			if((isliving(victim)))
+			if(isliving(victim))
 				var/mob/living_target = victim
 				if(living_target.stat == DEAD)
 					continue
 			victim.throw_at(owner, 5, 1, owner, FALSE)
+		return fail_activate()
 
 	for(var/turf/affected_tile in range(VORTEX_RANGE, owner.loc))
 		affected_tile.Shake(4, 4, 1 SECONDS)
