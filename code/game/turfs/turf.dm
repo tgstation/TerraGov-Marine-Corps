@@ -960,6 +960,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/obj/structure/xeno/selectedsilo
 	var/silo_distance
 	var/area/targetarea = get_area(src)
+	if(targetarea.ceiling >= CEILING_UNDERGROUND)
+		return FALSE
 	for(var/obj/structure/xeno/silo/global_silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
 		var/newdistance = get_dist(src, global_silo)
 		if(newdistance <= silo_distance || silo_distance == null)
@@ -967,7 +969,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			selectedsilo = global_silo
 	if(!length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
 		return TRUE
-	if(silo_distance >= 50 && targetarea != get_area(selectedsilo) && targetarea.ceiling < CEILING_UNDERGROUND)
+	if(silo_distance >= 50)
 		return TRUE
 	else
 		return FALSE
