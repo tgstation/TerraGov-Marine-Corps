@@ -351,7 +351,6 @@
 #define VORTEX_RANGE 5
 #define VORTEX_PULL_WINDUP_TIME 2 SECONDS
 #define VORTEX_PUSH_WINDUP_TIME 1 SECONDS
-#define VORTEX_ABILITY_TRAIT
 /datum/action/xeno_action/activable/psychic_vortex
 	name = "Pyschic vortex"
 	action_icon_state = "vortex"
@@ -390,7 +389,7 @@
 				victim.throw_at(owner, 5, 1, owner, FALSE)
 
 	for(var/turf/affected_tile in range(VORTEX_RANGE, owner.loc))
-		affected_tile.Shake(4, 4, 5 SECONDS)
+		affected_tile.Shake(4, 4, 1 SECONDS)
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
@@ -420,7 +419,6 @@
 				if(livingtarget.stat == DEAD)
 					continue
 				victim.throw_at(targetturf, 5, 1, owner, FALSE)
-				finish_charging()
 
 	if(do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		for(var/atom/movable/victim in view(VORTEX_RANGE, owner.loc))
@@ -433,7 +431,7 @@
 			victim.throw_at(owner, 5, 1, owner, FALSE)
 
 	for(var/turf/affected_tile in range(VORTEX_RANGE, owner.loc))
-		affected_tile.Shake(4, 4, 5 SECONDS)
+		affected_tile.Shake(4, 4, 1 SECONDS)
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
@@ -452,4 +450,5 @@
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/finish_charging()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
+
 
