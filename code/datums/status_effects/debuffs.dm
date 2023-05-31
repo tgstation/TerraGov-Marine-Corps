@@ -754,6 +754,6 @@
 	position = generator(GEN_SPHERE, 16, 16, NORMAL_RAND)
 	drift = generator(GEN_VECTOR, list(-0.1, 0), list(0.1, 0))
 	gravity = list(0, -0.4)
-	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(1, 1), NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(0.6, 0.6), list(1, 1), NORMAL_RAND)
 	friction = -0.05
 	color = "#818181"
