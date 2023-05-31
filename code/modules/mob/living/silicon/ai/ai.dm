@@ -519,7 +519,9 @@
 		if(human.faction == owner.faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 
-/mob/living/silicon/ai/proc/ai_ping(atom/A, cooldown = COOLDOWN_AI_PING_NORMAL) //alert players when the AI pings a target atom
+
+///takes an atom A and sends an alert, coordinate and for the atom to eligible marine forces if cooldown is over
+/mob/living/silicon/ai/proc/ai_ping(atom/A, cooldown = COOLDOWN_AI_PING_NORMAL)
 	///list of mobs to send the notification to
 	var/list/receivers = (GLOB.alive_human_list)
 	if(is_mainship_level(A.z)) //if our target is shipside, we always use the lowest cooldown between pings
@@ -527,23 +529,19 @@
 	if(!COOLDOWN_CHECK(src, last_pinged_marines)) //delay between alerts, both for balance and to prevent chat spam from overeager AIs
 		to_chat(src, span_alert("You must wait before issuing an alert again"))
 		return
-	COOLDOWN_START(src, last_pinged_marines, cooldown) //set the cooldown.
-	to_chat(src, span_alert("<b>You issue an alert for [A.name] to all living personnel.</b>")) //show the AI player that an alert was issued
-	///everyone we're sending the alert to
+	COOLDOWN_START(src, last_pinged_marines, cooldown)
+	to_chat(src, span_alert("<b>You issue an alert for [A.name] to all living personnel.</b>"))
 	for(var/mob/M in receivers)
-		if(M.z != A.z || M.stat == DEAD) //eligible receivers are alive, and on the same level of the pinged target
+		if(M.z != A.z || M.stat == DEAD)
 			continue
-		///used to hold the distance between a receiver and the pinged atom
 		var/newdistance = get_dist(A, M)
-		///string to hold the general direction to the targetted xeno
 		var/generaldirection = "north"
 		if(istype(A, /obj/effect/xenomorph/acid)) //special check for acid
-			///object doing the melting
 			var/obj/effect/xenomorph/acid/pingedacid = A
 			playsound(M, 'sound/machines/high_tech_confirm.ogg', 45, 1)
 			to_chat(M, span_alert("AI telemetry indicates that the <b>[pingedacid.acid_t]</b> which is <b>[newdistance]</b> units away at: [AREACOORD_NO_Z(A)] is <b> being melted</b>! by [pingedacid.name]!"))
 			return
-		if(newdistance <= AI_PING_RADIUS && newdistance != 0) //if pinged target is within AI_PING_RADIUS and not zero give the receiver a vague direction the pinged target is in
+		if(newdistance <= AI_PING_RADIUS && newdistance != 0)
 			///time for calculations
 
 			///divide our range into SW, NW, SE and NE for the purposes of identification
@@ -560,7 +558,7 @@
 
 			playsound(M, 'sound/machines/high_tech_confirm.ogg', 45, 1)
 			to_chat(M, span_alert("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))
-			to_chat(M, span_alert("AI telemetry indicates that <b>[A.name]</b> is <b>[newdistance]</b> units away to the <b>[generaldirection]</b>.")) //if the receiver is inside AI_PING_RADIUS, give them a distance and rough direction
+			to_chat(M, span_alert("AI telemetry indicates that <b>[A.name]</b> is <b>[newdistance]</b> units away to the <b>[generaldirection]</b>."))
 		else //if the receiver is outside AI_PING_RADIUS, give them a name and coords
 			playsound(M, 'sound/machines/twobeep.ogg', 35, 1)
 			to_chat(M, span_notice("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))
