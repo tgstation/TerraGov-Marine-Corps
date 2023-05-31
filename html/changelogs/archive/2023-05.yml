@@ -208,3 +208,21 @@
   - bugfix: Attached guns can be loaded with worn magazines
   ivanmixo:
   - bugfix: Fixed an add_fingerprint runtime
+2023-05-31:
+  RipGrayson:
+  - bugfix: Fixed walls with the UNACIDABLE flags being also immune to plasma cutters
+  - code_imp: Added PLASMACUTTER_IMMUNE to RESIST_ALL
+  Skye:
+  - qol: A secret has been revealed! You can now find the mech bay's APC on the Thesseus
+      map.
+  - bugfix: Added wires to the power monitoring computers in Thesseus and Minerva's
+      engineering zones.
+  TiviPlus:
+  - rscadd: Xenos may now lift on the benchpress
+  - qol: Which faction lifted how much is now logged as an end of round stat
+  - bugfix: fixed breaking an arm not stopping the lift animation of the benchpress
+  - rscadd: Command TTS volume is increased
+  chizzy376:
+  - bugfix: can't land tad in blue disk on Desparity anymore
+  ivanmixo:
+  - rscdel: Removed crate stuffing

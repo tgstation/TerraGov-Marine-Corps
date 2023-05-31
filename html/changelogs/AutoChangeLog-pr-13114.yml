@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - bugfix: "Fixed walls with the UNACIDABLE flags being also immune to plasma cutters"
-  - code_imp: "Added PLASMACUTTER_IMMUNE to RESIST_ALL"
