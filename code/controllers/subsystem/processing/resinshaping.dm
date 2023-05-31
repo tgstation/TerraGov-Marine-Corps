@@ -48,7 +48,8 @@ SUBSYSTEM_DEF(resinshaping)
 	var/player_key = "[the_builder.client?.ckey]"
 	if(!player_key)
 		return 0
-	if(get_build_prereqs(get_turf(the_builder)))
+	var/turf/selectedturf = get_turf(the_builder)
+	if(selectedturf.get_build_prereqs())
 		return
 	xeno_builds_counter[player_key]--
 	total_structures_refunded++

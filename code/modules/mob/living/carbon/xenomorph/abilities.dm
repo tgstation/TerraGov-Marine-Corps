@@ -199,7 +199,8 @@
 /datum/action/xeno_action/activable/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
-	if(get_build_prereqs(get_turf(user)))
+	var/turf/selectedturf = get_turf(user)
+	if(selectedturf.get_build_prereqs())
 		return
 	if(toggled && !(modifiers[BUTTON] == LEFT_CLICK))
 		dragging = TRUE
@@ -290,7 +291,8 @@
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	//xeno owner of this ability
 	var/mob/living/carbon/xenomorph/xowner = owner
-	if(get_build_prereqs(get_turf(owner)) || SSmonitor.gamestate != SHUTTERS_CLOSED)
+	var/turf/selectedturf = get_turf(xowner)
+	if(selectedturf.get_build_prereqs() || SSmonitor.gamestate != SHUTTERS_CLOSED)
 		if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 			build_resin(get_turf(owner))
 		else

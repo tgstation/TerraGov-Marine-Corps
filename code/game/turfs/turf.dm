@@ -954,3 +954,20 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	underlay_appearance.icon_state = icon_state
 	underlay_appearance.dir = adjacency_dir
 	return TRUE
+
+///runs a series of checks involving silos, returns true if we're some place we shouldn't speedbuild or if we have no silos
+/turf/proc/get_build_prereqs()
+	var/obj/structure/xeno/selectedsilo
+	var/silo_distance
+	var/area/targetarea = get_area(src)
+	for(var/obj/structure/xeno/silo/global_silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
+		var/newdistance = get_dist(src, global_silo)
+		if(newdistance <= silo_distance || silo_distance == null)
+			silo_distance = newdistance
+			selectedsilo = global_silo
+	if(!length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
+		return TRUE
+	if(silo_distance >= 50 && targetarea != get_area(selectedsilo) && targetarea.ceiling < CEILING_UNDERGROUND)
+		return TRUE
+	else
+		return FALSE

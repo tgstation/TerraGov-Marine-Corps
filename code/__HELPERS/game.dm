@@ -23,7 +23,7 @@
 		return ERROR_NOT_ALLOWED
 	if(!alien_weeds)
 		return ERROR_NO_WEED
-	if(get_build_prereqs(target))
+	if(target.get_build_prereqs())
 		return ERROR_INVALID_AREA
 	if(!target.is_weedable())
 		return ERROR_CANT_WEED
@@ -43,28 +43,6 @@
 				return NO_ERROR
 		return ERROR_NO_SUPPORT
 	return NO_ERROR
-
-/proc/get_build_prereqs(turf/selectedturf)
-	//holder for silos that we use later
-	var/obj/structure/xeno/selectedsilo
-	//distance between the user and a silo
-	var/silo_distance
-	///area where we're attempting to build at
-	var/area/targetarea = get_area(selectedturf)
-	for(var/obj/structure/xeno/silo/global_silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) //scan the existing resin silos, store the one that's the shortest distance away
-		//distance between the turf our xeno is in and the nearest silo
-		var/newdistance = get_dist(selectedturf, global_silo)
-		if(newdistance <= silo_distance || silo_distance == null) //go through the list of silos and compare distance, we only want the one that's the shortest distance away
-			///store the silo distance
-			silo_distance = newdistance
-			///set the selected silo as the one we're currently on
-			selectedsilo = global_silo
-	if(!length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])) //always return true if we have no silos
-		return TRUE
-	if(silo_distance >= 50 && targetarea != get_area(selectedsilo) && targetarea.ceiling < CEILING_UNDERGROUND) //if true build regular instead of speedbuild
-		return TRUE
-	else
-		return FALSE
 
 /proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
 	if(!centre)
