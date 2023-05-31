@@ -108,40 +108,42 @@
 
 /mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
-		return
+		return FALSE
 
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	to_chat(src, msg)
+	return TRUE
 
 
 /mob/living/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
-		return
+		return FALSE
 
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type == EMOTE_VISIBLE && eye_blind) //Vision related
 			if(!alt_msg)
-				return
+				return FALSE
 			else
 				msg = alt_msg
 				type = alt_type
 
 		if(type == EMOTE_AUDIBLE && isdeaf(src)) //Hearing related
 			if(!alt_msg)
-				return
+				return FALSE
 			else
 				msg = alt_msg
 				type = alt_type
 				if(type == EMOTE_VISIBLE && eye_blind)
-					return
+					return FALSE
 
 	if(stat == UNCONSCIOUS && type == EMOTE_AUDIBLE)
 		to_chat(src, "<i>... You can almost hear something ...</i>")
-		return
+		return FALSE
 	to_chat(src, msg, avoid_highlighting = avoid_highlight)
+	return TRUE
 
 /**
  * Show a message to all player mobs who sees this atom
@@ -862,11 +864,13 @@
 		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
 
 /mob/proc/set_stat(new_stat)
+	SHOULD_CALL_PARENT(TRUE)
 	if(new_stat == stat)
 		return
 	remove_all_indicators()
 	. = stat //old stat
 	stat = new_stat
+	SEND_SIGNAL(src, COMSIG_MOB_STAT_CHANGED, ., new_stat)
 
 ///clears the client mob in our client_mobs_in_contents list
 /mob/proc/clear_client_in_contents()

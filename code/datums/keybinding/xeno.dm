@@ -200,14 +200,14 @@
 /datum/keybinding/xeno/long_range_sight
 	name = "long_range_sight"
 	full_name = "Boiler: Long Range Sight"
-	description = ""
+	description = "Toggles the zoom in."
 	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
 	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"
 	full_name = "Boiler: Toggle Bombard Type"
-	description = ""
+	description = "Toggles the type of glob ."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
 /datum/keybinding/xeno/toggle_bomb_radial
@@ -220,14 +220,21 @@
 /datum/keybinding/xeno/create_bomb
 	name = "create_bomb"
 	full_name = "Boiler: Create Bombard Ammo"
-	description = ""
+	description = "Create new globs to fire."
 	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
 	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/root
+	name = "root"
+	full_name = "Boiler: Root in place"
+	description = "Begin rooting in place."
+	keybind_signal = COMSIG_XENOABILITY_ROOT
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/bombard
 	name = "bombard"
 	full_name = "Boiler: Bombard"
-	description = ""
+	description = "Fire globules."
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 	hotkey_keys = list("R")
 

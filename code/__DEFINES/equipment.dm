@@ -27,19 +27,18 @@
 #define DIRLOCK (1<<4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
 #define INITIALIZED (1<<5)  	//Whether /atom/Initialize() has already run for the object
 #define NODECONSTRUCT (1<<6)
-#define OVERLAY_QUEUED (1<<7)
-#define PREVENT_CLICK_UNDER (1<<8)		//Prevent clicking things below it on the same turf
-#define CRITICAL_ATOM (1<<9)		//Use when this shouldn't be obscured by large icons.
+#define PREVENT_CLICK_UNDER (1<<7)		//Prevent clicking things below it on the same turf
+#define CRITICAL_ATOM (1<<8)		//Use when this shouldn't be obscured by large icons.
 ///Does not cascade explosions to its contents.
-#define PREVENT_CONTENTS_EXPLOSION (1<<10)
+#define PREVENT_CONTENTS_EXPLOSION (1<<9)
 /// was this spawned by an admin? used for stat tracking stuff.
-#define ADMIN_SPAWNED (1<<11)
+#define ADMIN_SPAWNED (1<<10)
 /// Can this atom be bumped attack
-#define BUMP_ATTACKABLE (1<<12)
+#define BUMP_ATTACKABLE (1<<11)
 ///This atom will not be qdeled when a shuttle lands on it; it will just move onto the shuttle tile. It will stay on the ground when the shuttle takes off
-#define SHUTTLE_IMMUNE (1<<13)
+#define SHUTTLE_IMMUNE (1<<12)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
-#define HTML_USE_INITAL_ICON_1 (1<<14)
+#define HTML_USE_INITAL_ICON_1 (1<<13)
 
 //turf-only flags
 #define AI_BLOCKED (1<<0) //Prevent ai from going onto this turf

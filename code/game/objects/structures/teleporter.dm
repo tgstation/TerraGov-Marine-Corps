@@ -28,7 +28,7 @@
 
 /obj/machinery/deployable/teleporter/Initialize(mapload)
 	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "teleporter")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "teleporter"))
 
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)

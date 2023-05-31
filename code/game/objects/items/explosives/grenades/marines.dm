@@ -98,7 +98,6 @@
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
-		stuck_to.cut_overlay(saved_overlay)
 		clean_refs()
 	return ..()
 
@@ -107,6 +106,7 @@
 
 ///Cleans references to prevent hard deletes.
 /obj/item/explosive/grenade/sticky/proc/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
 	SIGNAL_HANDLER
 	UnregisterSignal(stuck_to, COMSIG_PARENT_QDELETING)
 	stuck_to = null
@@ -124,7 +124,6 @@
 	flame_radius(0.5, get_turf(src))
 	playsound(loc, "incendiary_explosion", 35)
 	if(stuck_to)
-		stuck_to.cut_overlay(saved_overlay)
 		clean_refs()
 	qdel(src)
 
@@ -133,14 +132,17 @@
 	if(.)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
-	new /obj/flamer_fire(get_turf(src), 25, 25)
+	var/turf/T = get_turf(src)
+	T.ignite(25, 25)
 
 ///causes fire tiles underneath target when stuck_to
 /obj/item/explosive/grenade/sticky/trailblazer/proc/make_fire(datum/source, old_loc, movement_dir, forced, old_locs)
 	SIGNAL_HANDLER
-	new /obj/flamer_fire(get_turf(src), 25, 25)
+	var/turf/T = get_turf(src)
+	T.ignite(25, 25)
 
 /obj/item/explosive/grenade/sticky/trailblazer/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
 	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
 	return ..()
 
@@ -489,14 +491,14 @@
 	if(!istype(TU))
 		return
 	if(is_ground_level(TU.z))
-		target = new(src, name, user_squad)//da lazer is stored in the grenade
+		target = new(src, null, name, user_squad)//da lazer is stored in the grenade
 
 /obj/item/explosive/grenade/flare/cas/process()
 	. = ..()
 	var/turf/TU = get_turf(src)
 	if(is_ground_level(TU.z))
 		if(!target && active)
-			target = new(src, name, user_squad)
+			target = new(src, null, name, user_squad)
 
 /obj/item/explosive/grenade/flare/cas/turn_off()
 	QDEL_NULL(target)

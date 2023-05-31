@@ -53,13 +53,13 @@
 	switch(faction)
 		if(FACTION_TERRAGOV)
 			SSminimaps.remove_marker(src)
-			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "loyalist_zone")
+			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "loyalist_zone"))
 		if(FACTION_TERRAGOV_REBEL)
 			SSminimaps.remove_marker(src)
-			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "rebel_zone")
+			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "rebel_zone"))
 		else
 			SSminimaps.remove_marker(src)
-			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "neutral_zone")
+			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "neutral_zone"))
 
 /obj/structure/sensor_tower_patrol
 	name = "sensor tower"
@@ -235,6 +235,6 @@
 /obj/structure/sensor_tower_patrol/proc/update_control_minimap_icon()
 	SSminimaps.remove_marker(src)
 	if(activated)
-		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid]_on_full")
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid]_on_full"))
 	else
-		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid][current_timer ? "_on" : "_off"]")
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid][current_timer ? "_on" : "_off"]"))

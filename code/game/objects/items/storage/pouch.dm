@@ -42,7 +42,6 @@
 	desc = "A general purpose pouch used to carry small items."
 	icon_state = "small_drop"
 	draw_mode = 1
-
 	bypass_w_limit = list(/obj/item/ammo_magazine/packet)
 
 /obj/item/storage/pouch/general/medium
@@ -375,12 +374,17 @@
 	fill_type = /obj/item/explosive/grenade/upp
 	fill_number = 4
 
+/obj/item/storage/pouch/explosive/som
+	name = "\improper S26 explosive pouch"
+	desc = "A leather pouch for storing grenades, rockets, mine boxes, and other explosives."
+	icon_state = "explosive_som"
+
 /obj/item/storage/pouch/explosive/icc
 	desc = "It can contain grenades, plastiques, mine boxes, and other explosives. Clearly made from with a synthetic tan fiber."
 	icon_state = "large_explosive_icc"
 
 /obj/item/storage/pouch/grenade
-	name = "Grenade pouch"
+	name = "grenade pouch"
 	desc = "It can contain grenades."
 	icon_state = "explosive"
 	storage_slots = 6

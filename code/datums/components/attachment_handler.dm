@@ -191,11 +191,7 @@
 	SIGNAL_HANDLER
 	var/mob/living/living_user = user
 
-	if(living_user.get_active_held_item() != parent && living_user.get_inactive_held_item() != parent)
-		to_chat(living_user, span_warning("You must be holding [parent] to field strip it!"))
-		return
-	if((living_user.get_active_held_item() == parent && living_user.get_inactive_held_item()) || (living_user.get_inactive_held_item() == parent && living_user.get_active_held_item()))
-		to_chat(living_user, span_warning("You need a free hand to field strip [parent]!"))
+	if(!detach_check(living_user))
 		return
 
 	var/list/attachments_to_remove = list()
@@ -214,11 +210,24 @@
 
 	INVOKE_ASYNC(src, PROC_REF(do_detach), living_user, attachments_to_remove)
 
+///Checks if you are actually able to detach an item or not
+/datum/component/attachment_handler/proc/detach_check(mob/user)
+	if(user.get_active_held_item() != parent && user.get_inactive_held_item() != parent)
+		to_chat(user, span_warning("You must be holding [parent] to field strip it!"))
+		return FALSE
+	if((user.get_active_held_item() == parent && user.get_inactive_held_item()) || (user.get_inactive_held_item() == parent && user.get_active_held_item()))
+		to_chat(user, span_warning("You need a free hand to field strip [parent]!"))
+		return FALSE
+	return TRUE
+
 ///Does the detach, shows the user the removable attachments and handles the do_after.
 /datum/component/attachment_handler/proc/do_detach(mob/living/user, list/attachments_to_remove)
 	//If there is only one attachment to remove, then that will be the attachment_to_remove. If there is more than one it gives the user a list to select from.
 	var/obj/item/attachment_to_remove = length(attachments_to_remove) == 1 ? attachments_to_remove[1] : tgui_input_list(user, "Choose an attachment", "Choose attachment", attachments_to_remove)
 	if(!attachment_to_remove)
+		return
+
+	if(!detach_check(user))
 		return
 
 	var/list/attachment_data

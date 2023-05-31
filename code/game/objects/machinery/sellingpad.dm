@@ -68,7 +68,7 @@
 		to_chat(user, "You bolt the [src] to the ground, activating it.")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 		icon_state = "broadcaster"
-		SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "asrs")
+		SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "asrs"))
 	else
 		to_chat(user, "You unbolt the [src] from the ground, deactivating it.")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)

@@ -77,7 +77,7 @@
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	item_state="cueball"
-	flags_inventory = 0
+	flags_inventory = NONE
 	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/head/greenbandanna

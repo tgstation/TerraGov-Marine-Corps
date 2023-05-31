@@ -17,6 +17,10 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 
+/mob/living/carbon/xenomorph/runner/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_LIGHT_STEP, XENO_TRAIT)
+
 /mob/living/carbon/xenomorph/runner/set_stat()
 	. = ..()
 	if(isnull(.))
