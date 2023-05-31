@@ -20,8 +20,6 @@
 	var/plasteel_remaining = 100
 	var/datum/action/innate/remote_fob/toggle_wiring/toggle_wiring //whether or not new barricades will be wired
 	var/do_wiring = TRUE
-	/*var/datum/action/innate/remote_fob/sentry/sentry
-	var/sentry_remaining = 0*/
 	var/datum/action/innate/remote_fob/eject_metal_action/eject_metal_action
 	var/datum/action/innate/remote_fob/eject_plasteel_action/eject_plasteel_action
 
@@ -61,7 +59,6 @@
 	var/list/details = list()
 	details +="It has [metal_remaining] sheets of metal remaining.</br>"
 	details +="It has [plasteel_remaining] sheets of plasteel remaining.</br>"
-	/*details +="It has [sentry_remaining] sentries ready for placement.</br>"*/
 	. += details.Join(" ")
 
 /obj/machinery/computer/camera_advanced/remote_fob/give_eye_control(mob/user)
@@ -162,11 +159,6 @@
 		toggle_wiring.target = src
 		toggle_wiring.give_action(user)
 		actions += toggle_wiring
-
-	/*if(sentry)
-		sentry.target = src
-		sentry.give_action(user)
-		actions += sentry*/
 
 	if(eject_metal_action)
 		eject_metal_action.target = src
