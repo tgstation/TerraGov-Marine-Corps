@@ -4280,10 +4280,6 @@
 "wm" = (
 /turf/open/ground/coast,
 /area/lv624/ground/river3)
-"wn" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "wp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access,
 /turf/open/floor/plating,
@@ -5751,10 +5747,6 @@
 /obj/structure/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport)
-"Dt" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "Du" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -8053,14 +8045,6 @@
 	dir = 8
 	},
 /area/lv624/lazarus/sleep_male)
-"Ot" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "Oy" = (
 /obj/structure/bed/chair/sofa{
 	dir = 1
@@ -9200,10 +9184,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
-"Uc" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "Ud" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9450,10 +9430,6 @@
 	dir = 8
 	},
 /area/lv624/ground/river3)
-"Vh" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "Vi" = (
 /obj/structure/flora/grass/tallgrass{
 	color = "#798963"
@@ -11244,7 +11220,7 @@ yp
 yp
 ek
 ek
-Ot
+ek
 yp
 yp
 yp
@@ -11344,7 +11320,7 @@ RA
 pf
 GF
 GF
-Dt
+Ux
 Ux
 Ux
 Ux
@@ -11448,7 +11424,7 @@ tf
 pf
 GF
 GF
-wn
+Ux
 Ux
 Ux
 Ux
@@ -12072,7 +12048,7 @@ nq
 pf
 GF
 GF
-wn
+Ux
 Ux
 Ux
 Ux
@@ -12176,7 +12152,7 @@ RA
 pf
 GF
 GF
-Dt
+Ux
 Ux
 Ux
 Ux
@@ -19039,7 +19015,7 @@ La
 jY
 tI
 tI
-Vh
+OP
 OP
 OP
 OP
@@ -19143,7 +19119,7 @@ Se
 jY
 tI
 tI
-Uc
+OP
 OP
 OP
 OP
@@ -19767,7 +19743,7 @@ ov
 jY
 tI
 tI
-Uc
+OP
 OP
 OP
 OP
@@ -19871,7 +19847,7 @@ La
 jY
 tI
 tI
-Vh
+OP
 OP
 OP
 OP
