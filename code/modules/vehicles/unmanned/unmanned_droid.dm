@@ -166,7 +166,6 @@
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_UNMANNED_ABILITY_UPDATED, CARGO_ABILITY)
 
-
 ///grab an eligible atom and store it, if we already have an atom place it on the ground
 /obj/vehicle/unmanned/droid/ripley/proc/handle_cargo(mob/user, atom/target, params)
 	///used to hold whatever we're grabbing
@@ -181,7 +180,7 @@
 		cargo.forceMove(drop_location())
 		cargo = null
 		return
-	if(ismob(clamptarget) || istype(clamptarget, /obj/vehicle/unmanned/droid) || istype(clamptarget, /obj/machinery/nuclearbomb) || isturf(clamptarget))
+	if(ismob(clamptarget) || istype(clamptarget, /obj/vehicle) || istype(clamptarget, /obj/machinery/nuclearbomb) || isturf(clamptarget))
 		return
 	if(!Adjacent(target) || clamptarget.anchored == TRUE)
 		return
@@ -195,7 +194,7 @@
 		clamptarget.forceMove(src)
 		clamptarget.anchored = initial(clamptarget.anchored)
 		to_chat(user, "[icon2html(src, user)][span_notice("[target] successfully loaded.")]") //AIs usually can't see balloon_alerts, send them a to_chat instead
-	COOLDOWN_START(src, clamp_cooldown, 2 SECONDS)
+	COOLDOWN_START(src, clamp_cooldown, 1 SECONDS)
 	playsound(src, 'sound/mecha/hydraulic.ogg', 50, FALSE, -6)
 
 /obj/vehicle/unmanned/droid/ripley/Destroy()
