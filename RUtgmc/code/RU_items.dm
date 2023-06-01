@@ -215,7 +215,7 @@ SUBSYSTEM_DEF(ru_items)
 
 /datum/ammo/bullet/rifle/T25
 	name = "smartmachinegun bullet"
-	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
+	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
