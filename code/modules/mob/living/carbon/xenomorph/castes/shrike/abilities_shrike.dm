@@ -400,7 +400,8 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(1, 1)
+				H.apply_effects(1,1)
+				H.adjust_stagger(2)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 3)
@@ -445,7 +446,6 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(0, 1)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 3)
