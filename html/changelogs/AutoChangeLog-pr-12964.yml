@@ -1,0 +1,6 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "Made the strip menu into a TGUI iteration"
+  - rscadd: "You can also untighten/tighten shield straps from the menu now!"
+  - bugfix: "Handcuff overlays should no longer be buggy"
