@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Field Commander robots now spawn with robot equipment"
-  - code_imp: "Adds support for species specific outfits"

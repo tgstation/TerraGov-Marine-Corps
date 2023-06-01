@@ -1,0 +1,4 @@
+2023-06-01:
+  Lumipharon:
+  - bugfix: Field Commander robots now spawn with robot equipment
+  - code_imp: Adds support for species specific outfits
