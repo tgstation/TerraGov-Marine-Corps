@@ -292,21 +292,13 @@
 	//xeno owner of this ability
 	var/mob/living/carbon/xenomorph/xowner = owner
 	var/turf/selectedturf = get_turf(xowner)
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
-		if(selectedturf.get_build_prereqs())
-			if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
-				build_resin(get_turf(owner))
-			else
-				build_resin(get_turf(A))
-			return
-		else if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-			preshutter_build_resin(A)
-	else
-		if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range)
-			build_resin(get_turf(owner))
-		else
-			build_resin(get_turf(A))
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && !selectedturf.get_build_prereqs())
+		preshutter_build_resin(A)
 		return
+	if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range)
+		build_resin(get_turf(owner))
+	else
+		build_resin(get_turf(A))
 
 /datum/action/xeno_action/activable/secrete_resin/proc/get_wait()
 	. = base_wait
