@@ -18,10 +18,6 @@
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
-/////////////
-/datum/component/deployable_item/Destroy(force, silent)
-	return ..()
-
 /datum/component/deployable_item/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(register_for_deploy_signal))
@@ -29,9 +25,6 @@
 /datum/component/deployable_item/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
-
-
-/////////
 
 ///Register click signals to be ready for deploying
 /datum/component/deployable_item/proc/register_for_deploy_signal(obj/item/item_equipped, mob/user, slot)
