@@ -1,5 +1,6 @@
 #define WITHER_RANGE 15
 
+// THIS SHOULD NEVER BE IN PLAYER CONTROL (like actually having a client)
 /mob/living/carbon/xenomorph/puppet
 	caste_base_type = /mob/living/carbon/xenomorph/puppet
 	name = "Puppet"
@@ -15,6 +16,9 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -1
 	flags_pass = PASSXENO
+	///pheromone list we arent allowed to receive
+	var/list/illegal_pheromones = list(AURA_XENO_RECOVERY, AURA_XENO_WARDING, AURA_XENO_FRENZY)
+	///our master
 	var/mob/living/carbon/xenomorph/master
 
 /mob/living/carbon/xenomorph/puppet/handle_special_state() //prevent us from using different run/walk sprites
@@ -32,6 +36,25 @@
 		adjustBruteLoss(15)
 	else
 		adjustBruteLoss(-5)
+
+/mob/living/carbon/xenomorph/puppet/receive_aura(aura_type, strength)
+	if(aura_type in illegal_pheromones)
+		return
+	var/static/list/puppet_phero_to_normal_phero = list(
+	AURA_XENO_PUPPETFURY = AURA_XENO_PUPPETFURY,
+	AURA_XENO_PUPPETWARDING = AURA_XENO_WARDING,
+	AURA_XENO_PUPPETFRENZY = AURA_XENO_FRENZY,
+	)
+	aura_type = puppet_phero_to_normal_phero[aura_type]
+	return ..()
+
+/mob/living/carbon/xenomorph/puppet/finish_aura_cycle()
+	var/fury = received_auras[AURA_XENO_PUPPETFURY] || 0
+	if(fury)
+		xeno_melee_damage_modifier = 1 + ((fury - 1) * 0.05)
+
+	..()
+
 //widow code again hooray
 /datum/ai_behavior/puppet
 	target_distance = 7
@@ -40,6 +63,7 @@
 	///should we go back to escorting the puppeteer if we stray too far
 	var/too_far_escort = TRUE
 	var/datum/weakref/master_ref
+
 
 /datum/ai_behavior/puppet/New(loc, parent_to_assign, escorted_atom)
 	. = ..()

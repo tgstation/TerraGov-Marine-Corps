@@ -46,6 +46,7 @@
 	// *** Puppeteer Abilities *** //
 	flay_plasma_gain = 100
 	max_puppets = 2
+	aura_strength = 2
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -59,10 +60,7 @@
 		/datum/action/xeno_action/activable/organic_bomb,
 		/datum/action/xeno_action/puppeteer_orders,
 		/datum/action/xeno_action/activable/articulate,
-		/datum/action/xeno_action/blessing,
-		/datum/action/xeno_action/blessing/fury,
-		/datum/action/xeno_action/blessing/ward,
-		/datum/action/xeno_action/blessing/frenzy,
+		/datum/action/xeno_action/puppet_blessings
 	)
 
 /datum/xeno_caste/puppeteer/young
@@ -90,6 +88,7 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
+	aura_strength = 2.3
 
 /datum/xeno_caste/puppeteer/elder
 	upgrade_name = "Elder"
@@ -117,6 +116,8 @@
 
 	// *** Puppeteer Abilities *** //
 	max_puppets = 3
+	
+	aura_strength = 2.6
 
 /datum/xeno_caste/puppeteer/ancient
 	upgrade_name = "Ancient"
@@ -143,6 +144,8 @@
 
 	// *** Puppeteer Abilities *** //
 	max_puppets = 5
+	
+	aura_strength = 2.8
 
 /datum/xeno_caste/puppeteer/primordial
 	upgrade_name = "Primordial"
@@ -180,8 +183,7 @@
 		/datum/action/xeno_action/activable/strings_attached,
 		/datum/action/xeno_action/puppeteer_orders,
 		/datum/action/xeno_action/activable/articulate,
-		/datum/action/xeno_action/blessing,
-		/datum/action/xeno_action/blessing/fury,
-		/datum/action/xeno_action/blessing/ward,
-		/datum/action/xeno_action/blessing/frenzy,
+		/datum/action/xeno_action/puppet_blessings
 	)
+	
+	aura_strength = 3

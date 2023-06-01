@@ -121,6 +121,13 @@ GLOBAL_LIST_INIT(puppeteer_order_images_list, list(
 		PUPPET_RECALL = image('icons/mob/actions.dmi', icon_state = "rally")
 		))
 
+//List of puppeteer pheromone images
+GLOBAL_LIST_INIT(puppeteer_phero_images_list, list(
+		AURA_XENO_PUPPETFURY = image('icons/mob/actions.dmi', icon_state = "Fury"),
+		AURA_XENO_PUPPETWARDING = image('icons/mob/actions.dmi', icon_state = "Warding"),
+		AURA_XENO_PUPPETFRENZY = image('icons/mob/actions.dmi', icon_state = "Frenzy"),
+		))
+
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)

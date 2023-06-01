@@ -849,6 +849,10 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define AURA_HUMAN_HOLD "hold"
 #define AURA_HUMAN_FOCUS "focus"
 
+#define AURA_XENO_PUPPETFURY "Bless Fury" //these are seperate until i can find a better implementation
+#define AURA_XENO_PUPPETWARDING "Bless Warding"
+#define AURA_XENO_PUPPETFRENZY "Bless Frenzy"
+
 //slowdown defines for liquid turfs
 
 ///Default slowdown for mobs moving through liquid

@@ -48,7 +48,7 @@
 	target_human.emote("scream")
 	owner_xeno.emote("roar")
 	target_human.apply_damage(damage = 45, damagetype = BRUTE, def_zone = BODY_ZONE_CHEST, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
-	target_human.apply_effects(stun = 0.2)
+	target_human.Paralyze(0.8 SECONDS)
 
 	owner_xeno.gain_plasma(owner_xeno.xeno_caste.flay_plasma_gain)
 	
@@ -109,8 +109,8 @@
 	owner.vis_contents += effect
 	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
 		to_chat(human, span_userdanger("oh god what the fuck oh god oh god"))
-		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob/living/carbon/human, emote), "scream"), rand(0.55, 0.7))
-		human.apply_status_effect(/datum/status_effect/dread, 6 SECONDS)
+		human.set_timed_status_effect(6 SECONDS, /datum/status_effect/dread)
+		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob/living/carbon/human, emote), "scream"), rand(1,2))
 	addtimer(CALLBACK(src, PROC_REF(clear_effect), effect), 3 SECONDS)
 	add_cooldown()
 	succeed_activate()
@@ -324,10 +324,33 @@
 // ***************************************
 // *********** Blessings todo
 // ***************************************
-/datum/action/xeno_action/blessing
-/datum/action/xeno_action/blessing/frenzy
-/datum/action/xeno_action/blessing/ward
-/datum/action/xeno_action/blessing/fury
+/datum/action/xeno_action/puppet_blessings
+	name = "Bestow Blessings"
+	action_icon_state = "emit_pheromones"
+	plasma_cost = 50
+	desc = "Give blessings to your puppets."
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
+	var/duration = 25 SECONDS
+
+//very much modified phero code
+/datum/action/xeno_action/puppet_blessings/proc/apply_pheros(phero_choice)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(X.current_aura && X.current_aura.aura_types[1] == phero_choice)
+		X.balloon_alert(X, "Cant bless yet!")
+		return fail_activate()
+	QDEL_NULL(X.current_aura)
+	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, duration, X.faction, X.hivenumber)
+	X.current_aura.affects_xenos = TRUE
+	X.balloon_alert(X, "[phero_choice]")
+	playsound(X.loc, "alien_drool", 25)
+	succeed_activate()
+
+/datum/action/xeno_action/puppet_blessings/action_activate()
+	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_phero_images_list, radius = 35)
+	if(!choice)
+		return fail_activate()
+	apply_pheros(choice)
 
 // ***************************************
 // *********** Orders
