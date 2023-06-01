@@ -157,4 +157,5 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"zulu_medic",
 	"zulu_private",
 	"zulu_smartgunner",
+	"behemoth",
 ))

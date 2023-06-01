@@ -150,6 +150,11 @@
 	icon = 'icons/Xeno/wound_overlays.dmi'
 	vis_flags = VIS_INHERIT_DIR
 
+/atom/movable/vis_obj/xeno_wounds/Initialize(mapload, datum/source)
+	. = ..()
+	if(isxenobehemoth(source))
+		icon = 'icons/Xeno/wound_overlays_3x3.dmi'
+
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 
