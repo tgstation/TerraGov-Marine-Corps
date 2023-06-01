@@ -171,7 +171,7 @@
 	///used to hold whatever we're grabbing
 	var/obj/clamptarget = target
 	var/area/sourcearea = get_area(src)
-	if(is_ground_level(src) && !isdropshiparea(get_area(src))) //AI powerloader is confined to shipside or the alamo
+	if(is_ground_level(z) && !isdropshiparea(get_area(src))) //AI powerloader is confined to shipside or the alamo
 		return
 	if(!COOLDOWN_CHECK(src, clamp_cooldown))
 		return
