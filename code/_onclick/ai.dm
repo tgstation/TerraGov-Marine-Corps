@@ -190,6 +190,53 @@
 	var/turf/firedturf = get_turf(src)
 	firedturf.AICtrlShiftClick(user)
 
+/* Xenos */
+/mob/living/carbon/xenomorph/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_NORMAL)
+
+/mob/living/carbon/xenomorph/shrike/AIMiddleClick(mob/living/silicon/ai/user) //xenomorph leadership castes get some reduction in ping cooldown
+	user.ai_ping(src, COOLDOWN_AI_PING_LOW)
+
+/mob/living/carbon/xenomorph/queen/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_LOW)
+
+/mob/living/carbon/xenomorph/king/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_LOW)
+
+/* Xeno structures */
+/obj/structure/xeno/silo/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_EXTRA_LOW)
+
+/obj/structure/xeno/xeno_turret/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_EXTRA_LOW)
+
+/obj/structure/xeno/evotower/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_EXTRA_LOW)
+
+/obj/structure/xeno/maturitytower/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_EXTRA_LOW)
+
+/obj/structure/xeno/pherotower/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_EXTRA_LOW)
+
+/obj/structure/xeno/spawner/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_EXTRA_LOW)
+
+/obj/structure/xeno/spawner/plant/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_LOW)
+
+/obj/structure/xeno/tunnel/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_LOW)
+
+/obj/structure/xeno/trap/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_NORMAL)
+
+/* acid */
+
+/obj/effect/xenomorph/acid/AIMiddleClick(mob/living/silicon/ai/user)
+	user.ai_ping(src, COOLDOWN_AI_PING_NORMAL)
+
+
 /* Turf */
 
 //
