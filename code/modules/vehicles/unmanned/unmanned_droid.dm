@@ -172,6 +172,7 @@
 	var/obj/clamptarget = target
 	var/area/sourcearea = get_area(src)
 	if(is_ground_level(z) && !isdropshiparea(get_area(src))) //AI powerloader is confined to shipside or the alamo
+		to_chat(user, "Connection too weak, return the droid shipside first.")
 		return
 	if(!COOLDOWN_CHECK(src, clamp_cooldown))
 		return
