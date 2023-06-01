@@ -584,15 +584,15 @@
 
 /obj/item/weapon/twohanded/flail//harvester
 	name = "\improper HP-S Harvester flail"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' flail. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
+	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' flail. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system. Its blade is attached to a flexible chain, enabling it to strike at range."
 	icon_state = "vali_flail"
-	item_state = "vali_claymore"
+	item_state = "vali_flail"
 	force = 35
 	force_wielded = 60
-	throwforce = 28
+	throwforce = 25
 	edge = 1
 	reach = 3
-	attack_speed = 1.3 SECONDS
+	attack_speed = 1.5 SECONDS
 	sharp = IS_SHARP_ITEM_SIMPLE
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = TWOHANDED
@@ -608,10 +608,10 @@
 	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
 	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/claymore/harvester/Initialize()
+/obj/item/weapon/twohanded/flail/Initialize()
 	. = ..()
 	AddComponent(/datum/component/harvester)
 
-/obj/item/weapon/claymore/harvester/get_mechanics_info()
+/obj/item/weapon/twohanded/flail/get_mechanics_info()
 	. = ..()
 	. += jointext(codex_info, "<br>")
