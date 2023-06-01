@@ -32,9 +32,8 @@
 			return ERROR_BLOCKER
 	if(!target.check_alien_construction(null, TRUE))
 		return ERROR_CONSTRUCT
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
-		if(target.get_build_prereqs())
-			return ERROR_INVALID_AREA
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && target.get_build_prereqs())
+		return ERROR_INVALID_AREA
 	if(needs_support)
 		for(var/D in GLOB.cardinals)
 			var/turf/TS = get_step(target,D)
