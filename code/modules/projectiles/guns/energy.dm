@@ -676,6 +676,7 @@
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
 	)
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_precision.dmi'
 
 /datum/lasrifle/base/energy_sniper_mode/standard
 	rounds_per_shot = 50

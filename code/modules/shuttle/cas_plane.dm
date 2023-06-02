@@ -345,7 +345,7 @@
 	if(eyeobj?.eye_user != user)
 		return
 	UnregisterSignal(user, COMSIG_MOB_CLICKON)
-	user.client.mouse_pointer_icon = initial(user.client.mouse_pointer_icon)
+	user.update_mouse_pointer()
 	off_action.remove_action(user)
 	cas_mini.remove_action(user)
 	for(var/V in eyeobj.visibleCameraChunks)

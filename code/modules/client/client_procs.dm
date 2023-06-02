@@ -346,6 +346,7 @@
 	view_size.update_zoom_mode()
 
 	set_fullscreen(prefs.fullscreen_mode)
+	mouse_pointer_icon = 'icons/UI_Icons/mouse_pointers/mouse.dmi'
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 

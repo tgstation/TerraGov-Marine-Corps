@@ -312,7 +312,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	else
 		REMOVE_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
 		if(boiler_owner.client)
-			boiler_owner.client.mouse_pointer_icon = initial(boiler_owner.client.mouse_pointer_icon)
+			boiler_owner.update_mouse_pointer()
 
 	boiler_owner.anchored = on
 

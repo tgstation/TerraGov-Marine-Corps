@@ -915,7 +915,8 @@
 ///Resets the autofire component.
 /datum/action/xeno_action/activable/xeno_spit/proc/reset_fire()
 	set_target(null)
-	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
+	if(owner.client)
+		owner.update_mouse_pointer()
 
 ///Changes the current target.
 /datum/action/xeno_action/activable/xeno_spit/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -942,7 +943,8 @@
 ///Stops the Autofire component and resets the current cursor.
 /datum/action/xeno_action/activable/xeno_spit/proc/stop_fire()
 	SIGNAL_HANDLER
-	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
+	if(owner.client)
+		owner.update_mouse_pointer()
 	SEND_SIGNAL(owner, COMSIG_XENO_STOP_FIRE)
 
 /datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()

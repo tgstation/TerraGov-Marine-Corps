@@ -278,6 +278,8 @@
 	var/icon_overlay_x_offset = 0
 	///Whether the icon_state overlay is offset in the Y axis
 	var/icon_overlay_y_offset = 0
+	///Mouse pointer for gun
+	var/crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_standard.dmi'
 
 /*
  *
@@ -451,7 +453,8 @@
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
 		COMSIG_LIVING_STAGGER_CHANGED,))
-		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		if(gun_user.client)
+			gun_user.update_mouse_pointer()
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user.hud_used.remove_ammo_hud(src)
 		gun_user = null
@@ -709,6 +712,7 @@
 		var/fire_return // todo fix: code expecting return values from async
 		ASYNC
 			fire_return = Fire()
+			gun_user?.client?.mouse_pointer_icon = crosshair_icon
 		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
@@ -716,7 +720,7 @@
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 	if(master_gun)
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
-	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	gun_user?.client?.mouse_pointer_icon = crosshair_icon
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -739,7 +743,8 @@
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
 	active_attachable?.stop_fire()
-	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+	if(gun_user.client)
+		gun_user.update_mouse_pointer()
 	if(!HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		reset_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
@@ -754,7 +759,8 @@
 		modify_auto_burst_delay(-autoburst_delay + autoburst_delay/(1 + akimbo_additional_delay))
 		dual_wield = FALSE
 		setup_bullet_accuracy()
-	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+	if(gun_user.client)
+		gun_user.update_mouse_pointer()
 
 ///Inform the gun if he is currently bursting, to prevent reloading
 /obj/item/weapon/gun/proc/set_bursting(bursting)

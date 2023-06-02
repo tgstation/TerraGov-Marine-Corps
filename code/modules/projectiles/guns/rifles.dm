@@ -254,6 +254,7 @@
 	scatter = -4
 	burst_amount = 1
 	movement_acc_penalty_mult = 6
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_precision.dmi'
 
 /obj/item/weapon/gun/rifle/standard_dmr/marksman
 	starting_attachment_types = list(/obj/item/attachable/scope, /obj/item/attachable/angledgrip, /obj/item/attachable/extended_barrel)
@@ -332,6 +333,7 @@
 	extra_delay = 0.25 SECONDS
 	accuracy_mult = 0.9
 	scatter = 0
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_precision.dmi'
 
 /obj/item/weapon/gun/rifle/standard_br/standard
 	starting_attachment_types = list(/obj/item/attachable/stock/t64stock, /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
@@ -1177,6 +1179,7 @@
 	burst_amount = 1
 	scatter = -2
 	movement_acc_penalty_mult = 3
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_spread.dmi'
 
 /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 	starting_attachment_types = list(/obj/item/attachable/stock/tx15, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/grenade_launcher/underslung)
@@ -1358,6 +1361,7 @@
 	wield_delay = 1.3 SECONDS
 	cock_delay = 0.7 SECONDS
 	movement_acc_penalty_mult = 6
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_precision.dmi'
 
 /obj/item/weapon/gun/rifle/chambered/unscoped
 	starting_attachment_types = list(/obj/item/attachable/stock/tl127stock)
@@ -1408,6 +1412,7 @@
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
 	movement_acc_penalty_mult = 6
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_precision.dmi'
 
 //-------------------------------------------------------
 //AR-11 Rifle, based on the gamer-11
@@ -1699,6 +1704,7 @@
 	scatter = -2
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_spread.dmi'
 
 //-------------------------------------------------------
 // AR-55 built in grenade launcher
@@ -1859,6 +1865,7 @@
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	movement_acc_penalty_mult = 6
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_precision.dmi'
 
 //-------------------------------------------------------
 // V-31 SOM rifle

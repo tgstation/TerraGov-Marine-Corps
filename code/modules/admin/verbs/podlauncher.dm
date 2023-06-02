@@ -523,7 +523,7 @@
 			holder.mouse_up_icon = null
 			holder.mouse_down_icon = null
 			holder.click_intercept = null
-			holder.mouse_pointer_icon = initial(holder.mouse_pointer_icon)
+			holder.update_mouse_pointer()
 
 
 /datum/podlauncher/InterceptClickOn(user, params, atom/target)

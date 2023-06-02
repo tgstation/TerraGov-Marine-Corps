@@ -350,7 +350,8 @@
 
 /obj/item/stack/throwing_knife/unequipped(mob/unequipper, slot)
 	. = ..()
-	living_user?.client?.mouse_pointer_icon = initial(living_user.client.mouse_pointer_icon) // Force resets the mouse pointer to default so it defaults when the last knife is thrown
+	if(living_user.client)
+		living_user.update_mouse_pointer()
 	UnregisterSignal(unequipper, COMSIG_MOB_ITEM_AFTERATTACK)
 	UnregisterSignal(unequipper, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
 	living_user = null
@@ -364,7 +365,8 @@
 ///Stops the Autofire component and resets the current cursor.
 /obj/item/stack/throwing_knife/proc/stop_fire()
 	SIGNAL_HANDLER
-	living_user?.client?.mouse_pointer_icon = initial(living_user.client.mouse_pointer_icon)
+	if(living_user.client)
+		living_user.update_mouse_pointer()
 	set_target(null)
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
@@ -380,7 +382,7 @@
 	if(!current_target)
 		return
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
-	living_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	living_user?.client?.mouse_pointer_icon = 'icons/UI_Icons/mouse_pointers/crosshair_standard.dmi'
 
 ///Throws a knife from the stack, or, if the stack is one, throws the stack.
 /obj/item/stack/throwing_knife/proc/throw_knife()

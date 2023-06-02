@@ -800,9 +800,9 @@
 
 ///Update the mouse pointer of the attached client in this mob
 /mob/proc/update_mouse_pointer()
-	if (!client)
+	if(!client)
 		return
-	client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+	client.mouse_pointer_icon = 'icons/UI_Icons/mouse_pointers/mouse.dmi'
 
 
 /mob/proc/update_names_joined_list(new_name, old_name)

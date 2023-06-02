@@ -31,6 +31,7 @@
 	upper_akimbo_accuracy = 5
 
 	placed_overlay_iconstate = "shotgun"
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_spread.dmi'
 
 
 //-------------------------------------------------------
@@ -428,6 +429,7 @@
 	movement_acc_penalty_mult = 4.5
 
 	placed_overlay_iconstate = "wood"
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_precision.dmi'
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unscoped
 	starting_attachment_types = list(/obj/item/attachable/stock/mosin)
@@ -483,6 +485,7 @@
 	movement_acc_penalty_mult = 5
 
 	placed_overlay_iconstate = "wood"
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_precision.dmi'
 
 //***********************************************************
 // Derringer
@@ -605,6 +608,7 @@
 	cock_delay = 2
 	aim_slowdown = 0.6
 	movement_acc_penalty_mult = 5
+	crosshair_icon = 'icons/UI_Icons/mouse_pointers/crosshair_standard.dmi'
 
 //------------------------------------------------------
 //MBX900 Lever Action Shotgun
