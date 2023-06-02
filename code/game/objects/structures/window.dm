@@ -23,6 +23,9 @@
 	var/deconstructable = TRUE
 	flags_pass = PASSLASER
 
+/obj/structure/window/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_GLASS, -10, 5)
+
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10
@@ -356,7 +359,7 @@
 	basestate = "rwindow"
 	max_integrity = 1500
 	reinf = TRUE
-	resistance_flags = 10 // I have no clue what those are.
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -364,7 +367,7 @@
 	icon_state = "twindow"
 	basestate = "twindow"
 	opacity = TRUE
-	tinted =  TRUE
+	tinted = TRUE
 
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
@@ -457,7 +460,7 @@
 	icon_state = "ship_window-0"
 	basestate = "ship_window"
 
-/obj/structure/window/framed/mainship/spaceworthy/Initialize()
+/obj/structure/window/framed/mainship/spaceworthy/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/windowshutter/cokpitshutters)
 
@@ -561,7 +564,7 @@
 	window_frame = /obj/structure/window_frame/colony/reinforced
 
 /obj/structure/window/framed/colony/reinforced/tinted
-	name =  "tinted reinforced window"
+	name = "tinted reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it. This one is opaque. You have an uneasy feeling someone might be watching from the other side."
 	opacity = TRUE
 
@@ -641,7 +644,7 @@
 	resistance_flags = BANISH_IMMUNE
 	icon_state = "window-invincible"
 
-/obj/structure/window/framed/prison/reinforced/hull/Initialize()
+/obj/structure/window/framed/prison/reinforced/hull/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/windowshutter)
 
@@ -674,3 +677,22 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	deconstructable = FALSE
 	max_integrity = 300
+
+/obj/structure/window/framed/mainship/canterbury/dropship
+	name = "orbital insertion safety window"
+	desc = "A glass window with a reinforced rod matrice inside a wall frame, 3 times as strong as a normal window to be spaceworthy."
+	max_integrity = 300 // 13 hunter slashes
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
+	window_frame = /obj/structure/window_frame/mainship/dropship
+
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced
+	name = "reinforced orbital insertion safety window"
+	desc = "A durable glass window with a specialized reinforced rod matrice inside a wall frame, 6 times as strong as a normal window to be spaceworthy and withstand impacts."
+	max_integrity = 600 // 25 hunter slashes

@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - bugfix: "Dropping a gun won't make all the ammo fall out of attachments"

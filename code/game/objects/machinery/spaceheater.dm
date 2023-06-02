@@ -12,7 +12,7 @@
 	var/heating_power = 40000
 
 
-/obj/machinery/space_heater/Initialize()
+/obj/machinery/space_heater/Initialize(mapload)
 	. = ..()
 	cell = new (src)
 	cell.charge += 500

@@ -52,6 +52,11 @@
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 
+	/// The voice that this movable makes when speaking
+	var/voice
+	/// The filter to apply to the voice when processing the TTS audio message.
+	var/voice_filter = ""
+
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_movable_lights
 	///Highest-intensity light affecting us, which determines our visibility.
@@ -205,7 +210,7 @@
 		else if((direction & SOUTH) && loc.Exit(src, SOUTH) && get_step(loc, SOUTH).Enter(src))
 			can_pass_diagonally = SOUTH
 		else if((direction & EAST) && loc.Exit(src, EAST) && get_step(loc, EAST).Enter(src))
-			can_pass_diagonally =  EAST
+			can_pass_diagonally = EAST
 		else if((direction & WEST) && loc.Exit(src, WEST) && get_step(loc, WEST).Enter(src))
 			can_pass_diagonally = WEST
 		else

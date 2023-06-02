@@ -66,8 +66,9 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
-	interaction_flags = INTERACT_MACHINE_TGUI
+	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	wrenchable = TRUE
+	voice_filter = "aderivative"
 
 	///Whether this vendor is active or not.
 	var/active = TRUE
@@ -173,6 +174,13 @@
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	wires = new /datum/wires/vending(src)
+
+	if(SStts.tts_enabled)
+		var/static/vendor_voice_by_type = list()
+		if(!vendor_voice_by_type[type])
+			vendor_voice_by_type[type] = pick(SStts.available_speakers)
+		voice = vendor_voice_by_type[type]
+
 	slogan_list = splittext(product_slogans, ";")
 
 	// So not all machines speak at the exact same time.

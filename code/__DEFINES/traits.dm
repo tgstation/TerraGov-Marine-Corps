@@ -108,6 +108,8 @@
 #define SHATTERING_ROAR_ABILITY_TRAIT "shattering_roar_ability_trait"
 #define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
 #define VALHALLA_TRAIT "valhalla"
+#define WEIGHTBENCH_TRAIT "weightbench"
+#define BOILER_ROOTED_TRAIT "boiler_rooted"
 
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"
@@ -137,11 +139,17 @@
 #define TRAIT_TIME_SHIFTED "time_shifted"
 #define TRAIT_LEASHED "leashed"
 #define TRAIT_CAN_VENTCRAWL "can_ventcrawl"
+#define TRAIT_WORKED_OUT "worked_out" //user has a cqc buff from working out
+///Makes no footsteps at all
+#define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
+///quieter footsteps
+#define TRAIT_LIGHT_STEP "light_step"
+///noisier footsteps
+#define TRAIT_HEAVY_STEP "heavy_step"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
-#define TRAIT_FIRERESISTANT "fire_resistant" // Won't catch on fire
 #define TRAIT_BATONIMMUNE "baton_immunity"
 #define TRAIT_SLEEPIMMUNE "sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE "flashbang_immunity"
@@ -196,6 +204,8 @@
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
+//structure traits
+#define BENCH_BEING_USED "bench_being_used"
 
 // UI traits
 /// Inability to access UI hud elements.
@@ -209,3 +219,6 @@
 //added to escaped humans
 #define TRAIT_HAS_ESCAPED "escaped_marine"
 #define TRAIT_HAS_BEEN_TARGETED "been_targeted"
+
+//added to AIs firing railguns
+#define TRAIT_IS_FIRING_RAILGUN "firing_railgun"

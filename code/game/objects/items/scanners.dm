@@ -113,6 +113,7 @@ REAGENT SCANNER
 	patient = M
 	current_user = user
 	if(show_patient)
+		balloon_alert_to_viewers("Showed healthscan", vision_distance = 4)
 		ui_interact(M)
 	else
 		ui_interact(user)
@@ -297,6 +298,10 @@ REAGENT SCANNER
 		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
+
+/obj/item/healthanalyzer/gloves/unequipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK) //Unregisters in the case of getting delimbed
 
 //when you are wearing these gloves, this will call the normal attack code to health scan the target
 /obj/item/healthanalyzer/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)

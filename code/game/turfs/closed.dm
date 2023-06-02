@@ -12,12 +12,19 @@
 	///used for plasmacutter deconstruction
 	var/open_turf_type = /turf/open/floor/plating
 
+/turf/closed/Initialize(mapload)
+	. = ..()
+	add_debris_element()
+
 /turf/closed/mineral
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	minimap_color = NONE
+
+/turf/closed/mineral/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
@@ -119,6 +126,18 @@
 	icon_state = "rock_dark"
 	resistance_flags = RESIST_ALL
 
+//desertdam rock, seen in certain EORD maps. Surprisingly not seen in Desert Dam.
+/turf/closed/mineral/smooth/desertdamrockwall
+	name = "rockwall"
+	icon = 'icons/turf/walls/cave.dmi'
+	icon_state = "cave-0"
+	color = "#c9a37b"
+	walltype = "cave"
+	base_icon_state = "cave"
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'
@@ -130,6 +149,9 @@
 	base_icon_state = "junglewall"
 	walltype = "junglewall"
 	open_turf_type = /turf/open/ground/jungle/clear
+
+/turf/closed/gm/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_LEAF, -10, 5)
 
 /turf/closed/gm/tree
 	name = "dense jungle trees"
@@ -146,6 +168,7 @@
 	name = "dense jungle wall"
 	resistance_flags = PLASMACUTTER_IMMUNE
 	minimap_color = NONE
+	icon_state = "wall-dense"
 
 /turf/closed/gm/dense/Initialize(mapload)
 	. = ..()
@@ -154,24 +177,14 @@
 		if(!isnull(turf_to_check) && !turf_to_check.density && !isspaceturf(turf_to_check))
 			minimap_color = MINIMAP_SOLID
 
-//desertdam rock
-/turf/closed/desertdamrockwall
-	name = "rockwall"
-	icon = 'icons/turf/walls/cave.dmi'
-	icon_state = "cave-0"
-	color = "#c9a37b"
-	walltype = "cave"
-	base_icon_state = "cave"
-	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
-
-/turf/closed/desertdamrockwall/invincible
-	resistance_flags = RESIST_ALL
-	icon_state = "wall-invincible"
-
-/turf/closed/desertdamrockwall/invincible/perimeter
+//Orange Border (What else am I meant to call it?)
+/turf/closed/perimeter
 	name = "wall"
+	resistance_flags = RESIST_ALL
+	base_icon_state = "pwall"
 	icon_state = "pwall"
 	icon = 'icons/turf/shuttle.dmi'
+
 
 //lava rock
 /turf/closed/brock
@@ -206,6 +219,9 @@
 	icon_state = "Single"
 	desc = "It is very thick."
 	open_turf_type = /turf/open/floor/plating/ground/ice
+
+/turf/closed/ice/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SNOW, -10, 5, 1)
 
 /turf/closed/ice/single
 	icon_state = "Single"
@@ -256,7 +272,7 @@
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(CHECK_BITFIELD(resistance_flags, RESIST_ALL) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
+		if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
 			to_chat(user, span_warning("[P] can't cut through this!"))
 			return
 		else if(!P.start_cut(user, name, src))
@@ -303,6 +319,9 @@
 	icon = 'icons/turf/rockwall.dmi'
 	resistance_flags = PLASMACUTTER_IMMUNE
 	open_turf_type = /turf/open/floor/plating/ground/ice
+
+/turf/closed/ice_rock/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SNOW, -10, 5, 1)
 
 /turf/closed/ice_rock/single
 	icon_state = "single"
@@ -363,6 +382,9 @@
 	plane = FLOOR_PLANE
 	resistance_flags = PLASMACUTTER_IMMUNE
 
+/turf/closed/shuttle/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"
 	density = FALSE
@@ -416,10 +438,22 @@
 	plane = GAME_PLANE
 
 /turf/closed/shuttle/ert/engines/left
-	icon_state = "ertshuttle_exterior_engine_left"
+	icon_state = "leftengine_1"
+
+/turf/closed/shuttle/ert/engines/left/two
+	icon_state = "leftengine_2"
+
+/turf/closed/shuttle/ert/engines/left/three
+	icon_state = "leftengine_3"
 
 /turf/closed/shuttle/ert/engines/right
-	icon_state = "ertshuttle_exterior_engine_right"
+	icon_state = "rightengine_1"
+
+/turf/closed/shuttle/ert/engines/right/two
+	icon_state = "rightengine_2"
+
+/turf/closed/shuttle/ert/engines/right/three
+	icon_state = "rightengine_3"
 
 /turf/closed/shuttle/dropship1
 	name = "\improper Alamo"

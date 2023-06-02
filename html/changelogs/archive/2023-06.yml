@@ -1,0 +1,18 @@
+2023-06-01:
+  Lumipharon:
+  - bugfix: Field Commander robots now spawn with robot equipment
+  - code_imp: Adds support for species specific outfits
+2023-06-02:
+  CCorvet:
+  - qol: By default, cades are wired
+  Lumipharon:
+  - balance: Some minor tweaks to medic and SL loadouts
+  RipGrayson:
+  - qol: The AI can now issue an alert for a specific xeno or xeno structure by middle
+      clicking them.
+  ivanmixo:
+  - bugfix: Fixed `COMSIG_MOB_CLICKON` sleeping when climbing, this should fix crate
+      climbing/pulling
+  - rscadd: Made the strip menu into a TGUI iteration
+  - rscadd: You can also untighten/tighten shield straps from the menu now!
+  - bugfix: Handcuff overlays should no longer be buggy

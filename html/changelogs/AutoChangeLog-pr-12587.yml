@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - code_imp: "The mc now detects if its priority budget gets out of sync with reality and soft resets"

@@ -34,7 +34,7 @@
 /area/lv624/ground/caves/central2)
 "gv" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "hQ" = (
 /obj/structure/rack,
@@ -80,7 +80,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "kJ" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
@@ -119,12 +119,12 @@
 "po" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "pN" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -139,7 +139,7 @@
 /area/lv624/ground/caves/central2)
 "ru" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/machinegun{
+/obj/effect/spawner/random/weaponry/ammo/machinegun{
 	pixel_x = -5;
 	pixel_y = 6
 	},
@@ -192,7 +192,7 @@
 /turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "yC" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "zz" = (
@@ -284,16 +284,16 @@
 "KV" = (
 /obj/item/ammo_casing/shell,
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/gun/machineguns{
+/obj/effect/spawner/random/weaponry/gun/machineguns{
 	pixel_x = 2;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Lt" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "LD" = (
@@ -308,7 +308,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "LT" = (
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "MB" = (
@@ -364,7 +364,7 @@
 /area/lv624/ground/caves/central2)
 "SB" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "SE" = (
 /obj/effect/landmark/corpsespawner/colonist,
@@ -391,7 +391,7 @@
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Ux" = (
@@ -408,7 +408,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "VD" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "VF" = (
 /turf/closed/wall/wood,
@@ -438,11 +438,11 @@
 /area/lv624/ground/caves/central1)
 "YM" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/gun/machineguns{
+/obj/effect/spawner/random/weaponry/gun/machineguns{
 	pixel_x = -2;
 	pixel_y = 6
 	},
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor/wood/broken/four,
 /area/lv624/ground/caves/central2)
 "Za" = (
@@ -452,12 +452,12 @@
 /obj/item/stack/sheet/wood,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "ZL" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 
 (1,1,1) = {"

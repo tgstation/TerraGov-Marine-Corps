@@ -16,7 +16,7 @@
 	/// The mob controlling the droid remotely
 	var/datum/weakref/remote_user
 
-/obj/vehicle/unmanned/droid/Initialize()
+/obj/vehicle/unmanned/droid/Initialize(mapload)
 	. = ..()
 	antenna = new
 
@@ -47,6 +47,9 @@
 		UnregisterSignal(user, COMSIG_UNMANNED_COORDINATES)
 
 /obj/vehicle/unmanned/droid/Destroy()
+	if(beacon_datum)
+		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(beacon_datum)
 	if(!remote_user) //No remote user, no need to do this.
 		return ..()
 	var/mob/living/living_user = remote_user.resolve()
@@ -79,7 +82,7 @@
 
 /obj/vehicle/unmanned/droid/scout/on_remote_toggle(datum/source, is_on, mob/user)
 	. = ..()
-	SEND_SIGNAL(src, COMSIG_UNMANNED_ABILITY_UPDATED)
+	SEND_SIGNAL(src, COMSIG_UNMANNED_ABILITY_UPDATED, CLOAK_ABILITY)
 
 ///runs checks for cloaking then begins to cloak it
 /obj/vehicle/unmanned/droid/scout/proc/cloak_drone(datum/source)

@@ -16,7 +16,7 @@
 	var/drying_timer
 
 
-/obj/effect/decal/cleanable/blood/Initialize()
+/obj/effect/decal/cleanable/blood/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -146,7 +146,7 @@
 	amount = 0
 	var/message
 
-/obj/effect/decal/cleanable/blood/writing/Initialize()
+/obj/effect/decal/cleanable/blood/writing/Initialize(mapload)
 	. = ..()
 	if(length(random_icon_states))
 		for(var/obj/effect/decal/cleanable/blood/writing/W in loc)
@@ -228,7 +228,7 @@
 	random_icon_states = list("mucus")
 	var/dry=0 // Keeps the lag down
 
-/obj/effect/decal/cleanable/mucus/Initialize()
+/obj/effect/decal/cleanable/mucus/Initialize(mapload)
 	. = ..()
 	addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2)
 

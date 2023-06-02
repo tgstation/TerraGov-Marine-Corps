@@ -12,7 +12,7 @@
 
 	layer = POINT_LAYER
 
-/obj/effect/baseturf_helper/Initialize()
+/obj/effect/baseturf_helper/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -92,7 +92,7 @@
 	icon_state = ""
 	var/late = FALSE
 
-/obj/effect/mapping_helpers/Initialize()
+/obj/effect/mapping_helpers/Initialize(mapload)
 	. = ..()
 	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
@@ -187,7 +187,7 @@
 	var/hide = FALSE
 
 /obj/effect/mapping_helpers/simple_pipes/LateInitialize()
-	var/list/connections = list( dir2text(NORTH)  = FALSE, dir2text(SOUTH) = FALSE , dir2text(EAST) = FALSE , dir2text(WEST) = FALSE)
+	var/list/connections = list( dir2text(NORTH) = FALSE, dir2text(SOUTH) = FALSE , dir2text(EAST) = FALSE , dir2text(WEST) = FALSE)
 	var/list/valid_connectors = typecacheof(/obj/machinery/atmospherics)
 	for(var/direction in connections)
 		var/turf/T = get_step(src,  text2dir(direction))
@@ -261,7 +261,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 /obj/effect/mapping_helpers/no_lava
 	icon_state = "no_lava"
 
-/obj/effect/mapping_helpers/no_lava/Initialize()
+/obj/effect/mapping_helpers/no_lava/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	T.flags_1 |= NO_LAVA_GEN_1

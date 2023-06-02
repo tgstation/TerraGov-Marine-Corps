@@ -20,7 +20,7 @@
 		)
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = null
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS
@@ -63,7 +63,7 @@
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	icon_state = "holdingpack"
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	max_storage_space = 28
 
 /obj/item/storage/backpack/holding/proc/failcheck(mob/user)
@@ -96,7 +96,7 @@
 	item_state = "giftbag"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = null
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 400 // can store a ton of shit!
 
 /obj/item/storage/backpack/cultpack
@@ -682,7 +682,7 @@
 	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor. Serves as a satchel."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/equippedsniper/Initialize()
+/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/equippedsniper/Initialize(mapload)
 	. = ..()
 	new /obj/item/detpack(src)
 

@@ -44,7 +44,7 @@
 /area/deathmatch)
 "al" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "am" = (
 /turf/closed/shuttle,
@@ -93,7 +93,7 @@
 /area/deathmatch)
 "aw" = (
 /obj/effect/ai_node,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "ax" = (
 /obj/effect/decal/cleanable/blood,
@@ -138,7 +138,7 @@
 /area/deathmatch)
 "aF" = (
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "aG" = (
 /turf/open/ground/coast,
@@ -224,7 +224,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aX" = (
@@ -313,7 +313,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "bo" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "bp" = (
 /obj/effect/ai_node,
@@ -333,6 +333,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/landmark/eord_roomba,
 /turf/open/floor,
 /area/deathmatch)
 "bt" = (
@@ -402,7 +403,7 @@
 /area/deathmatch)
 "bG" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor,
 /area/deathmatch)
 "bH" = (
@@ -550,7 +551,7 @@
 /area/deathmatch)
 "cn" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "co" = (
 /obj/effect/landmark/deathmatch,
@@ -567,7 +568,7 @@
 /area/deathmatch)
 "do" = (
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "dw" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -576,6 +577,12 @@
 /area/deathmatch)
 "fY" = (
 /turf/closed/wall/sulaco,
+/area/deathmatch)
+"gz" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/ground/coast{
+	dir = 4
+	},
 /area/deathmatch)
 "kU" = (
 /obj/structure/barricade/guardrail{
@@ -607,6 +614,10 @@
 	dir = 6
 	},
 /area/deathmatch)
+"uM" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/ground/grass,
+/area/deathmatch)
 "vt" = (
 /obj/structure/barricade/guardrail{
 	dir = 4;
@@ -622,7 +633,7 @@
 "Ab" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor,
 /area/deathmatch)
 "BR" = (
@@ -651,6 +662,10 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
+/area/deathmatch)
+"ZQ" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 
 (1,1,1) = {"
@@ -1092,7 +1107,7 @@ bu
 bu
 bR
 bu
-bu
+uM
 bu
 as
 aR
@@ -1117,7 +1132,7 @@ cg
 cd
 Ci
 cd
-cg
+ZQ
 kU
 cl
 as
@@ -1666,7 +1681,7 @@ ab
 aA
 aA
 aA
-aA
+gz
 aA
 aA
 aA
@@ -2209,7 +2224,7 @@ bt
 bu
 bu
 bu
-bu
+uM
 bu
 bu
 bu
@@ -2223,7 +2238,7 @@ aL
 fY
 fY
 fY
-bu
+uM
 bu
 au
 bu
@@ -2542,7 +2557,7 @@ fY
 bt
 bu
 bu
-bu
+uM
 bu
 bu
 bu

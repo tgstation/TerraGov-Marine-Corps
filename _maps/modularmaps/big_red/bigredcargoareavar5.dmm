@@ -250,7 +250,7 @@
 	},
 /area/bigredv2/outside/nw)
 "qJ" = (
-/obj/structure/largecrate/random/barrel/white,
+/obj/effect/spawner/random/misc/structure/barrel/white,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "qY" = (
@@ -348,7 +348,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "yf" = (
-/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "ym" = (
@@ -356,7 +356,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "yq" = (
-/obj/structure/largecrate/random/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "yR" = (
@@ -413,7 +413,7 @@
 /area/bigredv2/outside/nw)
 "BW" = (
 /obj/machinery/light,
-/obj/structure/largecrate,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Cj" = (
@@ -524,7 +524,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Jr" = (
-/obj/structure/largecrate/random/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -685,7 +685,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "RN" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Sj" = (
@@ -721,7 +721,7 @@
 /area/bigredv2/caves/rock)
 "UG" = (
 /obj/machinery/light,
-/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "UL" = (

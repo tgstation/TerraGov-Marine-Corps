@@ -21,50 +21,100 @@
 	overlays += I //we use an overlay so the explosion and light source are both in the correct location
 	icon_state = null
 
+GLOBAL_LIST_EMPTY(blood_particles)
+/particles/splatter
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	width = 500
+	height = 500
+	count = 20
+	spawning = 20
+	lifespan = 0.5 SECONDS
+	fade = 0.7 SECONDS
+	grow = 0.1
+	scale = 0.2
+	spin = generator(GEN_NUM, -20, 20)
+	velocity = list(50, 0)
+	friction = generator(GEN_NUM, 0.1, 0.5)
+	position = generator(GEN_CIRCLE, 6, 6)
+
+/particles/splatter/New(set_color)
+	..()
+	if(set_color != "red") // we're already red colored by default
+		color = set_color
+
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter
 	icon = 'icons/effects/blood.dmi'
 	duration = 0.5 SECONDS
 	randomdir = FALSE
-	layer = BELOW_MOB_LAYER
+	layer = ABOVE_MOB_LAYER
+	alpha = 175
 	var/splatter_type = "splatter"
 
-/obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, set_dir, blood_color)
+/obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, angle, blood_color)
 	if(!blood_color)
 		CRASH("Tried to create a blood splatter without a blood_color")
-
+	var/x_component = sin(angle) * -15
+	var/y_component = cos(angle) * -15
+	if(!GLOB.blood_particles[blood_color])
+		GLOB.blood_particles[blood_color] = new /particles/splatter(blood_color)
+	particles = GLOB.blood_particles[blood_color]
+	particles.velocity = list(x_component, y_component)
 	color = blood_color
-	if(ISDIAGONALDIR(set_dir))
-		icon_state = "[splatter_type][pick(1, 2, 6)]"
-	else
-		icon_state = "[splatter_type][pick(3, 4, 5)]"
+	icon_state = "[splatter_type][pick(1, 2, 3, 4, 5, 6)]"
 	. = ..()
 	var/target_pixel_x = 0
 	var/target_pixel_y = 0
-	switch(set_dir)
-		if(NORTH)
-			target_pixel_y = 16
-		if(SOUTH)
-			target_pixel_y = -16
-			layer = ABOVE_MOB_LAYER
-		if(EAST)
-			target_pixel_x = 16
-		if(WEST)
-			target_pixel_x = -16
-		if(NORTHEAST)
-			target_pixel_x = 16
-			target_pixel_y = 16
-		if(NORTHWEST)
-			target_pixel_x = -16
-			target_pixel_y = 16
-		if(SOUTHEAST)
-			target_pixel_x = 16
-			target_pixel_y = -16
-			layer = ABOVE_MOB_LAYER
-		if(SOUTHWEST)
-			target_pixel_x = -16
-			target_pixel_y = -16
-			layer = ABOVE_MOB_LAYER
+	switch(angle)
+		if(0, 360)
+			target_pixel_x = 0
+			target_pixel_y = 8
+		if(1 to 44)
+			target_pixel_x = round(4 * ((angle) / 45))
+			target_pixel_y = 8
+		if(45)
+			target_pixel_x = 8
+			target_pixel_y = 8
+		if(46 to 89)
+			target_pixel_x = 8
+			target_pixel_y = round(4 * ((90 - angle) / 45))
+		if(90)
+			target_pixel_x = 8
+			target_pixel_y = 0
+		if(91 to 134)
+			target_pixel_x = 8
+			target_pixel_y = round(-3 * ((angle - 90) / 45))
+		if(135)
+			target_pixel_x = 8
+			target_pixel_y = -6
+		if(136 to 179)
+			target_pixel_x = round(4 * ((180 - angle) / 45))
+			target_pixel_y = -6
+		if(180)
+			target_pixel_x = 0
+			target_pixel_y = -6
+		if(181 to 224)
+			target_pixel_x = round(-6 * ((angle - 180) / 45))
+			target_pixel_y = -6
+		if(225)
+			target_pixel_x = -6
+			target_pixel_y = -6
+		if(226 to 269)
+			target_pixel_x = -6
+			target_pixel_y = round(-6 * ((270 - angle) / 45))
+		if(270)
+			target_pixel_x = -6
+			target_pixel_y = 0
+		if(271 to 314)
+			target_pixel_x = -6
+			target_pixel_y = round(8 * ((angle - 270) / 45))
+		if(315)
+			target_pixel_x = -6
+			target_pixel_y = 8
+		if(316 to 359)
+			target_pixel_x = round(-6 * ((360 - angle) / 45))
+			target_pixel_y = 8
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/transfer_plasma
@@ -91,13 +141,30 @@
 	layer = initial(layer)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
+/obj/effect/temp_visual/ob_impact
+	name = "ob impact animation"
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 0.7 SECONDS
+	density = FALSE
+	opacity = FALSE
+
+/obj/effect/temp_visual/ob_impact/Initialize(mapload, atom/owner)
+	. = ..()
+	appearance = owner.appearance
+	transform = matrix().Turn(-90)
+	layer = initial(layer)
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	pixel_y = 600
+	animate(src, pixel_y = -5, time=5)
+	animate(icon_state=null, icon=null, time=2) // to vanish it immediately
+
 /obj/effect/temp_visual/heavyimpact
 	name = "heavy impact"
 	icon = 'icons/effects/heavyimpact.dmi'
 	icon_state = ""
 	duration = 13
 
-/obj/effect/temp_visual/heavyimpact/Initialize()
+/obj/effect/temp_visual/heavyimpact/Initialize(mapload)
 	. = ..()
 	flick("heavyimpact", src)
 
@@ -131,7 +198,7 @@
 		return
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	squad_hud.add_to_hud(src)
-	SSminimaps.add_marker(src, src.z, marker_flags, icon_state_on, 'icons/UI_icons/map_blips_large.dmi')
+	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on))
 	set_visuals(faction)
 
 /obj/effect/temp_visual/order/attack_order
@@ -221,7 +288,7 @@
 	pixel_y = -48
 	duration = 8
 
-/obj/effect/temp_visual/wraith_warp/Initialize()
+/obj/effect/temp_visual/wraith_warp/Initialize(mapload)
 	. = ..()
 	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
 
@@ -231,7 +298,7 @@
 	plane = GRAVITY_PULSE_PLANE
 	duration = 8
 
-/obj/effect/temp_visual/blink_drive/Initialize()
+/obj/effect/temp_visual/blink_drive/Initialize(mapload)
 	. = ..()
 	var/image/I = image(icon, src, icon_state, 10, pixel_x = -48, pixel_y = -48)
 	overlays += I //we use an overlay so the icon and light source are both in the correct location

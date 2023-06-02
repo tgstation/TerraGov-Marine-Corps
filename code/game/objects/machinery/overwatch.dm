@@ -69,13 +69,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	///Ref of the lase that's had an OB warning mark placed on the minimap
 	var/obj/effect/overlay/temp/laser_target/OB/marked_lase
 
-/obj/machinery/computer/camera_advanced/overwatch/Initialize()
+/obj/machinery/computer/camera_advanced/overwatch/Initialize(mapload)
 	. = ..()
 	send_attack_order = new
 	send_defend_order = new
 	send_retreat_order = new
 	send_rally_order = new
 	cic_mini = new
+	GLOB.main_overwatch_consoles += src
 
 /obj/machinery/computer/camera_advanced/overwatch/Destroy()
 	QDEL_NULL(send_attack_order)
@@ -83,6 +84,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	QDEL_NULL(send_retreat_order)
 	QDEL_NULL(send_rally_order)
 	QDEL_NULL(cic_mini)
+	GLOB.main_overwatch_consoles -= src
 	current_order = null
 	selected_target = null
 	current_squad = null
@@ -445,7 +447,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if("shootrailgun")
 			var/mob/living/user = usr
 			if(user.interactee)
-				to_chat(usr, "[icon2html(src, usr)] [span_warning("Your busy doing something else, and press the wrong button!")]")
+				to_chat(usr, "[icon2html(src, usr)] [span_warning("You're busy doing something else, and press the wrong button!")]")
 				return
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 600) > world.time)
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("The Rail Gun hasn't cooled down yet!")]")
@@ -685,7 +687,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					if(!findtext(R.fields["ma_crim"],"Insubordination."))
 						R.fields["criminal"] = "*Arrest*"
 						if(R.fields["ma_crim"] == "None")
-							R.fields["ma_crim"]	= "Insubordination."
+							R.fields["ma_crim"] = "Insubordination."
 						else
 							R.fields["ma_crim"] += "Insubordination."
 						if(issilicon(usr))
@@ -890,7 +892,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	light_range = 15	//This is a HUGE light.
 	light_power = SQRTWO
 
-/obj/effect/overwatch_light/Initialize()
+/obj/effect/overwatch_light/Initialize(mapload)
 	. = ..()
 	set_light(light_range, light_power)
 	playsound(src,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)

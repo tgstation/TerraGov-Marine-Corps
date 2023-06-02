@@ -56,9 +56,6 @@
 			return
 	return ..(user)
 
-/obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)
-	..(user)
-
 
 /obj/machinery/door/airlock/proc/isElectrified()
 	if(secondsElectrified != MACHINE_NOT_ELECTRIFIED)
@@ -499,17 +496,6 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/door/airlock/Initialize(mapload, ...)
-	. = ..()
-
-	wires = new /datum/wires/airlock(src)
-
-	if(closeOtherId != null)
-		for (var/obj/machinery/door/airlock/A in GLOB.machines)
-			if(A.closeOtherId == src.closeOtherId && A != src)
-				src.closeOther = A
-				break
-
 
 /obj/machinery/door/airlock/Destroy()
 	QUEUE_SMOOTH_NEIGHBORS(loc)
@@ -542,7 +528,7 @@
 				message = "unshocked"
 			else
 				message = "temp shocked for [secondsElectrified] seconds"
-		LAZYADD(shockedby, text("\[[time_stamp()]\] [key_name(user)] - ([uppertext(message)])"))
+		LAZYADD(shockedby, "\[[time_stamp()]\] [key_name(user)] - ([uppertext(message)])")
 		log_combat(user, src, message)
 
 

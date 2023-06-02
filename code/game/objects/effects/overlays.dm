@@ -1,3 +1,7 @@
+#define LASER_TYPE_CAS "cas_laser"
+#define LASER_TYPE_OB "railgun_laser"
+#define LASER_TYPE_RAILGUN "railgun_laser"
+
 /obj/effect/overlay
 	name = "overlay"
 
@@ -6,7 +10,7 @@
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
 
-/obj/effect/overlay/beam/Initialize()
+/obj/effect/overlay/beam/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 1 SECONDS)
 
@@ -130,7 +134,7 @@
 	layer = WALL_OBJ_LAYER //Above walls/items, not above mobs
 	icon_state_on = "middle"
 
-/obj/effect/overlay/blinking_laser/marine/lines/Initialize()
+/obj/effect/overlay/blinking_laser/marine/lines/Initialize(mapload)
 	. = ..()
 	dir = pick(CARDINAL_DIRS) //Randomises type, for variation
 
@@ -178,6 +182,8 @@
 	var/obj/item/binoculars/tactical/source_binoc
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
+	///what kind of laser we are, used for signals
+	var/lasertype = LASER_TYPE_RAILGUN
 
 /obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
@@ -187,6 +193,13 @@
 	squad = assigned_squad
 	if(squad)
 		squad.squad_laser_targets += src
+	switch(lasertype)
+		if(LASER_TYPE_RAILGUN)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RAILGUN_LASER_CREATED, src)
+		if(LASER_TYPE_CAS)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
+		if(LASER_TYPE_OB)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/Destroy()
 	if(squad)
@@ -211,12 +224,12 @@
 
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
+	lasertype = LASER_TYPE_CAS
 
 /obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	linked_cam = new(src, name)
 	GLOB.active_cas_targets += src
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
 	GLOB.active_cas_targets -= src
@@ -229,11 +242,10 @@
 
 /obj/effect/overlay/temp/laser_target/OB //This is a subtype of CAS so that CIC gets cameras on the lase
 	icon_state = "laser_target2"
+	lasertype = LASER_TYPE_OB
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
-	linked_cam = new(src, name)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()

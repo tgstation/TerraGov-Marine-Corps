@@ -71,6 +71,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			continue
 		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
 
+//todo rename S to sound_to_use
 /mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1)
 	if(!client)
 		return FALSE
@@ -110,7 +111,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	SEND_SOUND(src, S)
 
 
-/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S)
+/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1)
 	if(ear_deaf > 0)
 		return FALSE
 	return ..()
@@ -335,7 +336,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 		//robot race
 		if("robot_scream")
-			S =  pick('sound/voice/robot/robot_scream1.ogg', 'sound/voice/robot/robot_scream2.ogg', 'sound/voice/robot/robot_scream2.ogg')
+			S = pick('sound/voice/robot/robot_scream1.ogg', 'sound/voice/robot/robot_scream2.ogg', 'sound/voice/robot/robot_scream2.ogg')
 		if("robot_pain")
 			S = pick('sound/voice/robot/robot_pain1.ogg', 'sound/voice/robot/robot_pain2.ogg', 'sound/voice/robot/robot_pain3.ogg')
 		if("robot_warcry")

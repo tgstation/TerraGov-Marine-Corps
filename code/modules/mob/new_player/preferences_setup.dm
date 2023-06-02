@@ -11,6 +11,7 @@
 	good_eyesight = pick(list(FALSE, TRUE))
 	citizenship = pick(CITIZENSHIP_CHOICES)
 	religion = pick(RELIGION_CHOICES)
+	tts_voice = random_tts_voice()
 	randomize_hair_color("hair")
 	randomize_hair_color("grad")
 	randomize_hair_color("facial")
@@ -135,7 +136,6 @@
 	if(!previewJob)
 		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		copy_to(mannequin)
-		COMPILE_OVERLAYS(mannequin)
 		parent.show_character_previews(new /mutable_appearance(mannequin))
 		unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		return
@@ -151,7 +151,6 @@
 		mannequin.job = previewJob
 		previewJob.equip_dummy(mannequin, preference_source = parent)
 
-	COMPILE_OVERLAYS(mannequin)
 	parent.show_character_previews(new /mutable_appearance(mannequin))
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 
@@ -192,9 +191,9 @@
 	character.g_hair = g_hair
 	character.b_hair = b_hair
 
-	character.r_grad	= r_grad
-	character.g_grad	= g_grad
-	character.b_grad	= b_grad
+	character.r_grad = r_grad
+	character.g_grad = g_grad
+	character.b_grad = b_grad
 
 	character.r_facial = r_facial
 	character.g_facial = g_facial
@@ -206,6 +205,8 @@
 
 	character.citizenship = citizenship
 	character.religion = religion
+
+	character.voice = tts_voice
 
 	character.moth_wings = moth_wings
 	character.underwear = underwear

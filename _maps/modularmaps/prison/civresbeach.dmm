@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/open/beach/water,
+/turf/open/liquid/water/sea,
 /area/template_noop)
 "d" = (
 /obj/effect/landmark/excavation_site_spawner,

@@ -21,6 +21,7 @@
 #define COMSIG_GLOB_NUKE_STOP "!nuke_stop"
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
 #define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
+#define COMSIG_GLOB_DISK_GENERATED "!disk_produced"
 
 /// from /obj/machinery/setAnchored(): (machine, anchoredstate)
 #define COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE "!machinery_anchored_change"
@@ -45,16 +46,27 @@
 #define COMSIG_GLOB_LIGHT_OFF "item_light_off"
 ///Sent when the floodlight switch is powered
 #define COMSIG_GLOB_FLOODLIGHT_SWITCH "!floodlight_switch_power_change"
+/// Sent when the xenos lock the dropship controls
+#define COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED "!dropship_locked"
+/// Sent when the xenos destroy the tadpole controls
+#define COMSIG_GLOB_MINI_DROPSHIP_DESTROYED "!tad_ruined"
 
 //Signals for fire support
 #define COMSIG_GLOB_OB_LASER_CREATED "!ob_laser_sent"
 #define COMSIG_GLOB_CAS_LASER_CREATED "!cas_laser_sent"
+#define COMSIG_GLOB_RAILGUN_LASER_CREATED "!railgun_laser_sent"
 
 //Signals for shuttle
 #define COMSIG_GLOB_SHUTTLE_TAKEOFF "!shuttle_take_off"
 
 /// sent after world.maxx and/or world.maxy are expanded: (has_exapnded_world_maxx, has_expanded_world_maxy)
 #define COMSIG_GLOB_EXPANDED_WORLD_BOUNDS "!expanded_world_bounds"
+
+///called after a clone is produced and leaves his vat
+#define COMSIG_GLOB_CLONE_PRODUCED "!clone_produced"
+
+///called when an AI is requested by a holopad
+#define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
 
 //////////////////////////////////////////////////////////////////
 
@@ -159,6 +171,7 @@
 #define COMSIG_ATOM_ATTACK_HAND_ALTERNATE "atom_attack_hand_alternate"	//from base of /atom/attack_hand_alternate(mob/living/user)
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
 	#define COMPONENT_NO_ATTACK_HAND (1<<0)						//works on all attack_hands.
+#define COMSIG_ATOM_ATTACK_POWERLOADER "atom_attack_powerloader"//from base of atom/attack_powerloader: (mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 #define COMSIG_PARENT_EXAMINE "atom_examine"					//from base of atom/examine(): (/mob)
 ///from base of atom/get_examine_name(): (/mob, list/overrides)
 #define COMSIG_ATOM_GET_EXAMINE_NAME "atom_examine_name"
@@ -368,9 +381,13 @@
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbing)
 #define COMSIG_MOB_REVIVE "mob_revive"							//from base of mob/on_revive(): ()
+#define COMSIG_MOB_STAT_CHANGED "stat_changed"					//from base of mob/stat_change(): (old_stat, new_stat)
 #define COMSIG_MOB_MOUSEDOWN "mob_mousedown"					//from /client/MouseDown(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_MOUSEUP "mob_mouseup"						//from /client/MouseUp(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_MOUSEDRAG "mob_mousedrag"				//from /client/MouseDrag(): (atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+#define COMSIG_MOUSEDROP_ONTO "mousedrop_onto"					//! from base of atom/MouseDrop(): (/atom/over, /mob/user)
+	#define COMPONENT_NO_MOUSEDROP (1<<0)
+#define COMSIG_MOUSEDROPPED_ONTO "mousedropped_onto"			//! from base of atom/MouseDrop_T: (/atom/from, /mob/user)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
 #define COMSIG_MOB_MIDDLE_CLICK "mob_middle_click"				//from base of mob/MiddleClickOn(): (atom/A)
 #define COMSIG_MOB_CLICK_SHIFT "mob_click_shift"				//from base of mob/ShiftClickOn(): (atom/A)
@@ -388,7 +405,7 @@
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_KEYBINDINGS_UPDATED "mob_bindings_changed"   //from base of datum/preferences/ui_act(): (/datum/keybinding)
 
-#define COMSIG_MOB_SHIELD_DETATCH "mob_shield_detatched"
+#define COMSIG_MOB_SHIELD_DETACH "mob_shield_detached"
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"				//from base of /obj/item/attack(): (mob/target, /obj/item/attacking_item)
 #define COMSIG_MOB_ITEM_ATTACK_ALTERNATE "mob_item_attack_alt"	//from base of /obj/item/attack_alternate(): (mob/target, /obj/item/attacking_item)
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)						//return this if you dont want attacka and altattacks to run
@@ -402,6 +419,7 @@
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, has_proximity, click_parameters)
 #define COMSIG_MOB_ITEM_AFTERATTACK_ALTERNATE "mob_item_afterattack_alternate" //from base of obj/item/afterattack_alternate(): (atom/target, mob/user, has_proximity, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
+	#define COMPONENT_UPPERCASE_SPEECH (1<<0)
 	// used to access COMSIG_MOB_SAY argslist
 	#define SPEECH_MESSAGE 1
 	// #define SPEECH_BUBBLE_TYPE 2
@@ -434,11 +452,16 @@
 #define COMSIG_LIVING_SET_CANMOVE "living_set_canmove"			//from base of /mob/living/set_canmove(): (canmove)
 #define COMSIG_LIVING_MELEE_ALIEN_DISARMED "living_melee_alien_disarmed"	//from /mob/living/proc/attack_alien_disarm(): (mob/living/carbon/xenomorph/X)
 #define COMSIG_LIVING_SHIELDCALL "living_shieldcall"
+#define COMSIG_LIVING_PROJECTILE_STUN "living_stun_mitigation" //from /datum/ammo/proc/staggerstun
 ///from /mob/living/proc/set_lying_angle
 #define COMSIG_LIVING_SET_LYING_ANGLE "living_set_lying_angle"
 
 /// From mob/living/treat_message(): (list/message_args)
 #define COMSIG_LIVING_TREAT_MESSAGE "living_treat_message"
+	/// The index of message_args that corresponds to the actual message
+	#define TREAT_MESSAGE_ARG 1
+	#define TREAT_TTS_MESSAGE_ARG 2
+	#define TREAT_TTS_FILTER_ARG 3
 
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 #define COMSIG_LIVING_STATUS_STUN "living_stun"					//from base of mob/living/Stun() (amount, update, ignore)
@@ -680,6 +703,7 @@
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL "xenoability_toggle_bomb_radial"
 #define COMSIG_XENOABILITY_CREATE_BOMB "xenoability_create_bomb"
+#define COMSIG_XENOABILITY_ROOT "xenoability_root"
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"
@@ -726,6 +750,7 @@
 #define COMSIG_XENOABILITY_PLACE_JELLY_POD "xenoability_place_jelly_pod"
 #define COMSIG_XENOABILITY_CREATE_JELLY "xenoability_create_jelly"
 #define COMSIG_XENOABILITY_HEALING_INFUSION "xenoability_healing_infusion"
+#define COMSIG_XENOABILITY_RECYCLE "xenoability_recycle"
 
 #define COMSIG_XENOABILITY_TOGGLE_STEALTH "xenoability_toggle_stealth"
 #define COMSIG_XENOABILITY_TOGGLE_DISGUISE "xenoability_toggle_disguise"
@@ -821,6 +846,7 @@
 #define COMSIG_KB_UNLOADGUN "keybinding_unloadgun"
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 #define COMSIG_KB_FIREMODE "keybind_firemode"
+#define COMSIG_KB_AUTOEJECT "keybind_autoeject"
 #define COMSIG_KB_GIVE "keybind_give"
 #define COMSIG_KB_HELMETMODULE "keybinding_helmetmodule"
 #define COMSIG_KB_ROBOT_AUTOREPAIR "keybinding_robot_autorepair"

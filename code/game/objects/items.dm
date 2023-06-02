@@ -80,12 +80,16 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/datum/embedding_behavior/embedding
 	var/mob/living/embedded_into
 
-	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
-	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
-
+	///How long it takes to equip this item yoursef
+	var/equip_delay_self = 0 SECONDS
+	/// How long it takes to unequip this item yourself
+	var/unequip_delay_self = 0 SECONDS
+	///How long an item takes to put on another person
+	var/equip_delay_other = 2 SECONDS
+	///How long an item takes to remove from another person
+	var/strip_delay = 4 SECONDS
 
 	var/reach = 1
-
 
 	/// Species-specific sprites, concept stolen from Paradise//vg/. Ex: sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') If index term exists and icon_override is not set, this sprite sheet will be used.
 	var/list/sprite_sheets = null
@@ -128,7 +132,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/active = FALSE
 
-/obj/item/Initialize()
+/obj/item/Initialize(mapload)
 
 	if(species_exception)
 		species_exception = string_list(species_exception)
@@ -147,7 +151,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	if(flags_item_map_variant)
 		update_item_sprites()
-
 
 /obj/item/Destroy()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
@@ -313,7 +316,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [src]!"))
 		playsound(user, "acid_hit", 25)
 		var/mob/living/carbon/human/H = user
-		var/armor_block
 		H.emote("pain")
 		var/raw_damage = current_acid.acid_damage * 0.25 //It's spread over 4 areas.
 		var/list/affected_limbs = list("l_hand", "r_hand", "l_arm", "r_arm")
@@ -323,8 +325,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				break
 			if(!affected_limbs.Find(X.name) )
 				continue
-			armor_block = H.get_soft_armor("acid", X)
-			if(istype(X) && X.take_damage_limb(0, rand(raw_damage * 0.75, raw_damage * 1.25), blocked = armor_block))
+			if(istype(X) && X.take_damage_limb(0, H.modify_by_armor(raw_damage * rand(0.75, 1.25), ACID, def_zone = X)))
 				H.UpdateDamageIcon()
 			limb_count++
 		UPDATEHEALTH(H)
@@ -431,26 +432,28 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
  * If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
  * Set disable_warning to 1 if you wish it to not give you outputs.
  * warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
+ * The bitslot param determines if the flag we've passed is a bitflag or not
  */
-/obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE, override_nodrop = FALSE)
-	if(!slot)
-		return FALSE
-
-	if(!M)
+/obj/item/proc/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
+	if(!slot || !user)
 		return FALSE
 
 	if(CHECK_BITFIELD(flags_item, NODROP) && slot != SLOT_L_HAND && slot != SLOT_R_HAND && !override_nodrop) //No drops can only be equipped to a hand slot
 		if(slot == SLOT_L_HAND || slot == SLOT_R_HAND)
-			to_chat(M, span_notice("[src] is stuck to our hand!"))
+			to_chat(user, span_notice("[src] is stuck to your hand!"))
 		return FALSE
 
-	if(!ishuman(M))
+	if(!ishuman(user))
 		return FALSE
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/human/H = user
 	var/list/mob_equip = list()
 	if(H.species.hud?.equip_slots)
 		mob_equip = H.species.hud.equip_slots
+
+	if(bitslot)
+		var/old_slot = slot
+		slot = slotbit2slotdefine(old_slot)
 
 	if(H.species && !(slot in mob_equip))
 		return FALSE
@@ -548,8 +551,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				if(warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
-			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
-				return FALSE
 			if(w_class <= 2) //smaller or tiny items can all go in pocket slots, larger items require the flag to fit
 				return TRUE
 			equip_to_slot = TRUE
@@ -559,8 +560,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
 				if(warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
-				return FALSE
-			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 				return FALSE
 			if(w_class <= 2)
 				return TRUE
@@ -600,11 +599,11 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				return FALSE
 			selected_slot = H.back
 		if(SLOT_IN_HOLSTER)
-			if(!H.belt || (!istype(H.belt,/obj/item/storage/holster) && !istype(H.belt,/obj/item/storage/belt/gun)))
+			if(!H.belt || (!istype(H.belt,/obj/item/storage/holster)))
 				return FALSE
 			selected_slot = H.belt
 		if(SLOT_IN_S_HOLSTER)
-			if(!H.s_store || (!istype(H.s_store, /obj/item/storage/holster) && !istype(H.s_store,/obj/item/storage/belt/gun)))
+			if(!H.s_store || (!istype(H.s_store, /obj/item/storage/holster)))
 				return FALSE
 			selected_slot = H.s_store
 
@@ -636,6 +635,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		return FALSE
 
 	return storage_item.can_be_inserted(src, warning)
+
+/obj/item/proc/canStrip(mob/stripper, mob/owner)
+	return !(flags_item & NODROP)
 
 /obj/item/proc/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
@@ -1109,18 +1111,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	return TRUE
 
-
-/obj/item/attack_self(mob/user)
-	if(!can_interact(user))
-		return
-
-	interact(user)
-
 /obj/item/proc/toggle_active(new_state)
 	if(!isnull(new_state))
 		if(new_state == active)
 			return
-		new_state = active
+		active = new_state
 	else
 		active = !active
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)

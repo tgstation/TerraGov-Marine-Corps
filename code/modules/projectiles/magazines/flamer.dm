@@ -81,7 +81,7 @@
 	icon_state = "flametank_large_blue"
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
-	dispenser_type = null
+	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
 /obj/item/ammo_magazine/flamer_tank/backtank
 	name = "back fuel tank"
@@ -101,8 +101,9 @@
 /obj/item/ammo_magazine/flamer_tank/backtank/X
 	name = "back fuel tank (X)"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the FL-84 flamethrower and FL-240 incinerator unit."
+	icon_state = "x_flamethrower_tank"
 	default_ammo = /datum/ammo/flamethrower/blue
-	dispenser_type = null
+	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
 /obj/item/ammo_magazine/flamer_tank/water
 	name = "pressurized water tank"
@@ -114,7 +115,17 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	caliber = CALIBER_WATER //Deep lore
 	flags_magazine = NONE
-	icon_state_mini = "tank_blue_mini"
+	icon_state_mini = "tank_water"
 
 	default_ammo = /datum/ammo/water
 	dispenser_type = /obj/structure/reagent_dispensers/watertank
+
+//The engineer pyro bag internal fuel tank
+/obj/item/ammo_magazine/flamer_tank/internal
+	name = "internal fuel tank"
+	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, you shouldn't see this though."
+	icon_state = ""
+	max_rounds = 280
+	current_rounds = 280
+	reload_delay = 0 SECONDS
+

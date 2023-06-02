@@ -24,7 +24,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced
 	name = "Advanced hypospray"
-	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
 	core_name = "hypospray"
 
 
@@ -32,99 +32,46 @@
 	if(tgui_alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(user.loc))
-		to_chat(user, span_notice("You flush the contents of [src]."))
+		user.balloon_alert(user, "Flushes hypospray.")
 		reagents.reaction(user.loc)
 		reagents.clear_reagents()
 
-/obj/item/reagent_containers/hypospray/proc/label(mob/user)
-	var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
-	if(!length(str))
-		to_chat(user, span_notice("Invalid text."))
-		return
-	to_chat(user, span_notice("You label [src] as \"[str]\"."))
-	name = "[core_name] ([str])"
-	label = str
-
-
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(!in_range(A, user) || !user.Adjacent(A))
+		return FALSE
+
 	if(istype(A, /obj/item/storage/pill_bottle) && is_open_container()) //this should only run if its a pillbottle
+		var/obj/item/storage/pill_bottle/bottle = A
 		if(reagents.total_volume >= volume)
-			to_chat(user, span_warning("[src] is full."))
+			balloon_alert(user, "Hypospray is full.")
 			return  //early returning if its full
 
-		if(!length(A.contents))
+		if(!length(bottle.contents))
 			return //early returning if its empty
-		var/obj/item/pill = A.contents[1]
+		var/obj/item/pill = bottle.contents[1]
 
 		if((pill.reagents.total_volume + reagents.total_volume) > volume)
-			to_chat(user, span_warning("[src] cannot hold that much more."))
+			balloon_alert(user, "Can't hold that much.")
 			return // so it doesnt let people have hypos more filled than their volume
 		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
-		to_chat(user, span_notice("You dissolve [pill] from [A] in [src]."))
-		A.contents -= pill
+		to_chat(user, span_notice("You dissolve [pill] from [bottle] in [src]."))
+		bottle.remove_from_storage(pill,null,user)
 		qdel(pill)
 		return
 
-	if(!A.reagents)
+	//For drawing reagents, will check if it's possible to draw, then draws.
+	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW)
+		can_draw_reagent(A, user, FALSE)
 		return
-	if(!istype(user))
-		return
-	if(!in_range(A, user) || !user.Adjacent(A))
-		return
-	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're draining
-		if(reagents.holder_full())
-			to_chat(user, span_warning("[src] is full."))
-			inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
-			update_icon() //So we now display as Inject
-			return
-
-		if(iscarbon(A))
-			var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
-			var/mob/living/carbon/C = A
-			if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
-				to_chat(user, span_warning("There is already a blood sample in [src]."))
-				return
-			if(!C.blood_type)
-				to_chat(user, span_warning("You are unable to locate any blood."))
-				return
-
-			if(ishuman(C))
-				var/mob/living/carbon/human/H = C
-				if(H.species.species_flags & NO_BLOOD)
-					to_chat(user, span_warning("You are unable to locate any blood."))
-					return
-				else
-					C.take_blood(src,amount)
-			else
-				C.take_blood(src,amount)
-
-			reagents.handle_reactions()
-			user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
-								span_notice("You take a blood sample from [A]."), null, 4)
-
-		else if(istype(A, /obj)) //if not mob
-			if(!A.reagents.total_volume)
-				to_chat(user, "<span class='warning'>[A] is empty.")
-				return
-
-			if(!A.is_drawable())
-				to_chat(user, span_warning("You cannot directly remove reagents from this object."))
-				return
-
-			var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
-
-			to_chat(user, span_notice("You fill [src] with [trans] units of the solution."))
-
-		on_reagent_change()
-		return TRUE
-
 
 	if(!reagents.total_volume)
-		to_chat(user, span_warning("[src] is empty."))
+		balloon_alert(user, "Hypospray is Empty.")
 		return
 	if(!A.is_injectable() && !ismob(A))
-		to_chat(user, span_warning("You cannot directly fill [A]."))
+		A.balloon_alert(user, "Can't fill.")
 		return
 	if(skilllock && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_NOVICE)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
@@ -151,8 +98,8 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		to_chat(user, "[span_notice("You inject [M] with [src]")].")
-		to_chat(M, span_warning("You feel a tiny prick!"))
+		balloon_alert(user, "Injects [M]")
+		to_chat(M, span_warning("You feel a tiny prick!")) // inject self doubleposting
 
 	// /mob/living/carbon/human/attack_hand causes
 	// changeNext_move(7) which creates a delay
@@ -162,9 +109,74 @@
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 	reagents.reaction(A, INJECT, min(amount_per_transfer_from_this, reagents.total_volume) / reagents.total_volume)
 	var/trans = reagents.trans_to(A, amount_per_transfer_from_this)
-	to_chat(user, span_notice("[trans] units injected. [reagents.total_volume] units remaining in [src]. "))
+	to_chat(user, span_notice("[trans] units injected. [reagents.total_volume] units remaining in [src]. ")) // better to not balloon
 
 	return TRUE
+
+/obj/item/reagent_containers/hypospray/afterattack_alternate(atom/A, mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(!in_range(A, user) || !user.Adjacent(A)) //So we arent drawing reagent from a container behind a window
+		return FALSE
+	can_draw_reagent(A, user, TRUE) //Always draws reagents on right click
+
+///If it's possible to draw from something. Will draw_blood() when targetting a carbon, or draw_reagent() when targetting a non-carbon
+/obj/item/reagent_containers/hypospray/proc/can_draw_reagent(atom/A, mob/living/user)
+	if(!A.reagents)
+		return FALSE
+	if(reagents.holder_full())
+		balloon_alert(user, "Hypospray is full.")
+		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
+		update_icon() //So we now display as Inject
+		return FALSE
+	if(!A.reagents.total_volume)
+		balloon_alert(user, "Hypospray is empty.")
+		return
+	if(!A.is_drawable())
+		balloon_alert(user, "Can't remove reagents.")
+		return
+
+	if(iscarbon(A))
+		draw_blood(A, user)
+		return TRUE
+
+	if(isobj(A)) //if not mob
+		draw_reagent(A, user)
+		return TRUE
+
+///Checks if the carbon has blood, then tries to draw blood from it
+/obj/item/reagent_containers/hypospray/proc/draw_blood(atom/A, mob/living/user)
+	var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
+	var/mob/living/carbon/C = A
+	if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
+		balloon_alert(user, "Already have a blood sample.")
+		return
+	if(!C.blood_type)
+		balloon_alert(user, "Can't locate blood.")
+		return
+	if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
+		balloon_alert(user, "No blood to draw.")
+		return
+	if(ishuman(C))
+		var/mob/living/carbon/human/H = C
+		if(H.species.species_flags & NO_BLOOD)
+			balloon_alert(user, "Can't locate blood.")
+			return
+		else
+			C.take_blood(src,amount)
+	else
+		C.take_blood(src,amount)
+	reagents.handle_reactions()
+	user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
+						span_notice("You take a blood sample from [A]."), null, 4)
+	on_reagent_change()
+
+///Checks if a container is drawable, then draw reagents from the container
+/obj/item/reagent_containers/hypospray/proc/draw_reagent(atom/A, mob/living/user)
+	var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
+	balloon_alert(user, "Fills with [trans] units.")
+
+	on_reagent_change()
 
 /obj/item/reagent_containers/hypospray/on_reagent_change()
 	if(reagents.holder_full())
@@ -210,6 +222,9 @@
 	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
+	<B><A href='?src=\ref[src];overlayer=1'>Activate Tagger</A></B><BR>
+	<B>Current Tag:</B> [description_overlay]<BR>
+	<BR>
 	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode (Toggles between injecting and draining):</B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]</A><BR>
 	<BR>
@@ -231,6 +246,9 @@
 	var/dat = {"
 	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
+	<BR>
+	<B><A href='?src=\ref[src];overlayer=1'>Activate Tagger</A></B><BR>
+	<B>Current Tag:</B> [description_overlay]<BR>
 	<BR>
 	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode:</A></B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]<BR>
@@ -257,13 +275,31 @@
 	if(href_list["inject_mode"])
 		if(inject_mode)
 			to_chat(usr, span_notice("[src] has been set to draw mode. It will now drain reagents."))
+
 		else
 			to_chat(usr, span_notice("[src] has been set to inject mode. It will now inject reagents."))
 		inject_mode = !inject_mode
 		update_icon()
 
 	else if(href_list["autolabeler"])
-		label(usr)
+		var/mob/user = usr
+		var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
+		if(!length(str))
+			user.balloon_alert(user, "Invalid text.")
+			return
+		balloon_alert(user, "Labeled \"[str]\".")
+		name = "[core_name] ([str])"
+		label = str
+
+	else if(href_list["overlayer"])
+		var/mob/user = usr
+		var/str = copytext(reject_bad_text(input(user,"Hypospray tag text?", "Set tag", "")), 1, MAX_NAME_HYPO)
+		if(!length(str))
+			user.balloon_alert(user, "Invalid text.")
+			return
+		user.balloon_alert(user, "You tag [src] as \"[str]\".")
+		description_overlay = str
+		update_icon()
 
 	else if(href_list["set_transfer"])
 		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", list(30, 20, 15, 10, 5, 3, 1))
@@ -400,6 +436,7 @@
 /obj/item/reagent_containers/hypospray/advanced/inaprovaline
 	name = "inaprovaline hypospray"
 	desc = "A hypospray loaded with inaprovaline."
+	amount_per_transfer_from_this = 15
 	list_reagents = list(
 		/datum/reagent/medicine/inaprovaline = 60,
 	)
@@ -466,9 +503,28 @@
 	)
 	description_overlay = "Na"
 
+/obj/item/reagent_containers/hypospray/advanced/peridaxonplus
+	name = "Peridaxon+ hypospray"
+	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 3
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon_plus = 20,
+		/datum/reagent/medicine/hyronalin = 40,
+	)
+	description_overlay = "Pe+"
+
+/obj/item/reagent_containers/hypospray/advanced/quickclotplus
+	name = "Quickclot+ hypospray"
+	desc = "A hypospray loaded with quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/medicine/quickclotplus = 60,
+	)
+	description_overlay = "Qk+"
+
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
-	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer and digital labeler. Handy. This one is a 120 unit version."
+	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy. This one is a 120 unit version."
 	item_state = "hypomed"
 	icon_state = "hypomed"
 	core_name = "hypospray"
@@ -506,6 +562,18 @@
 	)
 	description_overlay = "Ti"
 
+/obj/item/reagent_containers/hypospray/advanced/big/combatmix
+	name = "big combat mix hypospray"
+	desc = "A hypospray loaded with combat mix. There's a tag that reads BKTT 40:40:20:20."
+	amount_per_transfer_from_this = 15
+	list_reagents = list(
+		/datum/reagent/medicine/bicaridine = 40,
+		/datum/reagent/medicine/kelotane = 40,
+		/datum/reagent/medicine/tramadol = 20,
+		/datum/reagent/medicine/tricordrazine = 20,
+	)
+	description_overlay = "Cm"
+
 /obj/item/reagent_containers/hypospray/advanced/big/dylovene
 	name = "big dylovene hypospray"
 	desc = "A hypospray loaded with dylovene. A chemical that heal toxicity whilst purging toxins, hindering stamina in the process."
@@ -523,13 +591,13 @@
 	)
 	description_overlay = "In"
 
-/obj/item/reagent_containers/hypospray/advanced/big/dexalin
-	name = "big dexalin hypospray"
-	desc = "A hypospray loaded with dexalin. A chemical that heals oxygen damage."
+/obj/item/reagent_containers/hypospray/advanced/big/isotonic
+	name = "big isotonic hypospray"
+	desc = "A hypospray loaded with isotonic. A chemical that aids in replenishing blood."
 	list_reagents = list(
-		/datum/reagent/medicine/dexalin = 120,
+		/datum/reagent/medicine/saline_glucose = 120,
 	)
-	description_overlay = "Dx"
+	description_overlay = "Is"
 
 /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin
 	name = "big spaceacillin hypospray"
@@ -539,12 +607,12 @@
 	)
 	description_overlay = "Sp"
 
-/obj/item/reagent_containers/hypospray/advanced/big/imialky
+/obj/item/reagent_containers/hypospray/advanced/imialky
 	name = "big imialky hypospray"
 	desc = "A hypospray loaded with a mixture of imidazoline and alkysine. Chemicals that will heal the brain and eyes."
 	list_reagents = list(
-		/datum/reagent/medicine/imidazoline = 60,
-		/datum/reagent/medicine/alkysine = 60,
+		/datum/reagent/medicine/imidazoline = 30,
+		/datum/reagent/medicine/alkysine = 30,
 	)
 	description_overlay = "Im"
 

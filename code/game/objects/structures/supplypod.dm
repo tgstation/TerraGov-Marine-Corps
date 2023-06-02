@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	resistance_flags = RESIST_ALL
 
 
-/obj/structure/closet/supplypod/Initialize()
+/obj/structure/closet/supplypod/Initialize(mapload)
 	. = ..()
 	setStyle(style, TRUE)
 
@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	icon_state = ""
 
 
-/obj/effect/DPfall/Initialize(dropLocation, obj/structure/closet/supplypod/pod)
+/obj/effect/DPfall/Initialize(mapload, obj/structure/closet/supplypod/pod)
 	if(pod.style == STYLE_SEETHROUGH)
 		pixel_x = -16
 		pixel_y = 0
@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		icon_state = ""
 	if(pod.fallDuration == initial(pod.fallDuration) && pod.landingDelay + pod.fallDuration < pod.fallingSoundLength)
 		pod.fallingSoundLength = 3
-		pod.fallingSound =  'sound/weapons/guns/misc/mortar_whistle.ogg'
+		pod.fallingSound = 'sound/weapons/guns/misc/mortar_whistle.ogg'
 	var/soundStartTime = pod.landingDelay - pod.fallingSoundLength + pod.fallDuration
 	if(soundStartTime < 0)
 		soundStartTime = 1

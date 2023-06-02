@@ -116,7 +116,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/northeast)
 "eP" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Dormitories";
@@ -148,6 +148,11 @@
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
+"fg" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
 "fl" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -176,7 +181,7 @@
 /area/bigredv2/caves/northeast)
 "gW" = (
 /obj/item/shard,
-/obj/structure/window_frame/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "gX" = (
@@ -228,7 +233,7 @@
 /area/bigredv2/outside/ne)
 "jQ" = (
 /obj/structure/rack,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/misc/handcuffs,
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "kc" = (
@@ -256,7 +261,6 @@
 /area/bigredv2/outside/hydroponics)
 "kU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Dormitories Tool Storage"
 	},
 /turf/open/floor,
@@ -325,9 +329,6 @@
 	},
 /turf/open/shuttle/dropship/three,
 /area/bigredv2/outside/general_offices)
-"oU" = (
-/turf/closed/shuttle/ert/engines/left,
-/area/bigredv2/outside/general_offices)
 "ph" = (
 /obj/structure/girder,
 /turf/open/floor/plating/dmg1,
@@ -368,7 +369,7 @@
 	},
 /area/bigredv2/outside/general_offices)
 "qu" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bigredv2/outside/hydroponics)
@@ -460,13 +461,15 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
-"vD" = (
-/turf/closed/shuttle/ert/engines/right,
-/area/bigredv2/outside/general_offices)
 "vK" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
+"wh" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
 "wj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -556,16 +559,15 @@
 /area/bigredv2/outside/hydroponics)
 "AE" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
-	dir = 4;
 	name = "\improper Dormitories Lavatory"
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "AN" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "AT" = (
@@ -589,8 +591,8 @@
 /area/bigredv2/outside/general_offices)
 "BG" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "BI" = (
@@ -669,8 +671,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "FR" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 4
+/turf/closed/shuttle/ert/engines/left/three{
+	dir = 1
 	},
 /area/bigredv2/outside/general_offices)
 "FW" = (
@@ -716,8 +718,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "If" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 4
+/turf/closed/shuttle/ert/engines/right/three{
+	dir = 1
 	},
 /area/bigredv2/outside/general_offices)
 "Im" = (
@@ -725,7 +727,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "IA" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/engineering/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/general_offices)
 "Jc" = (
@@ -874,7 +876,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Tm" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/hydroponics)
 "TF" = (
@@ -1293,8 +1295,8 @@ BI
 mc
 Mi
 FR
+fg
 qs
-oU
 Hh
 DU
 jj
@@ -1449,8 +1451,8 @@ BI
 PM
 Xh
 If
+wh
 Hm
-vD
 Fu
 Hh
 gQ

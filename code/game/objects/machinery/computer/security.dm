@@ -119,7 +119,7 @@
 						if(istype(active1.fields["photo_side"], /obj/item/photo))
 							var/obj/item/photo/P2 = active1.fields["photo_side"]
 							DIRECT_OUTPUT(user, browse_rsc(P2.picture.picture_image, "photo_side"))
-						dat += text("<table><tr><td>	\
+						dat += "<table><tr><td>	\
 						Name: <A href='?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
 						ID: <A href='?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n \
 						Sex: <A href='?src=\ref[src];choice=Edit Field;field=sex'>[active1.fields["sex"]]</A><BR>\n	\
@@ -131,7 +131,7 @@
 						<td align = center valign = top>Photo:<br> \
 						<table><td align = center><img src=photo_front height=80 width=80 border=4><BR><A href='?src=\ref[src];choice=Edit Field;field=photo front'>Update front photo</A></td> \
 						<td align = center><img src=photo_side height=80 width=80 border=4><BR><A href='?src=\ref[src];choice=Edit Field;field=photo side'>Update side photo</A></td></table> \
-						</td></tr></table>")
+						</td></tr></table>"
 					else
 						dat += "<B>General Record Lost!</B><BR>"
 					if ((istype(active2, /datum/data/record) && GLOB.datacore.security.Find(active2)))
@@ -361,7 +361,7 @@ What a mess.*/
 			var/counter = 1
 			while(active2.fields[text("com_[]", counter)])
 				counter++
-			active2.fields[text("com_[counter]")] = text("Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
+			active2.fields["com_[counter]"] = "Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]"
 
 		if ("Delete Record (ALL)")
 			if (active1)
@@ -557,7 +557,7 @@ What a mess.*/
 				if(1)
 					R.fields["name"] = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 				if(2)
-					R.fields["sex"]	= pick("Male", "Female")
+					R.fields["sex"] = pick("Male", "Female")
 				if(3)
 					R.fields["age"] = rand(5, 85)
 				if(4)

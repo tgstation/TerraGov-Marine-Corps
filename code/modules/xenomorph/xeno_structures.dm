@@ -7,20 +7,23 @@
 	///Which hive(number) do we belong to?
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/structure/xeno/Initialize(location, hivenumber)
+/obj/structure/xeno/Initialize(mapload, _hivenumber)
 	. = ..()
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
+	if(_hivenumber) ///because admins can spawn them
+		hivenumber = _hivenumber
 	LAZYADDASSOC(GLOB.xeno_structures_by_hive, hivenumber, src)
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
-		GLOB.xeno_critical_structures += src
-	if(hivenumber) ///because admins can spawn them
-		src.hivenumber = hivenumber
+		LAZYADDASSOC(GLOB.xeno_critical_structures_by_hive, hivenumber, src)
 
 /obj/structure/xeno/Destroy()
+	if(!locate(src) in GLOB.xeno_structures_by_hive[hivenumber]+GLOB.xeno_critical_structures_by_hive[hivenumber]) //The rest of the proc is pointless to look through if its not in the lists
+		stack_trace("[src] not found in the list of (potentially critical) xeno structures!") //We dont want to CRASH because that'd block deletion completely. Just trace it and continue.
+		return ..()
 	GLOB.xeno_structures_by_hive[hivenumber] -= src
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
-		GLOB.xeno_critical_structures -= src
+		GLOB.xeno_critical_structures_by_hive[hivenumber] -= src
 	return ..()
 
 /obj/structure/xeno/ex_act(severity)
@@ -81,7 +84,7 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(trigger_trap),
 	)
 
-/obj/structure/xeno/trap/Initialize(mapload)
+/obj/structure/xeno/trap/Initialize(mapload, _hivenumber)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 	AddElement(/datum/element/connect_loc, listen_connections)
@@ -286,14 +289,14 @@ TUNNEL
 	///What hivelord created that tunnel. Can be null
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
 
-/obj/structure/xeno/tunnel/Initialize(mapload)
+/obj/structure/xeno/tunnel/Initialize(mapload, _hivenumber)
 	. = ..()
 	LAZYADDASSOC(GLOB.xeno_tunnels_by_hive, hivenumber, src)
 	prepare_huds()
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
 	hud_set_xeno_tunnel()
-	SSminimaps.add_marker(src, src.z, MINIMAP_FLAG_XENO, "xenotunnel")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel"))
 
 /obj/structure/xeno/tunnel/Destroy()
 	var/turf/drop_loc = get_turf(src)
@@ -450,9 +453,9 @@ TUNNEL
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize(loc, creator)
+/obj/structure/xeno/acidwell/Initialize(mapload, _creator)
 	. = ..()
-	src.creator = creator
+	creator = _creator
 	RegisterSignal(creator, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator))
 	update_icon()
 	var/static/list/connections = list(
@@ -587,39 +590,47 @@ TUNNEL
 		HasProximity(A)
 
 /obj/structure/xeno/acidwell/HasProximity(atom/movable/AM)
+	if(!charges)
+		return
 	if(!isliving(AM))
 		return
 	var/mob/living/stepper = AM
 	if(stepper.stat == DEAD)
 		return
-	if(!charges)
+
+	var/charges_used = 0
+
+	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
+		if(charges_used >= charges)
+			break
+		if(sticky_bomb.stuck_to == stepper)
+			sticky_bomb.clean_refs()
+			sticky_bomb.forceMove(loc)
+			charges_used ++
+
+	if(stepper.on_fire && (charges_used < charges))
+		stepper.ExtinguishMob()
+		charges_used ++
+
+	if(!isxeno(stepper))
+		stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
+		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
+		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
+		stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
+		span_danger("We are immersed in [src]'s acid!") , null, 5)
+		playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
+		new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
+		charges_used = charges //humans stepping on it empties it out
+
+	if(!charges_used)
 		return
 
 	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
-
-	if(isxeno(stepper))
-		if(!(stepper.on_fire))
-			return
-		acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
-		acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
-		acid_smoke.start()
-		stepper.ExtinguishMob()
-		charges--
-		update_icon()
-		return
-
-	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
-	stepper.ExtinguishMob()
-	stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
-	span_danger("We are immersed in [src]'s acid!") , null, 5)
-	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
-	new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
 	acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
-	charges = 0
+
+	charges -= charges_used
 	update_icon()
 
 /obj/structure/xeno/resin_jelly_pod
@@ -647,7 +658,7 @@ TUNNEL
 	///Countdown to the next time we generate a jelly
 	var/nextjelly = 0
 
-/obj/structure/xeno/resin_jelly_pod/Initialize()
+/obj/structure/xeno/resin_jelly_pod/Initialize(mapload, _hivenumber)
 	. = ..()
 	add_overlay(image(icon, "resinpod_inside", layer + 0.01, dir))
 	START_PROCESSING(SSslowprocess, src)
@@ -718,7 +729,7 @@ TUNNEL
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
-/obj/structure/xeno/silo/Initialize()
+/obj/structure/xeno/silo/Initialize(mapload, _hivenumber)
 	. = ..()
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
@@ -854,7 +865,7 @@ TUNNEL
 ///Change minimap icon if silo is under attack or not
 /obj/structure/xeno/silo/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "silo[warning ? "_warn" : "_passive"]")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]"))
 
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
@@ -865,9 +876,9 @@ TUNNEL
 	bound_height = 32
 	obj_integrity = 600
 	max_integrity = 1500
-	layer =  ABOVE_MOB_LAYER
+	layer = ABOVE_MOB_LAYER
 	density = TRUE
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE |PORTAL_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
 	flags_pass = PASSAIR|PASSTHROW
 	///What kind of spit it uses
@@ -892,9 +903,9 @@ TUNNEL
 ///Change minimap icon if its firing or not firing
 /obj/structure/xeno/xeno_turret/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "xeno_turret[firing ? "_firing" : "_passive"]")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]"))
 
-/obj/structure/xeno/xeno_turret/Initialize(mapload)
+/obj/structure/xeno/xeno_turret/Initialize(mapload, _hivenumber)
 	. = ..()
 	ammo = GLOB.ammo_list[ammo]
 	potential_hostiles = list()
@@ -1097,6 +1108,7 @@ TUNNEL
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)
+		hugger_ammo.hivenumber = hivenumber
 	firing = TRUE
 	update_minimap_icon()
 
@@ -1132,7 +1144,7 @@ TUNNEL
 	///boost amt to be added per tower per cycle
 	var/boost_amount = 0.25
 
-/obj/structure/xeno/evotower/Initialize(mapload)
+/obj/structure/xeno/evotower/Initialize(mapload, _hivenumber)
 	. = ..()
 	GLOB.hive_datums[hivenumber].evotowers += src
 	set_light(2, 2, LIGHT_COLOR_GREEN)
@@ -1163,7 +1175,7 @@ TUNNEL
 	///boost amt to be added per tower per cycle
 	var/boost_amount = 0.2
 
-/obj/structure/xeno/maturitytower/Initialize(mapload)
+/obj/structure/xeno/maturitytower/Initialize(mapload, _hivenumber)
 	. = ..()
 	GLOB.hive_datums[hivenumber].maturitytowers += src
 	set_light(2, 2, LIGHT_COLOR_GREEN)
@@ -1196,9 +1208,9 @@ TUNNEL
 	///Radius (in tiles) of the pheromones given by this tower.
 	var/aura_radius = 32
 
-/obj/structure/xeno/pherotower/Initialize(mapload)
+/obj/structure/xeno/pherotower/Initialize(mapload, _hivenumber)
 	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "phero")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "phero"))
 	GLOB.hive_datums[hivenumber].pherotowers += src
 
 //Pheromone towers start off with recovery.
@@ -1258,7 +1270,7 @@ TUNNEL
 	COOLDOWN_DECLARE(spawner_proxy_alert_cooldown)
 	var/linked_minions = list()
 
-/obj/structure/xeno/spawner/Initialize()
+/obj/structure/xeno/spawner/Initialize(mapload, _hivenumber)
 	. = ..()
 	LAZYADDASSOC(GLOB.xeno_spawners_by_hive, hivenumber, src)
 	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, CALLBACK(src, PROC_REF(on_spawn)))
@@ -1337,7 +1349,7 @@ TUNNEL
 ///Change minimap icon if spawner is under attack or not
 /obj/structure/xeno/spawner/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "spawner[warning ? "_warn" : "_passive"]")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "spawner[warning ? "_warn" : "_passive"]"))
 
 /obj/structure/xeno/spawner/proc/on_spawn(list/squad)
 	if(!isxeno(squad[length(squad)]))
@@ -1366,7 +1378,7 @@ TUNNEL
 	///How long does it take for the plant to be useable
 	var/maturation_time = 2 MINUTES
 
-/obj/structure/xeno/plant/Initialize()
+/obj/structure/xeno/plant/Initialize(mapload, _hivenumber)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time)
 

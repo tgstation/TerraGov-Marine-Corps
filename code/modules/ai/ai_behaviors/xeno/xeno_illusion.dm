@@ -51,7 +51,7 @@
 	remove_filter("illusion_hit")
 	deltimer(timer_effect)
 	add_filter("illusion_hit", 2, ripple_filter(10, 5))
-	timer_effect = addtimer(CALLBACK(src, PROC_REF(remove_hit_filter)), 0.5 SECONDS)
+	timer_effect = addtimer(CALLBACK(src, PROC_REF(remove_hit_filter)), 0.5 SECONDS, TIMER_STOPPABLE)
 	return FALSE
 
 /mob/illusion/xeno/Initialize(mapload, mob/living/carbon/xenomorph/original_mob, atom/escorted_atom, life_time)

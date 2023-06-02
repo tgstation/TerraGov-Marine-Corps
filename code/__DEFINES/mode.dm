@@ -75,6 +75,8 @@
 #define INFESTATION_NUKE_NONE "INFESTATION_NUKE_NONE"
 #define INFESTATION_NUKE_INPROGRESS "INFESTATION_NUKE_INPROGRESS"
 #define INFESTATION_NUKE_COMPLETED "INFESTATION_NUKE_COMPLETED"
+#define INFESTATION_NUKE_COMPLETED_SHIPSIDE "INFESTATION_NUKE_COMPLETED_SHIPSIDE"
+#define INFESTATION_NUKE_COMPLETED_OTHER "INFESTATION_NUKE_COMPLETED_OTHER"
 
 #define SURVIVOR_WEAPONS list(\
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
@@ -125,7 +127,7 @@
 #define SILO_PRICE 800
 #define XENO_TURRET_PRICE 100
 
-//How many psych point one gen gives every second
+//How many psy points a hive gets if all generators are corrupted
 #define GENERATOR_PSYCH_POINT_OUTPUT 1
 //How many psy points are gave for each marine psy drained at low pop
 #define PSY_DRAIN_REWARD_MAX 90

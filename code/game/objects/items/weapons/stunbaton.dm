@@ -22,7 +22,7 @@
 	user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (FIRELOSS)
 
-/obj/item/weapon/baton/Initialize()
+/obj/item/weapon/baton/Initialize(mapload)
 	. = ..()
 	bcell = new/obj/item/cell/high(src)
 	update_icon()
@@ -113,7 +113,7 @@
 	if(has_user_lock && user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_MP)
 		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
-	if(bcell && bcell.charge > hitcost)
+	if(bcell?.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 25, 1, 6)

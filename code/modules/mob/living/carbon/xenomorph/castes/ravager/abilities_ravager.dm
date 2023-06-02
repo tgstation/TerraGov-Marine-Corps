@@ -362,14 +362,14 @@
 		RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
 
 	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius, X.loc))
-		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
+		affected_tiles.Shake(duration = 1 SECONDS) //SFX
 
 	for(var/mob/living/L AS in GLOB.mob_living_list) //Roar that applies cool SFX
 		if(L.stat == DEAD || !L.hud_used || (get_dist(L, X) > rage_power_radius)) //We don't care about the dead
 			continue
 
 		shake_camera(L, 1 SECONDS, 1)
-		L.Shake(4, 4, 1 SECONDS) //SFX
+		L.Shake(duration = 1 SECONDS) //SFX
 
 		if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
 

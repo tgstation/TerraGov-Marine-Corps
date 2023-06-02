@@ -40,6 +40,13 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
+/datum/keybinding/xeno/recycle
+	name = "Recycle"
+	full_name = "Recycle xenomorph"
+	description = "Recycles a fellow dead xenomorph"
+	keybind_signal = COMSIG_XENOABILITY_RECYCLE
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/place_acid_well
 	name = "place_acid_well"
 	full_name = "Place acid well"
@@ -193,14 +200,14 @@
 /datum/keybinding/xeno/long_range_sight
 	name = "long_range_sight"
 	full_name = "Boiler: Long Range Sight"
-	description = ""
+	description = "Toggles the zoom in."
 	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
 	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"
 	full_name = "Boiler: Toggle Bombard Type"
-	description = ""
+	description = "Toggles the type of glob ."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
 /datum/keybinding/xeno/toggle_bomb_radial
@@ -213,14 +220,21 @@
 /datum/keybinding/xeno/create_bomb
 	name = "create_bomb"
 	full_name = "Boiler: Create Bombard Ammo"
-	description = ""
+	description = "Create new globs to fire."
 	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
 	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/root
+	name = "root"
+	full_name = "Boiler: Root in place"
+	description = "Begin rooting in place."
+	keybind_signal = COMSIG_XENOABILITY_ROOT
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/bombard
 	name = "bombard"
 	full_name = "Boiler: Bombard"
-	description = ""
+	description = "Fire globules."
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 	hotkey_keys = list("R")
 
@@ -506,7 +520,7 @@
 /datum/keybinding/xeno/call_of_the_burrowed
 	name = "call_of_the_burrowed"
 	full_name = "Call of the Burrowed"
-	description = ""
+	description = "Attempts to summon all currently burrowed larva."
 	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
 
 /datum/keybinding/xeno/psychic_fling

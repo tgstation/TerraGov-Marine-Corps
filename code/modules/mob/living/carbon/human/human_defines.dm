@@ -10,6 +10,7 @@
 	m_intent = MOVE_INTENT_WALK
 	buckle_flags = CAN_BE_BUCKLED|CAN_BUCKLE
 	resistance_flags = XENO_DAMAGEABLE|PORTAL_IMMUNE
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 
 	hud_type = /datum/hud/human
 
@@ -98,6 +99,8 @@
 
 	var/list/limbs = list()
 	var/list/internal_organs_by_name = list() // so internal organs have less ickiness too
+	///How much dirt the mob's accumulated. Harmless by itself, but can trigger issues with open wounds or surgery.
+	var/germ_level = 0
 
 	///Auras we can create, used for the order choice UI.
 	var/static/list/command_aura_allowed = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)

@@ -11,7 +11,7 @@
 	var/l_hacking = 0
 	var/open = 0
 	w_class = WEIGHT_CLASS_NORMAL
-	max_w_class = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 14
 
 /obj/item/storage/secure/examine(mob/user)
@@ -127,13 +127,13 @@
 	)
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
-	force = 8.0
+	force = 8
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
 
 
-/obj/item/storage/secure/briefcase/Initialize()
+/obj/item/storage/secure/briefcase/Initialize(mapload)
 	. = ..()
 	new /obj/item/paper(src)
 	new /obj/item/tool/pen(src)
@@ -166,9 +166,9 @@
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
 	flags_atom = CONDUCT
-	force = 8.0
-	w_class = 8.0
-	max_w_class = 8
+	force = 8
+	w_class = WEIGHT_CLASS_GIGANTIC
+	max_w_class = WEIGHT_CLASS_GIGANTIC
 	anchored = TRUE
 	density = FALSE
 	cant_hold = list(/obj/item/storage/secure/briefcase)

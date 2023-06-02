@@ -27,7 +27,7 @@
 	if(!.)
 		return
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/smartgunner)
-	scaled_job.job_points_needed  = 20 //For every 10 marine late joins, 1 extra SG
+	scaled_job.job_points_needed = 20 //For every 10 marine late joins, 1 extra SG
 
 /datum/game_mode/infestation/process()
 	if(round_finished)
@@ -63,16 +63,16 @@
 			if(length(GLOB.humans_by_zlevel["[i]"]))
 				locations[trait][FACTION_TERRAGOV] = get_area(pick(GLOB.humans_by_zlevel["[i]"]))
 
-	var/numHostsPlanet	= counts[ZTRAIT_GROUND][FACTION_TERRAGOV]
-	var/numHostsShip	= counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
-	var/numHostsTransit	= counts[ZTRAIT_RESERVED][FACTION_TERRAGOV]
-	var/numXenosPlanet	= counts[ZTRAIT_GROUND][FACTION_XENO]
-	var/numXenosShip	= counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
-	var/numXenosTransit	= counts[ZTRAIT_RESERVED][FACTION_XENO]
-	var/hostLocationP	= locations[ZTRAIT_GROUND][FACTION_TERRAGOV]
-	var/hostLocationS	= locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
-	var/xenoLocationP	= locations[ZTRAIT_GROUND][FACTION_XENO]
-	var/xenoLocationS	= locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
+	var/numHostsPlanet = counts[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/numHostsShip = counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/numHostsTransit = counts[ZTRAIT_RESERVED][FACTION_TERRAGOV]
+	var/numXenosPlanet = counts[ZTRAIT_GROUND][FACTION_XENO]
+	var/numXenosShip = counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
+	var/numXenosTransit = counts[ZTRAIT_RESERVED][FACTION_XENO]
+	var/hostLocationP = locations[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/hostLocationS = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/xenoLocationP = locations[ZTRAIT_GROUND][FACTION_XENO]
+	var/xenoLocationS = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
 
 	//Adjust the randomness there so everyone gets the same thing
 	var/numHostsShipr = BIOSCAN_DELTA(numHostsShip, delta)
@@ -297,7 +297,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
-	addtimer(VARSET_CALLBACK(src, planet_nuked, INFESTATION_NUKE_COMPLETED), nuketime)
 	addtimer(CALLBACK(src, PROC_REF(do_nuke_z_level), z_level), nuketime * 0.5)
 
 	Cinematic(CINEMATIC_CRASH_NUKE, world)
@@ -305,6 +304,14 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/infestation/proc/do_nuke_z_level(z_level)
 	if(!z_level)
 		return
+
+	if(SSmapping.level_trait(z_level, ZTRAIT_GROUND))
+		planet_nuked = INFESTATION_NUKE_COMPLETED
+	else if(SSmapping.level_trait(z_level, ZTRAIT_MARINE_MAIN_SHIP))
+		planet_nuked = INFESTATION_NUKE_COMPLETED_SHIPSIDE
+	else
+		planet_nuked = INFESTATION_NUKE_COMPLETED_OTHER
+
 	for(var/i in GLOB.alive_living_list)
 		var/mob/living/victim = i
 		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.

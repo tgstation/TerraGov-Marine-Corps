@@ -19,7 +19,7 @@
 								"recognizer",
 								"voice sensor")
 
-/obj/item/assembly/voice/Initialize()
+/obj/item/assembly/voice/Initialize(mapload)
 	. = ..()
 	become_hearing_sensitive()
 
@@ -30,7 +30,7 @@
 /obj/item/assembly/voice/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
 	if(speaker == src)
-		return
+		return FALSE
 
 	if(listening && !radio_freq)
 		record_speech(speaker, raw_message, message_language)

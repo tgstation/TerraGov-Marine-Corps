@@ -62,7 +62,7 @@
 	///The signal for this module if it can toggled
 	var/toggle_signal
 
-/obj/item/armor_module/Initialize()
+/obj/item/armor_module/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
 
@@ -237,6 +237,7 @@
 	greyscale_colors = COLOR_VERY_LIGHT_GRAY
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+	appearance_flags = KEEP_APART|TILE_BOUND
 
 /obj/item/armor_module/greyscale/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()

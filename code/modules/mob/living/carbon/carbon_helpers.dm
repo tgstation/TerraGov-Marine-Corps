@@ -25,3 +25,15 @@
 		if(test_organ.damage > chosen_organ.damage)
 			chosen_organ = test_organ
 	return chosen_organ
+
+/mob/living/carbon/index_to_hand(hand_index)
+	switch(hand_index)
+		if(1)
+			return get_limb(BODY_ZONE_PRECISE_L_HAND)
+		else
+			return get_limb(BODY_ZONE_PRECISE_R_HAND)
+
+/mob/Living/carbon/put_in_hand_check(obj/item/I, hand_index)
+	if(!index_to_hand(hand_index))
+		return FALSE
+	return ..()

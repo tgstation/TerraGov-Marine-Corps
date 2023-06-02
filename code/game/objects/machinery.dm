@@ -24,7 +24,7 @@
 	///Whether bullets can bypass the object even though it's dense
 	flags_pass = PASSABLE
 
-/obj/machinery/Initialize()
+/obj/machinery/Initialize(mapload)
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
@@ -322,7 +322,7 @@
 	dat += text("[]\tGenetic Tissue Damage %: []</font><br>", (occ["cloneloss"] < 1 ?"<font color=#487553>" : "<font color=#b54646>"), occ["cloneloss"])
 	dat += text("[]\tApprox. Brain Damage %: []</font><br>", (occ["brainloss"] < 1 ?"<font color=#487553>" : "<font color=#b54646>"), occ["brainloss"])
 	dat += text("Knocked Out Summary %: [] ([] seconds left!)<br>", occ["knocked_out"], round(occ["knocked_out"] * 0.1))
-	dat += text("Body Temperature: [occ["bodytemp"]-T0C]&deg;C ([occ["bodytemp"]*1.8-459.67]&deg;F)<br><HR>")
+	dat += "Body Temperature: [occ["bodytemp"]-T0C]&deg;C ([occ["bodytemp"]*1.8-459.67]&deg;F)<br><HR>"
 
 	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", (occ["blood_amount"] > 448 ?"<font color=#487553>" : "<font color=#b54646>"), occ["blood_amount"]*100 / 560, occ["blood_amount"])
 
@@ -437,7 +437,7 @@
 	var/list/species_organs = occ["species_organs"]
 	for(var/organ_name in species_organs)
 		if(!locate(species_organs[organ_name]) in occ["internal_organs"])
-			dat += text("<font color=#b54646>No [organ_name] detected.</font><BR>")
+			dat += "<font color=#b54646>No [organ_name] detected.</font><BR>"
 
 	if(occ["disabilities"] & BLIND)
 		dat += text("<font color=#b54646>Cataracts detected.</font><BR>")

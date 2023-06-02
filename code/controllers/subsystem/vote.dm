@@ -218,7 +218,7 @@ SUBSYSTEM_DEF(vote)
 /// Start the vote, and prepare the choices to send to everyone
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, ignore_delay = FALSE, popup_override = FALSE)
 	//Server is still intializing.
-	if(!Master.current_runlevel)
+	if(!MC_RUNNING(init_stage))
 		to_chat(usr, span_warning("Cannot start vote, server is not done initializing."))
 		return FALSE
 	var/lower_admin = FALSE
@@ -366,6 +366,7 @@ SUBSYSTEM_DEF(vote)
 
 ///Starts the automatic map vote at the end of each round
 /datum/controller/subsystem/vote/proc/automatic_vote()
+	reset()
 	initiate_vote("gamemode", null, TRUE, TRUE)
 	shipmap_timer_id = addtimer(CALLBACK(src, PROC_REF(initiate_vote), "shipmap", null, TRUE, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS, TIMER_STOPPABLE)
 	addtimer(CALLBACK(src, PROC_REF(initiate_vote), "groundmap", null, TRUE, TRUE), CONFIG_GET(number/vote_period) * 2 + 6 SECONDS)
@@ -474,6 +475,12 @@ SUBSYSTEM_DEF(vote)
 /datum/action/innate/vote/proc/remove_vote_action(datum/source)
 	SIGNAL_HANDLER
 	if(owner)
+		if(owner.client)
+			owner.client?.player_details.player_actions -= src
+
+		else if(owner.ckey)
+			var/datum/player_details/associated_details = GLOB.player_details[owner.ckey]
+			associated_details?.player_actions -= src
 		remove_action(owner)
 	qdel(src)
 

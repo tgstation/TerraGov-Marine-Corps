@@ -159,7 +159,7 @@
 
 	var/n_name = stripped_input(usr, "What would you like to label the photo?", "Photo Labelling")
 	if((loc == usr || loc.loc && loc.loc == usr) && usr.stat == CONSCIOUS && !usr.incapacitated())
-		name = "photo[(n_name ? text("- '[n_name]'") : null)]"
+		name = "photo[(n_name ? "- '[n_name]'" : null)]"
 
 
 /obj/item/camera
@@ -288,7 +288,7 @@
 	var/list/dead_spotted = list()
 	var/ai_user = isAI(user)
 	var/list/seen
-	var/list/viewlist = (user && user.client)? getviewsize(user.client.view) : getviewsize(WORLD_VIEW)
+	var/list/viewlist = (user?.client)? getviewsize(user.client.view) : getviewsize(WORLD_VIEW)
 	var/viewr = max(viewlist[1], viewlist[2]) + max(size_x, size_y)
 	var/viewc = user.client? user.client.eye : target
 	seen = get_hear(viewr, viewc)

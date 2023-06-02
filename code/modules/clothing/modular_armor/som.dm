@@ -43,10 +43,22 @@
 	allowed_uniform_type = /obj/item/clothing/under
 
 /obj/item/clothing/suit/modular/som/engineer
-	starting_attachments = list(/obj/item/armor_module/storage/engineering)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/som/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general/som,
+	)
 
 /obj/item/clothing/suit/modular/som/shield
-	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
 
 /obj/item/clothing/suit/modular/som/light
 	name = "\improper SOM scout armor"
@@ -57,7 +69,10 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/modular/som/light/shield
-	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
 
 
 /obj/item/clothing/suit/modular/som/heavy
@@ -71,17 +86,26 @@
 /obj/item/clothing/suit/modular/som/heavy/pyro
 	starting_attachments = list(
 		/obj/item/armor_module/module/fire_proof/som,
-		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/medical/som,
 	)
 
 /obj/item/clothing/suit/modular/som/heavy/lorica
-	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor/som)
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
 
 /obj/item/clothing/suit/modular/som/heavy/mithridatius
-	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/som)
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
 
 /obj/item/clothing/suit/modular/som/heavy/shield
-	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
 
 /obj/item/clothing/suit/modular/som/heavy/leader
 	name = "\improper SOM Gorgon pattern assault armor"
@@ -173,14 +197,25 @@
 		/obj/item/armor_module/greyscale/badge,
 	)
 
+/obj/item/clothing/head/modular/som/hades
+	name = "\improper Hades Helmet System"
+	desc = "A helmet paired with the 'Hades' armor module, designed for significantly improved protection from fire, without compromising normal durability."
+	icon_state = "som_helmet_light"
+	item_state = "som_helmet_light"
+	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 90, ACID = 50)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/greyscale/badge,
+	)
+
 /obj/item/clothing/head/modular/som/veteran
 	name = "\improper SOM veteran helmet"
 	desc = "The standard combat helmet worn by SOM combat specialists. State of the art materials provides more protection for more valuable brains."
 	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 60, ACID = 55)
 
 /obj/item/clothing/head/modular/som/lorica
-	name = "Lorica Helmet System"
-	desc = "An bulky helmet paired with the 'Lorica' armor module, designed for outstanding protection at the cost of significant weight and reduced flexibility. Substantial additional armor improves protection against all damage."
+	name = "\improper Lorica Helmet System"
+	desc = "A bulky helmet paired with the 'Lorica' armor module, designed for outstanding protection at the cost of significant weight and reduced flexibility. Substantial additional armor improves protection against all damage."
 	icon_state = "som_helmet_lorica"
 	item_state = "som_helmet_lorica"
 	soft_armor = list(MELEE = 60, BULLET = 85, LASER = 80, ENERGY = 80, BOMB = 65, BIO = 55, FIRE = 70, ACID = 60)

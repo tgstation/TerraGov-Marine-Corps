@@ -6,6 +6,7 @@
 	icon_state = "roomba"
 	density = FALSE
 	anchored = FALSE
+	voice_filter = "aderivative"
 	///Keeps track of how many items have been sucked for fluff
 	var/counter = 0
 	///The mine we have attached to this roomba
@@ -45,6 +46,11 @@
 
 /obj/machinery/roomba/Initialize(mapload)
 	. = ..()
+	if(SStts.tts_enabled)
+		var/static/todays_voice
+		if(!todays_voice)
+			todays_voice = pick(SStts.available_speakers)
+		voice = todays_voice
 	RegisterSignal(src, COMSIG_AREA_EXITED, PROC_REF(turn_around))
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(suck_items))
 	start_processing()
@@ -78,18 +84,6 @@
 		return
 	step_to(src, get_step(src,newdir))
 
-/obj/machinery/roomba/attack_hand(mob/living/user)
-	if(!CONFIG_GET(flag/fun_allowed))
-		return
-	if(user.a_intent != INTENT_HARM)
-		return
-	tgui_alert(user, "Are you really sure to want to try your luck with the devilish roomba?", "The roomba roulette", list("Yes", "Yes!", "Yes?"))
-	if(prob(50))
-		explosion(user, 1, 0, 0, 0, 0, 4, "[user] lost at the roomba roulette")
-		return
-	explosion(src, 1, 0, 0, 0, 0, 4, "[user] won at the roomba roulette")
-	qdel(src)
-
 /obj/machinery/roomba/Bump(atom/A)
 	. = ..()
 	if(++stuck_counter <= 3)
@@ -110,7 +104,7 @@
 	SIGNAL_HANDLER
 	var/sucked_one = FALSE
 	for(var/obj/item/sucker in loc)
-		if(sucker.flags_item & NO_VACUUM)
+		if(sucker.anchored)
 			continue
 		sucked_one = TRUE
 		sucker.store_in_cryo()
@@ -121,7 +115,17 @@
 
 /obj/machinery/roomba/attack_hand(mob/living/user)
 	. = ..()
-	visible_message(span_notice("[user] lovingly pats the [src]."), span_notice("You lovingly pat the [src]."))
+	if(!CONFIG_GET(flag/fun_allowed))
+		visible_message(span_notice("[user] lovingly pats the [src]."), span_notice("You lovingly pat the [src]."))
+		return
+	if(user.a_intent != INTENT_HARM)
+		return
+	tgui_alert(user, "Are you really sure to want to try your luck with the devilish roomba?", "The roomba roulette", list("Yes", "Yes!", "Yes?"))
+	if(prob(50))
+		explosion(user, 1, 0, 0, 0, 0, 4, "[user] lost at the roomba roulette")
+		return
+	explosion(src, 1, 0, 0, 0, 0, 4, "[user] won at the roomba roulette")
+	qdel(src)
 
 /obj/machinery/roomba/attackby(obj/item/I, mob/living/user, def_zone)
 	if(!allow_claymore)
@@ -156,6 +160,20 @@
 
 /obj/machinery/roomba/valhalla/suck_items()
 	for(var/obj/item/sucker in loc)
-		if(sucker.flags_item & NO_VACUUM)
+		if(sucker.anchored)
 			continue
 		qdel(sucker)
+
+/obj/machinery/roomba/valhalla/eord
+	name = "final boss roomba"
+	desc = "You weep in terror at the sight of this perfect feat of engineering. It sucks up both items and dead creatures alike."
+	resistance_flags = RESIST_ALL
+
+/obj/machinery/roomba/valhalla/eord/suck_items()
+	for(var/obj/item/sucker in loc)
+		qdel(sucker)
+		counter++
+	for(var/mob/sucked in loc)
+		if(sucked.stat != CONSCIOUS)
+			qdel(sucked)
+			counter++

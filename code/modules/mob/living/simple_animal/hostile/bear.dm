@@ -13,9 +13,9 @@
 	taunt_chance = 25
 	turns_per_move = 5
 	see_in_dark = 6
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "hits"
+	response_harm = "hits"
 	maxHealth = 60
 	health = 60
 

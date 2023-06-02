@@ -8,6 +8,7 @@
 	dextrous = TRUE
 
 	initial_language_holder = /datum/language_holder/synthetic
+	voice_filter = "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=1,rubberband=pitch=0.8"
 
 	var/obj/machinery/camera/builtInCamera = null
 	var/obj/item/radio/headset/mainship/mcom/silicon/radio = null
@@ -15,9 +16,11 @@
 	var/list/HUD_toggled = list(0, 0, 0)
 
 
-/mob/living/silicon/Initialize()
+/mob/living/silicon/Initialize(mapload)
 	. = ..()
 	radio = new(src)
+	if(SStts.tts_enabled)
+		voice = pick(SStts.available_speakers)
 
 
 /mob/living/silicon/Destroy()
@@ -50,10 +53,6 @@
 
 
 /mob/living/silicon/put_in_r_hand(obj/item/I)
-	return
-
-
-/mob/living/silicon/stripPanelEquip(obj/item/I, mob/M, slot)
 	return
 
 
@@ -185,21 +184,6 @@
 			adjustBruteLoss(30)
 
 	UPDATEHEALTH(src)
-
-
-/mob/living/silicon/emp_act(severity)
-	. = ..()
-
-	to_chat(src, span_danger("Electromagnetic pulse detected."))
-
-	switch(severity)
-		if(1)
-			adjustBruteLoss(20)
-		if(2)
-			adjustBruteLoss(10)
-
-	to_chat(src, span_danger("*BZZZT*"))
-	flash_act()
 
 
 /mob/living/silicon/update_transform()

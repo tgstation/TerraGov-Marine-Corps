@@ -47,7 +47,7 @@
 	item_state = "syringe_kit"
 	foldable = /obj/item/paper/crumpled
 	storage_slots = null
-	max_w_class = 2 //Changed because of in-game abuse
+	max_w_class = WEIGHT_CLASS_SMALL //Changed because of in-game abuse
 	w_class = WEIGHT_CLASS_BULKY //Changed becuase of in-game abuse
 	var/spawn_type
 	var/spawn_number
@@ -158,7 +158,7 @@
 /obj/item/storage/box/monkeycubes
 	name = "monkey cube box"
 	desc = "Drymate brand monkey cubes. Just add water!"
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/packaged.dmi'
 	icon_state = "monkeycubebox"
 	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
 	spawn_number = 5
@@ -405,15 +405,14 @@
 	desc = "Meal Ready-to-Eat, meant to be consumed in the field, and has an expiration that is two decades past a marine's average combat life expectancy."
 	icon_state = "mealpack"
 	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list()
+	can_hold = list(/obj/item/reagent_containers/food/snacks/packaged_meal)
 	storage_slots = 4
-	max_w_class = 0
 	foldable = 0
 	var/isopened = 0
 	///the item left behind when this is used up
 	var/trash_item = /obj/item/trash/mre
 
-/obj/item/storage/box/MRE/Initialize()
+/obj/item/storage/box/MRE/Initialize(mapload)
 	. = ..()
 	pickflavor()
 
@@ -465,7 +464,7 @@
 	item_state = "mag_box"
 	w_class = WEIGHT_CLASS_HUGE
 	slowdown = 0.4 // Big unhandly box
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64
 	use_to_pickup = TRUE
@@ -502,6 +501,10 @@
 /obj/item/storage/box/visual/Initialize(mapload, ...)
 	. = ..()
 	update_stats()
+
+/obj/item/storage/box/visual/Destroy()
+	contents_weight = null
+	return ..()
 
 /// Updates certain vars used primarily (but not exclusively) for the creation of the overlays.
 /obj/item/storage/box/visual/proc/update_stats()
@@ -637,7 +640,7 @@
 	name = "ammunition box"
 	desc = "This box is able to hold a wide variety of supplies, mainly military-grade ammunition."
 	icon_state = "mag_box"
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64	//SMG and pistol sized (tiny and small) mags can fit all 32 slots, normal (LMG and AR) fit 21
 	can_hold = list(
@@ -1082,7 +1085,7 @@
 	name = "grenade box"
 	desc = "This box is able to hold a wide variety of grenades."
 	icon_state = "grenade_box"
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 25
 	max_storage_space = 50
 	can_hold = list(
@@ -1115,6 +1118,20 @@
 	spawn_type = /obj/item/explosive/grenade/incendiary
 	closed_overlay = "grenade_box_overlay_hidp"
 
+/obj/item/storage/box/visual/grenade/trailblazer
+	name = "\improper M45 Trailblazer grenade box"
+	desc = "A secure box holding 25 M45 Trailblazer grenades. Warning: highly flammable!!!"
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/sticky/trailblazer
+	closed_overlay = "grenade_box_overlay_M45"
+
+/obj/item/storage/box/visual/grenade/sticky
+	name = "\improper M40 adhesive charge grenade box"
+	desc = "A secure box holding 25 M40 adhesive charge grenades. Highly explosive and sticky."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/sticky
+	closed_overlay = "grenade_box_overlay_sticky"
+
 /obj/item/storage/box/visual/grenade/phosphorus
 	name = "\improper M40 HPDP grenade box"
 	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
@@ -1138,6 +1155,13 @@
 	spawn_type = /obj/item/explosive/grenade/smokebomb/cloak
 	closed_overlay = "grenade_box_overlay_cloak"
 
+/obj/item/storage/box/visual/grenade/smokebomb
+	name = "\improper M40 HSDP grenade box"
+	desc = "A secure box holding 25 M40 HSDP smoke grenades. Don't blindly shoot into the smoke."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb
+	closed_overlay = "grenade_box_overlay_smokebomb"
+
 /obj/item/storage/box/visual/grenade/drain
 	name = "\improper M40-T grenade box"
 	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
@@ -1153,6 +1177,14 @@
 	spawn_number = 15
 	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
 	closed_overlay = "grenade_box_overlay_razorburn"
+
+/obj/item/storage/box/visual/grenade/razorburn_large
+	name = "razorburn canister box"
+	desc = "A secure box holding 10 razorburn canisters. Used for quick flank coverage."
+	storage_slots = 10
+	spawn_number = 10
+	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_large
+	closed_overlay = "grenade_box_overlay_razorburn_large"
 
 /obj/item/storage/box/visual/grenade/teargas
 	name = "\improper M66 teargas grenade box"

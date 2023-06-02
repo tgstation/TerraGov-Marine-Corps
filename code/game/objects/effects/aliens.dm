@@ -17,7 +17,7 @@
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/splatter/Initialize() //Self-deletes after creation & animation
+/obj/effect/xenomorph/splatter/Initialize(mapload) //Self-deletes after creation & animation
 	. = ..()
 	QDEL_IN(src, 8)
 
@@ -29,7 +29,7 @@
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/splatterblob/Initialize() //Self-deletes after creation & animation
+/obj/effect/xenomorph/splatterblob/Initialize(mapload) //Self-deletes after creation & animation
 	. = ..()
 	QDEL_IN(src, 4 SECONDS)
 
@@ -102,14 +102,8 @@
 		INVOKE_ASYNC(src, PROC_REF(emote), "pain")
 
 	next_move_slowdown += slow_amt
-	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
-	var/armor_block = get_soft_armor("acid", affecting)
-	INVOKE_ASYNC(affecting, TYPE_PROC_REF(/datum/limb, take_damage_limb), 0, acid_damage/2, FALSE, FALSE, armor_block)
-
-	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
-	armor_block = get_soft_armor("acid", affecting)
-	INVOKE_ASYNC(affecting, TYPE_PROC_REF(/datum/limb, take_damage_limb), 0, acid_damage/2, FALSE, FALSE, armor_block, TRUE)
-
+	for(var/limb_to_hit in list(BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT))
+		INVOKE_ASYNC(src, PROC_REF(apply_damage), acid_damage * 0.5, BURN, limb_to_hit, ACID)
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc

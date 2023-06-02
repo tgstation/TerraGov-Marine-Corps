@@ -12,7 +12,7 @@
 	var/turf/listeningTo
 	var/hearing_range = 3
 
-/obj/item/assembly/infra/Initialize()
+/obj/item/assembly/infra/Initialize(mapload)
 	. = ..()
 	beams = list()
 	START_PROCESSING(SSobj, src)
@@ -156,7 +156,7 @@
 		if(ismob(CHM))
 			var/mob/LM = CHM
 			LM.playsound_local(get_turf(src), 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
-	next_activate =  world.time + 30
+	next_activate = world.time + 30
 
 /obj/item/assembly/infra/proc/switchListener(turf/newloc)
 	if(listeningTo == newloc)
@@ -178,7 +178,7 @@
 			return
 	return refreshBeam()
 
-/obj/item/assembly/signaler/can_interact(mob/user)
+/obj/item/assembly/infra/can_interact(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -233,7 +233,7 @@
 	density = FALSE
 	flags_pass = PASSTABLE|PASSGLASS|PASSGRILLE
 
-/obj/effect/beam/i_beam/Initialize()
+/obj/effect/beam/i_beam/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

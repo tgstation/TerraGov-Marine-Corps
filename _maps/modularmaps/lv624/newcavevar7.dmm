@@ -152,11 +152,11 @@
 /area/lv624/ground/caves/central2)
 "MU" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "OT" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -215,7 +215,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "WN" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "WW" = (
 /turf/closed/wall,

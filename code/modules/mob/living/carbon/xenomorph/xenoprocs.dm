@@ -256,10 +256,6 @@
 		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
 
 
-/mob/living/carbon/xenomorph/show_inv(mob/user)
-	return
-
-
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
 //Pounce, charge both use throw_at, so we need extra code to do stuff rather than just push people aside.
 /mob/living/carbon/xenomorph/throw_impact(atom/hit_atom, speed)
@@ -404,7 +400,7 @@
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
-	. = ..()
+	take_damage(2 * X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
@@ -521,17 +517,12 @@
 	. = ..()
 	if(.)
 		return
-	return (sunder * -0.01) + 1
+	return 1 - (sunder * 0.01)
 
 /mob/living/carbon/xenomorph/adjust_stagger(amount)
 	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
 		return FALSE
 	return ..()
-
-/mob/living/carbon/xenomorph/add_slowdown(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
-		return
-	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
 
 ///Eject the mob inside our belly, and putting it in a cocoon if needed
 /mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)
@@ -574,10 +565,10 @@
 		return
 
 	SSminimaps.remove_marker(src)
+	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon)
 	if(makeleader)
-		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon, overlay_iconstates=list(xeno_caste.minimap_leadered_overlay))
-	else
-		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon)
+		blip.overlays += image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_leadered_overlay)
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, blip)
 
 ///updates the xeno's glow, based on the ability being used
 /mob/living/carbon/xenomorph/proc/update_glow(range, power, color)

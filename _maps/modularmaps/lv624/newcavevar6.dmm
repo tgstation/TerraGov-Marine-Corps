@@ -44,7 +44,7 @@
 "cP" = (
 /obj/structure/rack/nometal,
 /obj/item/weapon/gun/pistol/vp70,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "dj" = (
@@ -67,7 +67,7 @@
 "ew" = (
 /obj/structure/reagent_dispensers/wallmounted/peppertank,
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "eI" = (
@@ -192,7 +192,7 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "qd" = (
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "qz" = (
@@ -216,7 +216,7 @@
 /area/lv624/ground/caves/central2)
 "sl" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "sp" = (
@@ -360,7 +360,7 @@
 /area/lv624/ground/caves/central2)
 "Au" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "AF" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -372,7 +372,7 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "By" = (
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "BJ" = (
@@ -413,7 +413,7 @@
 /area/lv624/ground/caves/central2)
 "Dr" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "DE" = (
 /obj/effect/turf_decal/tile/full/black,
@@ -422,7 +422,7 @@
 /area/lv624/ground/caves/central2)
 "DU" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "EZ" = (
@@ -454,7 +454,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Hb" = (
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Ho" = (
@@ -471,7 +471,7 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "HN" = (
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "IL" = (
@@ -531,7 +531,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "MF" = (
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /obj/effect/ai_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
@@ -574,7 +574,7 @@
 /area/lv624/ground/caves/central2)
 "Qi" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -635,8 +635,8 @@
 /area/lv624/ground/caves/central2)
 "SP" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "TZ" = (
@@ -652,14 +652,14 @@
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
 "Un" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Uy" = (
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central2)
 "UU" = (
-/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "UW" = (

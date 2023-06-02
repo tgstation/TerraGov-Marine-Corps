@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ak" = (
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
@@ -37,7 +37,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "ba" = (
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/blue/full,
 /area/bigredv2/outside/office_complex)
@@ -83,8 +83,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/e)
 "bG" = (
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
 /obj/item/tool/extinguisher/mini,
 /obj/item/t_scanner,
 /obj/item/tool/extinguisher,
@@ -152,7 +152,7 @@
 "cv" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
 "cF" = (
@@ -181,7 +181,7 @@
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/tool/weldpack,
 /obj/item/tool/extinguisher/mini,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship/orange/full,
 /area/bigredv2/outside/office_complex)
 "dv" = (
@@ -278,7 +278,7 @@
 /area/bigredv2/outside/office_complex)
 "ha" = (
 /obj/item/stack/sheet/plasteel,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/office_complex)
@@ -290,7 +290,7 @@
 /area/bigredv2/outside/office_complex)
 "hw" = (
 /obj/structure/cable,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/item/stack/sheet/glass{
 	amount = 50;
 	pixel_x = 3;
@@ -345,14 +345,14 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/mainship/red,
 /area/bigredv2/outside/office_complex)
 "jO" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "jX" = (
@@ -447,7 +447,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "nc" = (
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/office_complex)
 "ng" = (
@@ -513,8 +513,8 @@
 "pC" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/spawner/random/gun,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "pX" = (
@@ -600,7 +600,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship/red,
 /area/bigredv2/outside/office_complex)
 "sB" = (
@@ -664,7 +664,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "uh" = (
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "uk" = (
@@ -683,7 +683,7 @@
 	},
 /area/bigredv2/outside/se)
 "uC" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
@@ -695,7 +695,7 @@
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 5
 	},
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/office_complex)
@@ -732,8 +732,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "vL" = (
-/obj/effect/spawner/random/gun,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/gun,
+/obj/effect/spawner/random/weaponry/ammo,
 /obj/item/shard,
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -943,8 +943,8 @@
 /turf/open/floor/mainship/stripesquare,
 /area/bigredv2/outside/office_complex)
 "Be" = (
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/random,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/random,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/shard,
 /turf/open/floor/mainship/mono,
@@ -1123,7 +1123,7 @@
 /obj/item/tool/hand_labeler,
 /obj/item/storage/toolbox/electrical,
 /obj/item/stack/barbed_wire/small_stack,
-/obj/effect/spawner/random/gun/machineguns,
+/obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "Id" = (
@@ -1183,7 +1183,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/office_complex)
 "JC" = (
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
@@ -1195,7 +1195,7 @@
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/office_complex)
@@ -1371,7 +1371,7 @@
 "PV" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marine_network,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship/blue{
 	dir = 9
 	},
@@ -1624,7 +1624,7 @@
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
@@ -1686,11 +1686,11 @@
 /area/bigredv2/outside/office_complex)
 "YR" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool{
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool{
 	pixel_y = -5
 	},
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "Zd" = (

@@ -70,7 +70,7 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_TINY
-	force = 4.0
+	force = 4
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	volume = 2 //Tiny. Real life equivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)
 	gas_type = GAS_TYPE_OXYGEN

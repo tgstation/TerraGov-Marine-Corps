@@ -233,6 +233,12 @@
 			owner.balloon_alert(owner, "Already evading")
 		return FALSE
 
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+
+	if(xeno_owner.on_fire)
+		xeno_owner.balloon_alert(xeno_owner, "Can't while on fire!")
+		return FALSE
+
 /datum/action/xeno_action/evasion/action_activate()
 	var/mob/living/carbon/xenomorph/runner/R = owner
 
@@ -481,7 +487,7 @@
 	if(!new_dir || new_dir == old_dir)
 		return
 	owner.overlays -= stolen_appearance
-	var/matrix/new_transform  = stolen_appearance.transform
+	var/matrix/new_transform = stolen_appearance.transform
 	switch(old_dir)
 		if(NORTH)
 			new_transform.Translate(-15, -12)

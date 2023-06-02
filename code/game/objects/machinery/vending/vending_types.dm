@@ -107,7 +107,7 @@
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
 	products = list(
-		/obj/item/reagent_containers/food/snacks/packaged_burger = -1,
+		/obj/item/reagent_containers/food/snacks/burger/packaged_burger = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_burrito = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_hdogs = -1,
 		/obj/item/reagent_containers/food/snacks/kepler_crisps = -1,
@@ -357,8 +357,8 @@
 			pixel_x = 21
 
 /obj/machinery/vending/nanomed/tadpolemed
-	name = "Flight surgeron medical equipment dispenser"
-	desc = "Dedicated for the surgeron with wings, this humble box contains a lot for its size."
+	name = "Flight surgeon medical equipment dispenser"
+	desc = "Dedicated for the surgeon with wings, this humble box contains a lot for its size."
 	products = list(
 		"Autoinjectors" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 2,

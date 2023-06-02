@@ -74,7 +74,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "jO" = (
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
@@ -111,7 +111,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "qL" = (
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "re" = (
@@ -155,7 +155,7 @@
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "um" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
@@ -219,7 +219,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
 "Af" = (
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
@@ -251,7 +251,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "HK" = (
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "HW" = (
@@ -283,7 +283,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Lx" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "LS" = (
@@ -297,7 +297,7 @@
 /area/lv624/ground/caves/central2)
 "Ol" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

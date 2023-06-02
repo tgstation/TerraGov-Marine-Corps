@@ -7,6 +7,8 @@
 	///Species name
 	var/name
 	var/name_plural
+	///what kind of species it is considered
+	var/species_type = SPECIES_HUMAN
 
 	///Normal icon file
 	var/icobase = 'icons/mob/human_races/r_human.dmi'
@@ -82,7 +84,7 @@
 
 	///Generic traits tied to having the species.
 	var/list/inherent_traits = list()
-	var/species_flags  = NONE       // Various specific features.
+	var/species_flags = NONE       // Various specific features.
 
 	var/list/abilities = list()	// For species-derived or admin-given powers
 	var/list/preferences = list()
@@ -106,13 +108,13 @@
 	/// inherent Species-specific verbs.
 	var/list/inherent_verbs
 	var/list/has_organ = list(
-		"heart" =    /datum/internal_organ/heart,
-		"lungs" =    /datum/internal_organ/lungs,
-		"liver" =    /datum/internal_organ/liver,
-		"kidneys" =  /datum/internal_organ/kidneys,
-		"brain" =    /datum/internal_organ/brain,
+		"heart" = /datum/internal_organ/heart,
+		"lungs" = /datum/internal_organ/lungs,
+		"liver" = /datum/internal_organ/liver,
+		"kidneys" = /datum/internal_organ/kidneys,
+		"brain" = /datum/internal_organ/brain,
 		"appendix" = /datum/internal_organ/appendix,
-		"eyes" =     /datum/internal_organ/eyes
+		"eyes" = /datum/internal_organ/eyes
 		)
 
 	var/knock_down_reduction = 1 //how much the knocked_down effect is reduced per Life call.
@@ -391,6 +393,7 @@
 /datum/species/robot
 	name = "Combat Robot"
 	name_plural = "Combat Robots"
+	species_type = SPECIES_COMBAT_ROBOT
 	icobase = 'icons/mob/human_races/r_robot.dmi'
 	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
 	brute_damage_icon_state = "robot_brute"
@@ -441,6 +444,7 @@
 /datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
+	H.voice_filter = "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=1,rubberband=pitch=0.8"
 	H.health_threshold_crit = -100
 	var/datum/action/repair_self/repair_action = new()
 	repair_action.give_action(H)
@@ -448,23 +452,26 @@
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
+	H.voice_filter = initial(H.voice_filter)
 	H.health_threshold_crit = -50
 	var/datum/action/repair_self/repair_action = H.actions_by_path[/datum/action/repair_self]
 	repair_action.remove_action(H)
 	qdel(repair_action)
 
-
-/mob/living/carbon/human/species/robot/handle_regular_hud_updates()
-	. = ..()
-	if(health <= 0 && health > -50)
-		clear_fullscreen("robotlow")
-		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/robothalf)
-	else if(health <= -50)
-		clear_fullscreen("robothalf")
-		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/robotlow)
+/datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
+	if(H.health <= 0 && H.health > -50)
+		H.clear_fullscreen("robotlow")
+		H.overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
+	else if(H.health <= -50)
+		H.clear_fullscreen("robothalf")
+		H.overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
 	else
-		clear_fullscreen("robothalf")
-		clear_fullscreen("robotlow")
+		H.clear_fullscreen("robothalf")
+		H.clear_fullscreen("robotlow")
+	if(H.health > -25) //Staggerslowed if below crit threshold.
+		return
+	H.adjust_stagger(2, capped = 10)
+	H.adjust_slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self
@@ -485,7 +492,7 @@
 	if(!. || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/howner = owner
-	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 5 SECONDS)
+	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 10 SECONDS)
 	howner.balloon_alert_to_viewers("Repairing")
 
 /datum/species/robot/alpharii
@@ -892,20 +899,20 @@
 	// to be drawn for the mob. This is fairly delicate, try to avoid messing with it
 	// unless you know exactly what it does.
 	var/list/gear = list(
-		"i_clothing" =   list("loc" = ui_iclothing, "slot" = SLOT_W_UNIFORM, "state" = "uniform", "toggle" = TRUE),
-		"o_clothing" =   list("loc" = ui_oclothing, "slot" = SLOT_WEAR_SUIT, "state" = "suit",  "toggle" = TRUE),
-		"mask" =         list("loc" = ui_mask,      "slot" = SLOT_WEAR_MASK, "state" = "mask",  "toggle" = TRUE),
-		"gloves" =       list("loc" = ui_gloves,    "slot" = SLOT_GLOVES,    "state" = "gloves", "toggle" = TRUE),
-		"eyes" =         list("loc" = ui_glasses,   "slot" = SLOT_GLASSES,   "state" = "glasses","toggle" = TRUE),
-		"wear_ear" =     list("loc" = ui_wear_ear,  "slot" = SLOT_EARS,     "state" = "ears",   "toggle" = TRUE),
-		"head" =         list("loc" = ui_head,      "slot" = SLOT_HEAD,      "state" = "head",   "toggle" = TRUE),
-		"shoes" =        list("loc" = ui_shoes,     "slot" = SLOT_SHOES,     "state" = "shoes",  "toggle" = TRUE),
+		"i_clothing" = list("loc" = ui_iclothing, "slot" = SLOT_W_UNIFORM, "state" = "uniform", "toggle" = TRUE),
+		"o_clothing" = list("loc" = ui_oclothing, "slot" = SLOT_WEAR_SUIT, "state" = "suit",  "toggle" = TRUE),
+		"mask" = list("loc" = ui_mask,      "slot" = SLOT_WEAR_MASK, "state" = "mask",  "toggle" = TRUE),
+		"gloves" = list("loc" = ui_gloves,    "slot" = SLOT_GLOVES,    "state" = "gloves", "toggle" = TRUE),
+		"eyes" = list("loc" = ui_glasses,   "slot" = SLOT_GLASSES,   "state" = "glasses","toggle" = TRUE),
+		"wear_ear" = list("loc" = ui_wear_ear,  "slot" = SLOT_EARS,     "state" = "ears",   "toggle" = TRUE),
+		"head" = list("loc" = ui_head,      "slot" = SLOT_HEAD,      "state" = "head",   "toggle" = TRUE),
+		"shoes" = list("loc" = ui_shoes,     "slot" = SLOT_SHOES,     "state" = "shoes",  "toggle" = TRUE),
 		"suit storage" = list("loc" = ui_sstore1,   "slot" = SLOT_S_STORE,   "state" = "suit_storage"),
-		"back" =         list("loc" = ui_back,      "slot" = SLOT_BACK,      "state" = "back"),
-		"id" =           list("loc" = ui_id,        "slot" = SLOT_WEAR_ID,   "state" = "id"),
-		"storage1" =     list("loc" = ui_storage1,  "slot" = SLOT_L_STORE,   "state" = "pocket"),
-		"storage2" =     list("loc" = ui_storage2,  "slot" = SLOT_R_STORE,   "state" = "pocket"),
-		"belt" =         list("loc" = ui_belt,      "slot" = SLOT_BELT,      "state" = "belt")
+		"back" = list("loc" = ui_back,      "slot" = SLOT_BACK,      "state" = "back"),
+		"id" = list("loc" = ui_id,        "slot" = SLOT_WEAR_ID,   "state" = "id"),
+		"storage1" = list("loc" = ui_storage1,  "slot" = SLOT_L_STORE,   "state" = "pocket"),
+		"storage2" = list("loc" = ui_storage2,  "slot" = SLOT_R_STORE,   "state" = "pocket"),
+		"belt" = list("loc" = ui_belt,      "slot" = SLOT_BELT,      "state" = "belt")
 		)
 
 /datum/hud_data/New()

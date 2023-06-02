@@ -48,7 +48,7 @@
 /area/lv624/ground/caves/central1)
 "jJ" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/caves/central2)
 "km" = (
 /obj/structure/rack,
@@ -173,7 +173,7 @@
 /area/lv624/ground/caves/central2)
 "AR" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -259,7 +259,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Ok" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/caves/central2)
 "Rz" = (
 /turf/open/ground/coast{
@@ -303,7 +303,7 @@
 /area/lv624/ground/caves/central1)
 "XM" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/caves/central2)
 "XP" = (
 /obj/structure/rack,
@@ -314,7 +314,10 @@
 /area/lv624/ground/caves/central1)
 "Yu" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
+/area/lv624/ground/caves/central2)
+"Zo" = (
+/turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/caves/central2)
 
 (1,1,1) = {"
@@ -1065,9 +1068,9 @@ Lg
 Ok
 Ok
 Ok
+Zo
 Ok
-Ok
-Ok
+Zo
 Ok
 XM
 Ok
@@ -1101,8 +1104,8 @@ Ok
 jJ
 Ok
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1136,8 +1139,8 @@ Ok
 Ok
 Ok
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1172,8 +1175,8 @@ Ok
 Ok
 Yu
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1207,7 +1210,7 @@ Ok
 Ok
 Ok
 Ok
-Ok
+Zo
 Ok
 Ok
 Ok
@@ -1241,8 +1244,8 @@ Ok
 Ok
 Ok
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 jJ
 Ok
@@ -1275,9 +1278,9 @@ Lg
 Ok
 XM
 Ok
-Ok
-Ok
-Ok
+Zo
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1310,8 +1313,8 @@ Lg
 Ok
 Ok
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1344,8 +1347,8 @@ hY
 Lg
 Ok
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 XM
 Ok
@@ -1379,12 +1382,12 @@ hY
 Lg
 Ok
 Ok
+Zo
+Zo
+Zo
 Ok
 Ok
-Ok
-Ok
-Ok
-Ok
+Zo
 Ok
 Ok
 Ok
@@ -1416,10 +1419,10 @@ Ok
 Ok
 Ok
 Ok
-Ok
-Ok
-Ok
-Ok
+Zo
+Zo
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1450,10 +1453,10 @@ Lg
 Ok
 Ok
 Ok
-Ok
-Ok
-Ok
-Ok
+Zo
+Zo
+Zo
+Zo
 Ok
 Ok
 Yu
@@ -1485,7 +1488,7 @@ Lg
 Ok
 Ok
 Ok
-Ok
+Zo
 Ok
 Ok
 Ok
@@ -1556,7 +1559,7 @@ Ok
 Ok
 jJ
 Ok
-Ok
+Zo
 Ok
 Ok
 Ok
@@ -1591,12 +1594,12 @@ sp
 Ok
 Ok
 Ok
+Zo
+Zo
 Ok
 Ok
-Ok
-Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1626,13 +1629,13 @@ Lg
 Ok
 Ok
 Ok
+Zo
+Zo
 Ok
 Ok
 Ok
-Ok
-Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1660,13 +1663,13 @@ hY
 Lg
 Ok
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 jJ
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1695,13 +1698,13 @@ hY
 Lg
 Ok
 Ok
+Zo
+Zo
 Ok
 Ok
 Ok
-Ok
-Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1730,12 +1733,12 @@ hY
 Lg
 Ok
 Ok
+Zo
+Zo
+Zo
 Ok
-Ok
-Ok
-Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1766,11 +1769,11 @@ Lg
 Ok
 Ok
 Ok
-Ok
-Ok
-Ok
-Ok
-Ok
+Zo
+Zo
+Zo
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1801,10 +1804,10 @@ Lg
 XM
 Ok
 Ok
-Ok
-Ok
-Ok
-Ok
+Zo
+Zo
+Zo
+Zo
 Ok
 Ok
 jJ
@@ -1835,12 +1838,12 @@ lP
 tA
 Ok
 Ok
+Zo
+Zo
 Ok
 Ok
-Ok
-Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1870,12 +1873,12 @@ Lg
 Ok
 Ok
 Ok
-Ok
+Zo
 Ok
 Yu
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok
@@ -1904,13 +1907,13 @@ hY
 Lg
 Ok
 Ok
+Zo
+Zo
 Ok
 Ok
 Ok
 Ok
-Ok
-Ok
-Ok
+Zo
 Ok
 Ok
 Ok
@@ -1939,7 +1942,7 @@ hY
 Lg
 Ok
 Ok
-Ok
+Zo
 Ok
 jJ
 Ok
@@ -1974,8 +1977,8 @@ hY
 Lg
 Ok
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 XM
@@ -2010,8 +2013,8 @@ Lg
 Ok
 Ok
 Ok
-Ok
-Ok
+Zo
+Zo
 Ok
 Ok
 Ok

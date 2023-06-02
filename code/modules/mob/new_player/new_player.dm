@@ -14,7 +14,7 @@
 	var/datum/job/saved_job
 
 
-/mob/new_player/Initialize()
+/mob/new_player/Initialize(mapload)
 	if(length(GLOB.newplayer_start))
 		var/turf/spawn_loc = get_turf(pick(GLOB.newplayer_start))
 		forceMove(spawn_loc)

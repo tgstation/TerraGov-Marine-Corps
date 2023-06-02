@@ -54,7 +54,7 @@
 	var/cam_range = 1
 	var/datum/movement_detector/tracker
 
-/obj/item/spy_bug/Initialize()
+/obj/item/spy_bug/Initialize(mapload)
 	. = ..()
 	tracker = new /datum/movement_detector(src, CALLBACK(src, PROC_REF(update_view)))
 

@@ -1,14 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "at" = (
 /obj/effect/landmark/weed_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "aC" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "cp" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "dD" = (
 /obj/effect/ai_node,
@@ -74,7 +74,7 @@
 /area/lv624/ground/caves/central1)
 "nH" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -118,7 +118,7 @@
 /area/lv624/ground/caves/central2)
 "AS" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Bx" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -220,14 +220,14 @@
 /area/lv624/ground/caves/central1)
 "QB" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Rk" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Sl" = (
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "SW" = (
 /obj/effect/landmark/xeno_resin_wall,

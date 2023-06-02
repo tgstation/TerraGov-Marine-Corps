@@ -3,6 +3,7 @@
 	desc = "A grenade sometimes used by police, civilian or military, to stun targets with a flash, then a bang. May cause hearing loss, and induce feelings of overwhelming rage in victims."
 	icon_state = "flashbang2"
 	item_state = "flashbang2"
+	hud_state = "flashbang"
 	arm_sound = 'sound/weapons/armbombpin_2.ogg'
 	///This is a cluster weapon, or part of one
 	var/banglet = FALSE
@@ -124,7 +125,7 @@
 	name = "clusterbang segment"
 	icon_state = "clusterbang_segment"
 
-/obj/item/explosive/grenade/flashbang/clusterbang/segment/Initialize() //Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
+/obj/item/explosive/grenade/flashbang/clusterbang/segment/Initialize(mapload) //Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
 	. = ..()
 	playsound(loc, 'sound/weapons/armbomb.ogg', 25, TRUE, 6)
 	icon_state = "clusterbang_segment_active"
@@ -147,7 +148,7 @@
 
 	qdel(src)
 
-/obj/item/explosive/grenade/flashbang/cluster/Initialize()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
+/obj/item/explosive/grenade/flashbang/cluster/Initialize(mapload)//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
 	. = ..()
 	playsound(loc, 'sound/weapons/armbomb.ogg', 25, TRUE, 6)
 	icon_state = "flashbang_active"

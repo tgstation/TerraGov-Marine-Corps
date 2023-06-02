@@ -37,7 +37,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = 5
+	max_w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 6
 	max_storage_space = 16
 	can_hold = list(
@@ -49,7 +49,7 @@
 		/obj/item/ammo_magazine/sentry,
 	)
 
-/obj/item/storage/box/sentry/Initialize()
+/obj/item/storage/box/sentry/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)
@@ -93,7 +93,7 @@
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
 	turret_range = 9
 	w_class = WEIGHT_CLASS_NORMAL //same as other sentries
-	sentry_iff_signal = SON_OF_MARS_IFF
+	sentry_iff_signal = SOM_IFF
 
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
 
@@ -220,7 +220,7 @@
 
 /obj/item/weapon/gun/sentry/mini
 	name = "\improper ST-580 point defense sentry"
-	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 100-round drum magazine."
+	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 300-round drum magazine."
 	icon_state = "minisentry"
 
 	max_shells = 300

@@ -15,7 +15,7 @@
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
 
 	//Preferences related
-	var/datum/preferences/prefs 	= null
+	var/datum/preferences/prefs = null
 	var/inprefs = FALSE
 	///remembers what our context menu setting is currently set to
 	var/shift_to_open_context_menu = TRUE

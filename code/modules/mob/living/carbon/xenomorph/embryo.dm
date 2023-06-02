@@ -18,7 +18,7 @@
 	var/admin = FALSE
 
 
-/obj/item/alien_embryo/Initialize()
+/obj/item/alien_embryo/Initialize(mapload)
 	. = ..()
 	if(!isliving(loc))
 		return
@@ -144,7 +144,7 @@
 
 	new_xeno = new(affected_mob)
 
-	new_xeno.hivenumber = hivenumber
+	new_xeno.transfer_to_hive(hivenumber)
 	new_xeno.update_icons()
 
 	//If we have a candidate, transfer it over.

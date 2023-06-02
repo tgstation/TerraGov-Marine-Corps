@@ -90,6 +90,11 @@
 			X.balloon_alert(X, "Cannot while in crest defense")
 		return FALSE
 
+	if(!(flags_to_check & XACT_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		if(!silent)
+			X.balloon_alert(X, "Cannot while rooted")
+		return FALSE
+
 	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
 			X.balloon_alert(X, "Cannot do this here")
@@ -196,6 +201,9 @@
 	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
 /datum/action/xeno_action/activable/action_activate()
+	. = ..()
+	if(!.)
+		return
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		return
@@ -224,16 +232,6 @@
 	set_toggle(TRUE)
 	X.selected_ability = src
 	on_activation()
-
-/datum/action/xeno_action/activable/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.selected_ability == src)
-		deselect()
-	else
-		if(X.selected_ability)
-			X.selected_ability.deselect()
-		select()
-	return ..()
 
 
 /datum/action/xeno_action/activable/remove_action(mob/living/carbon/xenomorph/X)

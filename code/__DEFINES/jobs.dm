@@ -40,6 +40,8 @@
 #define JOB_FLAG_CAN_SEE_ORDERS (1<<12) //Able to see rally and CIC orders
 #define JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP (1<<13) //Will appear on all minimaps, including squad minimaps
 #define JOB_FLAG_SHOW_OPEN_POSITIONS (1<<14) //You can only see how many positions are opened, and not how many positions are fullfilled
+/// Job has a TTS volume bonus
+#define JOB_FLAG_LOUDER_TTS (1<<15)
 
 #define CAPTAIN "Captain"
 #define EXECUTIVE_OFFICER "Executive Officer" //Currently disabled.
@@ -181,3 +183,5 @@ GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine))
 #define MEDIC_TOTAL_BUY_POINTS 45
 /// How many points an engineer can spend
 #define ENGINEER_TOTAL_BUY_POINTS 75
+/// How many points the field commander can spend
+#define COMMANDER_TOTAL_BUY_POINTS 45

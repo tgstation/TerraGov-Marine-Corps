@@ -8,18 +8,15 @@
 /obj/item/reagent_containers/food/condiment
 	name = "Condiment Container"
 	desc = "Just your average condiment container."
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/condiment.dmi'
 	icon_state = "emptycondiment"
 	init_reagent_flags = OPENCONTAINER
 	possible_transfer_amounts = list(1,5,10)
 	center_of_mass = list("x"=16, "y"=6)
 	volume = 50
 
-/obj/item/reagent_containers/food/condiment/attackby(obj/item/W, mob/user)
-		return
-
 /obj/item/reagent_containers/food/condiment/attack_self(mob/user)
-		return
+	return
 
 /obj/item/reagent_containers/food/condiment/attack(mob/M, mob/user, def_zone)
 	var/datum/reagents/R = reagents

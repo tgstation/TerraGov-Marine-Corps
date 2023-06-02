@@ -11,11 +11,11 @@
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/equipped(mob/user, slot)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_SHIELD_DETATCH, PROC_REF(shield_dropped))
+	RegisterSignal(user, COMSIG_MOB_SHIELD_DETACH, PROC_REF(shield_dropped))
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/unequipped(mob/unequipper, slot)
 	. = ..()
-	UnregisterSignal(unequipper, COMSIG_MOB_SHIELD_DETATCH)
+	UnregisterSignal(unequipper, COMSIG_MOB_SHIELD_DETACH)
 
 ///Updates the last shield drop time when one is dropped
 /obj/item/clothing/suit/storage/marine/harness/boomvest/proc/shield_dropped()
@@ -26,19 +26,19 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(issynth(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, span_warning("Your programming restricts operating explosive devices."))
+		balloon_alert(user, "Can't wear this")
 		return TRUE
 	if(user.alpha != 255)
-		to_chat(user, span_warning("Your cloak prevents you from detonating [src]!"))
+		balloon_alert(user, "Can't, your cloak prevents you")
 		return TRUE
 	if(activator.wear_suit != src)
-		to_chat(activator, span_warning("Due to the rigging of this device, it can only be detonated while worn.")) //If you are going to use this, you have to accept death. No armor allowed.
+		balloon_alert(user, "Can only be detonated while worn")
 		return FALSE
 	if(istype(activator.l_hand, /obj/item/weapon/shield/riot) || istype(activator.r_hand, /obj/item/weapon/shield/riot) || istype(activator.back, /obj/item/weapon/shield/riot))
-		to_chat(activator, span_warning("Your bulky shield prevents you from reaching the detonator!"))
+		balloon_alert(user, "Can't, your shield prevents you")
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BOMBVEST_SHIELD_DROP))
-		to_chat(activator, span_warning("You dropped a shield too recently to detonate, wait a few seconds!"))
+		balloon_alert(user, "Can't, dropped shield too recently")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		return
@@ -64,12 +64,22 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_hand_alternate(mob/living/user)
 	. = ..()
 	var/new_bomb_message = stripped_input(user, "Select Warcry", "Warcry", null, 50)
-	if(CHAT_FILTER_CHECK(new_bomb_message))
+	var/filter_result = CAN_BYPASS_FILTER(user) ? null : is_ic_filtered_for_bombvests(new_bomb_message)
+	if(filter_result)
 		to_chat(user, span_info("This warcry is prohibited from IC chat."))
+		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
+		log_filter("Bombvest", new_bomb_message, filter_result)
 		return
-	if(findtext(new_bomb_message, regex(bad_warcries_regex, "i")))
-		to_chat(user, span_info("This warcry is prohibited from IC chat."))
-		return
+	var/soft_filter_result = CAN_BYPASS_FILTER(user) ? null : is_soft_ic_filtered_for_bombvests(new_bomb_message)
+	if(soft_filter_result)
+		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			SSblackbox.record_feedback("tally", "soft_ic_blocked_words", 1, lowertext(config.soft_ic_filter_regex.match))
+			log_filter("Soft IC", new_bomb_message, filter_result)
+			return FALSE
+		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[new_bomb_message]\"")
+		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[new_bomb_message]\"")
+		SSblackbox.record_feedback("tally", "passed_soft_ic_blocked_words", 1, lowertext(config.soft_ic_filter_regex.match))
+		log_filter("Soft IC (Passed)", new_bomb_message, filter_result)
 	bomb_message = new_bomb_message
 	to_chat(user, span_info("Warcry set to: \"[bomb_message]\"."))
 
@@ -81,7 +91,7 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(activator.wear_suit != src)
-		to_chat(activator, span_warning("Due to the rigging of this device, it can only be detonated while worn."))
+		balloon_alert(user, "Can only be detonated while worn")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		return

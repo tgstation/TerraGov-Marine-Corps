@@ -51,6 +51,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
+"ez" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grimy,
+/area/bigredv2/outside/dorms)
 "eI" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -65,10 +70,22 @@
 "gU" = (
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
+"il" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
 "iV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/grimy,
+/area/bigredv2/outside/dorms)
+"iW" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
 /area/bigredv2/outside/dorms)
 "jz" = (
 /obj/item/reagent_containers/food/drinks/bottle/absinthe,
@@ -149,6 +166,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
+"xo" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
 "zx" = (
 /obj/item/reagent_containers/food/drinks/bottle/rum,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -163,6 +184,7 @@
 /area/bigredv2/outside/dorms)
 "BF" = (
 /obj/item/trash/chunk,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "BU" = (
@@ -242,7 +264,7 @@
 "IE" = (
 /obj/structure/table,
 /obj/item/trash/plate,
-/obj/item/reagent_containers/food/snacks/meatpizzaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "Ji" = (
@@ -342,7 +364,7 @@ Ii
 (2,1,1) = {"
 TK
 Ip
-pH
+il
 Ip
 pR
 Ip
@@ -372,15 +394,15 @@ gU
 gU
 gU
 gU
-gU
+xo
 Jn
 "}
 (6,1,1) = {"
 gU
-pH
+il
 eI
 eI
-gU
+xo
 gU
 Hb
 "}
@@ -416,7 +438,7 @@ gU
 mI
 Ep
 Ep
-bM
+iW
 gU
 Kj
 "}
@@ -453,7 +475,7 @@ Zn
 up
 up
 up
-up
+ez
 Ji
 "}
 (15,1,1) = {"

@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - code_imp: "Updated the failsafe to recover from a deleted MC"

@@ -51,7 +51,7 @@
 	name = "transmitting orbital beacon - [get_area(src)] - [H]"
 	activated = TRUE
 	anchored = TRUE
-	w_class = 10
+	w_class = WEIGHT_CLASS_GIGANTIC
 	layer = ABOVE_FLY_LAYER
 	set_light(2, 1)
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
@@ -66,7 +66,7 @@
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	else
 		marker_flags = MINIMAP_FLAG_MARINE
-	SSminimaps.add_marker(src, z, marker_flags, "supply")
+	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply"))
 	update_icon()
 	return TRUE
 
@@ -143,7 +143,7 @@
 	var/faction = ""
 
 /datum/supply_beacon/New(_name, turf/_drop_location, _faction, life_time = 0 SECONDS)
-	name= _name
+	name =  _name
 	drop_location = _drop_location
 	faction = _faction
 	GLOB.supply_beacon[name] = src
@@ -152,5 +152,5 @@
 
 /// Remove that beacon from the list of glob supply beacon
 /datum/supply_beacon/Destroy()
-	GLOB.supply_beacon[name] = null
+	GLOB.supply_beacon -= name
 	return ..()

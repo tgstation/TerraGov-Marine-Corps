@@ -30,7 +30,7 @@
 	var/list/click_border_start = list()
 	var/list/click_border_end = list()
 	///Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_w_class = 2
+	var/max_w_class = WEIGHT_CLASS_SMALL
 	///The sum of the storage costs of all the items in this storage item.
 	var/max_storage_space = 14
 	///The number of storage slots in this container.
@@ -56,6 +56,7 @@
 	var/allow_quick_gather
 	///whether this object can change its drawing method (pouches)
 	var/allow_drawing_method
+	///0 = will open the inventory if you click on the storage container, 1 = will draw from the inventory if you click on the storage container
 	var/draw_mode = 0
 	////0 = pick one at a time, 1 = pick all on tile
 	var/collection_mode = 1;
@@ -73,7 +74,6 @@
 	var/list/obj/item/storage/refill_types
 	///What sound gets played when the item is tactical refilled
 	var/refill_sound = null
-
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))

@@ -73,7 +73,7 @@
 /area/bigredv2/outside/filtration_plant)
 "ha" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "hz" = (
@@ -107,7 +107,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "kb" = (
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /obj/machinery/light,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor,
@@ -126,7 +126,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "la" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/engineering/structure/tank_dispenser/oxygenweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -249,7 +249,7 @@
 /area/bigredv2/outside/filtration_plant)
 "qC" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -257,7 +257,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /obj/structure/cable,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor,
@@ -307,7 +307,7 @@
 "tm" = (
 /obj/structure/rack,
 /obj/item/tank/air,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "tt" = (
@@ -414,7 +414,7 @@
 /area/bigredv2/outside/s)
 "zn" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "zy" = (
@@ -520,7 +520,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Ds" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -552,7 +552,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "EB" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "EF" = (
@@ -596,7 +596,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Gk" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Gm" = (
@@ -610,7 +610,7 @@
 /area/bigredv2/outside/s)
 "HJ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "HN" = (
@@ -652,14 +652,14 @@
 "Jj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Jk" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "Jm" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "JL" = (
@@ -721,18 +721,18 @@
 	},
 /area/bigredv2/outside/s)
 "MR" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/sign/safety/vent,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "MY" = (
-/obj/structure/window_frame/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Np" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -751,7 +751,7 @@
 /area/bigredv2/outside/se)
 "NY" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -787,7 +787,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/s)
 "QR" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/engineering/structure/tank_dispenser/oxygenweighted,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
@@ -846,7 +846,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "VJ" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "VL" = (
@@ -913,7 +913,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Xm" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)

@@ -332,7 +332,7 @@
 		wearer.balloon_alert(wearer, "You need to be holding a harvester")
 		return
 
-	if(!CHECK_BITFIELD(held_item.flags_item, DRAINS_XENO))
+	if(!held_item.GetComponent(/datum/component/harvester))
 		wearer.balloon_alert(wearer, "You need to be holding a harvester")
 		return
 
@@ -375,7 +375,7 @@
 		return
 	if(resource_storage_current >= resource_storage_max)
 		return
-	update_resource(20)
+	update_resource(round(20*connected_weapon.attack_speed/11))
 
 ///Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource
 /datum/component/chem_booster/proc/update_resource(amount)

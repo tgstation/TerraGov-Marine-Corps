@@ -26,7 +26,7 @@
 	. = ..()
 	if(!_hivenumber)
 		return
-	hivenumber =  _hivenumber
+	hivenumber = _hivenumber
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
@@ -116,6 +116,6 @@
 	icon_state = "xeno_cocoon_open"
 	anchored = FALSE
 
-/obj/structure/cocoon/opened_cocoon/Initialize()
+/obj/structure/cocoon/opened_cocoon/Initialize(mapload)
 	. = ..()
 	new /obj/structure/bed/nest(loc)
