@@ -246,6 +246,7 @@
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
+	linked_cam = new(src, name)
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()
