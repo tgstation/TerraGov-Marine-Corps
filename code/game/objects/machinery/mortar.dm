@@ -10,7 +10,6 @@
 /obj/machinery/deployable/mortar
 	anchored = TRUE
 	density = TRUE
-	flags_pass = PASSABLE
 	coverage = 20
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	/// list of the target x and y, and the dialing we can do to them

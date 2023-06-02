@@ -2,7 +2,7 @@
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
-	flags_pass = PASSAIR
+	flags_pass = PASSABLE
 	///Since /obj/machinery/deployable aquires its sprites from an item and are set in New(), initial(icon_state) would return null. This var exists as a substitute.
 	var/default_icon_state
 	///Item that is deployed to create src.
