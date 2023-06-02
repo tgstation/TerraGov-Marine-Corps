@@ -351,7 +351,7 @@
 /obj/item/stack/throwing_knife/unequipped(mob/unequipper, slot)
 	. = ..()
 	if(living_user?.client)
-		living_user.update_mouse_pointer()
+		living_user.update_mouse_pointer() // Force resets the mouse pointer to default so it defaults when the last knife is thrown
 	UnregisterSignal(unequipper, COMSIG_MOB_ITEM_AFTERATTACK)
 	UnregisterSignal(unequipper, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
 	living_user = null
