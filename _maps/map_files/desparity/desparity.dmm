@@ -42,7 +42,7 @@
 /area/lv624/lazarus/fitness)
 "ap" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/asteroidfloor,
+/turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
 "as" = (
 /obj/structure/filingcabinet/medical,

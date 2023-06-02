@@ -4565,7 +4565,7 @@
 /area/outpost/hallway/east)
 "uR" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/plating/icefloor,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/lv624/lazarus/console)
 "uS" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{

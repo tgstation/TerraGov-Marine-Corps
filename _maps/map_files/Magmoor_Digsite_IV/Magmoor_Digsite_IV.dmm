@@ -59,7 +59,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/northeast)
 "acH" = (
-/turf/closed/wall,
+/turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
 "acI" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -14214,7 +14214,7 @@
 /area/magmoor/compound/southwest)
 "ksR" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor,
+/turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
 "ksX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -27153,9 +27153,6 @@
 	dir = 9
 	},
 /area/magmoor/command/commandroom)
-"ube" = (
-/turf/open/floor,
-/area/storage/testroom)
 "ubo" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -33655,9 +33652,9 @@ iLH
 iLH
 iLH
 acH
-ube
-ube
-ube
+acH
+acH
+acH
 acH
 "}
 (3,1,1) = {"
@@ -33888,9 +33885,9 @@ rxl
 iLH
 iLH
 acH
-ube
+acH
 ksR
-ube
+acH
 acH
 "}
 (4,1,1) = {"
@@ -34121,9 +34118,9 @@ rxl
 iLH
 iLH
 acH
-ube
-ube
-ube
+acH
+acH
+acH
 acH
 "}
 (5,1,1) = {"

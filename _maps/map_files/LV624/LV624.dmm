@@ -13337,7 +13337,7 @@
 /area/lv624/lazarus/main_hall)
 "pLN" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/asteroidfloor,
+/turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
 "pMn" = (
 /turf/open/floor/plating/ground/dirt,
