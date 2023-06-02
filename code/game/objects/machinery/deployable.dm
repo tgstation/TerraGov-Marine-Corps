@@ -3,8 +3,6 @@
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
 	flags_pass = PASSAIR
-	///If TRUE, only the examine text on the deployable item is used, not the machine itself
-	var/examine_internal_item = TRUE
 	///Since /obj/machinery/deployable aquires its sprites from an item and are set in New(), initial(icon_state) would return null. This var exists as a substitute.
 	var/default_icon_state
 	///Item that is deployed to create src.
@@ -64,11 +62,6 @@
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Remove from the squad HUD
 		sentry_status_hud.remove_from_hud(src)
 	return ..()
-
-/obj/machinery/deployable/examine(mob/user)
-	if(examine_internal_item)
-		return internal_item.examine(user)
-	. = ..()
 
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location)
 	if(!ishuman(usr))

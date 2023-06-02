@@ -4,7 +4,6 @@
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
 	max_integrity = 200
-	examine_internal_item = FALSE
 	///Properties relating to reagents for this container; whether you can check if reagents are visible, if it is refillable, etc.
 	var/container_flags = TRANSPARENT|DRAINABLE
 	///Maximum units of reagents this container can hold
