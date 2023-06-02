@@ -10,6 +10,7 @@
 /obj/machinery/deployable/mortar
 	anchored = TRUE
 	density = TRUE
+	flags_pass = PASSABLE
 	coverage = 20
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	/// list of the target x and y, and the dialing we can do to them
@@ -72,9 +73,18 @@
 	// used for keeping track of different mortars and their types for cams
 	var/static/list/id_by_type = list()
 
+	var/list/linked_binoculars = list()
+	var/obj/item/mortar_kit/linked_mortar
+
 /obj/machinery/deployable/mortar/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 
+	RegisterSignal(src, COMSIG_ITEM_UNDEPLOY, PROC_REF(handle_undeploy_references))
+	linked_mortar = get_internal_item()
+	LAZYINITLIST(linked_binoculars)
+	for (var/obj/item/binoculars/tactical/binoc in linked_mortar.linked_binoculars)
+		LAZYADD(linked_binoculars, binoc)
+		binoc.set_mortar(src)
 	impact_cam = new
 	impact_cam.forceMove(src)
 	impact_cam.c_tag = "[strip_improper(name)] #[++id_by_type[type]]"
@@ -239,8 +249,10 @@
 	var/obj/item/binoculars/tactical/binocs = I
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(binocs.set_mortar(src))
+		LAZYADD(linked_binoculars, binocs)
 		balloon_alert(user, "linked")
 		return
+	LAZYREMOVE(linked_binoculars, binocs)
 	balloon_alert(user, "unlinked")
 
 ///Start firing the gun on target and increase tally
@@ -312,6 +324,13 @@
 	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
 	ai_targeter.forceMove(src.loc)
 	ai_targeter = null
+
+/obj/machinery/deployable/mortar/proc/handle_undeploy_references()
+	linked_mortar = get_internal_item()
+	LAZYINITLIST(linked_mortar.linked_binoculars)
+	LAZYCLEARLIST(linked_mortar.linked_binoculars)
+	for(var/binoc in src.linked_binoculars)
+		LAZYADD(linked_mortar.linked_binoculars, binoc)
 
 /obj/machinery/deployable/mortar/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
@@ -401,6 +420,7 @@
 	var/deployable_item = /obj/machinery/deployable/mortar
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
+	var/list/linked_binoculars
 
 /obj/item/mortar_kit/Initialize(mapload)
 	. = ..()
