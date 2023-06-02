@@ -797,7 +797,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(marked_lase)
 				remove_mark_from_lase() //There can only be one
 				marked_lase = laser_target
-			SSminimaps.add_marker(laser_target, laser_target.z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "ob_warning")
+			SSminimaps.add_marker(laser_target, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "ob_warning"))
 			addtimer(CALLBACK(src, PROC_REF(remove_mark_from_lase)), 30 SECONDS)
 		if(FIRE_LASE)
 			selected_target = laser_target
