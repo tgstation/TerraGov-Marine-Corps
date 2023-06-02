@@ -541,7 +541,7 @@
 		var/generaldirection = "north"
 		if(istype(A, /obj/effect/xenomorph/acid)) //special check for acid
 			var/obj/effect/xenomorph/acid/pingedacid = A
-			playsound(M, 'sound/machines/high_tech_confirm.ogg', 45, 1)
+			playsound(M, 'sound/machines/high_tech_confirm.ogg', 15)
 			to_chat(M, span_alert("AI telemetry indicates that the <b>[pingedacid.acid_t]</b> which is <b>[newdistance]</b> units away at: [AREACOORD_NO_Z(A)] is <b> being melted</b>! by [pingedacid.name]!"))
 			return
 		if(newdistance <= AI_PING_RADIUS && newdistance != 0)
@@ -559,9 +559,9 @@
 			else if(A.x - M.x >= 0 && A.y - M.y >= 0) //northeast
 				generaldirection = pick("northeast","north","east")
 
-			playsound(M, 'sound/machines/high_tech_confirm.ogg', 45, 1)
+			playsound(M, 'sound/machines/high_tech_confirm.ogg', 20)
 			to_chat(M, span_alert("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))
 			to_chat(M, span_alert("AI telemetry indicates that <b>[A.name]</b> is <b>[newdistance]</b> units away to the <b>[generaldirection]</b>."))
 		else //if the receiver is outside AI_PING_RADIUS, give them a name and coords
-			playsound(M, 'sound/machines/twobeep.ogg', 35, 1)
+			playsound(M, 'sound/machines/twobeep.ogg', 15)
 			to_chat(M, span_notice("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))
