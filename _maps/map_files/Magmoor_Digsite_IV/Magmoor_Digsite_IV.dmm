@@ -3705,6 +3705,12 @@
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/magmoor/medical/surgery)
+"cEW" = (
+/obj/structure/flora/rock/alt2,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/magmoor/compound/north)
 "cFa" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -48662,7 +48668,7 @@ xfT
 xrM
 xrM
 xfT
-rWR
+aRs
 dSo
 jEV
 rWP
@@ -48895,7 +48901,7 @@ xrM
 xrM
 xfT
 xfT
-jIN
+cEW
 rWP
 iyf
 lqI
