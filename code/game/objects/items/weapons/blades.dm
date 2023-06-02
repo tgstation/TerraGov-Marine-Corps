@@ -350,7 +350,7 @@
 
 /obj/item/stack/throwing_knife/unequipped(mob/unequipper, slot)
 	. = ..()
-	if(living_user.client)
+	if(living_user?.client)
 		living_user.update_mouse_pointer()
 	UnregisterSignal(unequipper, COMSIG_MOB_ITEM_AFTERATTACK)
 	UnregisterSignal(unequipper, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
@@ -365,7 +365,7 @@
 ///Stops the Autofire component and resets the current cursor.
 /obj/item/stack/throwing_knife/proc/stop_fire()
 	SIGNAL_HANDLER
-	if(living_user.client)
+	if(living_user?.client)
 		living_user.update_mouse_pointer()
 	set_target(null)
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)

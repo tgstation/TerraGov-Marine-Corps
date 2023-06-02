@@ -915,7 +915,7 @@
 ///Resets the autofire component.
 /datum/action/xeno_action/activable/xeno_spit/proc/reset_fire()
 	set_target(null)
-	if(owner.client)
+	if(owner?.client)
 		owner.update_mouse_pointer()
 
 ///Changes the current target.
@@ -943,7 +943,7 @@
 ///Stops the Autofire component and resets the current cursor.
 /datum/action/xeno_action/activable/xeno_spit/proc/stop_fire()
 	SIGNAL_HANDLER
-	if(owner.client)
+	if(owner?.client)
 		owner.update_mouse_pointer()
 	SEND_SIGNAL(owner, COMSIG_XENO_STOP_FIRE)
 

@@ -453,7 +453,7 @@
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
 		COMSIG_LIVING_STAGGER_CHANGED,))
-		if(gun_user.client)
+		if(gun_user?.client)
 			gun_user.update_mouse_pointer()
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user.hud_used.remove_ammo_hud(src)
@@ -743,7 +743,7 @@
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
 	active_attachable?.stop_fire()
-	if(gun_user.client)
+	if(gun_user?.client)
 		gun_user.update_mouse_pointer()
 	if(!HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		reset_fire()
@@ -759,7 +759,7 @@
 		modify_auto_burst_delay(-autoburst_delay + autoburst_delay/(1 + akimbo_additional_delay))
 		dual_wield = FALSE
 		setup_bullet_accuracy()
-	if(gun_user.client)
+	if(gun_user?.client)
 		gun_user.update_mouse_pointer()
 
 ///Inform the gun if he is currently bursting, to prevent reloading
