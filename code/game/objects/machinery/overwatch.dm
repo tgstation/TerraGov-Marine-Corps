@@ -756,83 +756,80 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 ///Quick-select radial menu for Overwatch
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_radial(datum/source, atom/A, params)
+	var/list/radial_options = list()
+	var/mob/living/carbon/human/human_target
+	var/obj/effect/overlay/temp/laser_target/OB/laser_target
+	var/turf/turf_target
+	var/choice
 	if(ishuman(A))
-		var/list/radial_options = list(
-			MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_single"),
-			ASL = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_asl"),
-			SWITCH_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad"),
-		)
-		var/mob/living/carbon/human/target = A
-		var/choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
-		switch(choice)
-			if(MESSAGE_SINGLE)
-				var/input = tgui_input_text(source, "Please write a message to announce to this marine:", "CIC Message")
-				current_squad.message_member(target, input, source)
-			if(ASL)
-				if(target == target.assigned_squad.squad_leader)
-					target.assigned_squad.demote_leader()
-					return
-				change_lead(source, target)
-			if(SWITCH_SQUAD)
-				var/datum/squad/desired_squad = squad_select(source, target)
-				transfer_squad(source, target, desired_squad)
+		human_target = A
+		LAZYADDASSOC(radial_options, MESSAGE_SINGLE, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_single"))
+		LAZYADDASSOC(radial_options, ASL, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_asl"))
+		LAZYADDASSOC(radial_options, SWITCH_SQUAD, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad"))
+		choice = show_radial_menu(source, human_target, radial_options, null, 48, null, FALSE, TRUE)
+
 	else if(istype(A, /obj/effect/overlay/temp/laser_target/OB))
-		var/obj/effect/overlay/temp/laser_target/OB/target = A
-		var/list/radial_options = list(
-			MARK_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_mark_ob"),
-			FIRE_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_fire_ob"),
-		)
+		laser_target = A
+		LAZYADDASSOC(radial_options, MARK_LASE, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_mark_ob"))
+		LAZYADDASSOC(radial_options, FIRE_LASE, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_fire_ob"))
+		choice = show_radial_menu(source, laser_target, radial_options, null, 48, null, FALSE, TRUE)
 
-		var/choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
-		switch(choice)
-			if(MARK_LASE)
-				if(marked_lase)
-					remove_mark_from_lase() //There can only be one
-					marked_lase = target
-				SSminimaps.add_marker(target, target.z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "ob_warning")
-				addtimer(CALLBACK(src, PROC_REF(remove_mark_from_lase)), 30 SECONDS)
-			if(FIRE_LASE)
-				selected_target = target
-				handle_bombard()
-	else
-		var/turf/target = get_turf(A)
-		var/list/radial_options = list(
-			ORBITAL_SPOTLIGHT = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_orbital_spotlight"),
-			MESSAGE_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"),
-			SQUAD_ACTIONS = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_squad_actions"),
-		)
+	if(istype(A, /turf))
+		turf_target = get_turf(A)
+		LAZYADDASSOC(radial_options, ORBITAL_SPOTLIGHT, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_orbital_spotlight"))
+		LAZYADDASSOC(radial_options, MESSAGE_NEAR, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"))
+		LAZYADDASSOC(radial_options, SQUAD_ACTIONS, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_squad_actions"))
+		choice = show_radial_menu(source, turf_target, radial_options, null, 48, null, FALSE, TRUE)
 
-		var/choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
-		switch(choice)
-			if(ORBITAL_SPOTLIGHT)
-				attempt_spotlight(source, target, params)
-			if(MESSAGE_NEAR)
-				var/input = tgui_input_text(source, "Please write a message to announce to all marines nearby:", "CIC Proximity Message")
-				for(var/mob/living/carbon/human/target in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
-					if(!target)
-						return
-					if(get_dist(target, target) > WORLD_VIEW_NUM*2)
-						continue
-					current_squad.message_member(target, input, source)
-			if(SQUAD_ACTIONS) //This doesnt work??
-				radial_options = list(
-					MESSAGE_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"),
-					SWITCH_SQUAD_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad_near"),
-				)
+	switch(choice)
+		if(MESSAGE_SINGLE)
+			var/input = tgui_input_text(source, "Please write a message to announce to this marine:", "CIC Message")
+			current_squad.message_member(human_target, input, source)
+		if(ASL)
+			if(human_target == human_target.assigned_squad.squad_leader)
+				human_target.assigned_squad.demote_leader()
+				return
+			change_lead(source, human_target)
+		if(SWITCH_SQUAD)
+			var/datum/squad/desired_squad = squad_select(source, human_target)
+			transfer_squad(source, human_target, desired_squad)
+		if(MARK_LASE)
+			if(marked_lase)
+				remove_mark_from_lase() //There can only be one
+				marked_lase = laser_target
+			SSminimaps.add_marker(laser_target, laser_target.z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "ob_warning")
+			addtimer(CALLBACK(src, PROC_REF(remove_mark_from_lase)), 30 SECONDS)
+		if(FIRE_LASE)
+			selected_target = laser_target
+			handle_bombard()
+		if(ORBITAL_SPOTLIGHT)
+			attempt_spotlight(source, turf_target, params)
+		if(MESSAGE_NEAR)
+			var/input = tgui_input_text(source, "Please write a message to announce to all marines nearby:", "CIC Proximity Message")
+			for(var/mob/living/carbon/human/target in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
+				if(!target)
+					return
+				if(get_dist(target, turf_target) > WORLD_VIEW_NUM*2)
+					continue
+				current_squad.message_member(target, input, source)
+		if(SQUAD_ACTIONS) //This doesnt work??
+			radial_options = list(
+				MESSAGE_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"),
+				SWITCH_SQUAD_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad_near"),
+			)
 
-				choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
-				var/datum/squad/chosen_squad = squad_select(source, target)
-				switch(choice)
-					if(MESSAGE_SQUAD)
-						var/input = tgui_input_text(source, "Please write a message to announce to the squad:", "Squad Message")
-						if(input)
-							chosen_squad.message_squad(input, source)
-					if(SWITCH_SQUAD_NEAR)
-						for(var/mob/living/carbon/human/target in GLOB.human_mob_list)
-							if(!target.faction == faction || get_dist(target, target) > 9)
-								continue
-							transfer_squad(source, target, chosen_squad)
-
+			choice = show_radial_menu(source, turf_target, radial_options, null, 48, null, FALSE, TRUE)
+			var/datum/squad/chosen_squad = squad_select(source, turf_target)
+			switch(choice)
+				if(MESSAGE_SQUAD)
+					var/input = tgui_input_text(source, "Please write a message to announce to the squad:", "Squad Message")
+					if(input)
+						chosen_squad.message_squad(input, source)
+				if(SWITCH_SQUAD_NEAR)
+					for(var/mob/living/carbon/human/target in GLOB.human_mob_list)
+						if(!target.faction == faction || get_dist(target, turf_target) > 9)
+							continue
+						transfer_squad(source, target, chosen_squad)
 ///Radial squad select menu.
 /obj/machinery/computer/camera_advanced/overwatch/proc/squad_select(datum/source, atom/A)
 	var/list/squad_options = list()
