@@ -197,7 +197,7 @@
 	)
 	use_state_flags = XACT_USE_STAGGERED //Can use this while staggered
 	///How low the Ravager's health can go while under the effects of Endure before it dies
-	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
+	var/endure_threshold
 	///Timer for Endure's duration
 	var/endure_duration
 	///Timer for Endure's warning
@@ -221,6 +221,7 @@
 
 	endure_duration = addtimer(CALLBACK(src, PROC_REF(endure_warning)), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
 	endure_warning_duration = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), RAVAGER_ENDURE_DURATION, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+	endure_threshold = -1 * X.maxHealth
 
 	X.set_stagger(0) //Remove stagger
 	X.set_slowdown(0) //Remove slowdown
@@ -250,18 +251,11 @@
 	X.do_jitter_animation(1000)
 	X.endure = FALSE
 	X.remove_filter("ravager_endure_outline")
-	if(X.health < X.get_crit_threshold()) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
-		var/total_damage = X.getFireLoss() + X.getBruteLoss()
-		var/burn_percentile_damage = X.getFireLoss() / total_damage
-		var/brute_percentile_damage = X.getBruteLoss() / total_damage
-		X.setBruteLoss((X.xeno_caste.max_health - X.get_crit_threshold()-1) * brute_percentile_damage)
-		X.setFireLoss((X.xeno_caste.max_health - X.get_crit_threshold()-1) * burn_percentile_damage)
 
 	X.soft_armor = X.soft_armor.modifyRating(bomb = -20) //Remove resistances/immunities
 	REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT)
-	endure_threshold = initial(endure_threshold) //Reset the endure vars to their initial states
-	endure_duration = initial(endure_duration)
+	endure_duration = initial(endure_duration) //Reset the endure vars to their initial states
 	endure_warning_duration = initial(endure_warning_duration)
 
 	to_chat(owner,span_highdanger("The last of the plasma drains from our body... We can no longer endure beyond our normal limits!"))
@@ -351,9 +345,6 @@
 		var/datum/action/xeno_action/charge = X.actions_by_path[/datum/action/xeno_action/activable/charge]
 		var/datum/action/xeno_action/ravage = X.actions_by_path[/datum/action/xeno_action/activable/ravage]
 		var/datum/action/xeno_action/endure/endure_ability = X.actions_by_path[/datum/action/xeno_action/endure]
-
-		if(endure_ability.endure_duration) //Check if Endure is active
-			endure_ability.endure_threshold = RAVAGER_ENDURE_HP_LIMIT * (1 + rage_power) //Endure crit threshold scales with Rage Power; min -100, max -150
 
 		if(charge)
 			charge.clear_cooldown() //Reset charge cooldown
