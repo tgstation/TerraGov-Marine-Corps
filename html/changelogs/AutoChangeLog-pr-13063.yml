@@ -1,0 +1,9 @@
+author: "BlueHNT"
+delete-after: True
+changes:
+  - rscadd: "Added big combatmix hypo"
+  - rscadd: "Added big isotonic hypo [replaced]"
+  - rscadd: "Added capability to hold syringe cases in the belt [limited by the amount of cases on ship]"
+  - rscdel: "Removed old dexalin hypo [replaced]"
+  - qol: "Moved the bottles up to the first slots"
+  - balance: "Made imialky small due to the combat mix being added"
