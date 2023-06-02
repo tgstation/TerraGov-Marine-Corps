@@ -265,7 +265,7 @@
 /datum/action/xeno_action/endure/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
 	if(X.health < 0)
-		to_chat(X, "<span class='xenohighdanger' style='color: red;'>We are critically wounded! We can only withstand [(RAVAGER_ENDURE_HP_LIMIT-X.health) * -1] more damage before we perish!</span>")
+		to_chat(X, "<span class='xenohighdanger' style='color: red;'>We are critically wounded! We can only withstand [(endure_threshold-X.health) * -1] more damage before we perish!</span>")
 
 
 /datum/action/xeno_action/endure/ai_should_start_consider()
