@@ -63,6 +63,7 @@
 
 	//initialize things that are normally initialized after map load
 	parsed.initTemplateBounds()
+	SSmodularmapping.load_modular_maps() //must be run after initTemplateBounds so markers have an actual loc
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 
 	return level

@@ -282,7 +282,7 @@ SUBSYSTEM_DEF(mapping)
 
 		shuttle_templates[S.shuttle_id] = S
 		map_templates[S.shuttle_id] = S
-	
+
 	for(var/drop_path in typesof(/datum/map_template/shuttle/minidropship))
 		var/datum/map_template/shuttle/drop = new drop_path()
 		minidropship_templates += drop
@@ -376,6 +376,5 @@ SUBSYSTEM_DEF(mapping)
 	reserve_turfs(clearing)
 
 /datum/controller/subsystem/mapping/proc/reg_in_areas_in_z(list/areas)
-	for(var/B in areas)
-		var/area/A = B
-		A.reg_in_areas_in_z()
+	for(var/area/new_area AS in areas)
+		new_area.reg_in_areas_in_z()
