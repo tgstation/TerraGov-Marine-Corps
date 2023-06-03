@@ -57,3 +57,6 @@
 #define NOTIFY_ATTACK "attack"
 #define NOTIFY_ORBIT "orbit"
 #define NOTIFY_JOIN_AS_LARVA "join_as_larva"
+
+// AI notify action types
+#define NOTIFY_AI_ALERT "aijump"

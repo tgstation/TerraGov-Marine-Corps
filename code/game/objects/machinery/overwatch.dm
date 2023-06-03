@@ -58,6 +58,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	send_retreat_order = new
 	send_rally_order = new
 	cic_mini = new
+	GLOB.main_overwatch_consoles += src
 
 /obj/machinery/computer/camera_advanced/overwatch/Destroy()
 	QDEL_NULL(send_attack_order)
@@ -65,6 +66,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	QDEL_NULL(send_retreat_order)
 	QDEL_NULL(send_rally_order)
 	QDEL_NULL(cic_mini)
+	GLOB.main_overwatch_consoles -= src
 	current_order = null
 	selected_target = null
 	current_squad = null
@@ -398,7 +400,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if("shootrailgun")
 			var/mob/living/user = usr
 			if(user.interactee)
-				to_chat(usr, "[icon2html(src, usr)] [span_warning("Your busy doing something else, and press the wrong button!")]")
+				to_chat(usr, "[icon2html(src, usr)] [span_warning("You're busy doing something else, and press the wrong button!")]")
 				return
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 600) > world.time)
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("The Rail Gun hasn't cooled down yet!")]")

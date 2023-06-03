@@ -151,8 +151,6 @@
 						if(B.linked_beacon.linked_bed_deployed == B)
 							M.linked_beacon.linked_bed = M
 							B.linked_beacon.linked_bed_deployed = null
-				H.visible_message(span_warning("[H] grabs [src] from the floor!"),
-				span_warning("You grab [src] from the floor!"))
 				qdel(src)
 
 /obj/structure/bed/ex_act(severity)
@@ -612,7 +610,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, span_warning("[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now."))
 		return
 	user.drop_held_item()
-	flags_item |= NO_VACUUM
 	anchored = TRUE
 	planted = TRUE
 	to_chat(user, span_warning("You plant and activate [src]."))
@@ -628,7 +625,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, span_warning("[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now."))
 		return
 	if(planted)
-		flags_item &= ~NO_VACUUM
 		anchored = FALSE
 		planted = FALSE
 		to_chat(user, span_warning("You retrieve and deactivate [src]."))

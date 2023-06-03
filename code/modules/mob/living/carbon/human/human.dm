@@ -44,9 +44,10 @@
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, PROC_REF(do_unique_action))
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(fireman_carry_grabbed)) // Fireman carry
 	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
-	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
+	AddElement(/datum/element/footstep, isrobot(src) ? FOOTSTEP_MOB_SHOE : FOOTSTEP_MOB_HUMAN, 1)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
+	AddElement(/datum/element/strippable, GLOB.strippable_human_items, GLOB.strippable_human_layout)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
@@ -182,41 +183,6 @@
 		dam_zone = ran_zone(dam_zone)
 		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE)
 
-/mob/living/carbon/human/show_inv(mob/living/user)
-	var/obj/item/clothing/under/suit
-	if(istype(w_uniform, /obj/item/clothing/under))
-		suit = w_uniform
-
-	user.set_interaction(src)
-	var/dat = {"
-	<BR><B>Head(Mask):</B> <A href='?src=[REF(src)];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=[REF(src)];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=[REF(src)];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Gloves:</B> <A href='?src=[REF(src)];item=[SLOT_GLOVES]'>[(gloves ? gloves : "Nothing")]</A>
-	<BR><B>Eyes:</B> <A href='?src=[REF(src)];item=[SLOT_GLASSES]'>[(glasses ? glasses : "Nothing")]</A>
-	<BR><B>Left Ear:</B> <A href='?src=[REF(src)];item=[SLOT_EARS]'>[(wear_ear ? wear_ear : "Nothing")]</A>
-	<BR><B>Head:</B> <A href='?src=[REF(src)];item=[SLOT_HEAD]'>[(head ? head : "Nothing")]</A>
-	<BR><B>Shoes:</B> <A href='?src=[REF(src)];item=[SLOT_SHOES]'>[(shoes ? shoes : "Nothing")]</A>
-	<BR><B>Belt:</B> <A href='?src=[REF(src)];item=[SLOT_BELT]'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
-	<BR><B>Uniform:</B> <A href='?src=[REF(src)];item=[SLOT_W_UNIFORM]'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=[REF(src)];sensor=1'>Sensors</A>" : "") : ""]
-	<BR><B>(Exo)Suit:</B> <A href='?src=[REF(src)];item=[SLOT_WEAR_SUIT]'>[(wear_suit ? wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=[REF(src)];item=[SLOT_BACK]'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
-	<BR><B>ID:</B> <A href='?src=[REF(src)];item=[SLOT_WEAR_ID]'>[(wear_id ? wear_id : "Nothing")]</A>
-	<BR><B>Suit Storage:</B> <A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
-	<BR>
-	[handcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : ""]
-	[internal ? "<BR><A href='?src=[REF(src)];internal=1'>Remove Internal</A>" : ""]
-	<BR><A href='?src=[REF(src)];splints=1'>Remove Splints</A>
-	<BR><A href='?src=[REF(src)];pockets=1'>Empty Pockets</A>
-	<BR>
-	<BR><A href='?src=[REF(user)];refresh=1'>Refresh</A>
-	<BR>"}
-
-	var/datum/browser/browser = new(user, "mob[name]", "<div align='center'>[name]</div>", 380, 540)
-	browser.set_content(dat)
-	browser.open(FALSE)
-
-
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(if_no_id = "No id", if_no_job = "No job")
@@ -318,118 +284,6 @@
 	. = ..()
 	if(.)
 		return
-	if(href_list["refresh"])
-		if(interactee && (in_range(src, usr)))
-			show_inv(interactee)
-
-	if(href_list["item"])
-		var/slot = text2num(href_list["item"])
-		if(usr.incapacitated() || !Adjacent(usr))
-			return
-		if(slot == SLOT_WEAR_ID && istype(wear_id, /obj/item/card/id/dogtag))
-			var/obj/item/card/id/dogtag/DT = wear_id
-			if(DT.dogtag_taken)
-				to_chat(usr, span_warning("Someone's already taken [src]'s information tag."))
-				return
-			if(!(stat == DEAD))
-				to_chat(usr, span_warning("You can't take a dogtag's information tag while its owner is alive."))
-				return
-			to_chat(usr, span_notice("You take [src]'s information tag, leaving the ID tag"))
-			DT.dogtag_taken = TRUE
-			DT.icon_state = "dogtag_taken"
-			var/obj/item/dogtag/D = new(loc)
-			D.fallen_names = list(DT.registered_name)
-			D.fallen_assignements = list(DT.assignment)
-			usr.put_in_hands(D)
-			return
-		//police skill lets you strip multiple items from someone at once.
-		if(!usr.do_actions || usr.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
-			var/obj/item/item_in_slot = get_item_by_slot(slot)
-			if(!item_in_slot)
-				item_in_slot = usr.get_active_held_item()
-				usr.stripPanelEquip(item_in_slot, src, slot)
-				return
-			usr.stripPanelUnequip(item_in_slot, src, slot)
-
-	if(href_list["pockets"])
-		if(usr.do_actions)
-			return
-
-		var/obj/item/place_item = usr.get_active_held_item() // Item to place in the pocket, if it's empty
-
-		var/placing = FALSE
-
-		if(place_item && !(place_item.flags_item & ITEM_ABSTRACT) && (place_item.mob_can_equip(src, SLOT_L_STORE, TRUE) || place_item.mob_can_equip(src, SLOT_R_STORE, TRUE)))
-			to_chat(usr, span_notice("You try to place [place_item] into [src]'s pocket."))
-			placing = TRUE
-		else
-			to_chat(usr, span_notice("You try to empty [src]'s pockets."))
-
-		if(!do_mob(usr, src, POCKET_STRIP_DELAY))
-			return
-
-		if(placing)
-			if(!place_item || !(place_item == usr.get_active_held_item()))
-				return
-			if(place_item.mob_can_equip(src, SLOT_R_STORE, TRUE)) //try both pockets
-				usr.dropItemToGround(place_item)
-				equip_to_slot_if_possible(place_item, SLOT_R_STORE, 1, 0, 1)
-			if(place_item.mob_can_equip(src, SLOT_L_STORE, TRUE))
-				usr.dropItemToGround(place_item)
-				equip_to_slot_if_possible(place_item, SLOT_L_STORE, 1, 0, 1)
-
-		else
-			if(r_store || l_store)
-				if(r_store && !(r_store.flags_item & NODROP))
-					dropItemToGround(r_store)
-				if(l_store && !(l_store.flags_item & NODROP))
-					dropItemToGround(l_store)
-			else
-				to_chat(usr, span_notice("[src]'s pockets are empty."))
-
-
-		// Update strip window
-		if(usr.interactee == src && Adjacent(usr))
-			show_inv(usr)
-
-	if(href_list["splints"])
-		if(usr.do_actions)
-			return
-
-		///Do we have a splint anywhere?
-		var/splinted = FALSE
-		for(var/X in limbs)
-			var/datum/limb/E = X
-			if(E.limb_status & LIMB_SPLINTED)
-				splinted = TRUE
-				break
-
-		if(!splinted)
-			to_chat(usr, span_notice("[src] has no splints on them."))
-			return
-		log_combat(usr, src, "attempted to remove splints")
-
-		if(!do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-			return
-		///How many limbs are splinted
-		var/limbcount = 0
-		for(var/limb in GLOB.human_body_parts)
-			var/datum/limb/L = get_limb(limb)
-			if(L?.limb_status & LIMB_SPLINTED)
-				L.remove_limb_flags(LIMB_SPLINTED)
-				limbcount++
-		if(limbcount)
-			new /obj/item/stack/medical/splint(get_turf(src), limbcount)
-
-	if(href_list["sensor"])
-		if(usr.do_actions)
-			return
-		log_combat(usr, src, "attempted to toggle sensors")
-		visible_message(span_danger("[usr] is trying to modify [src]'s sensors!"), vision_distance = 4)
-		if(!do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
-			return
-		w_uniform.set_sensors(usr)
-
 	if(href_list["squadfireteam"])
 		if(usr.incapacitated() || get_dist(usr, src) >= 7 || !hasHUD(usr,"squadleader"))
 			return
@@ -717,7 +571,7 @@
 					counter++
 				if(istype(usr, /mob/living/carbon/human))
 					var/mob/living/carbon/human/U = usr
-					medical_record.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[comment_to_add]")
+					medical_record.fields["com_[counter]"] = "Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[comment_to_add]"
 
 	if(href_list["medholocard"])
 		if(!species?.count_human)
@@ -1072,6 +926,7 @@
 	gender = pick(MALE, FEMALE)
 	name = species.random_name(gender)
 	real_name = name
+	voice = random_tts_voice()
 
 	if(!(species.species_flags & HAS_NO_HAIR))
 		switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))

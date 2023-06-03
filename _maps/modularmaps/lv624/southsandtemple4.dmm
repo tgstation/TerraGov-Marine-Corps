@@ -150,12 +150,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
-"ue" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/sand6)
 "um" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -460,9 +454,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "PR" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/structure/jungle/vines,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand6)
@@ -698,7 +689,7 @@ YR
 YR
 "}
 (4,1,1) = {"
-ue
+aw
 aw
 iB
 sb
@@ -724,7 +715,7 @@ YR
 YR
 "}
 (5,1,1) = {"
-ue
+aw
 aw
 iB
 sb
@@ -932,7 +923,7 @@ AP
 YR
 "}
 (13,1,1) = {"
-ue
+aw
 aw
 iB
 aw
@@ -958,7 +949,7 @@ YR
 YR
 "}
 (14,1,1) = {"
-ue
+aw
 aw
 iB
 aw
@@ -984,7 +975,7 @@ YR
 YR
 "}
 (15,1,1) = {"
-ue
+aw
 aw
 vU
 aw

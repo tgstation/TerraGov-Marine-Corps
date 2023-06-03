@@ -13,7 +13,7 @@ jobs:
       - name: "Check for ACTION_ENABLER secret and pass true to output if it exists to be checked by later steps"
         id: value_holder
         env:
-          ENABLER_SECRET: ${{ secrets.ACTION_ENABLER }}
+          ENABLER_SECRET: ${{ secrets.GITHUB_TOKEN }}
         run: |
           unset SECRET_EXISTS
           if [ -n "$ENABLER_SECRET" ]; then SECRET_EXISTS=true ; fi
@@ -51,4 +51,4 @@ jobs:
         if: steps.value_holder.outputs.ACTIONS_ENABLED
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.COMFY_ORANGE_PAT || secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -2,6 +2,9 @@
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
 
+/obj/structure/shuttle/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+
 /obj/structure/shuttle/window
 	name = "shuttle window"
 	icon = 'icons/obj/podwindows.dmi'

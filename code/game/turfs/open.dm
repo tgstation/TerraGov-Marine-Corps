@@ -142,24 +142,6 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 
-// NECESSARY FOR LAGMOOR EXPERIENCE
-// Colony tiles
-/turf/open/floor/concrete
-	name = "concrete"
-	icon = 'icons/turf/concrete.dmi'
-	icon_state = "concrete0"
-	mediumxenofootstep = FOOTSTEP_CONCRETE
-	barefootstep = FOOTSTEP_CONCRETE
-	shoefootstep = FOOTSTEP_CONCRETE
-
-/turf/open/floor/concrete/ex_act() //Fixes black tile explosion issue
-
-/turf/open/floor/concrete/lines
-	icon_state = "concrete_lines"
-
-/turf/open/floor/concrete/edge
-	icon_state = "concrete_edge"
-
 /turf/open/floor/plating/heatinggrate
 	icon_state = "heatinggrate"
 
@@ -225,9 +207,9 @@
 /turf/open/lavaland/basalt
 	name = "basalt"
 	icon_state = "basalt"
-	shoefootstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
-	mediumxenofootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_GRAVEL
+	barefootstep = FOOTSTEP_GRAVEL
+	mediumxenofootstep = FOOTSTEP_GRAVEL
 
 /turf/open/lavaland/basalt/cave
 	name = "cave"

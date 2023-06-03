@@ -22,3 +22,7 @@
 /mob/living/carbon/xenomorph/warlock/Initialize(mapload)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/energy/xeno/psy_blast]
+	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+
+/mob/living/carbon/xenomorph/warlock/get_liquid_slowdown()
+	return WARLOCK_WATER_SLOWDOWN

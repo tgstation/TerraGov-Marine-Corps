@@ -11,15 +11,15 @@
 	allowed = list(/obj/item/weapon/gun)//Guns only.
 
 
-/obj/item/clothing/suit/armor/mob_can_equip(mob/M, slot, disable_warning)
+/obj/item/clothing/suit/armor/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	. = ..()
 	if(!.)
 		return FALSE
 
-	if(!ishuman(M))
+	if(!ishuman(user))
 		return TRUE
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/human/H = user
 	if(!H.w_uniform)
 		to_chat(H, span_warning("You need to be wearing somethng under this to be able to equip it."))
 		return FALSE
@@ -78,8 +78,8 @@
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.9
-	time_to_unequip = 20
-	time_to_equip = 20
+	equip_delay_self = 20
+	unequip_delay_self = 20
 	allowed = list(
 		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
@@ -101,8 +101,8 @@
 	flags_item = SYNTH_RESTRICTED
 	siemens_coefficient = 0.5
 	permeability_coefficient = 0.7
-	time_to_unequip = 20
-	time_to_equip = 20
+	equip_delay_self = 20
+	unequip_delay_self = 20
 
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
