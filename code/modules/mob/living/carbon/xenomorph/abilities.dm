@@ -603,7 +603,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "We can't melt [A]")
 		return FALSE
-	if(A.resistance_flags & UNACIDABLE || !A.dissolvability(initial(acid_type.acid_strength)))
+	if(A.resistance_flags & (UNACIDABLE | RESIST_ALL) || !A.dissolvability(initial(acid_type.acid_strength)))
 		if(!silent)
 			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
