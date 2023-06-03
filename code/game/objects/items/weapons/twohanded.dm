@@ -597,6 +597,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = TWOHANDED
 	COOLDOWN_DECLARE(harvester_special_attack_cooldown)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 	/// Lists the information in the codex
@@ -649,6 +650,7 @@
 		attacking.adjust_stagger(1)
 		attacking.adjust_slowdown(1)
 
+/// Handles the activation and deactivation of particles, as well as their appearance.
 /obj/item/weapon/twohanded/flail/proc/activate_particles(mob/living/user, direction)
 	particle_holder = new(get_turf(user), /particles/harvester_slash)
 	QDEL_NULL_IN(src, particle_holder, 5)
