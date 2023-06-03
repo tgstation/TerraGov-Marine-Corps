@@ -294,7 +294,8 @@ GLOBAL_LIST_INIT(xenomediumstep, list(
 GLOBAL_LIST_INIT(xenoheavystep, list(
 	FOOTSTEP_GENERIC_HEAVY = list(list(
 		'sound/effects/footstep/heavy1.ogg',
-		'sound/effects/footstep/heavy2.ogg'), 100, 2),
+		'sound/effects/footstep/heavy2.ogg',
+		'sound/effects/footstep/heavy3.ogg'), 100, 2),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',

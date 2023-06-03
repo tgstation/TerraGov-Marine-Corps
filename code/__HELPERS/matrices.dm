@@ -3,6 +3,20 @@
 	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
 
+/// Does a jitter animation, with a few settings so as to allow changing the animation as needed:
+/// - jitter: The amount of jitter in this animation. Extremely high values, such as 500 or 1000, are recommended.
+/// - jitter_duration: The duration of the jitter animation.
+/// - jitter_loops: The amount of times to loop this animation.
+/atom/proc/do_jitter_animation(jitteriness = 1000, jitter_duration = 2, jitter_loops = 6)
+	var/amplitude = min(4, (jitteriness/100) + 1)
+	var/pixel_x_diff = rand(-amplitude, amplitude)
+	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
+	var/final_pixel_x = initial(pixel_x)
+	var/final_pixel_y = initial(pixel_y)
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = jitter_duration, loop = jitter_loops, flags = ANIMATION_PARALLEL)
+	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = jitter_duration, loop = jitter_loops)
+
+
 /atom/proc/SpinAnimation(speed = 10, loops = -1, clockwise = 1, segments = 3, parallel = TRUE)
 	if(!segments)
 		return

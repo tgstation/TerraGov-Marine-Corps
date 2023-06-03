@@ -313,3 +313,62 @@
 	for(var/mob/living/rider AS in carrying_widow.buckled_mobs)
 		carrying_widow.unbuckle_mob(rider)
 		REMOVE_TRAIT(rider, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+
+/datum/component/riding/creature/behemoth
+	can_be_driven = FALSE
+
+/datum/component/riding/creature/behemoth/handle_specials()
+	. = ..()
+	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(-10, -3), TEXT_SOUTH = list(-11, 6), TEXT_EAST = list(-21, 4), TEXT_WEST = list(4, 4)))
+	set_riding_offsets(/mob/living/carbon/xenomorph/runner, list(TEXT_NORTH = list(-16, 9), TEXT_SOUTH = list(-16, 17), TEXT_EAST = list(-21, 7), TEXT_WEST = list(-6, 7)))
+	set_riding_offsets(/mob/living/carbon/xenomorph/larva, list(TEXT_NORTH = list(3, 6), TEXT_SOUTH = list(0, 16), TEXT_EAST = list(-2, 10), TEXT_WEST = list(0, 10)))
+	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(EAST, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, ABOVE_LYING_MOB_LAYER)
+
+/datum/component/riding/creature/behemoth/Initialize(mob/living/riding_mob, force = FALSE, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	. = ..()
+	riding_mob.density = FALSE
+
+/datum/component/riding/creature/behemoth/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(check_carrier_fall_over))
+
+/datum/component/riding/creature/behemoth/log_riding(mob/living/living_parent, mob/living/rider)
+	if(!istype(living_parent) || !istype(rider))
+		return
+	living_parent.log_message("started carrying [rider] on their back", LOG_ATTACK, color="pink")
+	rider.log_message("started being carried on [living_parent]'s back", LOG_ATTACK, color="pink")
+
+/datum/component/riding/creature/behemoth/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
+	unequip_buckle_inhands(parent)
+	former_rider.density = TRUE
+	return ..()
+
+/// If the Behemoth gets knocked over, force the riders off and see if someone got hurt.
+/datum/component/riding/creature/behemoth/proc/check_carrier_fall_over(mob/living/carbon/xenomorph/behemoth/carrying_behemoth)
+	SIGNAL_HANDLER
+	for(var/mob/living/rider AS in carrying_behemoth.buckled_mobs)
+		carrying_behemoth.unbuckle_mob(rider)
+		rider.Knockdown(1 SECONDS)
+		carrying_behemoth.visible_message("<span class='danger'>[rider] topples off of [carrying_behemoth] as they both fall to the ground!</span>", \
+					"<span class='warning'>You fall to the ground, bringing [rider] with you!</span>", "<span class='hear'>You hear two consecutive thuds.</span>")
+		to_chat(rider, "<span class='danger'>[carrying_behemoth] falls to the ground, bringing you with [carrying_behemoth.p_them()]!</span>")
+
+// Override this to set your vehicle's various pixel offsets
+/datum/component/riding/creature/behemoth/get_offsets(pass_index, mob_type) // list(dir = x, y, layer)
+	. = list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0))
+	if (riding_offsets["[mob_type]"])
+		. = riding_offsets["[mob_type]"]
+	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
+		. = riding_offsets["[RIDING_OFFSET_ALL]"]
+
+/*
+/datum/component/riding/vehicle/motorbike/sidecar/get_offsets(pass_index, mob_type)
+	switch(pass_index)
+		if(1) //first one buckled, so driver
+			return list(TEXT_NORTH = list(9, 3), TEXT_SOUTH = list(-9, 3), TEXT_EAST = list(-2, 3), TEXT_WEST = list(2, 3))
+		if(2) //second one buckled, so sidecar rider
+			return list(TEXT_NORTH = list(-6, 2), TEXT_SOUTH = list(6, 2), TEXT_EAST = list(-3, 0, ABOVE_OBJ_LAYER), TEXT_WEST = list(3, 0, LYING_MOB_LAYER))
+*/
