@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixed `COMSIG_MOB_CLICKON` sleeping when climbing, this should fix crate climbing/pulling"
