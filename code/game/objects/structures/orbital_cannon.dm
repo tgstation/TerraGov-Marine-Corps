@@ -414,11 +414,10 @@
 	name = "\improper Plasma draining orbital warhead"
 	warhead_kind = "plasma"
 	icon_state = "ob_warhead_4"
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
 /obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
-	smoke = new(src)
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new
 	smoke.set_up(25, target, 3 SECONDS)//Vape nation
 	smoke.start()
 
