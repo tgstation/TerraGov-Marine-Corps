@@ -379,7 +379,7 @@
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
 	if(!do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
-		for(var/atom/movable/victim in view(VORTEX_RANGE, owner.loc))
+		for(var/atom/movable/victim AS in view(VORTEX_RANGE, owner.loc))
 			if(victim.anchored)
 				continue
 			if(isliving(victim))
@@ -389,13 +389,9 @@
 			victim.throw_at(owner, 3, 1, owner, FALSE)
 		return fail_activate()
 
-	for(var/turf/affected_tile in range(VORTEX_RANGE, owner.loc))
+	for(var/turf/affected_tile AS in RANGE_TURFS(VORTEX_RANGE, owner.loc))
 		affected_tile.Shake(3, 3, 1 SECONDS)
-		for(var/i in affected_tile)
-			var/atom/movable/affected = i
-			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(3, 3, 10)
-				continue
+		for(var/atom/movable/affected AS in affected_tile)
 			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
@@ -403,6 +399,12 @@
 				H.apply_effects(1,1)
 				H.adjust_stagger(2)
 				shake_camera(H, 2, 1)
+				H.Shake(3, 3, 10)
+				affected.Shake(3, 3, 10)
+				continue
+			if(isitem(affected) && isdroid(affected))
+				affected.Shake(3, 3, 10)
+				continue
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 3)
 				throwlocation = get_step(throwlocation, owner.dir)
@@ -424,7 +426,7 @@
 
 	playsound(owner, 'sound/effects/supermatter.ogg', 60)
 	if(!do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
-		for(var/atom/movable/victim in view(VORTEX_RANGE, owner.loc))
+		for(var/atom/movable/victim AS in view(VORTEX_RANGE, owner.loc))
 			if(victim.anchored)
 				continue
 			if(isliving(victim))
@@ -435,9 +437,9 @@
 		return fail_activate()
 	finish_charging()
 
-	for(var/turf/affected_tile in range(VORTEX_RANGE, owner.loc))
+	for(var/turf/affected_tile AS in RANGE_TURFS(VORTEX_RANGE, owner.loc))
 		affected_tile.Shake(3, 3, 1 SECONDS)
-		for(var/i in affected_tile)
+		for(var/i AS in affected_tile)
 			var/atom/movable/affected = i
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(3, 3, 10)
