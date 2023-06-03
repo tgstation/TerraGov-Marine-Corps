@@ -773,8 +773,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		LAZYADDASSOC(radial_options, MARK_LASE, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_mark_ob"))
 		LAZYADDASSOC(radial_options, FIRE_LASE, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_fire_ob"))
 		choice = show_radial_menu(source, laser_target, radial_options, null, 48, null, FALSE, TRUE)
-
-	if(istype(A, /turf))
+	else
 		turf_target = get_turf(A)
 		LAZYADDASSOC(radial_options, ORBITAL_SPOTLIGHT, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_orbital_spotlight"))
 		LAZYADDASSOC(radial_options, MESSAGE_NEAR, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"))
