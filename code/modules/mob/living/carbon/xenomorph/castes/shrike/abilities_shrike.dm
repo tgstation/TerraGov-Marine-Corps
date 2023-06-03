@@ -375,19 +375,26 @@
 	owner.icon_state = "[xeno.xeno_caste.caste_name][xeno.is_a_rouny ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
-
-	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
-	if(!do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
-		for(var/atom/movable/victim AS in view(VORTEX_RANGE, owner.loc))
-			if(victim.anchored)
+	if(do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+		vortex_pull()
+	if(do_after(owner, VORTEX_PUSH_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+		vortex_push()
+	if(do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+		vortex_pull()
+	finish_charging()
+	return fail_activate()
+
+/datum/action/xeno_action/activable/psychic_vortex/proc/vortex_pull()
+	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
+	for(var/atom/movable/victim in range(VORTEX_RANGE, owner.loc))
+		if(victim.anchored)
+			continue
+		if(isliving(victim))
+			var/mob/living_target = victim
+			if(living_target.stat == DEAD)
 				continue
-			if(isliving(victim))
-				var/mob/living_target = victim
-				if(living_target.stat == DEAD)
-					continue
-			victim.throw_at(owner, 3, 1, owner, FALSE)
-		return fail_activate()
+		victim.throw_at(owner, 3, 1, owner, FALSE)
 
 	for(var/turf/affected_tile AS in RANGE_TURFS(VORTEX_RANGE, owner.loc))
 		affected_tile.Shake(3, 3, 1 SECONDS)
@@ -410,49 +417,19 @@
 				throwlocation = get_step(throwlocation, owner.dir)
 			affected.throw_at(owner, 3, 1, owner, FALSE)
 
+/datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
 	var/turf/targetturf = get_turf(owner)
 	targetturf = locate(targetturf.x + rand(1, 3), targetturf.y + rand(1, 3), targetturf.z)
-	if(do_after(owner, VORTEX_PUSH_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
-		for(var/atom/movable/victim in range(VORTEX_RANGE, owner.loc))
-			if(victim == owner)
+	for(var/atom/movable/victim in range(VORTEX_RANGE, owner.loc))
+		if(victim == owner)
+			continue
+		if(victim.anchored)
+			continue
+		if(isliving(victim))
+			var/mob/living_target = victim
+			if(living_target.stat == DEAD)
 				continue
-			if(victim.anchored)
-				continue
-			if(isliving(victim))
-				var/mob/living_target = victim
-				if(living_target.stat == DEAD)
-					continue
-			victim.throw_at(targetturf, 3, 1, owner, FALSE)
-
-	playsound(owner, 'sound/effects/supermatter.ogg', 60)
-	if(!do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
-		for(var/atom/movable/victim AS in view(VORTEX_RANGE, owner.loc))
-			if(victim.anchored)
-				continue
-			if(isliving(victim))
-				var/mob/living_target = victim
-				if(living_target.stat == DEAD)
-					continue
-			victim.throw_at(owner, 3, 1, owner, FALSE)
-		return fail_activate()
-	finish_charging()
-
-	for(var/turf/affected_tile AS in RANGE_TURFS(VORTEX_RANGE, owner.loc))
-		affected_tile.Shake(3, 3, 1 SECONDS)
-		for(var/i AS in affected_tile)
-			var/atom/movable/affected = i
-			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(3, 3, 10)
-				continue
-			if(ishuman(affected))
-				var/mob/living/carbon/human/H = affected
-				if(H.stat == DEAD)
-					continue
-				shake_camera(H, 2, 1)
-			var/throwlocation = affected.loc
-			for(var/x in 1 to 3)
-				throwlocation = get_step(throwlocation, owner.dir)
-			affected.throw_at(owner, 3, 1, owner, FALSE)
+		victim.throw_at(targetturf, 3, 1, owner, FALSE)
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/finish_charging()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
