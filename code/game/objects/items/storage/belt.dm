@@ -82,6 +82,29 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/t_scanner(src)
 
+/obj/item/storage/belt/medical_small
+	name = "\improper M276 pattern light medical rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This lighter version is often used for bulk carrying of medical supplies by marines."
+	icon_state = "medicalbelt_small"
+	item_state = "medicbag"
+	storage_slots = 15
+	max_storage_space = 30
+	max_w_class = 3
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/syringe_case,
+		/obj/item/storage/pill_bottle,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/stack/medical,
+		/obj/item/storage/pill_bottle/packet,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/tool/surgery/solderingtool,
+		/obj/item/reagent_containers/dropper,
+	)
+
 /obj/item/storage/belt/lifesaver
 	name = "\improper M276 pattern lifesaver bag"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
