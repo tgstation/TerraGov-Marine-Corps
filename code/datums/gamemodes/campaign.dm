@@ -100,7 +100,8 @@
 
 ///each faction chooses how many attrition points to use for the upcoming round
 /datum/game_mode/hvh/campaign/proc/select_attrition_points()
-	for(var/datum/faction_stats/team AS in stat_list)
+	for(var/i in stat_list)
+		var/datum/faction_stats/team = stat_list[i]
 		var/choice = tgui_input_number(team.faction_leader, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, team.total_attrition_points, 0, 60 SECONDS)
 		if(!choice)
 			choice = 0
