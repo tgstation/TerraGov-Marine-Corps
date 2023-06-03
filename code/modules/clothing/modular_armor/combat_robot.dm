@@ -48,10 +48,10 @@
 
 	current_variant = "black"
 
-/obj/item/clothing/suit/modular/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
+/obj/item/clothing/suit/modular/robot/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	. = ..()
-	if(!isrobot(M))
-		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
 		return FALSE
 
 /obj/item/clothing/suit/modular/robot/light
@@ -88,6 +88,7 @@
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/fire_proof_helmet,
 		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
@@ -115,10 +116,10 @@
 
 	current_variant = "black"
 
-/obj/item/clothing/head/modular/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
+/obj/item/clothing/head/modular/robot/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	. = ..()
-	if(!isrobot(M))
-		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
 		return FALSE
 
 /obj/item/clothing/head/modular/robot/light

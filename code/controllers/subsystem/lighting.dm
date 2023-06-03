@@ -17,13 +17,13 @@ SUBSYSTEM_DEF(lighting)
 
 	var/static/list/mask_queue = list() //! List of hybrid lighting sources queued for update.
 
-/datum/controller/subsystem/lighting/Initialize(timeofday)
+/datum/controller/subsystem/lighting/Initialize()
 	started = TRUE
 	if(!initialized)
 		//Handle static lightnig
 		create_all_lighting_objects()
 	fire(FALSE, TRUE)
-	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/lighting/stat_entry()

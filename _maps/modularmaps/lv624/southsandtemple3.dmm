@@ -80,12 +80,6 @@
 "lb" = (
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle8)
-"lg" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/sand6)
 "mm" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -105,12 +99,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
-"nh" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
 "og" = (
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirt,
@@ -208,9 +196,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "wT" = (
-/obj/structure/platform{
-	dir = 1
-	},
 /obj/structure/jungle/vines,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand6)
@@ -509,7 +494,7 @@ Tp
 Tp
 "}
 (4,1,1) = {"
-lg
+yc
 yc
 QS
 Lh
@@ -535,7 +520,7 @@ Tp
 Tp
 "}
 (5,1,1) = {"
-lg
+yc
 yc
 QS
 Lh
@@ -743,7 +728,7 @@ Tp
 Tp
 "}
 (13,1,1) = {"
-nh
+yt
 yt
 oJ
 yt
@@ -769,7 +754,7 @@ Tp
 Tp
 "}
 (14,1,1) = {"
-nh
+yt
 yt
 HY
 yt
@@ -795,7 +780,7 @@ Tp
 Tp
 "}
 (15,1,1) = {"
-nh
+yt
 dv
 mz
 yt

@@ -2,7 +2,7 @@
 	icon = 'icons/obj/structures/structures.dmi'
 	var/climbable = FALSE
 	var/climb_delay = 50
-	var/flags_barrier = 0
+	var/flags_barrier = NONE
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	obj_flags = CAN_BE_HIT
 	anchored = TRUE
@@ -50,7 +50,7 @@
 
 /obj/structure/specialclick(mob/living/carbon/user)
 	. = ..()
-	do_climb(user)
+	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
 
 /obj/structure/MouseDrop_T(mob/target, mob/user)
 	. = ..()

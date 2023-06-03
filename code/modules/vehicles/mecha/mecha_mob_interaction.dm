@@ -44,7 +44,7 @@
 	add_occupant(newoccupant)
 	newoccupant.forceMove(src)
 	newoccupant.update_mouse_pointer()
-	add_fingerprint(newoccupant)
+	add_fingerprint(newoccupant, "moved in as pilot")
 	log_message("[newoccupant] moved in as pilot.", LOG_MECHA)
 	setDir(dir_in)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, TRUE)

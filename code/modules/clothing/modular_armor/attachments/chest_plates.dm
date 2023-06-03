@@ -48,3 +48,8 @@
 	name = "\improper Jaeger Pattern Hell Jumper chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Hell Jumper armor piece."
 	icon_state = "helljumper"
+
+/obj/item/armor_module/armor/chest/marine/ranger
+	name = "\improper Jaeger Pattern Ranger chestplates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Ranger armor piece."
+	icon_state = "ranger"

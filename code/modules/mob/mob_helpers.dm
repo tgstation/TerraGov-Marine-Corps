@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 /proc/findname(msg)
 	for(var/mob/M in GLOB.mob_list)
-		if (M.real_name == text("[msg]"))
+		if (M.real_name == "[msg]")
 			return TRUE
 	return FALSE
 
@@ -464,3 +464,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 /mob/proc/set_skills(datum/skills/new_skillset)
 	skills = new_skillset
 	SEND_SIGNAL(src, COMSIG_MOB_SKILLS_CHANGED, skills)
+
+///Returns the slowdown applied to the mob when moving through liquids like water
+/mob/proc/get_liquid_slowdown()
+	return MOB_WATER_SLOWDOWN

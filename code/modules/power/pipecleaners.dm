@@ -141,8 +141,6 @@ By design, d1 is the smallest direction and d2 is the highest
 			return
 		coil.pipe_cleaner_join(src, user)
 
-	add_fingerprint(user)
-
 /obj/structure/pipe_cleaner/proc/cut_pipe_cleaner(mob/user)
 	user.visible_message(span_notice("[user] pulls up the pipe cleaner."), span_notice("You pull up the pipe cleaner."))
 	stored.add_fingerprint(user)
@@ -277,7 +275,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	//set up the new pipe_cleaner
 	C.d1 = 0 //it's a O-X node pipe_cleaner
 	C.d2 = dirn
-	C.add_fingerprint(user)
+	C.add_fingerprint(user, "placed pipe cleaner on [T.x], [T.y], [T.z]")
 	C.update_icon()
 
 	use(1)
@@ -331,7 +329,6 @@ By design, d1 is the smallest direction and d2 is the highest
 
 			NC.d1 = 0
 			NC.d2 = fdirn
-			NC.add_fingerprint(user)
 			NC.update_icon()
 
 			use(1)
@@ -368,7 +365,6 @@ By design, d1 is the smallest direction and d2 is the highest
 		//updates the stored pipe_cleaner coil
 		C.update_stored(2, pipe_cleaner_color)
 
-		C.add_fingerprint(user)
 		C.update_icon()
 
 		use(1)

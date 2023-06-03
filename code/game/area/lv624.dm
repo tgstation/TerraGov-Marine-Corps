@@ -377,7 +377,10 @@
 	name = "\improper Research Lab"
 	icon_state = "toxlab"
 	minimap_color = MINIMAP_AREA_RESEARCH
-
+ 
+/area/lv624/lazarus/research/caves
+	ceiling = CEILING_DEEP_UNDERGROUND
+ 
 /area/lv624/lazarus/fitness
 	name = "\improper Fitness Room"
 	icon_state = "fitness"
@@ -422,7 +425,7 @@
 /area/lv624/lazarus/crashed_ship
 	name = "\improper Crashed Ship"
 	icon_state = "shuttlered"
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	always_unpowered = TRUE
 	minimap_color = MINIMAP_AREA_SHIP
 

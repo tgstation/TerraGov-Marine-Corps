@@ -84,12 +84,6 @@
 
 	var/distance_travelled = 0
 
-	/// How maany times this projectile has bounced off something
-	var/ricochet_count = 0
-
-	/// The maximum number of times this can bounce
-	var/ricochet_limit = 0
-
 	var/projectile_speed = 1 //Tiles travelled per full tick.
 	var/armor_type = null
 
@@ -357,7 +351,7 @@
 	if(QDELETED(src))
 		return PROCESS_KILL
 
-	if(ammo.flags_ammo_behavior & SPECIAL_PROCESS)
+	if(ammo.flags_ammo_behavior & AMMO_SPECIAL_PROCESS)
 		ammo.ammo_process(src, damage)
 
 /obj/projectile/proc/required_moves_calc()
@@ -807,18 +801,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(proj.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
 				pitch = 55000
 			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1, frequency = pitch)
-		on_dodged_bullet(proj)
 
 	return FALSE
-
-
-/mob/living/proc/on_dodged_bullet(obj/projectile/proj)
-		visible_message(span_avoidharm("[proj] misses [src]!"),
-		span_avoidharm("[proj] narrowly misses you!"), null, 4)
-
-/mob/living/carbon/xenomorph/on_dodged_bullet(obj/projectile/proj)
-		visible_message(span_avoidharm("[proj] misses [src]!"),
-		span_avoidharm("[proj] narrowly misses us!"), null, 4)
 
 
 /mob/living/do_projectile_hit(obj/projectile/proj)
@@ -828,7 +812,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/carbon/do_projectile_hit(obj/projectile/proj)
 	. = ..()
 	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, proj.dir, get_blood_color())
+		var/angle = !isnull(proj.dir_angle) ? proj.dir_angle : round(Get_Angle(proj.starting_turf, src), 1)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, angle, get_blood_color())
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -882,7 +867,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type, FALSE, proj.penetration)
 	if(!damage)
 		proj.ammo.on_shield_block(src, proj)
-		bullet_ping(proj)
 		return
 
 	if(!damage)
@@ -915,7 +899,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= (BULLET_FEEDBACK_FIRE)
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
-		adjust_sunder(proj.sundering * get_sunder())
+		adjust_sunder(proj.sundering)
 
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
@@ -938,7 +922,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/xenomorph/bullet_act(obj/projectile/proj)
 	if(issamexenohive(proj.firer)) //Aliens won't be harming allied aliens.
-		bullet_ping(proj)
 		return
 
 	return ..()
@@ -1220,7 +1203,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return affected_limb.hard_armor.getRating(armor_type)
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
-	bullet_ping(proj)
 
 
 /mob/living/carbon/human/bullet_soak_effect(obj/projectile/proj)
@@ -1240,7 +1222,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //Turf handling.
 /turf/bullet_act(obj/projectile/proj)
 	. = ..()
-	bullet_ping(proj)
 
 	var/list/mob_list = list() //Let's built a list of mobs on the bullet turf and grab one.
 	for(var/mob/possible_target in src)
@@ -1289,32 +1270,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					//					\\
 					//					\\
 //----------------------------------------------------------
-
-
-//This is where the bullet bounces off.
-/atom/proc/bullet_ping(obj/projectile/P)
-	if(!P.ammo.ping)
-		return
-	if(prob(65))
-		if(P.ammo.sound_bounce)
-			var/pitch = 0
-			if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
-				pitch = 55000
-			playsound(src, P.ammo.sound_bounce, 50, 1, frequency = pitch)
-		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
-		var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
-		if(prob(60))
-			angle += rand(-angle, 360 - angle)
-		I.pixel_x += rand(-6,6)
-		I.pixel_y += rand(-6,6)
-
-		var/matrix/rotate = matrix()
-		rotate.Turn(angle)
-		I.transform = rotate
-		add_overlay(I)
-		addtimer(CALLBACK(src, PROC_REF(cut_overlay), I), 3, TIMER_CLIENT_TIME)
-
-
 
 #define BULLET_MESSAGE_NO_SHOOTER 0
 #define BULLET_MESSAGE_HUMAN_SHOOTER 1

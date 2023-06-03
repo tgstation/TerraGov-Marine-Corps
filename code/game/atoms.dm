@@ -19,8 +19,6 @@
 	///If non-null, overrides a/an/some in all cases
 	var/article
 
-	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
-	var/list/priority_overlays
 	///a very temporary list of overlays to remove
 	var/list/remove_overlays
 	///a very temporary list of overlays to add
@@ -135,7 +133,6 @@ directive is properly returned.
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
 	LAZYCLEARLIST(overlays)
-	LAZYCLEARLIST(priority_overlays)
 
 	QDEL_NULL(light)
 
@@ -950,12 +947,12 @@ Proc for attack log creation, because really why not
 /atom/proc/specialclick(mob/living/carbon/user)
 	return
 
-
-//Consolidating HUD infrastructure
 /atom/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
-		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
+		var/image/new_hud = image('icons/mob/hud.dmi', src, "")
+		new_hud.appearance_flags = KEEP_APART
+		hud_list[hud] = new_hud
 
 /**
  * If this object has lights, turn it on/off.
@@ -1014,3 +1011,7 @@ Proc for attack log creation, because really why not
 
 /atom/proc/can_slip()
 	return TRUE
+
+///Adds the debris element for projectile impacts
+/atom/proc/add_debris_element()
+	AddElement(/datum/element/debris, null, -15, 8, 0.7)

@@ -31,6 +31,22 @@
 			"color_ids": [1]
 		}
 	],
+	"ranger_visor": [
+		{
+			"type": "icon_state",
+			"icon_state": "ranger_visor",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"traditional_visor": [
+		{
+			"type": "icon_state",
+			"icon_state": "traditional_visor",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
 	"eva_visor": [
 		{
 			"type": "icon_state",

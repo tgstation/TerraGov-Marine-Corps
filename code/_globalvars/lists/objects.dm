@@ -14,6 +14,7 @@ GLOBAL_LIST_EMPTY(patrol_point_list)
 GLOBAL_LIST_EMPTY(brig_closets)
 GLOBAL_LIST_EMPTY(supply_pad_list)
 GLOBAL_LIST_EMPTY(supply_beacon)
+GLOBAL_LIST_EMPTY(eord_roomba_spawns)
 
 GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(faxmachines)
@@ -24,9 +25,12 @@ GLOBAL_LIST_EMPTY(nuke_disk_generators)
 GLOBAL_LIST_EMPTY(nuke_list)						//list of all /obj/machinery/nuclearbomb
 GLOBAL_LIST_EMPTY(active_nuke_list)
 GLOBAL_LIST_EMPTY(nuke_spawn_locs)
+GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)				///list of spawn locations for nuke disk consoles
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
 GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light can be shut down
 GLOBAL_LIST_EMPTY(zones_to_control)					//list of all areas that needs to be controlled to gain point in Civil War
+GLOBAL_LIST_EMPTY(main_overwatch_consoles)					//list of all areas that needs to be controlled to gain point in Civil War
+
 
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions
 GLOBAL_LIST_EMPTY(chemical_reagents_list)				///list of all /datum/reagent datums instances indexed by reagent typepath. Used by chemistry stuff
@@ -47,7 +51,7 @@ GLOBAL_LIST_EMPTY(xeno_resin_silos_by_hive)
 GLOBAL_LIST_EMPTY(xeno_resin_turrets_by_hive)
 GLOBAL_LIST_EMPTY(xeno_spawners_by_hive)
 GLOBAL_LIST_EMPTY(xeno_structures_by_hive)
-GLOBAL_LIST_EMPTY(xeno_critical_structures)
+GLOBAL_LIST_EMPTY(xeno_critical_structures_by_hive)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 GLOBAL_LIST_EMPTY(lz1_shuttle_console_turfs_list)
