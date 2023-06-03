@@ -1166,6 +1166,7 @@ TUNNEL
 
 /obj/structure/xeno/evotower/Initialize(mapload)
 	. = ..()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "tower")
 	GLOB.hive_datums[hivenumber].evotowers += src
 	set_light(2, 2, LIGHT_COLOR_GREEN)
 
@@ -1197,6 +1198,7 @@ TUNNEL
 
 /obj/structure/xeno/maturitytower/Initialize(mapload)
 	. = ..()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "tower")
 	GLOB.hive_datums[hivenumber].maturitytowers += src
 	set_light(2, 2, LIGHT_COLOR_GREEN)
 
