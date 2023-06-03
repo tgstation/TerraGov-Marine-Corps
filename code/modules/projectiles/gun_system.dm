@@ -11,7 +11,7 @@
 		)
 	max_integrity = 250
 	materials = list(/datum/material/metal = 100)
-	w_class 	= 3
+	w_class 	= WEIGHT_CLASS_NORMAL
 	throwforce 	= 5
 	throw_speed = 4
 	throw_range = 5
