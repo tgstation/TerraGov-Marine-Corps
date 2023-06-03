@@ -7,6 +7,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/inflatable/attack_self(mob/user)
+	. = ..()
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
 	to_chat(user, span_notice("You inflate [src]."))
 	new /obj/structure/inflatable(user.loc)

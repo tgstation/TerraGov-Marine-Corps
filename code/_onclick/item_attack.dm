@@ -40,11 +40,11 @@
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
 	add_fingerprint(user, "attack_self")
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
+	if(!can_interact(user))
 		return
-	return
-
+	interact(user)
 
 /atom/proc/attackby(obj/item/I, mob/user, params)
 	SIGNAL_HANDLER_DOES_SLEEP
