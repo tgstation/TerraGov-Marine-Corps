@@ -596,6 +596,8 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = TWOHANDED
+	COOLDOWN_DECLARE(harvester_special_attack_cooldown)
+	var/obj/effect/abstract/particle_holder/particle_holder
 
 	/// Lists the information in the codex
 	var/codex_info = {"<b>Reagent info:</b><BR>
@@ -615,3 +617,66 @@
 /obj/item/weapon/twohanded/flail/get_mechanics_info()
 	. = ..()
 	. += jointext(codex_info, "<br>")
+
+/obj/item/weapon/twohanded/flail/attack_alternate(mob/living/M, mob/living/user)
+	. = ..()
+	var/mob/living/carbon/human/H = user
+	if(!COOLDOWN_CHECK(src, harvester_special_attack_cooldown))
+		H.balloon_alert(H, "Wait [COOLDOWN_TIMELEFT(src, harvester_special_attack_cooldown)/10] more seconds")
+		return FALSE
+	COOLDOWN_START(src, harvester_special_attack_cooldown, 6 SECONDS)
+
+	H.visible_message(span_danger("\The [H] viciously swings \the [src]!"), \
+	span_warning("You viciously swing \the [src] around!"))
+	H.face_atom(M)
+	activate_particles(H, H.dir)
+
+	var/list/atom/movable/atoms_to_ravage = M.loc.contents.Copy()
+	atoms_to_ravage += get_step(M, turn(H.dir, -90)).contents
+	atoms_to_ravage += get_step(M, turn(H.dir, 90)).contents
+	for(var/atom/movable/ravaged AS in atoms_to_ravage)
+		if(!isliving(ravaged))
+			ravaged.attacked_by(src, H, H.zone_selected)
+			if(!ravaged.anchored)
+				step_away(ravaged, H, 1, 2)
+			continue
+		var/mob/living/attacking = ravaged
+		if(attacking.stat == DEAD)
+			continue
+		step_away(attacking, H, 1, 2)
+		attacking.attacked_by(src, H, H.zone_selected)
+		shake_camera(attacking, 1, 1)
+		attacking.adjust_stagger(1)
+		attacking.adjust_slowdown(1)
+
+/obj/item/weapon/twohanded/flail/proc/activate_particles(mob/living/user, direction)
+	particle_holder = new(get_turf(user), /particles/harvester_slash)
+	QDEL_NULL_IN(src, particle_holder, 5)
+	particle_holder.particles.rotation += dir2angle(direction)
+	switch(direction)
+		if(NORTH)
+			particle_holder.particles.position = list(8, 4)
+			particle_holder.particles.velocity = list(0, 20)
+		if(EAST)
+			particle_holder.particles.position = list(3, -8)
+			particle_holder.particles.velocity = list(20, 0)
+		if(SOUTH)
+			particle_holder.particles.position = list(-9, -3)
+			particle_holder.particles.velocity = list(0, -20)
+		if(WEST)
+			particle_holder.particles.position = list(-4, 9)
+			particle_holder.particles.velocity = list(-20, 0)
+
+/particles/harvester_slash
+	icon = 'icons/effects/200x200.dmi'
+	icon_state = "harvester_slash"
+	width = 600
+	height = 600
+	count = 1
+	spawning = 1
+	lifespan = 4
+	fade = 4
+	scale = 0.6
+	grow = -0.02
+	rotation = -160
+	friction = 0.6
