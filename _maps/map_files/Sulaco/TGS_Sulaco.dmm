@@ -1885,7 +1885,8 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "aiA" = (
-/obj/machinery/computer/med_data,
+/obj/machinery/cic_maptable,
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -12797,6 +12798,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
+"eTN" = (
+/obj/machinery/computer/med_data,
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay)
 "eTW" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/ai_node,
@@ -16369,6 +16374,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/marked,
 /area/sulaco/marine)
+"jQi" = (
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay/west)
 "jQK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -22454,6 +22468,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
+"rXQ" = (
+/obj/machinery/cryopod/right,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/hallway/lower_foreship)
 "rYR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -49358,7 +49376,7 @@ iXf
 xHk
 aKM
 aKM
-aKM
+rXQ
 eqq
 aYN
 mvV
@@ -50904,9 +50922,9 @@ ntk
 ntk
 ntk
 acG
-acA
-add
 acT
+add
+jQi
 vHb
 mDu
 qDO
@@ -55783,7 +55801,7 @@ mgi
 qMM
 afc
 fzo
-ade
+eTN
 aco
 ade
 fzI
