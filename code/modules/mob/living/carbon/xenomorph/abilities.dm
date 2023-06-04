@@ -310,7 +310,7 @@
 
 /// A version of build_resin with the plasma drain and distance checks removed.
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
-	if(!SSresinshaping.remainnig_quickbuilds)
+	if(!SSresinshaping.remaining_quickbuilds)
 		owner.balloon_alert(owner, "You have used all your quick-build points! Wait until the marines have landed!")
 		return
 	var/mob/living/carbon/xenomorph/X = owner
