@@ -493,8 +493,8 @@
 	adjustment_variants = list()
 	species_exception = list(/datum/species/robot)
 
-/obj/item/clothing/under/marine/robotic/mob_can_equip(mob/M, slot, warning, override_nodrop)
+/obj/item/clothing/under/marine/robotic/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	. = ..()
-	if(!isrobot(M))
-		to_chat(M, span_warning("You can't equip this as it requires mounting screws on your body!"))
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting screws on your body!"))
 		return FALSE
