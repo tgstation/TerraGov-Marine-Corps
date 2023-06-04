@@ -403,26 +403,27 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 // Human Overlay Indexes
-#define LASER_LAYER 28 //For sniper targeting laser
-#define MOTH_WINGS_LAYER 27
-#define MUTATIONS_LAYER 26
-#define DAMAGE_LAYER 25
-#define UNIFORM_LAYER 24
-#define TAIL_LAYER 23 //bs12 specific. this hack is probably gonna come back to haunt me
-#define ID_LAYER 22
-#define SHOES_LAYER 21
-#define GLOVES_LAYER 20
-#define BELT_LAYER 19
-#define GLASSES_LAYER 18
-#define SUIT_LAYER 17 //Possible make this an overlay of somethign required to wear a belt?
-#define HAIR_LAYER 16 //TODO: make part of head layer?
-#define EARS_LAYER 15
-#define FACEMASK_LAYER 14
-#define GOGGLES_LAYER 13	//For putting Ballistic goggles and potentially other things above masks
-#define HEAD_LAYER 12
-#define COLLAR_LAYER 11
-#define SUIT_STORE_LAYER 10
-#define BACK_LAYER 9
+#define LASER_LAYER 29 //For sniper targeting laser
+#define MOTH_WINGS_LAYER 28
+#define MUTATIONS_LAYER 27
+#define DAMAGE_LAYER 26
+#define UNIFORM_LAYER 25
+#define TAIL_LAYER 24 //bs12 specific. this hack is probably gonna come back to haunt me
+#define ID_LAYER 23
+#define SHOES_LAYER 22
+#define GLOVES_LAYER 21
+#define BELT_LAYER 20
+#define GLASSES_LAYER 19
+#define SUIT_LAYER 18 //Possible make this an overlay of somethign required to wear a belt?
+#define HAIR_LAYER 17 //TODO: make part of head layer?
+#define EARS_LAYER 16
+#define FACEMASK_LAYER 15
+#define GOGGLES_LAYER 14	//For putting Ballistic goggles and potentially other things above masks
+#define HEAD_LAYER 13
+#define COLLAR_LAYER 12
+#define SUIT_STORE_LAYER 11
+#define BACK_LAYER 10
+#define KAMA_LAYER 9
 #define CAPE_LAYER 8
 #define HANDCUFF_LAYER 7
 #define L_HAND_LAYER 6
@@ -432,7 +433,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER 2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER 1 //If you're on fire
 
-#define TOTAL_LAYERS 28
+#define TOTAL_LAYERS 29
 
 #define MOTH_WINGS_BEHIND_LAYER 1
 
@@ -859,3 +860,11 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define BOILER_WATER_SLOWDOWN 0
 ///Slowdown for warlocks moving through liquid
 #define WARLOCK_WATER_SLOWDOWN 0
+
+
+//Species defines
+
+///Human species or those that functional behave like them. Default species
+#define SPECIES_HUMAN "species_human"
+///Combat robot species
+#define SPECIES_COMBAT_ROBOT "species_combat_robot"

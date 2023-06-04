@@ -103,7 +103,7 @@
 
 /turf/open/liquid/water/sea
 	name = "water"
-	icon_state = "water"
+	icon_state = "seadeep"
 
 /turf/open/liquid/water/river
 	name = "river"

@@ -84,12 +84,6 @@
 
 	var/distance_travelled = 0
 
-	/// How maany times this projectile has bounced off something
-	var/ricochet_count = 0
-
-	/// The maximum number of times this can bounce
-	var/ricochet_limit = 0
-
 	var/projectile_speed = 1 //Tiles travelled per full tick.
 	var/armor_type = null
 
@@ -807,18 +801,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(proj.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
 				pitch = 55000
 			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1, frequency = pitch)
-		on_dodged_bullet(proj)
 
 	return FALSE
-
-
-/mob/living/proc/on_dodged_bullet(obj/projectile/proj)
-		visible_message(span_avoidharm("[proj] misses [src]!"),
-		span_avoidharm("[proj] narrowly misses you!"), null, 4)
-
-/mob/living/carbon/xenomorph/on_dodged_bullet(obj/projectile/proj)
-		visible_message(span_avoidharm("[proj] misses [src]!"),
-		span_avoidharm("[proj] narrowly misses us!"), null, 4)
 
 
 /mob/living/do_projectile_hit(obj/projectile/proj)
@@ -894,8 +878,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-		proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
-		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 	if(iscarbon(proj.firer))
 		var/mob/living/carbon/shooter_carbon = proj.firer
@@ -1215,7 +1197,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return hard_armor.getRating(armor_type)
 
 /mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
-	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
+	var/datum/limb/affected_limb = proj_def_zone
 	return affected_limb.hard_armor.getRating(armor_type)
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)

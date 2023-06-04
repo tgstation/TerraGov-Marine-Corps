@@ -30,7 +30,7 @@
 /obj/item/assembly/voice/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
 	if(speaker == src)
-		return
+		return FALSE
 
 	if(listening && !radio_freq)
 		record_speech(speaker, raw_message, message_language)

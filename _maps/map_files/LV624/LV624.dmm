@@ -486,14 +486,6 @@
 "apT" = (
 /turf/closed/wall/sulaco,
 /area/lv624/ground/sand5)
-"aqd" = (
-/obj/structure/girder/displaced,
-/turf/closed/shuttle/wall3,
-/area/lv624/ground/sand6)
-"aqh" = (
-/obj/structure/girder,
-/turf/closed/shuttle/wall3,
-/area/lv624/lazarus/crashed_ship)
 "aqs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3112,7 +3104,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/rock)
 "bTH" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "bTL" = (
@@ -7367,7 +7359,7 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop2/lz2)
 "hIs" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "hIR" = (
@@ -12660,7 +12652,7 @@
 /area/lv624/ground/filtration)
 "oHK" = (
 /obj/item/frame/table/wood,
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "oHO" = (
@@ -42321,7 +42313,7 @@ exl
 uYP
 rdh
 sSs
-bba
+tUO
 cwq
 eLr
 uxW
@@ -49325,7 +49317,7 @@ wbc
 wbc
 wbc
 wbc
-aqd
+auG
 asf
 asf
 asf
@@ -50387,7 +50379,7 @@ agp
 amT
 moV
 wbc
-aqh
+aof
 aog
 ajy
 hbg

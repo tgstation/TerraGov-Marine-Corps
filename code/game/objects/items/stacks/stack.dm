@@ -139,7 +139,7 @@
 				title += "[R.title]"
 			title += " ([R.req_amount] [singular_name]\s)"
 			if(can_build)
-				t1 += text("<A href='?src=[REF(src)];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  ")
+				t1 += "<A href='?src=[REF(src)];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  "
 			else
 				t1 += text("[]", title)
 				continue

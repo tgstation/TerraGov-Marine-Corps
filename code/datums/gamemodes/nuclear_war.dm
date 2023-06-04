@@ -7,6 +7,8 @@
 	. = ..()
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
+	generate_nuke_disk_spawners()
+
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
@@ -33,10 +35,19 @@
 		round_finished = MODE_INFESTATION_X_MINOR
 		return TRUE
 
-	if(planet_nuked == INFESTATION_NUKE_COMPLETED)
-		message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines managed to nuke the colony
-		round_finished = MODE_INFESTATION_M_MINOR
-		return TRUE
+	switch(planet_nuked)
+		if(INFESTATION_NUKE_COMPLETED)
+			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines managed to nuke the colony
+			round_finished = MODE_INFESTATION_M_MINOR
+			return TRUE
+		if(INFESTATION_NUKE_COMPLETED_SHIPSIDE)
+			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //marines managed to nuke their own ship
+			round_finished = MODE_INFESTATION_X_MAJOR
+			return TRUE
+		if(INFESTATION_NUKE_COMPLETED_OTHER)
+			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines managed to nuke transit or something
+			round_finished = MODE_INFESTATION_X_MINOR
+			return TRUE
 
 	if(!num_humans)
 		if(!num_xenos)

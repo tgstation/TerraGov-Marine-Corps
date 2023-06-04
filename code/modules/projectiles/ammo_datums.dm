@@ -1288,16 +1288,22 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	accurate_range_min = 6
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	accurate_range = 5
-	damage = 40
-	penetration = 100
-	sundering = 8
+	damage = 30
+	penetration = 50
+	sundering = 1
 	max_range = 35
+	///Bonus flat damage to walls, balanced around resin walls.
+	var/autocannon_wall_bonus = 20
 
 /datum/ammo/bullet/auto_cannon/on_hit_turf(turf/T, obj/projectile/P)
 	P.proj_max_range -= 20
+
+	if(istype(T, /turf/closed/wall))
+		var/turf/closed/wall/wall_victim = T
+		wall_victim.take_damage((autocannon_wall_bonus))
 
 /datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 5
@@ -1309,15 +1315,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/auto_cannon/flak
 	name = "autocannon smart-detonating bullet"
 	hud_state = "sniper_flak"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
-	damage = 40
-	penetration = 20
-	sundering = 12
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_EXPLOSIVE
+	damage = 50
+	penetration = 30
+	sundering = 5
 	max_range = 30
 	airburst_multiplier = 1
+	autocannon_wall_bonus = 5
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
+
+/datum/ammo/bullet/auto_cannon/do_at_max_range(turf/T, obj/projectile/proj)
+	airburst(T, proj)
 
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
@@ -2879,9 +2889,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
 		var/obj/vehicle/sealed/mecha/mech_victim = O
-		mech_victim.take_damage(rand(200, 400), BURN, ENERGY, 0, armour_penetration = penetration)
-	else
-		O.take_damage(damage, BURN, ENERGY, 0, armour_penetration = penetration)
+		mech_victim.take_damage(200, BURN, ENERGY, 0, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
 	if(!isxeno(M))

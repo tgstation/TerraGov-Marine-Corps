@@ -233,6 +233,12 @@
 			owner.balloon_alert(owner, "Already evading")
 		return FALSE
 
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+
+	if(xeno_owner.on_fire)
+		xeno_owner.balloon_alert(xeno_owner, "Can't while on fire!")
+		return FALSE
+
 /datum/action/xeno_action/evasion/action_activate()
 	var/mob/living/carbon/xenomorph/runner/R = owner
 

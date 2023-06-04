@@ -360,6 +360,9 @@
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
 
+/obj/item/explosive/grenade/flare/dissolvability(acid_strength)
+	return 2
+
 /obj/item/explosive/grenade/flare/Initialize(mapload)
 	. = ..()
 	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
@@ -491,14 +494,14 @@
 	if(!istype(TU))
 		return
 	if(is_ground_level(TU.z))
-		target = new(src, name, user_squad)//da lazer is stored in the grenade
+		target = new(src, null, name, user_squad)//da lazer is stored in the grenade
 
 /obj/item/explosive/grenade/flare/cas/process()
 	. = ..()
 	var/turf/TU = get_turf(src)
 	if(is_ground_level(TU.z))
 		if(!target && active)
-			target = new(src, name, user_squad)
+			target = new(src, null, name, user_squad)
 
 /obj/item/explosive/grenade/flare/cas/turn_off()
 	QDEL_NULL(target)

@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/map_templates = list()
 
 	var/list/shuttle_templates = list()
+	var/list/minidropship_templates = list()
 
 	///list of all modular mapping templates
 	var/list/modular_templates = list()
@@ -43,10 +44,10 @@ SUBSYSTEM_DEF(mapping)
 			var/client/C = i
 			winset(C, null, "mainwindow.title='[CONFIG_GET(string/title)] - [SSmapping.configs[SHIP_MAP].map_name]'")
 
-/datum/controller/subsystem/mapping/Initialize(timeofday)
+/datum/controller/subsystem/mapping/Initialize()
 	HACK_LoadMapConfig()
 	if(initialized)
-		return
+		return SS_INIT_SUCCESS
 
 	for(var/i in ALL_MAPTYPES)
 		var/datum/map_config/MC = configs[i]
@@ -70,7 +71,7 @@ SUBSYSTEM_DEF(mapping)
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
 	initialize_reserved_level(transit.z_value)
-	return ..()
+	return SS_INIT_SUCCESS
 
 //Loads the number of players we had last round, for use in modular mapping
 /datum/controller/subsystem/mapping/proc/load_last_round_playercount()
@@ -112,6 +113,7 @@ SUBSYSTEM_DEF(mapping)
 	flags |= SS_NO_INIT
 	initialized = SSmapping.initialized
 	map_templates = SSmapping.map_templates
+	minidropship_templates = SSmapping.minidropship_templates
 	shuttle_templates = SSmapping.shuttle_templates
 	modular_templates = SSmapping.modular_templates
 	unused_turfs = SSmapping.unused_turfs
@@ -134,7 +136,6 @@ SUBSYSTEM_DEF(mapping)
 
 	if (!islist(files))  // handle single-level maps
 		files = list(files)
-
 	// check that the total z count of all maps matches the list of traits
 	var/total_z = 0
 	var/list/parsed_maps = list()
@@ -147,7 +148,6 @@ SUBSYSTEM_DEF(mapping)
 			continue
 		parsed_maps[pm] = total_z  // save the start Z of this file
 		total_z += bounds[MAP_MAXZ] - bounds[MAP_MINZ] + 1
-
 	if (!length(traits))  // null or empty - default
 		for (var/i in 1 to total_z)
 			traits += list(default_traits)
@@ -157,7 +157,6 @@ SUBSYSTEM_DEF(mapping)
 			traits.Cut(total_z + 1)
 		while (total_z > length(traits))  // fall back to defaults on extra levels
 			traits += list(default_traits)
-
 	// preload the relevant space_level datums
 	var/start_z = world.maxz + 1
 	var/i = 0
@@ -283,6 +282,10 @@ SUBSYSTEM_DEF(mapping)
 
 		shuttle_templates[S.shuttle_id] = S
 		map_templates[S.shuttle_id] = S
+	
+	for(var/drop_path in typesof(/datum/map_template/shuttle/minidropship))
+		var/datum/map_template/shuttle/drop = new drop_path()
+		minidropship_templates += drop
 
 /datum/controller/subsystem/mapping/proc/preloadModularTemplates()
 	for(var/item in subtypesof(/datum/map_template/modular))

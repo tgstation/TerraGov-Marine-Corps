@@ -64,7 +64,7 @@
 		dat += "<font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
 		if(occupant)
 			var/t1
-			dat += text("<B>Name: [occupant.name]</B><BR>")
+			dat += "<B>Name: [occupant.name]</B><BR>"
 			switch(occupant.stat)
 				if(0)
 					t1 = "Conscious"

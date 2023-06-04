@@ -303,6 +303,36 @@
 	default_ammo = /datum/ammo/rocket/wp/quad/som
 	bonus_overlay = "rpg_incendiary"
 
+//ICC RPG
+/obj/item/ammo_magazine/rocket/icc
+	name = "\improper 84mm high-explosive tube"
+	desc = "A high explosive warhead for MP-IRL rocket launcher. Causes a strong explosion over a respectable area."
+	icon_state = "iccrpg_he"
+	default_ammo = /datum/ammo/rocket/som
+	reload_delay = 2 SECONDS
+	bonus_overlay = "iccrpg_he"
+
+/obj/item/ammo_magazine/rocket/icc/light
+	name = "\improper 84mm light-explosive tube"
+	desc = "A light explosive warhead for the MP-IRL rocket launcher. Causes a light explosion over a large area but low impact damage."
+	icon_state = "iccrpg_le"
+	default_ammo = /datum/ammo/rocket/som/light
+	reload_delay = 1 SECONDS
+	bonus_overlay = "iccrpg_le"
+
+/obj/item/ammo_magazine/rocket/icc/heat
+	name = "\improper 84mm HEAT tube"
+	desc = "A high explosive anti armor warhead for the MP-IRL rocket launcher. Designed to punch through the toughest armor."
+	icon_state = "iccrpg_heat"
+	default_ammo = /datum/ammo/rocket/som/heat
+	bonus_overlay = "iccrpg_heat"
+
+/obj/item/ammo_magazine/rocket/icc/thermobaric
+	name = "\improper 84mm thermobaric tube"
+	desc = "A thermobaric warhead for the MP-IRL rocket launcher. Causes a powerful fuel air explosion over a moderate area."
+	icon_state = "iccrpg_thermobaric"
+	default_ammo = /datum/ammo/rocket/som/thermobaric
+	bonus_overlay = "iccrpg_thermobaric"
 
 // railgun
 
