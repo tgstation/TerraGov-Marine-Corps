@@ -1119,9 +1119,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "flak sniper bullet"
 	hud_state = "sniper_flak"
 	damage = 90
-	penetration = 10
+	penetration = 0
 	sundering = 15
-	airburst_multiplier = 0.25
+	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	staggerstun(victim, proj,  slowdown = 2)
