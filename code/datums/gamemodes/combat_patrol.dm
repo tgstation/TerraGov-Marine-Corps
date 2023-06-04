@@ -20,7 +20,7 @@
 	)
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
 	blacklist_ship_maps = null
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_ROOMBA_STADIUM)
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.

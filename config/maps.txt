@@ -70,3 +70,7 @@ endmap
 map desparity
 	maxplayers 30
 endmap
+
+map roomba_stadium
+	minplayers 1
+endmap

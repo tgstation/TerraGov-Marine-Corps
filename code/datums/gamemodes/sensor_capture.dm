@@ -5,11 +5,10 @@
 	config_tag = "Sensor Capture"
 	wave_timer_length = 2 MINUTES
 	max_game_time = 10 MINUTES
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
 	game_timer_delay = 0
 	///The amount of activated sensor towers in sensor capture
 	var/sensors_activated = 0
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_ROOMBA_STADIUM)
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
 	. = ..()

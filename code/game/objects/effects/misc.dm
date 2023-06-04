@@ -216,3 +216,37 @@
 	layer = FLY_LAYER
 	plane = GAME_PLANE
 	alpha = 70
+
+/obj/structures/win
+	name = "tgmc win"
+	desc = "tgmc win"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "winner"
+	resistance_flags = RESIST_ALL|BANISH_IMMUNE
+	anchored = TRUE
+	///the faction that wins
+	var/faction = FACTION_TERRAGOV
+
+/obj/structures/win/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structures/win/proc/on_cross(datum/source, atom/movable/mover, oldloc)
+	SIGNAL_HANDLER
+	if(!istype(mover, /obj/machinery/roomba))
+		return
+	INVOKE_ASYNC(src, .proc/kaboom)
+
+/obj/structures/win/proc/kaboom()
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		if(human.faction != faction)
+			explosion(get_turf(human), 1, 1, 1, small_animation = TRUE)
+			human.gib()
+
+/obj/structures/win/som
+	name = "som win"
+	desc = "som win"
+	faction = FACTION_SOM

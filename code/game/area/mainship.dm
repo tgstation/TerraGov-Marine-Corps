@@ -494,3 +494,11 @@
 /area/mainship/patrol_base/telecomms
 	name = "Telecommunications"
 	icon_state = "tcomms"
+
+//roomba stadium
+/area/mainship/roomba_stadium
+	name = "Roomba Stadium"
+	icon_state = "req"
+	requires_power = FALSE
+	flags_area = MARINE_BASE|NO_DROPPOD|OB_CAS_IMMUNE
+	ceiling = CEILING_NONE

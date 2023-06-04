@@ -177,3 +177,6 @@
 		if(sucked.stat != CONSCIOUS)
 			qdel(sucked)
 			counter++
+
+/obj/machinery/roomba/indestructible
+	resistance_flags = RESIST_ALL|BANISH_IMMUNE
