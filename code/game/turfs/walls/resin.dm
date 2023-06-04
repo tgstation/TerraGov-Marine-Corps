@@ -14,6 +14,7 @@
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_XENO_STRUCTURES
 	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	resistance_flags = UNACIDABLE
 
 /turf/closed/wall/resin/add_debris_element()
 	AddElement(/datum/element/debris, null, -15, 8, 0.7)
@@ -146,10 +147,6 @@
 				continue
 			for(var/obj/structure/mineral_door/resin/R in T)
 				R.check_resin_support()
-
-
-/turf/closed/wall/resin/can_be_dissolved()
-	return FALSE
 
 /**
  * Regenerating walls that start with lower health, but grow to a much higher hp over time

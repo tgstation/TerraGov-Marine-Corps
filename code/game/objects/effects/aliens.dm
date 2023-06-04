@@ -1,5 +1,4 @@
 
-
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
 //Also need to change the icons
@@ -131,30 +130,35 @@
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
+	///the target atom for being melted
 	var/atom/acid_t
+	///the current tick on destruction stage, currently used to determine what messages to output
 	var/ticks = 0
-	var/acid_strength = 0.04 //base speed, normal
-	var/acid_damage = 125 //acid damage on pick up, subject to armor
-	var/strength_t
+	///how fast something will melt when subject to this acid.
+	var/acid_strength = REGULAR_ACID_STRENGTH
+	///acid damage on pick up, subject to armor
+	var/acid_damage = 125
+	///stages of meltage, currently used to determine what messages to output
+	var/strength_t = 4
+	///How much faster or slower acid melts specific objects/turfs.
+	var/acid_melt_multiplier
 
-//Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 0.016 //40% of base speed
+	acid_strength = WEAK_ACID_STRENGTH
 	acid_damage = 75
 	icon_state = "acid_weak"
 
-//Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 0.1 //250% normal speed
+	acid_strength = STRONG_ACID_STRENGTH
 	acid_damage = 175
 	icon_state = "acid_strong"
 
-/obj/effect/xenomorph/acid/Initialize(mapload, target)
+/obj/effect/xenomorph/acid/Initialize(mapload, target, melting_rate)
 	. = ..()
+	acid_melt_multiplier = melting_rate
 	acid_t = target
-	strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/effect/xenomorph/acid/Destroy()
@@ -168,7 +172,7 @@
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	ticks += delta_time * acid_strength
+	ticks += delta_time * (acid_strength * acid_melt_multiplier)
 	if(ticks >= strength_t)
 		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
 		playsound(src, "acid_hit", 25)

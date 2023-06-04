@@ -80,14 +80,14 @@
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
 	smoothing_groups = SMOOTH_CANTERBURY
 
+/turf/closed/wall/mainship/research
+	resistance_flags = UNACIDABLE
+
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
 	icon_state = "wwall0"
 	resistance_flags = RESIST_ALL
-
-/turf/closed/wall/mainship/research/can_be_dissolved()
-	return FALSE
 
 /turf/closed/wall/mainship/research/containment/wall
 	name = "cell wall"
@@ -229,11 +229,6 @@
 /turf/closed/wall/sulaco/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
-/turf/closed/wall/sulaco/unmeltable/can_be_dissolved()
-	return FALSE
-
-
-
 /turf/closed/wall/indestructible
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
@@ -253,9 +248,6 @@
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		to_chat(user, span_warning("[P] can't cut through this!"))
 	return
-
-/turf/closed/wall/indestructible/can_be_dissolved()
-	return 0
 
 /turf/closed/wall/indestructible/mineral
 	name = "impenetrable rock"
@@ -293,6 +285,7 @@
 	name = "mineral wall"
 	desc = "This shouldn't exist"
 	icon_state = ""
+	resistance_flags = UNACIDABLE
 	var/mineral
 	var/last_event = 0
 	var/active = null
