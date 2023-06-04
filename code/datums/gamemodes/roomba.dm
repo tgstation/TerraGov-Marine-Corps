@@ -1,5 +1,3 @@
-#define SENSORS_NEEDED 5
-
 /datum/game_mode/combat_patrol/roomba_race
 	name = "Roomba Race"
 	config_tag = "Roomba Race"
