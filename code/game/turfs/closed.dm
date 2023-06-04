@@ -22,6 +22,7 @@
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	minimap_color = MINIMAP_BLACK
+	resistance_flags = UNACIDABLE
 
 /turf/closed/mineral/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
@@ -460,6 +461,7 @@
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	plane = GAME_PLANE
+	resistance_flags = RESIST_ALL|PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/dropship1/transparent
 	opacity = FALSE
