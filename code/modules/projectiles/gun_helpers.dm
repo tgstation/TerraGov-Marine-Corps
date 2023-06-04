@@ -37,7 +37,7 @@
 
 	active_attachable.reload(I, user)
 
-/obj/item/weapon/gun/mob_can_equip(mob/user)
+/obj/item/weapon/gun/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	//Cannot equip wielded items or items burst firing.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return

@@ -243,11 +243,14 @@
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W, slot)
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, bitslot = FALSE)
 	if(!slot)
 		return
 	if(!istype(W))
 		return
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
 	if(!has_limb_for_slot(slot))
 		return
 
@@ -464,6 +467,39 @@
 		if(SLOT_IN_HEAD)
 			return head
 
+/mob/living/carbon/human/get_item_by_slot_bit(slot_bit)
+	switch(slot_bit)
+		if(ITEM_SLOT_OCLOTHING)
+			return wear_suit
+		if(ITEM_SLOT_ICLOTHING)
+			return w_uniform
+		if(ITEM_SLOT_GLOVES)
+			return gloves
+		if(ITEM_SLOT_EYES)
+			return glasses
+		if(ITEM_SLOT_EARS)
+			return wear_ear
+		if(ITEM_SLOT_MASK)
+			return wear_mask
+		if(ITEM_SLOT_HEAD)
+			return head
+		if(ITEM_SLOT_FEET)
+			return shoes
+		if(ITEM_SLOT_ID)
+			return wear_id
+		if(ITEM_SLOT_BELT)
+			return belt
+		if(ITEM_SLOT_BACK)
+			return back
+		if(ITEM_SLOT_R_POCKET)
+			return r_store
+		if(ITEM_SLOT_L_POCKET)
+			return l_store
+		if(ITEM_SLOT_SUITSTORE)
+			return s_store
+		if(ITEM_SLOT_HANDCUFF)
+			return handcuffed
+
 /mob/living/carbon/human/get_equipped_slot(obj/equipped_item)
 	if(..())
 		return
@@ -494,10 +530,8 @@
 		. = SLOT_S_STORE
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
-	if(I.flags_item & ITEM_ABSTRACT)
-		return
-	if(I.flags_item & NODROP)
-		to_chat(src, span_warning("You can't remove \the [I.name], it appears to be stuck!"))
+	if(!I.canStrip(M))
+		to_chat(src, span_warning("You can't remove [I.name], it appears to be stuck!</span>"))
 		return
 	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
 
@@ -509,31 +543,6 @@
 			log_combat(src, M, "removed [key_name(I)] ([slot_to_process])")
 			if(isidcard(I))
 				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
-
-	if(M)
-		if(interactee == M && Adjacent(M))
-			M.show_inv(src)
-
-
-/mob/living/carbon/human/stripPanelEquip(obj/item/I, mob/M, slot_to_process)
-	if(I && !(I.flags_item & ITEM_ABSTRACT))
-		if(I.flags_item & NODROP)
-			to_chat(src, span_warning("You can't put \the [I.name] on [M], it's stuck to your hand!"))
-			return
-		if(!I.mob_can_equip(M, slot_to_process, TRUE))
-			to_chat(src, span_warning("You can't put \the [I.name] on [M]!"))
-			return
-		visible_message(span_notice("[src] tries to put [I] on [M]."), null , null, 5)
-		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC))
-			if(!M.get_item_by_slot(slot_to_process))
-				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
-					dropItemToGround(I)
-					if(!QDELETED(I)) //Might be self-deleted?
-						M.equip_to_slot_if_possible(I, slot_to_process, 1, 0, 1, 1)
-
-	if(M)
-		if(interactee == M && Adjacent(M))
-			M.show_inv(src)
 
 
 /mob/living/carbon/human/proc/equipOutfit(outfit, visualsOnly = FALSE)

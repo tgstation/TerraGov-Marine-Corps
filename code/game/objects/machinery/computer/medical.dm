@@ -49,7 +49,7 @@
 		return
 	var/dat
 	if(src.temp)
-		dat = text("<TT>[src.temp]</TT><BR><BR><A href='?src=\ref[src];temp=1'>Clear Screen</A>")
+		dat = "<TT>[src.temp]</TT><BR><BR><A href='?src=\ref[src];temp=1'>Clear Screen</A>"
 	else
 		dat = text("Confirm Identity: <A href='?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
 		if (src.authenticated)
@@ -102,7 +102,7 @@
 						dat += text("<A href='?src=\ref[];del_r=1'>Delete Record (Medical Only)</A><BR><BR>", src)
 					else
 						dat += "<B>Medical Record Lost!</B><BR>"
-						dat += text("<A href='?src=\ref[src];new=1'>New Record</A><BR><BR>")
+						dat += "<A href='?src=\ref[src];new=1'>New Record</A><BR><BR>"
 					dat += text("\n<A href='?src=\ref[];print_p=1'>Print Record</A><BR>\n<A href='?src=\ref[];screen=2'>Back</A><BR>", src, src)
 				if(5)
 					dat += "<center><b>Medical Robot Monitor</b></center>"
@@ -398,7 +398,7 @@
 			var/counter = 1
 			while(src.active2.fields[text("com_[]", counter)])
 				counter++
-			src.active2.fields[text("com_[counter]")] = text("Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
+			src.active2.fields["com_[counter]"] = "Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]"
 
 		if (href_list["del_c"])
 			if ((istype(src.active2, /datum/data/record) && src.active2.fields[text("com_[]", href_list["del_c"])]))

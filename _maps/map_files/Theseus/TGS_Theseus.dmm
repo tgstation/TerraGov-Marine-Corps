@@ -2667,6 +2667,7 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "bbo" = (
@@ -5321,9 +5322,7 @@
 /area/mainship/squads/alpha)
 "bCt" = (
 /obj/machinery/holopad,
-/turf/open/floor/mainship/floor,
-/area/mainship/engineering/lower_engine_monitoring)
-"bCu" = (
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/lower_engine_monitoring)
 "bCv" = (
@@ -5331,12 +5330,14 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/shiptech,
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/lower_engine_monitoring)
 "bCw" = (
 /obj/machinery/power/monitor{
 	name = "Core Power Monitoring"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -12871,7 +12872,6 @@
 	},
 /area/mainship/squads/alpha)
 "kQd" = (
-/obj/structure/prop/mainship/halfbuilt_mech/vanguard,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -13994,6 +13994,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -16229,6 +16230,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/bow_hallway)
 "qrI" = (
+/obj/structure/prop/mainship/halfbuilt_mech/vanguard,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -17297,9 +17299,6 @@
 	},
 /area/mainship/command/cic)
 "shW" = (
-/obj/machinery/power/apc/mainship{
-	dir = 4
-	},
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -73388,7 +73387,7 @@ brN
 crY
 bpX
 bBe
-bCu
+lfP
 aNO
 bpX
 qQK
