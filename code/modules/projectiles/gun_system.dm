@@ -20,6 +20,7 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 0
 	light_color = COLOR_WHITE
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 
 /*
  *  Muzzle Vars
