@@ -225,7 +225,7 @@
 	var/mutable_appearance/build_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
 	build_maptext.pixel_x = 12
 	build_maptext.pixel_y = -5
-	build_maptext.maptext = MAPTEXT(SSresinshaping.get_building_points(owner))
+	build_maptext.maptext = MAPTEXT(SSresinshaping.remaining_quickbuilds)
 	visual_references[VREF_MUTABLE_BUILDING_COUNTER] = build_maptext
 
 	RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_resin_drag))
@@ -249,7 +249,7 @@
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		button.cut_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
 		var/mutable_appearance/number = visual_references[VREF_MUTABLE_BUILDING_COUNTER]
-		number.maptext = MAPTEXT("[SSresinshaping.get_building_points(owner)]")
+		number.maptext = MAPTEXT("[SSresinshaping.remaining_quickbuilds]")
 		visual_references[VREF_MUTABLE_BUILDING_COUNTER] = number
 		button.add_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
 	else if(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
@@ -310,7 +310,7 @@
 
 /// A version of build_resin with the plasma drain and distance checks removed.
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
-	if(!SSresinshaping.get_building_points(owner))
+	if(!SSresinshaping.remainnig_quickbuilds)
 		owner.balloon_alert(owner, "You have used all your quick-build points! Wait until the marines have landed!")
 		return
 	var/mob/living/carbon/xenomorph/X = owner
@@ -347,7 +347,7 @@
 	else
 		new_resin = new X.selected_resin(T)
 	if(new_resin)
-		SSresinshaping.increment_build_counter(owner)
+		SSresinshaping.remaining_quickbuilds--
 
 
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_resin_drag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
