@@ -234,11 +234,11 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/structures/win/proc/on_cross(datum/source, atom/movable/mover, oldloc)
+/obj/structures/win/proc/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(!istype(mover, /obj/machinery/roomba))
 		return
-	INVOKE_ASYNC(src, .proc/kaboom)
+	INVOKE_ASYNC(src, PROC_REF(kaboom))
 
 /obj/structures/win/proc/kaboom()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
