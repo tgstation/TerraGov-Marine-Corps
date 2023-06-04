@@ -70,7 +70,6 @@
 ///Generates a new z level for the round
 /datum/game_round/proc/load_map()
 	var/datum/space_level/new_level = load_new_z_level(map_file, map_name)
-	SSminimaps.generate_minimap(new_level.z_value)
 	mode.set_lighting(new_level.z_value)
 
 ///Checks round end criteria, and ends the round if met

@@ -49,7 +49,7 @@
 	SSatoms.InitializeAtoms(atoms)
 	SSmachines.setup_template_powernets(cables)
 
-/datum/map_template/proc/load_new_z()
+/datum/map_template/proc/load_new_z(minimap = TRUE)
 	var/x = round((world.maxx - width)/2)
 	var/y = round((world.maxy - height)/2)
 
@@ -66,6 +66,8 @@
 	SSmodularmapping.load_modular_maps() //must be run after initTemplateBounds so markers have an actual loc
 	SSair.setup_atmos_machinery()
 	SSair.setup_pipenets()
+	if(minimap)
+		SSminimaps.generate_minimap(level.z_value)
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 
 	return level
@@ -107,6 +109,6 @@
 
 //for your ever biggening badminnery kevinz000
 //❤ - Cyberboss
-/proc/load_new_z_level(file, name)
+/proc/load_new_z_level(file, name, minimap = TRUE)
 	var/datum/map_template/template = new(file, name)
-	return template.load_new_z()
+	return template.load_new_z(minimap)

@@ -99,7 +99,7 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
 ///each faction chooses how many attrition points to use for the upcoming round
-/datum/game_mode/hvh/campaign/proc/select_attrition_points()
+/datum/game_mode/hvh/campaign/proc/select_attrition_points() //placeholder basic
 	for(var/i in stat_list)
 		var/datum/faction_stats/team = stat_list[i]
 		var/choice = tgui_input_number(team.faction_leader, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, team.total_attrition_points, 0, 60 SECONDS)
@@ -122,6 +122,7 @@
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		qdel(exit_point) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
 
+	//add a delay probably
 	select_next_round(stat_list[current_round.winning_faction].get_selector()) //winning team chooses new round
 
 ///respawns the player if attrition points are available
