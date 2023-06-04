@@ -685,3 +685,12 @@
 	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
 	icon_state = "icc_guard"
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
+
+/obj/item/clothing/suit/storage/marine/harness //do not remove!! the funny boom vest inherits the stats from this!
+	name = "\improper M3 pattern marine harness"
+	desc = "A standard Marine M3 Pattern Harness. No encumbrance and no protection."
+	icon_state = "10"
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	slowdown = 0
+	light_range = 6
+	flags_atom = NONE
