@@ -227,10 +227,10 @@
 	///the faction that wins
 	var/faction = FACTION_TERRAGOV
 
-/obj/structures/win/Initialize()
+/obj/structures/win/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
