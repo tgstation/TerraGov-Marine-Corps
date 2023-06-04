@@ -1539,8 +1539,7 @@
 	SIGNAL_HANDLER
 	if(!length(chamber_items) || !chamber_items[current_chamber_position])
 		return
-	var/obj/item/ammo_magazine/current_mag = chamber_items[current_chamber_position]
-	if(!istype(current_mag) || !(current_mag.flags_magazine & MAGAZINE_WORN))
+	if(!(get_flags_magazine_features(chamber_items[current_chamber_position]) & MAGAZINE_WORN))
 		return
 	unload(user, FALSE)
 
