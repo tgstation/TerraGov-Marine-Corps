@@ -13,12 +13,13 @@
 	walltype = "rwall"
 	explosion_block = 4
 
-/turf/closed/wall/r_wall/can_be_dissolved()
-	if(resistance_flags & INDESTRUCTIBLE)
-		return 0
-	else
-		return 2
+/turf/closed/wall/r_wall/get_acid_delay()
+	return 10 SECONDS
 
+/turf/closed/wall/r_wall/dissolvability(acid_strength)
+	if(acid_strength < STRONG_ACID_STRENGTH)
+		return 0
+	return 0.5
 
 //Just different looking wall
 /turf/closed/wall/r_wall/research
@@ -45,7 +46,6 @@
 	icon_state = "metal-0"
 	walltype = "metal"
 	base_icon_state = "metal"
-
 
 
 //Chigusa
