@@ -62,8 +62,15 @@
 	if(user.a_intent != INTENT_HARM)
 		return
 
-	if(obj_flags & CAN_BE_HIT)
-		return I.attack_obj(src, user)
+	if(!(obj_flags & CAN_BE_HIT))
+		return
+
+	INVOKE_ASYNC(src, PROC_REF(continue_attacking), I, user, params)
+	return I.attack_obj(src, user)
+
+/obj/proc/continue_attacking(obj/item/I, mob/user, params)
+	if(!user.do_actions && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_GENERIC))
+		attackby(I, user, params)
 
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
