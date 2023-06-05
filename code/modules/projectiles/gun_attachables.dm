@@ -479,7 +479,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 17
 	pixel_shift_y = 13
 	ammo_mod = /datum/ammo/energy/lasgun/M43/overcharge
-	damage_mod = -0.15
 
 /obj/item/attachable/widelens
 	name = "M43 wide lens"
