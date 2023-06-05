@@ -19,7 +19,7 @@
 	randomize_species_specific()
 	underwear = rand(1, length(GLOB.underwear_m))
 	undershirt = rand(1, length(GLOB.undershirt_f))
-	backpack = 2
+	backpack = rand(BACK_NOTHING, BACK_SATCHEL)
 	age = rand(AGE_MIN,AGE_MAX)
 	if(H)
 		copy_to(H, TRUE)
@@ -211,7 +211,15 @@
 	character.moth_wings = moth_wings
 	character.underwear = underwear
 	character.undershirt = undershirt
-	character.backpack = backpack
+
+	if(backpack > BACK_NOTHING)
+		var/obj/item/storage/backpack/new_backpack
+		switch(backpack)
+			if(BACK_BACKPACK)
+				new_backpack = new /obj/item/storage/backpack/marine(character)
+			if(BACK_SATCHEL)
+				new_backpack = new /obj/item/storage/backpack/marine/satchel(character)
+		character.equip_to_slot_or_del(new_backpack, SLOT_BACK)
 
 	character.update_body()
 	character.update_hair()
