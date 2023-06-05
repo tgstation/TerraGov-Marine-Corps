@@ -285,12 +285,12 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(tipped_level)
-		to_chat(X, span_warning("There's no reason to bother with that old piece of trash."))
-		return FALSE
-
 	if(X.a_intent == INTENT_HARM)
+		if(machine_stat & BROKEN)
+			to_chat(X, span_warning("It's already broken, what a useless piece of trash."))
+				return FALSE
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		X.changeNext_move(CLICK_CD_MELEE)
 		if(prob(X.xeno_caste.melee_damage))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			X.visible_message(span_danger("\The [X] smashes \the [src] beyond recognition!"), \
@@ -302,6 +302,10 @@
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			INVOKE_ASYNC(src, PROC_REF(continue_attacking_alien), X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 		return TRUE
+
+	if(tipped_level)
+		to_chat(X, span_warning("It's already tipped over, what a useless piece of trash."))
+		return FALSE
 
 	X.visible_message(span_warning("\The [X] begins to lean against \the [src]."), \
 	span_warning("You begin to lean against \the [src]."), null, 5)
