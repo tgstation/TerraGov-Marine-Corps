@@ -67,8 +67,11 @@
 
 	playsound(src, 'sound/effects/metal_creaking.ogg', 25, 1)
 	if(do_after(user,60, FALSE, holed_wall, BUSY_ICON_HOSTILE) && !QDELETED(src) && !user.lying_angle)
+		var/previous_type = holed_wall.type
 		holed_wall.take_damage(rand(2000,3500))
 		user.emote("roar")
+		if(previous_type == type)
+			expand_hole(user)
 
 /obj/effect/acid_hole/proc/use_wall_hole(mob/user)
 

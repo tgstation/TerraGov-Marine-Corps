@@ -69,7 +69,7 @@
 	return I.attack_obj(src, user)
 
 /obj/proc/continue_attacking(obj/item/I, mob/user, params)
-	if(!user.do_actions && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_GENERIC))
+	if(!user.do_actions && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_HOSTILE))
 		attackby(I, user, params)
 
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
