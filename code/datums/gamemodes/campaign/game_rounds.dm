@@ -97,8 +97,6 @@
 
 ///accesses the timer for status panel
 /datum/game_round/proc/round_end_countdown()
-	if(!game_timer)
-		return
 	if(max_time_reached)
 		return "Mission finished"
 	var/eta = timeleft(game_timer) * 0.1
