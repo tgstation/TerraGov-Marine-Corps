@@ -64,7 +64,7 @@
 	var/turf/right = locate(C.x + leftright, C.y, C.z)
 
 	for(var/turf/T in range(3, rear)+range(3, left)+range(3, right)+range(2, front))
-		T.empty(/turf/open/floor/plating)
+		T.empty(/turf/open/floor/plating, ignore_typecache = typecacheof(/mob))
 
 	SSmonitor.process_human_positions()
 	SSevacuation.initial_human_on_ship = SSmonitor.human_on_ship
