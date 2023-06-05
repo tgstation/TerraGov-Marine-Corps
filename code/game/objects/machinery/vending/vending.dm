@@ -287,7 +287,7 @@
 
 	if(X.a_intent == INTENT_HARM)
 		if(machine_stat & BROKEN)
-			to_chat(X, span_warning("It's already broken, what a useless piece of trash."))
+			to_chat(X, span_warning("This piece of trash is already broken!"))
 			return FALSE
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		X.changeNext_move(CLICK_CD_MELEE)
@@ -304,7 +304,7 @@
 		return TRUE
 
 	if(tipped_level)
-		to_chat(X, span_warning("It's already tipped over, what a useless piece of trash."))
+		to_chat(X, span_warning("This hunk of [machine_stat & BROKEN ? "trash" ? "metal"] is already tipped over!"))
 		return FALSE
 
 	X.visible_message(span_warning("\The [X] begins to lean against \the [src]."), \
