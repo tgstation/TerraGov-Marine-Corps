@@ -70,7 +70,7 @@
 		var/previous_type = holed_wall.type
 		holed_wall.take_damage(rand(2000,3500))
 		user.emote("roar")
-		if(previous_type == type)
+		if(previous_type == holed_wall.type)
 			expand_hole(user)
 
 /obj/effect/acid_hole/proc/use_wall_hole(mob/user)
