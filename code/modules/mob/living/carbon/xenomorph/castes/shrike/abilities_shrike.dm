@@ -412,10 +412,6 @@
 			if(isitem(affected) && isdroid(affected))
 				affected.Shake(3, 3, 10)
 				continue
-			var/throwlocation = affected.loc
-			for(var/x in 1 to 3)
-				throwlocation = get_step(throwlocation, owner.dir)
-			affected.throw_at(owner, 3, 1, owner, FALSE)
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
 	var/turf/targetturf = get_turf(owner)
