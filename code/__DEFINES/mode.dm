@@ -167,8 +167,8 @@
 #define GAME_ROUND_STATE_ACTIVE "game round state active"
 #define GAME_ROUND_STATE_FINISHED "game round state finished"
 
-#define GAME_ROUND_OUTCOME_MAJOR_VICTORY "game round outcome major victory"
-#define GAME_ROUND_OUTCOME_MINOR_VICTORY "game round outcome minor victory"
-#define GAME_ROUND_OUTCOME_DRAW "game round outcome draw"
-#define GAME_ROUND_OUTCOME_MINOR_LOSS "game round outcome minor loss"
-#define GAME_ROUND_OUTCOME_MAJOR_LOSS "game round outcome major loss"
+#define GAME_ROUND_OUTCOME_MAJOR_VICTORY "major victory"
+#define GAME_ROUND_OUTCOME_MINOR_VICTORY "minor victory"
+#define GAME_ROUND_OUTCOME_DRAW "draw"
+#define GAME_ROUND_OUTCOME_MINOR_LOSS "minor loss"
+#define GAME_ROUND_OUTCOME_MAJOR_LOSS "major loss"

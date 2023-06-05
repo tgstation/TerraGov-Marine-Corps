@@ -6,8 +6,6 @@
 	var/map_name
 	///path of map for this round
 	var/map_file
-	///how long until shutters open after this round is selected
-	var/shutter_delay = 2 MINUTES
 	///faction that chose the round
 	var/starting_faction
 	///faction that did not choose the round
@@ -142,7 +140,7 @@
 
 ///Outro when the round is finished
 /datum/game_round/proc/play_outro() //todo: make generic
-	to_chat(world, span_round_header("|[outcome]|"))
+	to_chat(world, span_round_header("|[starting_faction] [outcome]|"))
 	log_game("[outcome]\nRound: [name]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the [starting_faction] and [hostile_faction], and their struggle on [map_name]."))
 
