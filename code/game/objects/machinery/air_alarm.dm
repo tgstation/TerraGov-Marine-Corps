@@ -238,7 +238,7 @@
 	signal.data["sigtype"] = "command"
 
 	radio_connection.post_signal(src, signal, RADIO_FROM_AIRALARM)
-    testing("Signal [command] Broadcasted to [target]")
+	testing("Signal [command] Broadcasted to [target]")
 
 	return 1
 
