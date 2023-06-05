@@ -468,6 +468,7 @@
 /obj/machinery/alarm{
 	dir = 1
 	},
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "bP" = (
