@@ -144,7 +144,7 @@
 
 /obj/proc/continue_attacking_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!X.do_actions && do_after(X, CLICK_CD_MELEE, TRUE, src, BUSY_ICON_HOSTILE))
-		attackby(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+		attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)
