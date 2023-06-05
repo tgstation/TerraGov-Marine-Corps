@@ -171,6 +171,7 @@
 		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 		update_icon()
 		visible_message(span_danger("\The [src]'s cover swings open, exposing the wires!"))
+		INVOKE_ASYNC(src, PROC_REF(continue_attacking_alien), X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 		return
 
 	var/datum/effect_system/spark_spread/sparks = new
