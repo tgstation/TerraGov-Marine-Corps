@@ -433,7 +433,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammoboxslug"
 	item_state = "ammoboxslug"
-	base_icon_state = "ammoboxslug"
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	///Current stored rounds
@@ -551,14 +550,12 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "Buckshot Ammo Box"
 	icon_state = "ammoboxbuckshot"
 	item_state = "ammoboxbuckshot"
-	base_icon_state = "ammoboxbuckshot"
 	ammo_type = /datum/ammo/bullet/shotgun/buckshot
 
 /obj/item/shotgunbox/flechette
 	name = "Flechette Ammo Box"
 	icon_state = "ammoboxflechette"
 	item_state = "ammoboxflechette"
-	base_icon_state = "ammoboxflechette"
 	ammo_type = /datum/ammo/bullet/shotgun/flechette
 
 /obj/item/big_ammo_box/mg
