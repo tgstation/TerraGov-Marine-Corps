@@ -307,6 +307,39 @@
 	action_icon_state = "mimicry"
 	desc = "Takes direct control of a Puppet’s vocal chords. Allows you to speak directly through your puppet to the talls."
 	cooldown_timer = 10 SECONDS
+	target_flags = XABB_MOB_TARGET
+	///Whether we should cancel instead of doing the thing when activated
+	var/talking = FALSE
+	///our current target
+	var/mob/living/active_target
+
+/datum/action/xeno_action/activable/articulate/use_ability(mob/living/victim)
+	if(talking)
+		cancel(owner)
+		return fail_activate()
+	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
+	if(!istype(victim, /mob/living/carbon/xenomorph/puppet) || !(victim in huskaction.puppets))
+		victim.balloon_alert(owner, "not our puppet")
+		return fail_activate()
+	owner.balloon_alert(owner, "channeling voice, move or activate to cancel!")
+	active_target = victim
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(relay_speech))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(cancel)) //if we move, cancel
+	RegisterSignal(victim, COMSIG_PARENT_QDELETING, PROC_REF(cancel)) // should prevent a harddel
+	talking = TRUE
+	add_cooldown()
+	
+/datum/action/xeno_action/activable/articulate/proc/relay_speech(mob/living/source, arguments)
+	SIGNAL_HANDLER
+	active_target.say(arguments[1], language = /datum/language/common, forced = "puppeteer articulate ability")
+
+/datum/action/xeno_action/activable/articulate/proc/cancel(atom/target)
+	SIGNAL_HANDLER
+	if(talking)
+		owner.balloon_alert(owner, "cancelled!")
+	talking = FALSE
+	active_target = null
+	UnregisterSignal(owner, list(COMSIG_MOB_SAY, COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
 
 // ***************************************
 // *********** Strings Attached
@@ -360,9 +393,9 @@
 	name = "Give Orders to Puppets"
 	action_icon_state = "1"
 	desc = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
-	//keybinding_signals = list(
-	//	KEYBINDING_NORMAL = COMSIG_XENOABILITY_DREADFULPRESENCE,
-	//)
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SENDORDERS,
+	)
 
 /datum/action/xeno_action/puppeteer_orders/action_activate(mob/living/victim)
 	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_order_images_list, radius = 35)
