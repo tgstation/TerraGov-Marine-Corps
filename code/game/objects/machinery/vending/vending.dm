@@ -296,11 +296,11 @@
 			X.visible_message(span_danger("\The [X] smashes \the [src] beyond recognition!"), \
 			span_danger("We enter a frenzy and smash \the [src] apart!"), null, 5)
 			malfunction()
-			return TRUE
 		else
 			X.visible_message(span_danger("[X] slashes \the [src]!"), \
 			span_danger("We slash \the [src]!"), null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+			INVOKE_ASYNC(src, PROC_REF(continue_attacking_alien), X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 		return TRUE
 
 	X.visible_message(span_warning("\The [X] begins to lean against \the [src]."), \
