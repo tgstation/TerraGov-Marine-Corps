@@ -31,3 +31,7 @@ endmode
 mode Sensor Capture
 	requiredplayers 2
 endmode
+
+mode Roomba Race
+	requiredplayers 2
+endmode
