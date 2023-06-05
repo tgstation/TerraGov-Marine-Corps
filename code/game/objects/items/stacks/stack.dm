@@ -141,7 +141,7 @@
 			if(can_build)
 				t1 += "<A href='?src=[REF(src)];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  "
 			else
-				t1 += text("[]", title)
+				t1 += "[title]"
 				continue
 			if(R.max_res_amount > 1 && max_multiplier > 1)
 				max_multiplier = min(max_multiplier, round(R.max_res_amount/R.res_amount))

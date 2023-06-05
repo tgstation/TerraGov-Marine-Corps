@@ -25,7 +25,7 @@
 
 	var/dat
 	for (var/cat in src.alarms)
-		dat += text("<B>[]</B><BR>\n", cat)
+		dat += "<B>[cat]</B><BR>\n"
 		var/list/L = src.alarms[cat]
 		if (length(L))
 			for (var/alarm in L)
@@ -36,7 +36,7 @@
 				dat += "&bull; "
 				dat += "[A.name]"
 				if (length(sources) > 1)
-					dat += text(" - [] sources", length(sources))
+					dat += " - [length(sources)] sources"
 				dat += "</NOBR><BR>\n"
 		else
 			dat += "-- All Systems Nominal<BR>\n"
