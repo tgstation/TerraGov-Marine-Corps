@@ -86,8 +86,8 @@
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
-	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
-		SSresinshaping.remaining_quickbuilds++
+	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
+		SSresinshaping.quickbuilds++
 		take_damage(max_integrity) // Ensure its destroyed
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
@@ -126,10 +126,18 @@
 			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 
+	var/previous_type = type // If this changes the turf has been "destroyed" due damage.
+
 	damage *= max(0, multiplier)
 	take_damage(damage)
 	playsound(src, "alien_resin_break", 25)
 
+	if(previous_type == type)
+		INVOKE_ASYNC(src, PROC_REF(continue_attacking), I, user, params, previous_type)
+
+/turf/closed/wall/resin/proc/continue_attacking(obj/item/I, mob/living/user, params, previous_type)
+	if(!user.do_actions && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_GENERIC) && previous_type == type)
+		attackby(I, user, params)
 
 /turf/closed/wall/resin/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
