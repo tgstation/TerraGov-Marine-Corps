@@ -87,7 +87,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Clothing
 	var/underwear = 1
 	var/undershirt = 1
-	var/backpack = 2
+	var/backpack = BACK_SATCHEL
 
 	//Hair style
 	var/h_style = "Bald"

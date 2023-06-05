@@ -54,7 +54,6 @@
 
 	var/underwear = 1	//Which underwear the player wants
 	var/undershirt = 0	//Which undershirt the player wants.
-	var/backpack = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 
 	// General information
 	var/citizenship = ""

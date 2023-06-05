@@ -300,7 +300,7 @@
 
 
 /mob/living/carbon/proc/equip_preference_gear(client/C)
-	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))
+	if(!C?.prefs)
 		return
 
 	var/datum/preferences/P = C.prefs
@@ -313,9 +313,8 @@
 		var/datum/gear/G = GLOB.gear_datums[i]
 		if(!G || !gear.Find(i) || G.allowed_roles && !(job.title in G.allowed_roles))
 			continue
-		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
-
-
+		if(!equip_to_slot_or_del(new G.path, G.slot)) //try to put in the slot it says its supposed to go, if you can't: put it in a bag
+			equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
 
 /mob/living/carbon/human/update_sight()
 	if(!client)
