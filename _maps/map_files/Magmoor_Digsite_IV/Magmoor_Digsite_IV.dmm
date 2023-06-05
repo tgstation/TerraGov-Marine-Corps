@@ -556,7 +556,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/magmoor/compound/west)
+/area/magmoor/hydroponics/north)
 "auv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -1829,10 +1829,6 @@
 	dir = 1
 	},
 /area/magmoor/civilian/dorms)
-"blx" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
-/area/magmoor/compound/east)
 "bly" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2673,8 +2669,7 @@
 	},
 /area/magmoor/compound/southwest)
 "bOI" = (
-/obj/structure/table/mainship,
-/obj/item/cell/super/empty,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/purple{
 	dir = 9
 	},
@@ -7245,7 +7240,7 @@
 /turf/closed/wall/r_wall,
 /area/magmoor/research/containment)
 "feR" = (
-/obj/structure/table/mainship,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/carpet,
 /area/magmoor/command/office/main)
 "ffk" = (
@@ -13826,7 +13821,7 @@
 	dir = 8
 	},
 /obj/structure/table/mainship,
-/obj/structure/nuke_disk_candidate,
+/obj/machinery/computer/med_data/laptop,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
 "kdc" = (
@@ -19025,9 +19020,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/cave/north)
-"ogv" = (
-/turf/open/lavaland/basalt,
-/area/magmoor/compound/southwest)
 "ogP" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -19247,12 +19239,6 @@
 	dir = 8
 	},
 /area/magmoor/civilian/cryostasis)
-"oog" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 8
-	},
-/area/magmoor/compound/northeast)
 "opb" = (
 /obj/structure/mirror{
 	pixel_y = 28
@@ -20879,7 +20865,7 @@
 "prG" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/magmoor/compound/west)
+/area/magmoor/hydroponics/north)
 "prK" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /obj/effect/decal/cleanable/blood/splatter,
@@ -21898,9 +21884,10 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/jani)
 "qdo" = (
-/obj/structure/flora/rock/alt3,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/magmoor/compound/northeast)
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northwest)
 "qdB" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood/splatter,
@@ -22537,7 +22524,6 @@
 	},
 /area/magmoor/engi/power)
 "qyV" = (
-/obj/machinery/computer/med_data/laptop,
 /obj/structure/table/mainship,
 /turf/open/floor/carpet/side{
 	dir = 1
@@ -26293,21 +26279,19 @@
 	},
 /area/magmoor/engi)
 "tuv" = (
-/obj/machinery/floodlight/colony{
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/mainship/green{
 	dir = 4
 	},
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/magmoor/compound)
+/area/magmoor/hydroponics/south)
 "tuH" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
 "tva" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/mainship/purple{
-	dir = 4
-	},
-/area/magmoor/research/rnd/lobby)
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/magmoor/hydroponics/north)
 "tvj" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
@@ -29338,11 +29322,10 @@
 	},
 /area/magmoor/compound)
 "vGw" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/lavaland/catwalk,
-/area/magmoor/compound/north)
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/northeast)
 "vHe" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
@@ -34425,7 +34408,7 @@ efw
 efw
 efw
 efw
-efw
+tmo
 efw
 efw
 efw
@@ -34658,7 +34641,7 @@ efw
 efw
 efw
 efw
-efw
+sUk
 lfn
 efw
 efw
@@ -34891,8 +34874,8 @@ efw
 efw
 efw
 efw
-efw
-efw
+sUk
+sUk
 efw
 efw
 efw
@@ -35124,7 +35107,7 @@ efw
 efw
 qDf
 efw
-efw
+sUk
 efw
 efw
 efw
@@ -35357,7 +35340,7 @@ rxl
 rxl
 rxl
 wRt
-efw
+tmo
 efw
 efw
 efw
@@ -35596,8 +35579,8 @@ efw
 efw
 efw
 efw
-efw
-efw
+sUk
+sUk
 efw
 lfn
 efw
@@ -35824,13 +35807,13 @@ rxl
 rxl
 rxl
 rxl
-efw
+lfn
 efw
 efw
 efw
 lfn
-efw
-efw
+sUk
+sUk
 efw
 efw
 efw
@@ -36059,13 +36042,13 @@ rxl
 rxl
 efw
 efw
+sUk
 efw
 efw
 efw
 efw
 efw
-efw
-efw
+sUk
 efw
 efw
 efw
@@ -36291,15 +36274,15 @@ rxl
 rxl
 rxl
 efw
-lfn
+sUk
+sUk
+sUk
 efw
 efw
 efw
-efw
-efw
-efw
-efw
-efw
+sUk
+sUk
+sUk
 efw
 efw
 lfn
@@ -36525,13 +36508,13 @@ rxl
 rxl
 efw
 efw
-efw
-efw
-efw
-efw
-efw
-efw
-efw
+sUk
+sUk
+tmo
+tmo
+tmo
+sUk
+sUk
 efw
 efw
 efw
@@ -36759,11 +36742,11 @@ rxl
 rxl
 efw
 efw
+tmo
 efw
 efw
-lfn
 efw
-efw
+tmo
 efw
 lfn
 efw
@@ -36990,13 +36973,13 @@ rxl
 rxl
 rxl
 rxl
+lfn
 efw
+tmo
 efw
+lfn
 efw
-efw
-efw
-efw
-efw
+tmo
 efw
 efw
 efw
@@ -37224,12 +37207,12 @@ rxl
 rxl
 efw
 efw
-lfn
+efw
+tmo
 efw
 efw
 efw
-efw
-efw
+tmo
 efw
 efw
 efw
@@ -37457,13 +37440,13 @@ rxl
 rxl
 efw
 efw
-efw
-efw
-efw
-efw
-efw
-efw
-efw
+sUk
+sUk
+aMi
+tmo
+tmo
+sUk
+sUk
 efw
 efw
 efw
@@ -37689,15 +37672,15 @@ efw
 efw
 lfn
 efw
+sUk
+sUk
+hko
 efw
 efw
 efw
-efw
-efw
-lfn
-efw
-efw
-efw
+sUk
+sUk
+sUk
 efw
 wRt
 rxl
@@ -37928,7 +37911,7 @@ efw
 efw
 efw
 efw
-efw
+tmo
 efw
 efw
 qDf
@@ -38161,7 +38144,7 @@ efw
 efw
 efw
 efw
-qDf
+qdo
 efw
 qDf
 rxl
@@ -38387,14 +38370,14 @@ efw
 efw
 efw
 efw
+sUk
+sUk
 efw
 efw
 efw
-efw
-efw
-efw
-efw
-efw
+sUk
+sUk
+sUk
 efw
 efw
 rxl
@@ -38619,14 +38602,14 @@ rxl
 rxl
 rxl
 efw
+sUk
+sUk
+sUk
 efw
 efw
 efw
 efw
-efw
-efw
-efw
-efw
+sUk
 lfn
 efw
 rxl
@@ -38853,11 +38836,11 @@ rxl
 rxl
 efw
 lfn
+sUk
 efw
 efw
-efw
-efw
-efw
+sUk
+sUk
 efw
 efw
 efw
@@ -38891,7 +38874,7 @@ ojW
 dPK
 mOt
 mOt
-mOt
+syO
 mOt
 mOt
 dPK
@@ -39088,10 +39071,10 @@ efw
 efw
 efw
 efw
-efw
-efw
-lfn
-efw
+sUk
+sUk
+evv
+sUk
 efw
 efw
 rxl
@@ -39322,8 +39305,8 @@ efw
 efw
 efw
 efw
-efw
-efw
+sUk
+sUk
 efw
 efw
 efw
@@ -39625,7 +39608,7 @@ dRz
 vzO
 dff
 auq
-ybU
+tva
 prG
 dff
 ybU
@@ -39659,7 +39642,7 @@ xMO
 kvI
 kvI
 kvI
-ogv
+wXM
 rgm
 rgm
 rgm
@@ -39837,9 +39820,9 @@ ncw
 aap
 ibO
 dze
-dze
-dze
-dze
+sdX
+sdX
+sdX
 dze
 dze
 dze
@@ -40071,10 +40054,10 @@ aap
 dze
 dze
 dze
-dze
-dze
-ibO
-dze
+sdX
+sdX
+sdX
+sdX
 dze
 dze
 dze
@@ -40304,10 +40287,10 @@ aap
 dze
 dze
 ibO
-dze
-dze
-dze
-dze
+sdX
+sdX
+sdX
+sdX
 dze
 dze
 sdX
@@ -40538,8 +40521,8 @@ dze
 dze
 dze
 dze
-dze
-dze
+sdX
+sdX
 dze
 dze
 dze
@@ -41474,8 +41457,8 @@ ibO
 dze
 dze
 dze
-dze
-dze
+sdX
+sdX
 ibO
 dze
 yge
@@ -41706,9 +41689,9 @@ dze
 dze
 dze
 dze
-dze
-dze
-dze
+sdX
+sdX
+sdX
 dze
 yge
 yge
@@ -41938,9 +41921,9 @@ dze
 dze
 dze
 dze
-dze
-dze
-dze
+sdX
+sdX
+sdX
 dze
 dze
 yge
@@ -42171,9 +42154,9 @@ dze
 dze
 dze
 dze
-dze
-dze
-ibO
+sdX
+sdX
+sdX
 dze
 dze
 yge
@@ -42196,7 +42179,7 @@ tkJ
 cbr
 cbr
 fme
-pkr
+tuv
 pkr
 pkr
 pkr
@@ -42404,8 +42387,8 @@ dze
 dze
 afn
 dze
-dze
-dze
+sdX
+sdX
 dze
 dze
 yge
@@ -42635,7 +42618,7 @@ dze
 dze
 dze
 dze
-dze
+sdX
 dze
 dze
 dze
@@ -42868,9 +42851,9 @@ dze
 ibO
 dze
 dze
-dze
-dze
-dze
+sdX
+sdX
+sdX
 dze
 dze
 yge
@@ -43102,7 +43085,7 @@ tWr
 tWr
 dze
 dze
-dze
+sdX
 dze
 ibO
 dze
@@ -47026,8 +47009,8 @@ xfT
 lqI
 lqI
 lqI
-kns
-kns
+lqI
+lqI
 dXE
 lQy
 vyy
@@ -47258,8 +47241,8 @@ xfT
 xfT
 lqI
 lqI
-kns
-kns
+lqI
+lqI
 lqI
 dXE
 lQy
@@ -47491,7 +47474,7 @@ xfT
 lqI
 oPq
 lqI
-kns
+lqI
 lqI
 oPq
 dXE
@@ -49401,7 +49384,7 @@ sBQ
 hIT
 sgB
 hiG
-vFy
+oTR
 syD
 syD
 vFy
@@ -49633,9 +49616,9 @@ uNc
 klj
 hIT
 pKb
-bgh
-vFy
-vFy
+oTR
+oTR
+oTR
 syD
 vFy
 hiG
@@ -49864,11 +49847,11 @@ rHX
 jGH
 fie
 klj
+aje
 hIT
-tuv
 sgB
 hiG
-vFy
+oTR
 syD
 vFy
 hiG
@@ -50567,7 +50550,7 @@ hiG
 hiG
 hiG
 hiG
-vFy
+oTR
 syD
 vFy
 hiG
@@ -50799,10 +50782,10 @@ hiG
 bgh
 hiG
 hiG
-hiG
-vFy
+oTR
+oTR
 syD
-vFy
+oTR
 hiG
 hiG
 bgh
@@ -51031,12 +51014,12 @@ ppN
 hiG
 hiG
 hiG
-hiG
-hiG
-vFy
+oTR
+oTR
+oTR
 syD
-vFy
-hiG
+oTR
+oTR
 hiG
 hiG
 hiG
@@ -51265,10 +51248,10 @@ hiG
 hiG
 hiG
 hiG
-rSf
-vFy
+oTR
+oTR
 syD
-vFy
+oTR
 hiG
 hiG
 hiG
@@ -51498,7 +51481,7 @@ hiG
 hiG
 hiG
 hiG
-vFy
+oTR
 syD
 syD
 vFy
@@ -51966,7 +51949,7 @@ hiG
 hiG
 vFy
 syD
-vFy
+oTR
 hiG
 hiG
 hiG
@@ -52199,7 +52182,7 @@ hiG
 hiG
 vFy
 syD
-vFy
+oTR
 hiG
 hiG
 hiG
@@ -59108,10 +59091,10 @@ lxN
 kcd
 pUu
 kcd
+sBd
+uUg
 kcd
-kxx
-kcd
-kcd
+rxl
 iXx
 kcd
 kcd
@@ -59189,8 +59172,8 @@ xSa
 xSa
 xSa
 xSa
-vqD
 gmf
+kik
 lbq
 bRC
 bRC
@@ -59341,11 +59324,11 @@ lxN
 kcd
 rxl
 kcd
+sBd
+sBd
 kcd
-kcd
-kcd
-kcd
-kcd
+rxl
+rxl
 kcd
 kcd
 kcd
@@ -59422,9 +59405,9 @@ smc
 fkr
 rVx
 xSa
-vqD
-hSF
-cVH
+nRk
+nRk
+nRk
 bRC
 aDQ
 bNJ
@@ -59577,8 +59560,8 @@ kcd
 kcd
 kcd
 kcd
-kcd
-kcd
+rxl
+rxl
 kxx
 kcd
 kcd
@@ -59655,9 +59638,9 @@ jVn
 dAI
 tgW
 xSa
-gmf
-dzM
-blx
+vTr
+vTr
+vTr
 bRC
 mAr
 qyb
@@ -59809,10 +59792,10 @@ rxl
 kxx
 kcd
 kcd
-kcd
-kcd
-kcd
-kcd
+rxl
+rxl
+rxl
+rxl
 kcd
 kcd
 kcd
@@ -59888,9 +59871,9 @@ dHs
 jVn
 uca
 xSa
-hSF
-cOx
-cVH
+nRk
+nRk
+nRk
 bVI
 tNJ
 mcA
@@ -60042,11 +60025,11 @@ kcd
 kcd
 kcd
 kcd
-kcd
-kcd
-kcd
-kcd
-kcd
+rxl
+rxl
+rxl
+rxl
+rxl
 kcd
 kcd
 kcd
@@ -60121,9 +60104,9 @@ dHs
 oil
 tnm
 xSa
-ubr
+hrp
 odB
-cVH
+cOx
 bRC
 bbL
 bIS
@@ -60271,16 +60254,16 @@ lxN
 lxN
 lxN
 kcd
+sBd
+sBd
 kcd
-kcd
-kcd
-kcd
-kcd
-kcd
-kcd
-kcd
-kcd
-kcd
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 kxx
 kcd
 kcd
@@ -60500,20 +60483,20 @@ kcd
 kcd
 kcd
 kxx
+sBd
+sBd
 kcd
 kcd
+sBd
+sBd
 kcd
 kcd
-kcd
-kcd
-kcd
-kcd
-kcd
-kxx
-kcd
-kcd
-kcd
-kcd
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 kcd
 kcd
 kcd
@@ -60549,9 +60532,9 @@ rex
 uiL
 ikG
 weQ
-weQ
-xrM
-weQ
+iMG
+fVX
+liV
 teT
 bqT
 syA
@@ -60733,6 +60716,8 @@ kcd
 kcd
 kcd
 kcd
+sBd
+sBd
 kcd
 kcd
 kcd
@@ -60740,12 +60725,10 @@ kcd
 kcd
 kcd
 kcd
-kcd
-kcd
-kcd
-kcd
-kcd
-kcd
+rxl
+rxl
+rxl
+rxl
 kcd
 kcd
 kcd
@@ -60994,7 +60977,7 @@ kcd
 kcd
 kcd
 vRc
-ymj
+rxl
 ymj
 ymj
 xfT
@@ -61201,8 +61184,8 @@ kcd
 kcd
 kcd
 kcd
-kcd
-kcd
+sBd
+sBd
 kcd
 iXx
 kcd
@@ -61226,9 +61209,9 @@ kcd
 kcd
 kcd
 kcd
-vRc
-vRc
-ymj
+kcd
+rxl
+rxl
 ymj
 ymj
 xfT
@@ -61433,10 +61416,10 @@ rxl
 kcd
 kcd
 kcd
-kxx
-kcd
-kcd
-kcd
+uUg
+sBd
+sBd
+sBd
 kcd
 gxO
 cjN
@@ -61460,8 +61443,8 @@ lQv
 rju
 gwq
 kxx
-vRc
-vRc
+rxl
+rxl
 ymj
 ymj
 ymj
@@ -61666,10 +61649,10 @@ rxl
 rxl
 kcd
 kcd
-kcd
-kcd
-kcd
-kcd
+sBd
+sBd
+sBd
+sBd
 kcd
 pPr
 qcl
@@ -61693,9 +61676,9 @@ nKb
 dqE
 hrd
 kcd
-kcd
-vRc
-vRc
+rxl
+rxl
+rxl
 ymj
 ymj
 ymj
@@ -61900,8 +61883,8 @@ rxl
 kcd
 kcd
 kcd
-kcd
-kcd
+sBd
+sBd
 kcd
 kcd
 pPr
@@ -61927,9 +61910,9 @@ rnV
 hrd
 kcd
 kcd
-kcd
-vRc
-vRc
+rxl
+rxl
+rxl
 ymj
 uDn
 uDn
@@ -62424,9 +62407,9 @@ iyf
 iyf
 iyf
 iyf
-xfT
-iqO
-xfT
+lqI
+lqI
+lqI
 lqI
 dXE
 dSo
@@ -62658,7 +62641,7 @@ qHR
 lIB
 qHR
 qHR
-fVX
+qHR
 qHR
 lIB
 iXj
@@ -62891,7 +62874,7 @@ ctx
 ctx
 ctx
 ctx
-vGw
+ctx
 ctx
 ctx
 ctx
@@ -63123,9 +63106,9 @@ bQv
 bQv
 bQv
 iKT
-vBZ
-ruy
-xfT
+oPq
+lqI
+lqI
 bJU
 dSo
 cRP
@@ -65400,7 +65383,7 @@ nYo
 kxl
 roZ
 ksw
-tva
+cNI
 dhY
 cNI
 kxl
@@ -68730,7 +68713,7 @@ qFr
 ufp
 bLZ
 pVy
-oog
+pVy
 cFo
 rxl
 rxl
@@ -68962,8 +68945,8 @@ qFr
 hua
 oCh
 bLZ
-cDl
 fJO
+cDl
 fJO
 fJO
 rxl
@@ -69195,7 +69178,7 @@ qFr
 qFr
 rCt
 stw
-qyP
+vGw
 fJO
 fJO
 rxl
@@ -72219,7 +72202,7 @@ fJO
 fJO
 qSZ
 lTR
-pLJ
+fJO
 fJO
 fJO
 fJO
@@ -72452,7 +72435,7 @@ fJO
 fJO
 fJO
 lTR
-qdo
+fJO
 qyP
 fJO
 fJO
