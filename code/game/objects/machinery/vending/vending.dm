@@ -288,7 +288,7 @@
 	if(X.a_intent == INTENT_HARM)
 		if(machine_stat & BROKEN)
 			to_chat(X, span_warning("It's already broken, what a useless piece of trash."))
-				return FALSE
+			return FALSE
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		X.changeNext_move(CLICK_CD_MELEE)
 		if(prob(X.xeno_caste.melee_damage))
