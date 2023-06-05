@@ -319,7 +319,7 @@ WEAPONS
 	cost = 48
 
 /datum/supply_packs/weapons/tx54_razor
-	name = "GL-54 smoke grenade magazine"
+	name = "GL-54 razorburn grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/razor)
 	cost = 96
 
