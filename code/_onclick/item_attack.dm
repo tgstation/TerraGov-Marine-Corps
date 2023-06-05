@@ -65,8 +65,9 @@
 	if(!(obj_flags & CAN_BE_HIT))
 		return
 
+	. = I.attack_obj(src, user)
 	INVOKE_ASYNC(src, PROC_REF(continue_attacking), I, user, params)
-	return I.attack_obj(src, user)
+	return
 
 /obj/proc/continue_attacking(obj/item/I, mob/user, params)
 	if(!QDELETED(src) && !user.do_actions && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_HOSTILE) && !QDELETED(src))
