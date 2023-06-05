@@ -362,6 +362,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			stat("Points needed to win:", mode.win_points_needed)
 			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
 			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
+
 		//game end timer for patrol and sensor capture
 		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
 		if(patrol_end_countdown)
@@ -370,9 +371,18 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		var/patrol_wave_countdown = SSticker.mode?.wave_countdown()
 		if(patrol_wave_countdown)
 			stat("<b>Respawn wave timer:</b>", patrol_wave_countdown)
+
 		var/datum/game_mode/hvh/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
 		if(issensorcapturegamemode(SSticker.mode))
 			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
+
+		//campaign timer
+		if(!iscampaigngamemode(SSticker.mode))
+			return
+		var/datum/game_mode/hvh/campaign/active_mode = SSticker.mode
+		var/round_end_countdown = active_mode?.current_round.round_end_countdown()
+		if(round_end_countdown)
+			stat("<b>Mission time remaining:</b>", round_end_countdown)
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"

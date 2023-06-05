@@ -100,6 +100,14 @@
 		if(patrol_end_countdown)
 			stat("<b>Round End timer:</b>", patrol_end_countdown)
 
+		//campaign timer
+		if(!iscampaigngamemode(SSticker.mode))
+			return
+		var/datum/game_mode/hvh/campaign/active_mode = SSticker.mode
+		var/round_end_countdown = active_mode?.current_round.round_end_countdown()
+		if(round_end_countdown)
+			stat("<b>Mission time remaining:</b>", round_end_countdown)
+
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
 			stat("Tank Pressure", internal.pressure)

@@ -3,8 +3,8 @@
 /datum/game_mode/hvh/campaign
 	name = "Campaign"
 	config_tag = "Campaign"
-	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS //any changes needed?
-	shutters_drop_time = 3 MINUTES //will need changing
+	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS //any changes needed? MODE_LATE_OPENING_SHUTTER_TIMER handled by rounds
+	shutters_drop_time = 2 MINUTES //will need changing
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE) //need changing to these lists
 	blacklist_ship_maps = null
 	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
@@ -38,7 +38,7 @@
 
 /datum/game_mode/hvh/campaign/setup_blockers() //to be updated
 	. = ..()
-	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
+	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + shutters_drop_time) //starts intro sequence 10 seconds before shutter drop
 
 /datum/game_mode/hvh/campaign/intro_sequence() //update this, new fluff message etc etc, make it faction generic
 	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()

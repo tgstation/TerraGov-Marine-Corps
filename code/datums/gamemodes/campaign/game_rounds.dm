@@ -41,6 +41,15 @@
 	///Any additional reward flags, for display purposes
 	var/additional_rewards = null //maybe getting ugh, but might need some reward datum, so they're not tied to a specific round type
 
+	/// Timer used to calculate how long till round ends
+	var/game_timer
+	///The length of time until round ends, if timed
+	var/max_game_time = null
+	///Whether the max game time has been reached
+	var/max_time_reached = FALSE
+	///Delay from shutter drop until game timer starts
+	var/game_timer_delay = 1 MINUTES //test num
+
 /datum/game_round/New(initiating_faction)
 	. = ..()
 
@@ -76,12 +85,33 @@
 /datum/game_round/proc/check_round_progress()
 	return FALSE
 
+///sets up the timer for the round
+/datum/game_round/proc/set_round_timer()
+	if(!iscampaigngamemode(SSticker.mode))
+		return
+
+	game_timer = addtimer(VARSET_CALLBACK(src, max_time_reached, TRUE), max_game_time, TIMER_STOPPABLE)
+
+///accesses the timer for status panel
+/datum/game_round/proc/round_end_countdown()
+	if(!game_timer)
+		return
+	if(max_time_reached)
+		return "Mission finished"
+	var/eta = timeleft(game_timer) * 0.1
+	if(eta > 0)
+		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
+
 ///Round start proper
 /datum/game_round/proc/start_round()
 	SHOULD_CALL_PARENT(TRUE)
 	START_PROCESSING(SSslowprocess, src) //this may be excessive
 	send_global_signal(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE)
 	play_start_intro()
+
+	if(max_game_time)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_round, set_round_timer)), game_timer_delay)
+
 	round_state = GAME_ROUND_STATE_ACTIVE
 
 ///Round end wrap up
@@ -201,6 +231,7 @@
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm'
 	win_condition = "<U>Major Victory</U>: Wipe out all hostiles in the area of operation.<br> <U>Minor Victory</U>: Eliminate more hostiles than you lose."
+	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
 		GAME_ROUND_OUTCOME_MAJOR_VICTORY = list(3, 0),
 		GAME_ROUND_OUTCOME_MINOR_VICTORY = list(1, 0),
@@ -215,18 +246,6 @@
 		GAME_ROUND_OUTCOME_MINOR_LOSS = list(10, 15),
 		GAME_ROUND_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
-	/// Timer used to calculate how long till round ends
-	var/game_timer
-	///The length of time until round ends.
-	var/max_game_time = 35 MINUTES
-	///Whether the max game time has been reached
-	var/max_time_reached = FALSE
-	///Delay from shutter drop until game timer starts
-	var/game_timer_delay = 1 MINUTES //test num
-
-/datum/game_round/tdm/start_round()
-	. = ..()
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_round/tdm, set_game_timer)), game_timer_delay)
 
 /datum/game_round/tdm/check_round_progress()
 	if(outcome)
@@ -289,17 +308,6 @@
 
 /datum/game_round/tdm/apply_major_loss()
 	. = ..()
-
-///round timer
-/datum/game_round/tdm/proc/set_game_timer()
-	if(game_timer)
-		return
-
-	game_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_round/tdm, set_game_end)), max_game_time, TIMER_STOPPABLE)
-
-///Triggers the game to end
-/datum/game_round/tdm/proc/set_game_end()
-	max_time_reached = TRUE
 
 ///test rounds
 /datum/game_round/tdm/lv624
