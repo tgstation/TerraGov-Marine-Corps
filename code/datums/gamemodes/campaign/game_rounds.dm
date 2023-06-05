@@ -20,8 +20,11 @@
 	var/outcome
 	///The current gamemode. Var as its referred to often
 	var/datum/game_mode/hvh/campaign/mode
-	///The victory conditions for this reward, for display purposes
-	var/win_condition = ""
+	///The victory conditions for this round, for display purposes
+	var/list/objective_description = list(
+		"starting_faction" = "starting faction objectives here",
+		"hostile_faction" = "hostile faction objectives here",
+	)
 	///Victory point rewards for the round type
 	var/list/victory_point_rewards = list(
 		GAME_ROUND_OUTCOME_MAJOR_VICTORY = list(0, 0),
@@ -230,7 +233,10 @@
 	name = "Combat patrol"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm'
-	win_condition = "<U>Major Victory</U>: Wipe out all hostiles in the area of operation.<br> <U>Minor Victory</U>: Eliminate more hostiles than you lose."
+	objective_description = list(
+		"starting_faction" = "<U>Major Victory</U>: Wipe out all hostiles in the area of operation.<br> <U>Minor Victory</U>: Eliminate more hostiles than you lose.",
+		"hostile_faction" = "<U>Major Victory</U>: Wipe out all hostiles in the area of operation.<br> <U>Minor Victory</U>: Eliminate more hostiles than you lose.",
+	)
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
 		GAME_ROUND_OUTCOME_MAJOR_VICTORY = list(3, 0),
