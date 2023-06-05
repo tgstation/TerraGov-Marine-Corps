@@ -1,0 +1,6 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - qol: "The specialized job vendors now actually indicated the backpacks are not the normal IMP"
+  - qol: "The gear you equip now gets spawned on you instead of your bag, or failing that it'll spawn in your bag"
+  - bugfix: "The back slot pref actually works now"
