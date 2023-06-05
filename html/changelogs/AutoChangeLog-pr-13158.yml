@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - code_imp: "Made all soft armors use defines instead of strings"
