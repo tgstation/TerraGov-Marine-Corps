@@ -115,25 +115,27 @@
 	if(user.do_actions)
 		return
 
-	while(do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_GENERIC))
-		user.changeNext_move(I.attack_speed)
-		user.do_attack_animation(src, used_item = I)
+	user.changeNext_move(I.attack_speed)
+	user.do_attack_animation(src, used_item = I)
 
-		var/damage = I.force
-		var/multiplier = 1
-		if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
-			multiplier += 1
+	var/damage = I.force
+	var/multiplier = 1
+	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
+		multiplier += 1
 
-		if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-			var/obj/item/tool/pickaxe/plasmacutter/P = I
-			if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-				multiplier += PLASMACUTTER_RESIN_MULTIPLIER
-				P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
+		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
+			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 
-		damage *= max(0, multiplier)
-		take_damage(damage)
-		playsound(src, "alien_resin_break", 25)
+	var/previous_type = type
+	damage *= max(0, multiplier)
+	take_damage(damage)
+	playsound(src, "alien_resin_break", 25)
 
+	if(previous_type == type && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_GENERIC))
+		attackby(I, user, params)
 
 /turf/closed/wall/resin/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
