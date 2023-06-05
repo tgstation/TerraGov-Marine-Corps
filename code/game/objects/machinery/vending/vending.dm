@@ -304,7 +304,7 @@
 		return TRUE
 
 	if(tipped_level)
-		to_chat(X, span_warning("This hunk of [machine_stat & BROKEN ? "trash" ? "metal"] is already tipped over!"))
+		to_chat(X, span_warning("This hunk of [machine_stat & BROKEN ? "trash" : "metal"] is already tipped over!"))
 		return FALSE
 
 	X.visible_message(span_warning("\The [X] begins to lean against \the [src]."), \
