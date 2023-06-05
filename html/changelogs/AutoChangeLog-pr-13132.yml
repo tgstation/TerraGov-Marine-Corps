@@ -1,4 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes:
-  - bugfix: "gun attachments now rotate with the gun"
