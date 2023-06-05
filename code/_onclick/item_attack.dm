@@ -70,7 +70,7 @@
 	return
 
 /obj/proc/continue_attacking(obj/item/I, mob/user, params)
-	if(user.ckey && user.client && !QDELETED(src) && !user.do_actions && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_HOSTILE) && !QDELETED(src) && X.ckey && X.client)
+	if(user.ckey && user.client && !QDELETED(src) && !user.do_actions && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_HOSTILE) && !QDELETED(src) && user.ckey && user.client)
 		attackby(I, user, params)
 
 /obj/item/proc/attack_obj(obj/O, mob/living/user)

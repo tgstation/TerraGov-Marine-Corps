@@ -315,25 +315,31 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
+	var/allcut = wires.is_all_cut()
+	var/open = CHECK_BITFIELD(machine_stat, PANEL_OPEN)
+
+	if(open && allcut)
+		return FALSE
+
 	if(effects)
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		X.visible_message(span_danger("[X] slashes \the [src]!"), \
 		span_danger("We slash \the [src]!"), null, 5)
 		playsound(loc, "alien_claw_metal", 25, 1)
 
-	var/allcut = wires.is_all_cut()
-
-	if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+	if(beenhit >= pick(3, 4) && !open)
 		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 		update_icon()
 		visible_message(span_danger("\The [src]'s cover swings open, exposing the wires!"), null, null, 5)
-
-	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
+	else if(open && !allcut)
 		wires.cut_all()
 		update_icon()
 		visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
 	else
 		beenhit += 1
+
+	if(!wires.is_all_cut() || !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		INVOKE_ASYNC(src, PROC_REF(continue_attacking_alien), X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 
 //Attack with an item - open/close cover, insert cell, or (un)lock interface
 /obj/machinery/power/apc/attackby(obj/item/I, mob/user, params)
