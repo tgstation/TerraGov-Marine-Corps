@@ -405,9 +405,8 @@
 	desc = "Meal Ready-to-Eat, meant to be consumed in the field, and has an expiration that is two decades past a marine's average combat life expectancy."
 	icon_state = "mealpack"
 	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list()
+	can_hold = list(/obj/item/reagent_containers/food/snacks/packaged_meal)
 	storage_slots = 4
-	max_w_class = 0
 	foldable = 0
 	var/isopened = 0
 	///the item left behind when this is used up
@@ -502,6 +501,10 @@
 /obj/item/storage/box/visual/Initialize(mapload, ...)
 	. = ..()
 	update_stats()
+
+/obj/item/storage/box/visual/Destroy()
+	contents_weight = null
+	return ..()
 
 /// Updates certain vars used primarily (but not exclusively) for the creation of the overlays.
 /obj/item/storage/box/visual/proc/update_stats()

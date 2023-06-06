@@ -71,16 +71,28 @@
 		"5" = image(icon = 'icons/obj/structures/benchpress.dmi', icon_state = "benchpress_5"),
 	)
 	var/choice = show_radial_menu(user, src, radial_options, null, 64, null, TRUE, TRUE)
+	if(!choice)
+		return
 	plates = text2num(choice)
 	update_icon()
 	flick("swap_[plates]", src)
 
 
 
-/obj/structure/benchpress/attack_hand(mob/living/user, list/modifiers)
+/obj/structure/benchpress/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
+	do_workout_set(user)
+
+/obj/structure/benchpress/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	. = ..()
+	if(.)
+		return
+	do_workout_set(X)
+
+///checks if possible and if yes performs a workout set for this mob
+/obj/structure/benchpress/proc/do_workout_set(mob/living/user)
 	if(HAS_TRAIT(src, BENCH_BEING_USED))
 		balloon_alert(user, "wait your turn!")
 		return
@@ -96,13 +108,16 @@
 	creak_loop.start(src)
 
 ///cleans up releases exerciser
-/obj/structure/benchpress/proc/finish_press(mob/user)
+/obj/structure/benchpress/proc/finish_press(mob/living/user)
 	creak_loop.stop(src)
 	playsound(user, 'sound/machines/click.ogg', 60, TRUE)
 	REMOVE_TRAIT(src, BENCH_BEING_USED, WEIGHTBENCH_TRAIT)
 	user.flags_atom &= ~DIRLOCK
 	REMOVE_TRAIT(user, TRAIT_IMMOBILE, WEIGHTBENCH_TRAIT)
-	if(plates >= 5 && prob(10))
+	update_icon()
+	if(user.faction)
+		GLOB.round_statistics.workout_counts[user.faction] += 1
+	if(plates >= 5 && prob(10) && ishuman(user)) // the flesh is weak
 		var/mob/living/carbon/human/breaker = user
 		var/datum/limb/broken = breaker.get_limb(pick("l_arm", "r_arm"))
 		broken.fracture()
@@ -111,7 +126,6 @@
 		user.set_skills(user.skills.modifyRating(cqc=1))
 		ADD_TRAIT(user, TRAIT_WORKED_OUT, WEIGHTBENCH_TRAIT)
 		addtimer(CALLBACK(src, PROC_REF(undo_buff), WEAKREF(user)), 15 MINUTES)
-	update_icon()
 	var/finishmessage = pick("You feel stronger!","You feel like you're the boss of this gym!","You feel robust!","The challenge is real!")
 	to_chat(user, finishmessage)
 

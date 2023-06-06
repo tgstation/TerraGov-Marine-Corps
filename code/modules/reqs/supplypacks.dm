@@ -325,7 +325,7 @@ WEAPONS
 	cost = 48
 
 /datum/supply_packs/weapons/tx54_razor
-	name = "GL-54 smoke grenade magazine"
+	name = "GL-54 razorburn grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/razor)
 	cost = 96
 
@@ -669,6 +669,11 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/flak)
 	cost = 50
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/rechargemag
+	name = "Terra Experimental recharger battery"
+	contains = list(/obj/item/cell/lasgun/lasrifle/recharger)
+	cost = 60
 
 /datum/supply_packs/weapons/xray_gun
 	name = "TE-X Laser Rifle"
@@ -1307,8 +1312,8 @@ ENGINEERING
 	cost = 30
 
 /datum/supply_packs/engineering/floodlight
-	name = "Combat Grade Floodlight"
-	contains = list(/obj/machinery/floodlight/combat)
+	name = "Deployable Floodlight"
+	contains = list(/obj/item/deployable_floodlight)
 	cost = 30
 
 /datum/supply_packs/engineering/advanced_generator

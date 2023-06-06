@@ -1,0 +1,228 @@
+2023-05-24:
+  Barnet2:
+  - rscdel: Removed Chigusa from selectable maps.
+  BlueHNT:
+  - rscadd: hypo overlay Overlay [not a joke]
+  David-Stormwell:
+  - rscadd: Added a Lasgun energy pouch which may charge or act as a cell for your
+      TE guns! -Cabled icon sprites courtesy of OrcaOrca.
+  DeltaFire15:
+  - bugfix: Combat robot crit staggerslow now behaves consistently.
+  - bugfix: The self destruct core no longer requires admin intervention to finish
+      / blow up the ship.
+  - bugfix: The time display on the self destruct UI should be more sane now.
+  JackTheJackhammer:
+  - bugfix: Surt Helm now can be placed on MK.I Jaeger Helm
+  - bugfix: Weight Benches no longer disappear when unselecting the radial wheel.
+  - bugfix: By placing the howitzer in a crate, howitzers gained by lootbox can now
+      be used.
+  Lewdcifer:
+  - rscadd: Squad Leaders can now use the FOB construction drone.
+  Losenis:
+  - balance: Gyroscopic stabilizer no longer has a 10% damage penalty per marine the
+      bullet on aim mode goes through.
+  - balance: Projectile sunder is no longer multiplied by the % of remaining armor
+      of the struck xeno
+  - rscadd: Terra Experimental recharger battery. Req-only, 60 points, 75% capacity
+      of normal battery, recharges 12 energy per second (1 standard lasgun rifle shot)
+  - qol: Recharger lascells in valhalla req vendor
+  - balance: Engi and corpsman slot now scales on pop of marines
+  Lumipharon:
+  - rscadd: Surt now comes with a helmet module to protect your walnut from overheating
+  - bugfix: fixed a couple of runtimes
+  - qol: Magazines now have codex entries detailing magazine and ammo stats
+  - balance: King can no longer summon across z-levels
+  - rscadd: Nuke disk generators are now randomised in location, based on a list of
+      possible spawn points
+  - rscadd: Added a melee oriented SOM ERT variant
+  - bugfix: Prison station no longer has a pool leading directly to deep space
+  - rscadd: Platforms now apply slowdown when crossed, but do not require climbing
+      at all. All platforms are now functional instead of some being cosmetic
+  - bugfix: fixed coverage for platforms working in the wrong direction
+  - bugfix: fixed some pref bugs
+  - balance: Psylance no longer does bonus damage to objects other than mechs
+  - bugfix: Larva no longer walk around on legs
+  - soundadd: Added some new footstep sounds for basalt
+  - bugfix: fixed flares sometimes having full tile opacity
+  - bugfix: fixed some greyscale attachments showing entirely black
+  - rscadd: Robots and vatborn have now been accepted in valhalla
+  - balance: Tanglefoot gas now quickly removes xeno smoke occupying the same space
+  - balance: Xenos now make footsteps
+  - balance: Walking instead of running reduces footstep volume and range. Some xenos
+      have naturally reduced footsteps or none at all
+  - refactor: refactored footstep code
+  MacBlaze1:
+  - bugfix: fixed acid spray not deleting razorwire
+  Naaanii:
+  - bugfix: Turrets can no longer be portalled to bypass the range restriction.
+  - rscdel: Removes signalers from FC and SL vendors
+  Pariah919:
+  - rscadd: New ICC RPG. Statistically identical to the SOM one.
+  - bugfix: ICC Medic now gets a defib, and the ICC Sharpshooter rifle loadout now
+      gets the proper amount of ammo.
+  RipGrayson:
+  - imageadd: Implemented OrcaCora's CAS plane sprite.
+  - qol: Made the AI capable of firing shipside railguns at the ground.
+  - qol: Added balloon_alerts to many things and objects
+  - bugfix: Fixed some floating signs in Desparity.
+  - bugfix: Made CAS unable to bombard xenos in Desparity's crashed ship area.
+  Scarlet-Oduko:
+  - rscadd: Acid wells remove sticky grenades
+  - code_imp: Changes to grenade code, specifically clear_refs
+  TiviPlus:
+  - admin: LOOC/MOOC/XOOC is now filtered
+  - code_imp: megaphones now work automatically when talking based on if you are holding
+      it
+  - rscadd: Atest
+  - bugfix: Maybe fix radio keys being filtered
+  - qol: OB cannon impact now has a visual animation
+  - qol: Removed some unneeded tochats
+  Xander3359:
+  - bugfix: Vali Claymore is no longer immune to acid.
+  ivanmixo:
+  - bugfix: Made the weather sound preference actually work
+  - bugfix: Fixed alamo being unable to be called down if you touch the console as
+      it is taking off
+  - bugfix: Fixed nades erroniously appearing primed when they aren't
+  - bugfix: Pods fit in the pod launchers again
+  - bugfix: Automatic votes cancel any ongoing voting when they start
+  - code_imp: Addressed more 515 compat stuff the regex missed
+  - rscadd: Added an EORD roomba
+  - bugfix: Fixed handheld cell chargers
+  - bugfix: Fixed atom shaking
+  - bugfix: Fixed runner being able to start evasion while on fire
+  - qol: Changed the light mode common radio color to green
+  - bugfix: Toned the shakes down
+  - balance: Defiler's tentacle now staggers instead of a stun
+  - bugfix: The shipside generators work again
+  - code_imp: Cleaned up engine code and added docs
+  - balance: Supply beacons now lose their signal when the source of the signal is
+      destoryed
+  - bugfix: Fixed the req console keeping dead signals in the list
+  - bugfix: Fixed a signal override in the req console
+  mc-oofert:
+  - rscadd: automatic docking sizes for mobile ports
+  - rscadd: 4 new dropships
+  - rscadd: dropship picker console
+  - bugfix: ert engines in maps
+  novaepee:
+  - code_imp: remove unneeded override in cape highlight
+  novaepee, Fitz A. Sholl:
+  - rscadd: Ranger Medium Jaegar armor
+  - rscadd: 6E chameleon kama
+  novaepee, Fitz Sholl:
+  - rscadd: Traditional Ranger Helmet
+  shelteredfreak:
+  - qol: Updates Xeno Toxin hud examine description info.
+  - qol: Updates Defiler Select Reagent ability description info.
+  tyeagg:
+  - balance: dropship fabricator is indestructible
+  - bugfix: thermo backblast not removing
+2023-05-25:
+  RipGrayson:
+  - balance: Altered LZ1 on Gelida to be more defensible
+  - balance: Altered the area round LZ2 on Gelida to be slightly more open
+  - balance: Changed the location of underground power generation on Gelida to be
+      in the center of caves.
+  - balance: Changed a couple random disk generation locations on Gelida.
+  - balance: The underground power generation plant in Gelida now has lights.
+  - balance: Extended the preshutter no build zone on Gelida some
+  - balance: Gelida landing zones now start with flares
+  - bugfix: Fixed Gelida LZ areas being reversed
+2023-05-26:
+  CCorvet:
+  - spellcheck: PD sentry description says accurate max ammo
+  Mrrpip:
+  - bugfix: Gives an APC to a area that didn't have it on Ice Colony
+  RipGrayson:
+  - balance: Removed colony disk generators again.
+  Skye:
+  - qol: Adds a single tip to the xeno section, regarding tier slots.
+  TiviPlus:
+  - rscadd: Added text so speech
+  grinkgo:
+  - balance: Theseus RO area is now more open and less cringe to navigate and use
+  ivanmixo:
+  - bugfix: Fixed crates picking up decals and other things they shouldn't
+  - code_imp: Made crate code better and added docs
+  - bugfix: Fixed an invalid bitfield in the bitfield list
+  - bugfix: Fixed pod deleting you if they get shot out before you land
+  tyeagg:
+  - rscadd: deployable floodlight
+  - balance: combat floodlights are now deployables
+  - balance: combat floodlights now last forever not needing cells
+  - imageadd: deployable floodlight item sprite
+  - imageadd: fixed extra pixels container sprites had
+2023-05-28:
+  BlueHNT:
+  - code_imp: unnecessary proc/label
+  - code_imp: replace to_chat with balloons
+  Lumipharon:
+  - bugfix: Large cells no longer fit in small cell chargers
+  - bugfix: fixed nuke disk gens being destructable before the ship crashes
+  - bugfix: fixed an exploit with attachments
+  MacBlaze1:
+  - rscadd: Added a Flamethrower holster backpack for engineers that they can buy
+      and use in their vendors.
+  - rscadd: Added a mortar holster backpack that allows engineers to carry ammo and
+      move their mortars.
+  - rscadd: Added the two backpacks to the engineers backpack options.
+  - balance: added mortar shells to engi vendor
+  Pariah919:
+  - balance: Autocannon reworked, it now has a new sprite by Crow, it now does bonus
+      damage to walls, it does much less sunder and damage, now fires much faster
+      and with an autoburst.
+  RipGrayson:
+  - qol: The AI now receives alerts about important events.
+  - code_imp: Created a modified version of the ghost notification system for AI use.
+  ivanmixo:
+  - balance: Added a new ability to boiler lets the boiler "root" itself in place,
+      unable to be moved. Being rooted is now required to bombard.
+  - config: Commented out TTS in default config
+  novaepee:
+  - rscadd: Allow marines to put packaged or unpackaged MRE meal back inside of MRE
+  - balance: Permit marines to have more storage by not forcing marines to use backpack
+      | satchel space for MRE food
+  tyeagg:
+  - code_imp: remove unused ricochet vars
+2023-05-29:
+  QualityVan:
+  - bugfix: You can dump snow off shovels again
+  - code_imp: Chemicals don't try to react when some of them are removed.
+  TiviPlus:
+  - code_imp: optimized overlays
+  - code_imp: Minimap has been heavily optimized
+  - rscadd: Roomba gets TTS
+  - code_imp: Improved some clicking code
+  - code_imp: optimized runechat
+  - bugfix: fixed not being an explicitly spawned species not giving robots a damage
+      screen overlay
+2023-05-30:
+  Losenis:
+  - balance: 'xray rifle standard shot firerate now 0.25 (Comparison: AR12 has 0.2)'
+  Lumipharon:
+  - bugfix: fixed an issue with facehugger cryo tanks
+  - bugfix: Detonating the groundside nuke shipside no longer results in a marine
+      victory
+  QualityVan:
+  - bugfix: Attached guns can be loaded with worn magazines
+  ivanmixo:
+  - bugfix: Fixed an add_fingerprint runtime
+2023-05-31:
+  RipGrayson:
+  - bugfix: Fixed walls with the UNACIDABLE flags being also immune to plasma cutters
+  - code_imp: Added PLASMACUTTER_IMMUNE to RESIST_ALL
+  Skye:
+  - qol: A secret has been revealed! You can now find the mech bay's APC on the Thesseus
+      map.
+  - bugfix: Added wires to the power monitoring computers in Thesseus and Minerva's
+      engineering zones.
+  TiviPlus:
+  - rscadd: Xenos may now lift on the benchpress
+  - qol: Which faction lifted how much is now logged as an end of round stat
+  - bugfix: fixed breaking an arm not stopping the lift animation of the benchpress
+  - rscadd: Command TTS volume is increased
+  chizzy376:
+  - bugfix: can't land tad in blue disk on Desparity anymore
+  ivanmixo:
+  - rscdel: Removed crate stuffing

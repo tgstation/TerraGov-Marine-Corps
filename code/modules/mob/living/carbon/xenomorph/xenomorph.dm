@@ -21,6 +21,11 @@
 	create_reagents(1000)
 	gender = NEUTER
 
+	if(is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
+		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
+
+	set_initial_hivenumber()
+
 	switch(stat)
 		if(CONSCIOUS)
 			GLOB.alive_xeno_list += src
@@ -37,16 +42,11 @@
 	GLOB.round_statistics.total_xenos_created++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xenos_created")
 
-	if(is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
-		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
-
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
 
 	fire_overlay = mob_size == MOB_SIZE_BIG ? new(null, src) : new /atom/movable/vis_obj/xeno_wounds/fire_overlay/small(null, src)
 	vis_contents += fire_overlay
-
-	set_initial_hivenumber()
 
 	generate_nicknumber()
 
@@ -78,6 +78,8 @@
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, PROC_REF(handle_weeds_adjacent_removed))
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, PROC_REF(handle_weeds_on_movement))
 	handle_weeds_on_movement()
+
+	AddElement(/datum/element/footstep, FOOTSTEP_XENO_MEDIUM, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health
 /mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
@@ -209,7 +211,7 @@
 		return NONE
 	var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
 	if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
-		INVOKE_ASYNC(grabbed, /mob/living/carbon/xenomorph/crusher/proc.carry_xeno, src, TRUE)
+		INVOKE_ASYNC(grabbed, TYPE_PROC_REF(/mob/living/carbon/xenomorph/crusher, carry_xeno), src, TRUE)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 

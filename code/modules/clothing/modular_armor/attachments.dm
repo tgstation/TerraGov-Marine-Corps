@@ -237,6 +237,7 @@
 	greyscale_colors = COLOR_VERY_LIGHT_GRAY
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+	appearance_flags = KEEP_APART|TILE_BOUND
 
 /obj/item/armor_module/greyscale/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()

@@ -6,6 +6,7 @@
 	icon_state = "roomba"
 	density = FALSE
 	anchored = FALSE
+	voice_filter = "aderivative"
 	///Keeps track of how many items have been sucked for fluff
 	var/counter = 0
 	///The mine we have attached to this roomba
@@ -45,6 +46,11 @@
 
 /obj/machinery/roomba/Initialize(mapload)
 	. = ..()
+	if(SStts.tts_enabled)
+		var/static/todays_voice
+		if(!todays_voice)
+			todays_voice = pick(SStts.available_speakers)
+		voice = todays_voice
 	RegisterSignal(src, COMSIG_AREA_EXITED, PROC_REF(turn_around))
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(suck_items))
 	start_processing()
@@ -157,3 +163,17 @@
 		if(sucker.anchored)
 			continue
 		qdel(sucker)
+
+/obj/machinery/roomba/valhalla/eord
+	name = "final boss roomba"
+	desc = "You weep in terror at the sight of this perfect feat of engineering. It sucks up both items and dead creatures alike."
+	resistance_flags = RESIST_ALL
+
+/obj/machinery/roomba/valhalla/eord/suck_items()
+	for(var/obj/item/sucker in loc)
+		qdel(sucker)
+		counter++
+	for(var/mob/sucked in loc)
+		if(sucked.stat != CONSCIOUS)
+			qdel(sucked)
+			counter++

@@ -109,6 +109,7 @@
 #define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
 #define VALHALLA_TRAIT "valhalla"
 #define WEIGHTBENCH_TRAIT "weightbench"
+#define BOILER_ROOTED_TRAIT "boiler_rooted"
 
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"
@@ -139,6 +140,12 @@
 #define TRAIT_LEASHED "leashed"
 #define TRAIT_CAN_VENTCRAWL "can_ventcrawl"
 #define TRAIT_WORKED_OUT "worked_out" //user has a cqc buff from working out
+///Makes no footsteps at all
+#define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
+///quieter footsteps
+#define TRAIT_LIGHT_STEP "light_step"
+///noisier footsteps
+#define TRAIT_HEAVY_STEP "heavy_step"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
@@ -212,3 +219,6 @@
 //added to escaped humans
 #define TRAIT_HAS_ESCAPED "escaped_marine"
 #define TRAIT_HAS_BEEN_TARGETED "been_targeted"
+
+//added to AIs firing railguns
+#define TRAIT_IS_FIRING_RAILGUN "firing_railgun"

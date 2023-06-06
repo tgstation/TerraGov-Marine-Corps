@@ -7,6 +7,8 @@
 	///Species name
 	var/name
 	var/name_plural
+	///what kind of species it is considered
+	var/species_type = SPECIES_HUMAN
 
 	///Normal icon file
 	var/icobase = 'icons/mob/human_races/r_human.dmi'
@@ -391,6 +393,7 @@
 /datum/species/robot
 	name = "Combat Robot"
 	name_plural = "Combat Robots"
+	species_type = SPECIES_COMBAT_ROBOT
 	icobase = 'icons/mob/human_races/r_robot.dmi'
 	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
 	brute_damage_icon_state = "robot_brute"
@@ -441,6 +444,7 @@
 /datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
+	H.voice_filter = "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=1,rubberband=pitch=0.8"
 	H.health_threshold_crit = -100
 	var/datum/action/repair_self/repair_action = new()
 	repair_action.give_action(H)
@@ -448,31 +452,26 @@
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
+	H.voice_filter = initial(H.voice_filter)
 	H.health_threshold_crit = -50
 	var/datum/action/repair_self/repair_action = H.actions_by_path[/datum/action/repair_self]
 	repair_action.remove_action(H)
 	qdel(repair_action)
 
-
-/mob/living/carbon/human/species/robot/handle_regular_hud_updates()
-	. = ..()
-	if(health <= 0 && health > -50)
-		clear_fullscreen("robotlow")
-		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
-	else if(health <= -50)
-		clear_fullscreen("robothalf")
-		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
+/datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
+	if(H.health <= 0 && H.health > -50)
+		H.clear_fullscreen("robotlow")
+		H.overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
+	else if(H.health <= -50)
+		H.clear_fullscreen("robothalf")
+		H.overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
 	else
-		clear_fullscreen("robothalf")
-		clear_fullscreen("robotlow")
-
-/mob/living/carbon/human/species/robot/updatehealth()
-	. = ..()
-
-	if(health > -25)
+		H.clear_fullscreen("robothalf")
+		H.clear_fullscreen("robotlow")
+	if(H.health > -25) //Staggerslowed if below crit threshold.
 		return
-	adjust_stagger(1)
-	adjust_slowdown(1)
+	H.adjust_stagger(2, capped = 10)
+	H.adjust_slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self

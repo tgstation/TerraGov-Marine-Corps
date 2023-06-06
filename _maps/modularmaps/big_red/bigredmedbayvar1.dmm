@@ -1694,8 +1694,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "SL" = (
-/obj/machinery/door/airlock/glass_medical{
-	id_tag = "mbayexit";
+/obj/machinery/door/airlock/glass{
+	dir = 1;
 	name = "Medbay Reception"
 	},
 /turf/open/floor/tile/white,

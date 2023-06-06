@@ -305,7 +305,7 @@
 
 /obj/item/storage/belt/hypospraybelt
 	name = "\improper M276 pattern hypospray belt"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers."
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers. You could probably fit a syringe case too."
 	icon_state = "hypospraybelt"
 	item_state = "medicbag"
 	storage_slots = 21
@@ -316,24 +316,26 @@
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/hypospray,
+		/obj/item/storage/syringe_case,
 	)
 
 /obj/item/storage/belt/hypospraybelt/Initialize(mapload)  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
 	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
 	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/combatmix(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/isotonic(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/imialky(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/advanced/imialky(src)
 	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
 	new /obj/item/healthanalyzer(src)
 
@@ -898,9 +900,9 @@
 	can_hold = list(/obj/item/explosive/grenade)
 
 /obj/item/storage/belt/grenade/som
-	name="\improper S16 pattern grenade rig"
-	desc="A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
-	icon_state="grenadebelt_som"
+	name = "\improper S16 pattern grenade rig"
+	desc = "A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
+	icon_state = "grenadebelt_som"
 
 /obj/item/storage/belt/grenade/standard/Initialize(mapload)
 	. = ..()
@@ -941,16 +943,16 @@
 	new /obj/item/explosive/grenade(src)
 
 /obj/item/storage/belt/sparepouch
-	name= "\improper G8 general utility pouch"
-	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
+	name = "\improper G8 general utility pouch"
+	desc = "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = WEIGHT_CLASS_NORMAL
-	icon_state= "sparepouch"
-	item_state= "sparepouch"
+	icon_state = "sparepouch"
+	item_state = "sparepouch"
 
 /obj/item/storage/belt/sparepouch/som
-	name= "standard utility pouch"
-	desc= "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
-	icon_state= "sparepouch_som"
-	item_state= "som_belt"
+	name = "standard utility pouch"
+	desc = "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
+	icon_state = "sparepouch_som"
+	item_state = "som_belt"

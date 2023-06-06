@@ -7,12 +7,12 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 	///List of ai_behaviour datum asking for a tile pathfinding
 	var/list/datum/ai_behavior/node_pathfinding_to_do = list()
 
-/datum/controller/subsystem/advanced_pathfinding/Initialize(start_timeofday)
-	. = ..()
+/datum/controller/subsystem/advanced_pathfinding/Initialize()
 	var/list/nodes = list()
 	for(var/obj/effect/ai_node/ai_node AS in GLOB.all_nodes)
 		nodes += list(ai_node.serialize())
 	rustg_register_nodes_astar(json_encode(nodes))
+	return SS_INIT_SUCCESS
 
 #ifdef TESTING
 #define BENCHMARK_LOOP while(world.timeofday < end_time)

@@ -26,10 +26,10 @@ SUBSYSTEM_DEF(job)
 	var/datum/job/overflow_role = /datum/job/terragov/squad/standard
 
 
-/datum/controller/subsystem/job/Initialize(timeofday)
+/datum/controller/subsystem/job/Initialize()
 	SetupOccupations()
 	overflow_role = GetJobType(overflow_role)
-	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/job/proc/SetupOccupations()

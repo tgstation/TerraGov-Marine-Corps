@@ -24,54 +24,42 @@
 
 	barometer_predictable = TRUE
 
-	var/datum/looping_sound/active_outside_ashstorm/sound_ao = new(list(), FALSE, TRUE)
-	var/datum/looping_sound/active_inside_ashstorm/sound_ai = new(list(), FALSE, TRUE)
-	var/datum/looping_sound/weak_outside_ashstorm/sound_wo = new(list(), FALSE, TRUE)
-	var/datum/looping_sound/weak_inside_ashstorm/sound_wi = new(list(), FALSE, TRUE)
+	var/datum/looping_sound/active_ashstorm/sound_active_ashstorm = new(list(), FALSE, TRUE)
+	var/datum/looping_sound/weak_ashstorm/sound_weak_ashstorm = new(list(), FALSE, TRUE)
 
 /datum/weather/ash_storm/telegraph()
 	. = ..()
-	var/list/inside_areas = list()
-	var/list/outside_areas = list()
-	var/list/eligible_areas = list()
-	for (var/z in impacted_z_levels)
-		eligible_areas += SSmapping.areas_in_z["[z]"]
-	for(var/i in 1 to length(eligible_areas))
-		var/area/place = eligible_areas[i]
-		if(place.outside)
-			outside_areas += place
-		else
-			inside_areas += place
+	var/list/impacted_mobs = list()
+	var/list/eligible_mobs = list()
+	for(var/z in impacted_z_levels)
+		eligible_mobs += GLOB.humans_by_zlevel["[z]"]
+	for(var/i in 1 to length(eligible_mobs))
+		var/mob/impacted_mob = eligible_mobs[i]
+		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+			continue
+		impacted_mobs |= impacted_mob
 		CHECK_TICK
 
-	sound_ao.output_atoms = outside_areas
-	sound_ai.output_atoms = inside_areas
-	sound_wo.output_atoms = outside_areas
-	sound_wi.output_atoms = inside_areas
+	sound_active_ashstorm.output_atoms = impacted_mobs
+	sound_weak_ashstorm.output_atoms = impacted_mobs
 
-	sound_wo.start()
-	sound_wi.start()
+	sound_weak_ashstorm.start()
 
 /datum/weather/ash_storm/start()
 	. = ..()
-	sound_wo.stop()
-	sound_wi.stop()
+	sound_weak_ashstorm.stop()
 
-	sound_ao.start()
-	sound_ai.start()
+	sound_active_ashstorm.start()
 
 /datum/weather/ash_storm/wind_down()
 	. = ..()
-	sound_ao.stop()
-	sound_ai.stop()
+	sound_active_ashstorm.stop()
 
-	sound_wo.start()
-	sound_wi.start()
+	sound_weak_ashstorm.start()
 
 /datum/weather/ash_storm/end()
 	. = ..()
-	sound_wo.stop()
-	sound_wi.stop()
+	sound_weak_ashstorm.stop()
 
 /datum/weather/ash_storm/proc/is_storm_immune(atom/L)
 	while (L && !isturf(L))

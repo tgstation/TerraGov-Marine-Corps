@@ -64,7 +64,7 @@
 	var/turf/right = locate(C.x + leftright, C.y, C.z)
 
 	for(var/turf/T in range(3, rear)+range(3, left)+range(3, right)+range(2, front))
-		T.empty(/turf/open/floor/plating)
+		T.empty(/turf/open/floor/plating, ignore_typecache = typecacheof(/mob))
 
 	SSmonitor.process_human_positions()
 	SSevacuation.initial_human_on_ship = SSmonitor.human_on_ship
@@ -490,9 +490,11 @@
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
+	#ifndef TESTING
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(X, span_xenowarning("It's too early to do this!"))
 		return
+	#endif
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
@@ -500,9 +502,11 @@
 		M.unlock_all()
 		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
-			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flight."))
-			M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
-			M.do_start_hijack_timer()
+			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors[(M.mode != SHUTTLE_IGNITING) ? "and preventing it from flying." : ", but we are unable to prevent it from flying as it is already taking off!"]"))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, src)
+			if(M.mode != SHUTTLE_IGNITING)
+				M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
+				M.do_start_hijack_timer()
 
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")

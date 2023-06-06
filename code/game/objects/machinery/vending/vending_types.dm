@@ -357,8 +357,8 @@
 			pixel_x = 21
 
 /obj/machinery/vending/nanomed/tadpolemed
-	name = "Flight surgeron medical equipment dispenser"
-	desc = "Dedicated for the surgeron with wings, this humble box contains a lot for its size."
+	name = "Flight surgeon medical equipment dispenser"
+	desc = "Dedicated for the surgeon with wings, this humble box contains a lot for its size."
 	products = list(
 		"Autoinjectors" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 2,

@@ -31,6 +31,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/list/total_projectile_hits = list()
 	var/total_bullet_hits_on_marines = 0
 	var/total_bullet_hits_on_xenos = 0
+	var/workout_counts = list()
 	var/total_larva_burst = 0
 	var/trap_holes = 0
 	var/boiler_acid_smokes = 0

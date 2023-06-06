@@ -38,11 +38,15 @@
 #define TRAP_ACID_NORMAL "acid"
 #define TRAP_ACID_STRONG "strong acid"
 
+//Xeno acid strength defines
+#define WEAK_ACID_STRENGTH 0.016
+#define REGULAR_ACID_STRENGTH 0.04
+#define STRONG_ACID_STRENGTH 0.1
+
 #define PUPPET_RECALL "recall puppet"
 #define PUPPET_SEEK_CLOSEST "seeking closest and attack order" //not xeno-usable
 #define PUPPET_ATTACK "seek and attack order"
 #define PUPPET_SCOUT "scouting order"
-
 
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(

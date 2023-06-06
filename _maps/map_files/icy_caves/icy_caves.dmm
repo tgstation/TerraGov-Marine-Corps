@@ -149,7 +149,7 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aD" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
 	},
@@ -6249,7 +6249,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship,
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/tcomms,
 /area/icy_caves/caves/northwestmonorail)
 "Gi" = (
@@ -8917,7 +8917,7 @@
 /area/icy_caves/outpost/outside)
 "TR" = (
 /obj/structure/table/flipped,
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},

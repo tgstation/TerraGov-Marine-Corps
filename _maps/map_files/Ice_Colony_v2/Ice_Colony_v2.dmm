@@ -50,7 +50,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aaL" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -19365,13 +19365,13 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/ice_colony/underground/maintenance/east)
 "bQx" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 4
+/turf/closed/shuttle/ert/engines/left/three{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bQy" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 4
+/turf/closed/shuttle/ert/engines/right/three{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bQz" = (
@@ -19438,9 +19438,6 @@
 	dir = 4
 	},
 /area/ice_colony/surface/excavationbarracks)
-"bQN" = (
-/turf/closed/shuttle/ert/engines/left,
-/area/ice_colony/underground/responsehangar)
 "bQO" = (
 /turf/closed/shuttle/dropship_white/backhatch,
 /area/ice_colony/underground/responsehangar)
@@ -19481,9 +19478,6 @@
 /turf/closed/shuttle/dropship_white/backhatch{
 	dir = 4
 	},
-/area/ice_colony/underground/responsehangar)
-"bQV" = (
-/turf/closed/shuttle/ert/engines/right,
 /area/ice_colony/underground/responsehangar)
 "bQW" = (
 /obj/structure/cable,
@@ -21775,6 +21769,13 @@
 	dir = 4
 	},
 /area/ice_colony/surface/hangar/hallway)
+"cEY" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ice_colony/underground/engineering/substation)
 "cGg" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -25679,6 +25680,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
+"kgh" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/plating,
+/area/ice_colony/underground/engineering/substation)
 "kgl" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/disposalpipe/segment/corner{
@@ -25908,7 +25913,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "kwg" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -27801,7 +27806,6 @@
 	dir = 8
 	},
 /obj/effect/landmark/corpsespawner/security{
-	corpsebelt = null;
 	corpsesuit = /obj/item/clothing/suit/storage/CMB;
 	corpseuniform = /obj/item/clothing/under/CM_uniform;
 	name = "Deputy Edgar Nogi"
@@ -29432,7 +29436,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/security{
-	corpsebelt = null;
 	corpsesuit = /obj/item/clothing/suit/storage/CMB;
 	corpseuniform = /obj/item/clothing/under/CM_uniform;
 	name = "Deputy Edgar Nogi"
@@ -29813,7 +29816,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/wood,
 /area/ice_colony/surface/clinic/treatment)
 "rBH" = (
@@ -30270,6 +30273,11 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
+"skQ" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/ice_colony/underground/responsehangar)
 "snp" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/open/floor/plating/ground/ice,
@@ -32518,6 +32526,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
+"vYZ" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
+/area/ice_colony/underground/responsehangar)
 "vZw" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -54537,7 +54550,7 @@ btz
 lHO
 bSV
 caD
-aqv
+cEY
 buE
 btz
 rOI
@@ -56022,7 +56035,7 @@ bsh
 rKs
 buH
 buj
-buj
+kgh
 btz
 bpm
 bYY
@@ -73771,8 +73784,8 @@ blf
 bFQ
 bNY
 bQx
+skQ
 bQG
-bQN
 rYI
 bRj
 aGB
@@ -75043,8 +75056,8 @@ blf
 bKd
 bOM
 bQy
+vYZ
 bQH
-bQV
 rYI
 bRj
 aGB
