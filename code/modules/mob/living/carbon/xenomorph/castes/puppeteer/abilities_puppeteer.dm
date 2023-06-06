@@ -311,7 +311,7 @@
 	///Whether we should cancel instead of doing the thing when activated
 	var/talking = FALSE
 	///our current target
-	var/mob/living/active_target
+	var/mob/living/carbon/active_target
 
 /datum/action/xeno_action/activable/articulate/use_ability(mob/living/victim)
 	if(talking)
@@ -329,11 +329,11 @@
 	talking = TRUE
 	add_cooldown()
 	
-/datum/action/xeno_action/activable/articulate/proc/relay_speech(mob/living/source, list/raw_args)
+/datum/action/xeno_action/activable/articulate/proc/relay_speech(mob/living/carbon/source, arguments)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(relay_speech_async), active_target, raw_args[1]) // FUCK
+	INVOKE_ASYNC(src, PROC_REF(relay_speech_async), active_target, arguments[1]) // FUCK
 
-/datum/action/xeno_action/activable/articulate/proc/relay_speech_async(mob/living/target, text)
+/datum/action/xeno_action/activable/articulate/proc/relay_speech_async(mob/living/carbon/target, text)
 	target.say(text, language = /datum/language/common, forced = "puppeteer articulate ability")
 
 /datum/action/xeno_action/activable/articulate/proc/cancel(atom/target)
