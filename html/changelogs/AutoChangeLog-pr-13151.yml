@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "Alamo shouldn't delete you if you stand near the doors when it crashes"
-  - bugfix: "Fixed AI nodes being deleted when turfs get emptied"

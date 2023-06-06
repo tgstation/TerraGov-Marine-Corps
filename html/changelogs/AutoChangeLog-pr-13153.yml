@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes:
-  - bugfix: "Dropping your gun while blind resets any active scope"

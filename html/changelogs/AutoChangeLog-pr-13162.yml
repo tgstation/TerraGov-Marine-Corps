@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "The GL54 razor nade magazines have the correct name in req now"
