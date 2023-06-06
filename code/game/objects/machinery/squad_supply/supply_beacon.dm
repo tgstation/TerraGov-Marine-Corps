@@ -104,7 +104,6 @@
 	icon_state = "motion0"
 	icon_activated = "motion2"
 	activation_time = 60
-	underground_signal = TRUE
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 
