@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(resinshaping)
 	flags = SS_NO_FIRE
 	/// Counter for quickbuilds, as long as this is above 0 building is instant.
 	var/quickbuilds = 0
-	/// Used to check wheter or not the subsystem is active , used for preventing refunds from early landings
+	/// Whether or not quickbuild is enabled. Set to FALSE when the game starts.
 	var/active = TRUE
 
 /datum/controller/subsystem/resinshaping/stat_entry()
