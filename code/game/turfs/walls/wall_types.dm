@@ -389,3 +389,12 @@
 	walltype = "woodrwall"
 	max_integrity = 3000
 	explosion_block = 4
+
+/turf/closed/wall/brick
+	name = "brick wall"
+	desc = "A wall made out of weathered brick."
+	icon = 'icons/turf/walls/brick.dmi'
+	icon_state = "wall-0"
+	walltype = "wall"
+
+	base_icon_state = "wall"
