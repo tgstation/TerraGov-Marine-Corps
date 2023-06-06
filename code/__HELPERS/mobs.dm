@@ -53,7 +53,7 @@
 	return GLOB.roundstart_species
 
 
-/proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, ignore_flags = NONE, datum/callback/extra_checks)
+/proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, ignore_flags = NONE, datum/callback/extra_checks, dont_interrupt_other_actions = FALSE)
 	if(!user || !target)
 		return FALSE
 	var/user_loc = user.loc
@@ -63,7 +63,10 @@
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, target, user_display, target_display) : null
 
-	LAZYINCREMENT(user.do_actions, target)
+	if(dont_interrupt_other_actions)
+		LAZYINCREMENT(user.do_actions_not_busy, target)
+	else
+		LAZYINCREMENT(user.do_actions, target)
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = TRUE
@@ -94,7 +97,10 @@
 	if(P)
 		qdel(P)
 
-	LAZYDECREMENT(user.do_actions, target)
+	if(dont_interrupt_other_actions)
+		LAZYDECREMENT(user.do_actions_not_busy, target)
+	else
+		LAZYDECREMENT(user.do_actions, target)
 
 
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
@@ -115,7 +121,7 @@
 	return ..()
 
 
-/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks, ignore_turf_checks = FALSE)
+/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks, ignore_turf_checks = FALSE, dont_interrupt_other_actions = FALSE)
 	if(!user)
 		return FALSE
 
@@ -133,7 +139,10 @@
 		progtarget = user
 	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, progtarget, user_display, target_display) : null
 
-	LAZYINCREMENT(user.do_actions, target)
+	if(dont_interrupt_other_actions)
+		LAZYINCREMENT(user.do_actions_not_busy, target)
+	else
+		LAZYINCREMENT(user.do_actions, target)
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = TRUE
@@ -155,7 +164,10 @@
 			break
 	if(P)
 		qdel(P)
-	LAZYDECREMENT(user.do_actions, target)
+	if(dont_interrupt_other_actions)
+		LAZYDECREMENT(user.do_actions_not_busy, target)
+	else
+		LAZYDECREMENT(user.do_actions, target)
 
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1

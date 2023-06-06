@@ -136,7 +136,7 @@
 		INVOKE_ASYNC(src, PROC_REF(continue_attacking), I, user, params, previous_type)
 
 /turf/closed/wall/resin/proc/continue_attacking(obj/item/I, mob/living/user, params, previous_type)
-	if(user.ckey && user.client && !user.do_actions && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_HOSTILE) && previous_type == type && user.ckey && user.client)
+	if(user.ckey && user.client && !LAZYACCESS(user.do_actions_not_busy, src) && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_HOSTILE, dont_interrupt_other_actions = TRUE) && previous_type == type && user.ckey && user.client)
 		attackby(I, user, params)
 
 
