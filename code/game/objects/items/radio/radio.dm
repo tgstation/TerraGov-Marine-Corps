@@ -291,6 +291,10 @@
 		signal.broadcast()
 		return
 
+	var/area/A = get_area(src)
+	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		return
+
 	// All non-independent radios make an attempt to use the subspace system first
 	signal.send_to_receivers()
 
@@ -338,6 +342,9 @@
 	if(!(RADIO_NO_Z_LEVEL_RESTRICTION in levels))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in levels))
+			return FALSE
+		var/area/A = get_area(src)
+		if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 			return FALSE
 
 	// allow checks: are we listening on that frequency?
