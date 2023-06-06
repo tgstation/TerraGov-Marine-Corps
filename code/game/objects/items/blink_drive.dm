@@ -84,9 +84,8 @@
 	if(is_mainship_level(human_user.z))
 		human_user.balloon_alert(human_user, "can't use here")
 		return
-	if(istype(SSticker.mode, /datum/game_mode/combat_patrol))
-		if(isroombaracegamemode(SSticker.mode))
-			human_user.balloon_alert(human_user, "can't use in this gamemode")
+	if(isroombaracegamemode(SSticker.mode))
+		human_user.balloon_alert(human_user, "can't use in this gamemode")
 		return
 	if(charges <= 0)
 		human_user.balloon_alert(human_user, "no charge")
