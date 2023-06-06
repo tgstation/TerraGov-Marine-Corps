@@ -177,6 +177,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// If unique action will only act on the item in the active hand. If false, it will try to act on the item on the inactive hand as well in certain conditions.
 	var/unique_action_use_active_hand = TRUE
 
+	/// Autoattack preference setting, refer to autoattack.dm for state defines.
+	var/autoattack = AUTOATTACK_OFF
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))

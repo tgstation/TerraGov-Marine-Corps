@@ -34,6 +34,7 @@
 #include "code\__DEFINES\atmospherics.dm"
 #include "code\__DEFINES\atom_hud.dm"
 #include "code\__DEFINES\attachments.dm"
+#include "code\__DEFINES\autoattack.dm"
 #include "code\__DEFINES\autofire.dm"
 #include "code\__DEFINES\bitfields.dm"
 #include "code\__DEFINES\buckling.dm"
