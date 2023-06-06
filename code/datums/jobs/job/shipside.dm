@@ -19,6 +19,11 @@
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/command/captain
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/command/captain,
+		/datum/outfit/job/command/captain_robot,
+	)
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP|JOB_FLAG_LOUDER_TTS
@@ -74,10 +79,29 @@ Godspeed, captain! And remember, you are not above the law."})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership
 
+/datum/outfit/job/command/fieldcommander_robot
+	name = CAPTAIN
+	jobtype = /datum/job/terragov/command/captain
+	species = SPECIES_COMBAT_ROBOT
+
+	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
+
 /datum/outfit/job/command/captain/rebel
 	jobtype = /datum/job/terragov/command/captain/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
+/datum/outfit/job/command/captain_robot/rebel
+	jobtype = /datum/job/terragov/command/captain/rebel
+	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
@@ -224,6 +248,11 @@ Make the TGMC proud!"})
 	skills_type = /datum/skills/so
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
 	outfit = /datum/outfit/job/command/staffofficer
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/command/staffofficer,
+		/datum/outfit/job/command/staffofficer_robot,
+	)
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
@@ -289,7 +318,27 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
 
+/datum/outfit/job/command/staffofficer_robot
+	name = STAFF_OFFICER
+	jobtype = /datum/job/terragov/command/staffofficer
+	species = SPECIES_COMBAT_ROBOT
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot/light
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/binoculars/tactical
+
 /datum/outfit/job/command/staffofficer/rebel
+	jobtype = /datum/job/terragov/command/staffofficer/rebel
+	ears = /obj/item/radio/headset/mainship/mcom/rebel
+
+/datum/outfit/job/command/staffofficer_robot/rebel
 	jobtype = /datum/job/terragov/command/staffofficer/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
@@ -739,6 +788,11 @@ A happy ship is a well-functioning ship."})
 	skills_type = /datum/skills/cmo
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/medical/professor,
+		/datum/outfit/job/medical/professor_robot,
+	)
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
@@ -807,7 +861,27 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	r_store = /obj/item/storage/pouch/medkit/medic
 	l_store = /obj/item/storage/pouch/surgery
 
+/datum/outfit/job/medical/professor_robot
+	name = CHIEF_MEDICAL_OFFICER
+	jobtype = /datum/job/terragov/medical/professor
+	species = SPECIES_COMBAT_ROBOT
+
+	id = /obj/item/card/id
+	belt = /obj/item/storage/belt/rig/medical
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot/light
+	shoes = null
+	gloves = null
+	glasses = /obj/item/clothing/glasses/hud/health
+	r_store = /obj/item/storage/pouch/medkit/medic
+	l_store = /obj/item/storage/pouch/surgery
+
 /datum/outfit/job/medical/professor/rebel
+	jobtype = /datum/job/terragov/medical/professor/rebel
+	ears = /obj/item/radio/headset/mainship/mcom/rebel
+
+/datum/outfit/job/medical/professor_robot/rebel
 	jobtype = /datum/job/terragov/medical/professor/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
@@ -828,6 +902,11 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
 	outfit = /datum/outfit/job/medical/medicalofficer
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/medical/medicalofficer,
+		/datum/outfit/job/medical/medicalofficer_robot,
+	)
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
@@ -892,7 +971,25 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
 
+/datum/outfit/job/medical/medicalofficer_robot
+	name = MEDICAL_DOCTOR
+	jobtype = /datum/job/terragov/medical/medicalofficer
+	species = SPECIES_COMBAT_ROBOT
+
+	id = /obj/item/card/id
+	belt = /obj/item/storage/belt/rig/medical
+	ears = /obj/item/radio/headset/mainship/doc
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot/light
+	shoes = null
+	gloves = null
+	glasses = /obj/item/clothing/glasses/hud/health
+
 /datum/outfit/job/medical/medicalofficer/rebel
+	jobtype = /datum/job/terragov/medical/medicalofficer/rebel
+	ears = /obj/item/radio/headset/mainship/doc/rebel
+
+/datum/outfit/job/medical/medicalofficer_robot/rebel
 	jobtype = /datum/job/terragov/medical/medicalofficer/rebel
 	ears = /obj/item/radio/headset/mainship/doc/rebel
 
@@ -914,6 +1011,11 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	skills_type = /datum/skills/researcher
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/medical/researcher,
+		/datum/outfit/job/medical/researcher_robot,
+	)
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
@@ -969,6 +1071,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 /datum/outfit/job/medical/researcher
 	name = MEDICAL_RESEARCHER
 	jobtype = /datum/job/terragov/medical/researcher
+
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/rig/research
 	ears = /obj/item/radio/headset/mainship/res
@@ -979,7 +1082,25 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 
+/datum/outfit/job/medical/researcher_robot
+	name = MEDICAL_RESEARCHER
+	jobtype = /datum/job/terragov/medical/researcher
+	species = SPECIES_COMBAT_ROBOT
+
+	id = /obj/item/card/id
+	belt = /obj/item/storage/belt/rig/research
+	ears = /obj/item/radio/headset/mainship/res
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot/light
+	shoes = null
+	gloves = null
+	glasses = /obj/item/clothing/glasses/hud/health
+
 /datum/outfit/job/medical/researcher/rebel
+	jobtype = /datum/job/terragov/medical/researcher/rebel
+	ears = /obj/item/radio/headset/mainship/doc/rebel
+
+/datum/outfit/job/medical/researcher_robot/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel
 	ears = /obj/item/radio/headset/mainship/doc/rebel
 
