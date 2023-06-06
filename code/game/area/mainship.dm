@@ -172,6 +172,10 @@
 	name = "Vehicle Armor Storage"
 	icon_state = "exoarmor"
 
+/area/mainship/hallways/boxingring
+	name = "Boxing Ring"
+	icon_state = "Holodeck"
+
 /area/mainship/hallways/repair_bay
 	name = "Vehicle Repair Bay"
 	icon_state = "dropshiprepair"

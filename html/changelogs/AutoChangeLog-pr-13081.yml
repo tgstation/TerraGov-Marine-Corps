@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - qol: "The AI can now issue an alert for a specific xeno or xeno structure by middle clicking them."

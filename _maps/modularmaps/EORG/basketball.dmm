@@ -698,7 +698,7 @@
 /area/deathmatch)
 "zd" = (
 /obj/effect/landmark/eord_roomba,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "zl" = (
 /obj/structure/bed/chair{
