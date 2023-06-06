@@ -6,6 +6,8 @@
 	var/map_name
 	///path of map for this round
 	var/map_file
+	///how long until shutters open after this round is selected
+	var/shutter_delay = 2 MINUTES
 	///faction that chose the round
 	var/starting_faction
 	///faction that did not choose the round
@@ -66,6 +68,8 @@
 
 	play_selection_intro()
 	load_map()
+
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_round, start_round)), shutter_delay)
 
 /datum/game_round/Destroy(force, ...)
 	STOP_PROCESSING(SSslowprocess, src)
@@ -321,3 +325,52 @@
 	name = "Combat patrol 3"
 	map_name = "Desparity"
 	map_file = '_maps/map_files/desparity/desparity.dmm'
+
+/////basic destroy stuff round
+/datum/game_round/destroy_mission
+	name = "Target Destruction" //(tm)
+	map_name = "Ice Caves"
+	map_file = '_maps/map_files/icy_caves/icy_caves.dmm'
+	objective_description = list( //update
+		"starting_faction" = "<U>Major Victory</U>:Destroy all targets.<br> <U>Minor Victory</U>: Destroy at least X targets.",
+		"hostile_faction" = "<U>Major Victory</U>: Protect all assets from destruction.<br> <U>Minor Victory</U>: Protect at least X assets.",
+	)
+	max_game_time = 20 MINUTES
+	victory_point_rewards = list(
+		GAME_ROUND_OUTCOME_MAJOR_VICTORY = list(3, 0),
+		GAME_ROUND_OUTCOME_MINOR_VICTORY = list(1, 0),
+		GAME_ROUND_OUTCOME_DRAW = list(0, 0),
+		GAME_ROUND_OUTCOME_MINOR_LOSS = list(0, 1),
+		GAME_ROUND_OUTCOME_MAJOR_LOSS = list(0, 3),
+	)
+	attrition_point_rewards = list(
+		GAME_ROUND_OUTCOME_MAJOR_VICTORY = list(20, 5),
+		GAME_ROUND_OUTCOME_MINOR_VICTORY = list(15, 10),
+		GAME_ROUND_OUTCOME_DRAW = list(10, 10),
+		GAME_ROUND_OUTCOME_MINOR_LOSS = list(10, 15),
+		GAME_ROUND_OUTCOME_MAJOR_LOSS = list(5, 20),
+	)
+	///All objectives to be destroyed
+	var/list/object/target_list = list() //the objectives are added to the list when they init
+	///number of targets destroyed for a minor victory
+	var/min_destruction_amount = 3 //placeholder number
+
+/datum/game_round/destroy_mission/check_round_progress()
+	if(outcome)
+		return TRUE
+
+	if(!game_timer)
+		return
+
+//todo: remove these if nothing new is added
+/datum/game_round/destroy_mission/apply_major_victory()
+	. = ..()
+
+/datum/game_round/destroy_mission/apply_minor_victory()
+	. = ..()
+
+/datum/game_round/destroy_mission/apply_minor_loss()
+	. = ..()
+
+/datum/game_round/destroy_mission/apply_major_loss()
+	. = ..()

@@ -95,7 +95,6 @@
 ///sets up the newly selected round
 /datum/game_mode/hvh/campaign/proc/load_new_round(datum/game_round/new_round, acting_faction)
 	current_round = new new_round(acting_faction)
-	addtimer(CALLBACK(current_round, TYPE_PROC_REF(/datum/game_round, start_round)), current_round.shutter_delay)
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
 ///each faction chooses how many attrition points to use for the upcoming round
