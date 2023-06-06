@@ -215,6 +215,10 @@
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
 	var/additional_stacks = 0
 
+	// *** Baneling Abilities ***
+	/// The additional amount of movementspeed that baneling gets from rolling
+	var/rolling_speed_bonus = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
@@ -403,6 +407,10 @@
 	var/endure = FALSE
 	///when true the rav leeches healing off of hitting marines
 	var/vampirism
+
+	// *** Baneling vars *** //
+	/// 0 running icon state 1 rolling icon state
+	var/rolling = 0
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger

@@ -826,6 +826,9 @@
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
 #define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
 
+#define COMSIG_XENOABILITY_TOGGLE_ROLLING "xenoability_toggle_rolling"
+#define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
+
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
 #define COMSIG_PARRY_TRIGGER "parry_trigger"

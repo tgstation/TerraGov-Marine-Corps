@@ -16,6 +16,7 @@
 #define XACT_DO_AFTER_ATTACK (1 << 15) //Let the xeno attack the object and perform the ability.
 #define XACT_USE_BURROWED (1 << 16) // ignore being burrowed
 #define XACT_USE_ROOTED (1 << 17) // ignore being currently rooted
+#define XACT_USE_ROLLING (1 << 18) // ignore currently rolling
 
 #define XABB_TURF_TARGET (1 << 0) // ability targets turfs
 #define XABB_MOB_TARGET (1 << 1) // ability targets mobs
