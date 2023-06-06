@@ -53,7 +53,7 @@
 	return GLOB.roundstart_species
 
 
-/proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, ignore_flags = NONE, datum/callback/extra_checks, dont_interrupt_other_actions = FALSE)
+/proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, ignore_flags = NONE, datum/callback/extra_checks, id_to_use)
 	if(!user || !target)
 		return FALSE
 	var/user_loc = user.loc
@@ -63,8 +63,8 @@
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, target, user_display, target_display) : null
 
-	if(dont_interrupt_other_actions)
-		LAZYINCREMENT(user.do_actions_not_busy, target)
+	if(id_to_use)
+		LAZYINCREMENT(user.do_actions_with_ids, id_to_use)
 	else
 		LAZYINCREMENT(user.do_actions, target)
 	var/endtime = world.time + delay
@@ -97,8 +97,8 @@
 	if(P)
 		qdel(P)
 
-	if(dont_interrupt_other_actions)
-		LAZYDECREMENT(user.do_actions_not_busy, target)
+	if(id_to_use)
+		LAZYDECREMENT(user.do_actions_with_ids, id_to_use)
 	else
 		LAZYDECREMENT(user.do_actions, target)
 
@@ -121,7 +121,7 @@
 	return ..()
 
 
-/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks, ignore_turf_checks = FALSE, dont_interrupt_other_actions = FALSE)
+/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks, ignore_turf_checks = FALSE, id_to_use)
 	if(!user)
 		return FALSE
 
@@ -139,8 +139,8 @@
 		progtarget = user
 	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, progtarget, user_display, target_display) : null
 
-	if(dont_interrupt_other_actions)
-		LAZYINCREMENT(user.do_actions_not_busy, target)
+	if(id_to_use)
+		LAZYINCREMENT(user.do_actions_with_ids, id_to_use)
 	else
 		LAZYINCREMENT(user.do_actions, target)
 	var/endtime = world.time + delay
@@ -164,11 +164,10 @@
 			break
 	if(P)
 		qdel(P)
-	if(dont_interrupt_other_actions)
-		LAZYDECREMENT(user.do_actions_not_busy, target)
+	if(id_to_use)
+		LAZYDECREMENT(user.do_actions_with_ids, id_to_use)
 	else
 		LAZYDECREMENT(user.do_actions, target)
-
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
 	. = 1

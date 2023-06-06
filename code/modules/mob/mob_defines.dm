@@ -84,8 +84,8 @@
 	//Interaction
 	///Lazylist assoc list of do_after and do_mob actions the mob is currently performing: list([target] = amount)
 	var/list/do_actions
-	///Same as do_actions except it only contains actions that are NOT intended interrupt other actions (don't length check this, use LAZYACCESS instead)
-	var/list/do_actions_not_busy
+	///Lazylist assoc list of actions that are NOT intended interrupt other actions, used when id_to_use is set when calling do_after or do_mob. (don't length check this, use LAZYACCESS instead)
+	var/list/do_actions_with_ids
 	var/datum/click_intercept
 	///the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
 	var/atom/movable/interactee

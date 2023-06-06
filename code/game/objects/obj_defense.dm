@@ -143,7 +143,7 @@
 	return TRUE
 
 /obj/proc/continue_attacking_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.ckey && X.client && !QDELETED(src) && !LAZYACCESS(X.do_actions_not_busy, src) && do_after(X, CLICK_CD_MELEE, TRUE, src, BUSY_ICON_HOSTILE, dont_interrupt_other_actions = TRUE) && !QDELETED(src) && X.ckey && X.client)
+	if(X.ckey && X.client && !QDELETED(src) && !LAZYACCESS(X.do_actions_with_ids, DOACTION_AUTOATTACK) && do_after(X, CLICK_CD_MELEE, TRUE, src, BUSY_ICON_HOSTILE, id_to_use = DOACTION_AUTOATTACK) && !QDELETED(src) && X.ckey && X.client)
 		attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 
 

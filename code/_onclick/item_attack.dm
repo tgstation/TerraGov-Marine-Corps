@@ -70,7 +70,7 @@
 	return
 
 /obj/proc/continue_attacking(obj/item/I, mob/user, params)
-	if(user.ckey && user.client && !QDELETED(src) && !LAZYACCESS(user.do_actions_not_busy, src) && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_HOSTILE, dont_interrupt_other_actions = TRUE) && !QDELETED(src) && user.ckey && user.client)
+	if(user.ckey && user.client && !QDELETED(src) && !LAZYACCESS(user.do_actions_with_ids, DOACTION_AUTOATTACK) && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_HOSTILE, id_to_use = DOACTION_AUTOATTACK) && !QDELETED(src) && user.ckey && user.client)
 		attackby(I, user, params)
 
 /obj/item/proc/attack_obj(obj/O, mob/living/user)

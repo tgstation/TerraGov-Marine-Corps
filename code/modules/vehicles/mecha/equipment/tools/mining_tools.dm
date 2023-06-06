@@ -36,7 +36,7 @@
 			return
 
 	// You can't drill harder by clicking more.
-	if(!LAZYACCESS(source.do_actions, target) && do_after_cooldown(target, source, DOAFTER_SOURCE_MECHADRILL))
+	if(!LAZYACCESS(source.do_actions, target) && do_after_cooldown(target, source, DOACTION_MECHADRILL))
 
 		target.visible_message(span_warning("[chassis] starts to drill [target]."), \
 					span_userdanger("[chassis] starts to drill [target]..."), \
