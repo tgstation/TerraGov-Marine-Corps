@@ -329,9 +329,9 @@
 	talking = TRUE
 	add_cooldown()
 	
-/datum/action/xeno_action/activable/articulate/proc/relay_speech(mob/living/source, args)
+/datum/action/xeno_action/activable/articulate/proc/relay_speech(mob/living/source, list/raw_args)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(relay_speech_async), active_target, args[1]) // FUCK
+	INVOKE_ASYNC(src, PROC_REF(relay_speech_async), active_target, raw_args[1]) // FUCK
 
 /datum/action/xeno_action/activable/articulate/proc/relay_speech_async(mob/living/target, text)
 	target.say(text, language = /datum/language/common, forced = "puppeteer articulate ability")
