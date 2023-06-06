@@ -6697,7 +6697,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/turf/open/floor/wood/broken/five,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/command/heads_quarters/captain/private)
 "bsF" = (
 /obj/structure/table/reinforced,
@@ -58637,7 +58637,7 @@
 	pixel_y = 6
 	},
 /obj/effect/spawner/random/machinery/machine_frame,
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/commons/dorms)
 "lUl" = (
 /obj/structure/bed/chair/sofa/left,
@@ -68716,7 +68716,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/command/heads_quarters/captain/private)
 "oaK" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -92062,7 +92062,7 @@
 "sIb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/securearea,
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/maintenance/starboard/aft)
 "sIc" = (
 /obj/effect/spawner/random/machinery/hydrotray,
@@ -93202,7 +93202,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/command/heads_quarters/captain/private)
 "sUZ" = (
 /obj/machinery/door/firedoor{
@@ -110813,7 +110813,7 @@
 /area/deltastation/ai_monitored/aisat/exterior)
 "wsV" = (
 /obj/effect/spawner/random/machinery/photocopier,
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/command/heads_quarters/captain/private)
 "wsW" = (
 /obj/machinery/holopad,

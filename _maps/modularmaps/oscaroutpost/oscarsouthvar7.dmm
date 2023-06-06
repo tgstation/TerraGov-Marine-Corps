@@ -109,12 +109,9 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
-"dU" = (
-/turf/open/floor/wood/broken/five,
-/area/oscar_outpost/village/abandonedbase)
 "ea" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/oscar_outpost/village/abandonedbase)
 "ee" = (
 /obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
@@ -197,9 +194,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grayscale/round/black,
-/area/oscar_outpost/village/abandonedbase)
-"fI" = (
-/turf/open/floor/wood/broken/two,
 /area/oscar_outpost/village/abandonedbase)
 "fK" = (
 /obj/effect/ai_node,
@@ -297,7 +291,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
 	},
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/oscar_outpost/village/abandonedbase)
 "iK" = (
 /obj/structure/bed,
@@ -411,7 +405,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "ly" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/oscar_outpost/village/abandonedbase)
 "lA" = (
 /obj/structure/table/woodentable,
@@ -691,7 +685,7 @@
 "qj" = (
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/oscar_outpost/village/abandonedbase)
 "qm" = (
 /obj/machinery/light{
@@ -915,7 +909,7 @@
 	},
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/oscar_outpost/village/abandonedbase)
 "wa" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -984,12 +978,6 @@
 /obj/item/paper,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/bar,
-/area/oscar_outpost/village/abandonedbase)
-"zy" = (
-/obj/structure/bed/chair/wood/normal{
-	dir = 4
-	},
-/turf/open/floor/wood/broken/four,
 /area/oscar_outpost/village/abandonedbase)
 "zL" = (
 /obj/effect/turf_decal/tile/corsatcorner/white{
@@ -1446,7 +1434,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "JI" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/oscar_outpost/village/abandonedbase)
 "JK" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -1537,7 +1525,7 @@
 "Mg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/misc/trash,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/oscar_outpost/village/abandonedbase)
 "Mm" = (
 /obj/effect/turf_decal/tile/corsatcorner/white{
@@ -1910,7 +1898,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "UE" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/oscar_outpost/village/abandonedbase)
 "UH" = (
 /obj/effect/turf_decal/tile/corsatstraight/white{
@@ -2502,7 +2490,7 @@ iT
 YM
 RF
 Eq
-zy
+ix
 YM
 Rx
 Eq
@@ -2760,7 +2748,7 @@ MI
 Eq
 Qj
 Qj
-fI
+UE
 yX
 Ef
 Xn
@@ -2782,7 +2770,7 @@ Qq
 Rx
 Eq
 Qz
-dU
+UE
 iT
 Eq
 Rx

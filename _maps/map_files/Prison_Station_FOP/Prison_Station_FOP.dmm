@@ -11006,7 +11006,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/chapel)
 "aIO" = (
 /obj/structure/bookcase,
@@ -14491,7 +14491,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "aTE" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -20807,7 +20807,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/chapel)
 "bmu" = (
 /obj/machinery/light{
@@ -24076,7 +24076,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/central)
 "bxj" = (
 /obj/structure/cable,
@@ -25170,7 +25170,7 @@
 /area/prison/residential/central)
 "bAV" = (
 /obj/machinery/alarm,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/parole/main)
 "bAW" = (
 /turf/open/floor/prison/green{
@@ -30093,7 +30093,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/central)
 "bRi" = (
 /obj/structure/bed/chair/comfy{
@@ -30183,7 +30183,7 @@
 /area/prison/library)
 "bRz" = (
 /obj/item/clothing/under/redpyjamas,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/central)
 "bRA" = (
 /obj/structure/cable,
@@ -30694,7 +30694,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/library)
 "bTg" = (
 /obj/machinery/light{
@@ -39299,7 +39299,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "cvV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -40328,7 +40328,7 @@
 /area/space)
 "cFk" = (
 /obj/machinery/light/small,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "cIe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -40576,7 +40576,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "drJ" = (
 /obj/structure/cable,
@@ -40758,7 +40758,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "dVh" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -40868,7 +40868,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/north)
 "ejP" = (
 /obj/effect/landmark/weed_node,
@@ -41239,7 +41239,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/central)
 "fbA" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -41390,7 +41390,7 @@
 /area/prison/hangar/civilian)
 "fwZ" = (
 /obj/structure/bookcase,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/library)
 "fya" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -41628,7 +41628,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "ghU" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -42056,7 +42056,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "hrX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -42290,7 +42290,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
 "hXd" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/library)
 "hYi" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -42443,7 +42443,7 @@
 /area/prison/hangar_storage/main)
 "iqq" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/parole/protective_custody)
 "iqy" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -42758,7 +42758,7 @@
 "jeP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/chapel)
 "jfO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -42847,7 +42847,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "joL" = (
 /obj/structure/cable,
@@ -42958,7 +42958,7 @@
 /area/prison/cellblock/highsec/north/south)
 "jAw" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/parole/main)
 "jBM" = (
 /obj/machinery/light{
@@ -43165,7 +43165,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 1
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/central)
 "jZZ" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -43375,7 +43375,7 @@
 /area/prison/yard)
 "kEX" = (
 /obj/structure/table/woodentable,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "kGj" = (
 /obj/machinery/light/small{
@@ -44251,7 +44251,7 @@
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "naL" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "nbG" = (
 /obj/structure/cable,
@@ -44680,7 +44680,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/north)
 "oaR" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -44794,7 +44794,7 @@
 /area/prison/cellblock/mediumsec/south)
 "ojl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "okw" = (
 /turf/open/floor/wood,
@@ -44883,7 +44883,7 @@
 	dir = 2;
 	name = "Bedroom"
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "ovE" = (
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -45001,7 +45001,7 @@
 "oSl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "oTH" = (
 /obj/structure/bed,
@@ -45060,7 +45060,7 @@
 "pgl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "phd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -45530,7 +45530,7 @@
 /area/prison/hangar/civilian)
 "qhZ" = (
 /obj/structure/cable,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/library)
 "qio" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -45849,7 +45849,7 @@
 	},
 /area/prison/security)
 "raF" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/parole/protective_custody)
 "raQ" = (
 /obj/effect/decal/cleanable/blood/gibs,
@@ -47351,7 +47351,7 @@
 /area/prison/command/quarters)
 "uEU" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/south)
 "uGx" = (
 /turf/open/floor/prison/yellow{
@@ -47432,7 +47432,7 @@
 /turf/open/floor/prison,
 /area/prison/hangar/main)
 "uRJ" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/chapel)
 "uTr" = (
 /obj/structure/table/reinforced,
@@ -47681,7 +47681,7 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/space)
 "vue" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/residential/central)
 "vuH" = (
 /obj/effect/spawner/random/engineering/toolbox,
@@ -47739,7 +47739,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "vEh" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/parole/main)
 "vEk" = (
 /obj/structure/cable,
@@ -47782,7 +47782,7 @@
 /area/prison/yard)
 "vHs" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/prison/library)
 "vHN" = (
 /obj/structure/reagent_dispensers/wallmounted/peppertank,

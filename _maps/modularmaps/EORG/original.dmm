@@ -750,7 +750,7 @@
 /area/deathmatch)
 "dI" = (
 /obj/structure/window_frame/wood,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deathmatch)
 "dJ" = (
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
@@ -812,7 +812,7 @@
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Civilian Housing"
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deathmatch)
 "ed" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1078,7 +1078,7 @@
 	},
 /area/deathmatch)
 "oS" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deathmatch)
 "pj" = (
 /obj/effect/ai_node,

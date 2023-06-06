@@ -1253,7 +1253,7 @@
 	},
 /area/lv624/ground/river3)
 "gL" = (
-/turf/open/floor/wood/broken/three,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/spaceport)
 "gM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1727,7 +1727,7 @@
 /obj/structure/cable,
 /obj/structure/table/gamblingtable,
 /obj/item/toy/deck/kotahi,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/bar)
 "je" = (
 /turf/open/floor/tile/barber,
@@ -2259,7 +2259,7 @@
 /area/lv624/ground/river3)
 "lS" = (
 /obj/structure/cable,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/bar)
 "lT" = (
 /obj/structure/lattice,
@@ -2731,7 +2731,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/wood/broken/seven,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/spaceport)
 "ou" = (
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -3413,10 +3413,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport2)
-"rX" = (
-/obj/structure/cable,
-/turf/open/floor/wood/broken/six,
-/area/lv624/lazarus/bar)
 "rY" = (
 /obj/structure/xenoautopsy/tank/hugger,
 /turf/open/floor/tile/dark/red2/corner{
@@ -3639,7 +3635,7 @@
 "sV" = (
 /obj/machinery/door/window,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/bar)
 "sX" = (
 /obj/structure/barricade/metal/deployable{
@@ -4119,9 +4115,6 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle7)
-"vp" = (
-/turf/open/floor/wood/broken/six,
-/area/lv624/lazarus/spaceport)
 "vr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -4346,7 +4339,7 @@
 /area/lv624/lazarus/spaceport)
 "wJ" = (
 /obj/machinery/light/small,
-/turf/open/floor/wood/broken/three,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/spaceport)
 "wK" = (
 /obj/structure/table,
@@ -4505,9 +4498,6 @@
 /obj/item/healthanalyzer,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/research/caves)
-"xB" = (
-/turf/open/floor/wood/broken/five,
-/area/lv624/lazarus/spaceport)
 "xD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
@@ -6696,9 +6686,6 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle7)
-"Il" = (
-/turf/open/floor/wood/broken/two,
-/area/lv624/lazarus/spaceport)
 "Ip" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/red/redtaupe{
@@ -7012,9 +6999,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/security)
-"JA" = (
-/turf/open/floor/wood/broken,
-/area/lv624/lazarus/spaceport)
 "JB" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -8425,7 +8409,7 @@
 	pixel_x = -7;
 	pixel_y = -1
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/bar)
 "Qu" = (
 /obj/structure/bed/chair/office/light{
@@ -9786,9 +9770,6 @@
 /area/lv624/lazarus/canteen)
 "WK" = (
 /turf/closed/wall/wood,
-/area/lv624/lazarus/spaceport)
-"WL" = (
-/turf/open/floor/wood/broken/seven,
 /area/lv624/lazarus/spaceport)
 "WM" = (
 /obj/machinery/light{
@@ -14792,7 +14773,7 @@ Om
 zx
 JS
 EP
-rX
+lS
 Pg
 Mq
 lL
@@ -18104,7 +18085,7 @@ As
 SM
 ud
 ud
-Il
+gL
 ud
 WK
 Om
@@ -18310,7 +18291,7 @@ Om
 Om
 Om
 WK
-vp
+gL
 ud
 ud
 ud
@@ -18416,7 +18397,7 @@ Om
 WK
 ud
 ud
-JA
+gL
 jj
 np
 Om
@@ -18714,9 +18695,9 @@ LI
 Ue
 LO
 iO
-Il
+gL
 Xv
-xB
+gL
 WK
 oP
 fN
@@ -18820,7 +18801,7 @@ LO
 iO
 ud
 ud
-Il
+gL
 WK
 mG
 yF
@@ -19027,7 +19008,7 @@ Ue
 Of
 iO
 ud
-WL
+gL
 ud
 tI
 jj
@@ -19130,7 +19111,7 @@ UI
 fG
 Of
 iO
-xB
+gL
 ud
 tI
 ud
@@ -20507,7 +20488,7 @@ vw
 HE
 WK
 tI
-vp
+gL
 tI
 pe
 gL
@@ -20610,7 +20591,7 @@ hQ
 eJ
 Hx
 yo
-Il
+gL
 pe
 tI
 bI

@@ -1231,7 +1231,7 @@
 	dir = 1
 	},
 /obj/machinery/space_heater,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/icy_caves/caves/underground_cafeteria)
 "gX" = (
 /obj/machinery/light{
@@ -3135,7 +3135,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/icy_caves/caves/underground_cafeteria)
 "rj" = (
 /obj/effect/decal/cleanable/blood/xtracks,
@@ -3798,7 +3798,7 @@
 /area/icy_caves/outpost/garage)
 "tV" = (
 /obj/effect/landmark/start/job/survivor,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/icy_caves/caves/underground_cafeteria)
 "tW" = (
 /obj/effect/landmark/corpsespawner/colonist,
@@ -5697,7 +5697,7 @@
 /area/icy_caves/outpost/garage)
 "Du" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/icy_caves/caves/underground_cafeteria)
 "Dv" = (
 /turf/open/floor/tile/dark/brown2/corner{
@@ -6470,7 +6470,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "Hk" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/icy_caves/caves/underground_cafeteria)
 "Hl" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -10092,7 +10092,7 @@
 /area/icy_caves/outpost/security)
 "Zu" = (
 /obj/effect/decal/remains/human,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/icy_caves/caves/underground_cafeteria)
 "Zz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{

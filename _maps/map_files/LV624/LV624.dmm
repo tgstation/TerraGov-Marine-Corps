@@ -6242,7 +6242,7 @@
 "gew" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/bar)
 "gff" = (
 /obj/effect/ai_node,
@@ -7071,7 +7071,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/captain)
 "hlt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7141,7 +7141,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "hoP" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/ground/jungle8)
 "hpU" = (
 /obj/structure/bed/chair/wood/wings,
@@ -7980,7 +7980,7 @@
 /area/lv624/lazarus/main_hall)
 "izA" = (
 /obj/structure/window_frame/wood,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/ground/jungle8)
 "izL" = (
 /turf/closed/wall,
@@ -8272,7 +8272,7 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/ground/jungle8)
 "iTi" = (
 /obj/effect/landmark/patrol_point{
@@ -9923,7 +9923,7 @@
 "kYv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/bar)
 "kYG" = (
 /obj/machinery/landinglight/ds1/delaythree{
@@ -11024,7 +11024,7 @@
 /area/lv624/lazarus/corporate_affairs)
 "msV" = (
 /obj/item/trash/cheesie,
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/captain)
 "mth" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
@@ -13385,7 +13385,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/bar)
 "pPF" = (
 /obj/structure/table,
@@ -13558,7 +13558,7 @@
 /area/lv624/ground/jungle5)
 "pXz" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/ground/jungle8)
 "pXE" = (
 /obj/machinery/computer/intel_computer,
@@ -16329,7 +16329,7 @@
 /area/lv624/lazarus/research)
 "txa" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/bar)
 "txt" = (
 /obj/structure/largecrate/random/secure,
@@ -16912,7 +16912,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/captain)
 "unr" = (
 /obj/item/clothing/mask/facehugger/dead,
@@ -17512,7 +17512,7 @@
 "vez" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/lv624/lazarus/bar)
 "veM" = (
 /obj/machinery/computer/intel_computer,
