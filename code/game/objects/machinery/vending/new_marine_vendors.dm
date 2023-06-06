@@ -408,8 +408,7 @@
 /obj/machinery/marine_selector/clothes/commander/Initialize(mapload)
 	. = ..()
 	listed_products = list(
-		/obj/effect/vendor_bundle/basic_commander = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger_commander = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/vendor_bundle/basic_commander = list(CAT_STD, "Essential Human Commander", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -622,16 +621,6 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
-		/obj/item/paper/tutorial/medical,
-		/obj/item/paper/tutorial/mechanics,
-	)
-
-/obj/effect/vendor_bundle/basic_jaeger
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/clothing/gloves/marine,
-		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 		/obj/item/paper/tutorial/medical,
 		/obj/item/paper/tutorial/mechanics,
@@ -640,14 +629,6 @@
 /obj/effect/vendor_bundle/basic_smartgunner
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/clothing/gloves/marine,
-		/obj/item/storage/box/MRE,
-	)
-
-/obj/effect/vendor_bundle/basic_jaeger_smartgunner
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
@@ -660,28 +641,12 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
-	)
-
-/obj/effect/vendor_bundle/basic_jaeger_squadleader
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/clothing/gloves/marine,
-		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
 
 /obj/effect/vendor_bundle/basic_medic
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/corpsman,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/clothing/gloves/marine,
-		/obj/item/storage/box/MRE,
-	)
-
-/obj/effect/vendor_bundle/basic_jaeger_medic
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
@@ -693,26 +658,12 @@
 		/obj/item/clothing/under/marine/engineer,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
-	)
-
-/obj/effect/vendor_bundle/basic_jaeger_engineer
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
 
 /obj/effect/vendor_bundle/basic_commander
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/storage/box/MRE,
-	)
-
-/obj/effect/vendor_bundle/basic_jaeger_commander
-	gear_to_spawn = list(
-		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
@@ -936,6 +887,7 @@
 		/obj/item/clothing/under/marine/robotic,
 		/obj/item/tool/weldingtool,
 		/obj/item/stack/cable_coil,
+		/obj/item/facepaint/green,
 	)
 
 /obj/effect/vendor_bundle/robot/light_armor

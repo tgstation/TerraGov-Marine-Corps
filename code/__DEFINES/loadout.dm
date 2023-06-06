@@ -260,8 +260,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 ))
 
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
-		/obj/effect/vendor_bundle/basic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/vendor_bundle/basic = list(CAT_STD, "Essential Human Kit", 0, "white"),
 		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
@@ -329,8 +328,7 @@ GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 	))
 
 GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
-		/obj/effect/vendor_bundle/basic_engineer = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger_engineer = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/vendor_bundle/basic_engineer = list(CAT_STD, "Essential Human Engineer kit", 0, "white"),
 		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/item/clothing/glasses/welding = list(CAT_GLA, "Welding Goggles", 0, "white"),
 		/obj/item/clothing/glasses/meson = list(CAT_GLA, "Optical Meson Scanner", 0, "white"),
@@ -396,8 +394,7 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 	))
 
 GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
-		/obj/effect/vendor_bundle/basic_medic = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger_medic = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/vendor_bundle/basic_medic = list(CAT_STD, "Essential Human Corpsman kit", 0, "white"),
 		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
@@ -447,8 +444,7 @@ GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 	))
 
 GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
-		/obj/effect/vendor_bundle/basic_smartgunner = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger_smartgunner = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/vendor_bundle/basic_smartgunner = list(CAT_STD, "Essential Human Smartgunner Kit", 0, "white"),
 		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
@@ -502,8 +498,7 @@ GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 	))
 
 GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
-		/obj/effect/vendor_bundle/basic_squadleader = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger_squadleader = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/vendor_bundle/basic_squadleader = list(CAT_STD, "Essential Human Squad Leader", 0, "white"),
 		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/vendor_bundle/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
