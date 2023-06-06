@@ -331,7 +331,10 @@
 	
 /datum/action/xeno_action/activable/articulate/proc/relay_speech(mob/living/source, arguments)
 	SIGNAL_HANDLER
-	active_target.say(arguments[1], language = /datum/language/common, forced = "puppeteer articulate ability")
+	INVOKE_ASYNC(src, PROC_REF(relay_speech_async), active_target, arguments[1]) // FUCK
+
+/datum/action/xeno_action/activable/articulate/proc/relay_speech_async(mob/living/target, text)
+	target.say(text, language = /datum/language/common, forced = "puppeteer articulate ability")
 
 /datum/action/xeno_action/activable/articulate/proc/cancel(atom/target)
 	SIGNAL_HANDLER
