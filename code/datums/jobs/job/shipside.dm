@@ -79,7 +79,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership
 
-/datum/outfit/job/command/fieldcommander_robot
+/datum/outfit/job/command/captain_robot
 	name = CAPTAIN
 	jobtype = /datum/job/terragov/command/captain
 	species = SPECIES_COMBAT_ROBOT
@@ -870,7 +870,6 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	belt = /obj/item/storage/belt/rig/medical
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/robotic
-	wear_suit = /obj/item/clothing/suit/modular/robot/light
 	shoes = null
 	gloves = null
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -980,7 +979,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	belt = /obj/item/storage/belt/rig/medical
 	ears = /obj/item/radio/headset/mainship/doc
 	w_uniform = /obj/item/clothing/under/marine/robotic
-	wear_suit = /obj/item/clothing/suit/modular/robot/light
 	shoes = null
 	gloves = null
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -1091,7 +1089,6 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	belt = /obj/item/storage/belt/rig/research
 	ears = /obj/item/radio/headset/mainship/res
 	w_uniform = /obj/item/clothing/under/marine/robotic
-	wear_suit = /obj/item/clothing/suit/modular/robot/light
 	shoes = null
 	gloves = null
 	glasses = /obj/item/clothing/glasses/hud/health
