@@ -1111,8 +1111,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SUNDERING
 	accuracy_var_high = 7
 	max_range = 20
-	damage = 50
-	penetration = 20
+	damage = 70
+	penetration = 30
 	sundering = 5
 
 /datum/ammo/bullet/sniper/flak
@@ -1120,10 +1120,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper_flak"
 	damage = 90
 	penetration = 0
-	sundering = 25
-	airburst_multiplier = 0.2
+	sundering = 15
+	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
+	staggerstun(victim, proj,  max_range = 30, slowdown = 2)
 	airburst(victim, proj)
 
 /datum/ammo/bullet/sniper/svd

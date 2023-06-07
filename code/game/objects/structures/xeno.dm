@@ -271,7 +271,7 @@
 	desc = "A foul, viscous resin jelly that doesnt seem to burn easily."
 	icon = 'icons/unused/Marine_Research.dmi'
 	icon_state = "biomass"
-	soft_armor = list("fire" = 200)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
 	var/immune_time = 15 SECONDS
 	///Holder to ensure only one user per resin jelly.
 	var/current_user

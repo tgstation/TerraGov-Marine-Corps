@@ -56,3 +56,28 @@
       it
   ivanmixo:
   - code_imp: Addressed more stuff that should be TYPE_PROC_REF
+2023-06-05:
+  Zar000:
+  - balance: rebalanced flare acid resistance
+  - refactor: refactored acid code
+  tyeagg:
+  - bugfix: gun attachments now rotate with the gun
+2023-06-06:
+  Lumipharon:
+  - bugfix: fixed a few missing sprites
+  QualityVan:
+  - bugfix: Power pouches disconnect from guns properly when one is dropped
+  - bugfix: Dropping your gun while blind resets any active scope
+  irRegularGuy646:
+  - bugfix: tactical explosive vest now has the correct armour and slowdown stats
+  ivanmixo:
+  - code_imp: Murdered all instances of the text byond proc
+  - qol: The specialized job vendors now actually indicated the backpacks are not
+      the normal IMP
+  - qol: The gear you equip now gets spawned on you instead of your bag, or failing
+      that it'll spawn in your bag
+  - bugfix: The back slot pref actually works now
+  - code_imp: Made all soft armors use defines instead of strings
+  - balance: Alamo shouldn't delete you if you stand near the doors when it crashes
+  - bugfix: Fixed AI nodes being deleted when turfs get emptied
+  - bugfix: The GL54 razor nade magazines have the correct name in req now
