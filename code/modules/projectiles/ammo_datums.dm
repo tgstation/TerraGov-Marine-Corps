@@ -1225,6 +1225,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	damage_falloff = 0.1
 
+/datum/ammo/bullet/smart_minigun/on_hit_turf(turf/T, obj/projectile/P)
+	if(istype(T, /turf/closed/wall))
+		var/turf/closed/wall/wall_victim = T
+		wall_victim.take_damage((6))
+
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	bullet_color = COLOR_SOFT_RED
