@@ -325,8 +325,8 @@
 	mediumxenofootstep = FOOTSTEP_WOOD
 	var/damaged_states = 7
 
-/turf/open/floor/wood/get_damaged_state()
-	return damaged_states ? "[initial(icon_state)]_damaged_[pick(1, damaged_states)]" : icon_state
+//turf/open/floor/wood/get_damaged_state()
+//	return damaged_states ? "[initial(icon_state)]_damaged_[pick(1, damaged_states)]" : icon_state
 
 /turf/open/floor/wood/fancy
 	icon_state = "wood_fancy"

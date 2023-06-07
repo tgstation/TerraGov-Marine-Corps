@@ -398,3 +398,23 @@
 	walltype = "wall"
 
 	base_icon_state = "wall"
+
+/turf/closed/wall/variable
+	///the different tileset paths for this turf
+	var/list/icon_path_variants = list(
+		'icons/turf/walls/adobe.dmi',
+		'icons/turf/walls/adobe_1.dmi',
+		'icons/turf/walls/adobe_2.dmi',
+		'icons/turf/walls/adobe_3.dmi',
+	)
+
+/turf/closed/wall/variable/Initialize(mapload, ...)
+	. = ..()
+	icon = pick(icon_path_variants)
+
+/turf/closed/wall/variable/adobe
+	name = "brick wall"
+	desc = "A wall made out of weathered brick."
+	icon_state = "wall-0"
+	walltype = "wall"
+	base_icon_state = "wall"

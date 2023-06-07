@@ -176,8 +176,8 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 	if(is_grass_floor())
 		var/dir_sum = 0
 		for(var/direction in GLOB.cardinals)
-			var/turf/T = get_step(src,direction)
-			if(!(T.is_grass_floor()))
+			var/turf/open/floor/T = get_step(src,direction)
+			if((!istype(T) || !T.is_grass_floor()))
 				dir_sum += direction
 		if(dir_sum)
 			return "wood_siding[dir_sum]"
@@ -192,37 +192,37 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		make_plating()
 	break_tile()
 
-/turf/open/floor/is_plasteel_floor()
+/turf/open/floor/proc/is_plasteel_floor()
 	if(istype(floor_tile,/obj/item/stack/tile/plasteel))
 		return 1
 	else
 		return 0
 
-/turf/open/floor/is_light_floor()
+/turf/open/floor/proc/is_light_floor()
 	if(istype(floor_tile,/obj/item/stack/tile/light))
 		return 1
 	else
 		return 0
 
-/turf/open/floor/is_grass_floor()
+/turf/open/floor/proc/is_grass_floor()
 	if(istype(floor_tile,/obj/item/stack/tile/grass))
 		return 1
 	else
 		return 0
 
-/turf/open/floor/is_wood_floor()
+/turf/open/floor/proc/is_wood_floor()
 	if(istype(floor_tile,/obj/item/stack/tile/wood))
 		return 1
 	else
 		return 0
 
-/turf/open/floor/is_carpet_floor()
+/turf/open/floor/proc/is_carpet_floor()
 	if(istype(floor_tile,/obj/item/stack/tile/carpet))
 		return 1
 	else
 		return 0
 
-/turf/open/floor/is_plating()
+/turf/open/floor/proc/is_plating()
 	if(!floor_tile)
 		return 1
 	return 0
