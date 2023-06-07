@@ -1,6 +1,3 @@
-/// The amount of quickbuilds given back per xeno spawned. Measured as a percentage of the starting amount, which is based on the current map.
-#define QUICKBUILDS_PER_XENO 0.1
-
 SUBSYSTEM_DEF(resinshaping)
 	name = "Resin Shaping"
 	flags = SS_NO_FIRE
