@@ -152,8 +152,9 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		to_chat(user, "[span_notice("You inject [M] with [src]")].")
-		to_chat(M, span_warning("You feel a tiny prick!"))
+		user.visible_message(span_warning("[user] injects [M] with [src]!"))
+		to_chat(user, span_notice("You inject [M] with [src]."))
+		to_chat(M, span_notice("[user] injects you with [src]!"))
 
 	// /mob/living/carbon/human/attack_hand causes
 	// changeNext_move(7) which creates a delay
