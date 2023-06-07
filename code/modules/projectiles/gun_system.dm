@@ -832,6 +832,8 @@
 		if(length(chamber_items) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && get_current_rounds(chamber_items[current_chamber_position]) < (!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) ? rounds_per_shot : 0))
 			playsound(src, empty_sound, 25, 1)
 			unload(after_fire = TRUE)
+		if(length(chamber_items) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLEAR_CHAMBER_AFTER_SHOT))
+			QDEL_LIST(chamber_items)
 	update_ammo_count()
 	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	update_icon()

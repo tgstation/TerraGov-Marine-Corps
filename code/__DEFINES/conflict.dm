@@ -94,6 +94,7 @@
 #define AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS (1<<9)
 #define AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE (1<<10)
 #define AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE (1<<11) //The ammo stay in the magazine until the last moment
+#define AMMO_RECIEVER_CLEAR_CHAMBER_AFTER_SHOT (1<<12) //Clear all chambered rounds after a shot, used by RLs
 
 #define FLAMER_IS_LIT (1<<0)
 #define FLAMER_NO_LIT_OVERLAY (1<<1)
