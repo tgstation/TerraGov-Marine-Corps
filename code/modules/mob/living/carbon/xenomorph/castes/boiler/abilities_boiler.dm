@@ -337,12 +337,12 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/dump_acid
 	name = "Dump Acid"
 	action_icon_state = "dump_acid"
-	desc = "You dump your acid to escape, creating clouds of deadly acid mist behind you, while becoming faster for a short period of time."
+	desc = "You dump your acid to escape, creating clouds of deadly acid mist behind you, while becoming faster for a short period of time. Unroots you if you are rooted."
 	ability_name = "dump acid"
 	plasma_cost = 150
 	cooldown_timer = 230 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
-	use_state_flags = XACT_USE_STAGGERED
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_ROOTED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DUMP_ACID,
 	)
@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/dump_acid/action_activate()
-	var/mob/living/carbon/xenomorph/defiler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/X = owner
 	toggle_particles(TRUE)
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas. это надо вообще?
@@ -363,6 +363,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	X.visible_message(span_xenodanger("[X] emits an acid!"),
 	span_xenohighdanger("You dump your acid, disabling your offensive abilities to escape!"))
+	REMOVE_TRAIT(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
 	dispense_gas()
 
 	var/datum/action/xeno_action/activable/spray_acid = X.actions_by_path[/datum/action/xeno_action/activable/spray_acid/line/boiler]
