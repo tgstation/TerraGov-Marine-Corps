@@ -22468,10 +22468,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
-"rXQ" = (
-/obj/machinery/cryopod/right,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/hallway/lower_foreship)
 "rYR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -49376,7 +49372,7 @@ iXf
 xHk
 aKM
 aKM
-rXQ
+aKM
 eqq
 aYN
 mvV
