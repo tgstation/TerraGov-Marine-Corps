@@ -431,3 +431,11 @@
 		'icons/turf/walls/siding_2.dmi',
 		'icons/turf/walls/siding_3.dmi',
 	)
+
+/turf/closed/wall/variable/siding/red
+	icon_path_variants = list(
+		'icons/turf/walls/siding_red.dmi',
+		'icons/turf/walls/siding_red_1.dmi',
+		'icons/turf/walls/siding_red_2.dmi',
+		'icons/turf/walls/siding_red_3.dmi',
+	)
