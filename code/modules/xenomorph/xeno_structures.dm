@@ -71,7 +71,7 @@
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
-	layer = RESIN_STRUCTURE_LAYER
+	layer = ATMOS_DEVICE_LAYER
 	destroy_sound = "alien_resin_break"
 	///defines for trap type to trigger on activation
 	var/trap_type
