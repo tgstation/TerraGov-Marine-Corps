@@ -184,9 +184,12 @@
 
 	victim.emote_burstscream()
 
-	var/nestburst_message = "You feel hive's psychic power getting stronger, after breeding host [victim.name] on a nest!"
+	var/nestburst_message = pick("You feel hive's psychic power getting stronger, after host [victim.name] gave birth on a nest!", "You feel hive's psychic power getting stronger, after breeding host [victim.name] on a nest!")
 	if(CHECK_BITFIELD(victim.restrained_flags, RESTRAINED_XENO_NEST))
-		if(victim.job.type == /datum/job/survivor/rambo)
+		if(victim.job == null)
+			SSpoints.add_psy_points(src.hivenumber, 10)
+			xeno_message(nestburst_message, "xenoannounce", 5, src.hivenumber)
+		else if(victim.job.type == /datum/job/survivor/rambo)
 			SSpoints.add_psy_points(src.hivenumber, 50)
 			xeno_message(nestburst_message, "xenoannounce", 5, src.hivenumber)
 		else
