@@ -501,3 +501,80 @@
 	desc = "A thick mat of dense grass."
 	icon_state = "grasscarpet"
 	layer = BELOW_MOB_LAYER
+
+
+//drought map flora
+/obj/structure/flora/drought
+	icon = 'icons/obj/flora/desert_flora.dmi'
+
+//GRASS
+/obj/structure/flora/drought/grass
+	name = "grass"
+	desc = "Some dried up grass."
+	icon_state = "drygrass"
+	icon_variants = 15
+
+/obj/structure/flora/drought/tall_cactus
+	name = "cactus"
+	desc = "Some tall, spikey looking cactus."
+	icon_state = "tall_cactus"
+	icon_variants = 3
+	density = TRUE
+
+/obj/structure/flora/drought/short_cactus
+	name = "cactus"
+	desc = "Some short, spikey looking cactus."
+	icon_state = "short_cactus"
+	icon_variants = 3
+
+/obj/structure/flora/drought/barrel_cactus
+	name = "cactus"
+	desc = "Some plump, spikey looking cactus."
+	icon_state = "barrel"
+	icon_variants = 6
+
+/obj/structure/flora/drought/leafy_plant
+	name = "plant"
+	desc = "A tough looking little plant."
+	icon_state = "leafy_plant"
+	icon_variants = 3
+
+/obj/structure/flora/drought/yucca
+	name = "yucca bush"
+	desc = "A hardy little bush. Its flowers are said to have medicinal properties."
+	icon_state = "yucca"
+	icon_variants = 2
+
+/obj/structure/flora/drought/xander
+	name = "xander bush"
+	desc = "A tough little shrub. Supposedly has medicinal properties when dried."
+	icon_state = "xander"
+	icon_variants = 2
+
+/obj/structure/flora/drought/broc
+	name = "broc flower tree"
+	desc = "A small desert tree. It doesn't look terribly happy."
+	icon_state = "broc_flower"
+	icon_variants = 2
+
+/obj/structure/flora/drought/aster
+	name = "aster bush"
+	desc = "A tough little shrub. It produces pretty blue flowers."
+	icon_state = "aster"
+	icon_variants = 2
+
+/obj/structure/flora/drought/ash
+	name = "ash rose"
+	desc = "A tough little shrub with wickly sharp thorns. The flowers are prized for their strong aroma."
+	icon_state = "ash_rose"
+	icon_variants = 2
+
+
+tall cactus
+
+short cactus
+
+barrel cactus
+
+leafy plant
+
