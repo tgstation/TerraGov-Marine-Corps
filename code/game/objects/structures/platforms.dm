@@ -140,6 +140,11 @@
 	name = "trench wall"
 	desc = "A group of roughly cut planks forming the side of a dug in trench."
 
+/obj/structure/platform/adobe
+	name = "brick wall"
+	desc = "A low adobe brick wall."
+	icon_state = "adobe"
+
 //decorative corner platform bits
 /obj/structure/platform_decoration
 	name = "platform"
@@ -172,3 +177,6 @@
 
 /obj/structure/platform_decoration/metalplatform_deco
 	icon_state = "metalplatform_deco"
+
+/obj/structure/platform_decoration/adobe_deco
+	icon_state = "adobe_deco"
