@@ -12,6 +12,12 @@
 
 	check_tunnel_list(src)
 
+/mob/living/carbon/xenomorph/verb/personal_blessings()
+	set name = "Personal Blessings"
+	set desc = "Buy personal upgrades for your xeno."
+	set category = "Alien"
+
+	buy_personal_blessings(src)
 
 /proc/check_tunnel_list(mob/user) //Creates a handy list of all xeno tunnels
 	var/dat = "<br>"
@@ -43,6 +49,20 @@
 	hive.interact(user)
 
 	return
+
+/proc/buy_personal_blessings(mob/user)
+	var/upgrade_cost = 30
+	var/evolution_cost = 30
+	var/primo_cost = 50
+	var/dat = "<br><b>Avaliable Options:</b><BR>"
+
+	dat += "<b>Buy Maturity Stage - Cost: </b> <a href='byond://?src=\ref[user];maturity_buy=[upgrade_cost]'>[upgrade_cost]</a><br>"
+	dat += "<b>Buy Evolution Stage - Cost: </b> <a href='byond://?src=\ref[user];evolution_buy=[evolution_cost]'>[evolution_cost]</a><br>"
+	dat += "<b>Buy Primodial Upgrade - Cost: </b> <a href='byond://?src=\ref[user];primo_buy=[primo_cost]'>[primo_cost]</a><br>"
+
+	var/datum/browser/popup = new(user, "personalblessings", "<div align='center'>Personal Blessings</div>", 400, 200)
+	popup.set_content(dat)
+	popup.open()
 
 /mob/living/carbon/xenomorph/Topic(href, href_list)
 	. = ..()
@@ -76,6 +96,42 @@
 		if(isxeno(target))
 			// Checks for can use done in overwatch action.
 			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, target)
+
+	if(href_list["maturity_buy"])
+		var/price = text2num(href_list["maturity_buy"])
+		if(SSpoints.personal_psy_points[ckey] < price)
+			to_chat(usr, span_notice("You dont have enough psy points!"))
+			return
+		if(upgrade_stored >= xeno_caste.upgrade_threshold && xeno_caste.upgrade == XENO_UPGRADE_THREE)
+			to_chat(usr, span_notice("You are already at maximum maturity!"))
+			return
+		upgrade_stored = xeno_caste.upgrade_threshold
+		SSpoints.personal_psy_points[ckey] -= price
+		to_chat(usr, span_notice("You bought a maturity upgrade"))
+
+	if(href_list["evolution_buy"])
+		var/price = text2num(href_list["evolution_buy"])
+		if(SSpoints.personal_psy_points[ckey] < price)
+			to_chat(usr, span_notice("You dont have enough psy points!"))
+			return
+		if(evolution_stored >= xeno_caste.evolution_threshold)
+			to_chat(usr, span_notice("You are already at maximum evolution!"))
+			return
+		evolution_stored = xeno_caste.evolution_threshold
+		SSpoints.personal_psy_points[ckey] -= price
+		to_chat(usr, span_notice("You bought an evolution upgrade"))
+
+	if(href_list["primo_buy"])
+		var/price = text2num(href_list["primo_buy"])
+		if(SSpoints.personal_psy_points[ckey] < price)
+			to_chat(usr, span_notice("You dont have enough psy points!"))
+			return
+		if(xeno_caste.upgrade != XENO_UPGRADE_THREE)
+			to_chat(usr, span_notice("You are not strong enough!"))
+			return
+		upgrade_xeno(XENO_UPGRADE_FOUR)
+		SSpoints.personal_psy_points[ckey] -= price
+		to_chat(usr, span_notice("You bought a primordial upgrade"))
 
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
 /proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type, arrow_color, report_distance = FALSE)
@@ -122,6 +178,8 @@
 		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
 
 	stat("Sunder:", "[100-sunder]% armor left")
+
+	stat("Personal Psy Points:", "[round(SSpoints.personal_psy_points[ckey], 0.1)]")
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
