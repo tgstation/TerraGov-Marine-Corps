@@ -175,6 +175,7 @@
 
 /mob/living/carbon/xenomorph/med_hud_set_status()
 	hud_set_plasma()
+	hud_set_wrath()
 	hud_set_pheromone()
 
 
@@ -407,7 +408,7 @@
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
-	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_FIRE_HUD)
+	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, WRATH_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_FIRE_HUD)
 
 /datum/atom_hud/xeno_heart
 	hud_icons = list(HEART_STATUS_HUD)
@@ -463,6 +464,19 @@
 	else
 		var/amount = round(plasma_stored * 100 / xeno_caste.plasma_max, 10)
 		holder.icon_state = "[xeno_caste.plasma_icon_state][amount]"
+
+
+/mob/living/carbon/xenomorph/proc/hud_set_wrath()
+	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
+		return
+	var/image/holder = hud_list[WRATH_HUD]
+	if(!holder || !wrath_stored || !xeno_caste.wrath_max || !xeno_caste.wrath_icon_state)
+		return
+	if(stat == DEAD)
+		holder.icon_state = "[xeno_caste.wrath_icon_state]0"
+	else
+		var/amount = round(wrath_stored * 100 / xeno_caste.wrath_max, 10)
+		holder.icon_state = "[xeno_caste.wrath_icon_state][amount]"
 
 
 /mob/living/carbon/xenomorph/proc/hud_set_pheromone()

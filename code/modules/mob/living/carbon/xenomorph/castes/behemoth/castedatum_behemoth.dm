@@ -2,16 +2,18 @@
 	caste_name = "Behemoth"
 	display_name = "Behemoth"
 	upgrade_name = ""
+	caste_desc = "Behemoths are known to like rocks. Perhaps we should give them one!"
 	caste_type_path = /mob/living/carbon/xenomorph/behemoth
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "behemoth" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 20
 
 	// *** Speed *** //
-	speed = 0
+	speed = 0.3
+	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 175
@@ -44,7 +46,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/ready_charge/behemoth_roll,
+		//datum/action/xeno_action/ready_charge/behemoth_roll,
 		/datum/action/xeno_action/activable/behemoth/landslide,
 		/datum/action/xeno_action/activable/behemoth/earth_riser,
 		/datum/action/xeno_action/activable/behemoth/seismic_fracture,
@@ -71,7 +73,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 21
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -93,10 +95,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 27
+	melee_damage = 22
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = 0.25
 
 	// *** Plasma *** //
 	plasma_max = 225
@@ -116,9 +118,10 @@
 /datum/xeno_caste/behemoth/ancient
 	upgrade_name = "Ancient"
 	upgrade = XENO_UPGRADE_THREE
+	ancient_message = "Let the land quake in fear as it is torn asunder."
 
 	// *** Melee Attacks *** //
-	melee_damage = 28
+	melee_damage = 23
 
 	// *** Plasma *** //
 	plasma_max = 250
@@ -138,12 +141,15 @@
 /datum/xeno_caste/behemoth/primordial
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_FOUR
+	primordial_message = "Our wrath will be felt by those who dare wrong us."
+	wrath_max = 1000
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 23
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = 0.25
+	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 250
@@ -163,7 +169,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/ready_charge/behemoth_roll,
+		//datum/action/xeno_action/ready_charge/behemoth_roll,
 		/datum/action/xeno_action/activable/behemoth/landslide,
 		/datum/action/xeno_action/activable/behemoth/earth_riser,
 		/datum/action/xeno_action/activable/behemoth/seismic_fracture,

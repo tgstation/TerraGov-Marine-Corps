@@ -42,6 +42,7 @@
 	update_wounds()
 
 	hud_set_plasma()
+	hud_set_wrath()
 	med_hud_set_health()
 	hud_set_sunder()
 	hud_set_firestacks()

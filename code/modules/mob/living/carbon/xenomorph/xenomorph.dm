@@ -55,6 +55,7 @@
 	regenerate_icons()
 
 	hud_set_plasma()
+	hud_set_wrath()
 	med_hud_set_health()
 
 	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
@@ -322,6 +323,7 @@
 	//updating all the mob's hud images
 	med_hud_set_health()
 	hud_set_plasma()
+	hud_set_wrath()
 	hud_set_pheromone()
 	//and display them
 	add_to_all_mob_huds()

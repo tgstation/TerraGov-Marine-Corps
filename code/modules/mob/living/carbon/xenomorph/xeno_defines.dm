@@ -215,6 +215,12 @@
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
 	var/additional_stacks = 0
 
+	// *** Behemoth Abilities ***
+	/// The maximum amount of Wrath that we can have stored at a time.
+	var/wrath_max = 0
+	/// The icon state of the Wrath bar.
+	var/wrath_icon_state = "wrath"
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
@@ -276,7 +282,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, WRATH_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD)
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
@@ -406,6 +412,10 @@
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
+
+	// *** Behemoth vars *** //
+	/// The amount of Wrath currently stored.
+	var/wrath_stored = 0
 
 	//Notification spam controls
 	var/recent_notice = 0
