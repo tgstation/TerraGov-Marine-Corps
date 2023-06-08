@@ -25295,8 +25295,6 @@
 	},
 /obj/item/storage/box/ids,
 /obj/item/toy/plush/snake,
-/obj/item/ammo_magazine/pistol/m1911,
-/obj/item/weapon/gun/pistol/m1911/custom,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "toH" = (
