@@ -72,6 +72,53 @@
 	icon_file = 'icons/mob/modular/kama.dmi'
 	json_config = 'code/datums/greyscale/json_configs/kama.json'
 
+//pauldron
+
+/datum/greyscale_config/pauldron/left
+	icon_file = 'icons/mob/modular/pauldron/pauldron_standard_l.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pauldron_left.json'
+
+/datum/greyscale_config/pauldron/right
+	icon_file = 'icons/mob/modular/pauldron/pauldron_standard_r.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pauldron_right.json'
+
+/datum/greyscale_config/pauldron/left/low
+	icon_file = 'icons/mob/modular/pauldron/pauldron_lowprofile_l.dmi'
+
+/datum/greyscale_config/pauldron/right/low
+	icon_file = 'icons/mob/modular/pauldron/pauldron_lowprofile_r.dmi'
+
+/datum/greyscale_config/pauldron/left/extended
+	icon_file = 'icons/mob/modular/pauldron/pauldron_extended_l.dmi'
+
+/datum/greyscale_config/pauldron/right/extended
+	icon_file = 'icons/mob/modular/pauldron/pauldron_extended_r.dmi'
+
+/datum/greyscale_config/pauldron/left/epaulette
+	icon_file = 'icons/mob/modular/pauldron/pauldron_epaulette_l.dmi'
+
+/datum/greyscale_config/pauldron/right/epaulette
+	icon_file = 'icons/mob/modular/pauldron/pauldron_epaulette_r.dmi'
+
+/datum/greyscale_config/pauldron/left/athletic
+	icon_file = 'icons/mob/modular/pauldron/pauldron_athletic_l.dmi'
+
+/datum/greyscale_config/pauldron/right/athletic
+	icon_file = 'icons/mob/modular/pauldron/pauldron_athletic_r.dmi'
+
+/datum/greyscale_config/pauldron/left/federation
+	icon_file = 'icons/mob/modular/pauldron/pauldron_federation_l.dmi'
+
+/datum/greyscale_config/pauldron/right/federation
+	icon_file = 'icons/mob/modular/pauldron/pauldron_federation_r.dmi'
+
+/datum/greyscale_config/pauldron/left/zeon
+	icon_file = 'icons/mob/modular/pauldron/pauldron_zeon_l.dmi'
+
+/datum/greyscale_config/pauldron/right/zeon
+	icon_file = 'icons/mob/modular/pauldron/pauldron_zeon_r.dmi'
+
+
 /*
  * COLORABLE BADGES
  */

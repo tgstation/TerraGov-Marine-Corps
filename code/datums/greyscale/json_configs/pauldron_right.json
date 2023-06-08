@@ -1,0 +1,58 @@
+{
+	"Standard Right Pauldron": [
+		{
+			"type": "icon_state",
+			"icon_state": "pauldron_standard_r",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"Low Profile Right Pauldron": [
+		{
+			"type": "icon_state",
+			"icon_state": "pauldron_lowprofile_r",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"Extended Right Pauldron": [
+		{
+			"type": "icon_state",
+			"icon_state": "pauldron_extended_r",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"Epaulette Right Pauldron": [
+		{
+			"type": "icon_state",
+			"icon_state": "pauldron_epaulette_r",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"Athletic Right Pauldron": [
+		{
+			"type": "icon_state",
+			"icon_state": "pauldron_athletic_r",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"Federation Right Pauldron": [
+		{
+			"type": "icon_state",
+			"icon_state": "pauldron_federation_r",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"Zeon Right Pauldron": [
+		{
+			"type": "icon_state",
+			"icon_state": "pauldron_zeon_r",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	]
+}
