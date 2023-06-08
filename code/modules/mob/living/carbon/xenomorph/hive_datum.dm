@@ -221,7 +221,7 @@
 		if("Deevolve")
 			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
 				return
-			attempt_deevolve(usr, xeno_target)
+			attempt_punishment(usr, xeno_target)
 		if("Leader")
 			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
 				return
@@ -601,29 +601,30 @@
 	xenos_by_upgrade[oldlevel] -= X
 	xenos_by_upgrade[newlevel] += X
 
-///attempts to have devolver devolve target
+///Меню выбора наказания
+/datum/hive_status/proc/attempt_punishment(mob/living/carbon/xenomorph/devolver, mob/living/carbon/xenomorph/target)
+	var/confirm = tgui_input_list(devolver, "Choose a punishment for the [target] ", null, list("Deevolve", "Banish/De-Banish", "Abort",))
+
+	switch(confirm)
+		if("Deevolve")
+			attempt_deevolve(usr, target)
+			return
+		if("Banish/De-Banish")
+			attempt_bunish(usr, target)
+			return
+		if("Abort")
+			attempt_abort(usr, target)
+			return
+		if(null)
+			return
+
 /datum/hive_status/proc/attempt_deevolve(mob/living/carbon/xenomorph/devolver, mob/living/carbon/xenomorph/target)
-	if(target.is_ventcrawling)
-		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is ventcrawling."))
-		return
-
-	if(!isturf(target.loc))
-		to_chat(devolver, span_xenonotice("Cannot deevolve [target] here."))
-		return
-
-	if((target.health < target.maxHealth) || (target.plasma_stored < (target.xeno_caste.plasma_max * target.xeno_caste.plasma_regen_limit)))
-		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is too weak."))
-		return
 
 	if(!target.xeno_caste.deevolves_to)
 		to_chat(devolver, span_xenonotice("Cannot deevolve [target]."))
 		return
 
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
-
-	var/confirm = tgui_alert(devolver, "Are you sure you want to deevolve [target] from [target.xeno_caste.caste_name] to [new_caste.caste_name]?", null, list("Yes", "No"))
-	if(confirm != "Yes")
-		return
 
 	var/reason = stripped_input(devolver, "Provide a reason for deevolving this xenomorph, [target]")
 	if(isnull(reason))
@@ -634,12 +635,15 @@
 		return
 
 	if(target.is_ventcrawling)
+		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is ventcrawling."))
 		return
 
 	if(!isturf(target.loc))
+		to_chat(devolver, span_xenonotice("Cannot deevolve [target] here."))
 		return
 
 	if((target.health < target.maxHealth) || (target.plasma_stored < (target.xeno_caste.plasma_max * target.xeno_caste.plasma_regen_limit)))
+		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is too weak."))
 		return
 
 	target.balloon_alert(target, "Forced deevolution")
@@ -654,6 +658,77 @@
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(target)
 
+/datum/hive_status/proc/attempt_bunish(mob/living/carbon/xenomorph/user, mob/living/carbon/xenomorph/target)
+	if(target.is_ventcrawling)
+		to_chat(user, span_xenonotice("Cannot bunish, [target] is ventcrawling."))
+		return
+
+	if(!isturf(target.loc))
+		to_chat(user, span_xenonotice("Cannot bunish, [target] here."))
+		return
+
+	if(target.tier == XENO_TIER_FOUR || isxenohivemind(target))
+		to_chat(user, span_xenonotice("Tier does not allow to bunish."))
+		return
+
+	var/confirm = tgui_alert(user, "Are you sure you want to bunish/de-bunish [target]?", null, list("Yes", "No"))
+	if(confirm != "Yes")
+		return
+
+	var/reason = stripped_input(user, "Provide a reason for bunish this xenomorph, [target]")
+	if(isnull(reason))
+		to_chat(user, span_xenonotice("Bunish reason required."))
+		return
+
+	if(!user.check_concious_state())
+		return
+
+
+	if(target.banished == FALSE)
+		target.banished = TRUE
+		target.hud_set_banished()
+		xeno_message("[user] banishes  [target] from the Hive!", "xenoannounce", 5, user.hivenumber)
+		log_game("[key_name(user)] has bunish [key_name(target)]. Reason: [reason]")
+		message_admins("[ADMIN_TPMONTY(user)] has bunish [ADMIN_TPMONTY(target)]. Reason: [reason]")
+		return
+
+	if(target.banished == TRUE)
+		target.banished = FALSE
+		target.hud_set_banished()
+		xeno_message("[user] has returned  [target] to the Hive!", "xenoannounce", 5, user.hivenumber)
+		log_game("[key_name(user)] has returned [key_name(target)]. Reason: [reason]")
+		message_admins("[ADMIN_TPMONTY(user)] has returned [ADMIN_TPMONTY(target)]. Reason: [reason]")
+		return
+
+/datum/hive_status/proc/attempt_abort(mob/living/carbon/xenomorph/user, mob/living/carbon/xenomorph/target)
+	if(target.is_ventcrawling)
+		to_chat(user, span_xenonotice("Cannot abort, [target] is ventcrawling."))
+		return
+
+	if(!isturf(target.loc))
+		to_chat(user, span_xenonotice("Cannot abort, [target] here."))
+		return
+
+	if(target.tier == XENO_TIER_FOUR || isxenohivemind(target))
+		to_chat(user, span_xenonotice("Tier does not allow to abort."))
+		return
+
+	var/confirm = tgui_alert(user, "Are you sure you want to abort [target]?", null, list("Yes", "No"))
+	if(confirm != "Yes")
+		return
+
+	var/reason = stripped_input(user, "Provide a reason for abort this xenomorph, [target]")
+	if(isnull(reason))
+		to_chat(user, span_xenonotice("Abort reason required."))
+		return
+
+	if(!user.check_concious_state())
+		return
+
+	target.ghostize(can_reenter_corpse = FALSE)
+	xeno_message("[user] abort  [target] into the void", "xenoannounce", 5, user.hivenumber)
+	log_game("[key_name(user)] has abort [key_name(target)]. Reason: [reason]")
+	message_admins("[ADMIN_TPMONTY(user)] has abort [ADMIN_TPMONTY(target)]. Reason: [reason]")
 
 // ***************************************
 // *********** Xeno death

@@ -959,7 +959,7 @@ const ActionButtons = (props: ActionButtonProps, context) => {
             fluid
             height="16px"
             fontSize={0.75}
-            tooltip={'Deevolve'}
+            tooltip={'Punishment'}
             align="center"
             verticalAlignContent="middle"
             icon="bolt"

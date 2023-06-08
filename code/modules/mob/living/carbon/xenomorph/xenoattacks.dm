@@ -122,7 +122,7 @@
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
 		if(INTENT_HARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
-			if(issamexenohive(X))
+			if(issamexenohive(X) & !banished)
 				X.do_attack_animation(src)
 				X.visible_message(span_warning("\The [X] nibbles \the [src]."), \
 				span_warning("We nibble \the [src]."), null, 5)
