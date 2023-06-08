@@ -126,6 +126,7 @@
 			data["scaling_method"] = scaling_method
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
+			data["cursorpref"] = cursorpref
 			data["fullscreen_mode"] = fullscreen_mode
 			data["quick_equip"] = list()
 			for(var/quick_equip_slots in quick_equip)
@@ -787,6 +788,13 @@
 			parallax = WRAP(parallax + 1, PARALLAX_INSANE, PARALLAX_DISABLE + 1)
 			if(parent?.mob && parent.mob.hud_used)
 				parent.mob.hud_used.update_parallax_pref(parent.mob)
+
+		if("cursorpref")
+			cursorpref = !cursorpref
+			if(cursorpref)
+				user.client.mouse_pointer_icon = 'icons/UI_Icons/mouse_pointers/mouse.dmi'
+			else
+				user.client.mouse_pointer_icon = initial(user.client.mouse_pointer_icon)
 
 		if("scaling_method")
 			switch(scaling_method)
