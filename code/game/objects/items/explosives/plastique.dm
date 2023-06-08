@@ -2,7 +2,7 @@
 	name = "plastic explosives"
 	desc = "Used to put holes in specific areas without too much extra hole."
 	gender = PLURAL
-	icon = 'icons/obj/items/assemblies.dmi'
+	icon = 'icons/obj/det.dmi'
 	icon_state = "plastic-explosive_off"
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
@@ -13,6 +13,8 @@
 	var/timer = 10
 	/// the plastic explosive has not detonated yet
 	var/detonation_pending
+	/// Whether we're towards the end of the det timer, for sprite updates
+	var/alarm_sounded = FALSE
 	/// which atom the plastique explosive is planted on
 	var/atom/plant_target = null
 	/// smoke type created when the c4 detonates
@@ -23,6 +25,13 @@
 /obj/item/explosive/plastique/Destroy()
 	plant_target = null
 	return ..()
+
+/obj/item/explosive/plastique/update_icon_state()
+	icon_state = "plastic-explosive_[plant_target ? "set_" : ""]"
+	if(armed)
+		icon_state = "[icon_state][alarm_sounded ? "armed" : "on"]"
+	else
+		icon_state = "[icon_state]off"
 
 /obj/item/explosive/plastique/attack_self(mob/user)
 	var/newtime = tgui_input_number(usr, "Please set the timer.", "Timer", 10, 60, 10)
@@ -95,6 +104,7 @@
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
 		detonation_pending = addtimer(CALLBACK(src, PROC_REF(warning_sound), target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
+		update_icon()
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
@@ -129,7 +139,9 @@
 			log_game("[key_name(user)] disarmed [src] on [plant_target] at [AREACOORD(plant_target.loc)].")
 
 		armed = FALSE
+		alarm_sounded = FALSE
 		plant_target = null
+		update_icon()
 
 /obj/item/explosive/plastique/proc/detonate()
 	if(QDELETED(plant_target))
@@ -150,10 +162,19 @@
 	if(armed)
 		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, 5)
 		detonation_pending = addtimer(CALLBACK(src, PROC_REF(detonate)), 27, TIMER_STOPPABLE)
+		alarm_sounded = TRUE
+		update_icon()
 
 /obj/item/explosive/plastique/genghis_charge
 	name = "EX-62 incendiary charge"
-	desc = "A specialized explosive device for incineration of bulk organic matter, nickname Genghis. The patented Thermal Memory will ensure that all ignition proceeds safely away from the user."
+	desc = "A specialized explosive device for incineration of bulk organic matter, nickname Genghis. The patented Thermal Memory ensures that all ignition proceeds safely away from the user. Will not attach to plants due to environmental concerns."
+
+/obj/item/explosive/plastique/genghis_charge/afterattack(atom/target, mob/user, flag)
+	if(istype(target, /turf/closed/wall/resin))
+		return ..()
+	if(istype(target, /obj/structure/mineral_door/resin))
+		return ..()
+	balloon_alert(user, "Insufficient organic matter!")
 
 /obj/item/explosive/plastique/genghis_charge/detonate()
 	var/turf/flame_target = get_turf(plant_target)
