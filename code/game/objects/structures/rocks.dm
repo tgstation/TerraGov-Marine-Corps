@@ -76,6 +76,14 @@
 	icon_variants = 6
 
 /obj/structure/rock/variable/jungle
+	name = "rock"
+	desc = "A large bunch of slippery looking rocks."
+	icon = 'icons/obj/flora/jungleflora.dmi'
+	icon_state = "rock"
+	density = FALSE
+	icon_variants = 5
+
+/obj/structure/rock/variable/jungle_large
 	name = "rocks"
 	desc = "A large bunch of slippery looking rocks."
 	icon = 'icons/obj/flora/largejungleflora.dmi'
