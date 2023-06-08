@@ -216,8 +216,14 @@
 	var/additional_stacks = 0
 
 	// *** Baneling Abilities ***
-	/// The additional amount of movementspeed that baneling gets from rolling
-	var/rolling_speed_bonus = 0
+	#define BANELING_ACID "acid"
+	#define BANELING_RESIN "resin"
+	#define BANELING_NEURO "neuro"
+	#define BANELING_HEMO "hemo"
+	#define BANELING_TRANS "trans"
+	#define BANELING_OZELO "ozelo"
+	/// The current baneling type, this affects baneling color and baneling effect on explosion
+	var/baneling_current_type = BANELING_ACID
 
 	///the 'abilities' available to a caste.
 	var/list/actions
@@ -407,10 +413,6 @@
 	var/endure = FALSE
 	///when true the rav leeches healing off of hitting marines
 	var/vampirism
-
-	// *** Baneling vars *** //
-	/// 0 running icon state 1 rolling icon state
-	var/rolling = 0
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger

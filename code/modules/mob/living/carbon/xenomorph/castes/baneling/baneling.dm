@@ -3,7 +3,7 @@
 	name = "Baneling"
 	desc = ""
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
-	icon_state = "Runner Walking"
+	icon_state = "Baneling Walking"
 	bubble_icon = "alienleft"
 	health = 100
 	maxHealth = 100
@@ -13,14 +13,10 @@
 	pixel_x = -16
 	old_x = -16
 
-// ***************************************
-// *********** Icons
-// ***************************************
-/mob/living/carbon/xenomorph/baneling/handle_special_state()
-	if(rolling)
-		icon_state = "Baneling Rolling"
-		return TRUE
-	return FALSE
+/mob/living/carbon/xenomorph/baneling/neuro
+	name = "Neurotoxin Baneling"
+	desc = ""
+	color = COLOR_DARK_ORANGE
 
 /mob/living/carbon/xenomorph/baneling/set_stat()
 	. = ..()

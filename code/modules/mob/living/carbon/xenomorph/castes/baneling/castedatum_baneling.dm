@@ -42,9 +42,6 @@
 	// *** Minimap Icon *** //
 	minimap_icon = "baneling"
 
-	// *** Baneling Abilities *** //
-	rolling_speed_bonus = -1
-
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -79,9 +76,6 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
-	// *** Baneling Abilities *** //
-	rolling_speed_bonus = -1
-
 /datum/xeno_caste/baneling/elder
 	upgrade_name = "Elder"
 	caste_desc = ""
@@ -107,9 +101,6 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
-	// *** Baneling Abilities *** //
-	rolling_speed_bonus = -1
-
 /datum/xeno_caste/baneling/ancient
 	upgrade_name = "Ancient"
 	caste_desc = ""
@@ -134,9 +125,6 @@
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-
-	// *** Baneling Abilities *** //
-	rolling_speed_bonus = -1
 
 /datum/xeno_caste/baneling/primordial
 	upgrade_name = "Primordial"
