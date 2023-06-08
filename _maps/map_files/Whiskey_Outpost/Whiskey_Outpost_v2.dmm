@@ -229,7 +229,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "aW" = (
-/obj/machinery/floodlight/combat,
+/obj/machinery/deployable/floodlight,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "aY" = (
@@ -4936,7 +4936,7 @@
 /turf/open/shuttle/dropship/eight,
 /area/whiskey_outpost/outside/east)
 "zM" = (
-/obj/machinery/floodlight/combat,
+/obj/machinery/deployable/floodlight,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "zP" = (

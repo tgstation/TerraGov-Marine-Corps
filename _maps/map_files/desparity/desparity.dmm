@@ -659,6 +659,12 @@
 	},
 /turf/open/floor/plating/dmg3,
 /area/lv624/lazarus/crashed_ship)
+"dU" = (
+/obj/structure/cable,
+/obj/structure/table/gamblingtable,
+/obj/item/toy/deck/kotahi,
+/turf/open/floor/wood/variable/damaged/standard,
+/area/lv624/lazarus/bar)
 "dX" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
@@ -1252,9 +1258,6 @@
 	dir = 4
 	},
 /area/lv624/ground/river3)
-"gL" = (
-/turf/open/floor/wood/variable/damaged/standard,
-/area/lv624/lazarus/spaceport)
 "gM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -1723,12 +1726,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
-"jd" = (
-/obj/structure/cable,
-/obj/structure/table/gamblingtable,
-/obj/item/toy/deck/kotahi,
-/turf/open/floor/wood/variable/damaged/standard,
-/area/lv624/lazarus/bar)
 "je" = (
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
@@ -2257,10 +2254,6 @@
 	dir = 8
 	},
 /area/lv624/ground/river3)
-"lS" = (
-/obj/structure/cable,
-/turf/open/floor/wood/variable/damaged/standard,
-/area/lv624/lazarus/bar)
 "lT" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/dirt,
@@ -2727,12 +2720,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
-"ot" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/wood/variable/damaged/standard,
-/area/lv624/lazarus/spaceport)
 "ou" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -3632,11 +3619,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle10)
-"sV" = (
-/obj/machinery/door/window,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/wood/variable/damaged/standard,
-/area/lv624/lazarus/bar)
 "sX" = (
 /obj/structure/barricade/metal/deployable{
 	dir = 8
@@ -4273,10 +4255,6 @@
 "wm" = (
 /turf/open/ground/coast,
 /area/lv624/ground/river3)
-"wn" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "wp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access,
 /turf/open/floor/plating,
@@ -4337,10 +4315,6 @@
 	dir = 10
 	},
 /area/lv624/lazarus/spaceport)
-"wJ" = (
-/obj/machinery/light/small,
-/turf/open/floor/wood/variable/damaged/standard,
-/area/lv624/lazarus/spaceport)
 "wK" = (
 /obj/structure/table,
 /turf/open/floor/tile/green/greentaupe{
@@ -4373,6 +4347,11 @@
 	dir = 5
 	},
 /area/lv624/lazarus/chapel)
+"wQ" = (
+/obj/machinery/door/window,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood/variable/damaged/standard,
+/area/lv624/lazarus/bar)
 "wR" = (
 /obj/structure/bed,
 /obj/effect/spawner/random/misc/bedsheet,
@@ -4843,6 +4822,9 @@
 	dir = 2
 	},
 /area/lv624/ground/caves/west1)
+"zh" = (
+/turf/open/floor/wood/variable/damaged/standard,
+/area/lv624/lazarus/spaceport)
 "zi" = (
 /obj/structure/window_frame/wood,
 /obj/item/shard,
@@ -4878,14 +4860,6 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/lazarus/spaceport)
-"zq" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/shuttle/drop1/lz1)
 "zr" = (
 /obj/item/trash/chips,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -5558,6 +5532,10 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle9)
+"Cz" = (
+/obj/machinery/light/small,
+/turf/open/floor/wood/variable/damaged/standard,
+/area/lv624/lazarus/spaceport)
 "CA" = (
 /obj/machinery/door/airlock/prison/open{
 	dir = 1
@@ -5741,10 +5719,6 @@
 /obj/structure/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport)
-"Dt" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "Du" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -7487,6 +7461,10 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
+"LZ" = (
+/obj/structure/cable,
+/turf/open/floor/wood/variable/damaged/standard,
+/area/lv624/lazarus/bar)
 "Ma" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /obj/effect/decal/cleanable/dirt,
@@ -8037,14 +8015,6 @@
 	dir = 8
 	},
 /area/lv624/lazarus/sleep_male)
-"Ot" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "Oy" = (
 /obj/structure/bed/chair/sofa{
 	dir = 1
@@ -8394,23 +8364,6 @@
 	dir = 5
 	},
 /area/lv624/lazarus/medbay)
-"Qt" = (
-/obj/structure/cable,
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -7;
-	pixel_y = -1
-	},
-/turf/open/floor/wood/variable/damaged/standard,
-/area/lv624/lazarus/bar)
 "Qu" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -9184,10 +9137,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
-"Uc" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "Ud" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9434,10 +9383,6 @@
 	dir = 8
 	},
 /area/lv624/ground/river3)
-"Vh" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "Vi" = (
 /obj/structure/flora/grass/tallgrass{
 	color = "#798963"
@@ -9558,6 +9503,12 @@
 	},
 /turf/open/floor/tile,
 /area/lv624/lazarus/medbay)
+"VL" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood/variable/damaged/standard,
+/area/lv624/lazarus/spaceport)
 "VM" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = 7;
@@ -9808,6 +9759,23 @@
 /obj/machinery/smartfridge,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/canteen)
+"WW" = (
+/obj/structure/cable,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -7;
+	pixel_y = -1
+	},
+/turf/open/floor/wood/variable/damaged/standard,
+/area/lv624/lazarus/bar)
 "WX" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
@@ -11225,7 +11193,7 @@ yp
 yp
 ek
 ek
-Ot
+ek
 yp
 yp
 yp
@@ -11325,7 +11293,7 @@ RA
 pf
 GF
 GF
-Dt
+Ux
 Ux
 Ux
 Ux
@@ -11429,7 +11397,7 @@ tf
 pf
 GF
 GF
-wn
+Ux
 Ux
 Ux
 Ux
@@ -12053,7 +12021,7 @@ nq
 pf
 GF
 GF
-wn
+Ux
 Ux
 Ux
 Ux
@@ -12157,7 +12125,7 @@ RA
 pf
 GF
 GF
-Dt
+Ux
 Ux
 Ux
 Ux
@@ -14566,7 +14534,7 @@ zx
 Mi
 JV
 EP
-lS
+LZ
 Sz
 ef
 zx
@@ -14773,7 +14741,7 @@ Om
 zx
 JS
 EP
-lS
+LZ
 Pg
 Mq
 lL
@@ -14984,7 +14952,7 @@ tz
 Zn
 he
 Pg
-sV
+wQ
 zx
 wh
 "}
@@ -15085,7 +15053,7 @@ Ho
 Sf
 Zp
 tz
-jd
+dU
 Jh
 qX
 Pg
@@ -15191,7 +15159,7 @@ Zp
 tz
 jU
 BL
-Qt
+WW
 Zn
 zx
 wh
@@ -18085,7 +18053,7 @@ As
 SM
 ud
 ud
-gL
+zh
 ud
 WK
 Om
@@ -18187,10 +18155,10 @@ Om
 Om
 Om
 WK
-ot
+VL
 ud
 ud
-wJ
+Cz
 WK
 Om
 Om
@@ -18291,7 +18259,7 @@ Om
 Om
 Om
 WK
-gL
+zh
 ud
 ud
 ud
@@ -18397,7 +18365,7 @@ Om
 WK
 ud
 ud
-gL
+zh
 jj
 np
 Om
@@ -18695,9 +18663,9 @@ LI
 Ue
 LO
 iO
-gL
+zh
 Xv
-gL
+zh
 WK
 oP
 fN
@@ -18801,7 +18769,7 @@ LO
 iO
 ud
 ud
-gL
+zh
 WK
 mG
 yF
@@ -18920,7 +18888,7 @@ eV
 eV
 hU
 hU
-zq
+hU
 eV
 eV
 eV
@@ -19008,7 +18976,7 @@ Ue
 Of
 iO
 ud
-gL
+zh
 ud
 tI
 jj
@@ -19020,7 +18988,7 @@ La
 jY
 tI
 tI
-Vh
+OP
 OP
 OP
 OP
@@ -19111,7 +19079,7 @@ UI
 fG
 Of
 iO
-gL
+zh
 ud
 tI
 ud
@@ -19124,7 +19092,7 @@ Se
 jY
 tI
 tI
-Uc
+OP
 OP
 OP
 OP
@@ -19748,7 +19716,7 @@ ov
 jY
 tI
 tI
-Uc
+OP
 OP
 OP
 OP
@@ -19852,7 +19820,7 @@ La
 jY
 tI
 tI
-Vh
+OP
 OP
 OP
 OP
@@ -20488,10 +20456,10 @@ vw
 HE
 WK
 tI
-gL
+zh
 tI
 pe
-gL
+zh
 MG
 Om
 Om
@@ -20591,7 +20559,7 @@ hQ
 eJ
 Hx
 yo
-gL
+zh
 pe
 tI
 bI

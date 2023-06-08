@@ -38,16 +38,16 @@
 
 	var/dat
 	if (temp)
-		dat = text("[]<BR><BR><A href='?src=\ref[];choice=Clear Screen'>Clear Screen</A>", temp, src)
+		dat = "[temp]<BR><BR><A href='?src=\ref[src];choice=Clear Screen'>Clear Screen</A>"
 	else
-		dat = text("Confirm Identity: <A href='?src=\ref[];choice=Confirm Identity'>[]</A><HR>", src, (scan ? text("[]", scan.name) : "----------"))
+		dat = "Confirm Identity: <A href='?src=\ref[src];choice=Confirm Identity'>[scan ? "[scan.name]" : "----------"]</A><HR>"
 		if (authenticated)
-			switch(screen)
+			switch(screen) //TODO: this is awful.
 				if(1)
 					dat += {"
 <p style='text-align:center;'>"}
-					dat += text("<A href='?src=\ref[];choice=Search Records'>Search Records</A><BR>", src)
-					dat += text("<A href='?src=\ref[];choice=New Record (General)'>New Record</A><BR>", src)
+					dat += "<A href='?src=\ref[src];choice=Search Records'>Search Records</A><BR>"
+					dat += "<A href='?src=\ref[src];choice=New Record (General)'>New Record</A><BR>"
 					dat += {"
 </p>
 <table style="text-align:center;" cellspacing="0" width="100%">
@@ -66,12 +66,12 @@
 						for(var/datum/data/record/R in sortRecord(GLOB.datacore.general, sortBy, order))
 							for(var/datum/data/record/E in GLOB.datacore.security)
 							var/background
-							dat += text("<tr style=[]><td><A href='?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
-							dat += text("<td>[]</td>", R.fields["id"])
-							dat += text("<td>[]</td>", R.fields["rank"])
-							dat += text("<td>[]</td>", R.fields["fingerprint"])
+							dat += "<tr style=[background]><td><A href='?src=\ref[src];choice=Browse Record;d_rec=\ref[R]'>[R.fields["name"]]</a></td>"
+							dat += "<td>[R.fields["id"]]</td>"
+							dat += "<td>[R.fields["rank"]]</td>"
+							dat += "<td>[R.fields["fingerprint"]]</td>"
 						dat += "</table><hr width='75%' />"
-					dat += text("<br><br><A href='?src=\ref[];choice=Log Out'>{Log Out}</A>",src)
+					dat += "<br><br><A href='?src=\ref[src];choice=Log Out'>{Log Out}</A>"
 				if(2)
 					dat += "<CENTER><B>Employment Record</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && GLOB.datacore.general.Find(active1)))
@@ -95,15 +95,15 @@
 						<img src=photo_side height=80 width=80 border=4></td></tr></table>"
 					else
 						dat += "<B>General Record Lost!</B><BR>"
-					dat += text("<BR><BR>\n<A href='?src=\ref[];choice=Print Record'>Print Record</A><BR>\n<A href='?src=\ref[];choice=Return'>Back</A><BR>", src, src)
+					dat += "<BR><BR>\n<A href='?src=\ref[src];choice=Print Record'>Print Record</A><BR>\n<A href='?src=\ref[src];choice=Return'>Back</A><BR>"
 				if(3)
 					if(!length(Perp))
-						dat += text("ERROR.  String could not be located.<br><br><A href='?src=\ref[];choice=Return'>Back</A>", src)
+						dat += "ERROR.  String could not be located.<br><br><A href='?src=\ref[src];choice=Return'>Back</A>"
 					else
 						dat += {"
 <table style="text-align:center;" cellspacing="0" width="100%">
 <tr>					"}
-						dat += text("<th>Search Results for '[]':</th>", tempname)
+						dat += "<th>Search Results for '[tempname]':</th>"
 						dat += {"
 </tr>
 </table>
@@ -122,16 +122,16 @@
 								crimstat = E.fields["criminal"]
 							var/background
 							background = "'background-color:#00FF7F;'"
-							dat += text("<tr style=[]><td><A href='?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
-							dat += text("<td>[]</td>", R.fields["id"])
-							dat += text("<td>[]</td>", R.fields["rank"])
-							dat += text("<td>[]</td>", R.fields["fingerprint"])
-							dat += text("<td>[]</td></tr>", crimstat)
+							dat += "<tr style=[background]><td><A href='?src=\ref[src];choice=Browse Record;d_rec=\ref[R]'>[R.fields["name"]]</a></td>"
+							dat += "<td>[R.fields["id"]]</td>"
+							dat += "<td>[R.fields["rank"]]</td>"
+							dat += "<td>[R.fields["fingerprint"]]</td>"
+							dat += "<td>[crimstat]</td></tr>"
 						dat += "</table><hr width='75%' />"
-						dat += text("<br><A href='?src=\ref[];choice=Return'>Return to index.</A>", src)
+						dat += "<br><A href='?src=\ref[src];choice=Return'>Return to index.</A>"
 				else
 		else
-			dat += text("<A href='?src=\ref[];choice=Log In'>{Log In}</A>", src)
+			dat += "<A href='?src=\ref[src];choice=Log In'>{Log In}</A>"
 
 	var/datum/browser/popup = new(user, "secure_rec", "<div align='center'>Employment Records</div>", 600, 400)
 	popup.set_content(dat)

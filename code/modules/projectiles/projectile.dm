@@ -878,8 +878,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-		proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
-		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 	if(iscarbon(proj.firer))
 		var/mob/living/carbon/shooter_carbon = proj.firer
@@ -1199,7 +1197,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return hard_armor.getRating(armor_type)
 
 /mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
-	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
+	var/datum/limb/affected_limb = proj_def_zone
 	return affected_limb.hard_armor.getRating(armor_type)
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)

@@ -181,7 +181,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand
 	name = "sand"
 	icon_state = "mars_dirt_to_sand"
-	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT)
+	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT, SMOOTH_GROUP_OPEN_FLOOR)
 
 /turf/open/floor/plating/ground/mars/cavetodirt
 	name = "cave"
