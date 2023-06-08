@@ -81,3 +81,12 @@
   - balance: Alamo shouldn't delete you if you stand near the doors when it crashes
   - bugfix: Fixed AI nodes being deleted when turfs get emptied
   - bugfix: The GL54 razor nade magazines have the correct name in req now
+2023-06-08:
+  Lumipharon:
+  - bugfix: fixed a an issue with trying to click on one of King's overlays
+  Mrrpip:
+  - rscadd: Adds a shower and map table to the Sulaco medbay. Stop stinking.
+  Pariah919:
+  - balance: AMR Flak now does slowdown and has a higher airburst multiplier, but
+      has reduced sundering. AMR Incend does a bit more damage even if it is still
+      less than normal ammo as well as slightly more pen.
