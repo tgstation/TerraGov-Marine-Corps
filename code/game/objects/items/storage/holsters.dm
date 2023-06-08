@@ -266,7 +266,7 @@
 
 /obj/item/storage/holster/blade/officer/valirapier
 	name = "\improper HP-C vali rapier sheath"
-	desc = "An exquisite ceremonial sheat for a even more expensive rapier."
+	desc = "An exquisite ceremonial sheat for an even more expensive rapier."
 	icon_state = "rapier_holster"
 	base_icon = "rapier_holster"
 	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword/valirapier)
