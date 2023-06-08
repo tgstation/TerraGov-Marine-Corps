@@ -673,6 +673,22 @@
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "planttop1"
 
+/obj/structure/jungle/large_bush
+	name = "large plant"
+	desc = "A large, leafy plant."
+	icon_state = "bush"
+	icon = 'icons/obj/flora/largejungleflora.dmi'
+	layer = ABOVE_MOB_LAYER
+	pixel_x = -16
+	pixel_y = -8
+	///number of icon variants this object has
+	var/icon_variants = 3
+
+/obj/structure/jungle/large_bush/Initialize(mapload)
+	. = ..()
+	icon_state = "[initial(icon_state)]_[rand(1, icon_variants)]"
+	AddComponent(/datum/component/largetransparency, 0, 0, 0, 1)
+
 /obj/structure/jungle/vines
 	name = "vines"
 	desc = "A mass of twisted vines."

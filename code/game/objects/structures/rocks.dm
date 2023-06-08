@@ -6,6 +6,7 @@
 	icon_state = "basalt"
 	max_integrity = 250
 	coverage = 100
+	soft_armor = list(MELEE = 75, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 100, FIRE = 100, ACID = 25)
 	density = TRUE
 	anchored = TRUE
 	layer = ABOVE_TURF_LAYER
@@ -58,14 +59,29 @@
 	desc = "A pile of ancient fossils. There are some oddly shaped skulls in here..."
 	icon_state = "lavarocks3"
 
-/obj/structure/rock/stalagmite
+//randomised icons
+/obj/structure/rock/variable
+	///number of icon variants this object has
+	var/icon_variants = 1
+
+/obj/structure/rock/variable/Initialize(mapload)
+	. = ..()
+	icon_state = "[initial(icon_state)]_[rand(1, icon_variants)]"
+
+/obj/structure/rock/variable/stalagmite
 	name = "stalagmite"
 	desc = "An ancient mound of mineral deposits, typically found in caves."
 	icon = 'icons/obj/structures/cave_decor.dmi'
 	icon_state = "stalagmite"
-	///number of icon variants this object has
-	var/icon_variants = 6
+	icon_variants = 6
 
-/obj/structure/rock/stalagmite/Initialize(mapload)
-	. = ..()
-	icon_state = "[initial(icon_state)]_[rand(1, icon_variants)]"
+/obj/structure/rock/variable/jungle
+	name = "rocks"
+	desc = "A large bunch of slippery looking rocks."
+	icon = 'icons/obj/flora/largejungleflora.dmi'
+	icon_state = "rocks"
+	max_integrity = 350
+	coverage = 75
+	bound_height = 64
+	bound_width = 64
+	icon_variants = 4
