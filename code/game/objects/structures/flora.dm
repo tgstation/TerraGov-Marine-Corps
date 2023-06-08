@@ -553,7 +553,7 @@
 
 /obj/structure/flora/drought/broc
 	name = "broc flower tree"
-	desc = "A small desert tree. It doesn't look terribly happy."
+	desc = "A small desert shrub. It doesn't look terribly happy."
 	icon_state = "broc_flower"
 	icon_variants = 2
 
@@ -569,12 +569,54 @@
 	icon_state = "ash_rose"
 	icon_variants = 2
 
+//cave flora
+/obj/structure/flora/drought/shroom
+	name = "fungus"
+	desc = "A small patch of brown fungus. Eating them is probably a terrible idea."
+	icon_state = "shroom"
+	icon_variants = 3
 
-tall cactus
+/obj/structure/flora/drought/shroom/glow
+	name = "glowing fungus"
+	desc = "A small patch of luminescent fungus. Eating them is definitely a terrible idea."
+	icon_state = "glowshroom"
 
-short cactus
+/obj/structure/flora/drought/shroom/blight
+	name = "blight mushroom"
+	desc = "A small patch of blight mushrooms. Extremely toxic."
+	icon_state = "blightshroom"
 
-barrel cactus
+/obj/structure/flora/drought/shroom/brain
+	name = "ash rose"
+	desc = "A small patch of brain fungus. Apparently delicious when correctly prepared."
+	icon_state = "brainshroom"
 
-leafy plant
+/obj/structure/flora/drought/shroom/fire
+	name = "ash rose"
+	desc = "A small patch of fire mushrooms. Doesn't actually cause fire."
+	icon_state = "fireshroom"
 
+/obj/structure/flora/drought/shroom/gut
+	name = "ash rose"
+	desc = "A small patch of gut mushrooms. Is supposed to cause a prolonged, agonising death."
+	icon_state = "gutshroom"
+
+/obj/structure/flora/drought/shroom/nara_root
+	name = "ash rose"
+	desc = "A small patch of nara root fungus. Supposedly has healing properties."
+	icon_state = "narashroom"
+
+/obj/structure/flora/drought/shroom/lure_weed
+	name = "lure weed"
+	desc = "A long, tough little fungus."
+	icon_state = "lureweed"
+
+/obj/structure/flora/drought/broc/cave
+	desc = "A small desert shrub. It looks surprisingly happy in the gloom."
+	icon_state = "broc_flower_cave"
+	icon_variants = 2
+
+/obj/structure/flora/drought/xander/cave
+	desc = "A tough little plant. Supposedly has medicinal properties when dried."
+	icon_state = "xander_cave"
+	icon_variants = 2
