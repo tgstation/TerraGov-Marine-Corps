@@ -2146,7 +2146,7 @@
 "awN" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/rock/pile,
+/obj/structure/rock/basalt/pile,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "awT" = (
@@ -4645,7 +4645,7 @@
 /turf/open/floor/plating,
 /area/deltastation/hallway/secondary/entry)
 "aXC" = (
-/obj/structure/flora/rock,
+/obj/structure/rock/basalt,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/easterntunnel)
 "aXD" = (
@@ -24291,7 +24291,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/flora/ausbushes/stalkybush,
-/obj/structure/flora/rock/pile,
+/obj/structure/rock/basalt/pile,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "eSw" = (
@@ -55416,7 +55416,7 @@
 /turf/open/floor/plating,
 /area/deltastation/service/chapel/funeral)
 "lnS" = (
-/obj/structure/flora/rock,
+/obj/structure/rock/basalt,
 /obj/machinery/light,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/easterntunnel)
@@ -85847,7 +85847,7 @@
 /area/deltastation/maintenance/port)
 "ruV" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/flora/rock/pile,
+/obj/structure/rock/basalt/pile,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "ruX" = (
@@ -98415,7 +98415,7 @@
 "tWs" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/rock/pile,
+/obj/structure/rock/basalt/pile,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "tWC" = (
@@ -114835,7 +114835,7 @@
 "xhY" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/rock,
+/obj/structure/rock/basalt,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "xif" = (

@@ -13525,7 +13525,7 @@
 /obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
-/obj/structure/flora/rock/pile/alt2,
+/obj/structure/rock/basalt/pile/alt2,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/space)
 "smw" = (
