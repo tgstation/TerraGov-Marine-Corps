@@ -153,6 +153,13 @@
 /obj/structure/flora/tree/dead/AddTransparencyComponent()
 	AddComponent(/datum/component/largetransparency, 0, 1, 0, 0)
 
+/obj/structure/flora/tree/dead/drought
+	name = "dead tree"
+	desc = "A dead tree. Its probably seen better days."
+	icon = 'icons/obj/flora/tall_trees.dmi'
+	icon_state = "dead_tree"
+	icon_variants = 3
+
 /obj/structure/flora/tree/joshua
 	name = "joshua tree"
 	desc = "A tall tree covered in spiky-like needles, covering it's trunk."
