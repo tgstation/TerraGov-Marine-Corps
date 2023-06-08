@@ -567,9 +567,10 @@ const PopulationPyramid = (_props, context) => {
                       return null;
                     }
                     const static_entry = static_info[value];
-                    return (static_entry.maximum_active === -1 
-                      ? `${static_entry.name}: ${count}`
-                      : `${static_entry.name}: ${count} / ${static_entry.maximum_active}`
+                    return (
+                      static_entry.maximum_active === -1 
+                        ? `${static_entry.name}: ${count}`
+                        : `${static_entry.name}: ${count} / ${static_entry.maximum_active}`
                     );
                   })
                   .filter((ti) => ti !== null)
