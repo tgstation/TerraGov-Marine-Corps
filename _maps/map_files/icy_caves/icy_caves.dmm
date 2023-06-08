@@ -9173,7 +9173,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "Vg" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/dirt,
 /area/icy_caves/caves/alienstuff)
@@ -9243,7 +9243,7 @@
 	},
 /area/icy_caves/caves/northwestmonorail)
 "Vv" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /obj/structure/window/reinforced{
 	dir = 1
 	},

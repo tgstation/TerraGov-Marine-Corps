@@ -75,7 +75,7 @@
 			I.pixel_y = rand(-6,6)
 			overlays += I
 	if(vines_spawn && prob(8))
-		new /obj/structure/jungle/vines(src)
+		new /obj/structure/flora/jungle/vines(src)
 
 
 /turf/open/ground/jungle/proc/Spread(probability, prob_loss = 50)

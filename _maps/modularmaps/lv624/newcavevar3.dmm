@@ -219,7 +219,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "QB" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Rk" = (

@@ -619,7 +619,7 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "YZ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/internal_affairs)
 

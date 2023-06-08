@@ -9913,7 +9913,7 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "gHM" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/floor/grass,
 /area/gelida/indoors/a_block/garden)
 "gHP" = (
@@ -15781,7 +15781,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/gelida)
 "kKo" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/floor/grass,
 /area/gelida/indoors/a_block/garden)
 "kKy" = (
@@ -23999,7 +23999,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/hallway)
 "qhc" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
 /area/gelida/indoors/a_block/garden)

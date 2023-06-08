@@ -9,7 +9,7 @@
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 5
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/whiskey_outpost/outside/south)
 "ac" = (
@@ -166,7 +166,7 @@
 	},
 /area/whiskey_outpost)
 "aF" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/whiskey_outpost/outside/rock)
 "aG" = (
@@ -360,7 +360,7 @@
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 4
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "by" = (
@@ -448,13 +448,13 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "bI" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/turf_decal/grassdecal/corner,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "bR" = (
 /obj/effect/decal/cleanable/blood/writing,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "bS" = (
@@ -1711,7 +1711,7 @@
 	},
 /area/whiskey_outpost/outside/north)
 "iu" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "iv" = (
@@ -2783,7 +2783,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "nJ" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "nK" = (
@@ -3059,7 +3059,7 @@
 /area/whiskey_outpost/outside/south)
 "oP" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "oQ" = (
@@ -3439,7 +3439,7 @@
 /area/whiskey_outpost/outside/east)
 "qr" = (
 /obj/effect/turf_decal/grassdecal,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "qt" = (
@@ -3832,7 +3832,7 @@
 /turf/closed/wall,
 /area/whiskey_outpost/outside/north)
 "sJ" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "sM" = (
@@ -3854,7 +3854,7 @@
 /obj/effect/turf_decal/grassdecal/corner{
 	dir = 4
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "sT" = (
@@ -3958,7 +3958,7 @@
 	},
 /area/whiskey_outpost/outside/south)
 "tD" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "tE" = (
@@ -4418,7 +4418,7 @@
 /area/whiskey_outpost/outside/north)
 "vZ" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/turf_decal/grassdecal{
 	dir = 1
 	},
@@ -4493,7 +4493,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
 "wI" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "wL" = (
@@ -4645,7 +4645,7 @@
 /area/whiskey_outpost)
 "xJ" = (
 /obj/structure/window_frame/colony,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "xK" = (
@@ -4694,7 +4694,7 @@
 /obj/effect/turf_decal/grassdecal{
 	dir = 1
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "xZ" = (
@@ -4707,7 +4707,7 @@
 /obj/effect/turf_decal/grassdecal{
 	dir = 8
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "yd" = (
@@ -4761,7 +4761,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "yv" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/south)
 "yw" = (
@@ -5155,7 +5155,7 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost)
 "Bc" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/whiskey_outpost/outside/south)
 "Bd" = (
@@ -5311,7 +5311,7 @@
 /obj/effect/turf_decal/grassdecal/corner{
 	dir = 8
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/whiskey_outpost/outside/rock)
 "BX" = (
@@ -5541,7 +5541,7 @@
 	},
 /area/whiskey_outpost)
 "Dz" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "DC" = (
@@ -5613,7 +5613,7 @@
 /obj/effect/turf_decal/grassdecal/corner{
 	dir = 1
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Ei" = (
@@ -6033,7 +6033,7 @@
 /obj/effect/turf_decal/grassdecal/corner{
 	dir = 8
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "HT" = (
@@ -6099,7 +6099,7 @@
 /area/whiskey_outpost)
 "Iu" = (
 /obj/effect/turf_decal/grassdecal,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/whiskey_outpost/outside/rock)
 "Iv" = (
@@ -6127,7 +6127,7 @@
 /obj/effect/turf_decal/grassdecal/corner{
 	dir = 4
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/whiskey_outpost/outside/rock)
 "IE" = (
@@ -6136,7 +6136,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "IF" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/turf_decal/grassdecal/corner{
 	dir = 1
 	},
@@ -6150,7 +6150,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "IW" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/west)
 "IZ" = (
@@ -6166,7 +6166,7 @@
 	},
 /area/whiskey_outpost)
 "Jb" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/east)
 "Je" = (
@@ -6337,7 +6337,7 @@
 /area/whiskey_outpost/outside/east)
 "Kv" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "Kw" = (
@@ -6526,7 +6526,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "LO" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "LQ" = (
@@ -6939,7 +6939,7 @@
 /obj/effect/turf_decal/grassdecal/corner2{
 	dir = 4
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "OO" = (
@@ -7063,7 +7063,7 @@
 /area/whiskey_outpost/outside/east)
 "PX" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Qk" = (
@@ -7245,7 +7245,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "RT" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/turf_decal/grassdecal{
 	dir = 4
 	},
@@ -7458,7 +7458,7 @@
 /area/whiskey_outpost/outside/north)
 "TE" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/whiskey_outpost/outside/rock)
 "TG" = (
@@ -7470,7 +7470,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "TJ" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /obj/structure/platform{
 	dir = 4
 	},
@@ -7490,7 +7490,7 @@
 /area/whiskey_outpost/outside/north)
 "TQ" = (
 /obj/structure/girder,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/south)
 "TT" = (
@@ -7544,7 +7544,7 @@
 /obj/effect/turf_decal/grassdecal{
 	dir = 4
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Uj" = (
@@ -7562,7 +7562,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "Ut" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/whiskey_outpost/outside/south)
 "Uu" = (
@@ -7608,7 +7608,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "Va" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/whiskey_outpost/outside/south)
 "Ve" = (
@@ -7702,7 +7702,7 @@
 /obj/effect/turf_decal/grassdecal/corner2{
 	dir = 1
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "VI" = (
@@ -7957,7 +7957,7 @@
 /turf/open/floor/tile/damaged/panel,
 /area/whiskey_outpost/outside/east)
 "Yb" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/south)
 "Yg" = (
@@ -8124,7 +8124,7 @@
 /area/whiskey_outpost)
 "Zz" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/turf_decal/grassdecal,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)

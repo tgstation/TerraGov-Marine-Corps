@@ -207,7 +207,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "aiv" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
 "aiC" = (
@@ -220,7 +220,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/crashed_ship)
 "aiO" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/lv624/lazarus/sandtemple)
 "ajq" = (
@@ -521,7 +521,7 @@
 	pixel_y = 3
 	},
 /obj/structure/table/mainship,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/item/reagent_containers/food/snacks/pastries/xemeatpie,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -603,7 +603,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
 "atX" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "auc" = (
@@ -641,7 +641,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "auJ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "auV" = (
@@ -1130,7 +1130,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "aET" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "aEV" = (
@@ -1166,7 +1166,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river3)
 "aFV" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
@@ -1278,12 +1278,12 @@
 /area/lv624/lazarus/fitness)
 "aJs" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "aJu" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "aJD" = (
@@ -1295,7 +1295,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "aJL" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/research)
 "aJX" = (
@@ -1309,7 +1309,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "aKk" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "aKr" = (
@@ -1330,7 +1330,7 @@
 /area/lv624/lazarus/engineering)
 "aLd" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor,
 /area/lv624/ground/river1)
 "aLn" = (
@@ -1344,7 +1344,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "aLt" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle6)
@@ -1533,7 +1533,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand2)
 "aQc" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
@@ -1607,7 +1607,7 @@
 /turf/open/floor/elevatorshaft,
 /area/lv624/lazarus/bar)
 "aRF" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "aRP" = (
@@ -1668,7 +1668,7 @@
 	},
 /area/lv624/lazarus/main_hall)
 "aSV" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "aSX" = (
@@ -1739,7 +1739,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "aVj" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/fence,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
@@ -1762,13 +1762,13 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "aVL" = (
-/obj/structure/jungle/vines/heavy,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "aVO" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "aVZ" = (
@@ -1779,7 +1779,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "aWa" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "aWb" = (
@@ -1787,8 +1787,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand7)
 "aWd" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "aWe" = (
@@ -1811,7 +1811,7 @@
 	},
 /area/lv624/ground/river1)
 "aWT" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/lazarus/fitness)
 "aWU" = (
@@ -1819,7 +1819,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "aXc" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand8)
 "aXf" = (
@@ -1872,8 +1872,8 @@
 /turf/open/ground/coast,
 /area/lv624/ground/jungle9)
 "aYm" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle9)
@@ -1913,8 +1913,8 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "aZW" = (
-/obj/structure/jungle/vines/heavy,
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/vines/heavy,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "baa" = (
@@ -1930,12 +1930,12 @@
 	},
 /area/shuttle/drop1/lz1)
 "baw" = (
-/obj/structure/jungle/vines/heavy,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/jungle9)
 "bax" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/closed/wall,
 /area/lv624/ground/jungle9)
 "baY" = (
@@ -2008,7 +2008,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "bck" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "bcl" = (
@@ -2035,12 +2035,12 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "bcZ" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/closed/wall,
 /area/lv624/ground/jungle9)
 "bde" = (
 /obj/structure/flora/grass/green,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "bdh" = (
@@ -2124,7 +2124,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "bfs" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "bfw" = (
@@ -2154,10 +2154,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "bgf" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 26
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "bgq" = (
@@ -2240,7 +2240,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "bim" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "bin" = (
@@ -2248,8 +2248,8 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "biq" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "biz" = (
@@ -2277,12 +2277,12 @@
 	},
 /area/lv624/ground/caves/rock)
 "bjj" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "bjv" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/captain)
 "bjy" = (
@@ -2290,7 +2290,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/filtration)
 "bjM" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "bjQ" = (
@@ -2298,8 +2298,8 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/ground/filtration)
 "bjV" = (
-/obj/structure/jungle/planttop1,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/planttop1,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "bjZ" = (
@@ -2342,7 +2342,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "blF" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "blH" = (
@@ -2435,7 +2435,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "boD" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "boL" = (
@@ -2452,7 +2452,7 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "boW" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/secure_storage)
 "boY" = (
@@ -2463,8 +2463,8 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "bpj" = (
-/obj/structure/jungle/vines/heavy,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "bps" = (
@@ -2509,7 +2509,7 @@
 	},
 /area/lv624/ground/filtration)
 "bqz" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle10)
@@ -2541,12 +2541,12 @@
 	},
 /area/lv624/ground/filtration)
 "bqO" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
 "bqU" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "bqV" = (
@@ -2835,7 +2835,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "bDo" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/compound/n)
 "bDC" = (
@@ -2869,7 +2869,7 @@
 /area/lv624/lazarus/main_hall)
 "bEs" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/lazarus/overgrown)
 "bEy" = (
@@ -2909,8 +2909,8 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bHC" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "bHL" = (
@@ -2937,7 +2937,7 @@
 	id = "corporate_blast";
 	name = "\improper Blast Door"
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/overgrown)
 "bJc" = (
@@ -3040,7 +3040,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "bPe" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "bPI" = (
@@ -3126,7 +3126,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "bUv" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/platform,
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple)
@@ -3184,7 +3184,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "bYX" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/power/apc/hyper,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/sandtemple)
@@ -3279,7 +3279,7 @@
 	},
 /area/lv624/lazarus/main_hall)
 "cin" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle1)
@@ -3299,7 +3299,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "ckO" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
@@ -3321,7 +3321,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "cmh" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/jungle2)
 "cmm" = (
@@ -3341,7 +3341,7 @@
 /turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "cmI" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "cny" = (
@@ -3353,10 +3353,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "cnB" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_x = -28
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
@@ -3367,7 +3367,7 @@
 	},
 /area/lv624/ground/filtration)
 "coI" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
@@ -3403,7 +3403,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "crr" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "crG" = (
@@ -3452,7 +3452,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "cuu" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle10)
 "cvf" = (
@@ -3567,15 +3567,15 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle5)
 "cDk" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 26
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "cDx" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
@@ -3672,7 +3672,7 @@
 "cIW" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/sleep_female)
 "cJx" = (
@@ -3682,7 +3682,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "cJL" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
@@ -3842,7 +3842,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "cUg" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
@@ -3877,7 +3877,7 @@
 	},
 /area/lv624/ground/jungle5)
 "cUA" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
@@ -3923,10 +3923,10 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "cWR" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 24
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "cXu" = (
@@ -4002,7 +4002,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "ddP" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/jungle10)
 "deR" = (
@@ -4062,7 +4062,7 @@
 /area/lv624/lazarus/engineering)
 "diR" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "djI" = (
@@ -4084,11 +4084,11 @@
 /area/lv624/ground/sand6)
 "dkv" = (
 /obj/structure/flora/ausbushes/brflowers,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "dle" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle10)
 "dli" = (
@@ -4175,7 +4175,7 @@
 /area/lv624/ground/caves/west1)
 "dqR" = (
 /obj/structure/catwalk,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/liquid/water/river/deep,
 /area/lv624/ground/river1)
 "dqS" = (
@@ -4416,7 +4416,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "dFx" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
@@ -4486,7 +4486,7 @@
 "dKg" = (
 /obj/item/tool/kitchen/utensil/spoon,
 /obj/structure/table/mainship,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/item/reagent_containers/food/snacks/soup/stew,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -4619,7 +4619,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "dRO" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/caves/rock)
 "dSc" = (
@@ -4629,7 +4629,7 @@
 	},
 /area/lv624/lazarus/spaceport)
 "dSi" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river2)
 "dSp" = (
@@ -4639,7 +4639,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "dSM" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/caves/rock)
 "dSX" = (
@@ -4655,7 +4655,7 @@
 /area/lv624/lazarus/bar)
 "dTv" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "dTK" = (
@@ -4667,7 +4667,7 @@
 /area/lv624/lazarus/corporate_affairs)
 "dUf" = (
 /obj/effect/turf_decal/sandytile,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
 	},
@@ -4771,7 +4771,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
 "ebx" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
 "ebN" = (
@@ -4824,7 +4824,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/spaceport2)
 "edH" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/stairs/seamless{
 	dir = 1
 	},
@@ -4848,12 +4848,12 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/lazarus/sandtemple)
 "efi" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "efQ" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 26
 	},
 /obj/effect/decal/cleanable/cobweb,
@@ -4921,7 +4921,7 @@
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
 "emm" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle10)
 "emx" = (
@@ -4944,7 +4944,7 @@
 	},
 /area/lv624/ground/caves/east1)
 "eoa" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "eon" = (
@@ -5056,7 +5056,7 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "evV" = (
 /obj/structure/flora/ausbushes/fernybush,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
@@ -5080,7 +5080,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "exE" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/patrol_point{
 	id = "SOM_12";
@@ -5093,7 +5093,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "eyo" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
 "eyD" = (
@@ -5204,7 +5204,7 @@
 /turf/open/shuttle/dropship/fourteen,
 /area/lv624/lazarus/sandtemple)
 "eKp" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/compound/n)
@@ -5248,7 +5248,7 @@
 /turf/open/ground/grass,
 /area/lv624/lazarus/sleep_female)
 "eOf" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/floor/plating/platebotc,
 /area/lv624/ground/jungle9)
@@ -5407,7 +5407,7 @@
 /area/lv624/lazarus/spaceport)
 "eYN" = (
 /obj/structure/window_frame/colony,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/ground/jungle9)
 "eYX" = (
@@ -5476,7 +5476,7 @@
 /area/lv624/ground/jungle9)
 "fdO" = (
 /obj/structure/table/mainship,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "ffd" = (
@@ -5633,7 +5633,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/captain)
 "fmL" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "fnB" = (
@@ -5667,7 +5667,7 @@
 /turf/open/floor/prison/redfloor,
 /area/lv624/lazarus/sandtemple)
 "fqZ" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_x = -28
 	},
 /turf/open/ground/grass,
@@ -5773,7 +5773,7 @@
 /area/lv624/ground/caves/rock)
 "fxm" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
 "fxx" = (
@@ -5799,15 +5799,15 @@
 /turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "fyu" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle5)
 "fyy" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "fzA" = (
@@ -5846,7 +5846,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
 "fCB" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
@@ -5933,7 +5933,7 @@
 	},
 /area/lv624/ground/caves/rock)
 "fKd" = (
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
 /turf/open/ground/grass,
@@ -5958,7 +5958,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "fMv" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "fMC" = (
@@ -5995,7 +5995,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/spaceport2)
 "fPI" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/lazarus/overgrown)
 "fPN" = (
@@ -6033,7 +6033,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "fUp" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river1)
 "fUX" = (
@@ -6078,7 +6078,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "fXn" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/jungle3)
 "fXo" = (
@@ -6145,7 +6145,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
 "gaO" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
@@ -6273,7 +6273,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
 "gfH" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "gfX" = (
@@ -6388,7 +6388,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river2)
 "gjs" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
@@ -6428,7 +6428,7 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "gpQ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/wood,
 /area/lv624/ground/jungle8)
 "gqa" = (
@@ -6563,7 +6563,7 @@
 /area/lv624/ground/jungle3)
 "gAO" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "gCg" = (
@@ -6576,7 +6576,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
 "gCL" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "gEa" = (
@@ -6622,8 +6622,8 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "gGt" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle1)
 "gIu" = (
@@ -6650,7 +6650,7 @@
 	},
 /area/lv624/ground/sand7)
 "gJI" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
@@ -6666,7 +6666,7 @@
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "gLd" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
@@ -6694,7 +6694,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "gMc" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/n)
 "gMF" = (
@@ -6797,7 +6797,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "gSY" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/door/airlock/mainship/generic{
 	desc = "This strange temple is covered in runes. It looks extremely ancient.";
 	name = "Strange Temple"
@@ -6846,7 +6846,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "gWC" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "gYm" = (
@@ -7169,7 +7169,7 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "hrS" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
@@ -7263,8 +7263,8 @@
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
 "hBm" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "hDe" = (
@@ -7437,7 +7437,7 @@
 /turf/open/ground/coast,
 /area/lv624/ground/jungle9)
 "hOp" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 26
 	},
 /turf/closed/wall/r_wall/chigusa,
@@ -7465,10 +7465,10 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "hOT" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 26
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
 "hOU" = (
@@ -7486,7 +7486,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/rock)
 "hPr" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
 "hPw" = (
@@ -7616,7 +7616,7 @@
 /area/lv624/lazarus/corporate_affairs)
 "hXF" = (
 /obj/structure/flora/grass/green,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "hXH" = (
@@ -7779,7 +7779,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "iiy" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
@@ -8012,7 +8012,7 @@
 	},
 /area/lv624/lazarus/chapel)
 "iBW" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -8033,7 +8033,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "iCY" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "iDx" = (
@@ -8057,7 +8057,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "iDU" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
@@ -8091,12 +8091,12 @@
 /turf/closed/wall,
 /area/lv624/ground/compound/n)
 "iFJ" = (
-/obj/structure/jungle/plantbot1,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/plantbot1,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "iHd" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/landmark/patrol_point{
 	id = "SOM_11";
 	name = "SOM exit point 11"
@@ -8145,7 +8145,7 @@
 /area/lv624/ground/river2)
 "iKK" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "iLn" = (
@@ -8221,7 +8221,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
 "iQK" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/stairs/cornerdark/seamless,
 /turf/open/floor/bcircuit/off,
 /area/lv624/lazarus/sandtemple)
@@ -8284,7 +8284,7 @@
 /area/lv624/ground/river2)
 "iUR" = (
 /obj/structure/window_frame/wood,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle8)
 "iVb" = (
@@ -8369,7 +8369,7 @@
 /area/lv624/ground/caves/central3)
 "jal" = (
 /obj/structure/fence,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "jaQ" = (
@@ -8410,11 +8410,11 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "jdx" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/compound/se)
 "jdL" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
@@ -8681,11 +8681,11 @@
 /area/lv624/lazarus/sandtemple)
 "jxG" = (
 /obj/structure/window_frame/wood,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle8)
 "jxI" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "jxU" = (
@@ -8713,13 +8713,13 @@
 /turf/open/floor,
 /area/lv624/lazarus/corporate_affairs)
 "jAj" = (
-/obj/structure/jungle/plantbot1,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/plantbot1,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "jAv" = (
 /obj/item/shard,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
@@ -8737,7 +8737,7 @@
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "jBQ" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "jBS" = (
@@ -8854,7 +8854,7 @@
 	},
 /area/lv624/lazarus/secure_storage)
 "jIK" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
@@ -8930,7 +8930,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "jNj" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle10)
@@ -9016,7 +9016,7 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "jRN" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
@@ -9030,7 +9030,7 @@
 /area/shuttle/drop1/lz1)
 "jTp" = (
 /obj/structure/showcase/six,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "jTE" = (
@@ -9043,7 +9043,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "jUy" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
 "jUW" = (
@@ -9113,7 +9113,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river2)
 "jZc" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 26
 	},
 /turf/closed/gm/dense,
@@ -9165,7 +9165,7 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "kbW" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_x = -28
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -9187,7 +9187,7 @@
 /area/lv624/ground/caves/rock)
 "kdW" = (
 /obj/structure/flora/ausbushes/fernybush,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "keK" = (
@@ -9201,7 +9201,7 @@
 "kfr" = (
 /obj/item/shard,
 /obj/structure/window_frame/colony/reinforced,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/lazarus/sleep_male)
 "kfz" = (
@@ -9210,7 +9210,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "kfC" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "kfX" = (
@@ -9256,7 +9256,7 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "kir" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
@@ -9408,7 +9408,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "kry" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "krL" = (
@@ -9442,7 +9442,7 @@
 	},
 /area/lv624/lazarus/secure_storage)
 "kso" = (
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
 /turf/closed/gm/dense,
@@ -9578,7 +9578,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle10)
 "kBK" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/n)
 "kBO" = (
@@ -9587,7 +9587,7 @@
 /area/lv624/ground/jungle5)
 "kCI" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/dmg3,
 /area/lv624/ground/river1)
 "kDe" = (
@@ -9651,7 +9651,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "kHh" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/ground/ruin)
 "kHn" = (
@@ -9857,7 +9857,7 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "kUt" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "kUz" = (
@@ -10054,7 +10054,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
 "lhQ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
@@ -10079,7 +10079,7 @@
 /turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "ljz" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
@@ -10227,7 +10227,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central5)
 "lvQ" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "lwf" = (
@@ -10242,7 +10242,7 @@
 	},
 /area/lv624/lazarus/corporate_affairs)
 "lwB" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
@@ -10279,11 +10279,11 @@
 /turf/open/space/basic,
 /area/space)
 "lBa" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage/outdoors)
 "lBm" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "lBK" = (
@@ -10522,7 +10522,7 @@
 	},
 /area/lv624/lazarus/security)
 "lQr" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 24
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -10553,7 +10553,7 @@
 	},
 /area/lv624/ground/filtration)
 "lSc" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/jungle6)
 "lSo" = (
@@ -10598,7 +10598,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "lTN" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle10)
 "lUz" = (
@@ -10638,7 +10638,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "lYS" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "lYY" = (
@@ -10693,7 +10693,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/sleep_male)
 "mbh" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "mbm" = (
@@ -10705,7 +10705,7 @@
 /area/lv624/lazarus/bar)
 "mbQ" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "mcn" = (
@@ -10726,7 +10726,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "mcU" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "mdr" = (
@@ -10749,7 +10749,7 @@
 	},
 /area/lv624/lazarus/chapel)
 "meL" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle5)
 "mfg" = (
@@ -10787,7 +10787,7 @@
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "mhi" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "mhV" = (
@@ -10874,7 +10874,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "mkT" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "mlg" = (
@@ -10926,8 +10926,8 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/bar)
 "mny" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "mnJ" = (
@@ -10982,7 +10982,7 @@
 /area/lv624/lazarus/research)
 "mrP" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/jungle7)
 "mrU" = (
@@ -11046,7 +11046,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "mxb" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
 "mxe" = (
@@ -11122,7 +11122,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "mDv" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/jungle7)
 "mDQ" = (
@@ -11136,8 +11136,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
 "mEp" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "mEB" = (
@@ -11167,8 +11167,8 @@
 	},
 /area/shuttle/drop2/lz2)
 "mGL" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "mHf" = (
@@ -11176,11 +11176,11 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "mHk" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/lazarus/fitness)
 "mIe" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "mIg" = (
@@ -11332,8 +11332,8 @@
 	},
 /area/lv624/lazarus/sandtemple)
 "mPA" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "mPT" = (
@@ -11345,7 +11345,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/corporate_affairs)
 "mPX" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "mQf" = (
@@ -11434,7 +11434,7 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "mWG" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/canteen)
 "mWV" = (
@@ -11460,13 +11460,13 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/rock)
 "mXE" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle7)
 "mXP" = (
-/obj/structure/jungle/planttop1,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/planttop1,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "mYr" = (
@@ -11495,7 +11495,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand7)
 "mZT" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/corporate_affairs)
 "naj" = (
@@ -11512,7 +11512,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
 "naG" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "nbj" = (
@@ -11542,7 +11542,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "ncx" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle10)
 "ncF" = (
@@ -11584,7 +11584,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
 "neS" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/beach{
 	dir = 1
 	},
@@ -11648,7 +11648,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/chapel)
 "nkE" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "nlg" = (
@@ -11710,8 +11710,8 @@
 /turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "nrD" = (
-/obj/structure/jungle/plantbot1/alien,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "nsc" = (
@@ -11721,8 +11721,8 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "nss" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
@@ -11931,8 +11931,8 @@
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
 "nIs" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "nIO" = (
@@ -11962,7 +11962,7 @@
 	},
 /area/lv624/ground/filtration)
 "nKA" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/jungle3)
 "nKH" = (
@@ -12170,7 +12170,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/kitchen)
 "oaC" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 26
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -12189,7 +12189,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "obn" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
@@ -12231,7 +12231,7 @@
 /area/lv624/ground/jungle3)
 "odo" = (
 /obj/structure/flora/ausbushes/fernybush,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
@@ -12316,7 +12316,7 @@
 /area/lv624/lazarus/quartstorage)
 "ojP" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "ojZ" = (
@@ -12352,7 +12352,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "omK" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle9)
@@ -12381,7 +12381,7 @@
 /area/lv624/lazarus/research)
 "oqn" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "oqA" = (
@@ -12403,7 +12403,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
@@ -12414,12 +12414,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "orR" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "osJ" = (
-/obj/structure/jungle/plantbot1/alien{
+/obj/structure/flora/jungle/plantbot1/alien{
 	pixel_y = 18
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -12444,7 +12444,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "ovM" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
@@ -12570,7 +12570,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "oEc" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand7)
 "oEf" = (
@@ -12581,12 +12581,12 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "oEq" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "oEu" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "oEJ" = (
@@ -12613,7 +12613,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "oGz" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
@@ -12635,7 +12635,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "oHb" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "oHs" = (
@@ -12717,7 +12717,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "oMV" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/landmark/patrol_point{
 	id = "SOM_14";
 	name = "SOM exit point 14"
@@ -12725,7 +12725,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "oOc" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -12748,7 +12748,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "oRZ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple)
 "oSA" = (
@@ -12851,7 +12851,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "oXY" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "oYe" = (
@@ -12930,7 +12930,7 @@
 /area/lv624/lazarus/sandtemple)
 "pcd" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
 "pcG" = (
@@ -12953,13 +12953,13 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/ruin)
 "pfv" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
 "pfG" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/platform{
 	dir = 8
 	},
@@ -13230,11 +13230,11 @@
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "pDg" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle8)
 "pDM" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle8)
 "pDW" = (
@@ -13321,7 +13321,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "pLo" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
 "pLK" = (
@@ -13361,7 +13361,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "pOl" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/lazarus/hydroponics)
 "pOG" = (
@@ -13404,7 +13404,7 @@
 	},
 /area/lv624/lazarus/spaceport2)
 "pQB" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/river1)
 "pRj" = (
@@ -13497,7 +13497,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "pUa" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
 "pUq" = (
@@ -13648,14 +13648,14 @@
 /area/lv624/ground/jungle9)
 "qdJ" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "qem" = (
 /obj/structure/sign/atmosplaque{
 	dir = 1
 	},
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "qfl" = (
@@ -13745,15 +13745,15 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "qnE" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "qnO" = (
-/obj/structure/jungle/planttop1,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/planttop1,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "qof" = (
@@ -13825,7 +13825,7 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "qsi" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "qsW" = (
@@ -13953,7 +13953,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "qzQ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
@@ -13967,7 +13967,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "qAT" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/lazarus/sleep_male)
 "qBg" = (
@@ -13988,11 +13988,11 @@
 /area/lv624/ground/jungle9)
 "qBL" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "qBQ" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 26
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -14037,8 +14037,8 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "qGH" = (
-/obj/structure/jungle/planttop1,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/planttop1,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "qGL" = (
@@ -14053,8 +14053,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "qHJ" = (
-/obj/structure/jungle/plantbot1,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/plantbot1,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "qIB" = (
@@ -14087,7 +14087,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "qJN" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "qKu" = (
@@ -14104,10 +14104,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "qLO" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 26
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "qMh" = (
@@ -14146,7 +14146,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/spaceport)
 "qOp" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -14166,7 +14166,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
 "qPo" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle1)
 "qPw" = (
@@ -14190,7 +14190,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "qQz" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "qQD" = (
@@ -14198,8 +14198,8 @@
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop2/lz2)
 "qRO" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "qSc" = (
@@ -14243,7 +14243,7 @@
 /area/lv624/ground/sand8)
 "qUJ" = (
 /obj/structure/catwalk,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river1)
 "qUY" = (
@@ -14280,7 +14280,7 @@
 	},
 /area/lv624/lazarus/engineering)
 "qWa" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/bcircuit/off,
 /area/lv624/lazarus/sandtemple)
 "qWj" = (
@@ -14309,7 +14309,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "qXi" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
 "qXy" = (
@@ -14398,7 +14398,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "rct" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
 "rcz" = (
@@ -14471,7 +14471,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "rgo" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
@@ -14527,7 +14527,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "rkE" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
 "rkN" = (
@@ -14591,7 +14591,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/corporate_affairs)
 "rnJ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/platform{
 	dir = 4
 	},
@@ -14614,16 +14614,16 @@
 /turf/open/floor/cult/clock,
 /area/lv624/lazarus/bar)
 "rpf" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/jungle9)
 "rpD" = (
 /obj/structure/flora/ausbushes/fernybush,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "rpQ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
 "rqK" = (
@@ -14715,12 +14715,12 @@
 	},
 /area/lv624/lazarus/engineering)
 "rwU" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
 "rxh" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
@@ -15000,7 +15000,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/lazarus/spaceport)
 "rMB" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/largecrate/random,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
@@ -15021,7 +15021,7 @@
 /area/lv624/lazarus/spaceport2)
 "rOA" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
 "rOO" = (
@@ -15118,14 +15118,14 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "rTU" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "rUq" = (
 /obj/structure/flora/ausbushes/brflowers,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "rUK" = (
@@ -15176,7 +15176,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "rXz" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "rXO" = (
@@ -15228,7 +15228,7 @@
 /area/lv624/lazarus/hydroponics)
 "rYY" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
 "rZh" = (
@@ -15327,7 +15327,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "sgf" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "sgE" = (
@@ -15369,7 +15369,7 @@
 	},
 /area/lv624/ground/filtration)
 "sjw" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "sjx" = (
@@ -15405,7 +15405,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "slg" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "slw" = (
@@ -15466,11 +15466,11 @@
 /area/lv624/lazarus/spaceport2)
 "ssc" = (
 /obj/structure/foamedmetal,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "ssi" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "sst" = (
@@ -15582,11 +15582,11 @@
 	},
 /area/lv624/lazarus/fitness)
 "sAA" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "sBf" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/river1)
 "sCc" = (
@@ -15605,7 +15605,7 @@
 	},
 /area/lv624/ground/jungle9)
 "sCN" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle9)
 "sDq" = (
@@ -15724,7 +15724,7 @@
 /area/lv624/ground/jungle6)
 "sNO" = (
 /obj/effect/decal/cleanable/blood/gibs/robot/limb,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "sNY" = (
@@ -15744,12 +15744,12 @@
 /area/lv624/lazarus/corporate_affairs)
 "sPF" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "sPT" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
@@ -15762,7 +15762,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "sRc" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/ruin)
 "sSs" = (
@@ -15877,12 +15877,12 @@
 	},
 /area/lv624/lazarus/main_hall)
 "sZf" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/lv624/ground/jungle9)
 "sZg" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/platform,
 /turf/closed/gm/dense,
 /area/lv624/lazarus/sandtemple)
@@ -15914,7 +15914,7 @@
 	},
 /area/lv624/lazarus/research)
 "tag" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
@@ -15940,7 +15940,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "tca" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river1)
 "tce" = (
@@ -15985,7 +15985,7 @@
 	id = "corporate_blast";
 	name = "\improper Blast Door"
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/lazarus/overgrown)
 "tek" = (
@@ -16032,7 +16032,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "thg" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle7)
 "thG" = (
@@ -16109,7 +16109,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "tlk" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/floor/plating/dmg1,
 /area/lv624/ground/river1)
@@ -16153,7 +16153,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/ruin)
 "tok" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/platform{
 	dir = 10
 	},
@@ -16235,7 +16235,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/ground/caves/rock)
 "ttW" = (
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
 /turf/open/ground/grass,
@@ -16386,7 +16386,7 @@
 	},
 /area/lv624/ground/jungle1)
 "tBK" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/lv624/lazarus/spaceport2)
 "tBS" = (
@@ -16394,7 +16394,7 @@
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
 "tCc" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle10)
 "tDa" = (
@@ -16478,12 +16478,12 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
 "tIC" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "tIH" = (
 /obj/item/trash/mre,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
 "tIT" = (
@@ -16584,7 +16584,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "tNv" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "tPY" = (
@@ -16676,7 +16676,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "tWO" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle9)
 "tXt" = (
@@ -16690,7 +16690,7 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "tYa" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "tYg" = (
@@ -16712,11 +16712,11 @@
 "tZa" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/fence,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "tZm" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/sleep_male)
 "tZr" = (
@@ -16780,7 +16780,7 @@
 	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it.";
 	name = "alien sarcophagus"
 	},
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "udH" = (
@@ -16848,14 +16848,14 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "ujI" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_y = 24
 	},
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "ujO" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
@@ -16995,7 +16995,7 @@
 	},
 /area/lv624/lazarus/corporate_affairs)
 "urP" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/largecrate/random/barrel,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
@@ -17024,7 +17024,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "utn" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "utv" = (
@@ -17134,7 +17134,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "uBF" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "uBN" = (
@@ -17229,7 +17229,7 @@
 /turf/open/floor,
 /area/lv624/ground/caves/central3)
 "uKf" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/armory)
 "uKY" = (
@@ -17243,7 +17243,7 @@
 /obj/item/tank/nitrogen,
 /obj/structure/rack,
 /obj/effect/turf_decal/sandytile,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "uLn" = (
@@ -17260,7 +17260,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/spaceport)
 "uMQ" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/closed/wall,
 /area/lv624/lazarus/fitness)
 "uNz" = (
@@ -17328,7 +17328,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle10)
 "uSu" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -17492,7 +17492,7 @@
 /area/lv624/lazarus/sleep_male)
 "vdX" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "veM" = (
@@ -17539,11 +17539,11 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "vgb" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "vgi" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "vgu" = (
@@ -17573,13 +17573,13 @@
 /area/lv624/lazarus/spaceport)
 "vjE" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "vkj" = (
-/obj/structure/jungle/planttop1,
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/planttop1,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "vkv" = (
@@ -17587,7 +17587,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/overgrown)
 "vkA" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/lv624/ground/jungle9)
@@ -17624,7 +17624,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "voQ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle3)
 "voZ" = (
@@ -17632,7 +17632,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "vpj" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
@@ -17704,7 +17704,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/lazarus/overgrown)
 "vrz" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
@@ -17774,7 +17774,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
 "vwk" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
@@ -17782,7 +17782,7 @@
 /turf/closed/wall,
 /area/lv624/ground/caves/rock)
 "vwP" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
@@ -17820,7 +17820,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle4)
 "vzW" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -17879,7 +17879,7 @@
 /area/space)
 "vCI" = (
 /obj/effect/decal/remains/human,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "vCR" = (
@@ -17937,7 +17937,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/jungle6)
 "vGi" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "vGr" = (
@@ -18077,7 +18077,7 @@
 	},
 /area/lv624/ground/jungle9)
 "vQa" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/river1)
 "vQA" = (
@@ -18087,7 +18087,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "vQZ" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river1)
 "vRg" = (
@@ -18102,7 +18102,7 @@
 /turf/open/ground/grass,
 /area/lv624/lazarus/overgrown)
 "vRw" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/secure_storage)
 "vRB" = (
@@ -18200,7 +18200,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "vXZ" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "vYj" = (
@@ -18248,7 +18248,7 @@
 /area/lv624/lazarus/chapel)
 "waV" = (
 /obj/structure/flora/grass/brown,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "wbc" = (
@@ -18286,7 +18286,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "weu" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "wex" = (
@@ -18318,7 +18318,7 @@
 	},
 /area/lv624/lazarus/spaceport)
 "wfA" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/closed/gm/dense,
 /area/lv624/lazarus/spaceport2)
 "wfH" = (
@@ -18386,7 +18386,7 @@
 /area/lv624/lazarus/sandtemple)
 "wjg" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
@@ -18491,7 +18491,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "wpO" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "wqg" = (
@@ -18590,10 +18590,10 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport)
 "wvV" = (
-/obj/structure/jungle/vines/heavy{
+/obj/structure/flora/jungle/vines/heavy{
 	pixel_x = -28
 	},
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
@@ -18704,7 +18704,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "wEg" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/c)
 "wEh" = (
@@ -18735,7 +18735,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "wEJ" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "wEM" = (
@@ -18911,7 +18911,7 @@
 /area/lv624/ground/jungle9)
 "wNt" = (
 /obj/structure/window_frame/colony,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/lazarus/fitness)
 "wOv" = (
@@ -18933,7 +18933,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "wPF" = (
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -18946,7 +18946,7 @@
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "wQv" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle10)
@@ -18986,7 +18986,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "wSP" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "wTm" = (
@@ -18995,7 +18995,7 @@
 	},
 /area/lv624/ground/jungle5)
 "wTn" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "wTp" = (
@@ -19192,7 +19192,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river1)
 "xeH" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
 "xeN" = (
@@ -19265,8 +19265,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "xhr" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
@@ -19294,16 +19294,16 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
 "xij" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "xim" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
 "xjc" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/sandtemple)
 "xjn" = (
@@ -19312,7 +19312,7 @@
 /area/lv624/lazarus/fitness)
 "xjr" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle6)
 "xjB" = (
@@ -19362,7 +19362,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4)
 "xnA" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
@@ -19422,7 +19422,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "xqy" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle1)
 "xrx" = (
@@ -19447,7 +19447,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "xsN" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "xsY" = (
@@ -19508,7 +19508,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "xwr" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor,
 /area/lv624/ground/river1)
 "xwu" = (
@@ -19521,7 +19521,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "xwZ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
@@ -19580,7 +19580,7 @@
 	},
 /area/lv624/lazarus/corporate_affairs)
 "xBB" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -19625,8 +19625,8 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "xEv" = (
-/obj/structure/jungle/plantbot1/alien,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "xFy" = (
@@ -19869,7 +19869,7 @@
 /area/lv624/lazarus/corporate_affairs)
 "xRH" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "xRT" = (
@@ -19898,7 +19898,7 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "xTA" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport2)
@@ -19965,8 +19965,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/sw)
 "xYV" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
 "xYX" = (
@@ -20069,7 +20069,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "yda" = (
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -20111,11 +20111,11 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/engineering)
 "yhp" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "yhz" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
@@ -20229,7 +20229,7 @@
 /area/lv624/lazarus/research)
 "yli" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
