@@ -26,7 +26,7 @@
 	// *** Evolution *** //
 	// The only evolution path does not require threshold
 	// evolution_threshold = 180
-	maximum_active_caste = 1
+	maximum_active = 1
 	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
 	evolves_to = list(/mob/living/carbon/xenomorph/queen)

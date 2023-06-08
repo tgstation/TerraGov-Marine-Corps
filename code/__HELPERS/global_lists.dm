@@ -97,7 +97,8 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			"minimap" = icon2base64(xeno_minimap),
 			"sort_mod" = per_tier_counter[tier]++,
 			"tier" = GLOB.tier_as_number[tier],
-			"is_unique" = caste.maximum_active_caste == 1,
+			"is_unique" = caste.maximum_active == 1,
+			"maximum_active" = caste.maximum_active,
 			"can_transfer_plasma" = CHECK_BITFIELD(initial(caste.can_flags), CASTE_CAN_BE_GIVEN_PLASMA),
 			"evolution_max" = initial(caste.evolution_threshold)
 		))

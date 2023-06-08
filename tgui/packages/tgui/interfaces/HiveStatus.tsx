@@ -62,6 +62,7 @@ type StaticData = {
   sort_mod: number;
   tier: number;
   is_unique: boolean;
+  maximum_active: number;
   can_transfer_plasma: boolean;
   evolution_max: number;
 };
@@ -566,7 +567,9 @@ const PopulationPyramid = (_props, context) => {
                       return null;
                     }
                     const static_entry = static_info[value];
-                    return `${static_entry.name}: ${count}`;
+                    return static_entry.maximum_active === -1 
+                      ? `${static_entry.name}: ${count}`
+                      : `${static_entry.name}: ${count} / ${static_entry.maximum_active}`;
                   })
                   .filter((ti) => ti !== null)
                   .join(' | ')}
@@ -624,7 +627,10 @@ const PopulationPyramid = (_props, context) => {
                           ? count >= 1
                             ? 'Active'
                             : 'N/A'
-                          : count}
+                          : static_entry.maximum_active === -1
+                            ? `${count}`
+                            : `${count} / ${static_entry.maximum_active}`
+                        }
                       </Box>
                     </Flex.Item>
                   );
