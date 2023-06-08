@@ -168,7 +168,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/scaling_method = SCALING_METHOD_NORMAL
 	///If the game is in fullscreen mode
 	var/fullscreen_mode = FALSE
-	///Should we use the default cursor or custom cursor?
+	///Should we use the custom cursor or default cursor?
 	var/cursorpref = TRUE
 
 	/// New TGUI Preference preview

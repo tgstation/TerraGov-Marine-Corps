@@ -271,7 +271,7 @@ export const GameSettings = (props, context) => {
                 action="parallax"
               />
               <ToggleFieldPreference
-                label="Default mouse cursor"
+                label="Custom mouse cursor"
                 value="cursorpref"
                 action="cursorpref"
                 leftLabel={'Enabled'}
