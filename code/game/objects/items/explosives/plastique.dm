@@ -150,3 +150,52 @@
 	if(armed)
 		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, 5)
 		detonation_pending = addtimer(CALLBACK(src, PROC_REF(detonate)), 27, TIMER_STOPPABLE)
+
+/obj/item/explosive/plastique/genghis_charge
+	name = "EX-62 incendiary charge"
+	desc = "A specialized explosive device for incineration of bulk organic matter, nickname Genghis. The patented Thermal Memory will ensure that all ignition proceeds safely away from the user."
+
+/obj/item/explosive/plastique/genghis_charge/detonate()
+	var/turf/flame_target = get_turf(plant_target)
+	if(QDELETED(plant_target))
+		playsound(plant_target, 'sound/weapons/ring.ogg', 100, FALSE, 25)
+		flame_target.ignite(10, 5)
+		qdel(src)
+		return
+	new /obj/flamer_fire/autospread(flame_target, 17, 31)
+	playsound(plant_target, sound(get_sfx("explosion_small")), 100, FALSE, 25)
+	qdel(src)
+
+/obj/flamer_fire/autospread
+	///Which directions this patch is capable of spreading to, as bitflags
+	var/possible_directions = NONE
+
+/obj/flamer_fire/autospread/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, inherited_directions = NONE)
+	. = ..()
+
+	for(var/direction in GLOB.cardinals)
+		if(inherited_directions && !(inherited_directions & direction))
+			continue
+		var/turf/turf_to_check = get_step(src, direction)
+		if(turf_contains_valid_burnable(turf_to_check))
+			possible_directions |= direction
+			addtimer(CALLBACK(src, PROC_REF(spread_flames), direction, turf_to_check), rand(2, 7))
+
+///Returns TRUE if the supplied turf has something we can ignite on, either a resin wall or door
+/obj/flamer_fire/autospread/proc/turf_contains_valid_burnable(turf_to_check)
+	if(istype(turf_to_check, /turf/closed/wall/resin))
+		return TRUE
+	if(locate(/obj/structure/mineral_door/resin) in turf_to_check)
+		return TRUE
+	return FALSE
+
+///Ignites an adjacent turf or adds our possible directions to an existing flame
+/obj/flamer_fire/autospread/proc/spread_flames(direction, turf/turf_to_burn)
+	var/spread_directions = possible_directions & ~REVERSE_DIR(direction) //Make sure we can't go backwards
+	var/old_flame = locate(/obj/flamer_fire) in turf_to_burn
+	if(istype(old_flame, /obj/flamer_fire/autospread))
+		var/obj/flamer_fire/autospread/old_spreader = old_flame
+		spread_directions |= old_spreader.possible_directions
+	if(old_flame)
+		qdel(old_flame)
+	new /obj/flamer_fire/autospread(turf_to_burn, 17, 31, flame_color, 0, 0, spread_directions)

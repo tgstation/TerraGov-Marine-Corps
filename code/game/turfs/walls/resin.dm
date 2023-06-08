@@ -110,7 +110,7 @@
 
 /turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
 	if(I.flags_item & NOBLUDGEON || !isliving(user))
-		return attack_hand(user)
+		return
 
 	user.changeNext_move(I.attack_speed)
 	user.do_attack_animation(src, used_item = I)
