@@ -3,7 +3,7 @@
 	desc = "Used to put holes in specific areas without too much extra hole."
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
-	icon_state = "plastic-explosive_off"
+	icon_state = "plastic-explosive"
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_TINY
@@ -27,11 +27,9 @@
 	return ..()
 
 /obj/item/explosive/plastique/update_icon_state()
-	icon_state = "plastic-explosive_[plant_target ? "set_" : ""]"
+	icon_state = "[initial(icon_state)][plant_target ? "_set" : ""]"
 	if(armed)
-		icon_state = "[icon_state][alarm_sounded ? "armed" : "on"]"
-	else
-		icon_state = "[icon_state]off"
+		icon_state = "[icon_state][alarm_sounded ? "_armed" : "_on"]"
 
 /obj/item/explosive/plastique/attack_self(mob/user)
 	var/newtime = tgui_input_number(usr, "Please set the timer.", "Timer", 10, 60, 10)
@@ -166,8 +164,9 @@
 		update_icon()
 
 /obj/item/explosive/plastique/genghis_charge
-	name = "EX-62 incendiary charge"
-	desc = "A specialized explosive device for incineration of bulk organic matter, nickname Genghis. The patented Thermal Memory ensures that all ignition proceeds safely away from the user. Will not attach to plants due to environmental concerns."
+	name = "EX-62 Genghis incendiary charge"
+	desc = "A specialized device for incineration of bulk organic matter, patented Thermal Memory ensuring that all ignition proceeds safely away from the user. Will not attach to plants due to environmental concerns."
+	icon_state = "genghis-charge"
 
 /obj/item/explosive/plastique/genghis_charge/afterattack(atom/target, mob/user, flag)
 	if(istype(target, /turf/closed/wall/resin))
