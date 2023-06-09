@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added a variety of new laser weapon firemodes"
-  - balance: "Various laser weapon rebalances, mainly aimed at making some firemodes more ammo efficient"
-  - bugfix: "fixed bouncing bullets being mega janky"
