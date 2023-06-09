@@ -1197,11 +1197,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return hard_armor.getRating(armor_type)
 
 /mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
-	var/datum/limb/affected_limb = proj_def_zone
+	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
 	return affected_limb.hard_armor.getRating(armor_type)
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
-
+	return
 
 /mob/living/carbon/human/bullet_soak_effect(obj/projectile/proj)
 	if(!proj.ammo.sound_armor)
