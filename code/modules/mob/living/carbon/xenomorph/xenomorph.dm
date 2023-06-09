@@ -21,6 +21,11 @@
 	create_reagents(1000)
 	gender = NEUTER
 
+	if(is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
+		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
+
+	set_initial_hivenumber()
+
 	switch(stat)
 		if(CONSCIOUS)
 			GLOB.alive_xeno_list += src
@@ -37,16 +42,11 @@
 	GLOB.round_statistics.total_xenos_created++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xenos_created")
 
-	if(is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
-		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
-
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
 
 	fire_overlay = mob_size == MOB_SIZE_BIG ? new(null, src) : new /atom/movable/vis_obj/xeno_wounds/fire_overlay/small(null, src)
 	vis_contents += fire_overlay
-
-	set_initial_hivenumber()
 
 	generate_nicknumber()
 

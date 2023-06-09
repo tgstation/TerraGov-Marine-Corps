@@ -18,26 +18,45 @@
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
+
+	/// The material dropped on destruction
 	var/drop_material = /obj/item/stack/sheet/metal
+	/// Used for determining the closed overlay
 	var/icon_closed = "closed"
+	/// Used for determining the open overlay
 	var/icon_opened = "open"
+	/// Used for determining the welded overlay
 	var/overlay_welded = "welded"
+	/// Is the closet open?
 	var/opened = FALSE
+	/// Is the closet welded?
 	var/welded = FALSE
+	/// Is the closet locked?
 	var/locked = FALSE
+	/// Is the closet mounted to a wall?
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
+	/// How much time it takes to resist out of a closet
 	var/breakout_time = 2 MINUTES
+	/// The cooldown for the "bang bang" of breaking out of the closet
 	var/lastbang = FALSE
+	/// The flags of closets, used for various flags, see code\__DEFINES\objects.dm
 	var/closet_flags = NONE
-	var/max_mob_size = MOB_SIZE_HUMAN //Biggest mob_size accepted by the container
-	var/mob_storage_capacity = 1 // how many max_mob_size'd mob/living can fit together inside a closet.
+	/// The maximum size of the mob we can put in
+	var/max_mob_size = MOB_SIZE_HUMAN
+	/// How many max_mob_size'd mob/living can fit together inside a closet.
+	var/mob_storage_capacity = 1
+	/// The amount of things in general we can have in a closet
 	var/storage_capacity = 50 //This is so that someone can't pack hundreds of items in a locker/crate
 							//then open it in a populated area to crash clients.
+	/// How many mobs are currently inside
 	var/mob_size_counter = 0
+	/// How many items are currently inside
 	var/item_size_counter = 0
+	/// The sound the closet makes when opened
 	var/open_sound = 'sound/machines/click.ogg'
+	/// The sound the closet makes when closed
 	var/close_sound = 'sound/machines/click.ogg'
-
+	/// The delay between stuns getting out of the closet causes
 	var/closet_stun_delay = 2 SECONDS
 
 
@@ -94,8 +113,8 @@
 
 
 /obj/structure/closet/proc/can_close(mob/living/user)
-	for(var/obj/structure/closet/closet in loc)
-		if(closet != src && !closet.wall_mounted)
+	for(var/obj/structure/closet/blocking_closet in loc)
+		if(blocking_closet != src && !blocking_closet.wall_mounted && !blocking_closet.opened)
 			if(user)
 				balloon_alert(user, "Can't close, too cramped")
 			return FALSE
@@ -203,12 +222,6 @@
 		return FALSE
 	. = ..()
 	if(opened)
-		if(istype(I, /obj/item/grab))
-			var/obj/item/grab/G = I
-			if(!G.grabbed_thing)
-				CRASH("/obj/item/grab without a grabbed_thing in tool_interact()")
-			MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
-			return
 		if(.)
 			return TRUE
 		return user.transferItemToLoc(I, drop_location())
@@ -262,36 +275,6 @@
 	return TRUE
 
 
-/obj/structure/closet/MouseDrop_T(atom/movable/O, mob/user)
-	if(!isliving(user))
-		return
-	if(isxenohivemind(user))
-		return
-	if(!opened)
-		return
-	if(!isturf(O.loc))
-		return
-	if(user.incapacitated())
-		return
-	if(O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1)
-		return
-	if(!isturf(user.loc))
-		return
-	if(ismob(O))
-		var/mob/M = O
-		if(M.buckled)
-			return
-	else if(!istype(O, /obj/item))
-		return
-
-	if(user == O)
-		if(climbable)
-			do_climb(user)
-		return
-	else
-		step_towards(O, loc)
-		balloon_alert_to_viewers("[O] is stuffed into [src]")
-
 /obj/structure/closet/relaymove(mob/user, direct)
 	if(!isturf(loc))
 		return
@@ -307,7 +290,7 @@
 		if(!lastbang)
 			lastbang = TRUE
 			for(var/mob/M in hearers(src, null))
-				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
+				to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>BANG, bang!</FONT>")
 			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
@@ -457,6 +440,8 @@
 		return FALSE
 	if(!CHECK_BITFIELD(destination.closet_flags, CLOSET_ALLOW_DENSE_OBJ) && density)
 		return FALSE
+	if(move_resist == INFINITY)
+		return FALSE
 	return TRUE
 
 
@@ -473,6 +458,9 @@
 	destination.item_size_counter += item_size
 	return TRUE
 
+/obj/structure/bed/closet_insertion_allowed(obj/structure/closet/destination)
+	if(length(buckled_mobs))
+		return FALSE
 
 /obj/structure/closet/closet_insertion_allowed(obj/structure/closet/destination)
 	return FALSE

@@ -99,7 +99,7 @@
 			playsound(user.loc, "rustle", 30, 1, 6)
 			if(dirt_type == DIRT_TYPE_SNOW)
 				var/obj/item/stack/snow/S = locate() in T
-				if(S?.amount + dirt_amt < S.max_amount)
+				if(S && (S.amount + dirt_amt < S.max_amount))
 					S.amount += dirt_amt
 				else
 					new /obj/item/stack/snow(T, dirt_amt)
