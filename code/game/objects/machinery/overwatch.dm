@@ -68,6 +68,32 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/minimap/marine/external/cic_mini
 	///Ref of the lase that's had an OB warning mark placed on the minimap
 	var/obj/effect/overlay/temp/laser_target/OB/marked_lase
+	///Static list of CIC radial options for the camera when clicking on a marine
+	var/static/list/human_radial_options = list(
+		MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_single"),
+		ASL = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_asl"),
+		SWITCH_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad"),
+	)
+	///Static list of CIC radial options for the camera when clicking on an OB marker
+	var/static/list/bombardment_radial_options = list(
+		MARK_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_mark_ob"),
+		FIRE_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_fire_ob"),
+	)
+	///Static list of CIC radial options for the camera when clicking on a turf
+	var/static/list/turf_radial_options = list(
+		ORBITAL_SPOTLIGHT = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_orbital_spotlight"),
+		MESSAGE_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"),
+		SQUAD_ACTIONS =  image(icon = 'icons/mob/radial.dmi', icon_state = "cic_squad_actions"),
+	)
+	///Static list of CIC radial options for the camera when having clicked on a turf and selected Squad Actions
+	var/static/list/squad_radial_options = list(
+		MESSAGE_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"),
+		SWITCH_SQUAD_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad_near"),
+	)
+
+
+
+
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize(mapload)
 	. = ..()
@@ -756,28 +782,23 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 ///Quick-select radial menu for Overwatch
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_radial(datum/source, atom/A, params)
-	var/list/radial_options = list()
+	var/list/radial_options
 	var/mob/living/carbon/human/human_target
 	var/obj/effect/overlay/temp/laser_target/OB/laser_target
 	var/turf/turf_target
 	var/choice
 	if(ishuman(A))
 		human_target = A
-		LAZYADDASSOC(radial_options, MESSAGE_SINGLE, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_single"))
-		LAZYADDASSOC(radial_options, ASL, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_asl"))
-		LAZYADDASSOC(radial_options, SWITCH_SQUAD, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad"))
+		radial_options = human_radial_options
 		choice = show_radial_menu(source, human_target, radial_options, null, 48, null, FALSE, TRUE)
 
 	else if(istype(A, /obj/effect/overlay/temp/laser_target/OB))
 		laser_target = A
-		LAZYADDASSOC(radial_options, MARK_LASE, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_mark_ob"))
-		LAZYADDASSOC(radial_options, FIRE_LASE, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_fire_ob"))
+		radial_options = bombardment_radial_options
 		choice = show_radial_menu(source, laser_target, radial_options, null, 48, null, FALSE, TRUE)
 	else
 		turf_target = get_turf(A)
-		LAZYADDASSOC(radial_options, ORBITAL_SPOTLIGHT, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_orbital_spotlight"))
-		LAZYADDASSOC(radial_options, MESSAGE_NEAR, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"))
-		LAZYADDASSOC(radial_options, SQUAD_ACTIONS, image(icon = 'icons/mob/radial.dmi', icon_state = "cic_squad_actions"))
+		radial_options = turf_radial_options
 		choice = show_radial_menu(source, turf_target, radial_options, null, 48, null, FALSE, TRUE)
 
 	switch(choice)
@@ -811,12 +832,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				if(get_dist(target, turf_target) > WORLD_VIEW_NUM*2)
 					continue
 				current_squad.message_member(target, input, source)
-		if(SQUAD_ACTIONS) //This doesnt work??
-			radial_options = list(
-				MESSAGE_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"),
-				SWITCH_SQUAD_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad_near"),
-			)
-
+		if(SQUAD_ACTIONS)
+			radial_options = squad_radial_options
 			choice = show_radial_menu(source, turf_target, radial_options, null, 48, null, FALSE, TRUE)
 			var/datum/squad/chosen_squad = squad_select(source, turf_target)
 			switch(choice)
