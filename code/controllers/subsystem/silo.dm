@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(silo)
 	current_larva_spawn_rate *= SSticker.mode.silo_scaling
 	//Multiplier based on marines/xenos ratio
 	var/spawn_rate_multiplier = length_char(GLOB.humans_by_zlevel[SSmonitor.gamestate == SHIPSIDE ? "3" : "2"]) / ((4 * (xeno_job.total_positions - xeno_job.current_positions) + length_char(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_tier[XENO_TIER_ZERO]) + length_char(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_tier[XENO_TIER_ONE]) + length_char(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_tier[XENO_TIER_TWO]) + length_char(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_tier[XENO_TIER_THREE]) + length_char(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_tier[XENO_TIER_FOUR])) + 1)
-	current_larva_spawn_rate *= clamp((spawn_rate_multiplier * spawn_rate_multiplier), 0.1, 2)
+	current_larva_spawn_rate *= clamp((spawn_rate_multiplier * spawn_rate_multiplier), 0.1, 1.25)
 	current_larva_spawn_rate += larva_spawn_rate_temporary_buff
 	GLOB.round_statistics.larva_from_silo += current_larva_spawn_rate / xeno_job.job_points_needed
 	xeno_job.add_job_points(current_larva_spawn_rate)
