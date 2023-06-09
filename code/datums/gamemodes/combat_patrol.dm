@@ -1,6 +1,7 @@
 /datum/game_mode/combat_patrol
 	name = "Combat Patrol"
 	config_tag = "Combat Patrol"
+	votable = FALSE
 	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
