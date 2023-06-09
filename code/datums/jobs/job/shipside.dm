@@ -804,8 +804,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
-	r_store = /obj/item/storage/pouch/medkit/medic
-	l_store = /obj/item/storage/pouch/surgery
+	r_store = /obj/item/storage/pouch/surgery
+	l_store = /obj/item/storage/pouch/medkit/medic
 
 /datum/outfit/job/medical/professor/rebel
 	jobtype = /datum/job/terragov/medical/professor/rebel
@@ -813,8 +813,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
@@ -891,6 +891,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
+	r_store = /obj/item/storage/pouch/surgery
+	l_store = /obj/item/storage/pouch/medkit/medic
 
 /datum/outfit/job/medical/medicalofficer/rebel
 	jobtype = /datum/job/terragov/medical/medicalofficer/rebel
@@ -898,8 +900,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 
 //Researcher
@@ -978,6 +980,8 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
+	r_store = /obj/item/storage/pouch/surgery
+	l_store = /obj/item/storage/pouch/medkit/medic
 
 /datum/outfit/job/medical/researcher/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel
@@ -985,8 +989,8 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 
 /datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 /datum/job/terragov/civilian
 	job_category = JOB_CAT_CIVILIAN
