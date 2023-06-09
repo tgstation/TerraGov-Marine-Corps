@@ -1,6 +1,0 @@
-author: "QuarianCommando"
-delete-after: True
-changes:
-  - imageadd: "added las pouch sprite for the TEX rifle."
-  - imageadd: "added las pouch sprite for the tesla rifle."
-  - balance: "Tesla rifle can now use las pouches."

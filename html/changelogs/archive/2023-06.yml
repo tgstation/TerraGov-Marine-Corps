@@ -90,3 +90,18 @@
   - balance: AMR Flak now does slowdown and has a higher airburst multiplier, but
       has reduced sundering. AMR Incend does a bit more damage even if it is still
       less than normal ammo as well as slightly more pen.
+2023-06-09:
+  Lumipharon:
+  - rscadd: Added a variety of new laser weapon firemodes
+  - balance: Various laser weapon rebalances, mainly aimed at making some firemodes
+      more ammo efficient
+  - bugfix: fixed bouncing bullets being mega janky
+  QuarianCommando:
+  - imageadd: added las pouch sprite for the TEX rifle.
+  - imageadd: added las pouch sprite for the tesla rifle.
+  - balance: Tesla rifle can now use las pouches.
+  ivanmixo:
+  - bugfix: Fixed hard armor getter proc
+  - bugfix: Fixed gear preferences not showing everything
+  novaepee:
+  - rscadd: move Theseus' ship armaments closer to CIC
