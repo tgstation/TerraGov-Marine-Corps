@@ -129,9 +129,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Hud tooltip
 	var/tooltips = TRUE
 
-	/// Whether we want to prevent extreme visual effects.
-	var/safe_visuals = FALSE
-
 	///Whether to mute goonchat combat messages when we are the source, such as when we are shot.
 	var/mute_self_combat_messages = FALSE
 	///Whether to mute goonchat combat messages from others, such as when they are shot.

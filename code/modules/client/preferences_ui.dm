@@ -119,7 +119,6 @@
 			data["mute_self_combat_messages"] = mute_self_combat_messages
 			data["show_typing"] = show_typing
 			data["tooltips"] = tooltips
-			data["safe_visuals"] = safe_visuals
 			data["widescreenpref"] = widescreenpref
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
 			data["radialstackspref"] = !!(toggles_gameplay & RADIAL_STACKS)
@@ -656,8 +655,6 @@
 				closeToolTip(usr)
 			else if(!current_client.tooltips && tooltips)
 				current_client.tooltips = new /datum/tooltip(current_client)
-		if("safe_visuals")
-			safe_visuals = !safe_visuals
 
 		if("fullscreen_mode")
 			fullscreen_mode = !fullscreen_mode

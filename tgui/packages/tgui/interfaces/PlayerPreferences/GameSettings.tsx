@@ -126,13 +126,6 @@ export const GameSettings = (props, context) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
-              <ToggleFieldPreference
-                label="Safe Visuals"
-                value="safe_visuals"
-                action="safe_visuals"
-                leftLabel={'Enabled'}
-                rightLabel={'Disabled'}
-              />
               <TextFieldPreference label={'FPS'} value={'clientfps'} />
               <ToggleFieldPreference
                 label="Auto Fit viewport"
