@@ -232,8 +232,8 @@
 /obj/structure/stairs/seamless/platform/alt
 	icon_state = "railstairs_seamless_vert"
 
-/obj/structure/stairs/seamless/platform/adobe
-	icon_state = "adobe_stairs_seamless"
+/obj/structure/stairs/seamless/platform/adobe //west and east
+	icon_state = "adobe_stairs"
 
 /obj/structure/stairs/seamless/platform/adobe/Initialize(mapload)
 	. = ..()
@@ -246,8 +246,14 @@
 		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
 		. += new_overlay
 
-/obj/structure/stairs/seamless/platform/adobe_vert
-	icon_state = "adobe_stairs_seamless_vert"
+/obj/structure/stairs/seamless/platform/adobe/straight
+	icon_state = "adobe_stairs_straight"
+
+/obj/structure/stairs/seamless/platform/adobe_vert //north and west
+	icon_state = "adobe_stairs_vertical"
+
+/obj/structure/stairs/seamless/platform/adobe_vert/straight
+	icon_state = "adobe_stairs_vertical_straight"
 
 /obj/structure/stairs/corner
 	icon_state = "staircorners"
