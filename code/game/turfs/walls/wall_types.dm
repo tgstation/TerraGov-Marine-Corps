@@ -390,6 +390,7 @@
 	base_icon_state = "wall"
 
 /turf/closed/wall/variable
+	icon_state = "wall-0"
 	///the different tileset paths for this turf
 	var/list/icon_path_variants = list()
 
@@ -401,6 +402,7 @@
 	name = "adobe wall"
 	desc = "A wall made out of adobe brick."
 	icon_state = "wall-0"
+	icon = 'icons/turf/walls/adobe.dmi'
 	walltype = "wall"
 	base_icon_state = "wall"
 	icon_path_variants = list(
@@ -413,6 +415,7 @@
 /turf/closed/wall/variable/siding
 	name = "siding wall"
 	desc = "A worn wooden wall."
+	icon = 'icons/turf/walls/siding.dmi'
 	icon_state = "wall-0"
 	walltype = "wall"
 	base_icon_state = "wall"
@@ -424,6 +427,7 @@
 	)
 
 /turf/closed/wall/variable/siding/red
+	icon = 'icons/turf/walls/siding_red.dmi'
 	icon_path_variants = list(
 		'icons/turf/walls/siding_red.dmi',
 		'icons/turf/walls/siding_red_1.dmi',
