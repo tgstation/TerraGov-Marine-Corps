@@ -8,6 +8,8 @@
 /atom/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	if(!usr || !over || QDELETED(src))
 		return
+	if(SEND_SIGNAL(src, COMSIG_MOUSEDROP_ONTO, over, usr) & COMPONENT_NO_MOUSEDROP)
+		return
 	if(!Adjacent(usr) || !over.Adjacent(usr))
 		return // should stop you from dragging through windows
 
@@ -18,6 +20,7 @@
 /atom/proc/MouseDrop_T(atom/dropping, mob/user)
 	if(dropping.flags_atom & NOINTERACT)
 		return TRUE //Already handled
+	SEND_SIGNAL(src, COMSIG_MOUSEDROPPED_ONTO, dropping, user)
 
 /atom/movable/MouseDrop_T(atom/dropping, mob/user)
 	. = ..()

@@ -256,10 +256,6 @@
 		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
 
 
-/mob/living/carbon/xenomorph/show_inv(mob/user)
-	return
-
-
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
 //Pounce, charge both use throw_at, so we need extra code to do stuff rather than just push people aside.
 /mob/living/carbon/xenomorph/throw_impact(atom/hit_atom, speed)

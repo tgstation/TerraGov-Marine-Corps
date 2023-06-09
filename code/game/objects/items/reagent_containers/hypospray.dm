@@ -562,6 +562,18 @@
 	)
 	description_overlay = "Ti"
 
+/obj/item/reagent_containers/hypospray/advanced/big/combatmix
+	name = "big combat mix hypospray"
+	desc = "A hypospray loaded with combat mix. There's a tag that reads BKTT 40:40:20:20."
+	amount_per_transfer_from_this = 15
+	list_reagents = list(
+		/datum/reagent/medicine/bicaridine = 40,
+		/datum/reagent/medicine/kelotane = 40,
+		/datum/reagent/medicine/tramadol = 20,
+		/datum/reagent/medicine/tricordrazine = 20,
+	)
+	description_overlay = "Cm"
+
 /obj/item/reagent_containers/hypospray/advanced/big/dylovene
 	name = "big dylovene hypospray"
 	desc = "A hypospray loaded with dylovene. A chemical that heal toxicity whilst purging toxins, hindering stamina in the process."
@@ -579,13 +591,13 @@
 	)
 	description_overlay = "In"
 
-/obj/item/reagent_containers/hypospray/advanced/big/dexalin
-	name = "big dexalin hypospray"
-	desc = "A hypospray loaded with dexalin. A chemical that heals oxygen damage."
+/obj/item/reagent_containers/hypospray/advanced/big/isotonic
+	name = "big isotonic hypospray"
+	desc = "A hypospray loaded with isotonic. A chemical that aids in replenishing blood."
 	list_reagents = list(
-		/datum/reagent/medicine/dexalin = 120,
+		/datum/reagent/medicine/saline_glucose = 120,
 	)
-	description_overlay = "Dx"
+	description_overlay = "Is"
 
 /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin
 	name = "big spaceacillin hypospray"
@@ -595,12 +607,12 @@
 	)
 	description_overlay = "Sp"
 
-/obj/item/reagent_containers/hypospray/advanced/big/imialky
+/obj/item/reagent_containers/hypospray/advanced/imialky
 	name = "big imialky hypospray"
 	desc = "A hypospray loaded with a mixture of imidazoline and alkysine. Chemicals that will heal the brain and eyes."
 	list_reagents = list(
-		/datum/reagent/medicine/imidazoline = 60,
-		/datum/reagent/medicine/alkysine = 60,
+		/datum/reagent/medicine/imidazoline = 30,
+		/datum/reagent/medicine/alkysine = 30,
 	)
 	description_overlay = "Im"
 
