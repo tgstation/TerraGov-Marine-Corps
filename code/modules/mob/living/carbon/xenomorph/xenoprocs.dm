@@ -52,7 +52,7 @@
 
 /proc/buy_personal_blessings(mob/user)
 	var/upgrade_cost = 30
-	var/evolution_cost = 30
+	var/evolution_cost = 20
 	var/primo_cost = 50
 	var/dat = "<br><b>Avaliable Options:</b><BR>"
 
