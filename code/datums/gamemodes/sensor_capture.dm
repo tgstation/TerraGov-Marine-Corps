@@ -3,6 +3,7 @@
 /datum/game_mode/combat_patrol/sensor_capture
 	name = "Sensor Capture"
 	config_tag = "Sensor Capture"
+	votable = TRUE
 	wave_timer_length = 2 MINUTES
 	max_game_time = 10 MINUTES
 	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
