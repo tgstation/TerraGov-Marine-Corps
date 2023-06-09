@@ -91,7 +91,6 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	jobtype = /datum/job/terragov/squad/standard
 
 	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/standard/rebel
 	jobtype = /datum/job/terragov/squad/standard/rebel
@@ -149,7 +148,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	jobtype = /datum/job/terragov/squad/engineer
 
 	id = /obj/item/card/id/dogtag/engineer
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/engineer/rebel
 	jobtype = /datum/job/terragov/squad/engineer/rebel
@@ -222,7 +220,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	jobtype = /datum/job/terragov/squad/corpsman
 
 	id = /obj/item/card/id/dogtag/corpsman
-	back = /obj/item/storage/backpack/marine/corpsman
 
 /datum/outfit/job/marine/corpsman/rebel
 	jobtype = /datum/job/terragov/squad/corpsman/rebel
@@ -302,7 +299,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	jobtype = /datum/job/terragov/squad/smartgunner
 
 	id = /obj/item/card/id/dogtag/smartgun
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/smartgunner/rebel
 	jobtype = /datum/job/terragov/squad/smartgunner/rebel
@@ -339,7 +335,6 @@ You can serve a variety of roles, so choose carefully."})
 	jobtype = /datum/job/terragov/squad/specialist
 
 	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/satchel
 	head = /obj/item/clothing/head/helmet/specrag
 
 //Squad Leader
@@ -397,7 +392,6 @@ You are also in charge of communicating with command and letting them know about
 	jobtype = /datum/job/terragov/squad/leader
 
 	id = /obj/item/card/id/dogtag/leader
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/leader/rebel
 	jobtype = /datum/job/terragov/squad/leader/rebel

@@ -20,6 +20,7 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 0
 	light_color = COLOR_WHITE
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 
 /*
  *  Muzzle Vars
@@ -377,7 +378,7 @@
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 	if(deployable_item)
-		AddElement(/datum/element/deployable_item, deployable_item, deploy_time, undeploy_time)
+		AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
@@ -1539,8 +1540,7 @@
 	SIGNAL_HANDLER
 	if(!length(chamber_items) || !chamber_items[current_chamber_position])
 		return
-	var/obj/item/ammo_magazine/current_mag = chamber_items[current_chamber_position]
-	if(!istype(current_mag) || !(current_mag.flags_magazine & MAGAZINE_WORN))
+	if(!(get_flags_magazine_features(chamber_items[current_chamber_position]) & MAGAZINE_WORN))
 		return
 	unload(user, FALSE)
 

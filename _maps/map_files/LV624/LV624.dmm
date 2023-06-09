@@ -486,14 +486,6 @@
 "apT" = (
 /turf/closed/wall/sulaco,
 /area/lv624/ground/sand5)
-"aqd" = (
-/obj/structure/girder/displaced,
-/turf/closed/shuttle/wall3,
-/area/lv624/ground/sand6)
-"aqh" = (
-/obj/structure/girder,
-/turf/closed/shuttle/wall3,
-/area/lv624/lazarus/crashed_ship)
 "aqs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -49325,7 +49317,7 @@ wbc
 wbc
 wbc
 wbc
-aqd
+auG
 asf
 asf
 asf
@@ -50387,7 +50379,7 @@ agp
 amT
 moV
 wbc
-aqh
+aof
 aog
 ajy
 hbg

@@ -226,7 +226,7 @@
 /image/progdisplay
 	icon = 'icons/effects/progressicons.dmi'
 	icon_state = "busy_generic"
-	appearance_flags = APPEARANCE_UI
+	appearance_flags = APPEARANCE_UI|KEEP_APART|TILE_BOUND
 	alpha = 255
 	pixel_y = 32
 

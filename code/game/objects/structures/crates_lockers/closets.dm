@@ -290,7 +290,7 @@
 		if(!lastbang)
 			lastbang = TRUE
 			for(var/mob/M in hearers(src, null))
-				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
+				to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>BANG, bang!</FONT>")
 			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
