@@ -443,7 +443,7 @@
 
 #define BULWARK_LOOP_TIME 1 SECONDS
 #define BULWARK_RADIUS 4
-#define BULWARK_ARMOR_MULTIPLIER 1.25
+#define BULWARK_ARMOR_MULTIPLIER 0.25
 
 /datum/action/xeno_action/bulwark
 	name = "Royal Bulwark"
@@ -452,7 +452,7 @@
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_BULWARK,
 	)
 	/// assoc list xeno = armor_diff
 	var/list/armor_mod_keys = list()
@@ -491,8 +491,7 @@
 	if(!isxeno(xeno) || armor_mod_keys[xeno] || !owner.issamexenohive(xeno))
 		return
 	var/datum/armor/basearmor = getArmor(arglist(xeno.xeno_caste.soft_armor))
-	var/datum/armor/maxarmor = basearmor.scaleAllRatings(BULWARK_ARMOR_MULTIPLIER)
-	var/datum/armor/armordiff = maxarmor.detachArmor(basearmor)
+	var/datum/armor/armordiff = basearmor.scaleAllRatings(BULWARK_ARMOR_MULTIPLIER)
 	xeno.soft_armor = xeno.soft_armor.attachArmor(armordiff)
 	armor_mod_keys[xeno] = armordiff
 
