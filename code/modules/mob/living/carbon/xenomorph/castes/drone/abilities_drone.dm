@@ -176,8 +176,6 @@
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/xeno_action/enhancement/proc/end_ability()
 	if(existing_enhancement)
-		var/mob/living/living_owner = owner
-		living_owner.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
 		essence_link_action.linked_target.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
 		existing_enhancement = null
 		add_cooldown()
