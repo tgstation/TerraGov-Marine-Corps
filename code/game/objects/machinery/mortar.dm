@@ -573,6 +573,7 @@
 	minimum_range = 25
 	allowed_shells = list(
 		/obj/item/mortal_shell/rocket/mlrs,
+		/obj/item/mortal_shell/rocket/mlrs/gas,
 	)
 	tally_type = TALLY_ROCKET_ARTY
 	cool_off_time = 80 SECONDS
@@ -674,6 +675,12 @@
 	desc = "A 60mm rocket loaded with explosives, meant to be used in saturation fire with high scatter."
 	icon_state = "mlrs_rocket"
 	ammo_type = /datum/ammo/mortar/rocket/mlrs
+
+/obj/item/mortal_shell/rocket/mlrs/gas
+	name = "\improper 60mm 'X-50' rocket"
+	desc = "A 60mm rocket loaded with deadly X-50 gas, meant to be used in saturation fire with high scatter."
+	icon_state = "mlrs_rocket_gas"
+	ammo_type = /datum/ammo/mortar/rocket/smoke/mlrs
 
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper T-50S mortar ammo crate"
@@ -828,6 +835,30 @@
 	new /obj/item/mortal_shell/rocket/mlrs(src)
 	new /obj/item/mortal_shell/rocket/mlrs(src)
 	new /obj/item/mortal_shell/rocket/mlrs(src)
+
+/obj/item/storage/box/mlrs_rockets_gas
+	name = "\improper TA-40L X-50 rocket crate"
+	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 16
+
+/obj/item/storage/box/mlrs_rockets_gas/Initialize(mapload)
+	. = ..()
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
+	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
 
 #undef TALLY_MORTAR
 #undef TALLY_HOWITZER
