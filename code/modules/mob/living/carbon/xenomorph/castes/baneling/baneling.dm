@@ -13,11 +13,6 @@
 	pixel_x = -16
 	old_x = -16
 
-/mob/living/carbon/xenomorph/baneling/neuro
-	name = "Neurotoxin Baneling"
-	desc = ""
-	color = COLOR_DARK_ORANGE
-
 /mob/living/carbon/xenomorph/baneling/set_stat()
 	. = ..()
 	if(isnull(.))
