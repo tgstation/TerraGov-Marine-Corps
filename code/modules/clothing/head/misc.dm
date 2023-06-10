@@ -28,6 +28,7 @@
 	icon_state = "tophat"
 	item_state = "that"
 	siemens_coefficient = 0.9
+	species_exception = list(/datum/species)
 	flags_armor_protection = NONE
 
 /obj/item/clothing/head/redcoat
@@ -57,6 +58,7 @@
 	desc = "It allows quick identification of trained medical personnel."
 	icon_state = "nursehat"
 	siemens_coefficient = 0.9
+	species_exception = list(/datum/species)
 	flags_armor_protection = NONE
 
 /obj/item/clothing/head/syndicatefake
