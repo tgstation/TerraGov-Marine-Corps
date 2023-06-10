@@ -131,10 +131,13 @@
 		return
 	for(var/mob/living/rider AS in buckled_mobs)
 		unbuckle_mob(rider)
-		// todo: if zooming do the following
-		rider.throw_at(get_step(rider, rider.dir), 2, spin = TRUE)
+		if(world.time > last_move_time + move_delay)
+			balloon_alert(rider, "You are unbuckled by the alien attack!")
+			continue
+		// We zooming when unbuckled = fly off the handles
+		rider.throw_at(get_step(get_step(src, rider.dir), rider.dir), 2, 1, src, TRUE)
 		rider.Paralyze(0.5 SECONDS)
-		balloon_alert(rider, "You are thrown from the bike!")
+		balloon_alert(rider, "You are thrown from the bike by the alien attack!")
 
 /obj/vehicle/ridden/motorbike/proc/sidecar_dir_change(datum/source, dir, newdir)
 	SIGNAL_HANDLER
