@@ -164,6 +164,7 @@
 	item_state = "bowler_hat"
 	desc = "For the gentleman of distinction."
 	flags_armor_protection = NONE
+	species_exception = list(/datum/species)
 
 /obj/item/clothing/head/beaverhat
 	name = "beaver hat"
@@ -182,6 +183,7 @@
 	icon_state = "fedora"
 	item_state = "fedora"
 	desc = "A sharp, stylish hat."
+	species_exception = list(/datum/species)
 
 /obj/item/clothing/head/feathertrilby
 	name = "\improper feather trilby"
@@ -194,6 +196,7 @@
 	icon_state = "fez"
 	item_state = "fez"
 	desc = "You should wear a fez. Fezzes are cool."
+	species_exception = list(/datum/species)
 
 //end bs12 hats
 
