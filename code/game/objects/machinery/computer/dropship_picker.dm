@@ -1,14 +1,14 @@
 
 /obj/machinery/computer/dropship_picker
-	name = "dropship picker"
-	desc = "A computer that lets you choose the model of the tadpole.."
+	name = "Tadpole selection console"
+	desc = "A computer that lets you choose the model of the tadpole. You can only choose one, and you cannot reverse your choice!"
 	density = TRUE
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_generic"
 	circuit = null
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_LEADER)
 	/// dock id to dock our chosen shuttle at
 	var/dock_id = SHUTTLE_TADPOLE
 	///if true lock console
@@ -66,7 +66,7 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	if(dropship_selected)
 		return FALSE
 
