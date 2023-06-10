@@ -93,3 +93,12 @@
 	bound_height = 64
 	bound_width = 64
 	icon_variants = 4
+
+//drought rocks
+/obj/structure/rock/variable/drought
+	name = "rock"
+	desc = "Some dusty rocks."
+	icon = 'icons/obj/flora/desert_flora.dmi'
+	icon_state = "drought"
+	density = FALSE
+	icon_variants = 32
