@@ -15,6 +15,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
 	)
 	plasma_cost = 750
+	cooldown_timer = 180 SECONDS
 	gamemode_flags = ABILITY_DISTRESS
 
 /datum/action/xeno_action/activable/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
