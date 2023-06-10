@@ -9,6 +9,7 @@
 	icon_state = "apron"
 	item_state = "apron"
 	blood_overlay_type = "armor"
+	species_exception = list(/datum/species)
 	flags_armor_protection = NONE
 	allowed = list (
 		/obj/item/reagent_containers/spray/plantbgone,
@@ -29,6 +30,7 @@
 	desc = "A plastic covering to prevent the passage of bodily fluids during surgery."
 	icon_state = "surgical"
 	item_state = "surgical"
+	species_exception = list(/datum/species)
 	flags_armor_protection = CHEST
 	allowed = list(
 		/obj/item/tank/emergency_oxygen,
@@ -91,6 +93,7 @@
 	item_state = "chef"
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
+	species_exception = list(/datum/species)
 	flags_armor_protection = CHEST|GROIN|ARMS
 	allowed = list (/obj/item/tool/kitchen/knife,
 	/obj/item/tool/kitchen/knife/butcher)
@@ -219,11 +222,13 @@
 	name = "lime reflective safety vest"
 	icon_state = "hazard_lime"
 	item_state = "hazard_lime"
+	species_exception = list(/datum/species)
 
 /obj/item/clothing/suit/storage/hazardvest/blue
 	name = "blue reflective safety vest"
 	icon_state = "hazard_blue"
 	item_state = "hazard_blue"
+	species_exception = list(/datum/species)
 
 //Lawyer
 /obj/item/clothing/suit/storage/lawyer/bluejacket
@@ -288,6 +293,7 @@
 		/obj/item/radio,
 		/obj/item/tank/emergency_oxygen,
 	)
+	species_exception = list(/datum/species)
 	flags_armor_protection = CHEST|ARMS
 
 /obj/item/clothing/suit/storage/fr_jacket/verb/toggle()

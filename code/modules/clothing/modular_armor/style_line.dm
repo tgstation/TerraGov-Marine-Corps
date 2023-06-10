@@ -120,7 +120,7 @@
 	name = "TGMC beret"
 	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Often reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon_state = "tgmc_beret"
-
+	species_exception = list(/datum/species)
 	icon_state_variants = list(
 		"drab",
 		"snow",
@@ -138,7 +138,7 @@
 	name = "TGMC beret (classic)"
 	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Often reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts. This one is in a classic style."
 	icon_state = "classic_beret"
-
+	species_exception = list(/datum/species)
 	icon_state_variants = list(
 		"drab",
 		"snow",
@@ -156,7 +156,7 @@
 	name = "TGMC boonie"
 	desc = "A boonie hat used by the TGMC, purpose made for operations in enviroments with a lot of sun, or dense vegetation."
 	icon_state = "boonie"
-
+	species_exception = list(/datum/species)
 	icon_state_variants = list(
 		"drab",
 		"snow",
@@ -174,7 +174,7 @@
 	name = "TGMC cap"
 	desc = "A common patrol cap used by the TGMC, stylish and comes in many colors. Mostly useful to keep the sun and officers away."
 	icon_state = "tgmccap"
-
+	species_exception = list(/datum/species)
 	icon_state_variants = list(
 		"drab",
 		"snow",
@@ -192,7 +192,7 @@
 	name = "TGMC slouch hat"
 	desc = "A slouch hat, makes you feel down under, doesn't it? Has 'PROPERTY OF THE TGMC' markings under the hat."
 	icon_state = "slouchhat"
-
+	species_exception = list(/datum/species)
 	icon_state_variants = list(
 		"drab",
 		"snow",
@@ -228,7 +228,7 @@
 	name = "TGMC campaign hat"
 	desc = "A campaign hat, you can feel the menacing aura that this hat erodes just by looking at it."
 	icon_state = "campaignhat"
-
+	species_exception = list(/datum/species)
 	icon_state_variants = list(
 		"drab",
 		"snow",
@@ -246,7 +246,7 @@
 	name = "TGMC beanie"
 	desc = "A beanie, just looking at it makes you feel like an 'Oussama', or in better terms- A modern phenomenon of people suddenly needing to bench once they put on a beanie."
 	icon_state = "beanie"
-
+	species_exception = list(/datum/species)
 	icon_state_variants = list(
 		"drab",
 		"snow",
@@ -264,7 +264,7 @@
 	name = "TGMC headband"
 	desc = "A headband. Will keep the sweat off your eyes and also keep you looking cool."
 	icon_state = "headband"
-
+	species_exception = list(/datum/species)
 	icon_state_variants = list(
 		"drab",
 		"snow",
@@ -282,7 +282,7 @@
 	name = "TGMC bandana"
 	desc = "A bandana that goes on your head. Has TGMC markings on the back tie, and it seems that the knot will never come undone somehow."
 	icon_state = "headbandana"
-
+	species_exception = list(/datum/species)
 	icon_state_variants = list(
 		"drab",
 		"snow",
