@@ -38,6 +38,7 @@
 	icon_state = "beanie_cargo"
 	flags_inv_hide = HIDETOPHAIR
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	species_exception = list(/datum/species)
 
 
 /obj/item/clothing/head/tgmcberet
@@ -52,6 +53,7 @@
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_item_map_variant = NONE
 	flags_armor_features = ARMOR_NO_DECAP
+	species_exception = list(/datum/species)
 
 /obj/item/clothing/head/tgmcberet/tan
 	name = "\improper Tan beret"
@@ -121,7 +123,7 @@
 	var/flipped_cap = FALSE
 	var/base_cap_icon
 	flags_item_map_variant = (ITEM_ICE_VARIANT)
-
+	species_exception = list(/datum/species)
 
 /obj/item/clothing/head/tgmccap/verb/fliphat()
 	set name = "Flip hat"
@@ -166,6 +168,7 @@
 	icon_state = "booniehat"
 	item_state = "booniehat"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	species_exception = list(/datum/species)
 
 /obj/item/clothing/head/ornamented_cap
 	name = "\improper ornamented cap"
@@ -183,6 +186,7 @@
 	icon_state = "slouch_hat"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	species_exception = list(/datum/species)
 
 /obj/item/clothing/head/headband
 	name = "\improper Cyan headband"
@@ -195,6 +199,7 @@
 	icon_state = "headband"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_armor_features = ARMOR_NO_DECAP
+	species_exception = list(/datum/species)
 
 /obj/item/clothing/head/headband/red
 	name = "\improper Red headband"
@@ -225,7 +230,7 @@
 	name = "\improper Chief Medical hat"
 	desc = "A somewhat fancy hat, typically worn by those who wish to command medical respect."
 	icon_state = "cmohat"
-
+	species_exception = list(/datum/species)
 
 /*============================BERETS=================================*/
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.
