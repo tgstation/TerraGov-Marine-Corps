@@ -8,7 +8,7 @@
 	max_integrity = 300
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60)
 	resistance_flags = XENO_DAMAGEABLE
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	key_type = null
 	integrity_failure = 0.5
 	flags_pass = PASSABLE
@@ -124,6 +124,17 @@
 		return TRUE
 	if(user.a_intent != INTENT_HARM)
 		return motor_pack.attackby(I, user, params)
+
+/obj/vehicle/ridden/motorbike/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	. = ..()
+	if(!LAZYLEN(buckled_mobs))
+		return
+	for(var/mob/living/rider AS in buckled_mobs)
+		unbuckle_mob(rider)
+		// todo: if zooming do the following
+		rider.throw_at(get_step(rider, rider.dir), 2, spin = TRUE)
+		rider.Paralyze(0.5 SECONDS)
+		balloon_alert(rider, "You are thrown from the bike!")
 
 /obj/vehicle/ridden/motorbike/proc/sidecar_dir_change(datum/source, dir, newdir)
 	SIGNAL_HANDLER
