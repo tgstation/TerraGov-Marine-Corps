@@ -455,6 +455,7 @@
 #define COMSIG_LIVING_PROJECTILE_STUN "living_stun_mitigation" //from /datum/ammo/proc/staggerstun
 ///from /mob/living/proc/set_lying_angle
 #define COMSIG_LIVING_SET_LYING_ANGLE "living_set_lying_angle"
+#define COMSIG_LIVING_IGNITED "living_ignited" //from /mob/living/proc/IgniteMob() : (fire_stacks)
 
 /// From mob/living/treat_message(): (list/message_args)
 #define COMSIG_LIVING_TREAT_MESSAGE "living_treat_message"
@@ -561,7 +562,6 @@
 
 #define COMSIG_XENOMORPH_THROW_HIT "xenomorph_throw_hit"
 
-#define COMSIG_XENOMORPH_FIRE_BURNING "xenomorph_fire_burning"
 #define COMSIG_XENOMORPH_TAKING_DAMAGE "xenomorph_taking_damage" // (target, damagetaken)
 
 #define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage" // (amount, amount_mod, passive)
