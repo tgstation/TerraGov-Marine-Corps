@@ -123,6 +123,7 @@
 	var/flipped_cap = FALSE
 	var/base_cap_icon
 	flags_item_map_variant = (ITEM_ICE_VARIANT)
+	
 
 /obj/item/clothing/head/tgmccap/verb/fliphat()
 	set name = "Flip hat"
@@ -160,7 +161,7 @@
 	icon_state = "cargocap"
 	flags_item_map_variant = null
 	species_exception = list(/datum/species)
-	
+
 
 /obj/item/clothing/head/boonie
 	name = "Boonie Hat"
