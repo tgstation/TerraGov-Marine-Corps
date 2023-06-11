@@ -135,11 +135,16 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
-                label="Auto interact with Deployables"
+                label="Auto interact with deployables"
                 value="autointeractdeployablespref"
                 action="autointeractdeployablespref"
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
+              />
+              <LoopingSelectionPreference
+                label="Autoattack setting"
+                value={autoattack}
+                action="autoattack"
               />
             </LabeledList>
           </Section>
@@ -214,12 +219,12 @@ export const GameSettings = (props, context) => {
           <Section title="UI settings">
             <LabeledList>
               <SelectFieldPreference
-                label={'UI Style'}
+                label={'UI style'}
                 value={'ui_style'}
                 action={'ui'}
               />
               <TextFieldPreference
-                label={'UI Color'}
+                label={'UI color'}
                 value={'ui_style_color'}
                 noAction
                 extra={
@@ -230,7 +235,7 @@ export const GameSettings = (props, context) => {
                 }
               />
               <TextFieldPreference
-                label={'UI Alpha'}
+                label={'UI alpha'}
                 value={'ui_style_alpha'}
                 action={'uialpha'}
               />

@@ -119,6 +119,7 @@
 			data["mute_self_combat_messages"] = mute_self_combat_messages
 			data["show_typing"] = show_typing
 			data["tooltips"] = tooltips
+			data["autoattack"] = autoattack
 			data["widescreenpref"] = widescreenpref
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
 			data["radialstackspref"] = !!(toggles_gameplay & RADIAL_STACKS)
@@ -755,6 +756,15 @@
 
 		if("update-character-preview")
 			update_preview_icon()
+
+		if("autoattack")
+			switch(autoattack)
+				if(AUTOATTACK_DISABLED)
+					autoattack = AUTOATTACK_CLICK
+				if(AUTOATTACK_CLICK)
+					autoattack = AUTOATTACK_HOLD
+				if(AUTOATTACK_HOLD)
+					autoattack = AUTOATTACK_DISABLED
 
 		if("widescreenpref")
 			widescreenpref = !widescreenpref

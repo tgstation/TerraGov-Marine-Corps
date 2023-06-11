@@ -178,7 +178,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/unique_action_use_active_hand = TRUE
 
 	/// Autoattack preference setting, refer to autoattack.dm for state defines.
-	var/autoattack = AUTOATTACK_DISABLED
+	var/autoattack = AUTOATTACK_CLICK
 
 
 /datum/preferences/New(client/C)
