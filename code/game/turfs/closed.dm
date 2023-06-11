@@ -22,16 +22,6 @@
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	minimap_color = NONE
-	/// List of possible messages a Behemoth gets when they click this object in help intent.
-	var/possible_eating_messages = list("We eat away at the stone. It tastes good, as expected of our primary diet.",
-	"Mmmmm... Delicious rock. A fitting meal for the hardiest of creatures.",
-	"This boulder -- its flavor fills us with glee. Our palate is thoroughly satisfied.",
-	"These minerals are tasty! We want more!",
-	"Eating this stone makes us think; is our hide tougher? It is. It must be...",
-	"A delectable flavor. Just one bite is not enough...",
-	"One bite, two bites... why not just finish the whole rock?",
-	"The stone. The rock. The boulder. Its name matters not when we consume it.",
-	"Delicious, delectable, simply exquisite. Just a few more minerals and it'd be perfect...")
 
 /turf/closed/mineral/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
@@ -61,7 +51,16 @@
 		xeno_user.do_attack_animation(src)
 		playsound(src, 'sound/effects/behemoth/earth_pillar_eating.ogg', 10, TRUE)
 		xeno_user.visible_message(span_xenowarning("\The [xeno_user] eats away at the [src.name]!"), \
-		span_xenonotice(pick(possible_eating_messages)), null, 5)
+		span_xenonotice(pick(
+			"We eat away at the stone. It tastes good, as expected of our primary diet.",
+			"Mmmmm... Delicious rock. A fitting meal for the hardiest of creatures.",
+			"This boulder -- its flavor fills us with glee. Our palate is thoroughly satisfied.",
+			"These minerals are tasty! We want more!",
+			"Eating this stone makes us think; is our hide tougher? It is. It must be...",
+			"A delectable flavor. Just one bite is not enough...",
+			"One bite, two bites... why not just finish the whole rock?",
+			"The stone. The rock. The boulder. Its name matters not when we consume it.",
+			"Delicious, delectable, simply exquisite. Just a few more minerals and it'd be perfect...")), null, 5)
 
 /turf/closed/mineral/smooth
 	name = "rock"

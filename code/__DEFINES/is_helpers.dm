@@ -242,6 +242,8 @@
 
 #define is_research_product(A) (istype(A, /obj/item/research_product)) //Checks if item is research item
 
+#define isearthpillar(A) (istype(A, /obj/structure/earth_pillar))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

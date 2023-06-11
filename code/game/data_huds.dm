@@ -175,7 +175,6 @@
 
 /mob/living/carbon/xenomorph/med_hud_set_status()
 	hud_set_plasma()
-	hud_set_wrath()
 	hud_set_pheromone()
 
 
@@ -456,27 +455,16 @@
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
 	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
 		return
-	var/image/holder = hud_list[PLASMA_HUD]
-	if(!holder)
-		return
+	var/image/plasma_holder = hud_list[PLASMA_HUD]
+	var/image/wrath_holder = hud_list[WRATH_HUD]
 	if(stat == DEAD)
-		holder.icon_state = "[xeno_caste.plasma_icon_state]0"
+		plasma_holder?.icon_state = xeno_caste.plasma_icon_state? "[xeno_caste.plasma_icon_state]0" : null
+		wrath_holder?.icon_state = xeno_caste.wrath_icon_state? "[xeno_caste.wrath_icon_state]0" : null
 	else
-		var/amount = round(plasma_stored * 100 / xeno_caste.plasma_max, 10)
-		holder.icon_state = "[xeno_caste.plasma_icon_state][amount]"
-
-
-/mob/living/carbon/xenomorph/proc/hud_set_wrath()
-	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
-		return
-	var/image/holder = hud_list[WRATH_HUD]
-	if(!holder || !wrath_stored || !xeno_caste.wrath_max || !xeno_caste.wrath_icon_state)
-		return
-	if(stat == DEAD)
-		holder.icon_state = "[xeno_caste.wrath_icon_state]0"
-	else
-		var/amount = round(wrath_stored * 100 / xeno_caste.wrath_max, 10)
-		holder.icon_state = "[xeno_caste.wrath_icon_state][amount]"
+		var/plasma_amount = xeno_caste.plasma_max? round(plasma_stored * 100 / xeno_caste.plasma_max, 10) : 0
+		plasma_holder?.icon_state = xeno_caste.plasma_icon_state? "[xeno_caste.plasma_icon_state][plasma_amount]" : null
+		var/wrath_amount = xeno_caste.wrath_max? round(wrath_stored * 100 / xeno_caste.wrath_max, 10) : 0
+		wrath_holder?.icon_state = xeno_caste.wrath_icon_state? "[xeno_caste.wrath_icon_state][wrath_amount]" : null
 
 
 /mob/living/carbon/xenomorph/proc/hud_set_pheromone()

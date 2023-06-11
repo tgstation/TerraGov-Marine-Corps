@@ -55,7 +55,6 @@
 	regenerate_icons()
 
 	hud_set_plasma()
-	hud_set_wrath()
 	med_hud_set_health()
 
 	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
@@ -208,12 +207,13 @@
 
 /mob/living/carbon/xenomorph/proc/grabbed_self_attack()
 	SIGNAL_HANDLER
-	if(!(xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
+	if(!(xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER))
 		return NONE
-	var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
-	if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
-		INVOKE_ASYNC(grabbed, TYPE_PROC_REF(/mob/living/carbon/xenomorph/crusher, carry_xeno), src, TRUE)
-		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	if(isxenocrusher(pulling) || isxenobehemoth(pulling))
+		var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
+		if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
+			INVOKE_ASYNC(grabbed, TYPE_PROC_REF(/mob/living/carbon/xenomorph/crusher, carry_xeno), src, TRUE)
+			return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 
 ///Initiate of form changing on the xeno
@@ -323,7 +323,6 @@
 	//updating all the mob's hud images
 	med_hud_set_health()
 	hud_set_plasma()
-	hud_set_wrath()
 	hud_set_pheromone()
 	//and display them
 	add_to_all_mob_huds()

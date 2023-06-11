@@ -39,8 +39,6 @@
 
 #define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
 
-#define STATUS_EFFECT_XENO_WRATH_HANDLER /datum/status_effect/wrath_handler
-
 /////////////
 // DEBUFFS //
 /////////////

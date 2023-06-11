@@ -42,7 +42,6 @@
 	update_wounds()
 
 	hud_set_plasma()
-	hud_set_wrath()
 	med_hud_set_health()
 	hud_set_sunder()
 	hud_set_firestacks()
@@ -118,6 +117,8 @@
 	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
 		wound_overlay.icon_state = "none"
 		return
+	if(wound_overlay.icon != xeno_caste.wound_icon)
+		wound_overlay.icon = xeno_caste.wound_icon
 	if(health > health_threshold_crit)
 		health_thresholds = CEILING((health * 4) / (maxHealth), 1) //From 1 to 4, in 25% chunks
 		if(health_thresholds > 3)
@@ -150,11 +151,6 @@
 /atom/movable/vis_obj/xeno_wounds
 	icon = 'icons/Xeno/wound_overlays.dmi'
 	vis_flags = VIS_INHERIT_DIR
-
-/atom/movable/vis_obj/xeno_wounds/Initialize(mapload, datum/source)
-	. = ..()
-	if(isxenobehemoth(source))
-		icon = 'icons/Xeno/wound_overlays_3x3.dmi'
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	icon = 'icons/Xeno/2x2_Xenos.dmi'

@@ -515,6 +515,8 @@
 #define COMSIG_HIVE_XENO_MOTHER_PRE_CHECK "hive_xeno_mother_pre_check"		//from datum/hive_status/normal/proc/attempt_to_spawn_larva()
 #define COMSIG_HIVE_XENO_MOTHER_CHECK "hive_xeno_mother_check"				//from /datum/hive_status/normal/proc/spawn_larva()
 
+#define COMSIG_XENO_ACTION_SUCCEED_ACTIVATE "xeno_action_succeed_activate"
+	#define SUCCEED_ACTIVATE_CANCEL (1<<0)
 #define COMSIG_XENOACTION_TOGGLECHARGETYPE "xenoaction_togglechargetype"
 
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"

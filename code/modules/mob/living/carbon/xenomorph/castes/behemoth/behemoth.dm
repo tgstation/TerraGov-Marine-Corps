@@ -55,7 +55,7 @@
 	//Second check to make sure they're still valid to be carried
 	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
 		return
-	buckle_mob(target, TRUE, TRUE, 90, 1, 0)
+	buckle_mob(target, TRUE, TRUE, 90, 0, 1)
 
 /mob/living/carbon/xenomorph/behemoth/resisted_against(datum/source)
 	user_unbuckle_mob(source, source)

@@ -6,7 +6,8 @@
 	caste_type_path = /mob/living/carbon/xenomorph/behemoth
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "behemoth" //used to match appropriate wound overlays
+	wound_icon = 'icons/Xeno/wound_overlays_3x3.dmi'
+	wound_type = "behemoth"
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
@@ -34,7 +35,7 @@
 	// *** Defense *** //
 	sunder_recover = 1.0
 	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 100, BIO = 100, FIRE = 35, ACID = 35)
-	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "crusher"
@@ -44,10 +45,10 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
-		//datum/action/xeno_action/ready_charge/behemoth_roll,
-		/datum/action/xeno_action/activable/behemoth/landslide,
-		/datum/action/xeno_action/activable/behemoth/earth_riser,
-		/datum/action/xeno_action/activable/behemoth/seismic_fracture,
+		//datum/action/xeno_action/behemoth_roll,
+		/datum/action/xeno_action/activable/landslide,
+		/datum/action/xeno_action/activable/earth_riser,
+		/datum/action/xeno_action/activable/seismic_fracture,
 	)
 
 /datum/xeno_caste/behemoth/on_caste_applied(mob/xenomorph)
@@ -82,7 +83,7 @@
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 110, BIO = 110, FIRE = 40, ACID = 40)
-	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
 /datum/xeno_caste/behemoth/elder
@@ -107,7 +108,7 @@
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 120, BIO = 120, FIRE = 45, ACID = 45)
-	hard_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
 /datum/xeno_caste/behemoth/ancient
@@ -127,13 +128,13 @@
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 130, BIO = 130, FIRE = 50, ACID = 50)
-	hard_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
 /datum/xeno_caste/behemoth/primordial
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_FOUR
-	primordial_message = "Our wrath will be felt by those who dare wrong us."
+	primordial_message = "We are nature's wrath made manifest."
 	wrath_max = 700
 
 	// *** Melee Attacks *** //
@@ -153,16 +154,16 @@
 	// *** Defense *** //
 	sunder_recover = 1.0
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 130, BIO = 130, FIRE = 50, ACID = 50)
-	hard_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
-		//datum/action/xeno_action/ready_charge/behemoth_roll,
-		/datum/action/xeno_action/activable/behemoth/landslide,
-		/datum/action/xeno_action/activable/behemoth/earth_riser,
-		/datum/action/xeno_action/activable/behemoth/seismic_fracture,
+		//datum/action/xeno_action/behemoth_roll,
+		/datum/action/xeno_action/activable/landslide,
+		/datum/action/xeno_action/activable/earth_riser,
+		/datum/action/xeno_action/activable/seismic_fracture,
 		/datum/action/xeno_action/primal_wrath,
 	)

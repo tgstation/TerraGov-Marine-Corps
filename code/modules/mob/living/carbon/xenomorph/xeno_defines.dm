@@ -14,6 +14,7 @@
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
 	///used to match appropriate wound overlays
+	var/wound_icon = 'icons/Xeno/wound_overlays.dmi'
 	var/wound_type = "alien"
 	var/language = "Xenomorph"
 

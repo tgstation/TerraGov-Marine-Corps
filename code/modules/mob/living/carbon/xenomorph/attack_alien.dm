@@ -35,9 +35,7 @@
 	return TRUE
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	if(status_flags & INCORPOREAL)
-		return FALSE
-	return TRUE
+	return !(status_flags & INCORPOREAL)
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return

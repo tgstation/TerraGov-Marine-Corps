@@ -62,7 +62,6 @@
 
 /obj/structure/proc/can_climb(mob/living/user)
 	if(!climbable || !can_interact(user))
-		message_admins("can_climb([user]): can interact was false")
 		return FALSE
 
 	var/turf/T = src.loc

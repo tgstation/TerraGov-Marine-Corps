@@ -327,20 +327,18 @@
 /datum/component/riding/creature/behemoth/handle_specials()
 	. = ..()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(
-		list(TEXT_NORTH = list(-10, -3), TEXT_SOUTH = list(-11, 6), TEXT_EAST = list(-21, 4), TEXT_WEST = list(4, 4)),
-		list(TEXT_NORTH = list(-10, -3), TEXT_SOUTH = list(-11, 6), TEXT_EAST = list(-21, 4), TEXT_WEST = list(4, 4)),
-	))
-	set_riding_offsets(/mob/living/carbon/xenomorph/runner, list(
-		list(TEXT_NORTH = list(-16, 9), TEXT_SOUTH = list(-16, 17), TEXT_EAST = list(-21, 7), TEXT_WEST = list(-6, 7)),
-		list(TEXT_NORTH = list(-16, 9), TEXT_SOUTH = list(-16, 17), TEXT_EAST = list(-21, 7), TEXT_WEST = list(-6, 7)),
+		list(TEXT_NORTH = list(-10, 18), TEXT_SOUTH = list(-10, 20), TEXT_EAST = list(1, 18), TEXT_WEST = list(-9, 18)),
+		list(TEXT_NORTH = list(-10, 22), TEXT_SOUTH = list(-10, 24), TEXT_EAST = list(-25, 17), TEXT_WEST = list(17, 17)),
 	))
 	set_riding_offsets(/mob/living/carbon/xenomorph/larva, list(
-		list(TEXT_NORTH = list(3, 6), TEXT_SOUTH = list(0, 16), TEXT_EAST = list(-2, 10), TEXT_WEST = list(0, 10)),
-		list(TEXT_NORTH = list(3, 6), TEXT_SOUTH = list(0, 16), TEXT_EAST = list(-2, 10), TEXT_WEST = list(0, 10)),
+		list(TEXT_NORTH = list(3, 16), TEXT_SOUTH = list(0, 28), TEXT_EAST = list(18, 20), TEXT_WEST = list(-10, 20)),
+		list(TEXT_NORTH = list(3, 24), TEXT_SOUTH = list(0, 20), TEXT_EAST = list(-10, 19), TEXT_WEST = list(16, 19)),
 	))
-	//set_riding_offsets(/mob/living/carbon/xenomorph/runner, list(TEXT_NORTH = list(-16, 9), TEXT_SOUTH = list(-16, 17), TEXT_EAST = list(-21, 7), TEXT_WEST = list(-6, 7)))
-	//set_riding_offsets(/mob/living/carbon/xenomorph/larva, list(TEXT_NORTH = list(3, 6), TEXT_SOUTH = list(0, 16), TEXT_EAST = list(-2, 10), TEXT_WEST = list(0, 10)))
-	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_riding_offsets(/mob/living/carbon/xenomorph/runner, list(
+		list(TEXT_NORTH = list(-16, 12), TEXT_SOUTH = list(-16, 19), TEXT_EAST = list(-3, 21), TEXT_WEST = list(-22, 21)),
+		list(TEXT_NORTH = list(-16, 23), TEXT_SOUTH = list(-16, 22), TEXT_EAST = list(-26, 19), TEXT_WEST = list(2, 19)),
+	))
+	set_vehicle_dir_layer(SOUTH, ABOVE_LYING_MOB_LAYER)
 	set_vehicle_dir_layer(NORTH, ABOVE_LYING_MOB_LAYER)
 	set_vehicle_dir_layer(EAST, ABOVE_LYING_MOB_LAYER)
 	set_vehicle_dir_layer(WEST, ABOVE_LYING_MOB_LAYER)
@@ -356,7 +354,6 @@
 /datum/component/riding/creature/behemoth/log_riding(mob/living/living_parent, mob/living/rider)
 	if(!istype(living_parent) || !istype(rider))
 		return
-
 	living_parent.log_message("started carrying [rider] on their back", LOG_ATTACK, color="pink")
 	rider.log_message("started being carried on [living_parent]'s back", LOG_ATTACK, color="pink")
 
@@ -365,10 +362,16 @@
 	former_rider.density = TRUE
 	return ..()
 
-/// If the crusher gets knocked over, force the riding rounys off and see if someone got hurt
+/datum/component/riding/creature/behemoth/get_offsets(pass_index, mob_type)
+	. = list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0))
+	if (riding_offsets["[mob_type]"])
+		. = riding_offsets["[mob_type]"][pass_index]
+	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
+		. = riding_offsets["[RIDING_OFFSET_ALL]"][pass_index]
+
+/// If the Behemoth gets knocked over, force the riders off and knock them down.
 /datum/component/riding/creature/behemoth/proc/check_carrier_fall_over(mob/living/carbon/xenomorph/behemoth/carrying_behemoth)
 	SIGNAL_HANDLER
-
 	for(var/mob/living/rider AS in carrying_behemoth.buckled_mobs)
 		carrying_behemoth.unbuckle_mob(rider)
 		rider.Knockdown(1 SECONDS)
@@ -376,10 +379,3 @@
 					"<span class='warning'>You fall to the ground, bringing [rider] with you!</span>", "<span class='hear'>You hear two consecutive thuds.</span>")
 		to_chat(rider, "<span class='danger'>[carrying_behemoth] falls to the ground, bringing you with [carrying_behemoth.p_them()]!</span>")
 
-//Override this to set your vehicle's various pixel offsets
-/datum/component/riding/creature/behemoth/get_offsets(pass_index, mob_type) // list(dir = x, y, layer)
-	. = list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0))
-	if (riding_offsets["[mob_type]"])
-		. = riding_offsets["[mob_type]"][pass_index]
-	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
-		. = riding_offsets["[RIDING_OFFSET_ALL]"][pass_index]
