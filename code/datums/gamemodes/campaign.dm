@@ -33,8 +33,9 @@
 		qdel(exit_point)
  	load_new_round(current_round, factions[1]) //we store the initial round in current_round. This might work better in post_setup, needs testing
 
-	for(var/datum/faction_stats/choice in stat_list)
-		choice.choose_faction_leader()
+	for(var/i in stat_list)
+		var/datum/faction_stats/selected_faction = stat_list[i]
+		selected_faction.choose_faction_leader()
 
 /datum/game_mode/hvh/campaign/setup_blockers() //to be updated
 	. = ..()

@@ -29,4 +29,25 @@
 
 ///Elects a new faction leader
 /datum/faction_stats/proc/choose_faction_leader()
-	faction_leader = pick(GLOB.alive_human_list_faction[faction]) //placeholder rng pick for now
+	faction_leader = null
+	var/list/possible_candidates = GLOB.alive_human_list_faction[faction]
+	if(!length(possible_candidates))
+		return //army of ghosts
+
+	var/list/ranks = GLOB.ranked_jobs_by_faction[faction]
+	if(ranks)
+		var/list/senior_rank_list = list()
+		for(var/senior_rank in ranks)
+			for(var/mob/living/carbon/human/candidate AS in possible_candidates)
+				if(candidate.job.title == senior_rank)
+					senior_rank_list += candidate
+			if(!length(senior_rank_list))
+				senior_rank_list.Cut()
+				continue
+			faction_leader = pick(senior_rank_list)
+
+	if(!faction_leader)
+		faction_leader = pick(possible_candidates)
+
+	//add some sound effect and maybe a map text thing
+	to_chat(faction_leader, span_highdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal."))
