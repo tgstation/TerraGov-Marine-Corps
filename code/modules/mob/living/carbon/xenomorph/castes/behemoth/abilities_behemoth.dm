@@ -101,9 +101,9 @@
 /proc/do_warning(owner, list/turf/target_turfs, duration, enhanced, action)
 	if(!owner || !length(target_turfs) || !duration)
 		return
-	var/warning_type = enhanced? /obj/effect/temp_visual/behemoth/warning/enhanced : /obj/effect/temp_visual/behemoth/warning
+	var/warning_type = enhanced ? /obj/effect/temp_visual/behemoth/warning/enhanced : /obj/effect/temp_visual/behemoth/warning
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/action/xeno_action/activable/landslide/landslide_action = xeno_owner.actions_by_path?[/datum/action/xeno_action/activable/landslide]
+	var/datum/action/xeno_action/activable/landslide/landslide_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/landslide]
 	for(var/turf/target_turf AS in target_turfs)
 		playsound(target_turf, 'sound/effects/behemoth/behemoth_rumble.ogg', 15, TRUE)
 		for(var/mob/living/target_living in target_turf)
@@ -389,7 +389,7 @@
 	var/which_step = pick(0, 1)
 	new /obj/effect/temp_visual/behemoth/landslide/dust(owner_turf, direction, which_step)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/action/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path?[/datum/action/xeno_action/primal_wrath]
+	var/datum/action/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/xeno_action/primal_wrath]
 	if(primal_wrath_action?.ability_active)
 		add_cooldown(LANDSLIDE_WIND_UP)
 		enhanced_turfs += owner_turf
@@ -469,7 +469,7 @@
 		shake_camera(xeno_owner, 1, 0.5)
 		addtimer(CALLBACK(src, PROC_REF(end_charge)), LANDSLIDE_ENDING_COLLISION_DELAY)
 		return
-	which_step =! which_step
+	which_step = !which_step
 	step(xeno_owner, direction, 1)
 	playsound(owner_turf, pick(possible_step_sounds), 40)
 	new /obj/effect/temp_visual/behemoth/crack/landslide(owner_turf, direction, which_step)
@@ -540,7 +540,7 @@
 		return
 	new /obj/effect/temp_visual/behemoth/landslide/hit(object_turf)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path?[/datum/action/xeno_action/activable/earth_riser]
+	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
 	if(isearthpillar(object_target) && earth_riser_action)
 		var/obj/structure/earth_pillar/pillar_target = object_target
 		earth_riser_action.do_projectile(pillar_target, TRUE)
@@ -673,7 +673,7 @@
 	target_turfs += get_step(xeno_owner, turn(direction, 45))
 	target_turfs += get_step(xeno_owner, turn(direction, -45))
 	for(var/turf/target_turf AS in target_turfs)
-		for(var/atom/movable/affected_atom in target_turf)
+		for(var/atom/movable/affected_atom AS in target_turf)
 			if(isliving(affected_atom))
 				var/mob/living/affected_living = affected_atom
 				if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD)
@@ -682,7 +682,7 @@
 			if(!(affected_atom in direct_turf))
 				continue
 			if(isobj(affected_atom))
-				var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path?[/datum/action/xeno_action/activable/earth_riser]
+				var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
 				if(isearthpillar(affected_atom) && earth_riser_action)
 					var/obj/structure/earth_pillar/affected_pillar = affected_atom
 					earth_riser_action.do_projectile(affected_pillar, TRUE)
@@ -765,14 +765,19 @@
 	owner.balloon_alert(owner, "[ability_name] ready")
 	return ..()
 
+/datum/action/xeno_action/activable/earth_riser/remove_action(mob/living/carbon/xenomorph/X)
+	. = ..()
+	QDEL_LIST(active_pillars)
+
 /datum/action/xeno_action/activable/earth_riser/alternate_action_activate()
 	if(!length(active_pillars))
 		var/mob/living/carbon/xenomorph/xeno_owner = owner
 		xeno_owner.balloon_alert(xeno_owner, "No active pillars")
 		return
-	var/obj/structure/earth_pillar/oldest_pillar = active_pillars[1]
-	new /obj/effect/temp_visual/behemoth/earth_pillar/broken(get_turf(oldest_pillar))
-	QDEL_NULL(oldest_pillar)
+	var/obj/structure/earth_pillar/oldest_pillar = popleft(active_pillars)
+	new /obj/effect/temp_visual/behemoth/earth_pillar/broken(oldest_pillar.loc)
+	playsound(oldest_pillar.loc, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
+	qdel(oldest_pillar)
 
 /datum/action/xeno_action/activable/earth_riser/use_ability(atom/target)
 	. = ..()
@@ -817,7 +822,7 @@
 	playsound(target_pillar, get_sfx("behemoth_earth_pillar_hit"), 40)
 	var/turf/target_turf = get_turf(target_pillar)
 	new /obj/effect/temp_visual/behemoth/landslide/hit(target_turf)
-	QDEL_NULL(target_pillar)
+	qdel(target_pillar)
 	var/datum/ammo/xeno/earth_pillar/projectile = explode? GLOB.ammo_list[/datum/ammo/xeno/earth_pillar/explosive] : GLOB.ammo_list[/datum/ammo/xeno/earth_pillar]
 	var/obj/projectile/new_projectile = new /obj/projectile(target_turf)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -834,9 +839,10 @@
 	if(!length(active_pillars))
 		return
 	while(length(active_pillars) > maximum_pillars)
-		var/obj/structure/earth_pillar/oldest_pillar = active_pillars[1]
-		new /obj/effect/temp_visual/behemoth/earth_pillar/broken(get_turf(oldest_pillar))
-		QDEL_NULL(oldest_pillar)
+		var/obj/structure/earth_pillar/oldest_pillar = popleft(active_pillars)
+		new /obj/effect/temp_visual/behemoth/earth_pillar/broken(oldest_pillar.loc)
+		playsound(oldest_pillar.loc, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
+		qdel(oldest_pillar)
 
 
 // ***************************************
@@ -930,7 +936,7 @@
 	new /obj/effect/temp_visual/behemoth/crack(owner_turf, owner.dir)
 	do_stomp(owner, owner_turf)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/action/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path?[/datum/action/xeno_action/primal_wrath]
+	var/datum/action/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/xeno_action/primal_wrath]
 	do_ability(get_turf(target), SEISMIC_FRACTURE_WIND_UP, primal_wrath_action?.ability_active? TRUE : FALSE)
 
 /** Handles the warnings, calling the following procs, and any alterations caused by Primal Wrath.
@@ -1076,7 +1082,6 @@
 #define PRIMAL_WRATH_DAMAGE_MULTIPLIER 1.3
 #define PRIMAL_WRATH_DECAY_MULTIPLIER 1.2
 #define PRIMAL_WRATH_ACTIVE_DECAY_DIVISION 40
-#define PRIMAL_WRATH_COST_MULTIPLIER 0.5
 #define PRIMAL_WRATH_GAIN_MULTIPLIER 0.4
 
 /particles/primal_wrath
@@ -1233,10 +1238,10 @@
 	if(!ability_active)
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path?[/datum/action/xeno_action/activable/earth_riser]
+	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
 	if(source_action == src || source_action == earth_riser_action)
 		return
-	xeno_owner.wrath_stored = max(0, xeno_owner.wrath_stored - round(action_cost * PRIMAL_WRATH_COST_MULTIPLIER))
+	xeno_owner.wrath_stored = max(0, xeno_owner.wrath_stored - action_cost)
 	return SUCCEED_ACTIVATE_CANCEL
 
 /** When taking damage, resets decay and returns an amount of Wrath proportional to the damage.
@@ -1268,7 +1273,7 @@
 */
 /datum/action/xeno_action/primal_wrath/proc/toggle_buff(toggle)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path?[/datum/action/xeno_action/activable/earth_riser]
+	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
 	if(!toggle)
 		ability_active = FALSE
 		set_toggle(FALSE)
@@ -1378,8 +1383,8 @@
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 0, BIO = 100, FIRE = 100, ACID = 0)
 	destroy_sound = 'sound/effects/behemoth/earth_pillar_destroyed.ogg'
 	coverage = 128
-	/// The owner of this object.
-	var/owner
+	/// The xeno owner of this object.
+	var/mob/living/carbon/xenomorph/xeno_owner
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// The amount of times a xeno needs to attack this to destroy it.
@@ -1387,9 +1392,9 @@
 	/// The amount of times an Earth Pillar flashes before executing its interaction with Seismic Fracture.
 	var/warning_flashes = 3
 
-/obj/structure/earth_pillar/Initialize(mapload, new_owner)
+/obj/structure/earth_pillar/Initialize(mapload, mob/living/carbon/xenomorph/new_owner)
 	. = ..()
-	owner = new_owner
+	xeno_owner = new_owner
 	playsound(src, 'sound/effects/behemoth/earth_pillar_rising.ogg', 40, TRUE)
 	particle_holder = new(src, /particles/earth_pillar)
 	particle_holder.pixel_y = -4
@@ -1399,10 +1404,10 @@
 	do_jitter_animation(jitter_loops = 5)
 
 /obj/structure/earth_pillar/Destroy()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path?[/datum/action/xeno_action/activable/earth_riser]
+	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
 	if(earth_riser_action && (src in earth_riser_action.active_pillars))
 		earth_riser_action.active_pillars -= src
+	xeno_owner = null
 	return ..()
 
 /obj/structure/earth_pillar/attacked_by(obj/item/I, mob/living/user, def_zone)
@@ -1465,7 +1470,8 @@
 /// Those Earth Pillars will reflect the same attack in a similar range around it, destroying itself afterwards.
 /obj/structure/earth_pillar/proc/seismic_fracture()
 	if(warning_flashes <= 0)
-		new /obj/effect/temp_visual/behemoth/earth_pillar/destroyed(get_turf(src))
+		new /obj/effect/temp_visual/behemoth/earth_pillar/destroyed(src.loc)
+		playsound(src.loc, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
 		qdel(src)
 		return
 	warning_flashes--
@@ -1549,5 +1555,5 @@
 	if(!isxeno(proj.firer))
 		return
 	var/mob/living/carbon/xenomorph/xeno_firer = proj.firer
-	var/datum/action/xeno_action/activable/seismic_fracture/seismic_fracture_action = xeno_firer.actions_by_path?[/datum/action/xeno_action/activable/seismic_fracture]
+	var/datum/action/xeno_action/activable/seismic_fracture/seismic_fracture_action = xeno_firer.actions_by_path[/datum/action/xeno_action/activable/seismic_fracture]
 	seismic_fracture_action?.do_ability(get_step(atom_turf, turn(proj.dir, 180)), 0, FALSE)

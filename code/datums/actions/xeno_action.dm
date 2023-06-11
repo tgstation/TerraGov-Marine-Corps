@@ -134,14 +134,12 @@
 /datum/action/xeno_action/proc/succeed_activate(plasma_cost_override)
 	if(QDELETED(owner))
 		return
-	var/action_cost = plasma_cost
-	if(plasma_cost_override)
-		action_cost = plasma_cost_override
-	if(SEND_SIGNAL(owner, COMSIG_XENO_ACTION_SUCCEED_ACTIVATE, src, action_cost) & SUCCEED_ACTIVATE_CANCEL)
+	plasma_cost_override = plasma_cost_override? plasma_cost_override : plasma_cost
+	if(SEND_SIGNAL(owner, COMSIG_XENO_ACTION_SUCCEED_ACTIVATE, src, plasma_cost_override) & SUCCEED_ACTIVATE_CANCEL)
 		return
-	if(action_cost > 0)
+	if(plasma_cost_override > 0)
 		var/mob/living/carbon/xenomorph/xeno_owner = owner
-		xeno_owner.use_plasma(plasma_cost)
+		xeno_owner.use_plasma(plasma_cost_override)
 
 ///checks if the linked ability is on some cooldown. The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()

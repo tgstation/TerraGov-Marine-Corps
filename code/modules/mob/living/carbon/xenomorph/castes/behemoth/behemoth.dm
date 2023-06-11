@@ -60,7 +60,7 @@
 /mob/living/carbon/xenomorph/behemoth/resisted_against(datum/source)
 	user_unbuckle_mob(source, source)
 
-/mob/living/carbon/xenomorph/behemoth/primordial/Stat()
+/mob/living/carbon/xenomorph/behemoth/Stat()
 	. = ..()
 	if(statpanel("Game") && xeno_caste.wrath_max > 0)
 		stat("Wrath:", "[wrath_stored] / [xeno_caste.wrath_max]")

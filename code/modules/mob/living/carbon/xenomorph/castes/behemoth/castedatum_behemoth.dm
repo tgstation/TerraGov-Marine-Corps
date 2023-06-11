@@ -146,7 +146,7 @@
 /datum/xeno_caste/behemoth/primordial
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_FOUR
-	primordial_message = "We are nature's wrath made manifest."
+	primordial_message = "In the ancient embrace of the earth, we have honed our art to perfection. Our might will crush the feeble pleas of our enemies before they can escape their lips."
 	wrath_max = 700
 
 	// *** Melee Attacks *** //
