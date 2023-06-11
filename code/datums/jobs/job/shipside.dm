@@ -21,7 +21,7 @@
 	outfit = /datum/outfit/job/command/captain
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP|JOB_FLAG_LOUDER_TTS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
@@ -73,7 +73,6 @@ Godspeed, captain! And remember, you are not above the law."})
 	head = /obj/item/clothing/head/tgmcberet/tan
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/command/captain/rebel
 	jobtype = /datum/job/terragov/command/captain/rebel
@@ -108,9 +107,14 @@ Godspeed, captain! And remember, you are not above the law."})
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/fieldcommander
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/command/fieldcommander,
+		/datum/outfit/job/command/fieldcommander_robot,
+	)
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP|JOB_FLAG_LOUDER_TTS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
@@ -132,6 +136,10 @@ Godspeed, captain! And remember, you are not above the law."})
 	access = ALL_MARINE_REBEL_ACCESS
 	minimal_access = ALL_MARINE_REBEL_ACCESS
 	outfit = /datum/outfit/job/command/fieldcommander/rebel
+	outfits = list(
+		/datum/outfit/job/command/fieldcommander,
+		/datum/outfit/job/command/fieldcommander_robot/rebel,
+	)
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
@@ -178,13 +186,32 @@ Make the TGMC proud!"})
 	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
-	back = /obj/item/storage/backpack/marine/satchel
+	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+
+/datum/outfit/job/command/fieldcommander_robot
+	name = FIELD_COMMANDER
+	jobtype = /datum/job/terragov/command/fieldcommander
+	species = SPECIES_COMBAT_ROBOT
+
+	id = /obj/item/card/id/dogtag/fc
+	belt = /obj/item/storage/holster/blade/officer/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
 /datum/outfit/job/command/fieldcommander/rebel
 	jobtype = /datum/job/terragov/command/fieldcommander/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
+/datum/outfit/job/command/fieldcommander_robot/rebel
+	jobtype = /datum/job/terragov/command/fieldcommander/rebel
+	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 //Staff Officer
 /datum/job/terragov/command/staffofficer
@@ -261,7 +288,6 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	head = /obj/item/clothing/head/tgmccap/ro
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/command/staffofficer/rebel
 	jobtype = /datum/job/terragov/command/staffofficer/rebel
@@ -348,7 +374,6 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	head = /obj/item/clothing/head/helmet/marine/pilot
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/hud_tablet/pilot
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/command/pilot/rebel
 	jobtype = /datum/job/terragov/command/pilot/rebel
@@ -417,7 +442,6 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	head = /obj/item/clothing/head/helmet/marine/mech_pilot
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING
@@ -691,7 +715,6 @@ A happy ship is a well-functioning ship."})
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/large
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/requisitions/officer/rebel
 	jobtype = /datum/job/terragov/requisitions/officer/rebel
@@ -783,7 +806,6 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	head = /obj/item/clothing/head/cmo
 	r_store = /obj/item/storage/pouch/medkit/medic
 	l_store = /obj/item/storage/pouch/surgery
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/professor/rebel
 	jobtype = /datum/job/terragov/medical/professor/rebel
@@ -869,7 +891,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/medicalofficer/rebel
 	jobtype = /datum/job/terragov/medical/medicalofficer/rebel
@@ -957,7 +978,6 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/researcher/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel
@@ -1037,7 +1057,6 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/liaison_suit
 	shoes = /obj/item/clothing/shoes/laceup
-	back = /obj/item/storage/backpack/marine/satchel
 
 
 /datum/job/terragov/silicon
@@ -1133,7 +1152,6 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	gloves = /obj/item/clothing/gloves/insulated
 	r_store = /obj/item/storage/pouch/general/medium
 	l_store = /obj/item/storage/pouch/general/medium
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/civilian/synthetic/rebel
 	jobtype = /datum/job/terragov/silicon/synthetic/rebel

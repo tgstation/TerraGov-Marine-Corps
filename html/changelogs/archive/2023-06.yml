@@ -1,0 +1,111 @@
+2023-06-01:
+  Lumipharon:
+  - bugfix: Field Commander robots now spawn with robot equipment
+  - code_imp: Adds support for species specific outfits
+2023-06-02:
+  CCorvet:
+  - qol: By default, cades are wired
+  Lumipharon:
+  - balance: Some minor tweaks to medic and SL loadouts
+  RipGrayson:
+  - qol: The AI can now issue an alert for a specific xeno or xeno structure by middle
+      clicking them.
+  ivanmixo:
+  - bugfix: Fixed `COMSIG_MOB_CLICKON` sleeping when climbing, this should fix crate
+      climbing/pulling
+  - rscadd: Made the strip menu into a TGUI iteration
+  - rscadd: You can also untighten/tighten shield straps from the menu now!
+  - bugfix: Handcuff overlays should no longer be buggy
+2023-06-03:
+  BlueHNT:
+  - rscadd: Added big combatmix hypo
+  - rscadd: Added big isotonic hypo [replaced]
+  - rscadd: Added capability to hold syringe cases in the belt [limited by the amount
+      of cases on ship]
+  - rscdel: Removed old dexalin hypo [replaced]
+  - qol: Moved the bottles up to the first slots
+  - balance: Made imialky small due to the combat mix being added
+  QualityVan:
+  - bugfix: Dropping a gun won't make all the ammo fall out of attachments
+  chizzy376:
+  - bugfix: you should no longer bump into invisible objects on Desparity
+2023-06-04:
+  Lewdcifer:
+  - balance: AMR slowdown removed, bullet penetration bonus from laser removed.
+  Lumipharon:
+  - bugfix: fixed issues with having multiple deployables at once
+  - bugfix: fixed an issue with variant outfits
+  - bugfix: fixed an exploit with powerfists
+  - balance: Reduced Psylance effectiveness against mechs slightly
+  - bugfix: fixed hive threat rewards not working some times
+  RipGrayson:
+  - balance: Moved the cave disk generator on Gelida closer to the entrance
+  - balance: Added a couple more miners on Gelida
+  - balance: Added a few rocks in Gelida LZ2 exclusion zone
+  - bugfix: Fixed the lava on Magmoor smoothing oddly with certain border turfs
+  - bugfix: Fixed the boxing ring on Pillar of Spring being permanently lit
+  - bugfix: Fixed an area just outside caves on Gelida being unbuildable on start
+  - bugfix: Fixed a couple camera blindspots on PoS
+  - bugfix: Fixed a broken containment sign in PoS
+  - bugfix: Fixed a broken floodlight typepath in Whiskey Outpost
+  - bugfix: Fixed a misnamed door on Magmoor
+  - bugfix: Fixed an improper door in Big Red medbay
+  - bugfix: Fixed a camera blindspot on Theseus
+  - bugfix: Fixed a broken typepath on the basketball EORG
+  - bugfix: The AI ping sound should no longer destroy the ears of whoever receives
+      it
+  ivanmixo:
+  - code_imp: Addressed more stuff that should be TYPE_PROC_REF
+2023-06-05:
+  Zar000:
+  - balance: rebalanced flare acid resistance
+  - refactor: refactored acid code
+  tyeagg:
+  - bugfix: gun attachments now rotate with the gun
+2023-06-06:
+  Lumipharon:
+  - bugfix: fixed a few missing sprites
+  QualityVan:
+  - bugfix: Power pouches disconnect from guns properly when one is dropped
+  - bugfix: Dropping your gun while blind resets any active scope
+  irRegularGuy646:
+  - bugfix: tactical explosive vest now has the correct armour and slowdown stats
+  ivanmixo:
+  - code_imp: Murdered all instances of the text byond proc
+  - qol: The specialized job vendors now actually indicated the backpacks are not
+      the normal IMP
+  - qol: The gear you equip now gets spawned on you instead of your bag, or failing
+      that it'll spawn in your bag
+  - bugfix: The back slot pref actually works now
+  - code_imp: Made all soft armors use defines instead of strings
+  - balance: Alamo shouldn't delete you if you stand near the doors when it crashes
+  - bugfix: Fixed AI nodes being deleted when turfs get emptied
+  - bugfix: The GL54 razor nade magazines have the correct name in req now
+2023-06-08:
+  Lumipharon:
+  - bugfix: fixed a an issue with trying to click on one of King's overlays
+  Mrrpip:
+  - rscadd: Adds a shower and map table to the Sulaco medbay. Stop stinking.
+  Pariah919:
+  - balance: AMR Flak now does slowdown and has a higher airburst multiplier, but
+      has reduced sundering. AMR Incend does a bit more damage even if it is still
+      less than normal ammo as well as slightly more pen.
+2023-06-09:
+  Lumipharon:
+  - rscadd: Added a variety of new laser weapon firemodes
+  - balance: Various laser weapon rebalances, mainly aimed at making some firemodes
+      more ammo efficient
+  - bugfix: fixed bouncing bullets being mega janky
+  QuarianCommando:
+  - imageadd: added las pouch sprite for the TEX rifle.
+  - imageadd: added las pouch sprite for the tesla rifle.
+  - balance: Tesla rifle can now use las pouches.
+  ivanmixo:
+  - bugfix: Fixed hard armor getter proc
+  - bugfix: Fixed gear preferences not showing everything
+  novaepee:
+  - rscadd: move Theseus' ship armaments closer to CIC
+2023-06-11:
+  ivanmixo:
+  - bugfix: Fixed some runtiming balloon alerts
+  - bugfix: Fixed poly tts runtime

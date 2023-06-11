@@ -37,7 +37,7 @@
 
 	active_attachable.reload(I, user)
 
-/obj/item/weapon/gun/mob_can_equip(mob/user)
+/obj/item/weapon/gun/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	//Cannot equip wielded items or items burst firing.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
@@ -568,6 +568,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	set category = null
 	set name = "Toggle Automatic Magazine Ejection (Weapon)"
 	set desc = "Toggles the automatic unloading of the gun's magazine upon depletion."
+
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
+		balloon_alert(usr, "Cannot toggle ejection")
+		return
 
 	TOGGLE_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
 	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")

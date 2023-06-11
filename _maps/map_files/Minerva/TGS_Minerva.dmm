@@ -15524,6 +15524,7 @@
 /area/mainship/engineering/engineering_workshop)
 "TF" = (
 /obj/machinery/power/monitor,
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},

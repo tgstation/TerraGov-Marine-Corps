@@ -128,7 +128,7 @@
 
 /datum/outfit/job/clf/standard/fanatic
 	head = /obj/item/clothing/head/headband/rambo
-	wear_suit = /obj/item/clothing/suit/storage/marine/harness/boomvest
+	wear_suit = /obj/item/clothing/suit/storage/marine/boomvest
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 
