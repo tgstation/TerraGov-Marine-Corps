@@ -1520,7 +1520,6 @@
 	var/mob/living/carbon/xenomorph/xeno_firer = proj.firer
 	var/projectile_damage = xeno_firer?.xeno_caste.melee_damage * xeno_firer?.xeno_melee_damage_modifier
 	hit_wall.take_damage(projectile_damage * EARTH_PILLAR_DAMAGE_TURF_MODIFIER, MELEE)
-	message_admins("earth_pillar/on_hit_turf([hit_turf], [proj]): [hit_wall] was damaged")
 
 /datum/ammo/xeno/earth_pillar/explosive
 	bullet_color = COLOR_LIGHT_ORANGE
