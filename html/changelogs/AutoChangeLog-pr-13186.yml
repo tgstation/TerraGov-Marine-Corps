@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - balance: "Early synth is now properly slower and tankier than late synth."
