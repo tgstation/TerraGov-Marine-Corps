@@ -71,6 +71,12 @@
 	upgrade_name = "Mature"
 	upgrade = XENO_UPGRADE_ONE
 
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
+	// *** Speed *** //
+	speed = 0.4
+
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 20
@@ -116,6 +122,12 @@
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "Let the land quake in fear as it is torn asunder."
 
+	// *** Melee Attacks *** //
+	melee_damage = 21
+
+	// *** Speed *** //
+	speed = 0.3
+
 	// *** Plasma *** //
 	plasma_max = 250
 	plasma_gain = 25
@@ -142,7 +154,6 @@
 
 	// *** Speed *** //
 	speed = 0.3
-	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 250
