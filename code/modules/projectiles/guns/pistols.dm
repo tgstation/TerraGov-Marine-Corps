@@ -223,7 +223,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/m1911
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/m1911)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
-	reciever_flags = AMMO_RECIEVER_MAGAZINES
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.85
