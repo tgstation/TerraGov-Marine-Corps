@@ -1047,6 +1047,10 @@
 					new /obj/effect/temp_visual/behemoth/landslide/hit(target_turf)
 					do_ability(target_turf, initial(affected_pillar.warning_flashes) * 10, FALSE)
 					continue
+				if(istype(affected_atom, /obj/structure/barricade))
+					var/obj/structure/barricade/affected_barricade = affected_atom
+					affected_barricade.take_damage(attack_damage, MELEE)
+					continue
 				affected_object.take_damage(attack_damage * SEISMIC_FRACTURE_DAMAGE_OBJECT_MODIFIER, MELEE)
 		if(!enhanced)
 			new /obj/effect/temp_visual/behemoth/seismic_fracture(target_turf)
@@ -1508,6 +1512,10 @@
 	if(ismecha(object))
 		var/obj/vehicle/sealed/mecha/mecha_object = object
 		mecha_object.take_damage(projectile_damage * EARTH_PILLAR_DAMAGE_MECHA_MODIFIER, MELEE)
+		return
+	if(istype(object, /obj/structure/barricade))
+		var/obj/structure/barricade/barricade_object = object
+		barricade_object.take_damage(projectile_damage, MELEE)
 		return
 	object.take_damage(projectile_damage * EARTH_PILLAR_DAMAGE_OBJECT_MODIFIER, MELEE)
 
