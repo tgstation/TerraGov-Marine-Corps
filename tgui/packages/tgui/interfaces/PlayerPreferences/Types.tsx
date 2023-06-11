@@ -36,6 +36,7 @@ type GameSettingData = {
   pixel_size: number;
   parallax: number;
   quick_equip: string[];
+  autoattack: string;
 };
 
 type GearCustomizationData = {

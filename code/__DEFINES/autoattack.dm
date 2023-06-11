@@ -1,3 +1,3 @@
-#define AUTOATTACK_OFF "autoattack_off"
-#define AUTOATTACK_HOLD "autoattack_hold"
-#define AUTOATTACK_TOGGLE "autoattack_toggle"
+#define AUTOATTACK_DISABLED "Disabled"
+#define AUTOATTACK_HOLD "Hold"
+#define AUTOATTACK_CLICK "Click"

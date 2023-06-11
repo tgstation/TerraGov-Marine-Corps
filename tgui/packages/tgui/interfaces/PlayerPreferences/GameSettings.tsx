@@ -28,10 +28,10 @@ const ParallaxNumToString = (integer) => {
 
 export const GameSettings = (props, context) => {
   const { act, data } = useBackend<GameSettingData>(context);
-  const { ui_style_color, scaling_method, pixel_size, parallax, quick_equip } =
+  const { ui_style_color, scaling_method, pixel_size, parallax, quick_equip, autoattack } =
     data;
   return (
-    <Section title="Game Settings">
+    <Section title="Game settings">
       <Grid>
         <Grid.Column>
           <Section title="Window settings">
@@ -58,7 +58,7 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Enabled'}
               />
               <ToggleFieldPreference
-                label="Play Text-to-Speech"
+                label="Play text-to-speech"
                 value="sound_tts"
                 action="sound_tts"
                 leftLabel={'Enabled'}
@@ -69,7 +69,7 @@ export const GameSettings = (props, context) => {
                 value="volume_tts"
               />
               <ToggleFieldPreference
-                label="Use Blips instead of text to speech"
+                label="Use blips instead of text to speech"
                 value="sound_tts_blips"
                 action="sound_tts_blips"
                 leftLabel={'Enabled'}
@@ -83,28 +83,28 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Windowed'}
               />
               <ToggleFieldPreference
-                label="TGUI Window Mode"
+                label="TGUI window mode"
                 value="tgui_fancy"
                 action="tgui_fancy"
                 leftLabel={'Fancy (default)'}
                 rightLabel={'Compatible (slower)'}
               />
               <ToggleFieldPreference
-                label="TGUI Window Placement"
+                label="TGUI window placement"
                 value="tgui_lock"
                 action="tgui_lock"
                 leftLabel={'Free (default)'}
                 rightLabel={'Primary monitor'}
               />
               <ToggleFieldPreference
-                label="TGUI Input boxes"
+                label="TGUI input boxes"
                 value="tgui_input"
                 action="tgui_input"
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
-                label="TGUI Input Buttons"
+                label="TGUI input buttons"
                 value="tgui_input_big_buttons"
                 action="tgui_input_big_buttons"
                 leftLabel={'Normal'}
@@ -113,7 +113,7 @@ export const GameSettings = (props, context) => {
                 rightValue={1}
               />
               <ToggleFieldPreference
-                label="TGUI Input Buttons placement"
+                label="TGUI input buttons placement"
                 value="tgui_input_buttons_swap"
                 action="tgui_input_buttons_swap"
                 leftLabel={'Submit/Cancel'}
@@ -128,7 +128,7 @@ export const GameSettings = (props, context) => {
               />
               <TextFieldPreference label={'FPS'} value={'clientfps'} />
               <ToggleFieldPreference
-                label="Auto Fit viewport"
+                label="Auto fit viewport"
                 value="auto_fit_viewport"
                 action="auto_fit_viewport"
                 leftLabel={'Enabled'}
@@ -256,12 +256,12 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Disabled'}
               />
               <LoopingSelectionPreference
-                label="Scaling Method"
+                label="Scaling method"
                 value={scaling_method}
                 action="scaling_method"
               />
               <LoopingSelectionPreference
-                label="Pixel Size Scaling"
+                label="Pixel size scaling"
                 value={pixel_size}
                 action="pixel_size"
               />
@@ -274,7 +274,7 @@ export const GameSettings = (props, context) => {
           </Section>
         </Grid.Column>
         <Grid.Column>
-          <Section title="Keybinding Settings">
+          <Section title="Keybind settings">
             <LabeledList>
               {quick_equip.map((equip_slot, index_slot) => (
                 <>
