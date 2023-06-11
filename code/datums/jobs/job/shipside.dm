@@ -88,7 +88,6 @@ Godspeed, captain! And remember, you are not above the law."})
 	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/robotic
-	wear_suit = /obj/item/clothing/suit/modular/robot
 	shoes = null
 	gloves = null
 	head = /obj/item/clothing/head/modular/robot
@@ -327,7 +326,6 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/robotic
-	wear_suit = /obj/item/clothing/suit/modular/robot/light
 	shoes = null
 	gloves = null
 	head = /obj/item/clothing/head/modular/robot
