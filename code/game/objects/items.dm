@@ -774,19 +774,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
 
-
-	if(is_blind(user))
-		to_chat(user, span_warning("You are too blind to see anything."))
-		return
-
-	if(!user.dextrous)
-		to_chat(user, span_warning("You do not have the dexterity to use \the [zoom_device]."))
-		return
-
-	if(!zoom && user.tinttotal >= TINT_5)
-		to_chat(user, span_warning("Your vision is too obscured for you to look through \the [zoom_device]."))
-		return
-
 	if(!tileoffset)
 		tileoffset = zoom_tile_offset
 	if(!viewsize)
@@ -810,6 +797,18 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			user.client.click_intercept = null
 			user.client.view_size.reset_to_default()
 			animate(user.client, 3*(tileoffset/7), pixel_x = 0, pixel_y = 0)
+		return
+
+	if(is_blind(user))
+		to_chat(user, span_warning("You are too blind to see anything."))
+		return
+
+	if(!user.dextrous)
+		to_chat(user, span_warning("You do not have the dexterity to use \the [zoom_device]."))
+		return
+
+	if(user.tinttotal >= TINT_5)
+		to_chat(user, span_warning("Your vision is too obscured for you to look through \the [zoom_device]."))
 		return
 
 	TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)

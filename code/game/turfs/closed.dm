@@ -144,6 +144,7 @@
 	icon = 'icons/turf/walls/jungle.dmi'
 	icon_state = "junglewall-0"
 	desc = "Some thick jungle."
+	resistance_flags = UNACIDABLE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FLORA)
 	canSmoothWith = list(SMOOTH_GROUP_FLORA)
@@ -167,7 +168,7 @@
 
 /turf/closed/gm/dense
 	name = "dense jungle wall"
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
 	minimap_color = MINIMAP_BLACK
 	icon_state = "wall-dense"
 
