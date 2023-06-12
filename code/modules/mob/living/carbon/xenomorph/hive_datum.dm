@@ -722,7 +722,7 @@
 
 	var/list/candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/queen] + xenos_by_typepath[/mob/living/carbon/xenomorph/shrike] + xenos_by_typepath[/mob/living/carbon/xenomorph/king]
 	if(length(candidates)) //Priority to the queens.
-	successor = candidates[1] //First come, first serve.
+		successor = candidates[1] //First come, first serve.
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
