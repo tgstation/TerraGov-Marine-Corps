@@ -2656,6 +2656,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	hitscan_effect_icon = "beam"
 
+/datum/ammo/energy/lasgun/marine/carbine
+	sundering = 1
+	max_range = 18
+
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
 	icon_state = "overchargedlaser"
