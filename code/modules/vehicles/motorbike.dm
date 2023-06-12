@@ -40,6 +40,11 @@
 	. += "To access internal storage click with an empty hand or drag the bike onto self."
 	. += "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\""
 
+/obj/vehicle/ridden/motorbike/user_buckle_mob(mob/living/M, mob/user, check_loc)
+	if(!do_after(user, 2 SECONDS, target = M))
+		return FALSE
+	return ..()
+
 /obj/vehicle/ridden/motorbike/post_buckle_mob(mob/living/M)
 	add_overlay(motorbike_cover)
 	return ..()
