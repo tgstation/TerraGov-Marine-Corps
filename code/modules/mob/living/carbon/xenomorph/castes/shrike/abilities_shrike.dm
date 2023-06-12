@@ -348,7 +348,7 @@
 // ***************************************
 // *********** Psychic Vortex
 // ***************************************
-#define VORTEX_RANGE 3
+#define VORTEX_RANGE 4
 #define VORTEX_PULL_WINDUP_TIME 2 SECONDS
 #define VORTEX_PUSH_WINDUP_TIME 1 SECONDS
 /datum/action/xeno_action/activable/psychic_vortex
@@ -402,29 +402,22 @@
 			H.apply_effects(1,1)
 			H.adjust_stagger(2)
 			shake_camera(H, 2, 1)
-			H.Shake(3, 3, 10)
 			victim.Shake(3, 3, 10)
-		if(isliving(victim))
-			var/mob/living_target = victim
-			if(living_target.stat == DEAD)
-				continue
-		if(isitem(victim) && isdroid(victim))
+		if(isitem(victim))
 			victim.Shake(3, 3, 10)
-		victim.throw_at(owner, 3, 1, owner, FALSE)
+		victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
 	var/turf/targetturf = get_turf(owner)
-	targetturf = locate(targetturf.x + rand(1, 3), targetturf.y + rand(1, 3), targetturf.z)
+	targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
 	for(var/atom/movable/victim in range(VORTEX_RANGE, owner.loc))
-		if(victim == owner)
+		if(victim.anchored || isxeno(victim))
 			continue
-		if(victim.anchored)
-			continue
-		if(isliving(victim))
-			var/mob/living_target = victim
-			if(living_target.stat == DEAD)
+		if(ishuman(victim))
+			var/mob/living/carbon/human/H = victim
+			if(H.stat == DEAD)
 				continue
-		victim.throw_at(targetturf, 3, 1, owner, FALSE)
+		victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/finish_charging()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
