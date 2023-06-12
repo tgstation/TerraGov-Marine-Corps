@@ -1,0 +1,4 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - balance: "Deconstructing xeno structures as a xeno now takes 1s instead of 4s."
