@@ -89,7 +89,10 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging == CHARGE_OFF)
 		return
-	if(!old_dir || !new_dir || old_dir == new_dir || agile_charge) //Check for null direction from help shuffle signals
+	if(agile_charge && (old_dir != new_dir))
+		speed_down(8)
+		return
+	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
 		return
 	do_stop_momentum()
 
