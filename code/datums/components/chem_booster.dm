@@ -421,8 +421,8 @@
 		return
 
 	var/obj/item/held_item = wearer.get_held_item()
-	if((!istype(held_item, /obj/item/reagent_containers) && !meds_beaker.reagents.total_volume) || istype(held_item, /obj/item/reagent_containers/pill))
-		wearer.balloon_alert(wearer, "You must be holding a glass reagent container")
+	if((!istype(held_item, /obj/item/reagent_containers) && !meds_beaker.reagents.total_volume))
+		wearer.balloon_alert(wearer, "You must be holding a suitable reagent container")
 		return
 
 	if(!istype(held_item, /obj/item/reagent_containers) && meds_beaker.reagents.total_volume)
@@ -439,7 +439,7 @@
 		wearer.balloon_alert(wearer, "Both the held reagent container and the system's reagent storage are empty")
 		return
 
-	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume)
+	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume) //Pills should never be empty so we don't worry about loading into them
 		var/pick = tgui_input_list(wearer, "Unload internal reagent storage into held container:", "Vali system", list("Yes", "No"))
 		if(pick == "Yes")
 			if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
@@ -458,6 +458,8 @@
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)
 	wearer.balloon_alert(wearer, "Loaded [trans] units")
 	to_chat(wearer, get_meds_beaker_contents())
+	if(istype(held_beaker, /obj/item/reagent_containers/pill))
+		qdel(held_beaker)
 
 ///Shows the loaded reagents to the person examining the parent/wearer
 /datum/component/chem_booster/proc/get_meds_beaker_contents()
