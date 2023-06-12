@@ -387,37 +387,43 @@
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_pull()
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
-	for(var/atom/movable/victim AS in range(VORTEX_RANGE, owner.loc))
+	for(var/atom/victim AS in range(VORTEX_RANGE, owner.loc))
 		if(isarea(victim))
 			continue
 		if(isturf(victim))
 			victim.Shake(3, 3, 1 SECONDS)
 			continue
-		if(victim.anchored)
+		var/atom/movable/movable_victim = victim
+		if(movable_victim.anchored)
 			continue
-		if(ishuman(victim))
-			var/mob/living/carbon/human/H = victim
+		if(ishuman(movable_victim))
+			var/mob/living/carbon/human/H = movable_victim
 			if(H.stat == DEAD)
 				continue
 			H.apply_effects(1,1)
 			H.adjust_stagger(2)
 			shake_camera(H, 2, 1)
 			victim.Shake(3, 3, 10)
-		if(isitem(victim))
+		else if(isitem(movable_victim))
 			victim.Shake(3, 3, 10)
-		victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
+		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
 	var/turf/targetturf = get_turf(owner)
 	targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
-	for(var/atom/movable/victim in range(VORTEX_RANGE, owner.loc))
-		if(victim.anchored || isxeno(victim))
+	for(var/atom/victim in range(VORTEX_RANGE, owner.loc))
+		if(isarea(victim))
 			continue
-		if(ishuman(victim))
-			var/mob/living/carbon/human/H = victim
+		if(isturf(victim))
+			continue
+		var/atom/movable/movable_victim = victim
+		if(movable_victim.anchored || isxeno(movable_victim))
+			continue
+		if(ishuman(movable_victim))
+			var/mob/living/carbon/human/H = movable_victim
 			if(H.stat == DEAD)
 				continue
-		victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
+		movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/finish_charging()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
