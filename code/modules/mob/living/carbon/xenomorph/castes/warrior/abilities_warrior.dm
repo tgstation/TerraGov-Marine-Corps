@@ -419,16 +419,16 @@
 	succeed_activate()
 	add_cooldown()
 
-/atom/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
+/atom/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	return TRUE
 
-/obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
+/obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3) //Break open the machine
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) //If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
 		attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines
-	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
-		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
+	X.visible_message(span_xenodanger("\The [X] smashes [src] with a [punch_description] punch!"), \
+		span_xenodanger("We smash [src] with a [punch_description] punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(duration = 0.5 SECONDS)
 
@@ -444,15 +444,15 @@
 	update_icon()
 	return TRUE
 
-/obj/machinery/computer/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
+/obj/machinery/computer/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3) //Break open the machine
 	set_disabled() //Currently only computers use this; falcon punch away its density
 	return ..()
 
-/obj/machinery/light/punch_act(mob/living/carbon/xenomorph/X)
+/obj/machinery/light/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	. = ..()
 	attack_alien(X) //Smash it
 
-/obj/machinery/camera/punch_act(mob/living/carbon/xenomorph/X)
+/obj/machinery/camera/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	. = ..()
 	var/datum/effect_system/spark_spread/sparks = new //Avoid the slash text, go direct to sparks
 	sparks.set_up(2, 0, src)
@@ -462,18 +462,19 @@
 	deactivate()
 	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!")) //Smash it
 
-/obj/machinery/power/apc/punch_act(mob/living/carbon/xenomorph/X)
+/obj/machinery/power/apc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	. = ..()
 	beenhit += 4 //Break it open instantly
 
-/obj/machinery/vending/punch_act(mob/living/carbon/xenomorph/X)
+/obj/machinery/vending/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	. = ..()
 	if(tipped_level < 2) //Knock it down if it isn't
 		X.visible_message(span_danger("\The [X] knocks \the [src] down!"), \
 		span_danger("You knock \the [src] down!"), null, 5)
 		tip_over()
 
-/obj/structure/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Smash structures
+/obj/structure/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3) //Smash structures
+	. = ..()
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	attack_alien(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to structures
@@ -481,9 +482,9 @@
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(duration = 0.5 SECONDS)
-	return TRUE
 
-/obj/vehicle/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
+/obj/vehicle/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
+	. = ..()
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to vehicles
@@ -494,6 +495,7 @@
 	return TRUE
 
 /mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
+	. = ..()
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
 		damage *= 1.5
 		slowdown_stacks *= 2
@@ -544,8 +546,6 @@
 	apply_damage(damage, STAMINA, updating_health = TRUE) //Armor penetrating stamina also applies.
 	shake_camera(src, 2, 1)
 	Shake(duration = 0.5 SECONDS)
-
-	return TRUE
 
 /datum/action/xeno_action/activable/punch/ai_should_start_consider()
 	return TRUE
