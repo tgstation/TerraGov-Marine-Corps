@@ -59,11 +59,12 @@
 	var/registered = FALSE
 	maptext_y = 11
 
-/atom/movable/screen/text/lobby/clickable/setup_character/Initialize(mapload)
+/atom/movable/screen/text/lobby/clickable/setup_character/Initialize(mapload, ...)
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/atom/movable/screen/text/lobby/clickable/setup_character/LateInitialize()
 	. = ..()
-	if(!mapload)
-		INVOKE_NEXT_TICK(src, PROC_REF(set_text))//stupid fucking initialize bug fuck you
-		return
 	set_text()
 
 /atom/movable/screen/text/lobby/clickable/setup_character/Click()
@@ -100,10 +101,11 @@
 	icon_state = "unready"
 
 /atom/movable/screen/text/lobby/clickable/ready/Initialize(mapload)
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/atom/movable/screen/text/lobby/clickable/ready/LateInitialize()
 	. = ..()
-	if(!mapload)
-		INVOKE_NEXT_TICK(src, PROC_REF(set_text))//stupid fucking initialize bug fuck you
-		return
 	set_text()
 
 /atom/movable/screen/text/lobby/clickable/ready/set_text()
@@ -149,12 +151,13 @@
 	maptext = "<span class='maptext' style=font-size:8px>POLLS</span>"
 	icon_state = "poll"
 
-/atom/movable/screen/text/lobby/clickable/polls/Initialize(mapload, atom/one, atom/two)
+/atom/movable/screen/text/lobby/clickable/polls/Initialize()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/atom/movable/screen/text/lobby/clickable/polls/LateInitialize()
 	. = ..()
-	if(!mapload)
-		INVOKE_NEXT_TICK(src, PROC_REF(fetch_polls))//stupid fucking initialize bug fuck you
-		return
-	INVOKE_ASYNC(src, PROC_REF(fetch_polls))
+	fetch_polls()
 
 ///This proc is invoked async to avoid sleeping in Initialize and fetches polls from the DB
 /atom/movable/screen/text/lobby/clickable/polls/proc/fetch_polls()
