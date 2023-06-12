@@ -270,13 +270,6 @@ export const GameSettings = (props, context) => {
                 value={ParallaxNumToString(parallax)}
                 action="parallax"
               />
-              <ToggleFieldPreference
-                label="Custom mouse cursor"
-                value="cursorpref"
-                action="cursorpref"
-                leftLabel={'Enabled'}
-                rightLabel={'Disabled'}
-              />
             </LabeledList>
           </Section>
         </Grid.Column>

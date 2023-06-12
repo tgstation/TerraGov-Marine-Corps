@@ -802,10 +802,7 @@
 /mob/proc/update_mouse_pointer()
 	if(!client)
 		return
-	if(client.prefs.cursorpref)
-		client.mouse_pointer_icon = 'icons/UI_Icons/mouse_pointers/mouse.dmi'
-	else
-		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+	client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 
 
 /mob/proc/update_names_joined_list(new_name, old_name)
