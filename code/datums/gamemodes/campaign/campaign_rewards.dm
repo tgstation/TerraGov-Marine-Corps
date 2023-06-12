@@ -53,7 +53,7 @@
 
 
 
-
+//Parent datum for all 'spawn stuff' rewards
 /datum/campaign_reward/equipment
 	///list of objects to spawn when this reward is activated
 	var/list/obj/equipment_to_spawn = list()

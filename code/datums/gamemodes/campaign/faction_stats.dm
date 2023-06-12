@@ -20,7 +20,7 @@
 /datum/faction_stats/New(new_faction)
 	. = ..()
 	faction = new_faction
-	//add_reward(/datum/campaign_reward/equipment/mech_heavy) testuse
+	add_reward(/datum/campaign_reward/equipment/mech_heavy) //testuse
 
 ///Returns the faction's leader, selecting one if none is available
 /datum/faction_stats/proc/get_selector()
