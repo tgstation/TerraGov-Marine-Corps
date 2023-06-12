@@ -17,6 +17,9 @@
 	tier = XENO_TIER_FOUR //King, like queen, doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
 	bubble_icon = "alienroyal"
+	inherent_verbs = list(
+		/mob/living/carbon/xenomorph/proc/hijack,
+	)
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
