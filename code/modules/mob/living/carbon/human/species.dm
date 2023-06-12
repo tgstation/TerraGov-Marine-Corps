@@ -90,7 +90,6 @@
 	var/list/preferences = list()
 	var/list/screams = list()
 	var/list/paincries = list()
-	var/list/goredcries = list()
 	var/list/gasps = list()
 	var/list/coughs = list()
 	var/list/burstscreams = list()
@@ -327,7 +326,6 @@
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
-	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
 	gasps = list(MALE = "male_gasp", FEMALE = "female_gasp")
 	coughs = list(MALE = "male_cough", FEMALE = "female_cough")
 	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
@@ -435,7 +433,6 @@
 
 	screams = list(MALE = "robot_scream", FEMALE = "robot_scream", PLURAL = "robot_scream", NEUTER = "robot_scream")
 	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain", PLURAL = "robot_pain", NEUTER = "robot_pain")
-	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream", PLURAL = "robot_scream", NEUTER = "robot_scream")
 	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry", PLURAL = "robot_warcry", NEUTER = "robot_warcry")
 	death_message = "shudders violently whilst spitting out error text before collapsing, their visual sensor darkening..."
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
@@ -553,7 +550,6 @@
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
-	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
@@ -606,7 +602,6 @@
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
-	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
@@ -740,7 +735,6 @@
 
 	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
 	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
-	goredcries = list("neuter" = 'sound/voice/moth_scream.ogg')
 	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
 	warcries = list("neuter" = 'sound/voice/moth_scream.ogg')
 
@@ -798,7 +792,6 @@
 
 	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
 	paincries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
-	goredcries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
 	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
 	death_message = "collapses in a pile of bones, with a final rattle..."
 	death_sound = list("neuter" = 'sound/voice/skeleton_scream.ogg')

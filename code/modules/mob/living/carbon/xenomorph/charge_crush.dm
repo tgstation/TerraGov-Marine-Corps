@@ -325,53 +325,6 @@
 		do_stop_momentum(FALSE)
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
-
-/datum/action/xeno_action/ready_charge/bull_charge
-	action_icon_state = "bull_ready_charge"
-	charge_type = CHARGE_BULL
-	speed_per_step = 0.15
-	steps_for_charge = 5
-	max_steps_buildup = 10
-	crush_living_damage = 15
-	plasma_use_multiplier = 2
-
-
-/datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE, PROC_REF(toggle_charge_type))
-
-
-/datum/action/xeno_action/ready_charge/bull_charge/remove_action(mob/living/L)
-	UnregisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE)
-	return ..()
-
-
-/datum/action/xeno_action/ready_charge/bull_charge/proc/toggle_charge_type(datum/source, new_charge_type = CHARGE_BULL)
-	SIGNAL_HANDLER
-	if(charge_type == new_charge_type)
-		return
-
-	var/mob/living/carbon/xenomorph/charger = owner
-	if(charger.is_charging >= CHARGE_ON)
-		do_stop_momentum()
-
-	switch(new_charge_type)
-		if(CHARGE_BULL)
-			charge_type = CHARGE_BULL
-			crush_sound = initial(crush_sound)
-			to_chat(owner, span_notice("Now charging normally."))
-		if(CHARGE_BULL_HEADBUTT)
-			charge_type = CHARGE_BULL_HEADBUTT
-			to_chat(owner, span_notice("Now headbutting on impact."))
-		if(CHARGE_BULL_GORE)
-			charge_type = CHARGE_BULL_GORE
-			crush_sound = "alien_tail_attack"
-			to_chat(owner, span_notice("Now goring on impact."))
-
-/datum/action/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
-	var/mob/living/carbon/xenomorph/X = owner
-	agile_charge = (X.upgrade == XENO_UPGRADE_FOUR)
-
 /datum/action/xeno_action/ready_charge/queen_charge
 	action_icon_state = "queen_ready_charge"
 
@@ -577,7 +530,6 @@
 			charger.visible_message(span_danger("[charger] rams [src]!"),
 			span_xenodanger("We ram [src]!"))
 			charge_datum.speed_down(1) //Lose one turf worth of speed.
-			GLOB.round_statistics.bull_crush_hit++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_crush_hit")
 			return PRECRUSH_PLOWED
 
@@ -591,7 +543,6 @@
 					throw_at(destination, 1, 1, charger, FALSE)
 				charger.visible_message(span_danger("[charger] gores [src]!"),
 					span_xenowarning("We gore [src] and skid to a halt!"))
-				GLOB.round_statistics.bull_gore_hit++
 				SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_gore_hit")
 
 
@@ -611,7 +562,6 @@
 
 			charger.visible_message(span_danger("[charger] rams into [src] and flings [p_them()] away!"),
 				span_xenowarning("We ram into [src] and skid to a halt!"))
-			GLOB.round_statistics.bull_headbutt_hit++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_headbutt_hit")
 
 	charge_datum.do_stop_momentum(FALSE)

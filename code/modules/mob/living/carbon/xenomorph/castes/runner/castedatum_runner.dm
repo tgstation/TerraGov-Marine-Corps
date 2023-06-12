@@ -33,7 +33,6 @@
 
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/hunter,
-		/mob/living/carbon/xenomorph/bull,
 		/mob/living/carbon/xenomorph/wraith,
 	)
 
