@@ -109,3 +109,13 @@
   ivanmixo:
   - bugfix: Fixed some runtiming balloon alerts
   - bugfix: Fixed poly tts runtime
+2023-06-12:
+  Pariah919:
+  - bugfix: Jungle walls are now unacidable again.
+  - balance: Early synth is now properly slower and tankier than late synth.
+  ivanmixo:
+  - bugfix: Fixed one shot rocket launchers not clearing their chambered items after
+      firing
+  - bugfix: Fixed a hugger timer runtime
+  - bugfix: Fixed reloading runtiming if you try to load a non magazine into a gun
+  - bugfix: Fixed drone link double del
