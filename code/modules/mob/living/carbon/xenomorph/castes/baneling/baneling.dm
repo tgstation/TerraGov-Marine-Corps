@@ -12,6 +12,8 @@
 	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16
 	old_x = -16
+	/// reference to our pod so we can access vars
+	var/obj/structure/xeno/baneling_pod/pod_ref
 
 /mob/living/carbon/xenomorph/baneling/set_stat()
 	. = ..()
@@ -34,5 +36,11 @@
 	var/respawn_time = 120 SECONDS
 	/// The next type of baneling that we will spawn
 	var/mob/living/carbon/xenomorph/baneling/next_baneling
-	///
+
+/obj/structure/xeno/baneling_pod/New()
+	. = ..()
+
+
+/obj/structure/xeno/baneling_pod/proc/spawn_baneling()
+	new /mob/living/carbon/xenomorph/baneling = next_baneling
 
