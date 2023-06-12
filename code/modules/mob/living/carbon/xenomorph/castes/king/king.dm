@@ -21,6 +21,7 @@
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
 	SSmonitor.stats.king++
+	playsound(loc, 'sound/voice/xenos_roaring.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	switch(upgrade)

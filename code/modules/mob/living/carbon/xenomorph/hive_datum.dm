@@ -453,6 +453,13 @@
 	core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name] "]hivemind core"
 	core.color = HS.color
 
+/mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force = FALSE)
+	. = ..()
+
+	if(HS.living_xeno_ruler)
+		return
+	HS.update_ruler()
+
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
@@ -538,6 +545,17 @@
 
 
 /mob/living/carbon/xenomorph/shrike/remove_from_hive()
+	var/datum/hive_status/hive_removed_from = hive
+
+	. = ..()
+
+	if(hive_removed_from.living_xeno_ruler == src)
+		hive_removed_from.set_ruler(null)
+		hive_removed_from.update_ruler() //Try to find a successor.
+
+
+
+/mob/living/carbon/xenomorph/king/remove_from_hive()
 	var/datum/hive_status/hive_removed_from = hive
 
 	. = ..()
@@ -709,6 +727,10 @@
 		candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]
 		if(length(candidates))
 			successor = candidates[1]
+		else
+			candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/king]
+			if(length(candidates))
+				successor = candidates[1]
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
