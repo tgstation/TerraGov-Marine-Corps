@@ -448,6 +448,7 @@
 #include "code\datums\gamemodes\sensor_capture.dm"
 #include "code\datums\gamemodes\campaign\faction_stats.dm"
 #include "code\datums\gamemodes\campaign\game_rounds.dm"
+#include "code\datums\gamemodes\campaign\campaign_rewards.dm"
 #include "code\datums\greyscale\_greyscale_config.dm"
 #include "code\datums\greyscale\greyscale_configs.dm"
 #include "code\datums\greyscale\layer.dm"

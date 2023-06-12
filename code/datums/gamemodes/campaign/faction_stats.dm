@@ -14,7 +14,8 @@
 	var/list/datum/game_round/potential_rounds = list(/datum/game_round/tdm, /datum/game_round/tdm/lv624, /datum/game_round/tdm/desparity) //placeholders
 	///Rounds this faction has succesfully completed
 	var/list/datum/game_round/finished_rounds = list()
-	//probs add persistant rewards here as well
+	///List of all rewards the faction has earnt this campaign
+	var/list/datum/campaign_reward/faction_rewards = list()
 
 /datum/faction_stats/New(new_faction)
 	. = ..()
@@ -51,3 +52,7 @@
 
 	//add some sound effect and maybe a map text thing
 	to_chat(faction_leader, span_highdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal."))
+
+///Adds a new reward to the faction for use
+/datum/faction_stats/proc/add_reward(datum/campaign_reward/new_reward)
+	faction_rewards += new new_reward(src)
