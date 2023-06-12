@@ -52,16 +52,17 @@
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
 	var/sound/king_sound = sound('sound/voice/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
-		if(Q.caste_base_type == /mob/living/carbon/xenomorph/queen)
-			SEND_SOUND(X, queen_sound)
-			//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
-			to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the queen reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
-		if(Q.caste_base_type == /mob/living/carbon/xenomorph/king)
-			SEND_SOUND(X, king_sound)
-			to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the king reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
-		if(Q.caste_base_type == /mob/living/carbon/xenomorph/shrike)
-			SEND_SOUND(X, queen_sound)
-			to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the princess reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
+		switch(Q.caste_base_type)
+			if(/mob/living/carbon/xenomorph/queen)
+				SEND_SOUND(X, queen_sound)
+				//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
+				to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the queen reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
+			if(/mob/living/carbon/xenomorph/king)
+				SEND_SOUND(X, king_sound)
+				to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the king reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
+			if(/mob/living/carbon/xenomorph/shrike)
+				SEND_SOUND(X, queen_sound)
+				to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the shrike reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
 		//Display the ruler's hive message at the top of the game screen.
 		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
 
