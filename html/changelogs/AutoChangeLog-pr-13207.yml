@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixed up fire interactions with evasion and stealth, they are actually consistent now"
