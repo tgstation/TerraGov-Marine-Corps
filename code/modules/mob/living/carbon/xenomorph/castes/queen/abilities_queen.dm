@@ -62,8 +62,8 @@
 		if(Q.caste_base_type == /mob/living/carbon/xenomorph/shrike)
 			SEND_SOUND(X, queen_sound)
 			to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the princess reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
+		//Display the ruler's hive message at the top of the game screen.
 		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
-		//Display the queen's hive message at the top of the game screen.
 
 	succeed_activate()
 	add_cooldown()
