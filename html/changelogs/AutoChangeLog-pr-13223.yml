@@ -1,0 +1,13 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - rscadd: "king has hive message, call of the burrowed abilities"
+  - rscadd: "drone can instantly evolve into king when pop is high enough"
+  - rscadd: "king can hijack dropship"
+  - rscadd: "king has evolve timer after his death (similar to the queen)"
+  - rscadd: "king has ability to buy primordial upgrades"
+  - rscadd: "king stops hive collapse timer"
+  - rscadd: "shrike can now send hive messages"
+  - rscadd: "hive message now specifies which t4 caste sent the message"
+  - soundadd: "king has his own sound when spawning (similar to the queen)"
+  - soundadd: "king has his own sound when sending a hive message"
