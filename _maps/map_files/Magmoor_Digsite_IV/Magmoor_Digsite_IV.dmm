@@ -58,9 +58,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/northeast)
-"acH" = (
-/turf/closed/wall,
-/area/storage/testroom)
 "acI" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -1979,15 +1976,6 @@
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/landing/two)
-"brx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/airlock/mainship/command{
-	dir = 2;
-	name = "\improper Arrivals"
-	},
-/turf/open/floor/mainship/mono,
-/area/magmoor/civilian/arrival/east)
 "brR" = (
 /obj/machinery/door/window/right{
 	dir = 1;
@@ -3705,12 +3693,6 @@
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/magmoor/medical/surgery)
-"cEW" = (
-/obj/structure/flora/rock/alt2,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 6
-	},
-/area/magmoor/compound/north)
 "cFa" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -12619,6 +12601,10 @@
 	dir = 1
 	},
 /area/magmoor/landing)
+"jmM" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth/indestructible,
+/area/storage/testroom)
 "jmX" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -14218,10 +14204,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound/southwest)
-"ksR" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor,
-/area/storage/testroom)
 "ksX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -17799,6 +17781,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/magmoor/cargo/storage/south)
+"ndv" = (
+/obj/structure/flora/rock/alt2,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/magmoor/compound/north)
 "ndw" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -23859,6 +23847,9 @@
 "rDJ" = (
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
+"rDR" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/storage/testroom)
 "rDU" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/grassybush,
@@ -25091,6 +25082,15 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/magmoor/civilian/mosque)
+"szH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/airlock/mainship/command{
+	dir = 2;
+	name = "\improper Arrivals"
+	},
+/turf/open/floor/mainship/mono,
+/area/magmoor/civilian/arrival/east)
 "sAj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -27159,9 +27159,6 @@
 	dir = 9
 	},
 /area/magmoor/command/commandroom)
-"ube" = (
-/turf/open/floor,
-/area/storage/testroom)
 "ubo" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -33427,11 +33424,11 @@ iLH
 iLH
 iLH
 iLH
-acH
-acH
-acH
-acH
-acH
+rDR
+rDR
+rDR
+rDR
+rDR
 "}
 (2,1,1) = {"
 iLH
@@ -33660,11 +33657,11 @@ iLH
 iLH
 iLH
 iLH
-acH
-ube
-ube
-ube
-acH
+rDR
+rDR
+rDR
+rDR
+rDR
 "}
 (3,1,1) = {"
 iLH
@@ -33893,11 +33890,11 @@ rxl
 rxl
 iLH
 iLH
-acH
-ube
-ksR
-ube
-acH
+rDR
+rDR
+jmM
+rDR
+rDR
 "}
 (4,1,1) = {"
 iLH
@@ -34126,11 +34123,11 @@ rxl
 rxl
 iLH
 iLH
-acH
-ube
-ube
-ube
-acH
+rDR
+rDR
+rDR
+rDR
+rDR
 "}
 (5,1,1) = {"
 iLH
@@ -34359,11 +34356,11 @@ rxl
 rxl
 iLH
 iLH
-acH
-acH
-acH
-acH
-acH
+rDR
+rDR
+rDR
+rDR
+rDR
 "}
 (6,1,1) = {"
 iLH
@@ -48901,7 +48898,7 @@ xrM
 xrM
 xfT
 xfT
-cEW
+ndv
 rWP
 iyf
 lqI
@@ -59663,7 +59660,7 @@ mAr
 qyb
 dAZ
 hcR
-brx
+szH
 uxI
 mXy
 xBw
