@@ -36,9 +36,16 @@
 	var/respawn_time = 120 SECONDS
 	/// The next type of baneling that we will spawn
 	var/mob/living/carbon/xenomorph/baneling/next_baneling
+	/// The current player possessing the pod
+	var/client/current_player = null
 
-/obj/structure/xeno/baneling_pod/New()
+/obj/structure/xeno/baneling_pod/New(player, mob/M)
+	current_player = player
+	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/handle_baneling_death)
 	. = ..()
+
+
+/obj/structure/xeno/baneling_pod/handle_baneling_death()
 
 
 /obj/structure/xeno/baneling_pod/proc/spawn_baneling()
