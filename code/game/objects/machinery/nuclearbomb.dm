@@ -21,11 +21,11 @@
 	var/extended = FALSE
 	var/lighthack = FALSE
 	///Time to start the timer on
-	var/time = 180 SECONDS
+	var/time = 360 SECONDS
 	///Min time for the nuke timer
-	var/timemin = 180 SECONDS
+	var/timemin = 360 SECONDS
 	///Max time for the nuke timer
-	var/timemax = 600 SECONDS
+	var/timemax = 1200 SECONDS
 	var/timer_enabled = FALSE
 	///ID of timer
 	var/timer
