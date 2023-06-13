@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscdel: "Deleted the last of old legacy nanoui code"

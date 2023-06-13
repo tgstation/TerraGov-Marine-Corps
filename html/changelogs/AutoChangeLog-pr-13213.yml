@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Laser carbine does 1 sunder per shot on autoburst instead of 1.5"

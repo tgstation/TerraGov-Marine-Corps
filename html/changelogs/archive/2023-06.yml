@@ -121,3 +121,16 @@
   - bugfix: Fixed a hugger timer runtime
   - bugfix: Fixed reloading runtiming if you try to load a non magazine into a gun
   - bugfix: Fixed drone link double del
+2023-06-13:
+  Lumipharon:
+  - bugfix: Laser carbine does 1 sunder per shot on autoburst instead of 1.5
+  RikuTheKiller:
+  - balance: Deconstructing xeno structures as a xeno now takes 1s instead of 4s.
+  ivanmixo:
+  - bugfix: Fixed roomba no client tts runtime
+  - rscdel: Deleted the last of old legacy nanoui code
+  - code_imp: Made item straps an element
+  - bugfix: Fixed slight issue in hivemind prompt
+  - bugfix: Fixed hive tracker no client runtime
+  - bugfix: Fixed warrior punch invalid param runtime
+  - bugfix: Fixed clamp dropship attach point runtime
