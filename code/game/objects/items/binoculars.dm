@@ -312,12 +312,14 @@
 	QDEL_NULL(laser)
 
 ///Sets or unsets the binocs linked mortar.
-/obj/item/binoculars/tactical/proc/set_mortar(mortar)
+/obj/item/binoculars/tactical/proc/set_mortar(var/obj/machinery/deployable/mortar/mortar)
 	if(mortar in linked_mortars)
 		UnregisterSignal(mortar, COMSIG_PARENT_QDELETING)
 		linked_mortars -= mortar
+		LAZYREMOVE(mortar.linked_struct_binoculars, src)
 		return FALSE
 	linked_mortars += mortar
+	LAZYADD(mortar.linked_struct_binoculars, src)
 	RegisterSignal(mortar, COMSIG_PARENT_QDELETING, PROC_REF(clean_refs))
 	return TRUE
 

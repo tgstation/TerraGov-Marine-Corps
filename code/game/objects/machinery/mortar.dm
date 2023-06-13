@@ -71,18 +71,15 @@
 
 	// used for keeping track of different mortars and their types for cams
 	var/static/list/id_by_type = list()
-
-	var/list/linked_binoculars = list()
-	var/obj/item/mortar_kit/linked_mortar
+	/// list of linked binoculars to the structure of the mortar, used for continuity to item
+	var/list/linked_struct_binoculars = list()
 
 /obj/machinery/deployable/mortar/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 
 	RegisterSignal(src, COMSIG_ITEM_UNDEPLOY, PROC_REF(handle_undeploy_references))
-	linked_mortar = get_internal_item()
-	LAZYINITLIST(linked_binoculars)
-	for (var/obj/item/binoculars/tactical/binoc in linked_mortar.linked_binoculars)
-		LAZYADD(linked_binoculars, binoc)
+	LAZYINITLIST(linked_struct_binoculars)
+	for (var/obj/item/binoculars/tactical/binoc in get_internal_item().linked_item_binoculars)
 		binoc.set_mortar(src)
 	impact_cam = new
 	impact_cam.forceMove(src)
@@ -248,10 +245,8 @@
 	var/obj/item/binoculars/tactical/binocs = I
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(binocs.set_mortar(src))
-		LAZYADD(linked_binoculars, binocs)
 		balloon_alert(user, "linked")
 		return
-	LAZYREMOVE(linked_binoculars, binocs)
 	balloon_alert(user, "unlinked")
 
 ///Start firing the gun on target and increase tally
@@ -325,11 +320,11 @@
 	ai_targeter = null
 
 /obj/machinery/deployable/mortar/proc/handle_undeploy_references()
-	linked_mortar = get_internal_item()
-	LAZYINITLIST(linked_mortar.linked_binoculars)
-	LAZYCLEARLIST(linked_mortar.linked_binoculars)
-	for(var/binoc in src.linked_binoculars)
-		LAZYADD(linked_mortar.linked_binoculars, binoc)
+
+	LAZYINITLIST(get_internal_item().linked_item_binoculars)
+	LAZYCLEARLIST(get_internal_item().linked_item_binoculars)
+	get_internal_item().linked_item_binoculars = linked_struct_binoculars.Copy()
+	UnregisterSignal(src, COMSIG_ITEM_UNDEPLOY)
 
 /obj/machinery/deployable/mortar/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
@@ -419,7 +414,8 @@
 	var/deployable_item = /obj/machinery/deployable/mortar
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
-	var/list/linked_binoculars
+	/// list of binoculars linked to the structure of the mortar, used for continuity
+	var/list/linked_item_binoculars
 
 /obj/item/mortar_kit/Initialize(mapload)
 	. = ..()
