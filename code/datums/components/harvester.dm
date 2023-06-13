@@ -76,7 +76,7 @@
 	if(user.do_actions)
 		return
 
-	if(!isreagentcontainer(cont) || istype(cont, /obj/item/reagent_containers/pill))
+	if(!isreagentcontainer(cont))
 		user.balloon_alert(user, "incompatible")
 		return
 
@@ -113,6 +113,8 @@
 	user.balloon_alert(user, "[loaded_reagents[reagent_to_load]]u")
 	if(length(loaded_reagents) == 1)
 		update_selected_reagent(reagent_to_load)
+	if(istype(container, /obj/item/reagent_containers/pill))
+		qdel(container)
 
 ///Handles behavior when activating the weapon
 /datum/component/harvester/proc/activate_blade_async(datum/source, mob/user)
