@@ -28,13 +28,13 @@
 
 /obj/effect/countdown/proc/start()
 	if(!started)
-		START_PROCESSING(SSobj, src)
+		START_PROCESSING(SSprocessing, src)
 		started = TRUE
 
 /obj/effect/countdown/proc/stop()
 	if(started)
 		maptext = null
-		STOP_PROCESSING(SSobj, src)
+		STOP_PROCESSING(SSprocessing, src)
 		started = FALSE
 
 /obj/effect/countdown/proc/get_value()
@@ -73,4 +73,4 @@
 	var/obj/machinery/nuclearbomb/N = attached_to
 	if(!N.timer_enabled)
 		return
-	return round(N.get_time_left())
+	return N.get_time_left()
