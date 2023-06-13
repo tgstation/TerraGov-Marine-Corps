@@ -79,7 +79,8 @@
 
 	RegisterSignal(src, COMSIG_ITEM_UNDEPLOY, PROC_REF(handle_undeploy_references))
 	LAZYINITLIST(linked_struct_binoculars)
-	for (var/obj/item/binoculars/tactical/binoc in get_internal_item().linked_item_binoculars)
+	var/obj/item/mortar_kit/mortar = get_internal_item()
+	for (var/obj/item/binoculars/tactical/binoc in mortar.linked_item_binoculars)
 		binoc.set_mortar(src)
 	impact_cam = new
 	impact_cam.forceMove(src)
@@ -321,9 +322,10 @@
 /// Handles the continuity transfer of linked binoculars from the mortar struct to the mortar item
 /obj/machinery/deployable/mortar/proc/handle_undeploy_references()
 	SIGNAL_HANDLER
-	LAZYINITLIST(get_internal_item().linked_item_binoculars)
-	LAZYCLEARLIST(get_internal_item().linked_item_binoculars)
-	get_internal_item().linked_item_binoculars = linked_struct_binoculars.Copy()
+	var/obj/item/mortar_kit/mortar = get_internal_item()
+	LAZYINITLIST(mortar.linked_item_binoculars)
+	LAZYCLEARLIST(mortar.linked_item_binoculars)
+	mortar.linked_item_binoculars = linked_struct_binoculars.Copy()
 	UnregisterSignal(src, COMSIG_ITEM_UNDEPLOY)
 
 /obj/machinery/deployable/mortar/attack_hand_alternate(mob/living/user)
