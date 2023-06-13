@@ -1,0 +1,4 @@
+author: "cheapcents"
+delete-after: True
+changes:
+  - imageadd: "changes several melee weapon sprites"
