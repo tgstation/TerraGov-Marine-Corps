@@ -493,8 +493,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/flashlight,
+		/obj/item/weapon/gun/flamer/hydro_cannon/pepperball,
 		/obj/item/attachable/magnetic_harness,
 	) // One
+
+	starting_attachment_types = list(/obj/item/weapon/gun/flamer/hydro_cannon/pepperball)
+
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
@@ -511,6 +515,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter_unwielded = 2
 
 	placed_overlay_iconstate = "pepper"
+
+/obj/item/weapon/gun/flamer/hydro_cannon/pepperball
+	name = "coaxial watercannon"
+	desc = "For the quenching of unfortunate mistakes."
+	icon_state = "hydrocannon_pepper"
+
 
 
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
