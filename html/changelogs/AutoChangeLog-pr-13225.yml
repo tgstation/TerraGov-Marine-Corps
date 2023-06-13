@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - balance: "Vali armor and weapons can load reagents from pills"
