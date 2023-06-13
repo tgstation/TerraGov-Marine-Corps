@@ -32,7 +32,7 @@
 
 //Not calling parent because this isn't the typical pick up/put down
 /obj/effect/attach_point/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
-	if(attached_clamp.loaded && !istype(attached_clamp.loaded, /obj/structure/dropship_equipment))
+	if(!attached_clamp.loaded || !istype(attached_clamp.loaded, /obj/structure/dropship_equipment))
 		return
 
 	var/obj/structure/dropship_equipment/loaded_equipment = attached_clamp.loaded
