@@ -125,7 +125,7 @@
 /obj/machinery/computer/crew/proc/scan()
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 		var/obj/item/clothing/under/C = H.w_uniform
-		if(!C || !istype(C))
+		if(!istype(C))
 			continue
 		if(C.has_sensor && H.mind)
 			add_to_tracked(C)
