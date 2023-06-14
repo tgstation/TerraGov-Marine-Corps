@@ -34,12 +34,14 @@
 	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/handle_baneling_death)
 	. = ..()
 
-/obj/structure/xeno/baneling_pod/handle_baneling_death(mob/M)
+/obj/structure/xeno/baneling_pod/proc/handle_baneling_death(mob/M)
 	if(isnull(M))
 		return
 	stored_baneling = M
+	stored_baneling.forceMove(src)
 
 
-/obj/structure/xeno/baneling_pod/proc/spawn_baneling()
-	new /mob/living/carbon/xenomorph/baneling = next_baneling
+/obj/structure/xeno/baneling_pod/proc/spawn_baneling(turf/spawn_location = loc)
+	stored_baneling.heal_overall_damage(100, 100, updating_health = TRUE)
+	stored_baneling.forceMove(spawn_location)
 

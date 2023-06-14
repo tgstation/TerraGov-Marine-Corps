@@ -9,3 +9,9 @@
 	keybinding_signals = list(
 	KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
 	)
+
+// ***************************************
+// *********** Spawn Pod
+// ***************************************
+/datum/action/xeno_action/spawn_pod
+
