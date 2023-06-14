@@ -174,3 +174,20 @@
 	full_name = "Issue Retreat Order"
 	description = "Order and rally marines to retreat"
 	keybind_signal = COMSIG_KB_RETREATORDER
+
+/datum/keybinding/human/attempt_jump
+	hotkey_keys = list("Q")
+	name = "Jump"
+	full_name = "Jump"
+	description = "Jump. Allows you to jump on certain objects"
+	keybind_signal = COMSIG_KB_JUMP
+
+/datum/keybinding/human/attempt_jump/down(client/user)
+	if(!ishuman(user.mob))
+		return FALSE
+	. = ..()
+	if(.)
+		return
+	var/mob/living/carbon/human/human_mob = user.mob
+	human_mob.do_jump()
+	return TRUE

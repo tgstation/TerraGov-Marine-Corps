@@ -859,6 +859,7 @@
 #define COMSIG_KB_ATTACKORDER "keybind_attackorder"
 #define COMSIG_KB_DEFENDORDER "keybind_defendorder"
 #define COMSIG_KB_RETREATORDER "keybind_retreatorder"
+#define COMSIG_KB_JUMP "keybind_jump"
 
 
 // human modules signals for keybindings
