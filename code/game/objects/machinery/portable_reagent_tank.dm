@@ -135,7 +135,7 @@
 /obj/item/storage/reagent_tank/Initialize()
 	. = ..()
 	create_reagents(max_volume, container_flags, starting_reagents)
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/reagent_tank, 3 SECONDS, 3 SECONDS)
+	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/reagent_tank, 3 SECONDS, 3 SECONDS)
 	//Comes with a scanner by default so players can scan the tanks
 	new /obj/item/reagent_scanner/adv (src)
 
