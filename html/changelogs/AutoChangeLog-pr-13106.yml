@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Silo larva gen now scales down with the ratio of marines to xenos, where xeno numbers are high"

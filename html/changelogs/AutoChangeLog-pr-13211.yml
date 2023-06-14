@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Lava and fire can no longer be made to do 0 damage due to the hold order"
