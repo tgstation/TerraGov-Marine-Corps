@@ -120,11 +120,11 @@
 
 /obj/item/storage/pouch/firstaid
 	name = "first-aid pouch"
-	desc = "Standard marine first-aid pouch. It can contain autoinjectors, sets of pills, and bandages."
+	desc = "Standard marine first-aid pouch. It can contain most common medical supplies."
 	icon_state = "firstaid"
 	storage_slots = 6
 	can_hold = list(
-		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/storage/pill_bottle,
 	)

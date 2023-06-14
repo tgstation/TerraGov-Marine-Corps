@@ -1,5 +1,0 @@
-author: "BlueHNT"
-delete-after: True
-changes:
-  - code_imp: "unnecessary proc/label"
-  - code_imp: "replace to_chat with balloons"

@@ -4849,7 +4849,7 @@
 /area/orion_outpost/ground/underground/caveE)
 "zf" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/plating/icefloor,
+/turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
 "zh" = (
 /turf/open/floor/plating/icefloor/warnplate{

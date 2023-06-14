@@ -99,6 +99,9 @@
 	force = 20
 	slowdown = 0.5
 
+/obj/item/weapon/shield/riot/marine/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/shield/riot/marine/update_icon_state()
 	if(obj_integrity <= integrity_failure)
@@ -117,19 +120,6 @@
 		holder.update_inv_r_hand()
 		return
 	holder.update_inv_back()
-
-/obj/item/weapon/shield/riot/marine/AltClick(mob/user)
-	if(!can_interact(user))
-		return ..()
-	if(!ishuman(user))
-		return ..()
-	if(!(user.l_hand == src || user.r_hand == src))
-		return ..()
-	TOGGLE_BITFIELD(flags_item, NODROP)
-	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, span_warning("You tighten the strap of [src] around your hand!"))
-	else
-		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
 
 /obj/item/weapon/shield/riot/marine/metal
 	icon_state = "riot_metal"
@@ -165,7 +155,7 @@
 
 /obj/item/weapon/shield/riot/marine/deployable/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployable_item, deploy_time, undeploy_time)
+	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 /obj/item/weapon/shield/riot/marine/deployable/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))

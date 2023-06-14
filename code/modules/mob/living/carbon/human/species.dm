@@ -7,6 +7,8 @@
 	///Species name
 	var/name
 	var/name_plural
+	///what kind of species it is considered
+	var/species_type = SPECIES_HUMAN
 
 	///Normal icon file
 	var/icobase = 'icons/mob/human_races/r_human.dmi'
@@ -391,6 +393,7 @@
 /datum/species/robot
 	name = "Combat Robot"
 	name_plural = "Combat Robots"
+	species_type = SPECIES_COMBAT_ROBOT
 	icobase = 'icons/mob/human_races/r_robot.dmi'
 	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
 	brute_damage_icon_state = "robot_brute"
@@ -455,20 +458,16 @@
 	repair_action.remove_action(H)
 	qdel(repair_action)
 
-
-/mob/living/carbon/human/species/robot/handle_regular_hud_updates()
-	. = ..()
-	if(health <= 0 && health > -50)
-		clear_fullscreen("robotlow")
-		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
-	else if(health <= -50)
-		clear_fullscreen("robothalf")
-		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
-	else
-		clear_fullscreen("robothalf")
-		clear_fullscreen("robotlow")
-
 /datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
+	if(H.health <= 0 && H.health > -50)
+		H.clear_fullscreen("robotlow")
+		H.overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
+	else if(H.health <= -50)
+		H.clear_fullscreen("robothalf")
+		H.overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
+	else
+		H.clear_fullscreen("robothalf")
+		H.clear_fullscreen("robotlow")
 	if(H.health > -25) //Staggerslowed if below crit threshold.
 		return
 	H.adjust_stagger(2, capped = 10)
@@ -574,16 +573,17 @@
 	return TRUE
 
 
-/datum/species/early_synthetic // Worse at medical, better at engineering.
+/datum/species/early_synthetic // Worse at medical, better at engineering. Tougher in general than later synthetics.
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
-	total_health = 125
-	brute_mod = 0.70
-	burn_mod = 0.70
+	slowdown = 1.15 //Slower than Late Synths.
+	total_health = 200 //Tough boys, very tough boys.
+	brute_mod = 0.6
+	burn_mod = 0.6
 
 	cold_level_1 = -1
 	cold_level_2 = -1

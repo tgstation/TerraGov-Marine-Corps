@@ -56,10 +56,6 @@
 	return
 
 
-/mob/living/silicon/stripPanelEquip(obj/item/I, mob/M, slot)
-	return
-
-
 /mob/living/silicon/stripPanelUnequip(obj/item/I, mob/M, slot)
 	return
 

@@ -301,7 +301,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(length(tts_filter) > 0)
 			filter += tts_filter.Join(",")
 
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, message_range = message_range)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, FALSE, message_range, (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0)
 
 /mob/living/GetVoice()
 	return name

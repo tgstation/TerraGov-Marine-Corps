@@ -50,7 +50,7 @@
 
 /obj/structure/specialclick(mob/living/carbon/user)
 	. = ..()
-	do_climb(user)
+	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
 
 /obj/structure/MouseDrop_T(mob/target, mob/user)
 	. = ..()
@@ -221,3 +221,6 @@
 		return
 
 	return interact(user)
+
+/obj/structure/get_acid_delay()
+	return 4 SECONDS
