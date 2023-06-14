@@ -84,6 +84,7 @@
 	light_system = HYBRID_LIGHT
 	light_power = 12
 	light_range = 12 //Way brighter than most lights
+	light_color = COLOR_VERY_SOFT_YELLOW
 	pixel_y = 150
 	duration = 90 SECONDS
 
