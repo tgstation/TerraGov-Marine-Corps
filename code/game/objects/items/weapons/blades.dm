@@ -177,7 +177,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "combat_knife"
-	desc = "A standard survival knife of high quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
+	desc = "A standard survival knife of high quality. You can slide this knife into your boots or strap it onto your helmet."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 30
