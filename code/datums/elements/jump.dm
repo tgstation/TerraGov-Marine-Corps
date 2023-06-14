@@ -53,4 +53,5 @@
 
 ///Ends the jump
 /datum/element/jump/proc/end_jump(mob/living/jumper)
+	jumper.layer = initial(jumper.layer)
 	jumper.flags_pass &= ~(HOVERING|PASSPROJECTILE)
