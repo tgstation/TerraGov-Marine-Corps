@@ -197,6 +197,14 @@
 	. = ..()
 	if(!.)
 		return FALSE
+
+	var/mob/living/carbon/xenomorph/X = owner
+	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
+	if(!charge.charge_ability_on)
+		if(!silent)
+			owner.balloon_alert(owner, "We must be ready to charge to do this.")
+		return FALSE
+
 	if(get_dist(owner, A) > 7)
 		return FALSE
 
@@ -206,7 +214,8 @@
 	X.face_atom(A)
 	X.set_canmove(FALSE)
 	if(!do_after(X, 10, TRUE, X, BUSY_ICON_DANGER))
-		X.set_canmove(TRUE)
+		if(!X.stat)
+			X.set_canmove(TRUE)
 		return fail_activate()
 	X.set_canmove(TRUE)
 
