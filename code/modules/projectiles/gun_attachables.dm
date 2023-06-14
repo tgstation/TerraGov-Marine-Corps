@@ -393,7 +393,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
 	)
-	force = 25
+	force = 30
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6

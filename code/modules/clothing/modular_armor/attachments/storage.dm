@@ -355,6 +355,7 @@
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
 		/obj/item/reagent_containers/food/snacks,
+		/obj/item/weapon/combat_knife,
 	)
 	cant_hold = list(
 		/obj/item/stack,

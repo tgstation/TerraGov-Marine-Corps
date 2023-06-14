@@ -189,23 +189,6 @@
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-
-/obj/item/weapon/combat_knife/attackby(obj/item/I, mob/user)
-	if(!istype(I,/obj/item/stack/cable_coil))
-		return ..()
-	var/obj/item/stack/cable_coil/CC = I
-	if(!CC.use(5))
-		to_chat(user, span_notice("You don't have enough cable for that."))
-		return
-	to_chat(user, "You wrap some cable around the bayonet. It can now be attached to a gun.")
-	if(loc == user)
-		user.temporarilyRemoveItemFromInventory(src)
-	var/obj/item/attachable/bayonet/F = new(src.loc)
-	user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-	if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-		F.loc = get_turf(src)
-	qdel(src) //Delete da old knife
-
 /obj/item/weapon/combat_knife/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
