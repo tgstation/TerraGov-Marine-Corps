@@ -39,9 +39,13 @@
 		return
 	stored_baneling = M
 	stored_baneling.forceMove(src)
-
+	if(stored_charge >= 1)
+		stored_charge--
+		addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), 30 SECONDS)
+		return
+	addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time)
 
 /obj/structure/xeno/baneling_pod/proc/spawn_baneling(turf/spawn_location = loc)
-	stored_baneling.heal_overall_damage(100, 100, updating_health = TRUE)
+	stored_baneling.heal_overall_damage(stored_baneling.maxHealth, stored_baneling.maxHealth, updating_health = TRUE)
 	stored_baneling.forceMove(spawn_location)
 
