@@ -205,14 +205,13 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/advance/can_use_action(silent = FALSE)
+	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
 	if(charge.charge_ability_on == FALSE)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while not charging")
 		return FALSE
-	else
-		return TRUE
 
 /datum/action/xeno_action/activable/advance/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
