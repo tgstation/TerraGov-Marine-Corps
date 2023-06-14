@@ -79,6 +79,7 @@
 /obj/effect/temp_visual/above_flare
 	icon_state = "flare"
 	layer = FLY_LAYER
+	color = COLOR_YELLOW_TINTED_WHITE
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	light_system = HYBRID_LIGHT
