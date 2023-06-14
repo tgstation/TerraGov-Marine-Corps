@@ -198,13 +198,6 @@
 	if(!.)
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/X = owner
-	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
-	if(!charge.charge_ability_on)
-		if(!silent)
-			owner.balloon_alert(owner, "We must be ready to charge to do this.")
-		return FALSE
-
 	if(get_dist(owner, A) > 7)
 		return FALSE
 
@@ -222,6 +215,7 @@
 	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
 	var/aimdir = get_dir(X,A)
 	if(charge)
+		charge.charge_on(FALSE)
 		charge.do_stop_momentum(FALSE) //Reset charge so next_move_limit check_momentum() does not cuck us and 0 out steps_taken
 		charge.do_start_crushing()
 		charge.valid_steps_taken = charge.max_steps_buildup - 1
