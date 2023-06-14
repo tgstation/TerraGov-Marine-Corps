@@ -36,7 +36,7 @@
 		return
 
 	if((jumper.getStaminaLoss()) > -stamina_cost)
-		to_chat(jumper, span_warning("Catch your breathe!"))
+		to_chat(jumper, span_warning("Catch your breath!"))
 		return
 
 	playsound(jumper, "jump", 65)
