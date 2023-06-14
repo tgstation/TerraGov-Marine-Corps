@@ -7,6 +7,8 @@
 	///Species name
 	var/name
 	var/name_plural
+	///what kind of species it is considered
+	var/species_type = SPECIES_HUMAN
 
 	///Normal icon file
 	var/icobase = 'icons/mob/human_races/r_human.dmi'
@@ -391,6 +393,7 @@
 /datum/species/robot
 	name = "Combat Robot"
 	name_plural = "Combat Robots"
+	species_type = SPECIES_COMBAT_ROBOT
 	icobase = 'icons/mob/human_races/r_robot.dmi'
 	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
 	brute_damage_icon_state = "robot_brute"
@@ -570,16 +573,17 @@
 	return TRUE
 
 
-/datum/species/early_synthetic // Worse at medical, better at engineering.
+/datum/species/early_synthetic // Worse at medical, better at engineering. Tougher in general than later synthetics.
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
-	total_health = 125
-	brute_mod = 0.70
-	burn_mod = 0.70
+	slowdown = 1.15 //Slower than Late Synths.
+	total_health = 200 //Tough boys, very tough boys.
+	brute_mod = 0.6
+	burn_mod = 0.6
 
 	cold_level_1 = -1
 	cold_level_2 = -1

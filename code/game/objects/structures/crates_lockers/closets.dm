@@ -222,12 +222,6 @@
 		return FALSE
 	. = ..()
 	if(opened)
-		if(istype(I, /obj/item/grab))
-			var/obj/item/grab/G = I
-			if(!G.grabbed_thing)
-				CRASH("/obj/item/grab without a grabbed_thing in tool_interact()")
-			MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
-			return
 		if(.)
 			return TRUE
 		return user.transferItemToLoc(I, drop_location())
@@ -281,36 +275,6 @@
 	return TRUE
 
 
-/obj/structure/closet/MouseDrop_T(atom/movable/O, mob/user)
-	if(!isliving(user))
-		return
-	if(isxenohivemind(user))
-		return
-	if(!opened)
-		return
-	if(!isturf(O.loc))
-		return
-	if(user.incapacitated())
-		return
-	if(O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1)
-		return
-	if(!isturf(user.loc))
-		return
-	if(ismob(O))
-		var/mob/M = O
-		if(M.buckled)
-			return
-	else if(!istype(O, /obj/item))
-		return
-
-	if(user == O)
-		if(climbable)
-			do_climb(user)
-		return
-	else
-		step_towards(O, loc)
-		balloon_alert_to_viewers("[O] is stuffed into [src]")
-
 /obj/structure/closet/relaymove(mob/user, direct)
 	if(!isturf(loc))
 		return
@@ -326,7 +290,7 @@
 		if(!lastbang)
 			lastbang = TRUE
 			for(var/mob/M in hearers(src, null))
-				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
+				to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>BANG, bang!</FONT>")
 			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
@@ -506,9 +470,9 @@
 	SIGNAL_HANDLER
 	SetStun(origin.closet_stun_delay)//Action delay when going out of a closet
 	if(!lying_angle && IsStun())
-		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = usr)
-		balloon_alert(usr, "Need to get bearings")
-	origin.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
+		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = source)
+		balloon_alert(source, "You struggle to get your bearings")
+	origin.UnregisterSignal(source, COMSIG_LIVING_DO_RESIST)
 	UnregisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED)
 
 

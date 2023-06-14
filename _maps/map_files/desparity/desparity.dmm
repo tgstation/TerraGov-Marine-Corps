@@ -40,25 +40,21 @@
 /obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/fitness)
-"ap" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/asteroidfloor,
-/area/storage/testroom)
 "as" = (
 /obj/structure/filingcabinet/medical,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "at" = (
 /turf/open/floor/plating/dmg1,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "au" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "av" = (
 /obj/structure/shuttle/engine/propulsion/burst/left{
 	dir = 4
@@ -74,7 +70,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/medical/beaker,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "aC" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/dmg3,
@@ -136,7 +132,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "aV" = (
 /obj/machinery/power/apc/drained{
 	crash_break_probability = 100
@@ -151,7 +147,7 @@
 "aZ" = (
 /obj/effect/landmark/corpsespawner/security/burst,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ba" = (
 /obj/item/shard/shrapnel{
 	name = "metal fragments"
@@ -195,7 +191,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "bm" = (
 /obj/structure/shuttle/engine/propulsion/burst/right{
 	dir = 4
@@ -309,7 +305,7 @@
 "bS" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "bT" = (
 /turf/closed/wall/mainship,
 /area/lv624/lazarus/crashed_ship)
@@ -407,7 +403,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "cr" = (
 /obj/machinery/light/small,
 /obj/structure/closet/cabinet,
@@ -420,7 +416,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/security/regular,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "cu" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -7;
@@ -441,7 +437,7 @@
 	on = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "cy" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/mainship,
@@ -669,7 +665,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "dZ" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
@@ -689,7 +685,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ee" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /turf/open/floor/tile/barber,
@@ -740,7 +736,7 @@
 "er" = (
 /obj/machinery/photocopier,
 /turf/open/floor/tile/dark/purple2,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "es" = (
 /obj/structure/table,
 /obj/structure/paper_bin{
@@ -748,7 +744,7 @@
 	},
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/purple2,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ev" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -756,11 +752,11 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ew" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/purple2,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ex" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -769,7 +765,7 @@
 /obj/structure/table,
 /obj/machinery/computer/communications,
 /turf/open/floor/tile/dark/purple2,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "eB" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_x = -4
@@ -815,7 +811,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "eJ" = (
 /turf/open/liquid/water/river,
 /area/lv624/lazarus/spaceport)
@@ -844,7 +840,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "eQ" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating/ground/dirt,
@@ -852,7 +848,7 @@
 "eR" = (
 /obj/effect/landmark/corpsespawner/security/burst,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "eS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -874,7 +870,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "eV" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -894,7 +890,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "fa" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -915,11 +911,11 @@
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "fd" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "fe" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -936,14 +932,14 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "fi" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "ResearchLab"
 	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "fl" = (
 /obj/structure/table,
 /turf/open/floor/plating/ground/dirt,
@@ -962,7 +958,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "fq" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -1000,7 +996,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "fw" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 1
@@ -1023,7 +1019,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "fF" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -1046,7 +1042,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "fJ" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -1064,7 +1060,7 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "fP" = (
 /obj/structure/flora/ausbushes/brflowers{
 	pixel_x = 5;
@@ -1158,7 +1154,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "gp" = (
 /obj/effect/ai_node,
 /turf/open/floor/carpet/side{
@@ -1185,7 +1181,7 @@
 	},
 /obj/machinery/vending/cola,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "gt" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport)
@@ -1195,14 +1191,14 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "gv" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "gx" = (
 /turf/open/floor/tile/green,
 /area/lv624/lazarus/medbay)
@@ -1266,7 +1262,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/security/burst,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "gO" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 2
@@ -1307,7 +1303,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "he" = (
 /obj/structure/bed/stool,
 /obj/effect/ai_node,
@@ -1364,7 +1360,7 @@
 	},
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "hs" = (
 /obj/structure/cargo_container{
 	dir = 4
@@ -1381,7 +1377,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "hv" = (
 /turf/open/floor/podhatch{
 	dir = 6
@@ -1519,7 +1515,7 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "id" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = -9
@@ -1542,7 +1538,7 @@
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ig" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1550,7 +1546,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ik" = (
 /obj/item/shard,
 /obj/structure/flora/ausbushes/grassybush{
@@ -1601,7 +1597,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/medical/beaker/largeweighted,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "iz" = (
 /obj/structure/window/reinforced/west,
 /obj/effect/decal/cleanable/dirt,
@@ -1646,7 +1642,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "iI" = (
 /obj/machinery/light{
 	dir = 8
@@ -1654,7 +1650,7 @@
 /obj/structure/flora/pottedplant/sixteen,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "iJ" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1764,11 +1760,11 @@
 "jm" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark/red2,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "jn" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "jo" = (
 /obj/structure/flora/ausbushes/fernybush{
 	pixel_x = -11
@@ -1785,7 +1781,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "jt" = (
 /obj/effect/landmark/dropship_console_spawn_lz1,
 /obj/structure/table/reinforced,
@@ -1817,7 +1813,7 @@
 	name = "\improper Eta Lab Maintenance Storage"
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "jA" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/smg/mp7{
@@ -1876,7 +1872,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "jM" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/mainship,
@@ -1887,7 +1883,7 @@
 "jP" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "jR" = (
 /obj/machinery/landinglight/ds1{
 	dir = 1
@@ -1931,7 +1927,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "kd" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -1992,7 +1988,7 @@
 /area/lv624/ground/jungle5)
 "kw" = (
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "kx" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_x = 10;
@@ -2007,7 +2003,7 @@
 "kA" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "kB" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -2035,7 +2031,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "kL" = (
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
@@ -2072,7 +2068,7 @@
 	},
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "kV" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/ground/dirt,
@@ -2177,7 +2173,11 @@
 /area/lv624/ground/jungle9)
 "lu" = (
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
+"lv" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth/indestructible,
+/area/storage/testroom)
 "lx" = (
 /obj/structure/sign/safety/hazard,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -2250,7 +2250,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "lR" = (
 /obj/structure/catwalk,
 /turf/open/ground/coast/corner2{
@@ -2264,7 +2264,7 @@
 "lT" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "lV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -2275,7 +2275,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 5
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "lY" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/ground/grass/weedable,
@@ -2283,7 +2283,7 @@
 "lZ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ma" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -2299,7 +2299,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "mf" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/structure/cable,
@@ -2321,7 +2321,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "mk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -2335,7 +2335,7 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "mm" = (
 /obj/structure/xenoautopsy/tank/broken,
 /obj/effect/decal/cleanable/blood,
@@ -2390,7 +2390,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "mx" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -2420,7 +2420,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "mK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -2433,7 +2433,7 @@
 "mN" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "mO" = (
 /turf/open/ground/coast{
 	dir = 1
@@ -2449,7 +2449,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dmg1,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "mT" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2467,12 +2467,12 @@
 	},
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "mZ" = (
 /obj/structure/lattice,
 /obj/item/shard,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "na" = (
 /obj/structure/sign/safety/storage{
 	dir = 4
@@ -2499,7 +2499,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ni" = (
 /obj/structure/fence,
 /turf/open/floor/marking/warning,
@@ -2524,7 +2524,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "nn" = (
 /obj/machinery/power/smes/buildable/empty{
 	dir = 1
@@ -2572,7 +2572,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "nC" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -2586,7 +2586,7 @@
 "nE" = (
 /obj/item/shard,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "nG" = (
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
@@ -2694,7 +2694,7 @@
 "og" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "oh" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -2714,7 +2714,7 @@
 "on" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "oq" = (
 /obj/effect/spawner/random/misc/structure/closet,
 /turf/open/floor/tile/purple/taupepurple{
@@ -2789,7 +2789,7 @@
 /obj/structure/closet/crate/secure,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "oI" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963";
@@ -2810,14 +2810,14 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "oM" = (
 /turf/open/ground/coast/corner,
 /area/lv624/ground/jungle9)
 "oO" = (
-/obj/structure/closet/secure_closet/guncabinet/riot_control,
 /obj/item/clothing/suit/armor/vest/warden,
 /obj/item/clothing/head/helmet/warden,
+/obj/structure/closet/secure_closet/guncabinet/lmg,
 /turf/open/floor/tile/lightred/full,
 /area/lv624/lazarus/security)
 "oP" = (
@@ -2829,7 +2829,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/medical/beaker,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "oS" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -8
@@ -2862,7 +2862,7 @@
 /obj/structure/table,
 /obj/item/tool/surgery/scalpel/manager,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "pa" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security{
@@ -2872,7 +2872,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "pd" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -2903,12 +2903,12 @@
 /obj/machinery/light,
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "pn" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "po" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -2916,7 +2916,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "pp" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_x = -11
@@ -2940,7 +2940,7 @@
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "pw" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -2976,7 +2976,7 @@
 /obj/structure/window_frame/colony,
 /obj/item/shard,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "pF" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor,
@@ -2995,7 +2995,7 @@
 "pJ" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "pK" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_y = 11
@@ -3025,7 +3025,7 @@
 "pX" = (
 /obj/effect/landmark/corpsespawner/security/regular,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "pY" = (
 /obj/structure/bed/roller,
 /obj/structure/window/reinforced/tinted{
@@ -3140,7 +3140,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "qC" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/ground/grass/weedable,
@@ -3249,7 +3249,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "qZ" = (
 /obj/machinery/light{
 	dir = 8
@@ -3258,7 +3258,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ra" = (
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
@@ -3312,7 +3312,7 @@
 /area/lv624/ground/jungle9)
 "rq" = (
 /turf/closed/wall/r_wall,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "rr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3422,7 +3422,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "sa" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/tile/bar,
@@ -3440,7 +3440,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "se" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/ground/grass/weedable,
@@ -3449,7 +3449,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "sh" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access,
 /obj/structure/cable,
@@ -3458,7 +3458,7 @@
 "si" = (
 /obj/machinery/chem_dispenser,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "sj" = (
 /obj/structure/flora/pottedplant/one,
 /turf/open/floor/tile/blue/taupeblue{
@@ -3610,7 +3610,7 @@
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "sP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3660,7 +3660,7 @@
 	},
 /obj/effect/spawner/random/medical/beaker/regularweighted,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "tb" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/reagent_containers/food/snacks/flour,
@@ -3678,7 +3678,7 @@
 "te" = (
 /obj/machinery/chem_master,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "tf" = (
 /obj/machinery/landinglight/ds1,
 /turf/open/floor/plating,
@@ -3687,7 +3687,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "tk" = (
 /obj/structure/largecrate/random,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -3711,7 +3711,7 @@
 "to" = (
 /obj/machinery/computer/atmoscontrol,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "tp" = (
 /obj/item/ammo_magazine/rifle/standard_skirmishrifle{
 	pixel_x = -2;
@@ -3772,11 +3772,11 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "tE" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "tF" = (
 /obj/effect/spawner/random/misc/structure/cabinet,
 /turf/open/floor/tile/barber,
@@ -3880,7 +3880,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ug" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/landmark/weed_node,
@@ -3903,7 +3903,7 @@
 "uq" = (
 /obj/item/shard,
 /turf/open/floor/plating/dmg2,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ur" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_y = -12
@@ -3949,7 +3949,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "uC" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -3962,13 +3962,13 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "uG" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "uI" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark,
@@ -3982,7 +3982,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "uL" = (
 /obj/structure/flora/ausbushes/brflowers{
 	pixel_x = -4;
@@ -4148,7 +4148,7 @@
 /obj/item/stack/sheet/metal,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/red2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "vC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -4226,7 +4226,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "vS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4280,14 +4280,10 @@
 "wm" = (
 /turf/open/ground/coast,
 /area/lv624/ground/river3)
-"wn" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "wp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "wx" = (
 /obj/structure/flora/ausbushes/brflowers{
 	pixel_x = 10
@@ -4323,7 +4319,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "wE" = (
 /obj/structure/bed/chair/pew{
 	dir = 9
@@ -4391,7 +4387,7 @@
 /obj/machinery/teleport/station,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "wV" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -7
@@ -4415,7 +4411,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/medical/medhud,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "wZ" = (
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_24";
@@ -4465,7 +4461,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "xk" = (
 /obj/structure/largecrate/random/barrel,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -4485,7 +4481,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "xs" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/full,
@@ -4504,7 +4500,7 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/healthanalyzer,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "xB" = (
 /turf/open/floor/wood/broken/five,
 /area/lv624/lazarus/spaceport)
@@ -4561,7 +4557,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "xQ" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/tile/dark,
@@ -4641,7 +4637,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ye" = (
 /turf/open/floor/tile/green/whitegreenfull,
 /area/lv624/lazarus/medbay)
@@ -4659,7 +4655,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yn" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4699,7 +4695,7 @@
 "yv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yw" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -4707,7 +4703,7 @@
 "yx" = (
 /obj/machinery/prop/autolathe,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yB" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 2
@@ -4718,7 +4714,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yD" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -4727,7 +4723,7 @@
 /obj/effect/spawner/random/engineering/tool,
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yF" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor,
@@ -4764,10 +4760,10 @@
 /obj/structure/table,
 /obj/effect/spawner/random/misc/clipboard,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yN" = (
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yO" = (
 /turf/open/ground/coast/corner{
 	dir = 8
@@ -4777,13 +4773,13 @@
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yR" = (
 /obj/item/clothing/head/collectable/xenom,
 /obj/item/clothing/suit/xenos,
 /obj/structure/closet/crate/science,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yS" = (
 /turf/open/floor/plating,
 /area/lv624/lazarus/canteen)
@@ -4795,7 +4791,7 @@
 /obj/structure/table/mainship,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yW" = (
 /obj/structure/jungle/vines,
 /turf/open/floor,
@@ -4813,7 +4809,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "yZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4888,14 +4884,6 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/lazarus/spaceport)
-"zq" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/shuttle/drop1/lz1)
 "zr" = (
 /obj/item/trash/chips,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -4937,7 +4925,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "zx" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/gm/dense,
@@ -4966,7 +4954,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "zE" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/sign/biohazard{
@@ -4975,7 +4963,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "zF" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating/ground/dirt,
@@ -4999,7 +4987,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "zJ" = (
 /turf/open/floor/carpet/side{
 	dir = 10
@@ -5023,7 +5011,7 @@
 	},
 /obj/structure/flora/pottedplant/twentythree,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "zR" = (
 /obj/item/stack/rods,
 /obj/effect/landmark/dropship_start_location,
@@ -5096,7 +5084,7 @@
 	},
 /obj/structure/flora/pottedplant/twentyfour,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Af" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/weedable,
@@ -5105,7 +5093,7 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Ah" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963"
@@ -5206,7 +5194,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "AL" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access,
 /obj/structure/jungle/vines,
@@ -5235,18 +5223,18 @@
 /area/lv624/lazarus/spaceport2)
 "AT" = (
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "AU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "AW" = (
 /obj/machinery/vending/security,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "AY" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_y = -12
@@ -5275,7 +5263,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Bd" = (
 /turf/closed/shuttle/dropship_regular/top_corner,
 /area/lv624/ground/jungle9)
@@ -5289,7 +5277,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Bh" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -5300,7 +5288,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Bl" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/effect/landmark/weed_node,
@@ -5338,7 +5326,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Bx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -5363,14 +5351,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "BD" = (
 /obj/machinery/door/airlock/mainship/security/free_access{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "BF" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -5398,7 +5386,7 @@
 "BI" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "BJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5560,7 +5548,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Cy" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = 9;
@@ -5601,7 +5589,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "CG" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 9;
@@ -5628,14 +5616,14 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "CN" = (
 /obj/effect/ai_node,
 /obj/structure/sign/safety/electronics{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "CO" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
@@ -5652,7 +5640,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "CU" = (
 /obj/effect/spawner/random/weaponry/melee,
 /obj/structure/table,
@@ -5682,7 +5670,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Dd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5705,7 +5693,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Dj" = (
 /obj/structure/jungle/vines,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -5723,7 +5711,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark/red2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Do" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_y = -8
@@ -5745,16 +5733,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/baton,
 /turf/open/floor/tile/dark/red2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Ds" = (
 /obj/structure/window/framed/wood,
 /obj/structure/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport)
-"Dt" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "Du" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -5834,7 +5818,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "DR" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -5859,7 +5843,7 @@
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "DX" = (
 /turf/open/floor/plating/dmg2,
 /area/lv624/lazarus/crashed_ship)
@@ -5887,7 +5871,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Ee" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5905,7 +5889,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Ej" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -5954,7 +5938,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Ew" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth,
@@ -6090,7 +6074,7 @@
 /obj/effect/landmark/corpsespawner/security/regular,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Fi" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/dirt,
@@ -6136,7 +6120,7 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Fq" = (
 /obj/machinery/light{
 	dir = 1
@@ -6220,7 +6204,7 @@
 "FQ" = (
 /obj/machinery/door/airlock/mainship/secure/free_access,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "FR" = (
 /turf/open/floor/tile/green/greentaupe{
 	dir = 4
@@ -6276,7 +6260,7 @@
 "Ge" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/red2,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Gf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/sensor_tower_patrol,
@@ -6312,19 +6296,19 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Gq" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Gs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Gt" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -6464,7 +6448,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "GY" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor,
@@ -6533,7 +6517,7 @@
 "Hq" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Hr" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
@@ -6791,7 +6775,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark/blue2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "IH" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963";
@@ -6831,7 +6815,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "IR" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_x = -12;
@@ -6869,7 +6853,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "IY" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963";
@@ -6906,14 +6890,14 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Jf" = (
 /obj/structure/table,
 /obj/machinery/computer/emails,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Jg" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -7044,7 +7028,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "JH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -7107,7 +7091,7 @@
 "JX" = (
 /obj/structure/sign/biohazard,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "JY" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle10)
@@ -7250,7 +7234,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "KP" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963";
@@ -7349,7 +7333,7 @@
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Lq" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7377,7 +7361,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Lv" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 9;
@@ -7647,7 +7631,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "MD" = (
 /obj/structure/table,
 /obj/item/storage/surgical_tray,
@@ -7682,7 +7666,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/prisoner/burst,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "MK" = (
 /obj/machinery/light{
 	dir = 8
@@ -7723,7 +7707,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "MU" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
@@ -7780,7 +7764,7 @@
 "Nc" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Nd" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -7946,7 +7930,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/security/regular,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "NU" = (
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -8053,14 +8037,6 @@
 	dir = 8
 	},
 /area/lv624/lazarus/sleep_male)
-"Ot" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "Oy" = (
 /obj/structure/bed/chair/sofa{
 	dir = 1
@@ -8133,7 +8109,7 @@
 "OH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "OI" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/green/whitegreenfull,
@@ -8320,13 +8296,13 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "PL" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "PM" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -8500,7 +8476,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "QI" = (
 /obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating,
@@ -8548,7 +8524,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "QW" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 11;
@@ -8568,7 +8544,7 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/red2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Rb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -8687,7 +8663,7 @@
 "RB" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "RC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -8708,7 +8684,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "RL" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -8734,7 +8710,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "RP" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/effect/landmark/weed_node,
@@ -8910,7 +8886,7 @@
 /obj/structure/table,
 /obj/item/tool/surgery/bonesetter,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "SE" = (
 /obj/structure/cable,
 /obj/effect/landmark/patrol_point{
@@ -8971,7 +8947,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/medical/surgical,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ST" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -8979,7 +8955,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "SU" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/dirt,
@@ -9080,7 +9056,7 @@
 	id = "ResearchLab"
 	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Tx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -9195,22 +9171,18 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Ua" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
-"Uc" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "Ud" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Ue" = (
 /turf/open/liquid/water/river,
 /area/lv624/ground/river3)
@@ -9297,7 +9269,7 @@
 "Uz" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "UB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9450,10 +9422,6 @@
 	dir = 8
 	},
 /area/lv624/ground/river3)
-"Vh" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "Vi" = (
 /obj/structure/flora/grass/tallgrass{
 	color = "#798963"
@@ -9586,7 +9554,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "VO" = (
 /turf/open/ground/coast/corner2{
 	dir = 8
@@ -9687,7 +9655,7 @@
 "Wk" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/tile/dark/purple2,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Wl" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
@@ -9705,7 +9673,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Wp" = (
 /obj/machinery/light,
 /turf/open/floor/tile/blue/taupebluecorner,
@@ -9721,7 +9689,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Wt" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -9747,7 +9715,7 @@
 "WA" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "WB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -9797,7 +9765,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "WN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -9915,7 +9883,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Xv" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -9934,7 +9902,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/chair/sofa/corsat/verticaltop,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "XA" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_x = -13
@@ -9948,7 +9916,7 @@
 /obj/effect/landmark/corpsespawner/security/regular,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2/corner,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "XE" = (
 /turf/closed/wall,
 /area/lv624/lazarus/overgrown)
@@ -9966,7 +9934,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "XJ" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -9984,7 +9952,7 @@
 /area/lv624/ground/caves/west1)
 "XO" = (
 /turf/closed/wall,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "XP" = (
 /obj/structure/girder,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -10129,7 +10097,7 @@
 "Yz" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "YA" = (
 /obj/item/weapon/gun/pistol/m1911,
 /obj/effect/spawner/gibspawner/human,
@@ -10175,7 +10143,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "YK" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -10201,13 +10169,13 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "YO" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 4
 	},
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "YP" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/shuttle/drop2/lz2)
@@ -10262,7 +10230,7 @@
 	},
 /obj/effect/landmark/corpsespawner/security/regular,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "Zc" = (
 /obj/structure/catwalk,
 /turf/open/ground/coast,
@@ -10398,7 +10366,7 @@
 "ZO" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/area/lv624/lazarus/research/caves)
 "ZP" = (
 /obj/structure/closet/crate/medical,
 /obj/item/tweezers,
@@ -10642,7 +10610,7 @@ wh
 (3,1,1) = {"
 wh
 hD
-ap
+lv
 hD
 FC
 FC
@@ -11244,7 +11212,7 @@ yp
 yp
 ek
 ek
-Ot
+ek
 yp
 yp
 yp
@@ -11344,7 +11312,7 @@ RA
 pf
 GF
 GF
-Dt
+Ux
 Ux
 Ux
 Ux
@@ -11448,7 +11416,7 @@ tf
 pf
 GF
 GF
-wn
+Ux
 Ux
 Ux
 Ux
@@ -12072,7 +12040,7 @@ nq
 pf
 GF
 GF
-wn
+Ux
 Ux
 Ux
 Ux
@@ -12176,7 +12144,7 @@ RA
 pf
 GF
 GF
-Dt
+Ux
 Ux
 Ux
 Ux
@@ -18939,7 +18907,7 @@ eV
 eV
 hU
 hU
-zq
+hU
 eV
 eV
 eV
@@ -19039,7 +19007,7 @@ La
 jY
 tI
 tI
-Vh
+OP
 OP
 OP
 OP
@@ -19143,7 +19111,7 @@ Se
 jY
 tI
 tI
-Uc
+OP
 OP
 OP
 OP
@@ -19767,7 +19735,7 @@ ov
 jY
 tI
 tI
-Uc
+OP
 OP
 OP
 OP
@@ -19871,7 +19839,7 @@ La
 jY
 tI
 tI
-Vh
+OP
 OP
 OP
 OP

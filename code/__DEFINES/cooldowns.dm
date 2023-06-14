@@ -136,3 +136,8 @@
 
 //railgun cooldown define
 #define COOLDOWN_RAILGUN_FIRE 300 SECONDS
+
+//ping cooldown define
+#define COOLDOWN_AI_PING_NORMAL 45 SECONDS
+#define COOLDOWN_AI_PING_LOW 30 SECONDS
+#define COOLDOWN_AI_PING_EXTRA_LOW 15 SECONDS

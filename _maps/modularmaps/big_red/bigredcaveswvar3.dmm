@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/turf/open/space/basic,
-/area/space)
 "c" = (
 /obj/effect/landmark/patrol_point{
 	id = "SOM_11";
@@ -1637,13 +1634,13 @@ l
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (35,1,1) = {"
 Q
@@ -1682,13 +1679,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (36,1,1) = {"
 Q
@@ -1727,13 +1724,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (37,1,1) = {"
 l
@@ -1772,13 +1769,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (38,1,1) = {"
 l
@@ -1817,13 +1814,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (39,1,1) = {"
 l
@@ -1862,13 +1859,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (40,1,1) = {"
 l
@@ -1907,13 +1904,13 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}
 (41,1,1) = {"
 N
@@ -1952,11 +1949,11 @@ Q
 Q
 Q
 K
-b
-b
-b
-b
-b
-b
-b
+K
+K
+K
+K
+K
+K
+K
 "}

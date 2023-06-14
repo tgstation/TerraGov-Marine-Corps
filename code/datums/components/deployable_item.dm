@@ -1,9 +1,5 @@
-GLOBAL_LIST_EMPTY(deployable_items)
 
-/datum/element/deployable_item
-	element_flags = ELEMENT_BESPOKE
-	argument_hash_start_idx = 2
-
+/datum/component/deployable_item
 	///Time it takes for the parent to be deployed.
 	var/deploy_time = 0
 	///Time it takes for the parent to be undeployed.
@@ -11,58 +7,56 @@ GLOBAL_LIST_EMPTY(deployable_items)
 	///Typepath that the item deploys into. Can be anything but an item so far. The preffered type is /obj/machinery/deployable since it was built for this.
 	var/obj/deploy_type
 
-/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time, _undeploy_time)
-	. = ..()
-	if(!isitem(target))
-		return ELEMENT_INCOMPATIBLE
+/datum/component/deployable_item/Initialize(_deploy_type, _deploy_time, _undeploy_time)
+	if(!isitem(parent))
+		return COMPONENT_INCOMPATIBLE
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
 	undeploy_time = _undeploy_time
 
-	var/obj/item/attached_item = target
-	LAZYADD(GLOB.deployable_items[attached_item.type], attached_item)
+	var/obj/item/attached_item = parent
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
-	RegisterSignal(attached_item, COMSIG_ITEM_EQUIPPED, PROC_REF(register_for_deploy_signal))
-
-/datum/element/deployable_item/Detach(datum/source, force)
+/datum/component/deployable_item/RegisterWithParent()
 	. = ..()
-	UnregisterSignal(source, COMSIG_ITEM_EQUIPPED)
-	LAZYREMOVE(GLOB.deployable_items[source.type], source)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(register_for_deploy_signal))
+
+/datum/component/deployable_item/UnregisterFromParent()
+	. = ..()
+	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
 
 ///Register click signals to be ready for deploying
-/datum/element/deployable_item/proc/register_for_deploy_signal(obj/item/item_equipped, mob/user, slot)
+/datum/component/deployable_item/proc/register_for_deploy_signal(obj/item/item_equipped, mob/user, slot)
 	SIGNAL_HANDLER
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return
-	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, PROC_REF(deploy), TRUE) //You can hold more than one deployable item at once
+	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, PROC_REF(deploy))
 	RegisterSignal(item_equipped, COMSIG_ITEM_UNEQUIPPED, PROC_REF(unregister_signals))
 
 ///Unregister and stop waiting for click to deploy
-/datum/element/deployable_item/proc/unregister_signals(obj/item/item_unequipped, mob/user)
+/datum/component/deployable_item/proc/unregister_signals(obj/item/item_unequipped, mob/user)
 	SIGNAL_HANDLER
 	UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
 	UnregisterSignal(item_unequipped, COMSIG_ITEM_UNEQUIPPED)
 
 ///Wrapper for proc/finish_deploy
-/datum/element/deployable_item/proc/deploy(mob/user, atom/object, turf/location, control, params)
+/datum/component/deployable_item/proc/deploy(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 	if(!isturf(location))
 		return
 	if(ISDIAGONALDIR(get_dir(user,location)))
 		return
-	var/obj/item/item_in_active_hand = user.get_active_held_item()
-	if(!(item_in_active_hand) || !(item_in_active_hand in GLOB.deployable_items[item_in_active_hand.type]))
+	if(parent != user.get_active_held_item())
 		return
 	var/list/modifiers = params2list(params)
 	if(!modifiers["ctrl"] || modifiers["right"] || get_turf(user) == location || !(user.Adjacent(object)) || !location)
 		return
-	INVOKE_ASYNC(src, PROC_REF(finish_deploy), item_in_active_hand, user, location)
+	INVOKE_ASYNC(src, PROC_REF(finish_deploy), parent, user, location)
 	return COMSIG_KB_ACTIVATED
 
 ///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying. If user is null, a direction must be set.
-/datum/element/deployable_item/proc/finish_deploy(obj/item/item_to_deploy, mob/user, turf/location, direction)
+/datum/component/deployable_item/proc/finish_deploy(obj/item/item_to_deploy, mob/user, turf/location, direction)
 
 	var/direction_to_deploy
 	var/obj/deployed_machine
@@ -120,12 +114,12 @@ GLOBAL_LIST_EMPTY(deployable_items)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, PROC_REF(undeploy))
 
 ///Wrapper for proc/finish_undeploy
-/datum/element/deployable_item/proc/undeploy(datum/source, mob/user)
+/datum/component/deployable_item/proc/undeploy(datum/source, mob/user)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(finish_undeploy), source, user)
 
 //Handles the conversion of Machine into Item. 'source' should be the Machine. User is the one undeploying. It can be undeployed without a user, if so, the var 'location' is required. If 'source' is not /obj/machinery/deployable then 'undeploying' should be the item to be undeployed from the machine.
-/datum/element/deployable_item/proc/finish_undeploy(datum/source, mob/user)
+/datum/component/deployable_item/proc/finish_undeploy(datum/source, mob/user)
 	var/obj/deployed_machine = source //The machinethat is undeploying should be the the one sending the Signal
 	var/obj/item/undeployed_item = deployed_machine.get_internal_item() //Item the machine is undeploying
 

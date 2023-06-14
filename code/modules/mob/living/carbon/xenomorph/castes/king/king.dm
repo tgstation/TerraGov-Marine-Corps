@@ -17,10 +17,14 @@
 	tier = XENO_TIER_FOUR //King, like queen, doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
 	bubble_icon = "alienroyal"
+	inherent_verbs = list(
+		/mob/living/carbon/xenomorph/proc/hijack,
+	)
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
 	SSmonitor.stats.king++
+	playsound(loc, 'sound/voice/xenos_roaring.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	switch(upgrade)

@@ -185,3 +185,44 @@
       | satchel space for MRE food
   tyeagg:
   - code_imp: remove unused ricochet vars
+2023-05-29:
+  QualityVan:
+  - bugfix: You can dump snow off shovels again
+  - code_imp: Chemicals don't try to react when some of them are removed.
+  TiviPlus:
+  - code_imp: optimized overlays
+  - code_imp: Minimap has been heavily optimized
+  - rscadd: Roomba gets TTS
+  - code_imp: Improved some clicking code
+  - code_imp: optimized runechat
+  - bugfix: fixed not being an explicitly spawned species not giving robots a damage
+      screen overlay
+2023-05-30:
+  Losenis:
+  - balance: 'xray rifle standard shot firerate now 0.25 (Comparison: AR12 has 0.2)'
+  Lumipharon:
+  - bugfix: fixed an issue with facehugger cryo tanks
+  - bugfix: Detonating the groundside nuke shipside no longer results in a marine
+      victory
+  QualityVan:
+  - bugfix: Attached guns can be loaded with worn magazines
+  ivanmixo:
+  - bugfix: Fixed an add_fingerprint runtime
+2023-05-31:
+  RipGrayson:
+  - bugfix: Fixed walls with the UNACIDABLE flags being also immune to plasma cutters
+  - code_imp: Added PLASMACUTTER_IMMUNE to RESIST_ALL
+  Skye:
+  - qol: A secret has been revealed! You can now find the mech bay's APC on the Thesseus
+      map.
+  - bugfix: Added wires to the power monitoring computers in Thesseus and Minerva's
+      engineering zones.
+  TiviPlus:
+  - rscadd: Xenos may now lift on the benchpress
+  - qol: Which faction lifted how much is now logged as an end of round stat
+  - bugfix: fixed breaking an arm not stopping the lift animation of the benchpress
+  - rscadd: Command TTS volume is increased
+  chizzy376:
+  - bugfix: can't land tad in blue disk on Desparity anymore
+  ivanmixo:
+  - rscdel: Removed crate stuffing
