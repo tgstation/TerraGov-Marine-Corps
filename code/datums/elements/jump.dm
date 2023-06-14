@@ -1,3 +1,5 @@
+#define JUMP_ELEMENT_COOLDOWN "jump_element_cooldown"
+
 /datum/element/jump
 	element_flags = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
@@ -7,7 +9,7 @@
 	var/jump_cooldown
 	///how much stamina jumping takes
 	var/stamina_cost
-	COOLDOWN_DECLARE(cooldown_timer)
+	//COOLDOWN_DECLARE(cooldown_timer)
 
 /datum/element/jump/Attach(atom/movable/target, _jump_duration = 1 SECONDS, _jump_cooldown = 1.5 SECONDS, _stamina_cost = 10)
 	. = ..()
@@ -30,7 +32,7 @@
 	if(jumper.incapacitated(TRUE))
 		return
 
-	if(!COOLDOWN_CHECK(src, cooldown_timer))
+	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_ELEMENT_COOLDOWN))
 		return
 
 	if((jumper.getStaminaLoss()) > -stamina_cost)
@@ -49,7 +51,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper), jump_duration)
 
-	COOLDOWN_START(src, cooldown_timer, jump_cooldown)
+	TIMER_COOLDOWN_START(jumper, JUMP_ELEMENT_COOLDOWN, jump_cooldown)
 
 ///Ends the jump
 /datum/element/jump/proc/end_jump(mob/living/jumper)
