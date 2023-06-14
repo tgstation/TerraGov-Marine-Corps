@@ -53,4 +53,4 @@
 
 ///Ends the jump
 /datum/element/jump/proc/end_jump(mob/living/jumper)
-	jumper.flags_pass &= ~HOVERING|PASSPROJECTILE
+	jumper.flags_pass &= ~(HOVERING|PASSPROJECTILE)
