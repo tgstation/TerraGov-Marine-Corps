@@ -1106,6 +1106,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30,
+			/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/alkysine = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20,
