@@ -375,16 +375,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	sharp = IS_SHARP_ITEM_ACCURATE
 	variants_by_parent_type = list(/obj/item/weapon/gun/shotgun/pump/t35 = "bayonet_t35")
 
-/obj/item/attachable/bayonet/screwdriver_act(mob/living/user, obj/item/I)
-	to_chat(user, span_notice("You modify the bayonet back into a combat knife."))
-	if(loc == user)
-		user.dropItemToGround(src)
-	var/obj/item/weapon/combat_knife/knife = new(loc)
-	user.put_in_hands(knife) //This proc tries right, left, then drops it all-in-one.
-	if(knife.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-		knife.forceMove(loc)
-	qdel(src) //Delete da old bayonet
-
 /obj/item/attachable/bayonetknife
 	name = "M-22 bayonet"
 	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
