@@ -850,6 +850,7 @@
 #include "code\game\objects\machinery\nuclearbomb.dm"
 #include "code\game\objects\machinery\OpTable.dm"
 #include "code\game\objects\machinery\overwatch.dm"
+#include "code\game\objects\machinery\portable_reagent_tank.dm"
 #include "code\game\objects\machinery\recharger.dm"
 #include "code\game\objects\machinery\rechargestation.dm"
 #include "code\game\objects\machinery\research.dm"
