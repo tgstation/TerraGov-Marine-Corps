@@ -1166,14 +1166,6 @@ MEDICAL
 	)
 	cost = 80
 
-/datum/supply_packs/medical/supernanopaste
-	name = "Super nanopaste"
-	notes = "Contains 4 containers of super nanopaste"
-	contains = list(
-		/obj/item/stack/nanopaste/super,
-	)
-	cost = 80
-
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
 	notes = "Contains 5 advanced packs of each type and 5 splints."
