@@ -37,3 +37,46 @@
 					return
 			else
 				to_chat(user, span_notice("Nothing to fix in here."))
+
+
+/obj/item/stack/nanopaste/super
+	name = "super nanopaste"
+	singular_name = "nanite swarm"
+	desc = "A tube of paste containing swarms of heavily specialized repair nanites to repair integrity loss in a robot."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "tube"
+	amount = 4
+	max_amount = 4
+
+/obj/item/stack/nanopaste/super/attack(mob/living/M as mob, mob/user as mob)
+	if (!istype(M) || !istype(user))
+		return 0
+
+	if (istype(M,/mob/living/carbon/human))		//Repairing robolimbs
+		var/mob/living/carbon/human/H = M
+		var/datum/limb/S = H.get_limb(user.zone_selected)
+
+		if(H.species.species_flags & IS_SYNTHETIC)
+			H.blood_volume = BLOOD_VOLUME_NORMAL
+
+		if(M.getIntegrityLoss() == 0)
+			to_chat(user, span_notice("Nothing to fix here."))
+			return
+
+		if(S.surgery_open_stage == 0)
+			if (S && (S.limb_status & LIMB_ROBOT))
+				if(user.do_actions || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_MEDICAL))
+					return
+				if(M.getIntegrityLoss())
+					M.adjustIntegrityLoss(-10)
+					use(1)
+					user.visible_message(span_notice("\The [user] applies some nanite paste at [user != M ? "\the [M]'s" : "\the"] [S.display_name] with \the [src]."),\
+					span_notice("You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.display_name]."))
+				else
+					to_chat(user, span_notice("Nothing to fix here."))
+		else
+			if (H.can_be_operated_on())
+				if (do_surgery(H,user,src))
+					return
+			else
+				to_chat(user, span_notice("Nothing to fix in here."))
