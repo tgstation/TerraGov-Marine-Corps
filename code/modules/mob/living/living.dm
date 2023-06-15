@@ -24,6 +24,12 @@
 /mob/living/proc/finish_aura_cycle()
 	received_auras.Cut() //Living, of course, doesn't care about any
 
+///Can we receive this aura
+/mob/living/proc/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
+	. = TRUE //get fucked
+	if(faction != bearer.faction)
+		return FALSE
+
 ///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
 /mob/living/proc/receive_aura(aura_type, strength)
 	if(received_auras[aura_type] > strength)

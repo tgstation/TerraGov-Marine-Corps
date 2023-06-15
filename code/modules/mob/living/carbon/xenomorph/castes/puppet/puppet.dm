@@ -37,19 +37,13 @@
 	else
 		adjustBruteLoss(-5)
 
-/mob/living/carbon/xenomorph/puppet/receive_aura(aura_type, strength)
-	if(aura_type in illegal_pheromones)
-		return
-	var/static/list/puppet_phero_to_normal_phero = list(
-	AURA_XENO_PUPPETFURY = AURA_XENO_PUPPETFURY,
-	AURA_XENO_PUPPETWARDING = AURA_XENO_WARDING,
-	AURA_XENO_PUPPETFRENZY = AURA_XENO_FRENZY,
-	)
-	aura_type = puppet_phero_to_normal_phero[aura_type]
-	return ..()
+/mob/living/carbon/xenomorph/puppet/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
+	. = ..()
+	if(source != master) //puppeteer phero only
+		return FALSE
 
 /mob/living/carbon/xenomorph/puppet/finish_aura_cycle()
-	var/fury = received_auras[AURA_XENO_PUPPETFURY] || 0
+	var/fury = received_auras[AURA_XENO_FURY] || 0
 	if(fury)
 		xeno_melee_damage_modifier = 1 + ((fury - 1) * 0.05)
 
@@ -73,6 +67,14 @@
 	RegisterSignal(mob_parent, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
 	change_order(null, PUPPET_RECALL)
 
+/datum/ai_behavior/puppet/start_ai()
+	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, PROC_REF(deal_with_obstacle))
+	return ..()
+
+/datum/ai_behavior/puppet/cleanup_signals()
+	. = ..()
+	UnregisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE)
+
 /datum/ai_behavior/puppet/proc/fucking_die(mob/living/source)
 	SIGNAL_HANDLER
 	if(!QDELETED(mob_parent))
@@ -90,6 +92,8 @@
 		if(victim.stat == DEAD)
 			late_initialize()
 			return
+		do_feed(atom_to_walk_to) // trolled
+		
 	mob_parent.face_atom(atom_to_walk_to)
 	mob_parent.UnarmedAttack(atom_to_walk_to, mob_parent)
 
@@ -196,5 +200,12 @@
 	mob_parent.loc = window_turf
 	mob_parent.last_move_time = world.time
 	LAZYDECREMENT(mob_parent.do_actions, window_turf)
+
+/datum/ai_behavior/puppet/proc/do_feed(atom/target)
+	if(mob_parent.do_actions)
+		return
+	var/datum/action/xeno_action/activable/feed = locate() in mob_parent.actions //this should always be on puppets to begin with (the ability)
+	if(feed.ai_should_use(target))
+		feed.use_ability(target)
 
 #undef WITHER_RANGE

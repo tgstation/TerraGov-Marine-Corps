@@ -42,7 +42,7 @@
 /datum/action/xeno_action/activable/flay/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(target_human)
-	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB)
+	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSLASH)
 	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] flays and rips skin and flesh from [target_human]!"))
 	playsound(target_human, "alien_claw_flesh", 25, TRUE)
 	target_human.emote("scream")
@@ -376,7 +376,7 @@
 		X.balloon_alert(X, "Cant bless yet!")
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
-	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, duration, X.faction, X.hivenumber)
+	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, duration, X.faction, X.hivenumber, list(/datum/xeno_caste/puppet))
 	X.current_aura.affects_xenos = TRUE
 	X.balloon_alert(X, "[phero_choice]")
 	playsound(X.loc, "alien_drool", 25)

@@ -31,3 +31,8 @@
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 14, BULLET = 0, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/feed,
+	)
