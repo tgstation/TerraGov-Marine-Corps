@@ -75,7 +75,7 @@
 	tracker_target.overlays += holder
 	hud_list[XENO_TACTICAL_HUD] = holder
 
-GLOBAL_LIST_EMPTY(flare_particles)
+GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 /particles/flare_smoke
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
@@ -107,7 +107,6 @@ GLOBAL_LIST_EMPTY(flare_particles)
 
 /obj/effect/temp_visual/above_flare/Initialize(mapload)
 	. = ..()
-	GLOB.flare_particles = new /particles/flare_smoke
 	particles = GLOB.flare_particles
 	set_light(light_range, light_power, light_color)
 	loc.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
