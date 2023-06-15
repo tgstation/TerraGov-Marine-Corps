@@ -1,5 +1,7 @@
 #define JUMP_ELEMENT_COOLDOWN "jump_element_cooldown"
 
+#define JUMP_SPIN (1<<0)
+
 /datum/element/jump
 	element_flags = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
@@ -9,9 +11,16 @@
 	var/jump_cooldown
 	///how much stamina jumping takes
 	var/stamina_cost
-	//COOLDOWN_DECLARE(cooldown_timer)
+	///the how high the jumper visually jumps
+	var/jump_height
+	///the sound of the jump
+	var/jump_sound
+	///Special jump behavior flags
+	var/jump_flags
+	///flags_pass flags applied to the jumper on jump
+	var/jumper_flags_pass
 
-/datum/element/jump/Attach(atom/movable/target, _jump_duration = 1 SECONDS, _jump_cooldown = 1.5 SECONDS, _stamina_cost = 10)
+/datum/element/jump/Attach(atom/movable/target, _jump_duration = 0.5 SECONDS, _jump_cooldown = 1 SECONDS, _stamina_cost = 8, _jump_height = 16, _jump_sound = null, _jump_flags = null, _jumper_flags_pass = PASSTABLE|PASSFIRE)
 	. = ..()
 	if(!isliving(target))
 		return COMPONENT_INCOMPATIBLE
@@ -19,6 +28,10 @@
 	jump_duration = _jump_duration
 	jump_cooldown = _jump_cooldown
 	stamina_cost = _stamina_cost
+	jump_height = _jump_height
+	jump_sound = _jump_sound
+	jump_flags = _jump_flags
+	jumper_flags_pass = _jumper_flags_pass
 
 	RegisterSignal(target, COMSIG_KB_LIVING_JUMP, PROC_REF(do_jump))
 
@@ -35,19 +48,31 @@
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_ELEMENT_COOLDOWN))
 		return
 
-	if((jumper.getStaminaLoss()) > -stamina_cost)
+	if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
 		to_chat(jumper, span_warning("Catch your breath!"))
 		return
 
-	playsound(jumper, "jump", 65)
+	if(jump_sound)
+		playsound(jumper, jump_sound, 65)
+
 	jumper.layer = ABOVE_MOB_LAYER
 
 	jumper.adjustStaminaLoss(stamina_cost)
-	jumper.flags_pass |= HOVERING|PASSPROJECTILE
+	jumper.flags_pass |= jumper_flags_pass
 
-	jumper.animation_spin(5, 2, jumper.dir == WEST ? FALSE : TRUE)
-	animate(jumper, pixel_y = jumper.pixel_y + 40, layer = ABOVE_MOB_LAYER, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	jumper.add_filter("jump_element", 2, drop_shadow_filter(color = "#04080FAA", size = 0.5))
+	var/shadow_filter = jumper.get_filter("jump_element")
+
+	if(jump_flags & JUMP_SPIN)
+		var/spin_number = ROUND_UP(jump_duration * 0.1)
+		jumper.animation_spin(jump_duration / spin_number, spin_number, jumper.dir == WEST ? FALSE : TRUE)
+
+	animate(jumper, pixel_y = jumper.pixel_y + jump_height, layer = ABOVE_MOB_LAYER, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 	animate(pixel_y = initial(jumper.pixel_y), time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
+	animate(shadow_filter, y = -jump_height, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	animate(y = 0, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
+	animate(size = 4, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	animate(size = 0.5, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
 
 	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper), jump_duration)
 
@@ -55,5 +80,6 @@
 
 ///Ends the jump
 /datum/element/jump/proc/end_jump(mob/living/jumper)
+	jumper.remove_filter("jump_element")
 	jumper.layer = initial(jumper.layer)
-	jumper.flags_pass &= ~(HOVERING|PASSPROJECTILE)
+	jumper.flags_pass &= ~jumper_flags_pass
