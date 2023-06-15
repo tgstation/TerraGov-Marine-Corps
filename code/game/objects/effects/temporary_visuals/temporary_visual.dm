@@ -108,7 +108,6 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 /obj/effect/temp_visual/above_flare/Initialize(mapload)
 	. = ..()
 	particles = GLOB.flare_particles
-	set_light(light_range, light_power, light_color)
 	loc.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
 	playsound(loc, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 	animate(src, time = duration, pixel_y = 0)
