@@ -81,3 +81,89 @@
   - balance: Alamo shouldn't delete you if you stand near the doors when it crashes
   - bugfix: Fixed AI nodes being deleted when turfs get emptied
   - bugfix: The GL54 razor nade magazines have the correct name in req now
+2023-06-08:
+  Lumipharon:
+  - bugfix: fixed a an issue with trying to click on one of King's overlays
+  Mrrpip:
+  - rscadd: Adds a shower and map table to the Sulaco medbay. Stop stinking.
+  Pariah919:
+  - balance: AMR Flak now does slowdown and has a higher airburst multiplier, but
+      has reduced sundering. AMR Incend does a bit more damage even if it is still
+      less than normal ammo as well as slightly more pen.
+2023-06-09:
+  Lumipharon:
+  - rscadd: Added a variety of new laser weapon firemodes
+  - balance: Various laser weapon rebalances, mainly aimed at making some firemodes
+      more ammo efficient
+  - bugfix: fixed bouncing bullets being mega janky
+  QuarianCommando:
+  - imageadd: added las pouch sprite for the TEX rifle.
+  - imageadd: added las pouch sprite for the tesla rifle.
+  - balance: Tesla rifle can now use las pouches.
+  ivanmixo:
+  - bugfix: Fixed hard armor getter proc
+  - bugfix: Fixed gear preferences not showing everything
+  novaepee:
+  - rscadd: move Theseus' ship armaments closer to CIC
+2023-06-11:
+  ivanmixo:
+  - bugfix: Fixed some runtiming balloon alerts
+  - bugfix: Fixed poly tts runtime
+2023-06-12:
+  Pariah919:
+  - bugfix: Jungle walls are now unacidable again.
+  - balance: Early synth is now properly slower and tankier than late synth.
+  ivanmixo:
+  - bugfix: Fixed one shot rocket launchers not clearing their chambered items after
+      firing
+  - bugfix: Fixed up fire interactions with evasion and stealth, they are actually
+      consistent now
+  - bugfix: Fixed a hugger timer runtime
+  - bugfix: Fixed reloading runtiming if you try to load a non magazine into a gun
+  - bugfix: Fixed drone link double del
+2023-06-13:
+  Lumipharon:
+  - bugfix: Laser carbine does 1 sunder per shot on autoburst instead of 1.5
+  RikuTheKiller:
+  - balance: Deconstructing xeno structures as a xeno now takes 1s instead of 4s.
+  ivanmixo:
+  - bugfix: Fixed roomba no client tts runtime
+  - rscdel: Deleted the last of old legacy nanoui code
+  - code_imp: Made item straps an element
+  - bugfix: Fixed slight issue in hivemind prompt
+  - bugfix: Fixed hive tracker no client runtime
+  - bugfix: Fixed warrior punch invalid param runtime
+  - bugfix: Fixed clamp dropship attach point runtime
+2023-06-14:
+  Blundir:
+  - rscadd: king has hive message, call of the burrowed abilities
+  - rscadd: drone can instantly evolve into king when pop is high enough
+  - rscadd: king can hijack dropship
+  - rscadd: king has evolve timer after his death (similar to the queen)
+  - rscadd: king has ability to buy primordial upgrades
+  - rscadd: king stops hive collapse timer
+  - rscadd: shrike can now send hive messages
+  - rscadd: hive message now specifies which t4 caste sent the message
+  - soundadd: king has his own sound when spawning (similar to the queen)
+  - soundadd: king has his own sound when sending a hive message
+  Lumipharon:
+  - qol: Improved minimap readability with a black background
+  - balance: Silo larva gen now scales down with the ratio of marines to xenos, where
+      xeno numbers are high
+  - bugfix: Hunter sneak attack correctly applies AP again
+  QualityVan:
+  - balance: Vali armor and weapons can load reagents from pills
+  cheapcents:
+  - imageadd: changes several melee weapon sprites
+  ivanmixo:
+  - bugfix: Fixed crew monitor signal runtime
+2023-06-15:
+  Lumipharon:
+  - bugfix: Lava and fire can no longer be made to do 0 damage due to the hold order
+  - qol: added a codex entry for the blink drive
+  XElectricX:
+  - rscadd: Portable reagent dispenser for transporting large amounts of liquids
+  - bugfix: Deployables no longer repeat their examine text
+  - qol: Nanomed has a new chemistry equipment tab
+  forestbbbbbbb:
+  - refactor: nuke uses timers

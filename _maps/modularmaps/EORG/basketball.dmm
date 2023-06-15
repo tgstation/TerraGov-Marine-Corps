@@ -696,10 +696,6 @@
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
-"zd" = (
-/obj/effect/landmark/eord_roomba,
-/turf/open/liquid/water/river,
-/area/deathmatch)
 "zl" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -741,6 +737,10 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
+/area/deathmatch)
+"CW" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/liquid/water/river,
 /area/deathmatch)
 "Di" = (
 /obj/structure/target_stake,
@@ -2732,7 +2732,7 @@ aa
 bb
 Kh
 Kh
-zd
+CW
 Kh
 aa
 hr

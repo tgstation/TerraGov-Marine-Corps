@@ -67,9 +67,9 @@
 	var/armor_block = 0
 
 	var/list/damage_mod = list()
-	var/armor_pen = 0
+	var/list/armor_mod = list()
 
-	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_pen)
+	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod)
 
 	// if we don't get any non-stacking bonuses dont apply dam_bonus
 	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED))
@@ -80,6 +80,10 @@
 
 	for(var/i in damage_mod)
 		damage += i
+
+	var/armor_pen
+	for(var/i in armor_mod)
+		armor_pen += i
 
 	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
