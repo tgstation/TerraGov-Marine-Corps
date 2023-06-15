@@ -6267,7 +6267,6 @@
 "efo" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "cargo_container"
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
@@ -8083,8 +8082,8 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/landing_zone_2)
 "fpt" = (
-/obj/machinery/conveyor/inverted{
-	dir = 8
+/obj/machinery/conveyor{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
@@ -12507,8 +12506,8 @@
 /area/gelida/indoors/b_block/hydro)
 "iuN" = (
 /obj/structure/plasticflaps,
-/obj/machinery/conveyor/inverted{
-	dir = 8
+/obj/machinery/conveyor{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
@@ -20060,7 +20059,8 @@
 /area/gelida/indoors/a_block/medical)
 "nEZ" = (
 /obj/machinery/conveyor/inverted{
-	dir = 5
+	dir = 5;
+	id = "cargounload"
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
@@ -20736,7 +20736,7 @@
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "cargo_container"
+	id = "cargounload"
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
@@ -27794,7 +27794,7 @@
 "sJs" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "cargo_container"
+	id = "cargounload"
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
