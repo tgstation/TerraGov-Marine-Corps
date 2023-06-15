@@ -259,7 +259,7 @@
 
 /obj/effect/particle_effect/smoke/phosphorus/mustard
 	opacity = TRUE
-	color = "#FFDB58"
+	color = COLOR_LIGHT_ORANGE
 	lifetime = 40
 	strength = 2
 

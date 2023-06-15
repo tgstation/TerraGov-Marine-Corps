@@ -678,7 +678,7 @@
 
 /obj/item/mortal_shell/rocket/mlrs/gas
 	name = "\improper 60mm 'X-50' rocket"
-	desc = "A 60mm rocket loaded with deadly X-50 gas, meant to be used in saturation fire with high scatter."
+	desc = "A 60mm rocket loaded with deadly X-50 gas that drains the energy and life out of anything unfortunate enough to find itself inside of it."
 	icon_state = "mlrs_rocket_gas"
 	ammo_type = /datum/ammo/mortar/rocket/smoke/mlrs
 
