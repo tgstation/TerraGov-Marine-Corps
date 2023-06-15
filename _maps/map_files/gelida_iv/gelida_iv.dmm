@@ -696,6 +696,9 @@
 	dir = 8
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
+"awg" = (
+/turf/closed/mineral/smooth/snowrock/indestructible,
+/area/storage/testroom)
 "awx" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/cleanmarked,
@@ -9912,10 +9915,6 @@
 	dir = 4
 	},
 /area/gelida/landing_zone_forecon/UD6_Tornado)
-"gHM" = (
-/obj/structure/flora/jungle/planttop1,
-/turf/open/floor/grass,
-/area/gelida/indoors/a_block/garden)
 "gHP" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/central_streets)
@@ -10432,10 +10431,6 @@
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
-"gZE" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/plating,
-/area/storage/testroom)
 "gZL" = (
 /obj/structure/largecrate,
 /turf/open/floor/prison/cleanmarked,
@@ -15780,10 +15775,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/shuttle/drop2/gelida)
-"kKo" = (
-/obj/structure/flora/jungle/plantbot1,
-/turf/open/floor/grass,
-/area/gelida/indoors/a_block/garden)
 "kKy" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -21082,6 +21073,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_street)
+"omK" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth/snowrock/indestructible,
+/area/storage/testroom)
 "omN" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -21982,6 +21977,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
+"oSl" = (
+/obj/structure/flora/jungle/plantbot1,
+/turf/open/floor/grass,
+/area/gelida/indoors/a_block/garden)
 "oSL" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/blue{
@@ -23894,6 +23893,10 @@
 /obj/item/prop/dogtag/pfcjim,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_west_street)
+"qcn" = (
+/obj/structure/flora/jungle/planttop1,
+/turf/open/floor/grass,
+/area/gelida/indoors/a_block/garden)
 "qcQ" = (
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
@@ -23998,11 +24001,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/hallway)
-"qhc" = (
-/obj/structure/flora/jungle/planttop1,
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
-/area/gelida/indoors/a_block/garden)
 "qhj" = (
 /obj/machinery/light{
 	dir = 1
@@ -26782,6 +26780,11 @@
 /obj/structure/prop/mainship/gelida/smallwire,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/central_streets)
+"rZE" = (
+/obj/structure/flora/jungle/planttop1,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
+/area/gelida/indoors/a_block/garden)
 "rZN" = (
 /obj/structure/table/mainship,
 /obj/machinery/prop/mainship/computer/PC{
@@ -32523,9 +32526,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
-"wcR" = (
-/turf/closed/mineral/smooth/snowrock,
-/area/storage/testroom)
 "wdk" = (
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/lone_buildings/storage_blocks)
@@ -35825,15 +35825,15 @@ ndb
 ndb
 ndb
 ndb
-ndb
-ndb
-ndb
-wcR
-wcR
-wcR
-ndb
-ndb
-ndb
+nsK
+nsK
+nsK
+awg
+awg
+awg
+nsK
+nsK
+nsK
 ndb
 ndb
 ndb
@@ -36047,15 +36047,15 @@ ndb
 ndb
 ndb
 ndb
-ndb
-ndb
-ndb
-wcR
-gZE
-wcR
-ndb
-ndb
-ndb
+nsK
+nsK
+nsK
+awg
+omK
+awg
+nsK
+nsK
+nsK
 ndb
 ndb
 ndb
@@ -36269,15 +36269,15 @@ ndb
 ndb
 ndb
 ndb
-ndb
-ndb
-ndb
-wcR
-wcR
-wcR
-ndb
-ndb
-ndb
+nsK
+nsK
+nsK
+awg
+awg
+awg
+nsK
+nsK
+nsK
 ndb
 ndb
 ndb
@@ -36491,15 +36491,15 @@ ndb
 ndb
 ndb
 ndb
-ndb
-ndb
-ndb
-ndb
-ndb
-ndb
-ndb
-ndb
-ndb
+nsK
+nsK
+nsK
+nsK
+nsK
+nsK
+nsK
+nsK
+nsK
 ndb
 ndb
 ndb
@@ -36713,15 +36713,15 @@ ndb
 ndb
 ndb
 ndb
-ndb
-ndb
-ndb
-ndb
-ndb
-ndb
-ndb
-ndb
-ndb
+nsK
+nsK
+nsK
+nsK
+nsK
+nsK
+nsK
+nsK
+nsK
 ndb
 ndb
 ndb
@@ -61357,8 +61357,8 @@ qtm
 obS
 hQm
 bGC
-gHM
-kKo
+qcn
+oSl
 iBw
 mtN
 awO
@@ -63577,8 +63577,8 @@ lcj
 uJT
 sOL
 ikW
-qhc
-kKo
+rZE
+oSl
 iBw
 mtN
 pGA
@@ -63793,8 +63793,8 @@ xOM
 uQP
 awO
 eCc
-gHM
-kKo
+qcn
+oSl
 iBw
 obS
 hQm

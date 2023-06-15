@@ -1,0 +1,6 @@
+author: "XElectricX"
+delete-after: True
+changes:
+  - rscadd: "Portable reagent dispenser for transporting large amounts of liquids"
+  - bugfix: "Deployables no longer repeat their examine text"
+  - qol: "Nanomed has a new chemistry equipment tab"

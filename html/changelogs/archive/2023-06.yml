@@ -109,3 +109,51 @@
   ivanmixo:
   - bugfix: Fixed some runtiming balloon alerts
   - bugfix: Fixed poly tts runtime
+2023-06-12:
+  Pariah919:
+  - bugfix: Jungle walls are now unacidable again.
+  - balance: Early synth is now properly slower and tankier than late synth.
+  ivanmixo:
+  - bugfix: Fixed one shot rocket launchers not clearing their chambered items after
+      firing
+  - bugfix: Fixed up fire interactions with evasion and stealth, they are actually
+      consistent now
+  - bugfix: Fixed a hugger timer runtime
+  - bugfix: Fixed reloading runtiming if you try to load a non magazine into a gun
+  - bugfix: Fixed drone link double del
+2023-06-13:
+  Lumipharon:
+  - bugfix: Laser carbine does 1 sunder per shot on autoburst instead of 1.5
+  RikuTheKiller:
+  - balance: Deconstructing xeno structures as a xeno now takes 1s instead of 4s.
+  ivanmixo:
+  - bugfix: Fixed roomba no client tts runtime
+  - rscdel: Deleted the last of old legacy nanoui code
+  - code_imp: Made item straps an element
+  - bugfix: Fixed slight issue in hivemind prompt
+  - bugfix: Fixed hive tracker no client runtime
+  - bugfix: Fixed warrior punch invalid param runtime
+  - bugfix: Fixed clamp dropship attach point runtime
+2023-06-14:
+  Blundir:
+  - rscadd: king has hive message, call of the burrowed abilities
+  - rscadd: drone can instantly evolve into king when pop is high enough
+  - rscadd: king can hijack dropship
+  - rscadd: king has evolve timer after his death (similar to the queen)
+  - rscadd: king has ability to buy primordial upgrades
+  - rscadd: king stops hive collapse timer
+  - rscadd: shrike can now send hive messages
+  - rscadd: hive message now specifies which t4 caste sent the message
+  - soundadd: king has his own sound when spawning (similar to the queen)
+  - soundadd: king has his own sound when sending a hive message
+  Lumipharon:
+  - qol: Improved minimap readability with a black background
+  - balance: Silo larva gen now scales down with the ratio of marines to xenos, where
+      xeno numbers are high
+  - bugfix: Hunter sneak attack correctly applies AP again
+  QualityVan:
+  - balance: Vali armor and weapons can load reagents from pills
+  cheapcents:
+  - imageadd: changes several melee weapon sprites
+  ivanmixo:
+  - bugfix: Fixed crew monitor signal runtime

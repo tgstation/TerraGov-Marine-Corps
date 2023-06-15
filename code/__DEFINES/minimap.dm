@@ -22,6 +22,7 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 
 
 //Turf colours
+#define MINIMAP_BLACK "#111111d0"
 #define MINIMAP_SOLID "#ebe5e5ee"
 #define MINIMAP_DOOR "#451e5eee"
 #define MINIMAP_FENCE "#8c2294ee"
