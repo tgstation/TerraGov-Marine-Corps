@@ -23,6 +23,10 @@
 		layer = MOB_LAYER
 
 /obj/structure/xeno/baneling_pod
+	name = "Baneling Pod"
+	desc = ""
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon_state = "Baneling Pod"
 	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
 	var/stored_charge = 2
 	/// Time to respawn if out of charges
@@ -30,7 +34,7 @@
 	/// Our currently stored baneling
 	var/mob/living/carbon/xenomorph/baneling/stored_baneling
 
-/obj/structure/xeno/baneling_pod/New(mob/M)
+/obj/structure/xeno/baneling_pod/New(turf/T, mob/M)
 	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/handle_baneling_death)
 	. = ..()
 
@@ -48,4 +52,5 @@
 /obj/structure/xeno/baneling_pod/proc/spawn_baneling(turf/spawn_location = loc)
 	stored_baneling.heal_overall_damage(stored_baneling.maxHealth, stored_baneling.maxHealth, updating_health = TRUE)
 	stored_baneling.forceMove(spawn_location)
-
+	stored_baneling.revive()
+	stored_baneling = null

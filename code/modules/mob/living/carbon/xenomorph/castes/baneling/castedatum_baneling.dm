@@ -47,6 +47,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/spawn_pod,
 	)
 
 /datum/xeno_caste/baneling/young
@@ -153,4 +154,5 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/spawn_pod,
 	)
