@@ -328,6 +328,8 @@ This function restores all limbs.
 	return
 
 /mob/living/carbon/human/get_limb(zone)
+	if(isorgan(zone))
+		return zone
 	zone = check_zone(zone)
 	for(var/X in limbs)
 		var/datum/limb/EO = X
