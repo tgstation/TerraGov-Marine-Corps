@@ -1532,17 +1532,17 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-			/obj/effect/vendor_bundle/white_dress = -1,
-			/obj/item/clothing/under/marine/whites = -1,
-			/obj/item/clothing/suit/white_dress_jacket = -1,
-			/obj/item/clothing/head/white_dress = -1,
-			/obj/item/clothing/shoes/white = -1,
-			/obj/item/clothing/gloves/white = -1,
-			/obj/effect/vendor_bundle/service_uniform = -1,
-			/obj/item/clothing/under/marine/service = -1,
-			/obj/item/clothing/head/garrisoncap = -1,
-			/obj/item/clothing/head/servicecap = -1,
-			/obj/item/clothing/under/marine/black_suit = -1,
+		/obj/effect/vendor_bundle/white_dress = -1,
+		/obj/item/clothing/under/marine/whites = -1,
+		/obj/item/clothing/suit/white_dress_jacket = -1,
+		/obj/item/clothing/head/white_dress = -1,
+		/obj/item/clothing/shoes/white = -1,
+		/obj/item/clothing/gloves/white = -1,
+		/obj/effect/vendor_bundle/service_uniform = -1,
+		/obj/item/clothing/under/marine/service = -1,
+		/obj/item/clothing/head/garrisoncap = -1,
+		/obj/item/clothing/head/servicecap = -1,
+		/obj/item/clothing/under/marine/black_suit = -1,
 	)
 
 /obj/machinery/vending/dress_supply/valhalla
