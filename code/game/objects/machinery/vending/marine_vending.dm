@@ -1,6 +1,6 @@
 /obj/machinery/vending/weapon
 	name = "automated weapons rack"
-	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons."
+	desc = "An automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "marinearmory"
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"
@@ -1481,7 +1481,7 @@
 			/obj/item/instrument/recorder = -1,
 			/obj/item/instrument/harmonica = -1,
 		),
-		"Service Dress" = list(
+		"Dress Uniform" = list(
 			/obj/effect/vendor_bundle/white_dress = -1,
 			/obj/item/clothing/under/marine/whites = -1,
 			/obj/item/clothing/suit/white_dress_jacket = -1,
@@ -1523,7 +1523,7 @@
 
 /obj/machinery/vending/dress_supply
 	name = "\improper TerraGovTech dress uniform vendor"
-	desc = "A automated rack hooked up to a colossal storage of dress uniforms."
+	desc = "An automated rack hooked up to a colossal storage of dress uniforms."
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
@@ -1532,10 +1532,17 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		/obj/item/clothing/under/marine/whites = -1,
-		/obj/item/clothing/head/white_dress = -1,
-		/obj/item/clothing/shoes/white = -1,
-		/obj/item/clothing/gloves/white = -1,
+			/obj/effect/vendor_bundle/white_dress = -1,
+			/obj/item/clothing/under/marine/whites = -1,
+			/obj/item/clothing/suit/white_dress_jacket = -1,
+			/obj/item/clothing/head/white_dress = -1,
+			/obj/item/clothing/shoes/white = -1,
+			/obj/item/clothing/gloves/white = -1,
+			/obj/effect/vendor_bundle/service_uniform = -1,
+			/obj/item/clothing/under/marine/service = -1,
+			/obj/item/clothing/head/garrisoncap = -1,
+			/obj/item/clothing/head/servicecap = -1,
+			/obj/item/clothing/under/marine/black_suit = -1,
 	)
 
 /obj/machinery/vending/dress_supply/valhalla
@@ -1544,7 +1551,7 @@
 
 /obj/machinery/vending/valhalla_req
 	name = "\improper TerraGovTech requisition vendor"
-	desc = "A automated rack hooked up to a colossal storage of items."
+	desc = "An automated rack hooked up to a colossal storage of items."
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
@@ -1648,7 +1655,7 @@
 
 /obj/machinery/vending/valhalla_seasonal_req
 	name = "\improper TerraGovTech seasonal vendor"
-	desc = "A automated rack hooked up to a colossal storage of items."
+	desc = "An automated rack hooked up to a colossal storage of items."
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
