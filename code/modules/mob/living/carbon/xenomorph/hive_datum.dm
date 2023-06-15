@@ -22,6 +22,8 @@
 	var/list/obj/structure/xeno/maturitytower/maturitytowers = list()
 	///list of phero towers
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
+	///list of hivemind cores
+	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
@@ -118,6 +120,9 @@
 	// Pheromone towers
 	for(var/obj/structure/xeno/pherotower/tower AS in GLOB.hive_datums[hivenumber].pherotowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
+	// Hivemind cores
+	for(var/obj/structure/xeno/hivemindcore/core AS in GLOB.hive_datums[hivenumber].hivemindcores)
+		.["hive_structures"] += list(get_structure_packet(core))
 	// Spawners
 	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawners_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(spawner))

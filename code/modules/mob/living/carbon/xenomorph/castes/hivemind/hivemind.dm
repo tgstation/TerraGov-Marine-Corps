@@ -316,6 +316,7 @@
 
 /obj/structure/xeno/hivemindcore/Initialize(mapload)
 	. = ..()
+	GLOB.hive_datums[hivenumber].hivemindcores += src
 	new /obj/alien/weeds/node(loc)
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 	for(var/turfs in RANGE_TURFS(XENO_HIVEMIND_DETECTION_RANGE, src))
@@ -334,6 +335,7 @@
 		QDEL_NULL(parent)
 	else
 		parent = null
+	GLOB.hive_datums[hivenumber].hivemindcores -= src
 	return ..()
 
 //hivemind cores
