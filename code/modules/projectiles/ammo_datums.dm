@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/damage = 0
 	///How much damage the bullet loses per turf traveled
 	var/damage_falloff = 1
-	///BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
+	///BRUTE, BURN, TOX, OXY, CLONE, INTEGRITY are the only things that should be in here
 	var/damage_type = BRUTE
 	///How much armor it ignores before calculations take place
 	var/penetration = 0

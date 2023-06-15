@@ -16,7 +16,7 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	see_in_dark = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0, INTEGRITY = 0)
 	healable = FALSE
 	AIStatus = AI_OFF
 	del_on_death = TRUE
