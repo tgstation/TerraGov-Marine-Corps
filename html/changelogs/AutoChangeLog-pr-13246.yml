@@ -1,0 +1,4 @@
+author: "Bobthe28th"
+delete-after: True
+changes:
+  - bugfix: "Medical items show overlays when vended into storage"
