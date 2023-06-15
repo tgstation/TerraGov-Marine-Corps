@@ -213,6 +213,14 @@
 	proj.iff_signal = null
 	frozen_projectiles += proj
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, turn(proj.dir, 180), proj.ammo.penetration)
+	if(obj_integrity <= 300)
+		alpha = 192 // ~ 3/4 visibility
+	if(obj_integrity <= 175)
+		alpha = 128 // ~ 2/4 visibility
+	if(obj_integrity <= 126 && obj_integrity >= 124)
+		owner.balloon_alert(owner, "Our shield is almost broken!")
+	if(obj_integrity <= 125)
+		alpha = 64 // ~ 1/4 visibility
 	if(obj_integrity <= 0)
 		release_projectiles()
 		owner.apply_effects(weaken = 0.5)
