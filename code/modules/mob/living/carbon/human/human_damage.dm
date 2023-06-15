@@ -13,9 +13,8 @@
 	var/oxy_l = getOxyLoss()
 	var/tox_l = ((species.species_flags & NO_POISON) ? 0 : getToxLoss())
 	var/clone_l = getCloneLoss()
-	var/integrity_l = getIntegrityLoss()
 
-	health = species.total_health - oxy_l - tox_l - clone_l - integrity_l - total_burn - total_brute
+	health = species.total_health - oxy_l - tox_l - clone_l - total_burn - total_brute
 
 	update_stat()
 	med_pain_set_perceived_health()
@@ -160,23 +159,6 @@
 		cloneloss = 0
 		return
 
-/mob/living/carbon/human/getIntegrityLoss()
-	if(species.species_type != SPECIES_COMBAT_ROBOT)
-		integrityloss = 0
-	return ..()
-
-/mob/living/carbon/human/setIntegrityLoss(amount)
-	if(species.species_type != SPECIES_COMBAT_ROBOT)
-		integrityloss = 0
-	else
-		..()
-
-/mob/living/carbon/human/adjustIntegrityLoss(amount)
-	..()
-
-	if(species.species_type != SPECIES_COMBAT_ROBOT)
-		integrityloss = 0
-		return
 
 /mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
 	if(species.species_flags & NO_BREATHE && !forced)

@@ -152,19 +152,6 @@
 		return FALSE	//godmode
 	cloneloss = amount
 
-/mob/living/proc/getIntegrityLoss(amount)
-	return integrityloss
-
-/mob/living/proc/adjustIntegrityLoss(amount)
-	if(status_flags & GODMODE)
-		return FALSE	//godmode
-	integrityloss = clamp(integrityloss+amount,0,maxHealth*2)
-
-/mob/living/proc/setIntegrityLoss(amount)
-	if(status_flags & GODMODE)
-		return FALSE	//godmode
-	integrityloss = amount
-
 /mob/living/proc/getBrainLoss()
 	return brainloss
 

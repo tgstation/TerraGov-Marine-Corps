@@ -229,7 +229,6 @@
 					CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[M.getCloneLoss()]</a>
 					BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[M.getBrainLoss()]</a>
 					STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[M.getStaminaLoss()]</a>
-					INTEGRITY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=integrity' id='integrity'>[M.getIntegrityLoss()]</a>
 				</font>
 			"}
 	else if("name" in D.vars)
@@ -1049,9 +1048,6 @@
 			if(STAMINA)
 				L.adjustStaminaLoss(amount)
 				newamt = L.getStaminaLoss()
-			if(INTEGRITY)
-				L.adjustIntegrityLoss(amount)
-				newamt = L.getIntegrityLoss()
 
 		if(amount == 0)
 			return

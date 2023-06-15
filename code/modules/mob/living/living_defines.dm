@@ -38,8 +38,6 @@
 	var/brainloss = 0
 	/// Drowsyness amount. Reduces movespeed and if inhaling smoke with a sleep trait [/mob/living/carbon/inhale_smoke] will cause them to fall asleep.
 	var/drowsyness = 0
-	///Integrity amount. Amount of damage inflicted on a robot's chassis
-	var/integrityloss = 0
 
 	var/last_staminaloss_dmg = 0
 	/// Maximum amount of stamina a mob can have. Different from the stamina buffer because stamina has a positive and negative part

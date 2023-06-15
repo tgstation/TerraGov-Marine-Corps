@@ -98,7 +98,6 @@
 #define TOX "tox"
 #define OXY "oxy"
 #define CLONE "clone"
-#define INTEGRITY "integrity"
 #define CUT "cut"
 #define BRUISE "bruise"
 #define STAMINA "stamina"

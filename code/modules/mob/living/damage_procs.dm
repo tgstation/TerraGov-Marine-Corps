@@ -49,14 +49,12 @@
 			adjustCloneLoss(damage)
 		if(STAMINA)
 			adjustStaminaLoss(damage)
-		if(INTEGRITY)
-			adjustIntegrityLoss(damage)
 	if(updating_health)
 		updatehealth()
 	return damage
 
 ///Used to apply multiple types of damage to a mob at the same time
-/mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, integrity = 0, def_zone = null, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+/mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, def_zone = null, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
 	if(brute)
 		apply_damage(brute, BRUTE, def_zone, blocked, sharp, edge, FALSE, penetration)
 	if(burn)
@@ -67,8 +65,6 @@
 		apply_damage(oxy, OXY, def_zone, blocked, sharp, edge, FALSE, penetration)
 	if(clone)
 		apply_damage(clone, CLONE, def_zone, blocked, sharp, edge, FALSE, penetration)
-	if(integrity)
-		apply_damage(integrity, INTEGRITY, def_zone, blocked, sharp, edge, FALSE, penetration)
 	if(updating_health)
 		updatehealth()
 	return TRUE

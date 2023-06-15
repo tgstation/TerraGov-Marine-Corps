@@ -1193,10 +1193,7 @@
 	span_xenodanger("We suddenly feel \the [victim]'s life force streaming into us!"))
 
 	victim.do_jitter_animation(2)
-	//Gives human marines less max hp. Doesn't do anything to robots.
 	victim.adjustCloneLoss(20)
-	//Gives robot marines less max hp. Doesn't do anything to humans.
-	victim.adjustIntegrityLoss(20)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
@@ -1301,10 +1298,6 @@
 		X.eject_victim(FALSE, starting_turf)
 		X.stop_sound_channel(channel)
 		return fail_activate()
-	//Gives human marines less max hp. Doesn't do anything to robots.
-	victim.adjustCloneLoss(10)
-	//Gives robot marines less max hp. Doesn't do anything to humans.
-	victim.adjustIntegrityLoss(10)
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
