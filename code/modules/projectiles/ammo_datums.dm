@@ -3991,3 +3991,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 1
 	max_range = 21
 	nade_type = /obj/item/explosive/grenade/ags
+
+/datum/ammo/grenade_container/ags_grenade/flare
+	hud_state = "grenade_dummy"
+	nade_type = /obj/item/explosive/grenade/flare
+
+/datum/ammo/grenade_container/ags_grenade/cloak
+	hud_state = "grenade_hide"
+	nade_type = /obj/item/explosive/grenade/smokebomb/cloak/ags
+
+/datum/ammo/grenade_container/ags_grenade/tanglefoot
+	hud_state = "grenade_drain"
+	nade_type = /obj/item/explosive/grenade/smokebomb/drain/agls

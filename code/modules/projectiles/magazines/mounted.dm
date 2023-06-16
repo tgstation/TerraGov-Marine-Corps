@@ -74,6 +74,25 @@
 	icon_state = "ags_mag_incend"
 	default_ammo = /datum/ammo/ags_shrapnel/incendiary
 
+/obj/item/ammo_magazine/standard_agls/flare
+	name = "AGLS-37 Flare magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Flare grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_flare"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/flare
+
+/obj/item/ammo_magazine/standard_agls/cloak
+	name = "AGLS-37 Cloak magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Cloak grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_cloak"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/cloak
+
+/obj/item/ammo_magazine/standard_agls/tanglefoot
+	name = "AGLS-37 Tanglefoot magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Tanglefoot grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_pgas"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/tanglefoot
+
+
 /obj/item/ammo_magazine/standard_atgun
 	name = "AT-36 AP-HE shell (37mm Shell)"
 	desc = "A 37mm shell for light anti tank guns. Will penetrate walls and fortifications, before hitting a target and exploding, has less payload and punch than usual rounds."
