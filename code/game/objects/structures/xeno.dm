@@ -196,7 +196,7 @@
 
 	src.balloon_alert(X, "Destroying...")
 	playsound(src, "alien_resin_break", 25)
-	if(do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
+	if(do_after(X, 1 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
 		src.balloon_alert(X, "Destroyed")
 		qdel(src)
 
