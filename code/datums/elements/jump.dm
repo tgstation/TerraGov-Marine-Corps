@@ -1,3 +1,5 @@
+#define JUMP_ELEMENT "jump_element"
+
 #define JUMP_ELEMENT_COOLDOWN "jump_element_cooldown"
 
 #define JUMP_SPIN (1<<0)
@@ -59,9 +61,10 @@
 
 	jumper.adjustStaminaLoss(stamina_cost)
 	jumper.flags_pass |= jumper_flags_pass
+	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_ELEMENT)
 
-	jumper.add_filter("jump_element", 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
-	var/shadow_filter = jumper.get_filter("jump_element")
+	jumper.add_filter(JUMP_ELEMENT, 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
+	var/shadow_filter = jumper.get_filter(JUMP_ELEMENT)
 
 	if(jump_flags & JUMP_SPIN)
 		var/spin_number = ROUND_UP(jump_duration * 0.1)
@@ -81,3 +84,5 @@
 	jumper.remove_filter("jump_element")
 	jumper.layer = initial(jumper.layer)
 	jumper.flags_pass &= ~jumper_flags_pass
+	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_ELEMENT)
+	SEND_SIGNAL(jumper, ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
