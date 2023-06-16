@@ -60,7 +60,7 @@
 	jumper.adjustStaminaLoss(stamina_cost)
 	jumper.flags_pass |= jumper_flags_pass
 
-	jumper.add_filter("jump_element", 2, drop_shadow_filter(color = "#04080FAA", size = 0.5))
+	jumper.add_filter("jump_element", 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
 	var/shadow_filter = jumper.get_filter("jump_element")
 
 	if(jump_flags & JUMP_SPIN)
@@ -69,10 +69,8 @@
 
 	animate(jumper, pixel_y = jumper.pixel_y + jump_height, layer = ABOVE_MOB_LAYER, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 	animate(pixel_y = initial(jumper.pixel_y), time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
-	animate(shadow_filter, y = -jump_height, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
-	animate(y = 0, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
-	animate(size = 4, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
-	animate(size = 0.5, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
+	animate(shadow_filter, y = -jump_height, size = 4, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	animate(y = 0, size = 0.9, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
 
 	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper), jump_duration)
 
