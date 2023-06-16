@@ -96,10 +96,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 78
 	bonus_overlay = "ppsh_ex"
-	scatter_mod = 5
-	scatter_unwielded_mod = 10
-	wield_delay_mod = 0.2 SECONDS
-	aim_speed_mod = 0.3
+	aim_speed_mod = 0.2
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
