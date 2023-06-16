@@ -97,6 +97,7 @@
 #define COMSIG_AUTOFIRE_SHOT "autofire_shot"
 	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
 #define ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
+#define COMSIG_FIND_FOOTSTEP_SOUND "find_footstep_sound"
 
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"

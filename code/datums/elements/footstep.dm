@@ -106,8 +106,10 @@
 		return
 
 	var/turf_footstep
-	if(locate(/obj/alien/weeds) in source_loc) //TODO replace this horribleness
-		turf_footstep = FOOTSTEP_RESIN
+
+	var/override_sound = source_loc.get_footstep_override()
+	if(override_sound)
+		turf_footstep = override_sound
 	else switch(footstep_type)
 		if(FOOTSTEP_XENO_MEDIUM)
 			turf_footstep = source_loc.mediumxenofootstep
@@ -150,13 +152,14 @@
 		volume_multiplier -= 0.5
 		range_adjustment = -3
 
-	if(locate(/obj/alien/weeds) in source_loc) //TODO replace this horrible snowflake check
+	var/override_sound = source_loc.get_footstep_override()
+	if(override_sound)
 		playsound(
 			source_loc,
-			pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
-			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume * volume_multiplier,
+			pick(GLOB.barefootstep[override_sound][1]),
+			GLOB.barefootstep[override_sound][2] * volume * volume_multiplier,
 			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range + range_adjustment,
+			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[override_sound][3] + e_range + range_adjustment,
 		)
 		return
 
