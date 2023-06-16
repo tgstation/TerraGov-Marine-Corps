@@ -385,6 +385,8 @@
 	finish_charging()
 	return fail_activate()
 
+
+///checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability. While causing shake to anything in range with effects applied to humans affected.
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_pull()
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
 	for(var/atom/victim AS in range(VORTEX_RANGE, owner.loc))
@@ -409,6 +411,7 @@
 				victim.Shake(3, 3, 10)
 			movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
+///randomly throws movable atoms in the radius of the vortex abilites range, different each use.
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
 	var/turf/targetturf = get_turf(owner)
 	targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
