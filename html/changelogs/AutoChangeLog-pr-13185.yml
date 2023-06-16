@@ -1,0 +1,6 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - rscadd: "EX-62 incendiary charge, available to engineers and through req."
+  - bugfix: "You can attach plastic explosives to resin walls"
+  - bugfix: "Plastic explosives update their sprite properly"
