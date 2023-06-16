@@ -395,21 +395,22 @@
 		if(isturf(victim))
 			victim.Shake(3, 3, 1 SECONDS)
 			continue
-		if(ismovableatom(victim))
-			var/atom/movable/movable_victim = victim
-			if(movable_victim.anchored)
+		if(!ismovableatom(victim))
+			continue
+		var/atom/movable/movable_victim = victim
+		if(movable_victim.anchored)
+			continue
+		if(ishuman(movable_victim))
+			var/mob/living/carbon/human/H = movable_victim
+			if(H.stat == DEAD)
 				continue
-			if(ishuman(movable_victim))
-				var/mob/living/carbon/human/H = movable_victim
-				if(H.stat == DEAD)
-					continue
-				H.apply_effects(1,1)
-				H.adjust_stagger(2)
-				shake_camera(H, 2, 1)
-				victim.Shake(3, 3, 10)
-			else if(isitem(movable_victim))
-				victim.Shake(3, 3, 10)
-			movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
+			H.apply_effects(1,1)
+			H.adjust_stagger(2)
+			shake_camera(H, 2, 1)
+			victim.Shake(3, 3, 10)
+		else if(isitem(movable_victim))
+			victim.Shake(3, 3, 10)
+		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
 ///randomly throws movable atoms in the radius of the vortex abilites range, different each use.
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
@@ -420,15 +421,16 @@
 			continue
 		if(isturf(victim))
 			continue
-		if(ismovableatom(victim))
-			var/atom/movable/movable_victim = victim
-			if(movable_victim.anchored || isxeno(movable_victim))
+		if(!ismovableatom(victim))
+			continue
+		var/atom/movable/movable_victim = victim
+		if(movable_victim.anchored || isxeno(movable_victim))
+			continue
+		if(ishuman(movable_victim))
+			var/mob/living/carbon/human/H = movable_victim
+			if(H.stat == DEAD)
 				continue
-			if(ishuman(movable_victim))
-				var/mob/living/carbon/human/H = movable_victim
-				if(H.stat == DEAD)
-					continue
-			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
+		movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
 
 /datum/action/xeno_action/activable/psychic_vortex/proc/finish_charging()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
