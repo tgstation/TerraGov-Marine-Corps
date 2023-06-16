@@ -828,7 +828,7 @@
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
 #define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
 
-#define COMSIG_XENOABILITY_STRINGSATTACHED "xenoability_stringsattached"
+#define COMSIG_XENOABILITY_LIVINGCONSTRUCT "xenoability_livingconstruct"
 #define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"
 #define COMSIG_XENOABILITY_PUPPET "xenoability_puppet"
 #define COMSIG_XENOABILITY_REFURBISHHUSK "xenoability_refurbishhusk"

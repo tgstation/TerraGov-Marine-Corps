@@ -147,7 +147,7 @@
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_PSY_DRAINED))
 		if(!silent)
-			to_chat(owner, span_xenonotice("This one has is drained of all psychic energy, of no use to us."))
+			to_chat(owner, span_xenonotice("This one has been drained of all psychic energy, of no use to us."))
 		return FALSE
 
 	if(!owner_xeno.Adjacent(target_human))
@@ -345,20 +345,49 @@
 	UnregisterSignal(owner, list(COMSIG_MOB_SAY, COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
 
 // ***************************************
-// *********** Strings Attached
+// *********** Living Construct (Primordial)
 // ***************************************
-/datum/action/xeno_action/activable/strings_attached
-	name = "Strings Attached"
-	action_icon_state = "strings_attached"
-	desc = "Take control of an organic's mind, forcing them to move in the direction of your choosing."
+/datum/action/xeno_action/activable/living_construct
+	name = "Living Construct"
+	action_icon_state = "living_construct"
+	desc = "Slap some muscles, some nerves, and some biomass on some random object and send it to attack organics! The creations are VERY stupid and will not follow orders."
 	plasma_cost = 250
-	cooldown_timer = 60 SECONDS
+	cooldown_timer = 70 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STRINGSATTACHED,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LIVINGCONSTRUCT,
 	)
 
+/datum/action/xeno_action/activable/living_construct/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!isstructure(target) && !isitem(target))
+		if(!silent)
+			owner.balloon_alert(owner, "not an object or item!")
+		return fail_activate()
+	var/obj/object_target = target
+	if((object_target.resistance_flags & INDESTRUCTIBLE) || object_target.max_integrity > 200)
+		if(!silent)
+			owner.balloon_alert(owner, "too strong!")
+		return FALSE
+	
+	if(!owner.Adjacent(target))
+		if(!silent)
+			owner.balloon_alert(owner, "not adjacent!")
+		return FALSE
+
+	if(!.)
+		return
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.face_atom(target)
+	if(!do_after(owner_xeno, 10 SECONDS, FALSE, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+		return FALSE
+	succeed_activate()
+
+
+/datum/action/xeno_action/activable/living_construct/use_ability(atom/movable/victim)
+	new /mob/living/simple_animal/hostile/mimic/copy/from_puppeteer(get_turf(victim), victim, null, FALSE, FALSE, owner)
+	add_cooldown()
 // ***************************************
-// *********** Blessings todo
+// *********** Blessings
 // ***************************************
 /datum/action/xeno_action/puppet_blessings
 	name = "Bestow Blessings"

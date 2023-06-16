@@ -202,3 +202,26 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 	if(the_target == creator)
 		return FALSE
 	return ..()
+
+/mob/living/simple_animal/hostile/mimic/copy/from_puppeteer
+	faction = FACTION_XENO
+	AIStatus = AI_OFF
+	a_intent = INTENT_HARM
+	status_flags = CANPUSH
+
+/mob/living/simple_animal/hostile/mimic/copy/from_puppeteer/Initialize(mapload, obj/copy, mob/living/creator, destroy_original = 0, no_googlies = FALSE, mob/master)
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/puppet, master)
+
+/mob/living/simple_animal/hostile/mimic/copy/from_puppeteer/CopyObject(obj/O, mob/living/user, destroy_original = 0)
+	. = ..()
+	if(.)
+		health = O.obj_integrity
+		maxHealth = O.max_integrity //special health stuff
+
+/mob/living/simple_animal/hostile/mimic/copy/from_puppeteer/CheckObject(obj/O)
+	if(O.resistance_flags & INDESTRUCTIBLE)
+		return FALSE
+	if(O.max_integrity > 200) //no fuck you
+		return FALSE
+	return ..()

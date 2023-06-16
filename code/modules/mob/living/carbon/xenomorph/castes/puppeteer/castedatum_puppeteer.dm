@@ -180,7 +180,7 @@
 		/datum/action/xeno_action/activable/refurbish_husk,
 		/datum/action/xeno_action/activable/puppet,
 		/datum/action/xeno_action/activable/organic_bomb,
-		/datum/action/xeno_action/activable/strings_attached,
+		/datum/action/xeno_action/activable/living_construct,
 		/datum/action/xeno_action/puppeteer_orders,
 		/datum/action/xeno_action/activable/articulate,
 		/datum/action/xeno_action/puppet_blessings,

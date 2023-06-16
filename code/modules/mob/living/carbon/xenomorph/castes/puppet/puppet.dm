@@ -56,7 +56,10 @@
 	identifier = IDENTIFIER_XENO
 	///should we go back to escorting the puppeteer if we stray too far
 	var/too_far_escort = TRUE
+	///weakref to our puppeteer
 	var/datum/weakref/master_ref
+	///the feed ability
+	var/datum/action/xeno_action/activable/feed
 
 
 /datum/ai_behavior/puppet/New(loc, parent_to_assign, escorted_atom)
@@ -66,6 +69,7 @@
 	RegisterSignal(escorted_atom, COMSIG_PUPPET_CHANGE_ALL_ORDER, PROC_REF(change_order))
 	RegisterSignal(mob_parent, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
 	change_order(null, PUPPET_RECALL)
+	feed = locate() in mob_parent.actions
 
 /datum/ai_behavior/puppet/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, PROC_REF(deal_with_obstacle))
@@ -81,21 +85,23 @@
 		mob_parent.death() //die
 
 ///Signal handler to try to attack our target (widow code my beloved (fuck tgmc AI))
-/datum/ai_behavior/puppet/proc/attack_target(datum/source)
+///Attack our current atom we are moving to, if targetted is specified attack that instead
+/datum/ai_behavior/puppet/proc/attack_target(datum/source, atom/targetted)
 	SIGNAL_HANDLER
 	if(world.time < mob_parent.next_move)
 		return
-	if(Adjacent(atom_to_walk_to))
+	var/atom/target = targetted ? targetted : atom_to_walk_to
+	if(!mob_parent.Adjacent(target))
 		return
-	if(isliving(atom_to_walk_to))
-		var/mob/living/victim = atom_to_walk_to
+	if(isliving(target))
+		var/mob/living/victim = target
 		if(victim.stat == DEAD)
 			late_initialize()
 			return
-		do_feed(atom_to_walk_to) // trolled
+		do_feed(victim) // trolled
 		
-	mob_parent.face_atom(atom_to_walk_to)
-	mob_parent.UnarmedAttack(atom_to_walk_to, mob_parent)
+	mob_parent.face_atom(target)
+	mob_parent.UnarmedAttack(target, mob_parent)
 
 //xeno code go
 /datum/ai_behavior/puppet/look_for_new_state()
@@ -204,7 +210,8 @@
 /datum/ai_behavior/puppet/proc/do_feed(atom/target)
 	if(mob_parent.do_actions)
 		return
-	var/datum/action/xeno_action/activable/feed = locate() in mob_parent.actions //this should always be on puppets to begin with (the ability)
+	if(!feed)
+		return
 	if(feed.ai_should_use(target))
 		feed.use_ability(target)
 
