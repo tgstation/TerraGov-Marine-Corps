@@ -7,6 +7,7 @@
 	telegraph_message = span_highdanger("Thunder rumbles far above. You hear acidic droplets hissing against the canopy. Seek shelter!")
 	telegraph_sound = 'sound/weather/acidrain/acidrain_start.ogg'
 	telegraph_overlay = "rain_med"
+	telegraph_sound = 'sound/effects/siren.ogg'
 
 	weather_message = span_highdanger("<i>Acidic rain pours down around you! Get inside!</i>")
 	weather_overlay = "acid_rain"
