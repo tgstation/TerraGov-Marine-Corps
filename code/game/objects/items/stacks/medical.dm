@@ -148,6 +148,12 @@
 	user.visible_message(span_notice("[user] bandages [patient]'s [target_limb.display_name]."),
 		span_notice("You bandage [patient]'s [target_limb.display_name].") )
 
+/obj/item/stack/medical/heal_pack/gauze/improvised
+	name = "roll of improvised gauze"
+	singular_name = "improvised gauze"
+	desc = "Some gauze made from cloth. Not very sterile, but at least stops bleeding."
+	heal_brute = 0
+
 /obj/item/stack/medical/heal_pack/ointment
 	name = "ointment"
 	desc = "Used to treat burns, infected wounds, and relieve itching in unusual places."

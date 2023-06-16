@@ -183,12 +183,23 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 /*
 * Cloth
 */
+GLOBAL_LIST_INIT(cloth_recipes, list ( \
+	new/datum/stack_recipe("white jumpsuit", /obj/item/clothing/under/color/white, 3), \
+	new/datum/stack_recipe("backpack", /obj/item/storage/backpack, 6), \
+	new/datum/stack_recipe("improvised gauze", /obj/item/stack/medical/heal_pack/gauze/improvised, 1, 1, 6), \
+	new/datum/stack_recipe("empty sandbag", /obj/item/stack/sandbags_empty, 1), \
+	new/datum/stack_recipe("bedsheet", /obj/item/bedsheet, 3), \
+	))
+
 /obj/item/stack/sheet/cloth
 	name = "cloth"
 	desc = "This roll of cloth is made from only the finest chemicals and bunny rabbits."
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
 
+/obj/item/stack/sheet/cloth/Initialize(mapload, amount)
+	. = ..()
+	recipes = GLOB.cloth_recipes
 
 /*
 * Cardboard

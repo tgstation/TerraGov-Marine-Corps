@@ -103,6 +103,12 @@
 					S.amount += dirt_amt
 				else
 					new /obj/item/stack/snow(T, dirt_amt)
+			else
+				var/obj/item/stack/sheet/mineral/sand/S = locate() in T
+				if(S && (S.amount + dirt_amt < S.max_amount))
+					S.amount += dirt_amt
+				else
+					new /obj/item/stack/sheet/mineral/sand(T, dirt_amt)
 			dirt_amt = 0
 			update_icon()
 

@@ -2,6 +2,7 @@
 Mineral Sheets
 	Contains:
 		- Sandstone
+		- Sand
 		- Diamond
 		- Uranium
 		- Phoron
@@ -16,7 +17,12 @@ Mineral Sheets
 
 GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	new/datum/stack_recipe("pile of dirt", /obj/machinery/portable_atmospherics/hydroponics/soil, 3, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
+	new/datum/stack_recipe("sand", /obj/item/stack/sheet/mineral/sand, 1), \
 	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
+	))
+
+GLOBAL_LIST_INIT(sand_recipes, list ( \
+	new/datum/stack_recipe("sandstone", /obj/item/stack/sheet/mineral/sandstone, 1), \
 	))
 
 GLOBAL_LIST_INIT(silver_recipes, list ( \
@@ -92,6 +98,38 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 /obj/item/stack/sheet/mineral/sandstone/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.sandstone_recipes
+
+// i know there's "sand" in mining module (aka impure silicates aka glass ore), but it doesn't work as a sheet and has some other problems
+// you can remove this if you turn all ores into sheets so they stack, or maybe i'll rework mining module myself
+/obj/item/stack/sheet/mineral/sand
+	name = "sand pile"
+	desc = "A pile of sand that can be smelted into glass or used in sandbags"
+	singular_name = "sand pile"
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "Glass ore"
+	throw_speed = 4
+	throw_range = 5
+	sheettype = "sand"
+
+/obj/item/stack/sheet/mineral/sand/attackby(obj/item/W as obj, mob/user as mob)
+	..()
+	if (iswelder(W))
+		var/obj/item/tool/weldingtool/WT = W
+		if(WT.remove_fuel(0,user))
+			var/obj/item/stack/sheet/glass/new_item = new(usr.loc)
+			new_item.add_to_stacks(usr)
+			visible_message(span_warning("[src] is molten into glass by [user] with the weldingtool."), null, span_warning(" You hear welding."))
+			var/obj/item/stack/sheet/mineral/sand/R = src
+			var/replace = (user.get_inactive_held_item()==R)
+			R.use(1)
+			if (!R && replace)
+				user.put_in_hands(new_item)
+		return
+	..()
+
+/obj/item/stack/sheet/mineral/sand/Initialize(mapload)
+	. = ..()
+	recipes = GLOB.sand_recipes
 
 /obj/item/stack/sheet/mineral/diamond
 	name = "diamond"
