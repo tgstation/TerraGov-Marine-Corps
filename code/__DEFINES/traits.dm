@@ -121,7 +121,8 @@
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
-
+///Essentially means "someone is holding click on this"
+#define TRAIT_BEING_MOUSEDOWNED "being_mousedowned"
 
 //added b grilling a food
 #define TRAIT_FOOD_GRILLED "food_grilled"

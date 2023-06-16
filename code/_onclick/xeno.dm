@@ -14,6 +14,21 @@
 	GLOB.round_statistics.xeno_unarmed_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_unarmed_attacks")
 
+/mob/living/carbon/xenomorph/proc/continue_attacking_alien(atom/A, modifiers)
+	if(!X.ckey || !X.client)
+		return
+	if(QDELETED(src))
+		return
+	if(LAZYACCESS(X.do_actions_with_ids, DOACTION_AUTOATTACK))
+		return
+	if(!do_after(X, CLICK_CD_MELEE, TRUE, src, BUSY_ICON_HOSTILE, id_to_use = DOACTION_AUTOATTACK))
+		return
+	if(QDELETED(src))
+		return
+	if(!X.ckey || !X.client)
+		return
+	attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+
 
 /atom/proc/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	return

@@ -139,12 +139,8 @@
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		playsound(loc, "alien_claw_metal", 25)
 	attack_generic(X, damage_amount, damage_type, damage_flag, effects, armor_penetration)
-	INVOKE_ASYNC(src, PROC_REF(continue_attacking_alien), X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_CONTINUE_ATTACKING)
 	return TRUE
-
-/obj/proc/continue_attacking_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.ckey && X.client && !QDELETED(src) && !LAZYACCESS(X.do_actions_with_ids, DOACTION_AUTOATTACK) && do_after(X, CLICK_CD_MELEE, TRUE, src, BUSY_ICON_HOSTILE, id_to_use = DOACTION_AUTOATTACK) && !QDELETED(src) && X.ckey && X.client)
-		attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)

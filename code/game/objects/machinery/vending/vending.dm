@@ -300,7 +300,7 @@
 			X.visible_message(span_danger("[X] slashes \the [src]!"), \
 			span_danger("We slash \the [src]!"), null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-			INVOKE_ASYNC(src, PROC_REF(continue_attacking_alien), X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+			SEND_SIGNAL(X, COMSIG_XENOMORPH_CONTINUE_ATTACKING)
 		return TRUE
 
 	if(tipped_level)

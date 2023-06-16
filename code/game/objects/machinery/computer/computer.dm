@@ -210,7 +210,7 @@
 	else
 		durability--
 		to_chat(X, span_xenowarning("We smash the annoying device!"))
-		INVOKE_ASYNC(src, PROC_REF(continue_attacking_alien), X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+		SEND_SIGNAL(X, COMSIG_XENOMORPH_CONTINUE_ATTACKING)
 
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2) //SFX
 	playsound(loc, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1) //SFX

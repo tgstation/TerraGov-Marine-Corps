@@ -70,8 +70,17 @@
 	return
 
 /obj/proc/continue_attacking(obj/item/I, mob/user, params)
+	var/extra_check
+	switch(user.client?.prefs?.autoattack)
+		if(AUTOATTACK_DISABLED)
+			return
+		if(AUTOATTACK_HOLD)
+			extra_check
 	if(user.ckey && user.client && !QDELETED(src) && !LAZYACCESS(user.do_actions_with_ids, DOACTION_AUTOATTACK) && do_after(user, I.attack_speed, TRUE, src, BUSY_ICON_HOSTILE, id_to_use = DOACTION_AUTOATTACK) && !QDELETED(src) && user.ckey && user.client)
 		attackby(I, user, params)
+
+/mob/proc/is_holding_click()
+
 
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
