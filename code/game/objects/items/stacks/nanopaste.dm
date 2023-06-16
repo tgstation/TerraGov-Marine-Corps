@@ -29,6 +29,11 @@
 					use(1)
 					user.visible_message(span_notice("\The [user] applies some nanite paste at [user != M ? "\the [M]'s" : "\the"] [S.display_name] with \the [src]."),\
 					span_notice("You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.display_name]."))
+				if(M.getCloneLoss() > 0)
+					M.adjustCloneLoss(-10)
+					use(1)
+					user.visible_message(span_notice("\The [user] applies some nanite paste at [user != M ? "\the [M]'s" : "\the"] [S.display_name] with \the [src]."),\
+					span_notice("You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.display_name]."))
 				else
 					to_chat(user, span_notice("Nothing to fix here."))
 		else

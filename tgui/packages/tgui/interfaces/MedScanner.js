@@ -6,6 +6,7 @@ export const MedScanner = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     patient,
+    species,
     dead,
     health,
     total_brute,
@@ -126,7 +127,7 @@ export const MedScanner = (props, context) => {
                     average: [50, 100],
                     bad: [100, Infinity],
                   }}>
-                  Cloneloss:{clone}
+                  {species === 'robot' ? 'Integrity' : 'Cloneloss'}:{clone}
                 </ProgressBar>
               </Box>
             </LabeledList.Item>

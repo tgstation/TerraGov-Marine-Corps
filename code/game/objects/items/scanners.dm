@@ -107,7 +107,7 @@ REAGENT SCANNER
 	if(isxeno(M))
 		balloon_alert(user, "Unknown entity")
 		return
-	if(M.species.species_flags & NO_SCAN)
+	if(M.species.species_flags & IS_SYNTHETIC)
 		balloon_alert(user, "Not Organic")
 		return
 	patient = M
@@ -151,6 +151,7 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/ui_static_data(mob/user)
 	var/list/data = list(
 		"patient" = patient.name,
+		"species" = patient.species.species_flags,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
 		"health" = patient.health,
 		"total_brute" = round(patient.getBruteLoss()),
@@ -180,6 +181,7 @@ REAGENT SCANNER
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
+	data["species"] = patient.species.species_flags & ROBOTIC_LIMBS ? "robot" : "human"
 
 	var/list/limb_data_lists = list()
 	if(ishuman(patient))
