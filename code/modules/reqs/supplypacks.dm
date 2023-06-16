@@ -825,6 +825,11 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/mlrs_rockets)
 	cost = 60
 
+/datum/supply_packs/explosives/mlrs_rockets
+	name = "TA-40L X-50 MLRS Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rockets_gas)
+	cost = 60
+
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
 	contains = list(/obj/item/mortar_kit/howitzer)

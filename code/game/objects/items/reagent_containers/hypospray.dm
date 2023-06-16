@@ -189,6 +189,10 @@
 		return
 	update_icon()
 
+/obj/item/reagent_containers/hypospray/on_enter_storage(mob/user, slot)
+	. = ..()
+	update_icon()
+
 /obj/item/reagent_containers/hypospray/pickup(mob/user)
 	. = ..()
 	update_icon()
