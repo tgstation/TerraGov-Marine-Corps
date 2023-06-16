@@ -36,7 +36,7 @@
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND && !underground_signal)
 		to_chat(H, span_warning("This won't work if you're standing deep underground."))
 		return FALSE
-	if(istype(A, /area/shuttle/dropship))
+	if(istype(A, /area/shuttle/dropship) || istype(A, /area/shuttle/minidropship))
 		to_chat(H, span_warning("You have to be outside the dropship to use this or it won't transmit."))
 		return FALSE
 	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating(SKILL_LEADERSHIP))
