@@ -533,6 +533,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini)
 	force = 5
 	attachable_allowed = list()
+	starting_attachment_types = list()
 	actions_types = list()
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	flags_gun_features = GUN_IS_ATTACHMENT | GUN_WIELDED_FIRING_ONLY | GUN_ATTACHMENT_FIRE_ONLY | GUN_AMMO_COUNTER
