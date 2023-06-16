@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Plasma pistol doesn't keep a \"round\" in chamber"

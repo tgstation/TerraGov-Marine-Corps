@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscadd: "add spaceacillin autoinjector to marinemed"
-  - balance: "squad marine can have easier access to spaceacillin, which makes it easier for them to deal with infection"
