@@ -2903,6 +2903,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 0
 	damage_type = STAMINA
 	hitscan_effect_icon = "beam_stun"
+	bullet_color = LIGHT_COLOR_YELLOW
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"
