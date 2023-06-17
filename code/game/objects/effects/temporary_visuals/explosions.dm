@@ -78,7 +78,7 @@
 	QDEL_IN(smoke_wave, 15)
 	addtimer(VARSET_CALLBACK(explosion_smoke.particles, count, 0), 5)
 	QDEL_IN(explosion_smoke, 1 SECONDS)
-	addtimer(VARSET_CALLBACK(falling_debris.particles, count, 0), 5)
+	addtimer(VARSET_CALLBACK(falling_debris.particles, count, 0), 10)
 	QDEL_IN(falling_debris, 2 SECONDS)
 
 /obj/effect/temp_visual/explosion/medium
