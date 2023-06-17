@@ -305,7 +305,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "aws" = (
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "awt" = (
@@ -439,6 +438,8 @@
 /obj/machinery/light/mainship/small{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/blood,
+/obj/item/limb/r_arm,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "aGa" = (
@@ -869,6 +870,7 @@
 /turf/open/floor/mainship/floor,
 /area/crew_quarters/toilet)
 "bck" = (
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
 "bcv" = (
@@ -2154,6 +2156,16 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
+"cLD" = (
+/obj/effect/landmark/corpsespawner/engineer/regular,
+/obj/effect/decal/cleanable/blood,
+/obj/item/weapon/gun/revolver/standard_revolver,
+/obj/item/ammo_casing/bullet{
+	pixel_x = 5;
+	pixel_y = -8
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/telecomms)
 "cMq" = (
 /obj/item/trash/cigbutt,
 /obj/machinery/light/mainship{
@@ -3077,11 +3089,10 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "dRR" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
-/obj/structure/sign/safety/cryogenic,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical)
+/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
+/obj/structure/benchpress,
+/turf/open/floor/plating/mainship,
+/area/mainship/shipboard/firing_range)
 "dSL" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -3728,6 +3739,10 @@
 /obj/item/clothing/suit/replica,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
+"eGJ" = (
+/obj/structure/sign/hydro,
+/turf/closed/wall/mainship,
+/area/mainship/hull/lower_hull)
 "eHh" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -3851,11 +3866,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "eTN" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/weapon/gun/revolver/standard_revolver,
-/obj/item/ammo_magazine/revolver/standard_revolver,
-/obj/item/ammo_magazine/revolver/standard_revolver,
-/obj/item/ammo_magazine/revolver/standard_revolver,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "eTR" = (
@@ -6396,6 +6406,10 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
+"iyg" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/telecomms)
 "iyl" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 1
@@ -7364,6 +7378,10 @@
 	},
 /turf/open/floor/mainship/orange/full,
 /area/mainship/living/briefing)
+"jRn" = (
+/obj/structure/benchpress,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "jRQ" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/mainship/mono,
@@ -7455,7 +7473,6 @@
 	},
 /area/mainship/command/self_destruct)
 "jXN" = (
-/obj/effect/ai_node,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -7664,6 +7681,11 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/structure/table/mainship/nometal,
+/obj/item/weapon/gun/rifle/m412,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -9227,6 +9249,13 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
+"lTw" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
+/turf/open/floor/plating/mainship,
+/area/mainship/shipboard/firing_range)
 "lTH" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -9462,8 +9491,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/upper_engineering)
 "mjo" = (
-/obj/machinery/camera/autoname/mainship,
-/obj/structure/benchpress,
+/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "mka" = (
@@ -11281,6 +11309,13 @@
 	dir = 9
 	},
 /area/mainship/squads/general)
+"oHj" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/firing_range)
 "oHU" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds1/delayone,
@@ -12469,10 +12504,6 @@
 "qcx" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'How can God forgive us?'";
-	dir = 4
-	},
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "qcA" = (
@@ -12819,6 +12850,19 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"qAE" = (
+/obj/machinery/light/mainship/small{
+	dir = 8
+	},
+/obj/effect/landmark/corpsespawner/engineer/regular,
+/obj/effect/decal/cleanable/blood,
+/obj/item/weapon/gun/revolver/standard_revolver,
+/obj/item/ammo_casing/bullet{
+	pixel_x = 5;
+	pixel_y = -8
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/telecomms)
 "qAJ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -12826,11 +12870,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},
-/obj/structure/table/mainship/nometal,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/obj/item/weapon/gun/rifle/m412,
+/obj/item/limb/l_arm,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "qAM" = (
@@ -13320,6 +13360,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
 	dir = 1
 	},
+/obj/structure/sign/holy,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/chapel)
 "rcm" = (
@@ -14105,7 +14146,7 @@
 /obj/structure/table/reinforced,
 /obj/item/tool/hand_labeler,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "sid" = (
 /obj/machinery/shower{
@@ -14500,6 +14541,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
+"sGU" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/mainship,
+/area/mainship/shipboard/firing_range)
 "sIM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -15787,6 +15832,7 @@
 	light_color = "#da2f1b"
 	},
 /obj/effect/ai_node,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "ukb" = (
@@ -16204,7 +16250,8 @@
 /turf/open/floor/mainship/terragov/north,
 /area/mainship/living/briefing)
 "uLb" = (
-/obj/effect/ai_node,
+/obj/effect/decal/cleanable/blood,
+/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "uLY" = (
@@ -16356,6 +16403,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "uTv" = (
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "uTG" = (
@@ -16370,6 +16418,7 @@
 /area/mainship/hallways/hangar)
 "uTM" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
+/obj/structure/sign/hydro,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "uUp" = (
@@ -17146,11 +17195,15 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "vWG" = (
-/obj/structure/sign/securearea/firingrange,
+/obj/structure/table/mainship/nometal,
+/obj/item/weapon/gun/revolver/standard_revolver,
+/obj/item/ammo_magazine/revolver/standard_revolver,
+/obj/item/ammo_magazine/revolver/standard_revolver,
+/obj/item/ammo_magazine/revolver/standard_revolver,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/obj/machinery/vending/weapon,
+/obj/structure/sign/securearea/firingrange,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "vWL" = (
@@ -19027,7 +19080,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "ykn" = (
-/obj/machinery/holopad,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "ykt" = (
@@ -42319,7 +42372,7 @@ kKJ
 gmc
 kEP
 rKn
-rKn
+eGJ
 rKn
 uTM
 rKn
@@ -45388,7 +45441,7 @@ dQG
 dQG
 xjG
 igh
-dRR
+qZR
 mvs
 lGi
 yjx
@@ -46465,7 +46518,7 @@ hUf
 tYe
 wWQ
 olS
-qHA
+qAE
 fuf
 wWQ
 eCr
@@ -46979,7 +47032,7 @@ hUf
 mKE
 wWQ
 eKz
-lwW
+cLD
 dit
 kGY
 cWu
@@ -47236,7 +47289,7 @@ fza
 lsn
 wWQ
 wHR
-lwW
+iyg
 cFk
 wWQ
 wTX
@@ -52384,7 +52437,7 @@ cWu
 dcY
 cEz
 kfm
-kfm
+jRn
 vhe
 kzq
 bWq
@@ -57735,7 +57788,7 @@ bDv
 bDv
 tDC
 fmP
-kAq
+oHj
 ylc
 dVo
 bSp
@@ -59273,8 +59326,8 @@ imx
 nJG
 bDv
 aFl
+mjo
 bDv
-uLb
 bDv
 dYv
 aws
@@ -59528,10 +59581,10 @@ esN
 esN
 unX
 nJG
-mjo
-bDv
-bDv
-bDv
+pgv
+dRR
+uLb
+sGU
 bDv
 dYv
 uTv
@@ -59788,7 +59841,7 @@ nJG
 kbW
 qAJ
 teh
-kbW
+lTw
 kbW
 vSE
 ksb
