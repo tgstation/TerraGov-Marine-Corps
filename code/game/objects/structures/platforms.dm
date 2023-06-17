@@ -8,6 +8,7 @@
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = RESIST_ALL
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	climbable = TRUE
 	climb_delay = 10
 
