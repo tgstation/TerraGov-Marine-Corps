@@ -25,7 +25,7 @@
 	aim_slowdown = 0.7
 	force = 30
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	mode_list = list(
 		"Rapid" = /datum/lasrifle/base/plasma_rifle_mode/minigun_rapid,
 		"Incendiary" = /datum/lasrifle/base/plasma_rifle_mode/minigun_incendiary,
@@ -99,7 +99,7 @@
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 0.4
 	force = 25
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 56, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 19, "under_x" = 45, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -135,7 +135,7 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
 	force = 20
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/rifle_standard,
 		"Marksman" = /datum/lasrifle/base/plasma_rifle_mode/rifle_marksman,
@@ -197,7 +197,7 @@
 	burst_amount = 3
 	heat_per_fire = 1
 	rounds_per_shot = 15
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/carbine_standard,
 		"Shotgun" = /datum/lasrifle/base/plasma_rifle_mode/carbine_shotgun,
@@ -263,7 +263,7 @@
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_1.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_standard
 	force = 15
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/pistol_standard,
 		"Automatic" = /datum/lasrifle/base/plasma_rifle_mode/pistol_automatic,
@@ -329,7 +329,7 @@
 	fire_delay = 1.2 SECONDS
 	heat_per_fire = 25
 	rounds_per_shot = 100
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/cannon_standard,
 		"Heavy" = /datum/lasrifle/base/plasma_rifle_mode/cannon_heavy,
