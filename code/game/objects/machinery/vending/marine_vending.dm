@@ -822,8 +822,8 @@
 	product_slogans = "There's no better time to start smokin'.;\
 		Smoke now, and win the adoration of your peers.;\
 		They beat cancer centuries ago, so smoke away.;\
-		If you're not smoking, you must be joking."
-		"Probably not bad for you!;\
+		If you're not smoking, you must be joking.;\
+		Probably not bad for you!;\
 		Don't believe the scientists!;\
 		It's good for you!;\
 		Don't quit, buy more!;\
