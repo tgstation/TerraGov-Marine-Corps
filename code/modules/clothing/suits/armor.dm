@@ -59,8 +59,16 @@
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armorsec"
 	item_state = "armorsec"
+	slowdown = SLOWDOWN_ARMOR_MEDIUM //prevents powergaming marine by swapping armor.
+	
+/obj/item/clothing/suit/armor/vest/marshall
+	name = "Colonial Marshall Police Vest"
+	desc = "A upgraded version of tradtional police protective vests,distributed to Colonial Marshall officers."
+	icon_state = "armorsec"
+	item_state = "armorsec"
 	slowdown = SLOWDOWN_ARMOR_LIGHT //prevents powergaming marine by swapping armor.
 	flags_armor_protection = CHEST|GROIN
+	soft_armor = list(MELEE = 30, BULLET = 25, LASER = 25, ENERGY = 15, BOMB = 15, BIO = 0, FIRE = 15, ACID = 25)
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "Warden's jacket"
@@ -96,8 +104,24 @@
 	icon_state = "riot"
 	item_state = "swat"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	slowdown = 0.9
-	soft_armor = list(MELEE = 75, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 10, FIRE = 10, ACID = 30)
+	slowdown = 1.2
+	soft_armor = list(MELEE = 65, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEJUMPSUIT
+	flags_item = SYNTH_RESTRICTED
+	siemens_coefficient = 0.5
+	permeability_coefficient = 0.7
+	time_to_unequip = 20
+	time_to_equip = 20
+	
+/obj/item/clothing/suit/armor/riot/marshall
+	name = "Colonial Marshall riot suit"
+	desc = "A more specialized version of traditional riot armor; made for the CMB, added protection with lighter materials."
+	icon_state = "riot"
+	item_state = "swat"
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+	slowdown = 1
+	soft_armor = list(MELEE = 75, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 5, BIO = 0, FIRE = 15, ACID = 15)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
 	flags_item = SYNTH_RESTRICTED
