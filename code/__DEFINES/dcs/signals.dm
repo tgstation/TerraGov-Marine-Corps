@@ -96,8 +96,9 @@
 	#define COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS (1<<0)
 #define COMSIG_AUTOFIRE_SHOT "autofire_shot"
 	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
-#define ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
-#define ELEMENT_JUMP_ENDED "element_jump_ended"
+#define COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
+///from /datum/element/jump when a jump has finished
+#define COMSIG_ELEMENT_JUMP_ENDED "element_jump_ended"
 
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"

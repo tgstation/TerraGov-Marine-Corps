@@ -30,7 +30,7 @@
 			if(!ishuman(target))
 				return ELEMENT_INCOMPATIBLE
 			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(humanstep_wrapper)) //we don't want the movement signal args
-			RegisterSignal(target, ELEMENT_JUMP_ENDED, PROC_REF(play_humanstep))
+			RegisterSignal(target, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(play_humanstep))
 			steps_for_living[target] = 0
 			return
 		if(FOOTSTEP_MOB_SHOE)
@@ -42,11 +42,11 @@
 		if(FOOTSTEP_XENO_HEAVY)
 			footstep_sounds = GLOB.xenoheavystep
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(simplestep_wrapper))
-	RegisterSignal(target, ELEMENT_JUMP_ENDED, PROC_REF(play_simplestep))
+	RegisterSignal(target, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(play_simplestep))
 	steps_for_living[target] = 0
 
 /datum/element/footstep/Detach(atom/movable/source)
-	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, ELEMENT_JUMP_ENDED))
+	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_ELEMENT_JUMP_ENDED))
 	steps_for_living -= source
 	return ..()
 
