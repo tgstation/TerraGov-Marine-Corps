@@ -153,31 +153,25 @@
 		range_adjustment = -3
 
 	var/override_sound = source_loc.get_footstep_override()
-	if(override_sound)
-		playsound(
-			source_loc,
-			pick(GLOB.barefootstep[override_sound][1]),
-			GLOB.barefootstep[override_sound][2] * volume * volume_multiplier,
-			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[override_sound][3] + e_range + range_adjustment,
-		)
-		return
+	var/footstep_type
 
 	if((source.wear_suit?.flags_armor_protection | source.w_uniform?.flags_armor_protection | source.shoes?.flags_armor_protection) & FEET) //We are not disgusting barefoot bandits
 		var/static/list/footstep_sounds = GLOB.shoefootstep //static is faster
+		footstep_type = override_sound ? override_sound : source_loc.shoefootstep
 		playsound(
 			source_loc,
-			pick(footstep_sounds[source_loc.shoefootstep][1]),
-			footstep_sounds[source_loc.shoefootstep][2] * volume * volume_multiplier,
+			pick(footstep_sounds[footstep_type][1]),
+			footstep_sounds[footstep_type][2] * volume * volume_multiplier,
 			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[source_loc.shoefootstep][3] + e_range + range_adjustment,
+			DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[footstep_type][3] + e_range + range_adjustment,
 		)
 	else
 		var/static/list/bare_footstep_sounds = GLOB.barefootstep
+		footstep_type = override_sound ? override_sound : source_loc.barefootstep
 		playsound(
 			source_loc,
-			pick(GLOB.barefootstep[source_loc.barefootstep][1]),
-			GLOB.barefootstep[source_loc.barefootstep][2] * volume * volume_multiplier,
+			pick(GLOB.barefootstep[footstep_type][1]),
+			GLOB.barefootstep[footstep_type][2] * volume * volume_multiplier,
 			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[source_loc.barefootstep][3] + e_range + range_adjustment,
+			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[footstep_type][3] + e_range + range_adjustment,
 		)
