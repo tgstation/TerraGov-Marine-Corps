@@ -555,6 +555,29 @@
 		/obj/item/storage/holster/belt,
 	)
 
+/obj/item/clothing/suit/storage/CMB/armored
+	name = "\improper CMB jacket"
+	desc = "A green jacket worn by crew on the Colonial Marshals, this is a decievingly well armored version for front line operations."
+	icon_state = "CMB_jacket"
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+	flags_armor_protection = CHEST|GROIN|ARMS
+	flags_cold_protection = CHEST|GROIN|ARMS
+	flags_heat_protection =CHEST|GROIN|ARMS
+	blood_overlay_type = "coat"
+	soft_armor = list(MELEE = 45, BULLET = 40, LASER = 40, ENERGY = 25, BOMB = 15, BIO = 10, FIRE = 10, ACID = 25)
+	allowed = list(
+		/obj/item/weapon/gun/,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/holster/blade,
+		/obj/item/storage/holster/belt,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/weapon/gun,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+	)
+
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"
 	desc = "A green jacket worn by TGMC personnel. The back has the flag of the TerraGov on it."
