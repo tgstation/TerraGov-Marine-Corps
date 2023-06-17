@@ -1,0 +1,4 @@
+author: "forestbbbbbbb"
+delete-after: True
+changes:
+  - bugfix: "the ghost notification for the nuke prints seconds correctly"
