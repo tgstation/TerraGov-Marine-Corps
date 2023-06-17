@@ -339,3 +339,34 @@ This function restores all limbs.
 	if(status_flags & (GODMODE))
 		return
 	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, penetration, src)
+
+/mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone)
+	if(proj_def_zone)
+		var/datum/limb/affected_limb
+
+		if(isorgan(proj_def_zone))
+			affected_limb = proj_def_zone
+		else
+			affected_limb = get_limb(proj_def_zone)
+
+		return affected_limb.soft_armor.getRating(armor_type)
+		//If a specific bodypart is targeted, check how that bodypart is protected and return the value.
+
+	//If you don't specify a bodypart, it checks ALL your available bodyparts for protection, and averages out the values
+	else
+		var/armor_val = 0
+		var/total_weight = 0
+
+		var/list/datum/limb/parts = get_damageable_limbs()
+
+		while(length(parts))
+			var/datum/limb/picked = pick_n_take(parts)
+			var/weight = GLOB.organ_rel_size[picked.name]
+			armor_val += picked.soft_armor.getRating(armor_type) * weight
+			total_weight += weight
+		//Note, in the case of limbs missing, this will increase average armor if remaining armor is higher than if fully limbed.
+		return armor_val / total_weight
+
+/mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
+	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
+	return affected_limb.hard_armor.getRating(armor_type)
