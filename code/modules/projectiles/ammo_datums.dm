@@ -3097,32 +3097,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_standard/three
 
 /datum/ammo/energy/plasma/carbine_standard/on_hit_turf(turf/T, obj/projectile/proj)
-	. = ..()
-	if(!bonus_projectiles_type)
-		return
-	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
-
-	// Check for the neightbour tile
-	var/rico_dir_check
-	switch(ricochet_angle)
-		if(-INFINITY to 45)
-			rico_dir_check = EAST
-		if(46 to 135)
-			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
-		if(136 to 225)
-			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
-		if(126 to 315)
-			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
-		if(316 to INFINITY)
-			rico_dir_check = WEST
-
-	var/turf/next_turf = get_step(T, rico_dir_check)
-	if(next_turf.density)
-		ricochet_angle += 180
-
-	bonus_projectiles_amount = 1
-	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle)
-	bonus_projectiles_amount = 0
+	reflect(T, proj, 10)
 
 /datum/ammo/energy/plasma/carbine_shotgun
 	hud_state = "plasma_blast"
@@ -3191,32 +3166,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_amount = 3
 
 /datum/ammo/energy/plasma/pistol_trifire/on_hit_turf(turf/T, obj/projectile/proj)
-	. = ..()
-	if(!bonus_projectiles_type)
-		return
-	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
-
-	// Check for the neightbour tile
-	var/rico_dir_check
-	switch(ricochet_angle)
-		if(-INFINITY to 45)
-			rico_dir_check = EAST
-		if(46 to 135)
-			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
-		if(136 to 225)
-			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
-		if(126 to 315)
-			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
-		if(316 to INFINITY)
-			rico_dir_check = WEST
-
-	var/turf/next_turf = get_step(T, rico_dir_check)
-	if(next_turf.density)
-		ricochet_angle += 180
-
-	bonus_projectiles_amount = 1
-	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle)
-	bonus_projectiles_amount = 0
+	reflect(T, proj, 10)
 
 /datum/ammo/energy/plasma/cannon_standard
 	icon_state = "plasma_ball_small"
