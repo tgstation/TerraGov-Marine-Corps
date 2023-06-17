@@ -5,7 +5,7 @@
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"
 	wrenchable = FALSE
-	product_slogans =  "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
+	product_ads =  "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	isshared = TRUE
 
 	products = list(
@@ -823,7 +823,7 @@
 		Smoke now, and win the adoration of your peers.;\
 		They beat cancer centuries ago, so smoke away.;\
 		If you're not smoking, you must be joking."
-	product_ads = "Probably not bad for you!;\
+		"Probably not bad for you!;\
 		Don't believe the scientists!;\
 		It's good for you!;\
 		Don't quit, buy more!;\
@@ -1047,7 +1047,7 @@
 	icon_deny = "sustenance-deny"
 	wrenchable = FALSE
 	isshared = TRUE
-	product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;You should have joined the Air Force if you wanted better food.;1200 calories in just a few bite!;Get that tabaso sauce to make it tasty!;Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
+	product_ads = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;You should have joined the Air Force if you wanted better food.;1200 calories in just a few bite!;Get that tabaso sauce to make it tasty!;Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 	products = list(
 		/obj/item/reagent_containers/food/snacks/protein_pack = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
@@ -1080,7 +1080,7 @@
 	icon_state = "marinemed"
 	icon_vend = "marinemed-vend"
 	icon_deny = "marinemed-deny"
-	product_slogans = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?"
+	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?"
 	req_one_access = ALL_MARINE_ACCESS
 	wrenchable = FALSE
 	isshared = TRUE
@@ -1188,7 +1188,7 @@
 	icon_state = "bloodvendor"
 	icon_vend = "bloodvendor-vend"
 	icon_deny = "bloodvendor-deny"
-	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O plus is the universal donor, use it!"
+	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O plus is the universal donor, use it!; Prevent hypovolemic shock starting today!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,
@@ -1223,7 +1223,7 @@
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus_armor-deny"
 	isshared = TRUE
-	product_slogans = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
+	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
 	products = list(
 		"Xenonauten" = list(
 			/obj/item/clothing/suit/modular/xenonauten/light = -1,
@@ -1357,7 +1357,7 @@
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus_clothes-deny"
 	isshared = TRUE
-	product_slogans = "Be the musician that you parents never approve you of. You gotta look good when you're in the battlefield.;We have all types of hats here!;What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;Sometimes, a beret is better than a helmet.;Drip is the priority, marine."
+	product_ads = "Be the musician that you parents never approve you of. You gotta look good when you're in the battlefield.;We have all types of hats here!;What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;Sometimes, a beret is better than a helmet.;Drip is the priority, marine."
 	products = list(
 		"Standard" = list(
 			/obj/item/clothing/under/marine/robotic = -1,
@@ -1530,7 +1530,7 @@
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
-	product_slogans = "Hey! You! Stop looking like a turtle and start looking like a TRUE marine!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
+	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE marine!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
