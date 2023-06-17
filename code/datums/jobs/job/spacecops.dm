@@ -55,7 +55,7 @@
 //WT rifle
 /datum/outfit/job/spacecops/standard/smg
 
-	suit_store = /obj/item/weapon/gun/smg/mp7/mag_harness
+	suit_store = /obj/item/weapon/gun/smg/mp7/CMB/mag_harness
 
 /datum/outfit/job/spacecops/standard/smg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
