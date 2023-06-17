@@ -253,7 +253,6 @@
 		strafed = strafelist[1]
 		strafelist -= strafed
 		strafed.ex_act(EXPLODE_LIGHT)
-		new /obj/effect/particle_effect/expl_particles(strafed)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
 		for(var/atom/movable/AM AS in strafed)
 			AM.ex_act(EXPLODE_LIGHT)
@@ -293,9 +292,6 @@
 /obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE, color = COLOR_CYAN)//no messaging admin, that'd spam them.
-	var/datum/effect_system/expl_particles/P = new
-	P.set_up(4, 0, impact)
-	P.start()
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last railgun has fired and impacted the ground.
 
@@ -523,9 +519,6 @@
 /obj/structure/ship_ammo/minirocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
-	var/datum/effect_system/expl_particles/P = new
-	P.set_up(4, 0, impact)
-	P.start()
 	addtimer(CALLBACK(src, PROC_REF(delayed_smoke_spread), impact), 0.5 SECONDS)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
@@ -570,9 +563,6 @@
 
 /obj/structure/ship_ammo/minirocket/smoke/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	var/datum/effect_system/expl_particles/P = new
-	P.set_up(4, 0, impact)
-	P.start()
 	var/datum/effect_system/smoke_spread/tactical/S = new
 	S.set_up(7, impact)// Large radius, but dissipates quickly
 	S.start()
@@ -590,9 +580,6 @@
 /obj/structure/ship_ammo/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0)
-	var/datum/effect_system/expl_particles/P = new
-	P.set_up(4, 0, impact)
-	P.start()
 	var/datum/effect_system/smoke_spread/plasmaloss/S = new
 	S.set_up(9, impact, 9)// Between grenade and mortar
 	S.start()
@@ -610,9 +597,6 @@
 
 /obj/structure/ship_ammo/minirocket/illumination/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
-	P.set_up(4, 0, impact)
-	P.start()
 	addtimer(CALLBACK(src, PROC_REF(delayed_smoke_spread), impact), 0.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(drop_cas_flare), impact), 1.5 SECONDS)
 	if(!ammo_count)
