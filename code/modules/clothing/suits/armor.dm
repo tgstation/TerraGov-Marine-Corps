@@ -66,9 +66,9 @@
 	desc = "A upgraded version of tradtional police protective vests,distributed to Colonial Marshall officers."
 	icon_state = "armorsec"
 	item_state = "armorsec"
-	slowdown = SLOWDOWN_ARMOR_LIGHT //prevents powergaming marine by swapping armor.
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT //This is ERT only, on par with CLF hauberk 
 	flags_armor_protection = CHEST|GROIN
-	soft_armor = list(MELEE = 30, BULLET = 25, LASER = 25, ENERGY = 15, BOMB = 15, BIO = 0, FIRE = 15, ACID = 25)
+	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 25, ENERGY = 15, BOMB = 15, BIO = 0, FIRE = 15, ACID = 35)
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "Warden's jacket"
@@ -117,7 +117,7 @@
 /obj/item/clothing/suit/armor/riot/marshall
 	name = "Colonial Marshall riot suit"
 	desc = "A more specialized version of traditional riot armor; made for the CMB, added protection with lighter materials."
-	icon_state = "riot"
+	icon_state = "riot" 
 	item_state = "swat"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	slowdown = 1
