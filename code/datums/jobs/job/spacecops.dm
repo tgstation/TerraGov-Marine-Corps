@@ -314,7 +314,7 @@
 	mask = /obj/item/clothing/mask/rebreather
 	w_uniform = /obj/item/clothing/under/rank/det/holster
 	shoes = /obj/item/clothing/shoes/jackboots
-	wear_suit = /obj/item/clothing/suit/armor/det_suit
+	wear_suit = /obj/item/clothing/suit/storage/CMB/armored
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/det_hat
 	suit_store = /obj/item/weapon/gun/energy/lasgun/M43/marshalls_special
