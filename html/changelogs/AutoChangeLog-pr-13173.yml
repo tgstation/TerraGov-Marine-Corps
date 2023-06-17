@@ -1,0 +1,4 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - balance: "Quickbuild now uses a shared pool of points."
