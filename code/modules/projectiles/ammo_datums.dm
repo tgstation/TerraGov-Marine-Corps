@@ -2460,11 +2460,33 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
 	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
 
+/datum/ammo/mortar/rocket/smoke
+	///the smoke effect at the point of detonation
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
+
+/datum/ammo/mortar/rocket/smoke/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+
 /datum/ammo/mortar/rocket/mlrs
 	shell_speed = 2.5
 
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
 	explosion(T, 0, 0, 4, 2, small_animation = TRUE)
+
+/datum/ammo/mortar/rocket/smoke/mlrs
+	shell_speed = 2.5
+	smoketype = /datum/effect_system/smoke_spread/mustard
+
+/datum/ammo/mortar/rocket/smoke/mlrs/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 2, 0, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(5, T, 6)
+	smoke.start()
 
 /*
 //================================================

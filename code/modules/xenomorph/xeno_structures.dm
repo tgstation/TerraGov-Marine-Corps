@@ -173,7 +173,7 @@
 	if(iscarbon(AM))
 		var/mob/living/carbon/crosser = AM
 		crosser.visible_message(span_warning("[crosser] trips on [src]!"), span_danger("You trip on [src]!"))
-		crosser.Paralyze(4 SECONDS)
+		crosser.ParalyzeNoChain(4 SECONDS)
 	switch(trap_type)
 		if(TRAP_HUGGER)
 			if(!AM)

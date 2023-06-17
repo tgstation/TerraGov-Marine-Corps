@@ -265,6 +265,7 @@
 		/datum/reagent/medicine/ryetalyn = 5,
 	)
 	description_overlay = "Rr"
+	free_refills = FALSE
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
 	name = "polyhexanide autoinjector"

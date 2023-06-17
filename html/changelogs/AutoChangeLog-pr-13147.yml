@@ -1,0 +1,4 @@
+author: "Tanker"
+delete-after: True
+changes:
+  - rscadd: "Added a lightweight medical belt for marines to use."

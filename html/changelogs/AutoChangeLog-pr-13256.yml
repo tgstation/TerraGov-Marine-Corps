@@ -1,0 +1,4 @@
+author: "KerbalCitizen"
+delete-after: True
+changes:
+  - rscadd: "Added 30 RR autoinjectors to Marinemed vendor, which cannot be restocked."

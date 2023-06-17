@@ -157,3 +157,42 @@
   - imageadd: changes several melee weapon sprites
   ivanmixo:
   - bugfix: Fixed crew monitor signal runtime
+2023-06-15:
+  Lumipharon:
+  - bugfix: Lava and fire can no longer be made to do 0 damage due to the hold order
+  - qol: added a codex entry for the blink drive
+  XElectricX:
+  - rscadd: Portable reagent dispenser for transporting large amounts of liquids
+  - bugfix: Deployables no longer repeat their examine text
+  - qol: Nanomed has a new chemistry equipment tab
+  forestbbbbbbb:
+  - refactor: nuke uses timers
+2023-06-16:
+  Bobthe28th:
+  - bugfix: Medical items show overlays when vended into storage
+  Lumipharon:
+  - balance: Resin holes can no longer chain stun
+  Pariah919:
+  - rscadd: MLRS 'X-50' Gas rockets.
+  - rscadd: Added new service headgear, beret/ushanka by Ocelot. Campaign Hat by Fitz.
+  forestbbbbbbb:
+  - rscadd: hivemind core can be tracked on the hive status
+  ivanmixo:
+  - bugfix: Plasma pistol doesn't keep a "round" in chamber
+  - bugfix: Fixed a shield bug
+  - bugfix: Fixed another runtime related to dropping a magazine with an underbarrel
+  - bugfix: Fixed some crusher rapid advance bugs
+  novaepee:
+  - rscadd: add spaceacillin autoinjector to marinemed
+  - balance: squad marine can have easier access to spaceacillin, which makes it easier
+      for them to deal with infection
+2023-06-17:
+  Pariah919:
+  - rscadd: Pepperball gun has a coaxial water gun now.
+  QualityVan:
+  - rscadd: EX-62 incendiary charge, available to engineers and through req.
+  - bugfix: You can attach plastic explosives to resin walls
+  - bugfix: Plastic explosives update their sprite properly
+  tyeagg:
+  - rscadd: particles to illum flares
+  - imageadd: new illum flare sprite
