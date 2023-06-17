@@ -66,6 +66,7 @@
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "swatunder"
 	siemens_coefficient = 0.9
+
 /obj/item/clothing/under/tactical/holster
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
