@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Made get_limb just return the limb if its passed one, this fixes a hard armor runtime"

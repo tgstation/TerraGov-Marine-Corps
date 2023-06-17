@@ -1161,45 +1161,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 	return ..()
 
-
-///Returns the soft armor for the given mob. If human and no limb is specified, it takes the weighted average of all available limbs.
-/mob/living/proc/get_soft_armor(armor_type, proj_def_zone)
-	return soft_armor.getRating(armor_type)
-
-/mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone)
-	if(proj_def_zone)
-		var/datum/limb/affected_limb
-
-		if(isorgan(proj_def_zone))
-			affected_limb = proj_def_zone
-		else
-			affected_limb = get_limb(proj_def_zone)
-
-		return affected_limb.soft_armor.getRating(armor_type)
-		//If a specific bodypart is targeted, check how that bodypart is protected and return the value.
-
-	//If you don't specify a bodypart, it checks ALL your available bodyparts for protection, and averages out the values
-	else
-		var/armor_val = 0
-		var/total_weight = 0
-
-		var/list/datum/limb/parts = get_damageable_limbs()
-
-		while(length(parts))
-			var/datum/limb/picked = pick_n_take(parts)
-			var/weight = GLOB.organ_rel_size[picked.name]
-			armor_val += picked.soft_armor.getRating(armor_type) * weight
-			total_weight += weight
-		//Note, in the case of limbs missing, this will increase average armor if remaining armor is higher than if fully limbed.
-		return armor_val / total_weight
-
-/mob/living/proc/get_hard_armor(armor_type, proj_def_zone)
-	return hard_armor.getRating(armor_type)
-
-/mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
-	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
-	return affected_limb.hard_armor.getRating(armor_type)
-
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
 	return
 
@@ -1234,7 +1195,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	return FALSE
 
-
 // walls can get shot and damaged, but bullets do much less.
 /turf/closed/wall/bullet_act(obj/projectile/proj)
 	. = ..()
@@ -1245,8 +1205,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	switch(proj.ammo.damage_type)
 		if(BRUTE, BURN)
-			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff) - hard_armor.getRating(proj.armor_type)) //Bullet damage falloff and hard armor.
-			damage -= round(damage * soft_armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
+			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
+			damage = round(modify_by_armor(damage, proj.armor_type, proj.penetration), 1)
 		else
 			return FALSE
 
