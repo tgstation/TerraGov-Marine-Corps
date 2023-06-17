@@ -277,10 +277,40 @@
 	scatter = 2
 	scatter_unwielded = 6
 	damage_mult = 1.2
+	
+/obj/item/weapon/gun/smg/mp7/CMB
+	name = "\improper SMG-27 submachinegun"
+	desc = "A traditionally machine made SMG-27 Submachinegun issued to CMB forces, better than its cheaper printed counterparts but still flawed in design."
+	icon_state = "mp7"
+	item_state = "mp7"
+	caliber = CALIBER_46X30 //codex
+	max_shells = 30 //codex
+	fire_sound = 'sound/weapons/guns/fire/mp7.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/smg/mp7
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/mp7)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/flashlight/under,
+	)
 
-/obj/item/weapon/gun/smg/mp7/mag_harness
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
+
+	fire_delay = 0.2 SECONDS //gives a better varient for the ERT. fires a lot faster but is still innacurate, its a scatter gun
+	burst_delay = 0.1 SECONDS
+	burst_amount = 4
+	accuracy_mult_unwielded = 0.9
+	scatter = 3
+	scatter_unwielded = 7
+	damage_mult = 1.2
+
+/obj/item/weapon/gun/smg/mp7/CMB/mag_harness
 	starting_attachment_types = list(
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight/under,
 	)
 
 //-------------------------------------------------------
