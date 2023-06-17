@@ -1,9 +1,3 @@
-///Slowdown applied when exiting this structure's turf
-#define ENTRY_SLOWDOWN (1<<0)
-///Slowdown applied when entering this structure's turf
-#define EXIT_SLOWDOWN (1<<1)
-
-
 /obj/structure/platform
 	name = "platform"
 	desc = "A square metal surface resting on four legs."
