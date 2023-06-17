@@ -795,7 +795,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!command_aura)
 		command_aura = tgui_input_list(src, "Choose an order", items = command_aura_allowed + "help")
 		if(command_aura == "help")
-			to_chat(src, span_notice("<br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br>"))
+			to_chat(src, span_notice("<br>Orders give a buff to nearby marines for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br>"))
 			return
 		if(!command_aura)
 			return
