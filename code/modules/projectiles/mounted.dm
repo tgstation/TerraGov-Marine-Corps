@@ -123,7 +123,7 @@
 		return TRUE
 
 	density = FALSE
-	if(!user.Move(loc)) //prevents exploits
+	if(!user.Move(loc)) //Move instead of forcemove to ensure we can actually get to the object's turf
 		density = initial(density)
 		return
 
