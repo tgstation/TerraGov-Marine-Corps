@@ -1155,7 +1155,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	accurate_range_min = 0
 	///shatter effection duration when hitting mobs
-	var/shatter_duration = 15 SECONDS
+	var/shatter_duration = 10 SECONDS
 
 /datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
