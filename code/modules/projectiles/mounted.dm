@@ -121,6 +121,12 @@
 	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(human_user, span_warning("Your programming restricts operating heavy weaponry."))
 		return TRUE
+
+	density = FALSE
+	if(!user.Move(loc)) //prevents exploits
+		density = initial(density)
+		return
+
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)
 	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
@@ -146,12 +152,10 @@
 		action.give_action(operator)
 
 	gun.set_gun_user(operator)
-	operator.forceMove(loc)
 	operator.setDir(dir)
 	user_old_x = operator.pixel_x
 	user_old_y = operator.pixel_y
 	update_pixels(operator, TRUE)
-	density = FALSE
 	user_old_move_resist = operator.move_resist
 	operator.move_resist = MOVE_FORCE_STRONG
 
