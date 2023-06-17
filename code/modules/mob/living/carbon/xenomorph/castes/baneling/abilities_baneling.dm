@@ -23,4 +23,8 @@
 /datum/action/xeno_action/spawn_pod/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/baneling/X = owner
-	X.pod_ref = new /obj/structure/xeno/baneling_pod(owner.loc, owner)
+	if(isnull(X.pod_ref))
+		X.pod_ref = new /obj/structure/xeno/baneling_pod(owner.loc, owner)
+		return
+	var/obj/structure/xeno/baneling_pod/pod = X.pod_ref
+	pod.loc = X.loc

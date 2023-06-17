@@ -27,10 +27,14 @@
 	desc = ""
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Baneling Pod"
+	/// Maximum amount of stored charge
+	var/stored_charge_max = 2
 	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
 	var/stored_charge = 2
+	/// How long until we get another charge
+	var/charge_refresh_time = 10 SECONDS
 	/// Time to respawn if out of charges
-	var/respawn_time = 120 SECONDS
+	var/respawn_time = 10 SECONDS
 	/// Our currently stored baneling
 	var/mob/living/carbon/xenomorph/baneling/stored_baneling
 
@@ -45,9 +49,15 @@
 	stored_baneling.forceMove(src)
 	if(stored_charge >= 1)
 		stored_charge--
-		addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), 30 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(handle_charge)), charge_refresh_time)
 		return
 	addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time)
+
+/obj/structure/xeno/baneling_pod/proc/handle_charge()
+	if(stored_charge >= stored_charge_max)
+		return
+	stored_charge++
 
 /obj/structure/xeno/baneling_pod/proc/spawn_baneling(turf/spawn_location = loc)
 	stored_baneling.heal_overall_damage(stored_baneling.maxHealth, stored_baneling.maxHealth, updating_health = TRUE)
