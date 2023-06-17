@@ -28,7 +28,7 @@
 	mask = /obj/item/clothing/mask/rebreather
 	w_uniform = /obj/item/clothing/under/rank/security/holster
 	shoes = /obj/item/clothing/shoes/jackboots
-	wear_suit = /obj/item/clothing/suit/armor/vest/security
+	wear_suit = /obj/item/clothing/suit/armor/vest/marshall
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/helmet
 	suit_store = /obj/item/weapon/gun/smg/mp7/mag_harness
@@ -156,7 +156,7 @@
 	mask = /obj/item/clothing/mask/rebreather
 	w_uniform = /obj/item/clothing/under/tactical/holster
 	shoes = /obj/item/clothing/shoes/jackboots
-	wear_suit = /obj/item/clothing/suit/armor/riot
+	wear_suit = /obj/item/clothing/suit/armor/riot/marshall
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/helmet/riot
 	suit_store = /obj/item/weapon/gun/smg/m25
