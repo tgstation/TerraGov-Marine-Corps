@@ -2797,10 +2797,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/corner,
 /area/magmoor/medical/storage)
-"bUi" = (
-/obj/effect/landmark/weed_node,
-/turf/closed/mineral/smooth,
-/area/magmoor/cave/north)
 "bUz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -10685,9 +10681,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/blue,
 /area/magmoor/civilian/arrival/east)
-"hNF" = (
-/turf/closed/mineral/smooth/outdoor,
-/area/magmoor/compound/northeast)
 "hNM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -11478,9 +11471,6 @@
 	},
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
-"iqR" = (
-/turf/closed/mineral/smooth,
-/area/magmoor/compound/east)
 "isi" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
@@ -14376,9 +14366,6 @@
 	},
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound/southwest)
-"kvI" = (
-/turf/closed/mineral/smooth,
-/area/magmoor/compound/southwest)
 "kvU" = (
 /obj/structure/curtain/open/medical,
 /turf/open/floor/mainship/sterile/corner{
@@ -15573,9 +15560,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/chemistry)
-"lng" = (
-/turf/closed/mineral/smooth,
-/area/magmoor/cave/north)
 "lnT" = (
 /obj/machinery/light,
 /obj/effect/landmark/weed_node,
@@ -20360,9 +20344,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
-"oTR" = (
-/turf/closed/mineral/smooth/outdoor,
-/area/magmoor/compound)
 "oUm" = (
 /turf/open/floor/mainship/purple/corner,
 /area/magmoor/research)
@@ -20633,9 +20614,6 @@
 /obj/structure/cable,
 /turf/open/lavaland/catwalk,
 /area/magmoor/compound/east)
-"pdi" = (
-/turf/closed/mineral/smooth/outdoor,
-/area/magmoor/compound/south)
 "pef" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -24677,9 +24655,6 @@
 	dir = 1
 	},
 /area/magmoor/compound)
-"sdX" = (
-/turf/closed/mineral/smooth/outdoor,
-/area/magmoor/compound/west)
 "sea" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -26782,9 +26757,6 @@
 	dir = 1
 	},
 /area/magmoor/research)
-"tGZ" = (
-/turf/closed/mineral/smooth,
-/area/magmoor/compound/west)
 "tHa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -38959,8 +38931,8 @@ dze
 dze
 yge
 xMO
-kvI
-kvI
+rxl
+rxl
 wXM
 rgm
 rgm
@@ -39181,21 +39153,21 @@ ibO
 dze
 dRz
 ybU
-tGZ
-tGZ
+rxl
+rxl
 ybU
 ybU
 ybU
 bGe
 dze
 dze
-tGZ
-kvI
-kvI
-kvI
-kvI
-kvI
-kvI
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 rgm
 rgm
 rgm
@@ -39413,23 +39385,23 @@ tWr
 tWr
 dRz
 ybU
-tGZ
-tGZ
-tGZ
-tGZ
+rxl
+rxl
+rxl
+rxl
 ybU
 ybU
 bGe
 dze
-tGZ
-tGZ
-kvI
-kvI
-kvI
-kvI
-kvI
-kvI
-kvI
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 rgm
 rgm
 rgm
@@ -39646,21 +39618,21 @@ ybU
 ybU
 ybU
 ybU
-tGZ
-tGZ
-tGZ
-tGZ
-tGZ
+rxl
+rxl
+rxl
+rxl
+rxl
 ybU
 bGe
 dze
 dze
 yge
-kvI
-kvI
-kvI
-kvI
-kvI
+rxl
+rxl
+rxl
+rxl
+rxl
 rgm
 rgm
 rgm
@@ -39880,9 +39852,9 @@ ybU
 ygU
 ybU
 ybU
-tGZ
-tGZ
-tGZ
+rxl
+rxl
+rxl
 ybU
 ybU
 bGe
@@ -39890,9 +39862,9 @@ dze
 yge
 yge
 xMO
-kvI
-kvI
-kvI
+rxl
+rxl
+rxl
 wXM
 rgm
 rgm
@@ -40071,9 +40043,9 @@ ncw
 aap
 ibO
 dze
-sdX
-sdX
-sdX
+pDq
+pDq
+pDq
 dze
 dze
 dze
@@ -40085,7 +40057,7 @@ yge
 waE
 waE
 yge
-sdX
+pDq
 dze
 tky
 vzO
@@ -40114,7 +40086,7 @@ alo
 ybU
 ybU
 ybU
-tGZ
+rxl
 vzO
 ybU
 ybU
@@ -40305,21 +40277,21 @@ aap
 dze
 dze
 dze
-sdX
-sdX
-sdX
-sdX
+pDq
+pDq
+pDq
+pDq
 dze
 dze
 dze
-sdX
+pDq
 pve
 gDI
-tGZ
+rxl
 waE
 yge
 ibO
-sdX
+pDq
 tky
 ybU
 dff
@@ -40538,18 +40510,18 @@ aap
 dze
 dze
 ibO
-sdX
-sdX
-sdX
-sdX
+pDq
+pDq
+pDq
+pDq
 dze
 dze
-sdX
-tGZ
+pDq
+rxl
 uBT
 uBT
-tGZ
-tGZ
+rxl
+rxl
 vNT
 dze
 dze
@@ -40772,12 +40744,12 @@ dze
 dze
 dze
 dze
-sdX
-sdX
+pDq
+pDq
 dze
 dze
 dze
-sdX
+pDq
 eHD
 tMJ
 uBT
@@ -41015,7 +40987,7 @@ orf
 uBT
 uBT
 uBT
-tGZ
+rxl
 oMI
 dze
 dze
@@ -41246,11 +41218,11 @@ dze
 dze
 dze
 dls
-tGZ
-tGZ
+rxl
+rxl
 waE
 yge
-sdX
+pDq
 dze
 tky
 ybU
@@ -41479,12 +41451,12 @@ dze
 dze
 dze
 dze
-tGZ
+rxl
 waE
 waE
 tWN
-sdX
-sdX
+pDq
+pDq
 tky
 ybU
 dGw
@@ -41708,8 +41680,8 @@ ibO
 dze
 dze
 dze
-sdX
-sdX
+pDq
+pDq
 ibO
 dze
 yge
@@ -41940,9 +41912,9 @@ dze
 dze
 dze
 dze
-sdX
-sdX
-sdX
+pDq
+pDq
+pDq
 dze
 yge
 yge
@@ -41950,7 +41922,7 @@ waE
 yge
 dze
 dze
-sdX
+pDq
 caN
 ybU
 dff
@@ -42172,9 +42144,9 @@ dze
 dze
 dze
 dze
-sdX
-sdX
-sdX
+pDq
+pDq
+pDq
 dze
 dze
 yge
@@ -42405,9 +42377,9 @@ dze
 dze
 dze
 dze
-sdX
-sdX
-sdX
+pDq
+pDq
+pDq
 dze
 dze
 yge
@@ -42638,8 +42610,8 @@ dze
 dze
 afn
 dze
-sdX
-sdX
+pDq
+pDq
 dze
 dze
 yge
@@ -42869,7 +42841,7 @@ dze
 dze
 dze
 dze
-sdX
+pDq
 dze
 dze
 dze
@@ -43102,9 +43074,9 @@ dze
 ibO
 dze
 dze
-sdX
-sdX
-sdX
+pDq
+pDq
+pDq
 dze
 dze
 yge
@@ -43336,7 +43308,7 @@ tWr
 tWr
 dze
 dze
-sdX
+pDq
 dze
 ibO
 dze
@@ -45598,7 +45570,7 @@ kcd
 kcd
 kcd
 kcd
-lng
+rxl
 pao
 gip
 aAK
@@ -45829,9 +45801,9 @@ rxl
 kcd
 kcd
 kcd
-lng
-lng
-lng
+rxl
+rxl
+rxl
 pao
 fZM
 mSc
@@ -46061,8 +46033,8 @@ rxl
 rxl
 kcd
 kxx
-lng
-lng
+rxl
+rxl
 tMF
 tMF
 pao
@@ -46096,7 +46068,7 @@ xyy
 xfT
 lqI
 oPq
-kns
+pDq
 dXE
 lQy
 vyy
@@ -46295,7 +46267,7 @@ rxl
 kcd
 kcd
 kcd
-lng
+rxl
 tMF
 oJz
 nAd
@@ -46329,7 +46301,7 @@ xfT
 xfT
 lqI
 lqI
-kns
+pDq
 dXE
 lQy
 vyy
@@ -46558,7 +46530,7 @@ rxl
 xyy
 xyy
 xyy
-kns
+pDq
 lqI
 lqI
 lqI
@@ -46780,7 +46752,7 @@ jxd
 kaV
 dzU
 tMF
-lng
+rxl
 kcd
 kcd
 kcd
@@ -46790,8 +46762,8 @@ xyy
 xyy
 xyy
 xyy
-kns
-kns
+pDq
+pDq
 lqI
 oPq
 lqI
@@ -47013,7 +46985,7 @@ jxd
 kaV
 dzU
 tMF
-lng
+rxl
 kxx
 kcd
 vRc
@@ -47024,7 +46996,7 @@ xyy
 xyy
 xyy
 vBZ
-kns
+pDq
 lqI
 lqI
 lqI
@@ -47246,8 +47218,8 @@ xus
 wRW
 dzU
 tMF
-lng
-lng
+rxl
+rxl
 vRc
 vRc
 xyy
@@ -47479,7 +47451,7 @@ aGx
 onq
 sle
 tMF
-lng
+rxl
 kcd
 vRc
 xyy
@@ -48401,9 +48373,9 @@ iKA
 mkG
 fXI
 jYq
-lng
-lng
-lng
+rxl
+rxl
+rxl
 kcd
 kcd
 kcd
@@ -48634,8 +48606,8 @@ sHe
 nwM
 lop
 jYq
-bUi
-lng
+rxl
+rxl
 kcd
 kxx
 kcd
@@ -48656,7 +48628,7 @@ lqI
 trh
 iNL
 vyy
-kns
+pDq
 lqI
 lqI
 lqI
@@ -48867,7 +48839,7 @@ tZW
 itf
 qlP
 jYq
-lng
+rxl
 kcd
 kcd
 vRc
@@ -48889,9 +48861,9 @@ lqI
 trh
 iNL
 vyy
-kns
-kns
-kns
+pDq
+pDq
+pDq
 lqI
 lqI
 lqI
@@ -49100,7 +49072,7 @@ aUs
 itf
 suF
 jYq
-lng
+rxl
 kcd
 tDo
 vRc
@@ -49122,15 +49094,15 @@ xfT
 trh
 iNL
 vyy
-kns
-kns
+pDq
+pDq
 lqI
 lqI
 lqI
 lqI
 lqI
 lqI
-kns
+pDq
 xrM
 xrM
 xfT
@@ -49604,7 +49576,7 @@ rQl
 xHK
 cRP
 iks
-kns
+pDq
 lqI
 wUY
 dSo
@@ -49635,7 +49607,7 @@ sBQ
 hIT
 sgB
 hiG
-oTR
+pDq
 syD
 syD
 vFy
@@ -49836,8 +49808,8 @@ lqI
 dXE
 dSo
 rWP
-kns
-kns
+pDq
+pDq
 lqI
 gNZ
 dSo
@@ -49867,9 +49839,9 @@ uNc
 klj
 hIT
 pKb
-oTR
-oTR
-oTR
+pDq
+pDq
+pDq
 syD
 vFy
 hiG
@@ -50102,7 +50074,7 @@ aje
 hIT
 sgB
 hiG
-oTR
+pDq
 syD
 vFy
 hiG
@@ -50532,7 +50504,7 @@ ymj
 vBZ
 lqI
 lqI
-kns
+pDq
 lqI
 lqI
 lqI
@@ -50766,8 +50738,8 @@ xfT
 xfT
 lqI
 lqI
-kns
-kns
+pDq
+pDq
 lqI
 dXE
 vpr
@@ -50801,7 +50773,7 @@ hiG
 hiG
 hiG
 hiG
-oTR
+pDq
 syD
 vFy
 hiG
@@ -51000,8 +50972,8 @@ xfT
 vBZ
 lqI
 lqI
-kns
-kns
+pDq
+pDq
 dXE
 vpr
 vyy
@@ -51033,10 +51005,10 @@ hiG
 bgh
 hiG
 hiG
-oTR
-oTR
+pDq
+pDq
 syD
-oTR
+pDq
 hiG
 hiG
 bgh
@@ -51265,12 +51237,12 @@ ppN
 hiG
 hiG
 hiG
-oTR
-oTR
-oTR
+pDq
+pDq
+pDq
 syD
-oTR
-oTR
+pDq
+pDq
 hiG
 hiG
 hiG
@@ -51499,10 +51471,10 @@ hiG
 hiG
 hiG
 hiG
-oTR
-oTR
+pDq
+pDq
 syD
-oTR
+pDq
 hiG
 hiG
 hiG
@@ -51732,7 +51704,7 @@ hiG
 hiG
 hiG
 hiG
-oTR
+pDq
 syD
 syD
 vFy
@@ -52200,7 +52172,7 @@ hiG
 hiG
 vFy
 syD
-oTR
+pDq
 hiG
 hiG
 hiG
@@ -52433,7 +52405,7 @@ hiG
 hiG
 vFy
 syD
-oTR
+pDq
 hiG
 hiG
 hiG
@@ -56216,10 +56188,10 @@ gRT
 gRT
 eTo
 tvj
-pdi
-pdi
+pDq
+pDq
 dum
-pdi
+pDq
 kUH
 eTo
 pUx
@@ -56394,7 +56366,7 @@ hiG
 hiG
 hiG
 hiG
-oTR
+pDq
 syD
 rSf
 hiG
@@ -56450,7 +56422,7 @@ gRT
 iCe
 dum
 dum
-pdi
+pDq
 dum
 dum
 dum
@@ -56624,10 +56596,10 @@ ppN
 hiG
 hiG
 hiG
-oTR
-oTR
-oTR
-oTR
+pDq
+pDq
+pDq
+pDq
 syD
 vFy
 hiG
@@ -56858,9 +56830,9 @@ hiG
 hiG
 bgh
 hiG
-oTR
-oTR
-oTR
+pDq
+pDq
+pDq
 syD
 vFy
 hiG
@@ -56919,8 +56891,8 @@ dum
 dum
 dum
 dum
-pdi
-pdi
+pDq
+pDq
 dum
 pJc
 pUx
@@ -57088,11 +57060,11 @@ hiG
 hiG
 hiG
 hiG
-oTR
+pDq
 hiG
-oTR
-oTR
-oTR
+pDq
+pDq
+pDq
 syD
 mQt
 vFy
@@ -57152,7 +57124,7 @@ dum
 dum
 dum
 dum
-pdi
+pDq
 dum
 aXw
 pUx
@@ -57321,10 +57293,10 @@ hiG
 kmg
 vFy
 vFy
-oTR
-oTR
-oTR
-oTR
+pDq
+pDq
+pDq
+pDq
 vFy
 syD
 kxk
@@ -57524,8 +57496,8 @@ ymj
 ymj
 ymj
 xrM
-pDq
-pDq
+rxl
+rxl
 xrM
 xrM
 xrM
@@ -57615,7 +57587,7 @@ gMc
 dum
 dum
 dum
-pdi
+pDq
 dum
 dum
 aXw
@@ -57789,8 +57761,8 @@ xSe
 ydd
 vFy
 vFy
-oTR
-oTR
+pDq
+pDq
 vFy
 vFy
 vFy
@@ -58550,7 +58522,7 @@ dum
 dum
 dum
 dum
-pdi
+pDq
 pJc
 pUx
 pUx
@@ -64324,7 +64296,7 @@ aXr
 aXr
 aXr
 aXr
-iqR
+rxl
 gmf
 kik
 kik
@@ -64507,8 +64479,8 @@ lqI
 lqI
 iwE
 lqI
-kns
-kns
+pDq
+pDq
 lqI
 lqI
 lqI
@@ -64557,8 +64529,8 @@ tHx
 npM
 fJW
 aXr
-iqR
-iqR
+rxl
+rxl
 hrp
 cOx
 vRH
@@ -64740,7 +64712,7 @@ lqI
 lqI
 lqI
 oPq
-kns
+pDq
 lqI
 lqI
 lqI
@@ -64790,8 +64762,8 @@ emM
 wSz
 ged
 aXr
-iqR
-iqR
+rxl
+rxl
 cOx
 cOx
 grq
@@ -65023,7 +64995,7 @@ mDK
 mDK
 xMa
 aXr
-iqR
+rxl
 cOx
 cOx
 cOx
@@ -65211,7 +65183,7 @@ fJO
 vye
 fJO
 fJO
-hNF
+pDq
 jWj
 aNa
 uxc
@@ -65256,7 +65228,7 @@ xuK
 fQn
 uxP
 aXr
-iqR
+rxl
 cOx
 cOx
 cOx
@@ -65438,13 +65410,13 @@ tUU
 tUU
 fJO
 fJO
-hNF
+pDq
 fJO
 qyP
 fJO
 fJO
 fJO
-hNF
+pDq
 jWj
 vfO
 sYl
@@ -65907,7 +65879,7 @@ fJO
 fJO
 fJO
 fJO
-hNF
+pDq
 fJO
 fJO
 qyP
@@ -65955,7 +65927,7 @@ jix
 brY
 wtn
 aXr
-iqR
+rxl
 vTr
 vTr
 nRk
@@ -66141,7 +66113,7 @@ fJO
 fJO
 fJO
 cDl
-hNF
+pDq
 fJO
 fJO
 fJO
@@ -66188,8 +66160,8 @@ cCT
 rIt
 cEM
 aXr
-iqR
-iqR
+rxl
+rxl
 vTr
 vTr
 vTr
@@ -66421,12 +66393,12 @@ eyp
 mrd
 mDZ
 aXr
-iqR
-iqR
-iqR
-iqR
-iqR
-iqR
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 nRk
 nRk
 nRk
@@ -66654,17 +66626,17 @@ xuK
 xuK
 xuK
 aXr
-iqR
-iqR
-iqR
-iqR
+rxl
+rxl
+rxl
+rxl
 cOx
 cOx
 cOx
 cOx
 cOx
 cOx
-iqR
+rxl
 cOx
 cVH
 jCp
@@ -66887,8 +66859,8 @@ umq
 pfR
 fvb
 aXr
-iqR
-iqR
+rxl
+rxl
 cOx
 cOx
 cOx
@@ -66896,8 +66868,8 @@ cOx
 cOx
 cOx
 cOx
-iqR
-iqR
+rxl
+rxl
 nCz
 imp
 jCp
@@ -67120,7 +67092,7 @@ wmF
 joR
 fet
 aXr
-iqR
+rxl
 hSF
 cOx
 cOx
@@ -67130,8 +67102,8 @@ cOx
 cOx
 cOx
 cOx
-iqR
-iqR
+rxl
+rxl
 cVH
 jCp
 hYy
@@ -67353,7 +67325,7 @@ eRs
 gSQ
 dui
 aXr
-iqR
+rxl
 hSF
 cOx
 cOx
@@ -67813,10 +67785,10 @@ hJL
 hJL
 hJL
 sRa
-iqR
-iqR
-iqR
-iqR
+rxl
+rxl
+rxl
+rxl
 vqD
 vqD
 vqD
@@ -68046,7 +68018,7 @@ hJL
 hJL
 hmc
 aYw
-iqR
+rxl
 gmf
 kik
 kik
@@ -71755,7 +71727,7 @@ ugo
 fJO
 lTR
 pLJ
-hNF
+pDq
 fJO
 qyP
 bDD
@@ -71982,13 +71954,13 @@ tUU
 fJO
 fJO
 fJO
-hNF
+pDq
 fJO
 fJO
 qyP
 lTR
-hNF
-hNF
+pDq
+pDq
 fJO
 fJO
 fJO
@@ -72215,13 +72187,13 @@ tUU
 qyP
 fJO
 fJO
-hNF
+pDq
 fJO
 fJO
 fJO
 lTR
 pLJ
-hNF
+pDq
 fJO
 fJO
 fJO
@@ -72447,7 +72419,7 @@ xXw
 tUU
 fJO
 fJO
-hNF
+pDq
 fJO
 fJO
 fJO
