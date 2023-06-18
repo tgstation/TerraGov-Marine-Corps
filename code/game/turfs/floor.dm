@@ -109,6 +109,7 @@
 		return TRUE
 	return FALSE
 
+///swaps out an existing floor tile with another one
 /turf/open/floor/proc/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	if(T.turf_type == type)
 		return
@@ -124,10 +125,12 @@
 	if(floor_tile && pry_tile(I, user))
 		return TRUE
 
+///Removes the floor tile from the turf via a tool
 /turf/open/floor/proc/pry_tile(obj/item/I, mob/user, silent = FALSE)
 	I.play_tool_sound(src, 80)
 	return remove_tile(user, silent)
 
+///Removes the floor tile from the turf
 /turf/open/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, force_plating)
 	if(broken || burnt)
 		broken = FALSE
@@ -141,9 +144,11 @@
 			spawn_tile()
 	return make_plating(force_plating)
 
+///checks if this turf has a floor tile of some kind
 /turf/open/floor/proc/has_tile()
 	return floor_tile
 
+///creates a loose floor tile
 /turf/open/floor/proc/spawn_tile()
 	if(!has_tile())
 		return null
