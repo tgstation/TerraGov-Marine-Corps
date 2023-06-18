@@ -82,8 +82,8 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a rank-and-file marine of the TGMC, and that is your strength.
-What you lack alone, you gain standing shoulder to shoulder with the men and women of the TerraGov Marine Corps. Ooh-rah!"})
+	to_chat(M, {"\nYou are a rank-and-file soldier of the TGMC, and that is your strength.
+What you lack alone, you gain standing shoulder to shoulder with the men and women of the corps. Ooh-rah!"})
 
 
 /datum/outfit/job/marine/standard
