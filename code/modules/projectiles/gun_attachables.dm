@@ -342,7 +342,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_unwielded_mod = -3
 	scatter_unwielded_mod = -2
 	damage_falloff_mod = 0.1
-	aim_time_mod = -0.5
+	aim_time_mod = -10                   ///this is in deciseconds
 
 /obj/item/attachable/suppressor/unremovable
 	flags_attach_features = NONE
