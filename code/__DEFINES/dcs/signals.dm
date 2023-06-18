@@ -97,7 +97,9 @@
 	#define COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS (1<<0)
 #define COMSIG_AUTOFIRE_SHOT "autofire_shot"
 	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
-#define ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
+#define COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
+///from /datum/element/jump when a jump has finished
+#define COMSIG_ELEMENT_JUMP_ENDED "element_jump_ended"
 
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
@@ -456,6 +458,7 @@
 #define COMSIG_LIVING_PROJECTILE_STUN "living_stun_mitigation" //from /datum/ammo/proc/staggerstun
 ///from /mob/living/proc/set_lying_angle
 #define COMSIG_LIVING_SET_LYING_ANGLE "living_set_lying_angle"
+#define COMSIG_LIVING_IGNITED "living_ignited" //from /mob/living/proc/IgniteMob() : (fire_stacks)
 
 /// From mob/living/treat_message(): (list/message_args)
 #define COMSIG_LIVING_TREAT_MESSAGE "living_treat_message"
@@ -562,7 +565,6 @@
 
 #define COMSIG_XENOMORPH_THROW_HIT "xenomorph_throw_hit"
 
-#define COMSIG_XENOMORPH_FIRE_BURNING "xenomorph_fire_burning"
 #define COMSIG_XENOMORPH_TAKING_DAMAGE "xenomorph_taking_damage" // (target, damagetaken)
 
 #define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage" // (amount, amount_mod, passive)
@@ -622,6 +624,7 @@
 #define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
 #define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
+#define COMSIG_KB_LIVING_JUMP "keybind_jump"
 #define COMSIG_KB_MOB_FACENORTH_DOWN "keybinding_mob_facenorth_down"
 #define COMSIG_KB_MOB_FACEEAST_DOWN "keybinding_mob_faceeast_down"
 #define COMSIG_KB_MOB_FACESOUTH_DOWN "keybinding_mob_facesouth_down"

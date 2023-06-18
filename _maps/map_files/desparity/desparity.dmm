@@ -40,10 +40,6 @@
 /obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/fitness)
-"ap" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/asteroidfloor,
-/area/storage/testroom)
 "as" = (
 /obj/structure/filingcabinet/medical,
 /turf/open/floor/tile/dark/purple2{
@@ -2178,6 +2174,10 @@
 "lu" = (
 /turf/open/floor/plating/dmg3,
 /area/lv624/lazarus/research/caves)
+"lv" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth/indestructible,
+/area/storage/testroom)
 "lx" = (
 /obj/structure/sign/safety/hazard,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -10610,7 +10610,7 @@ wh
 (3,1,1) = {"
 wh
 hD
-ap
+lv
 hD
 FC
 FC

@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes:
+  - bugfix: "King's roar no longer misses things moving towards the King,"

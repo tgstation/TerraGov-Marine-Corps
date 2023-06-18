@@ -86,13 +86,13 @@
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
-	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
-		SSresinshaping.decrement_build_counter(X)
+	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		SSresinshaping.quickbuilds++
 		take_damage(max_integrity) // Ensure its destroyed
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 4 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
+	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
 		return
 	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
 		return
@@ -110,7 +110,7 @@
 
 /turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
 	if(I.flags_item & NOBLUDGEON || !isliving(user))
-		return attack_hand(user)
+		return
 
 	user.changeNext_move(I.attack_speed)
 	user.do_attack_animation(src, used_item = I)

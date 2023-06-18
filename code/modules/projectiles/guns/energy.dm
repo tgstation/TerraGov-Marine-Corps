@@ -648,7 +648,7 @@
 
 /datum/lasrifle/base/energy_carbine_mode/auto_burst
 	rounds_per_shot = 12
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/carbine
 	fire_delay = 0.2 SECONDS
 	burst_amount = 4
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
