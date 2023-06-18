@@ -211,12 +211,14 @@
 	///The strength of psychic blast's  AOE effects
 	var/blast_strength = 25
 
+	/// The current chemical that gets released on baneling death
+	var/baneling_current_chemical = /datum/reagent/toxin/acid
+	/// The smoke system tied to baneling
+	var/datum/effect_system/smoke_spread/xeno/baneling_smoke
+
 	// *** Sentinel Abilities ***
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
 	var/additional_stacks = 0
-
-	/// The current baneling type, this affects baneling color and baneling effect on explosion
-	var/baneling_current_type = BANELING_ACID
 
 	///the 'abilities' available to a caste.
 	var/list/actions
