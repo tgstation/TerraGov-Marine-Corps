@@ -111,7 +111,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///the delay between shots, for attachments that fire stuff
 	var/attachment_firing_delay = 0
 	///modifier for the time it takes to enter aim mode
-	var/aim_mode_mod = 0
+	var/aim_time_mod = 0
 
 	///The specific sound played when activating this attachment.
 	var/activation_sound = 'sound/machines/click.ogg'
