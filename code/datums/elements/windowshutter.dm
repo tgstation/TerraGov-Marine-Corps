@@ -3,12 +3,12 @@
 	if(!istype(target, /obj/structure/window))
 		return ELEMENT_INCOMPATIBLE
 
-	RegisterSignal(target, ELEMENT_CLOSE_SHUTTER_LINKED, PROC_REF(spawn_shutter))
+	RegisterSignal(target, COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED, PROC_REF(spawn_shutter))
 	RegisterSignal(target, COMSIG_OBJ_DECONSTRUCT, PROC_REF(spawn_shutter_first))
 
 /datum/element/windowshutter/Detach(datum/target, force)
 	. = ..()
-	UnregisterSignal(target, list(COMSIG_OBJ_DECONSTRUCT, ELEMENT_CLOSE_SHUTTER_LINKED))
+	UnregisterSignal(target, list(COMSIG_OBJ_DECONSTRUCT, COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED))
 
 /datum/element/windowshutter/proc/spawn_shutter_first(datum/source)
 	SIGNAL_HANDLER
@@ -17,10 +17,10 @@
 
 /datum/element/windowshutter/proc/spawn_shutter(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, ELEMENT_CLOSE_SHUTTER_LINKED)
+	UnregisterSignal(source, COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED)
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/window/W in get_step(source,direction) )
-			SEND_SIGNAL(W, ELEMENT_CLOSE_SHUTTER_LINKED)
+			SEND_SIGNAL(W, COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED)
 	var/obj/machinery/door/poddoor/shutters/mainship/pressure/P = new(get_turf(source))
 	P.density = TRUE
 	var/obj/structure/window/attachee = source
@@ -33,10 +33,10 @@
 	Detach(source)
 
 /datum/element/windowshutter/cokpitshutters/spawn_shutter(datum/source)
-	UnregisterSignal(source, ELEMENT_CLOSE_SHUTTER_LINKED)
+	UnregisterSignal(source, COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED)
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/window/W in get_step(source,direction))
-			SEND_SIGNAL(W, ELEMENT_CLOSE_SHUTTER_LINKED)
+			SEND_SIGNAL(W, COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED)
 	var/obj/machinery/door/poddoor/shutters/tadpole_cockpit/P = new(get_turf(source))
 	P.density = TRUE
 	var/obj/structure/window/attachee = source
