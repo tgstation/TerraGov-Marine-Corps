@@ -22210,7 +22210,6 @@
 /area/ice_colony/underground/maintenance/central)
 "duN" = (
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/rock)
 "duU" = (
@@ -22604,7 +22603,6 @@
 	},
 /area/ice_colony/surface/excavationbarracks)
 "eeV" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/taxiway)
 "efk" = (
@@ -24356,7 +24354,6 @@
 /area/ice_colony/surface/hangar/alpha)
 "hKV" = (
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/fob_sentry,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/rock)
 "hMm" = (
@@ -25493,7 +25490,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "jOv" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_nw)
 "jPw" = (
@@ -27244,7 +27240,6 @@
 /area/ice_colony/exterior/surface/valley/north)
 "mQX" = (
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "mRF" = (
@@ -28094,7 +28089,6 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/underground/caves/ice_nw)
 "oxN" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_w)
 "oyf" = (
@@ -29389,7 +29383,6 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "qYn" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
@@ -33824,7 +33817,6 @@
 	},
 /area/ice_colony/surface/research)
 "xXd" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "xXm" = (

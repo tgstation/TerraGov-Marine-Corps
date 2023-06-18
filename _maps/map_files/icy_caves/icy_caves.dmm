@@ -2839,11 +2839,9 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "pR" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "pT" = (
-/obj/effect/landmark/fob_sentry,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
@@ -5904,7 +5902,6 @@
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "Ey" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "Ez" = (
@@ -7727,7 +7724,6 @@
 "Ns" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "Nt" = (
@@ -9428,7 +9424,6 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Wo" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "Wp" = (

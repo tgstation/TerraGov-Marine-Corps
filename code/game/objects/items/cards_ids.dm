@@ -247,7 +247,6 @@
 	desc = "A marine dog tag."
 	icon_state = "dogtag"
 	item_state = "dogtag"
-	iff_signal = TGMC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
 // Vendor points for job override

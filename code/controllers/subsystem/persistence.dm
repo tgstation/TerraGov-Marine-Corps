@@ -55,14 +55,6 @@ SUBSYSTEM_DEF(persistence)
 	save_player_number()
 	return
 
-///Loads the last civil war round date
-/datum/controller/subsystem/persistence/proc/load_last_civil_war_round_time()
-	var/json_file = file("data/last_modes_round_date.json")
-	if(!fexists(json_file))
-		last_modes_round_date = list()
-		return
-	last_modes_round_date = json_decode(file2text(json_file))
-
 ///Loads the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/load_custom_loadouts_list()
 	var/json_file = file("data/custom_loadouts.json")
@@ -82,12 +74,6 @@ SUBSYSTEM_DEF(persistence)
 		return FALSE
 	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
 	return loadout
-
-///Save the date of the last civil war round
-/datum/controller/subsystem/persistence/proc/save_last_civil_war_round_time()
-	var/json_file = file("data/last_modes_round_date.json")
-	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(last_modes_round_date))
 
 ///Saves the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/save_custom_loadouts_list()

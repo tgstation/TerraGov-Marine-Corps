@@ -249,13 +249,6 @@
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
-/obj/machinery/door/window/secure/bridge/rebel
-	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
-
-/obj/machinery/door/window/secure/bridge/rebel/right
-	icon_state = "rightsecure"
-	base_state = "rightsecure"
-
 /obj/machinery/door/window/secure/bridge/aidoor //special door with similar integrity to protective ai glass
 	max_integrity = 1200
 
@@ -267,24 +260,10 @@
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
-/obj/machinery/door/window/secure/req/rebel
-	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_CARGO_REBEL)
-
-/obj/machinery/door/window/secure/req/rebel/right
-	icon_state = "rightsecure"
-	base_state = "rightsecure"
-
 // Engi Doors
 /obj/machinery/door/window/secure/engineering
 	req_access = list(ACCESS_MARINE_ENGINEERING)
 
 /obj/machinery/door/window/secure/engineering/right
-	icon_state = "rightsecure"
-	base_state = "rightsecure"
-
-/obj/machinery/door/window/secure/engineering/rebel
-	req_access = list(ACCESS_MARINE_ENGINEERING_REBEL)
-
-/obj/machinery/door/window/secure/engineering/rebel/right
 	icon_state = "rightsecure"
 	base_state = "rightsecure"

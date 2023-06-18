@@ -40983,7 +40983,6 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "ern" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "esR" = (
@@ -44247,7 +44246,6 @@
 /area/prison/security/checkpoint/vip)
 "mZM" = (
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "naL" = (
@@ -46564,7 +46562,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "sBT" = (
@@ -47123,7 +47120,6 @@
 /obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
-/obj/effect/landmark/fob_sentry,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "ubZ" = (
@@ -47556,7 +47552,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "vfM" = (
@@ -47970,7 +47965,6 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "wfv" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/entrance)
 "wfX" = (

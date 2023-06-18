@@ -176,7 +176,7 @@
 			if(item_category == CAT_STD && !issynth(usr))
 				var/mob/living/carbon/human/H = usr
 				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
-					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
+					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine
 					vended_items += new headset_type(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
@@ -216,12 +216,6 @@
 	. = ..()
 	listed_products = GLOB.marine_clothes_listed_products + GLOB.marine_gear_listed_products
 
-/obj/machinery/marine_selector/clothes/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 /obj/machinery/marine_selector/clothes/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_ALPHA)
@@ -248,14 +242,6 @@
 /obj/machinery/marine_selector/clothes/engi/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.engineer_clothes_listed_products
-
-/obj/machinery/marine_selector/clothes/engi/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/engi/rebel
-	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
-	vendor_role = /datum/job/terragov/squad/engineer/rebel
-	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/marine_selector/clothes/engi/alpha
 	squad_tag = "Alpha"
@@ -289,14 +275,6 @@
 	. = ..()
 	listed_products = GLOB.medic_clothes_listed_products
 
-/obj/machinery/marine_selector/clothes/medic/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/medic/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
-	vendor_role = /datum/job/terragov/squad/corpsman/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 /obj/machinery/marine_selector/clothes/medic/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ALPHA)
@@ -328,15 +306,6 @@
 	. = ..()
 	listed_products = GLOB.smartgunner_clothes_listed_products
 
-/obj/machinery/marine_selector/clothes/smartgun/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/smartgun/rebel
-	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
-	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
-
 /obj/machinery/marine_selector/clothes/smartgun/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_ALPHA)
@@ -367,15 +336,6 @@
 /obj/machinery/marine_selector/clothes/leader/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.leader_clothes_listed_products
-
-/obj/machinery/marine_selector/clothes/leader/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/leader/rebel
-	req_access = list(ACCESS_MARINE_LEADER_REBEL)
-	vendor_role = /datum/job/terragov/squad/leader/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 
 /obj/machinery/marine_selector/clothes/leader/alpha
 	squad_tag = "Alpha"
@@ -468,14 +428,6 @@
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/clothes/commander/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/commander/rebel
-	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
-	vendor_role = /datum/job/terragov/command/fieldcommander/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"
 	desc = "An automated synthetic equipment vendor hooked up to a modest storage unit."
@@ -512,9 +464,6 @@
 	. = ..()
 	listed_products = GLOB.medic_gear_listed_products
 
-/obj/machinery/marine_selector/gear/medic/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
-
 /obj/machinery/marine_selector/gear/medic/valhalla
 	vendor_role = /datum/job/fallen/marine/corpsman
 	resistance_flags = INDESTRUCTIBLE
@@ -532,9 +481,6 @@
 /obj/machinery/marine_selector/gear/engi/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.engineer_gear_listed_products
-
-/obj/machinery/marine_selector/gear/engi/rebel
-	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/engi/valhalla
 	vendor_role = /datum/job/fallen/marine/engineer
@@ -554,9 +500,6 @@
 	. = ..()
 	listed_products = GLOB.smartgunner_gear_listed_products
 
-/obj/machinery/marine_selector/gear/smartgun/rebel
-	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
-
 /obj/machinery/marine_selector/gear/smartgun/valhalla
 	vendor_role = /datum/job/fallen/marine/smartgunner
 	resistance_flags = INDESTRUCTIBLE
@@ -574,9 +517,6 @@
 /obj/machinery/marine_selector/gear/leader/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.leader_gear_listed_products
-
-/obj/machinery/marine_selector/gear/leader/rebel
-	req_access = list(ACCESS_MARINE_LEADER_REBEL)
 
 /obj/machinery/marine_selector/gear/leader/valhalla
 	vendor_role = /datum/job/fallen/marine/leader
@@ -596,9 +536,6 @@
 /obj/machinery/marine_selector/gear/commander/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.commander_gear_listed_products
-
-/obj/machinery/marine_selector/gear/commander/rebel
-	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
 
 ///Spawns a set of objects from specified typepaths. For vendors to spawn multiple items while only needing one path.
 /obj/effect/vendor_bundle

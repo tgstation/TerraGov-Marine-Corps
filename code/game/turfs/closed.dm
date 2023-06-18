@@ -639,12 +639,6 @@
 /turf/closed/shuttle/dropship_regular/cockpit_window
 	icon_state = "regular_shuttle_cockpit_window"
 
-/turf/closed/shuttle/dropship3
-	name = "\improper Triumph"
-	icon = 'icons/turf/dropship.dmi'
-	icon_state = "1"
-	plane = GAME_PLANE
-
 /turf/closed/shuttle/dropship3/transparent
 	opacity = FALSE
 

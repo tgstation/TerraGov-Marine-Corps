@@ -4127,7 +4127,6 @@
 /area/lv624/lazarus/sandtemple)
 "doQ" = (
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "dpq" = (
@@ -4305,7 +4304,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/sw)
 "dyc" = (
-/obj/effect/landmark/fob_sentry,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "dys" = (
@@ -10362,7 +10360,6 @@
 /area/lv624/lazarus/sleep_male)
 "lFx" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "lGM" = (
@@ -14002,7 +13999,6 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "qDY" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -14209,7 +14205,6 @@
 	},
 /area/lv624/lazarus/spaceport)
 "qSs" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "qSA" = (

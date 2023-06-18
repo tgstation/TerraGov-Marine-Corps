@@ -105,15 +105,9 @@
 	/// The frequency of the radio
 	var/frequency = FREQ_COMMON
 
-/obj/machinery/cryopod/rebel
-	frequency = FREQ_COMMON_REBEL
-
 /obj/machinery/cryopod/right
 	orient_right = TRUE
 	icon_state = "body_scanner_0-r"
-
-/obj/machinery/cryopod/right/rebel
-	frequency = FREQ_COMMON_REBEL
 
 /obj/machinery/cryopod/Initialize(mapload)
 	. = ..()

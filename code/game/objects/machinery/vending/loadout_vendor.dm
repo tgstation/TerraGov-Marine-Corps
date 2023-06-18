@@ -37,12 +37,6 @@
 	user.client.prefs.loadout_manager.loadout_vendor = src
 	user.client.prefs.loadout_manager.ui_interact(user)
 
-/obj/machinery/loadout_vendor/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/loadout_vendor/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 /obj/machinery/loadout_vendor/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	faction = FACTION_VALHALLA

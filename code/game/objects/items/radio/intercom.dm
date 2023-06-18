@@ -100,7 +100,3 @@
 /obj/item/radio/intercom/dropship/normandy
 	name = "\improper Normandy dropship intercom"
 	frequency = FREQ_DROPSHIP_2
-
-/obj/item/radio/intercom/dropship/triumph
-	name = "\improper Triumph dropship intercom"
-	frequency = FREQ_DROPSHIP_2

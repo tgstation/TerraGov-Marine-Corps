@@ -28,8 +28,6 @@ GLOBAL_LIST_EMPTY(nuke_spawn_locs)
 GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)				///list of spawn locations for nuke disk consoles
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
 GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light can be shut down
-GLOBAL_LIST_EMPTY(zones_to_control)					//list of all areas that needs to be controlled to gain point in Civil War
-GLOBAL_LIST_EMPTY(main_overwatch_consoles)					//list of all areas that needs to be controlled to gain point in Civil War
 
 
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions
@@ -57,8 +55,6 @@ GLOBAL_LIST_EMPTY(shuttle_controls_list)
 GLOBAL_LIST_EMPTY(lz1_shuttle_console_turfs_list)
 GLOBAL_LIST_EMPTY(lz2_shuttle_console_turfs_list)
 
-GLOBAL_LIST_EMPTY(fob_sentries_loc)
-GLOBAL_LIST_EMPTY(fob_sentries_rebel_loc)
 GLOBAL_LIST_EMPTY(sensor_towers)
 GLOBAL_LIST_EMPTY(sensor_towers_patrol)
 

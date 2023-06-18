@@ -61,11 +61,6 @@
 	GLOB.latejoin += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/start/latejoinrebel/Initialize(mapload)
-	. = ..()
-	GLOB.latejoinrebel += loc
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/start/latejoinsom/Initialize(mapload)
 	. = ..()
 	GLOB.latejoinsom += loc
@@ -386,26 +381,6 @@
 /obj/effect/landmark/dropship_console_spawn_lz2/Initialize(mapload)
 	. = ..()
 	GLOB.lz2_shuttle_console_turfs_list += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/fob_sentry
-	name = "Fob sentry"
-	icon = 'icons/Marine/sentry.dmi'
-	icon_state = "sentry"
-
-/obj/effect/landmark/fob_sentry/Initialize(mapload)
-	. = ..()
-	GLOB.fob_sentries_loc += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/fob_sentry_rebel
-	name = "Rebel fob sentry"
-	icon = 'icons/Marine/sentry.dmi'
-	icon_state = "sentry"
-
-/obj/effect/landmark/fob_sentry_rebel/Initialize(mapload)
-	. = ..()
-	GLOB.fob_sentries_rebel_loc += loc
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/sensor_tower

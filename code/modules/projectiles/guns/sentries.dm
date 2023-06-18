@@ -173,32 +173,24 @@
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
 
 /obj/item/weapon/gun/sentry/big_sentry/premade
-	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
 
 /obj/item/weapon/gun/sentry/big_sentry/dropship
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
-	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
 	turret_flags = TURRET_HAS_CAMERA|TURRET_IMMOBILE
 	density = FALSE
 
-/obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
-	sentry_iff_signal = TGMC_REBEL_IFF
-
 /obj/item/weapon/gun/sentry/big_sentry/fob_sentry
 	max_integrity = INFINITY //Good luck killing it
 	fire_delay = 0.2 SECONDS
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+
 	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
 	default_ammo_type = /obj/item/ammo_magazine/sentry/fob_sentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/fob_sentry)
-
-/obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel
-	sentry_iff_signal = TGMC_REBEL_IFF
 
 /obj/item/storage/box/minisentry
 	name = "\improper ST-580 point defense sentry crate"
@@ -272,10 +264,5 @@
 	desc = "Oh god oh fuck."
 	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_IMMOBILE|TURRET_RADIAL
 	sentry_iff_signal = NONE
-
-/obj/item/weapon/gun/sentry/premade/canterbury
-	name = "SG-577 Gauss Dropship Turret"
-	ammo_datum_type = /datum/ammo/bullet/turret
-	sentry_iff_signal = TGMC_LOYALIST_IFF
 
 

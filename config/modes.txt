@@ -20,10 +20,6 @@ mode Extended
 	votable 0
 endmode
 
-mode Civil War
-	requiredplayers 2
-endmode
-
 mode Combat Patrol
 	requiredplayers 2
 endmode
