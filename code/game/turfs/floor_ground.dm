@@ -12,10 +12,6 @@
 /turf/open/floor/plating/ground/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/open/floor/plating/ground/is_plating() //Temporary hack until we re-implement baseturfs, /tg/ plating and change_turf.dm.
-	return FALSE
-
-
 /turf/open/floor/plating/ground/dirt
 	name = "dirt"
 	icon_state = "desert"

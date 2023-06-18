@@ -654,10 +654,8 @@
 		return
 	if(isfloorturf(T)) //intact floor, pop the tile
 		var/turf/open/floor/F = T
-		if(!F.is_plating())
-			if(!F.broken && !F.burnt)
-				new F.floor_tile.type(H)//Add to holder so it will be thrown with other stuff
-			F.make_plating()
+		if(!F.has_tile())
+			F.remove_tile()
 
 	if(direction) //Direction is specified
 		if(isspaceturf(T)) //If ended in space, then range is unlimited

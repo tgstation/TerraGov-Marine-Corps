@@ -25,7 +25,6 @@
 
 /turf/open/floor/mainship/cargo/arrow
 	icon_state = "cargo_arrow"
-	icon_regular_floor = "cargo_arrow"
 
 /turf/open/floor/mainship/blue
 	icon_state = "blue"
@@ -134,10 +133,8 @@
 
 /turf/open/floor/mainship/mono
 	icon_state = "mono"
-	icon_regular_floor = "mono"
 
 /turf/open/floor/mainship/tcomms
-	icon_plating = "tcomms"
 	icon_state = "tcomms"
 
 /turf/open/floor/mainship/sterile/purple
@@ -302,12 +299,7 @@
 /turf/open/floor/light
 	name = "Light floor"
 	icon_state = "light_on"
-
-/turf/open/floor/light/Initialize(mapload)
-	. = ..()
-	floor_tile = new /obj/item/stack/tile/light
-	return INITIALIZE_HINT_LATELOAD
-
+	floor_tile = /obj/item/stack/tile/light
 
 /turf/open/floor/light/LateInitialize()
 	update_icon()
@@ -318,7 +310,7 @@
 /turf/open/floor/wood
 	name = "floor"
 	icon_state = "wood"
-	floor_tile = new/obj/item/stack/tile/wood
+	floor_tile = /obj/item/stack/tile/wood
 	shoefootstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD
 	mediumxenofootstep = FOOTSTEP_WOOD
@@ -467,7 +459,7 @@
 /turf/open/floor/grass
 	name = "Grass patch"
 	icon_state = "grass1"
-	floor_tile = new/obj/item/stack/tile/grass
+	floor_tile = /obj/item/stack/tile/grass
 	shoefootstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
@@ -475,7 +467,6 @@
 
 /turf/open/floor/grass/Initialize(mapload)
 	. = ..()
-	floor_tile = new /obj/item/stack/tile/grass
 	icon_state = "grass[pick("1","2","3","4")]"
 	return INITIALIZE_HINT_LATELOAD
 
@@ -572,7 +563,6 @@
 
 /turf/open/floor/tile/chapel
 	icon_state = "chapel"
-	icon_regular_floor = "chapel"
 
 /turf/open/floor/tile/cmo
 	icon_state = "cmo"
@@ -817,11 +807,7 @@
 	shoefootstep = FOOTSTEP_CARPET
 	barefootstep = FOOTSTEP_CARPET
 	mediumxenofootstep = FOOTSTEP_CARPET
-
-/turf/open/floor/carpet/Initialize(mapload)
-	. = ..()
-	floor_tile = new /obj/item/stack/tile/carpet
-	return INITIALIZE_HINT_LATELOAD
+	floor_tile = /obj/item/stack/tile/carpet
 
 /turf/open/floor/carpet/ex_act(severity)
 	return

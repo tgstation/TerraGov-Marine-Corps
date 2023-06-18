@@ -207,19 +207,7 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, VAPOR, S.fraction)
 
-/turf/proc/is_plating()
-	return FALSE
 /turf/proc/is_asteroid_floor()
-	return FALSE
-/turf/proc/is_plasteel_floor()
-	return FALSE
-/turf/proc/is_light_floor()
-	return FALSE
-/turf/proc/is_grass_floor()
-	return FALSE
-/turf/proc/is_wood_floor()
-	return FALSE
-/turf/proc/is_carpet_floor()
 	return FALSE
 
 /turf/proc/levelupdate()
