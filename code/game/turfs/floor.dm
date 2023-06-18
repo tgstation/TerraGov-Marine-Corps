@@ -95,7 +95,7 @@
 	update_icon()
 
 /// Things seem to rely on this actually returning plating. Override it if you have other baseturfs.
-/turf/open/floor/proc/make_plating(force = FALSE)
+/turf/open/floor/proc/make_plating()
 	return ScrapeAway()
 
 /turf/open/floor/attackby(obj/item/object, mob/living/user, params)
@@ -131,7 +131,7 @@
 	return remove_tile(user, silent)
 
 ///Removes the floor tile from the turf
-/turf/open/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, force_plating)
+/turf/open/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE)
 	if(broken || burnt)
 		broken = FALSE
 		burnt = FALSE
@@ -142,7 +142,7 @@
 			to_chat(user, span_notice("You remove the floor tile."))
 		if(make_tile)
 			spawn_tile()
-	return make_plating(force_plating)
+	return make_plating()
 
 ///checks if this turf has a floor tile of some kind
 /turf/open/floor/proc/has_tile()
