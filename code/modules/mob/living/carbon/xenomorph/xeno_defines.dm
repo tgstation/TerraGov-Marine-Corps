@@ -211,9 +211,6 @@
 	///The strength of psychic blast's  AOE effects
 	var/blast_strength = 25
 
-	/// The current chemical that gets released on baneling death
-	var/baneling_current_chemical = /datum/reagent/toxin/acid
-
 	// *** Sentinel Abilities ***
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
 	var/additional_stacks = 0
@@ -409,6 +406,10 @@
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
+
+	// *** Baneling vars ***
+	/// The current chemical that gets released on baneling death
+	var/selected_chemical = /datum/reagent/toxin/acid
 
 	//Notification spam controls
 	var/recent_notice = 0
