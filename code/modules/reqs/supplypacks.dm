@@ -778,6 +778,12 @@ EXPLOSIVES
 	contains = list(/obj/item/explosive/plastique)
 	cost = 30
 
+/datum/supply_packs/explosives/plastique_incendiary
+	name = "EX-62 Genghis incendiary charge"
+	contains = list(/obj/item/explosive/plastique/genghis_charge)
+	cost = 150
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/explosives/detpack
 	name = "detpack explosive"
 	contains = list(/obj/item/detpack)
