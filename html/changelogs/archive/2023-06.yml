@@ -196,3 +196,22 @@
   tyeagg:
   - rscadd: particles to illum flares
   - imageadd: new illum flare sprite
+2023-06-18:
+  KerbalCitizen:
+  - rscadd: Added 30 RR autoinjectors to Marinemed vendor, which cannot be restocked.
+  Lumipharon:
+  - bugfix: fixed projectile penetration not working against walls
+  RikuTheKiller:
+  - balance: Quickbuild now uses a shared pool of points.
+  - bugfix: Doors are now destroyed in 1 second just like everything else.
+  Tanker:
+  - rscadd: Added a lightweight medical belt for marines to use.
+  forestbbbbbbb:
+  - bugfix: the ghost notification for the nuke prints seconds correctly
+  ivanmixo:
+  - bugfix: Made get_limb just return the limb if its passed one, this fixes a hard
+      armor runtime
+  - bugfix: Weather sounds should work properly for everyone now
+  - bugfix: Fixed a platform runtime
+  novaepee:
+  - rscadd: give acid rain a siren warning like sand storm
