@@ -225,8 +225,8 @@
 /datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
 	var/mob/living/carbon/xenomorph/defiler/X = owner
 	set waitfor = FALSE
-	var/smoke_range = 2
 	var/datum/effect_system/smoke_spread/xeno/gas
+	var/smoke_range = 2
 
 	switch(X.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
@@ -238,27 +238,32 @@
 		if(/datum/reagent/toxin/xeno_ozelomelyn)
 			gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(X)
 
-	while(count)
-		if(X.stagger) //If we got staggered, return
-			to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
-			toggle_particles(FALSE)
-			return
-		if(X.IsStun() || X.IsParalyzed())
-			to_chat(X, span_xenowarning("We try to emit toxins but are disabled!"))
-			toggle_particles(FALSE)
-			return
-		var/turf/T = get_turf(X)
-		playsound(T, 'sound/effects/smoke.ogg', 25)
-		if(count > 1)
-			gas.set_up(smoke_range, T)
-		else //last emission is larger
-			gas.set_up(CEILING(smoke_range*1.3,1), T)
-		gas.start()
-		T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
-		count = max(0,count - 1)
-		sleep(DEFILER_GAS_DELAY)
-
+	handle_gas(count, gas, smoke_range)
 	toggle_particles(FALSE)
+
+/datum/action/xeno_action/emit_neurogas/proc/handle_gas(time_left, gas_system, range)
+	if(time_left <= 0)
+		return
+	var/mob/living/carbon/xenomorph/defiler/X = owner
+	var/datum/effect_system/smoke_spread/xeno/gas = gas_system
+	var/smoke_range = range
+	if(X.stagger) //If we got staggered, return
+		to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
+		toggle_particles(FALSE)
+		return
+	if(X.IsStun() || X.IsParalyzed())
+		to_chat(X, span_xenowarning("We try to emit toxins but are disabled!"))
+		toggle_particles(FALSE)
+		return
+	var/turf/T = get_turf(X)
+	playsound(T, 'sound/effects/smoke.ogg', 25)
+	if(time_left > 1)
+		gas.set_up(smoke_range, T)
+	else //last emission is larger
+		gas.set_up(CEILING(smoke_range*1.3,1), T)
+	gas.start()
+	T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
+	addtimer(CALLBACK(src, PROC_REF(handle_gas), time_left - 1, gas, smoke_range), DEFILER_GAS_DELAY)
 
 // Toggles particles on or off, depending on the defined var.
 /datum/action/xeno_action/emit_neurogas/proc/toggle_particles(activate)
