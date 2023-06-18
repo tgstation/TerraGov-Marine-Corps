@@ -45,7 +45,6 @@
 	/// Flags for unmanned vehicules
 	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS|UNDERCARRIAGE
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
-	var/iff_signal = TGMC_LOYALIST_IFF
 	/// muzzleflash stuff
 	var/atom/movable/vis_obj/effect/muzzle_flash/flash
 	COOLDOWN_DECLARE(fire_cooldown)
