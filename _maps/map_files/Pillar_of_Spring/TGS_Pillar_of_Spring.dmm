@@ -1710,6 +1710,7 @@
 /obj/structure/bed/fancy,
 /obj/effect/landmark/start/job/fieldcommander,
 /obj/item/bedsheet/captain,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
@@ -12803,6 +12804,7 @@
 	dir = 9
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 1
 	},
@@ -14332,6 +14334,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"ste" = (
+/obj/machinery/vending/medical/shipside,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/upper_medical)
 "stm" = (
 /obj/machinery/door/airlock/multi_tile/mainship/marine/general{
 	dir = 2
@@ -14856,6 +14862,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "sZK" = (
@@ -15859,7 +15866,6 @@
 	light_color = "#da2f1b"
 	},
 /obj/effect/ai_node,
-/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "ukb" = (
@@ -16489,6 +16495,7 @@
 	dir = 1;
 	on = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "uWa" = (
@@ -46507,9 +46514,9 @@ lAT
 yjx
 wcT
 mbQ
-wnJ
+fPi
 oEm
-lVR
+ste
 wcT
 hUf
 nTx
