@@ -167,3 +167,22 @@
   - qol: Nanomed has a new chemistry equipment tab
   forestbbbbbbb:
   - refactor: nuke uses timers
+2023-06-16:
+  Bobthe28th:
+  - bugfix: Medical items show overlays when vended into storage
+  Lumipharon:
+  - balance: Resin holes can no longer chain stun
+  Pariah919:
+  - rscadd: MLRS 'X-50' Gas rockets.
+  - rscadd: Added new service headgear, beret/ushanka by Ocelot. Campaign Hat by Fitz.
+  forestbbbbbbb:
+  - rscadd: hivemind core can be tracked on the hive status
+  ivanmixo:
+  - bugfix: Plasma pistol doesn't keep a "round" in chamber
+  - bugfix: Fixed a shield bug
+  - bugfix: Fixed another runtime related to dropping a magazine with an underbarrel
+  - bugfix: Fixed some crusher rapid advance bugs
+  novaepee:
+  - rscadd: add spaceacillin autoinjector to marinemed
+  - balance: squad marine can have easier access to spaceacillin, which makes it easier
+      for them to deal with infection
