@@ -333,6 +333,10 @@
 	. = ..()
 	update_icon()
 
+/obj/item/storage/pill_bottle/on_enter_storage(mob/user, slot)
+	. = ..()
+	update_icon()
+
 /obj/item/storage/pill_bottle/removed_from_inventory()
 	. = ..()
 	update_icon()

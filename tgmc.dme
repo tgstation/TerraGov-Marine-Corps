@@ -397,6 +397,7 @@
 #include "code\datums\elements\egrill_element.dm"
 #include "code\datums\elements\footstep.dm"
 #include "code\datums\elements\gestures.dm"
+#include "code\datums\elements\jump.dm"
 #include "code\datums\elements\keybinding_update.dm"
 #include "code\datums\elements\light_blocking.dm"
 #include "code\datums\elements\limb_support.dm"
