@@ -9,6 +9,20 @@
 	blacklist_ship_maps = null
 	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
 	bioscan_interval = 3 MINUTES
+	valid_job_types = list(
+		/datum/job/terragov/command/fieldcommander = 1,
+		/datum/job/terragov/squad/engineer = 4,
+		/datum/job/terragov/squad/corpsman = 8,
+		/datum/job/terragov/squad/smartgunner = 4,
+		/datum/job/terragov/squad/leader = 4,
+		/datum/job/terragov/squad/standard = -1,
+		/datum/job/som/command/fieldcommander = 1,
+		/datum/job/som/squad/leader = 4,
+		/datum/job/som/squad/veteran = 2,
+		/datum/job/som/squad/engineer = 4,
+		/datum/job/som/squad/medic = 8,
+		/datum/job/som/squad/standard = -1,
+	)
 	///The current round type being played
 	var/datum/game_round/current_round = /datum/game_round/tdm
 	///campaign stats organised by faction
