@@ -63,10 +63,6 @@
 		sentry_status_hud.remove_from_hud(src)
 	return ..()
 
-/obj/machinery/deployable/examine(mob/user)
-	. = ..()
-	. += internal_item.examine(user)
-
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location)
 	if(!ishuman(usr))
 		return

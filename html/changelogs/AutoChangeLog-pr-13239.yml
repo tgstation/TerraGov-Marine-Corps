@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Adds a jump mechanic, to leap over obstacles like window frames"
+  - balance: "Platforms are dense again, in light of the ability to jump over them"

@@ -2060,7 +2060,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"
-	icon_state = "shell"
+	icon_state = "recoilless_rifle_he"
 	hud_state = "shell_he"
 	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
@@ -2078,6 +2078,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/heat
 	name = "HEAT shell"
+	icon_state = "recoilless_rifle_heat"
 	hud_state = "shell_heat"
 	damage = 200
 	penetration = 100
@@ -2088,6 +2089,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
+	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
@@ -2101,6 +2103,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/chemical
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_smoke"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
 	accurate_range = 21
@@ -2122,16 +2125,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/chemical/cloak
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_cloak"
 	hud_state = "shell_cloak"
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
 /datum/ammo/rocket/recoilless/chemical/plasmaloss
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_tanglefoot"
 	hud_state = "shell_tanglefoot"
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
 /datum/ammo/rocket/recoilless/low_impact
 	name = "low impact explosive shell"
+	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
@@ -2460,11 +2466,33 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
 	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
 
+/datum/ammo/mortar/rocket/smoke
+	///the smoke effect at the point of detonation
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
+
+/datum/ammo/mortar/rocket/smoke/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+
 /datum/ammo/mortar/rocket/mlrs
 	shell_speed = 2.5
 
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
 	explosion(T, 0, 0, 4, 2, small_animation = TRUE)
+
+/datum/ammo/mortar/rocket/smoke/mlrs
+	shell_speed = 2.5
+	smoketype = /datum/effect_system/smoke_spread/mustard
+
+/datum/ammo/mortar/rocket/smoke/mlrs/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 2, 0, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(5, T, 6)
+	smoke.start()
 
 /*
 //================================================

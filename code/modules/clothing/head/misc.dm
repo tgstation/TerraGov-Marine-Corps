@@ -243,6 +243,24 @@
 	icon_state = "servicecap" //with thanks to Fitz 'Pancake' Sholl
 	item_state = "servicecap" //with thanks to Fitz 'Pancake' Sholl
 
+/obj/item/clothing/head/serviceberet
+	name = "Service Beret"
+	desc = "The beret for your service uniform. This feels like something someone much higher speed than you would wear."
+	icon_state = "beret_service"
+	item_state = "beret_service"
+
+/obj/item/clothing/head/servicecampaignhat
+	name = "Service Campaign Hat"
+	desc = "The campaign hat for your service uniform. You can feel the menacing aura coming off it by just looking at it."
+	icon_state = "campaignhat_service"
+	item_state = "campaignhat_service"
+
+/obj/item/clothing/head/serviceushanka
+	name = "Service Ushanka"
+	desc = "The ushanka for your service uniform. For when you need to perform parade in subzero temperature."
+	icon_state = "ushanaka_service"
+	item_state = "ushanaka_service"
+
 /obj/item/clothing/head/techpriest
 	name = "Techpriest hood"
 	desc = "Praise the Omnissiah!"
