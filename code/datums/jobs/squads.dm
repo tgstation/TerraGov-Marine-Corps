@@ -398,8 +398,7 @@
 	if(sender)
 		header = "CIC SQUAD MESSAGE FROM [sender.real_name]:"
 
-	for(var/i in marines_list)
-		var/mob/living/marine = i
+	for(var/mob/living/marine AS in marines_list)
 		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
 
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
