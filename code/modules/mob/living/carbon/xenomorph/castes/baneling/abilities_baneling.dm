@@ -35,13 +35,15 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/smoke_range = 4
 	/// How long the smoke lasts for
 	var/smoke_duration = 4
-
+	var/datum/effect_system/smoke_spread/xeno/baneling_smoke
 	keybinding_signals = list(
 	KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
 	)
 
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
+
+/datum/action/xeno_action/baneling_explode/proc/handle_smoke(remaining_time)
 	var/mob/living/carbon/xenomorph/baneling/X = owner
 	var/turf/T = get_turf(X)
 	switch(X.baneling_current_chemical)
@@ -58,8 +60,6 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(T, 'sound/effects/blobattack.ogg', 25)
 	smoke.set_up(smoke_range, T)
 	handle_smoke(smoke_duration)
-
-/datum/action/xeno_action/baneling_explode/proc/handle_smoke(remaining_time)
 	if(remaining_time <= 0)
 		return
 	smoke.start()

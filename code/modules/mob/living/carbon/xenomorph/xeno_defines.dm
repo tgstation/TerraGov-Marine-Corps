@@ -213,8 +213,6 @@
 
 	/// The current chemical that gets released on baneling death
 	var/baneling_current_chemical = /datum/reagent/toxin/acid
-	/// The smoke system tied to baneling
-	var/datum/effect_system/smoke_spread/xeno/baneling_smoke
 
 	// *** Sentinel Abilities ***
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
