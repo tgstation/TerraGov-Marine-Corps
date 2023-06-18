@@ -219,6 +219,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.min_scatter_unwielded        += min_scatter_unwielded_mod
 		master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 		master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
+		master_gun.aim_time                     += aim_time_mod
 		master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay) * aim_mode_delay_mod)
 		if(add_aim_mode)
 			var/datum/action/item_action/aim_mode/A = new (master_gun)
@@ -272,6 +273,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.min_scatter_unwielded        -= min_scatter_unwielded_mod
 		master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 		master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
+		master_gun.aim_time                     -= aim_time_mod
 		master_gun.remove_aim_mode_fire_delay(name)
 		if(add_aim_mode)
 			var/datum/action/item_action/aim_mode/action_to_delete = locate() in master_gun.actions
@@ -332,13 +334,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_MUZZLE
 	silence_mod = TRUE
 	pixel_shift_y = 16
-	attach_shell_speed_mod = -1
 	accuracy_mod = 0.1
 	recoil_mod = -2
 	scatter_mod = -2
 	recoil_unwielded_mod = -3
 	scatter_unwielded_mod = -2
 	damage_falloff_mod = 0.1
+	aim_time_mod = -0.5
 
 /obj/item/attachable/suppressor/unremovable
 	flags_attach_features = NONE
