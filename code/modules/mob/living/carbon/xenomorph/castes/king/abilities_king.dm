@@ -196,6 +196,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
 	)
+	/// Tracks victims to make sure we only hit them once
+	var/list/victims_hit = list()
 
 /datum/action/xeno_action/activable/shattering_roar/use_ability(atom/target)
 	if(!target)
@@ -233,10 +235,11 @@
 ///Carries out the attack iteratively based on distance from source
 /datum/action/xeno_action/activable/shattering_roar/proc/execute_attack(iteration, list/turf/turfs_to_attack, range, target, turf/source)
 	if(iteration > range)
+		victims_hit.Cut()
 		return
 
 	for(var/turf/turf AS in turfs_to_attack)
-		if(get_dist(turf, source) == iteration)
+		if(get_dist(turf, source) == iteration || get_dist(turf, source) == iteration - 1)
 			attack_turf(turf, LERP(1, 0.3, iteration / SHATTERING_ROAR_RANGE))
 
 	iteration++
@@ -246,6 +249,9 @@
 /datum/action/xeno_action/activable/shattering_roar/proc/attack_turf(turf/turf_victim, severity)
 	new /obj/effect/temp_visual/shattering_roar(turf_victim)
 	for(var/victim in turf_victim)
+		if(victim in victims_hit)
+			continue
+		victims_hit += victim
 		if(iscarbon(victim))
 			var/mob/living/carbon/carbon_victim = victim
 			if(carbon_victim.stat == DEAD || isxeno(carbon_victim))
