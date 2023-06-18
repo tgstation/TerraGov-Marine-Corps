@@ -91,10 +91,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		SWITCH_SQUAD_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad_near"),
 	)
 
-
-
-
-
 /obj/machinery/computer/camera_advanced/overwatch/Initialize(mapload)
 	. = ..()
 	send_attack_order = new
