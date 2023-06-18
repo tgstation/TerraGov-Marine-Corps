@@ -840,6 +840,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
 		return FALSE
+	if(is_charging >= CHARGE_ON)
+		proj.damage -= proj.damage * (0.2 * get_sunder())
 	return ..()
 
 

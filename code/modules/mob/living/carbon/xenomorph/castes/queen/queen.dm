@@ -115,3 +115,16 @@
 /mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	if(!incapacitated(TRUE))
 		mothers += src //Adding us to the list.
+
+// ***************************************
+// *********** Front Armor
+// ***************************************
+
+/mob/living/carbon/xenomorph/queen/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(SEND_SIGNAL(src, COMSIG_XENO_PROJECTILE_HIT, proj, cardinal_move, uncrossing) & COMPONENT_PROJECTILE_DODGE)
+		return FALSE
+	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
+		return FALSE
+	if((cardinal_move & REVERSE_DIR(dir)))
+		proj.damage -= proj.damage * (0.5 * get_sunder())
+	return ..()
