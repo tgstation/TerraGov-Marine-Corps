@@ -1,8 +1,8 @@
 /datum/looping_sound/active_ashstorm
 	mid_sounds = list(
 		'sound/weather/ashstorm/outside/active_mid1.ogg'=1,
-		'sound/weather/ashstorm/outside/active_mid1.ogg'=1,
-		'sound/weather/ashstorm/outside/active_mid1.ogg'=1,
+		'sound/weather/ashstorm/outside/active_mid2.ogg'=1,
+		'sound/weather/ashstorm/outside/active_mid3.ogg'=1,
 		'sound/weather/ashstorm/inside/active_mid1.ogg'=1,
 		'sound/weather/ashstorm/inside/active_mid2.ogg'=1,
 		'sound/weather/ashstorm/inside/active_mid3.ogg'=1,
@@ -29,8 +29,11 @@
 	volume = 40
 
 /datum/looping_sound/acidrain
+	start_sound = 'sound/weather/acidrain/acidrain_start.ogg'
+	start_length = 130
 	mid_sounds = list(
 		'sound/weather/acidrain/acidrain_mid.ogg'=1,
 	)
+	end_sound = 'sound/weather/acidrain/acidrain_end.ogg'
 	mid_length = 80
 	volume = 40
