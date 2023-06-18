@@ -59,27 +59,40 @@
 	W.update_icon() //maybe not needed
 	return W
 
+/turf/open/floor/update_icon()
+	. = ..()
+	if(broken)
+		icon_state = pick(broken_states())
+	else if(burnt)
+		icon_state = pick(burnt_states())
+	else
+		icon_state = initial(icon_state)
+
+///Returns a list of icon_states to show this turf is broken
 /turf/open/floor/proc/broken_states()
 	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
 
+///Returns a list of icon_states to show this turf is burnt
 /turf/open/floor/proc/burnt_states()
-	return list(initial(icon_state))
+	return list("floorscorched1", "floorscorched2")
 
+///Breaks the turf
 /turf/open/floor/proc/break_tile()
 	if(!breakable_tile || hull_floor)
 		return
 	if(broken)
 		return
 	broken = TRUE
-	icon_state = broken_states()
+	update_icon()
 
+///Burns the turf
 /turf/open/floor/proc/burn_tile()
 	if(!burnable_tile|| hull_floor)
 		return
 	if(burnt)
 		return
 	burnt = TRUE
-	icon_state = burnt_states()
+	update_icon()
 
 /// Things seem to rely on this actually returning plating. Override it if you have other baseturfs.
 /turf/open/floor/proc/make_plating(force = FALSE)

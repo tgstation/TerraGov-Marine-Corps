@@ -8,6 +8,12 @@
 	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
 
+/turf/open/floor/plating/broken_states()
+	return list("platingdmg1", "platingdmg2", "platingdmg3")
+
+/turf/open/floor/plating/burnt_states()
+	return list("panelscorched")
+
 /turf/open/floor/plating/fire_act(exposed_temperature, exposed_volume)
 	if(hull_floor)
 		return

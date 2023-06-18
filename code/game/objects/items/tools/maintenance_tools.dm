@@ -343,6 +343,7 @@
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	pry_capable = IS_PRY_CAPABLE_CROWBAR
 	tool_behaviour = TOOL_CROWBAR
+	usesound = 'sound/items/crowbar.ogg'
 
 
 /obj/item/tool/crowbar/red

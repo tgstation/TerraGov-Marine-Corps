@@ -315,6 +315,13 @@
 	barefootstep = FOOTSTEP_WOOD
 	mediumxenofootstep = FOOTSTEP_WOOD
 
+/turf/open/floor/wood/broken_states()
+	return list("wood-broken1", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
+
+/turf/open/floor/wood/burnt_states()
+	return list("wood-broken1", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
+
+//todo: replaced in a later pr
 /turf/open/floor/wood/broken
 	icon_state = "wood-broken1"
 	burnt = TRUE
@@ -354,6 +361,12 @@
 /turf/open/floor/cult
 	icon_state = "cult"
 
+/turf/open/floor/cult/broken_states()
+	return list("cultdamage", "cultdamage2", "cultdamage3", "cultdamage4", "cultdamage5", "cultdamage6", "cultdamage7")
+
+/turf/open/floor/cult/burnt_states()
+	return list("cultdamage", "cultdamage2", "cultdamage3", "cultdamage4", "cultdamage5", "cultdamage6", "cultdamage7")
+
 /turf/open/floor/dark2
 	icon_state = "darktile2"
 
@@ -363,12 +376,10 @@
 /turf/open/floor/engine
 	name = "reinforced floor"
 	icon_state = "engine"
-	intact_tile = 0
 	breakable_tile = FALSE
 	burnable_tile = FALSE
+	floor_tile = null
 
-/turf/open/floor/engine/make_plating()
-	return
 
 /turf/open/floor/engine/attackby(obj/item/I, mob/user, params)
 	if(iscrowbar(I)) // Prevent generation of infinite 'floor_tile' objs caused by the overridden make_plating() above never clearing the var
@@ -384,10 +395,7 @@
 			return
 
 		new /obj/item/stack/rods(src, 2)
-		ChangeTurf(/turf/open/floor)
-		var/turf/open/floor/F = src
-		F.make_plating()
-
+		make_plating()
 
 /turf/open/floor/engine/nitrogen
 
@@ -809,8 +817,25 @@
 	mediumxenofootstep = FOOTSTEP_CARPET
 	floor_tile = /obj/item/stack/tile/carpet
 
-/turf/open/floor/carpet/ex_act(severity)
-	return
+/turf/open/floor/carpet/broken_states()
+	return list("carpet-broken")
+
+/turf/open/floor/carpet/burnt_states()
+	return list("carpet-broken")
+
+/turf/open/floor/ex_act(severity)
+	if(hull_floor)
+		return ..()
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			make_plating()
+		if(EXPLODE_HEAVY)
+			if(prob(80))
+				make_plating()
+		if(EXPLODE_LIGHT)
+			if(prob(50))
+				make_plating()
+	return ..()
 
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"
