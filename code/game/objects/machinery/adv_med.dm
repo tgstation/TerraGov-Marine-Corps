@@ -32,12 +32,12 @@
 	go_out()
 
 /obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if (M.stat != CONSCIOUS || !ishuman(M))
+	if(!ishuman(M) || !ishuman(user) || M.stat != CONSCIOUS)
 		return
-	if (occupant)
+	if(occupant)
 		to_chat(user, span_boldnotice("The scanner is already occupied!"))
 		return
-	if (M.abiotic())
+	if(M.abiotic())
 		to_chat(user, span_boldnotice("Subject cannot have abiotic items on."))
 		return
 	M.forceMove(src)
@@ -47,8 +47,7 @@
 		qdel(O)
 
 /obj/machinery/bodyscanner/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M) || !ishuman(user))
-		return
+	. = ..()
 	move_inside_wrapper(M, user)
 
 /obj/machinery/bodyscanner/verb/move_inside()

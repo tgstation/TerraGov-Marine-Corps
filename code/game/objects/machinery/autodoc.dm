@@ -735,7 +735,7 @@
 	go_out()
 
 /obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
-	if(dragger.incapacitated() || !ishuman(dragger))
+	if(!ishuman(dropped) || !ishuman(dragger) || dragger.incapacitated())
 		return
 
 	if(occupant)
@@ -787,8 +787,7 @@
 
 
 /obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M) || !ishuman(user))
-		return
+	. = ..()
 	move_inside_wrapper(M, user)
 
 /obj/machinery/autodoc/verb/move_inside()

@@ -237,7 +237,7 @@
 	go_out()
 
 /obj/machinery/cryopod/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(user.stat != CONSCIOUS || !ishuman(M))
+	if(!ishuman(M) || !ishuman(user) || user.stat != CONSCIOUS)
 		return
 
 	if(!QDELETED(occupant))
@@ -247,8 +247,7 @@
 	climb_in(M, user)
 
 /obj/machinery/cryopod/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M) || !ishuman(user))
-		return
+	. = ..()
 	move_inside_wrapper(M, user)
 
 /obj/machinery/cryopod/verb/move_inside()
