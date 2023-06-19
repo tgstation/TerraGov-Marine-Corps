@@ -1,0 +1,4 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - balance: "Pillar of Spring can now support up to 4 squads roundstart"
