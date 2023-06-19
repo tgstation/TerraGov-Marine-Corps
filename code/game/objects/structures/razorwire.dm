@@ -10,7 +10,7 @@
 	coverage = 5
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASS_GRILLE
+	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASS_GRILLE|PASS_THROW
 	var/list/entangled_list
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
@@ -208,7 +208,7 @@
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(mover.throwing && istype(mover,/obj/item))
-		return FALSE
+		return TRUE
 
 /obj/structure/razorwire/update_icon_state()
 	var/health_percent = round(obj_integrity/max_integrity * 100)

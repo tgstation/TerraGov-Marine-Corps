@@ -201,7 +201,7 @@ Stepping directly on the mine will also blow it up
 	if(linked_mine.triggered) //Mine is already set to go off
 		return
 
-	if(linked_mine && isliving(AMA))
+	if(linked_mine && isliving(AM))
 		var/mob/living/unlucky_person = AM
 		// Don't trigger for dead people
 		if(unlucky_person.stat == DEAD)
