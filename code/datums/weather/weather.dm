@@ -106,12 +106,12 @@
 	SSweather.processing |= src
 	update_areas()
 	for(var/mob/impacted_mob AS in GLOB.player_list)
+		var/turf/impacted_mob_turf = get_turf(impacted_mob)
+		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
+			continue
 		if(telegraph_message)
 			to_chat(impacted_mob, telegraph_message)
 		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
-			continue
-		var/turf/impacted_mob_turf = get_turf(impacted_mob)
-		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
 			continue
 		if(telegraph_sound)
 			SEND_SOUND(impacted_mob, sound(telegraph_sound, volume = 60))
@@ -130,12 +130,12 @@
 	stage = MAIN_STAGE
 	update_areas()
 	for(var/mob/impacted_mob AS in GLOB.player_list)
+		var/turf/impacted_mob_turf = get_turf(impacted_mob)
+		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
+			continue
 		if(weather_message)
 			to_chat(impacted_mob, weather_message)
 		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
-			continue
-		var/turf/impacted_mob_turf = get_turf(impacted_mob)
-		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
 			continue
 		if(weather_sound)
 			SEND_SOUND(impacted_mob, sound(weather_sound))
@@ -154,12 +154,12 @@
 	stage = WIND_DOWN_STAGE
 	update_areas()
 	for(var/mob/impacted_mob AS in GLOB.player_list)
+		var/turf/impacted_mob_turf = get_turf(impacted_mob)
+		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
+			continue
 		if(end_message)
 			to_chat(impacted_mob, end_message)
 		if(impacted_mob.client?.prefs.toggles_sound & SOUND_WEATHER)
-			continue
-		var/turf/impacted_mob_turf = get_turf(impacted_mob)
-		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
 			continue
 		if(end_sound)
 			SEND_SOUND(impacted_mob, sound(end_sound))
