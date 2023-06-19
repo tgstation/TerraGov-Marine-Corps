@@ -323,10 +323,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/engineering/port_atmos)
-"axo" = (
-/obj/machinery/door_display/research_cell/cell,
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/medical_science)
 "axA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -2723,7 +2719,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/firealarm,
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -13011,6 +13007,7 @@
 /obj/item/tool/extinguisher,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
+/obj/machinery/door_display/research_cell/cell,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "qIG" = (
@@ -13759,7 +13756,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -17059,6 +17055,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/firealarm,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -41316,7 +41313,7 @@ rGg
 kQn
 fbP
 sXo
-axo
+gmc
 qIt
 nNo
 fFD
@@ -49084,7 +49081,7 @@ nTT
 xkD
 tqR
 gmv
-wmX
+qsC
 atU
 qsC
 pFw
