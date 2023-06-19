@@ -9,7 +9,7 @@
 	flags_atom = ON_BORDER
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
-	flags_pass = PASSABLE|PASSTABLE
+	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
 	climbable = TRUE
 	climb_delay = 10
 
@@ -76,10 +76,6 @@
 
 /obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
-	if(mover?.throwing)
-		return TRUE
 
 	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
 		return FALSE

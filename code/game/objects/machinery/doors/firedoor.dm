@@ -331,11 +331,3 @@
 	icon_state = "door_closed"
 	opacity = TRUE
 	density = TRUE
-
-
-/obj/machinery/door/firedoor/border_only/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-
-

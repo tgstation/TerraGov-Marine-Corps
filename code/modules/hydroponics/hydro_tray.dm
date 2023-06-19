@@ -10,6 +10,7 @@
 	coverage = 40
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
 	max_integrity = 40
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
@@ -134,12 +135,6 @@
 	connect()
 	update_icon()
 	start_processing()
-
-
-/obj/machinery/portable_atmospherics/hydroponics/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
 
 /obj/machinery/portable_atmospherics/hydroponics/process()
 

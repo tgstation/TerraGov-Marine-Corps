@@ -8,7 +8,7 @@
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
-	flags_pass = PASSSMALLSTRUCT|PASSABLE
+	flags_pass = PASSSMALLSTRUCT|PASSABLE|PASSFIRE
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
@@ -73,11 +73,6 @@
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(closed)
-		return TRUE
-
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
-		return TRUE
 
 	if(mover?.throwing)
 		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails

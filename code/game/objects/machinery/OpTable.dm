@@ -8,6 +8,7 @@
 	layer = TABLE_LAYER
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
+	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 1
 	active_power_usage = 5
@@ -124,14 +125,6 @@
 ///Wakes the buckled mob back up after they're released
 /obj/machinery/optable/proc/remove_knockout(mob/living/buckled_mob)
 	REMOVE_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT)
-
-/obj/machinery/optable/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return 1
-	else
-		return 0
-
 
 /obj/machinery/optable/MouseDrop_T(atom/A, mob/user)
 

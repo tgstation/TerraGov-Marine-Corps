@@ -9,6 +9,7 @@
 	mob_storage_capacity = 0
 	storage_capacity = 100
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
+	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
 
@@ -22,8 +23,6 @@
 
 /obj/structure/closet/crate/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others

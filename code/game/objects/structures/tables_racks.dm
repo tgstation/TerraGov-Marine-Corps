@@ -11,7 +11,7 @@
 	layer = TABLE_LAYER
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	flags_pass = PASSTABLE|PASSABLE
+	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
 	smoothing_flags = SMOOTH_BITMASK
@@ -99,8 +99,6 @@
 
 /obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
@@ -522,6 +520,7 @@
 	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
+	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
 	var/parts = /obj/item/frame/rack
 
 /obj/structure/rack/Initialize(mapload)
@@ -533,8 +532,6 @@
 
 /obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
 		return TRUE

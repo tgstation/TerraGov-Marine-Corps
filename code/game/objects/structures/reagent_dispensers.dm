@@ -9,6 +9,7 @@
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
+	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
 	max_integrity = 100
 	///high chance to block bullets, offset by being unanchored
 	coverage = 80
@@ -50,12 +51,6 @@
 			if (prob(5))
 				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
-
-
-/obj/structure/reagent_dispensers/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
 
 //Dispensers
 /obj/structure/reagent_dispensers/watertank

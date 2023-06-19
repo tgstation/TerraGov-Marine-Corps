@@ -5,6 +5,7 @@
 	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
+	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
 	var/obj/item/cell/cell
 	var/on = 0
 	var/open = 0
@@ -23,12 +24,6 @@
 	icon_state = "sheater[on]"
 	if(open)
 		overlays  += "sheater-open"
-
-/obj/machinery/space_heater/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
-
 
 /obj/machinery/space_heater/examine(mob/user)
 	. = ..()

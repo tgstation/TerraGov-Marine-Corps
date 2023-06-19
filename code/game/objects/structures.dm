@@ -38,37 +38,6 @@
 		if(smoothing_flags & SMOOTH_CORNERS)
 			icon_state = ""
 
-/obj/structure/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(.)
-		return
-
-	if((flags_pass & PASSSMALLSTRUCT) && (mover.flags_pass & PASSSMALLSTRUCT))
-		return TRUE
-
-	if((flags_pass & PASSTABLE) && (mover.flags_pass & PASSTABLE))
-		return TRUE
-
-	if(mover?.throwing)
-		if(flags_pass & PASSTHROW)
-			return TRUE
-
-	return FALSE
-
-///Handles extra checks for things trying to exit this objects turf
-/obj/structure/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if((flags_pass & PASSSMALLSTRUCT) && (mover.flags_pass & PASSSMALLSTRUCT))
-		return NONE
-
-	if((flags_pass & PASSTABLE) && (mover.flags_pass & PASSTABLE))
-		return NONE
-
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
-
 /obj/structure/proc/climb_on()
 
 	set name = "Climb structure"

@@ -8,6 +8,7 @@
 	can_interact = TRUE
 	gunnoise = 'sound/weapons/guns/fire/laser.ogg'
 	spawn_equipped_type = /obj/item/uav_turret/droid
+	flags_pass = PASSAIR|PASSFIRE
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
 	/// Existing signal for Supply console.
 	var/datum/supply_beacon/beacon_datum

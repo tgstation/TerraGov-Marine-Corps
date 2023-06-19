@@ -10,7 +10,7 @@
 	coverage = 5
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	flags_pass = PASSSMALLSTRUCT
+	flags_pass = PASSSMALLSTRUCT|PASSGRILLE
 	var/list/entangled_list
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
@@ -207,15 +207,7 @@
 
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
-		return TRUE
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
-		return TRUE
-	if(mover.throwing && istype(mover,/obj/item))
-		return TRUE
-	if(istype(mover, /obj/vehicle/multitile))
-		visible_message(span_danger("[mover] drives over and destroys [src]!"))
-		deconstruct(FALSE)
+	if(mover.throwing && istype(mover,/obj/item)) //TODO: SANITY CHECK THIS
 		return TRUE
 
 /obj/structure/razorwire/update_icon_state()
