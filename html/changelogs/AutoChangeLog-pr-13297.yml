@@ -1,0 +1,4 @@
+author: "Ben10083"
+delete-after: True
+changes:
+  - bugfix: "TA-40L standard rockets are orderable from requisitions again."
