@@ -1,0 +1,6 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Sandstorm actually uses all the sound variations"
+  - bugfix: "Acid rain telegraph and start/end messages work properly"
+  - bugfix: "You don't get the weather messages if you aren't on the weather's Z level anymore"
