@@ -452,7 +452,7 @@
 
 	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
 		var/obj/O = hit_atom
-		if(!O.anchored && !isxeno(src))
+		if(!O.anchored && !isxeno(src) && O.move_resist < MOVE_FORCE_EXTREMELY_STRONG)
 			step(O, dir)
 		O.hitby(src, speed)
 
