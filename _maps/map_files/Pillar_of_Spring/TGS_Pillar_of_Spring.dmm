@@ -1072,12 +1072,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
-"boB" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 6
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
 "boV" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -1680,10 +1674,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
-"bXV" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/cargo/arrow,
-/area/mainship/squads/req)
 "bYb" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -1733,12 +1723,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"ccZ" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
 "cdz" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -1826,10 +1810,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
-"clt" = (
-/obj/structure/drop_pod_launcher,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "cnd" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1913,15 +1893,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"crh" = (
-/obj/machinery/door/poddoor/railing{
-	id = "supply_elevator_railing"
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/req)
 "csh" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -6575,12 +6546,6 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"iIj" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
 "iII" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -6700,14 +6665,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
-"iOz" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
-/area/mainship/squads/req)
 "iOD" = (
 /obj/machinery/door_control/mainship/req{
 	id = "qm_warehouse";
@@ -8195,15 +8152,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
-"kRf" = (
-/obj/machinery/door/poddoor/railing{
-	id = "supply_elevator_railing"
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 10
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/req)
 "kRY" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/reagentgrinder,
@@ -8290,9 +8238,6 @@
 "kWc" = (
 /obj/machinery/door/poddoor/railing{
 	id = "supply_elevator_railing"
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 9
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
@@ -14741,9 +14686,6 @@
 	id = "supply_elevator_railing"
 	},
 /obj/machinery/floodlight/landing,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
@@ -50615,11 +50557,11 @@ dpY
 dpY
 dpY
 vAn
-boB
-ccZ
-ccZ
-ccZ
-iIj
+vAn
+vAn
+vAn
+vAn
+vAn
 mxq
 swv
 bYG
@@ -50872,11 +50814,11 @@ jRd
 jRd
 jRd
 cHE
-bXV
-clt
-clt
-clt
-iOz
+cHE
+cHE
+cHE
+cHE
+cHE
 ocK
 lxK
 hhf
@@ -51129,11 +51071,11 @@ jRd
 jRd
 jRd
 cHE
-bXV
-clt
-clt
-clt
-iOz
+cHE
+cHE
+cHE
+cHE
+cHE
 peH
 eGl
 prY
@@ -51386,10 +51328,10 @@ oiy
 jRd
 jRd
 qrR
-kRf
-crh
+kWc
+kWc
 sSN
-crh
+kWc
 kWc
 oGN
 xHi
