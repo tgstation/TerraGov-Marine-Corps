@@ -32,9 +32,9 @@
 	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
 	var/stored_charge = 2
 	/// How long until we get another charge
-	var/charge_refresh_time = 10 SECONDS
+	var/charge_refresh_time = 180 SECONDS
 	/// Time to respawn if out of charges
-	var/respawn_time = 10 SECONDS
+	var/respawn_time = 30 SECONDS
 	/// Our currently stored baneling
 	var/mob/living/carbon/xenomorph/baneling/stored_baneling
 
