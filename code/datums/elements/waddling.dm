@@ -23,13 +23,3 @@
 	var/prev_trans = matrix(target.transform)
 	animate(pixel_z = 0, transform = turn(target.transform, pick(-12, 0, 12)), time = 2)
 	animate(pixel_z = 0, transform = prev_trans, time = 0)
-
-/obj/item/clothing/shoes/clown_shoes/equipped(mob/user, slot)
-	. = ..()
-	if(slot == SLOT_SHOES && enabled_waddle)
-		user.AddElement(/datum/element/waddling)
-
-/obj/item/clothing/shoes/clown_shoes/unequipped(mob/user)
-	. = ..()
-	if(enabled_waddle)
-		user.RemoveElement(/datum/element/waddling)
