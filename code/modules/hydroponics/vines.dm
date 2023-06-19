@@ -8,7 +8,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = FLY_LAYER
-	allow_pass_flags = PASSTABLE|PASSGRILLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE
 
 	// Vars used by vines with seed data.
 	var/age = 0

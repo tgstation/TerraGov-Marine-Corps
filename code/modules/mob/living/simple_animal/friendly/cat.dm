@@ -13,8 +13,8 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	allow_pass_flags = PASSMOB
-	pass_flags = PASSMOB|PASSTABLE
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_MOB|PASS_LOW_STRUCTURE
 	mob_size = MOB_SIZE_SMALL
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
@@ -45,8 +45,8 @@
 	icon_living = "kitten"
 	icon_dead = "kitten_dead"
 	density = FALSE
-	allow_pass_flags = PASSMOB
-	pass_flags = PASSMOB|PASSTABLE
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_MOB|PASS_LOW_STRUCTURE
 	mob_size = MOB_SIZE_SMALL
 
 

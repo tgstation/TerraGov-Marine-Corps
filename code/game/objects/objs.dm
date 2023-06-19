@@ -103,14 +103,14 @@
 	if(.)
 		return
 
-	if((allow_pass_flags & PASSSMALLSTRUCT) && (mover.pass_flags & PASSSMALLSTRUCT))
+	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
 
-	if((allow_pass_flags & PASSTABLE) && (mover.pass_flags & PASSTABLE))
+	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
 		return TRUE
 
 	if(mover?.throwing)
-		if(allow_pass_flags & PASSTHROW)
+		if(allow_pass_flags & PASS_THROW)
 			return TRUE
 
 	return FALSE
@@ -118,10 +118,10 @@
 ///Handles extra checks for things trying to exit this objects turf
 /obj/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	SIGNAL_HANDLER
-	if((allow_pass_flags & PASSSMALLSTRUCT) && (mover.pass_flags & PASSSMALLSTRUCT))
+	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return NONE
 
-	if((allow_pass_flags & PASSTABLE) && (mover.pass_flags & PASSTABLE))
+	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
 		return NONE
 
 	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))

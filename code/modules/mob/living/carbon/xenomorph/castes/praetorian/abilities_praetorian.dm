@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
 		A.acid_spray_act(owner)
-		if(((A.density && !(A.allow_pass_flags & PASSPROJECTILE) && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
+		if(((A.density && !(A.allow_pass_flags & PASS_PROJECTILE) && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
 			is_blocked = TRUE
 	if(!is_blocked)
 		if(!skip_timer)
@@ -174,15 +174,15 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	//Swapping part
 	var/mob/living/carbon/human/target = M
-	var/owner_passmob = (owner.allow_pass_flags & PASSMOB)
-	var/target_passmob = (target.allow_pass_flags & PASSMOB)
-	owner.allow_pass_flags |= PASSMOB
-	target.allow_pass_flags |= PASSMOB
+	var/owner_passmob = (owner.allow_pass_flags & PASS_MOB)
+	var/target_passmob = (target.allow_pass_flags & PASS_MOB)
+	owner.allow_pass_flags |= PASS_MOB
+	target.allow_pass_flags |= PASS_MOB
 	target.forceMove(last_turf)
 	if(!owner_passmob)
-		owner.allow_pass_flags &= ~PASSMOB
+		owner.allow_pass_flags &= ~PASS_MOB
 	if(!target_passmob)
-		target.allow_pass_flags &= ~PASSMOB
+		target.allow_pass_flags &= ~PASS_MOB
 
 	target.ParalyzeNoChain(0.5 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
 

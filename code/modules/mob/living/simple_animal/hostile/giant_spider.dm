@@ -39,7 +39,7 @@
 	melee_damage = 20
 	faction = FACTION_SPIDER
 	var/busy = SPIDER_IDLE
-	pass_flags = PASSTABLE
+	pass_flags = PASS_LOW_STRUCTURE
 	move_to_delay = 6
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'

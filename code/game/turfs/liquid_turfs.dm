@@ -259,7 +259,7 @@
 			if(!L.on_fire || L.getFireLoss() <= 200)
 				var/damage_amount = max(L.modify_by_armor(LAVA_TILE_BURN_DAMAGE, FIRE), LAVA_TILE_BURN_DAMAGE * 0.3) //snowflakey interaction to stop complete lava immunity
 				L.take_overall_damage(damage_amount, BURN, updating_health = TRUE, max_limbs = 3)
-				if(!CHECK_BITFIELD(L.allow_pass_flags, PASSFIRE))//Pass fire allow to cross lava without igniting
+				if(!CHECK_BITFIELD(L.allow_pass_flags, PASS_FIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()
 				. = TRUE

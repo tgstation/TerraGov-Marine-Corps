@@ -17,7 +17,7 @@
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
-	allow_pass_flags = PASSGLASS|PASSAIR
+	allow_pass_flags = PASS_GLASS|PASS_AIR
 
 	var/obj/item/circuitboard/airlock/electronics = null
 
@@ -50,14 +50,14 @@
 
 /obj/structure/windoor_assembly/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
 		return TRUE
 
 	if(get_dir(loc, target) & dir) //Make sure looking at appropriate border
 		return FALSE
 
 /obj/structure/windoor_assembly/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	if(CHECK_BITFIELD(mover.pass_flags, PASSGLASS))
+	if(CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
 		return NONE
 
 	return ..()

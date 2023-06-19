@@ -259,7 +259,7 @@
 
 /obj/structure/plasticflaps/CanAllowThrough(atom/movable/mover, turf/T)
 	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
 		return prob(60)
 
 	var/obj/structure/bed/B = mover

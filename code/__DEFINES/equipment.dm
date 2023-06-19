@@ -1,16 +1,28 @@
 //PASS FLAGS
-#define PASSTABLE (1<<0)
-#define PASSGLASS (1<<1) //lasers and the like can pass unobstructed
-#define PASSGRILLE (1<<2)
-#define PASSMOB (1<<3)
-#define PASSSMALLSTRUCT (1<<4)
-#define PASSFIRE (1<<5)
-#define PASSXENO (1<<6)
-#define PASSTHROW (1<<7) //you can throw past
-#define PASSPROJECTILE (1<<8) //projectiles can pass
-#define PASSAIR (1<<9) //non-airtight, gas/fire can pass
-#define PASSABLE (PASSTHROW|PASSPROJECTILE|PASSAIR)
-#define HOVERING (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
+
+///Pass low objects like tables or windowframes
+#define PASS_LOW_STRUCTURE (1<<0)
+///lasers and the like can pass unobstructed
+#define PASS_GLASS (1<<1)
+///Pass grilles
+#define PASS_GRILLE (1<<2)
+///Pass mobs
+#define PASS_MOB (1<<3)
+///Pass defensive structures like barricades
+#define PASS_DEFENSIVE_STRUCTURE (1<<4)
+///Allows Mobs to pass fire without ignition
+#define PASS_FIRE (1<<5)
+///Pass xenos
+#define PASS_XENO (1<<6)
+///you can throw past
+#define PASS_THROW (1<<7)
+///projectiles can pass
+#define PASS_PROJECTILE (1<<8)
+///non-airtight, gas/fire can pass
+#define PASS_AIR (1<<9)
+
+#define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
+#define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)
 
 //==========================================================================================
 

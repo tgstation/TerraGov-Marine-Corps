@@ -8,7 +8,7 @@
 	anchored = TRUE
 	coverage = 10
 	flags_atom = CONDUCT
-	allow_pass_flags = PASSAIR|PASSPROJECTILE|PASSGRILLE
+	allow_pass_flags = PASS_AIR|PASS_PROJECTILE|PASS_GRILLE
 	layer = OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)

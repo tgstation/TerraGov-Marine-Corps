@@ -207,7 +207,7 @@
 	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
 	to_chat(src, span_warning("You are burned!"))
 
-	if(allow_pass_flags & PASSFIRE) //Pass fire allow to cross fire without being ignited
+	if(allow_pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being ignited
 		return
 
 	adjust_fire_stacks(burnlevel)

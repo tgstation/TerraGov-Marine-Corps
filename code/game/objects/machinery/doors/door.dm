@@ -90,7 +90,7 @@
 
 /obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
 		return !opacity
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)

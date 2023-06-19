@@ -231,7 +231,7 @@
 	var/obj/item/assembly/infra/master
 	anchored = TRUE
 	density = FALSE
-	allow_pass_flags = PASSTABLE|PASSGLASS|PASSGRILLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_GLASS|PASS_GRILLE
 
 /obj/effect/beam/i_beam/Initialize(mapload)
 	. = ..()

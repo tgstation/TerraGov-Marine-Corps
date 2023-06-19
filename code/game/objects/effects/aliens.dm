@@ -41,7 +41,7 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	allow_pass_flags = PASSTABLE|PASSMOB|PASSGRILLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_GRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE

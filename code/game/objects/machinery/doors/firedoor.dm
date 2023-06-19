@@ -318,7 +318,7 @@
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_atom = ON_BORDER
-	allow_pass_flags = PASSGLASS
+	allow_pass_flags = PASS_GLASS
 
 /obj/machinery/door/firedoor/border_only/Initialize(mapload)
 	. = ..()
