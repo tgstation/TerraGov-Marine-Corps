@@ -10,6 +10,7 @@
 	coverage = 5
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
+	flags_pass = PASSSMALLSTRUCT
 	var/list/entangled_list
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
@@ -61,16 +62,6 @@
 	var/def_zone = ran_zone()
 	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, MELEE, TRUE, updating_health = TRUE)
 	razorwire_tangle(M)
-
-/obj/structure/razorwire/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
-
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/entangled, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.

@@ -12,7 +12,7 @@
 	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER
-	flags_pass = PASSLASER
+	flags_pass = PASSGLASS
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
 
@@ -22,7 +22,6 @@
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	max_integrity = 100
-
 
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
@@ -38,13 +37,6 @@
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
-/obj/machinery/door/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/moveblockers)
-	SIGNAL_HANDLER
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	moveblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE

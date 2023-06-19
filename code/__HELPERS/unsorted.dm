@@ -180,7 +180,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /**
  *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
  *	Variables:
- *	bypass_window - check for PASSLASER - laser like behavior
+ *	bypass_window - check for PASSGLASS - laser like behavior
  *	projectile - check for PASSPROJECTILE - bullet like behavior
  *	bypass_xeno - whether to bypass dense xeno structures like flamers
  *	air_pass - whether to bypass non airtight atoms
@@ -217,7 +217,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 			continue
 		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
-		if((object.flags_pass & PASSLASER) && bypass_window)
+		if((object.flags_pass & PASSGLASS) && bypass_window)
 			continue
 		if((object.flags_pass & PASSAIR) && air_pass)
 			continue

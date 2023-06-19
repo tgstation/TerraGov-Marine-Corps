@@ -8,6 +8,7 @@
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
+	flags_pass = PASSSMALLSTRUCT|PASSABLE
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
@@ -57,25 +58,18 @@
 			. += span_warning("It's crumbling apart, just a few more blows will tear it apart.")
 
 
-/obj/structure/barricade/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
-		return NONE
+/obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	. = ..() //todo: check my logic here makes sense
 
-	if(O.throwing)
-		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
+	if(.)
+		return
+
+	if(mover.throwing)
+		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
 			if(direction & dir)
 				knownblockers += src
 				return COMPONENT_ATOM_BLOCK_EXIT
-		if(!allow_thrown_objs && !istype(O, /obj/projectile))
-			if(direction & dir)
-				knownblockers += src
-				return COMPONENT_ATOM_BLOCK_EXIT
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
+	return NONE
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

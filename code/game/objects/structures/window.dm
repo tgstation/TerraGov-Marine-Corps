@@ -8,6 +8,7 @@
 	anchored = TRUE
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER|DIRLOCK
+	flags_pass = PASSGLASS
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
@@ -21,7 +22,6 @@
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
 	var/damageable = TRUE
 	var/deconstructable = TRUE
-	flags_pass = PASSLASER
 
 /obj/structure/window/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_GLASS, -10, 5)
@@ -85,13 +85,11 @@
 	if(!is_full_window() && !(get_dir(loc, target) & dir))
 		return TRUE
 
-/obj/structure/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+/obj/structure/window/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
+
+	return ..()
 
 /obj/structure/window/attack_hand(mob/living/user)
 	. = ..()

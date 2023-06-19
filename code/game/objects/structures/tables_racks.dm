@@ -11,6 +11,7 @@
 	layer = TABLE_LAYER
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
+	flags_pass = PASSTABLE|PASSABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
 	smoothing_flags = SMOOTH_BITMASK
@@ -109,16 +110,6 @@
 			return FALSE
 		else
 			return TRUE
-
-
-/obj/structure/table/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
 
 //Flipping tables, nothing more, nothing less
 /obj/structure/table/MouseDrop(over_object, src_location, over_location)

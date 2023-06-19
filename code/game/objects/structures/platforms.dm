@@ -9,6 +9,7 @@
 	flags_atom = ON_BORDER
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
+	flags_pass = PASSABLE|PASSTABLE
 	climbable = TRUE
 	climb_delay = 10
 
@@ -91,19 +92,6 @@
 		return FALSE
 	else
 		return TRUE
-
-///Checks if we can exit the platform's turf
-/obj/structure/platform/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(O.flags_pass, PASSTABLE))
-		return NONE
-	if(O.throwing)
-		return NONE
-	if(!(direction & dir) || (O.status_flags & INCORPOREAL))
-		return NONE
-
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/platform/rockcliff
 	icon_state = "rockcliff"

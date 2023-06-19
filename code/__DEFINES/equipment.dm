@@ -1,16 +1,14 @@
 //PASS FLAGS
 #define PASSTABLE (1<<0)
-#define PASSGLASS (1<<1)
+#define PASSGLASS (1<<1) //lasers and the like can pass unobstructed
 #define PASSGRILLE (1<<2)
-#define PASSBLOB (1<<3)
-#define PASSMOB (1<<4)
-#define PASSSMALLSTRUCT (1<<5)
-#define PASSFIRE (1<<6)
-#define PASSXENO (1<<7)
-#define PASSTHROW (1<<8) //you can throw past
-#define PASSPROJECTILE (1<<9) //projectiles can pass
-#define PASSAIR (1<<10) //non-airtight, gas/fire can pass
-#define PASSLASER (1<<11) //lasers and the like can pass unobstructed
+#define PASSMOB (1<<3)
+#define PASSSMALLSTRUCT (1<<4)
+#define PASSFIRE (1<<5)
+#define PASSXENO (1<<6)
+#define PASSTHROW (1<<7) //you can throw past
+#define PASSPROJECTILE (1<<8) //projectiles can pass
+#define PASSAIR (1<<9) //non-airtight, gas/fire can pass
 #define PASSABLE (PASSTHROW|PASSPROJECTILE|PASSAIR)
 #define HOVERING (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
 

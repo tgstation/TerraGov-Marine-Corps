@@ -21,8 +21,8 @@
 /obj/machinery/line_nexter/ex_act(severity)
 	return
 
-/obj/machinery/line_nexter/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
-	SIGNAL_HANDLER
+/obj/machinery/line_nexter/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
+	//todo: unfuck this one
 	if(!iscarbon(O))
 		return NONE
 	var/mob/living/carbon/C = O

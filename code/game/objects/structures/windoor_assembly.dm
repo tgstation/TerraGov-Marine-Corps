@@ -17,6 +17,7 @@
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
+	flags_pass = PASSGLASS|PASSAIR
 
 	var/obj/item/circuitboard/airlock/electronics = null
 
@@ -55,14 +56,11 @@
 	if(get_dir(loc, target) & dir) //Make sure looking at appropriate border
 		return FALSE
 
-/obj/structure/windoor_assembly/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	SIGNAL_HANDLER
+/obj/structure/windoor_assembly/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
+
+	return ..()
 
 
 /obj/structure/windoor_assembly/attackby(obj/item/I, mob/user, params)
