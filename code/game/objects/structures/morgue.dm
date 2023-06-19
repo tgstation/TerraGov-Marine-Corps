@@ -138,6 +138,7 @@
 
 
 /obj/structure/morgue_tray/MouseDrop_T(atom/movable/O, mob/user)
+	. = ..()
 	if (!istype(O) || O.anchored || !isturf(O.loc))
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/bodybag))

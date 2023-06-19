@@ -145,6 +145,7 @@
 
 //Mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
+	. = ..()
 	// Check the user, if they can do all the things, are they close, alive?
 	if(isAI(user) || isxeno(user) || !isliving(user) || get_dist(user, target) > 1 || !in_range(user, src) || user.incapacitated(TRUE))
 		return
