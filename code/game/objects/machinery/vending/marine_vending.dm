@@ -1,5 +1,5 @@
 /obj/machinery/vending/weapon
-	name = "Automated weapons rack"
+	name = "automated weapons rack"
 	desc = "An automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "marinearmory"
 	icon_vend = "marinearmory-vend"
