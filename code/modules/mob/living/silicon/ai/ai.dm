@@ -421,8 +421,7 @@
 /mob/living/silicon/ai/proc/associate_artillery(mortar)
 	if(linked_artillery)
 		UnregisterSignal(linked_artillery, COMSIG_PARENT_QDELETING)
-		linked_artillery = null
-		return FALSE
+		linked_artillery.unset_targeter()
 	linked_artillery = mortar
 	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, PROC_REF(clean_artillery_refs))
 	return TRUE
