@@ -516,7 +516,7 @@
 	desc = "Throw one of your tentacles forward to grab a tallhost or item."
 	ability_name = "Tentacle"
 	cooldown_timer = 20 SECONDS
-	plasma_cost = 200
+	plasma_cost = 175
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENTACLE,
 	)

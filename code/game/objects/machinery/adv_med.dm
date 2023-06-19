@@ -31,17 +31,17 @@
 		return
 	go_out()
 
-/obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(!ishuman(M) || !ishuman(user) || M.stat != CONSCIOUS)
+/obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/living/target, mob/user)
+	if(!ishuman(target) || !ishuman(user) || user.incapacitated(TRUE))
 		return
 	if(occupant)
 		to_chat(user, span_boldnotice("The scanner is already occupied!"))
 		return
-	if(M.abiotic())
+	if(target.abiotic())
 		to_chat(user, span_boldnotice("Subject cannot have abiotic items on."))
 		return
-	M.forceMove(src)
-	occupant = M
+	target.forceMove(src)
+	occupant = target
 	icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		qdel(O)

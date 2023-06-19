@@ -29,7 +29,8 @@
 		if(FOOTSTEP_MOB_HUMAN)
 			if(!ishuman(target))
 				return ELEMENT_INCOMPATIBLE
-			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_humanstep))
+			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(humanstep_wrapper)) //we don't want the movement signal args
+			RegisterSignal(target, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(play_humanstep))
 			steps_for_living[target] = 0
 			return
 		if(FOOTSTEP_MOB_SHOE)
@@ -40,11 +41,12 @@
 			footstep_sounds = GLOB.xenomediumstep
 		if(FOOTSTEP_XENO_HEAVY)
 			footstep_sounds = GLOB.xenoheavystep
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_simplestep))
+	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(simplestep_wrapper))
+	RegisterSignal(target, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(play_simplestep))
 	steps_for_living[target] = 0
 
 /datum/element/footstep/Detach(atom/movable/source)
-	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_ELEMENT_JUMP_ENDED))
 	steps_for_living -= source
 	return ..()
 
@@ -77,28 +79,44 @@
 
 	return turf
 
-///Plays footsteps for anything that isn't human
-/datum/element/footstep/proc/play_simplestep(mob/living/source)
+///Wrapper for movement triggered footsteps for simplestep
+/datum/element/footstep/proc/simplestep_wrapper(mob/living/source)
 	SIGNAL_HANDLER
 
-	var/turf/open/source_loc = prepare_step(source)
+	play_simplestep(source)
+
+///Wrapper for movement triggered footsteps for human step
+/datum/element/footstep/proc/humanstep_wrapper(mob/living/source)
+	SIGNAL_HANDLER
+
+	play_humanstep(source)
+
+///Plays footsteps for anything that isn't human
+/datum/element/footstep/proc/play_simplestep(mob/living/source, force_play = FALSE, volume_multiplier = 1, range_adjustment = 0)
+	SIGNAL_HANDLER
+
+	var/turf/open/source_loc
+	if(force_play)
+		source_loc = get_turf(source)
+		if(!istype(source_loc))
+			return
+	else
+		source_loc = prepare_step(source)
+
 	if(!source_loc)
 		return
 
-	var/volume_multiplier = 1
-	var/range_adjustment = 0
-
 	if(HAS_TRAIT(source, TRAIT_HEAVY_STEP))
 		volume_multiplier += 0.3
-		range_adjustment = 3
+		range_adjustment += 3
 
 	if(HAS_TRAIT(source, TRAIT_LIGHT_STEP))
 		volume_multiplier -= 0.5
-		range_adjustment = -3
+		range_adjustment += -3
 
 	if(source.m_intent == MOVE_INTENT_WALK)
 		volume_multiplier -= 0.5
-		range_adjustment = -3
+		range_adjustment += -3
 
 
 	if(isfile(footstep_sounds) || istext(footstep_sounds))
@@ -106,8 +124,10 @@
 		return
 
 	var/turf_footstep
-	if(locate(/obj/alien/weeds) in source_loc) //TODO replace this horribleness
-		turf_footstep = FOOTSTEP_RESIN
+
+	var/override_sound = source_loc.get_footstep_override()
+	if(override_sound)
+		turf_footstep = override_sound
 	else switch(footstep_type)
 		if(FOOTSTEP_XENO_MEDIUM)
 			turf_footstep = source_loc.mediumxenofootstep
@@ -128,53 +148,52 @@
 	)
 
 ///Plays footsteps for humans
-/datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
+/datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, force_play = FALSE, volume_multiplier = 1, range_adjustment = 0)
 	SIGNAL_HANDLER
 
-	var/turf/open/source_loc = prepare_step(source)
+	var/turf/open/source_loc
+	if(force_play)
+		source_loc = get_turf(source)
+		if(!istype(source_loc))
+			return
+	else
+		source_loc = prepare_step(source)
+
 	if(!source_loc)
 		return
 
-	var/volume_multiplier = 1
-	var/range_adjustment = 0
-
 	if(HAS_TRAIT(source, TRAIT_HEAVY_STEP))
 		volume_multiplier += 0.3
-		range_adjustment = 3
+		range_adjustment += 3
 
 	if(HAS_TRAIT(source, TRAIT_LIGHT_STEP))
 		volume_multiplier -= 0.5
-		range_adjustment = -3
+		range_adjustment += -3
 
 	if(source.m_intent == MOVE_INTENT_WALK)
 		volume_multiplier -= 0.5
-		range_adjustment = -3
+		range_adjustment += -3
 
-	if(locate(/obj/alien/weeds) in source_loc) //TODO replace this horrible snowflake check
-		playsound(
-			source_loc,
-			pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
-			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume * volume_multiplier,
-			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range + range_adjustment,
-		)
-		return
+	var/override_sound = source_loc.get_footstep_override()
+	var/footstep_type
 
 	if((source.wear_suit?.flags_armor_protection | source.w_uniform?.flags_armor_protection | source.shoes?.flags_armor_protection) & FEET) //We are not disgusting barefoot bandits
 		var/static/list/footstep_sounds = GLOB.shoefootstep //static is faster
+		footstep_type = override_sound ? override_sound : source_loc.shoefootstep
 		playsound(
 			source_loc,
-			pick(footstep_sounds[source_loc.shoefootstep][1]),
-			footstep_sounds[source_loc.shoefootstep][2] * volume * volume_multiplier,
+			pick(footstep_sounds[footstep_type][1]),
+			footstep_sounds[footstep_type][2] * volume * volume_multiplier,
 			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[source_loc.shoefootstep][3] + e_range + range_adjustment,
+			DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[footstep_type][3] + e_range + range_adjustment,
 		)
 	else
 		var/static/list/bare_footstep_sounds = GLOB.barefootstep
+		footstep_type = override_sound ? override_sound : source_loc.barefootstep
 		playsound(
 			source_loc,
-			pick(GLOB.barefootstep[source_loc.barefootstep][1]),
-			GLOB.barefootstep[source_loc.barefootstep][2] * volume * volume_multiplier,
+			pick(GLOB.barefootstep[footstep_type][1]),
+			GLOB.barefootstep[footstep_type][2] * volume * volume_multiplier,
 			sound_vary,
-			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[source_loc.barefootstep][3] + e_range + range_adjustment,
+			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[footstep_type][3] + e_range + range_adjustment,
 		)

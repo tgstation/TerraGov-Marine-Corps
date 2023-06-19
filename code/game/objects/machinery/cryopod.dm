@@ -236,15 +236,15 @@
 		return
 	go_out()
 
-/obj/machinery/cryopod/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(!ishuman(M) || !ishuman(user) || user.stat != CONSCIOUS)
+/obj/machinery/cryopod/proc/move_inside_wrapper(mob/living/target, mob/user)
+	if(!ishuman(target) || !ishuman(user) || user.incapacitated(TRUE))
 		return
 
 	if(!QDELETED(occupant))
 		to_chat(user, span_warning("[src] is occupied."))
 		return
 
-	climb_in(M, user)
+	climb_in(target, user)
 
 /obj/machinery/cryopod/MouseDrop_T(mob/M, mob/user)
 	. = ..()

@@ -2060,7 +2060,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"
-	icon_state = "shell"
+	icon_state = "recoilless_rifle_he"
 	hud_state = "shell_he"
 	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
@@ -2078,6 +2078,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/heat
 	name = "HEAT shell"
+	icon_state = "recoilless_rifle_heat"
 	hud_state = "shell_heat"
 	damage = 200
 	penetration = 100
@@ -2088,6 +2089,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
+	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
@@ -2101,6 +2103,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/chemical
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_smoke"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
 	accurate_range = 21
@@ -2122,16 +2125,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/chemical/cloak
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_cloak"
 	hud_state = "shell_cloak"
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
 /datum/ammo/rocket/recoilless/chemical/plasmaloss
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_tanglefoot"
 	hud_state = "shell_tanglefoot"
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
 /datum/ammo/rocket/recoilless/low_impact
 	name = "low impact explosive shell"
+	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
@@ -2700,6 +2706,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 0
 	damage_type = STAMINA
 	hitscan_effect_icon = "blue_beam"
+	bullet_color = COLOR_DISABLER_BLUE
 	///plasma drained per hit
 	var/plasma_drain = 25
 
@@ -2719,6 +2726,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 2
 	hitscan_effect_icon = "beam_grass"
+	bullet_color = LIGHT_COLOR_GREEN
 	///number of microwave stacks to apply when hitting mobvs
 	var/microwave_stacks = 1
 
@@ -2749,6 +2757,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 1
 	hitscan_effect_icon = "pu_laser"
+	bullet_color = LIGHT_COLOR_PURPLE
 
 /datum/ammo/energy/lasgun/marine/blast/spread
 	name = "additional laser blast"
@@ -2761,6 +2770,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0
 	hitscan_effect_icon = "pu_laser"
+	bullet_color = LIGHT_COLOR_PURPLE
 
 /datum/ammo/energy/lasgun/marine/impact/on_hit_mob(mob/M, obj/projectile/proj)
 	var/knockback_dist = round(LERP(3, 1, proj.distance_travelled / 6), 1)
@@ -2774,6 +2784,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0
 	hitscan_effect_icon = "blue_beam"
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/cripple/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, slowdown = 1.5)
@@ -2810,6 +2821,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 0
 	hitscan_effect_icon = "beam_solar"
+	bullet_color = LIGHT_COLOR_YELLOW
 	///number of melting stacks to apply when hitting mobs
 	var/melt_stacks = 2
 
@@ -2847,6 +2859,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/shatter
 	name = "sniper shattering bolt"
@@ -2857,6 +2870,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 5
 	sundering = 10
 	hitscan_effect_icon = "pu_laser"
+	bullet_color = LIGHT_COLOR_PURPLE
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 5 SECONDS
 
@@ -2877,6 +2891,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
 	bonus_projectiles_scatter = 0
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/ricochet/one
 	damage = 80
@@ -2906,6 +2921,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	sundering = 1
 	hitscan_effect_icon = "beam_particle"
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
 	name = "disabler bolt"
@@ -2914,7 +2930,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 70
 	penetration = 0
 	damage_type = STAMINA
-	hitscan_effect_icon = "stun"
+	hitscan_effect_icon = "beam_stun"
+	bullet_color = LIGHT_COLOR_YELLOW
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"
@@ -2926,6 +2943,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 0.5
 	hitscan_effect_icon = "beam_incen"
+	bullet_color = COLOR_LASER_RED
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)

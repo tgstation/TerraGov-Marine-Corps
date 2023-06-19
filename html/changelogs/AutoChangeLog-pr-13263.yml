@@ -1,0 +1,5 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - rscadd: "light to hitscan lasers"
+  - bugfix: "disabler shots being invisible"

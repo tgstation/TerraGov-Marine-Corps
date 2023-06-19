@@ -1,4 +1,4 @@
 author: "ivanmixo"
 delete-after: True
 changes:
-  - bugfix: "Fixed a platform runtime"
+  - bugfix: "Fixed a debris runtime"
