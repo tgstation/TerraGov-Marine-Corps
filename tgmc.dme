@@ -410,6 +410,7 @@
 #include "code\datums\elements\strappable.dm"
 #include "code\datums\elements\strippable.dm"
 #include "code\datums\elements\undertile.dm"
+#include "code\datums\elements\waddling.dm"
 #include "code\datums\elements\wall_speedup.dm"
 #include "code\datums\elements\windowshutter.dm"
 #include "code\datums\emergency_calls\clf.dm"

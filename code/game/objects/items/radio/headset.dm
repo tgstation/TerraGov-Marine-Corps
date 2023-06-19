@@ -438,6 +438,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/med
 	minimap_type = /datum/action/minimap/researcher
 
+/obj/item/radio/headset/mainship/service
+	name = "service radio headset"
+	icon_state = "headset_marine_xray"
+	keyslot = /obj/item/encryptionkey/general
+
 /obj/item/radio/headset/mainship/doc
 	name = "medical radio headset"
 	icon_state = "med_headset"

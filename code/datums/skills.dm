@@ -694,3 +694,11 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "Skeleton"
 	cqc = SKILL_CQC_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
+
+/datum/skills/civilian/clown
+	name = CLOWN
+	cqc = SKILL_CQC_MASTER
+	police = SKILL_CQC_DEFAULT
+	medical = SKILL_MEDICAL_UNTRAINED
+	firearms = SKILL_FIREARMS_UNTRAINED
+	melee_weapons = SKILL_MELEE_TRAINED

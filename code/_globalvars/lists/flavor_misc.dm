@@ -99,6 +99,7 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"charlie_smartgunner",
 	"chief_medical",
 	"cl",
+	"clown",
 	"crusher",
 	"cse",
 	"defender",

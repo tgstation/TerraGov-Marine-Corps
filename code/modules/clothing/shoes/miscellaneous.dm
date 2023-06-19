@@ -88,12 +88,21 @@
 	icon_state = "clown"
 	item_state = "clown"
 	slowdown = SHOES_SLOWDOWN + 1
-
+	var/enabled_waddle = TRUE
 
 /obj/item/clothing/shoes/clown_shoes/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg', 'sound/effects/clownstep2.ogg'), 50)
 
+/obj/item/clothing/shoes/clown_shoes/equipped(mob/user, slot)
+	. = ..()
+	if(slot == SLOT_SHOES && enabled_waddle)
+		user.AddElement(/datum/element/waddling)
+
+/obj/item/clothing/shoes/clown_shoes/unequipped(mob/user)
+	. = ..()
+	if(enabled_waddle)
+		user.RemoveElement(/datum/element/waddling)
 
 /obj/item/clothing/shoes/jackboots
 	name = "jackboots"
