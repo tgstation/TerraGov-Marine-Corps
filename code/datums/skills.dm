@@ -698,7 +698,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/civilian/clown
 	name = CLOWN
 	cqc = SKILL_CQC_MASTER
-	police = SKILL_CQC_DEFAULT
+	police = SKILL_POLICE_DEFAULT
 	medical = SKILL_MEDICAL_UNTRAINED
 	firearms = SKILL_FIREARMS_UNTRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
