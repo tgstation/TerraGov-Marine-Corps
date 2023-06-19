@@ -11,7 +11,7 @@
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
-	allow_pass_flags = PASSABLE|PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
+	pass_flags = PASSTABLE|PASSABLE|PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
 
 	a_intent = INTENT_HELP

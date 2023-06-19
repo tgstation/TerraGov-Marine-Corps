@@ -17,7 +17,7 @@
 	coverage = 40
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
 	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASSAIR|PASSFIRE
+	allow_pass_flags = PASSAIR
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
 
 	/// The material dropped on destruction

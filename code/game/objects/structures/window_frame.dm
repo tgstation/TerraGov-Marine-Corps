@@ -8,7 +8,7 @@
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
 	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
-	allow_pass_flags = PASSTABLE|PASSABLE|PASSFIRE
+	allow_pass_flags = PASSTABLE|PASSABLE
 	max_integrity = 150
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
