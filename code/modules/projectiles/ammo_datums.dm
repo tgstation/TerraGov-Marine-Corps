@@ -1313,7 +1313,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	if(istype(T, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = T
-		wall_victim.take_damage((autocannon_wall_bonus))
+		wall_victim.take_damage(autocannon_wall_bonus, proj.damtype, proj.armor_type)
 
 /datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 5
@@ -2807,7 +2807,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/marine/autolaser/charge/on_hit_turf(turf/T, obj/projectile/proj)
 	if(istype(T, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = T
-		wall_victim.take_damage((proj.damage))
+		wall_victim.take_damage(proj.damage, proj.damtype, proj.armor_type)
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting
 	name = "melting machine laser bolt"
@@ -3029,7 +3029,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			var/obj/obj_victim = victim
 			if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
 				continue
-			obj_victim.take_damage(aoe_damage, BURN, ENERGY, 0, armour_penetration = penetration)
+			obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 		if(victim.anchored)
 			continue
 		var/throw_dir = get_dir(T, victim)
@@ -3067,7 +3067,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
 		var/obj/vehicle/sealed/mecha/mech_victim = O
-		mech_victim.take_damage(200, BURN, ENERGY, 0, armour_penetration = penetration)
+		mech_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
 	if(!isxeno(M))

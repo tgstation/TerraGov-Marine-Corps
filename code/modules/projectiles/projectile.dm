@@ -1220,7 +1220,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(prob(30))
 		visible_message(span_warning("[src] is damaged by [proj]!"), visible_message_flags = COMBAT_MESSAGE)
-	take_damage(damage)
+	take_damage(damage, proj.damtype, proj.armor_type)
 	return TRUE
 
 

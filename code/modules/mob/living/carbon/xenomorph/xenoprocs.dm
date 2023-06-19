@@ -396,7 +396,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	take_damage(X.xeno_caste.acid_spray_structure_damage, "acid", "acid")
+	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
@@ -404,7 +404,7 @@
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
-	take_damage_type(X.xeno_caste.acid_spray_structure_damage, "acid", src)
+	take_damage_type(X.xeno_caste.acid_spray_structure_damage, ACID, src)
 	healthcheck()
 	return TRUE
 
