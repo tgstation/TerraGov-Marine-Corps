@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes:
+  - rscadd: "Added a signal for jump landings on turfs, and implemented for squeak toys."
