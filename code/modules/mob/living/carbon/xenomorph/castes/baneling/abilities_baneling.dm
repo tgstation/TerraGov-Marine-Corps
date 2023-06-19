@@ -42,20 +42,21 @@ GLOBAL_LIST_INIT(reagent_images_list,  list(
 
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
-	handle_smoke(smoke_duration)
-	var/turf/T = get_turf(owner)
-	playsound(T, 'sound/effects/blobattack.ogg', 25)
-
-/datum/action/xeno_action/baneling_explode/proc/handle_smoke(remaining_time)
 	var/mob/living/carbon/xenomorph/baneling/X = owner
-	var/turf/T = get_turf(X)
-	smoke = new X.selected_chemical(T)
+	/// Our smoke size is directly dependant on
+	smoke_range = X.plasma_stored/30
+	var/turf/owner_T = get_turf(X)
+	handle_smoke(smoke_duration, owner_T)
+	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
 
+/datum/action/xeno_action/baneling_explode/proc/handle_smoke(remaining_time, turf/T)
+	var/mob/living/carbon/xenomorph/baneling/X = owner
+	smoke = new X.selected_chemical(T)
 	smoke.set_up(smoke_range, T)
 	if(remaining_time <= 0)
 		return
 	smoke.start()
-	addtimer(CALLBACK(src, PROC_REF(handle_smoke), remaining_time - 1), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(handle_smoke), remaining_time - 1, T), 1 SECONDS)
 
 // ***************************************
 // *********** Reagent Selection
