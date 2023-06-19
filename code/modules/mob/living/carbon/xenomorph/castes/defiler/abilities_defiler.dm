@@ -222,11 +222,12 @@
 	toggle_particles(FALSE)
 	return ..()
 
-/datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
+/datum/action/xeno_action/emit_neurogas/proc/dispense_gas(time_left = 3)
+	if(time_left <= 0)
+		return
 	var/mob/living/carbon/xenomorph/defiler/X = owner
-	set waitfor = FALSE
-	var/smoke_range = 2
 	var/datum/effect_system/smoke_spread/xeno/gas
+	var/smoke_range = 2
 
 	switch(X.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
@@ -238,27 +239,24 @@
 		if(/datum/reagent/toxin/xeno_ozelomelyn)
 			gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(X)
 
-	while(count)
-		if(X.stagger) //If we got staggered, return
-			to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
-			toggle_particles(FALSE)
-			return
-		if(X.IsStun() || X.IsParalyzed())
-			to_chat(X, span_xenowarning("We try to emit toxins but are disabled!"))
-			toggle_particles(FALSE)
-			return
-		var/turf/T = get_turf(X)
-		playsound(T, 'sound/effects/smoke.ogg', 25)
-		if(count > 1)
-			gas.set_up(smoke_range, T)
-		else //last emission is larger
-			gas.set_up(CEILING(smoke_range*1.3,1), T)
-		gas.start()
-		T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
-		count = max(0,count - 1)
-		sleep(DEFILER_GAS_DELAY)
-
+	if(X.stagger) //If we got staggered, return
+		to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
+		toggle_particles(FALSE)
+		return
+	if(X.IsStun() || X.IsParalyzed())
+		to_chat(X, span_xenowarning("We try to emit toxins but are disabled!"))
+		toggle_particles(FALSE)
+		return
+	var/turf/T = get_turf(X)
+	playsound(T, 'sound/effects/smoke.ogg', 25)
+	if(time_left > 1)
+		gas.set_up(smoke_range, T)
+	else //last emission is larger
+		gas.set_up(CEILING(smoke_range*1.3,1), T)
+	gas.start()
+	T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 	toggle_particles(FALSE)
+	addtimer(CALLBACK(src, PROC_REF(dispense_gas), time_left - 1), DEFILER_GAS_DELAY)
 
 // Toggles particles on or off, depending on the defined var.
 /datum/action/xeno_action/emit_neurogas/proc/toggle_particles(activate)
@@ -516,7 +514,7 @@
 	desc = "Throw one of your tentacles forward to grab a tallhost or item."
 	ability_name = "Tentacle"
 	cooldown_timer = 20 SECONDS
-	plasma_cost = 200
+	plasma_cost = 175
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENTACLE,
 	)

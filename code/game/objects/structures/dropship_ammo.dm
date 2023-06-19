@@ -519,14 +519,8 @@
 /obj/structure/ship_ammo/minirocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.
-	addtimer(CALLBACK(src, PROC_REF(delayed_smoke_spread), impact), 0.5 SECONDS)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
-
-/obj/structure/ship_ammo/minirocket/proc/delayed_smoke_spread(turf/impact)
-	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(1, impact)
-	S.start()
 
 /obj/structure/ship_ammo/minirocket/show_loaded_desc(mob/user)
 	// to_chat(user, "It's loaded with \a [src] containing [ammo_count] minirocket\s.")
@@ -597,7 +591,6 @@
 
 /obj/structure/ship_ammo/minirocket/illumination/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	addtimer(CALLBACK(src, PROC_REF(delayed_smoke_spread), impact), 0.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(drop_cas_flare), impact), 1.5 SECONDS)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
