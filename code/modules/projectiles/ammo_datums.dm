@@ -1313,7 +1313,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	if(istype(T, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = T
-		wall_victim.take_damage(autocannon_wall_bonus, proj.damtype, proj.armor_type)
+		wall_victim.take_damage(autocannon_wall_bonus, P.damtype, P.armor_type)
 
 /datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 5

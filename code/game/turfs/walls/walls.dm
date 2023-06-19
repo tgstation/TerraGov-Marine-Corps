@@ -231,14 +231,18 @@
 	penetration = max(0, penetration - hard_armor.getRating(armor_type))
 	return clamp((damage_amount * (1 - ((soft_armor.getRating(armor_type) - penetration) * 0.01))), 0, damage_amount)
 
-/turf/closed/wall/proc/take_damage(damage)
+///Applies damage to the wall
+/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", armour_penetration = 0)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
-	if(!damage)
+	if(!damage_amount)
 		return
 
-	wall_integrity = max(0, wall_integrity - damage)
+	if(damage_flag)
+		damage_amount = modify_by_armor(damage_amount, damage_flag, armour_penetration)
+
+	wall_integrity = max(0, wall_integrity - damage_amount)
 
 	if(wall_integrity <= 0)
 		// Xenos used to be able to crawl through the wall, should suggest some structural damage to the girder
@@ -249,7 +253,7 @@
 	else
 		update_icon()
 
-
+///Repairs the wall by an amount
 /turf/closed/wall/proc/repair_damage(repair_amount)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
