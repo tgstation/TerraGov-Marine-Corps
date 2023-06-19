@@ -60,6 +60,7 @@
 	jumper.layer = ABOVE_MOB_LAYER
 
 	jumper.adjustStaminaLoss(stamina_cost)
+	var/initial_flags = jumper.flags_pass //pass the original in case they already have some flags
 	jumper.flags_pass |= jumper_flags_pass
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_ELEMENT)
 
@@ -75,14 +76,14 @@
 	animate(shadow_filter, y = -jump_height, size = 4, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 	animate(y = 0, size = 0.9, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
 
-	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper), jump_duration)
+	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper, initial_flags), jump_duration)
 
 	TIMER_COOLDOWN_START(jumper, JUMP_ELEMENT_COOLDOWN, jump_cooldown)
 
 ///Ends the jump
-/datum/element/jump/proc/end_jump(mob/living/jumper)
+/datum/element/jump/proc/end_jump(mob/living/jumper, pass_flags)
 	jumper.remove_filter("jump_element")
 	jumper.layer = initial(jumper.layer)
-	jumper.flags_pass &= ~jumper_flags_pass
+	jumper.flags_pass = pass_flags
 	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_ELEMENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
