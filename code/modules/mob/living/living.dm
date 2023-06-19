@@ -368,7 +368,7 @@
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
 			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.move_force < MOVE_FORCE_VERY_STRONG)
 				mob_swap_mode = SWAPPING
-			else if(get_xeno_hivenumber() == L.get_xeno_hivenumber() && (L.flags_pass & PASSXENO || flags_pass & PASSXENO))
+			else if(get_xeno_hivenumber() == L.get_xeno_hivenumber() && (L.allow_pass_flags & PASSXENO || allow_pass_flags & PASSXENO))
 				mob_swap_mode = PHASING
 			else if((move_resist >= MOVE_FORCE_VERY_STRONG || move_resist > L.move_force) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap_mode = SWAPPING
@@ -383,10 +383,10 @@
 				var/oldloc = loc
 				var/oldLloc = L.loc
 
-				var/L_passmob = (L.flags_pass & PASSMOB) // we give PASSMOB to both mobs to avoid bumping other mobs during swap.
-				var/src_passmob = (flags_pass & PASSMOB)
-				L.flags_pass |= PASSMOB
-				flags_pass |= PASSMOB
+				var/L_passmob = (L.allow_pass_flags & PASSMOB) // we give PASSMOB to both mobs to avoid bumping other mobs during swap.
+				var/src_passmob = (allow_pass_flags & PASSMOB)
+				L.allow_pass_flags |= PASSMOB
+				allow_pass_flags |= PASSMOB
 
 				if(!moving_diagonally) //the diagonal move already does this for us
 					Move(oldLloc)
@@ -394,9 +394,9 @@
 					L.Move(oldloc)
 
 				if(!src_passmob)
-					flags_pass &= ~PASSMOB
+					allow_pass_flags &= ~PASSMOB
 				if(!L_passmob)
-					L.flags_pass &= ~PASSMOB
+					L.allow_pass_flags &= ~PASSMOB
 
 				now_pushing = FALSE
 

@@ -118,7 +118,7 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
 	if(!isliving(A))
 		return
-	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
 		return
 	var/mob/living/L = A
 	if(L.lying_angle) ///so dragged corpses don't trigger mines.
@@ -192,7 +192,7 @@ Stepping directly on the mine will also blow it up
 		qdel(src)
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
 		return
 
 	if(linked_mine.triggered) //Mine is already set to go off

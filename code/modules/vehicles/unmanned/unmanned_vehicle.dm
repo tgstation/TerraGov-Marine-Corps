@@ -14,7 +14,7 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
-	flags_pass = PASSAIR|PASSTABLE|PASSTHROW|PASSFIRE
+	allow_pass_flags = PASSAIR|PASSTABLE|PASSTHROW|PASSFIRE
 	/// Needed to keep track of any slowdowns and/or diagonal movement
 	var/next_move_delay = 0
 	/// Path of "turret" attached

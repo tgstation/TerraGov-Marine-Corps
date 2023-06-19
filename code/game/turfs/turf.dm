@@ -165,7 +165,7 @@
 		if(i == mover || i == mover.loc) // Multi tile objects and moving out of other objects
 			continue
 		var/atom/movable/thing = i
-		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
+		if(CHECK_MULTIPLE_BITFIELDS(thing.allow_pass_flags, HOVERING))
 			continue
 		if(thing.status_flags & INCORPOREAL)
 			continue

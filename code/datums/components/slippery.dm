@@ -82,7 +82,7 @@
 		return
 	var/mob/living/victim = arrived
 	var/atom/parent_source = parent
-	if(!(victim.flags_pass & HOVERING) && parent_source.can_slip() && victim.slip(parent, stun_time, paralyze_time, run_only, override_noslip, slide_steps) && callback)
+	if(!(victim.allow_pass_flags & HOVERING) && parent_source.can_slip() && victim.slip(parent, stun_time, paralyze_time, run_only, override_noslip, slide_steps) && callback)
 		callback.Invoke(victim)
 
 /*

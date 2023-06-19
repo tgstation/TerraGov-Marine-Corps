@@ -41,7 +41,7 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
+	allow_pass_flags = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
@@ -69,7 +69,7 @@
 	if(!ishuman(moved_in))
 		return
 	var/mob/living/carbon/human/victim = moved_in
-	if(victim.flags_pass & HOVERING)
+	if(victim.allow_pass_flags & HOVERING)
 		return
 	victim.acid_spray_entered(null, src, acid_damage, slow_amt)
 
@@ -81,7 +81,7 @@
 /// Signal handler to burn and maybe stun the human entering the acid spray
 /mob/living/carbon/human/proc/acid_spray_entered(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
-	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING) || stat == DEAD)
+	if(CHECK_MULTIPLE_BITFIELDS(allow_pass_flags, HOVERING) || stat == DEAD)
 		return
 
 	if(acid_spray.xeno_owner && TIMER_COOLDOWN_CHECK(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays

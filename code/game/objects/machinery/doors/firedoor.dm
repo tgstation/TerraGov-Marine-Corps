@@ -16,7 +16,7 @@
 	opacity = FALSE
 	density = FALSE
 	obj_flags = CAN_BE_HIT
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	layer = FIREDOOR_OPEN_LAYER
 	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
 	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
@@ -318,7 +318,7 @@
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_atom = ON_BORDER
-	flags_pass = PASSGLASS
+	allow_pass_flags = PASSGLASS
 
 /obj/machinery/door/firedoor/border_only/Initialize(mapload)
 	. = ..()

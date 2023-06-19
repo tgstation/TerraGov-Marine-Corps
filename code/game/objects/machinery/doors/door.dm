@@ -6,7 +6,7 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = DOOR_OPEN_LAYER
 	explosion_block = 2
@@ -90,7 +90,7 @@
 
 /obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASSGLASS))
 		return !opacity
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)

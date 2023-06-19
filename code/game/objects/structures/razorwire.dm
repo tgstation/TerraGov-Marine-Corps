@@ -10,7 +10,7 @@
 	coverage = 5
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	flags_pass = PASSSMALLSTRUCT|PASSGRILLE
+	allow_pass_flags = PASSSMALLSTRUCT|PASSGRILLE
 	var/list/entangled_list
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
@@ -49,7 +49,7 @@
 	SIGNAL_HANDLER
 	if(!isliving(O))
 		return
-	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
+	if(CHECK_BITFIELD(O.allow_pass_flags, PASSSMALLSTRUCT))
 		return
 	var/mob/living/M = O
 	if(M.status_flags & INCORPOREAL)
@@ -91,7 +91,7 @@
 
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/entangled)
 	SIGNAL_HANDLER
-	if((entangled.flags_pass & PASSSMALLSTRUCT) || entangled.status_flags & INCORPOREAL)
+	if((entangled.allow_pass_flags & PASSSMALLSTRUCT) || entangled.status_flags & INCORPOREAL)
 		return
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))

@@ -8,7 +8,7 @@
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
 	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
-	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
+	allow_pass_flags = PASSTABLE|PASSABLE|PASSFIRE
 	max_integrity = 150
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
@@ -173,7 +173,7 @@
 
 /obj/structure/window_frame/prison/hull
 	climbable = FALSE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	reinforced = TRUE
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 

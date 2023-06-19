@@ -174,18 +174,18 @@
 	succeed_activate()
 	add_cooldown()
 	X.usedPounce = TRUE // this is needed for throwing code
-	X.flags_pass = PASSTABLE|PASSFIRE
+	X.pass_flags = PASSTABLE|PASSFIRE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
-	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_flags_pass)), 6)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_allow_pass_flags)), 6)
 
 	return TRUE
 
-/mob/living/carbon/xenomorph/proc/reset_flags_pass()
+/mob/living/carbon/xenomorph/proc/reset_allow_pass_flags()
 	if(!xeno_caste.hardcore)
-		flags_pass = initial(flags_pass) //Reset the passtable.
+		pass_flags = initial(allow_pass_flags) //Reset the passtable.
 	else
-		flags_pass = NONE //Reset the passtable.
+		pass_flags = NONE //Reset the passtable.
 
 	//AI stuff
 /datum/action/xeno_action/activable/pounce/ai_should_start_consider()

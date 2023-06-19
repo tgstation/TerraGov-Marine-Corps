@@ -5,7 +5,7 @@
 	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
-	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
+	allow_pass_flags = PASSTABLE|PASSABLE|PASSFIRE
 	var/obj/item/cell/cell
 	var/on = 0
 	var/open = 0

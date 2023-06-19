@@ -643,7 +643,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
-	if(!(flags_pass & PASSPROJECTILE))
+	if(!(allow_pass_flags & PASSPROJECTILE))
 		return TRUE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -735,7 +735,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
-	if((flags_pass & PASSPROJECTILE)) //he's beginning to believe
+	if((allow_pass_flags & PASSPROJECTILE)) //he's beginning to believe
 		return FALSE
 
 	//We want a temporary variable so accuracy doesn't change every time the bullet misses.

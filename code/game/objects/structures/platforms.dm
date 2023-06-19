@@ -9,7 +9,7 @@
 	flags_atom = ON_BORDER
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
-	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
+	allow_pass_flags = PASSTABLE|PASSABLE|PASSFIRE
 	climbable = TRUE
 	climb_delay = 10
 

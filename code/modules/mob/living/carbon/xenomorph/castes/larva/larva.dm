@@ -9,7 +9,8 @@
 	maxHealth = 35
 	health = 35
 	see_in_dark = 8
-	flags_pass = PASSTABLE | PASSMOB | PASSXENO
+	allow_pass_flags = PASSMOB|PASSXENO
+	pass_flags = PASSTABLE|PASSMOB|PASSXENO
 	tier = XENO_TIER_ZERO  //Larva's don't count towards Pop limits
 	upgrade = XENO_UPGRADE_INVALID
 	gib_chance = 25

@@ -12,7 +12,7 @@
 	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER
-	flags_pass = PASSGLASS
+	allow_pass_flags = PASSGLASS
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
 
@@ -79,7 +79,7 @@
 		do_animate("deny")
 
 /obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) & dir) //Make sure looking at appropriate border
 		return ..()

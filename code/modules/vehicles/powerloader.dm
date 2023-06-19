@@ -6,7 +6,7 @@
 	icon_state = "powerloader_open"
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
 	anchored = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	move_delay = 8
 	light_system = HYBRID_LIGHT
 	light_power = 8

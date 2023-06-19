@@ -9,7 +9,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	light_system = MOVABLE_LIGHT
-	flags_pass = PASSTABLE
+	allow_pass_flags = PASSTABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	resistance_flags = PROJECTILE_IMMUNE
 

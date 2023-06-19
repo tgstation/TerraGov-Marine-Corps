@@ -182,7 +182,7 @@
 	for(var/obj/O in src)
 		if((mover && O.CanPass(mover,get_step(src, target_dir))) || (!mover && !O.density))
 			continue
-		if(O == target_atom || O == mover || (O.flags_pass & PASSPROJECTILE)) //check if there's a dense object present on the turf
+		if(O == target_atom || O == mover || (O.allow_pass_flags & PASSPROJECTILE)) //check if there's a dense object present on the turf
 			continue // LETPASSTHROW is used for anything you can click through (or the firedoor special case, see above)
 
 		if(O.flags_atom & ON_BORDER) // windows have PASSPROJECTILE but are on border, check them first

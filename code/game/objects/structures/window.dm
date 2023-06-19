@@ -8,7 +8,7 @@
 	anchored = TRUE
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER|DIRLOCK
-	flags_pass = PASSGLASS
+	allow_pass_flags = PASSGLASS
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
@@ -80,13 +80,13 @@
 
 /obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
+	if(CHECK_BITFIELD(mover.pass_flags, PASSGLASS))
 		return TRUE
 	if(!is_full_window() && !(get_dir(loc, target) & dir))
 		return TRUE
 
 /obj/structure/window/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
+	if(CHECK_BITFIELD(mover.pass_flags, PASSGLASS))
 		return NONE
 
 	return ..()

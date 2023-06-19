@@ -8,7 +8,7 @@
 	layer = TABLE_LAYER
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
-	flags_pass = PASSTABLE|PASSABLE|PASSFIRE
+	allow_pass_flags = PASSTABLE|PASSABLE|PASSFIRE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 1
 	active_power_usage = 5

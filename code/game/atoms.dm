@@ -11,8 +11,8 @@
 	var/blood_color
 	var/list/blood_DNA
 
-	///Flags to indicate whether this atom can bypass certain things, or if certain things can bypass this atom
-	var/flags_pass = NONE
+	///Things can move past this atom if they have the corrosponding flag
+	var/allow_pass_flags = NONE
 
 	var/resistance_flags = PROJECTILE_IMMUNE
 

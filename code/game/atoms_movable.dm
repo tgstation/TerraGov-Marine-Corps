@@ -25,6 +25,8 @@
 
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH|CANUNCONSCIOUS|CANCONFUSE	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 	var/generic_canpass = TRUE
+	///What things this atom can move past, if it has the corrosponding flag
+	var/pass_flags = NONE
 	///TRUE if we should not push or shuffle on bump/enter
 	var/moving_diagonally = FALSE
 
@@ -482,13 +484,13 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if((!L.density || (L.flags_pass & PASSPROJECTILE)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
+			if((!L.density || (L.allow_pass_flags & PASSPROJECTILE)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
 				continue
 			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
 				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
 				return A
 			throw_impact(A, speed)
-		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.flags_pass & PASSPROJECTILE) || iscarbon(src)) && !flying)
+		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.allow_pass_flags & PASSPROJECTILE) || iscarbon(src)) && !flying)
 			throw_impact(A, speed)
 
 
@@ -1079,9 +1081,9 @@
 
 /atom/movable/proc/set_flying(flying)
 	if (flying)
-		ENABLE_BITFIELD(flags_pass, HOVERING)
+		ENABLE_BITFIELD(allow_pass_flags, HOVERING)
 		return
-	DISABLE_BITFIELD(flags_pass, HOVERING)
+	DISABLE_BITFIELD(allow_pass_flags, HOVERING)
 
 ///returns bool for if we want to get forcepushed
 /atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)

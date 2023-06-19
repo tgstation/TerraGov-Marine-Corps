@@ -213,13 +213,13 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	for(var/obj/object in loc)
 		if(!object.density)
 			continue
-		if((object.flags_pass & PASSPROJECTILE) && projectile)
+		if((object.allow_pass_flags & PASSPROJECTILE) && projectile)
 			continue
 		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
-		if((object.flags_pass & PASSGLASS) && bypass_window)
+		if((object.allow_pass_flags & PASSGLASS) && bypass_window)
 			continue
-		if((object.flags_pass & PASSAIR) && air_pass)
+		if((object.allow_pass_flags & PASSAIR) && air_pass)
 			continue
 		if(object.flags_atom & ON_BORDER && object.dir != direction)
 			continue

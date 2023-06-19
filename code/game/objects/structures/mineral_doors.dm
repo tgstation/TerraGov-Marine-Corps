@@ -5,7 +5,7 @@
 	name = "mineral door"
 	density = TRUE
 	opacity = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
 
