@@ -215,3 +215,20 @@
   - bugfix: Fixed a platform runtime
   novaepee:
   - rscadd: give acid rain a siren warning like sand storm
+2023-06-19:
+  Lumipharon:
+  - bugfix: fixed a visual issue with tesla inhand sprites
+  - imageadd: Recoilless rifle shells now have visible projectile sprites
+  - bugfix: fixed a couple of issues with human total armour calculations
+  - bugfix: fixed a deployable gun exploit
+  - rscadd: Adds a jump mechanic, to leap over obstacles like window frames
+  - balance: Platforms are dense again, in light of the ability to jump over them
+  Pariah919:
+  - spellcheck: 5.56 and 7.62 boxes now have their dots in their name and description.
+  Wayland-Smithy:
+  - bugfix: King's roar no longer misses things moving towards the King,
+  ivanmixo:
+  - bugfix: Fixed weather messages not appearing if you have weather sounds off
+  novaepee:
+  - rscdel: remove easy plat miner in Gelida IV
+  - balance: remove easy plat miner in Gelida IV
