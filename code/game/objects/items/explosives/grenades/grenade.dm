@@ -87,7 +87,7 @@
 
 
 /obj/item/explosive/grenade/proc/prime()
-	explosion(loc, light_impact_range = src.light_impact_range, small_animation = TRUE)
+	explosion(loc, light_impact_range = src.light_impact_range)
 	qdel(src)
 
 /obj/item/explosive/grenade/flamer_fire_act(burnlevel)

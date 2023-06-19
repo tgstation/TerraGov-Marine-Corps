@@ -86,10 +86,10 @@ SUBSYSTEM_DEF(explosions)
 // 5 explosion power is a (0, 1, 3) explosion.
 // 1 explosion power is a (0, 0, 1) explosion.
 
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, small_animation = FALSE, color = LIGHT_COLOR_LAVA)
-	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation, color)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, color = LIGHT_COLOR_LAVA)
+	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, color)
 
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation, color)
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, color)
 	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return
@@ -163,10 +163,10 @@ SUBSYSTEM_DEF(explosions)
 						shake_camera(M, 7, clamp(baseshakeamount*0.15, 0, 1.5))
 
 	if(devastation_range)
-		new /obj/effect/temp_visual/explosion/medium(epicenter, max_range, color)
-	else if(heavy_impact_range)
-		new /obj/effect/temp_visual/explosion/medium(epicenter, max_range, color)
+		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, FALSE, TRUE)
 	else if(light_impact_range)
+		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, TRUE)
+	else
 		new /obj/effect/temp_visual/explosion(epicenter, max_range, color)
 
 	//flash mobs
