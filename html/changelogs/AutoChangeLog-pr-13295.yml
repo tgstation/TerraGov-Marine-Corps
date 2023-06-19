@@ -1,0 +1,4 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - rscadd: "if burst groundside larva has no player, it'd automatically burrow and give a larva point"
