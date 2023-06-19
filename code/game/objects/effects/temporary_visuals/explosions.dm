@@ -154,7 +154,7 @@
 	fade = 10
 	fadein = 3
 	scale = generator(GEN_NUM, 1, 1.25)
-	position = generator(GEN_CIRCLE, 32, 5)
+	position = generator(GEN_BOX, list(-12, 32), list(12, 48), NORMAL_RAND)
 	velocity = list(0, 12)
 	grow = list(0, 0.05)
 	gravity = list(0, -1)

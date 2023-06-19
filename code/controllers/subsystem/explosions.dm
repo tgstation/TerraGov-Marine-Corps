@@ -162,12 +162,12 @@ SUBSYSTEM_DEF(explosions)
 					if(baseshakeamount > 0)
 						shake_camera(M, 7, clamp(baseshakeamount*0.15, 0, 1.5))
 
-	if(devastation_range)
+	if(devastation_range > 0)
 		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, FALSE, TRUE)
-	else if(light_impact_range)
-		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, TRUE)
-	else
-		new /obj/effect/temp_visual/explosion(epicenter, max_range, color)
+	else if(heavy_impact_range > 0)
+		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, FALSE, FALSE)
+	else if(light_impact_range > 0)
+		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, TRUE, FALSE)
 
 	//flash mobs
 	if(flash_range)
