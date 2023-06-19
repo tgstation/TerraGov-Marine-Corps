@@ -42,24 +42,16 @@ GLOBAL_LIST_INIT(reagent_images_list,  list(
 
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
+	handle_smoke(smoke_duration)
+	var/turf/T = get_turf(owner)
+	playsound(T, 'sound/effects/blobattack.ogg', 25)
 
 /datum/action/xeno_action/baneling_explode/proc/handle_smoke(remaining_time)
 	var/mob/living/carbon/xenomorph/baneling/X = owner
 	var/turf/T = get_turf(X)
-	switch(X.selected_chemical)
-		if(/datum/reagent/toxin/xeno_neurotoxin)
-			smoke = new /datum/effect_system/smoke_spread/xeno/neuro(T)
-		if(/datum/reagent/toxin/xeno_hemodile)
-			smoke = new /datum/effect_system/smoke_spread/xeno/hemodile(T)
-		if(/datum/reagent/toxin/xeno_transvitox)
-			smoke = new /datum/effect_system/smoke_spread/xeno/transvitox(T)
-		if(/datum/reagent/toxin/xeno_ozelomelyn)
-			smoke = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(T)
-		if(/datum/reagent/toxin/acid)
-			smoke = new/datum/effect_system/smoke_spread/xeno/acid(T)
-	playsound(T, 'sound/effects/blobattack.ogg', 25)
+	smoke = new X.selected_chemical(T)
+
 	smoke.set_up(smoke_range, T)
-	handle_smoke(smoke_duration)
 	if(remaining_time <= 0)
 		return
 	smoke.start()
@@ -112,7 +104,7 @@ GLOBAL_LIST_INIT(reagent_images_list,  list(
 		return
 	var/mob/living/carbon/xenomorph/caster = owner
 	for(var/datum/effect_system/smoke_spread/reagent_type AS in GLOB.baneling_reagent_type_list)
-		if(initial(reagent_type) == reagent_choice)
+		if(initial(reagent_type.name) == reagent_choice)
 			caster.selected_chemical = reagent_type
 			break
 	to_chat(caster, span_notice("We will now spread <b>[reagent_choice]\s</b> when we explode"))
