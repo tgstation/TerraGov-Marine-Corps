@@ -484,7 +484,7 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if((!L.density || (L.allow_pass_flags & PASS_PROJECTILE)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
+			if((!L.density || (L.pass_flags & PASS_PROJECTILE)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
 				continue
 			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
 				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
@@ -1081,9 +1081,9 @@
 
 /atom/movable/proc/set_flying(flying)
 	if (flying)
-		ENABLE_BITFIELD(allow_pass_flags, HOVERING)
+		ENABLE_BITFIELD(pass_flags, HOVERING)
 		return
-	DISABLE_BITFIELD(allow_pass_flags, HOVERING)
+	DISABLE_BITFIELD(pass_flags, HOVERING)
 
 ///returns bool for if we want to get forcepushed
 /atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)

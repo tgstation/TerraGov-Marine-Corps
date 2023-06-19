@@ -174,15 +174,15 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	//Swapping part
 	var/mob/living/carbon/human/target = M
-	var/owner_passmob = (owner.allow_pass_flags & PASS_MOB)
-	var/target_passmob = (target.allow_pass_flags & PASS_MOB)
-	owner.allow_pass_flags |= PASS_MOB
-	target.allow_pass_flags |= PASS_MOB
+	var/owner_passmob = (owner.pass_flags & PASS_MOB)
+	var/target_passmob = (target.pass_flags & PASS_MOB)
+	owner.pass_flags |= PASS_MOB
+	target.pass_flags |= PASS_MOB
 	target.forceMove(last_turf)
 	if(!owner_passmob)
-		owner.allow_pass_flags &= ~PASS_MOB
+		owner.pass_flags &= ~PASS_MOB
 	if(!target_passmob)
-		target.allow_pass_flags &= ~PASS_MOB
+		target.pass_flags &= ~PASS_MOB
 
 	target.ParalyzeNoChain(0.5 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
 

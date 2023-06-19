@@ -86,7 +86,7 @@
 	if(isobserver(AM))
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(AM.allow_pass_flags, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(AM.pass_flags, HOVERING))
 		return
 	var/atom/current_parent = parent
 	if(isturf(current_parent.loc))

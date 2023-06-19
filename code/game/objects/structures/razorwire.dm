@@ -49,7 +49,7 @@
 	SIGNAL_HANDLER
 	if(!isliving(O))
 		return
-	if(CHECK_BITFIELD(O.allow_pass_flags, PASS_DEFENSIVE_STRUCTURE))
+	if(CHECK_BITFIELD(O.pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return
 	var/mob/living/M = O
 	if(M.status_flags & INCORPOREAL)
@@ -91,7 +91,7 @@
 
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/entangled)
 	SIGNAL_HANDLER
-	if((entangled.allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) || entangled.status_flags & INCORPOREAL)
+	if((entangled.pass_flags & PASS_DEFENSIVE_STRUCTURE) || entangled.status_flags & INCORPOREAL)
 		return
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
@@ -207,8 +207,8 @@
 
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(mover.throwing && istype(mover,/obj/item)) //TODO: SANITY CHECK THIS
-		return TRUE
+	if(mover.throwing && istype(mover,/obj/item))
+		return FALSE
 
 /obj/structure/razorwire/update_icon_state()
 	var/health_percent = round(obj_integrity/max_integrity * 100)

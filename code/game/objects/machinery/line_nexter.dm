@@ -22,7 +22,9 @@
 	return
 
 /obj/machinery/line_nexter/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
-	//todo: unfuck this one
+	. = ..()
+	if(!.)
+		return
 	if(!iscarbon(O))
 		return NONE
 	var/mob/living/carbon/C = O

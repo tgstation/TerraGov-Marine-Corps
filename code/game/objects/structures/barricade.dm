@@ -59,7 +59,7 @@
 
 
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	. = ..() //todo: check my logic here makes sense
+	. = ..()
 
 	if(.)
 		return

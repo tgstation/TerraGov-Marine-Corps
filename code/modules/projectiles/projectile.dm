@@ -735,7 +735,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
-	if((allow_pass_flags & PASS_PROJECTILE)) //he's beginning to believe
+	if((pass_flags & PASS_PROJECTILE)) //he's beginning to believe
 		return FALSE
 
 	//We want a temporary variable so accuracy doesn't change every time the bullet misses.

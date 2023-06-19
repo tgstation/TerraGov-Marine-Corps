@@ -26,7 +26,7 @@
   ivanmixo:
   - qol: Added a prompt for evolving to hivemind which should hopefully help with
       newer players putting their cores in unintended places
-  - bugfix: Fixes prae primo giving the person it was used on the PASS_MOB flag
+  - bugfix: Fixes prae primo giving the person it was used on the PASSMOB flag
   - rscadd: Added new the P1911 to req imports and changed some of the order names
       to be less outdated/inconsistent and more descriptive
 2023-03-02:
