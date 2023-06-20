@@ -61,13 +61,6 @@
 	H.throw_at(get_turf(target_turf), 4, 70, H)
 	H.Paralyze(40)
 
-
-/mob/living/carbon/xenomorph/defender/lay_down()
-	if(fortify) // Ensure the defender isn't fortified while laid down
-		to_chat(src, span_warning("You can't do that right now."))
-		return
-	return ..()
-
 /mob/living/carbon/xenomorph/defender/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/throw_parry)
