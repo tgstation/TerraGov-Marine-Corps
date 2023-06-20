@@ -47,6 +47,7 @@
 /obj/item/storage/pouch/general/medium
 	name = "medium general pouch"
 	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "medium_drop"
 	draw_mode = 0
 
