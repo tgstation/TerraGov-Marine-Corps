@@ -223,7 +223,7 @@
 	if(.)
 		return
 
-	if((colorable_allowed == NOT_COLORABLE && !length(icon_state_variants)) || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
+	if(!istype(I, /obj/item/facepaint) || (colorable_allowed == NOT_COLORABLE && !length(icon_state_variants)) || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
 		return
 
 	var/obj/item/facepaint/paint = I
@@ -416,7 +416,7 @@
 	if(.)
 		return
 
-	if((colorable_allowed == NOT_COLORABLE && !length(icon_state_variants)) || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
+	if(!istype(I, /obj/item/facepaint) || (colorable_allowed == NOT_COLORABLE && !length(icon_state_variants)) || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
 		return
 
 	var/obj/item/facepaint/paint = I
@@ -548,7 +548,7 @@
 
 /obj/item/clothing/mask/gas/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if((colorable_allowed == NOT_COLORABLE && !length(icon_state_variants)) || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
+	if(!istype(I, /obj/item/facepaint) || (colorable_allowed == NOT_COLORABLE && !length(icon_state_variants)) || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
 		return
 
 	var/obj/item/facepaint/paint = I

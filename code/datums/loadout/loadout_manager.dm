@@ -169,20 +169,25 @@
 			if("[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/corpsman" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/standard")
 				helmet.item_type = /obj/item/clothing/head/modular/m10x
 		if(loadout.version < 10)
-			helmet.greyscale_colors = initial(helmet.item_type.greyscale_colors)
-			for(var/datum/item_representation/armor_module/colored/module AS in helmet.attachments)
-				if(!istype(module, /datum/item_representation/armor_module/colored))
+			helmet.colors = initial(helmet.item_type.greyscale_colors)
+			for(var/datum/item_representation/armor_module/module AS in helmet.attachments)
+				if(!istype(module, /datum/item_representation/armor_module))
 					continue
-				module.greyscale_colors = initial(module.item_type.greyscale_colors)
+				module.colors = initial(module.item_type.greyscale_colors)
 		if(loadout.version < 11)
 			var/datum/item_representation/modular_helmet/old_helmet = loadout.item_list[slot_head_str]
 			var/datum/item_representation/hat/modular_helmet/new_helmet = new
 			new_helmet.item_type = old_helmet.item_type
 			new_helmet.bypass_vendor_check = old_helmet.bypass_vendor_check
-			new_helmet.greyscale_colors = old_helmet.greyscale_colors
+			new_helmet.colors = old_helmet.greyscale_colors
 			new_helmet.current_variant = old_helmet.current_variant
 			new_helmet.attachments = old_helmet.attachments
 			loadout.item_list[slot_head_str] = new_helmet
+		if(loadout.version < 12)
+			helmet.colors = initial(helmet.item_type.greyscale_colors)
+			for(var/datum/item_representation/armor_module/module AS in helmet.attachments)
+				module.colors = initial(module.item_type.greyscale_colors)
+
 	if(helmet) //there used to be no specific representation for generic hats
 		if(loadout.version < 11)
 			var/datum/item_representation/old_hat = loadout.item_list[slot_head_str]
@@ -205,10 +210,10 @@
 			if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
 				armor.item_type = /obj/item/clothing/suit/modular/xenonauten
 		if(loadout.version < 10)
-			for(var/datum/item_representation/armor_module/colored/module AS in armor.attachments)
-				if(!istype(module, /datum/item_representation/armor_module/colored))
+			for(var/datum/item_representation/armor_module/module AS in armor.attachments)
+				if(!istype(module, /datum/item_representation/armor_module))
 					continue
-				module.greyscale_colors = initial(module.item_type.greyscale_colors)
+				module.colors = initial(module.item_type.greyscale_colors)
 		if(loadout.version < 11)
 			var/datum/item_representation/modular_armor/old_armor = loadout.item_list[slot_wear_suit_str]
 			var/datum/item_representation/armor_suit/modular_armor/new_armor = new
@@ -217,6 +222,10 @@
 			new_armor.current_variant = old_armor.current_variant
 			new_armor.attachments = old_armor.attachments
 			loadout.item_list[slot_wear_suit_str] = new_armor
+		if(loadout.version < 12)
+			armor.colors = initial(armor.item_type.greyscale_colors)
+			for(var/datum/item_representation/armor_module/module AS in armor.attachments)
+				module.colors = initial(module.item_type.greyscale_colors)
 	else if(istype(armor, /datum/item_representation/suit_with_storage))
 		if(loadout.version < 11)
 			var/datum/item_representation/suit_with_storage/old_armor = loadout.item_list[slot_wear_suit_str]
@@ -256,7 +265,8 @@
 		message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system. (version 19 to 10)"
 	if(loadout.version < 11)
 		message_to_send += "<br>Some boots, helmets and armour have had their internal storage refactored and some items may be removed from your loadout. (version 10 to 11)"
-
+	if(loadout.version < 12)
+		message_to_send += "<br>Due to hyperscaling armor, any colorable armor have had their colors set to default. (Version 11 to 12)"
 	loadout.version = CURRENT_LOADOUT_VERSION
 	message_to_send += "<br>This loadout is now on version [loadout.version]"
 	to_chat(ui.user, span_warning(message_to_send))

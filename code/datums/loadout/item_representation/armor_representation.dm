@@ -16,12 +16,6 @@
 	for(var/key in suit_to_copy.attachments_by_slot)
 		if(!isitem(suit_to_copy.attachments_by_slot[key]))
 			continue
-		if(istype(suit_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
-			attachments += new /datum/item_representation/armor_module/colored(suit_to_copy.attachments_by_slot[key])
-			continue
-		if(istype(suit_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
-			attachments += new /datum/item_representation/armor_module/armor(suit_to_copy.attachments_by_slot[key])
-			continue
 		if(istype(suit_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))
 			attachments += new /datum/item_representation/armor_module/storage(suit_to_copy.attachments_by_slot[key])
 			continue
@@ -47,41 +41,28 @@
 				"scale" = MODULAR_ARMOR_SCALING,
 				))
 	for(var/datum/item_representation/armor_module/module AS in attachments)
-		if(istype(module, /datum/item_representation/armor_module/colored))
-			var/datum/item_representation/armor_module/colored/colored_module = module
-			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(colored_module.item_type.greyscale_config), colored_module.greyscale_colors), dir = SOUTH)
-			tgui_data["icons"] += list(list(
-					"icon" = icon2base64(icon_to_convert),
-					"translateX" = NO_OFFSET,
-					"translateY" = MODULAR_ARMOR_OFFSET_Y,
-					"scale" = MODULAR_ARMOR_SCALING,
-					))
+		if(!initial(module.item_type.icon_state))
 			continue
-		if(ispath(module.item_type, /obj/item/armor_module/armor))
+		if(initial(module.item_type.greyscale_config))
+			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  initial(module.item_type.icon_state), dir = SOUTH)
+		else
 			icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
-			tgui_data["icons"] += list(list(
-					"icon" = icon2base64(icon_to_convert),
-					"translateX" = "40%",
-					"translateY" = "35%",
-					"scale" = 0.5,
-					))
-			continue
+
+		var/translatex = NO_OFFSET
+		var/translatey = MODULAR_ARMOR_OFFSET_Y
+		var/scale = MODULAR_ARMOR_SCALING
 		if(ispath(module.item_type, /obj/item/armor_module/module))
-			icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
-			tgui_data["icons"] += list(list(
-					"icon" = icon2base64(icon_to_convert),
-					"translateX" = "40%",
-					"translateY" = "35%",
-					"scale" = 0.5,
-					))
-			continue
-		icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
+			translatex = "40%"
+			translatey = "35%"
+			scale = 0.5
+
 		tgui_data["icons"] += list(list(
-					"icon" = icon2base64(icon_to_convert),
-					"translateX" = NO_OFFSET,
-					"translateY" = MODULAR_ARMOR_OFFSET_Y,
-					"scale" = MODULAR_ARMOR_SCALING,
-					))
+				"icon" = icon2base64(icon_to_convert),
+				"translateX" = translatex,
+				"translateY" = translatey,
+				"scale" = scale,
+				))
+
 	return tgui_data
 
 ///////////////////////////////////////////////////////////////////////
@@ -91,7 +72,7 @@
  * This is only able to representate items of type /obj/item/clothing/suit
  */
 /datum/item_representation/armor_suit/modular_armor
-	///Icon_state suffix for the saved icon_state varient.
+	///Icon_state suffix for the saved icon_state variant.
 	var/current_variant
 
 /datum/item_representation/armor_suit/modular_armor/New(obj/item/item_to_copy)
@@ -102,6 +83,8 @@
 		CRASH("/datum/item_representation/modular_armor created from an item that is not a modular suit")
 
 	var/obj/item/clothing/suit/modular/suit_to_copy = item_to_copy
+	if(item_to_copy.greyscale_config)
+		return
 	current_variant = suit_to_copy.current_variant
 
 /datum/item_representation/armor_suit/modular_armor/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
@@ -109,6 +92,8 @@
 	if(!.)
 		return
 	var/obj/item/clothing/suit/modular/modular_armor = .
+	if(modular_armor.greyscale_config)
+		return
 	modular_armor.current_variant = (current_variant in modular_armor.icon_state_variants) ? current_variant : initial(modular_armor.current_variant)
 	modular_armor.update_icon()
 
@@ -117,7 +102,11 @@
 	var/list/tgui_data = list()
 	tgui_data["name"] = initial(item_type.name)
 	tgui_data["icons"] = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon),current_variant ? initial(item_type.icon_state) + "_[current_variant]" : initial(item_type.icon_state), SOUTH)
+	var/icon/icon_to_convert
+	if(initial(item_type.greyscale_config))
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors),  initial(item_type.icon_state), dir = SOUTH)
+	else
+		icon_to_convert = icon(initial(item_type.icon),current_variant ? initial(item_type.icon_state) + "_[current_variant]" : initial(item_type.icon_state), SOUTH)
 	tgui_data["icons"] += list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,
@@ -125,41 +114,27 @@
 				"scale" = MODULAR_ARMOR_SCALING,
 				))
 	for(var/datum/item_representation/armor_module/module AS in attachments)
-		if(istype(module, /datum/item_representation/armor_module/colored))
-			var/datum/item_representation/armor_module/colored/colored_module = module
-			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(colored_module.item_type.greyscale_config), colored_module.greyscale_colors), dir = SOUTH)
-			tgui_data["icons"] += list(list(
-					"icon" = icon2base64(icon_to_convert),
-					"translateX" = NO_OFFSET,
-					"translateY" = MODULAR_ARMOR_OFFSET_Y,
-					"scale" = MODULAR_ARMOR_SCALING,
-					))
+		if(!initial(module.item_type.icon_state))
 			continue
-		if(ispath(module.item_type, /obj/item/armor_module/armor))
+		if(initial(module.item_type.greyscale_config))
+			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  initial(module.item_type.icon_state), dir = SOUTH)
+		else
 			icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
-			tgui_data["icons"] += list(list(
-					"icon" = icon2base64(icon_to_convert),
-					"translateX" = "40%",
-					"translateY" = "35%",
-					"scale" = 0.5,
-					))
-			continue
+
+		var/translatex = NO_OFFSET
+		var/translatey = MODULAR_ARMOR_OFFSET_Y
+		var/scale = MODULAR_ARMOR_SCALING
 		if(ispath(module.item_type, /obj/item/armor_module/module))
-			icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
-			tgui_data["icons"] += list(list(
-					"icon" = icon2base64(icon_to_convert),
-					"translateX" = "40%",
-					"translateY" = "35%",
-					"scale" = 0.5,
-					))
-			continue
-		icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
+			translatex = "40%"
+			translatey = "35%"
+			scale = 0.5
+
 		tgui_data["icons"] += list(list(
-					"icon" = icon2base64(icon_to_convert),
-					"translateX" = NO_OFFSET,
-					"translateY" = MODULAR_ARMOR_OFFSET_Y,
-					"scale" = MODULAR_ARMOR_SCALING,
-					))
+				"icon" = icon2base64(icon_to_convert),
+				"translateX" = translatex,
+				"translateY" = translatey,
+				"scale" = scale,
+				))
 	return tgui_data
 
 /**
@@ -179,12 +154,6 @@
 	var/obj/item/armor_module/module_to_copy = item_to_copy
 	for(var/key in module_to_copy.attachments_by_slot)
 		if(!isitem(module_to_copy.attachments_by_slot[key]))
-			continue
-		if(istype(module_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
-			attachments += new /datum/item_representation/armor_module/colored(module_to_copy.attachments_by_slot[key])
-			continue
-		if(istype(module_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
-			attachments += new /datum/item_representation/armor_module/armor(module_to_copy.attachments_by_slot[key])
 			continue
 		if(istype(module_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))
 			attachments += new /datum/item_representation/armor_module/storage(module_to_copy.attachments_by_slot[key])
@@ -214,53 +183,6 @@
 		qdel(module)
 		return
 	SEND_SIGNAL(thing_to_install_on, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT, module)
-
-
-
-/datum/item_representation/armor_module/armor
-	///Icon_state suffix for the saved icon_state varient.
-	var/current_variant
-
-/datum/item_representation/armor_module/armor/New(obj/item/item_to_copy)
-	if(!item_to_copy)
-		return
-	if(!ismodulararmormodule(item_to_copy))
-		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger module")
-	..()
-	var/obj/item/armor_module/armor/module = item_to_copy
-	//current_variant = module.current_variant
-
-/datum/item_representation/armor_module/armor/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	. = ..()
-	if(!.)
-		return
-	var/obj/item/armor_module/armor/module = .
-	//module.current_variant = (current_variant in module.icon_state_variants) ? current_variant : initial(module.current_variant)
-	//module.update_icon()
-/**
- * Allow to representate an armor piece of a jaeger, and to color it
- * This is only able to representate items of type /obj/item/armor_module/greyscale
- */
-/datum/item_representation/armor_module/colored
-	///The color of that armor module
-	var/greyscale_colors
-
-/datum/item_representation/armor_module/colored/New(obj/item/item_to_copy)
-	if(!item_to_copy)
-		return
-	if(!istype(item_to_copy, /obj/item/armor_module/armor))
-		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger armor piece")
-	..()
-	greyscale_colors = item_to_copy.greyscale_colors
-
-/datum/item_representation/armor_module/colored/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	. = ..()
-	if(!.)
-		return
-	var/obj/item/armor_module/armor/armor = .
-	if(greyscale_colors)
-		armor.set_greyscale_colors(greyscale_colors)
-	armor.update_icon()
 
 /datum/item_representation/armor_module/storage
 	///Storage repressentation of storage modules.
