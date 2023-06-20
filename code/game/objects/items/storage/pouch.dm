@@ -44,12 +44,6 @@
 	draw_mode = 1
 	bypass_w_limit = list(/obj/item/ammo_magazine/packet)
 
-/obj/item/storage/pouch/general/medium
-	name = "medium general pouch"
-	storage_slots = 2
-	icon_state = "medium_drop"
-	draw_mode = 0
-
 /obj/item/storage/pouch/general/large
 	name = "general pouch"
 	storage_slots = null
