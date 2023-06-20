@@ -458,8 +458,8 @@
 
 /turf/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(charge_datum.valid_steps_taken >= charge_datum.max_steps_buildup)
-		return 2 //Should dismantle, or at least heavily damage it.
-	return 3 //Lighter damage.
+		return EXPLODE_DEVASTATE //Should dismantle, or at least heavily damage it.
+	return EXPLODE_HEAVY //Lighter, but still harsh damage.
 
 
 // ***************************************
