@@ -829,7 +829,6 @@
 #define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
 #define COMSIG_XENOABILITY_BANELING_SPAWN_POD "xenoability_baneling_spawn_pod"
 #define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"
-#define COMSIG_XENOABILITY_BANELING_SWITCH_REAGENT "xenoability_baneling_switch_reagent"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"

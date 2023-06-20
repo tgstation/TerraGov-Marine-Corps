@@ -389,14 +389,12 @@
 	S.strength = strength
 
 /datum/effect_system/smoke_spread/xeno/acid
-	name = "Acid"
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn
 
 /datum/effect_system/smoke_spread/xeno/acid/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/light
 
 /datum/effect_system/smoke_spread/xeno/neuro
-	name = "Neurotoxin"
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro
 
 /datum/effect_system/smoke_spread/xeno/neuro/medium
@@ -409,18 +407,15 @@
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/toxic
 
 /datum/effect_system/smoke_spread/xeno/hemodile
-	name = "Hemodile"
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
 
 /datum/effect_system/smoke_spread/xeno/transvitox
-	name = "Transvitox"
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
 
 /datum/effect_system/smoke_spread/xeno/sanguinal
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/sanguinal
 
 /datum/effect_system/smoke_spread/xeno/ozelomelyn
-	name = "Ozelomelyn"
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/ozelomelyn
 
 /////////////////////////////////////////////

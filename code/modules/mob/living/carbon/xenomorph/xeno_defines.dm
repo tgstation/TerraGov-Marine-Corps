@@ -409,7 +409,7 @@
 
 	// *** Baneling vars ***
 	/// The current chemical that gets released on baneling death
-	var/selected_chemical = /datum/reagent/toxin/acid
+	var/selected_chemical = /datum/effect_system/smoke_spread/xeno/acid
 
 	//Notification spam controls
 	var/recent_notice = 0
