@@ -115,8 +115,10 @@
 	)
 	light_range = 5
 
+	///The variable storing what can color the object.
 	var/colorable_allowed = NOT_COLORABLE
 
+	///The total list of allowed colors
 	var/list/colorable_colors = list()
 
 	///List of icon_state suffixes for armor varients.

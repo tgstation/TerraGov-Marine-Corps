@@ -24,6 +24,7 @@
 	/// Generated icons keyed by their color arguments
 	var/list/icon_cache
 
+	/// This is used to differentiate sprites that can use the same json, but you dont want a ton of different icon files. It applies this prefix to the icon states before gathering the icons.
 	var/prefix = ""
 
 // There's more sanity checking here than normal because this is designed for spriters to work with

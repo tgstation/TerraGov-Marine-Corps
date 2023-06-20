@@ -1,7 +1,11 @@
 /datum/greyscale_layer
+	///This is the layer type that is used to generate these greyscale layers. It should be the same as the typepath after the base type here.
 	var/layer_type
+	///The list of colors to be used.
 	var/list/color_ids
+	///The selected blend mode.
 	var/blend_mode
+	///This list is for converting json entries into the correct defines to be used on blend_mode
 	var/static/list/blend_modes = list(
 		"add" = ICON_ADD,
 		"subtract" = ICON_SUBTRACT,
@@ -34,7 +38,9 @@
 /// The most basic greyscale layer; a layer which is created from a single icon_state in the given icon file
 /datum/greyscale_layer/icon_state
 	layer_type = "icon_state"
+	///This is the icon that the layer should use
 	var/icon/icon
+	///This is the color id that should be used in the operation. It is the index of the correct color in the passed-in string.
 	var/color_id
 
 
@@ -79,7 +85,9 @@
 
 /datum/greyscale_layer/hyperscale
 	layer_type = "hyperscale"
+	///This is the list of colors in the given icon from darkest to lightest. The colors are converted to greyscale before sorting.
 	var/list/icon_file_colors = list()
+	///This is the icon of the layer
 	var/icon/icon
 
 /datum/greyscale_layer/hyperscale/Generate(list/colors, list/render_steps)
