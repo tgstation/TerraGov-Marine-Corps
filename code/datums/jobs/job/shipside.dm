@@ -1256,7 +1256,7 @@ If you require any help, use <b>mentorhelp</b> to ask mentors about what you're 
 
 /datum/job/terragov/civilian/clown/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your primary job is to uphold the fun, pranks, entertainment and good mood aboard the ship. Marines can get sad after a few weeks of cryosleep!"})
+	to_chat(M, "Your primary job is to uphold the fun, pranks, entertainment and good mood aboard the ship. Marines can get sad after a few weeks of cryosleep!")
 
 /datum/outfit/job/civilian/clown
 	name = CLOWN
