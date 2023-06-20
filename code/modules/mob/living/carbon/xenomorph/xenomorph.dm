@@ -426,3 +426,9 @@
 	SIGNAL_HANDLER
 	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	loc_weeds_type = found_weed?.type
+
+/mob/living/carbon/xenomorph/lay_down()
+	var/datum/action/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/xeno_action/xeno_resting]
+	if(!resting_action || !resting_action.can_use_action())	
+		return
+	return ..()
