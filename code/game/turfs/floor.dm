@@ -113,10 +113,10 @@
 /turf/open/floor/proc/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	if(T.turf_type == type)
 		return
-	var/obj/item/tool/crowbar/CB = user.is_holding_item_of_type(/obj/item/tool/crowbar)
-	if(!CB)
+	var/obj/item/tool/crowbar/user_crowbar = user.is_holding_item_of_type(/obj/item/tool/crowbar)
+	if(!user_crowbar)
 		return
-	var/turf/open/floor/plating/P = pry_tile(CB, user, TRUE)
+	var/turf/open/floor/plating/P = pry_tile(user_crowbar, user, TRUE)
 	if(!istype(P))
 		return
 	P.attackby(T, user, params)

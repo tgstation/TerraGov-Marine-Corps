@@ -598,7 +598,7 @@
 		to_chat(user, span_notice("The replacement bulb is broken."))
 		return
 	var/obj/item/stack/tile/light/existing_bulb = light_tile.floor_tile
-	if(!existing_bulb.state)
+	if(existing_bulb.state == LIGHT_TILE_OK)
 		to_chat(user, span_notice("The lightbulb seems fine, no need to replace it."))
 		return
 

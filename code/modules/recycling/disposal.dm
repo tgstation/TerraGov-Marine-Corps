@@ -654,7 +654,7 @@
 		return
 	if(isfloorturf(T)) //intact floor, pop the tile
 		var/turf/open/floor/F = T
-		if(!F.has_tile())
+		if(F.has_tile())
 			F.remove_tile()
 
 	if(direction) //Direction is specified

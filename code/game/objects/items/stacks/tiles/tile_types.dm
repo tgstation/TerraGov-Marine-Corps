@@ -20,7 +20,7 @@
 /obj/item/stack/tile/attack_turf(turf/T, mob/living/user)
 	if(!turf_type)
 		return
-	if(T.type != /turf/open/floor/plating)
+	if(!istype(T, /turf/open/floor/plating))
 		return
 	if(!use(1))
 		return
@@ -28,10 +28,6 @@
 	T.ChangeTurf(turf_type)
 
 /obj/item/stack/tile/plasteel
-	name = "floor tile"
-	singular_name = "floor tile"
-	desc = "Those could work as a pretty decent throwing weapon"
-	icon_state = "tile"
 	force = 6
 	throwforce = 8
 	throw_speed = 3
@@ -41,16 +37,25 @@
 
 /obj/item/stack/tile/plasteel/welder_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(use(4))
-		new /obj/item/stack/sheet/metal(get_turf(src))
-	else
-		balloon_alert(user, "Need 4 tiles")
+	var/obj/item/tool/weldingtool/welder = I
 
-/obj/item/stack/tile/plasteel/proc/build(turf/S as turf)
-	if (istype(S,/turf/open/space))
-		S.ChangeTurf(/turf/open/floor/plating/airless)
+	if(!(welder.use(1)))
+		to_chat(user, span_warning("You need more welding fuel to complete this task."))
+		return
+	if(!use(4))
+		balloon_alert(user, "Need 4 tiles")
+		return
+
+	to_chat(user, span_warning("You turn the floor plates back into a metal sheet."))
+	playsound(src, 'sound/items/welder.ogg', 25, 1)
+	new /obj/item/stack/sheet/metal(get_turf(src))
+
+///Creates plating, used for space turfs only
+/obj/item/stack/tile/plasteel/proc/build(turf/space_turf)
+	if (istype(space_turf,/turf/open/space))
+		space_turf.ChangeTurf(/turf/open/floor/plating/airless)
 	else
-		S.ChangeTurf(/turf/open/floor/plating)
+		space_turf.ChangeTurf(/turf/open/floor/plating)
 
 
 /obj/item/stack/tile/grass
@@ -84,18 +89,16 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
 	turf_type = /turf/open/floor/light
 	var/on = 1
-	var/state //0 = fine, 1 = flickering, 2 = breaking, 3 = broken
+	var/state = LIGHT_TILE_OK
 
 /obj/item/stack/tile/light/Initialize(mapload, amount)
 	. = ..()
 	if(prob(5))
-		state = 3 //broken
+		state = LIGHT_TILE_BROKEN
 	else if(prob(5))
-		state = 2 //breaking
+		state = LIGHT_TILE_BREAKING
 	else if(prob(10))
-		state = 1 //flickering occasionally
-	else
-		state = 0 //fine
+		state = LIGHT_TILE_FLICKERING
 
 /obj/item/stack/tile/light/attackby(obj/item/I, mob/user, params)
 	. = ..()
