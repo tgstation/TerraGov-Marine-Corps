@@ -777,24 +777,20 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 ///Quick-select radial menu for Overwatch
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_radial(datum/source, atom/A, params)
-	var/list/radial_options
 	var/mob/living/carbon/human/human_target
 	var/obj/effect/overlay/temp/laser_target/OB/laser_target
 	var/turf/turf_target
 	var/choice
 	if(ishuman(A))
 		human_target = A
-		radial_options = human_radial_options
-		choice = show_radial_menu(source, human_target, radial_options, null, 48, null, FALSE, TRUE)
+		choice = show_radial_menu(source, human_target, human_radial_options, null, 48, null, FALSE, TRUE)
 
 	else if(istype(A, /obj/effect/overlay/temp/laser_target/OB))
 		laser_target = A
-		radial_options = bombardment_radial_options
-		choice = show_radial_menu(source, laser_target, radial_options, null, 48, null, FALSE, TRUE)
+		choice = show_radial_menu(source, laser_target, bombardment_radial_options, null, 48, null, FALSE, TRUE)
 	else
 		turf_target = get_turf(A)
-		radial_options = turf_radial_options
-		choice = show_radial_menu(source, turf_target, radial_options, null, 48, null, FALSE, TRUE)
+		choice = show_radial_menu(source, turf_target, turf_radial_options, null, 48, null, FALSE, TRUE)
 
 	switch(choice)
 		if(MESSAGE_SINGLE)
@@ -828,8 +824,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					continue
 				current_squad.message_member(target, input, source)
 		if(SQUAD_ACTIONS)
-			radial_options = squad_radial_options
-			choice = show_radial_menu(source, turf_target, radial_options, null, 48, null, FALSE, TRUE)
+			choice = show_radial_menu(source, turf_target, squad_radial_options, null, 48, null, FALSE, TRUE)
 			var/datum/squad/chosen_squad = squad_select(source, turf_target)
 			switch(choice)
 				if(MESSAGE_SQUAD)
