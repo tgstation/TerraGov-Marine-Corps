@@ -26,7 +26,6 @@
 	new /obj/item/tool/taperoll/engineering(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/storage/pouch/electronics(src)
-	new /obj/item/storage/pouch/general/medium(src)
 	new /obj/item/storage/pouch/construction(src)
 	new /obj/item/storage/pouch/tools(src)
 	new /obj/item/clothing/shoes/white(src)
