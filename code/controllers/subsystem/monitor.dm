@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(monitor)
 
 
 	//Automatic respawn buff, if a stalemate is detected and a lot of ghosts are waiting to play
-	if(current_state != STATE_BALANCED || !stalemate || GLOB.observer_list <= 0.5 * total_living_players)
+	if(current_state != STATE_BALANCED || !stalemate || length(GLOB.observer_list) <= 0.5 * total_living_players)
 		SSsilo.larva_spawn_rate_temporary_buff = 0
 		return
 	for(var/mob/dead/observer/observer AS in GLOB.observer_list)
