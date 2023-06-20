@@ -86,3 +86,4 @@
 	jumper.flags_pass &= ~jumper_flags_pass
 	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_ELEMENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
+	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)
