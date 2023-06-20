@@ -249,7 +249,7 @@
 	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
-	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
+	if(!client || !ckey)
 		return
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
