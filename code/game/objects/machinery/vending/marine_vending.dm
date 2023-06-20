@@ -1432,7 +1432,6 @@
 			/obj/item/storage/pouch/general/large = -1,
 			/obj/item/storage/pouch/document = -1,
 			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
-			/obj/item/storage/pouch/general/medium = -1,
 		),
 		"Headwear" = list(
 			/obj/item/clothing/head/modular/style/beret = -1,
