@@ -1253,9 +1253,8 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "IS" = (
-/obj/machinery/door/airlock/glass_medical{
-	id_tag = "mbayexit";
-	name = "Medbay Reception"
+/obj/machinery/door/airlock/glass{
+	dir = 1
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)

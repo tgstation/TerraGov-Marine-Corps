@@ -40,10 +40,6 @@
 /obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/fitness)
-"ap" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/asteroidfloor,
-/area/storage/testroom)
 "as" = (
 /obj/structure/filingcabinet/medical,
 /turf/open/floor/tile/dark/purple2{
@@ -2178,6 +2174,10 @@
 "lu" = (
 /turf/open/floor/plating/dmg3,
 /area/lv624/lazarus/research/caves)
+"lv" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth/indestructible,
+/area/storage/testroom)
 "lx" = (
 /obj/structure/sign/safety/hazard,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -4280,10 +4280,6 @@
 "wm" = (
 /turf/open/ground/coast,
 /area/lv624/ground/river3)
-"wn" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "wp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access,
 /turf/open/floor/plating,
@@ -4888,14 +4884,6 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/lazarus/spaceport)
-"zq" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/shuttle/drop1/lz1)
 "zr" = (
 /obj/item/trash/chips,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -5751,10 +5739,6 @@
 /obj/structure/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport)
-"Dt" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "Du" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -8053,14 +8037,6 @@
 	dir = 8
 	},
 /area/lv624/lazarus/sleep_male)
-"Ot" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "Oy" = (
 /obj/structure/bed/chair/sofa{
 	dir = 1
@@ -9200,10 +9176,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
-"Uc" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "Ud" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9450,10 +9422,6 @@
 	dir = 8
 	},
 /area/lv624/ground/river3)
-"Vh" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "Vi" = (
 /obj/structure/flora/grass/tallgrass{
 	color = "#798963"
@@ -10642,7 +10610,7 @@ wh
 (3,1,1) = {"
 wh
 hD
-ap
+lv
 hD
 FC
 FC
@@ -11244,7 +11212,7 @@ yp
 yp
 ek
 ek
-Ot
+ek
 yp
 yp
 yp
@@ -11344,7 +11312,7 @@ RA
 pf
 GF
 GF
-Dt
+Ux
 Ux
 Ux
 Ux
@@ -11448,7 +11416,7 @@ tf
 pf
 GF
 GF
-wn
+Ux
 Ux
 Ux
 Ux
@@ -12072,7 +12040,7 @@ nq
 pf
 GF
 GF
-wn
+Ux
 Ux
 Ux
 Ux
@@ -12176,7 +12144,7 @@ RA
 pf
 GF
 GF
-Dt
+Ux
 Ux
 Ux
 Ux
@@ -18939,7 +18907,7 @@ eV
 eV
 hU
 hU
-zq
+hU
 eV
 eV
 eV
@@ -19039,7 +19007,7 @@ La
 jY
 tI
 tI
-Vh
+OP
 OP
 OP
 OP
@@ -19143,7 +19111,7 @@ Se
 jY
 tI
 tI
-Uc
+OP
 OP
 OP
 OP
@@ -19767,7 +19735,7 @@ ov
 jY
 tI
 tI
-Uc
+OP
 OP
 OP
 OP
@@ -19871,7 +19839,7 @@ La
 jY
 tI
 tI
-Vh
+OP
 OP
 OP
 OP

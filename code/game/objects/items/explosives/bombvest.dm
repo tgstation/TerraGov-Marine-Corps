@@ -1,7 +1,9 @@
-/obj/item/clothing/suit/storage/marine/harness/boomvest
+/obj/item/clothing/suit/storage/marine/boomvest
 	name = "tactical explosive vest"
 	desc = "Obviously someone just strapped a bomb to a marine harness and called it tactical. The light has been removed, and its switch used as the detonator.<br><span class='notice'>Control-Click to set a warcry.</span> <span class='warning'>This harness has no light, toggling it will detonate the vest!</span>"
 	icon_state = "boom_vest"
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	slowdown = 0
 	flags_item_map_variant = NONE
 	flags_armor_features = NONE
 	///Warcry to yell upon detonation
@@ -9,21 +11,21 @@
 	///List of warcries that are not allowed.
 	var/bad_warcries_regex = "allahu ackbar|allah|ackbar"
 
-/obj/item/clothing/suit/storage/marine/harness/boomvest/equipped(mob/user, slot)
+/obj/item/clothing/suit/storage/marine/boomvest/equipped(mob/user, slot)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOB_SHIELD_DETACH, PROC_REF(shield_dropped))
 
-/obj/item/clothing/suit/storage/marine/harness/boomvest/unequipped(mob/unequipper, slot)
+/obj/item/clothing/suit/storage/marine/boomvest/unequipped(mob/unequipper, slot)
 	. = ..()
 	UnregisterSignal(unequipper, COMSIG_MOB_SHIELD_DETACH)
 
 ///Updates the last shield drop time when one is dropped
-/obj/item/clothing/suit/storage/marine/harness/boomvest/proc/shield_dropped()
+/obj/item/clothing/suit/storage/marine/boomvest/proc/shield_dropped()
 	SIGNAL_HANDLER
 	TIMER_COOLDOWN_START(src, COOLDOWN_BOMBVEST_SHIELD_DROP, 5 SECONDS)
 
 ///Overwrites the parent function for activating a light. Instead it now detonates the bomb.
-/obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
+/obj/item/clothing/suit/storage/marine/boomvest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(issynth(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		balloon_alert(user, "Can't wear this")
@@ -61,7 +63,7 @@
 	explosion(target, 2, 2, 6, 5, 5)
 	qdel(src)
 
-/obj/item/clothing/suit/storage/marine/harness/boomvest/attack_hand_alternate(mob/living/user)
+/obj/item/clothing/suit/storage/marine/boomvest/attack_hand_alternate(mob/living/user)
 	. = ..()
 	var/new_bomb_message = stripped_input(user, "Select Warcry", "Warcry", null, 50)
 	var/filter_result = CAN_BYPASS_FILTER(user) ? null : is_ic_filtered_for_bombvests(new_bomb_message)
@@ -84,11 +86,11 @@
 	to_chat(user, span_info("Warcry set to: \"[bomb_message]\"."))
 
 //admin only
-/obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest
+/obj/item/clothing/suit/storage/marine/boomvest/ob_vest
 	name = "orbital bombardment vest"
 	desc = "This is your lieutenant speaking, I know exactly what those coordinates are for."
 
-/obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest/attack_self(mob/user)
+/obj/item/clothing/suit/storage/marine/boomvest/ob_vest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(activator.wear_suit != src)
 		balloon_alert(user, "Can only be detonated while worn")

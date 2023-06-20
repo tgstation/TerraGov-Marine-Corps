@@ -53,7 +53,7 @@
 /obj/item/clothing/suit/modular/xenonauten/mimir
 	starting_attachments = list(
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
-		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/shield

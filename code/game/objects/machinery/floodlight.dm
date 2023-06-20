@@ -139,7 +139,7 @@
 
 /obj/item/deployable_floodlight/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployable_item, 5 SECONDS, 3 SECONDS)
+	AddComponent(/datum/component/deployable_item, deployable_item, 5 SECONDS, 3 SECONDS)
 
 #define FLOODLIGHT_TICK_CONSUMPTION 800
 

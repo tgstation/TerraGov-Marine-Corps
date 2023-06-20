@@ -35,6 +35,10 @@
 
 /obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override)
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 	if(!isnull(node))
 		if(!istype(node))
@@ -119,6 +123,11 @@
 	if(!parent_node.swapped)
 		SSweeds_decay.decaying_list += src
 	parent_node = null
+
+///overrides the turf's normal footstep sound
+/obj/alien/weeds/proc/footstep_override(atom/movable/source, list/footstep_overrides)
+	SIGNAL_HANDLER
+	footstep_overrides[FOOTSTEP_RESIN] = layer
 
 /obj/alien/weeds/sticky
 	name = "sticky weeds"

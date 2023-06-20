@@ -284,7 +284,7 @@
 				faltext += "[fallen_list[i]], "
 			else
 				faltext += fallen_list[i]
-		. += "[span_notice("To our fallen soldiers:")] <b>[faltext]</b>."
+		. += "[span_notice("To our fallen marines:")] <b>[faltext]</b>."
 
 
 /obj/structure/prop/mainship/particle_cannon

@@ -1,4 +1,5 @@
 #define MAX_COMMAND_MESSAGE_LGTH 300
+#define AI_PING_RADIUS 30
 
 ///This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.
 /mob/living/silicon/ai
@@ -56,8 +57,11 @@
 	///Linked artillery for remote targeting.
 	var/obj/machinery/deployable/mortar/linked_artillery
 
-	///Referenec to the AIs minimap.
+	///Reference to the AIs minimap.
 	var/datum/action/minimap/ai/mini
+
+	///used for cooldown when AI pings the location of a xeno or xeno structure
+	COOLDOWN_DECLARE(last_pinged_marines)
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -417,8 +421,7 @@
 /mob/living/silicon/ai/proc/associate_artillery(mortar)
 	if(linked_artillery)
 		UnregisterSignal(linked_artillery, COMSIG_PARENT_QDELETING)
-		linked_artillery = null
-		return FALSE
+		linked_artillery.unset_targeter()
 	linked_artillery = mortar
 	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, PROC_REF(clean_artillery_refs))
 	return TRUE
@@ -517,3 +520,47 @@
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+
+
+///takes an atom A and sends an alert, coordinate and for the atom to eligible marine forces if cooldown is over
+/mob/living/silicon/ai/proc/ai_ping(atom/A, cooldown = COOLDOWN_AI_PING_NORMAL)
+	///list of mobs to send the notification to
+	var/list/receivers = (GLOB.alive_human_list)
+	if(is_mainship_level(A.z)) //if our target is shipside, we always use the lowest cooldown between pings
+		cooldown = COOLDOWN_AI_PING_EXTRA_LOW
+	if(!COOLDOWN_CHECK(src, last_pinged_marines)) //delay between alerts, both for balance and to prevent chat spam from overeager AIs
+		to_chat(src, span_alert("You must wait before issuing an alert again"))
+		return
+	COOLDOWN_START(src, last_pinged_marines, cooldown)
+	to_chat(src, span_alert("<b>You issue an alert for [A.name] to all living personnel.</b>"))
+	for(var/mob/M in receivers)
+		if(M.z != A.z || M.stat == DEAD)
+			continue
+		var/newdistance = get_dist(A, M)
+		var/generaldirection = "north"
+		if(istype(A, /obj/effect/xenomorph/acid)) //special check for acid
+			var/obj/effect/xenomorph/acid/pingedacid = A
+			playsound(M, 'sound/machines/beepalert.ogg', 25)
+			to_chat(M, span_alert("AI telemetry indicates that the <b>[pingedacid.acid_t]</b> which is <b>[newdistance]</b> units away at: [AREACOORD_NO_Z(A)] is <b> being melted</b>! by [pingedacid.name]!"))
+			return
+		if(newdistance <= AI_PING_RADIUS && newdistance != 0)
+			///time for calculations
+
+			///divide our range into SW, NW, SE and NE for the purposes of identification
+			///we subtract the receivers X/Y value from the target atoms X/Y value, once for x coords and one for y coords
+			///by checking whether the result is positive or negative, we can tell the general direction the target atom is in
+			if(A.x - M.x <= 0 && A.y - M.y <= 0) //southwest
+				generaldirection = pick("southwest","south","west") ///to avoid upsetting balance we give very general directions
+			else if(A.x - M.x <= 0 && A.y - M.y >= 0) //northwest
+				generaldirection = pick("northwest","north","west")
+			else if(A.x - M.x >= 0 && A.y - M.y <= 0) //southeast
+				generaldirection = pick("southeast","south","east")
+			else if(A.x - M.x >= 0 && A.y - M.y >= 0) //northeast
+				generaldirection = pick("northeast","north","east")
+
+			playsound(M, 'sound/machines/beepalert.ogg', 25)
+			to_chat(M, span_alert("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))
+			to_chat(M, span_alert("AI telemetry indicates that <b>[A.name]</b> is <b>[newdistance]</b> units away to the <b>[generaldirection]</b>."))
+		else //if the receiver is outside AI_PING_RADIUS, give them a name and coords
+			playsound(M, 'sound/machines/twobeep.ogg', 20)
+			to_chat(M, span_notice("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))

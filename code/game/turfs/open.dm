@@ -2,6 +2,7 @@
 /turf/open
 	plane = FLOOR_PLANE
 	minimap_color = MINIMAP_AREA_COLONY
+	resistance_flags = PROJECTILE_IMMUNE|UNACIDABLE
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
@@ -46,6 +47,21 @@
 /turf/open/examine(mob/user)
 	. = ..()
 	. += ceiling_desc()
+
+///Checks if anything should override the turf's normal footstep sounds
+/turf/open/proc/get_footstep_override(footstep_type)
+	var/list/footstep_overrides = list()
+	SEND_SIGNAL(src, COMSIG_FIND_FOOTSTEP_SOUND, footstep_overrides)
+	if(!length(footstep_overrides))
+		return
+
+	var/override_sound
+	var/index = 0
+	for(var/i in footstep_overrides)
+		if(footstep_overrides[i] > index)
+			override_sound = i
+			index = footstep_overrides[i]
+	return override_sound
 
 // Beach
 

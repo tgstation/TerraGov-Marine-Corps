@@ -117,8 +117,8 @@
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
-		if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
-			SSresinshaping.decrement_build_counter(X)
+		if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+			SSresinshaping.quickbuilds++
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, "alien_resin_break", 25) //SFX
 		deconstruct(TRUE)
@@ -189,14 +189,14 @@
 	if(X.a_intent != INTENT_HARM)
 		try_toggle_state(X)
 		return TRUE
-	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
-		SSresinshaping.decrement_build_counter(X)
+	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		SSresinshaping.quickbuilds++
 		qdel(src)
 		return TRUE
 
 	src.balloon_alert(X, "Destroying...")
 	playsound(src, "alien_resin_break", 25)
-	if(do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
+	if(do_after(X, 1 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
 		src.balloon_alert(X, "Destroyed")
 		qdel(src)
 
@@ -271,7 +271,7 @@
 	desc = "A foul, viscous resin jelly that doesnt seem to burn easily."
 	icon = 'icons/unused/Marine_Research.dmi'
 	icon_state = "biomass"
-	soft_armor = list("fire" = 200)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
 	var/immune_time = 15 SECONDS
 	///Holder to ensure only one user per resin jelly.
 	var/current_user

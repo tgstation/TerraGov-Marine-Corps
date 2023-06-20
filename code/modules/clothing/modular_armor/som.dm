@@ -48,6 +48,12 @@
 		/obj/item/armor_module/storage/engineering,
 	)
 
+/obj/item/clothing/suit/modular/som/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general/som,
+	)
+
 /obj/item/clothing/suit/modular/som/shield
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield/som,

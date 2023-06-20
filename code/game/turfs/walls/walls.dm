@@ -215,6 +215,22 @@
 		damage_overlays[i] = img
 
 //Damage
+/**
+	Returns a number after taking into account both soft and hard armor for the specified damage type
+
+	Arguments
+	* Damage_amount: The original unmodified damage
+	* armor_type: The type of armor by which the damage will be modified
+	* penetration: How much the damage source might bypass the armour value (optional)
+
+	Hard armor reduces penetration by a flat amount.
+	Penetration reduces soft armor by a flat amount.
+	Damage cannot go into the negative, or exceed the original amount.
+*/
+/turf/proc/modify_by_armor(damage_amount, armor_type, penetration)
+	penetration = max(0, penetration - hard_armor.getRating(armor_type))
+	return clamp((damage_amount * (1 - ((soft_armor.getRating(armor_type) - penetration) * 0.01))), 0, damage_amount)
+
 /turf/closed/wall/proc/take_damage(damage)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
@@ -505,5 +521,8 @@
 
 		return attack_hand(user)
 
-/turf/closed/wall/can_be_dissolved()
-	return !(resistance_flags & INDESTRUCTIBLE)
+/turf/closed/wall/get_acid_delay()
+	return 5 SECONDS
+
+/turf/closed/wall/dissolvability(acid_strength)
+	return 0.5
