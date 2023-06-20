@@ -75,7 +75,7 @@
 		use(4)
 
 /obj/item/stack/rods/attack_turf(turf/T, mob/living/user)
-	if(T.type != /turf/open/floor/plating)
+	if(!istype(T, /turf/open/floor/plating))
 		to_chat(user, span_warning("You must remove the plating first."))
 		return
 	if(get_amount() < 2)
@@ -83,7 +83,7 @@
 		return
 
 	to_chat(user, span_notice("Reinforcing the floor."))
-	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || (T.type != /turf/open/floor/plating))
+	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || !istype(T, /turf/open/floor/plating))
 		return
 	if(!use(2))
 		to_chat(user, span_warning("You need more rods."))

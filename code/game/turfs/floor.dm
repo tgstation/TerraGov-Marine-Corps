@@ -87,7 +87,7 @@
 
 ///Burns the turf
 /turf/open/floor/proc/burn_tile()
-	if(!burnable_tile|| hull_floor)
+	if(!burnable_tile || hull_floor)
 		return
 	if(burnt)
 		return

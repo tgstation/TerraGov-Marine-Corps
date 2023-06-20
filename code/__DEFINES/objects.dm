@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define BELOW_INTEGRITY_THRESHOLD "below integrity threshold"
 
 //light tile defines
-#define LIGHT_TILE_OK "0"
-#define LIGHT_TILE_FLICKERING "1"
-#define LIGHT_TILE_BREAKING "2"
-#define LIGHT_TILE_BROKEN "3"
+#define LIGHT_TILE_OK 0
+#define LIGHT_TILE_FLICKERING 1
+#define LIGHT_TILE_BREAKING 2
+#define LIGHT_TILE_BROKEN 3
