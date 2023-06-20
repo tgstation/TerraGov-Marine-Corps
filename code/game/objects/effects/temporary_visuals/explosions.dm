@@ -137,7 +137,6 @@
 	gravity = list(0, -1)
 
 /particles/dirt_kickup_large/deva
-	position = generator(GEN_BOX, list(-12, 32), list(12, 48), NORMAL_RAND)
 	velocity = list(0, 25)
 	scale = generator(GEN_NUM, 1, 1.25)
 	grow = list(0, 0.03)
