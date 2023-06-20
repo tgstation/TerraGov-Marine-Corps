@@ -72,11 +72,11 @@
 
 		user.visible_message(span_warning(" [user] flails away at the  [src] with [I]."),span_warning(" You flail away at the [src] with [I]."))
 		playsound(loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
-		take_damage(damage)
+		take_damage(damage, BRUTE, MELEE)
 
 
 /obj/structure/bush/flamer_fire_act(burnlevel)
-	take_damage(burnlevel, BURN, "fire")
+	take_damage(burnlevel, BURN, FIRE)
 
 //*******************************//
 // Strange, fruit-bearing plants //

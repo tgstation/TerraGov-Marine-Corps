@@ -176,11 +176,11 @@
 			ChangeTurf(/turf/open/floor/plating)
 		if(EXPLODE_HEAVY)
 			if(prob(75))
-				take_damage(rand(100, 250))
+				take_damage(rand(100, 250), BRUTE, BOMB)
 			else
 				dismantle_wall(1, 1)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(0, 250))
+			take_damage(rand(0, 250), BRUTE, BOMB)
 
 
 /turf/closed/wall/sulaco/hull

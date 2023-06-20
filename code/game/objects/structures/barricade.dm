@@ -193,9 +193,9 @@
 			deconstruct(FALSE)
 			return
 		if(EXPLODE_HEAVY)
-			take_damage(rand(33, 66))
+			take_damage(rand(33, 66), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(10, 33))
+			take_damage(rand(10, 33), BRUTE, BOMB)
 	update_icon()
 
 /obj/structure/barricade/setDir(newdir)
@@ -250,7 +250,7 @@
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		take_damage(base_acid_damage * S.strength)
+		take_damage(base_acid_damage * S.strength, BURN, ACID)
 
 
 /obj/structure/barricade/verb/rotate()
@@ -713,11 +713,11 @@
 /obj/structure/barricade/metal/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(rand(400, 600))
+			take_damage(rand(400, 600), BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(150, 350))
+			take_damage(rand(150, 350), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 100))
+			take_damage(rand(50, 100), BRUTE, BOMB)
 
 	update_icon()
 
@@ -974,11 +974,11 @@
 /obj/structure/barricade/plasteel/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(rand(450, 650))
+			take_damage(rand(450, 650), BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(200, 400))
+			take_damage(rand(200, 400), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 150))
+			take_damage(rand(50, 150), BRUTE, BOMB)
 
 	update_icon()
 

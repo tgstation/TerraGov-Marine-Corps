@@ -92,7 +92,7 @@
 	if(W.damtype == BURN && istype(src, /obj/structure/mineral_door/resin)) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1 //generally means we do double damage to resin doors
 
-	take_damage(max(0, W.force * multiplier - W.force), W.damtype)
+	take_damage(max(0, W.force * multiplier - W.force), W.damtype, MELEE)
 
 /obj/structure/mineral_door/Destroy()
 	if(material_type)

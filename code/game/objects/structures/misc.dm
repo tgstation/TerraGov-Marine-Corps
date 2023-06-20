@@ -154,9 +154,9 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			take_damage(100)
+			take_damage(100, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(50)
+			take_damage(50, BRUTE, BOMB)
 
 ///Releases whatever is inside the tank
 /obj/structure/xenoautopsy/tank/proc/release_occupant()

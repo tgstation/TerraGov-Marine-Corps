@@ -208,9 +208,9 @@
 			deconstruct(FALSE)
 			return
 		if(EXPLODE_HEAVY)
-			take_damage(rand(33, 66))
+			take_damage(rand(33, 66), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(10, 33))
+			take_damage(rand(10, 33), BRUTE, BOMB)
 	update_icon()
 
 
@@ -237,4 +237,4 @@
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		take_damage(2 * S.strength)
+		take_damage(2 * S.strength, BURN, ACID)
