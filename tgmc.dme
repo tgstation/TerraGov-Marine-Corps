@@ -816,6 +816,7 @@
 #include "code\game\objects\items\weapons\weapon.dm"
 #include "code\game\objects\items\weapons\weaponry.dm"
 #include "code\game\objects\machinery\adv_med.dm"
+#include "code\game\objects\machinery\robotic_cradle"
 #include "code\game\objects\machinery\air_alarm.dm"
 #include "code\game\objects\machinery\autodoc.dm"
 #include "code\game\objects\machinery\bees_apiary.dm"
