@@ -21,7 +21,7 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
-	minimap_color = NONE
+	minimap_color = MINIMAP_BLACK
 	resistance_flags = UNACIDABLE
 
 /turf/closed/mineral/add_debris_element()
@@ -169,7 +169,7 @@
 /turf/closed/gm/dense
 	name = "dense jungle wall"
 	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
-	minimap_color = NONE
+	minimap_color = MINIMAP_BLACK
 	icon_state = "wall-dense"
 
 /turf/closed/gm/dense/Initialize(mapload)

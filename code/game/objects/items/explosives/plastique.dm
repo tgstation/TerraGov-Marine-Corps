@@ -2,8 +2,8 @@
 	name = "plastic explosives"
 	desc = "Used to put holes in specific areas without too much extra hole."
 	gender = PLURAL
-	icon = 'icons/obj/items/assemblies.dmi'
-	icon_state = "plastic-explosive_off"
+	icon = 'icons/obj/det.dmi'
+	icon_state = "plastic-explosive"
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_TINY
@@ -13,6 +13,8 @@
 	var/timer = 10
 	/// the plastic explosive has not detonated yet
 	var/detonation_pending
+	/// Whether we're towards the end of the det timer, for sprite updates
+	var/alarm_sounded = FALSE
 	/// which atom the plastique explosive is planted on
 	var/atom/plant_target = null
 	/// smoke type created when the c4 detonates
@@ -23,6 +25,11 @@
 /obj/item/explosive/plastique/Destroy()
 	plant_target = null
 	return ..()
+
+/obj/item/explosive/plastique/update_icon_state()
+	icon_state = "[initial(icon_state)][plant_target ? "_set" : ""]"
+	if(armed)
+		icon_state = "[icon_state][alarm_sounded ? "_armed" : "_on"]"
 
 /obj/item/explosive/plastique/attack_self(mob/user)
 	var/newtime = tgui_input_number(usr, "Please set the timer.", "Timer", 10, 60, 10)
@@ -95,6 +102,7 @@
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
 		detonation_pending = addtimer(CALLBACK(src, PROC_REF(warning_sound), target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
+		update_icon()
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
@@ -129,7 +137,9 @@
 			log_game("[key_name(user)] disarmed [src] on [plant_target] at [AREACOORD(plant_target.loc)].")
 
 		armed = FALSE
+		alarm_sounded = FALSE
 		plant_target = null
+		update_icon()
 
 /obj/item/explosive/plastique/proc/detonate()
 	if(QDELETED(plant_target))
@@ -150,3 +160,62 @@
 	if(armed)
 		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, 5)
 		detonation_pending = addtimer(CALLBACK(src, PROC_REF(detonate)), 27, TIMER_STOPPABLE)
+		alarm_sounded = TRUE
+		update_icon()
+
+/obj/item/explosive/plastique/genghis_charge
+	name = "EX-62 Genghis incendiary charge"
+	desc = "A specialized device for incineration of bulk organic matter, patented Thermal Memory ensuring that all ignition proceeds safely away from the user. Will not attach to plants due to environmental concerns."
+	icon_state = "genghis-charge"
+
+/obj/item/explosive/plastique/genghis_charge/afterattack(atom/target, mob/user, flag)
+	if(istype(target, /turf/closed/wall/resin))
+		return ..()
+	if(istype(target, /obj/structure/mineral_door/resin))
+		return ..()
+	balloon_alert(user, "Insufficient organic matter!")
+
+/obj/item/explosive/plastique/genghis_charge/detonate()
+	var/turf/flame_target = get_turf(plant_target)
+	if(QDELETED(plant_target))
+		playsound(plant_target, 'sound/weapons/ring.ogg', 100, FALSE, 25)
+		flame_target.ignite(10, 5)
+		qdel(src)
+		return
+	new /obj/flamer_fire/autospread(flame_target, 17, 31)
+	playsound(plant_target, sound(get_sfx("explosion_small")), 100, FALSE, 25)
+	qdel(src)
+
+/obj/flamer_fire/autospread
+	///Which directions this patch is capable of spreading to, as bitflags
+	var/possible_directions = NONE
+
+/obj/flamer_fire/autospread/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, inherited_directions = NONE)
+	. = ..()
+
+	for(var/direction in GLOB.cardinals)
+		if(inherited_directions && !(inherited_directions & direction))
+			continue
+		var/turf/turf_to_check = get_step(src, direction)
+		if(turf_contains_valid_burnable(turf_to_check))
+			possible_directions |= direction
+			addtimer(CALLBACK(src, PROC_REF(spread_flames), direction, turf_to_check), rand(2, 7))
+
+///Returns TRUE if the supplied turf has something we can ignite on, either a resin wall or door
+/obj/flamer_fire/autospread/proc/turf_contains_valid_burnable(turf_to_check)
+	if(istype(turf_to_check, /turf/closed/wall/resin))
+		return TRUE
+	if(locate(/obj/structure/mineral_door/resin) in turf_to_check)
+		return TRUE
+	return FALSE
+
+///Ignites an adjacent turf or adds our possible directions to an existing flame
+/obj/flamer_fire/autospread/proc/spread_flames(direction, turf/turf_to_burn)
+	var/spread_directions = possible_directions & ~REVERSE_DIR(direction) //Make sure we can't go backwards
+	var/old_flame = locate(/obj/flamer_fire) in turf_to_burn
+	if(istype(old_flame, /obj/flamer_fire/autospread))
+		var/obj/flamer_fire/autospread/old_spreader = old_flame
+		spread_directions |= old_spreader.possible_directions
+	if(old_flame)
+		qdel(old_flame)
+	new /obj/flamer_fire/autospread(turf_to_burn, 17, 31, flame_color, 0, 0, spread_directions)

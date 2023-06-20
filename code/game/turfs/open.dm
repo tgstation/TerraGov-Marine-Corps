@@ -48,6 +48,21 @@
 	. = ..()
 	. += ceiling_desc()
 
+///Checks if anything should override the turf's normal footstep sounds
+/turf/open/proc/get_footstep_override(footstep_type)
+	var/list/footstep_overrides = list()
+	SEND_SIGNAL(src, COMSIG_FIND_FOOTSTEP_SOUND, footstep_overrides)
+	if(!length(footstep_overrides))
+		return
+
+	var/override_sound
+	var/index = 0
+	for(var/i in footstep_overrides)
+		if(footstep_overrides[i] > index)
+			override_sound = i
+			index = footstep_overrides[i]
+	return override_sound
+
 // Beach
 
 /turf/open/beach
