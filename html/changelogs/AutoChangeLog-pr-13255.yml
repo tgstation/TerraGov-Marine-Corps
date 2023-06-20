@@ -1,0 +1,4 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - rscadd: "xenomorph active hide action icon has a purple border now"

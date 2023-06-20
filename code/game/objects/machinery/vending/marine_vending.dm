@@ -1110,6 +1110,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
+			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 30,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -1409,6 +1410,7 @@
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/storage/belt/utility/full =-1,
+			/obj/item/storage/belt/medical_small = -1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,
@@ -1428,6 +1430,7 @@
 			/obj/item/storage/pouch/general/large = -1,
 			/obj/item/storage/pouch/document = -1,
 			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
+			/obj/item/storage/pouch/general/medium = -1,
 		),
 		"Headwear" = list(
 			/obj/item/clothing/head/modular/style/beret = -1,
