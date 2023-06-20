@@ -281,7 +281,10 @@
 			explosion_smoke = new(src, /particles/explosion_smoke)
 
 		dirt_kickup = new(src, /particles/dirt_kickup)
-		falling_debris = new(src, /particles/falling_debris)
+		if(small)
+			falling_debris = new(src, /particles/falling_debris/small)
+		else
+			falling_debris = new(src, /particles/falling_debris)
 		sparks = new(src, /particles/sparks_outwards)
 
 		if(large)
