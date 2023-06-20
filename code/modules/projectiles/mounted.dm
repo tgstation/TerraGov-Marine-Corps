@@ -52,7 +52,7 @@
 	if(!ishuman(user))
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.do_unique_action(internal_gun, user)
+	internal_gun.do_unique_action(user)
 
 /obj/machinery/deployable/mounted/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
