@@ -53,7 +53,7 @@
 
 
 
-//Parent datum for all 'spawn stuff' rewards
+//Parent for all 'spawn stuff' rewards
 /datum/campaign_reward/equipment
 	///list of objects to spawn when this reward is activated
 	var/list/obj/equipment_to_spawn = list()
@@ -93,4 +93,24 @@
 		/obj/item/mecha_ammo/vendable/heavycannon,
 		/obj/item/mecha_ammo/vendable/heavycannon,
 		/obj/item/mecha_ammo/vendable/heavycannon,
+	)
+
+//Parent for all bonus role rewards
+/datum/campaign_reward/bonus_job
+	///list of bonus jobs to grant for this reward
+	var/list/datum/job/bonus_job_list = list()
+
+/datum/campaign_reward/bonus_job/activated_effect()
+	. = ..()
+	if(!.)
+		return
+
+	for(var/job_type in bonus_job_list)
+		var/datum/job/bonus_job = SSjob.type_occupations[job_type]
+		bonus_job.add_job_positions(bonus_job_list[job_type])
+
+/datum/campaign_reward/bonus_job/som_captain //test use only
+	bonus_job_list = list(
+		/datum/job/som/command/captain = 1,
+		/datum/job/som/command/staffofficer = 2,
 	)

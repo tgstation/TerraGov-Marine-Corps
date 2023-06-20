@@ -474,6 +474,7 @@
 #include "code\datums\jobs\job\shipside.dm"
 #include "code\datums\jobs\job\skeleton.dm"
 #include "code\datums\jobs\job\sons_of_mars_ert.dm"
+#include "code\datums\jobs\job\sons_of_mars_shipside.dm"
 #include "code\datums\jobs\job\sonsofmars.dm"
 #include "code\datums\jobs\job\special_forces.dm"
 #include "code\datums\jobs\job\survivor.dm"
