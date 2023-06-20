@@ -248,3 +248,26 @@
   - rscadd: light to hitscan lasers
   - bugfix: disabler shots being invisible
   - rscdel: smoke effect from minirockets
+2023-06-20:
+  Ben10083:
+  - bugfix: TA-40L standard rockets are orderable from requisitions again.
+  - bugfix: Attempting to link multiple deployables to AI no longer breaks the system.
+  Blundir:
+  - rscadd: if burst groundside larva has no player, it'd automatically burrow and
+      give a larva point
+  Wayland-Smithy:
+  - rscadd: Added a signal for jump landings on turfs, and implemented for squeak
+      toys.
+  Zar000:
+  - refactor: refactored defiler emit gas code
+  coldironwarrior:
+  - balance: ' Theseus can now support up to 4 squads roundstart'
+  - balance: Pillar of Spring can now support up to 4 squads roundstart
+  ivanmixo:
+  - bugfix: Sandstorm actually uses all the sound variations
+  - bugfix: Acid rain telegraph and start/end messages work properly
+  - bugfix: You don't get the weather messages if you aren't on the weather's Z level
+      anymore
+  - code_imp: Mousedrop_T children call parent
+  novaepee:
+  - bugfix: change soldiers to marines in some item and description
