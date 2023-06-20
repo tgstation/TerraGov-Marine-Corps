@@ -1,31 +1,20 @@
 {
 	"cape": [
 		{
-			"type": "icon_state",
-			"icon_state": "full_color1",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "cape"
 		}
 	],
-	"cape_hood": [
+	"cape_h": [
 		{
-			"type": "icon_state",
-			"icon_state": "full_hood_color1",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "cape_hood"
 		},
 		{
 			"type": "icon_state",
 			"icon_state": "hood_shadow",
-			"blend_mode": "overlay"
-		}
-	],
-	"cape_highlight": [
-		{
-			"type": "icon_state",
-			"icon_state": "full_color2",
 			"blend_mode": "overlay",
-			"color_ids": [1]
+			"ignore_prefix": true
 		}
 	]
 }

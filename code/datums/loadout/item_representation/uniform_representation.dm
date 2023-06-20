@@ -19,7 +19,7 @@
 	for(var/key in uniform_to_copy.attachments_by_slot)
 		if(!isitem(uniform_to_copy.attachments_by_slot[key]))
 			continue
-		if(istype(uniform_to_copy.attachments_by_slot[key], /obj/item/armor_module/greyscale))
+		if(istype(uniform_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
 			attachments += new /datum/item_representation/armor_module/colored(uniform_to_copy.attachments_by_slot[key])
 			continue
 		if(istype(uniform_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))

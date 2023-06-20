@@ -171,7 +171,7 @@
 	for(var/key in footwear.attachments_by_slot)
 		if(!isitem(footwear.attachments_by_slot[key]))
 			continue
-		if(istype(footwear.attachments_by_slot[key], /obj/item/armor_module/greyscale))
+		if(istype(footwear.attachments_by_slot[key], /obj/item/armor_module/armor))
 			attachments += new /datum/item_representation/armor_module/colored(footwear.attachments_by_slot[key])
 			continue
 		if(istype(footwear.attachments_by_slot[key], /obj/item/armor_module/armor))

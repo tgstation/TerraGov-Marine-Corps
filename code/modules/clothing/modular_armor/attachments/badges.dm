@@ -1,10 +1,11 @@
-/obj/item/armor_module/greyscale/badge
+/obj/item/armor_module/armor/badge
 	name = "7E Chameleon Badge"
 	desc = "The 7E Chameloen Badge uses brand new and revolutionary technology to make your gear look even cooler. It is capable of changing into a variety of different shapes (Alt-Click), changing colors (Attack with Green Facepaint), and attaching to nearly all clothing, helmets, berets, and or armor!"
 	greyscale_config = /datum/greyscale_config/badge/shield
 	icon_state = "in_hand"
 	slot = ATTACHMENT_SLOT_BADGE
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB|ATTACH_NO_HANDS|ATTACH_SAME_ICON
+	colorable_allowed = COLOR_WHEEL_ONLY
 
 	///List of selectable styles for where the badge is worn.
 	var/list/style_list = list(
@@ -30,15 +31,15 @@
 		"Alternate Circle" = /datum/greyscale_config/badge/circle2,
 	)
 
-/obj/item/armor_module/greyscale/badge/Initialize(mapload)
+/obj/item/armor_module/armor/badge/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/armor_module/greyscale/badge/examine(mob/user)
+/obj/item/armor_module/armor/badge/examine(mob/user)
 	. = ..()
 	. += span_notice("Its current style is set to [current_style]")
 
-/obj/item/armor_module/greyscale/badge/can_attach(obj/item/attaching_to, mob/user)
+/obj/item/armor_module/armor/badge/can_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	var/allowed = TRUE
 	if((current_style == "Beret Front" || current_style == "Beret Side") && !(istype(attaching_to, /obj/item/clothing/head/tgmcberet) || istype(attaching_to, /obj/item/clothing/head/beret)))
@@ -51,15 +52,15 @@
 		to_chat(user, span_warning("The currently selected style, ([current_style]), is not compatable with [attaching_to]."))
 	return allowed
 
-/obj/item/armor_module/greyscale/badge/on_attach(obj/item/attaching_to, mob/user)
+/obj/item/armor_module/armor/badge/on_attach(obj/item/attaching_to, mob/user)
 	icon_state = current_style
 	return ..()
 
-/obj/item/armor_module/greyscale/badge/on_detach(obj/item/detaching_from, mob/user)
+/obj/item/armor_module/armor/badge/on_detach(obj/item/detaching_from, mob/user)
 	icon_state = "in_hand"
 	return ..()
 
-/obj/item/armor_module/greyscale/badge/AltClick(mob/user)
+/obj/item/armor_module/armor/badge/AltClick(mob/user)
 	. = ..()
 	if(!ishuman(user))
 		return

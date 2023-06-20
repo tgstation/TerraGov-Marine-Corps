@@ -1,0 +1,99 @@
+{
+	"ushanka":[
+		{
+			"type":"hyperscale",
+			"icon_state": "ushanka"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ushanka_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"cap":[
+		{
+			"type": "hyperscale",
+			"icon_state": "cap"
+		}
+	],
+	"boonie":[
+		{
+			"type":"hyperscale",
+			"icon_state": "boonie"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "boonie_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"slouch":[
+		{
+			"type": "hyperscale",
+			"icon_state": "slouch"
+		}
+	],
+	"campaign":[
+		{
+			"type":"hyperscale",
+			"icon_state": "campaign"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "campaign_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"ski":[
+		{
+			"type": "hyperscale",
+			"icon_state": "ski"
+		}
+	],
+	"coof":[
+		{
+			"type": "hyperscale",
+			"icon_state": "coof"
+		}
+	],
+	"beanie":[
+		{
+			"type": "hyperscale",
+			"icon_state": "beanie"
+		}
+	],
+	"headbandana":[
+		{
+			"type": "hyperscale",
+			"icon_state": "headbandana"
+		}
+	],
+	"headband":[
+		{
+			"type": "hyperscale",
+			"icon_state": "headband"
+		}
+	],
+	"beret":[
+		{
+			"type":"hyperscale",
+			"icon_state": "beret"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "beret_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"classic_beret":[
+		{
+			"type":"hyperscale",
+			"icon_state": "classic_beret"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "classic_beret_no_color",
+			"blend_mode": "overlay"
+		}
+	]
+}

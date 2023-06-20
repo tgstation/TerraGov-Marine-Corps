@@ -17,6 +17,7 @@
 	item_state = "underarmor"
 	item_state_worn = TRUE
 	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
+
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
@@ -110,9 +111,13 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 	light_range = 5
+
+	var/colorable_allowed = NOT_COLORABLE
+
+	var/list/colorable_colors = list()
 
 	///List of icon_state suffixes for armor varients.
 	var/list/icon_state_variants = list()
@@ -137,15 +142,19 @@
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
 				current_variant = "jungle"
+				greyscale_colors = ARMOR_PALETTE_DRAB
 		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
 				current_variant = "snow"
+				greyscale_colors = ARMOR_PALETTE_SNOW
 		if(MAP_ARMOR_STYLE_PRISON)
 			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
 				current_variant = "prison"
+				greyscale_colors = ARMOR_PALETTE_BLACK
 		if(MAP_ARMOR_STYLE_DESERT)
 			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
 				current_variant = "desert"
+				greyscale_colors = ARMOR_PALETTE_DESERT
 
 /obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
@@ -214,7 +223,7 @@
 	if(.)
 		return
 
-	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
+	if((colorable_allowed == NOT_COLORABLE && !length(icon_state_variants)) || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
 		return
 
 	var/obj/item/facepaint/paint = I
@@ -222,17 +231,61 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
-	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+	if(!greyscale_config && length(icon_state_variants))
+		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
 
-	if(!variant)
+		if(!variant)
+			return
+
+		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		current_variant = variant
+		update_icon()
 		return
 
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	var/selection
+	switch(colorable_allowed)
+		if(COLOR_WHEEL_ONLY)
+			selection = "Color Wheel"
+		if(COLOR_WHEEL_ALLOWED)
+			selection = list("Color Wheel", "Preset Colors")
+			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
+		if(COLOR_WHEEL_NOT_ALLOWED)
+			selection = "Preset Colors"
+
+	if(!selection)
 		return
 
-	current_variant = variant
-	paint.uses--
+	var/new_color
+	switch(selection)
+		if("Preset Colors")
+			var/color_selection
+			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+			if(!color_selection)
+				return
+			if(islist(colorable_colors[color_selection]))
+				var/old_list = colorable_colors[color_selection]
+				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
+				if(!color_selection)
+					return
+				new_color = old_list[color_selection]
+			else
+				new_color = colorable_colors[color_selection]
+		if("Color Wheel")
+			new_color = input(user, "Pick a color", "Pick color") as null|color
+
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	set_greyscale_colors(new_color)
 	update_icon()
+
+/obj/item/clothing/suit/modular/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_wear_suit_str = icon)
 
 /obj/item/clothing/suit/modular/rownin
 	name = "\improper Rownin Skeleton"
@@ -263,20 +316,19 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon = 'icons/mob/modular/xenonauten_helmets.dmi'
-	icon_state = "infantry_helmet"
-	item_icons = list(
-		slot_head_str = 'icons/mob/modular/xenonauten_helmets.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
-	)
+	icon_state = "helm"
+	item_state = "helm"
+
+	greyscale_config = /datum/greyscale_config/armor_mk1
+	greyscale_colors = ARMOR_PALETTE_DESERT
+
 	flags_armor_protection = HEAD
 	flags_armor_features = ARMOR_NO_DECAP
 	flags_inventory = BLOCKSHARPOBJ
@@ -305,13 +357,19 @@
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
+
+
+	///optional assoc list of colors we can color this armor
+	var/list/colorable_colors = ARMOR_PALETTES_LIST
+	///Some defines to determin if the armor piece is allowed to be recolored.
+	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
 
 	///Pixel offset on the X axis for how the helmet sits on the mob without a visor.
 	var/visorless_offset_x = 0
 	///Pixel offset on the Y axis for how the helmet sits on the mob without a visor.
-	var/visorless_offset_y = 0
+	var/visorless_offset_y = -1
 	///List of icon_state suffixes for armor varients.
 	var/list/icon_state_variants = list()
 	///Current varient selected.
@@ -328,27 +386,37 @@
 		item_state = initial(item_state) + "_[current_variant]"
 	update_clothing_icon()
 
+/obj/item/clothing/head/modular/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_head_str = icon)
+
 /obj/item/clothing/head/modular/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
 				current_variant = "jungle"
+				greyscale_colors = ARMOR_PALETTE_DRAB
 		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
 				current_variant = "snow"
+				greyscale_colors = ARMOR_PALETTE_SNOW
 		if(MAP_ARMOR_STYLE_PRISON)
 			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
 				current_variant = "prison"
+				greyscale_colors = ARMOR_PALETTE_BLACK
 		if(MAP_ARMOR_STYLE_DESERT)
 			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
 				current_variant = "desert"
+				greyscale_colors = ARMOR_PALETTE_DESERT
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
+	if((colorable_allowed == NOT_COLORABLE && !length(icon_state_variants)) || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
 		return
 
 	var/obj/item/facepaint/paint = I
@@ -356,16 +424,55 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
-	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+	if(!greyscale_config && length(icon_state_variants))
+		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
 
-	if(!variant)
+		if(!variant)
+			return
+
+		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		current_variant = variant
+		update_icon()
 		return
 
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	var/selection
+	switch(colorable_allowed)
+		if(COLOR_WHEEL_ONLY)
+			selection = "Color Wheel"
+		if(COLOR_WHEEL_ALLOWED)
+			selection = list("Color Wheel", "Preset Colors")
+			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
+		if(COLOR_WHEEL_NOT_ALLOWED)
+			selection = "Preset Colors"
+
+	if(!selection)
 		return
 
-	current_variant = variant
-	paint.uses--
+	var/new_color
+	switch(selection)
+		if("Preset Colors")
+			var/color_selection
+			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+			if(!color_selection)
+				return
+			if(islist(colorable_colors[color_selection]))
+				var/old_list = colorable_colors[color_selection]
+				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
+				if(!color_selection)
+					return
+				new_color = old_list[color_selection]
+			else
+				new_color = colorable_colors[color_selection]
+		if("Color Wheel")
+			new_color = input(user, "Pick a color", "Pick color") as null|color
+
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	set_greyscale_colors(new_color)
+
 	update_icon()
 
 /obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing)
@@ -393,16 +500,19 @@
 	desc = "A cool sylish mask that through some arcane magic blocks gas attacks. How? Who knows. How did you even get this?"
 	icon = 'icons/obj/clothing/headwear/style_hats.dmi'
 	breathy = FALSE
-	item_icons = list(
-		slot_wear_mask_str = 'icons/mob/modular/style_hats_mob.dmi',
-	)
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
+
+	greyscale_colors = ARMOR_PALETTE_DRAB
 
 	///List of icon_state suffixes for armor varients.
 	var/list/icon_state_variants = list()
 	///Current varient selected.
 	var/current_variant
+	///optional assoc list of colors we can color this armor
+	var/list/colorable_colors = ARMOR_PALETTES_LIST
+	///Some defines to determin if the armor piece is allowed to be recolored.
+	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
 
 /obj/item/clothing/mask/gas/modular/Initialize(mapload)
 	. = ..()
@@ -414,6 +524,12 @@
 		icon_state = initial(icon_state) + "_[current_variant]"
 		item_state = initial(item_state) + "_[current_variant]"
 	update_clothing_icon()
+
+/obj/item/clothing/mask/gas/modular/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_wear_mask_str = icon)
 
 /obj/item/clothing/mask/gas/modular/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
@@ -432,10 +548,7 @@
 
 /obj/item/clothing/mask/gas/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(.)
-		return
-
-	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
+	if((colorable_allowed == NOT_COLORABLE && !length(icon_state_variants)) || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
 		return
 
 	var/obj/item/facepaint/paint = I
@@ -443,15 +556,54 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
-	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+	if(!greyscale_config && length(icon_state_variants))
+		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
 
-	if(!variant)
+		if(!variant)
+			return
+
+		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		current_variant = variant
+		update_icon()
 		return
 
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	var/selection
+	switch(colorable_allowed)
+		if(COLOR_WHEEL_ONLY)
+			selection = "Color Wheel"
+		if(COLOR_WHEEL_ALLOWED)
+			selection = list("Color Wheel", "Preset Colors")
+			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
+		if(COLOR_WHEEL_NOT_ALLOWED)
+			selection = "Preset Colors"
+
+	if(!selection)
 		return
 
-	current_variant = variant
-	paint.uses--
+	var/new_color
+	switch(selection)
+		if("Preset Colors")
+			var/color_selection
+			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+			if(!color_selection)
+				return
+			if(islist(colorable_colors[color_selection]))
+				var/old_list = colorable_colors[color_selection]
+				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
+				if(!color_selection)
+					return
+				new_color = old_list[color_selection]
+			else
+				new_color = colorable_colors[color_selection]
+		if("Color Wheel")
+			new_color = input(user, "Pick a color", "Pick color") as null|color
+
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	set_greyscale_colors(new_color)
+
 	update_icon()
 

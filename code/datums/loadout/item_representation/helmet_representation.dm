@@ -16,7 +16,7 @@
 	for(var/key in helmet_to_copy.attachments_by_slot)
 		if(!isitem(helmet_to_copy.attachments_by_slot[key]))
 			continue
-		if(istype(helmet_to_copy.attachments_by_slot[key], /obj/item/armor_module/greyscale))
+		if(istype(helmet_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
 			attachments += new /datum/item_representation/armor_module/colored(helmet_to_copy.attachments_by_slot[key])
 			continue
 		if(istype(helmet_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))

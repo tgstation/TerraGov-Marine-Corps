@@ -1,0 +1,19 @@
+{
+	"duster":[
+		{
+			"type": "hyperscale",
+			"icon_state": "duster"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "duster_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"duster_worn":[
+		{
+			"type": "hyperscale",
+			"icon_state": "duster_worn"
+		}
+	]
+}

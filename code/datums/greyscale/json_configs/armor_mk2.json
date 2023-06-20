@@ -1,0 +1,13 @@
+{
+	"chest":[
+		{
+		"type": "hyperscale",
+		"icon_state": "chest"
+		}
+	],
+	"helmet":[
+	{
+		"type": "hyperscale",
+		"icon_state": "helm"
+	}]
+}
