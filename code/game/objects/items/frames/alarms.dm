@@ -19,25 +19,25 @@ Code shamelessly copied from apc_frame
 		new /obj/item/stack/sheet/metal(loc, 2)
 		qdel(src)
 
-/obj/item/frame/air_alarm/proc/try_build(turf/on_wall)
-	if (get_dist(on_wall,usr)>1)
+/obj/item/frame/air_alarm/proc/try_build(turf/on_wall, mob/user)
+	if (get_dist(on_wall, user)>1)
 		return
 
-	var/ndir = get_dir(on_wall,usr)
+	var/ndir = get_dir(on_wall,user)
 	if (!(ndir in GLOB.cardinals))
 		return
 
-	var/turf/loc = get_turf(usr)
+	var/turf/loc = get_turf(user)
 	var/area/A = loc.loc
-	if (!isfloorturf(loc))
-		to_chat(usr, span_warning("Air Alarm cannot be placed on this spot."))
+	if(!isfloorturf(loc))
+		loc.balloon_alert(user, "bad spot")
 		return
-	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, span_warning("Air Alarm cannot be placed in this area."))
+	if(A.requires_power == 0 || A.name == "Space")
+		loc.balloon_alert(user, "bad area")
 		return
 
 	if(gotwallitem(loc, ndir))
-		to_chat(usr, span_warning("There's already an item on this wall!"))
+		loc.balloon_alert(user, "already occupied")
 		return
 
 	new /obj/machinery/alarm(loc, ndir, 1)
@@ -62,25 +62,25 @@ Code shamelessly copied from apc_frame
 		new /obj/item/stack/sheet/metal(loc, 2)
 		qdel(src)
 
-/obj/item/frame/fire_alarm/proc/try_build(turf/on_wall)
-	if (get_dist(on_wall,usr)>1)
+/obj/item/frame/fire_alarm/proc/try_build(turf/on_wall, mob/user)
+	if (get_dist(on_wall,user)>1)
 		return
 
-	var/ndir = get_dir(on_wall,usr)
+	var/ndir = get_dir(on_wall,user)
 	if (!(ndir in GLOB.cardinals))
 		return
 
-	var/turf/loc = get_turf(usr)
+	var/turf/loc = get_turf(user)
 	var/area/A = loc.loc
-	if (!isfloorturf(loc))
-		to_chat(usr, span_warning("Fire Alarm cannot be placed on this spot."))
+	if(!isfloorturf(loc))
+		loc.balloon_alert(user, "bad spot")
 		return
-	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, span_warning("Fire Alarm cannot be placed in this area."))
+	if(A.requires_power == 0 || A.name == "Space")
+		loc.balloon_alert(user, "bad area")
 		return
 
 	if(gotwallitem(loc, ndir))
-		to_chat(usr, span_warning("There's already an item on this wall!"))
+		loc.balloon_alert(user, "already occupied")
 		return
 
 	new /obj/machinery/firealarm(loc, ndir, 1)

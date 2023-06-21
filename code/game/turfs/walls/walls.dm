@@ -328,23 +328,23 @@
 
 	else if(istype(I, /obj/item/frame/apc))
 		var/obj/item/frame/apc/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/air_alarm))
 		var/obj/item/frame/air_alarm/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/fire_alarm))
 		var/obj/item/frame/fire_alarm/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/light_fixture))
 		var/obj/item/frame/light_fixture/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/light_fixture/small))
 		var/obj/item/frame/light_fixture/small/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/camera))
 		var/obj/item/frame/camera/AH = I
