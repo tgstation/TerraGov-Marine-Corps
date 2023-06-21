@@ -624,6 +624,9 @@
 
 ///Where the magic happens. Actually applies stagger stacks.
 /mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE, capped = 0)
+	if(amount == 0)
+		return
+
 	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
 		return
 
