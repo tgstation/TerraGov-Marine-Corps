@@ -1,0 +1,4 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - bugfix: "fixed cases when damage from space turfs could've been negated"
