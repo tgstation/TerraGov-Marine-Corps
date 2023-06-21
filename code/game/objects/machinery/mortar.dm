@@ -599,7 +599,7 @@
 		if(numrockets < 1 || !can_interact(user))
 			return
 
-		///TODO: Next make a loop that executes the below code, break if one of the failures met
+		//loop that continues loading until a invalid condition is met
 		var/rocketsloaded = 0
 		while(rocketsloaded < numrockets)
 			//verify it has rockets
