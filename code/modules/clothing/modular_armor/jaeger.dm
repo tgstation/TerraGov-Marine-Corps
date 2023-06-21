@@ -187,6 +187,7 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Helljumper markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/helljumper, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk2/helljumper
+	visorless_offset_y = 0
 
 /obj/item/clothing/head/modular/marine/ranger
 	name = "Jaeger Pattern Ranger Helmet"

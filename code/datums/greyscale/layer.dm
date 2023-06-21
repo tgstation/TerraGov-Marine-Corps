@@ -126,7 +126,7 @@
 	. = ..()
 	var/icon/new_icon = icon(icon)
 	if(length(icon_file_colors) > length(colors))
-		stack_trace("[src] set to Hyperscale, expected [length(icon_file_colors)], got [length(colors)].")
+		CRASH("[src] set to Hyperscale, expected [length(icon_file_colors)], got [length(colors)].")
 	for(var/i=1, i<=length(icon_file_colors), i++)
 		new_icon.SwapColor(icon_file_colors[i], colors[i])
 

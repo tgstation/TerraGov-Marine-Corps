@@ -190,7 +190,7 @@
 	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
 	item_state = "helm"
 	greyscale_config = /datum/greyscale_config/xenonaut/helm/heavy
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/xenonaut)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/xenonaut, /obj/item/armor_module/storage/helmet)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/fire_proof_helmet,

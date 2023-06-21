@@ -207,3 +207,4 @@
 		return
 	qdel(storage_module.storage) //an empty storage item is generated when the module is initialised
 	storage_module.storage = storage.instantiate_object(seller, storage_module, user)
+

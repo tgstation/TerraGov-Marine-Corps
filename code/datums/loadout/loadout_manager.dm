@@ -159,6 +159,26 @@
 	. = ..()
 	user.client?.prefs.save_loadout_list(loadouts_data, CURRENT_LOADOUT_VERSION)
 
+///Recursive function to update attachment lists.
+/datum/loadout_manager/proc/update_attachments(list/datum/item_representation/armor_module/attachments, version)
+	for(var/datum/item_representation/armor_module/module AS in attachments)
+		if(version < 12)
+			if(ispath(module.item_type, /obj/item/armor_module/greyscale))
+				module.item_type = text2path(splicetext("[module.item_type]", 24, 33, "armor"))
+			module.colors = initial(module.item_type.greyscale_colors)
+			if(!module.colors)
+				module.colors = initial(module.item_type.greyscale_colors)
+			update_attachments(module.attachments, version)
+			if(!istype(module, /datum/item_representation/armor_module/armor) && !istype(module, /datum/item_representation/armor_module/colored))
+				continue
+			var/datum/item_representation/armor_module/new_module = new
+			new_module.attachments = module.attachments
+			new_module.item_type = module.item_type
+			new_module.colors = module.colors
+			attachments.Remove(module)
+			attachments.Add(new_module)
+
+
 ///Modifies a legacy loadout to make it valid for the current loadout version
 /datum/loadout_manager/proc/legacy_version_fix(datum/loadout/loadout, loadout_name, loadout_job, datum/tgui/ui)
 	var/datum/item_representation/hat/modular_helmet/helmet = loadout.item_list[slot_head_str]
@@ -185,8 +205,7 @@
 			loadout.item_list[slot_head_str] = new_helmet
 		if(loadout.version < 12)
 			helmet.colors = initial(helmet.item_type.greyscale_colors)
-			for(var/datum/item_representation/armor_module/module AS in helmet.attachments)
-				module.colors = initial(module.item_type.greyscale_colors)
+		update_attachments(helmet.attachments, loadout.version)
 
 	if(helmet) //there used to be no specific representation for generic hats
 		if(loadout.version < 11)
@@ -201,7 +220,9 @@
 			new_hat.bypass_vendor_check = old_hat.bypass_vendor_check
 			new_hat.current_variant = "black"
 			loadout.item_list[slot_head_str] = new_hat
-
+		if(loadout.version < 12)
+			helmet.colors = initial(helmet.item_type.greyscale_colors)
+		update_attachments(helmet.attachments, loadout.version)
 	var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
 	if(istype(armor, /datum/item_representation/modular_armor))
 		if(loadout.version < 7)
@@ -224,8 +245,7 @@
 			loadout.item_list[slot_wear_suit_str] = new_armor
 		if(loadout.version < 12)
 			armor.colors = initial(armor.item_type.greyscale_colors)
-			for(var/datum/item_representation/armor_module/module AS in armor.attachments)
-				module.colors = initial(module.item_type.greyscale_colors)
+		update_attachments(armor.attachments, loadout.version)
 	else if(istype(armor, /datum/item_representation/suit_with_storage))
 		if(loadout.version < 11)
 			var/datum/item_representation/suit_with_storage/old_armor = loadout.item_list[slot_wear_suit_str]
