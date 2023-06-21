@@ -240,7 +240,7 @@
 ///Colors the armor when the parent is right clicked with facepaint.
 /obj/item/armor_module/armor/proc/handle_color(datum/source, obj/I, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, /atom/proc/attackby, I, user)
+	INVOKE_ASYNC(src, PROC_REF(/atom/proc/attackby), I, user)
 	return COMPONENT_NO_AFTERATTACK
 
 ///Relays the extra controls to the user when the parent is examined.
