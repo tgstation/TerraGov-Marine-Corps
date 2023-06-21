@@ -14,6 +14,10 @@
 /turf/open/floor/plating/burnt_states()
 	return list("panelscorched")
 
+/turf/open/floor/plating/AfterChange()
+	. = ..()
+	baseturfs = type
+
 /turf/open/floor/plating/fire_act(exposed_temperature, exposed_volume)
 	if(hull_floor)
 		return

@@ -5,9 +5,11 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
 
-/turf/open/floor/plating/ground/AfterChange()
-	. = ..()
-	baseturfs = type
+/turf/open/floor/plating/ground/broken_states()
+	return list(icon_state)
+
+/turf/open/floor/plating/ground/burnt_states()
+	return list(icon_state)
 
 /turf/open/floor/plating/ground/fire_act(exposed_temperature, exposed_volume)
 	return
