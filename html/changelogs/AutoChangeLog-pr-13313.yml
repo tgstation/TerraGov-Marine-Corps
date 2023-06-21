@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - code_imp: "Reworked some code in xeno explosion code"
+  - bugfix: "Xenos should correctly get staggered by explosions"
