@@ -162,12 +162,10 @@
 ///Recursive function to update attachment lists.
 /datum/loadout_manager/proc/update_attachments(list/datum/item_representation/armor_module/attachments, version)
 	for(var/datum/item_representation/armor_module/module AS in attachments)
-		if(version < 12)
+		if(version < 13)
 			if(ispath(module.item_type, /obj/item/armor_module/greyscale))
 				module.item_type = text2path(splicetext("[module.item_type]", 24, 33, "armor"))
 			module.colors = initial(module.item_type.greyscale_colors)
-			if(!module.colors)
-				module.colors = initial(module.item_type.greyscale_colors)
 			update_attachments(module.attachments, version)
 			if(!istype(module, /datum/item_representation/armor_module/armor) && !istype(module, /datum/item_representation/armor_module/colored))
 				continue
@@ -203,11 +201,11 @@
 			new_helmet.current_variant = old_helmet.current_variant
 			new_helmet.attachments = old_helmet.attachments
 			loadout.item_list[slot_head_str] = new_helmet
-		if(loadout.version < 12)
+		if(loadout.version < 13)
 			helmet.colors = initial(helmet.item_type.greyscale_colors)
 		update_attachments(helmet.attachments, loadout.version)
 
-	if(helmet) //there used to be no specific representation for generic hats
+	else if(helmet) //there used to be no specific representation for generic hats
 		if(loadout.version < 11)
 			var/datum/item_representation/old_hat = loadout.item_list[slot_head_str]
 			var/datum/item_representation/hat/modular_helmet/new_hat = new
@@ -220,7 +218,7 @@
 			new_hat.bypass_vendor_check = old_hat.bypass_vendor_check
 			new_hat.current_variant = "black"
 			loadout.item_list[slot_head_str] = new_hat
-		if(loadout.version < 12)
+		if(loadout.version < 13)
 			helmet.colors = initial(helmet.item_type.greyscale_colors)
 		update_attachments(helmet.attachments, loadout.version)
 	var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
@@ -243,7 +241,7 @@
 			new_armor.current_variant = old_armor.current_variant
 			new_armor.attachments = old_armor.attachments
 			loadout.item_list[slot_wear_suit_str] = new_armor
-		if(loadout.version < 12)
+		if(loadout.version < 13)
 			armor.colors = initial(armor.item_type.greyscale_colors)
 		update_attachments(armor.attachments, loadout.version)
 	else if(istype(armor, /datum/item_representation/suit_with_storage))
@@ -259,12 +257,16 @@
 			new_armor.bypass_vendor_check = old_armor.bypass_vendor_check
 			new_armor.current_variant = "black"
 			loadout.item_list[slot_wear_suit_str] = new_armor
+		update_attachments(armor.attachments, loadout.version)
+	else if(armor)
+		update_attachments(armor.attachments, loadout.version)
 
 	var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
 	if(istype(uniform, /datum/item_representation/uniform_representation))
 		if(loadout.version < 9)
 			uniform.current_variant = null
 			uniform.attachments = list()
+		update_attachments(uniform.attachments, loadout.version)
 
 	var/datum/item_representation/boot/footwear = loadout.item_list[slot_shoes_str]
 	if(footwear)
@@ -285,8 +287,8 @@
 		message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system. (version 19 to 10)"
 	if(loadout.version < 11)
 		message_to_send += "<br>Some boots, helmets and armour have had their internal storage refactored and some items may be removed from your loadout. (version 10 to 11)"
-	if(loadout.version < 12)
-		message_to_send += "<br>Due to hyperscaling armor, any colorable armor have had their colors set to default. (Version 11 to 12)"
+	if(loadout.version < 13)
+		message_to_send += "<br>Due to hyperscaling armor, any colorable armor have had their colors set to default. (Version 11 to 13)"
 	loadout.version = CURRENT_LOADOUT_VERSION
 	message_to_send += "<br>This loadout is now on version [loadout.version]"
 	to_chat(ui.user, span_warning(message_to_send))
