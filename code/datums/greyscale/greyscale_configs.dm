@@ -103,6 +103,8 @@
 /datum/greyscale_config/armor_mk1/infantry
 	icon_file = 'icons/mob/modular/mark_one/infantry.dmi'
 
+/datum/greyscale_config/armor_mk1/infantry/old
+	prefix = "open_"
 /datum/greyscale_config/armor_mk1/ranger
 	icon_file = 'icons/mob/modular/mark_one/ranger.dmi'
 

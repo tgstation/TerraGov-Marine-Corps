@@ -41,10 +41,10 @@
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/old/open
-	name = "Jaeger Mk.I EVA 'Open' Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings. This one does not have a visor."
+	name = "Jaeger Mk.I Pattern Infantry Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
-	greyscale_config = /datum/greyscale_config/armor_mk1/eva
+	greyscale_config = /datum/greyscale_config/armor_mk1/infantry/old
 
 /obj/item/clothing/head/modular/marine/old/eva
 	name = "Jaeger Mk.I Pattern EVA Helmet"
