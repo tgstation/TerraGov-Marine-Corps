@@ -38,6 +38,7 @@
 		/obj/item/armor_module/armor/cape,
 		/obj/item/armor_module/armor/cape/half,
 		/obj/item/armor_module/armor/cape/short,
+		/obj/item/armor_module/armor/cape/short/classic,
 		/obj/item/armor_module/armor/cape/scarf,
 		/obj/item/armor_module/armor/cape/kama,
 		/obj/item/armor_module/module/pt_belt,

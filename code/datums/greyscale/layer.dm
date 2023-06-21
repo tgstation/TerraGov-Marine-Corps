@@ -103,33 +103,31 @@
 		CRASH("Configured icon state \[[icon_state]\] was not found in [icon_file]. Double check your json configuration.")
 	icon = new(icon_file, icon_state)
 	icon.GrayScale()
-	for(var/x, x<icon.Width(), x++)
-		for(var/y, y<icon.Height(), y++)
-			var/pixel = icon.GetPixel(x,y)
-			if(!pixel || (pixel in icon_file_colors)) continue;
-			var/rgb_val = ReadRGB(pixel)[1]
-			if(!length(icon_file_colors))
-				icon_file_colors.Add(pixel)
-				continue
-			for(var/i=1, i<=length(icon_file_colors), i++)
-				var/rgb_val_2 = ReadRGB(icon_file_colors[i])[1]
-				if(rgb_val_2 < rgb_val)
+	for(var/dir in list(SOUTH, NORTH, EAST, WEST, NORTHWEST, NORTHEAST, SOUTHWEST, SOUTHEAST))
+		for(var/x=0, x<icon.Width(), x++)
+			for(var/y=0, y<icon.Height(), y++)
+				var/pixel = icon.GetPixel(x,y, dir=dir)
+				if(!pixel || (pixel in icon_file_colors)) continue;
+				var/rgb_val = ReadRGB(pixel)[1]
+				if(!length(icon_file_colors))
+					icon_file_colors.Add(pixel)
 					continue
-				icon_file_colors.Insert(i, pixel)
-				break
-			if(pixel in icon_file_colors)
-				continue
-			icon_file_colors.Add(pixel)
-
-	if(length(color_ids) > 1)
-		CRASH("Icon state layers can not have more than one color id")
+				for(var/i=1, i<=length(icon_file_colors), i++)
+					var/rgb_val_2 = ReadRGB(icon_file_colors[i])[1]
+					if(rgb_val_2 < rgb_val)
+						continue
+					icon_file_colors.Insert(i, pixel)
+					break
+				if(pixel in icon_file_colors)
+					continue
+				icon_file_colors.Add(pixel)
 
 /datum/greyscale_layer/hyperscale/InternalGenerate(list/colors, list/render_steps)
 	. = ..()
 	var/icon/new_icon = icon(icon)
 	if(length(icon_file_colors) > length(colors))
 		CRASH("[src] set to Hyperscale, expected [length(icon_file_colors)], got [length(colors)].")
-	for(var/i, i<=length(icon_file_colors), i++)
+	for(var/i=1, i<=length(icon_file_colors), i++)
 		new_icon.SwapColor(icon_file_colors[i], colors[i])
 
 	return new_icon

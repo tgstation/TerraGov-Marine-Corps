@@ -56,6 +56,8 @@
 /datum/greyscale_config/cape/short
 	prefix = "short_"
 
+/datum/greyscale_config/cape/short/old
+	prefix = "short_old_"
 /datum/greyscale_config/cape/scarf
 	prefix = "scarf_"
 

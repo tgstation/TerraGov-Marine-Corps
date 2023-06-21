@@ -61,6 +61,9 @@
 	greyscale_config = /datum/greyscale_config/cape/short
 	starting_attachments = list()
 
+/obj/item/armor_module/armor/cape/short/classic
+	name = "6E chameleon cape (classic short)"
+	greyscale_config = /datum/greyscale_config/cape/short/old
 
 /obj/item/armor_module/armor/cape/kama
 	name = "6E chameleon kama"

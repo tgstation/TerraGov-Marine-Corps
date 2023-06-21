@@ -1387,6 +1387,7 @@
 			/obj/item/armor_module/armor/cape/half = -1,
 			/obj/item/armor_module/armor/cape/scarf = -1,
 			/obj/item/armor_module/armor/cape/short = -1,
+			/obj/item/armor_module/armor/cape/short/classic = -1,
 			/obj/item/armor_module/armor/cape/kama = -1,
 			/obj/item/armor_module/module/pt_belt = -1,
 		),
