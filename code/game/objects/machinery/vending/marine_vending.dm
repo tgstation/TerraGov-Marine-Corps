@@ -1379,6 +1379,7 @@
 			/obj/item/clothing/under/marine/squad/neck/alpha = -1,
 			/obj/item/clothing/gloves/marine = -1,
 			/obj/item/clothing/gloves/marine/black = -1,
+			/obj/item/clothing/gloves/marine/fingerless = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/shoes/marine/brown/full = -1,
 			/obj/item/clothing/shoes/cowboy = -1,

@@ -22,6 +22,12 @@
 	icon_state = "gloves_marine_black"
 	item_state = "black"
 
+/obj/item/clothing/gloves/marine/fingerless
+	name = "fingerless marine combat gloves"
+	desc = "Standard issue marine tactical gloves but fingerless! It reads: 'knit by Marine Widows Association'."
+	icon_state = "gloves_marine_fingerless"
+	item_state = "fingerless"
+
 /obj/item/clothing/gloves/marine/insulated
 	name = "insulated marine combat gloves"
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
