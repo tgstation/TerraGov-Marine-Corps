@@ -137,26 +137,38 @@
 	if(current_variant)
 		icon_state = initial(icon_state) + "_[current_variant]"
 		item_state = initial(item_state) + "_[current_variant]"
+	update_greyscale()
 	update_clothing_icon()
 
 /obj/item/clothing/suit/modular/update_item_sprites()
+	if(!greyscale_config && !length(icon_state_variants))
+		return
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				current_variant = "jungle"
-				greyscale_colors = ARMOR_PALETTE_DRAB
+				if(!greyscale_config)
+					current_variant = "jungle"
+				else
+					greyscale_colors = ARMOR_PALETTE_DRAB
 		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				current_variant = "snow"
-				greyscale_colors = ARMOR_PALETTE_SNOW
+				if(!greyscale_config)
+					current_variant = "snow"
+				else
+					greyscale_colors = ARMOR_PALETTE_SNOW
 		if(MAP_ARMOR_STYLE_PRISON)
 			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				current_variant = "prison"
-				greyscale_colors = ARMOR_PALETTE_BLACK
+				if(!greyscale_config)
+					current_variant = "prison"
+				else
+					greyscale_colors = ARMOR_PALETTE_BLACK
 		if(MAP_ARMOR_STYLE_DESERT)
 			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
-				current_variant = "desert"
-				greyscale_colors = ARMOR_PALETTE_DESERT
+				if(!greyscale_config)
+					current_variant = "desert"
+				else
+					greyscale_colors = ARMOR_PALETTE_DESERT
+	update_icon()
 
 /obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
@@ -386,6 +398,7 @@
 	if(current_variant)
 		icon_state = initial(icon_state) + "_[current_variant]"
 		item_state = initial(item_state) + "_[current_variant]"
+	update_greyscale()
 	update_clothing_icon()
 
 /obj/item/clothing/head/modular/update_greyscale(list/colors, update)
@@ -395,23 +408,34 @@
 	item_icons = list(slot_head_str = icon)
 
 /obj/item/clothing/head/modular/update_item_sprites()
+	if(!greyscale_config && !length(icon_state_variants))
+		return
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				current_variant = "jungle"
-				greyscale_colors = ARMOR_PALETTE_DRAB
+				if(!greyscale_config)
+					current_variant = "jungle"
+				else
+					greyscale_colors = ARMOR_PALETTE_DRAB
 		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				current_variant = "snow"
-				greyscale_colors = ARMOR_PALETTE_SNOW
+				if(!greyscale_config)
+					current_variant = "snow"
+				else
+					greyscale_colors = ARMOR_PALETTE_SNOW
 		if(MAP_ARMOR_STYLE_PRISON)
 			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				current_variant = "prison"
-				greyscale_colors = ARMOR_PALETTE_BLACK
+				if(!greyscale_config)
+					current_variant = "prison"
+				else
+					greyscale_colors = ARMOR_PALETTE_BLACK
 		if(MAP_ARMOR_STYLE_DESERT)
 			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
-				current_variant = "desert"
-				greyscale_colors = ARMOR_PALETTE_DESERT
+				if(!greyscale_config)
+					current_variant = "desert"
+				else
+					greyscale_colors = ARMOR_PALETTE_DESERT
+	update_icon()
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -525,6 +549,7 @@
 	if(current_variant)
 		icon_state = initial(icon_state) + "_[current_variant]"
 		item_state = initial(item_state) + "_[current_variant]"
+	update_greyscale()
 	update_clothing_icon()
 
 /obj/item/clothing/mask/gas/modular/update_greyscale(list/colors, update)
@@ -534,19 +559,34 @@
 	item_icons = list(slot_wear_mask_str = icon)
 
 /obj/item/clothing/mask/gas/modular/update_item_sprites()
+	if(!greyscale_config && !length(icon_state_variants))
+		return
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				current_variant = "drab"
+				if(!greyscale_config)
+					current_variant = "jungle"
+				else
+					greyscale_colors = ARMOR_PALETTE_DRAB
 		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				current_variant = "snow"
+				if(!greyscale_config)
+					current_variant = "snow"
+				else
+					greyscale_colors = ARMOR_PALETTE_SNOW
 		if(MAP_ARMOR_STYLE_PRISON)
 			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				current_variant = "black"
+				if(!greyscale_config)
+					current_variant = "prison"
+				else
+					greyscale_colors = ARMOR_PALETTE_BLACK
 		if(MAP_ARMOR_STYLE_DESERT)
 			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
-				current_variant = "desert"
+				if(!greyscale_config)
+					current_variant = "desert"
+				else
+					greyscale_colors = ARMOR_PALETTE_DESERT
+	update_icon()
 
 /obj/item/clothing/mask/gas/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
