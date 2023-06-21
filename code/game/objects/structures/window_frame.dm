@@ -29,6 +29,9 @@
 
 /obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
+	if(.)
+		return
+
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable)
 		return TRUE

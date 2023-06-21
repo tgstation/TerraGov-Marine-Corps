@@ -30,16 +30,6 @@
 		linked_pad = null
 	return ..()
 
-/obj/machinery/door/poddoor/railing/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(!density)
-		return TRUE
-
-	if(get_dir(loc, target) == dir)
-		return FALSE
-	else
-		return TRUE
-
 /obj/machinery/door/poddoor/railing/open()
 	if(!SSticker || operating || !density)
 		return FALSE

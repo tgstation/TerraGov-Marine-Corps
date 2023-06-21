@@ -87,12 +87,6 @@
 		for(var/m in O.buckled_mobs)
 			Bumped(m)
 
-
-/obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
-		return !opacity
-
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)
 		return

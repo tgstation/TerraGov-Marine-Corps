@@ -29,6 +29,7 @@
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10
+	flags_atom = DIRLOCK
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
 	..()
@@ -76,20 +77,6 @@
 	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
 	return FALSE
-
-
-/obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
-		return TRUE
-	if(!is_full_window() && !(get_dir(loc, target) & dir))
-		return TRUE
-
-/obj/structure/window/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	if(CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
-		return NONE
-
-	return ..()
 
 /obj/structure/window/attack_hand(mob/living/user)
 	. = ..()

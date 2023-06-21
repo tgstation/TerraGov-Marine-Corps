@@ -410,7 +410,6 @@
 		qdel(H)
 
 /obj/machinery/disposal/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover, /obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(75))
@@ -418,7 +417,7 @@
 			visible_message(span_notice("[I] lands into [src]."))
 		else
 			visible_message(span_warning("[I] bounces off of [src]'s rim!"))
-		return 0
+		return FALSE
 	else
 		return ..()
 

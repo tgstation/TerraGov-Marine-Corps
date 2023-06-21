@@ -9,6 +9,8 @@
 
 /obj/structure/spider/stickyweb
 	icon_state = "stickyweb1"
+	coverage = 30
+	obj_flags = CAN_BE_HIT|PROJ_IGNORE_DENSITY
 
 
 /obj/structure/spider/stickyweb/Initialize(mapload)
@@ -18,7 +20,6 @@
 
 
 /obj/structure/spider/stickyweb/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover, /mob/living/simple_animal/hostile/poison/giant_spider))
 		return TRUE
 	else if(isliving(mover))
@@ -27,9 +28,7 @@
 		if(prob(50))
 			to_chat(mover, span_danger("You get stuck in \the [src] for a moment."))
 			return FALSE
-	else if(istype(mover, /obj/projectile))
-		return prob(30)
-	return TRUE
+	return ..()
 
 
 /obj/structure/spider/eggcluster

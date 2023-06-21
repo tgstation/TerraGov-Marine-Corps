@@ -23,11 +23,11 @@
 
 /obj/structure/closet/crate/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
+	if(.)
+		return
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
-		return TRUE
-	if(opened) //Open crate, you can cross over it
 		return TRUE
 
 /obj/structure/closet/crate/open(mob/living/user)

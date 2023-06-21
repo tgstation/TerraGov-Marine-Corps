@@ -206,9 +206,10 @@
 
 
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(mover.throwing && istype(mover,/obj/item))
-		return TRUE
+	if(mover.throwing && ismob(mover))
+		return FALSE
+
+	return ..()
 
 /obj/structure/razorwire/update_icon_state()
 	var/health_percent = round(obj_integrity/max_integrity * 100)

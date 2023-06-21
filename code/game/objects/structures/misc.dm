@@ -258,7 +258,6 @@
 	max_integrity = 100
 
 /obj/structure/plasticflaps/CanAllowThrough(atom/movable/mover, turf/T)
-	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
 		return prob(60)
 
@@ -273,6 +272,8 @@
 		var/mob/living/M = mover
 		if(!M.lying_angle && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass. //todo kill shitcode
 			return FALSE
+
+	return ..()
 
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)

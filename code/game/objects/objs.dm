@@ -103,10 +103,16 @@
 	if(.)
 		return
 
+	if((flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir))
+		return TRUE
+
 	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
 
 	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
+		return TRUE
+
+	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
 		return TRUE
 
 	if(mover?.throwing)
@@ -122,6 +128,9 @@
 		return NONE
 
 	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
+		return NONE
+
+	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
 		return NONE
 
 	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))

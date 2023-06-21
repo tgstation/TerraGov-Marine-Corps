@@ -120,9 +120,10 @@
 	return FALSE
 
 /obj/structure/bed/roller/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(mover == buckled_bodybag)
 		return TRUE
+
+	return ..()
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))

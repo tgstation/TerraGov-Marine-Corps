@@ -296,10 +296,9 @@
 	return
 
 /obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(isxenohivemind(mover))
 		return FALSE
-
+	return ..()
 
 // =================
 // hivemind core

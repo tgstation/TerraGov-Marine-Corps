@@ -166,11 +166,11 @@
 	return try_toggle_state(user)
 
 /obj/structure/inflatable/door/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	. = ..()
 	if(air_group)
 		return open
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
+	return ..()
 
 /*
  * Checks all the requirements for opening/closing a door before opening/closing it. Copypasta. TODO: un-copypasta this

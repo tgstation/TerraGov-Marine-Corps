@@ -76,17 +76,11 @@
 
 /obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-
-	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
-		return FALSE
+	if(.)
+		return
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
-		return TRUE
-
-	if(get_dir(loc, target) & dir)
-		return FALSE
-	else
 		return TRUE
 
 /obj/structure/platform/rockcliff

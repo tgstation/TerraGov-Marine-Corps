@@ -20,8 +20,6 @@
 	///to specify a non-zero amount of stack to drop when destroyed
 	var/destroyed_stack_amount = 0
 	var/base_acid_damage = 2
-	///Whether things can be thrown over
-	var/allow_thrown_objs = TRUE
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
 	///Whether this barricade has damaged states
 	var/can_change_dmg_state = TRUE
@@ -61,43 +59,20 @@
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
 
+	if(mover?.throwing && is_wired && iscarbon(mover) && (direction & dir))
+		knownblockers += src
+		return COMPONENT_ATOM_BLOCK_EXIT
+
+/obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
+	if(mover?.throwing && is_wired && iscarbon(mover) && (get_dir(loc, target) & dir))
+		return FALSE
+
+	. = ..()
 	if(.)
 		return
 
-	if(mover.throwing)
-		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
-			if(direction & dir)
-				knownblockers += src
-				return COMPONENT_ATOM_BLOCK_EXIT
-	return NONE
-
-/obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-
-	if(mover?.throwing)
-		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
-			if(get_dir(loc, target) & dir)
-				return FALSE
-		if(!allow_thrown_objs && !istype(mover, /obj/projectile))
-			if(get_dir(loc, target) & dir)
-				return FALSE
-		return TRUE
-
-	if(istype(mover, /obj/vehicle/multitile))
-		visible_message(span_danger("[mover] drives over and destroys [src]!"))
-		deconstruct(FALSE)
-		return FALSE
-
-	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
-		return FALSE
-
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
-		return TRUE
-
-	if(get_dir(loc, target) & dir)
-		return FALSE
-	else
 		return TRUE
 
 /obj/structure/barricade/attack_animal(mob/user)
