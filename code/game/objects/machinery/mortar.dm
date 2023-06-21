@@ -585,6 +585,61 @@
 	spread = 5
 	max_spread = 5
 
+//this checks for box of rockets, otherwise will go to normal attackby for mortars
+/obj/machinery/deployable/mortar/howitzer/mlrs/attackby(obj/item/I, mob/user, params)
+	if(firing)
+		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off")
+		return
+
+	if(istype(I, /obj/item/storage/box/mlrs_rockets) || istype(I, /obj/item/storage/box/mlrs_rockets_gas))
+		var/obj/item/storage/box/rocket_box = I
+
+		//prompt user and ask how many rockets to load
+		var/numrockets = tgui_input_number(user, "How many rockets do you wish to load?)", "Quantity of rockets", 0, 16, 0)
+		if(numrockets < 1 || !can_interact(user))
+			return
+
+		///TODO: Next make a loop that executes the below code, break if one of the failures met
+		var/rocketsloaded = 0
+		while(rocketsloaded < numrockets)
+			//verify it has rockets
+			if(!istype(rocket_box.contents[1], /obj/item/mortal_shell/rocket/mlrs))
+				user.balloon_alert(user, "Out of rockets")
+				break
+			var/obj/item/mortal_shell/mortar_shell = rocket_box.contents[1]
+
+			if(length(chamber_items) >= max_rounds)
+				user.balloon_alert(user, "You cannot fit more")
+				break
+
+			if(!(mortar_shell.type in allowed_shells))
+				user.balloon_alert(user, "This shell doesn't fit")
+				break
+
+			if(busy)
+				user.balloon_alert(user, "Someone else is using this")
+				break
+
+			user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
+			span_notice("You start loading \a [mortar_shell.name] into [src]."))
+			playsound(loc, reload_sound, 50, 1)
+			busy = TRUE
+			if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
+				busy = FALSE
+				break
+
+			busy = FALSE
+
+			user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
+			span_notice("You load \a [mortar_shell.name] into [src]."))
+			chamber_items += mortar_shell
+
+			rocket_box.remove_from_storage(mortar_shell,null,user)
+			++rocketsloaded
+	else
+		. = ..()
+
+
 // Shells themselves //
 
 /obj/item/mortal_shell
