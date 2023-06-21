@@ -292,7 +292,7 @@
 		return
 
 	var/area/A = get_area(src)
-	if(istype(A))
+	if(!isnull(A))
 		if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
 			return
 		if(A.ceiling >= CEILING_UNDERGROUND)
@@ -347,7 +347,7 @@
 		if(!position || !(position.z in levels))
 			return FALSE
 		var/area/A = get_area(src)
-		if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		if(A?.ceiling >= CEILING_DEEP_UNDERGROUND)
 			return FALSE
 
 	// allow checks: are we listening on that frequency?
