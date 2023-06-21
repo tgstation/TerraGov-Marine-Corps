@@ -27,7 +27,7 @@
 
 
 /turf/closed/wall/resin/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 1.25, BURN, "fire")
+	take_damage(burnlevel * 1.25, BURN, FIRE)
 
 
 /turf/closed/wall/resin/proc/thicken()
@@ -77,11 +77,11 @@
 /turf/closed/wall/resin/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(600) // Heavy and devastate instakill walls.
+			take_damage(600, BRUTE, BOMB) // Heavy and devastate instakill walls.
 		if(EXPLODE_HEAVY)
-			take_damage(rand(400))
+			take_damage(rand(400), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(75, 100))
+			take_damage(rand(75, 100), BRUTE, BOMB)
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
@@ -128,7 +128,7 @@
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 
 	damage *= max(0, multiplier)
-	take_damage(damage)
+	take_damage(damage, BRUTE, MELEE)
 	playsound(src, "alien_resin_break", 25)
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)

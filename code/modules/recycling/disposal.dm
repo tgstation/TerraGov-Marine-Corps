@@ -146,6 +146,7 @@
 
 //Mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
+	. = ..()
 	// Check the user, if they can do all the things, are they close, alive?
 	if(isAI(user) || isxeno(user) || !isliving(user) || get_dist(user, target) > 1 || !in_range(user, src) || user.incapacitated(TRUE))
 		return
@@ -696,9 +697,9 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(5, 15))
+			take_damage(rand(5, 15), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(0, 15))
+			take_damage(rand(0, 15), BRUTE, BOMB)
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
 /obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)

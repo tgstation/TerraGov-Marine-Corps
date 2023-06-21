@@ -83,6 +83,7 @@
 /datum/element/jump/proc/end_jump(mob/living/jumper)
 	jumper.remove_filter("jump_element")
 	jumper.layer = initial(jumper.layer)
-	jumper.pass_flags &= ~jumper_allow_pass_flags
+	jumper.pass_flags = initial(jumper.pass_flags)
 	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_ELEMENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
+	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)

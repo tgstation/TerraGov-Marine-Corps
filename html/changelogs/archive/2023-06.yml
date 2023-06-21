@@ -215,3 +215,75 @@
   - bugfix: Fixed a platform runtime
   novaepee:
   - rscadd: give acid rain a siren warning like sand storm
+2023-06-19:
+  Blundir:
+  - rscadd: warlock's shield changes transparency depending on integrity
+  - rscadd: healthud now has a robot icon for robots
+  KerbalCitizen:
+  - rscadd: Medium general pouch to white clothing vendor, which has 2 slots for normal
+      sized items.
+  Lumipharon:
+  - bugfix: fixed a visual issue with tesla inhand sprites
+  - imageadd: Recoilless rifle shells now have visible projectile sprites
+  - code_imp: Fixed some wacky footstep code
+  - bugfix: fixed a couple of issues with human total armour calculations
+  - bugfix: fixed a deployable gun exploit
+  - rscadd: Adds a jump mechanic, to leap over obstacles like window frames
+  - balance: Platforms are dense again, in light of the ability to jump over them
+  Pariah919:
+  - spellcheck: 5.56 and 7.62 boxes now have their dots in their name and description.
+  Wayland-Smithy:
+  - bugfix: King's roar no longer misses things moving towards the King,
+  ivanmixo:
+  - bugfix: You can't put dogs or other nonhumans into the autodoc anymore. Stop it.
+  - bugfix: Fixed a debris runtime
+  - bugfix: Fixed weather messages not appearing if you have weather sounds off
+  novaepee:
+  - rscdel: remove easy plat miner in Gelida IV
+  - balance: remove easy plat miner in Gelida IV
+  - balance: Buff defiler's tentacle by decreasing plasma cost; a primo defiler with
+      full plasma can use emit gas, reagent slash, tentacle, and defile in one full
+      plasma
+  tyeagg:
+  - rscadd: light to hitscan lasers
+  - bugfix: disabler shots being invisible
+  - rscdel: smoke effect from minirockets
+2023-06-20:
+  Ben10083:
+  - bugfix: TA-40L standard rockets are orderable from requisitions again.
+  - bugfix: Attempting to link multiple deployables to AI no longer breaks the system.
+  Blundir:
+  - rscadd: if burst groundside larva has no player, it'd automatically burrow and
+      give a larva point
+  Wayland-Smithy:
+  - rscadd: Added a signal for jump landings on turfs, and implemented for squeak
+      toys.
+  Zar000:
+  - refactor: refactored defiler emit gas code
+  coldironwarrior:
+  - balance: ' Theseus can now support up to 4 squads roundstart'
+  - balance: Pillar of Spring can now support up to 4 squads roundstart
+  ivanmixo:
+  - bugfix: Sandstorm actually uses all the sound variations
+  - bugfix: Acid rain telegraph and start/end messages work properly
+  - bugfix: You don't get the weather messages if you aren't on the weather's Z level
+      anymore
+  - code_imp: Mousedrop_T children call parent
+  novaepee:
+  - bugfix: change soldiers to marines in some item and description
+2023-06-21:
+  Blundir:
+  - bugfix: fixed cases when damage from space turfs could've been negated
+  - rscadd: xenomorph active hide action icon has a purple border now
+  Lumipharon:
+  - bugfix: fixed objects and turfs frequently not taking armour into account when
+      being damaged
+  coldironwarrior:
+  - bugfix: removed misplaced engine in Minerva's OB room
+  ivanmixo:
+  - bugfix: Fixed a ssmonitor runtime
+  - bugfix: Resting via bind as a xeno now respects the use flags of the rest action
+  - bugfix: Fixed a tweezer runtime
+  - bugfix: Fixed a mounted gun runtime
+  novaepee:
+  - imagedel: revert new combat and bayonet knife and machette

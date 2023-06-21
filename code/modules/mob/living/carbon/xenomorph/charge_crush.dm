@@ -298,7 +298,7 @@
 			return precrush2signal(crushed_obj.post_crush_act(charger, src))
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
-		crushed_obj.take_damage(precrush, BRUTE, "melee")
+		crushed_obj.take_damage(precrush, BRUTE, MELEE)
 		if(QDELETED(crushed_obj))
 			charger.visible_message(span_danger("[charger] crushes [preserved_name]!"),
 			span_xenodanger("We crush [preserved_name]!"))

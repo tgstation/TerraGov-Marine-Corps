@@ -131,7 +131,7 @@
 
 /obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
 	if(obj_integrity > integrity_failure && exposed_temperature > T0C + 1500)
-		take_damage(1, BURN, "fire")
+		take_damage(1, BURN, FIRE)
 	return ..()
 
 
