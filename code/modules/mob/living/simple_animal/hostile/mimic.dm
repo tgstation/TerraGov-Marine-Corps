@@ -93,7 +93,7 @@
 	return ..()
 
 
-GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/cable, /obj/structure/window))
+GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/cable, /obj/structure/window, /obj/structure/dropship_equipment))
 
 
 /mob/living/simple_animal/hostile/mimic/copy

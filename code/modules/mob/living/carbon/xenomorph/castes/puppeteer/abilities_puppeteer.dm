@@ -369,6 +369,11 @@
 			owner.balloon_alert(owner, "too strong!")
 		return FALSE
 	
+	if(is_type_in_list(object_target, GLOB.protected_objects))
+		if(!silent)
+			owner.balloon_alert(owner, "not gonna work!")
+		return FALSE
+
 	if(!owner.Adjacent(target))
 		if(!silent)
 			owner.balloon_alert(owner, "not adjacent!")
