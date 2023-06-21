@@ -271,3 +271,19 @@
   - code_imp: Mousedrop_T children call parent
   novaepee:
   - bugfix: change soldiers to marines in some item and description
+2023-06-21:
+  Blundir:
+  - bugfix: fixed cases when damage from space turfs could've been negated
+  - rscadd: xenomorph active hide action icon has a purple border now
+  Lumipharon:
+  - bugfix: fixed objects and turfs frequently not taking armour into account when
+      being damaged
+  coldironwarrior:
+  - bugfix: removed misplaced engine in Minerva's OB room
+  ivanmixo:
+  - bugfix: Fixed a ssmonitor runtime
+  - bugfix: Resting via bind as a xeno now respects the use flags of the rest action
+  - bugfix: Fixed a tweezer runtime
+  - bugfix: Fixed a mounted gun runtime
+  novaepee:
+  - imagedel: revert new combat and bayonet knife and machette

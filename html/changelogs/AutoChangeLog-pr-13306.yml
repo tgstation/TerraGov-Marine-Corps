@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Resting via bind as a xeno now respects the use flags of the rest action"
