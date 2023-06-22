@@ -245,7 +245,7 @@
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return
 
-	stat_list[ready_candidate.faction].active_attrition_points -= job_datum.job_cost
+	stat_list[job_datum.faction].active_attrition_points -= job_datum.job_cost
 	LateSpawn(ready_candidate)
 	return TRUE
 
