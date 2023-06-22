@@ -17,10 +17,10 @@
 
 
 /obj/structure/flora/flamer_fire_act(burnlevel)
-	take_damage(burnlevel, BURN, "fire")
+	take_damage(burnlevel, BURN, FIRE)
 
 /obj/structure/flora/fire_act()
-	take_damage(25, BURN, "fire")
+	take_damage(25, BURN, FIRE)
 
 
 //TREES
@@ -48,11 +48,11 @@
 /obj/structure/flora/tree/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(500)
+			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(140, 300))
+			take_damage(rand(140, 300), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 100))
+			take_damage(rand(50, 100), BRUTE, BOMB)
 	START_PROCESSING(SSobj, src)
 
 
@@ -89,7 +89,7 @@
 	qdel(src)
 
 /obj/structure/flora/tree/flamer_fire_act(burnlevel)
-	take_damage(burnlevel/6, BURN, "fire")
+	take_damage(burnlevel/6, BURN, FIRE)
 
 
 /obj/structure/flora/tree/update_overlays()

@@ -21,9 +21,9 @@
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(100, 125))//Almost broken or half way
+			take_damage(rand(100, 125), BRUTE, BOMB)//Almost broken or half way
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 75))
+			take_damage(rand(50, 75), BRUTE, BOMB)
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -81,20 +81,20 @@
 				M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
 				M.apply_damage(7, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(10)
+				take_damage(10, BRUTE, MELEE)
 			if(GRAB_AGGRESSIVE)
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				if(prob(50))
 					M.Paralyze(20)
 				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(25)
+				take_damage(25, BRUTE, MELEE)
 			if(GRAB_NECK)
 				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
 				M.Paralyze(10 SECONDS)
 				M.apply_damage(20, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(50)
+				take_damage(50, BRUTE, MELEE)
 
 	else if(iswirecutter(I))
 		user.visible_message(span_notice("[user] starts cutting through [src] with [I]."),
@@ -160,5 +160,5 @@
 
 /obj/structure/fence/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		take_damage(round(exposed_volume / 100), BURN, "fire")
+		take_damage(round(exposed_volume / 100), BURN, FIRE)
 	return ..()
