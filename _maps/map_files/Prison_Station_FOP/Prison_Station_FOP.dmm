@@ -39676,8 +39676,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cxs" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/sensor_tower,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cxv" = (
@@ -40711,7 +40710,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/landmark/dropship_console_spawn_lz2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -40983,7 +40982,6 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "ern" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "esR" = (
@@ -41691,7 +41689,7 @@
 /area/prison/canteen)
 "gsU" = (
 /obj/structure/table/reinforced,
-/obj/effect/landmark/dropship_console_spawn_lz1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/prison/darkred/full,
 /area/prison/hangar/main)
 "gtU" = (
@@ -42221,7 +42219,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "hPH" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/medbay)
 "hQE" = (
@@ -42285,8 +42283,7 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
-"hWY" = (
-/obj/effect/landmark/sensor_tower,
+"hWY" = (,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
 "hXd" = (
@@ -44247,7 +44244,6 @@
 /area/prison/security/checkpoint/vip)
 "mZM" = (
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "naL" = (
@@ -44682,8 +44678,7 @@
 "oaR" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
-	},
-/obj/effect/landmark/sensor_tower,
+	},,
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
 "oaU" = (
@@ -45788,8 +45783,7 @@
 /turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "qRS" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/sensor_tower,
+/obj/effect/decal/cleanable/blood,,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/yard)
 "qSk" = (
@@ -45850,7 +45844,7 @@
 /area/prison/parole/protective_custody)
 "raQ" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/yard)
 "rbs" = (
@@ -45920,7 +45914,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
 "rhB" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
 "rhE" = (
@@ -47970,11 +47964,10 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "wfv" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/entrance)
 "wfX" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating,
 /area/prison/engineering)
 "wfY" = (
@@ -48189,7 +48182,7 @@
 	},
 /area/prison/monorail/west)
 "wHf" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "wHm" = (

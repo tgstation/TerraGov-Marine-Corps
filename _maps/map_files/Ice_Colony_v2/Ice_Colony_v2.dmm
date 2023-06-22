@@ -3484,7 +3484,7 @@
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "avc" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
@@ -22210,7 +22210,6 @@
 /area/ice_colony/underground/maintenance/central)
 "duN" = (
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/rock)
 "duU" = (
@@ -22402,8 +22401,7 @@
 /area/ice_colony/surface/dorms/restroom_w)
 "dOU" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/obj/effect/landmark/sensor_tower,
+/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
 	},
@@ -23734,7 +23732,7 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/effect/landmark/dropship_console_spawn_lz2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
@@ -24495,7 +24493,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command)
 "iax" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "iay" = (
@@ -25493,7 +25491,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "jOv" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_nw)
 "jPw" = (
@@ -27244,7 +27241,6 @@
 /area/ice_colony/exterior/surface/valley/north)
 "mQX" = (
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "mRF" = (
@@ -27372,8 +27368,7 @@
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
-"niI" = (
-/obj/effect/landmark/sensor_tower,
+"niI" = (,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "niR" = (
@@ -27821,7 +27816,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "nUM" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research)
 "nUR" = (
@@ -28094,7 +28089,6 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/underground/caves/ice_nw)
 "oxN" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_w)
 "oyf" = (
@@ -29349,7 +29343,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "qQb" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "qQe" = (
@@ -31687,7 +31681,7 @@
 /area/ice_colony/surface/clinic/storage)
 "uGL" = (
 /obj/structure/table/reinforced,
-/obj/effect/landmark/dropship_console_spawn_lz1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -31730,7 +31724,7 @@
 /area/ice_colony/exterior/surface/valley/south)
 "uJd" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "uJs" = (

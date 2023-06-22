@@ -128,12 +128,3 @@
 /obj/machinery/computer/dropship_weapons/dropship2/Initialize(mapload)
 	. = ..()
 	shuttle_tag = SHUTTLE_NORMANDY
-
-/obj/machinery/computer/dropship_weapons/dropship3
-	name = "\improper 'Triumpg' weapons controls"
-	req_access = list(ACCESS_MARINE_DROPSHIP_REBEL)
-
-/obj/machinery/computer/dropship_weapons/dropship3/Initialize(mapload)
-	. = ..()
-	shuttle_tag = SHUTTLE_TRIUMPH
-

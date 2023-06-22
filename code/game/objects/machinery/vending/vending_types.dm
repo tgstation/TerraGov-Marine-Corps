@@ -228,13 +228,6 @@
 	isshared = TRUE
 	wrenchable = FALSE
 
-
-/obj/machinery/vending/medical/rebel
-	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
-	isshared = TRUE
-	wrenchable = FALSE
-
-
 /obj/machinery/vending/medical/valhalla
 	use_power = NO_POWER_USE
 	req_access = list()

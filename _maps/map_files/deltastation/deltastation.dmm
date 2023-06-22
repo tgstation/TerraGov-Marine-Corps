@@ -10013,7 +10013,7 @@
 /area/deltastation/engineering/hallway)
 "cbC" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "cbD" = (
@@ -12372,7 +12372,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/auxlab/firing_range)
 "cCK" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /obj/effect/turf_decal/plaque/two{
 	dir = 4
 	},
@@ -77615,7 +77615,7 @@
 /area/deltastation/service/bar)
 "pND" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/iron,
 /area/deltastation/commons/storage/primary)
 "pNP" = (
@@ -87553,7 +87553,7 @@
 	},
 /area/deltastation/medical/morgue)
 "rMI" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/engine{
 	name = "Holodeck Projector Floor"
 	},
@@ -94838,7 +94838,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/transparent/yellow,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "tmp" = (

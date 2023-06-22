@@ -261,7 +261,7 @@
 /area/lv624/ground/river3)
 "bH" = (
 /obj/structure/cable,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor,
 /area/lv624/lazarus/security)
 "bI" = (
@@ -1405,7 +1405,7 @@
 /area/lv624/lazarus/spaceport2)
 "hA" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "hC" = (
@@ -1783,7 +1783,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/research/caves)
 "jt" = (
-/obj/effect/landmark/dropship_console_spawn_lz1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table/reinforced,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
@@ -3748,7 +3748,7 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/effect/landmark/dropship_console_spawn_lz2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
 "tv" = (
@@ -6263,7 +6263,7 @@
 /area/lv624/lazarus/research/caves)
 "Gf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "Gh" = (
@@ -6811,7 +6811,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "IQ" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
@@ -7877,7 +7877,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle9)
 "NE" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
