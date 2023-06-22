@@ -3526,7 +3526,7 @@
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
-"xx" = (,
+"xx" = (
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
 "xy" = (

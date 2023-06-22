@@ -3343,7 +3343,7 @@
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
-"Gv" = (,
+"Gv" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "GA" = (

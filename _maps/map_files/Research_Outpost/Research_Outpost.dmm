@@ -5029,7 +5029,7 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/south_west)
-"wT" = (,
+"wT" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
@@ -5796,7 +5796,7 @@
 	dir = 4
 	},
 /area/outpost/science/hydponics)
-"At" = (,
+"At" = (
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},

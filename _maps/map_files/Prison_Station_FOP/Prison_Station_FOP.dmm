@@ -42283,7 +42283,7 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
-"hWY" = (,
+"hWY" = (
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
 "hXd" = (
