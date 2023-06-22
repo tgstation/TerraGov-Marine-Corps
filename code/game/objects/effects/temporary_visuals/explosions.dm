@@ -247,10 +247,10 @@
 	. = ..()
 	set_light(radius, radius, color)
 	generate_particles(radius, small, large)
-	var/image/I = image(icon, src, icon_state, 10, -32, -32)
 	if(iswater(get_turf(src)))
 		icon_state = null
 		return
+	var/image/I = image(icon, src, icon_state, 10, -32, -32)
 	var/matrix/rotate = matrix()
 	rotate.Turn(rand(0, 359))
 	I.transform = rotate
@@ -300,16 +300,15 @@
 		smoke_wave.particles.velocity = generator(GEN_CIRCLE, 5 * radius, 5 * radius)
 	explosion_smoke.layer = layer + 0.1
 	sparks.particles.velocity = generator(GEN_CIRCLE, 8 * radius, 8 * radius)
+	addtimer(CALLBACK(src, PROC_REF(set_count_short)), 5)
+	addtimer(CALLBACK(src, PROC_REF(set_count_long)), 10)
 
-	addtimer(VARSET_CALLBACK(smoke_wave.particles, count, 0), 5)
-	QDEL_IN(smoke_wave, 25)
-	addtimer(VARSET_CALLBACK(explosion_smoke.particles, count, 0), 5)
-	QDEL_IN(explosion_smoke, 25)
-	addtimer(VARSET_CALLBACK(dirt_kickup.particles, count, 0), 10)
-	QDEL_IN(dirt_kickup, 25)
-	addtimer(VARSET_CALLBACK(falling_debris.particles, count, 0), 5)
-	QDEL_IN(falling_debris, 25)
-	addtimer(VARSET_CALLBACK(sparks.particles, count, 0), 5)
-	QDEL_IN(sparks, 25)
-	addtimer(VARSET_CALLBACK(large_kickup.particles, count, 0), 5)
-	QDEL_IN(large_kickup, 25)
+/obj/effect/temp_visual/explosion/proc/set_count_short()
+	smoke_wave.particles.count = 0
+	explosion_smoke.particles.count = 0
+	sparks.particles.count = 0
+	large_kickup.particles.count = 0
+	falling_debris.particles.count = 0
+
+/obj/effect/temp_visual/explosion/proc/set_count_long()
+	dirt_kickup.particles.count = 0
