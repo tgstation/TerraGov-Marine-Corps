@@ -164,6 +164,7 @@
 	desc = "There seems to be an awful lot of machinery down below"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "1"
+	hull_floor = TRUE
 
 /turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
