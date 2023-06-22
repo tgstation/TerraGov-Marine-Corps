@@ -139,6 +139,8 @@
 	//add a delay probably
 	select_next_round(stat_list[current_round.winning_faction].get_selector()) //winning team chooses new round
 
+///////////////////////////respawn stuff/////////
+
 ///respawns the player if attrition points are available
 /datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)
 	if(!(candidate.faction in factions))
@@ -268,3 +270,156 @@
 	if(!job.special_check_latejoin(candidate.client))
 		return FALSE
 	return TRUE
+
+
+//////////////////tgui stuff/////////////////
+
+GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
+
+///The list is shared across all quick vendors, but they will only display the tabs specified by the vendor, and only show the loadouts with jobs that match the displayed tabs.
+/proc/init_quick_loadouts()
+	. = list()
+	var/list/loadout_list = list(
+		/datum/outfit/quick/tgmc/marine/standard_carbine,
+	)
+
+	for(var/X in loadout_list)
+		.[X] = new X
+
+
+/obj/machinery/tgui_test
+	name = "Kwik-E-Quip vendor"
+	desc = "An advanced vendor to instantly arm soldiers with specific sets of equipment, allowing for immediate combat deployment."
+	icon = 'icons/obj/machines/vending.dmi'
+	icon_state = "specialist"
+	density = TRUE
+	anchored = TRUE
+	layer = BELOW_OBJ_LAYER
+	req_access = null
+	req_one_access = null
+	interaction_flags = INTERACT_MACHINE_TGUI
+	///The faction of this quick load vendor
+	var/faction = FACTION_NEUTRAL
+	//the different tabs in the vendor
+	var/list/categories = list(
+		"Squad Marine",
+		"Squad Engineer",
+		"Squad Corpsman",
+		"Squad Smartgunner",
+		"Squad Leader",
+	)
+
+/obj/machinery/tgui_test/som
+	faction = FACTION_SOM
+	categories = list(
+		"SOM Squad Standard",
+		"SOM Squad Engineer",
+		"SOM Squad Medic",
+		"SOM Squad Veteran",
+		"SOM Squad Leader",
+	)
+
+/obj/machinery/tgui_test/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!ishuman(user))
+		return FALSE
+
+	var/mob/living/carbon/human/human_user = user
+	if(!allowed(human_user))
+		return FALSE
+
+	if(!isidcard(human_user.get_idcard())) //not wearing an ID
+		return FALSE
+
+	var/obj/item/card/id/user_id = human_user.get_idcard()
+	if(user_id.registered_name != human_user.real_name)
+		return FALSE
+	return TRUE
+
+/obj/machinery/tgui_test/ui_interact(mob/living/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(ui)
+		return
+	ui = new(user, src, "Campaign") //whats the name?
+	ui.open()
+
+/obj/machinery/tgui_test/ui_state(mob/user)
+	return GLOB.human_adjacent_state
+
+/obj/machinery/tgui_test/ui_data(mob/living/user)
+	. = ..()
+	var/datum/faction_stats/team = stat_list[faction]
+
+	var/list/data = list()
+	var/ui_theme
+	switch(faction)
+		if(FACTION_SOM)
+			ui_theme = "som"
+		else
+			ui_theme = "ntos"
+	data["ui_theme"] = ui_theme
+
+	//complex ones
+	var/list/potential_rounds_data = list()
+	for(var/datum/game_round/potential_round AS in team.potential_rounds)
+		var/list/round_data = list() //each relevant bit of info regarding the round is added to the list. Many more to come
+		round_data["name"] = potential_round.name
+		round_data["map_name"] = potential_round.map_name
+		round_data["objective_description"] = potential_round.objective_description["starting_faction"]
+		potential_rounds_data += list(round_data)
+	data["potential_rounds"] = potential_rounds_data
+
+	var/list/finished_rounds_data = list()
+	for(var/datum/game_round/finished_round AS in team.finished_rounds)
+		var/list/round_data = list() //each relevant bit of info regarding the round is added to the list. Many more to come
+		round_data["name"] = finished_round.name
+		round_data["map_name"] = finished_round.map_name
+		round_data["starting_faction"] = finished_round.starting_faction
+		round_data["hostile_faction"] = finished_round.hostile_faction
+		round_data["winning_faction"] = finished_round.winning_faction
+		round_data["outcome"] = finished_round.outcome
+		round_data["objective_description"] = finished_round.objective_description[faction == starting_faction ? "starting_faction" : "hostile_faction"]
+		finished_rounds_data += list(round_data)
+	data["finished_rounds"] = finished_rounds_data
+
+	var/list/faction_rewards_data = list()
+	for(var/datum/campaign_reward/reward AS in team.faction_rewards)
+		var/list/reward_data = list() //each relevant bit of info regarding the reward is added to the list. Many more to come
+		reward_data["name"] = reward.name
+		reward_data["desc"] = reward.desc
+		reward_data["detailed_desc"] = reward.detailed_desc
+		reward_data["uses_remaining"] = reward.uses
+		reward_data["uses_original"] = initial(reward.uses)
+		faction_rewards_data += list(reward_data)
+	data["faction_rewards_data"] = faction_rewards_data
+
+	//simple ones
+	data["active_attrition_points"] = team.active_attrition_points
+	data["total_attrition_points"] = team.total_attrition_points
+	data["faction_leader"] = team.faction_leader
+	data["victory_points"] = team.victory_points
+	data["faction"] = team.faction
+
+	return data
+
+//todo: leadership only controls
+/obj/machinery/tgui_test/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	var/datum/faction_stats/team = stat_list[faction]
+	switch(action)
+		if("set_attrition_points")
+			team.total_attrition_points -= params["attrition_points"]
+			team.active_attrition_points = params["attrition_points"] //unused points are lost
+
+		if("set_next_round")
+			var/datum/game_round/choice = team.potential_rounds[text2path(params["new_round"])] //locate or something maybe?
+			load_new_round(choice, faction)
+
+		if("activate_reward")
+			var/datum/campaign_reward/choice = team.faction_rewards[text2path(params["selected_reward"])] //locate or something maybe?
+			choice.activated_effect()
