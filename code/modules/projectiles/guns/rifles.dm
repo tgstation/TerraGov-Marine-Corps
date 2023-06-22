@@ -2088,10 +2088,11 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
+	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.4
 	scatter = 6
 	scatter_unwielded = 40
-	movement_acc_penalty_mult = 6
+	movement_acc_penalty_mult = 7
 
 	placed_overlay_iconstate = "lmg"
 
