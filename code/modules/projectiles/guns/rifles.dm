@@ -2006,7 +2006,8 @@
 	wield_delay = 0.4 SECONDS
 	aim_slowdown = 0.3
 	movement_acc_penalty_mult = 4
-	damage_falloff_mult = 2
+	damage_falloff_mult = 1.4
+	damage_mult = 0.9
 
 /obj/item/weapon/gun/rifle/som_carbine/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/foldable/som_carbine, /obj/item/attachable/magnetic_harness)
