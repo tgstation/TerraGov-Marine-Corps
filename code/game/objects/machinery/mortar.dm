@@ -635,7 +635,7 @@
 			chamber_items += mortar_shell
 
 			rocket_box.remove_from_storage(mortar_shell,null,user)
-			++rocketsloaded
+			rocketsloaded++
 	else
 		. = ..()
 
