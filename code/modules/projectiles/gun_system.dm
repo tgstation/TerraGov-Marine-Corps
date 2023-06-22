@@ -1023,8 +1023,9 @@
 	heat_amount = 0
 
 /obj/item/weapon/gun/process(delta_time)
-	heat_amount = max(0, heat_amount - cool_amount*delta_time)
-	heat_meter.animate_change(heat_amount/100, 5)
+	if(heat_meter)
+		heat_amount = max(0, heat_amount - cool_amount*delta_time)
+		heat_meter.animate_change(heat_amount/100, 5)
 	if(!heat_amount)
 		return PROCESS_KILL
 
