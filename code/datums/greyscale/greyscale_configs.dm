@@ -44,6 +44,9 @@
 	icon_file = 'icons/mob/modular/visors.dmi'
 	json_config = 'code/datums/greyscale/json_configs/visors.json'
 
+/datum/greyscale_config/visors/greyscale
+	json_config = 'code/datums/greyscale/json_configs/greyscale_visor.json'
+
 //Capes
 /datum/greyscale_config/cape
 	icon_file = 'icons/mob/modular/capes.dmi'

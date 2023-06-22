@@ -64,12 +64,6 @@
 			"icon_state": "eod"
 		}
 	],
-	"gungnir_visor": [
-		{
-			"type": "hyperscale",
-			"icon_state": "gungnir"
-		}
-	],
 	"r_light": [
 		{
 			"type": "hyperscale",

@@ -106,9 +106,10 @@
 /obj/item/armor_module/armor/visor/marine/gungnir
 	name = "\improper Jaeger Pattern Gungnir visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Gungnir class of helmet."
-	icon_state = "gungnir_visor"
-
-
+	icon_state = "gugnir"
+	greyscale_config = /datum/greyscale_config/visors/greyscale
+	colorable_allowed = COLOR_WHEEL_ONLY
+	greyscale_colors = LIGHT_COLOR_GREEN
 
 //Robots
 /obj/item/armor_module/armor/visor/marine/robot
