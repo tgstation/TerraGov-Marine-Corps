@@ -1334,7 +1334,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "v34stock"
-	accuracy_mod = 0.3
+	accuracy_mod = 0.2
 	recoil_mod = -2
 	scatter_mod = -8
 
