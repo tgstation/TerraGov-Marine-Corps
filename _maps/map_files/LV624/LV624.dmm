@@ -14184,7 +14184,7 @@
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 1
-	},,
+	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "qQz" = (

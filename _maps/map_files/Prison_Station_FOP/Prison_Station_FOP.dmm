@@ -39676,7 +39676,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cxs" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cxv" = (
@@ -44678,7 +44678,7 @@
 "oaR" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
-	},,
+	},
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
 "oaU" = (
@@ -45783,7 +45783,7 @@
 /turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "qRS" = (
-/obj/effect/decal/cleanable/blood,,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/yard)
 "qSk" = (

@@ -22401,7 +22401,7 @@
 /area/ice_colony/surface/dorms/restroom_w)
 "dOU" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,,
+/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
 	},
