@@ -93,6 +93,8 @@
 	apply_temp_overlay(X_SUIT_LAYER, 1.2 SECONDS)
 
 /mob/living/carbon/xenomorph/update_fire()
+	if(!fire_overlay)
+		return
 	if(!on_fire)
 		fire_overlay.icon_state = ""
 		return
