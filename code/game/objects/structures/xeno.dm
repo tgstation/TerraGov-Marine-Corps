@@ -79,6 +79,8 @@
 	layer = RESIN_STRUCTURE_LAYER
 	hit_sound = "alien_resin_move"
 	var/slow_amt = 8
+	/// Does this refund build points when destoryed?
+	var/refundable = TRUE
 
 	ignore_weed_destruction = TRUE
 
@@ -117,7 +119,7 @@
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
-		if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
 			SSresinshaping.quickbuilds++
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, "alien_resin_break", 25) //SFX
@@ -134,6 +136,7 @@
 	slow_amt = 4
 
 	ignore_weed_destruction = FALSE
+	refundable = FALSE
 
 //Resin Doors
 /obj/structure/mineral_door/resin
