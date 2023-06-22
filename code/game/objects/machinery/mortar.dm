@@ -591,53 +591,53 @@
 		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off")
 		return
 
-	if(istype(I, /obj/item/storage/box/mlrs_rockets) || istype(I, /obj/item/storage/box/mlrs_rockets_gas))
-		var/obj/item/storage/box/rocket_box = I
+	if(!istype(I, /obj/item/storage/box/mlrs_rockets) && !istype(I, /obj/item/storage/box/mlrs_rockets_gas))
+		return ..()
 
-		//prompt user and ask how many rockets to load
-		var/numrockets = tgui_input_number(user, "How many rockets do you wish to load?)", "Quantity of rockets", 0, 16, 0)
-		if(numrockets < 1 || !can_interact(user))
-			return
+	var/obj/item/storage/box/rocket_box = I
 
-		//loop that continues loading until a invalid condition is met
-		var/rocketsloaded = 0
-		while(rocketsloaded < numrockets)
-			//verify it has rockets
-			if(!istype(rocket_box.contents[1], /obj/item/mortal_shell/rocket/mlrs))
-				user.balloon_alert(user, "Out of rockets")
-				break
-			var/obj/item/mortal_shell/mortar_shell = rocket_box.contents[1]
+	//prompt user and ask how many rockets to load
+	var/numrockets = tgui_input_number(user, "How many rockets do you wish to load?)", "Quantity to Load", 0, 16, 0)
+	if(numrockets < 1 || !can_interact(user))
+		return
 
-			if(length(chamber_items) >= max_rounds)
-				user.balloon_alert(user, "You cannot fit more")
-				break
+	//loop that continues loading until a invalid condition is met
+	var/rocketsloaded = 0
+	while(rocketsloaded < numrockets)
+		//verify it has rockets
+		if(!istype(rocket_box.contents[1], /obj/item/mortal_shell/rocket/mlrs))
+			user.balloon_alert(user, "Out of rockets")
+			break
+		var/obj/item/mortal_shell/mortar_shell = rocket_box.contents[1]
 
-			if(!(mortar_shell.type in allowed_shells))
-				user.balloon_alert(user, "This shell doesn't fit")
-				break
+		if(length(chamber_items) >= max_rounds)
+			user.balloon_alert(user, "You cannot fit more")
+			break
 
-			if(busy)
-				user.balloon_alert(user, "Someone else is using this")
-				break
+		if(!(mortar_shell.type in allowed_shells))
+			user.balloon_alert(user, "This shell doesn't fit")
+			break
 
-			user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
-			span_notice("You start loading \a [mortar_shell.name] into [src]."))
-			playsound(loc, reload_sound, 50, 1)
-			busy = TRUE
-			if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
-				busy = FALSE
-				break
+		if(busy)
+			user.balloon_alert(user, "Someone else is using this")
+			break
 
+		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
+		span_notice("You start loading \a [mortar_shell.name] into [src]."))
+		playsound(loc, reload_sound, 50, 1)
+		busy = TRUE
+		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
+			break
 
-			user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
-			span_notice("You load \a [mortar_shell.name] into [src]."))
-			chamber_items += mortar_shell
+		busy = FALSE
 
-			rocket_box.remove_from_storage(mortar_shell,null,user)
-			rocketsloaded++
-	else
-		. = ..()
+		user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
+		span_notice("You load \a [mortar_shell.name] into [src]."))
+		chamber_items += mortar_shell
+
+		rocket_box.remove_from_storage(mortar_shell,null,user)
+		rocketsloaded++
 
 
 // Shells themselves //
