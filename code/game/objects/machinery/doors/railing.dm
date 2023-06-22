@@ -12,6 +12,12 @@
 
 	var/obj/docking_port/mobile/supply/linked_pad
 
+/obj/machinery/door/poddoor/railing/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/machinery/door/poddoor/railing/opened
 	icon_state = "railing0"
