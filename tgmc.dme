@@ -695,6 +695,7 @@
 #include "code\game\objects\items\explosives\plastique.dm"
 #include "code\game\objects\items\explosives\grenades\chem_grenade.dm"
 #include "code\game\objects\items\explosives\grenades\emgrenade.dm"
+#include "code\game\objects\items\explosives\grenades\flare.dm"
 #include "code\game\objects\items\explosives\grenades\flashbang.dm"
 #include "code\game\objects\items\explosives\grenades\grenade.dm"
 #include "code\game\objects\items\explosives\grenades\marines.dm"
