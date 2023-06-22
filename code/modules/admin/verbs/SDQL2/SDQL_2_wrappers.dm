@@ -61,7 +61,7 @@
 	thing << link(url)
 
 /proc/_locate(X, Y, Z)
-	if (isnull(Y)) // Assuming that it's only a single-argument call.
+	if(isnull(Y)) // Assuming that it's only a single-argument call.
 		return locate(X)
 
 	return locate(X, Y, Z)
@@ -151,7 +151,7 @@
 	return sin(X)
 
 /proc/_list_add(list/L, ...)
-	if (args.len < 2)
+	if(length(args) < 2)
 		return
 	L += args.Copy(2)
 
@@ -171,7 +171,7 @@
 	return L.Join(Glue, Start, End)
 
 /proc/_list_remove(list/L, ...)
-	if (args.len < 2)
+	if(length(args) < 2)
 		return
 	L -= args.Copy(2)
 
@@ -214,4 +214,74 @@
 /proc/_step_away(ref, trg, max)
 	step_away(ref, trg, max)
 
+/proc/_winset(player, control_id, params)
+	winset(player, control_id, params)
 
+/proc/_winshow(player, window, show = 1)
+	winshow(player, window, show)
+
+/proc/_winget(player, control_id, params)
+	winget(player, control_id, params)
+
+/proc/_winexists(player, control_id)
+	return winexists(player, control_id)
+
+/proc/_winclone(player, window_name, clone_name)
+	winclone(player, window_name, clone_name)
+
+/proc/_url_encode(PlainText)
+	return url_encode(PlainText)
+
+/proc/_url_decode(UrlText)
+	return url_decode(UrlText)
+
+/proc/_uppertext(T)
+	return uppertext(T)
+
+/proc/_html_decode(HtmlText)
+	return html_decode(HtmlText)
+
+/proc/_html_encode(PlainText)
+	return html_encode(PlainText)
+
+/proc/_json_decode(JSON)
+	return json_decode(JSON)
+
+/proc/_json_encode(Value)
+	return json_encode(Value)
+
+/proc/_view(Dist = 5, Center = usr)
+	return view(Dist, Center)
+
+/proc/_viewers(Depth = WORLD_VIEW, Center = usr)
+	return viewers(Depth, Center)
+
+/proc/_initial(datum/D, varname)
+	return initial(D.vars[varname])
+
+/proc/_isnull(Val)
+	return isnull(Val)
+
+/proc/_sound(file, repeat = 0, wait, channel, volume)
+	return sound(file, repeat, wait, channel, volume)
+
+/proc/_time2text(timestamp,	format)
+	return time2text(timestamp,format)
+
+/proc/_browse(target, Body, Options)
+	target << browse(Body, Options)
+
+/proc/_browse_rsc(target, File, FileName)
+	target << browse_rsc(File,FileName)
+
+/proc/_icon(icon, state, dir, frame, moving)
+	return icon(icon, state, dir, frame, moving)
+
+/proc/_has_trait(datum/thing, trait)
+	return HAS_TRAIT(thing, trait)
+
+/proc/_add_trait(datum/thing,trait,source)
+	ADD_TRAIT(thing, trait, source)
+
+/proc/_remove_trait(datum/thing,trait,source)
+	REMOVE_TRAIT(thing, trait, source)
