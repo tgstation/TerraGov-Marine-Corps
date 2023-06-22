@@ -308,6 +308,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	flags_gamemode = ABILITY_DISTRESS
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
 	psypoint_cost = 500
+	times_bought = 1
 
 /datum/hive_upgrade/primordial
 	category = "Xenos"
