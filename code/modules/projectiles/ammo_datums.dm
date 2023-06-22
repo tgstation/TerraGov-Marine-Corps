@@ -3418,7 +3418,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/alien/resin/sticky(T)
+	new /obj/alien/resin/sticky/thin(T)
 
 /datum/ammo/xeno/sticky/turret
 	max_range = 9

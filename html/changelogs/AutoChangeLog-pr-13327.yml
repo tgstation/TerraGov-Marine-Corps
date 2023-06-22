@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - bugfix: "Sticky resin now spits out thin sticky resin again rather than normal sticky resin."
