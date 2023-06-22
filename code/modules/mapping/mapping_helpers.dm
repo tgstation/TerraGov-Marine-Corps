@@ -201,9 +201,9 @@
 			continue
 		if(helper.crashed)
 			return
-		CRASH("Duplicate simple_pipes mapping helper at [AREACOORD(src)]")
 		helper.crashed = TRUE
 		src.crashed = TRUE
+		CRASH("Duplicate simple_pipes mapping helper at [AREACOORD(src)]")
 
 	for(var/direction in connections)
 		var/turf/T = get_step(src, text2dir(direction))
