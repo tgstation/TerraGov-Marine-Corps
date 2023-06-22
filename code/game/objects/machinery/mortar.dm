@@ -607,20 +607,20 @@
 		//verify it has rockets
 		if(!istype(rocket_box.contents[1], /obj/item/mortal_shell/rocket/mlrs))
 			user.balloon_alert(user, "Out of rockets")
-			break
+			return
 		var/obj/item/mortal_shell/mortar_shell = rocket_box.contents[1]
 
 		if(length(chamber_items) >= max_rounds)
 			user.balloon_alert(user, "You cannot fit more")
-			break
+			return
 
 		if(!(mortar_shell.type in allowed_shells))
 			user.balloon_alert(user, "This shell doesn't fit")
-			break
+			return
 
 		if(busy)
 			user.balloon_alert(user, "Someone else is using this")
-			break
+			return
 
 		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
@@ -628,7 +628,7 @@
 		busy = TRUE
 		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
-			break
+			return
 
 		busy = FALSE
 
@@ -638,6 +638,7 @@
 
 		rocket_box.remove_from_storage(mortar_shell,null,user)
 		rocketsloaded++
+	user.balloon_alert(user, "Right click to fire")
 
 
 // Shells themselves //
