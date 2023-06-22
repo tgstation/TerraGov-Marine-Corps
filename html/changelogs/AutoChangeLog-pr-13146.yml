@@ -1,4 +1,0 @@
-author: "MacBlaze1"
-delete-after: True
-changes:
-  - qol: "reworked CIC overwatch consoles to use TGUI and be nicer"

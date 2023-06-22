@@ -287,3 +287,13 @@
   - bugfix: Fixed a mounted gun runtime
   novaepee:
   - imagedel: revert new combat and bayonet knife and machette
+2023-06-22:
+  Blundir:
+  - rscadd: evolution points tick even if xeno has no client/soul
+  Lumipharon:
+  - bugfix: fixed some mobs like runner losing passtable after jumping
+  - balance: Comms and req no longer function in deep caves
+  - code_imp: Reworked some code in xeno explosion code
+  - bugfix: Xenos should correctly get staggered by explosions
+  MacBlaze1:
+  - qol: reworked CIC overwatch consoles to use TGUI and be nicer
