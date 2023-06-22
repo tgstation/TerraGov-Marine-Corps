@@ -38,7 +38,7 @@
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	if(!istype(mode))
 		return
-	mode.attrition_respawn(owner)
+	mode.attempt_attrition_respawn(owner)
 
 /datum/action/observer_action/join_larva_queue
 	name = "Join Larva Queue"

@@ -140,7 +140,7 @@
 	select_next_round(stat_list[current_round.winning_faction].get_selector()) //winning team chooses new round
 
 ///respawns the player if attrition points are available
-/datum/game_mode/hvh/campaign/proc/attrition_respawn(mob/candidate) //this literally respawns the player. A more elegant solution would be to directly give them the job selection menu etc...
+/datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)
 	if(!(candidate.faction in factions))
 		return FALSE
 
@@ -149,16 +149,122 @@
 
 	if(!candidate?.client)
 		return FALSE
-	candidate.client.screen.Cut()
-	if(!candidate?.client)
-		return FALSE
 
-	var/mob/new_player/M = new /mob/new_player()
-	M.faction = candidate.faction
-	if(!candidate?.client)
-		qdel(M)
-		return FALSE
+	//start of copy paste proc
+	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
+	if(!GLOB.enter_allowed)
+		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
+	var/forced_faction
+	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+		if(candidate.faction in SSticker.mode.get_joinable_factions(FALSE))
+			forced_faction = candidate.faction
+		else
+			forced_faction = tgui_input_list(candidate, "What faction do you want to join", "Faction choice", SSticker.mode.get_joinable_factions(TRUE))
+			if(!forced_faction)
+				return
+	dat += "<div class='latejoin-container' style='width: 100%'>"
+	for(var/cat in SSjob.active_joinable_occupations_by_category)
+		var/list/category = SSjob.active_joinable_occupations_by_category[cat]
+		var/datum/job/job_datum = category[1] //use the color of the first job in the category (the department head) as the category color
+		dat += "<fieldset class='latejoin' style='border-color: [job_datum.selection_color]'>"
+		dat += "<legend align='center' style='color: [job_datum.selection_color]'>[job_datum.job_category]</legend>"
+		var/list/dept_dat = list()
+		for(var/job in category)
+			job_datum = job
+			if(!IsJobAvailable(candidate, job_datum, forced_faction))
+				continue
+			var/command_bold = ""
+			if(job_datum.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION)
+				command_bold = " command"
+			var/position_amount
+			if(job_datum.job_flags & JOB_FLAG_HIDE_CURRENT_POSITIONS)
+				position_amount = "?"
+			else if(job_datum.job_flags & JOB_FLAG_SHOW_OPEN_POSITIONS)
+				position_amount = "[job_datum.total_positions - job_datum.current_positions] open positions"
+			else
+				position_amount = job_datum.current_positions
+			dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];campaign_choice=SelectedJob;player=[REF(candidate)];job_selected=[REF(job_datum)]'>[job_datum.title] ([position_amount])</a>"
+		if(!length(dept_dat))
+			dept_dat += span_nopositions("No positions open.")
+		dat += jointext(dept_dat, "")
+		dat += "</fieldset><br>"
+	dat += "</div>"
+	var/datum/browser/popup = new(candidate, "latechoices", "Choose Occupation", 680, 580)
+	popup.add_stylesheet("latechoices", 'html/browser/latechoices.css')
+	popup.set_content(jointext(dat, ""))
+	popup.open(FALSE)
 
-	M.key = candidate.key
-	stat_list[candidate.faction].active_attrition_points --
-	M.late_choices() //just opens the window. todo: look into how feasible it is to directly give the ghost the job selection menu and all the follow up, probably not
+/datum/game_mode/hvh/campaign/Topic(href, href_list[])
+	switch(href_list["campaign_choice"])
+		if("SelectedJob")
+			if(!SSticker)
+				return
+			var/mob/candidate = locate(href_list["player"])
+			if(!candidate.client)
+				return
+
+			if(!GLOB.enter_allowed)
+				to_chat(candidate, span_warning("Spawning currently disabled, please observe."))
+				return
+
+			var/mob/new_player/ready_candidate = new()
+			candidate.client.screen.Cut()
+			ready_candidate.name = candidate.key
+			ready_candidate.key = candidate.key
+
+			var/datum/job/job_datum = locate(href_list["job_selected"])
+
+			if(attrition_respawn(ready_candidate, job_datum))
+				if(isobserver(candidate))
+					qdel(candidate)
+				return
+
+			ready_candidate.client.screen.Cut()
+			candidate.name = ready_candidate.key
+			candidate.key = ready_candidate.key
+
+///Actually respawns the player, if still able
+/datum/game_mode/hvh/campaign/proc/attrition_respawn(mob/new_player/ready_candidate, datum/job/job_datum)
+	if(!ready_candidate.IsJobAvailable(job_datum, TRUE))
+		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
+		return
+	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
+		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
+		return
+	if(!GLOB.enter_allowed)
+		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
+		return
+	if(!ready_candidate.client.prefs.random_name)
+		var/name_to_check = ready_candidate.client.prefs.real_name
+		if(job_datum.job_flags & JOB_FLAG_SPECIALNAME)
+			name_to_check = job_datum.get_special_name(ready_candidate.client)
+		if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(name_to_check))
+			to_chat(usr, "<span class='warning'>Someone has already joined the round with this character name. Please pick another.<spawn>")
+			return
+	if(!SSjob.AssignRole(ready_candidate, job_datum, TRUE))
+		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
+		return
+
+	stat_list[ready_candidate.faction].active_attrition_points -= job_datum.job_cost
+	LateSpawn(ready_candidate)
+	return TRUE
+
+///A (probably) placeholder proc to check which jobs are valid, to add to the job selector menu
+/datum/game_mode/hvh/campaign/proc/IsJobAvailable(mob/candidate, datum/job/job, faction)
+	if(!job)
+		return FALSE
+	if(job.faction != faction)
+		return FALSE
+	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
+		return FALSE
+	if(is_banned_from(candidate.ckey, job.title))
+		return FALSE
+	if(QDELETED(candidate))
+		return FALSE
+	if(!job.player_old_enough(candidate.client))
+		return FALSE
+	if(job.required_playtime_remaining(candidate.client))
+		return FALSE
+	if(!job.special_check_latejoin(candidate.client))
+		return FALSE
+	return TRUE
