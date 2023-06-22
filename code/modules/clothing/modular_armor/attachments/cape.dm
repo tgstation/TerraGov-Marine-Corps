@@ -23,6 +23,7 @@
 		/obj/item/armor_module/armor/cape_highlight,
 		/obj/item/armor_module/armor/cape_highlight/half,
 		/obj/item/armor_module/armor/cape_highlight/scarf,
+		/obj/item/armor_module/armor/cape_highlight/kama,
 	), \
 	starting_attachments = starting_attachments)
 
@@ -71,7 +72,6 @@
 	slot = ATTACHMENT_SLOT_KAMA
 	attachment_layer = KAMA_LAYER
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
-	attachments_by_slot = list(ATTACHMENT_SLOT_KAMA_HIGHLIGHT)
 	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight/kama)
 	greyscale_config = /datum/greyscale_config/cape/kama
 

@@ -45,6 +45,7 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk1/infantry/old
+	visorless_offset_y = 0
 
 /obj/item/clothing/head/modular/marine/old/eva
 	name = "Jaeger Mk.I Pattern EVA Helmet"
