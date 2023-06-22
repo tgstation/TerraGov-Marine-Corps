@@ -114,9 +114,9 @@
 
 ///each faction chooses how many attrition points to use for the upcoming round
 /datum/game_mode/hvh/campaign/proc/select_attrition_points() //placeholder basic
-	for(var/i in stat_list)
+	for(var/i in stat_list) //note to self: does the input mean this gets delayed for one team until the other chooses?
 		var/datum/faction_stats/team = stat_list[i]
-		var/choice = tgui_input_number(team.faction_leader, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, team.total_attrition_points, 0, 60 SECONDS)
+		var/choice = tgui_input_number(team.get_selector(), "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, team.total_attrition_points, 0, 60 SECONDS)
 		if(!choice)
 			choice = 0
 		team.total_attrition_points -= choice
