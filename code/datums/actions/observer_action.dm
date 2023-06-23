@@ -63,8 +63,6 @@
 			continue
 		if(isxeno(ssd_mob))
 			var/mob/living/carbon/xenomorph/potential_minion = ssd_mob
-			if((potential_minion.xeno_caste.caste_flags & CASTE_IS_A_MINION))
-				continue
 		free_ssd_mobs += ssd_mob
 
 	if(!length(free_ssd_mobs))
