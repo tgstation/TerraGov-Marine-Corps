@@ -134,6 +134,9 @@
 	name = "Northern Caves"
 	icon_state = "cave"
 
+/area/orion_outpost/ground/underground/caveN/radiounderground
+	ceiling = CEILING_UNDERGROUND
+
 /area/orion_outpost/ground/underground/caveNW
 	name = "Northwestern Caves"
 	icon_state = "cave"
@@ -142,9 +145,15 @@
 	name = "Eastern Caves"
 	icon_state = "cave"
 
+/area/orion_outpost/ground/underground/caveE/radiounderground
+	ceiling = CEILING_UNDERGROUND
+
 /area/orion_outpost/ground/underground/caveS
 	name = "Southern Caves"
 	icon_state = "cave"
+
+/area/orion_outpost/ground/underground/caveS/radiounderground
+	ceiling = CEILING_UNDERGROUND
 
 /area/orion_outpost/ground/underground/caveW
 	name = "Western Caves"
