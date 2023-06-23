@@ -1374,15 +1374,23 @@
 
 /area/deltastation/asteroidcaves/northcaves
 
+/area/deltastation/asteroidcaves/northcaves/radiounderground
+
 /area/deltastation/asteroidcaves/northeastcaves
 
 /area/deltastation/asteroidcaves/westerncaves
 
+/area/deltastation/asteroidcaves/westerncaves/radiounderground
+	ceiling = CEILING_UNDERGROUND
+
 /area/deltastation/asteroidcaves/easterntunnel
+	ceiling = CEILING_UNDERGROUND
 
 /area/deltastation/asteroidcaves/securitycaves
+	ceiling = CEILING_UNDERGROUND
 
 /area/deltastation/asteroidcaves/southtunnel
+	ceiling = CEILING_UNDERGROUND
 
 /area/deltastation/asteroidcaves/exteriorasteroids
 	icon_state = "asteroidexterior"
