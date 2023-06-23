@@ -312,3 +312,12 @@
 
 /obj/effect/temp_visual/explosion/proc/set_count_long()
 	dirt_kickup.particles.count = 0
+
+/obj/effect/temp_visual/explosion/Destroy()
+	QDEL_NULL(smoke_wave)
+	QDEL_NULL(explosion_smoke)
+	QDEL_NULL(sparks)
+	QDEL_NULL(large_kickup)
+	QDEL_NULL(falling_debris)
+	QDEL_NULL(dirt_kickup)
+	return ..()
