@@ -213,7 +213,7 @@ What a mess.*/
 				var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["fingerprint"] + " " + R.fields["rank"]
 				for(var/i = 1, length(i<=components), i++)
 					if(findtext(temptext,components[i]))
-						var/prelist = list(2)
+						var/list/prelist[2]
 						prelist[1] = R
 						Perp += prelist
 			for(var/i = 1, length(i<=Perp), i+=2)
