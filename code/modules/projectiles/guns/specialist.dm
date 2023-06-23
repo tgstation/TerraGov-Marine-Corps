@@ -444,7 +444,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/minigun/smart_minigun
 	name = "\improper SG-85 smart handheld gatling gun"
-	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's newest IFF-capable weapon. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
+	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's IFF-capable minigun for heavy fire support duty. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
 	icon_state = "minigun_sg"
 	item_state = "minigun_sg"
 	fire_animation = "minigun_sg_fire"
@@ -456,11 +456,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_skill_category = SKILL_SMARTGUN
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/motiondetector)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 29, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12) //Only has rail attachments so only the rail variables are properly aligned
-	aim_slowdown = 1.5
+	aim_slowdown = 1.2
 	actions_types = list()
 
 	fire_delay = 0.1 SECONDS
-	windup_delay = 0.7 SECONDS
 	scatter = -5
 	recoil = 0
 	recoil_unwielded = 4
