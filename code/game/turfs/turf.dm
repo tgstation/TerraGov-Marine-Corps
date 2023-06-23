@@ -207,9 +207,6 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, VAPOR, S.fraction)
 
-/turf/proc/is_asteroid_floor()
-	return FALSE
-
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		if(O.flags_atom & INITIALIZED)
