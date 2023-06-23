@@ -5,16 +5,14 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
 
-/turf/open/floor/plating/ground/AfterChange()
-	. = ..()
-	baseturfs = type
+/turf/open/floor/plating/ground/broken_states()
+	return list(icon_state)
+
+/turf/open/floor/plating/ground/burnt_states()
+	return list(icon_state)
 
 /turf/open/floor/plating/ground/fire_act(exposed_temperature, exposed_volume)
 	return
-
-/turf/open/floor/plating/ground/is_plating() //Temporary hack until we re-implement baseturfs, /tg/ plating and change_turf.dm.
-	return FALSE
-
 
 /turf/open/floor/plating/ground/dirt
 	name = "dirt"

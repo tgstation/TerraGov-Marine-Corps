@@ -23,7 +23,6 @@
 /datum/game_mode/hvh/combat_patrol/announce()
 	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")
 	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
-	to_chat(world, "<b>WIP, report bugs on the github!</b>")
 
 /datum/game_mode/hvh/combat_patrol/setup_blockers()
 	. = ..()
