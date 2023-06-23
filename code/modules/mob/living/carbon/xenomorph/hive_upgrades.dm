@@ -348,3 +348,5 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Unlocks the primordial for the first tier"
 	psypoint_cost = 600
 	icon = "primosent"
+
+#undef SPAWNER_BUILDING_LIMIT_MAX
