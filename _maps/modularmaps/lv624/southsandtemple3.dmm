@@ -12,18 +12,18 @@
 "dv" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "ee" = (
 /obj/effect/turf_decal/sandytile,
 /obj/structure/jungle/vines,
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "er" = (
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "eP" = (
 /obj/structure/flora/grass/brown,
 /turf/open/liquid/water/river/autosmooth,
@@ -49,12 +49,12 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "iX" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "jh" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/ground/grass,
@@ -76,7 +76,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt/dug,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "lb" = (
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle8)
@@ -89,7 +89,7 @@
 "mz" = (
 /obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "mL" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
@@ -113,16 +113,16 @@
 	pixel_y = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "oG" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "oJ" = (
 /turf/closed/wall/r_wall/chigusa,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "oY" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -151,25 +151,25 @@
 "sy" = (
 /obj/structure/girder,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "sC" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/ai_node,
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "tf" = (
 /obj/structure/stairs/seamless/platform,
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "tl" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "tA" = (
 /obj/item/weapon/claymore/mercsword/machete,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "tP" = (
 /obj/effect/decal/remains/xeno{
 	pixel_x = 1;
@@ -181,12 +181,12 @@
 	pixel_y = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "ut" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "vt" = (
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirt,
@@ -204,11 +204,11 @@
 /area/lv624/ground/sand6)
 "yt" = (
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "yL" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "zi" = (
 /obj/effect/decal/remains/xeno{
 	pixel_x = -1;
@@ -218,11 +218,11 @@
 /obj/effect/turf_decal/sandytile,
 /obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "Ai" = (
 /obj/structure/glowshroom,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "Dl" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -237,7 +237,7 @@
 /obj/effect/landmark/weed_node,
 /obj/structure/jungle/vines,
 /turf/closed/wall/r_wall/chigusa,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "Gx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -248,11 +248,11 @@
 	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "HY" = (
 /obj/structure/jungle/vines,
 /turf/closed/wall/r_wall/chigusa,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "IP" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
@@ -272,13 +272,13 @@
 "Kb" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "KK" = (
 /obj/structure/jungle/vines{
 	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "Lh" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
@@ -291,7 +291,7 @@
 "My" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "MG" = (
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/ground/river3)
@@ -300,7 +300,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "PL" = (
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
@@ -311,12 +311,12 @@
 	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "PZ" = (
 /obj/structure/jungle/vines,
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "Qj" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -345,7 +345,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "Tp" = (
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
@@ -354,14 +354,14 @@
 	pixel_y = 1
 	},
 /turf/closed/wall/r_wall/chigusa,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "TF" = (
 /obj/effect/turf_decal/sandytile,
 /obj/structure/jungle/vines{
 	pixel_y = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "TX" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -376,20 +376,20 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "Wt" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "Wv" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "WB" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/turf_decal/sandytile,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "Xv" = (
 /obj/structure/jungle/vines{
 	pixel_y = 1
@@ -401,7 +401,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/radiounderground)
 "Xx" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
