@@ -9,11 +9,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "ba" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "bt" = (
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
 /turf/closed/gm/dense,
@@ -59,7 +59,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river3)
 "er" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "fi" = (
@@ -67,7 +67,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "hm" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river3)
 "hB" = (
@@ -151,7 +151,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "sZ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "td" = (
@@ -189,7 +189,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "uO" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
@@ -254,11 +254,11 @@
 /obj/effect/turf_decal/sandytile,
 /obj/effect/turf_decal/sandytile,
 /obj/effect/turf_decal/sandytile,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "AA" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
@@ -299,7 +299,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand9)
 "Dk" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "Dr" = (
@@ -309,7 +309,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "Eu" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/ground/caves/rock)
 "EE" = (
@@ -328,7 +328,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "Fm" = (
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
 /turf/closed/mineral/smooth,
@@ -370,7 +370,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand9)
 "Ix" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
@@ -457,7 +457,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "PR" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand6)
 "PV" = (
@@ -480,10 +480,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "Qt" = (
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
 /turf/open/liquid/water/river/autosmooth,
@@ -494,7 +494,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "QK" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "QQ" = (
@@ -503,7 +503,7 @@
 	},
 /area/lv624/ground/river3)
 "RZ" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "Sq" = (
@@ -522,7 +522,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "Ue" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "Vd" = (
@@ -546,7 +546,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand6)
 "WD" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "WO" = (
@@ -572,10 +572,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "Yf" = (
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
 /turf/closed/mineral/smooth,
@@ -606,7 +606,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand9)
 "ZP" = (
-/obj/structure/jungle/vines{
+/obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},
 /turf/open/liquid/water/river/autosmooth,
