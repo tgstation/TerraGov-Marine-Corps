@@ -31,7 +31,7 @@
 	//It uses power
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 15
-	active_power_usage = 120000 // It rebuilds you from nothing...
+	active_power_usage = 10000 // It rebuilds you from nothing...
 
 	var/obj/item/radio/headset/mainship/doc/radio
 
@@ -127,7 +127,7 @@
 	stop_processing()
 
 /obj/machinery/robotic_cradle/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
-	if(dragger.incapacitated() || !ishuman(dragger))
+	if(dragger.incapacitated() || !ishuman(dragger) || dragger.get_species() == "Human")
 		return
 
 	if(occupant)
@@ -223,6 +223,10 @@
 
 	else if(M.abiotic())
 		to_chat(user, span_warning("Subject cannot have abiotic items on."))
+		return
+
+	else if(M.get_species() == "Human")
+		to_chat(user, span_warning("Subject is biological, cannot repair."))
 		return
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI && !event)
