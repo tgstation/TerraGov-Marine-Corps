@@ -115,15 +115,17 @@
 	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
 		return TRUE
 
-	if(mover?.throwing)
-		if(allow_pass_flags & PASS_THROW)
-			return TRUE
+	if(mover?.throwing && (allow_pass_flags & PASS_THROW))
+		return TRUE
 
 	return FALSE
 
 ///Handles extra checks for things trying to exit this objects turf
 /obj/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	SIGNAL_HANDLER
+	if(mover?.throwing && (allow_pass_flags & PASS_THROW))
+		return NONE
+
 	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return NONE
 
