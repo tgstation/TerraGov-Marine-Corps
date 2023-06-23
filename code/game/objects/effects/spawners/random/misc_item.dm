@@ -89,6 +89,7 @@
 /obj/effect/spawner/random/misc/soap
 	name = "Random soap spawner"
 	icon_state = "random_soap"
+	spawn_loot_chance = 50
 	loot = list(
 		/obj/item/tool/soap,
 		/obj/item/tool/soap/deluxe,
