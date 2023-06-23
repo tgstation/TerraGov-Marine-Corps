@@ -9,10 +9,10 @@
 	mediumxenofootstep = FOOTSTEP_PLATING
 
 /turf/open/floor/plating/broken_states()
-	return list("platingdmg1", "platingdmg2", "platingdmg3")
+	return pick("platingdmg1", "platingdmg2", "platingdmg3")
 
 /turf/open/floor/plating/burnt_states()
-	return list("panelscorched")
+	return "panelscorched"
 
 /turf/open/floor/plating/make_plating()
 	return //we don't dig past plating
