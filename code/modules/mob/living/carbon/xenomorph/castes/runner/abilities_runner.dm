@@ -176,7 +176,7 @@
 	succeed_activate()
 	add_cooldown()
 	X.usedPounce = TRUE // this is needed for throwing code
-	X.pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE
+	X.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
 	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_allow_pass_flags)), 6)
@@ -185,7 +185,7 @@
 
 /mob/living/carbon/xenomorph/proc/reset_allow_pass_flags()
 	if(!xeno_caste.hardcore)
-		pass_flags = initial(allow_pass_flags) //Reset the PASS_LOW_STRUCTURE.
+		pass_flags = initial(pass_flags) //Reset the PASS_LOW_STRUCTURE.
 	else
 		pass_flags = NONE //Reset the PASS_LOW_STRUCTURE.
 
