@@ -274,19 +274,6 @@
 
 //////////////////tgui stuff/////////////////
 
-GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
-
-///The list is shared across all quick vendors, but they will only display the tabs specified by the vendor, and only show the loadouts with jobs that match the displayed tabs.
-/proc/init_quick_loadouts()
-	. = list()
-	var/list/loadout_list = list(
-		/datum/outfit/quick/tgmc/marine/standard_carbine,
-	)
-
-	for(var/X in loadout_list)
-		.[X] = new X
-
-
 /obj/machinery/tgui_test
 	name = "Kwik-E-Quip vendor"
 	desc = "An advanced vendor to instantly arm soldiers with specific sets of equipment, allowing for immediate combat deployment."
@@ -343,7 +330,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui)
 		return
-	ui = new(user, src, "Campaign") //whats the name?
+	ui = new(user, src, "CampaignUI") //whats the name?
 	ui.open()
 
 /obj/machinery/tgui_test/ui_state(mob/user)
@@ -351,7 +338,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 
 /obj/machinery/tgui_test/ui_data(mob/living/user)
 	. = ..()
-	var/datum/faction_stats/team = stat_list[faction]
+	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
+	if(!istype(current_mode))
+		CRASH("game_round loaded without campaign game mode")
+
+	var/datum/faction_stats/team = current_mode.stat_list[faction]
 
 	var/list/data = list()
 	var/ui_theme
@@ -366,6 +357,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	var/list/potential_rounds_data = list()
 	for(var/datum/game_round/potential_round AS in team.potential_rounds)
 		var/list/round_data = list() //each relevant bit of info regarding the round is added to the list. Many more to come
+		round_data["typepath"] = potential_round.type
 		round_data["name"] = potential_round.name
 		round_data["map_name"] = potential_round.map_name
 		round_data["objective_description"] = potential_round.objective_description["starting_faction"]
@@ -381,7 +373,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		round_data["hostile_faction"] = finished_round.hostile_faction
 		round_data["winning_faction"] = finished_round.winning_faction
 		round_data["outcome"] = finished_round.outcome
-		round_data["objective_description"] = finished_round.objective_description[faction == starting_faction ? "starting_faction" : "hostile_faction"]
+		round_data["objective_description"] = finished_round.objective_description[faction == finished_round.starting_faction ? "starting_faction" : "hostile_faction"]
 		finished_rounds_data += list(round_data)
 	data["finished_rounds"] = finished_rounds_data
 
@@ -410,7 +402,10 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	. = ..()
 	if(.)
 		return
-	var/datum/faction_stats/team = stat_list[faction]
+	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
+	if(!istype(current_mode))
+		CRASH("game_round loaded without campaign game mode")
+	var/datum/faction_stats/team = current_mode.stat_list[faction]
 	switch(action)
 		if("set_attrition_points")
 			team.total_attrition_points -= params["attrition_points"]
@@ -418,7 +413,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 
 		if("set_next_round")
 			var/datum/game_round/choice = team.potential_rounds[text2path(params["new_round"])] //locate or something maybe?
-			load_new_round(choice, faction)
+			current_mode.load_new_round(choice, faction)
 
 		if("activate_reward")
 			var/datum/campaign_reward/choice = team.faction_rewards[text2path(params["selected_reward"])] //locate or something maybe?
