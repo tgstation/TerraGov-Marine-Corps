@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscadd: "blood vendor and Terra Experimental cell field charger can use TTS!"
-  - rscadd: "more sentences in preexisting product_slogan for vendors that already have TTS so that they don't repeat the same joke"
