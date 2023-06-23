@@ -12940,7 +12940,7 @@
 /area/gelida/indoors/a_block/medical)
 "iKQ" = (
 /obj/structure/table/fancywoodentable,
-/obj/item/storage/fancy/cigarettes{
+/obj/effect/spawner/random/misc/cigarettes{
 	pixel_y = 4
 	},
 /turf/open/floor/wood,
@@ -19132,7 +19132,7 @@
 /area/gelida/indoors/a_block/hallway)
 "mWQ" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/storage/fancy/cigarettes{
+/obj/effect/spawner/random/misc/cigarettes{
 	pixel_x = 5;
 	pixel_y = 6
 	},
@@ -25296,7 +25296,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "rbD" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/storage/fancy/cigarettes/kpack{
+/obj/effect/spawner/random/misc/cigarettes{
 	pixel_x = 6;
 	pixel_y = 14
 	},
@@ -27664,7 +27664,7 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/b_block/bar)
 "sEJ" = (
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "sEM" = (
@@ -27673,7 +27673,7 @@
 /area/gelida/indoors/c_block/casino)
 "sEZ" = (
 /obj/structure/table/mainship,
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -32500,7 +32500,7 @@
 "wcg" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/structure/table/reinforced/prison,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "wcB" = (
@@ -33761,7 +33761,7 @@
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "xaT" = (
 /obj/structure/rack/nometal,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /obj/item/clothing/ears/earmuffs{
 	item_state = "earmuffs2";
 	pixel_y = -4

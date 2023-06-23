@@ -49,6 +49,13 @@
 		/obj/item/tool/pickaxe/plasmacutter = 10, //10 in 800 chance of showing up
 	)
 
+/obj/effect/spawner/random/engineering/shovel
+	name = "Random digging instrument spawner"
+	icon_state = "random_shovel"
+	loot = list(
+		/obj/item/tool/shovel = 600,
+		/obj/effect/spawner/random/engineering/pickaxe = 100,
+	)
 
 /obj/effect/spawner/random/engineering/bomb_supply
 	name = "Bomb Supply"
@@ -329,3 +336,29 @@
 	spawn_loot_chance = 70
 	loot_subtype_path = /obj/item/stack/sheet/mineral
 	loot = list()
+
+/obj/effect/spawner/random/engineering/extinguisher
+	name = "extinguisher spawner"
+	icon_state = "random_extinguisher"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/tool/extinguisher,
+		/obj/item/tool/extinguisher/mini,
+	)
+
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted
+	name = "extinguisher spawner"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/tool/extinguisher = 10,
+		/obj/item/tool/extinguisher/mini = 2,
+	)
+
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted
+	name = "extinguisher spawner"
+	spawn_loot_chance = 95
+	icon_state = "random_extinguisher_mini"
+	loot = list(
+		/obj/item/tool/extinguisher/mini = 10,
+		/obj/item/tool/extinguisher = 2,
+	)

@@ -1468,7 +1468,7 @@
 /area/lv624/lazarus/medbay)
 "hD" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
@@ -2947,7 +2947,7 @@
 /area/lv624/lazarus/robotics)
 "pJ" = (
 /obj/structure/closet,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/machinery/light,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)

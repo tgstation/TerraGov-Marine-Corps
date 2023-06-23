@@ -3988,7 +3988,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/white,
 /area/deltastation/security/prison/toilet)
@@ -34081,8 +34081,8 @@
 /obj/item/flashlight/lantern,
 /obj/item/flashlight/lantern,
 /obj/item/storage/box/rxglasses,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/clothing/glasses/night,
 /obj/item/clothing/glasses/night,
 /obj/effect/turf_decal/delivery,
@@ -42826,7 +42826,7 @@
 	pixel_y = 14
 	},
 /obj/machinery/light/small,
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/area_flag_injector/marine_base,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
@@ -55591,7 +55591,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/iron/freezer,
 /area/deltastation/asteroidcaves/derelictwest)
 "lpN" = (
@@ -71141,8 +71141,8 @@
 /obj/item/clothing/suit/straight_jacket,
 /obj/item/clothing/mask/muzzle,
 /obj/item/clothing/mask/muzzle,
-/obj/item/clothing/ears/earmuffs,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /obj/effect/spawner/random/clothing/sunglasses,
 /obj/effect/spawner/random/clothing/sunglasses,
 /obj/machinery/door/window{
@@ -103512,7 +103512,7 @@
 /obj/machinery/door/window{
 	name = "Shower"
 	},
-/obj/item/tool/soap/deluxe,
+/obj/effect/spawner/random/misc/soap/deluxeweighted,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
 	},
@@ -104028,8 +104028,8 @@
 	pixel_y = -3
 	},
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/clothing/ears/earmuffs,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/alarm,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -109937,7 +109937,7 @@
 /obj/structure/prop/mainship/railing{
 	dir = 8
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/item/tool/mop,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port/fore)

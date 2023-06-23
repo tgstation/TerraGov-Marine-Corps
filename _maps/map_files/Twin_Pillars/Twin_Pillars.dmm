@@ -706,7 +706,7 @@
 /area/mainship/command/cic/rebel)
 "aHo" = (
 /obj/structure/table/mainship,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 8
@@ -1144,7 +1144,7 @@
 "bdH" = (
 /obj/structure/table/mainship,
 /obj/item/camera,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
 /obj/machinery/vending/nanomed,
@@ -1153,7 +1153,7 @@
 /area/mainship/medical/medical_science/rebel)
 "bdQ" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/folder/yellow,
@@ -1617,7 +1617,7 @@
 /area/mainship/medical/lower_medical)
 "bGq" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/clipboard{
@@ -1862,10 +1862,10 @@
 /obj/item/explosive/grenade/training,
 /obj/item/explosive/grenade/training,
 /obj/item/explosive/grenade/training,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range/rebel)
 "bSh" = (
@@ -2006,7 +2006,7 @@
 /area/mainship/squads/req/rebel)
 "bUx" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -2604,7 +2604,7 @@
 /area/mainship/command/cic)
 "cwt" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -3254,7 +3254,7 @@
 /area/mainship/hallways/port_hallway/rebel)
 "dcB" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req/rebel)
 "dda" = (
@@ -3736,7 +3736,7 @@
 /area/mainship/engineering/engineering_workshop)
 "dAO" = (
 /obj/structure/table/mainship,
-/obj/item/storage/fancy/cigarettes/kpack,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/item/blueprints,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/ce_room)
@@ -4607,7 +4607,7 @@
 /area/mainship/living/bridgebunks)
 "epx" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -5261,7 +5261,7 @@
 /obj/item/weapon/cane{
 	pixel_x = 5
 	},
-/obj/item/storage/fancy/cigarettes/lady_finger{
+/obj/effect/spawner/random/misc/cigarettes{
 	pixel_y = 5
 	},
 /obj/item/clothing/tie/red,
@@ -5286,7 +5286,7 @@
 /obj/item/weapon/cane{
 	pixel_x = 5
 	},
-/obj/item/storage/fancy/cigarettes/lady_finger{
+/obj/effect/spawner/random/misc/cigarettes{
 	pixel_y = 5
 	},
 /obj/item/clothing/tie/red,
@@ -5885,7 +5885,7 @@
 /area/mainship/command/telecomms)
 "ftp" = (
 /obj/structure/table/mainship,
-/obj/item/storage/fancy/cigarettes/kpack,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/item/toy/deck,
 /obj/item/tool/lighter/random,
 /obj/machinery/light{
@@ -6980,7 +6980,7 @@
 /area/mainship/hallways/hangar/rebel)
 "goP" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
@@ -7336,7 +7336,7 @@
 /obj/machinery/door/window/secure{
 	dir = 1
 	},
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -7380,7 +7380,7 @@
 /area/mainship/engineering/upper_engineering)
 "gFS" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -7467,7 +7467,7 @@
 "gIs" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/ids,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
@@ -7882,7 +7882,7 @@
 /area/mainship/medical/lower_medical/rebel)
 "heN" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/folder/yellow,
@@ -8734,7 +8734,7 @@
 /area/mainship/squads/general/rebel)
 "hQV" = (
 /obj/structure/table/mainship,
-/obj/item/storage/fancy/cigarettes/kpack,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/item/blueprints,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/ce_room/rebel)
@@ -9482,8 +9482,8 @@
 "iCy" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/structure/rack,
 /obj/item/flashlight,
 /obj/item/flashlight,
@@ -11201,10 +11201,10 @@
 /obj/item/explosive/grenade/training,
 /obj/item/explosive/grenade/training,
 /obj/item/explosive/grenade/training,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "kfM" = (
@@ -12527,8 +12527,8 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "lkS" = (
 /obj/structure/table/mainship,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/item/attachable/extended_barrel,
 /obj/item/attachable/extended_barrel,
 /obj/item/attachable/scope,
@@ -12706,7 +12706,7 @@
 /area/mainship/medical/lower_medical/rebel)
 "ltd" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/storage/fancy/cigar,
 /obj/item/tool/lighter/zippo,
 /obj/item/tool/pen,
@@ -13631,8 +13631,8 @@
 /area/mainship/squads/general)
 "mnS" = (
 /obj/structure/table/mainship,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/item/attachable/extended_barrel,
 /obj/item/attachable/extended_barrel,
 /obj/item/attachable/scope,
@@ -13968,7 +13968,7 @@
 /area/mainship/hallways/port_hallway/rebel)
 "mAs" = (
 /obj/structure/table/mainship,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 8
@@ -15049,7 +15049,7 @@
 /area/mainship/living/numbertwobunks/rebel)
 "nCv" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/clipboard{
@@ -15578,7 +15578,7 @@
 "obv" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/clothing/glasses/welding,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/engineering/ce_room)
 "obK" = (
@@ -15933,7 +15933,7 @@
 "onM" = (
 /obj/structure/table/mainship,
 /obj/item/camera,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
 /obj/machinery/vending/nanomed,
@@ -16231,7 +16231,7 @@
 /area/mainship/squads/req/rebel)
 "oBz" = (
 /obj/structure/table/mainship,
-/obj/item/storage/fancy/cigarettes/kpack,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/item/toy/deck,
 /obj/item/tool/lighter/random,
 /obj/machinery/light{
@@ -16833,7 +16833,7 @@
 "oYs" = (
 /obj/structure/table/mainship,
 /obj/item/toy/deck,
-/obj/item/storage/fancy/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/item/tool/lighter,
 /turf/open/floor/mainship/green{
 	dir = 1
@@ -16896,7 +16896,7 @@
 /area/mainship/hallways/aft_hallway/rebel)
 "paz" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/machinery/light{
@@ -17329,7 +17329,7 @@
 /area/mainship/living/pilotbunks/rebel)
 "psG" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "psK" = (
@@ -17414,7 +17414,7 @@
 /area/mainship/engineering/engineering_workshop/rebel)
 "pys" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/storage/fancy/cigar,
 /obj/item/tool/lighter/zippo,
 /obj/item/tool/pen,
@@ -17884,7 +17884,7 @@
 /obj/machinery/door/window/secure{
 	dir = 2
 	},
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -18018,7 +18018,7 @@
 /area/mainship/hull/lower_hull/rebel)
 "pZN" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/clipboard{
 	pixel_x = -6;
 	pixel_y = 2
@@ -18335,7 +18335,7 @@
 "qrf" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/clothing/glasses/welding,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/engineering/ce_room/rebel)
 "qro" = (
@@ -19468,7 +19468,7 @@
 /area/mainship/squads/req)
 "roo" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
@@ -20200,7 +20200,7 @@
 /area/mainship/squads/general/rebel)
 "rWA" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/clipboard{
 	pixel_x = -6;
 	pixel_y = 1
@@ -20283,7 +20283,7 @@
 /area/mainship/medical/lower_medical/rebel)
 "rZR" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
@@ -20499,7 +20499,7 @@
 /area/mainship/shipboard/starboard_missiles)
 "siW" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -20655,7 +20655,7 @@
 /area/mainship/living/commandbunks/rebel)
 "sos" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -20819,8 +20819,8 @@
 "svQ" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/structure/rack,
 /obj/item/flashlight,
 /obj/item/flashlight,
@@ -21323,7 +21323,7 @@
 "sYp" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/ids,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
@@ -21569,7 +21569,7 @@
 /area/mainship/hallways/port_hallway/rebel)
 "thG" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -22018,7 +22018,7 @@
 /area/mainship/living/commandbunks)
 "tzx" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/machinery/light{
@@ -22279,7 +22279,7 @@
 /area/mainship/squads/general/rebel)
 "tNY" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/clipboard{
 	pixel_x = -6;
 	pixel_y = 2
@@ -23101,7 +23101,7 @@
 /area/mainship/medical/lower_medical)
 "uui" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
@@ -23385,7 +23385,7 @@
 "uHK" = (
 /obj/structure/table/mainship,
 /obj/item/toy/deck,
-/obj/item/storage/fancy/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/item/tool/lighter,
 /turf/open/floor/mainship/green{
 	dir = 1
@@ -24169,7 +24169,7 @@
 /area/mainship/living/briefing/rebel)
 "vvt" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -26294,7 +26294,7 @@
 /area/mainship/living/bridgebunks/rebel)
 "xiu" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/clipboard{
 	pixel_x = -6;
 	pixel_y = 1

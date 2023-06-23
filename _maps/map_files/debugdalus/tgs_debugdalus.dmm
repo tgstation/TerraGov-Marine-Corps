@@ -1080,7 +1080,7 @@
 /area/mainship/squads/req)
 "afd" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2146,7 +2146,7 @@
 /area/mainship/medical/lower_medical)
 "ajO" = (
 /obj/item/storage/box/monkeycubes,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)

@@ -92,7 +92,7 @@
 "aq" = (
 /obj/structure/rack,
 /obj/item/tool/wrench,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
@@ -1423,7 +1423,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/paper,
 /obj/item/tool/pen,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/stamp/qm,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -1470,7 +1470,7 @@
 /area/mainship/command/self_destruct)
 "el" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/mainship/silver{
 	dir = 10
@@ -1716,7 +1716,7 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "eZ" = (
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -2215,7 +2215,7 @@
 /area/mainship/living/bridgebunks)
 "gv" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -5273,7 +5273,7 @@
 /area/mainship/living/briefing)
 "pu" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/clipboard{
 	pixel_x = -6;
 	pixel_y = 1
@@ -5439,7 +5439,7 @@
 /area/mainship/squads/req)
 "pS" = (
 /obj/structure/table/woodentable,
-/obj/item/storage/fancy/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "pT" = (
@@ -5975,7 +5975,7 @@
 "rK" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/camera,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
 /turf/open/floor/mainship/research,
@@ -6231,7 +6231,7 @@
 "sy" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/clothing/glasses/welding,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /turf/open/floor/wood,
 /area/mainship/engineering/ce_room)
 "sz" = (
@@ -9569,8 +9569,8 @@
 /area/mainship/medical/chemistry)
 "Ca" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/item/radio,
 /obj/item/radio,
 /obj/item/attachable/extended_barrel,
@@ -9771,7 +9771,7 @@
 /area/mainship/living/tankerbunks)
 "CJ" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/item/clipboard{
 	pixel_x = -6;
@@ -10897,7 +10897,7 @@
 /area/mainship/living/numbertwobunks)
 "FV" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/tool/pen,
@@ -11208,7 +11208,7 @@
 /obj/item/weapon/cane{
 	pixel_x = 5
 	},
-/obj/item/storage/fancy/cigarettes/lady_finger{
+/obj/effect/spawner/random/misc/cigarettes{
 	pixel_y = 5
 	},
 /obj/item/clothing/tie/red,
@@ -13439,8 +13439,8 @@
 "Nx" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/structure/rack,
 /obj/item/flashlight,
 /obj/item/flashlight,
@@ -14978,7 +14978,7 @@
 /area/mainship/command/self_destruct)
 "Sj" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/mainship/orange{
 	dir = 10
@@ -15110,7 +15110,7 @@
 /area/mainship/medical/lounge)
 "SG" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/item/clipboard{
 	pixel_x = -6;
@@ -15243,7 +15243,7 @@
 /area/mainship/hallways/hangar)
 "Tb" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
@@ -15796,7 +15796,7 @@
 "Uy" = (
 /obj/structure/rack,
 /obj/item/tool/wrench,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},

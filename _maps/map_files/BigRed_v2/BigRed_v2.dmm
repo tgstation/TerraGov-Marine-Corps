@@ -2124,7 +2124,7 @@
 /area/bigredv2/caves/lambda_lab)
 "arH" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "arJ" = (
@@ -2868,7 +2868,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aAj" = (
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "aAk" = (
@@ -4262,7 +4262,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
 	},
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aLv" = (
@@ -4983,7 +4983,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aTL" = (
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aTW" = (
@@ -6982,7 +6982,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAo" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/disk/nuclear,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
@@ -11490,7 +11490,7 @@
 "npK" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/toolbox,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "nqK" = (

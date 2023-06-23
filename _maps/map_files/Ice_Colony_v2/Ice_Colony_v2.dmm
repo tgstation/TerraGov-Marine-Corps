@@ -125,7 +125,7 @@
 "abY" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/blueprints,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "acl" = (
@@ -1558,7 +1558,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "ald" = (
@@ -1589,7 +1589,7 @@
 	},
 /area/ice_colony/underground/hangar)
 "alh" = (
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
@@ -1835,7 +1835,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "amy" = (
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
@@ -1908,7 +1908,7 @@
 "amS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "amT" = (
@@ -7826,7 +7826,7 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 6;
 	pixel_y = -2
@@ -19321,7 +19321,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/security/brig)
 "bQj" = (
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/security/brig)
 "bQk" = (
@@ -20507,7 +20507,7 @@
 	},
 /area/ice_colony/underground/command/center)
 "bWg" = (
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavationbarracks)
 "bWh" = (

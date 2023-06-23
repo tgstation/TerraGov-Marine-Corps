@@ -1992,7 +1992,7 @@
 "kS" = (
 /obj/structure/table/mainship,
 /obj/item/trash/cheesie,
-/obj/item/storage/fancy/cigarettes/kpack,
+/obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
 "kT" = (

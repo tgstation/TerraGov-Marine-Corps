@@ -49,7 +49,7 @@
 /area/lv624/ground/sand9)
 "er" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "fi" = (

@@ -463,7 +463,7 @@
 
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted
 	loot = list(
-		/obj/structure/largecrate = 30,
+		/obj/structure/largecrate = 40,
 		/obj/effect/spawner/random/misc/structure/supplycrate = 5,
 	)
 
@@ -472,7 +472,7 @@
 	icon_state = "random_securecrate"
 	spawn_loot_chance = 90
 	loot = list(
-		/obj/structure/largecrate/random/secure = 30,
+		/obj/structure/largecrate/random/secure = 40,
 		/obj/structure/largecrate/random = 5,
 	)
 

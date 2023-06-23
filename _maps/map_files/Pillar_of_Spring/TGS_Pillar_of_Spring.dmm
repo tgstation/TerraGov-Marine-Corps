@@ -5,7 +5,7 @@
 /area/mainship/command/corporateliaison)
 "aat" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/baguette,
+/obj/effect/spawner/random/food_or_drink/bread,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "abX" = (
@@ -687,7 +687,7 @@
 /area/mainship/hallways/port_hallway)
 "aQv" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -737,12 +737,10 @@
 /area/mainship/living/cryo_cells)
 "aTk" = (
 /obj/structure/table/fancywoodentable,
-/obj/structure/paper_bin{
-	pixel_y = 5
-	},
 /obj/item/tool/pen,
 /obj/item/tool/pen/red,
 /obj/item/tool/pen/blue,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
 "aTl" = (
@@ -846,7 +844,7 @@
 "bax" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/wrench,
-/obj/item/storage/firstaid/rad,
+/obj/effect/spawner/random/medical/firstaid/alwaysspawns,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "bbr" = (
@@ -1638,7 +1636,7 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "bWz" = (
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
@@ -1849,7 +1847,7 @@
 /area/mainship/medical/upper_medical)
 "clt" = (
 /obj/structure/table/mainship,
-/obj/item/folder/white,
+/obj/effect/spawner/random/misc/folder,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "cnd" = (
@@ -2319,12 +2317,8 @@
 "cSx" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship,
-/obj/item/stack/sheet/glass/reinforced{
-	amount = 30
-	},
-/obj/item/stack/sheet/glass/reinforced{
-	amount = 30
-	},
+/obj/effect/spawner/random/engineering/glass,
+/obj/effect/spawner/random/engineering/glass,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
 "cSX" = (
@@ -2505,7 +2499,7 @@
 /area/mainship/hallways/stern_hallway)
 "dcC" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/folder/yellow,
@@ -2750,7 +2744,7 @@
 /obj/machinery/light/mainship,
 /obj/structure/table/mainship/nometal,
 /obj/item/newspaper,
-/obj/item/toy/plush/rouny,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/mainship/white,
 /area/mainship/living/pilotbunks)
 "drW" = (
@@ -3867,12 +3861,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"eOf" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/boiledegg,
-/obj/item/reagent_containers/food/snacks/chawanmushi,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "eOT" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/shuttle/escapepod/eight,
@@ -4329,7 +4317,7 @@
 	dir = 1
 	},
 /obj/structure/table/mainship,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
 "fvg" = (
@@ -4382,7 +4370,7 @@
 /area/mainship/hallways/hangar)
 "fwA" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "fxO" = (
@@ -4759,8 +4747,8 @@
 /area/mainship/medical/chemistry)
 "gaC" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/item/radio,
 /obj/item/radio,
 /obj/item/attachable/extended_barrel,
@@ -5180,14 +5168,14 @@
 "gGb" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/firstaid/rad,
-/obj/item/storage/firstaid/regular{
-	pixel_x = -3;
-	pixel_y = 1
-	},
 /obj/machinery/power/apc/mainship{
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/medical/firstaid/alwaysspawns{
+	pixel_x = 1;
+	pixel_y = -3
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "gGg" = (
@@ -5604,8 +5592,8 @@
 /area/mainship/engineering/port_atmos)
 "hlO" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/sandwiches/bananabreadslice,
-/obj/item/reagent_containers/food/snacks/chawanmushi,
+/obj/effect/spawner/random/food_or_drink/packagedbar,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "hme" = (
@@ -6329,7 +6317,7 @@
 /obj/item/clipboard{
 	pixel_x = 5
 	},
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
@@ -7784,7 +7772,7 @@
 /area/mainship/squads/general)
 "ksr" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -7835,7 +7823,7 @@
 /area/mainship/hallways/hangar)
 "kuk" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/clipboard{
@@ -8410,7 +8398,7 @@
 /area/mainship/command/airoom)
 "kYt" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/fancy/cigarettes/kpack,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/item/blueprints,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/ce_room)
@@ -8637,7 +8625,7 @@
 /area/mainship/engineering/port_atmos)
 "lkD" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/tool/pen/blue,
@@ -8818,10 +8806,10 @@
 /obj/item/explosive/grenade/training,
 /obj/item/explosive/grenade/training,
 /obj/item/explosive/grenade/training,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -9201,8 +9189,8 @@
 "lNe" = (
 /obj/item/trash/cigbutt,
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/boiledegg,
-/obj/item/reagent_containers/food/snacks/chawanmushi,
+/obj/effect/spawner/random/food_or_drink/packagedbar,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "lOk" = (
@@ -9856,7 +9844,7 @@
 /obj/machinery/door/window{
 	dir = 2
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "mHa" = (
@@ -10978,7 +10966,7 @@
 /area/mainship/engineering/upper_engineering)
 "ogX" = (
 /obj/item/storage/box/matches,
-/obj/item/storage/fancy/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
@@ -11184,7 +11172,7 @@
 /area/mainship/living/grunt_rnr)
 "osT" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/pastries/appletart,
+/obj/effect/spawner/random/food_or_drink/donut,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "ouq" = (
@@ -11385,7 +11373,7 @@
 "oIC" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/ids,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
@@ -11451,7 +11439,7 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/engineering_chief,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/mainship/orange{
 	dir = 5
@@ -11493,7 +11481,7 @@
 /area/mainship/medical/lower_medical)
 "oOQ" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/fancy/cigarettes/kpack,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/item/toy/deck,
 /obj/item/tool/lighter/random,
 /obj/machinery/light/mainship{
@@ -12176,7 +12164,7 @@
 /area/mainship/living/commandbunks)
 "pJi" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/storage/fancy/cigar,
 /obj/item/tool/lighter/zippo,
 /obj/item/tool/pen,
@@ -12557,7 +12545,7 @@
 /obj/item/flashlight,
 /obj/item/circuitboard/apc,
 /obj/item/frame/apc,
-/obj/item/cell/apc,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "qfF" = (
@@ -12663,7 +12651,7 @@
 /area/mainship/command/cic)
 "qlc" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "qlo" = (
@@ -13024,7 +13012,7 @@
 /area/mainship/command/telecomms)
 "qIt" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
 /turf/open/floor/mainship/sterile/dark,
@@ -14141,7 +14129,7 @@
 	dir = 4;
 	pixel_y = -3
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/mainship/sterile/dark,
 /area/crew_quarters/toilet)
 "sjV" = (
@@ -14763,7 +14751,7 @@
 /obj/machinery/door/window{
 	dir = 1
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/effect/landmark/start/job/medicalofficer,
 /obj/item/attachable/bayonetknife,
 /obj/effect/decal/cleanable/blood,
@@ -14861,7 +14849,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/airoom)
 "teQ" = (
-/obj/item/tool/crowbar/red,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "tfG" = (
@@ -16502,7 +16490,7 @@
 /area/mainship/command/telecomms)
 "uZR" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/tool/pen/blue,
@@ -16754,7 +16742,7 @@
 /obj/item/clipboard{
 	pixel_x = 5
 	},
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/tool/pen,
@@ -16767,8 +16755,8 @@
 "vqQ" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/structure/rack,
 /obj/item/flashlight,
 /obj/item/flashlight,
@@ -17011,7 +16999,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/airoom)
 "vHA" = (
-/obj/item/stack/sheet/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "vHQ" = (
@@ -17815,7 +17803,7 @@
 /area/mainship/hallways/hangar)
 "wKv" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light/mainship{
 	dir = 8
@@ -18040,7 +18028,7 @@
 /area/mainship/hallways/hangar)
 "wYb" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/clipboard{
 	pixel_x = -6;
 	pixel_y = 1
@@ -18092,11 +18080,11 @@
 /area/mainship/squads/req)
 "xbA" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/toolbox/mechanical,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
 "xdy" = (
@@ -18268,8 +18256,8 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "xpe" = (
-/obj/item/stack/sheet/wood,
 /obj/structure/cable,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "xpj" = (
@@ -18690,7 +18678,7 @@
 	dir = 1
 	},
 /obj/machinery/door/window,
-/obj/item/tool/soap/deluxe,
+/obj/effect/spawner/random/misc/soap/deluxeweighted,
 /obj/machinery/shower{
 	dir = 4
 	},
@@ -18822,7 +18810,7 @@
 /area/mainship/command/self_destruct)
 "xTZ" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/tool/pen/blue,
@@ -18924,7 +18912,7 @@
 	pixel_x = -6;
 	pixel_y = 1
 	},
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/dark,
@@ -57583,9 +57571,9 @@ eMz
 qRu
 cPg
 rHh
-eOf
+hlO
 osT
-eOf
+hlO
 aat
 kuk
 sYd
@@ -57843,7 +57831,7 @@ cPg
 aat
 hlO
 lNe
-eOf
+hlO
 hDh
 sYd
 cPg
