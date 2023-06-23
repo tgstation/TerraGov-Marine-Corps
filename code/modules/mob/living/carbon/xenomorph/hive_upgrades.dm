@@ -2,7 +2,6 @@
 #define PRIMORDIAL_TIER_TWO "Primordial tier two"
 #define PRIMORDIAL_TIER_THREE "Primordial tier three"
 #define PRIMORDIAL_TIER_FOUR "Primordial tier four"
-#define SPAWNER_BUILDING_LIMIT_MAX 2
 
 GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, "Primordial"))//uncomment to unlock globally
 GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
@@ -233,17 +232,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	flags_upgrade = ABILITY_DISTRESS
 	building_type = /obj/structure/xeno/spawner
 
-/datum/hive_upgrade/building/spawner/can_buy(mob/living/carbon/xenomorph/buyer, silent)
-	. = ..()
-	if(!.)
-		return
-
-	if(length(GLOB.xeno_spawners_by_hive[buyer.hivenumber]) >= SPAWNER_BUILDING_LIMIT_MAX)
-		if(!silent)
-			to_chat(buyer, span_xenonotice("The hive cannot support another [src]!"))
-		return
-
-
 /datum/hive_upgrade/defence
 	category = "Defences"
 
@@ -348,5 +336,3 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Unlocks the primordial for the first tier"
 	psypoint_cost = 600
 	icon = "primosent"
-
-#undef SPAWNER_BUILDING_LIMIT_MAX
