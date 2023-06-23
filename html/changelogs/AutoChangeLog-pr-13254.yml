@@ -1,4 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - rscadd: "warlock's shield changes transparency depending on integrity"

@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed a visual issue with tesla inhand sprites"
-  - imageadd: "Recoilless rifle shells now have visible projectile sprites"

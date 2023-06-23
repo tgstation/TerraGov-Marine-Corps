@@ -623,7 +623,7 @@
 
 
 /obj/machinery/vending/MouseDrop_T(atom/movable/A, mob/user)
-
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 

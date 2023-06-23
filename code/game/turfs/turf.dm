@@ -207,10 +207,6 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, VAPOR, S.fraction)
 
-/turf/proc/return_siding_icon_state()		//used for grass floors, which have siding.
-	return 0
-
-
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		if(O.flags_atom & INITIALIZED)

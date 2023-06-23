@@ -55,7 +55,7 @@
 				playsound(src,'sound/effects/drill.ogg',40,TRUE)
 			else if(isobj(target))
 				var/obj/O = target
-				O.take_damage(15, BRUTE, 0, FALSE, get_dir(chassis, target))
+				O.take_damage(15, BRUTE, MELEE, FALSE, get_dir(chassis, target))
 				playsound(src,'sound/effects/drill.ogg',40,TRUE)
 
 			// If we caused a qdel drilling the target, we can stop drilling them.

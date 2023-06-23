@@ -25,7 +25,6 @@
 
 /turf/open/floor/mainship/cargo/arrow
 	icon_state = "cargo_arrow"
-	icon_regular_floor = "cargo_arrow"
 
 /turf/open/floor/mainship/blue
 	icon_state = "blue"
@@ -134,10 +133,8 @@
 
 /turf/open/floor/mainship/mono
 	icon_state = "mono"
-	icon_regular_floor = "mono"
 
 /turf/open/floor/mainship/tcomms
-	icon_plating = "tcomms"
 	icon_state = "tcomms"
 
 /turf/open/floor/mainship/sterile/purple
@@ -167,6 +164,7 @@
 	desc = "There seems to be an awful lot of machinery down below"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "1"
+	hull_floor = TRUE
 
 /turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
@@ -302,12 +300,7 @@
 /turf/open/floor/light
 	name = "Light floor"
 	icon_state = "light_on"
-
-/turf/open/floor/light/Initialize(mapload)
-	. = ..()
-	floor_tile = new /obj/item/stack/tile/light
-	return INITIALIZE_HINT_LATELOAD
-
+	floor_tile = /obj/item/stack/tile/light
 
 /turf/open/floor/light/LateInitialize()
 	update_icon()
@@ -319,14 +312,22 @@
 	name = "wood floor"
 	icon = 'icons/turf/wood_floor.dmi'
 	icon_state = "wood"
-	floor_tile = new/obj/item/stack/tile/wood
+	floor_tile = /obj/item/stack/tile/wood
 	shoefootstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD
 	mediumxenofootstep = FOOTSTEP_WOOD
 	var/damaged_states = 7
 
-//turf/open/floor/wood/get_damaged_state()
-//	return damaged_states ? "[initial(icon_state)]_damaged_[pick(1, damaged_states)]" : icon_state
+/turf/open/floor/wood/broken_states()
+	return list("wood-broken1", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
+
+/turf/open/floor/wood/burnt_states()
+	return list("wood-broken1", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
+
+//todo: replaced in a later pr
+/turf/open/floor/wood/broken
+	icon_state = "wood-broken1"
+	burnt = TRUE
 
 /turf/open/floor/wood/fancy
 	icon_state = "wood_fancy"
@@ -427,6 +428,12 @@
 /turf/open/floor/cult
 	icon_state = "cult"
 
+/turf/open/floor/cult/broken_states()
+	return list("cultdamage", "cultdamage2", "cultdamage3", "cultdamage4", "cultdamage5", "cultdamage6", "cultdamage7")
+
+/turf/open/floor/cult/burnt_states()
+	return list("cultdamage", "cultdamage2", "cultdamage3", "cultdamage4", "cultdamage5", "cultdamage6", "cultdamage7")
+
 /turf/open/floor/dark2
 	icon_state = "darktile2"
 
@@ -436,12 +443,10 @@
 /turf/open/floor/engine
 	name = "reinforced floor"
 	icon_state = "engine"
-	intact_tile = 0
 	breakable_tile = FALSE
 	burnable_tile = FALSE
+	floor_tile = null
 
-/turf/open/floor/engine/make_plating()
-	return
 
 /turf/open/floor/engine/attackby(obj/item/I, mob/user, params)
 	if(iscrowbar(I)) // Prevent generation of infinite 'floor_tile' objs caused by the overridden make_plating() above never clearing the var
@@ -457,10 +462,7 @@
 			return
 
 		new /obj/item/stack/rods(src, 2)
-		ChangeTurf(/turf/open/floor)
-		var/turf/open/floor/F = src
-		F.make_plating()
-
+		make_plating()
 
 /turf/open/floor/engine/nitrogen
 
@@ -532,7 +534,7 @@
 /turf/open/floor/grass
 	name = "Grass patch"
 	icon_state = "grass1"
-	floor_tile = new/obj/item/stack/tile/grass
+	floor_tile = /obj/item/stack/tile/grass
 	shoefootstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
@@ -540,7 +542,6 @@
 
 /turf/open/floor/grass/Initialize(mapload)
 	. = ..()
-	floor_tile = new /obj/item/stack/tile/grass
 	icon_state = "grass[pick("1","2","3","4")]"
 	return INITIALIZE_HINT_LATELOAD
 
@@ -637,7 +638,6 @@
 
 /turf/open/floor/tile/chapel
 	icon_state = "chapel"
-	icon_regular_floor = "chapel"
 
 /turf/open/floor/tile/cmo
 	icon_state = "cmo"
@@ -882,14 +882,27 @@
 	shoefootstep = FOOTSTEP_CARPET
 	barefootstep = FOOTSTEP_CARPET
 	mediumxenofootstep = FOOTSTEP_CARPET
+	floor_tile = /obj/item/stack/tile/carpet
 
-/turf/open/floor/carpet/Initialize(mapload)
-	. = ..()
-	floor_tile = new /obj/item/stack/tile/carpet
-	return INITIALIZE_HINT_LATELOAD
+/turf/open/floor/carpet/broken_states()
+	return list("carpet-broken")
 
-/turf/open/floor/carpet/ex_act(severity)
-	return
+/turf/open/floor/carpet/burnt_states()
+	return list("carpet-broken")
+
+/turf/open/floor/ex_act(severity)
+	if(hull_floor)
+		return ..()
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			make_plating()
+		if(EXPLODE_HEAVY)
+			if(prob(80))
+				make_plating()
+		if(EXPLODE_LIGHT)
+			if(prob(50))
+				make_plating()
+	return ..()
 
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"

@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscdel: "remove easy plat miner in Gelida IV"
-  - balance: "remove easy plat miner in Gelida IV"

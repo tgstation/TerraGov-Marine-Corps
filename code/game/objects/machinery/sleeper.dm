@@ -436,24 +436,24 @@
 		return
 	go_out()
 
-/obj/machinery/sleeper/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(M.stat != CONSCIOUS || !ishuman(M))
+/obj/machinery/sleeper/proc/move_inside_wrapper(mob/living/target, mob/user)
+	if(!ishuman(target) || !ishuman(user) || user.incapacitated(TRUE))
 		return
 
 	if(occupant)
 		to_chat(user, span_notice("The sleeper is already occupied!"))
 		return
 
-	if(ismob(M.pulledby))
-		var/mob/grabmob = M.pulledby
+	if(ismob(target.pulledby))
+		var/mob/grabmob = target.pulledby
 		grabmob.stop_pulling()
-	M.stop_pulling()
+	target.stop_pulling()
 
-	if(!M.forceMove(src))
+	if(!target.forceMove(src))
 		return
 
-	visible_message("[M] climbs into the sleeper.", null, null, 3)
-	occupant = M
+	visible_message("[target] climbs into the sleeper.", null, null, 3)
+	occupant = target
 
 	start_processing()
 	connected.start_processing()
@@ -466,8 +466,7 @@
 		qdel(O)
 
 /obj/machinery/sleeper/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M) || !ishuman(user))
-		return
+	. = ..()
 	move_inside_wrapper(M, user)
 
 /obj/machinery/sleeper/verb/move_inside()

@@ -1,0 +1,7 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "V-34 does slightly lower damage and close range, and slightly better damage at longer range"
+  - balance: "V-41 damage and accuracy slightly lowered, movement penalty slightly increased"
+  - bugfix: "fixed SOM biohazard helmet not being gas proof"
+  - bugfix: "fixed laser rifle medic missing some cells"
