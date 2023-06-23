@@ -440,7 +440,7 @@
 "aeU" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/metal/nooffset,
-/obj/item/cell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -1144,9 +1144,7 @@
 /area/ice_colony/surface/engineering)
 "ajb" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/plasteel{
-	amount = 15
-	},
+/obj/effect/spawner/random/engineering/plasteel,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "ajc" = (
@@ -1427,8 +1425,8 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "akr" = (
 /obj/structure/rack,
-/obj/item/cell,
-/obj/item/cell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -2406,6 +2404,7 @@
 	dir = 8
 	},
 /obj/machinery/computer/station_alert,
+/obj/structure/table/reinforced,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "apt" = (
@@ -2431,6 +2430,7 @@
 	dir = 4
 	},
 /obj/machinery/computer/atmos_alert,
+/obj/structure/table/reinforced,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "apz" = (
@@ -2497,15 +2497,20 @@
 "apK" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/pistol/holdout{
-	pixel_x = 8;
-	pixel_y = 3
-	},
-/obj/item/weapon/gun/pistol/holdout{
-	pixel_x = 16
-	},
-/obj/item/weapon/gun/pistol/holdout{
 	pixel_x = 2;
 	pixel_y = 8
+	},
+/obj/effect/spawner/random/weaponry/gun/sidearms{
+	pixel_x = 7;
+	pixel_y = 9
+	},
+/obj/effect/spawner/random_set/sidearms{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/effect/spawner/random/weaponry/gun/sidearms{
+	pixel_x = 6;
+	pixel_y = -2
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
@@ -5903,6 +5908,7 @@
 	dir = 8
 	},
 /obj/machinery/computer/communications,
+/obj/structure/table/reinforced,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "aGl" = (
@@ -5993,6 +5999,7 @@
 	dir = 4
 	},
 /obj/machinery/computer/security,
+/obj/structure/table/reinforced,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "aGH" = (
@@ -7109,9 +7116,11 @@
 /obj/structure/rack{
 	pixel_x = 1
 	},
-/obj/item/weapon/gun/shotgun/pump/cmb{
-	pixel_x = 3
+/obj/effect/spawner/random/weaponry/gun/shotgun{
+	pixel_x = 3;
+	pixel_y = -6
 	},
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -11746,7 +11755,7 @@
 /area/ice_colony/underground/maintenance/research)
 "blI" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "blJ" = (
@@ -12120,7 +12129,7 @@
 /area/ice_colony/underground/crew/chapel)
 "bnh" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/chapel)
 "bni" = (
@@ -16180,7 +16189,7 @@
 /area/ice_colony/underground/command/pv2)
 "bEt" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -16452,7 +16461,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bFB" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /obj/item/tool/pen/blue{
 	pixel_x = 5
 	},
@@ -16463,7 +16472,7 @@
 /area/ice_colony/underground/security/interrogation)
 "bFF" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /obj/item/tool/pen/blue{
 	pixel_x = 5
 	},
@@ -17761,6 +17770,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
+/obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/security)
 "bKm" = (
@@ -17768,6 +17778,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
+/obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/security)
 "bKn" = (
@@ -19115,12 +19126,12 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/underground/security/brig)
 "bPy" = (
 /obj/structure/table,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
@@ -19681,7 +19692,7 @@
 "bRU" = (
 /obj/structure/cable,
 /obj/structure/table,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/interrogation)
@@ -21151,9 +21162,9 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering/radiounderground)
 "bZy" = (
-/obj/item/cell,
-/obj/item/cell,
-/obj/item/cell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering/radiounderground)
@@ -21188,12 +21199,8 @@
 /area/ice_colony/underground/maintenance/engineering/radiounderground)
 "bZD" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/plasteel{
-	amount = 10
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 10
-	},
+/obj/effect/spawner/random/engineering/plasteel,
+/obj/effect/spawner/random/engineering/plasteel,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -23989,7 +23996,7 @@
 /area/ice_colony/surface/dorms)
 "gSb" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /obj/item/tool/pen/blue{
 	pixel_x = 5
 	},
@@ -27009,10 +27016,6 @@
 /obj/item/ammo_magazine/shotgun/beanbag,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/item/weapon/gun/shotgun/pump/cmb{
-	pixel_x = 2;
-	pixel_y = 27
-	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
@@ -32488,7 +32491,7 @@
 "voY" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/medical/heal_pack/gauze,
-/obj/item/cell,
+/obj/effect/spawner/random/engineering/powercell,
 /obj/effect/spawner/random/engineering/insulatedgloves/nooffset,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
