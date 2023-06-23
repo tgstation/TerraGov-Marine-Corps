@@ -1,0 +1,4 @@
+author: "Ben10083"
+delete-after: True
+changes:
+  - qol: "MLRS now can be loaded directly from it's respective rocket storage boxes by interacting with it with the box in hand."
