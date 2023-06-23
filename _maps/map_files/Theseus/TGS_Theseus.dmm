@@ -2470,7 +2470,7 @@
 /area/mainship/living/starboard_emb)
 "aZd" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
 "aZe" = (
@@ -2596,9 +2596,9 @@
 /area/mainship/command/telecomms)
 "baO" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/radio,
-/obj/item/radio,
-/obj/item/radio,
+/obj/effect/spawner/random/engineering/radio/highspawn,
+/obj/effect/spawner/random/engineering/radio/highspawn,
+/obj/effect/spawner/random/engineering/radio/highspawn,
 /obj/item/folder/black,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
@@ -5621,7 +5621,7 @@
 /area/mainship/medical/medical_science)
 "bHm" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/radio,
+/obj/effect/spawner/random/engineering/radio/highspawn,
 /obj/item/healthanalyzer,
 /obj/item/healthanalyzer,
 /obj/item/reagent_scanner,
@@ -8537,7 +8537,7 @@
 /area/mainship/hallways/starboard_hallway)
 "dsp" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /obj/item/tool/crowbar,
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
@@ -9327,7 +9327,7 @@
 /area/mainship/medical/lower_medical)
 "eMi" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "eMT" = (
@@ -9750,7 +9750,7 @@
 /area/mainship/living/officer_study)
 "fxh" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -10178,7 +10178,7 @@
 "geQ" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/crowbar,
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "geX" = (
@@ -12156,7 +12156,7 @@
 "jFR" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/belt/utility/full,
-/obj/item/radio,
+/obj/effect/spawner/random/engineering/radio/highspawn,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -15685,7 +15685,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen/blue,
-/obj/item/radio,
+/obj/effect/spawner/random/engineering/radio/highspawn,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "pxc" = (
@@ -17211,7 +17211,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation/pod/three)
 "rWR" = (
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/marinemainship{
 	dir = 8;
@@ -19513,7 +19513,7 @@
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "weh" = (
-/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/misc/table_lighting,
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;

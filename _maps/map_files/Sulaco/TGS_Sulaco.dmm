@@ -188,11 +188,11 @@
 /area/sulaco/cryosleep)
 "aaG" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/stack/cable_coil,
 /obj/item/toy/deck,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "aaH" = (
@@ -7176,7 +7176,7 @@
 "aKH" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/disk/botany,
-/obj/item/radio,
+/obj/effect/spawner/random/engineering/radio/highspawn,
 /obj/machinery/door_control/old/unmeltable{
 	id = "mfshydroponics";
 	name = "Lockdown Shutter-Control Hydroponics";
@@ -7189,6 +7189,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/effect/spawner/random/engineering/radio/highspawn,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
 "aKJ" = (
@@ -9314,7 +9315,7 @@
 /area/sulaco/hangar/storage)
 "aYb" = (
 /obj/structure/rack,
-/obj/item/radio,
+/obj/effect/spawner/random/engineering/radio/highspawn,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "aYq" = (
@@ -10001,7 +10002,7 @@
 /area/sulaco/liaison/quarters)
 "beI" = (
 /obj/structure/rack,
-/obj/item/radio,
+/obj/effect/spawner/random/engineering/radio/highspawn,
 /obj/item/storage/briefcase,
 /obj/item/portable_vendor/corporate,
 /turf/open/floor/wood,
@@ -10925,8 +10926,8 @@
 /obj/machinery/cell_charger,
 /obj/item/lightreplacer,
 /obj/item/clothing/glasses/welding,
-/obj/item/cell/high,
-/obj/item/cell/high,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "cwp" = (
@@ -20465,8 +20466,8 @@
 /area/sulaco/medbay/cmo)
 "pmB" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/radio,
-/obj/item/radio,
+/obj/effect/spawner/random/engineering/radio/highspawn,
+/obj/effect/spawner/random/engineering/radio/highspawn,
 /obj/item/stack/cable_coil{
 	pixel_x = 3;
 	pixel_y = 3
@@ -22394,11 +22395,11 @@
 	pixel_y = 4
 	},
 /obj/item/robot_parts/head,
-/obj/item/stack/cable_coil,
 /obj/machinery/door_control/mainship/mech{
 	dir = 4;
 	id = "mech_shutters_4"
 	},
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/mainship/black{
 	dir = 10
 	},

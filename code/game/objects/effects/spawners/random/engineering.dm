@@ -32,9 +32,9 @@
 	name = "Random Powercell"
 	icon_state = "random_cell"
 	loot = list(
-		/obj/item/cell/crap = 10,
 		/obj/item/cell = 40,
 		/obj/item/cell/high = 40,
+		/obj/item/cell/crap = 10,
 		/obj/item/cell/super = 9,
 		/obj/item/cell/hyper = 1,
 	)
@@ -53,7 +53,7 @@
 	name = "Random digging instrument spawner"
 	icon_state = "random_shovel"
 	loot = list(
-		/obj/item/tool/shovel = 600,
+		/obj/item/tool/shovel = 700,
 		/obj/effect/spawner/random/engineering/pickaxe = 100,
 	)
 
@@ -105,7 +105,7 @@
 /obj/effect/spawner/random/engineering/structure/handheld_lighting
 	name = "handheld lighting spawner"
 	icon_state = "random_lighting"
-	spawn_loot_chance = 60
+	spawn_loot_chance = 80
 	spawn_random_offset = TRUE
 	loot = list(
 		/obj/item/flashlight = 15,
@@ -144,6 +144,13 @@
 		/obj/item/storage/belt/utility/atmostech = 10,
 	)
 
+/obj/effect/spawner/random/engineering/engibelt/emptyornot
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/item/storage/belt/utility/full = 90,
+		/obj/item/storage/belt/utility = 10,
+	)
+
 /obj/effect/spawner/random/engineering/cable
 	name = "Random cable spawner"
 	icon_state = "random_cable"
@@ -167,6 +174,9 @@
 		/obj/item/stack/sheet/metal/medium_stack = 10,
 		/obj/item/stack/sheet/metal/large_stack = 2,
 	)
+
+/obj/effect/spawner/random/engineering/metal/nooffset
+	spawn_random_offset = FALSE
 
 /obj/effect/spawner/random/engineering/plasteel
 	name = "plasteel spawner"
@@ -209,6 +219,11 @@
 		/obj/item/clothing/gloves/insulated = 15,
 	)
 
+/obj/effect/spawner/random/engineering/insulatedgloves/nooffset
+	spawn_scatter_radius = 0
+	spawn_random_offset = FALSE
+	spawn_loot_chance = 65
+
 /obj/effect/spawner/random/engineering/radio
 	name = "radio spawner"
 	icon_state = "random_radio"
@@ -218,7 +233,7 @@
 	)
 
 /obj/effect/spawner/random/engineering/radio/highspawn
-	spawn_loot_chance = 80
+	spawn_loot_chance = 90
 
 
 /obj/effect/spawner/random/engineering/structure/powergenerator
@@ -289,6 +304,13 @@
 	icon_state = "random_heater"
 	loot = list(
 		/obj/machinery/space_heater = 8,
+		/obj/machinery/portable_atmospherics/pump = 1,
+		/obj/machinery/portable_atmospherics/scrubber = 1,
+	)
+
+/obj/effect/spawner/random/engineering/structure/atmospherics_portable/icecolony
+	loot = list(
+		/obj/machinery/space_heater = 20,
 		/obj/machinery/portable_atmospherics/pump = 1,
 		/obj/machinery/portable_atmospherics/scrubber = 1,
 	)

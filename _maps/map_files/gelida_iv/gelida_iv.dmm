@@ -23961,7 +23961,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "qfU" = (
-/obj/item/inflatable,
+/obj/item/inflatable/wall,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
 "qgh" = (
@@ -26938,7 +26938,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "sgL" = (
-/obj/item/inflatable,
+/obj/item/inflatable/wall,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "sgS" = (
@@ -28385,7 +28385,7 @@
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "tdJ" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/food_or_drink/beer{
 	pixel_x = 8
 	},
 /obj/item/reagent_containers/food/snacks/hotdog{

@@ -55,11 +55,11 @@
 	icon_state = "random_lamp"
 	spawn_loot_chance = 95
 	loot = list(
-		/obj/item/flashlight/lamp = 50,
+		/obj/item/flashlight/lamp = 100,
 		/obj/item/flashlight/lamp/green = 5,
-		/obj/item/flashlight/lantern = 5,
-		/obj/item/flashlight/flashlight = 5,
-		/obj/item/flashlight/pen = 5,
+		/obj/item/flashlight/lantern = 3,
+		/obj/item/flashlight/flashlight = 3,
+		/obj/item/flashlight/pen = 3,
 		/obj/item/flashlight/lamp/menorah = 1,
 	)
 

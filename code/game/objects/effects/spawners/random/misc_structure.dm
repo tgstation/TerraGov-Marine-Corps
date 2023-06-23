@@ -452,6 +452,20 @@
 		/obj/structure/bed/stool,
 	)
 
+/obj/effect/spawner/random/misc/structure/flavorvending
+	name = "vending spawner"
+	icon_state = "random_vending"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/machinery/vending/assist = 25,
+		/obj/machinery/vending/cigarette = 25,
+		/obj/machinery/vending/coffee = 25,
+		/obj/machinery/vending/cola = 25,
+		/obj/machinery/vending/snack = 25,
+		/obj/machinery/vending/sovietsoda = 1,
+		/obj/machinery/vending/engineering = 1,
+	)
+
 /obj/effect/spawner/random/misc/structure/supplycrate
 	name = "supply crate spawner"
 	icon_state = "random_supplycrate"
