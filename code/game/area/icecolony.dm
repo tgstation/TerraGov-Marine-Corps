@@ -172,6 +172,7 @@
 /area/ice_colony/exterior/underground/caves/ice_nw
 	name = "North Western Ice Caves"
 	icon_state = "icecave_nw"
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/exterior/underground/caves/ice_se
 	name = "South Eastern Ice Caves"
