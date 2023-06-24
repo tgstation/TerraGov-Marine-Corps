@@ -60,8 +60,6 @@
 	var/marker_flags
 	if(H.faction == FACTION_TERRAGOV)
 		marker_flags = MINIMAP_FLAG_MARINE
-	else if(H.faction == FACTION_TERRAGOV_REBEL)
-		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(H.faction == FACTION_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	else

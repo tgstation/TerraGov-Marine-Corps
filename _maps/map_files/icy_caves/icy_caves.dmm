@@ -526,7 +526,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ2)
 "cA" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "cB" = (
@@ -1151,7 +1151,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
 "gC" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "gF" = (
@@ -1289,7 +1289,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "hD" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "hG" = (
@@ -1310,7 +1310,7 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
 "hK" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "hN" = (
@@ -1673,7 +1673,7 @@
 /area/icy_caves/caves/cavesbrig)
 "jE" = (
 /obj/structure/table/reinforced,
-/obj/effect/landmark/dropship_console_spawn_lz1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating/ground/snow,
 /area/lv624/lazarus/console)
 "jH" = (
@@ -5293,7 +5293,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "Bw" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "Bx" = (
@@ -5853,7 +5853,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "El" = (
 /obj/structure/table/reinforced,
-/obj/effect/landmark/dropship_console_spawn_lz2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
 "En" = (
@@ -5902,7 +5902,6 @@
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "Ey" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "Ez" = (
@@ -5997,7 +5996,6 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Fd" = (
@@ -9435,7 +9433,6 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Wo" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "Wp" = (

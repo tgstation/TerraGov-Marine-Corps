@@ -211,7 +211,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/power)
 "ahv" = (
@@ -4569,7 +4569,6 @@
 	},
 /area/magmoor/security/arrivals/south)
 "dmu" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
@@ -6213,7 +6212,6 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "ewm" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -7781,7 +7779,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "fCc" = (
@@ -16922,7 +16920,7 @@
 /area/magmoor/landing)
 "mwD" = (
 /obj/structure/table/reinforced,
-/obj/effect/landmark/dropship_console_spawn_lz2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating,
 /area/magmoor/landing/two)
 "mwM" = (
@@ -17180,7 +17178,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "mGZ" = (
@@ -18241,7 +18239,7 @@
 /area/magmoor/civilian/pool)
 "nvu" = (
 /obj/structure/table/reinforced,
-/obj/effect/landmark/dropship_console_spawn_lz1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating,
 /area/magmoor/landing)
 "nvv" = (
@@ -18991,7 +18989,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/east)
 "odE" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
 "odU" = (
@@ -24870,7 +24868,7 @@
 /area/magmoor/cargo/processing/south)
 "sqi" = (
 /obj/structure/table/woodentable,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/carpet,
 /area/magmoor/command/conference)
 "sql" = (
@@ -26980,7 +26978,6 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
 "tTU" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/southwest)
 "tUc" = (

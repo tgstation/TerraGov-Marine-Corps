@@ -26,10 +26,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dheight = 2
 	height = 5
 
-/obj/docking_port/stationary/supply/rebel
-	id = "supply_home_rebel"
-	roundstart_shuttle_specific_id = "supply_rebel"
-
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = SHUTTLE_SUPPLY
@@ -225,12 +221,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	/// Faction of the tablet
 	var/faction = FACTION_TERRAGOV
 
-/obj/item/supplytablet/rebel
-	req_access = list(ACCESS_MARINE_CARGO_REBEL)
-	shuttle_id = "supply_rebel"
-	home_id = "supply_home_rebel"
-	faction = FACTION_TERRAGOV_REBEL
-
 /obj/item/supplytablet/interact(mob/user)
 	. = ..()
 	if(.)
@@ -258,13 +248,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/home_id = "supply_home"
 	/// Faction of the computer
 	var/faction = FACTION_TERRAGOV
-
-/obj/machinery/computer/supplycomp/rebel
-	req_access = list(ACCESS_MARINE_CARGO_REBEL)
-	shuttle_id = "supply_rebel"
-	home_id = "supply_home_rebel"
-	faction = FACTION_TERRAGOV_REBEL
-	circuit = /obj/item/circuitboard/computer/rebelsupplycomp
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()

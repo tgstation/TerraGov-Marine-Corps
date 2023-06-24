@@ -3972,7 +3972,6 @@
 /area/lv624/lazarus/sandtemple)
 "doQ" = (
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "dpq" = (
@@ -4315,7 +4314,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "dIP" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "dKU" = (
@@ -6030,7 +6029,7 @@
 /obj/structure/table/reinforced/flipped{
 	dir = 1
 	},
-/obj/effect/landmark/dropship_console_spawn_lz1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
@@ -6593,7 +6592,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "gQI" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -7083,7 +7082,7 @@
 	},
 /area/lv624/ground/caves/rock)
 "hyS" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -7199,7 +7198,7 @@
 "hGr" = (
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "hGA" = (
@@ -13353,7 +13352,7 @@
 /area/shuttle/drop1/lz1)
 "pRP" = (
 /obj/structure/table/reinforced,
-/obj/effect/landmark/dropship_console_spawn_lz1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
@@ -14103,7 +14102,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "qQD" = (
@@ -14117,7 +14115,6 @@
 	},
 /area/lv624/lazarus/spaceport)
 "qSs" = (
-/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "qSA" = (
@@ -14712,7 +14709,7 @@
 /area/shuttle/drop1/lz1)
 "rCJ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "rCO" = (
@@ -20090,7 +20087,6 @@
 /turf/closed/wall,
 /area/lv624/ground/jungle10)
 "yeG" = (
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central1)
 "yfp" = (
