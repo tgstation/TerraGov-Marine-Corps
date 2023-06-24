@@ -33,6 +33,22 @@ GLOBAL_LIST_INIT(reagent_images_list,  list(
 	KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
 	)
 
+/datum/action/xeno_action/baneling_explode/give_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/baneling/X = L
+	RegisterSignal(X, COMSIG_MOB_DEATH, .proc/death_trigger)
+
+/datum/action/xeno_action/baneling_explode/proc/death_trigger()
+	var/mob/living/carbon/xenomorph/baneling/X = owner
+	smoke_range = ((X.plasma_stored-100)/30)
+	var/turf/owner_T = get_turf(X)
+	handle_smoke(smoke_duration, owner_T)
+	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
+	if(isnull(X.pod_ref))
+		return
+	var/obj/structure/xeno/baneling_pod/pod = X.pod_ref
+	pod.handle_baneling_death(X)
+
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/baneling/X = owner
@@ -59,6 +75,7 @@ GLOBAL_LIST_INIT(reagent_images_list,  list(
 	name = "Choose Explosion Reagent"
 	action_icon_state = ""
 	desc = ""
+	plasma_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT,
 	)
@@ -66,7 +83,7 @@ GLOBAL_LIST_INIT(reagent_images_list,  list(
 
 /datum/action/xeno_action/choose_baneling_reagent/give_action(mob/living/L)
 	. = ..()
-	var/mob/living/carbon/xenomorph/caster = owner
+	var/mob/living/carbon/xenomorph/caster = L
 	caster.selected_chemical = /datum/effect_system/smoke_spread/xeno/acid //Set our default
 	update_button_icon() //Update immediately to get our default
 
@@ -96,6 +113,7 @@ GLOBAL_LIST_INIT(reagent_images_list,  list(
 	action_icon_state = "spawn_pod"
 	desc = ""
 	ability_name = "spawn pod"
+	plasma_cost = 150
 	keybinding_signals = list(
 	KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_SPAWN_POD,
 	)
@@ -105,6 +123,8 @@ GLOBAL_LIST_INIT(reagent_images_list,  list(
 	var/mob/living/carbon/xenomorph/baneling/X = owner
 	if(isnull(X.pod_ref))
 		X.pod_ref = new /obj/structure/xeno/baneling_pod(owner.loc, owner)
+		succeed_activate()
 		return
 	var/obj/structure/xeno/baneling_pod/pod = X.pod_ref
 	pod.loc = X.loc
+	succeed_activate()

@@ -24,10 +24,11 @@
 
 /obj/structure/xeno/baneling_pod
 	name = "Baneling Pod"
-	desc = ""
+	desc = "A baneling pod, storing fresh banelings "
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Baneling Pod"
-	obj_flags = RESIST_ALL
+	density = FALSE
+	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
 	/// Maximum amount of stored charge
 	var/stored_charge_max = 2
 	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
@@ -38,11 +39,15 @@
 	var/respawn_time = 30 SECONDS
 	/// Our currently stored baneling
 	var/mob/living/carbon/xenomorph/baneling/stored_baneling
+	/// Ref to our baneling
+	var/mob/living/carbon/xenomorph/baneling/baneling_ref
 
-
-/obj/structure/xeno/baneling_pod/New(turf/T, mob/M)
-	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/handle_baneling_death)
-	. = ..()
+/obj/structure/xeno/baneling_pod/obj_destruction()
+	if(isnull(baneling_ref))
+		return ..()
+	if(baneling_ref.health <= -99)
+		return ..()
+	obj_integrity = 1
 
 /obj/structure/xeno/baneling_pod/proc/handle_baneling_death(mob/M)
 	if(isnull(M))
@@ -51,7 +56,7 @@
 	stored_baneling.forceMove(src)
 	if(stored_charge >= 1)
 		stored_charge--
-		addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time)
 		addtimer(CALLBACK(src, PROC_REF(handle_charge)), charge_refresh_time)
 		return
 	addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time)
