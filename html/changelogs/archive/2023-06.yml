@@ -319,3 +319,17 @@
   - rscadd: blood vendor and Terra Experimental cell field charger can use TTS!
   - rscadd: more sentences in preexisting product_slogan for vendors that already
       have TTS so that they don't repeat the same joke
+2023-06-24:
+  Lumipharon:
+  - imageadd: added some mapping assets
+  - code_imp: some misc code cleanup
+  - bugfix: Minor jumping visual fix in some situations
+  - balance: V-34 does slightly lower damage and close range, and slightly better
+      damage at longer range
+  - balance: V-41 damage and accuracy slightly lowered, movement penalty slightly
+      increased
+  - bugfix: fixed SOM biohazard helmet not being gas proof
+  - bugfix: fixed laser rifle medic missing some cells
+  - refactor: Refactors floor turf code
+  ivanmixo:
+  - bugfix: Marine boots have noslip again
