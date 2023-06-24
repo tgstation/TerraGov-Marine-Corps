@@ -3637,7 +3637,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "eCc" = (
@@ -4988,6 +4987,12 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"gtO" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/side{
+	dir = 9
+	},
+/area/mainship/medical/lower_medical)
 "guG" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/white{
@@ -5822,6 +5827,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "hLE" = (
@@ -6138,6 +6144,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "iff" = (
@@ -6243,6 +6250,11 @@
 	dir = 1
 	},
 /area/mainship/living/commandbunks)
+"imq" = (
+/obj/structure/curtain/medical,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "imx" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -11825,10 +11837,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
-	},
+/obj/structure/computerframe,
+/turf/open/floor/plating,
 /area/mainship/medical/lower_medical)
 "pmY" = (
 /obj/structure/table/mainship/nometal,
@@ -13792,7 +13802,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "rIq" = (
@@ -15979,7 +15988,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/obj/effect/ai_node,
+/obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -46446,7 +46455,7 @@ qMJ
 aSw
 dQG
 jVv
-mwj
+imq
 mwj
 mwj
 lAT
@@ -46702,8 +46711,8 @@ duU
 tTW
 fEb
 mXf
-jWB
-iwj
+gtO
+lAT
 lAT
 lAT
 lAT
