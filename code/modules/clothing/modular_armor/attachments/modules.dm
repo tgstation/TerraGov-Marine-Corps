@@ -610,6 +610,16 @@
 	. = ..()
 	parent.AddComponent(/datum/component/blur_protection)
 
+/obj/item/armor_module/module/talon
+	name = "Talon Helmet Module"
+	desc = "Designed for cosmetically mounting on a modular helmet. Allows you to look tacticool."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "talon_head"
+	item_state = "talon_head_a"
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	prefered_slot = SLOT_HEAD
+
 /obj/item/armor_module/module/antenna
 	name = "Antenna helmet module"
 	desc = "Designed for mounting on a modular Helmet. This module is able to provide a readout of the user's coordinates and connect to the shipside supply console."

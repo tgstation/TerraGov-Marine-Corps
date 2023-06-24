@@ -186,6 +186,7 @@
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/module/talon
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT

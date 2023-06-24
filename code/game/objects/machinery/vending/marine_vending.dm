@@ -1295,6 +1295,7 @@
 			/obj/item/armor_module/module/style/light_armor = -1,
 			/obj/item/armor_module/module/style/medium_armor = -1,
 			/obj/item/armor_module/module/style/heavy_armor = -1,
+			/obj/item/armor_module/module/talon = -1,
 		),
 		"Jaeger Mk.I chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
