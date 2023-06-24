@@ -27,6 +27,7 @@ export const MedScanner = (props, context) => {
 
     blood_type,
     blood_amount,
+    hungry,
     body_temperature,
     pulse,
     infection,
@@ -321,6 +322,7 @@ export const MedScanner = (props, context) => {
             ) : null}
           </Section>
         ) : null}
+        {hungry ? <NoticeBox warning>Calorie intake recommended.</NoticeBox> : null}
         {infection ? <NoticeBox warning>{infection}</NoticeBox> : null}
         {implants ? (
           <NoticeBox info>

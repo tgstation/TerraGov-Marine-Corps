@@ -163,6 +163,7 @@ REAGENT SCANNER
 
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
+		"hungry" = patient.nutrition < NUTRITION_HUNGRY,
 
 		"hugged" = (locate(/obj/item/alien_embryo) in patient)
 	)
