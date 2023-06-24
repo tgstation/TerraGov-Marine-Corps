@@ -482,7 +482,7 @@
 
 		balloon_alert_to_viewers("repairing base...")
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
 			return FALSE
 
 		if(!metal_sheets.use(2))
