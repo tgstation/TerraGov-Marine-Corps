@@ -769,6 +769,7 @@
 	update_button_icon()
 
 /datum/action/xeno_action/activable/xeno_spit/deselect()
+	stop_fire()
 	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
 	return ..()
 
