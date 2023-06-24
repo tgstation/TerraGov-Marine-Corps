@@ -20,7 +20,7 @@
 /mob/living/carbon/proc/adjust_nutrition_speed(old_nutrition)
 	switch(nutrition)
 		if(0 to NUTRITION_HUNGRY) //Level where a yellow food pip shows up, aka hunger level 3 at 250 nutrition and under
-			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, round(1.5 - (nutrition / 250), 0.1)) //From 0.5 to 1.5
+			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, round(1.5*(250-nutrition)/250, 0.1)) //From 0 to 1.5
 		if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
 			switch(old_nutrition)
 				if(NUTRITION_HUNGRY to NUTRITION_OVERFED)

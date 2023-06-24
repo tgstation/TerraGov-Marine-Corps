@@ -70,15 +70,6 @@
 			if(0 to BLOOD_VOLUME_SURVIVE)
 				death()
 
-
-		// Without enough blood you slowly go hungry.
-		if(blood_volume < BLOOD_VOLUME_SAFE)
-			switch(nutrition)
-				if(300 to INFINITY)
-					adjust_nutrition(-10)
-				if(200 to 300)
-					adjust_nutrition(-3)
-
 		//Bleeding out
 		var/blood_max = 0
 		for(var/l in limbs)

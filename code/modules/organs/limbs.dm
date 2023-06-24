@@ -1,4 +1,5 @@
 #define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
+#define LIMB_DAMAGE_QUANT 0.1 //If a limb is healed below this threshold it just goes to zero to prevent e-20 stuff
 
 /****************************************************
 				EXTERNAL ORGANS
@@ -291,7 +292,11 @@
 		return
 
 	brute_dam = max(0, brute_dam - brute)
+	if(brute_dam < LIMB_DAMAGE_QUANT)
+		brute_dam = 0
 	burn_dam = max(0, burn_dam - burn)
+	if(burn_dam < LIMB_DAMAGE_QUANT)
+		burn_dam = 0
 
 	//Sync the organ's damage with its wounds
 	update_bleeding()
@@ -515,15 +520,15 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	if(brute_dam || burn_dam)
 		var/damage_ratio = brute_dam / (brute_dam + burn_dam)
+		var/brute_to_heal = 0
+		var/burn_to_heal = 0
 		if(limb_wound_status & LIMB_WOUND_BANDAGED)
-			brute_dam = brute_dam - base_regen * damage_ratio * limb_regen_penalty
+			brute_to_heal = min(brute_dam, base_regen * damage_ratio * limb_regen_penalty)
 		if(burn_dam && limb_wound_status & LIMB_WOUND_SALVED)
-			burn_dam = burn_dam - base_regen * (1 - damage_ratio) * limb_regen_penalty
-
-	if(brute_dam < 0.1)
-		brute_dam = 0
-	if(burn_dam < 0.1)
-		burn_dam = 0
+			burn_to_heal = min(burn_dam, base_regen * (1 - damage_ratio) * limb_regen_penalty)
+		if(burn_to_heal || brute_to_heal)
+			heal_limb_damage(brute_to_heal, burn_to_heal)
+			owner.adjust_nutrition(-(brute_to_heal+burn_to_heal)/2)
 
 	if(owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))
 		for(var/datum/wound/W in wounds)
