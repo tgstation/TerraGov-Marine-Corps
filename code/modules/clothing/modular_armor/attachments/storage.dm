@@ -121,7 +121,7 @@
 
 /obj/item/armor_module/storage/general/som
 	name = "General Purpose Storage module"
-	desc = "Designed for mounting on SOM combat armor. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, pistols or magazines."
+	desc = "Designed for mounting on SOM combat armor. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like pistols or magazines."
 	icon_state = "mod_general_bag_som"
 	item_state = "mod_general_bag_som_a"
 
