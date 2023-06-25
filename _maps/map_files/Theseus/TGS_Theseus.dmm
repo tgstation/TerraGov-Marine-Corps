@@ -3165,6 +3165,15 @@
 "bhO" = (
 /turf/closed/wall/mainship,
 /area/mainship/engineering/lower_engineering)
+"bhS" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/robotic_cradle,
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
+/area/mainship/medical/lower_medical)
 "bia" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/wooden_tv,
@@ -51813,7 +51822,7 @@ doe
 kpy
 qvb
 iOS
-hVU
+bhS
 bJC
 lMe
 bGZ
@@ -52070,7 +52079,7 @@ wRf
 qvb
 dFM
 iGu
-bHi
+iGu
 iGu
 lMe
 iGu
