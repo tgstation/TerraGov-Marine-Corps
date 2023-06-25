@@ -61,11 +61,6 @@
 	GLOB.latejoin += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/start/latejoinrebel/Initialize(mapload)
-	. = ..()
-	GLOB.latejoinrebel += loc
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/start/latejoinsom/Initialize(mapload)
 	. = ..()
 	GLOB.latejoinsom += loc
@@ -367,27 +362,6 @@
 						/obj/item/weapon/chainsword,
 						)
 
-//used to spawn a different dropship control console groundside for HvH mode
-/obj/effect/landmark/dropship_console_spawn_lz1
-	name = "Dropship console spawn lz1"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
-
-/obj/effect/landmark/dropship_console_spawn_lz1/Initialize(mapload)
-	. = ..()
-	GLOB.lz1_shuttle_console_turfs_list += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/dropship_console_spawn_lz2
-	name = "Dropship console spawn lz1"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
-
-/obj/effect/landmark/dropship_console_spawn_lz2/Initialize(mapload)
-	. = ..()
-	GLOB.lz2_shuttle_console_turfs_list += loc
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/fob_sentry
 	name = "Fob sentry"
 	icon = 'icons/Marine/sentry.dmi'
@@ -398,34 +372,14 @@
 	GLOB.fob_sentries_loc += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/fob_sentry_rebel
-	name = "Rebel fob sentry"
-	icon = 'icons/Marine/sentry.dmi'
-	icon_state = "sentry"
-
-/obj/effect/landmark/fob_sentry_rebel/Initialize(mapload)
-	. = ..()
-	GLOB.fob_sentries_rebel_loc += loc
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/sensor_tower
-	name = "Sensor tower"
-	icon = 'icons/obj/structures/sensor.dmi'
-	icon_state = "sensor"
-
-/obj/effect/landmark/sensor_tower/Initialize(mapload)
-	. = ..()
-	GLOB.sensor_towers += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/sensor_tower_patrol
 	name = "Sensor tower"
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor_loyalist"
 
-/obj/effect/landmark/sensor_tower_patrol/Initialize(mapload)
+/obj/effect/landmark/sensor_tower/Initialize(mapload)
 	..()
-	GLOB.sensor_towers_patrol += loc
+	GLOB.sensor_towers += loc
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/valhalla

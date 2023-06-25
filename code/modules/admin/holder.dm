@@ -657,7 +657,7 @@ GLOBAL_PROTECT(admin_verbs_log)
 
 
 /proc/IsAdminAdvancedProcCall()
-	return usr?.client && GLOB.AdminProcCaller == usr.client.ckey
+	return usr && usr.client && GLOB.AdminProcCaller == usr.client.ckey
 
 
 /proc/GenTgsStealthKey()

@@ -47,7 +47,7 @@
 	debris_velocity = _debris_velocity
 	debris_amount = _debris_amount
 	debris_scale = _debris_scale
-	RegisterSignal(target, COMSIG_ATOM_BULLET_ACT, PROC_REF(register_for_impact))
+	RegisterSignal(target, COMSIG_ATOM_BULLET_ACT, PROC_REF(register_for_impact), TRUE) //override because the element gets overriden
 
 /datum/element/debris/Detach(datum/source, force)
 	. = ..()

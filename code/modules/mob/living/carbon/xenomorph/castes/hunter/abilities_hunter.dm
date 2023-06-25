@@ -60,7 +60,7 @@
 	RegisterSignal(owner, list(
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_THROW_HIT,
-		COMSIG_XENOMORPH_FIRE_BURNING,
+		COMSIG_LIVING_IGNITED,
 		COMSIG_LIVING_ADD_VENTCRAWL), PROC_REF(cancel_stealth))
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
@@ -89,7 +89,7 @@
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_ATTACK_OBJ,
 		COMSIG_XENOMORPH_THROW_HIT,
-		COMSIG_XENOMORPH_FIRE_BURNING,
+		COMSIG_LIVING_IGNITED,
 		COMSIG_LIVING_ADD_VENTCRAWL,
 		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
 		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
@@ -164,7 +164,7 @@
 		M.add_slowdown(1)
 		to_chat(owner, span_xenodanger("Pouncing from the shadows, we stagger our victim."))
 
-/datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
+/datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	if(!can_sneak_attack)
 		return
@@ -174,7 +174,7 @@
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 		flavour = "vicious"
 	else
-		armor_pen = HUNTER_SNEAK_SLASH_ARMOR_PEN
+		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		staggerslow_stacks *= 2
 		flavour = "deadly"
 

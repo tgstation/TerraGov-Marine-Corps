@@ -23,8 +23,6 @@
 
 	if(!process_mode)
 		signal.data["compression"] = 100 // even more compressed signal
-	else if (signal.data["compression"])
-		signal.data["compression"] = 0 // uncompress subspace signal
 
 	if(istype(machine_from, /obj/machinery/telecomms/bus))
 		relay_direct_information(signal, machine_from) // send the signal back to the machine
@@ -63,25 +61,6 @@
 	id = "Backup Processor 4"
 	network = "tcommsat"
 	autolinkers = list("processor4")
-
-/obj/machinery/telecomms/processor/preset_one/rebel
-	id = "Processor 1 rebel"
-	autolinkers = list("processor1_rebel")
-
-
-/obj/machinery/telecomms/processor/preset_two/rebel
-	id = "Processor 2 rebel"
-	autolinkers = list("processor2_rebel")
-
-
-/obj/machinery/telecomms/processor/preset_three/rebel
-	id = "Processor 3 rebel"
-	autolinkers = list("processor3_rebel")
-
-
-/obj/machinery/telecomms/processor/preset_four/rebel
-	id = "Processor 4 rebel"
-	autolinkers = list("processor4_rebel")
 
 /obj/machinery/telecomms/processor/preset_one/som
 	id = "Processor 1 som"

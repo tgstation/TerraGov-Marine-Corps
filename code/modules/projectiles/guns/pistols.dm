@@ -95,7 +95,7 @@
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	actions_types = list()
 	wield_delay = 0.5 SECONDS
 	muzzle_flash_color = COLOR_GREEN
@@ -689,7 +689,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 /obj/item/weapon/gun/pistol/knife
 	name = "\improper M6 'Eclipse Raider' ballistic knife"
-	desc = "The back issue survival knife issued to a few TerraGov Marine Corps soldiers. There are a surprisingly large amount of attachment points on this... knife."
+	desc = "The back issue survival knife issued to a few TerraGov Marine Corps marines. There are a surprisingly large amount of attachment points on this... knife."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'
