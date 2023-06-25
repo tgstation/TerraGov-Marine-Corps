@@ -188,7 +188,6 @@
 /////////////////////////////////////////////
 
 /datum/effect_system/smoke_spread
-	var/name = "You shouldn't be able to see this"
 	var/range = 3
 	var/smoke_type = /obj/effect/particle_effect/smoke
 	var/lifetime
