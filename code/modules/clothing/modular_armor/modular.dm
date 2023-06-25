@@ -466,19 +466,19 @@
 	var/selection
 	switch(colorable_allowed)
 		if(COLOR_WHEEL_ONLY)
-			selection = "Color Wheel"
+			selection = COLOR_WHEEL
 		if(COLOR_WHEEL_ALLOWED)
-			selection = list("Color Wheel", "Preset Colors")
+			selection = list(COLOR_WHEEL, PRESET_COLORS)
 			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
 		if(COLOR_WHEEL_NOT_ALLOWED)
-			selection = "Preset Colors"
+			selection = PRESET_COLORS
 
 	if(!selection)
 		return
 
 	var/new_color
 	switch(selection)
-		if("Preset Colors")
+		if(PRESET_COLORS)
 			var/color_selection
 			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
 			if(!color_selection)
@@ -491,7 +491,7 @@
 				new_color = old_list[color_selection]
 			else
 				new_color = colorable_colors[color_selection]
-		if("Color Wheel")
+		if(COLOR_WHEEL)
 			new_color = input(user, "Pick a color", "Pick color") as null|color
 
 	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
@@ -614,19 +614,19 @@
 	var/selection
 	switch(colorable_allowed)
 		if(COLOR_WHEEL_ONLY)
-			selection = "Color Wheel"
+			selection = COLOR_WHEEL
 		if(COLOR_WHEEL_ALLOWED)
-			selection = list("Color Wheel", "Preset Colors")
+			selection = list(COLOR_WHEEL, PRESET_COLORS)
 			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
 		if(COLOR_WHEEL_NOT_ALLOWED)
-			selection = "Preset Colors"
+			selection = PRESET_COLORS
 
 	if(!selection)
 		return
 
 	var/new_color
 	switch(selection)
-		if("Preset Colors")
+		if(PRESET_COLORS)
 			var/color_selection
 			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
 			if(!color_selection)
@@ -639,7 +639,7 @@
 				new_color = old_list[color_selection]
 			else
 				new_color = colorable_colors[color_selection]
-		if("Color Wheel")
+		if(COLOR_WHEEL)
 			new_color = input(user, "Pick a color", "Pick color") as null|color
 
 	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))

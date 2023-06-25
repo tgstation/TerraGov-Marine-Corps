@@ -246,5 +246,5 @@
 ///Relays the extra controls to the user when the parent is examined.
 /obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += "Right click the [parent] with paint to color the [src]"
+	examine_list += "Right click the [parent] with paint to color [src]"
 
