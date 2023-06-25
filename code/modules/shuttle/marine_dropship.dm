@@ -425,7 +425,7 @@
 			to_chat(user, span_warning("The bird has left meanwhile, try again."))
 			return FALSE
 		D.unlock_all()
-		if(M.mode != SHUTTLE_IGNITING)
+		if(D.mode != SHUTTLE_IGNITING)
 			D.set_hijack_state(HIJACK_STATE_UNLOCKED)
 			D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
 			to_chat(user, span_warning("We were unable to prevent the bird from flying as it is already taking off."))
