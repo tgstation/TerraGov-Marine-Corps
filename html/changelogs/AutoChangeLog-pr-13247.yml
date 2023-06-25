@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - imageadd: "added some mapping assets"
-  - code_imp: "some misc code cleanup"

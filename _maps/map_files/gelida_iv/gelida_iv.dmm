@@ -603,7 +603,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/security)
 "atX" = (
@@ -2112,7 +2111,7 @@
 /area/gelida/indoors/a_block/dorm_north)
 "btf" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "btm" = (
@@ -3524,7 +3523,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/central_caves/radiounderground)
 "cug" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "cuz" = (
@@ -9717,7 +9716,7 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "gyH" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -12797,7 +12796,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "iCS" = (
-/obj/effect/landmark/dropship_console_spawn_lz1{
+/obj/machinery/computer/shuttle/shuttle_control/dropship{
 	pixel_y = -6
 	},
 /obj/structure/table/mainship,
@@ -14169,7 +14168,7 @@
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "jCt" = (
-/obj/effect/landmark/dropship_console_spawn_lz1{
+/obj/machinery/computer/shuttle/shuttle_control/dropship{
 	pixel_y = -9
 	},
 /obj/structure/table/mainship,
@@ -18237,7 +18236,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "mmL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "mmP" = (
@@ -26155,7 +26154,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/security)
 "rvo" = (

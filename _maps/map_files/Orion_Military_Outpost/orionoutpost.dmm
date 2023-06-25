@@ -256,7 +256,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "bE" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/mainship/sterile/corner,
 /area/orion_outpost/surface/building/medbay)
 "bG" = (
@@ -2340,7 +2340,7 @@
 /turf/open/ground/grasspatch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "mA" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/mainship/terragov/north{
 	dir = 8
 	},
@@ -2938,7 +2938,7 @@
 /area/orion_outpost/surface/building/nebuilding)
 "ps" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/dropship_console_spawn_lz2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/surface/landing_pad2_external)
 "pt" = (
@@ -4163,7 +4163,7 @@
 /area/orion_outpost/surface/building/command)
 "vr" = (
 /obj/structure/cable,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
@@ -4282,7 +4282,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostsw)
 "vX" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
@@ -4557,7 +4557,7 @@
 /area/orion_outpost/ground/outpostnw)
 "xC" = (
 /obj/item/ammo_casing/bullet,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostsw)
 "xD" = (
@@ -8652,7 +8652,7 @@
 /area/orion_outpost/surface/building/vehicledepot)
 "SF" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/dropship_console_spawn_lz1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/surface/landing_pad_external)
 "SG" = (

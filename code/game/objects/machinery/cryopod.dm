@@ -102,23 +102,15 @@
 	var/mob/living/occupant
 	var/orient_right = FALSE // Flips the sprite.
 	var/obj/item/radio/radio
-	/// The frequency of the radio
-	var/frequency = FREQ_COMMON
-
-/obj/machinery/cryopod/rebel
-	frequency = FREQ_COMMON_REBEL
 
 /obj/machinery/cryopod/right
 	orient_right = TRUE
 	icon_state = "body_scanner_0-r"
 
-/obj/machinery/cryopod/right/rebel
-	frequency = FREQ_COMMON_REBEL
-
 /obj/machinery/cryopod/Initialize(mapload)
 	. = ..()
 	radio = new(src)
-	radio.set_frequency(frequency)
+	radio.set_frequency(FREQ_COMMON)
 	update_icon()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 

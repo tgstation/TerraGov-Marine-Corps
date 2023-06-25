@@ -1,4 +1,4 @@
 author: "ivanmixo"
 delete-after: True
 changes:
-  - bugfix: "Marine boots have noslip again"
+  - rscdel: "Deleted civil war from the code"

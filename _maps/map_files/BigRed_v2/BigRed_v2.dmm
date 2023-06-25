@@ -2525,7 +2525,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -7643,7 +7643,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/e)
 "bXr" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "bZo" = (
@@ -11572,7 +11572,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "nCV" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "nDf" = (
@@ -12047,7 +12047,7 @@
 	},
 /area/bigredv2/outside/w)
 "paY" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "pbI" = (
@@ -12845,7 +12845,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "rHJ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
