@@ -34,7 +34,7 @@
 /obj/machinery/door/poddoor/railing/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
 
-	if(mover?.throwing && iscarbon(mover) && (direction & dir))
+	if(density && mover?.throwing && iscarbon(mover) && (direction & dir))
 		knownblockers += src
 		return COMPONENT_ATOM_BLOCK_EXIT
 
