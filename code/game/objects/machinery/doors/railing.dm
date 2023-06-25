@@ -4,6 +4,7 @@
 	icon_state = "railing1"
 	use_power = 0
 	flags_atom = ON_BORDER
+	allow_pass_flags = PASSABLE
 	opacity = FALSE
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
@@ -29,6 +30,13 @@
 	if(dir == SOUTH)
 		closed_layer = ABOVE_MOB_LAYER
 	layer = closed_layer
+
+/obj/machinery/door/poddoor/railing/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	. = ..()
+
+	if(mover?.throwing && iscarbon(mover) && (direction & dir))
+		knownblockers += src
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/machinery/door/poddoor/railing/Destroy()
 	if(linked_pad)
