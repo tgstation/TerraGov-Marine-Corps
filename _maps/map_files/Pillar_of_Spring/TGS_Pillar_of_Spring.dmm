@@ -11871,7 +11871,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/structure/computerframe,
+/obj/machinery/robotic_cradle,
 /turf/open/floor/plating,
 /area/mainship/medical/lower_medical)
 "pmY" = (
