@@ -2141,15 +2141,6 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
-"aMi" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/machinery/robotic_cradle,
-/turf/open/floor/mainship/sterile/side{
-	dir = 8
-	},
-/area/mainship/medical/lower_medical)
 "aMk" = (
 /obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship/mono,
@@ -51822,7 +51813,7 @@ doe
 kpy
 qvb
 iOS
-aMi
+hVU
 bJC
 lMe
 bGZ
@@ -52079,7 +52070,7 @@ wRf
 qvb
 dFM
 iGu
-iGu
+bHi
 iGu
 lMe
 iGu
