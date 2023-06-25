@@ -1184,7 +1184,7 @@
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING) || user?.do_actions)
 		return
 	if(!(new_mag.type in allowed_ammo_types))
-		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
+		if(isammomagazine(new_mag) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 			var/obj/item/ammo_magazine/mag = new_mag
 			if(!CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL)) //If the gun uses handfuls, it accepts all handfuls since it uses caliber to check if its allowed.
 				to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
@@ -1196,7 +1196,7 @@
 			to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
 			return FALSE
 
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && !force)
+	if(isammomagazine(new_mag) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && !force)
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN)) //AMMO_RECIEVER_CLOSED without AMMO_RECIEVER_TOGGLES_OPEN means the gun is not allowed to reload. Period.
 			to_chat(user, span_warning("[src] is closed!"))
 		else
@@ -1562,6 +1562,8 @@
 ///Getter to draw flags_magazine features. If the mag has none, overwrite and return null.
 /obj/item/weapon/gun/proc/get_flags_magazine_features(obj/item/mag)
 	var/obj/item/ammo_magazine/magazine = mag
+	if(!istype(magazine))
+		return NONE
 	return magazine ? magazine.flags_magazine : NONE
 
 ///Getter to draw default ammo type. If the mag has none, overwrite and return null.

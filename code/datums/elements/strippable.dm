@@ -68,20 +68,6 @@
 	/// The STRIPPABLE_ITEM_* key
 	var/key
 
-	/// Should we warn about dangerous clothing?
-	var/warn_dangerous_clothing = TRUE
-
-	/// The typecache that holds types that can toggle their NO_DROP flag
-	var/list/strappable_typecache = list(
-		/obj/item/weapon/twohanded/fireaxe/som,
-		/obj/item/weapon/shield,
-		/obj/item/weapon/twohanded/rocketsledge,
-	)
-
-/datum/strippable_item/New()
-	. = ..()
-	strappable_typecache = typecacheof(strappable_typecache)
-
 /datum/strippable_item/proc/is_incorporeal(mob/user)
 	if(isliving(user))
 		var/mob/living/L = user

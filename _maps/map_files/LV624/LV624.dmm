@@ -6086,6 +6086,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
+"fYF" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth/indestructible,
+/area/storage/testroom)
 "fYW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -13327,10 +13331,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
-"pLN" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/asteroidfloor,
-/area/storage/testroom)
 "pMn" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
@@ -20605,7 +20605,7 @@ psZ
 (3,1,1) = {"
 psZ
 xoL
-pLN
+fYF
 xoL
 gKr
 gKr

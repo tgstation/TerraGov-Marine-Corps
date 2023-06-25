@@ -28153,7 +28153,7 @@
 /area/prison/quarters/security)
 "bKN" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/prison,
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/storage/testroom)
 "bKO" = (
 /obj/structure/barricade/wooden,
@@ -44408,9 +44408,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/mediumsec/south)
-"ntB" = (
-/turf/open/floor/prison,
-/area/storage/testroom)
 "nuk" = (
 /turf/open/ground/coast/corner{
 	dir = 1
@@ -113300,9 +113297,9 @@ aab
 aab
 aab
 bKg
-ntB
-ntB
-ntB
+bKg
+bKg
+bKg
 bKg
 acD
 aab
@@ -113557,9 +113554,9 @@ aab
 aab
 aab
 bKg
-ntB
+bKg
 bKN
-ntB
+bKg
 bKg
 acD
 aab
@@ -113814,9 +113811,9 @@ aab
 aab
 aab
 bKg
-ntB
-ntB
-ntB
+bKg
+bKg
+bKg
 bKg
 acD
 aab

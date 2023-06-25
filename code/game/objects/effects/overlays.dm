@@ -360,6 +360,7 @@
 
 /obj/effect/overlay/eye
 	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon_state = "eye_open"
 	pixel_x = 16
 	pixel_y = 16

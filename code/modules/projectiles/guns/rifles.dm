@@ -208,7 +208,7 @@
 	aim_slowdown = 0.75
 	wield_delay = 0.8 SECONDS
 	force = 20
-	max_shells = 10 //codex
+	max_shells = 20 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_dmr
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_dmr)
 	attachable_allowed = list(
@@ -871,6 +871,7 @@
 	accuracy_mult_unwielded = 0.5
 	scatter = 2
 	scatter_unwielded = 80
+	movement_acc_penalty_mult = 6
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun

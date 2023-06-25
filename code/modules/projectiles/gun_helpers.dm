@@ -569,6 +569,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	set name = "Toggle Automatic Magazine Ejection (Weapon)"
 	set desc = "Toggles the automatic unloading of the gun's magazine upon depletion."
 
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
+		balloon_alert(usr, "Cannot toggle ejection")
+		return
+
 	TOGGLE_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
 	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 

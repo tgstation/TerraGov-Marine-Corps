@@ -80,6 +80,7 @@
 	handle_weeds_on_movement()
 
 	AddElement(/datum/element/footstep, FOOTSTEP_XENO_MEDIUM, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
+	AddElement(/datum/element/jump, _jump_cooldown = 2 SECONDS, _stamina_cost = 0)
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health
 /mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
