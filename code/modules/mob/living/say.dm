@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 			listened += listening_movable
 	//Note, TG has a found_client var they use, piggybacking on unrelated say popups and runechat code
 	//we dont do that since it'd probably be much more expensive to loop over listeners instead of just doing
-	if(voice)
+	if(voice && !(client?.prefs.muted & MUTE_TTS))
 		var/tts_message_to_use = tts_message
 		if(!tts_message_to_use)
 			tts_message_to_use = message_raw
