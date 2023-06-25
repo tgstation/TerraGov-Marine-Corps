@@ -9971,6 +9971,10 @@
 	dir = 4
 	},
 /area/gelida/landing_zone_forecon/UD6_Tornado)
+"gHM" = (
+/obj/structure/flora/jungle/planttop1,
+/turf/open/floor/grass,
+/area/gelida/indoors/a_block/garden)
 "gHP" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/central_streets)
@@ -10630,11 +10634,6 @@
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_1)
-"heI" = (
-/obj/structure/flora/jungle/planttop1,
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
-/area/gelida/indoors/a_block/garden)
 "heL" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
@@ -15857,6 +15856,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/shuttle/drop2/gelida)
+"kKo" = (
+/obj/structure/flora/jungle/plantbot1,
+/turf/open/floor/grass,
+/area/gelida/indoors/a_block/garden)
 "kKy" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -16048,10 +16051,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
-"kQA" = (
-/obj/structure/flora/jungle/plantbot1,
-/turf/open/floor/grass,
-/area/gelida/indoors/a_block/garden)
 "kRn" = (
 /turf/closed/wall,
 /area/gelida/outdoors/colony_streets/south_east_street)
@@ -24149,6 +24148,11 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/hallway)
+"qhc" = (
+/obj/structure/flora/jungle/planttop1,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
+/area/gelida/indoors/a_block/garden)
 "qhj" = (
 /obj/machinery/light{
 	dir = 1
@@ -61589,8 +61593,8 @@ qtm
 obS
 hQm
 bGC
-wkd
-kQA
+gHM
+kKo
 iBw
 mtN
 awO
@@ -63809,8 +63813,8 @@ lcj
 uJT
 sOL
 ikW
-heI
-kQA
+qhc
+kKo
 iBw
 mtN
 pGA
@@ -64025,8 +64029,8 @@ xOM
 uQP
 awO
 eCc
-wkd
-kQA
+gHM
+kKo
 iBw
 obS
 hQm
