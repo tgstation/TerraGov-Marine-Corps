@@ -21207,10 +21207,6 @@
 /obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"qtZ" = (
-/obj/machinery/robotic_cradle,
-/turf/open/floor/prison/whitegreen/corner,
-/area/sulaco/medbay)
 "quS" = (
 /obj/effect/landmark/start/latejoin,
 /obj/effect/ai_node,
@@ -55287,7 +55283,7 @@ akM
 oxz
 afc
 eqh
-qtZ
+ade
 pKP
 ade
 gXI
