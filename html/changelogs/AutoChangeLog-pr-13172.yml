@@ -1,0 +1,4 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - bugfix: "Combat robots spawning in roles that have roundstart gear will now have that gear equipped, along with a robotic armor mount"
