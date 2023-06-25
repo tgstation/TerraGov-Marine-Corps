@@ -2665,7 +2665,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bbt" = (
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "bbv" = (
@@ -2736,7 +2736,7 @@
 	},
 /area/mainship/medical/upper_medical)
 "bcB" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -4000,7 +4000,7 @@
 	},
 /area/mainship/living/starboard_emb)
 "bog" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "bok" = (
@@ -5789,7 +5789,7 @@
 /turf/open/floor/wood,
 /area/mainship/squads/req)
 "bJO" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/wood,
 /area/mainship/squads/req)
 "bJP" = (
@@ -7008,7 +7008,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "bUJ" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "bUK" = (
@@ -7150,7 +7150,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "bWI" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "bWJ" = (
@@ -7258,7 +7258,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "bYh" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "bYi" = (
@@ -7801,7 +7801,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "cjW" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "ckd" = (
@@ -10220,11 +10220,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "ggd" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "ggn" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -11203,7 +11203,7 @@
 	},
 /area/mainship/engineering/lower_engine_monitoring)
 "hQB" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship/silver,
 /area/mainship/hallways/bow_hallway)
 "hSb" = (
@@ -11451,7 +11451,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "isK" = (
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "isY" = (
@@ -11889,7 +11889,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "jeI" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "jeN" = (
@@ -12987,7 +12987,7 @@
 	},
 /area/mainship/hallways/hangar)
 "lel" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "ler" = (
@@ -13099,7 +13099,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "llh" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "llV" = (
@@ -14473,7 +14473,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "nui" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -15631,7 +15631,7 @@
 	},
 /area/mainship/command/cic)
 "pqd" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/silver,
 /area/mainship/hallways/bow_hallway)
 "pqz" = (
@@ -15722,7 +15722,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "pAf" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /turf/open/floor/mainship/silver{
 	dir = 6
 	},
@@ -17132,7 +17132,7 @@
 	},
 /area/mainship/medical/upper_medical)
 "rQa" = (
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "rQH" = (
@@ -18829,7 +18829,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "uSC" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -18943,7 +18943,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "vao" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -19186,7 +19186,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/commandbunks)
 "vyW" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "vzW" = (
@@ -19922,7 +19922,7 @@
 	},
 /area/mainship/living/port_emb)
 "wRI" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},

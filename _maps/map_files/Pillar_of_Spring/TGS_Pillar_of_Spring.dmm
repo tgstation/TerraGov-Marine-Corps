@@ -103,7 +103,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aho" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -786,7 +786,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "aWL" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aXc" = (
@@ -1423,7 +1423,7 @@
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "bNe" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/item/coin/iron,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -4791,7 +4791,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gim" = (
@@ -5452,7 +5452,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "hfu" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "hgl" = (
@@ -6552,7 +6552,7 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "iHY" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -6564,7 +6564,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "iIf" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "iII" = (
@@ -7277,7 +7277,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "jIc" = (
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "jIf" = (
@@ -8010,7 +8010,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "kGb" = (
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -9560,7 +9560,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/living/grunt_rnr)
 "mpw" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "mpS" = (
@@ -10471,7 +10471,7 @@
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/operating_room_two)
 "nwt" = (
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "nwy" = (
@@ -13507,7 +13507,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "rly" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "rlR" = (
@@ -14449,7 +14449,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "sAl" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
@@ -16818,7 +16818,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "vsI" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},

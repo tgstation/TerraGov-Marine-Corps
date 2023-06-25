@@ -334,7 +334,7 @@
 
 /obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost
 	loot = list(
-		/obj/item/reagent_containers/food/drinks/bottle/whiskey = 95
+		/obj/item/reagent_containers/food/drinks/bottle/whiskey = 95,
 		/obj/effect/spawner/random/food_or_drink/beer = 5,
 	)
 

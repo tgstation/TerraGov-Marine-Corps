@@ -387,9 +387,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1/radiounderground)
-"anB" = (
-/turf/open/floor/plating,
-/area/lv624/ground/caves/central1/radiounderground)
 "anF" = (
 /obj/item/shard,
 /turf/open/floor/plating/platebot,
@@ -462,7 +459,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
 "aoT" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -530,7 +527,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "arI" = (
-/obj/structure/closet/secure_closet/engineering_welding,
+/obj/effect/spawner/random/misc/structure/closet/welding,
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
@@ -866,7 +863,7 @@
 /turf/open/floor/scorched,
 /area/lv624/ground/sand6)
 "ayl" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "aym" = (
@@ -2080,7 +2077,7 @@
 	},
 /area/lv624/lazarus/corporate_affairs)
 "bdM" = (
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/corporate_affairs)
 "bdO" = (
@@ -3419,7 +3416,7 @@
 /obj/machinery/firealarm{
 	dir = 2
 	},
-/obj/machinery/vending/cigarette/colony,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted/colony,
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/corporate_affairs)
 "crq" = (
@@ -3711,7 +3708,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "cKj" = (
-/obj/structure/closet/toolcloset,
+/obj/effect/spawner/random/misc/structure/closet/tool,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3969,7 +3966,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "cZu" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -4151,10 +4148,6 @@
 /obj/structure/showcase/six,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
-"doQ" = (
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
 "dpq" = (
 /turf/open/ground/coast{
 	dir = 8
@@ -6487,9 +6480,6 @@
 /obj/structure/flora/tree/jungle,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
-"gqR" = (
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage)
 "grh" = (
 /obj/machinery/floodlight/colony,
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -6872,7 +6862,7 @@
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/river2)
 "gTu" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -7767,7 +7757,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle5)
 "idd" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
@@ -9100,7 +9090,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "jRy" = (
-/obj/structure/closet/secure_closet/engineering_welding,
+/obj/effect/spawner/random/misc/structure/closet/welding,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "jRN" = (
@@ -10730,7 +10720,7 @@
 	},
 /area/lv624/ground/filtration)
 "lYH" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted/colony,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "lYS" = (
@@ -10937,7 +10927,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "mks" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/effect/spawner/random/misc/structure/closet/electrical,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "mkw" = (
@@ -11201,7 +11191,7 @@
 	},
 /area/lv624/ground/filtration)
 "mzp" = (
-/obj/machinery/vending/engivend,
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "mAq" = (
@@ -12021,7 +12011,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "nFg" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "nFD" = (
@@ -13228,7 +13218,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "pqp" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
@@ -14445,7 +14435,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "qWI" = (
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -14638,7 +14628,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "rhz" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -15248,7 +15238,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},
-/obj/machinery/vending/cigarette/colony,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted/colony,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "rSY" = (
@@ -15765,7 +15755,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "sCh" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "sCs" = (
@@ -16398,7 +16388,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/c)
 "tse" = (
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 10
 	},
@@ -17374,7 +17364,7 @@
 	},
 /area/lv624/lazarus/research)
 "uGh" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted/colony,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 9
 	},
@@ -17655,7 +17645,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "vdj" = (
-/obj/machinery/vending/tool,
+/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
@@ -19136,7 +19126,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "wQv" = (
@@ -20179,7 +20169,7 @@
 	},
 /area/lv624/lazarus/corporate_affairs)
 "xZn" = (
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -46686,7 +46676,7 @@ vCy
 vCy
 ekr
 cUj
-anB
+yeG
 yeG
 apH
 ajY
@@ -51732,7 +51722,7 @@ eOm
 eOm
 eOm
 hes
-gqR
+qSs
 esY
 esY
 esY
@@ -51905,13 +51895,13 @@ hlQ
 nzi
 atX
 eOm
-gqR
-gqR
-gqR
-gqR
-gqR
+qSs
+qSs
+qSs
+qSs
+qSs
 pcG
-gqR
+qSs
 iLu
 fFO
 hes
@@ -52083,7 +52073,7 @@ hlQ
 arW
 eOm
 fZx
-gqR
+qSs
 pvx
 ikz
 ngJ
@@ -52091,7 +52081,7 @@ clg
 ngJ
 ikz
 vPI
-gqR
+qSs
 hes
 hVt
 hVt
@@ -52260,7 +52250,7 @@ hlQ
 arW
 eOm
 ckd
-gqR
+qSs
 wEV
 cOH
 mfg
@@ -52633,7 +52623,7 @@ rTy
 jMz
 wjy
 wjy
-doQ
+ybZ
 wjy
 wjy
 rTy
@@ -52789,7 +52779,7 @@ jHh
 jHh
 jHh
 gif
-gqR
+qSs
 wEV
 mHf
 nlZ
@@ -52799,7 +52789,7 @@ rhJ
 cmE
 kTh
 irl
-gqR
+qSs
 pqh
 qnx
 gif
@@ -52966,7 +52956,7 @@ rZh
 jHh
 jHh
 gif
-gqR
+qSs
 pYA
 mHf
 nlZ
@@ -52977,7 +52967,7 @@ oiF
 lau
 lPW
 fZx
-gqR
+qSs
 qnx
 vFG
 hWp
@@ -53499,7 +53489,7 @@ hlQ
 arW
 eOm
 qrW
-gqR
+qSs
 wEV
 oxp
 oxp
@@ -53676,7 +53666,7 @@ nzi
 atX
 eOm
 ckd
-gqR
+qSs
 wEV
 ldf
 oxp
@@ -53684,7 +53674,7 @@ rhJ
 nLk
 iAU
 ebP
-gqR
+qSs
 iqY
 byV
 liv
@@ -53852,8 +53842,8 @@ rYv
 atX
 arW
 eOm
-gqR
-gqR
+qSs
+qSs
 bih
 mkI
 uki
@@ -54033,7 +54023,7 @@ eOm
 eOm
 eOm
 hes
-gqR
+qSs
 qWV
 qnx
 tMe

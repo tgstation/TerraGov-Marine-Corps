@@ -483,7 +483,7 @@
 	},
 /area/sulaco/medbay/surgery_two)
 "abG" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "abI" = (
@@ -548,7 +548,7 @@
 	},
 /area/sulaco/medbay/west)
 "abS" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "abY" = (
@@ -1869,7 +1869,7 @@
 	},
 /area/sulaco/hallway/central_hall2)
 "ais" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
 "aiz" = (
@@ -6759,7 +6759,7 @@
 /area/sulaco/hallway/evac)
 "aIn" = (
 /obj/machinery/light/mainship,
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
 "aIo" = (
@@ -7046,7 +7046,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "aJW" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
 "aKb" = (
@@ -7401,7 +7401,7 @@
 /area/sulaco/marine)
 "aLL" = (
 /obj/machinery/light/mainship,
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
 "aLM" = (
@@ -7748,7 +7748,7 @@
 /turf/open/floor/cult,
 /area/sulaco/morgue)
 "aNs" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /obj/machinery/camera/autoname,
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
@@ -10936,7 +10936,7 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "cwG" = (
-/obj/machinery/vending/snack,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "cxB" = (
@@ -11343,7 +11343,7 @@
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "cSG" = (
@@ -13748,7 +13748,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /turf/open/floor/prison,
 /area/sulaco/bar)
 "gmJ" = (
@@ -22857,7 +22857,7 @@
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall)
 "stk" = (
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "stp" = (
@@ -24613,7 +24613,7 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "uDI" = (
-/obj/machinery/vending/cigarette,
+/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "uEO" = (
@@ -24862,7 +24862,7 @@
 /area/sulaco/hangar/cas)
 "uXl" = (
 /obj/structure/cable,
-/obj/machinery/vending/cola,
+/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria/kitchen)
 "uXn" = (
@@ -26280,7 +26280,7 @@
 /area/sulaco/firingrange)
 "wWw" = (
 /obj/structure/cable,
-/obj/machinery/vending/coffee,
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria/kitchen)
 "wWE" = (
