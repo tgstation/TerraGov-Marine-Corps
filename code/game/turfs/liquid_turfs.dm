@@ -243,7 +243,7 @@
 	for(var/thing in thing_to_check)
 		if(ismecha(thing))
 			var/obj/vehicle/sealed/mecha/burned_mech = thing
-			burned_mech.take_damage(rand(40, 120), BURN)
+			burned_mech.take_damage(rand(40, 120), BURN, FIRE)
 			. = TRUE
 
 		else if(isobj(thing))
@@ -258,7 +258,7 @@
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
 				var/damage_amount = max(L.modify_by_armor(LAVA_TILE_BURN_DAMAGE, FIRE), LAVA_TILE_BURN_DAMAGE * 0.3) //snowflakey interaction to stop complete lava immunity
-				L.take_overall_damage(damage_amount, BURN, updating_health = TRUE)
+				L.take_overall_damage(damage_amount, BURN, updating_health = TRUE, max_limbs = 3)
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()

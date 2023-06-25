@@ -18,24 +18,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	RADIO_KEY_REQUISITIONS = RADIO_CHANNEL_REQUISITIONS,
 ))
 
-GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
-	MODE_KEY_R_HAND = MODE_R_HAND,
-	MODE_KEY_L_HAND = MODE_L_HAND,
-	MODE_KEY_INTERCOM = MODE_INTERCOM,
-
-	MODE_KEY_DEPARTMENT = MODE_DEPARTMENT,
-
-	RADIO_KEY_MEDICAL = RADIO_CHANNEL_MEDICAL_REBEL,
-	RADIO_KEY_ENGINEERING = RADIO_CHANNEL_ENGINEERING_REBEL,
-	RADIO_KEY_COMMAND = RADIO_CHANNEL_COMMAND_REBEL,
-	RADIO_KEY_ALPHA = RADIO_CHANNEL_ALPHA_REBEL,
-	RADIO_KEY_BRAVO = RADIO_CHANNEL_BRAVO_REBEL,
-	RADIO_KEY_CHARLIE = RADIO_CHANNEL_CHARLIE_REBEL,
-	RADIO_KEY_DELTA = RADIO_CHANNEL_DELTA_REBEL,
-	RADIO_KEY_CAS = RADIO_CHANNEL_CAS_REBEL,
-	RADIO_KEY_REQUISITIONS = RADIO_CHANNEL_REQUISITIONS_REBEL,
-))
-
 GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	MODE_KEY_R_HAND = MODE_R_HAND,
 	MODE_KEY_L_HAND = MODE_L_HAND,
@@ -301,7 +283,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(length(tts_filter) > 0)
 			filter += tts_filter.Join(",")
 
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, FALSE, message_range, (job.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, FALSE, message_range, (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0)
 
 /mob/living/GetVoice()
 	return name

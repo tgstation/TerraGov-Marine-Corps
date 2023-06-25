@@ -470,10 +470,10 @@
 	SIGNAL_HANDLER
 	SetStun(origin.closet_stun_delay)//Action delay when going out of a closet
 	if(!lying_angle && IsStun())
-		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = usr)
-		balloon_alert(usr, "Need to get bearings")
-	origin.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
-	UnregisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED)
+		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = source)
+		balloon_alert(source, "You struggle to get your bearings")
+	origin.UnregisterSignal(source, COMSIG_LIVING_DO_RESIST)
+	UnregisterSignal(source, COMSIG_MOVABLE_CLOSET_DUMPED)
 
 
 #undef CLOSET_INSERT_END

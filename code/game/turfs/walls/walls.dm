@@ -215,14 +215,34 @@
 		damage_overlays[i] = img
 
 //Damage
-/turf/closed/wall/proc/take_damage(damage)
+/**
+	Returns a number after taking into account both soft and hard armor for the specified damage type
+
+	Arguments
+	* Damage_amount: The original unmodified damage
+	* armor_type: The type of armor by which the damage will be modified
+	* penetration: How much the damage source might bypass the armour value (optional)
+
+	Hard armor reduces penetration by a flat amount.
+	Penetration reduces soft armor by a flat amount.
+	Damage cannot go into the negative, or exceed the original amount.
+*/
+/turf/proc/modify_by_armor(damage_amount, armor_type, penetration)
+	penetration = max(0, penetration - hard_armor.getRating(armor_type))
+	return clamp((damage_amount * (1 - ((soft_armor.getRating(armor_type) - penetration) * 0.01))), 0, damage_amount)
+
+///Applies damage to the wall
+/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", armour_penetration = 0)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
-	if(!damage)
+	if(!damage_amount)
 		return
 
-	wall_integrity = max(0, wall_integrity - damage)
+	if(damage_flag)
+		damage_amount = modify_by_armor(damage_amount, damage_flag, armour_penetration)
+
+	wall_integrity = max(0, wall_integrity - damage_amount)
 
 	if(wall_integrity <= 0)
 		// Xenos used to be able to crawl through the wall, should suggest some structural damage to the girder
@@ -233,7 +253,7 @@
 	else
 		update_icon()
 
-
+///Repairs the wall by an amount
 /turf/closed/wall/proc/repair_damage(repair_amount)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
@@ -279,11 +299,11 @@
 			dismantle_wall(FALSE, TRUE)
 		if(EXPLODE_HEAVY)
 			if(prob(75))
-				take_damage(rand(150, 250))
+				take_damage(rand(150, 250), BRUTE, BOMB)
 			else
 				dismantle_wall(TRUE, TRUE)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(0, 250))
+			take_damage(rand(0, 250), BRUTE, BOMB)
 
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
@@ -312,23 +332,23 @@
 
 	else if(istype(I, /obj/item/frame/apc))
 		var/obj/item/frame/apc/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/air_alarm))
 		var/obj/item/frame/air_alarm/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/fire_alarm))
 		var/obj/item/frame/fire_alarm/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/light_fixture))
 		var/obj/item/frame/light_fixture/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/light_fixture/small))
 		var/obj/item/frame/light_fixture/small/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/camera))
 		var/obj/item/frame/camera/AH = I

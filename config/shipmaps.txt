@@ -32,8 +32,5 @@ endmap
 map minerva
 endmap
 
-map twin_pillars
-endmap
-
 map combat_patrol_base
 endmap

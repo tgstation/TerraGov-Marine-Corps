@@ -16,6 +16,11 @@
 	X.soft_armor = X.soft_armor.modifyRating(fire = 100)
 	X.hard_armor = X.hard_armor.modifyRating(fire = 100)
 	X.add_filter("resin_jelly_outline", 2, outline_filter(1, COLOR_TAN_ORANGE))
+
+	var/datum/status_effect/stacking/melting/debuff = X.has_status_effect(STATUS_EFFECT_MELTING)
+	if(debuff)
+		qdel(debuff)
+
 	return TRUE
 
 /datum/status_effect/resin_jelly_coating/on_remove()
