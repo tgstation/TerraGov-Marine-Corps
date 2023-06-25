@@ -25,8 +25,13 @@
 	evolution_threshold = 180
 	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/crusher)
-	deevolves_to = /mob/living/carbon/xenomorph/runner
+	evolves_to = list(
+		/mob/living/carbon/xenomorph/crusher,
+	)
+	deevolves_to = list(
+		/mob/living/carbon/xenomorph/runner,
+		/mob/living/carbon/xenomorph/baneling,
+	)
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED

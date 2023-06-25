@@ -37,7 +37,7 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 5, FIRE = 0, ACID = 100)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "baneling"
@@ -64,7 +64,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 225
@@ -77,7 +77,7 @@
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 15, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 5, ACID = 100)
 
 /datum/xeno_caste/baneling/elder
 	upgrade_name = "Elder"
@@ -89,7 +89,7 @@
 	melee_damage = 1
 
 	// *** Speed *** //
-	speed = -1
+	speed = -1.5
 
 	// *** Plasma *** //
 	plasma_max = 250
@@ -102,7 +102,7 @@
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 20, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 10, ACID = 100)
 
 /datum/xeno_caste/baneling/ancient
 	upgrade_name = "Ancient"
@@ -114,7 +114,7 @@
 	melee_damage = 21
 
 	// *** Speed *** //
-	speed = -1
+	speed = -1.6
 
 	// *** Plasma *** //
 	plasma_max = 275
@@ -127,7 +127,7 @@
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 25, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = 15, ACID = 100)
 
 /datum/xeno_caste/baneling/primordial
 	upgrade_name = "Primordial"
@@ -139,7 +139,7 @@
 	melee_damage = 21
 
 	// *** Speed *** //
-	speed = -1
+	speed = -1.6
 
 	// *** Plasma *** //
 	plasma_max = 275
@@ -149,7 +149,7 @@
 	max_health = 240
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 25, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = 15, ACID = 100)
 
 	// *** Abilities *** ///
 	actions = list(

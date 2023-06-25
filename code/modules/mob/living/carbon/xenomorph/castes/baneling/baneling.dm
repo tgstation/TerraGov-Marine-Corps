@@ -21,6 +21,14 @@
 		return
 	return ..()
 
+/// Delete the pod if we evolve or devolve
+/mob/living/carbon/xenomorph/baneling/finish_evolve()
+	if(!isnull(pod_ref))
+		pod_ref.baneling_ref = null
+		pod_ref.obj_destruction()
+		pod_ref = null
+	return ..()
+
 /mob/living/carbon/xenomorph/baneling/set_stat()
 	. = ..()
 	if(isnull(.))
@@ -67,8 +75,10 @@
 		stored_charge--
 		addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time)
 		addtimer(CALLBACK(src, PROC_REF(increase_charge)), charge_refresh_time)
+		to_chat(stored_baneling.client, "You will respawn in 30 seconds")
 		return
-	addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time)
+	to_chat(stored_baneling.client, "You will respawn in 120 SECONDS")
+	addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), 120 SECONDS)
 
 /// Increase our current charge
 /obj/structure/xeno/baneling_pod/proc/increase_charge()
@@ -80,5 +90,6 @@
 /obj/structure/xeno/baneling_pod/proc/spawn_baneling(turf/spawn_location = loc)
 	stored_baneling.heal_overall_damage(stored_baneling.maxHealth, stored_baneling.maxHealth, updating_health = TRUE)
 	stored_baneling.forceMove(spawn_location)
+	UnregisterSignal(stored_baneling, COMSIG_MOVABLE_Z_CHANGED)
 	stored_baneling.revive()
 	stored_baneling = null
