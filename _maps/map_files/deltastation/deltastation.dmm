@@ -2146,7 +2146,7 @@
 "awN" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/rock/pile,
+/obj/structure/rock/basalt/pile,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "awT" = (
@@ -4645,7 +4645,7 @@
 /turf/open/floor/plating,
 /area/deltastation/hallway/secondary/entry)
 "aXC" = (
-/obj/structure/flora/rock,
+/obj/structure/rock/basalt,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/easterntunnel)
 "aXD" = (
@@ -6697,7 +6697,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/turf/open/floor/wood/broken/five,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/command/heads_quarters/captain/private)
 "bsF" = (
 /obj/structure/table/reinforced,
@@ -10013,7 +10013,7 @@
 /area/deltastation/engineering/hallway)
 "cbC" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "cbD" = (
@@ -12372,7 +12372,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/auxlab/firing_range)
 "cCK" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /obj/effect/turf_decal/plaque/two{
 	dir = 4
 	},
@@ -24291,7 +24291,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/flora/ausbushes/stalkybush,
-/obj/structure/flora/rock/pile,
+/obj/structure/rock/basalt/pile,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "eSw" = (
@@ -55416,7 +55416,7 @@
 /turf/open/floor/plating,
 /area/deltastation/service/chapel/funeral)
 "lnS" = (
-/obj/structure/flora/rock,
+/obj/structure/rock/basalt,
 /obj/machinery/light,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/easterntunnel)
@@ -58637,7 +58637,7 @@
 	pixel_y = 6
 	},
 /obj/effect/spawner/random/machinery/machine_frame,
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/commons/dorms)
 "lUl" = (
 /obj/structure/bed/chair/sofa/left,
@@ -68716,7 +68716,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/command/heads_quarters/captain/private)
 "oaK" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -77615,7 +77615,7 @@
 /area/deltastation/service/bar)
 "pND" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/iron,
 /area/deltastation/commons/storage/primary)
 "pNP" = (
@@ -85847,7 +85847,7 @@
 /area/deltastation/maintenance/port)
 "ruV" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/flora/rock/pile,
+/obj/structure/rock/basalt/pile,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "ruX" = (
@@ -87553,7 +87553,7 @@
 	},
 /area/deltastation/medical/morgue)
 "rMI" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/engine{
 	name = "Holodeck Projector Floor"
 	},
@@ -92062,7 +92062,7 @@
 "sIb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/securearea,
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/maintenance/starboard/aft)
 "sIc" = (
 /obj/effect/spawner/random/machinery/hydrotray,
@@ -93202,7 +93202,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/command/heads_quarters/captain/private)
 "sUZ" = (
 /obj/machinery/door/firedoor{
@@ -94838,7 +94838,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/transparent/yellow,
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "tmp" = (
@@ -98415,7 +98415,7 @@
 "tWs" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/rock/pile,
+/obj/structure/rock/basalt/pile,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "tWC" = (
@@ -110813,7 +110813,7 @@
 /area/deltastation/ai_monitored/aisat/exterior)
 "wsV" = (
 /obj/effect/spawner/random/machinery/photocopier,
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deltastation/command/heads_quarters/captain/private)
 "wsW" = (
 /obj/machinery/holopad,
@@ -114835,7 +114835,7 @@
 "xhY" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/rock,
+/obj/structure/rock/basalt,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "xif" = (

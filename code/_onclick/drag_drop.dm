@@ -18,6 +18,7 @@
 
 // recieve a mousedrop
 /atom/proc/MouseDrop_T(atom/dropping, mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	if(dropping.flags_atom & NOINTERACT)
 		return TRUE //Already handled
 	SEND_SIGNAL(src, COMSIG_MOUSEDROPPED_ONTO, dropping, user)

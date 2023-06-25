@@ -983,7 +983,7 @@
 	},
 /area/oscar_outpost)
 "je" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
 "jj" = (
@@ -3344,7 +3344,6 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "Gv" = (
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "GA" = (
@@ -3956,7 +3955,7 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "MA" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "MB" = (

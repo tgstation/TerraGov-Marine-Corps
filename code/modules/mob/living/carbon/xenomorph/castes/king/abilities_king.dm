@@ -264,7 +264,7 @@
 			to_chat(carbon_victim, "You are smashed to the ground!")
 		else if(ismecha(victim))
 			var/obj/vehicle/sealed/mecha/mecha_victim = victim
-			mecha_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, MELEE)
+			mecha_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, BRUTE, MELEE)
 		else if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
 			if(window_victim.damageable)

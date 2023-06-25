@@ -164,4 +164,4 @@
 /obj/vehicle/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		take_damage(20 * S.strength)
+		take_damage(20 * S.strength, BURN, ACID)

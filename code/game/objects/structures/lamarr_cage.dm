@@ -31,10 +31,10 @@
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
 			if(prob(50))
-				take_damage(15)
+				take_damage(15, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			if(prob(50))
-				take_damage(5)
+				take_damage(5, BRUTE, BOMB)
 
 
 /obj/structure/lamarr/attack_hand(mob/living/user)
@@ -42,7 +42,7 @@
 	if(.)
 		return
 	user.visible_message(span_warning("[user] kicks the lab cage."), span_notice("You kick the lab cage."))
-	take_damage(2)
+	take_damage(2, BRUTE, MELEE)
 
 
 /obj/item/clothing/mask/facehugger/lamarr

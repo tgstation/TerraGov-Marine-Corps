@@ -226,9 +226,6 @@
 	icon = 'icons/obj/doors/mainship/secdoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIG)
 
-/obj/machinery/door/airlock/mainship/security/rebel
-	req_access = list(ACCESS_MARINE_BRIG_REBEL)
-
 /obj/machinery/door/airlock/mainship/security/free_access
 	req_access = null
 
@@ -268,9 +265,6 @@
 	icon = 'icons/obj/doors/mainship/comdoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
-/obj/machinery/door/airlock/mainship/command/rebel
-	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
-
 /obj/machinery/door/airlock/mainship/command/free_access
 	req_access = null
 
@@ -295,19 +289,10 @@
 /obj/machinery/door/airlock/mainship/command/cic
 	name = "\improper Combat Information Center"
 
-/obj/machinery/door/airlock/mainship/command/rebel/cic
-	name = "\improper Combat Information Center"
-
 /obj/machinery/door/airlock/mainship/command/brief
 	name = "\improper Briefing Room"
 
-/obj/machinery/door/airlock/mainship/command/rebel/brief
-	name = "\improper Briefing Room"
-
 /obj/machinery/door/airlock/mainship/command/CPToffice
-	name = "\improper Captain's Office"
-
-/obj/machinery/door/airlock/mainship/command/rebel/CPToffice
 	name = "\improper Captain's Office"
 
 /obj/machinery/door/airlock/mainship/command/CPTstudy
@@ -320,28 +305,16 @@
 /obj/machinery/door/airlock/mainship/command/FCDRoffice
 	name = "\improper Field Commander's Office"
 
-/obj/machinery/door/airlock/mainship/command/rebel/FCDRoffice
-	name = "\improper Field Commander's Office"
-
 /obj/machinery/door/airlock/mainship/command/FCDRquarters
 	name = "\improper FCDR's Quarters"
 
-/obj/machinery/door/airlock/mainship/command/rebel/FCDRquarters
-	name = "\improper FCDR's Quarters"
-
 /obj/machinery/door/airlock/mainship/command/officer
-	name = "\improper Officer's Quarters"
-
-/obj/machinery/door/airlock/mainship/command/rebel/officer
 	name = "\improper Officer's Quarters"
 
 /obj/machinery/door/airlock/mainship/secure
 	name = "\improper Secure Airlock"
 	icon = 'icons/obj/doors/mainship/securedoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIDGE)
-
-/obj/machinery/door/airlock/mainship/secure/rebel
-	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door/airlock/mainship/secure/free_access
 	req_access = null
@@ -364,9 +337,6 @@
 /obj/machinery/door/airlock/mainship/secure/tcomms
 	name = "\improper Telecommunications"
 
-/obj/machinery/door/airlock/mainship/secure/rebel/tcomms
-	name = "\improper Telecommunications"
-
 /obj/machinery/door/airlock/mainship/secure/evac
 	name = "\improper Evacuation Airlock"
 
@@ -380,9 +350,6 @@
 	unlock(TRUE)
 	INVOKE_ASYNC(src, PROC_REF(open), TRUE)
 	lock(TRUE)
-
-/obj/machinery/door/airlock/mainship/secure/rebel/evac
-	name = "\improper Evacuation Airlock"
 
 /obj/machinery/door/airlock/mainship/ai
 	name = "\improper AI Core"
@@ -407,15 +374,9 @@
 	icon = 'icons/obj/doors/mainship/maintdoor.dmi'
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
-/obj/machinery/door/airlock/mainship/maint/rebel
-	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
-
 /obj/machinery/door/airlock/mainship/maint/free_access
 
 /obj/machinery/door/airlock/mainship/maint/core
-	name = "\improper Core Hatch"
-
-/obj/machinery/door/airlock/mainship/maint/rebel/core
 	name = "\improper Core Hatch"
 
 /obj/machinery/door/airlock/mainship/maint/hangar
@@ -433,9 +394,6 @@
 	name = "\improper Engineering Glass Airlock"
 	icon = 'icons/obj/doors/mainship/engidoor_glass.dmi'
 
-/obj/machinery/door/airlock/mainship/engineering/rebel
-	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
-
 /obj/machinery/door/airlock/mainship/engineering/free_access
 	req_one_access = null
 
@@ -443,41 +401,21 @@
 	name = "\improper Engineering Storage"
 	icon = 'icons/obj/doors/mainship/maintdoor.dmi'
 
-/obj/machinery/door/airlock/mainship/engineering/rebel/storage
-	name = "\improper Engineering Storage"
-	icon = 'icons/obj/doors/mainship/maintdoor.dmi'
-
 /obj/machinery/door/airlock/mainship/engineering/disposals
-	name = "\improper Disposals"
-
-/obj/machinery/door/airlock/mainship/engineering/rebel/disposals
 	name = "\improper Disposals"
 
 /obj/machinery/door/airlock/mainship/engineering/workshop
 	name = "\improper Engineering Workshop"
 
-/obj/machinery/door/airlock/mainship/engineering/rebel/workshop
-	name = "\improper Engineering Workshop"
-
 /obj/machinery/door/airlock/mainship/engineering/engine
-	name = "\improper Engineering Engine Monitoring"
-
-/obj/machinery/door/airlock/mainship/engineering/rebel/engine
 	name = "\improper Engineering Engine Monitoring"
 
 /obj/machinery/door/airlock/mainship/engineering/atmos
 	name = "\improper Atmospherics Wing"
 
-/obj/machinery/door/airlock/mainship/engineering/rebel/atmos
-	name = "\improper Atmospherics Wing"
-
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice
 	name = "\improper Chief Ship Engineer's Office"
 	req_access = list(ACCESS_MARINE_CE)
-
-/obj/machinery/door/airlock/mainship/engineering/rebel/CSEoffice
-	name = "\improper Chief Ship Engineer's Office"
-	req_access = list(ACCESS_MARINE_CE_REBEL)
 
 /obj/machinery/door/airlock/mainship/engineering/server_room
 	name = "\improper Server Room"
@@ -488,33 +426,20 @@
 	icon = 'icons/obj/doors/mainship/medidoor.dmi'
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_BRIDGE)
 
-/obj/machinery/door/airlock/mainship/medical/rebel
-	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door/airlock/mainship/medical/free_access
-
-/obj/machinery/door/airlock/mainship/medical/rebel/free_access
+	req_one_access = list()
 
 /obj/machinery/door/airlock/mainship/medical/morgue
 	name = "\improper Morgue"
 	req_access = list(ACCESS_MARINE_CHEMISTRY)
-
-/obj/machinery/door/airlock/mainship/medical/rebel/morgue
-	name = "\improper Morgue"
-	req_access = list(ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/door/airlock/mainship/medical/or
 	name = "\improper Operating Theatre"
 
 /obj/machinery/door/airlock/mainship/medical/or/or1
 	name = "\improper Operating Theatre 1"
-
-/obj/machinery/door/airlock/mainship/medical/rebel/or/or1
-	name = "\improper Operating Theatre 1"
 /obj/machinery/door/airlock/mainship/medical/or/or2
-	name = "\improper Operating Theatre 2"
-
-/obj/machinery/door/airlock/mainship/medical/rebel/or/or2
 	name = "\improper Operating Theatre 2"
 
 /obj/machinery/door/airlock/mainship/medical/or/or3
@@ -533,9 +458,6 @@
 	glass = TRUE
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_BRIDGE)
 
-/obj/machinery/door/airlock/mainship/medical/rebel/glass
-	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_BRIDGE_REBEL)
-
 /obj/machinery/door/airlock/mainship/medical/glass/free_access
 	req_one_access = null
 
@@ -543,30 +465,17 @@
 	name = "\improper CMO's Office"
 	req_access = list(ACCESS_MARINE_CMO)
 
-/obj/machinery/door/airlock/mainship/medical/rebel/glass/CMO
-	req_access = list(ACCESS_MARINE_CMO_REBEL)
-
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry
 	name = "\improper Chemistry Laboratory"
 	req_access = list(ACCESS_MARINE_CHEMISTRY)
 
-/obj/machinery/door/airlock/mainship/medical/rebel/glass/chemistry
-	name = "\improper Chemistry Laboratory"
-	req_access = list(ACCESS_MARINE_CHEMISTRY_REBEL)
-
 /obj/machinery/door/airlock/mainship/medical/glass/research
 	req_access = list(ACCESS_MARINE_RESEARCH)
-
-/obj/machinery/door/airlock/mainship/medical/rebel/glass/research
-	req_access = list(ACCESS_MARINE_RESEARCH_REBEL)
 
 /obj/machinery/door/airlock/mainship/research
 	name = "\improper Research Airlock"
 	icon = 'icons/obj/doors/mainship/medidoor.dmi'
 	req_access = list(ACCESS_MARINE_RESEARCH)
-
-/obj/machinery/door/airlock/mainship/research/rebel
-	req_access = list(ACCESS_MARINE_RESEARCH_REBEL)
 
 /obj/machinery/door/airlock/mainship/research/free_access
 	req_access = null
@@ -596,9 +505,6 @@
 /obj/machinery/door/airlock/mainship/research/pen
 	name = "\improper Research Pens"
 
-/obj/machinery/door/airlock/mainship/research/rebel/pen
-	name = "\improper Research Pens"
-
 /obj/machinery/door/airlock/mainship/research/glass
 	icon = 'icons/obj/doors/mainship/medidoor_glass.dmi'
 	opacity = FALSE
@@ -608,17 +514,7 @@
 	name = "\improper Medical Research Wing"
 	id = "researchdoorext"
 
-/obj/machinery/door/airlock/mainship/research/rebel/glass/wing
-	name = "\improper Medical Research Wing"
-	id = "researchdoorext"
-
 /obj/machinery/door/airlock/mainship/research/glass/cell
-	name = "\improper Containment Cell"
-	id = "Containment Cell"
-	icon_state = "door_locked"
-	locked = TRUE
-
-/obj/machinery/door/airlock/mainship/research/rebel/glass/cell
 	name = "\improper Containment Cell"
 	id = "Containment Cell"
 	icon_state = "door_locked"
@@ -657,19 +553,10 @@
 	name = "\improper Pilot's Office"
 	req_access = list(ACCESS_MARINE_PILOT)
 
-/obj/machinery/door/airlock/mainship/generic/pilot/rebel
-	req_access = list(ACCESS_MARINE_PILOT_REBEL)
-
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk
 	name = "\improper Pilot's Bunks"
 
-/obj/machinery/door/airlock/mainship/generic/pilot/rebel/bunk
-	name = "\improper Pilot's Bunks"
-
 /obj/machinery/door/airlock/mainship/generic/pilot/quarters
-	name = "\improper Pilot's Quarters"
-
-/obj/machinery/door/airlock/mainship/generic/pilot/rebel/quarters
 	name = "\improper Pilot's Quarters"
 
 /obj/machinery/door/airlock/mainship/generic/mech_pilot
@@ -715,18 +602,12 @@
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/mainship/marine/general/sl/rebel
-	req_access = list(ACCESS_MARINE_LEADER_REBEL)
-
 /obj/machinery/door/airlock/mainship/marine/general/smart
 	name = "\improper Smartgunner Preparations"
 	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 	opacity = FALSE
 	glass = TRUE
-
-/obj/machinery/door/airlock/mainship/marine/general/smart/rebel
-	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 
 /obj/machinery/door/airlock/mainship/marine/general/corps
 	name = "\improper Corpsman Preparations"
@@ -735,9 +616,6 @@
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/mainship/marine/general/corps/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
-
 /obj/machinery/door/airlock/mainship/marine/general/engi
 	name = "\improper Engineer Preparations"
 	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
@@ -745,18 +623,12 @@
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/mainship/marine/general/engi/rebel
-	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
-
 /obj/machinery/door/airlock/mainship/marine/requisitions
 	name = "\improper Requisitions Bay"
 	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	opacity = FALSE
 	glass = TRUE
-
-/obj/machinery/door/airlock/mainship/marine/requisitions/rebel
-	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_CARGO_REBEL)
 
 /obj/machinery/door/airlock/mainship/marine/requisitions/lift
 	name = "\improper ASRS Lift"
@@ -937,9 +809,6 @@
 
 /obj/machinery/door/airlock/hatch/cockpit/canAIControl(mob/user)
 	return TRUE
-
-/obj/machinery/door/airlock/hatch/cockpit/rebel
-	req_access = list(ACCESS_MARINE_DROPSHIP_REBEL)
 
 /obj/machinery/door/airlock/hatch/cockpit/two
 	icon = 'icons/obj/doors/mainship/dropship2_pilot.dmi'

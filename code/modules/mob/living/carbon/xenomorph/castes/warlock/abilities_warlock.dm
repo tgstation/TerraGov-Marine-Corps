@@ -213,6 +213,7 @@
 	proj.iff_signal = null
 	frozen_projectiles += proj
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, turn(proj.dir, 180), proj.ammo.penetration)
+	alpha = obj_integrity * 255 / max_integrity
 	if(obj_integrity <= 0)
 		release_projectiles()
 		owner.apply_effects(weaken = 0.5)
@@ -393,7 +394,7 @@
 				carbon_victim.add_slowdown(6)
 			else if(ismecha(victim))
 				var/obj/vehicle/sealed/mecha/mecha_victim = victim
-				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BOMB)
+				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BRUTE, BOMB)
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability

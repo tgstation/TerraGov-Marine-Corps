@@ -85,9 +85,6 @@
 	icon_state = "equip_base_l_wing"
 	ship_tag = SHUTTLE_NORMANDY
 
-/obj/effect/attach_point/weapon/dropship3
-	ship_tag = SHUTTLE_TRIUMPH
-
 /obj/effect/attach_point/weapon/cas
 	ship_tag = SHUTTLE_CAS_DOCK
 	icon = 'icons/Marine/casship.dmi'
@@ -137,10 +134,6 @@
 /obj/effect/attach_point/electronics/dropship2
 	ship_tag = SHUTTLE_NORMANDY
 
-/obj/effect/attach_point/electronics/dropship3
-	ship_tag = SHUTTLE_TRIUMPH
-
-
 /obj/effect/attach_point/fuel
 	name = "engine system attach point"
 	icon = 'icons/Marine/mainship_props64.dmi'
@@ -152,10 +145,6 @@
 
 /obj/effect/attach_point/fuel/dropship2
 	ship_tag = SHUTTLE_NORMANDY
-
-/obj/effect/attach_point/fuel/dropship3
-	ship_tag = SHUTTLE_TRIUMPH
-
 
 /obj/effect/attach_point/computer
 	base_category = DROPSHIP_COMPUTER
@@ -478,10 +467,6 @@
 	deployed_turret.update_icon()
 	icon_state = "sentry_system_installed"
 	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
-
-/obj/structure/dropship_equipment/sentry_holder/rebel
-	sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
-
 
 /obj/structure/dropship_equipment/mg_holder
 	name = "machinegun deployment system"

@@ -68,44 +68,6 @@
 	icon_state = "cypherkey"
 	channels = list(RADIO_CHANNEL_COMMON = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
 
-/obj/item/encryptionkey/engi/rebel
-	channels = list(RADIO_CHANNEL_ENGINEERING_REBEL = TRUE,RADIO_CHANNEL_CAS_REBEL = TRUE, RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
-
-/obj/item/encryptionkey/cas/rebel
-	channels = list(RADIO_CHANNEL_CAS_REBEL = TRUE)
-
-/obj/item/encryptionkey/med/rebel
-	channels = list(RADIO_CHANNEL_MEDICAL_REBEL = TRUE)
-
-/obj/item/encryptionkey/cas/rebel
-	channels = list(RADIO_CHANNEL_CAS_REBEL = TRUE)
-
-/obj/item/encryptionkey/mcom/rebel
-	channels = list(RADIO_CHANNEL_COMMAND_REBEL = TRUE, RADIO_CHANNEL_CAS_REBEL = TRUE, RADIO_CHANNEL_ALPHA_REBEL = TRUE, RADIO_CHANNEL_BRAVO_REBEL = TRUE, RADIO_CHANNEL_CHARLIE_REBEL = TRUE, RADIO_CHANNEL_DELTA_REBEL = TRUE, RADIO_CHANNEL_ENGINEERING_REBEL = TRUE, RADIO_CHANNEL_MEDICAL_REBEL = TRUE, RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
-
-/obj/item/encryptionkey/mcom/ai/rebel //AI only.
-	channels = list(RADIO_CHANNEL_COMMAND_REBEL = TRUE, RADIO_CHANNEL_CAS_REBEL = TRUE, RADIO_CHANNEL_ALPHA_REBEL = TRUE, RADIO_CHANNEL_BRAVO_REBEL = TRUE, RADIO_CHANNEL_CHARLIE_REBEL = TRUE, RADIO_CHANNEL_DELTA_REBEL = TRUE, RADIO_CHANNEL_ENGINEERING_REBEL = TRUE, RADIO_CHANNEL_MEDICAL_REBEL = TRUE, RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
-
-
-/obj/item/encryptionkey/squadlead/rebel
-	channels = list(RADIO_CHANNEL_COMMAND_REBEL = TRUE,RADIO_CHANNEL_CAS_REBEL = TRUE)
-
-/obj/item/encryptionkey/alpha/rebel
-	channels = list(RADIO_CHANNEL_ALPHA_REBEL = TRUE)
-
-/obj/item/encryptionkey/bravo/rebel
-	channels = list(RADIO_CHANNEL_BRAVO_REBEL = TRUE)
-
-/obj/item/encryptionkey/charlie/rebel
-	channels = list(RADIO_CHANNEL_CHARLIE_REBEL = TRUE)
-
-/obj/item/encryptionkey/delta/rebel
-	channels = list(RADIO_CHANNEL_DELTA_REBEL = TRUE)
-
-/obj/item/encryptionkey/general/rebel
-	channels = list(RADIO_CHANNEL_COMMON_REBEL = TRUE, RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
-
-
 //ERT
 /obj/item/encryptionkey/dutch
 	name = "\improper Colonist encryption key"
