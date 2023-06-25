@@ -947,7 +947,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "HS" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/admin_building)
 "Ia" = (

@@ -1715,7 +1715,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/rustedpreparea)
 "Zv" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
 "ZB" = (

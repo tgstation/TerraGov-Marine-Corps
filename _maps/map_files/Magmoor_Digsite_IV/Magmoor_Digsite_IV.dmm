@@ -8629,7 +8629,7 @@
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "ghh" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/containment)
 "ghi" = (

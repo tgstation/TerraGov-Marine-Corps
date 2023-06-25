@@ -10896,7 +10896,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "bgX" = (
-/obj/machinery/constructable_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -11062,7 +11062,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "bhU" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -12300,7 +12300,7 @@
 	},
 /area/ice_colony/underground/engineering)
 "bnR" = (
-/obj/machinery/constructable_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},

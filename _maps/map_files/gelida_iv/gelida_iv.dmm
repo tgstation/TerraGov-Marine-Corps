@@ -17556,7 +17556,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bridge)
 "lRq" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
@@ -18958,7 +18958,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/admin)
 "mMd" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "mMy" = (

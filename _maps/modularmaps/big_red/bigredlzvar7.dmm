@@ -1720,7 +1720,7 @@
 /area/bigredv2/outside/telecomm)
 "OQ" = (
 /obj/structure/window/reinforced,
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "OX" = (
@@ -1863,7 +1863,7 @@
 /area/bigredv2/outside/marshal_office)
 "Sc" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "Se" = (
@@ -2097,7 +2097,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "Zb" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},

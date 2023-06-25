@@ -11325,7 +11325,7 @@
 /area/bigredv2/outside/hydroponics)
 "mRs" = (
 /obj/effect/turf_decal/warning_stripes,
-/obj/machinery/constructable_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "mRt" = (
@@ -14552,7 +14552,7 @@
 /area/bigredv2/outside/dorms)
 "wDz" = (
 /obj/effect/turf_decal/warning_stripes,
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "wDU" = (

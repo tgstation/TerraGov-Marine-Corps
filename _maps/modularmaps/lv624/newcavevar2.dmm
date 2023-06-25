@@ -56,7 +56,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "gq" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "gv" = (
