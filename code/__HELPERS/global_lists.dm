@@ -124,9 +124,6 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		GLOB.randomized_pill_icons += "pill[i]"
 	shuffle(GLOB.randomized_pill_icons)
 
-	shuffle(GLOB.fruit_icon_states)
-	shuffle(GLOB.reagent_effects)
-
 	for(var/path in subtypesof(/datum/reagent))
 		var/datum/reagent/D = new path()
 		GLOB.chemical_reagents_list[path] = D

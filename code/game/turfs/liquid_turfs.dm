@@ -243,7 +243,7 @@
 	for(var/thing in thing_to_check)
 		if(ismecha(thing))
 			var/obj/vehicle/sealed/mecha/burned_mech = thing
-			burned_mech.take_damage(rand(40, 120), BURN)
+			burned_mech.take_damage(rand(40, 120), BURN, FIRE)
 			. = TRUE
 
 		else if(isobj(thing))

@@ -3492,7 +3492,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
 "xC" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
 "xD" = (
@@ -6763,7 +6763,7 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "UP" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "UQ" = (

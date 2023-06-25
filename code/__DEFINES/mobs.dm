@@ -750,11 +750,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARLIE_SQUAD "charlie_squad"
 #define DELTA_SQUAD "delta_squad"
 
-#define ALPHA_SQUAD_REBEL "alpha_squad_rebel"
-#define BRAVO_SQUAD_REBEL "bravo_squad_rebel"
-#define CHARLIE_SQUAD_REBEL "charlie_squad_rebel"
-#define DELTA_SQUAD_REBEL "delta_squad_rebel"
-
 #define ZULU_SQUAD "zulu_squad"
 #define YANKEE_SQUAD "yankee_squad"
 #define XRAY_SQUAD "xray_squad"

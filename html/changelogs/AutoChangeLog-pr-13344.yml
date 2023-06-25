@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "5 colors, the Squad Colors, to modular armor for Hyperscale"
+  - code_imp: "alphabetize color list"

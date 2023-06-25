@@ -154,9 +154,9 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			take_damage(100)
+			take_damage(100, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(50)
+			take_damage(50, BRUTE, BOMB)
 
 ///Releases whatever is inside the tank
 /obj/structure/xenoautopsy/tank/proc/release_occupant()
@@ -232,6 +232,28 @@
 /obj/structure/stairs/seamless/platform/alt
 	icon_state = "railstairs_seamless_vert"
 
+/obj/structure/stairs/seamless/platform/adobe //west and east
+	icon_state = "adobe_stairs"
+
+/obj/structure/stairs/seamless/platform/adobe/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/stairs/seamless/platform/adobe/update_overlays()
+	. = ..()
+	if(dir == WEST || dir == EAST)
+		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
+		. += new_overlay
+
+/obj/structure/stairs/seamless/platform/adobe/straight
+	icon_state = "adobe_stairs_straight"
+
+/obj/structure/stairs/seamless/platform/adobe_vert //north and west
+	icon_state = "adobe_stairs_vertical"
+
+/obj/structure/stairs/seamless/platform/adobe_vert/straight
+	icon_state = "adobe_stairs_vertical_straight"
 
 /obj/structure/stairs/corner
 	icon_state = "staircorners"

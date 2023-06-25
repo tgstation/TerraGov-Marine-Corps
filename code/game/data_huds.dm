@@ -289,6 +289,9 @@
 			infection_hud.icon_state = ""
 	else
 		infection_hud.icon_state = ""
+	if(species.species_flags & ROBOTIC_LIMBS)
+		simple_status_hud.icon_state = ""
+		infection_hud.icon_state = "hudrobot"
 
 	switch(stat)
 		if(DEAD)
@@ -348,9 +351,14 @@
 				status_hud.icon_state = "hud_con_stagger"
 				return TRUE
 			else
-				simple_status_hud.icon_state = ""
-				status_hud.icon_state = "hudhealthy"
-				return TRUE
+				if(species.species_flags & ROBOTIC_LIMBS)
+					simple_status_hud.icon_state = ""
+					status_hud.icon_state = "hudrobot"
+					return TRUE
+				else
+					simple_status_hud.icon_state = ""
+					status_hud.icon_state = "hudhealthy"
+					return TRUE
 
 #define HEALTH_RATIO_PAIN_HUD 1
 #define PAIN_RATIO_PAIN_HUD 0.25
@@ -541,9 +549,6 @@
 /datum/atom_hud/squad
 	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
-/datum/atom_hud/squad_rebel
-	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-
 /datum/atom_hud/squad_som
 	hud_icons = list(SQUAD_HUD_SOM, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
@@ -553,14 +558,13 @@
 
 /mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
 	var/hud_type
-	if(faction == FACTION_TERRAGOV)
-		hud_type = SQUAD_HUD_TERRAGOV
-	else if(faction == FACTION_TERRAGOV_REBEL)
-		hud_type = SQUAD_HUD_REBEL
-	else if(faction == FACTION_SOM)
-		hud_type = SQUAD_HUD_SOM
-	else
-		return
+	switch(faction)
+		if(FACTION_TERRAGOV)
+			hud_type = SQUAD_HUD_TERRAGOV
+		if(FACTION_SOM)
+			hud_type = SQUAD_HUD_SOM
+		else
+			return
 	var/image/holder = hud_list[hud_type]
 	holder.icon_state = ""
 	holder.overlays.Cut()

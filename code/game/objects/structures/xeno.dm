@@ -35,23 +35,23 @@
 		return I.attack_obj(src, user)
 
 /obj/alien/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, "fire")
+	take_damage(burnlevel * 2, BURN, FIRE)
 
 /obj/alien/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(500)
+			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage((rand(140, 300)))
+			take_damage((rand(140, 300)), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage((rand(50, 100)))
+			take_damage((rand(50, 100)), BRUTE, BOMB)
 
 /obj/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
-		take_damage(rand(2, 20) * 0.1)
+		take_damage(rand(2, 20) * 0.1, BURN, ACID)
 
 /*
 * Resin
@@ -79,6 +79,8 @@
 	layer = RESIN_STRUCTURE_LAYER
 	hit_sound = "alien_resin_move"
 	var/slow_amt = 8
+	/// Does this refund build points when destoryed?
+	var/refundable = TRUE
 
 	ignore_weed_destruction = TRUE
 
@@ -117,7 +119,7 @@
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
-		if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
 			SSresinshaping.quickbuilds++
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, "alien_resin_break", 25) //SFX
@@ -134,6 +136,7 @@
 	slow_amt = 4
 
 	ignore_weed_destruction = FALSE
+	refundable = FALSE
 
 //Resin Doors
 /obj/structure/mineral_door/resin
@@ -201,7 +204,7 @@
 		qdel(src)
 
 /obj/structure/mineral_door/resin/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, "fire")
+	take_damage(burnlevel * 2, BURN, FIRE)
 
 /obj/structure/mineral_door/resin/ex_act(severity)
 	switch(severity)
@@ -210,10 +213,10 @@
 		if(EXPLODE_HEAVY)
 			qdel()
 		if(EXPLODE_LIGHT)
-			take_damage((rand(50, 60)))
+			take_damage((rand(50, 60)), BRUTE, BOMB)
 
 /turf/closed/wall/resin/fire_act()
-	take_damage(50, BURN, "fire")
+	take_damage(50, BURN, FIRE)
 
 /obj/structure/mineral_door/resin/try_toggle_state(atom/user)
 	if(isxeno(user))
