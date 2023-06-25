@@ -15791,6 +15791,10 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hangar/storage)
+"iZJ" = (
+/obj/machinery/robotic_cradle,
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay)
 "iZY" = (
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -55283,7 +55287,7 @@ akM
 oxz
 afc
 eqh
-ade
+iZJ
 pKP
 ade
 gXI
