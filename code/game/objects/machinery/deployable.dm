@@ -8,7 +8,7 @@
 	///Item that is deployed to create src.
 	var/obj/item/internal_item
 
-/obj/machinery/deployable/Initialize(mapload, _internal_item, deployer)
+/obj/machinery/deployable/Initialize(mapload, _internal_item, mob/deployer)
 	. = ..()
 	internal_item = _internal_item
 

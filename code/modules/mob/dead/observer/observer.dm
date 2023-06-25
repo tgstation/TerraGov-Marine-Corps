@@ -861,6 +861,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
 		can_reenter_corpse = null
 		to_chat(usr, span_notice("You can no longer be revived."))
+
+		if(istype(mind.current))
+			var/mob/living/carbon/human/human_current = mind.current
+			human_current.set_undefibbable()
 		mind.current.med_hud_set_status()
 		return
 	to_chat(usr, span_warning("You already can't be revived."))
