@@ -321,7 +321,7 @@
 /turf/open/floor/wood/broken_states()
 	if(!damaged_states)
 		return icon_state
-	return "[icon_state]_[rand(1, damaged_states)]"
+	return "[icon_state]_damaged_[rand(1, damaged_states)]"
 
 /turf/open/floor/wood/burnt_states()
 	if(!damaged_states)
