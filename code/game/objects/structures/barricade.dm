@@ -398,6 +398,9 @@
 			balloon_alert(user, "You need more wood")
 			return
 
+		if(LAZYACCESS(user.do_actions, src))
+			return
+
 		balloon_alert_to_viewers("Repairing...")
 
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
@@ -408,6 +411,7 @@
 
 		repair_damage(max_integrity)
 		balloon_alert_to_viewers("Repaired")
+		update_icon()
 
 
 /*----------------------*/
@@ -480,25 +484,28 @@
 			balloon_alert(user, "You need at least 2 metal")
 			return FALSE
 
-		balloon_alert_to_viewers("repairing base...")
+		if(LAZYACCESS(user.do_actions, src))
+			return
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
+		balloon_alert_to_viewers("Repairing base...")
+
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 			return FALSE
 
 		if(!metal_sheets.use(2))
 			return FALSE
 
 		repair_damage(max_integrity * 0.3)
-		balloon_alert_to_viewers("base repaired")
-
+		balloon_alert_to_viewers("Base repaired")
+		update_icon()
 
 
 /obj/structure/barricade/metal/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
 	if(barricade_upgrade_type)
-		balloon_alert(user, "already upgraded")
+		balloon_alert(user, "Already upgraded")
 		return FALSE
 	if(obj_integrity < max_integrity)
-		balloon_alert(user, "it needs to be at full health")
+		balloon_alert(user, "It needs to be at full health")
 		return FALSE
 
 	if(metal_sheets.get_amount() < CADE_UPGRADE_REQUIRED_SHEETS)
@@ -924,16 +931,20 @@
 			balloon_alert(user, "You need at least 2 plasteel")
 			return
 
-		balloon_alert_to_viewers("repairing base...")
+		if(LAZYACCESS(user.do_actions, src))
+			return
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
+		balloon_alert_to_viewers("Repairing base...")
+
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
 
 		if(!plasteel_sheets.use(2))
 			return
 
 		repair_damage(max_integrity * 0.3)
-		balloon_alert_to_viewers("base repaired")
+		balloon_alert_to_viewers("Base repaired")
+		update_icon()
 
 /obj/structure/barricade/plasteel/attack_hand(mob/living/user)
 	. = ..()
@@ -1040,13 +1051,16 @@
 
 	if(istype(I, /obj/item/stack/sandbags))
 		if(obj_integrity == max_integrity)
-			balloon_alert(user, "already repaired")
+			balloon_alert(user, "Already repaired")
 			return
 		var/obj/item/stack/sandbags/D = I
 		if(D.get_amount() < 1)
-			balloon_alert(user, "not enough sandbags")
+			balloon_alert(user, "Not enough sandbags")
 			return
-		balloon_alert_to_viewers("replacing sandbags...")
+		balloon_alert_to_viewers("Replacing sandbags...")
+
+		if(LAZYACCESS(user.do_actions, src))
+			return
 
 		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
 			return
@@ -1055,7 +1069,7 @@
 			return
 
 		repair_damage(max_integrity * 0.2) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
-		balloon_alert_to_viewers("repaired")
+		balloon_alert_to_viewers("Repaired")
 		update_icon()
 
 /obj/structure/barricade/metal/deployable
