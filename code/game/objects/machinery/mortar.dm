@@ -276,7 +276,7 @@
 	impact_cam.forceMove(get_turf(target))
 	current_shots++
 	addtimer(CALLBACK(src, PROC_REF(falling), target, shell), fall_time)
-	addtimer(CALLBACK(src, PROC_REF(return_cam)), fall_time + 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(return_cam)), fall_time + 5 SECONDS)
 	addtimer(VARSET_CALLBACK(src, firing, FALSE), cool_off_time)
 
 ///Proc called by tactical binoculars to send targeting information.
