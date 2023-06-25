@@ -361,7 +361,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "Wq" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "Xc" = (

@@ -1766,7 +1766,7 @@
 	},
 /area/ice_colony/surface/hydroponics/north)
 "ami" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "amj" = (
@@ -2014,10 +2014,10 @@
 /area/ice_colony/surface/hydroponics/north)
 "anA" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OMinus,
+/obj/effect/spawner/random/medical/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
@@ -2132,7 +2132,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/clinic/treatment)
 "aoe" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
@@ -2268,7 +2268,7 @@
 	},
 /area/ice_colony/surface/substation)
 "aoE" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
@@ -3030,7 +3030,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command)
 "asg" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
@@ -4464,7 +4464,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azw" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -5084,7 +5084,7 @@
 	},
 /area/ice_colony/surface/clinic/treatment)
 "aCC" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
@@ -5258,7 +5258,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
@@ -7491,7 +7491,7 @@
 /area/ice_colony/surface/storage_unit/research)
 "aPw" = (
 /obj/structure/extinguisher_cabinet{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
@@ -10820,7 +10820,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/requesition)
 "bgD" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -10937,7 +10937,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "bhh" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -12342,6 +12342,9 @@
 /obj/item/book/manual/marine_law,
 /obj/item/storage/donut_box,
 /obj/machinery/firealarm,
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -12976,7 +12979,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bqV" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /obj/effect/spawner/random/misc/structure/closet/tool,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/underground/engineering)
@@ -14514,11 +14517,11 @@
 /turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/lobby)
 "bxL" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/lobby)
 "bxM" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -14872,7 +14875,7 @@
 "bzl" = (
 /obj/structure/table/woodentable,
 /obj/item/evidencebag,
-/obj/item/clothing/mask/cigarette/cigar,
+/obj/effect/spawner/random/misc/cigar,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
 "bzm" = (
@@ -15109,10 +15112,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
-"bAm" = (
-/obj/structure/closet/secure_closet/warden,
-/turf/open/floor/wood,
-/area/ice_colony/underground/security/marshal)
 "bAn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/maint/free_access{
@@ -15164,13 +15163,13 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/storage)
 "bAy" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
 /area/ice_colony/underground/command/center)
 "bAz" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -15797,7 +15796,7 @@
 	},
 /area/ice_colony/underground/crew/canteen)
 "bCV" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
@@ -16041,7 +16040,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/interrogation)
 "bDP" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -16107,7 +16106,7 @@
 	},
 /area/ice_colony/underground/crew/canteen)
 "bEb" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -16317,7 +16316,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/or)
 "bEU" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
 "bEV" = (
@@ -16342,7 +16341,7 @@
 	},
 /area/ice_colony/underground/security)
 "bEZ" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -16390,7 +16389,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFn" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
 "bFo" = (
@@ -17125,7 +17124,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bHY" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -17335,7 +17334,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage)
 "bII" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -18854,7 +18853,7 @@
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/leisure)
 "bOx" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/reception)
 "bOA" = (
@@ -19830,7 +19829,7 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "bSI" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/blood/OMinus,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bSJ" = (
@@ -20859,13 +20858,13 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "bXU" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/excavationbarracks)
 "bXV" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -20886,7 +20885,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYm" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -21394,7 +21393,7 @@
 	},
 /area/ice_colony/underground/security/brig)
 "caj" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -26370,7 +26369,7 @@
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/space)
 "ljG" = (
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command)
 "llG" = (
@@ -27341,7 +27340,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
-/obj/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
@@ -32907,9 +32906,6 @@
 	},
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen/blue,
-/obj/structure/noticeboard{
-	pixel_y = 32
-	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
 "wka" = (
@@ -57039,7 +57035,7 @@ byk
 byZ
 bzy
 bzy
-bAm
+bzy
 byk
 nVU
 bBN

@@ -105,7 +105,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "ca" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
@@ -437,7 +437,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "fg" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "fs" = (
@@ -955,7 +955,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "wN" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -1136,7 +1136,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "FN" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -1306,7 +1306,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "Lp" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirt/desert,
 /area/deathmatch)
@@ -1385,7 +1385,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "NF" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/wood,
 /area/deathmatch)
 "NG" = (
@@ -1635,7 +1635,7 @@
 /turf/open/floor/plating/ground/dirt/desert,
 /area/deathmatch)
 "Xn" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)

@@ -92342,7 +92342,7 @@
 /area/deltastation/asteroidcaves/derelictwest)
 "sKq" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/cargo/miningoffice)

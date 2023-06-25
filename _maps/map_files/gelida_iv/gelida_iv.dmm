@@ -1411,7 +1411,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_street)
 "aXD" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "aXK" = (
@@ -14001,7 +14001,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "jvz" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "jvM" = (
@@ -16922,7 +16922,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_street)
 "lvH" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/item/tool/weldpack{
 	pixel_y = 17
 	},
@@ -21227,7 +21227,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "oox" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/rock)
 "ooA" = (
@@ -21341,7 +21341,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "otG" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 8
 	},
@@ -22671,7 +22671,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "phP" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -27358,7 +27358,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/bridge)
 "soL" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -32067,7 +32067,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "vEz" = (

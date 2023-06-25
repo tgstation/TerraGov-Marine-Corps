@@ -474,7 +474,7 @@
 /turf/closed/mineral/smooth/darkfrostwall,
 /area/icy_caves/caves)
 "cq" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "cr" = (
@@ -1329,7 +1329,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/icy_caves/outpost/office)
 "hR" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "hS" = (
@@ -1705,7 +1705,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "jN" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "jP" = (
@@ -1742,7 +1742,7 @@
 	},
 /area/icy_caves/outpost/research)
 "jW" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "jX" = (
@@ -2905,7 +2905,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "qh" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "qi" = (
@@ -4894,7 +4894,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "zA" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/refinery)
 "zB" = (
@@ -6718,7 +6718,7 @@
 	},
 /area/icy_caves/caves/alienstuff)
 "Iv" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Iw" = (

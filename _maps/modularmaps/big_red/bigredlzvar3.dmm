@@ -1502,7 +1502,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "LD" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},

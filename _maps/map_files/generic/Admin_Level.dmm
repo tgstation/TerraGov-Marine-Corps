@@ -13098,14 +13098,14 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1;
-	locked = 1
+	dir = 1
 	},
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1;
 	id = "securestoragelockdown";
 	name = "Heavy Blast Shutters"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
 "rHu" = (
@@ -13499,9 +13499,8 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	locked = 1
-	},
+/obj/machinery/door/airlock/mainship/maint/free_access,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/centcom/valhalla/starboard)
 "slg" = (

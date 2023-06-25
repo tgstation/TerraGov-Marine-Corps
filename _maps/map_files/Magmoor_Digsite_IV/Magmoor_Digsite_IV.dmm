@@ -8027,7 +8027,7 @@
 	},
 /area/magmoor/cargo/storage/secure/south)
 "fJA" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
@@ -10416,7 +10416,7 @@
 /area/magmoor/civilian/arrival/east)
 "hGq" = (
 /obj/effect/turf_decal/warning_stripes/box,
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "hGD" = (
@@ -26252,7 +26252,7 @@
 	},
 /area/magmoor/compound/north)
 "try" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "tsh" = (
@@ -27199,7 +27199,7 @@
 /area/magmoor/civilian/pool)
 "ubN" = (
 /obj/effect/turf_decal/warning_stripes/box,
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/storage)
 "uca" = (

@@ -214,9 +214,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1;
 	name = "\improper Dormitories"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "iZ" = (
@@ -538,9 +538,9 @@
 "wo" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	dir = 1;
-	locked = 1;
 	name = "\improper Dormitories Tool Storage Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "wD" = (
@@ -628,11 +628,11 @@
 "Av" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	locked = 1;
 	name = "\improper Dormitories EVA"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "AR" = (
@@ -801,10 +801,10 @@
 /area/bigredv2/caves/northeast)
 "GV" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
-	locked = 1;
 	name = "\improper Dormitories EVA Maintenance"
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "Iz" = (
@@ -836,9 +836,9 @@
 "JR" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	locked = 1;
 	name = "\improper Dormitories Bedroom"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "JY" = (

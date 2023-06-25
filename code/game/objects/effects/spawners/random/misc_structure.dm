@@ -194,6 +194,13 @@
 		/obj/structure/filingcabinet,
 	)
 
+/obj/effect/spawner/random/misc/structure/filingcabinet/highspawn
+	spawn_loot_chance = 85
+	loot = list(
+		/obj/structure/filingcabinet = 15,
+		/obj/item/stack/sheet/metal = 1,
+	)
+
 /obj/effect/spawner/random/misc/structure/filingcabinet/chestdrawer
 	icon_state = "random_chestdrawers"
 	loot = list(
@@ -206,13 +213,21 @@
 	icon_state = "random_girder"
 	spawn_loot_chance = 65
 	loot = list(
-		/obj/structure/girder = 3,
 		/obj/structure/girder/displaced = 7,
+		/obj/structure/girder = 3,
 		/obj/structure/girder/reinforced = 1,
 	)
 
 /obj/effect/spawner/random/misc/structure/girder/highspawn
 	spawn_loot_chance = 95
+
+/obj/effect/spawner/random/misc/structure/girder/regularweighted
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/girder = 70,
+		/obj/structure/girder/displaced = 15,
+		/obj/structure/girder/reinforced = 5,
+	)
 
 /obj/effect/spawner/random/misc/structure/table_parts
 	name = "table parts spawner"
@@ -570,7 +585,7 @@
 
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted
 	loot = list(
-		/obj/structure/largecrate = 40,
+		/obj/structure/largecrate/random = 40,
 		/obj/effect/spawner/random/misc/structure/supplycrate = 5,
 	)
 

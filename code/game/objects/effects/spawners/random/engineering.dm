@@ -384,3 +384,12 @@
 		/obj/item/tool/extinguisher/mini = 10,
 		/obj/item/tool/extinguisher = 2,
 	)
+
+/obj/effect/spawner/random/engineering/ore_box
+	name = "ore box spawner"
+	icon_state = "random_orebox"
+	spawn_loot_chance = 40
+	loot = list(
+		/obj/structure/ore_box = 10,
+		/obj/effect/spawner/random/engineering/mineral = 1,
+	)

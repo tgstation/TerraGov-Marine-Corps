@@ -441,7 +441,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
 "lk" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "lm" = (
@@ -711,14 +711,14 @@
 /turf/open/floor/stairs,
 /area/deathmatch)
 "ri" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
 /area/deathmatch)
 "rl" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "ro" = (
@@ -1262,7 +1262,7 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Dp" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
@@ -1672,7 +1672,7 @@
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "MW" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -2168,7 +2168,7 @@
 	},
 /area/deathmatch)
 "Yc" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Ye" = (

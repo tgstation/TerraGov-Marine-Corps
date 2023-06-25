@@ -3088,7 +3088,7 @@
 /turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "aCu" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/structure/barricade/metal{
 	dir = 4
 	},
@@ -3177,7 +3177,7 @@
 /turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "aDl" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "aDm" = (

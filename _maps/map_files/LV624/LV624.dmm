@@ -95,7 +95,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/crashed_ship)
 "afx" = (
-/obj/item/explosive/grenade/m15,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/crashed_ship)
 "afG" = (
@@ -135,7 +135,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/sand6)
 "agJ" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/rock)
 "agK" = (
@@ -150,17 +150,17 @@
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/central1/radiounderground)
 "ahj" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1/radiounderground)
 "ahs" = (
 /obj/item/shard,
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1/radiounderground)
 "ahB" = (
 /obj/item/tool/crowbar,
-/obj/item/explosive/grenade/m15,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
 /turf/open/floor/vault,
 /area/lv624/lazarus/crashed_ship)
 "ahG" = (
@@ -302,7 +302,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/filtration)
 "alA" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor,
 /area/lv624/ground/caves/central1/radiounderground)
 "alB" = (
@@ -357,7 +357,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand5)
 "amN" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
 "amT" = (
@@ -392,19 +392,19 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/ground/caves/central1/radiounderground)
 "anI" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/platebot,
 /area/lv624/ground/sand5)
 "aoc" = (
 /turf/open/floor/plating/platebot,
 /area/lv624/ground/sand5)
 "aod" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /obj/item/stack/sheet/wood,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "aof" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "aog" = (
@@ -419,7 +419,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river1)
 "aoE" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "aoJ" = (
@@ -503,7 +503,7 @@
 	},
 /area/lv624/ground/caves/central1/radiounderground)
 "aqU" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "aqW" = (
@@ -545,7 +545,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "asn" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "asw" = (
@@ -733,7 +733,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
 "awu" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand6)
 "aww" = (
@@ -957,7 +957,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "aAu" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
 "aAy" = (
@@ -997,7 +997,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central5/radiounderground)
 "aBd" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central5/radiounderground)
 "aBh" = (
@@ -1142,7 +1142,7 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "aFk" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "aFm" = (
@@ -1249,7 +1249,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "aIQ" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "aIW" = (
@@ -1284,7 +1284,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "aJD" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "aJG" = (
@@ -1587,7 +1587,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "aRw" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "aRC" = (
@@ -2051,7 +2051,7 @@
 /area/lv624/ground/jungle1)
 "bdj" = (
 /obj/effect/decal/remains/human,
-/obj/item/explosive/grenade/m15,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
 /turf/open/floor/plating,
 /area/lv624/lazarus/crashed_ship)
 "bdk" = (
@@ -2479,7 +2479,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
 "bpQ" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "bpY" = (
@@ -2573,7 +2573,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river1)
 "brf" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -2675,7 +2675,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "bwz" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "bwI" = (
@@ -3650,7 +3650,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "cHw" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
@@ -4060,7 +4060,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle6)
 "dia" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "dih" = (
@@ -4509,7 +4509,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/spaceport2)
 "dLj" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
@@ -4888,7 +4888,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "ejj" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "ejy" = (
@@ -5627,7 +5627,7 @@
 	},
 /area/lv624/lazarus/spaceport2)
 "flS" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "flZ" = (
@@ -6026,7 +6026,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle10)
 "fRf" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand7)
 "fRO" = (
@@ -6158,7 +6158,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "fZO" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "gab" = (
@@ -6527,7 +6527,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/corporate_affairs)
 "guJ" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand1)
 "guT" = (
@@ -6768,7 +6768,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "gOJ" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river1)
 "gPa" = (
@@ -6858,7 +6858,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "gTo" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/river2)
 "gTu" = (
@@ -6883,7 +6883,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/rock)
 "gVY" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river1)
 "gWm" = (
@@ -7177,7 +7177,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "hny" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "hnK" = (
@@ -7527,7 +7527,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
 "hOU" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
@@ -8504,7 +8504,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle7)
 "jfQ" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "jgn" = (
@@ -9581,7 +9581,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "kuX" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -9658,7 +9658,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/n)
 "kBO" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "kCI" = (
@@ -10342,7 +10342,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "lzI" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "lzW" = (
@@ -11030,7 +11030,7 @@
 	},
 /area/lv624/lazarus/spaceport2)
 "moV" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating,
 /area/lv624/lazarus/crashed_ship)
 "mpL" = (
@@ -12616,7 +12616,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand6)
 "oyI" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
 "oyU" = (
@@ -12707,9 +12707,9 @@
 /area/lv624/ground/jungle7)
 "oEJ" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
-	locked = 1;
 	name = "\improper Nexus Dome Armory"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/lv624/lazarus/armory)
 "oFV" = (
@@ -12821,7 +12821,7 @@
 /area/lv624/lazarus/canteen)
 "oLb" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "oLn" = (
@@ -14551,7 +14551,7 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "rcT" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/overgrown)
 "rdh" = (
@@ -14902,7 +14902,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "rzg" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/crashed_ship)
 "rzC" = (
@@ -15149,7 +15149,7 @@
 /area/lv624/lazarus/spaceport)
 "rMB" = (
 /obj/structure/flora/jungle/vines,
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "rMM" = (
@@ -15611,7 +15611,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "sqU" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6/radiounderground)
 "srR" = (
@@ -16575,7 +16575,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "tEY" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "tFj" = (
@@ -17484,7 +17484,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/radiounderground)
 "uQN" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/ground/grass,
 /area/lv624/lazarus/overgrown)
 "uRx" = (
@@ -19507,7 +19507,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "xkb" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/liquid/water/river/deep,
 /area/lv624/ground/river1)
 "xkr" = (
