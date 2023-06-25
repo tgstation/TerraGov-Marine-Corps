@@ -47,7 +47,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "jJ" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river,
 /area/lv624/ground/caves/central2)
 "km" = (

@@ -113,10 +113,6 @@
 	shuttle_id = SHUTTLE_NORMANDY
 	name = "Normandy"
 
-/datum/map_template/shuttle/dropship_three
-	shuttle_id = SHUTTLE_TRIUMPH
-	name = "Triumph"
-
 /datum/map_template/shuttle/cas
 	shuttle_id = SHUTTLE_CAS
 	name = "Condor Jet"

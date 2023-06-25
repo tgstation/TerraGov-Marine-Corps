@@ -73,14 +73,13 @@
 	if(!z)
 		return
 	var/marker_flags
-	if(iff_signal == TGMC_LOYALIST_IFF)
-		marker_flags = MINIMAP_FLAG_MARINE
-	else if(iff_signal == TGMC_REBEL_IFF)
-		marker_flags = MINIMAP_FLAG_MARINE_REBEL
-	else if(iff_signal == SOM_IFF)
-		marker_flags = MINIMAP_FLAG_MARINE_SOM
-	else
-		marker_flags = MINIMAP_FLAG_MARINE
+	switch(iff_signal)
+		if(TGMC_LOYALIST_IFF)
+			marker_flags = MINIMAP_FLAG_MARINE
+		if(SOM_IFF)
+			marker_flags = MINIMAP_FLAG_MARINE_SOM
+		else
+			marker_flags = MINIMAP_FLAG_MARINE
 	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "sentry[firing ? "_firing" : "_passive"]"))
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()

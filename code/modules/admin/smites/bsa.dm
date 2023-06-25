@@ -15,7 +15,7 @@
 	var/turf/open/floor/target_turf = get_turf(target)
 	if (istype(target_turf))
 		if (prob(BSA_CHANCE_TO_BREAK_TILE_TO_PLATING))
-			target_turf.break_tile_to_plating()
+			target_turf.make_plating()
 		else
 			target_turf.break_tile()
 
