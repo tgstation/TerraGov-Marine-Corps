@@ -110,7 +110,7 @@
 		CRASH("[src] called embedded_on_carrier_move for [carrier] with mismatching embedded_object: [.]")
 
 
-/obj/item/proc/embedded_on_limb_destruction(/datum/limb/source)
+/obj/item/proc/embedded_on_limb_destruction(datum/limb/source)
 	SIGNAL_HANDLER
 	unembed_ourself()
 

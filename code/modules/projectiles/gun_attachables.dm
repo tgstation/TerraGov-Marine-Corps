@@ -1710,8 +1710,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	return TRUE
 
 ///Called when an attachment is attached to this gun (src).
-/obj/item/weapon/gun/proc/on_attachment_attach(/obj/item/attaching_here, mob/attacher)
+/obj/item/weapon/gun/proc/on_attachment_attach(obj/item/attaching_here, mob/attacher)
 	return
 ///Called when an attachment is detached from this gun (src).
-/obj/item/weapon/gun/proc/on_attachment_detach(/obj/item/detaching_here, mob/attacher)
+/obj/item/weapon/gun/proc/on_attachment_detach(obj/item/detaching_here, mob/attacher)
 	return
