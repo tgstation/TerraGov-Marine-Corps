@@ -114,6 +114,9 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
+/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground
+	ceiling = CEILING_UNDERGROUND
+
 /area/bigredv2/outside/cargo
 	name = "Cargo"
 	icon_state = "storage"

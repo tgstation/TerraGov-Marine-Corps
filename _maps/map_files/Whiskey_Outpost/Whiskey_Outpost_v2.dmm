@@ -4924,7 +4924,7 @@
 /turf/open/shuttle/dropship/eight,
 /area/whiskey_outpost/outside/east)
 "zM" = (
-/obj/machinery/deployable/floodlight,
+/obj/item/deployable_floodlight,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "zP" = (
