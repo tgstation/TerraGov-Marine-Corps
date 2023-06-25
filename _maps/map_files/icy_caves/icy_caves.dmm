@@ -2674,9 +2674,8 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
 "pe" = (
-/obj/machinery/door/airlock/vault{
-	locked = 1
-	},
+/obj/machinery/door/airlock/vault,
+/obj/effect/mapping_helpers/airlock/locked,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4

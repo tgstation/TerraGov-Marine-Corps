@@ -15531,9 +15531,9 @@
 "sjX" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	dir = 1;
-	locked = 1;
 	name = "Corporate Dome"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "skz" = (
@@ -15543,9 +15543,9 @@
 /area/lv624/ground/sand8)
 "skV" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
-	locked = 1;
 	name = "Corporate Dome"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "slb" = (

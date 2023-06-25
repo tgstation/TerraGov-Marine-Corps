@@ -339,8 +339,8 @@
 "jr" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 1;
-	locked = 1
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/mainship/floor,
 /area/bigredv2/caves/southeast)
 "jx" = (
@@ -857,8 +857,8 @@
 "zy" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2;
-	locked = 1
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rock)
 "zC" = (
@@ -1408,9 +1408,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/southeast)
 "OZ" = (
-/obj/machinery/door/airlock/mainship/command/cic{
-	locked = 1
-	},
+/obj/machinery/door/airlock/mainship/command/cic,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "Pt" = (

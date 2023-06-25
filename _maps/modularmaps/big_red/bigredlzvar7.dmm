@@ -624,9 +624,9 @@
 "nj" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 1;
-	locked = 1;
 	name = "\improper Marshal Office Prison"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "no" = (
@@ -1108,9 +1108,9 @@
 "AQ" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	locked = 1;
 	name = "\improper Marshal Office Prison"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "AS" = (
@@ -1755,9 +1755,9 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	locked = 1;
 	name = "\improper Marshal Office Prison"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "PK" = (

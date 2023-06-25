@@ -796,9 +796,9 @@
 /area/bigredv2/outside/general_offices)
 "Oj" = (
 /obj/machinery/door/airlock/mainship/generic{
-	locked = 1;
 	name = "\improper Dormitories Bedroom"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},

@@ -1089,9 +1089,9 @@
 "FR" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	locked = 1;
 	name = "\improper Private Office"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
@@ -1377,9 +1377,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "PX" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	locked = 1
-	},
+/obj/machinery/door/airlock/mainship/engineering/free_access,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)

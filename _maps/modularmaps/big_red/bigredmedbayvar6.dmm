@@ -2,9 +2,9 @@
 "ab" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	locked = 1;
 	name = "\improper Medical Clinic"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},

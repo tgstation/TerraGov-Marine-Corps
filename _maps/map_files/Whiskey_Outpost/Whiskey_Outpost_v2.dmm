@@ -121,9 +121,9 @@
 "ax" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 2;
-	locked = 1;
 	name = "Court Of The Moth King"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "aB" = (
