@@ -12,8 +12,14 @@
 	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16
 	old_x = -16
-	/// reference to our pod so we can access vars
+	/// reference to our pod
 	var/obj/structure/xeno/baneling_pod/pod_ref
+
+/// We do this to avoid a runtime with images assoc because baneling goes inside of their pod if they have one and there is no atom.z value inside of the pod
+/mob/living/carbon/xenomorph/baneling/on_death()
+	if(!isnull(pod_ref))
+		return
+	return ..()
 
 /mob/living/carbon/xenomorph/baneling/set_stat()
 	. = ..()
@@ -45,10 +51,13 @@
 /obj/structure/xeno/baneling_pod/obj_destruction()
 	if(isnull(baneling_ref))
 		return ..()
+	// If the baneling is in crit or dead , then the pod gets destroyed and baneling never respawns
 	if(baneling_ref.health <= -99)
 		return ..()
+	// pod is invincible if baneling is alive
 	obj_integrity = 1
 
+/// Teleports baneling inside of itself, checks for charge and then respawns baneling
 /obj/structure/xeno/baneling_pod/proc/handle_baneling_death(mob/M)
 	if(isnull(M))
 		return
@@ -57,15 +66,17 @@
 	if(stored_charge >= 1)
 		stored_charge--
 		addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time)
-		addtimer(CALLBACK(src, PROC_REF(handle_charge)), charge_refresh_time)
+		addtimer(CALLBACK(src, PROC_REF(increase_charge)), charge_refresh_time)
 		return
 	addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time)
 
-/obj/structure/xeno/baneling_pod/proc/handle_charge()
+/// Increase our current charge
+/obj/structure/xeno/baneling_pod/proc/increase_charge()
 	if(stored_charge >= stored_charge_max)
 		return
 	stored_charge++
 
+/// Rejuvinates and respawns the baneling
 /obj/structure/xeno/baneling_pod/proc/spawn_baneling(turf/spawn_location = loc)
 	stored_baneling.heal_overall_damage(stored_baneling.maxHealth, stored_baneling.maxHealth, updating_health = TRUE)
 	stored_baneling.forceMove(spawn_location)

@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(reagent_images_list,  list(
 /datum/action/xeno_action/baneling_explode/give_action(mob/living/L)
 	. = ..()
 	var/mob/living/carbon/xenomorph/baneling/X = L
-	RegisterSignal(X, COMSIG_MOB_DEATH, .proc/death_trigger)
+	RegisterSignal(X, COMSIG_MOB_DEATH, PROC_REF(death_trigger))
 
 /datum/action/xeno_action/baneling_explode/proc/death_trigger()
 	var/mob/living/carbon/xenomorph/baneling/X = owner
