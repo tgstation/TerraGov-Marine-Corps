@@ -46,7 +46,7 @@
 	current_turf.flags_atom &= ~ AI_BLOCKED
 
 	if(glass)
-		allow_pass_flags |= PASSGLASS
+		allow_pass_flags |= PASS_GLASS
 
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)
