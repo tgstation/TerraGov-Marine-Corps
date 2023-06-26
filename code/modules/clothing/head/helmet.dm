@@ -154,6 +154,12 @@
 		/obj/item/clothing/glasses/night/optgoggles/prescription = "optgoggles",
 		/obj/item/clothing/glasses/meson/enggoggles = "enggoggles",
 		/obj/item/clothing/glasses/meson/enggoggles/prescription = "enggoggles",
+		/obj/item/clothing/glasses/regular = "persc-glasses",
+		/obj/item/clothing/glasses/sunglasses = "sunglasses",
+		/obj/item/clothing/glasses/sunglasses/fake = "sunglasses",
+		/obj/item/clothing/glasses/sunglasses/aviator = "aviator",
+		/obj/item/clothing/glasses/sunglasses/sechud = "sechud",
+		/obj/item/clothing/glasses/sunglasses/big = "bigsunglasses",
 		/obj/item/clothing/head/hairflower = "flower_pin",
 	)
 
