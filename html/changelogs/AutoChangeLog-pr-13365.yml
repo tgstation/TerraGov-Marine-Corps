@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "Hivemind and silicon chat now have automatic capitalization and end of dot punctuation"
