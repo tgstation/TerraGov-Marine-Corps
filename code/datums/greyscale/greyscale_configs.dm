@@ -193,6 +193,9 @@
 	icon_file = 'icons/mob/modular/style_mob.dmi'
 	json_config = 'code/datums/greyscale/json_configs/duster.json'
 
+/datum/greyscale_config/duster/leather_jacket
+	json_config = 'code/datums/greyscale/json_configs/leather_jacket.json'
+
 /*
  * COLORABLE BADGES
  */

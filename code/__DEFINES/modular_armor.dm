@@ -3,11 +3,18 @@
 
 #define COLOR_WHEEL "Color Wheel"
 #define PRESET_COLORS "Preset Colors"
+#define VARIANTS "Variant"
 
-#define COLOR_WHEEL_ALLOWED 1
-#define COLOR_WHEEL_NOT_ALLOWED 2
-#define COLOR_WHEEL_ONLY 3
-#define NOT_COLORABLE 4
+#define COLOR_WHEEL_ALLOWED (1<<0)
+#define PRESET_COLORS_ALLOWED (1<<1)
+#define ICON_STATE_VARIANTS_ALLOWED (1<<2)
+
+
+#define JUNGLE_VARIANT "jungle"
+#define SNOW_VARIANT "snow"
+#define PRISON_VARIANT "prison"
+#define DESERT_VARIANT "desert"
+
 
 //Default
 #define ARMOR_PALETTE_DRAB "#241d16#363021#444732#665f44#80706a"

@@ -55,12 +55,17 @@
 	name = "\improper leather jacket"
 	desc = "A fashionable jacket. Get them with style."
 	icon_state = "leather_jacket"
-	item_state = "leather_jacket"
+	item_state = "leather_jacket_worn"
+	item_icons = list()
 	icon_state_variants = list(
 		"normal",
 		"webbing",
 	)
 	current_variant = "normal"
+	greyscale_colors = ARMOR_PALETTE_BLACK
+	greyscale_config = /datum/greyscale_config/duster/leather_jacket
+	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/clothing/suit/modular/style/duster
 	name = "\improper duster"
@@ -70,7 +75,7 @@
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/duster
 	colorable_colors = ARMOR_PALETTES_LIST
-	colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
+	colorable_allowed = PRESET_COLORS_ALLOWED
 
 // ***************************************
 //  Modular hats
@@ -85,7 +90,7 @@
 	)
 
 	greyscale_config = /datum/greyscale_config/style_hat
-	colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
+	colorable_allowed = PRESET_COLORS_ALLOWED
 
 	visorless_offset_y = 0
 

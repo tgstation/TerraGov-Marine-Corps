@@ -108,7 +108,7 @@
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Gungnir class of helmet."
 	icon_state = "gugnir"
 	greyscale_config = /datum/greyscale_config/visors/greyscale
-	colorable_allowed = COLOR_WHEEL_ONLY
+	colorable_allowed = COLOR_WHEEL_ALLOWED
 	greyscale_colors = LIGHT_COLOR_GREEN
 
 //Robots

@@ -82,7 +82,7 @@
 	var/list/adjustment_variants = list(
 		"Down" = "_d",
 	)
-	var/current_variant
+	var/adjustment_variant
 
 /obj/item/clothing/under/Initialize(mapload)
 	. = ..()
@@ -93,9 +93,15 @@
 		var/mob/M = src.loc
 		M.update_inv_w_uniform()
 
+/obj/item/clothing/under/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_w_uniform_str = icon)
+
 /obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
 	. = ..()
-	. += current_variant
+	. += adjustment_variant
 
 /obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
 	if(!ishuman(user))
@@ -219,7 +225,7 @@
 		to_chat(usr, span_warning("You cannot roll down the uniform!"))
 		return
 	var/variant = null
-	if(!current_variant || length(adjustment_variants) > 1)
+	if(!adjustment_variant || length(adjustment_variants) > 1)
 		if(length(adjustment_variants) == 1)
 			variant = adjustment_variants[1]
 		else
@@ -227,8 +233,8 @@
 			selection_list += adjustment_variants
 			variant = tgui_input_list(usr, "Select Variant", "Variants", selection_list)
 	if(variant)
-		current_variant = adjustment_variants[variant]
+		adjustment_variant = adjustment_variants[variant]
 	else
-		current_variant = null
+		adjustment_variant = null
 	update_icon()
 	update_clothing_icon()

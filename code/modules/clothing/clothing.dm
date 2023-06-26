@@ -94,6 +94,10 @@
 		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
 
+/obj/item/clothing/color_item(obj/item/facepaint/paint, mob/user)
+	.=..()
+	update_clothing_icon()
+
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
@@ -110,6 +114,12 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_ears()
+
+/obj/item/clothing/ears/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_ear_str = icon)
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
@@ -177,6 +187,12 @@
 		var/mob/M = loc
 		M.update_inv_wear_suit()
 
+/obj/item/clothing/suit/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_wear_suit_str = icon)
+
 /obj/item/clothing/suit/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return ..()
@@ -213,6 +229,12 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_gloves()
+
+/obj/item/clothing/gloves/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_gloves_str = icon)
 
 /obj/item/clothing/gloves/emp_act(severity)
 	if(cell)
@@ -267,6 +289,12 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
 
+/obj/item/clothing/mask/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_wear_mask_str = icon)
+
 ////////////////////////////////////////////////////////////////////////
 //Shoes
 /obj/item/clothing/shoes
@@ -290,6 +318,12 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_shoes()
+
+/obj/item/clothing/shoes/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_shoes_str = icon)
 
 /obj/item/clothing/shoes/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
