@@ -6,7 +6,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/clothing/glasses_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/glasses_right.dmi',
 	)
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_TINY
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	active = TRUE
