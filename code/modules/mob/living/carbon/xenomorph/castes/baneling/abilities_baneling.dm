@@ -12,7 +12,7 @@
 	var/smoke_duration = 4
 	var/datum/effect_system/smoke_spread/xeno/smoke
 	keybinding_signals = list(
-	KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
 	)
 
 /datum/action/xeno_action/baneling_explode/give_action(mob/living/L)
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(reagent_images_list,  list(
 	ability_name = "spawn pod"
 	plasma_cost = 150
 	keybinding_signals = list(
-	KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_SPAWN_POD,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_SPAWN_POD,
 	)
 
 /datum/action/xeno_action/spawn_pod/action_activate()
