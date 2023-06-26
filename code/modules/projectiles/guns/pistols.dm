@@ -749,7 +749,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IFF
 	gun_skill_category = SKILL_SMARTGUN
 	actions_types = list() // Inherits aimmode, but has IFF so..
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_SEMIAUTO)
@@ -762,6 +762,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.85
 	scatter = 3
-	scatter_unwielded = 5
+	scatter_unwielded = 7
 	recoil = -2
-	recoil_unwielded = -2
+	recoil_unwielded = 2
