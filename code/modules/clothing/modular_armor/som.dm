@@ -173,6 +173,7 @@
 		"black",
 	)
 	current_variant = "black"
+	visorless_offset_y = 0
 
 /obj/item/clothing/head/modular/som/engineer
 	name = "\improper SOM engineering helmet"
