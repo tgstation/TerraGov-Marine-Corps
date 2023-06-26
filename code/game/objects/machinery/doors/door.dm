@@ -45,6 +45,9 @@
 	var/turf/current_turf = get_turf(src)
 	current_turf.flags_atom &= ~ AI_BLOCKED
 
+	if(glass)
+		allow_pass_flags |= PASSGLASS
+
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)
 		qdel(o)
