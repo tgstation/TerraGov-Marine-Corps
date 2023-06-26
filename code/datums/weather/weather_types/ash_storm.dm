@@ -30,12 +30,11 @@
 /datum/weather/ash_storm/telegraph()
 	. = ..()
 	var/list/impacted_mobs = list()
-	var/list/eligible_mobs = list()
-	for(var/z in impacted_z_levels)
-		eligible_mobs += GLOB.humans_by_zlevel["[z]"]
-	for(var/i in 1 to length(eligible_mobs))
-		var/mob/impacted_mob = eligible_mobs[i]
+	for(var/mob/impacted_mob AS in GLOB.player_list)
 		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+			continue
+		var/turf/impacted_mob_turf = get_turf(impacted_mob)
+		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
 			continue
 		impacted_mobs |= impacted_mob
 		CHECK_TICK

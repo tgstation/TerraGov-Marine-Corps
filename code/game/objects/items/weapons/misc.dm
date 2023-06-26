@@ -145,6 +145,9 @@
 	if(!istype(I, /obj/item/cell/lasgun))
 		to_chat(user, span_warning("The powerfist only accepts lasgun cells!"))
 		return
+	if(I.w_class >= WEIGHT_CLASS_BULKY)
+		to_chat(user, span_warning("Too big to fit!"))
+		return
 	if(cell)
 		unload(user)
 	user.transferItemToLoc(I,src)

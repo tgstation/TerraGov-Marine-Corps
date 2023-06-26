@@ -250,9 +250,6 @@
 	dir = 9
 	},
 /area/shuttle/drop2/lz2)
-"sm" = (
-/turf/open/space/basic,
-/area/space)
 "sY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -828,22 +825,22 @@ TZ
 TZ
 TZ
 TZ
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
 "}
 (2,1,1) = {"
 Ng
@@ -868,22 +865,22 @@ Ng
 Ng
 Ng
 TZ
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
-sm
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
+TZ
 "}
 (3,1,1) = {"
 Ng

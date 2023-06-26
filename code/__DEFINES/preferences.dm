@@ -4,6 +4,10 @@
 #define AGE_MIN 18
 #define AGE_MAX 85
 
+#define BACK_NOTHING 1
+#define BACK_BACKPACK 2
+#define BACK_SATCHEL 3
+
 #define GET_RANDOM_JOB 0
 #define BE_OVERFLOW 1
 #define RETURN_TO_LOBBY 2

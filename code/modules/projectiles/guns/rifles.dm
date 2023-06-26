@@ -208,7 +208,7 @@
 	aim_slowdown = 0.75
 	wield_delay = 0.8 SECONDS
 	force = 20
-	max_shells = 10 //codex
+	max_shells = 20 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_dmr
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_dmr)
 	attachable_allowed = list(
@@ -871,6 +871,7 @@
 	accuracy_mult_unwielded = 0.5
 	scatter = 2
 	scatter_unwielded = 80
+	movement_acc_penalty_mult = 6
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
@@ -2005,7 +2006,8 @@
 	wield_delay = 0.4 SECONDS
 	aim_slowdown = 0.3
 	movement_acc_penalty_mult = 4
-	damage_falloff_mult = 2
+	damage_falloff_mult = 1.4
+	damage_mult = 0.9
 
 /obj/item/weapon/gun/rifle/som_carbine/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/foldable/som_carbine, /obj/item/attachable/magnetic_harness)
@@ -2086,10 +2088,11 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
+	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.4
 	scatter = 6
 	scatter_unwielded = 40
-	movement_acc_penalty_mult = 6
+	movement_acc_penalty_mult = 7
 
 	placed_overlay_iconstate = "lmg"
 

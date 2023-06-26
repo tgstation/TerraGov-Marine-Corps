@@ -48,6 +48,12 @@
 		/obj/item/armor_module/storage/engineering,
 	)
 
+/obj/item/clothing/suit/modular/som/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general/som,
+	)
+
 /obj/item/clothing/suit/modular/som/shield
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield/som,
@@ -186,6 +192,9 @@
 	icon_state = "som_helmet_bio"
 	item_state = "som_helmet_bio"
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 50, ACID = 70)
+	siemens_coefficient = 0.1
+	permeability_coefficient = 0
+	gas_transfer_coefficient = 0.1
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/greyscale/badge,

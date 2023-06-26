@@ -25,6 +25,8 @@
 		return
 	var/mob/living/carbon/human/target = M
 	var/datum/limb/targetlimb = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
+	if(!targetlimb) //radial_medical can return null
+		return
 	if(!has_shrapnel(targetlimb))
 		M.balloon_alert(user, "There is nothing in limb!")
 		return

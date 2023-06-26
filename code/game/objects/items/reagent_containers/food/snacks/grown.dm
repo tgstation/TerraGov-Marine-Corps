@@ -511,7 +511,7 @@
 	var/mob/M = usr
 	var/outer_teleport_radius = potency/10 //Plant potency determines radius of teleport.
 	var/inner_teleport_radius = potency/15
-	var/list/turfs = new/list()
+	var/list/turfs = list()
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	if(inner_teleport_radius < 1) //Wasn't potent enough, it just splats.
 		new/obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -539,7 +539,6 @@
 			s.start()
 			new/obj/effect/decal/cleanable/molten_item(M.loc) //Leaves a pile of goo behind for dramatic effect.
 			M.loc = picked //
-			sleep(0.1 SECONDS)
 			s.set_up(3, 1, M)
 			s.start() //Two set of sparks, one before the teleport and one after.
 		if(2) //Teleports mob the tomato hit instead.
@@ -548,7 +547,6 @@
 				s.start()
 				new/obj/effect/decal/cleanable/molten_item(A.loc) //Leave a pile of goo behind for dramatic effect...
 				A.loc = picked//And teleport them to the chosen location.
-				sleep(0.1 SECONDS)
 				s.set_up(3, 1, A)
 				s.start()
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)

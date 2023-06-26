@@ -60,8 +60,6 @@
 	var/marker_flags
 	if(H.faction == FACTION_TERRAGOV)
 		marker_flags = MINIMAP_FLAG_MARINE
-	else if(H.faction == FACTION_TERRAGOV_REBEL)
-		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(H.faction == FACTION_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	else
@@ -104,7 +102,6 @@
 	icon_state = "motion0"
 	icon_activated = "motion2"
 	activation_time = 60
-	underground_signal = TRUE
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 

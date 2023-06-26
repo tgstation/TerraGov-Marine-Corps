@@ -64,7 +64,7 @@
 	var/turf/right = locate(C.x + leftright, C.y, C.z)
 
 	for(var/turf/T in range(3, rear)+range(3, left)+range(3, right)+range(2, front))
-		T.empty(/turf/open/floor/plating)
+		T.empty(/turf/open/floor/plating, ignore_typecache = typecacheof(/mob))
 
 	SSmonitor.process_human_positions()
 	SSevacuation.initial_human_on_ship = SSmonitor.human_on_ship
@@ -105,11 +105,6 @@
 	name = "Shipside 'Alamo' Hangar Pad"
 	id = SHUTTLE_ALAMO
 	roundstart_template = /datum/map_template/shuttle/dropship_one
-
-/obj/docking_port/stationary/marine_dropship/hangar/rebel
-	name = "Shipside 'Triumph' Hangar Pad"
-	id = SHUTTLE_TRIUMPH
-	roundstart_template = /datum/map_template/shuttle/dropship_three
 
 /obj/docking_port/stationary/marine_dropship/hangar/two
 	name = "Shipside 'Normandy' Hangar Pad"
@@ -270,11 +265,6 @@
 	dwidth = 4
 	height = 13
 	width = 9
-
-/obj/docking_port/mobile/marine_dropship/three
-	name = "Triumph"
-	id = SHUTTLE_TRIUMPH
-	control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
 
 // queen calldown
 
@@ -755,12 +745,6 @@
 	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon_state = "console2"
 	possible_destinations = "lz1;lz2;alamo;normandy"
-
-/obj/machinery/computer/shuttle/marine_dropship/three
-	name = "\improper 'Triumph' flight controls"
-	desc = "The flight controls for the 'Triumph' Dropship."
-	possible_destinations = "lz1;triumph"
-	req_one_access = list(ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LEADER_REBEL)
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
@@ -1408,19 +1392,6 @@
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	shuttleId = SHUTTLE_NORMANDY
 	possible_destinations = "lz1;lz2;alamo;normandy"
-
-/obj/machinery/computer/shuttle/shuttle_control/dropship/rebel
-	name = "\improper 'Triumph' dropship console"
-	desc = "The remote controls for the 'Triumph' Dropship."
-	shuttleId = SHUTTLE_TRIUMPH
-	possible_destinations = "lz1;triumph"
-	compatible_control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
-
-/obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist
-	name = "\improper 'Alamo' dropship console"
-	desc = "The remote controls for the 'Alamo' Dropship."
-	shuttleId = SHUTTLE_ALAMO
-	possible_destinations = "lz2;alamo"
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury
 	name = "\improper 'Canterbury' shuttle console"

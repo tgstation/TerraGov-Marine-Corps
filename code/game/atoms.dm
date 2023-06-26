@@ -116,6 +116,9 @@
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
 
+	///The acid currently on this atom
+	var/obj/effect/xenomorph/acid/current_acid = null
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -165,8 +168,19 @@ directive is properly returned.
 	if(loc)
 		return loc.return_gas()
 
+///returns if we can melt an object, but also the speed at which it happens. 1 just means we melt it. 0,5 means we need a higher strength acid. higher than 1 just makes it melt faster
+/atom/proc/dissolvability(acid_strength)
+	return 1
 
+//returns how long it takes to apply acid on this atom
+/atom/proc/get_acid_delay()
+	return 1 SECONDS
 
+///returns if we are able to apply acid to the atom, also checks if there is already a stronger acid on this atom
+/atom/proc/should_apply_acid(acid_strength)
+	if(!current_acid)
+		return TRUE
+	return acid_strength >= current_acid.acid_strength
 
 /atom/proc/on_reagent_change()
 	return

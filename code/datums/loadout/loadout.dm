@@ -49,14 +49,10 @@
 		if(slot_l_store_str)
 			if(!item_list[SLOT_W_UNIFORM])
 				return FALSE
-			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
-				return FALSE
 			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 				return TRUE
 		if(slot_r_store_str)
 			if(!item_list[SLOT_W_UNIFORM])
-				return FALSE
-			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 				return FALSE
 			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 				return TRUE

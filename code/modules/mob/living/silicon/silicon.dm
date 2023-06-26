@@ -56,10 +56,6 @@
 	return
 
 
-/mob/living/silicon/stripPanelEquip(obj/item/I, mob/M, slot)
-	return
-
-
 /mob/living/silicon/stripPanelUnequip(obj/item/I, mob/M, slot)
 	return
 
@@ -148,8 +144,6 @@
 		if("Squad HUD")
 			if(GLOB.huds[faction] == FACTION_TERRAGOV)
 				H = DATA_HUD_SQUAD_TERRAGOV
-			else if(GLOB.huds[faction] == FACTION_TERRAGOV_REBEL)
-				H = DATA_HUD_SQUAD_REBEL
 			else if(GLOB.huds[faction] == FACTION_SOM)
 				H = DATA_HUD_SQUAD_SOM
 			HUD_nbr = 3

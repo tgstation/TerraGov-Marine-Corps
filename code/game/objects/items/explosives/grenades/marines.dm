@@ -360,6 +360,9 @@
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
 
+/obj/item/explosive/grenade/flare/dissolvability(acid_strength)
+	return 2
+
 /obj/item/explosive/grenade/flare/Initialize(mapload)
 	. = ..()
 	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.

@@ -1,10 +1,9 @@
 
 #define MINIMAP_FLAG_XENO (1<<0)
 #define MINIMAP_FLAG_MARINE (1<<1)
-#define MINIMAP_FLAG_MARINE_REBEL (1<<2)
-#define MINIMAP_FLAG_MARINE_SOM (1<<3)
-#define MINIMAP_FLAG_EXCAVATION_ZONE (1<<4)
-#define MINIMAP_FLAG_ALL (1<<5) - 1
+#define MINIMAP_FLAG_MARINE_SOM (1<<2)
+#define MINIMAP_FLAG_EXCAVATION_ZONE (1<<3)
+#define MINIMAP_FLAG_ALL (1<<4) - 1
 
 ///Converts the overworld x and y to minimap x and y values
 #define MINIMAP_PIXEL_FROM_WORLD(val) (val*2-3)
@@ -22,6 +21,7 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 
 
 //Turf colours
+#define MINIMAP_BLACK "#111111d0"
 #define MINIMAP_SOLID "#ebe5e5ee"
 #define MINIMAP_DOOR "#451e5eee"
 #define MINIMAP_FENCE "#8c2294ee"

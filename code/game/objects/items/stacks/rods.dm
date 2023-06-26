@@ -74,3 +74,19 @@
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 		use(4)
 
+/obj/item/stack/rods/attack_turf(turf/T, mob/living/user)
+	if(!istype(T, /turf/open/floor/plating))
+		to_chat(user, span_warning("You must remove the plating first."))
+		return
+	if(get_amount() < 2)
+		to_chat(user, span_warning("You need more rods."))
+		return
+
+	to_chat(user, span_notice("Reinforcing the floor."))
+	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || !istype(T, /turf/open/floor/plating))
+		return
+	if(!use(2))
+		to_chat(user, span_warning("You need more rods."))
+		return
+	T.ChangeTurf(/turf/open/floor/engine)
+	playsound(src, 'sound/items/deconstruct.ogg', 25, 1)

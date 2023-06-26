@@ -24,8 +24,14 @@
  * value - The list we're ensuring is actually a list
  * default - The set default that will be given as fallback.
  * required_amount - The required length of value for it to be valid, otherwise will continue to check for a fallback default.
+ * check_valid - If we should check if the values are all in the list of possible inputs
+ * possible_input_list - The list of possible valid inputs this list can hold, only gets checked if check_valid is TRUE
  */
-/proc/sanitize_islist(list/value, default, required_amount)
+/proc/sanitize_islist(list/value, default, required_amount, check_valid, possible_input_list)
+	if(check_valid)
+		for(var/element in value)
+			if(!(element in possible_input_list))
+				return default
 	if(length(value) && (!required_amount || (length(value) == required_amount)))
 		return value
 	if(default)

@@ -13,6 +13,7 @@
 		wear_mask_update(I)
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == handcuffed)
+		handcuffed = null
 		update_handcuffed(null)
 		. = ITEM_UNEQUIP_UNEQUIPPED
 
@@ -35,8 +36,7 @@
 		handcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
 	else if(handcuffed)
 		handcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
-		handcuffed = null
-		restraints.unequipped(src, SLOT_HANDCUFFED)
+		handcuffed.unequipped(src, SLOT_HANDCUFFED)
 	update_inv_handcuffed()
 
 ///Updates the mask slot icon

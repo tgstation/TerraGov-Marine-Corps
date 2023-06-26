@@ -314,10 +314,10 @@ GLOBAL_PROTECT(exp_specialmap)
 		assigned_role.outfit.equip(src)
 		return
 
-	var/list/valid_outfits
+	var/list/valid_outfits = list()
 
 	for(var/datum/outfit/variant AS in assigned_role.outfits)
-		if(variant.species == src.species.species_type)
+		if(initial(variant.species) == src.species.species_type)
 			valid_outfits += variant
 
 	var/datum/outfit/chosen_variant = pick(valid_outfits)
