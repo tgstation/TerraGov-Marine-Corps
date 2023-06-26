@@ -129,22 +129,22 @@
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
-			balloon_alert(user, "Can't, it's melting")
+			balloon_alert(user, "Can't, it's melting.")
 			return
 
-	if(istype(I, /obj/item/stack/barbed_wire))
-		var/obj/item/stack/barbed_wire/B = I
-		if(!can_wire)
-			return
+	if(!istype(I, /obj/item/stack/barbed_wire) || !can_wire)
+		return
 
-		balloon_alert_to_viewers("Setting up wire...")
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD) || !can_wire)
-			return
+	var/obj/item/stack/barbed_wire/B = I
 
-		playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+	balloon_alert_to_viewers("Setting up wire...")
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD) || !can_wire)
+		return
 
-		B.use(1)
-		wire()
+	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+
+	B.use(1)
+	wire()
 
 
 /obj/structure/barricade/proc/wire()
@@ -311,29 +311,31 @@
 			return
 
 	//Removing the barricades
-	if(istype(I, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
-		var/obj/item/tool/shovel/ET = I
+	if(!istype(I, /obj/item/tool/shovel) || user.a_intent == INTENT_HARM)
+		return
+	var/obj/item/tool/shovel/ET = I
 
-		if(ET.folded)
-			return
+	if(ET.folded)
+		return
 
-		if(LAZYACCESS(user.do_actions, src))
-			balloon_alert(user, "already shoveling")
-			return
+	if(LAZYACCESS(user.do_actions, src))
+		balloon_alert(user, "Already shoveling")
+		return
 
-		user.visible_message("[user] starts clearing out \the [src].", "You start removing \the [src].")
+	user.visible_message("[user] starts clearing out \the [src].", "You start removing \the [src].")
 
-		if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
-			return
+	if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
+		return
 
-		if(!ET.folded)
-			var/deconstructed = TRUE
-			for(var/obj/effect/xenomorph/acid/A in loc)
-				if(A.acid_t != src)
-					continue
-				deconstructed = FALSE
-				break
-			deconstruct(deconstructed)
+	if(ET.folded)
+		return
+	var/deconstructed = TRUE
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t != src)
+			continue
+		deconstructed = FALSE
+		break
+	deconstruct(deconstructed)
 
 /*----------------------*/
 // GUARD RAIL
@@ -389,29 +391,30 @@
 			balloon_alert(user, "It's melting!")
 			return
 
-	if(istype(I, /obj/item/stack/sheet/wood))
-		var/obj/item/stack/sheet/wood/D = I
-		if(obj_integrity >= max_integrity)
-			return
+	if(!istype(I, /obj/item/stack/sheet/wood))
+		return
+	var/obj/item/stack/sheet/wood/D = I
+	if(obj_integrity >= max_integrity)
+		return
 
-		if(D.get_amount() < 1)
-			balloon_alert(user, "You need more wood")
-			return
+	if(D.get_amount() < 1)
+		balloon_alert(user, "You need more wood")
+		return
 
-		if(LAZYACCESS(user.do_actions, src))
-			return
+	if(LAZYACCESS(user.do_actions, src))
+		return
 
-		balloon_alert_to_viewers("Repairing...")
+	balloon_alert_to_viewers("Repairing...")
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
-			return
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+		return
 
-		if(!D.use(1))
-			return
+	if(!D.use(1))
+		return
 
-		repair_damage(max_integrity)
-		balloon_alert_to_viewers("Repaired")
-		update_icon()
+	repair_damage(max_integrity)
+	balloon_alert_to_viewers("Repaired")
+	update_icon()
 
 
 /*----------------------*/
@@ -475,29 +478,31 @@
 /obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/metal_sheets = I
-		if(obj_integrity > max_integrity * 0.3)
-			return attempt_barricade_upgrade(I, user, params)
+	if(!istype(I, /obj/item/stack/sheet/metal))
+		return
 
-		if(metal_sheets.get_amount() < 2)
-			balloon_alert(user, "You need at least 2 metal")
-			return FALSE
+	var/obj/item/stack/sheet/metal/metal_sheets = I
+	if(obj_integrity >= max_integrity * 0.3)
+		return attempt_barricade_upgrade(I, user, params)
 
-		if(LAZYACCESS(user.do_actions, src))
-			return
+	if(metal_sheets.get_amount() < 2)
+		balloon_alert(user, "You need at least 2 metal")
+		return FALSE
 
-		balloon_alert_to_viewers("Repairing base...")
+	if(LAZYACCESS(user.do_actions, src))
+		return
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-			return FALSE
+	balloon_alert_to_viewers("Repairing base...")
 
-		if(!metal_sheets.use(2))
-			return FALSE
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
+		return FALSE
 
-		repair_damage(max_integrity * 0.3)
-		balloon_alert_to_viewers("Base repaired")
-		update_icon()
+	if(!metal_sheets.use(2))
+		return FALSE
+
+	repair_damage(max_integrity * 0.3)
+	balloon_alert_to_viewers("Base repaired")
+	update_icon()
 
 
 /obj/structure/barricade/metal/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
@@ -924,7 +929,7 @@
 
 	if(istype(I, /obj/item/stack/sheet/plasteel))
 		var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
-		if(obj_integrity > max_integrity * 0.3)
+		if(obj_integrity >= max_integrity * 0.3)
 			return
 
 		if(plasteel_sheets.get_amount() < 2)
@@ -936,7 +941,7 @@
 
 		balloon_alert_to_viewers("Repairing base...")
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
 			return
 
 		if(!plasteel_sheets.use(2))
