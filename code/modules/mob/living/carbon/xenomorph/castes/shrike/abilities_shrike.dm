@@ -430,9 +430,11 @@
 				continue
 		movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
 
+///removes immobile trait after the shrikes done with their ability
 /datum/action/xeno_action/activable/psychic_vortex/proc/finish_charging()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
 
+///removes immobile trait if the ability is cancled by a stun or similar
 /datum/action/xeno_action/activable/psychic_vortex/fail_activate()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
