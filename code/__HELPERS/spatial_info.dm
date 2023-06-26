@@ -227,7 +227,7 @@
 /proc/circle_range(center = usr,radius = 3)
 
 	var/turf/center_turf = get_turf(center)
-	var/list/atoms = new/list()
+	var/list/atoms = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for(var/atom/checked_atom as anything in range(radius, center_turf))
@@ -242,7 +242,7 @@
 /proc/circle_view(center=usr,radius=3)
 
 	var/turf/center_turf = get_turf(center)
-	var/list/atoms = new/list()
+	var/list/atoms = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for(var/atom/checked_atom as anything in view(radius, center_turf))
@@ -266,7 +266,7 @@
 /proc/circle_range_turfs(center = usr, radius = 3)
 
 	var/turf/center_turf = get_turf(center)
-	var/list/turfs = new/list()
+	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for(var/turf/checked_turf as anything in RANGE_TURFS(radius, center_turf))
@@ -280,7 +280,7 @@
 /proc/circle_view_turfs(center=usr,radius=3) //Is there even a diffrence between this proc and circle_range_turfs()?
 
 	var/turf/center_turf = get_turf(center)
-	var/list/turfs = new/list()
+	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for(var/turf/checked_turf in view(radius, center_turf))

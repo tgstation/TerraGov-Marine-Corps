@@ -7,12 +7,12 @@
 
 	materials = list(/datum/material/metal = 60, /datum/material/glass = 30)
 
-	var/recording = 0.0
-	var/playing = 0.0
-	var/timerecorded = 0.0
-	var/playsleepseconds = 0.0
-	var/list/storedinfo = new/list()
-	var/list/timestamp = new/list()
+	var/recording = 0
+	var/playing = 0
+	var/timerecorded = 0
+	var/playsleepseconds = 0
+	var/list/storedinfo = list()
+	var/list/timestamp = list()
 	var/canprint = 1
 	flags_atom = CONDUCT
 	throwforce = 2

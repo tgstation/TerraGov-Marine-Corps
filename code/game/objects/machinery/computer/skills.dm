@@ -204,16 +204,16 @@ What a mess.*/
 			var/t1 = input("Search String: (Partial Name or ID or Fingerprints or Rank)", "Secure. records", null, null)  as text
 			if ((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || !in_range(src, usr)))
 				return
-			Perp = new/list()
+			Perp = list()
 			t1 = lowertext(t1)
 			var/list/components = splittext(t1, " ")
 			if(components.len > 5)
 				return //Lets not let them search too greedily.
 			for(var/datum/data/record/R in GLOB.datacore.general)
 				var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["fingerprint"] + " " + R.fields["rank"]
-				for(var/i = 1, i<=components.len, i++)
+				for(var/i = 1, length(i<=components), i++)
 					if(findtext_char(temptext,components[i]))
-						var/prelist = new/list(2)
+						var/list/prelist[2]
 						prelist[1] = R
 						Perp += prelist
 			for(var/i = 1, i<=Perp.len, i+=2)
