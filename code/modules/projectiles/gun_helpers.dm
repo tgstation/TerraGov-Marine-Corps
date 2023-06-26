@@ -627,6 +627,8 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 ///Removes an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/remove_aim_mode_fire_delay(source)
+	if(!(source in aim_fire_delay_mods))
+		return
 	aim_fire_delay_mods -= source
 	recalculate_aim_mode_fire_delay()
 
