@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "AI loses door control of alamo when xenos touch the alamo console"
+  - bugfix: "Alamo should no longer get locked shipside if your manual hijack ends just as the alamo is taking off"
