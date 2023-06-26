@@ -107,7 +107,7 @@ REAGENT SCANNER
 	if(isxeno(M))
 		balloon_alert(user, "Unknown entity")
 		return
-	if(M.species.species_flags & IS_SYNTHETIC)
+	if(M.species.species_flags & NO_SCAN)
 		balloon_alert(user, "Not Organic")
 		return
 	patient = M
