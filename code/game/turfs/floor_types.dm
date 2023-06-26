@@ -889,12 +889,12 @@
 	floor_tile = /obj/item/stack/tile/carpet
 
 /turf/open/floor/carpet/broken_states()
-	return "carpet-broken"
+	return icon_state
 
 /turf/open/floor/carpet/burnt_states()
-	return "carpet-broken"
+	return icon_state
 
-/turf/open/floor/ex_act(severity)
+/turf/open/floor/carpet/ex_act(severity)
 	if(hull_floor)
 		return ..()
 	switch(severity)
