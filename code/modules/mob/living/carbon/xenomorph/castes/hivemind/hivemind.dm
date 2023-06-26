@@ -102,9 +102,6 @@
 /mob/living/carbon/xenomorph/hivemind/gib()
 	return_to_core()
 
-/mob/living/carbon/xenomorph/hivemind/lay_down()
-	return
-
 /mob/living/carbon/xenomorph/hivemind/set_resting()
 	return
 

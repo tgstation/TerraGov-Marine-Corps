@@ -549,9 +549,6 @@
 /datum/atom_hud/squad
 	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
-/datum/atom_hud/squad_rebel
-	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-
 /datum/atom_hud/squad_som
 	hud_icons = list(SQUAD_HUD_SOM, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
@@ -561,14 +558,13 @@
 
 /mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
 	var/hud_type
-	if(faction == FACTION_TERRAGOV)
-		hud_type = SQUAD_HUD_TERRAGOV
-	else if(faction == FACTION_TERRAGOV_REBEL)
-		hud_type = SQUAD_HUD_REBEL
-	else if(faction == FACTION_SOM)
-		hud_type = SQUAD_HUD_SOM
-	else
-		return
+	switch(faction)
+		if(FACTION_TERRAGOV)
+			hud_type = SQUAD_HUD_TERRAGOV
+		if(FACTION_SOM)
+			hud_type = SQUAD_HUD_SOM
+		else
+			return
 	var/image/holder = hud_list[hud_type]
 	holder.icon_state = ""
 	holder.overlays.Cut()
