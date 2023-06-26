@@ -151,7 +151,6 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/ui_static_data(mob/user)
 	var/list/data = list(
 		"patient" = patient.name,
-		"species" = patient.species.species_flags,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
 		"health" = patient.health,
 		"total_brute" = round(patient.getBruteLoss()),
