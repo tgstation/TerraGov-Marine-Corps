@@ -370,7 +370,6 @@
 /datum/action/xeno_action/activable/psychic_vortex/use_ability(atom/target)
 	succeed_activate()
 	add_cooldown()
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
@@ -388,8 +387,6 @@
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_pull()
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
 	for(var/atom/victim AS in range(VORTEX_RANGE, owner.loc))
-		if(isarea(victim))
-			continue
 		if(isturf(victim))
 			victim.Shake(3, 3, 1 SECONDS)
 			continue
@@ -415,10 +412,6 @@
 	var/turf/targetturf = get_turf(owner)
 	targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
 	for(var/atom/victim in range(VORTEX_RANGE, owner.loc))
-		if(isarea(victim))
-			continue
-		if(isturf(victim))
-			continue
 		if(!ismovableatom(victim))
 			continue
 		var/atom/movable/movable_victim = victim
