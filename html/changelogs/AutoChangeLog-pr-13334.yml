@@ -1,0 +1,4 @@
+author: "Tanker"
+delete-after: True
+changes:
+  - balance: "Smart Minions is now enabled by default."
