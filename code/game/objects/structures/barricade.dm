@@ -129,7 +129,7 @@
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
-			balloon_alert(user, "Can't, it's melting.")
+			balloon_alert(user, "Can't, it's melting")
 			return
 
 	if(!istype(I, /obj/item/stack/barbed_wire) || !can_wire)
