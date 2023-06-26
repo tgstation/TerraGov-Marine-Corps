@@ -62,6 +62,8 @@
 	name = "Southern Caves"
 	icon_state = "south"
 
+/area/bigredv2/caves/south/radiounderground
+	ceiling = CEILING_UNDERGROUND
 /area/bigredv2/caves/rustedpreparea
 	name = "Rusted Prep Area"
 	icon_state = "yellow"
@@ -85,6 +87,7 @@
 /area/bigredv2/caves/west
 	name = "Western Caves"
 	icon_state = "west"
+	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/caves/northeast
 	name = "Northeastern Caves"
@@ -101,6 +104,7 @@
 /area/bigredv2/caves/southwest
 	name = "Southwestern Caves"
 	icon_state = "southwest"
+	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/outside/nanotrasen_lab/outside
 	name = "Nanotrasen Compound"
