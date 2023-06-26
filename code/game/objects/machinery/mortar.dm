@@ -72,7 +72,7 @@
 	// used for keeping track of different mortars and their types for cams
 	var/static/list/id_by_type = list()
 	/// list of linked binoculars to the structure of the mortar, used for continuity to item
-	var/list/linked_struct_binoculars = list()
+	var/list/linked_struct_binoculars
 
 /obj/machinery/deployable/mortar/Initialize(mapload, _internal_item, deployer)
 	. = ..()
