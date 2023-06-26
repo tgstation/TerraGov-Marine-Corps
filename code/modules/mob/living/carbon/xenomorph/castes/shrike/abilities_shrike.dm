@@ -402,9 +402,7 @@
 			H.apply_effects(1,1)
 			H.adjust_stagger(2)
 			shake_camera(H, 2, 1)
-			victim.Shake(3, 3, 10)
-		else if(isitem(movable_victim))
-			victim.Shake(3, 3, 10)
+		movable_victim.Shake(3, 3, 10)
 		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
 ///randomly throws movable atoms in the radius of the vortex abilites range, different each use.
