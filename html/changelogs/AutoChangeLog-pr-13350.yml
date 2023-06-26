@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Fixed stacking repairs on cades if they were low hp enough to get them to full hp in a short time"
