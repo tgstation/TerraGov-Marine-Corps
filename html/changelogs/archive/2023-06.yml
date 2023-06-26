@@ -352,3 +352,10 @@
       after they leave prep.
   - rscadd: Add crates nearby vendors close to Pillar of Spring Alamo landing zone.
   - rscadd: Add more easter eggs in PoS, making a total of eight easter eggs!
+2023-06-26:
+  coldironwarrior:
+  - bugfix: Combat robots spawning in roles that have roundstart gear will now have
+      that gear equipped, along with a robotic armor mount
+  ivanmixo:
+  - bugfix: Fixed new character slots/characters being uneditable in prefs
+  - code_imp: Fixed more type definitions in params
