@@ -407,10 +407,6 @@
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
-	// *** Baneling vars ***
-	/// The current chemical that gets released on baneling death
-	var/selected_chemical = /datum/effect_system/smoke_spread/xeno/acid
-
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices

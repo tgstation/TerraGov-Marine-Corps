@@ -48,7 +48,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/spawn_pod,
-		/datum/action/xeno_action/choose_baneling_reagent,
+		/datum/action/xeno_action/select_reagent/baneling,
 		/datum/action/xeno_action/baneling_explode,
 	)
 
@@ -157,6 +157,6 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/spawn_pod,
-		/datum/action/xeno_action/choose_baneling_reagent,
+		/datum/action/xeno_action/select_reagent/baneling,
 		/datum/action/xeno_action/baneling_explode,
 	)

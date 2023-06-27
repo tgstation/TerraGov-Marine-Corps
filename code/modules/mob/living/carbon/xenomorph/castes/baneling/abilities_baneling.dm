@@ -39,13 +39,23 @@
 	// So we dont explode twice
 	X.plasma_stored = 0
 	var/turf/owner_T = get_turf(X)
-	handle_smoke(smoke_duration, owner_T)
+	handle_smoke(smoke_duration, owner_T, smoke)
 	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
 	X.death(FALSE)
 
-/datum/action/xeno_action/baneling_explode/proc/handle_smoke(remaining_time, turf/T)
+/datum/action/xeno_action/baneling_explode/proc/handle_smoke(remaining_time, turf/T, datum/effect_system/smoke_spread/smoke)
 	var/mob/living/carbon/xenomorph/baneling/X = owner
-	smoke = new X.selected_chemical(T)
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium(T)
+		if(/datum/reagent/toxin/xeno_hemodile)
+			smoke = new /datum/effect_system/smoke_spread/xeno/hemodile(T)
+		if(/datum/reagent/toxin/xeno_transvitox)
+			smoke = new /datum/effect_system/smoke_spread/xeno/transvitox(T)
+		if(/datum/reagent/toxin/xeno_ozelomelyn)
+			smoke = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(T)
+		if(/datum/reagent/toxin/acid)
+			smoke = new /datum/effect_system/smoke_spread/xeno/acid(T)
 	smoke.set_up(smoke_range, T)
 	if(remaining_time <= 0)
 		return
@@ -55,59 +65,56 @@
 // ***************************************
 // *********** Reagent Selection
 // ***************************************
-
-//List of baneling reagents
-GLOBAL_LIST_INIT(baneling_reagent_type_list, list(
-	BANELING_NEUROTOXIN = /datum/effect_system/smoke_spread/xeno/neuro,
-	BANELING_HEMODILE = /datum/effect_system/smoke_spread/xeno/hemodile,
-	BANELING_TRANSVITOX = /datum/effect_system/smoke_spread/xeno/transvitox,
-	BANELING_OZELOMELYN = /datum/effect_system/smoke_spread/xeno/ozelomelyn,
-	BANELING_ACID = /datum/effect_system/smoke_spread/xeno/acid,
-	))
-
-//List of baneling reagent images
-GLOBAL_LIST_INIT(reagent_images_list,  list(
-		BANELING_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
-		BANELING_HEMODILE = image('icons/mob/actions.dmi', icon_state = DEFILER_HEMODILE),
-		BANELING_TRANSVITOX = image('icons/mob/actions.dmi', icon_state = DEFILER_TRANSVITOX),
-		BANELING_OZELOMELYN = image('icons/mob/actions.dmi', icon_state = DEFILER_OZELOMELYN),
-		BANELING_ACID = image('icons/mob/actions.dmi', icon_state = "spray_acid"),
-		))
-
-/datum/action/xeno_action/choose_baneling_reagent
+/datum/action/xeno_action/select_reagent/baneling
 	name = "Choose Explosion Reagent"
-	action_icon_state = "spray_acid"
+	action_icon_state = "select_reagent0"
 	desc = ""
 	plasma_cost = 200
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT,
 	)
-	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 
-/datum/action/xeno_action/choose_baneling_reagent/give_action(mob/living/L)
+/datum/action/xeno_action/select_reagent/baneling/give_action(mob/living/L)
 	. = ..()
 	var/mob/living/carbon/xenomorph/caster = L
-	caster.selected_chemical = /datum/effect_system/smoke_spread/xeno/acid //Set our default
+	caster.selected_reagent = GLOB.baneling_chem_type_list[1]
 	update_button_icon() //Update immediately to get our default
 
-/datum/action/xeno_action/choose_baneling_reagent/update_button_icon(image/current_icon)
-	if(isnull(current_icon))
-		return ..()
-	action_icon_state = current_icon.icon_state
+/datum/action/xeno_action/select_reagent/baneling/action_activate()
+	INVOKE_ASYNC(src, PROC_REF(select_reagent_radial))
+	return COMSIG_KB_ACTIVATED
+
+/datum/action/xeno_action/select_reagent/baneling/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/atom/A = X.selected_reagent
+	action_icon_state = initial(A.name)
 	return ..()
 
-/datum/action/xeno_action/choose_baneling_reagent/action_activate()
-	var/reagent_choice = show_radial_menu(owner, owner, GLOB.reagent_images_list, radius = 48)
-	if(!reagent_choice)
+/datum/action/xeno_action/select_reagent/baneling/alternate_action_activate()
+	INVOKE_ASYNC(src, PROC_REF(select_reagent_radial))
+	return COMSIG_KB_ACTIVATED
+
+/datum/action/xeno_action/select_reagent/baneling/select_reagent_radial/()
+		//List of toxin images
+	var/static/list/reagent_images_list = list(
+		DEFILER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
+		DEFILER_HEMODILE = image('icons/mob/actions.dmi', icon_state = DEFILER_HEMODILE),
+		DEFILER_TRANSVITOX = image('icons/mob/actions.dmi', icon_state = DEFILER_TRANSVITOX),
+		DEFILER_OZELOMELYN = image('icons/mob/actions.dmi', icon_state = DEFILER_OZELOMELYN),
+		BANELING_ACID = image('icons/mob/actions.dmi', icon_state = BANELING_ACID),
+		)
+	var/toxin_choice = show_radial_menu(owner, owner, reagent_images_list, radius = 48)
+	if(!toxin_choice)
 		return
-	var/mob/living/carbon/xenomorph/caster = owner
-	for(var/datum/effect_system/smoke_spread/reagent_type AS in GLOB.baneling_reagent_type_list)
-		if(reagent_type == reagent_choice)
-			caster.selected_chemical = GLOB.baneling_reagent_type_list[reagent_choice]
+	var/mob/living/carbon/xenomorph/X = owner
+	for(var/toxin in GLOB.baneling_chem_type_list)
+		var/datum/reagent/R = GLOB.chemical_reagents_list[toxin]
+		if(R.name == toxin_choice)
+			X.selected_reagent = R.type
 			break
-	to_chat(caster, span_notice("We will now spread <b>[reagent_choice]\s</b> when we explode"))
-	caster.balloon_alert(caster, "[reagent_choice]")
-	update_button_icon(GLOB.reagent_images_list[reagent_choice])
+	X.balloon_alert(X, "[toxin_choice]")
+	update_button_icon()
 	return succeed_activate()
 
 // ***************************************
