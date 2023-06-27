@@ -18,10 +18,10 @@
 	var/jump_sound
 	///Special jump behavior flags
 	var/jump_flags
-	///flags_pass flags applied to the jumper on jump
-	var/jumper_flags_pass
+	///allow_pass_flags flags applied to the jumper on jump
+	var/jumper_allow_pass_flags
 
-/datum/component/jump/Initialize(_jump_duration = 0.5 SECONDS, _jump_cooldown = 1 SECONDS, _stamina_cost = 8, _jump_height = 16, _jump_sound = null, _jump_flags = JUMP_SHADOW, _jumper_flags_pass = PASSTABLE|PASSFIRE)
+/datum/component/jump/Initialize(_jump_duration = 0.5 SECONDS, _jump_cooldown = 1 SECONDS, _stamina_cost = 8, _jump_height = 16, _jump_sound = null, _jump_flags = JUMP_SHADOW, _jumper_flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -32,7 +32,7 @@
 	jump_height = _jump_height
 	jump_sound = _jump_sound
 	jump_flags = _jump_flags
-	jumper_flags_pass = _jumper_flags_pass
+	jumper_allow_pass_flags = _jumper_allow_pass_flags
 
 	RegisterSignal(parent, COMSIG_KB_LIVING_JUMP, PROC_REF(do_jump))
 
@@ -58,7 +58,7 @@
 	jumper.layer = ABOVE_MOB_LAYER
 
 	jumper.adjustStaminaLoss(stamina_cost)
-	jumper.flags_pass |= jumper_flags_pass
+	jumper.pass_flags |= jumper_allow_pass_flags
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 
 	jumper.add_filter(JUMP_COMPONENT, 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
@@ -83,7 +83,7 @@
 /datum/component/jump/proc/end_jump(mob/living/jumper)
 	jumper.remove_filter(JUMP_COMPONENT)
 	jumper.layer = initial(jumper.layer)
-	jumper.flags_pass = initial(jumper.flags_pass)
+	jumper.pass_flags = initial(jumper.pass_flags)
 	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
 	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)

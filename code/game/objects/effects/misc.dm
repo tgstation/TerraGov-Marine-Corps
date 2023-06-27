@@ -11,7 +11,7 @@
 /obj/effect/beam
 	name = "beam"
 	var/def_zone
-	flags_pass = PASSTABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE
 
 
 /obj/effect/begin

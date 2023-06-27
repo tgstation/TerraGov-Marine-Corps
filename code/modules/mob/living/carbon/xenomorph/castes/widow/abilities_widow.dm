@@ -60,7 +60,7 @@
 	max_integrity = 75
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	density = FALSE
 	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
 	/// How long the leash ball lasts untill it dies
@@ -240,7 +240,7 @@
 	X.hard_armor = X.hard_armor.modifyRating(fire = 100)
 	X.mouse_opacity = initial(X.mouse_opacity)
 	X.density = TRUE
-	X.flags_pass &= ~PASSABLE
+	X.allow_pass_flags &= ~PASSABLE
 	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
@@ -255,7 +255,7 @@
 	// This part here actually burrows the xeno
 	owner.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	owner.density = FALSE
-	owner.flags_pass |= PASSABLE
+	owner.allow_pass_flags |= PASSABLE
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)

@@ -192,6 +192,8 @@
 	desc = "It used to produce items using metal and glass."
 	icon_state = "autolathe"
 	coverage = 30
+	density = TRUE
+	anchored = TRUE
 
 /obj/structure/prop/mainship/minigun_crate
 	name = "30mm ammo crate"
@@ -259,7 +261,7 @@
 	bound_width = 64
 	bound_height = 32
 	resistance_flags = UNACIDABLE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	var/list/fallen_list
 
 /obj/structure/prop/mainship/ship_memorial/attackby(obj/item/I, mob/user)
