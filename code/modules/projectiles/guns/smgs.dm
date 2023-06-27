@@ -203,9 +203,10 @@
 	scatter_unwielded = 10
 	aim_slowdown = 0.15
 	burst_amount = 3
+	akimbo_additional_delay = 0.4
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.9
 
 /obj/item/weapon/gun/smg/m25/holstered
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
