@@ -14,7 +14,7 @@
 	icon = 'icons/obj/objects.dmi'
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	buckle_lying = 90
-	flags_pass = PASSABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
@@ -120,9 +120,10 @@
 	return FALSE
 
 /obj/structure/bed/roller/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(mover == buckled_bodybag)
 		return TRUE
+
+	return ..()
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
@@ -188,12 +189,6 @@
 		var/mob/M = G.grabbed_thing
 		to_chat(user, span_notice("You place [M] on [src]."))
 		M.forceMove(loc)
-		return TRUE
-
-
-/obj/structure/bed/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 
 /obj/structure/bed/alien

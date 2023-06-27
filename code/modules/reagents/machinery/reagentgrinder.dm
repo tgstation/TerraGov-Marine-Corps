@@ -10,7 +10,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
-	flags_pass = PASSTABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE
 	var/operating = FALSE
 	var/speed = 1
 	var/obj/item/reagent_containers/beaker = null
