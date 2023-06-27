@@ -968,3 +968,7 @@ below 100 is not dizzy
 	if(is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
 		add_ventcrawl(loc)
 		get_up()
+
+///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
+/mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASSTABLE|PASSFIRE)
+	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_flags_pass = flags_pass)
