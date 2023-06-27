@@ -374,6 +374,7 @@
 
 	min_scatter = 2
 	max_scatter = 15
+	max_scatter_unwielded = 25
 	scatter_increase = 2
 	scatter_decay = 0.5
 	scatter_decay_unwielded = 0.5
