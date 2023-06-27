@@ -37,7 +37,12 @@
 
 /datum/item_representation/uniform_representation/get_tgui_data()
 	var/list/tgui_data = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+	var/icon/icon_to_convert
+	var/icon_state = initial(item_type.icon_state) + (variant ? "_[variant]" : "")
+	if(initial(item_type.greyscale_config))
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
+	else
+		icon_to_convert = icon(initial(item_type.icon), icon_state, SOUTH)
 	tgui_data["icons"] = list()
 	tgui_data["icons"] += list(list(
 		"icon" = icon2base64(icon_to_convert),
