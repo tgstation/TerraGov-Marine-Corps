@@ -410,12 +410,16 @@
 		A = new /obj/effect/temp_visual/xenomorph/afterimage(T, owner) //Create the after image.
 		A.pixel_x = pick(rand(X.pixel_x * 3, X.pixel_x * 1.5), rand(0, X.pixel_x * -1)) //Variation on the X position
 
+// ***************************************
+// *********** Snatch
+// ***************************************
+
 /datum/action/xeno_action/activable/snatch
 	name = "Snatch"
 	action_icon_state = "snatch"
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	plasma_cost = 75
-	cooldown_timer = 60 SECONDS
+	cooldown_timer = 35 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
 	)
@@ -427,6 +431,7 @@
 	///A list of slot to check for items, in order of priority
 	var/static/list/slots_to_steal_from = list(
 		SLOT_S_STORE,
+		SLOT_IN_HEAD,
 		SLOT_BACK,
 		SLOT_SHOES,
 	)
@@ -519,6 +524,9 @@
 		return
 	owner.remove_movespeed_modifier(MOVESPEED_ID_SNATCH)
 	stolen_item.forceMove(get_turf(owner))
+	stolen_item.drag_windup = 0 SECONDS
+	owner.start_pulling(stolen_item, suppress_message = FALSE)
+	stolen_item.drag_windup = 1.5 SECONDS
 	stolen_item = null
 	owner.overlays -= stolen_appearance
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
