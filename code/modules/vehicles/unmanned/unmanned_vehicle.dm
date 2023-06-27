@@ -286,10 +286,10 @@
 	vis_contents -= flash
 
 /obj/vehicle/unmanned/flamer_fire_act(burnlevel)
-	take_damage(burnlevel / 2, BURN, "fire")
+	take_damage(burnlevel / 2, BURN, FIRE)
 
 /obj/vehicle/unmanned/fire_act()
-	take_damage(20, BURN, "fire")
+	take_damage(20, BURN, FIRE)
 
 /obj/vehicle/unmanned/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)

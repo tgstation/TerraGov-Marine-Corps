@@ -45,23 +45,29 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/Initialize()
 	LoadSeasonalItems()
 	load_custom_loadouts_list()
-	load_last_civil_war_round_time()
+	load_last_game_mode_round_time()
 	return SS_INIT_SUCCESS
 
 ///Stores data at the end of the round
 /datum/controller/subsystem/persistence/proc/CollectData()
 	save_custom_loadouts_list()
-	save_last_civil_war_round_time()
+	save_last_game_mode_round_time()
 	save_player_number()
 	return
 
-///Loads the last civil war round date
-/datum/controller/subsystem/persistence/proc/load_last_civil_war_round_time()
+///Loads the last gamemode's round date
+/datum/controller/subsystem/persistence/proc/load_last_game_mode_round_time()
 	var/json_file = file("data/last_modes_round_date.json")
 	if(!fexists(json_file))
 		last_modes_round_date = list()
 		return
 	last_modes_round_date = json_decode(file2text(json_file))
+
+///Save the date of the last gamemode's round
+/datum/controller/subsystem/persistence/proc/save_last_game_mode_round_time()
+	var/json_file = file("data/last_modes_round_date.json")
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(last_modes_round_date))
 
 ///Loads the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/load_custom_loadouts_list()
@@ -82,12 +88,6 @@ SUBSYSTEM_DEF(persistence)
 		return FALSE
 	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
 	return loadout
-
-///Save the date of the last civil war round
-/datum/controller/subsystem/persistence/proc/save_last_civil_war_round_time()
-	var/json_file = file("data/last_modes_round_date.json")
-	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(last_modes_round_date))
 
 ///Saves the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/save_custom_loadouts_list()

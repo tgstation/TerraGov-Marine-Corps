@@ -116,7 +116,7 @@
 	icon_state = "shutterctrl"
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
-	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
+	req_one_access = list(ACCESS_MARINE_DROPSHIP)
 	/// Has the shutters alarm been played?
 	var/alarm_played = FALSE
 

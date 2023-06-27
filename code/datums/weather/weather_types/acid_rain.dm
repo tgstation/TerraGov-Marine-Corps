@@ -5,8 +5,8 @@
 
 	telegraph_duration = 400
 	telegraph_message = span_highdanger("Thunder rumbles far above. You hear acidic droplets hissing against the canopy. Seek shelter!")
-	telegraph_sound = 'sound/weather/acidrain/acidrain_start.ogg'
 	telegraph_overlay = "rain_med"
+	telegraph_sound = 'sound/effects/siren.ogg'
 
 	weather_message = span_highdanger("<i>Acidic rain pours down around you! Get inside!</i>")
 	weather_overlay = "acid_rain"
@@ -15,7 +15,6 @@
 
 	end_duration = 100
 	end_message = span_boldannounce("The downpour gradually slows to a light shower. It should be safe outside now.")
-	end_sound = 'sound/weather/acidrain/acidrain_end.ogg'
 	end_overlay = "rain_low"
 
 	area_type = /area
@@ -31,18 +30,14 @@
 
 /datum/weather/acid_rain/telegraph()
 	. = ..()
-	var/list/impacted_mobs = list()
-	var/list/eligible_mobs = list()
-	for(var/z in impacted_z_levels)
-		eligible_mobs += GLOB.humans_by_zlevel["[z]"]
-	for(var/i in 1 to length(eligible_mobs))
-		var/mob/impacted_mob = eligible_mobs[i]
+	for(var/mob/impacted_mob AS in GLOB.player_list)
 		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
 			continue
-		impacted_mobs |= impacted_mob
+		var/turf/impacted_mob_turf = get_turf(impacted_mob)
+		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
+			continue
+		sound_active_acidrain.output_atoms |= impacted_mob
 		CHECK_TICK
-
-	sound_active_acidrain.output_atoms = impacted_mobs
 
 /datum/weather/acid_rain/start()
 	. = ..()
@@ -66,6 +61,7 @@
 
 	telegraph_message = span_boldannounce("Thunder rumbles far above. You hear droplets drumming against the canopy.")
 	telegraph_overlay = "rain_med"
+	telegraph_sound = null
 
 	weather_message = span_boldannounce("<i>Rain pours down around you!</i>")
 	weather_overlay = "rain_high"
@@ -80,16 +76,15 @@
 	L.clean_mob()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
-		var/wetmessage = pick( "You're drenched in water!",
-		"You're completely soaked by rainfall!",
-		"You become soaked by the heavy rainfall!",
-		"Water drips off your uniform as the rain soaks your outfit!",
-		"Rushing water rolls off your face as the rain soaks you completely!",
-		"Heavy raindrops hit your face as the rain thoroughly soaks your body!",
-		"As you move through the heavy rain, your clothes become completely waterlogged!",
-		)
 		if(prob(20))
 			if(isrobot(L) || isxeno(L))
 				return
-			else
-				to_chat(L, span_warning(wetmessage))
+			var/wetmessage = pick( "You're drenched in water!",
+			"You're completely soaked by rainfall!",
+			"You become soaked by the heavy rainfall!",
+			"Water drips off your uniform as the rain soaks your outfit!",
+			"Rushing water rolls off your face as the rain soaks you completely!",
+			"Heavy raindrops hit your face as the rain thoroughly soaks your body!",
+			"As you move through the heavy rain, your clothes become completely waterlogged!",
+			)
+			to_chat(L, span_warning(wetmessage))

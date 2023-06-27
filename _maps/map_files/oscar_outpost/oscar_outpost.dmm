@@ -3527,7 +3527,6 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "xx" = (
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
 "xy" = (
@@ -7259,7 +7258,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "Oi" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "Ol" = (

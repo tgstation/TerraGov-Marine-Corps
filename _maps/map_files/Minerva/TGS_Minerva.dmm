@@ -15735,9 +15735,7 @@
 	dir = 6
 	},
 /obj/effect/ai_node,
-/turf/closed/shuttle/ert/engines/right{
-	dir = 1
-	},
+/turf/open/floor/mainship/floor,
 /area/mainship/shipboard/weapon_room)
 "Up" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{

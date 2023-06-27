@@ -359,7 +359,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Au" = (
-/obj/structure/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "AF" = (

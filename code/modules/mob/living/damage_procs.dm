@@ -1,8 +1,8 @@
-///Returns the soft armor for the given mob. If human and no limb is specified, it takes the weighted average of all available limbs.
+///Returns the soft armor for the given mob. If human and a limb is specified, gets the armor for that specific limb.
 /mob/living/proc/get_soft_armor(armor_type, proj_def_zone)
 	return soft_armor.getRating(armor_type)
 
-///Returns the hard armor for the given mob. If human and no limb is specified, it takes the weighted average of all available limbs.
+///Returns the hard armor for the given mob. If human and a limb is specified, gets the armor for that specific limb.
 /mob/living/proc/get_hard_armor(armor_type, proj_def_zone)
 	return hard_armor.getRating(armor_type)
 

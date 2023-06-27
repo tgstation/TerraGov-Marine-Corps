@@ -8,7 +8,7 @@
 	///Item that is deployed to create src.
 	var/obj/item/internal_item
 
-/obj/machinery/deployable/Initialize(mapload, _internal_item, deployer)
+/obj/machinery/deployable/Initialize(mapload, _internal_item, mob/deployer)
 	. = ..()
 	internal_item = _internal_item
 
@@ -23,8 +23,10 @@
 	hard_armor = internal_item.hard_armor
 
 	prepare_huds()
-	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
-		sentry_status_hud.add_to_hud(src)
+	if(istype(deployer))
+		var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[deployer.faction]] //we find the faction squad hud
+		if(sentry_status_hud)
+			sentry_status_hud.add_to_hud(src)
 
 	update_icon()
 
@@ -59,8 +61,6 @@
 	if(internal_item)
 		QDEL_NULL(internal_item)
 	operator?.unset_interaction()
-	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Remove from the squad HUD
-		sentry_status_hud.remove_from_hud(src)
 	return ..()
 
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location)

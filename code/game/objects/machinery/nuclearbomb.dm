@@ -58,7 +58,7 @@
 	GLOB.active_nuke_list += src
 	countdown.start()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
-	notify_ghosts("[usr] enabled the [src], it has [time] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
+	notify_ghosts("[usr] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 	timer_enabled = TRUE
 	timer = addtimer(CALLBACK(src, PROC_REF(explode)), time, TIMER_STOPPABLE)
 	update_minimap_icon()
@@ -181,7 +181,7 @@
 /obj/machinery/nuclearbomb/ui_data(mob/user)
 	var/list/data = list()
 
-	data["time"] = time MILLISECONDS
+	data["time"] = round(time MILLISECONDS)
 	data["time_left"] = get_time_left()
 	data["timer_enabled"] = timer_enabled
 	data["has_auth"] = has_auth
@@ -339,7 +339,7 @@
 
 ///Returns time left on the nuke in seconds
 /obj/machinery/nuclearbomb/proc/get_time_left()
-	return timer ? round(timeleft(timer) MILLISECONDS) : time MILLISECONDS
+	return timer ? round(timeleft(timer) MILLISECONDS) : round(time MILLISECONDS)
 
 ///Change minimap icon if its on or off
 /obj/machinery/nuclearbomb/proc/update_minimap_icon()
