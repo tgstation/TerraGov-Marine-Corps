@@ -354,7 +354,7 @@
 		X.overlay_fullscreen("xeno_feast", /atom/movable/screen/fullscreen/bloodlust)
 
 		if(endure_ability.endure_duration) //Check if Endure is active
-			endure_ability.endure_threshold = RAVAGER_ENDURE_HP_LIMIT * (1 + rage_power) //Endure crit threshold scales with Rage Power; min -100, max -150
+			endure_ability.endure_threshold = RAVAGER_ENDURE_HP_LIMIT * (1 + rage_power) //Endure crit threshold scales with Rage Power; min -100, max -200
 
 		if(charge)
 			charge.clear_cooldown() //Reset charge cooldown

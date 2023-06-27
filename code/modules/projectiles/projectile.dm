@@ -847,7 +847,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /obj/projectile/proc/play_damage_effect(mob/M)
 	if(ammo.sound_hit) playsound(M, ammo.sound_hit, 50, 1)
-	if(M.stat != DEAD) animation_flash_color(M)
+	if(M.stat != DEAD & M.endure != TRUE) animation_flash_color(M)
 
 //----------------------------------------------------------
 				//				    \\

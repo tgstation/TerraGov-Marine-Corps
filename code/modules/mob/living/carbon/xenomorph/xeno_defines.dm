@@ -405,8 +405,6 @@
 	var/savage_used = FALSE
 
 	// *** Ravager vars *** //
-	/// when true the rav will not go into crit or take crit damage.
-	var/endure = FALSE
 	///when true the rav leeches healing off of hitting marines
 	var/vampirism
 

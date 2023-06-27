@@ -123,3 +123,7 @@
 	var/active_thinking_indicator
 	/// User is thinking in character. Used to revert to thinking state after stop_typing
 	var/thinking_IC = FALSE
+
+	// *** Ravager vars *** //
+	/// when true the rav will not go into crit or take crit damage.
+	var/endure = FALSE
