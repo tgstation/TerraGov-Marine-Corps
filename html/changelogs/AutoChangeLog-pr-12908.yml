@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Platforms now apply slowdown when crossed, but do not require climbing at all. All platforms are now functional instead of some being cosmetic"
-  - bugfix: "fixed coverage for platforms working in the wrong direction"

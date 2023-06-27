@@ -257,6 +257,12 @@
 	color = "#DBCBB9"
 	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL
 
+/obj/effect/particle_effect/smoke/phosphorus/mustard
+	opacity = TRUE
+	color = COLOR_LIGHT_ORANGE
+	lifetime = 40
+	strength = 2
+
 ///////////////////////////////////////////
 // Plasma draining smoke
 //////////////////////////////////////////
@@ -295,6 +301,13 @@
 	lifetime = 6
 	expansion_speed = 3
 	smoke_traits = SMOKE_XENO
+
+/obj/effect/particle_effect/smoke/xeno/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PLASMALOSS)
+		lifetime -= 2
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
@@ -363,6 +376,9 @@
 
 /datum/effect_system/smoke_spread/phosphorus
 	smoke_type = /obj/effect/particle_effect/smoke/phosphorus
+
+/datum/effect_system/smoke_spread/mustard
+	smoke_type = /obj/effect/particle_effect/smoke/phosphorus/mustard
 
 /datum/effect_system/smoke_spread/plasmaloss
 	smoke_type = /obj/effect/particle_effect/smoke/plasmaloss

@@ -43,9 +43,9 @@
 
 
 /obj/effect/acid_hole/MouseDrop_T(mob/M, mob/user)
-	if (!holed_wall)
+	. = ..()
+	if(!holed_wall)
 		return
-
 	if(M == user && isxeno(user))
 		use_wall_hole(user)
 

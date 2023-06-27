@@ -120,11 +120,11 @@
 
 /obj/item/storage/pouch/firstaid
 	name = "first-aid pouch"
-	desc = "Standard marine first-aid pouch. It can contain autoinjectors, sets of pills, and bandages."
+	desc = "Standard marine first-aid pouch. It can contain most common medical supplies."
 	icon_state = "firstaid"
 	storage_slots = 6
 	can_hold = list(
-		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/storage/pill_bottle,
 	)
@@ -374,12 +374,17 @@
 	fill_type = /obj/item/explosive/grenade/upp
 	fill_number = 4
 
+/obj/item/storage/pouch/explosive/som
+	name = "\improper S26 explosive pouch"
+	desc = "A leather pouch for storing grenades, rockets, mine boxes, and other explosives."
+	icon_state = "explosive_som"
+
 /obj/item/storage/pouch/explosive/icc
 	desc = "It can contain grenades, plastiques, mine boxes, and other explosives. Clearly made from with a synthetic tan fiber."
 	icon_state = "large_explosive_icc"
 
 /obj/item/storage/pouch/grenade
-	name = "Grenade pouch"
+	name = "grenade pouch"
 	desc = "It can contain grenades."
 	icon_state = "explosive"
 	storage_slots = 6

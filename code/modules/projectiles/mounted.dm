@@ -52,7 +52,7 @@
 	if(!ishuman(user))
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.do_unique_action(internal_gun, user)
+	internal_gun.do_unique_action(user)
 
 /obj/machinery/deployable/mounted/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -121,6 +121,12 @@
 	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(human_user, span_warning("Your programming restricts operating heavy weaponry."))
 		return TRUE
+
+	density = FALSE
+	if(!user.Move(loc)) //Move instead of forcemove to ensure we can actually get to the object's turf
+		density = initial(density)
+		return
+
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)
 	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
@@ -146,12 +152,10 @@
 		action.give_action(operator)
 
 	gun.set_gun_user(operator)
-	operator.forceMove(loc)
 	operator.setDir(dir)
 	user_old_x = operator.pixel_x
 	user_old_y = operator.pixel_y
 	update_pixels(operator, TRUE)
-	density = FALSE
 	user_old_move_resist = operator.move_resist
 	operator.move_resist = MOVE_FORCE_STRONG
 

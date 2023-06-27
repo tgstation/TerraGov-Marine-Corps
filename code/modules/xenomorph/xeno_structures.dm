@@ -29,26 +29,26 @@
 /obj/structure/xeno/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(210)
+			take_damage(210, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(140, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(70, BRUTE, BOMB)
 
 /obj/structure/xeno/attack_hand(mob/living/user)
 	balloon_alert(user, "You only scrape at it")
 	return TRUE
 
 /obj/structure/xeno/flamer_fire_act(burnlevel)
-	take_damage(burnlevel / 3, BURN, "fire")
+	take_damage(burnlevel / 3, BURN, FIRE)
 
 /obj/structure/xeno/fire_act()
-	take_damage(10, BURN, "fire")
+	take_damage(10, BURN, FIRE)
 
 /// Destroy the xeno structure when the weed it was on is destroyed
 /obj/structure/xeno/proc/weed_removed()
 	SIGNAL_HANDLER
-	obj_destruction(damage_flag = "melee")
+	obj_destruction(damage_flag = MELEE)
 
 /obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(!(HAS_TRAIT(X, TRAIT_VALHALLA_XENO) && X.a_intent == INTENT_HARM && (tgui_alert(X, "Are you sure you want to tear down [src]?", "Tear down [src]?", list("Yes","No"))) == "Yes"))
@@ -92,11 +92,11 @@
 /obj/structure/xeno/trap/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(400)
+			take_damage(400, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(200)
+			take_damage(200, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(100)
+			take_damage(100, BRUTE, BOMB)
 
 /obj/structure/xeno/trap/update_icon_state()
 	switch(trap_type)
@@ -173,7 +173,7 @@
 	if(iscarbon(AM))
 		var/mob/living/carbon/crosser = AM
 		crosser.visible_message(span_warning("[crosser] trips on [src]!"), span_danger("You trip on [src]!"))
-		crosser.Paralyze(4 SECONDS)
+		crosser.ParalyzeNoChain(4 SECONDS)
 	switch(trap_type)
 		if(TRAP_HUGGER)
 			if(!AM)
@@ -338,11 +338,11 @@ TUNNEL
 /obj/structure/xeno/tunnel/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(210)
+			take_damage(210, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(140, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(70, BRUTE, BOMB)
 
 /obj/structure/xeno/tunnel/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
@@ -508,11 +508,11 @@ TUNNEL
 /obj/structure/xeno/acidwell/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(210)
+			take_damage(210, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(140, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(70, BRUTE, BOMB)
 
 /obj/structure/xeno/acidwell/flamer_fire_act(burnlevel) //Removes a charge of acid, but fire is extinguished
 	acid_well_fire_interaction()
@@ -523,7 +523,7 @@ TUNNEL
 ///Handles fire based interactions with the acid well. Depletes 1 charge if there are any to extinguish all fires in the turf while producing acid smoke.
 /obj/structure/xeno/acidwell/proc/acid_well_fire_interaction()
 	if(!charges)
-		take_damage(50, BURN, "fire")
+		take_damage(50, BURN, FIRE)
 		return
 
 	charges--
@@ -670,11 +670,11 @@ TUNNEL
 /obj/structure/xeno/resin_jelly_pod/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(210)
+			take_damage(210, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(140, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(70, BRUTE, BOMB)
 
 /obj/structure/xeno/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -942,18 +942,18 @@ TUNNEL
 /obj/structure/xeno/xeno_turret/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(1500)
+			take_damage(1500, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(750)
+			take_damage(750, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(300)
+			take_damage(300, BRUTE, BOMB)
 
 /obj/structure/xeno/xeno_turret/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, "fire")
+	take_damage(burnlevel * 2, BURN, FIRE)
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/fire_act()
-	take_damage(60, BURN, "fire")
+	take_damage(60, BURN, FIRE)
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/update_overlays()
@@ -1007,7 +1007,7 @@ TUNNEL
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 
 	damage *= max(0, multiplier)
-	take_damage(damage)
+	take_damage(damage, BRUTE, MELEE)
 	playsound(src, "alien_resin_break", 25)
 
 ///Signal handler for hard del of hostile
@@ -1156,11 +1156,11 @@ TUNNEL
 /obj/structure/xeno/evotower/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(700)
+			take_damage(700, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(500)
+			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(300)
+			take_damage(300, BRUTE, BOMB)
 
 /obj/structure/xeno/maturitytower
 	name = "Maturity tower"
@@ -1187,9 +1187,9 @@ TUNNEL
 /obj/structure/xeno/maturitytower/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_HEAVY, EXPLODE_DEVASTATE)
-			take_damage(500)
+			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(300)
+			take_damage(300, BRUTE, BOMB)
 
 /obj/structure/xeno/pherotower
 	name = "Pheromone tower"
@@ -1221,9 +1221,9 @@ TUNNEL
 /obj/structure/xeno/pherotower/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_HEAVY, EXPLODE_DEVASTATE)
-			take_damage(500)
+			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(300)
+			take_damage(300, BRUTE, BOMB)
 
 /obj/structure/xeno/pherotower/Destroy()
 	GLOB.hive_datums[hivenumber].pherotowers -= src

@@ -20,7 +20,6 @@
 #define MAP_SULACO "Sulaco"
 #define MAP_THESEUS "Theseus"
 #define MAP_MINERVA "Minerva"
-#define MAP_TWIN_PILLARS "Twin Pillars"
 #define MAP_COMBAT_PATROL_BASE "Combat Patrol Base"
 
 
@@ -92,6 +91,7 @@
 #define MAX_BOOK_MESSAGE_LEN 9216
 #define MAX_NAME_LEN 26
 #define MAX_BROADCAST_LEN 512
+#define MAX_NAME_HYPO 3
 
 
 //for whether AI eyes see static, and whether it is mouse-opaque or not

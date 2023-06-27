@@ -325,7 +325,7 @@ WEAPONS
 	cost = 48
 
 /datum/supply_packs/weapons/tx54_razor
-	name = "GL-54 smoke grenade magazine"
+	name = "GL-54 razorburn grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/razor)
 	cost = 96
 
@@ -670,6 +670,11 @@ WEAPONS
 	cost = 50
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/rechargemag
+	name = "Terra Experimental recharger battery"
+	contains = list(/obj/item/cell/lasgun/lasrifle/recharger)
+	cost = 60
+
 /datum/supply_packs/weapons/xray_gun
 	name = "TE-X Laser Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/xray)
@@ -773,6 +778,12 @@ EXPLOSIVES
 	contains = list(/obj/item/explosive/plastique)
 	cost = 30
 
+/datum/supply_packs/explosives/plastique_incendiary
+	name = "EX-62 Genghis incendiary charge"
+	contains = list(/obj/item/explosive/plastique/genghis_charge)
+	cost = 150
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/explosives/detpack
 	name = "detpack explosive"
 	contains = list(/obj/item/detpack)
@@ -818,6 +829,11 @@ EXPLOSIVES
 /datum/supply_packs/explosives/mlrs_rockets
 	name = "TA-40L MLRS Rocket Pack (x16)"
 	contains = list(/obj/item/storage/box/mlrs_rockets)
+	cost = 60
+
+/datum/supply_packs/explosives/mlrs_rockets_gas
+	name = "TA-40L X-50 MLRS Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rockets_gas)
 	cost = 60
 
 /datum/supply_packs/explosives/howitzer
@@ -1307,8 +1323,8 @@ ENGINEERING
 	cost = 30
 
 /datum/supply_packs/engineering/floodlight
-	name = "Combat Grade Floodlight"
-	contains = list(/obj/machinery/floodlight/combat)
+	name = "Deployable Floodlight"
+	contains = list(/obj/item/deployable_floodlight)
 	cost = 30
 
 /datum/supply_packs/engineering/advanced_generator

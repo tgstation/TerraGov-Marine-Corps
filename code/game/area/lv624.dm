@@ -377,7 +377,10 @@
 	name = "\improper Research Lab"
 	icon_state = "toxlab"
 	minimap_color = MINIMAP_AREA_RESEARCH
-
+ 
+/area/lv624/lazarus/research/caves
+	ceiling = CEILING_DEEP_UNDERGROUND
+ 
 /area/lv624/lazarus/fitness
 	name = "\improper Fitness Room"
 	icon_state = "fitness"

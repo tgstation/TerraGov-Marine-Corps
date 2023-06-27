@@ -112,16 +112,16 @@
 	icon_state = "random_fuelcell"
 	spawn_loot_chance = 95
 	loot = list(
-		/obj/item/fuelCell/random,
-		/obj/item/fuelCell/medium,
-		/obj/item/fuelCell/low,
-		/obj/item/fuelCell/high,
-		/obj/item/fuelCell/full,
+		/obj/item/fuel_cell/random,
+		/obj/item/fuel_cell/medium,
+		/obj/item/fuel_cell/low,
+		/obj/item/fuel_cell/high,
+		/obj/item/fuel_cell/full,
 	)
 
 /obj/effect/spawner/random/engineering/fuelcell/fullweighted
 	loot = list(
-		/obj/item/fuelCell/full = 9,
+		/obj/item/fuel_cell/full = 9,
 		/obj/effect/spawner/random/engineering/fuelcell = 1,
 	)
 

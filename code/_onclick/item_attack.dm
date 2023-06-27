@@ -84,7 +84,7 @@
 		span_warning("You hit [src] with [I]!"), visible_message_flags = COMBAT_MESSAGE)
 	log_combat(user, src, "attacked", I)
 	var/power = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
-	take_damage(power, I.damtype, "melee")
+	take_damage(power, I.damtype, MELEE)
 	return TRUE
 
 

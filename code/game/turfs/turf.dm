@@ -37,8 +37,6 @@
 	// In the case of a list it is sorted from bottom layer to top.
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
-	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
-
 	luminosity = 1
 
 	var/changing_turf = FALSE
@@ -209,24 +207,6 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, VAPOR, S.fraction)
 
-/turf/proc/is_plating()
-	return FALSE
-/turf/proc/is_asteroid_floor()
-	return FALSE
-/turf/proc/is_plasteel_floor()
-	return FALSE
-/turf/proc/is_light_floor()
-	return FALSE
-/turf/proc/is_grass_floor()
-	return FALSE
-/turf/proc/is_wood_floor()
-	return FALSE
-/turf/proc/is_carpet_floor()
-	return FALSE
-/turf/proc/return_siding_icon_state()		//used for grass floors, which have siding.
-	return 0
-
-
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		if(O.flags_atom & INITIALIZED)
@@ -359,9 +339,9 @@
 
 	return ChangeTurf(baseturfs, baseturfs, flags) // The bottom baseturf will never go away
 
-/turf/proc/empty(turf_type=/turf/open/space, baseturf_type, list/ignore_typecache, flags)
-	// Remove all atoms except observers, landmarks, docking ports
-	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port))
+/turf/proc/empty(turf_type = /turf/open/space, baseturf_type, list/ignore_typecache, flags)
+	// Remove all atoms except  landmarks, docking ports, ai nodes
+	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/ai_node))
 	var/list/allowed_contents = typecache_filter_list_reverse(GetAllContentsIgnoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
 	for(var/i in 1 to length(allowed_contents))
@@ -430,10 +410,6 @@
 /turf/proc/can_lay_cable()
 	return can_have_cabling() & !intact_tile
 
-
-//for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
-/turf/proc/can_be_dissolved()
-	return FALSE
 
 /turf/proc/ceiling_debris_check(size = 1)
 	return
@@ -926,18 +902,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(var_name in banned_edits)
 		return FALSE
 	return ..()
-
-///Change the turf current acid var
-/turf/proc/set_current_acid(obj/effect/xenomorph/acid/new_acid)
-	if(current_acid)
-		UnregisterSignal(current_acid, COMSIG_PARENT_QDELETING)
-	current_acid = new_acid
-	RegisterSignal(current_acid, COMSIG_PARENT_QDELETING, PROC_REF(clean_current_acid))
-
-///Signal handler to clean current_acid var
-/turf/proc/clean_current_acid()
-	SIGNAL_HANDLER
-	current_acid = null
 
 /turf/balloon_alert_perform(mob/viewer, text)
 	// Balloon alerts occuring on turf objects result in mass spam of alerts.

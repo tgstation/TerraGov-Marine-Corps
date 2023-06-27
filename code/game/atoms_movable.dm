@@ -52,6 +52,11 @@
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 
+	/// The voice that this movable makes when speaking
+	var/voice
+	/// The filter to apply to the voice when processing the TTS audio message.
+	var/voice_filter = ""
+
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_movable_lights
 	///Highest-intensity light affecting us, which determines our visibility.

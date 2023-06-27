@@ -119,3 +119,13 @@
 
 	default_ammo = /datum/ammo/water
 	dispenser_type = /obj/structure/reagent_dispensers/watertank
+
+//The engineer pyro bag internal fuel tank
+/obj/item/ammo_magazine/flamer_tank/internal
+	name = "internal fuel tank"
+	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, you shouldn't see this though."
+	icon_state = ""
+	max_rounds = 280
+	current_rounds = 280
+	reload_delay = 0 SECONDS
+

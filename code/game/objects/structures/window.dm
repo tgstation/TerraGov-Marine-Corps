@@ -63,11 +63,11 @@
 /obj/structure/window/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(rand(125, 250))
+			take_damage(rand(125, 250), BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(75, 125))
+			take_damage(rand(75, 125), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(25, 75))
+			take_damage(rand(25, 75), BRUTE, BOMB)
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -140,7 +140,7 @@
 				log_combat(user, M, "slammed", "", "against \the [src]")
 				M.apply_damage(7, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(10)
+				take_damage(10, BRUTE, MELEE)
 			if(GRAB_AGGRESSIVE)
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				log_combat(user, M, "bashed", "", "against \the [src]")
@@ -148,14 +148,14 @@
 					M.Paralyze(20)
 				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(25)
+				take_damage(25, BRUTE, MELEE)
 			if(GRAB_NECK)
 				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
 				log_combat(user, M, "crushed", "", "against \the [src]")
 				M.Paralyze(10 SECONDS)
 				M.apply_damage(20, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(50)
+				take_damage(50, BRUTE, MELEE)
 
 	else if(I.flags_item & NOBLUDGEON)
 		return
@@ -264,7 +264,7 @@
 
 /obj/structure/window/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		take_damage(round(exposed_volume / 100), BURN, "fire")
+		take_damage(round(exposed_volume / 100), BURN, FIRE)
 	return ..()
 
 /obj/structure/window/GetExplosionBlock(explosion_dir)
@@ -282,7 +282,7 @@
 
 /obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 32000)
-		take_damage(round(exposed_volume / 1000), BURN, "fire")
+		take_damage(round(exposed_volume / 1000), BURN, FIRE)
 	return ..()
 
 /obj/structure/window/phoronreinforced
@@ -677,3 +677,22 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	deconstructable = FALSE
 	max_integrity = 300
+
+/obj/structure/window/framed/mainship/canterbury/dropship
+	name = "orbital insertion safety window"
+	desc = "A glass window with a reinforced rod matrice inside a wall frame, 3 times as strong as a normal window to be spaceworthy."
+	max_integrity = 300 // 13 hunter slashes
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
+	window_frame = /obj/structure/window_frame/mainship/dropship
+
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced
+	name = "reinforced orbital insertion safety window"
+	desc = "A durable glass window with a specialized reinforced rod matrice inside a wall frame, 6 times as strong as a normal window to be spaceworthy and withstand impacts."
+	max_integrity = 600 // 25 hunter slashes

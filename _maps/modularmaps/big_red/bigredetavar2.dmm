@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"al" = (
-/turf/open/floor/wood/broken/three,
-/area/bigredv2/outside/general_offices)
 "am" = (
 /obj/item/shard,
 /turf/open/floor/plating/dmg1,
@@ -23,7 +20,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
 "aV" = (
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "bd" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -148,6 +145,11 @@
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
+"fg" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
 "fl" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -256,7 +258,6 @@
 /area/bigredv2/outside/hydroponics)
 "kU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Dormitories Tool Storage"
 	},
 /turf/open/floor,
@@ -269,7 +270,7 @@
 /area/bigredv2/outside/general_offices)
 "lt" = (
 /obj/effect/spawner/gibspawner/human,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "mc" = (
 /turf/closed/shuttle/dropship2/walltwo,
@@ -297,7 +298,7 @@
 /area/bigredv2/outside/general_offices)
 "nj" = (
 /obj/structure/bed,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "nr" = (
 /obj/effect/ai_node,
@@ -317,16 +318,13 @@
 /area/bigredv2/caves/northeast)
 "oH" = (
 /obj/item/stack/sheet/wood,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "oI" = (
 /obj/effect/decal/cleanable/blood/six{
 	dir = 1
 	},
 /turf/open/shuttle/dropship/three,
-/area/bigredv2/outside/general_offices)
-"oU" = (
-/turf/closed/shuttle/ert/engines/left,
 /area/bigredv2/outside/general_offices)
 "ph" = (
 /obj/structure/girder,
@@ -431,7 +429,7 @@
 /area/bigredv2/outside/bar)
 "sV" = (
 /obj/structure/table,
-/turf/open/floor/wood/broken/five,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "tf" = (
 /turf/closed/shuttle/dropship2/cornersalt,
@@ -460,13 +458,15 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
-"vD" = (
-/turf/closed/shuttle/ert/engines/right,
-/area/bigredv2/outside/general_offices)
 "vK" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
+"wh" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
 "wj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -556,7 +556,6 @@
 /area/bigredv2/outside/hydroponics)
 "AE" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
-	dir = 4;
 	name = "\improper Dormitories Lavatory"
 	},
 /turf/open/floor/freezer,
@@ -669,8 +668,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "FR" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 4
+/turf/closed/shuttle/ert/engines/left/three{
+	dir = 1
 	},
 /area/bigredv2/outside/general_offices)
 "FW" = (
@@ -716,8 +715,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "If" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 4
+/turf/closed/shuttle/ert/engines/right/three{
+	dir = 1
 	},
 /area/bigredv2/outside/general_offices)
 "Im" = (
@@ -734,9 +733,6 @@
 	},
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/hydroponics)
-"Jg" = (
-/turf/open/floor/wood/broken/six,
-/area/bigredv2/outside/general_offices)
 "JP" = (
 /turf/closed/shuttle/dropship2/edge{
 	dir = 1
@@ -767,7 +763,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/wood/broken/three,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "Mi" = (
 /turf/closed/shuttle/dropship2/corners{
@@ -1272,7 +1268,7 @@ er
 Fu
 er
 Qv
-Jg
+aV
 LQ
 rc
 dV
@@ -1293,12 +1289,12 @@ BI
 mc
 Mi
 FR
+fg
 qs
-oU
 Hh
 DU
 jj
-al
+aV
 aV
 Zw
 dV
@@ -1449,12 +1445,12 @@ BI
 PM
 Xh
 If
+wh
 Hm
-vD
 Fu
 Hh
 gQ
-al
+aV
 lt
 Fu
 vK
@@ -1506,8 +1502,8 @@ er
 Fu
 Hh
 Qv
-Jg
-al
+aV
+aV
 RJ
 Fz
 Fz

@@ -9,8 +9,6 @@
 		else
 			to_chat(M, span_highdanger("Your platoon has orders to patrol a remote TerraGov territory that the Sons of Mars are illegally attempting to claim. Intel suggests hostile patrols are in the area to try maintain defacto control. Work with your team and eliminate all SOM you encounter while minimising your own casualties! High Command considers wiping out all enemies a major victory, or inflicting more casualties a minor victory."))
 		return
-	if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
-		to_chat(M, span_highdanger("You are a proud member of the [faction == FACTION_TERRAGOV ? "Loyalist" : "Rebel"] faction. Kill your enemies!"))
 	if(CONFIG_GET(number/minimal_access_threshold))
 		var/msg = "As this ship was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "skeleton crew, additional access may" : "full crew, only the job's necessities"] have been added to the crew's ID cards."
 		to_chat(M, span_notice(msg))
@@ -19,16 +17,17 @@
 	switch(prefs?.species)
 		if("Combat Robot")
 			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
-				if(prefs?.robot_type == "Basic")
-					return /mob/living/carbon/human/species/robot
-				if(prefs?.robot_type == "Hammerhead")
-					return /mob/living/carbon/human/species/robot/alpharii
-				if(prefs?.robot_type == "Chilvaris")
-					return /mob/living/carbon/human/species/robot/charlit
-				if(prefs?.robot_type == "Ratcher")
-					return /mob/living/carbon/human/species/robot/deltad
-				if(prefs?.robot_type == "Sterling")
-					return /mob/living/carbon/human/species/robot/bravada
+				switch(prefs?.robot_type)
+					if("Basic")
+						return /mob/living/carbon/human/species/robot
+					if("Hammerhead")
+						return /mob/living/carbon/human/species/robot/alpharii
+					if("Chilvaris")
+						return /mob/living/carbon/human/species/robot/charlit
+					if("Ratcher")
+						return /mob/living/carbon/human/species/robot/deltad
+					if("Sterling")
+						return /mob/living/carbon/human/species/robot/bravada
 			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
 			return /mob/living/carbon/human
 		if("Vatborn")

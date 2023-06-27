@@ -58,3 +58,4 @@
 #define ATTACHMENT_SLOT_BADGE "badge"
 #define ATTACHMENT_SLOT_CAPE "cape"
 #define ATTACHMENT_SLOT_CAPE_HIGHLIGHT "cape_highlight"
+#define ATTACHMENT_SLOT_KAMA "kama"

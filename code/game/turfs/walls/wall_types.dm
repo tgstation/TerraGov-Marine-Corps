@@ -64,16 +64,14 @@
 		SMOOTH_GROUP_CANTERBURY,
 	)
 
-
+/turf/closed/wall/mainship/research
+	resistance_flags = UNACIDABLE
 
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
 	icon_state = "wall-invincible"
 	resistance_flags = RESIST_ALL
-
-/turf/closed/wall/mainship/research/can_be_dissolved()
-	return FALSE
 
 /turf/closed/wall/mainship/research/containment/wall
 	icon = 'icons/turf/mainshipwalls.dmi'
@@ -178,11 +176,11 @@
 			ChangeTurf(/turf/open/floor/plating)
 		if(EXPLODE_HEAVY)
 			if(prob(75))
-				take_damage(rand(100, 250))
+				take_damage(rand(100, 250), BRUTE, BOMB)
 			else
 				dismantle_wall(1, 1)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(0, 250))
+			take_damage(rand(0, 250), BRUTE, BOMB)
 
 
 /turf/closed/wall/sulaco/hull
@@ -205,11 +203,6 @@
 /turf/closed/wall/sulaco/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
-/turf/closed/wall/sulaco/unmeltable/can_be_dissolved()
-	return FALSE
-
-
-
 /turf/closed/wall/indestructible
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
@@ -229,9 +222,6 @@
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		to_chat(user, span_warning("[P] can't cut through this!"))
 	return
-
-/turf/closed/wall/indestructible/can_be_dissolved()
-	return 0
 
 /turf/closed/wall/indestructible/mineral
 	name = "impenetrable rock"
@@ -269,6 +259,7 @@
 	name = "mineral wall"
 	desc = "This shouldn't exist"
 	icon_state = ""
+	resistance_flags = UNACIDABLE
 	var/mineral
 	var/last_event = 0
 	var/active = null
@@ -389,3 +380,57 @@
 	walltype = "woodrwall"
 	max_integrity = 3000
 	explosion_block = 4
+
+/turf/closed/wall/brick
+	name = "brick wall"
+	desc = "A wall made out of weathered brick."
+	icon = 'icons/turf/walls/brick.dmi'
+	icon_state = "wall-0"
+	walltype = "wall"
+	base_icon_state = "wall"
+
+/turf/closed/wall/variable
+	icon_state = "wall-0"
+	///the different tileset paths for this turf
+	var/list/icon_path_variants = list()
+
+/turf/closed/wall/variable/Initialize(mapload, ...)
+	. = ..()
+	icon = pick(icon_path_variants)
+
+/turf/closed/wall/variable/adobe
+	name = "adobe wall"
+	desc = "A wall made out of adobe brick."
+	icon_state = "wall-0"
+	icon = 'icons/turf/walls/adobe.dmi'
+	walltype = "wall"
+	base_icon_state = "wall"
+	icon_path_variants = list(
+		'icons/turf/walls/adobe.dmi',
+		'icons/turf/walls/adobe_1.dmi',
+		'icons/turf/walls/adobe_2.dmi',
+		'icons/turf/walls/adobe_3.dmi',
+	)
+
+/turf/closed/wall/variable/siding
+	name = "siding wall"
+	desc = "A worn wooden wall."
+	icon = 'icons/turf/walls/siding.dmi'
+	icon_state = "wall-0"
+	walltype = "wall"
+	base_icon_state = "wall"
+	icon_path_variants = list(
+		'icons/turf/walls/siding.dmi',
+		'icons/turf/walls/siding_1.dmi',
+		'icons/turf/walls/siding_2.dmi',
+		'icons/turf/walls/siding_3.dmi',
+	)
+
+/turf/closed/wall/variable/siding/red
+	icon = 'icons/turf/walls/siding_red.dmi'
+	icon_path_variants = list(
+		'icons/turf/walls/siding_red.dmi',
+		'icons/turf/walls/siding_red_1.dmi',
+		'icons/turf/walls/siding_red_2.dmi',
+		'icons/turf/walls/siding_red_3.dmi',
+	)

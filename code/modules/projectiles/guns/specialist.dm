@@ -444,7 +444,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/minigun/smart_minigun
 	name = "\improper SG-85 smart handheld gatling gun"
-	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's newest IFF-capable weapon. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
+	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's IFF-capable minigun for heavy fire support duty. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
 	icon_state = "minigun_sg"
 	item_state = "minigun_sg"
 	fire_animation = "minigun_sg_fire"
@@ -456,11 +456,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_skill_category = SKILL_SMARTGUN
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/motiondetector)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 29, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12) //Only has rail attachments so only the rail variables are properly aligned
-	aim_slowdown = 1.5
+	aim_slowdown = 1.2
 	actions_types = list()
 
 	fire_delay = 0.1 SECONDS
-	windup_delay = 0.7 SECONDS
 	scatter = -5
 	recoil = 0
 	recoil_unwielded = 4
@@ -493,8 +492,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/flashlight,
+		/obj/item/weapon/gun/flamer/hydro_cannon/pepperball,
 		/obj/item/attachable/magnetic_harness,
 	) // One
+
+	starting_attachment_types = list(/obj/item/weapon/gun/flamer/hydro_cannon/pepperball)
+
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
@@ -512,6 +515,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	placed_overlay_iconstate = "pepper"
 
+/obj/item/weapon/gun/flamer/hydro_cannon/pepperball
+	name = "coaxial watercannon"
+	desc = "For the quenching of unfortunate mistakes."
+	icon_state = "hydrocannon_pepper"
+
+
 
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	name = "mini pepperball gun"
@@ -523,6 +532,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini)
 	force = 5
 	attachable_allowed = list()
+	starting_attachment_types = list()
 	actions_types = list()
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	flags_gun_features = GUN_IS_ATTACHMENT | GUN_WIELDED_FIRING_ONLY | GUN_ATTACHMENT_FIRE_ONLY | GUN_AMMO_COUNTER
@@ -544,8 +554,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	lifespan = 0.7 SECONDS
 	fade = 8 SECONDS
 	grow = 0.1
-	drift = generator(GEN_CIRCLE, 0, 10)
-	scale = 0.5
+	drift = generator(GEN_CIRCLE, 0, 5)
+	scale = 0.3
 	spin = generator(GEN_NUM, -20, 20)
 	velocity = list(50, 0)
 	friction = generator(GEN_NUM, 0.1, 0.5)
@@ -578,6 +588,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	gun_skill_category = SKILL_FIREARMS
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -588,8 +599,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -100
 	placed_overlay_iconstate = "sadar"
 	windup_delay = 0.4 SECONDS
-	///the smoke effect after firing
-	var/obj/effect/abstract/particle_holder/backblast
 	///removes backblast damage if false
 	var/backblastdamage = TRUE
 
@@ -602,9 +611,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	var/angle = Get_Angle(loc, target)
 	var/x_component = sin(angle) * -30
 	var/y_component = cos(angle) * -30
-	backblast = new(blast_source, /particles/backblast)
+	var/obj/effect/abstract/particle_holder/backblast = new(blast_source, /particles/backblast)
 	backblast.particles.velocity = list(x_component, y_component)
-	QDEL_NULL_IN(src, backblast, 0.7 SECONDS)
+	addtimer(VARSET_CALLBACK(backblast.particles, count, 0), 5)
+	QDEL_IN(backblast, 0.7 SECONDS)
 
 	if(!backblastdamage)
 		return
@@ -782,7 +792,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/oneuse)
-	reciever_flags = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES
+	reciever_flags = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	flags_equip_slot = ITEM_SLOT_BELT
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)

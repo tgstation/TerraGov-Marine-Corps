@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/map_templates = list()
 
 	var/list/shuttle_templates = list()
+	var/list/minidropship_templates = list()
 
 	///list of all modular mapping templates
 	var/list/modular_templates = list()
@@ -112,6 +113,7 @@ SUBSYSTEM_DEF(mapping)
 	flags |= SS_NO_INIT
 	initialized = SSmapping.initialized
 	map_templates = SSmapping.map_templates
+	minidropship_templates = SSmapping.minidropship_templates
 	shuttle_templates = SSmapping.shuttle_templates
 	modular_templates = SSmapping.modular_templates
 	unused_turfs = SSmapping.unused_turfs
@@ -280,6 +282,10 @@ SUBSYSTEM_DEF(mapping)
 
 		shuttle_templates[S.shuttle_id] = S
 		map_templates[S.shuttle_id] = S
+	
+	for(var/drop_path in typesof(/datum/map_template/shuttle/minidropship))
+		var/datum/map_template/shuttle/drop = new drop_path()
+		minidropship_templates += drop
 
 /datum/controller/subsystem/mapping/proc/preloadModularTemplates()
 	for(var/item in subtypesof(/datum/map_template/modular))

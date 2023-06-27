@@ -151,8 +151,6 @@
 						if(B.linked_beacon.linked_bed_deployed == B)
 							M.linked_beacon.linked_bed = M
 							B.linked_beacon.linked_bed_deployed = null
-				H.visible_message(span_warning("[H] grabs [src] from the floor!"),
-				span_warning("You grab [src] from the floor!"))
 				qdel(src)
 
 /obj/structure/bed/ex_act(severity)

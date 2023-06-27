@@ -64,7 +64,7 @@
 	var/turf/right = locate(C.x + leftright, C.y, C.z)
 
 	for(var/turf/T in range(3, rear)+range(3, left)+range(3, right)+range(2, front))
-		T.empty(/turf/open/floor/plating)
+		T.empty(/turf/open/floor/plating, ignore_typecache = typecacheof(/mob))
 
 	SSmonitor.process_human_positions()
 	SSevacuation.initial_human_on_ship = SSmonitor.human_on_ship
@@ -105,11 +105,6 @@
 	name = "Shipside 'Alamo' Hangar Pad"
 	id = SHUTTLE_ALAMO
 	roundstart_template = /datum/map_template/shuttle/dropship_one
-
-/obj/docking_port/stationary/marine_dropship/hangar/rebel
-	name = "Shipside 'Triumph' Hangar Pad"
-	id = SHUTTLE_TRIUMPH
-	roundstart_template = /datum/map_template/shuttle/dropship_three
 
 /obj/docking_port/stationary/marine_dropship/hangar/two
 	name = "Shipside 'Normandy' Hangar Pad"
@@ -271,11 +266,6 @@
 	height = 13
 	width = 9
 
-/obj/docking_port/mobile/marine_dropship/three
-	name = "Triumph"
-	id = SHUTTLE_TRIUMPH
-	control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
-
 // queen calldown
 
 /obj/docking_port/mobile/marine_dropship/afterShuttleMove(turf/oldT, rotation)
@@ -425,8 +415,10 @@
 			to_chat(user, span_warning("The bird has left meanwhile, try again."))
 			return FALSE
 		D.unlock_all()
-		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
-		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
+		if(D.mode != SHUTTLE_IGNITING)
+			D.set_hijack_state(HIJACK_STATE_UNLOCKED)
+			D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
+			to_chat(user, span_warning("We were unable to prevent the bird from flying as it is already taking off."))
 		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
 		playsound(user, "alien_roar", 50)
@@ -499,10 +491,12 @@
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
-		M.unlock_all()
 		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
+		M.unlock_all()
+		M.silicon_lock_airlocks(TRUE)
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
 			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors[(M.mode != SHUTTLE_IGNITING) ? "and preventing it from flying." : ", but we are unable to prevent it from flying as it is already taking off!"]"))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, src)
 			if(M.mode != SHUTTLE_IGNITING)
 				M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 				M.do_start_hijack_timer()
@@ -754,12 +748,6 @@
 	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon_state = "console2"
 	possible_destinations = "lz1;lz2;alamo;normandy"
-
-/obj/machinery/computer/shuttle/marine_dropship/three
-	name = "\improper 'Triumph' flight controls"
-	desc = "The flight controls for the 'Triumph' Dropship."
-	possible_destinations = "lz1;triumph"
-	req_one_access = list(ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LEADER_REBEL)
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
@@ -1407,19 +1395,6 @@
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	shuttleId = SHUTTLE_NORMANDY
 	possible_destinations = "lz1;lz2;alamo;normandy"
-
-/obj/machinery/computer/shuttle/shuttle_control/dropship/rebel
-	name = "\improper 'Triumph' dropship console"
-	desc = "The remote controls for the 'Triumph' Dropship."
-	shuttleId = SHUTTLE_TRIUMPH
-	possible_destinations = "lz1;triumph"
-	compatible_control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
-
-/obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist
-	name = "\improper 'Alamo' dropship console"
-	desc = "The remote controls for the 'Alamo' Dropship."
-	shuttleId = SHUTTLE_ALAMO
-	possible_destinations = "lz2;alamo"
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury
 	name = "\improper 'Canterbury' shuttle console"

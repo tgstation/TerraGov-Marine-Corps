@@ -5,16 +5,14 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
 
-/turf/open/floor/plating/ground/AfterChange()
-	. = ..()
-	baseturfs = type
+/turf/open/floor/plating/ground/broken_states()
+	return icon_state
+
+/turf/open/floor/plating/ground/burnt_states()
+	return icon_state
 
 /turf/open/floor/plating/ground/fire_act(exposed_temperature, exposed_volume)
 	return
-
-/turf/open/floor/plating/ground/is_plating() //Temporary hack until we re-implement baseturfs, /tg/ plating and change_turf.dm.
-	return FALSE
-
 
 /turf/open/floor/plating/ground/dirt
 	name = "dirt"
@@ -181,7 +179,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand
 	name = "sand"
 	icon_state = "mars_dirt_to_sand"
-	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT)
+	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT, SMOOTH_GROUP_OPEN_FLOOR)
 
 /turf/open/floor/plating/ground/mars/cavetodirt
 	name = "cave"
@@ -364,3 +362,35 @@
 	name = "cave"
 	icon_state = "inner_cavesides"
 
+/turf/open/floor/plating/ground/drought
+	name = "desert"
+	icon = 'icons/turf/desert.dmi'
+	icon_state = "desert"
+	mediumxenofootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_DIRT
+	var/icon_variants = 3
+
+/turf/open/floor/plating/ground/drought/Initialize(mapload)
+	. = ..()
+	icon_state = "[initial(icon_state)]_[pick(1, icon_variants)]"
+
+/turf/open/floor/plating/ground/drought/alt
+	icon_state = "desert_alt"
+
+/turf/open/floor/plating/ground/drought/cave
+	name = "cave"
+	icon = 'icons/turf/cave_drought.dmi'
+	icon_state = "cave"
+	mediumxenofootstep = FOOTSTEP_GRAVEL
+	barefootstep = FOOTSTEP_GRAVEL
+	shoefootstep = FOOTSTEP_GRAVEL
+	icon_variants = 8
+
+/turf/open/floor/plating/ground/drought/cave/deep
+	icon = 'icons/turf/cave.dmi'
+	icon_variants = 7
+	mediumxenofootstep = FOOTSTEP_CONCRETE
+	barefootstep = FOOTSTEP_CONCRETE
+	shoefootstep = FOOTSTEP_CONCRETE

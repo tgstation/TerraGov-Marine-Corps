@@ -367,7 +367,7 @@
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
-	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
+	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC marines to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m40"
 	w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 14
@@ -405,9 +405,8 @@
 	desc = "Meal Ready-to-Eat, meant to be consumed in the field, and has an expiration that is two decades past a marine's average combat life expectancy."
 	icon_state = "mealpack"
 	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list()
+	can_hold = list(/obj/item/reagent_containers/food/snacks/packaged_meal)
 	storage_slots = 4
-	max_w_class = 0
 	foldable = 0
 	var/isopened = 0
 	///the item left behind when this is used up
@@ -502,6 +501,10 @@
 /obj/item/storage/box/visual/Initialize(mapload, ...)
 	. = ..()
 	update_stats()
+
+/obj/item/storage/box/visual/Destroy()
+	contents_weight = null
+	return ..()
 
 /// Updates certain vars used primarily (but not exclusively) for the creation of the overlays.
 /obj/item/storage/box/visual/proc/update_stats()

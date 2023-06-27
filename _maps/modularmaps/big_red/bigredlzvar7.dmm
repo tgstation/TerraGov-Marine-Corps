@@ -1012,6 +1012,11 @@
 	dir = 10
 	},
 /area/bigredv2/outside/nw)
+"yW" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
 "zj" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 8
@@ -5287,7 +5292,7 @@ kl
 Ly
 uf
 qu
-Rs
+yW
 qu
 Ly
 qo

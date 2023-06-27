@@ -1,6 +1,8 @@
 /datum/status_effect/speech
 	id = null
 	alert_type = null
+	var/make_tts_message_original = FALSE
+	var/tts_filter = ""
 
 /datum/status_effect/speech/on_creation(mob/living/new_owner, duration = 10 SECONDS)
 	src.duration = duration
@@ -32,9 +34,14 @@
 /datum/status_effect/speech/proc/handle_message(datum/source, list/message_args)
 	SIGNAL_HANDLER
 
-	var/phrase = html_decode(message_args[1])
+	var/phrase = html_decode(message_args[TREAT_MESSAGE_ARG])
 	if(!length(phrase))
 		return
+
+	if(length(tts_filter) > 0)
+		message_args[TREAT_TTS_FILTER_ARG] += tts_filter
+	if(make_tts_message_original)
+		message_args[TREAT_TTS_MESSAGE_ARG] = message_args[TREAT_MESSAGE_ARG]
 
 	var/final_phrase = ""
 	var/original_char = ""
@@ -44,7 +51,7 @@
 
 		final_phrase += apply_speech(original_char, original_char)
 
-	message_args[1] = sanitize(final_phrase)
+	message_args[TREAT_MESSAGE_ARG] = sanitize(final_phrase)
 
 /**
  * Applies the speech effects on the past character, changing
@@ -58,6 +65,8 @@
 
 /datum/status_effect/speech/stutter
 	id = "stutter"
+	make_tts_message_original = TRUE
+	tts_filter = "tremolo=f=10:d=0.8,rubberband=tempo=0.5"
 	/// The probability of adding a stutter to any character
 	var/stutter_prob = 80
 	/// Regex of characters we won't apply a stutter to
@@ -72,11 +81,9 @@
 
 /datum/status_effect/speech/stutter/apply_speech(original_char, modified_char)
 	if(prob(stutter_prob) && !no_stutter.Find(original_char))
-		if(prob(10))
-			modified_char = "[modified_char]-[modified_char]-[modified_char]-[modified_char]"
-		else if(prob(20))
+		if(prob(15))
 			modified_char = "[modified_char]-[modified_char]-[modified_char]"
-		if(prob(95))
+		else if(prob(70))
 			modified_char = "[modified_char]-[modified_char]"
 
 	return modified_char
@@ -90,7 +97,7 @@
 
 /datum/status_effect/speech/stutter/derpspeech/handle_message(datum/source, list/message_args)
 
-	var/message = html_decode(message_args[1])
+	var/message = html_decode(message_args[TREAT_MESSAGE_ARG])
 
 	message = replacetext(message, " am ", " ")
 	message = replacetext(message, " is ", " ")
@@ -107,7 +114,7 @@
 		message = uppertext(message)
 		message += "[apply_speech(exclamation, exclamation)]"
 
-	message_args[1] = message
+	message_args[TREAT_MESSAGE_ARG] = message
 
 	var/mob/living/living_source = source
 	if(!isliving(source) || living_source.has_status_effect(/datum/status_effect/speech/stutter))
@@ -213,6 +220,7 @@
 	replacement_prob = 33
 	doubletext_prob = 0
 	text_modification_file = "slurring_cult_text.json"
+	tts_filter = "rubberband=pitch=0.5,vibrato=5"
 
 /datum/status_effect/speech/slurring/heretic
 	id = "heretic_slurring"

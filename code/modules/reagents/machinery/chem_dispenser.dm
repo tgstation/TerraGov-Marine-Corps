@@ -127,15 +127,15 @@
 	// I dont care about the type of tool, if it triggers multitool act its good enough.
 	hackedcheck = !hackedcheck
 	if(hackedcheck)
-		to_chat(user, emagged_message[1])
+		balloon_alert(user, emagged_message[1])
 		dispensable_reagents += emagged_reagents
 	else
-		to_chat(user, emagged_message[2])
+		balloon_alert(user, emagged_message[2])
 		dispensable_reagents -= emagged_reagents
 
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
 	if(needs_medical_training && ishuman(usr) && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_PRACTICED)
-		balloon_alert(user, "skill issue")
+		balloon_alert(user, "You don't know how to use this")
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -294,8 +294,7 @@
 				for(var/reagent in recording_recipe)
 					var/reagent_id = GLOB.name2reagent[reagent]
 					if(!dispensable_reagents.Find(reagent_id))
-						visible_message(span_warning("[src] buzzes."), span_hear("You hear a faint buzz."))
-						to_chat(usr, span_danger("[src] cannot find <b>[reagent]</b>!"))
+						balloon_alert_to_viewers("[src] buzzes")
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						return
 				usr.client.prefs.chem_macros[name] = recording_recipe
@@ -325,12 +324,12 @@
 
 	if(isreagentcontainer(I))
 		if(beaker)
-			to_chat(user, "Something is already loaded into the machine.")
+			balloon_alert(user, "Something already loaded")
 			return
 
 		for(var/datum/reagent/X in I.reagents.reagent_list)
 			if(X.medbayblacklist)
-				to_chat(user, span_warning("The chemical dispenser's automatic safety features beep softly, they must have detected a harmful substance in the beaker."))
+				balloon_alert(user, "Harmful substance in beaker")
 				return
 
 		if(I.is_open_container())
@@ -338,29 +337,29 @@
 				return
 
 			beaker = I
-			to_chat(user, "You set [I] on the machine.")
+			balloon_alert(user, "Sets [I] on the machine")
 			update_icon()
 			updateUsrDialog()
 			return
 
 		if(istype(I, /obj/item/reagent_containers/glass))
-			to_chat(user, "Take the lid off [I] first.")
+			balloon_alert(user, "Take the lid off")
 			return
 
-		to_chat(user, "The machine can't dispense into that.")
+		balloon_alert(user, "Can't use this")
 		return
 
 	if(istype(I, /obj/item/cell))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			to_chat(user, span_notice("[src]'s battery panel is closed!"))
+			balloon_alert(user, "Battery panel is closed")
 			return
 		if(cell)
-			to_chat(user, span_notice("[src] already has a battery installed!"))
+			balloon_alert(user, "Already has a power cell")
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		cell = I
-		to_chat(user, span_notice("You install \the [cell]."))
+		balloon_alert(user, "Inserts")
 		overlays.Cut()
 		start_processing()
 		update_icon()
@@ -369,7 +368,7 @@
 /obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	overlays.Cut()
-	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment."))
+	balloon_alert_to_viewers("[CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "opens" : "closes"] the battery compartment")
 	update_icon()
 	return TRUE
 
@@ -378,7 +377,7 @@
 		return FALSE
 	cell.forceMove(loc)
 	cell = null
-	to_chat(user, span_notice("You pry out the dispenser's battery."))
+	balloon_alert_to_viewers("pries out battery.")
 	stop_processing()
 	overlays.Cut()
 	update_icon()

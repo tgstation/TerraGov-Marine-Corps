@@ -163,6 +163,35 @@
 		living_target.add_slowdown(1)
 		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
-#undef BLINK_DRIVE_RANGE
-#undef BLINK_DRIVE_MAX_CHARGES
-#undef BLINK_DRIVE_CHARGE_TIME
+//codex stuff
+/obj/item/blink_drive/get_mechanics_info()
+	. = ..()
+	var/list/traits = list()
+
+	traits += "The 'blink drive', properly known as a Bluespace Displacement Drive, is a cutting edge SOM device designed for use by their elite infantry.<br>\
+		It allows the user to travel very short distances through bluespace, which had previously been considering impossible to do without near certain risk of death \
+		due to the inherent instability associated with such bluespace drives of this size. <br> <br>\
+		While the blink drive appears to be the most accurate bluespace drive of this size yet seen, there are still dramatic risks associated with its use. <br> \
+		Multiple reported instances of user displacing themselves into solid walls or other obstacles resulting in their instant death testifies to the enduring risks of such technology.<br>\
+		The SOM however, appear to have no shortage of volunteers ready to accept such risks in the name of their cause. <br>"
+
+	traits += "<U>Range:</U><br>The blink drive can teleport the user up to [BLINK_DRIVE_RANGE] tiles away, by middle clicking with the drive active. Line of Sight is not required to teleport.<br>"
+
+	traits += "<U>Instability:</U><br>The blink drive is inherently unstable, and pushing it to its limits results in instability.<br> \
+	Instability results in the user potentially teleporting to a tile near, but not exactly where they intended. <br>\
+	There are three causes of instability, each level of instability means you can end up one tile away from where you click, up to a maximum of 3 tiles away.<br> \
+	1. Distance: Teleporting more than [BLINK_DRIVE_RANGE - 2] tiles away <br> \
+	2. Visibility: Teleporting to a tile you cannot directly see <br> \
+	3. Rapid use: Using the drive less than one second after its last use <br>"
+
+	traits += "<U>Risks:</U><br>Teleporting into a solid turf such as a wall will <U>instantly gib the user</U>.<br>\
+	Great caution is advised when using the drive near solid turfs, especially when factoring in instability.<br>"
+
+	traits += "<U>Charging:</U><br>The blink drive can store up to three charges, and recharges one every [BLINK_DRIVE_CHARGE_TIME * 0.1] seconds. It cannot recharge while in use.<br>"
+
+	traits += "<U>AOE effect:</U><br>When the drive is used, any mob (including the user) in a small area of effect suffers from a very brief period of stagger and slowdown.<br>\
+	This applies both to the users initial location as well as their exit location.<br>"
+
+	traits += "<U>Shared use:</U><br>If the user has grabbed another mob when activating the drive, the grabbed mob will be teleported with them.<br>"
+
+	. += jointext(traits, "<br>")

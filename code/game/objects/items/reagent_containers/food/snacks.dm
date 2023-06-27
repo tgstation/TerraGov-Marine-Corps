@@ -34,10 +34,7 @@
 	if(reagents.total_volume)
 		return
 
-	if(M == usr)
-		to_chat(usr, span_notice("You finish eating \the [src]."))
-	else
-		M.visible_message(span_notice("[M] finishes eating \the [src]."))
+	balloon_alert_to_viewers("eats \the [src]")
 
 	usr.dropItemToGround(src)	//so icons update :[
 
@@ -57,13 +54,13 @@
 
 /obj/item/reagent_containers/food/snacks/attack(mob/M, mob/user, def_zone)
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
-		to_chat(user, span_warning("None of [src] left, oh no!"))
+		balloon_alert(user, "None of [src] left")
 		M.dropItemToGround(src)	//so icons update :[
 		qdel(src)
 		return FALSE
 
 	if(package)
-		to_chat(M, span_warning("How do you expect to eat this with the package still on?"))
+		balloon_alert(user, "Can't, package still on")
 		return FALSE
 
 	if(iscarbon(M))
@@ -72,28 +69,28 @@
 		if(M == user)								//If you're eating it yourself
 			var/mob/living/carbon/H = M
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
-				to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
+				balloon_alert(user, "can't eat food")
 				return
 			if (fullness <= 50)
-				to_chat(M, span_warning("You hungrily chew out a piece of \the [src] and gobble it!"))
+				balloon_alert(user, "hungrily chews [src]")
 			if (fullness > 50 && fullness <= 150)
-				to_chat(M, span_warning("You hungrily begin to eat \the [src]."))
+				balloon_alert(user, "hungrily eats [src]")
 			if (fullness > 150 && fullness <= 350)
-				to_chat(M, span_warning("You take a bite of \the [src]."))
+				balloon_alert(user, "takes bite of [src]")
 			if (fullness > 350 && fullness <= 550)
-				to_chat(M, span_warning("You unwillingly chew a bit of \the [src]."))
+				balloon_alert(user, "unwillingly chews [src]")
 			if (fullness > 550)
-				to_chat(M, span_warning("You cannot force any more of \the [src] to go down your throat."))
+				balloon_alert(user, "cannot eat more of [src]")
 				return FALSE
 		else
 			var/mob/living/carbon/H = M
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
-				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
+				balloon_alert(user, "can't eat food")
 				return
 			if (fullness <= 550)
-				M.visible_message(span_warning("[user] attempts to feed \the [M] [src]."))
+				balloon_alert_to_viewers("tries to feed [M]")
 			else
-				M.visible_message(span_warning("[user] cannot force anymore of \the [src] down [M]'s throat."))
+				balloon_alert_to_viewers("tries to feed [M] but can't")
 				return FALSE
 
 			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
@@ -103,7 +100,7 @@
 
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 
-			M.visible_message(span_warning("[user] feeds [M] [src]."))
+			balloon_alert_to_viewers("forces [M] to eat")
 
 
 		if(reagents)								//Handle ingestion of the reagent.
@@ -152,7 +149,7 @@
 			U.create_reagents(5)
 
 		if(U.reagents.total_volume > 0)
-			to_chat(user, span_warning("You already have something on your [U]."))
+			balloon_alert(user, "already something on [U]")
 			return
 
 		user.visible_message("[user] scoops up some [src] with \the [U]!", \
@@ -180,17 +177,16 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 		if(length(contents) > max_items)
-			to_chat(user, span_warning("[src] is full, you can't stuff [I] inside."))
+			balloon_alert(user, "already full")
 			return
-		to_chat(user, span_notice("You slip [I] inside of [src]."))
+		balloon_alert(user, "slips [I] inside")
 		return
 
 	if(!isturf(loc) || !(locate(/obj/structure/table) in loc))
-		to_chat(user, span_warning("You cannot slice [src] here! You need a table or at least a tray to do it."))
+		balloon_alert(user, "need a table or tray to slice")
 		return
 
-	user.visible_message(span_notice("[user] slices \the [src] with [I]!"), \
-		span_notice("You crudely slice \the [src] with your [I]!"))
+	balloon_alert_to_viewers("slices [src]")
 
 	var/reagents_per_slice = reagents.total_volume / slices_num
 
@@ -223,10 +219,10 @@
 				qdel(src)
 		if(ismouse(M))
 			var/mob/living/simple_animal/mouse/N = M
-			to_chat(N, span_notice("You nibble away at [src]."))
+			balloon_alert(N, "nibbles")
 			N.taste(reagents) // ratatouilles
 			if(prob(50))
-				N.visible_message(span_warning("[N] nibbles away at [src]."), "")
+				balloon_alert_to_viewers("nibbles")
 			//N.emote("nibbles away at the [src]")
 			N.health = min(N.health + 1, N.maxHealth)
 
@@ -863,12 +859,12 @@
 	if(!package)
 		return
 	icon_state = "monkeycube"
-	user.visible_message(span_notice("[user] unwraps [src]"), span_notice("You unwrap [src]."))
+	balloon_alert_to_viewers("unwraps [src]")
 	package = FALSE
 
 /obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/M)
 	to_chat(M, span_warning("Something inside of you suddently expands!</span>"))
-	M.visible_message(span_notice("[M] finishes eating \the [src]."))
+	balloon_alert_to_viewers("eats [src]", ignored_mobs = M)
 	usr.dropItemToGround(src)
 	if(!ishuman(M))
 		return ..()
@@ -895,7 +891,7 @@
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
-	visible_message(span_warning("\The [src] expands!"))
+	balloon_alert_to_viewers("expands")
 	var/turf/T = get_turf(src)
 	if(T)
 		new monkey_type(T)
@@ -1166,7 +1162,7 @@
 
 	if(istype(I, /obj/item/reagent_containers/food/snacks/egg))
 		new /obj/item/reagent_containers/food/snacks/dough(src)
-		to_chat(user, "You make some dough.")
+		balloon_alert(user, "makes dough")
 		qdel(I)
 		qdel(src)
 
@@ -1176,7 +1172,7 @@
 
 	if(istype(I, /obj/item/reagent_containers/food/snacks/flour))
 		new /obj/item/reagent_containers/food/snacks/dough(src)
-		to_chat(user, "You make some dough.")
+		balloon_alert(user, "makes dough")
 		qdel(I)
 		qdel(src)
 
@@ -1207,7 +1203,7 @@
 
 	if(istype(I, /obj/item/tool/kitchen/rollingpin))
 		new /obj/item/reagent_containers/food/snacks/sliceable/flatdough(src)
-		to_chat(user, "You flatten the dough.")
+		balloon_alert(user, "flattens dough")
 		qdel(src)
 
 // slicable into 3xdoughslices
@@ -1247,7 +1243,7 @@
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
-		to_chat(user, "You cut the meat in thin strips.")
+		balloon_alert(user, "cuts meat into strips")
 		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/meat/syntiflesh
@@ -1286,7 +1282,7 @@
 		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
 		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
 		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
-		to_chat(user, "You cut the strips and roll them into balls.")
+		balloon_alert(user, "cuts and rolls strips into balls")
 		qdel(src)
 
 
@@ -1352,7 +1348,7 @@
 /obj/item/reagent_containers/food/snacks/packaged_burrito/attack_self(mob/user as mob)
 	if(package)
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
-		to_chat(user, span_notice("You pull off the wrapping from the squishy burrito!"))
+		balloon_alert(user, "unwraps burrito")
 		package = FALSE
 		icon = 'icons/obj/items/food/mexican.dmi'
 		icon_state = "openburrito"
@@ -1370,7 +1366,7 @@
 /obj/item/reagent_containers/food/snacks/packaged_hdogs/attack_self(mob/user as mob)
 	if (package)
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
-		to_chat(user, span_notice("You pull off the wrapping from the squishy hotdog!"))
+		balloon_alert(user, "unwraps hotdog")
 		package = FALSE
 		icon = 'icons/obj/items/food/food.dmi'
 		icon_state = "hotdog"
@@ -1401,7 +1397,7 @@
 /obj/item/reagent_containers/food/snacks/upp/attack_self(mob/user as mob)
 	if (package)
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
-		to_chat(user, span_notice("You tear off the ration seal and pull out the contents!"))
+		balloon_alert(user, "pops the packaged seal")
 		package = FALSE
 		desc = "An extremely dried item of food, with little flavoring or coloration. Looks to be prepped for long term storage, but will expire without the packaging. Best to eat it now to avoid waste. At least things are equal."
 		switch(variation)
@@ -1451,7 +1447,7 @@
 
 /obj/item/reagent_containers/food/snacks/wrapped/attack_self(mob/user as mob)
 	if (package)
-		to_chat(user, span_notice("You pull open the package of [src]!"))
+		balloon_alert(user, "opens the package")
 		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
 
 		new wrapper (user.loc)
@@ -1514,7 +1510,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged_meal/attack_self(mob/user as mob)
 	if (package)
-		to_chat(user, span_notice("You pull open the MRE package!"))
+		balloon_alert(user, "opens package")
 		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
 		name = "\improper" + flavor
 		desc = "The contents of a standard issue MRE. This one is " + flavor + "."
