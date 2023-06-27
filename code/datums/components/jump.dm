@@ -21,7 +21,7 @@
 	///allow_pass_flags flags applied to the jumper on jump
 	var/jumper_allow_pass_flags
 
-/datum/component/jump/Initialize(_jump_duration = 0.5 SECONDS, _jump_cooldown = 1 SECONDS, _stamina_cost = 8, _jump_height = 16, _jump_sound = null, _jump_flags = JUMP_SHADOW, _jumper_flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
+/datum/component/jump/Initialize(_jump_duration = 0.5 SECONDS, _jump_cooldown = 1 SECONDS, _stamina_cost = 8, _jump_height = 16, _jump_sound = null, _jump_flags = JUMP_SHADOW, _jumper_allow_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE)
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE

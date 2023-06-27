@@ -1099,13 +1099,13 @@
 				living_mob.set_jump_component()
 		if("Low gravity")
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 32, flags_pass = PASSTABLE|PASSFIRE|PASSSMALLSTRUCT)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 32, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_DEFENSIVE_STRUCTURE)
 		if("John Woo")
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = "jump", flags = JUMP_SPIN, flags_pass = PASSTABLE|PASSFIRE|PASSMOB|PASSPROJECTILE|PASSSMALLSTRUCT)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
 		if("Exceeding orbital velocity")
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASSPROJECTILE)
+				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
 		else
 			return
 
