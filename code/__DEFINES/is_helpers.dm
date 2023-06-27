@@ -23,6 +23,8 @@
 
 #define islava(A) (istype(A, /turf/open/lavaland/lava))
 
+#define iswater(A) (istype(A, /turf/open/ground/river))
+
 #define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
 
 #define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))

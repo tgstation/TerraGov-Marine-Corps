@@ -2372,7 +2372,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T)
 
 /datum/ammo/mortar/incend/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 7, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 2, 3, 7, throw_range = 0)
 	flame_radius(4, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2382,7 +2382,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/smoke/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 0, 1, 3, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
@@ -2403,7 +2403,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	explosion(T, 1, 6, 7, 12)
 
 /datum/ammo/mortar/howi/incend/drop_nade(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 3, 0, 3, throw_range = 0)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2443,7 +2443,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	explosion(T, 1, 2, 5, 3)
 
 /datum/ammo/mortar/rocket/incend/drop_nade(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 3, 0, 3, throw_range = 0)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2455,7 +2455,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2.5
 
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 2, small_animation = TRUE)
+	explosion(T, 0, 0, 4, 2)
 
 /*
 //================================================
