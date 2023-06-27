@@ -359,3 +359,30 @@
   ivanmixo:
   - bugfix: Fixed new character slots/characters being uneditable in prefs
   - code_imp: Fixed more type definitions in params
+2023-06-27:
+  Ben10083:
+  - spellcheck: Fix grammar mistake in SOM general armor storage module
+  Lumipharon:
+  - bugfix: Leap abilities will no longer incur water slowdown for leaping over water
+  - bugfix: fixed damaged wood or carpet tiles not showing up correctly
+  - bugfix: Fixed welding floor tiles not doing eye damage to the unprotected
+  - bugfix: fixed some deployable weapon bugs that could curse you to eternal aim
+      mode penalties
+  Tanker:
+  - balance: Smart Minions is now enabled by default.
+  ivanmixo:
+  - code_imp: Converted instances of new/list to the list wrapper
+  - rscadd: Hivemind and silicon chat now have automatic capitalization and end of
+      dot punctuation
+  - balance: Fixed stacking repairs on cades if they were low hp enough to get them
+      to full hp in a short time
+  - balance: AI loses door control of alamo when xenos touch the alamo console
+  - bugfix: Alamo should no longer get locked shipside if your manual hijack ends
+      just as the alamo is taking off
+  novaepee:
+  - bugfix: siren playing in normal rain in LV-624
+  tyeagg:
+  - rscadd: particle explosions
+  - rscdel: effect system for explosions
+  - imageadd: more smoke icons
+  - code_imp: removed the small anim arg from explosions

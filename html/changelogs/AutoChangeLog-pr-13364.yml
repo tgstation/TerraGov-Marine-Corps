@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed damaged wood or carpet tiles not showing up correctly"
-  - bugfix: "Fixed welding floor tiles not doing eye damage to the unprotected"

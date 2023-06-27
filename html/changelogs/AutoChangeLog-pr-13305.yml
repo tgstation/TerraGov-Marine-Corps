@@ -1,7 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes:
-  - rscadd: "particle explosions"
-  - rscdel: "effect system for explosions"
-  - imageadd: "more smoke icons"
-  - code_imp: "removed the small anim arg from explosions"
