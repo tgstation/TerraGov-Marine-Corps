@@ -1,15 +1,15 @@
 /datum/xeno_caste/baneling
 	caste_name = "Baneling"
-	display_name = "baneling"
+	display_name = "Baneling"
 	upgrade_name = ""
-	caste_desc = ""
+	caste_desc = "A round xenomorph filled with dangerous toxins"
 	caste_type_path = /mob/living/carbon/xenomorph/baneling
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "baneling" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 1
+	melee_damage = 14
 	attack_delay = 1
 
 	// *** Speed *** //
@@ -59,7 +59,7 @@
 
 /datum/xeno_caste/baneling/mature
 	upgrade_name = "Mature"
-	caste_desc = ""
+	caste_desc = "It seems to contain more toxins.."
 
 	upgrade = XENO_UPGRADE_ONE
 
@@ -81,12 +81,12 @@
 
 /datum/xeno_caste/baneling/elder
 	upgrade_name = "Elder"
-	caste_desc = ""
+	caste_desc = "It spins faster and acts more aggressive.. the toxin sac looks very filled.."
 
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 1
+	melee_damage = 14
 
 	// *** Speed *** //
 	speed = -1.5
@@ -106,12 +106,12 @@
 
 /datum/xeno_caste/baneling/ancient
 	upgrade_name = "Ancient"
-	caste_desc = ""
-	ancient_message = ""
+	caste_desc = "The ball is angry"
+	ancient_message = "We are the pest that famines all"
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 16
 
 	// *** Speed *** //
 	speed = -1.6
@@ -131,12 +131,12 @@
 
 /datum/xeno_caste/baneling/primordial
 	upgrade_name = "Primordial"
-	caste_desc = ""
-	primordial_message = ""
+	caste_desc = "A reckless ball of pure hatred and death"
+	primordial_message = "Nothing can escape our toxic cloud"
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 16
 
 	// *** Speed *** //
 	speed = -1.6
