@@ -386,3 +386,28 @@
   - rscdel: effect system for explosions
   - imageadd: more smoke icons
   - code_imp: removed the small anim arg from explosions
+2023-06-28:
+  Ben10083:
+  - rscadd: Impact Hud now stays at the impact site for slightly longer.
+  Lumipharon:
+  - refactor: refactored how pass flags work
+  - bugfix: All dropship windows are now correctly transparent and allow lasers through
+  - qol: You can throw thing past far more objects as you would realistically expect
+  - qol: Deployable structures such as turrets now display their hud to the faction
+      that actually deployed it, instead of just marines
+  - code_imp: Improved some faction related code
+  - bugfix: Suicides no longer show as defibbable on the minimap
+  - balance: The focus order now reduces the fire rate penalty of aimmode
+  - bugfix: fixed ID's not correctly showing info such as blood type
+  - admin: Fixed some issues with the rank and equip button
+  MacBlaze1:
+  - qol: mortars now automatically set save binoculars to them, linking with saved
+      binoculars, and keeping track of them, no more need to use a binocular on a
+      mortar before firing.
+  hyper2snyper:
+  - rscadd: Hyperscale system added to greyscale.
+  - rscadd: Hyperscales Jaeger Mk1, Mk2, Robot armor, Style line, Xenonaut.
+  ivanmixo:
+  - bugfix: Fixed the TTS docker not working properly
+  tyeagg:
+  - bugfix: smart pipe mapping helper runtiming

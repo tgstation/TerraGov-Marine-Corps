@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixed the TTS docker not working properly"

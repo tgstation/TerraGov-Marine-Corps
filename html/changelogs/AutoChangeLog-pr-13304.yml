@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - refactor: "refactored how pass flags work"
-  - bugfix: "All dropship windows are now correctly transparent and allow lasers through"
-  - qol: "You can throw thing past far more objects as you would realistically expect"
