@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "Added new grenade types to the AGLS, it now has Flare/Tangle/Cloak grenade types."
+  - balance: "AGLS now has longer zoom when scoping in."
