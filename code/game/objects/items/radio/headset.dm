@@ -268,10 +268,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(!wearer.job || !wearer.job.minimap_icon)
 		return
 	var/marker_flags = initial(minimap_type.marker_flags)
-	if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
-		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
-		return
 	if(wearer.stat == DEAD)
+		if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
+			SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
+			return
 		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
 		return
 	if(wearer.assigned_squad)
