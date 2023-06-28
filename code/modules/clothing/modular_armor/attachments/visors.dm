@@ -84,6 +84,11 @@
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Traditional Ranger class of helmet."
 	icon_state = "traditional_visor"
 
+/obj/item/armor_module/armor/visor/marine/trooper
+	name = "\improper Jaeger Pattern Trooper visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Trooper class of helmet."
+	icon_state = "trooper_visor"
+
 /obj/item/armor_module/armor/visor/marine/eva
 	name = "\improper Jaeger Pattern EVA visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EVA class of helmet."

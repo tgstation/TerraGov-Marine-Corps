@@ -69,6 +69,10 @@
 		/obj/item/armor_module/armor/legs/marine/scout,
 		/obj/item/armor_module/armor/arms/marine/scout,
 
+		/obj/item/armor_module/armor/chest/marine/skirmisher/trooper,
+		/obj/item/armor_module/armor/legs/marine/trooper,
+		/obj/item/armor_module/armor/arms/marine/trooper,
+
 		/obj/item/armor_module/armor/chest/marine/assault,
 		/obj/item/armor_module/armor/legs/marine/assault,
 		/obj/item/armor_module/armor/arms/marine/assault,

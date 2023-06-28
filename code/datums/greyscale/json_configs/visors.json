@@ -35,6 +35,12 @@
 			"icon_state": "traditional"
 		}
 	],
+	"trooper_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "trooper"
+		}
+	],
 	"eva_visor": [
 		{
 			"type": "hyperscale",

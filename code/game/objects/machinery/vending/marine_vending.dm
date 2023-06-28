@@ -1003,6 +1003,7 @@
 		"Jaeger" = list(
 			/obj/item/clothing/suit/modular/jaeger/light = -1,
 			/obj/item/clothing/suit/modular/jaeger/light/skirmisher = -1,
+			/obj/item/clothing/suit/modular/jaeger/light/trooper = -1,
 			/obj/item/clothing/suit/modular/jaeger = -1,
 			/obj/item/clothing/suit/modular/jaeger/eva = -1,
 			/obj/item/clothing/suit/modular/jaeger/helljumper = -1,
@@ -1018,6 +1019,7 @@
 			/obj/item/clothing/head/modular/marine/helljumper = -1,
 			/obj/item/clothing/head/modular/marine/ranger = -1,
 			/obj/item/clothing/head/modular/marine/traditional = -1,
+			/obj/item/clothing/head/modular/marine/trooper = -1,
 			/obj/item/clothing/head/modular/marine/gungnir = -1,
 			/obj/item/clothing/head/modular/marine/assault = -1,
 			/obj/item/clothing/head/modular/marine/eod = -1,
@@ -1066,6 +1068,7 @@
 		"Jaeger Mk.I chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
 			/obj/item/armor_module/armor/chest/marine/skirmisher/scout = -1,
+			/obj/item/armor_module/armor/chest/marine/skirmisher/trooper = -1,
 			/obj/item/armor_module/armor/chest/marine = -1,
 			/obj/item/armor_module/armor/chest/marine/eva = -1,
 			/obj/item/armor_module/armor/chest/marine/assault = -1,
@@ -1076,6 +1079,7 @@
 		"Jaeger Mk.I armpiece" = list(
 			/obj/item/armor_module/armor/arms/marine/skirmisher = -1,
 			/obj/item/armor_module/armor/arms/marine/scout = -1,
+			/obj/item/armor_module/armor/arms/marine/trooper = -1,
 			/obj/item/armor_module/armor/arms/marine = -1,
 			/obj/item/armor_module/armor/arms/marine/eva = -1,
 			/obj/item/armor_module/armor/arms/marine/assault = -1,
@@ -1086,6 +1090,7 @@
 		"Jaeger Mk.I legpiece" = list(
 			/obj/item/armor_module/armor/legs/marine/skirmisher = -1,
 			/obj/item/armor_module/armor/legs/marine/scout = -1,
+			/obj/item/armor_module/armor/legs/marine/trooper = -1,
 			/obj/item/armor_module/armor/legs/marine = -1,
 			/obj/item/armor_module/armor/legs/marine/eva = -1,
 			/obj/item/armor_module/armor/legs/marine/assault = -1,
