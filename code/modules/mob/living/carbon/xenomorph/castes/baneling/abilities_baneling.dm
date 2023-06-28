@@ -6,11 +6,6 @@
 	action_icon_state = "baneling_explode"
 	desc = ""
 	ability_name = "baneling explode"
-	/// The range of our smoke when we explode
-	var/smoke_range
-	/// How long the smoke lasts for
-	var/smoke_duration = 4
-	var/datum/effect_system/smoke_spread/xeno/smoke
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
 	)
@@ -18,49 +13,39 @@
 /datum/action/xeno_action/baneling_explode/give_action(mob/living/L)
 	. = ..()
 	var/mob/living/carbon/xenomorph/baneling/X = L
-	RegisterSignal(X, COMSIG_MOB_DEATH, PROC_REF(death_trigger))
-
-/datum/action/xeno_action/baneling_explode/proc/death_trigger()
-	var/mob/living/carbon/xenomorph/baneling/X = owner
-	smoke_range = ((X.plasma_stored-(X.plasma_stored/2))/60)
-	var/turf/owner_T = get_turf(X)
-	handle_smoke(smoke_duration, owner_T)
-	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
-	if(isnull(X.pod_ref))
-		return
-	var/obj/structure/xeno/baneling_pod/pod = X.pod_ref
-	pod.handle_baneling_death(X)
+	RegisterSignal(X, COMSIG_MOB_DEATH, PROC_REF(handle_smoke))
 
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/baneling/X = owner
-	/// Our smoke size is directly dependant on
-	smoke_range = X.plasma_stored/60
-	// So we dont explode twice
-	X.plasma_stored = 0
-	var/turf/owner_T = get_turf(X)
-	handle_smoke(smoke_duration, owner_T, smoke)
-	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
+	handle_smoke(ability = TRUE)
 	X.death(FALSE)
 
-/datum/action/xeno_action/baneling_explode/proc/handle_smoke(remaining_time, turf/T, datum/effect_system/smoke_spread/smoke)
+/datum/action/xeno_action/baneling_explode/proc/handle_smoke(smoke_duration, datum/effect_system/smoke_spread/smoke, smoke_range, ability = FALSE)
 	var/mob/living/carbon/xenomorph/baneling/X = owner
+	var/turf/owner_T = get_turf(X)
 	switch(X.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
-			smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium(T)
+			smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium(owner_T)
 		if(/datum/reagent/toxin/xeno_hemodile)
-			smoke = new /datum/effect_system/smoke_spread/xeno/hemodile(T)
+			smoke = new /datum/effect_system/smoke_spread/xeno/hemodile(owner_T)
 		if(/datum/reagent/toxin/xeno_transvitox)
-			smoke = new /datum/effect_system/smoke_spread/xeno/transvitox(T)
+			smoke = new /datum/effect_system/smoke_spread/xeno/transvitox(owner_T)
 		if(/datum/reagent/toxin/xeno_ozelomelyn)
-			smoke = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(T)
+			smoke = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(owner_T)
 		if(/datum/reagent/toxin/acid)
-			smoke = new /datum/effect_system/smoke_spread/xeno/acid(T)
-	smoke.set_up(smoke_range, T)
-	if(remaining_time <= 0)
-		return
+			smoke = new /datum/effect_system/smoke_spread/xeno/acid(owner_T)
+	/// Our smoke size is directly dependant on the amount of plasma we have stored
+	smoke_range = X.plasma_stored/60
+	/// Use up all plasma so that we dont smoke twice because we die.
+	X.use_plasma(X.plasma_stored)
+	/// If this proc is triggered by signal, we want to divide range by 4
+	if(!ability)
+		smoke_range = smoke_range/4
+	smoke_duration = X.smoke_duration
+	smoke.set_up(smoke_range, owner_T, smoke_duration)
+	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
 	smoke.start()
-	addtimer(CALLBACK(src, PROC_REF(handle_smoke), remaining_time - 1, T), 1 SECONDS)
 
 // ***************************************
 // *********** Reagent Selection
@@ -123,7 +108,7 @@
 /datum/action/xeno_action/spawn_pod
 	name = "Spawn pod"
 	action_icon_state = "spawn_pod"
-	desc = ""
+	desc = "Spawn a pod that we will respawn inside of upon death. If the pod is destroyed and we die its over.."
 	ability_name = "spawn pod"
 	plasma_cost = 150
 	keybinding_signals = list(
@@ -134,9 +119,9 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/baneling/X = owner
 	if(isnull(X.pod_ref))
-		X.pod_ref = new /obj/structure/xeno/baneling_pod(owner.loc, owner)
+		X.pod_ref = new /obj/structure/xeno/baneling_pod(get_turf(X.loc), owner)
 		succeed_activate()
 		return
 	var/obj/structure/xeno/baneling_pod/pod = X.pod_ref
-	pod.loc = X.loc
+	pod.loc = get_turf(X.loc)
 	succeed_activate()

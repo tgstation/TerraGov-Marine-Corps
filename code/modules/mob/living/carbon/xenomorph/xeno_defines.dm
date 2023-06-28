@@ -394,6 +394,12 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
+	// Baneling vars
+	/// How long smoke lasts for when baneling explodes
+	var/smoke_duration = 4
+	/// Reference to banelings pod
+	var/obj/structure/xeno/baneling_pod/pod_ref
+
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
