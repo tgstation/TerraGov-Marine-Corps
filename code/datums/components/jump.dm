@@ -1,12 +1,11 @@
-#define JUMP_ELEMENT "jump_element"
+#define JUMP_COMPONENT "jump_component"
 
-#define JUMP_ELEMENT_COOLDOWN "jump_element_cooldown"
+#define JUMP_COMPONENT_COOLDOWN "jump_component_cooldown"
 
-#define JUMP_SPIN (1<<0)
+#define JUMP_SHADOW (1<<0)
+#define JUMP_SPIN (1<<1)
 
-/datum/element/jump
-	element_flags = ELEMENT_BESPOKE
-	argument_hash_start_idx = 2
+/datum/component/jump
 	///air time
 	var/jump_duration
 	///time between jumps
@@ -22,9 +21,9 @@
 	///allow_pass_flags flags applied to the jumper on jump
 	var/jumper_allow_pass_flags
 
-/datum/element/jump/Attach(atom/movable/target, _jump_duration = 0.5 SECONDS, _jump_cooldown = 1 SECONDS, _stamina_cost = 8, _jump_height = 16, _jump_sound = null, _jump_flags = null, _jumper_allow_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE)
+/datum/component/jump/Initialize(_jump_duration = 0.5 SECONDS, _jump_cooldown = 1 SECONDS, _stamina_cost = 8, _jump_height = 16, _jump_sound = null, _jump_flags = JUMP_SHADOW, _jumper_allow_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE)
 	. = ..()
-	if(!isliving(target))
+	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	jump_duration = _jump_duration
@@ -35,19 +34,18 @@
 	jump_flags = _jump_flags
 	jumper_allow_pass_flags = _jumper_allow_pass_flags
 
-	RegisterSignal(target, COMSIG_KB_LIVING_JUMP, PROC_REF(do_jump))
+	RegisterSignal(parent, COMSIG_KB_LIVING_JUMP, PROC_REF(do_jump))
 
-/datum/element/jump/Detach(datum/target)
-	UnregisterSignal(target, COMSIG_KB_LIVING_JUMP)
-	return ..()
+/datum/component/jump/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_KB_LIVING_JUMP)
 
 ///Performs the jump
-/datum/element/jump/proc/do_jump(mob/living/jumper)
+/datum/component/jump/proc/do_jump(mob/living/jumper)
 	SIGNAL_HANDLER
 	if(jumper.incapacitated(TRUE))
 		return
 
-	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_ELEMENT_COOLDOWN))
+	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
 		return
 
 	if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
@@ -61,10 +59,10 @@
 
 	jumper.adjustStaminaLoss(stamina_cost)
 	jumper.pass_flags |= jumper_allow_pass_flags
-	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_ELEMENT)
+	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 
-	jumper.add_filter(JUMP_ELEMENT, 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
-	var/shadow_filter = jumper.get_filter(JUMP_ELEMENT)
+	jumper.add_filter(JUMP_COMPONENT, 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
+	var/shadow_filter = jumper.get_filter(JUMP_COMPONENT)
 
 	if(jump_flags & JUMP_SPIN)
 		var/spin_number = ROUND_UP(jump_duration * 0.1)
@@ -72,18 +70,20 @@
 
 	animate(jumper, pixel_y = jumper.pixel_y + jump_height, layer = ABOVE_MOB_LAYER, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 	animate(pixel_y = jumper.pixel_y - jump_height, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
-	animate(shadow_filter, y = -jump_height, size = 4, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
-	animate(y = 0, size = 0.9, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
+
+	if(jump_flags & JUMP_SHADOW)
+		animate(shadow_filter, y = -jump_height, size = 4, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+		animate(y = 0, size = 0.9, time = jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
 
 	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper), jump_duration)
 
-	TIMER_COOLDOWN_START(jumper, JUMP_ELEMENT_COOLDOWN, jump_cooldown)
+	TIMER_COOLDOWN_START(jumper, JUMP_COMPONENT_COOLDOWN, jump_cooldown)
 
 ///Ends the jump
-/datum/element/jump/proc/end_jump(mob/living/jumper)
-	jumper.remove_filter("jump_element")
+/datum/component/jump/proc/end_jump(mob/living/jumper)
+	jumper.remove_filter(JUMP_COMPONENT)
 	jumper.layer = initial(jumper.layer)
 	jumper.pass_flags = initial(jumper.pass_flags)
-	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_ELEMENT)
+	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
 	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)
