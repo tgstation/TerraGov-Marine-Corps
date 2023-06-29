@@ -48,3 +48,9 @@
 	name = "\improper Jaeger Pattern Ranger arm plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Ranger armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/ranger
+
+/obj/item/armor_module/armor/arms/marine/trooper
+	name = "\improper Jaeger Pattern Trooper arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Trooper armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/trooper
+
