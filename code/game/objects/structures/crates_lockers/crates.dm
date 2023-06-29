@@ -9,7 +9,7 @@
 	mob_storage_capacity = 0
 	storage_capacity = 100
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
 

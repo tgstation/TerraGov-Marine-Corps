@@ -11,7 +11,7 @@
 	layer = TABLE_LAYER
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
 	smoothing_flags = SMOOTH_BITMASK

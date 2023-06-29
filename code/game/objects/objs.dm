@@ -115,11 +115,11 @@
 	if(mover?.throwing && (allow_pass_flags & PASS_THROW))
 		return TRUE
 
-	if((allow_pass_flags & PASS_LOW_STRUCTURE))
-		if(mover.pass_flags & PASS_LOW_STRUCTURE)
-			return TRUE
-		if(ismob(mover) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH))
-			return TRUE
+	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
+		return TRUE
+
+	if((allow_pass_flags & PASS_WALKOVER) && ismob(mover) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH))
+		return TRUE
 
 	return FALSE
 
@@ -146,7 +146,8 @@
 ///Signal handler to check if you can move from climbable object to another
 /obj/proc/can_climb_over(datum/source)
 	SIGNAL_HANDLER
-	return TRUE
+	if(!(flags_atom & ON_BORDER))
+		return TRUE
 
 /obj/proc/updateUsrDialog()
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))

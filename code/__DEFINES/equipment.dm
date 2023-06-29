@@ -20,6 +20,8 @@
 #define PASS_PROJECTILE (1<<8)
 ///non-airtight, gas/fire can pass
 #define PASS_AIR (1<<9)
+///Mobs can walk freely between turfs with walkover flagged objects
+#define PASS_WALKOVER (1<<10)
 
 #define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
 #define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)
