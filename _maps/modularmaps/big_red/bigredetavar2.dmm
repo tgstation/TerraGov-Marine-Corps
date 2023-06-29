@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"al" = (
-/turf/open/floor/wood/broken/three,
-/area/bigredv2/outside/general_offices)
 "am" = (
 /obj/item/shard,
 /turf/open/floor/plating/dmg1,
@@ -23,7 +20,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
 "aV" = (
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "bd" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -273,7 +270,7 @@
 /area/bigredv2/outside/general_offices)
 "lt" = (
 /obj/effect/spawner/gibspawner/human,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "mc" = (
 /turf/closed/shuttle/dropship2/walltwo,
@@ -301,7 +298,7 @@
 /area/bigredv2/outside/general_offices)
 "nj" = (
 /obj/structure/bed,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "nr" = (
 /obj/effect/ai_node,
@@ -321,7 +318,7 @@
 /area/bigredv2/caves/northeast)
 "oH" = (
 /obj/item/stack/sheet/wood,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "oI" = (
 /obj/effect/decal/cleanable/blood/six{
@@ -432,7 +429,7 @@
 /area/bigredv2/outside/bar)
 "sV" = (
 /obj/structure/table,
-/turf/open/floor/wood/broken/five,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "tf" = (
 /turf/closed/shuttle/dropship2/cornersalt,
@@ -736,9 +733,6 @@
 	},
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/hydroponics)
-"Jg" = (
-/turf/open/floor/wood/broken/six,
-/area/bigredv2/outside/general_offices)
 "JP" = (
 /turf/closed/shuttle/dropship2/edge{
 	dir = 1
@@ -769,7 +763,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/wood/broken/three,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "Mi" = (
 /turf/closed/shuttle/dropship2/corners{
@@ -1274,7 +1268,7 @@ er
 Fu
 er
 Qv
-Jg
+aV
 LQ
 rc
 dV
@@ -1300,7 +1294,7 @@ qs
 Hh
 DU
 jj
-al
+aV
 aV
 Zw
 dV
@@ -1456,7 +1450,7 @@ Hm
 Fu
 Hh
 gQ
-al
+aV
 lt
 Fu
 vK
@@ -1508,8 +1502,8 @@ er
 Fu
 Hh
 Qv
-Jg
-al
+aV
+aV
 RJ
 Fz
 Fz

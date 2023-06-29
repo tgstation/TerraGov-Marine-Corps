@@ -8,7 +8,7 @@
 /area/deathmatch)
 "bl" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/structure/flora/desert/grass/three,
+/obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "bE" = (
@@ -85,10 +85,6 @@
 /obj/structure/closet/secure_closet/freezer,
 /turf/open/floor/wood,
 /area/deathmatch)
-"jg" = (
-/obj/structure/flora/desert/grass/seven,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/deathmatch)
 "kv" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
@@ -113,7 +109,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "oE" = (
-/obj/structure/flora/desert/cactus/multiple/eleven,
+/obj/structure/flora/desert/cactus/multiple,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "pl" = (
@@ -222,11 +218,11 @@
 	},
 /area/deathmatch)
 "xg" = (
-/obj/structure/flora/desert/grass/three,
+/obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "xp" = (
-/obj/structure/flora/desert/grass/seven,
+/obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "xA" = (
@@ -430,7 +426,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Qa" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/deathmatch)
 "Qf" = (
 /obj/structure/window/framed/mainship/hull,
@@ -474,7 +470,7 @@
 /area/deathmatch)
 "Vo" = (
 /obj/effect/landmark/deathmatch,
-/obj/structure/flora/desert/grass/three,
+/obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "Vu" = (
@@ -671,7 +667,7 @@ kv
 uR
 uR
 uR
-jg
+xg
 uR
 Gk
 uR
@@ -808,7 +804,7 @@ Uv
 aB
 kv
 uR
-jg
+xg
 uR
 rf
 uR
@@ -951,7 +947,7 @@ kv
 uR
 oE
 uR
-jg
+xg
 uR
 QI
 Or
@@ -1193,7 +1189,7 @@ Uv
 uR
 uR
 uR
-jg
+xg
 uR
 Yq
 pl
@@ -1342,7 +1338,7 @@ oE
 Gk
 uR
 uR
-jg
+xg
 QI
 uN
 uN
@@ -1434,7 +1430,7 @@ Uv
 Uv
 Uv
 Uv
-jg
+xg
 uR
 uR
 uR
@@ -1999,7 +1995,7 @@ Uv
 mY
 uR
 uR
-jg
+xg
 uR
 uR
 uR
@@ -2103,7 +2099,7 @@ Yw
 bP
 uR
 uR
-jg
+xg
 uR
 oE
 uR
@@ -2404,7 +2400,7 @@ uR
 uR
 uR
 uR
-jg
+xg
 uR
 uR
 uR
@@ -2488,7 +2484,7 @@ rf
 Uv
 Uv
 uR
-jg
+xg
 uR
 Bs
 pl
@@ -2639,7 +2635,7 @@ uR
 uR
 uR
 uR
-jg
+xg
 uR
 rf
 uR

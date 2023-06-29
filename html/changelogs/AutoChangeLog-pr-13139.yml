@@ -1,0 +1,4 @@
+author: "MacBlaze1"
+delete-after: True
+changes:
+  - qol: "mortars now automatically set save binoculars to them, linking with saved binoculars, and keeping track of them, no more need to use a binocular on a mortar before firing."

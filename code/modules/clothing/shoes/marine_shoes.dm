@@ -6,6 +6,7 @@
 	flags_armor_protection = FEET
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
+	flags_inventory = NOQUICKEQUIP|NOSLIPPING
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7

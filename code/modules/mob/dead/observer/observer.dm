@@ -294,7 +294,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_role_death[ghost.key] = world.time
 
-
+/mob/living/carbon/human/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
+	. = ..()
+	if(!can_reenter_corpse)
+		set_undefibbable()
 
 /mob/dead/observer/Move(atom/newloc, direct)
 	if(updatedir)
@@ -357,11 +360,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 				if(stored_larva)
 					stat("Burrowed larva:", stored_larva)
-		var/datum/game_mode/mode = SSticker.mode
-		if(mode?.flags_round_type & MODE_WIN_POINTS)
-			stat("Points needed to win:", mode.win_points_needed)
-			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
-			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
 		//game end timer for patrol and sensor capture
 		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
 		if(patrol_end_countdown)
@@ -428,8 +426,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if("Squad HUD")
 			ghost_squadhud = !ghost_squadhud
 			H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
-			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 			H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
@@ -868,6 +864,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
 		can_reenter_corpse = null
 		to_chat(usr, span_notice("You can no longer be revived."))
+
+		if(istype(mind.current))
+			var/mob/living/carbon/human/human_current = mind.current
+			human_current.set_undefibbable()
 		mind.current.med_hud_set_status()
 		return
 	to_chat(usr, span_warning("You already can't be revived."))

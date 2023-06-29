@@ -248,3 +248,141 @@
   - rscadd: light to hitscan lasers
   - bugfix: disabler shots being invisible
   - rscdel: smoke effect from minirockets
+2023-06-20:
+  Ben10083:
+  - bugfix: TA-40L standard rockets are orderable from requisitions again.
+  - bugfix: Attempting to link multiple deployables to AI no longer breaks the system.
+  Blundir:
+  - rscadd: if burst groundside larva has no player, it'd automatically burrow and
+      give a larva point
+  Wayland-Smithy:
+  - rscadd: Added a signal for jump landings on turfs, and implemented for squeak
+      toys.
+  Zar000:
+  - refactor: refactored defiler emit gas code
+  coldironwarrior:
+  - balance: ' Theseus can now support up to 4 squads roundstart'
+  - balance: Pillar of Spring can now support up to 4 squads roundstart
+  ivanmixo:
+  - bugfix: Sandstorm actually uses all the sound variations
+  - bugfix: Acid rain telegraph and start/end messages work properly
+  - bugfix: You don't get the weather messages if you aren't on the weather's Z level
+      anymore
+  - code_imp: Mousedrop_T children call parent
+  novaepee:
+  - bugfix: change soldiers to marines in some item and description
+2023-06-21:
+  Blundir:
+  - bugfix: fixed cases when damage from space turfs could've been negated
+  - rscadd: xenomorph active hide action icon has a purple border now
+  Lumipharon:
+  - bugfix: fixed objects and turfs frequently not taking armour into account when
+      being damaged
+  coldironwarrior:
+  - bugfix: removed misplaced engine in Minerva's OB room
+  ivanmixo:
+  - bugfix: Fixed a ssmonitor runtime
+  - bugfix: Resting via bind as a xeno now respects the use flags of the rest action
+  - bugfix: Fixed a tweezer runtime
+  - bugfix: Fixed a mounted gun runtime
+  novaepee:
+  - imagedel: revert new combat and bayonet knife and machette
+2023-06-22:
+  Blundir:
+  - rscadd: evolution points tick even if xeno has no client/soul
+  Lumipharon:
+  - bugfix: fixed some mobs like runner losing passtable after jumping
+  - balance: Comms and req no longer function in deep caves
+  - code_imp: Reworked some code in xeno explosion code
+  - bugfix: Xenos should correctly get staggered by explosions
+  MacBlaze1:
+  - qol: reworked CIC overwatch consoles to use TGUI and be nicer
+2023-06-23:
+  Ben10083:
+  - qol: MLRS now can be loaded directly from it's respective rocket storage boxes
+      by interacting with it with the box in hand.
+  KerbalCitizen:
+  - balance: Changes russian red autoinjectors to 20u RR and 10u oxycodone with 15u
+      dose from 10u RR and 5u ryetalyn on 15u dose.
+  Ocelot and Elsa:
+  - rscadd: fingerless gloves
+  Pariah919:
+  - balance: SG-85 now has 20%~ less slowdown when wielded, and has identical windup
+      to req minigun.
+  - bugfix: Sticky resin now spits out thin sticky resin again rather than normal
+      sticky resin.
+  ivanmixo:
+  - bugfix: Thin sticky resin once more doesn't refund points
+  - bugfix: Fixed defiler being able to change smoke reagent mid smoking
+  - bugfix: Fixed a fire overlay runtime
+  novaepee:
+  - rscadd: blood vendor and Terra Experimental cell field charger can use TTS!
+  - rscadd: more sentences in preexisting product_slogan for vendors that already
+      have TTS so that they don't repeat the same joke
+2023-06-24:
+  Lumipharon:
+  - imageadd: added some mapping assets
+  - code_imp: some misc code cleanup
+  - bugfix: Minor jumping visual fix in some situations
+  - balance: V-34 does slightly lower damage and close range, and slightly better
+      damage at longer range
+  - balance: V-41 damage and accuracy slightly lowered, movement penalty slightly
+      increased
+  - bugfix: fixed SOM biohazard helmet not being gas proof
+  - bugfix: fixed laser rifle medic missing some cells
+  - refactor: Refactors floor turf code
+  ivanmixo:
+  - bugfix: Marine boots have noslip again
+2023-06-25:
+  IrkallaEpsilon:
+  - bugfix: Added the part that the description of the explosive vest that says you
+      cannot use strapped on shields.
+  Lumipharon:
+  - bugfix: fixed a locker runtime
+  - qol: Added a few balloon alerts for some construction steps
+  ivanmixo:
+  - bugfix: Fixed ghost rail flashlight
+  - rscdel: Deleted civil war from the code
+  - bugfix: Fixed an intoxication status effect runtime
+  novaepee:
+  - rscadd: 5 colors, the Squad Colors, to modular armor for Hyperscale
+  - code_imp: alphabetize color list
+  - rscadd: Expand morgue and medical supply room in Pillar of Spring Medbay.
+  - rscadd: Adjust Pillar of Spring requisition to have marines make orders right
+      after they leave prep.
+  - rscadd: Add crates nearby vendors close to Pillar of Spring Alamo landing zone.
+  - rscadd: Add more easter eggs in PoS, making a total of eight easter eggs!
+2023-06-26:
+  coldironwarrior:
+  - bugfix: Combat robots spawning in roles that have roundstart gear will now have
+      that gear equipped, along with a robotic armor mount
+  ivanmixo:
+  - bugfix: Fixed new character slots/characters being uneditable in prefs
+  - code_imp: Fixed more type definitions in params
+2023-06-27:
+  Ben10083:
+  - spellcheck: Fix grammar mistake in SOM general armor storage module
+  Lumipharon:
+  - bugfix: Leap abilities will no longer incur water slowdown for leaping over water
+  - bugfix: fixed damaged wood or carpet tiles not showing up correctly
+  - bugfix: Fixed welding floor tiles not doing eye damage to the unprotected
+  - bugfix: fixed some deployable weapon bugs that could curse you to eternal aim
+      mode penalties
+  Tanker:
+  - balance: Smart Minions is now enabled by default.
+  ivanmixo:
+  - code_imp: Converted instances of new/list to the list wrapper
+  - rscadd: Hivemind and silicon chat now have automatic capitalization and end of
+      dot punctuation
+  - balance: Fixed stacking repairs on cades if they were low hp enough to get them
+      to full hp in a short time
+  - balance: AI loses door control of alamo when xenos touch the alamo console
+  - bugfix: Alamo should no longer get locked shipside if your manual hijack ends
+      just as the alamo is taking off
+  novaepee:
+  - bugfix: siren playing in normal rain in LV-624
+  tyeagg:
+  - rscadd: particle explosions
+  - rscdel: effect system for explosions
+  - imageadd: more smoke icons
+  - code_imp: removed the small anim arg from explosions
