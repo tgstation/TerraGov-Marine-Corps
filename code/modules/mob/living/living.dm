@@ -825,7 +825,7 @@ below 100 is not dizzy
 
 
 /mob/living/can_interact_with(datum/D)
-	return D.Adjacent(src)
+	return D == src || D.Adjacent(src)
 
 /**
  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
