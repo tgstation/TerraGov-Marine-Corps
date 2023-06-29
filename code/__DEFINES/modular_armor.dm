@@ -11,12 +11,15 @@
 
 //Default
 #define ARMOR_PALETTE_DRAB "#241d16#363021#444732#665f44#80706a"
+#define ARMOR_PALETTE_WOOD "#000000#362325#594F3A#816853#A3957E"
 #define ARMOR_PALETTE_BROWN "#1f1007#2c190c#3d2414#60452b#7f634b"
 #define ARMOR_PALETTE_SNOW "#5d5353#897b7b#aca194#d5ccc3#efe6dc"
 #define ARMOR_PALETTE_ICE "#6a6a7b#808b90#949da4#b7c3c6#ccd3d8"
+#define ARMOR_PALETTE_STORM "#15191d#4a545e#80919f#b4c3d0#e4f0f8"
 #define ARMOR_PALETTE_DESERT "#352c34#504247#6d5957#958677#C1bb9f"
 #define ARMOR_PALETTE_BLACK "#18181b#232427#35363c#474a50#656972"
 #define ARMOR_PALETTE_GREY "#262626#3f3f3f#5a5a5a#828282#ababab"
+#define ARMOR_PALETTE_SILVER "#171b28#383d59#5d6c89#82a0aa#a7bbc3"
 #define ARMOR_PALETTE_GUN_METAL "#171C26#2C2938#3F4457#5C666B#B5B5B5"
 #define ARMOR_PALETTE_NIGHT_SLATE "#1F2228#252C3D#3A3C4F#4E546B#7D8A91"
 #define ARMOR_PALETTE_FALL "#2F200F#4D3927#7A5A3E#A87C55#BF9E81"
@@ -48,6 +51,7 @@
 
 // Green
 #define ARMOR_PALETTE_GREEN "#12200c#192d14#28402b#486b41#5f8e67"
+#define ARMOR_PALETTE_GREYISH_TURQUOISE "#162029#243039#36454b#485d5f#567e78"
 #define ARMOR_PALETTE_EMERALD "#081c15#1b4332#2d6a4f#59a57f#8dd8a7"
 #define ARMOR_PALETTE_LIME "#201d26#334a13#456616#5c851e#7ec236"
 #define ARMOR_PALETTE_MINT "#362a32#1b603e#1c784b#26975e#43c68f"
@@ -87,6 +91,9 @@
 
 //Green
 #define VISOR_PALETTE_GREEN "#8fc0a9#c8d5b9#faf3dd"
+#define VISOR_PALETTE_TOPAZ "#18C196#5EEBA6#BAF7D8"
+#define VISOR_PALETTE_IRISH "#1B9B13#5CE424#ACF18B"
+#define VISOR_PALETTE_LEMON "#8CA600#C5E400#F6FF5F"
 
 //Purple
 #define VISOR_PALETTE_PURPLE "#4a2c69#6c4691#8e6da3"
@@ -113,11 +120,14 @@
 		"Default" = list(\
 			"Drab" = ARMOR_PALETTE_DRAB,\
 			"Brown" = ARMOR_PALETTE_BROWN,\
+			"Wood" = ARMOR_PALETTE_WOOD,\
 			"Snow" = ARMOR_PALETTE_SNOW,\
 			"Ice" = ARMOR_PALETTE_ICE,\
+			"Storm" = ARMOR_PALETTE_STORM,\
 			"Desert" = ARMOR_PALETTE_DESERT,\
 			"Black" = ARMOR_PALETTE_BLACK,\
 			"Grey" = ARMOR_PALETTE_GREY,\
+			"Silver" = ARMOR_PALETTE_SILVER,\
 			"Gun Metal" = ARMOR_PALETTE_GUN_METAL,\
 			"Night Slate" = ARMOR_PALETTE_NIGHT_SLATE,\
 			"Fall" = ARMOR_PALETTE_FALL,\
@@ -149,6 +159,7 @@
 		),\
 		"Green" = list(\
 			"Green" = ARMOR_PALETTE_GREEN,\
+			"Greyish Turquoise" = ARMOR_PALETTE_GREYISH_TURQUOISE,\
 			"Emerald" = ARMOR_PALETTE_EMERALD,\
 			"Lime" = ARMOR_PALETTE_LIME,\
 			"Mint" = ARMOR_PALETTE_MINT,\
@@ -184,30 +195,33 @@
 			"Silver" = VISOR_PALETTE_SILVER,\
 			"Black" = VISOR_PALETTE_BLACK,\
 		),\
+		"Pink" = list(\
+			"Salmon" = VISOR_PALETTE_SALMON,\
+			"Pearl Pink" = VISOR_PALETTE_PEARL_PINK,\
+		),\
 		"Red" = list(\
 			"Red" = VISOR_PALETTE_RED,\
 		),\
+		"Orange" = list(\
+			"Orange" = VISOR_PALETTE_ORANGE,\
+		),\
+		"Yellow" = list(\
+			"Honey" = VISOR_PALETTE_HONEY,\
+			"Metallic Bronze" = VISOR_PALETTE_METALLIC_BRONZE,\
+		),\
 		"Green" = list(\
 			"Green" = VISOR_PALETTE_GREEN,\
-		),\
-		"Purple" = list(\
-			"Purple" = VISOR_PALETTE_PURPLE,\
-			"Magenta" = VISOR_PALETTE_MAGENTA,\
+			"Topaz" = VISOR_PALETTE_TOPAZ,\
+			"Irish" = VISOR_PALETTE_IRISH,\
+			"Lemon" = VISOR_PALETTE_LEMON,\
 		),\
 		"Blue" = list(\
 			"Blue" = VISOR_PALETTE_BLUE,\
 			"Ice Blue" = VISOR_PALETTE_ICE,\
 			"Sky Blue" = VISOR_PALETTE_SKY_BLUE,\
 		),\
-		"Yellow" = list(\
-			"Honey" = VISOR_PALETTE_HONEY,\
-			"Metallic Bronze" = VISOR_PALETTE_METALLIC_BRONZE,\
-		),\
-		"Orange" = list(\
-			"Orange" = VISOR_PALETTE_ORANGE,\
-		),\
-		"Pink" = list(\
-			"Salmon" = VISOR_PALETTE_SALMON,\
-			"Pearl Pink" = VISOR_PALETTE_PEARL_PINK,\
+		"Purple" = list(\
+			"Purple" = VISOR_PALETTE_PURPLE,\
+			"Magenta" = VISOR_PALETTE_MAGENTA,\
 		),\
 	)
