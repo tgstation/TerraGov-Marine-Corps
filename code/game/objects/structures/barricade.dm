@@ -34,7 +34,8 @@
 	. = ..()
 	update_icon()
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -55,7 +56,6 @@
 		if(-INFINITY to 25)
 			. += span_warning("It's crumbling apart, just a few more blows will tear it apart.")
 
-
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
 
@@ -67,13 +67,7 @@
 	if(mover?.throwing && is_wired && iscarbon(mover) && (get_dir(loc, target) & dir))
 		return FALSE
 
-	. = ..()
-	if(.)
-		return
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
-		return TRUE
+	return ..()
 
 /obj/structure/barricade/attack_animal(mob/user)
 	return attack_alien(user)

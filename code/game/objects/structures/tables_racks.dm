@@ -67,6 +67,7 @@
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -95,15 +96,6 @@
 				icon_state = icon_state+"-"
 			if(tabledirs & turn(dir,-90))
 				icon_state = icon_state+"+"
-		return TRUE
-
-/obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(.)
-		return
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
 		return TRUE
 
 //Flipping tables, nothing more, nothing less
@@ -524,17 +516,9 @@
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
-/obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(.)
-		return
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
-		return TRUE
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)

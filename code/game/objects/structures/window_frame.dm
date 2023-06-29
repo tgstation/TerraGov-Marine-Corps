@@ -27,15 +27,6 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 	)
 
-/obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(.)
-		return
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable)
-		return TRUE
-
 /obj/structure/window_frame/Initialize(mapload, from_window_shatter)
 	. = ..()
 	var/weed_found
@@ -47,6 +38,10 @@
 		qdel(weed_found)
 		new /obj/alien/weeds/weedwall/window/frame(loc) //after smoothing to get the correct junction value
 
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/window_frame/proc/update_nearby_icons()
 	QUEUE_SMOOTH_NEIGHBORS(src)
