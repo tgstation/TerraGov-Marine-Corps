@@ -2,7 +2,7 @@
 	caste_name = "Baneling"
 	display_name = "Baneling"
 	upgrade_name = ""
-	caste_desc = "A round xenomorph filled with dangerous toxins"
+	caste_desc = "An alien bloated with chemicals and ready to explode."
 	caste_type_path = /mob/living/carbon/xenomorph/baneling
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -59,7 +59,7 @@
 
 /datum/xeno_caste/baneling/mature
 	upgrade_name = "Mature"
-	caste_desc = "It seems to contain more toxins.."
+	caste_desc = "An alien bloated with chemicals and ready to explode. It looks a bit denser."
 
 	upgrade = XENO_UPGRADE_ONE
 
@@ -81,7 +81,7 @@
 
 /datum/xeno_caste/baneling/elder
 	upgrade_name = "Elder"
-	caste_desc = "It spins faster and acts more aggressive.. the toxin sac looks very filled.."
+	caste_desc = "An alien bloated with chemicals and ready to explode. It looks pretty big."
 
 	upgrade = XENO_UPGRADE_TWO
 
@@ -106,8 +106,8 @@
 
 /datum/xeno_caste/baneling/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "The ball is angry"
-	ancient_message = "We are the pest that famines all"
+	caste_desc = "Don't get near it! It looks like it is going to explode and pack a punch!"
+	ancient_message = "We are the biological explosive ordnance ready to explode at marine. Show them what you are made out of!"
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
@@ -132,7 +132,7 @@
 /datum/xeno_caste/baneling/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "A reckless ball of pure hatred and death"
-	primordial_message = "Nothing can escape our toxic cloud"
+	primordial_message = "Nothing can escape our toxic cloud!"
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
