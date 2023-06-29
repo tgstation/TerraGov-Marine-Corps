@@ -371,13 +371,15 @@
 	burst_amount = 1
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.8
+	akimbo_additional_delay = 0.5
 
 	min_scatter = 2
 	max_scatter = 15
 	max_scatter_unwielded = 25
 	scatter_increase = 2
+	scatter_increase_unwielded = 8
 	scatter_decay = 0.5
-	scatter_decay_unwielded = 0.5
+	scatter_decay_unwielded = 0.1
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
