@@ -72,7 +72,7 @@
 	action_icon_state = "pounce"
 	desc = "Leap at your target, tackling and disarming them."
 	ability_name = "pounce"
-	plasma_cost = 10
+	plasma_cost = 20
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_POUNCE,
 	)
