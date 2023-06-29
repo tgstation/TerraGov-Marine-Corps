@@ -1,6 +1,6 @@
 /obj/machinery/space_heater
 	anchored = FALSE
-	density = FALSE
+	density = TRUE
 	icon = 'icons/obj/machines/atmos.dmi'
 	icon_state = "sheater0"
 	name = "space heater"
@@ -18,6 +18,13 @@
 	cell = new (src)
 	cell.charge += 500
 	update_icon()
+
+
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 
 /obj/machinery/space_heater/update_icon()
 	overlays.Cut()

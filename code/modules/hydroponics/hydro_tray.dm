@@ -129,6 +129,12 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/Initialize(mapload)
 	. = ..()
+
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
 	create_reagents(200, AMOUNT_VISIBLE|REFILLABLE)
