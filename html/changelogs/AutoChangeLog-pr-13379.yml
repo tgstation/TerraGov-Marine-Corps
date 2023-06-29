@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "Trooper Armor"
+  - code_imp: "have to update hyperscale in light of chest_no_color and leg_no_color to all DMI. You are all truly welcome."
