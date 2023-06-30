@@ -6,6 +6,7 @@
 #define JUMP_SPIN (1<<1)
 
 /datum/component/jump
+	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	///air time
 	var/jump_duration
 	///time between jumps
@@ -21,11 +22,22 @@
 	///allow_pass_flags flags applied to the jumper on jump
 	var/jumper_allow_pass_flags
 
-/datum/component/jump/Initialize(_jump_duration = 0.5 SECONDS, _jump_cooldown = 1 SECONDS, _stamina_cost = 8, _jump_height = 16, _jump_sound = null, _jump_flags = JUMP_SHADOW, _jumper_allow_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE)
+/datum/component/jump/Initialize(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
+	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
+	RegisterSignal(parent, COMSIG_KB_LIVING_JUMP, PROC_REF(do_jump))
+
+/datum/component/jump/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_KB_LIVING_JUMP)
+
+/datum/component/jump/InheritComponent(datum/component/new_component, original_component, _jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
+	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
+
+///Actually sets the jump vars
+/datum/component/jump/proc/set_vars(_jump_duration = 0.5 SECONDS, _jump_cooldown = 1 SECONDS, _stamina_cost = 8, _jump_height = 16, _jump_sound = null, _jump_flags = JUMP_SHADOW, _jumper_allow_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE)
 	jump_duration = _jump_duration
 	jump_cooldown = _jump_cooldown
 	stamina_cost = _stamina_cost
@@ -33,11 +45,6 @@
 	jump_sound = _jump_sound
 	jump_flags = _jump_flags
 	jumper_allow_pass_flags = _jumper_allow_pass_flags
-
-	RegisterSignal(parent, COMSIG_KB_LIVING_JUMP, PROC_REF(do_jump))
-
-/datum/component/jump/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_KB_LIVING_JUMP)
 
 ///Performs the jump
 /datum/component/jump/proc/do_jump(mob/living/jumper)
