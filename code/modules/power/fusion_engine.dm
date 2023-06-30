@@ -290,7 +290,7 @@
 				. += span_info("Use a wirecutters, then wrench to repair it.")
 			if(FUSION_ENGINE_LIGHT_DAMAGE)
 				. += span_info("Use a wrench to repair it.")
-		return FALSE
+		return
 
 	if(!is_on)
 		. += span_info("It looks offline.")

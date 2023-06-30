@@ -296,7 +296,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/living/carbon/human/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	. = ..()
-	if(!can_reenter_corpse)
+	if(!can_reenter_corpse && !QDELING(src))
 		set_undefibbable()
 
 /mob/dead/observer/Move(atom/newloc, direct)
@@ -925,6 +925,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 
 	var/choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. Xenomorph or Marine?", "Join Valhalla", list("Xenomorph", "Marine"))
+
+	if(!choice)
+		return
 
 	if(choice == "Xenomorph")
 		var/mob/living/carbon/xenomorph/xeno_choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What xenomorph would you like to have?", "Join Valhalla", GLOB.all_xeno_types)
