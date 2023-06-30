@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - code_imp: "jump element changed to a component"
-  - admin: "Added an Alter Gravity button to the fun menu"
