@@ -207,10 +207,7 @@ SUBSYSTEM_DEF(job)
 			RejectPlayer(player)
 		//Choose a faction in advance if needed
 		if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS) //Alternates between the two factions
-			if(FACTION_SOM in SSticker.mode.factions)
-				faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_SOM : FACTION_TERRAGOV
-			else
-				faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_TERRAGOV_REBEL : FACTION_TERRAGOV
+			faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_SOM : FACTION_TERRAGOV
 		// Loop through all jobs
 		for(var/datum/job/job AS in occupations_to_assign)
 			// If the player wants that job on this level, then try give it to him.
@@ -337,10 +334,6 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
 	switch(assigned_role.faction)
-		if(FACTION_TERRAGOV_REBEL)
-			if(length(GLOB.latejoinrebel))
-				SendToAtom(M, pick(GLOB.latejoinrebel))
-				return
 		if(FACTION_SOM)
 			if(length(GLOB.latejoinsom))
 				SendToAtom(M, pick(GLOB.latejoinsom))

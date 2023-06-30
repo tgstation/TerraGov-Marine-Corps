@@ -32,7 +32,7 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 	icon_state_variants = list(
@@ -134,7 +134,7 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/suit/modular/som/heavy/leader/valk
@@ -165,14 +165,15 @@
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
-
+	greyscale_config = null
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	icon_state_variants = list(
 		"black",
 	)
 	current_variant = "black"
+	visorless_offset_y = 0
 
 /obj/item/clothing/head/modular/som/engineer
 	name = "\improper SOM engineering helmet"
@@ -181,7 +182,7 @@
 	item_state = "som_helmet_engineer"
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/module/welding/som,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding/som)
@@ -197,7 +198,7 @@
 	gas_transfer_coefficient = 0.1
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/head/modular/som/hades
@@ -208,7 +209,7 @@
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 90, ACID = 50)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/head/modular/som/veteran
@@ -224,7 +225,7 @@
 	soft_armor = list(MELEE = 60, BULLET = 85, LASER = 80, ENERGY = 80, BOMB = 65, BIO = 55, FIRE = 70, ACID = 60)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/head/modular/som/leader
@@ -239,5 +240,5 @@
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)

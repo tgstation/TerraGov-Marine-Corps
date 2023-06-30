@@ -321,7 +321,7 @@
 //Outdated but still in use apparently. This should at least be a human proc.
 //this is still in use please fix this mess
 /mob/proc/get_equipped_items()
-	var/list/items = new/list()
+	var/list/items = list()
 
 	if(hasvar(src,"back")) if(src:back) items += src:back
 	if(hasvar(src,"belt")) if(src:belt) items += src:belt

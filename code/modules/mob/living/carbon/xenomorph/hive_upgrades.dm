@@ -301,14 +301,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/xenos
 	category = "Xenos"
 
-/datum/hive_upgrade/xenos/smart_minions
-	name = GHOSTS_CAN_TAKE_MINIONS
-	desc = "Allow ghosts to take control of minions"
-	icon = "smartminions"
-	flags_gamemode = ABILITY_DISTRESS
-	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
-	psypoint_cost = 500
-
 /datum/hive_upgrade/primordial
 	category = "Xenos"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE

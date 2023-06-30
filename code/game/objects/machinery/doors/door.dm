@@ -6,7 +6,7 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = DOOR_OPEN_LAYER
 	explosion_block = 2
@@ -44,6 +44,9 @@
 		handle_multidoor()
 	var/turf/current_turf = get_turf(src)
 	current_turf.flags_atom &= ~ AI_BLOCKED
+
+	if(glass)
+		allow_pass_flags |= PASS_GLASS
 
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)
@@ -86,12 +89,6 @@
 		var/obj/O = AM
 		for(var/m in O.buckled_mobs)
 			Bumped(m)
-
-
-/obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return !opacity
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)

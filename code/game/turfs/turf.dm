@@ -165,7 +165,7 @@
 		if(i == mover || i == mover.loc) // Multi tile objects and moving out of other objects
 			continue
 		var/atom/movable/thing = i
-		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
+		if(CHECK_MULTIPLE_BITFIELDS(thing.pass_flags, HOVERING))
 			continue
 		if(thing.status_flags & INCORPOREAL)
 			continue
@@ -206,9 +206,6 @@
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, VAPOR, S.fraction)
-
-/turf/proc/is_asteroid_floor()
-	return FALSE
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)

@@ -157,7 +157,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/deathmatch)
 "aK" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/deathmatch)
 "aL" = (

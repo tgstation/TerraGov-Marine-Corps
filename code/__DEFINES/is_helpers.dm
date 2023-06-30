@@ -23,6 +23,8 @@
 
 #define islava(A) (istype(A, /turf/open/liquid/lava))
 
+#define iswater(A) (istype(A, /turf/open/liquid/water))
+
 #define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
 
 #define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))
@@ -181,8 +183,6 @@
 #define ismodulararmorstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
 
 #define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
-
-#define isgreyscaleattachment(A) (istype(A, /obj/item/armor_module/greyscale))
 
 #define ishat(A) (istype(A, /obj/item/clothing/head))
 

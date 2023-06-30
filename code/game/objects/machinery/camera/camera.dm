@@ -317,9 +317,6 @@
 	name = "military-grade camera"
 	network = list("marinemainship")
 
-/obj/machinery/camera/autoname/mainship/rebelship
-	network = list("rebelmainship")
-
 /obj/machinery/camera/autoname/mainship/somship
 	network = list("sommainship")
 
@@ -330,9 +327,6 @@
 
 /obj/machinery/camera/autoname/mainship/dropship_two
 	network = list("marinemainship", "dropship2")
-
-/obj/machinery/camera/autoname/mainship/dropship_three
-	network = list("rebelmainship", "dropship3")
 
 /obj/machinery/camera/headset
 	name = "headset camera"

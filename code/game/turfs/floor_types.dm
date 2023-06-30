@@ -309,48 +309,118 @@
 	icon_state = "plating"
 
 /turf/open/floor/wood
-	name = "floor"
+	name = "wood floor"
+	icon = 'icons/turf/wood_floor.dmi'
 	icon_state = "wood"
 	floor_tile = /obj/item/stack/tile/wood
 	shoefootstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD
 	mediumxenofootstep = FOOTSTEP_WOOD
+	var/damaged_states = 7
 
 /turf/open/floor/wood/broken_states()
-	return list("wood-broken1", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
+	if(!damaged_states)
+		return icon_state
+	return "[icon_state]_damaged_[rand(1, damaged_states)]"
 
 /turf/open/floor/wood/burnt_states()
-	return list("wood-broken1", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
+	if(!damaged_states)
+		return icon_state
+	return "[icon_state]_[rand(1, damaged_states)]"
 
 //todo: replaced in a later pr
 /turf/open/floor/wood/broken
 	icon_state = "wood-broken1"
 	burnt = TRUE
 
-/turf/open/floor/wood/broken/two
-	icon_state = "wood-broken2"
-	burnt = TRUE
+/turf/open/floor/wood/fancy
+	icon_state = "wood_fancy"
+	damaged_states = 6
 
-/turf/open/floor/wood/broken/three
-	icon_state = "wood-broken3"
-	burnt = TRUE
+/turf/open/floor/wood/darker
+	icon_state = "wood_darker"
 
-/turf/open/floor/wood/broken/four
-	icon_state = "wood-broken4"
-	burnt = TRUE
+/turf/open/floor/wood/thatch
+	icon_state = "thatch"
+	damaged_states = NONE
 
-/turf/open/floor/wood/broken/five
-	icon_state = "wood-broken5"
-	burnt = TRUE
+/turf/open/floor/wood/alt_
+	icon_state = "wood_alt_1"
+	damaged_states = NONE
 
-/turf/open/floor/wood/broken/six
-	icon_state = "wood-broken6"
-	burnt = TRUE
+/turf/open/floor/wood/alt_
+	icon_state = "wood_alt_2"
+	damaged_states = NONE
 
-/turf/open/floor/wood/broken/seven
-	icon_state = "wood-broken7"
-	burnt = TRUE
+/turf/open/floor/wood/alt_
+	icon_state = "wood_alt_3"
+	damaged_states = NONE
 
+/turf/open/floor/wood/alt_
+	icon_state = "wood_alt_4"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_
+	icon_state = "wood_alt_5"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_
+	icon_state = "wood_alt_6"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_
+	icon_state = "wood_alt_7"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_
+	icon_state = "wood_alt_8"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_
+	icon_state = "wood_alt_9"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_ten
+	icon_state = "wood_alt_10"
+	damaged_states = NONE
+
+/turf/open/floor/wood/alt_eleven
+	icon_state = "wood_alt_11"
+	damaged_states = NONE
+
+/turf/open/floor/wood/variable
+	icon_state = "wood_common"
+	damaged_states = 6
+	var/icon_variants = 3
+
+/turf/open/floor/wood/variable/Initialize(mapload)
+	. = ..()
+	icon_state = "[icon_state]_[rand(1, icon_variants)]"
+
+/turf/open/floor/wood/variable/wide
+	icon_state = "wood_wide"
+	damaged_states = 6
+
+/turf/open/floor/wood/variable/mosaic
+	icon_state = "wood_mosaic"
+	damaged_states = 6
+
+/turf/open/floor/wood/variable/damaged
+	icon_state = "wood_common_damaged"
+	icon_variants = 6
+
+/turf/open/floor/wood/variable/damaged/standard
+	icon_state = "wood_damaged"
+	icon_variants = 7
+
+/turf/open/floor/wood/variable/damaged/wide
+	icon_state = "wood_wide_damaged"
+
+/turf/open/floor/wood/variable/damaged/fancy
+	icon_state = "wood_fancy_damaged"
+
+/turf/open/floor/wood/variable/damaged/mosaic
+	icon_state = "wood_mosaic_damaged"
 
 /turf/open/floor/vault
 	icon_state = "rockvault"
@@ -363,10 +433,10 @@
 	icon_state = "cult"
 
 /turf/open/floor/cult/broken_states()
-	return list("cultdamage", "cultdamage2", "cultdamage3", "cultdamage4", "cultdamage5", "cultdamage6", "cultdamage7")
+	return pick("cultdamage", "cultdamage2", "cultdamage3", "cultdamage4", "cultdamage5", "cultdamage6", "cultdamage7")
 
 /turf/open/floor/cult/burnt_states()
-	return list("cultdamage", "cultdamage2", "cultdamage3", "cultdamage4", "cultdamage5", "cultdamage6", "cultdamage7")
+	return pick("cultdamage", "cultdamage2", "cultdamage3", "cultdamage4", "cultdamage5", "cultdamage6", "cultdamage7")
 
 /turf/open/floor/dark2
 	icon_state = "darktile2"
@@ -819,12 +889,12 @@
 	floor_tile = /obj/item/stack/tile/carpet
 
 /turf/open/floor/carpet/broken_states()
-	return list("carpet-broken")
+	return icon_state
 
 /turf/open/floor/carpet/burnt_states()
-	return list("carpet-broken")
+	return icon_state
 
-/turf/open/floor/ex_act(severity)
+/turf/open/floor/carpet/ex_act(severity)
 	if(hull_floor)
 		return ..()
 	switch(severity)

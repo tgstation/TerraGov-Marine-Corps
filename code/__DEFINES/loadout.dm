@@ -228,25 +228,6 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
-	FACTION_TERRAGOV = list(
-		/obj/machinery/vending/weapon/hvh/team_one,
-		/obj/machinery/vending/uniform_supply,
-		/obj/machinery/vending/armor_supply/loyalist,
-		/obj/machinery/vending/marineFood,
-		/obj/machinery/vending/MarineMed,
-		/obj/machinery/vending/cigarette,
-		/obj/machinery/vending/tool,
-	),
-	FACTION_TERRAGOV_REBEL = list(
-		/obj/machinery/vending/weapon/hvh,
-		/obj/machinery/vending/uniform_supply,
-		/obj/machinery/vending/armor_supply/rebel,
-		/obj/machinery/vending/marineFood,
-		/obj/machinery/vending/MarineMed/rebel,
-		/obj/machinery/vending/medical/rebel,
-		/obj/machinery/vending/cigarette,
-		/obj/machinery/vending/tool,
-	),
 	FACTION_VALHALLA = list(
 		/obj/machinery/vending/weapon/valhalla,
 		/obj/machinery/vending/uniform_supply,
@@ -744,6 +725,6 @@ GLOBAL_LIST_INIT(bypass_storage_content_save, typecacheof(list(
 #define MAXIMUM_LOADOUT 50
 
 /// The current loadout version
-#define CURRENT_LOADOUT_VERSION 11
+#define CURRENT_LOADOUT_VERSION 13
 
-GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10, 11))
+GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10, 11, 13))

@@ -17,7 +17,7 @@
 	drag_delay = 3
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
-	flags_pass = PASSTABLE
+	pass_flags = PASS_LOW_STRUCTURE
 
 /mob/living/carbon/xenomorph/warlock/Initialize(mapload)
 	. = ..()

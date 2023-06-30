@@ -47,8 +47,8 @@
 /mob/living/carbon/human/proc/set_undefibbable()
 	if(issynth(src)) //synths do not dnr.
 		return
-	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
+	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	SSmobs.stop_processing(src) //Last round of processing.
 
 	if(CHECK_BITFIELD(status_flags, XENO_HOST))
