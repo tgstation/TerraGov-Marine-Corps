@@ -155,6 +155,20 @@
 	goggles = TRUE
 	w_class = WEIGHT_CLASS_TINY
 
+/obj/item/clothing/glasses/talon_nvg
+	name = "Talon NVGs"
+	desc = "'Special' issue TGMC goggles. Used to look tacticool, but ultimately nonfunctional."
+	icon = 'icons/obj/clothing/glasses.dmi'
+	icon_state = "talon_b"
+	item_state = "talon_b"
+	deactive_state = "talon_a"
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, FIRE = 30, ACID = 30)
+	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
+	goggles = TRUE
+	w_class = WEIGHT_CLASS_TINY
+	toggleable = 1
+	actions_types = list(/datum/action/item_action/toggle)
+
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"

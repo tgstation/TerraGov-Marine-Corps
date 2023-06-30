@@ -1213,6 +1213,7 @@
 			/obj/item/clothing/head/modular/style/bandana = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
+			/obj/item/clothing/glasses/talon_nvg = -1,
 		),
 		"Masks" = list(
 			/obj/item/clothing/mask/rebreather/scarf = -1,
