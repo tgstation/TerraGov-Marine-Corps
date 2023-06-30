@@ -1198,6 +1198,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 2
 	damage_falloff = 0.25
 
+/datum/ammo/bullet/sniper/clf_heavyrifle
+	name = "high velocity incendiary sniper bullet"
+	handful_icon_state = "ptrs"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SUNDERING
+	hud_state = "sniper_fire"
+	accurate_range_min = 3
+	shell_speed = 5
+	damage = 140
+	penetration = 60
+	sundering = 50
+
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_IFF

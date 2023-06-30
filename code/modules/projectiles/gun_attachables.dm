@@ -1026,6 +1026,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/clf_heavyrifle
+	name = "PTR-41/1785 body"
+	desc = "A stock for a PTR-41/1785 A-MR."
+	icon = 'icons/Marine/clf_heavyrifle.dmi'
+	icon_state = "ptrs_stock"
+	pixel_shift_x = 15
+	pixel_shift_y = 0
+
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"
 	desc = "A specialized stock for the SH-39."
