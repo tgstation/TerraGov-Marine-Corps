@@ -173,11 +173,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/item/radio/headset/mainship/LateInitialize()
-	. = ..()
-	camera = new /obj/machinery/camera/headset(src)
+	if(faction == FACTION_SOM)
+		camera = new /obj/machinery/camera/headset/som(src)
+	else
+		camera = new /obj/machinery/camera/headset(src)
 
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)

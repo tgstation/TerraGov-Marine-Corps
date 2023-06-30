@@ -140,7 +140,7 @@
 			stat(null, "You are affected by a HOLD order.")
 		if(marksman_aura)
 			stat(null, "You are affected by a FOCUS order.")
-		/datum/game_mode/hvh/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
+		var/datum/game_mode/hvh/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
 		if(issensorcapturegamemode(SSticker.mode))
 			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
 
