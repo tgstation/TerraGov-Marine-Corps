@@ -470,6 +470,12 @@ WEAPONS
 	cost = SADAR_PRICE
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/sadar_miniscope
+	name = "SADAR mini scope"
+	contains = list(/obj/item/attachable/scope/mini/sadar)
+	cost = 1600
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/rpg_regular
 	name = "RL-152 SADAR HE rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar)
