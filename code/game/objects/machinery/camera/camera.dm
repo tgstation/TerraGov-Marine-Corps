@@ -320,6 +320,9 @@
 /obj/machinery/camera/autoname/mainship/rebelship
 	network = list("rebelmainship")
 
+/obj/machinery/camera/autoname/mainship/somship
+	network = list("sommainship")
+
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
 	network = list("marinemainship", "dropship1")
@@ -336,6 +339,8 @@
 	network = list("marine")
 	resistance_flags = RESIST_ALL //If the containing headset is not destroyed, neither should this be.
 
+/obj/machinery/camera/headset/som
+	network = list("som")
 
 //used by the laser camera dropship equipment
 /obj/machinery/camera/laser_cam
