@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - balance: "Remove 5 miners that are near LZ in Prison Station."
