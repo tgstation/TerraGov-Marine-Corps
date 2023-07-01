@@ -13,7 +13,7 @@
 /datum/component/anti_juggling/proc/on_fire(datum/source, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
 
-	if(fired_gun.master_gun || fired_gun.dual_wield)
+	if(!isgun(fired_gun) || fired_gun.master_gun || fired_gun.dual_wield)
 		return //Attached guns and guns being dual wielded aren't taken into account.
 	next_fire_time = world.time + fired_gun.fire_delay
 
