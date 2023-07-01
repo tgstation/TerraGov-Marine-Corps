@@ -561,7 +561,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 		return FALSE
-	if(!GLOB.enter_allowed)
+	if(!GLOB.enter_allowed || (!GLOB.xeno_enter_allowed && istype(job, /datum/job/xenomorph)))
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return FALSE
 	if(!NP.client.prefs.random_name)
