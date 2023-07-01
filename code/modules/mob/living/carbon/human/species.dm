@@ -565,8 +565,6 @@
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
-	inherent_actions = list(/datum/action/repair_self)
-
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
@@ -618,8 +616,6 @@
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
-
-	inherent_actions = list(/datum/action/repair_self)
 
 /datum/species/early_synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
