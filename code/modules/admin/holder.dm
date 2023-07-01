@@ -419,6 +419,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/spatial_agent,
 	/datum/admins/proc/set_xeno_stat_buffs,
 	/datum/admins/proc/check_bomb_impacts,
+	/datum/admins/proc/adjust_gravity,
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -657,7 +658,7 @@ GLOBAL_PROTECT(admin_verbs_log)
 
 
 /proc/IsAdminAdvancedProcCall()
-	return usr?.client && GLOB.AdminProcCaller == usr.client.ckey
+	return usr && usr.client && GLOB.AdminProcCaller == usr.client.ckey
 
 
 /proc/GenTgsStealthKey()

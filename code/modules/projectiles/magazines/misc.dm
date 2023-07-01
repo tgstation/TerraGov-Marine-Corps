@@ -16,8 +16,8 @@
 	max_rounds = 150
 
 /obj/item/ammo_magazine/packet/pnato
-	name = "box of 556x45mm"
-	desc = "A box containing 150 rounds of 556x45mm."
+	name = "box of 5.56x45mm"
+	desc = "A box containing 150 rounds of 5.56x45mm."
 	caliber = CALIBER_556X45
 	icon_state = "box_556mm"
 	default_ammo = /datum/ammo/bullet/rifle
@@ -25,8 +25,8 @@
 	max_rounds = 150
 
 /obj/item/ammo_magazine/packet/pwarsaw
-	name = "box of 762x39mm"
-	desc = "A box containing 120 rounds of 762x39mm."
+	name = "box of 7.62x39mm"
+	desc = "A box containing 120 rounds of 7.62x39mm."
 	caliber = CALIBER_762X39
 	icon_state = "box_76239mm"
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km

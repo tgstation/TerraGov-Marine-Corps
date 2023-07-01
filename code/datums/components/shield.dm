@@ -9,7 +9,7 @@
 	/// Percentage damage The shield intercepts.
 	var/datum/armor/cover
 	var/shield_flags = NONE
-	var/slot_flags = SLOT_L_HAND|SLOT_R_HAND
+	var/slot_flags = list(SLOT_L_HAND, SLOT_R_HAND)
 	var/layer = 50
 	var/active = TRUE
 
@@ -75,7 +75,7 @@
 		transfer_damage_cb = CALLBACK(src, PROC_REF(transfer_damage_to_parent))
 
 ///Toggles the mitigation on or off when already equipped
-/datum/component/shield/proc/toggle_shield/(datum/source, new_state)
+/datum/component/shield/proc/toggle_shield(datum/source, new_state)
 	SIGNAL_HANDLER
 	if(active == new_state)
 		return
@@ -92,7 +92,7 @@
 
 /datum/component/shield/proc/shield_equipped(datum/source, mob/living/user, slot)
 	SIGNAL_HANDLER
-	if(!(slot_flags & slot))
+	if(!(slot in slot_flags))
 		shield_detach_from_user()
 		return
 	shield_affect_user(user)
@@ -212,7 +212,7 @@
 /datum/component/shield/overhealth
 	layer = 100
 	cover = list(MELEE = 0, BULLET = 80, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 80)
-	slot_flags = SLOT_WEAR_SUIT //For now it only activates while worn on a single place, meaning only one active at a time. Need to handle overlays properly to allow for stacking.
+	slot_flags = list(SLOT_WEAR_SUIT) //For now it only activates while worn on a single place, meaning only one active at a time. Need to handle overlays properly to allow for stacking.
 	var/max_shield_integrity = 100
 	var/shield_integrity = 100
 	var/recharge_rate = 1 SECONDS

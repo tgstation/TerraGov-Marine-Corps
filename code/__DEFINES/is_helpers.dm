@@ -23,6 +23,8 @@
 
 #define islava(A) (istype(A, /turf/open/liquid/lava))
 
+#define iswater(A) (istype(A, /turf/open/liquid/water))
+
 #define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
 
 #define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))
@@ -110,6 +112,7 @@
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 #define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
 #define isxenowarlock(A) (istype(A, /mob/living/carbon/xenomorph/warlock))
+#define isxenoking(A) (istype(A, /mob/living/carbon/xenomorph/king))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -180,8 +183,6 @@
 #define ismodulararmorstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
 
 #define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
-
-#define isgreyscaleattachment(A) (istype(A, /obj/item/armor_module/greyscale))
 
 #define ishat(A) (istype(A, /obj/item/clothing/head))
 

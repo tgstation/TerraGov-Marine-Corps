@@ -120,6 +120,7 @@
 		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
 		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 		update_fire()
+		SEND_SIGNAL(src, COMSIG_LIVING_IGNITED, fire_stacks)
 		return TRUE
 
 /mob/living/carbon/human/IgniteMob()
@@ -203,10 +204,10 @@
 		to_chat(src, span_warning("You are untouched by the flames."))
 		return
 
-	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE)
+	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
 	to_chat(src, span_warning("You are burned!"))
 
-	if(flags_pass & PASSFIRE) //Pass fire allow to cross fire without being ignited
+	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being ignited
 		return
 
 	adjust_fire_stacks(burnlevel)

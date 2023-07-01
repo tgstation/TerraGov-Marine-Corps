@@ -581,10 +581,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
 
-/obj/item/attachable/flashlight/activate(mob/living/user)
-	turn_light(user, !light_on)
+/obj/item/attachable/flashlight/activate(mob/living/user, turn_off)
+	turn_light(user, turn_off ? !turn_off : !light_on)
 
-/obj/item/attachable/flashlight/turn_light(mob/user, toggle_on)
+/obj/item/attachable/flashlight/turn_light(mob/user, toggle_on, cooldown, sparks, forced, light_again)
 	. = ..()
 
 	if(. != CHECKS_PASSED)
@@ -1334,7 +1334,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "v34stock"
-	accuracy_mod = 0.3
+	accuracy_mod = 0.2
 	recoil_mod = -2
 	scatter_mod = -8
 
@@ -1768,8 +1768,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	return TRUE
 
 ///Called when an attachment is attached to this gun (src).
-/obj/item/weapon/gun/proc/on_attachment_attach(/obj/item/attaching_here, mob/attacher)
+/obj/item/weapon/gun/proc/on_attachment_attach(obj/item/attaching_here, mob/attacher)
 	return
 ///Called when an attachment is detached from this gun (src).
-/obj/item/weapon/gun/proc/on_attachment_detach(/obj/item/detaching_here, mob/attacher)
+/obj/item/weapon/gun/proc/on_attachment_detach(obj/item/detaching_here, mob/attacher)
 	return

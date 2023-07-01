@@ -21,6 +21,8 @@
 	var/list/obj/structure/xeno/maturitytower/maturitytowers = list()
 	///list of phero towers
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
+	///list of hivemind cores
+	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
@@ -117,6 +119,9 @@
 	// Pheromone towers
 	for(var/obj/structure/xeno/pherotower/tower AS in GLOB.hive_datums[hivenumber].pherotowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
+	// Hivemind cores
+	for(var/obj/structure/xeno/hivemindcore/core AS in GLOB.hive_datums[hivenumber].hivemindcores)
+		.["hive_structures"] += list(get_structure_packet(core))
 	// Spawners
 	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawners_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(spawner))
@@ -453,6 +458,13 @@
 	core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name] "]hivemind core"
 	core.color = HS.color
 
+/mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force = FALSE)
+	. = ..()
+
+	if(HS.living_xeno_ruler)
+		return
+	HS.update_ruler()
+
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
@@ -538,6 +550,17 @@
 
 
 /mob/living/carbon/xenomorph/shrike/remove_from_hive()
+	var/datum/hive_status/hive_removed_from = hive
+
+	. = ..()
+
+	if(hive_removed_from.living_xeno_ruler == src)
+		hive_removed_from.set_ruler(null)
+		hive_removed_from.update_ruler() //Try to find a successor.
+
+
+
+/mob/living/carbon/xenomorph/king/remove_from_hive()
 	var/datum/hive_status/hive_removed_from = hive
 
 	. = ..()
@@ -702,13 +725,9 @@
 
 	var/mob/living/carbon/xenomorph/successor
 
-	var/list/candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/queen]
+	var/list/candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/queen] + xenos_by_typepath[/mob/living/carbon/xenomorph/shrike] + xenos_by_typepath[/mob/living/carbon/xenomorph/king]
 	if(length(candidates)) //Priority to the queens.
 		successor = candidates[1] //First come, first serve.
-	else
-		candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]
-		if(length(candidates))
-			successor = candidates[1]
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)

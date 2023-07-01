@@ -14,6 +14,7 @@
 	///what we set connect_loc to if parent is a movable
 	var/static/list/item_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(play_squeak_crossed),
+		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(play_squeak),
 	)
 
 /datum/component/squeak/Initialize(sound_to_play, volume_override, chance_override, step_delay_override, use_delay_override)
@@ -86,7 +87,7 @@
 	if(isobserver(AM))
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(AM.pass_flags, HOVERING))
 		return
 	var/atom/current_parent = parent
 	if(isturf(current_parent.loc))

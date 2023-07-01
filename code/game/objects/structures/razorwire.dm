@@ -10,6 +10,7 @@
 	coverage = 5
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
+	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASS_GRILLE|PASSABLE
 	var/list/entangled_list
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
@@ -48,7 +49,7 @@
 	SIGNAL_HANDLER
 	if(!isliving(O))
 		return
-	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
+	if(CHECK_BITFIELD(O.pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return
 	var/mob/living/M = O
 	if(M.status_flags & INCORPOREAL)
@@ -61,16 +62,6 @@
 	var/def_zone = ran_zone()
 	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, MELEE, TRUE, updating_health = TRUE)
 	razorwire_tangle(M)
-
-/obj/structure/razorwire/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
-
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/entangled, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
@@ -100,7 +91,7 @@
 
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/entangled)
 	SIGNAL_HANDLER
-	if((entangled.flags_pass & PASSSMALLSTRUCT) || entangled.status_flags & INCORPOREAL)
+	if((entangled.pass_flags & PASS_DEFENSIVE_STRUCTURE) || entangled.status_flags & INCORPOREAL)
 		return
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
@@ -208,24 +199,17 @@
 			deconstruct(FALSE)
 			return
 		if(EXPLODE_HEAVY)
-			take_damage(rand(33, 66))
+			take_damage(rand(33, 66), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(10, 33))
+			take_damage(rand(10, 33), BRUTE, BOMB)
 	update_icon()
 
 
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
-		return TRUE
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
-		return TRUE
-	if(mover.throwing && istype(mover,/obj/item))
-		return TRUE
-	if(istype(mover, /obj/vehicle/multitile))
-		visible_message(span_danger("[mover] drives over and destroys [src]!"))
-		deconstruct(FALSE)
-		return TRUE
+	if(mover.throwing && ismob(mover))
+		return FALSE
+
+	return ..()
 
 /obj/structure/razorwire/update_icon_state()
 	var/health_percent = round(obj_integrity/max_integrity * 100)
@@ -237,4 +221,4 @@
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		take_damage(2 * S.strength)
+		take_damage(2 * S.strength, BURN, ACID)

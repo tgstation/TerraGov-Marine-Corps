@@ -35,6 +35,10 @@
 
 /obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override)
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 	if(!isnull(node))
 		if(!istype(node))
@@ -120,6 +124,11 @@
 		SSweeds_decay.decaying_list += src
 	parent_node = null
 
+///overrides the turf's normal footstep sound
+/obj/alien/weeds/proc/footstep_override(atom/movable/source, list/footstep_overrides)
+	SIGNAL_HANDLER
+	footstep_overrides[FOOTSTEP_RESIN] = layer
+
 /obj/alien/weeds/sticky
 	name = "sticky weeds"
 	desc = "A layer of disgusting sticky slime, it feels like it's going to slow your movement down."
@@ -150,7 +159,7 @@
 	if(!ishuman(crosser))
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(crosser.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))
 		return
 
 	var/mob/living/carbon/human/victim = crosser
@@ -314,7 +323,7 @@
 	if(!ishuman(crosser))
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(crosser.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))
 		return
 
 	var/mob/living/carbon/human/victim = crosser

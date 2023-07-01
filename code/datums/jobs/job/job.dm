@@ -290,7 +290,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	comm_title = job.comm_title
 	if(job.outfit)
 		var/id_type = job.outfit.id ? job.outfit.id : /obj/item/card/id
-		var/obj/item/card/id/id_card = new id_type
+		var/obj/item/card/id/id_card = new id_type(src)
 		if(wear_id)
 			if(!admin_action)
 				stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")

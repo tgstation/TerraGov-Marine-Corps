@@ -727,7 +727,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/som_machinegun
 	name = "machinegun bullet"
 	hud_state = "rifle_heavy"
-	damage = 30
+	damage = 28
 	penetration = 12.5
 	sundering = 1
 
@@ -1313,7 +1313,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	if(istype(T, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = T
-		wall_victim.take_damage((autocannon_wall_bonus))
+		wall_victim.take_damage(autocannon_wall_bonus, P.damtype, P.armor_type)
 
 /datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 5
@@ -2060,7 +2060,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"
-	icon_state = "shell"
+	icon_state = "recoilless_rifle_he"
 	hud_state = "shell_he"
 	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
@@ -2078,6 +2078,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/heat
 	name = "HEAT shell"
+	icon_state = "recoilless_rifle_heat"
 	hud_state = "shell_heat"
 	damage = 200
 	penetration = 100
@@ -2088,6 +2089,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
+	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
@@ -2101,6 +2103,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/chemical
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_smoke"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
 	accurate_range = 21
@@ -2122,16 +2125,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/chemical/cloak
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_cloak"
 	hud_state = "shell_cloak"
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
 /datum/ammo/rocket/recoilless/chemical/plasmaloss
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_tanglefoot"
 	hud_state = "shell_tanglefoot"
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
 /datum/ammo/rocket/recoilless/low_impact
 	name = "low impact explosive shell"
+	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
@@ -2383,7 +2389,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T)
 
 /datum/ammo/mortar/incend/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 7, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 2, 3, 7, throw_range = 0)
 	flame_radius(4, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2393,7 +2399,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/smoke/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 0, 1, 3, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
@@ -2413,7 +2419,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	explosion(T, 1, 6, 7, 12)
 
 /datum/ammo/mortar/howi/incend/drop_nade(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 3, 0, 3, throw_range = 0)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2452,7 +2458,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	explosion(T, 1, 2, 5, 3)
 
 /datum/ammo/mortar/rocket/incend/drop_nade(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 3, 0, 3, throw_range = 0)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2460,11 +2466,33 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
 	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
 
+/datum/ammo/mortar/rocket/smoke
+	///the smoke effect at the point of detonation
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
+
+/datum/ammo/mortar/rocket/smoke/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 1, 3, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+
 /datum/ammo/mortar/rocket/mlrs
 	shell_speed = 2.5
 
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 2, small_animation = TRUE)
+	explosion(T, 0, 0, 4, 2)
+
+/datum/ammo/mortar/rocket/smoke/mlrs
+	shell_speed = 2.5
+	smoketype = /datum/effect_system/smoke_spread/mustard
+
+/datum/ammo/mortar/rocket/smoke/mlrs/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 2, 0, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(5, T, 6)
+	smoke.start()
 
 /*
 //================================================
@@ -2656,6 +2684,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	hitscan_effect_icon = "beam"
 
+/datum/ammo/energy/lasgun/marine/carbine
+	sundering = 1
+	max_range = 18
+
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
 	icon_state = "overchargedlaser"
@@ -2674,6 +2706,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 0
 	damage_type = STAMINA
 	hitscan_effect_icon = "blue_beam"
+	bullet_color = COLOR_DISABLER_BLUE
 	///plasma drained per hit
 	var/plasma_drain = 25
 
@@ -2693,6 +2726,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 2
 	hitscan_effect_icon = "beam_grass"
+	bullet_color = LIGHT_COLOR_GREEN
 	///number of microwave stacks to apply when hitting mobvs
 	var/microwave_stacks = 1
 
@@ -2723,6 +2757,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 1
 	hitscan_effect_icon = "pu_laser"
+	bullet_color = LIGHT_COLOR_PURPLE
 
 /datum/ammo/energy/lasgun/marine/blast/spread
 	name = "additional laser blast"
@@ -2735,6 +2770,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0
 	hitscan_effect_icon = "pu_laser"
+	bullet_color = LIGHT_COLOR_PURPLE
 
 /datum/ammo/energy/lasgun/marine/impact/on_hit_mob(mob/M, obj/projectile/proj)
 	var/knockback_dist = round(LERP(3, 1, proj.distance_travelled / 6), 1)
@@ -2748,6 +2784,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0
 	hitscan_effect_icon = "blue_beam"
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/cripple/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, slowdown = 1.5)
@@ -2775,7 +2812,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/marine/autolaser/charge/on_hit_turf(turf/T, obj/projectile/proj)
 	if(istype(T, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = T
-		wall_victim.take_damage((proj.damage))
+		wall_victim.take_damage(proj.damage, proj.damtype, proj.armor_type)
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting
 	name = "melting machine laser bolt"
@@ -2784,6 +2821,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 0
 	hitscan_effect_icon = "beam_solar"
+	bullet_color = LIGHT_COLOR_YELLOW
 	///number of melting stacks to apply when hitting mobs
 	var/melt_stacks = 2
 
@@ -2821,6 +2859,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/shatter
 	name = "sniper shattering bolt"
@@ -2831,6 +2870,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 5
 	sundering = 10
 	hitscan_effect_icon = "pu_laser"
+	bullet_color = LIGHT_COLOR_PURPLE
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 5 SECONDS
 
@@ -2851,6 +2891,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
 	bonus_projectiles_scatter = 0
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/ricochet/one
 	damage = 80
@@ -2880,6 +2921,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	sundering = 1
 	hitscan_effect_icon = "beam_particle"
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
 	name = "disabler bolt"
@@ -2888,7 +2930,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 70
 	penetration = 0
 	damage_type = STAMINA
-	hitscan_effect_icon = "stun"
+	hitscan_effect_icon = "beam_stun"
+	bullet_color = LIGHT_COLOR_YELLOW
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"
@@ -2900,6 +2943,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 0.5
 	hitscan_effect_icon = "beam_incen"
+	bullet_color = COLOR_LASER_RED
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
@@ -2997,7 +3041,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			var/obj/obj_victim = victim
 			if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
 				continue
-			obj_victim.take_damage(aoe_damage, BURN, ENERGY, 0, armour_penetration = penetration)
+			obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 		if(victim.anchored)
 			continue
 		var/throw_dir = get_dir(T, victim)
@@ -3035,7 +3079,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
 		var/obj/vehicle/sealed/mecha/mech_victim = O
-		mech_victim.take_damage(200, BURN, ENERGY, 0, armour_penetration = penetration)
+		mech_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
 	if(!isxeno(M))
@@ -3374,7 +3418,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/alien/resin/sticky(T)
+	new /obj/alien/resin/sticky/thin(T)
 
 /datum/ammo/xeno/sticky/turret
 	max_range = 9
@@ -3762,7 +3806,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
-	if(T.density || (O.density && !(O.flags_pass & PASSPROJECTILE)))
+	if(T.density || (O.density && !(O.allow_pass_flags & PASS_PROJECTILE)))
 		T = get_turf(proj)
 	drop_leashball(T.density ? proj.loc : T, proj.firer)
 
@@ -3965,3 +4009,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 1
 	max_range = 21
 	nade_type = /obj/item/explosive/grenade/ags
+
+/datum/ammo/grenade_container/ags_grenade/flare
+	hud_state = "grenade_dummy"
+	nade_type = /obj/item/explosive/grenade/flare
+
+/datum/ammo/grenade_container/ags_grenade/cloak
+	hud_state = "grenade_hide"
+	nade_type = /obj/item/explosive/grenade/smokebomb/cloak/ags
+
+/datum/ammo/grenade_container/ags_grenade/tanglefoot
+	hud_state = "grenade_drain"
+	nade_type = /obj/item/explosive/grenade/smokebomb/drain/agls

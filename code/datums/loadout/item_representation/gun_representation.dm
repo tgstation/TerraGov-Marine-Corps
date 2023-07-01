@@ -15,6 +15,8 @@
 	..()
 	var/obj/item/weapon/gun/gun_to_copy = item_to_copy
 	for(var/key in gun_to_copy.attachments_by_slot)
+		if(!gun_to_copy.attachments_by_slot[key])
+			continue
 		if(!isgun(gun_to_copy.attachments_by_slot[key]))
 			attachments += new /datum/item_representation/gun_attachement(gun_to_copy.attachments_by_slot[key])
 			continue
