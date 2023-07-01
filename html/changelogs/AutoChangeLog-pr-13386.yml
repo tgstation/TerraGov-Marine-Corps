@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixes various ghostize runtimes"
-  - bugfix: "Fixed closing the valhalla join menu opening the marine job choice menu"
