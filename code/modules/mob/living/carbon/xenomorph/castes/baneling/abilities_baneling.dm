@@ -80,7 +80,7 @@
 	INVOKE_ASYNC(src, PROC_REF(select_reagent_radial))
 	return COMSIG_KB_ACTIVATED
 
-/datum/action/xeno_action/select_reagent/baneling/select_reagent_radial/()
+/datum/action/xeno_action/select_reagent/baneling/select_reagent_radial()
 		//List of toxin images
 	var/static/list/reagent_images_list = list(
 		DEFILER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
