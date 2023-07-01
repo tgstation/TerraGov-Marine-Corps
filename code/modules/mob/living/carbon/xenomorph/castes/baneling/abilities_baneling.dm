@@ -108,7 +108,7 @@
 /datum/action/xeno_action/spawn_pod
 	name = "Spawn pod"
 	action_icon_state = "spawn_pod"
-	desc = "Spawn a pod that we will respawn inside of upon death. If the pod is destroyed and we die its over.."
+	desc = "Spawn a pod that we will respawn inside of upon death. If the pod is destroyed and we die it's over.."
 	ability_name = "spawn pod"
 	plasma_cost = 150
 	keybinding_signals = list(
