@@ -349,15 +349,15 @@
 // *********** Psychic Vortex
 // ***************************************
 #define VORTEX_RANGE 4
-#define VORTEX_PULL_WINDUP_TIME 2 SECONDS
-#define VORTEX_PUSH_WINDUP_TIME 1 SECONDS
+#define VORTEX_INITIAL_CHARGE 2 SECONDS
+#define VORTEX_POST_INITIAL_CHARGE 0.5 SECONDS
 /datum/action/xeno_action/activable/psychic_vortex
 	name = "Pyschic vortex"
 	action_icon_state = "vortex"
 	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
 	ability_name = "Psychic vortex"
 	plasma_cost = 600
-	cooldown_timer = 3 MINUTES
+	cooldown_timer = 2 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_VORTEX,
@@ -373,11 +373,11 @@
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
-	if(do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
 		vortex_pull()
-	if(do_after(owner, VORTEX_PUSH_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
 		vortex_push()
-	if(do_after(owner, VORTEX_PULL_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
 		vortex_pull()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
 	return fail_activate()
