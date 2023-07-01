@@ -137,6 +137,11 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	if(!language)
 		language = get_default_language()
 
+	var/list/message_data = treat_message(message) // unfortunately we still need this
+	message = message_data["message"]
+	var/tts_message = message_data["tts_message"]
+	var/list/tts_filter = message_data["tts_filter"]
+
 	// Detection of language needs to be before inherent channels, because
 	// AIs use inherent channels for the holopad. Most inherent channels
 	// ignore the language argument however.
@@ -149,12 +154,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 
 	var/message_range = 7
 
-	log_talk(message, LOG_SAY)
-
-	var/list/message_data = treat_message(message) // unfortunately we still need this
-	message = message_data["message"]
-	var/tts_message = message_data["tts_message"]
-	var/list/tts_filter = message_data["tts_filter"]
+	log_talk(original_message, LOG_SAY)
 
 	var/last_message = message
 	var/sigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 			listened += listening_movable
 	//Note, TG has a found_client var they use, piggybacking on unrelated say popups and runechat code
 	//we dont do that since it'd probably be much more expensive to loop over listeners instead of just doing
-	if(voice)
+	if(voice && !(client?.prefs.muted & MUTE_TTS))
 		var/tts_message_to_use = tts_message
 		if(!tts_message_to_use)
 			tts_message_to_use = message_raw

@@ -21,7 +21,8 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	density = FALSE
 	health = 80
 	maxHealth = 80
-	flags_pass = PASSTABLE|PASSMOB
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB
 
 	speak = list("Hi!","Hello!","Cracker?","BAWWWWK george mellons griffing me!")
 	speak_emote = list("squawks","says","yells")

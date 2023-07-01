@@ -6,6 +6,8 @@
 	density = TRUE
 	icon_state = "turnstile"
 	anchored = TRUE
+	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE
+	flags_atom = ON_BORDER
 	dir = 8
 	var/last_use
 	var/id
@@ -21,26 +23,10 @@
 /obj/machinery/line_nexter/ex_act(severity)
 	return
 
-/obj/machinery/line_nexter/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(!iscarbon(O))
+/obj/machinery/line_nexter/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	if(iscarbon(mover) && (direction & dir))
 		return NONE
-	var/mob/living/carbon/C = O
-	if(C.pulledby)
-		if(!C.incapacitated() && (direction & WEST))
-			knownblockers += C
-			return COMPONENT_ATOM_BLOCK_EXIT
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += C
-	return COMPONENT_ATOM_BLOCK_EXIT
-
-/obj/machinery/line_nexter/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(get_dir(loc, target) == dir)
-		return 0
-	else
-		return 1
+	return ..()
 
 /obj/machinery/line_nexter/proc/next()
 	//if((last_use + 20) > world.time) // 20 seconds

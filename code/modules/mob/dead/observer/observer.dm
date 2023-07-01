@@ -294,7 +294,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_role_death[ghost.key] = world.time
 
-
+/mob/living/carbon/human/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
+	. = ..()
+	if(!can_reenter_corpse && !QDELING(src))
+		set_undefibbable()
 
 /mob/dead/observer/Move(atom/newloc, direct)
 	if(updatedir)
@@ -859,10 +862,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set desc = "Noone will be able to revive you."
 
 	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
+		var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
+		if(istype(human_current))
+			human_current.set_undefibbable()
+
 		can_reenter_corpse = null
 		to_chat(usr, span_notice("You can no longer be revived."))
-		mind.current.med_hud_set_status()
 		return
+
 	to_chat(usr, span_warning("You already can't be revived."))
 
 
@@ -895,6 +902,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 
 	var/choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. Xenomorph or Marine?", "Join Valhalla", list("Xenomorph", "Marine"))
+
+	if(!choice)
+		return
 
 	if(choice == "Xenomorph")
 		var/mob/living/carbon/xenomorph/xeno_choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What xenomorph would you like to have?", "Join Valhalla", GLOB.all_xeno_types)

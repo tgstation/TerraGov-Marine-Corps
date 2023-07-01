@@ -61,10 +61,6 @@
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
 		if(is_centcom_level(ssd_mob.z) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
 			continue
-		if(isxeno(ssd_mob))
-			var/mob/living/carbon/xenomorph/potential_minion = ssd_mob
-			if((potential_minion.xeno_caste.caste_flags & CASTE_IS_A_MINION) && !potential_minion.hive.purchases.upgrades_by_name[GHOSTS_CAN_TAKE_MINIONS].times_bought)
-				continue
 		free_ssd_mobs += ssd_mob
 
 	if(!length(free_ssd_mobs))

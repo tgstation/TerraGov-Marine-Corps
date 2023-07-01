@@ -10,7 +10,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	blood_sprite_state = "helmetblood"
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
-	attachments_allowed = list(/obj/item/armor_module/greyscale/badge)
+	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/anti_hug = 0
 
 /obj/item/clothing/head/update_clothing_icon()

@@ -415,8 +415,10 @@
 			to_chat(user, span_warning("The bird has left meanwhile, try again."))
 			return FALSE
 		D.unlock_all()
-		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
-		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
+		if(D.mode != SHUTTLE_IGNITING)
+			D.set_hijack_state(HIJACK_STATE_UNLOCKED)
+			D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
+			to_chat(user, span_warning("We were unable to prevent the bird from flying as it is already taking off."))
 		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
 		playsound(user, "alien_roar", 50)
@@ -489,8 +491,9 @@
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
-		M.unlock_all()
 		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
+		M.unlock_all()
+		M.silicon_lock_airlocks(TRUE)
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
 			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors[(M.mode != SHUTTLE_IGNITING) ? "and preventing it from flying." : ", but we are unable to prevent it from flying as it is already taking off!"]"))
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, src)
@@ -975,7 +978,7 @@
 	icon_state = "shuttle_glass1"
 	resistance_flags = NONE
 	opacity = FALSE
-	flags_pass = PASSLASER
+	allow_pass_flags = PASS_GLASS
 
 /obj/structure/dropship_piece/glasstwo
 	icon = 'icons/turf/dropship2.dmi'
@@ -986,7 +989,7 @@
 	icon_state = "shuttle_glass2"
 	resistance_flags = NONE
 	opacity = FALSE
-	flags_pass = PASSLASER
+	allow_pass_flags = PASS_GLASS
 
 /obj/structure/dropship_piece/singlewindow/tadpole
 	icon = 'icons/turf/dropship2.dmi'
@@ -1000,7 +1003,7 @@
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	layer = BELOW_OBJ_LAYER
-	flags_pass = NONE
+	allow_pass_flags = NONE
 
 /obj/structure/dropship_piece/tadpole/cockpit/left
 	icon_state = "blue_cockpit_fl"
