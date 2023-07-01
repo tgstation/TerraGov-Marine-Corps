@@ -402,13 +402,15 @@
 			H.apply_effects(1,1)
 			H.adjust_stagger(2)
 			shake_camera(H, 2, 1)
+		else if(isitem(movable_victim))
+			var/turf/targetturf = get_turf(owner)
+			targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
+			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
 		movable_victim.Shake(3, 3, 10)
 		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
 ///randomly throws movable atoms in the radius of the vortex abilites range, different each use.
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
-	var/turf/targetturf = get_turf(owner)
-	targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
 	for(var/atom/victim in range(VORTEX_RANGE, owner.loc))
 		if(!ismovableatom(victim))
 			continue
@@ -419,9 +421,13 @@
 			var/mob/living/carbon/human/H = movable_victim
 			if(H.stat == DEAD)
 				continue
-		movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
+		if(movable_victim)
+			var/turf/targetturf = get_turf(owner)
+			targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
+			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
 
 ///removes immobile trait if the ability is canceled by a stun or similar
 /datum/action/xeno_action/activable/psychic_vortex/fail_activate()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
+
