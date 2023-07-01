@@ -218,6 +218,7 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	icon_state = "helm"
 	item_state = "helm"
+	item_state_worn = TRUE
 
 	greyscale_config = /datum/greyscale_config/armor_mk1
 	greyscale_colors = ARMOR_PALETTE_DESERT
@@ -290,7 +291,7 @@
 	breathy = FALSE
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
-
+	item_state_worn = TRUE
 	greyscale_colors = ARMOR_PALETTE_DRAB
 
 	colorable_colors = ARMOR_PALETTES_LIST

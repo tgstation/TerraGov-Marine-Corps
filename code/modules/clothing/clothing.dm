@@ -98,6 +98,10 @@
 	.=..()
 	update_clothing_icon()
 
+/obj/item/clothing/alternate_color_item(obj/item/facepaint/paint, mob/user)
+	. = ..()
+	update_clothing_icon()
+
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears

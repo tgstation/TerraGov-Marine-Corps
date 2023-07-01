@@ -189,6 +189,9 @@
 	icon_file = 'icons/mob/modular/style_mob.dmi'
 	json_config = 'code/datums/greyscale/json_configs/stylehats.json'
 
+/datum/greyscale_config/style_hat/badge
+	json_config = 'code/datums/greyscale/json_configs/stylehats_greyscale.json'
+
 /datum/greyscale_config/duster
 	icon_file = 'icons/mob/modular/style_mob.dmi'
 	json_config = 'code/datums/greyscale/json_configs/duster.json'

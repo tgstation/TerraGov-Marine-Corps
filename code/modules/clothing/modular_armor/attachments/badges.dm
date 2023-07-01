@@ -81,3 +81,24 @@
 	if(new_shape)
 		set_greyscale_config(shape_list[new_shape])
 	update_icon()
+
+
+
+/obj/item/armor_module/armor/stylehat_badge
+	name = "Beret Badge"
+	icon_state = "beret_badge"
+	greyscale_config = /datum/greyscale_config/style_hat/badge
+	slot = ATTACHMENT_SLOT_CAPE_HIGHLIGHT
+	flags_attach_features = ATTACH_APPLY_ON_MOB|ATTACH_DIFFERENT_MOB_ICON_STATE
+	secondary_color = TRUE
+	greyscale_colors = COLOR_RED
+	flags_item_map_variant = NONE
+	colorable_allowed = COLOR_WHEEL_ALLOWED
+
+/obj/item/armor_module/armor/stylehat_badge/classic
+	name = "Classic Beret Badge"
+	icon_state = "classic_beret_badge"
+
+/obj/item/armor_module/armor/stylehat_badge/ushanka
+	name = "Ushanka Badge"
+	icon_state = "ushanka_badge"

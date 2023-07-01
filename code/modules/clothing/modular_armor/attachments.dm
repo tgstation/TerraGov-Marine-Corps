@@ -160,10 +160,17 @@
 	UnregisterSignal(parent, list(COMSIG_ITEM_SECONDARY_COLOR, COMSIG_PARENT_EXAMINE))
 	return ..()
 
-///Colors the armor when the parent is right clicked with facepaint.
+///Sends a list of available colored attachments to be colored when the parent is right clicked with paint.
 /obj/item/armor_module/armor/proc/handle_color(datum/source, mob/user, list/obj/item/secondaries)
 	SIGNAL_HANDLER
 	secondaries += src
+	for(var/key in attachments_by_slot)
+		if(!attachments_by_slot[key] || !istype(attachments_by_slot[key], /obj/item/armor_module/armor))
+			continue
+		var/obj/item/armor_module/armor/armor_piece = attachments_by_slot[key]
+		if(!armor_piece.secondary_color)
+			continue
+		secondaries+=armor_piece
 
 ///Relays the extra controls to the user when the parent is examined.
 /obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user, list/examine_list)
