@@ -1167,7 +1167,7 @@
 		ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
 		playsound(src, cocked_sound, 25, 1)
 		if(chamber_closed_message)
-			to_chat(user, span_notice(chamber_opened_message))
+			to_chat(user, span_notice(chamber_closed_message))
 		cycle(user, FALSE)
 	update_ammo_count()
 	update_icon()
