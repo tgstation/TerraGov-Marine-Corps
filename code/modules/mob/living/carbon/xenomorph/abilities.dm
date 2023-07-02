@@ -1195,7 +1195,6 @@
 	span_xenodanger("We suddenly feel \the [victim]'s life force streaming into us!"))
 
 	victim.do_jitter_animation(2)
-	//Gives marines less max hp.
 	victim.adjustCloneLoss(20)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
