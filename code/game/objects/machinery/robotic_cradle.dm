@@ -37,6 +37,13 @@
 	. = ..()
 	radio = new(src)
 
+/obj/machinery/robotic_cradle/Destroy()
+	forceeject = TRUE
+	INVOKE_ASYNC(src, PROC_REF(do_eject))
+	if(radio)
+		QDEL_NULL(radio)
+	return ..()
+
 /obj/machinery/robotic_cradle/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "No power"
