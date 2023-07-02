@@ -49,6 +49,7 @@
 	. = ..()
 	xeno_ref = M
 	RegisterSignal(xeno_ref, COMSIG_MOB_DEATH, PROC_REF(handle_baneling_death))
+	addtimer(CALLBACK(src, PROC_REF(increase_charge)) charge_refresh_time)
 
 /obj/structure/xeno/baneling_pod/obj_destruction()
 	if(isnull(xeno_ref))
