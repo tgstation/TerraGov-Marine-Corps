@@ -1,0 +1,21 @@
+2023-07-01:
+  Pariah919:
+  - balance: SMG-25 can now fit underbarreled guns.
+  - balance: SMG-25 and its elite version now have higher akimbo maluses, and have
+      less damage falloff over distance.
+  ivanmixo:
+  - bugfix: Fixes various ghostize runtimes
+  - bugfix: Fixed closing the valhalla join menu opening the marine job choice menu
+  - bugfix: Fixed fusion engine examine runtime
+  - bugfix: Fixed TTS stat panel runtime
+  - admin: Added a TTS only mute type
+  novaepee:
+  - balance: Remove 5 miners that are near LZ in Prison Station.
+2023-07-02:
+  Lumipharon:
+  - bugfix: fixed an issue with the adjust gravity button
+  ivanmixo:
+  - bugfix: Fixed larvas being able to spawn groundside via latejoin post hijack
+  novaepee:
+  - spellcheck: fix grammar on defender's desc
+  - imageadd: new mob sprites for sg-29

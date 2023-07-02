@@ -24,6 +24,8 @@
 			mute_string = "adminhelps and PMs"
 		if(MUTE_DEADCHAT)
 			mute_string = "deadchat"
+		if(MUTE_TTS)
+			mute_string = "text to speech"
 		if(MUTE_ALL)
 			mute_string = "everything"
 		else

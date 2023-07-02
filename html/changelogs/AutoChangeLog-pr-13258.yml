@@ -1,7 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscadd: "Expand morgue and medical supply room in Pillar of Spring Medbay."
-  - rscadd: "Adjust Pillar of Spring requisition to have marines make orders right after they leave prep."
-  - rscadd: "Add crates nearby vendors close to Pillar of Spring Alamo landing zone."
-  - rscadd: "Add more easter eggs in PoS, making a total of eight easter eggs!"

@@ -28,7 +28,7 @@
 /datum/mind
 	var/key
 	var/name
-	var/mob/living/current
+	var/mob/living/current //TODO: Sanity check this var. Observers can be current, but living procs are called on it
 	var/active = FALSE
 
 	var/memory

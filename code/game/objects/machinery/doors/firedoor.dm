@@ -16,6 +16,7 @@
 	opacity = FALSE
 	density = FALSE
 	obj_flags = CAN_BE_HIT
+	allow_pass_flags = NONE
 	layer = FIREDOOR_OPEN_LAYER
 	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
 	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
@@ -317,6 +318,7 @@
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_atom = ON_BORDER
+	allow_pass_flags = PASS_GLASS
 
 /obj/machinery/door/firedoor/border_only/Initialize(mapload)
 	. = ..()
@@ -325,24 +327,7 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/machinery/door/firedoor/border_only/proc/on_try_exit(datum/source, atom/movable/leaver, direction, list/moveblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(leaver.flags_pass, PASSGLASS))
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (leaver.status_flags & INCORPOREAL))
-		return NONE
-	moveblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
-
 /obj/machinery/door/firedoor/border_only/closed
 	icon_state = "door_closed"
 	opacity = TRUE
 	density = TRUE
-
-
-/obj/machinery/door/firedoor/border_only/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-
-

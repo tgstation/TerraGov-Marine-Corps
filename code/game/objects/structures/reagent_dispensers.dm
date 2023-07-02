@@ -9,6 +9,7 @@
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	max_integrity = 100
 	///high chance to block bullets, offset by being unanchored
 	coverage = 80
@@ -50,12 +51,6 @@
 			if (prob(5))
 				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
-
-
-/obj/structure/reagent_dispensers/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
 
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
@@ -183,11 +178,11 @@
 		return
 	exploding = TRUE
 	if (reagents.total_volume > 500)
-		explosion(loc, light_impact_range = 4, flame_range = 4, small_animation = TRUE)
+		explosion(loc, light_impact_range = 4, flame_range = 4)
 	else if (reagents.total_volume > 100)
-		explosion(loc, light_impact_range = 3, flame_range = 3, small_animation = TRUE)
+		explosion(loc, light_impact_range = 3, flame_range = 3)
 	else
-		explosion(loc, light_impact_range = 2, flame_range = 2, small_animation = TRUE)
+		explosion(loc, light_impact_range = 2, flame_range = 2)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(temperature, volume)
@@ -238,13 +233,13 @@
 
 	if(reagents.total_volume > 500)
 		flame_radius(5, loc, 46, 40, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 5, small_animation = TRUE)
+		explosion(loc, light_impact_range = 5)
 	else if(reagents.total_volume > 100)
 		flame_radius(4, loc, 46, 40, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 4, small_animation = TRUE)
+		explosion(loc, light_impact_range = 4)
 	else
 		flame_radius(3, loc, 46, 40, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 3, small_animation = TRUE)
+		explosion(loc, light_impact_range = 3)
 
 	qdel(src)
 

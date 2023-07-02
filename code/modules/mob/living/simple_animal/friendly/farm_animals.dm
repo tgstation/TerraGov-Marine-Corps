@@ -125,7 +125,8 @@
 	health = 3
 	maxHealth = 3
 	var/amount_grown = 0
-	flags_pass = PASSTABLE|PASSGRILLE|PASSMOB
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
 	mob_size = MOB_SIZE_SMALL
 
 
@@ -177,7 +178,8 @@
 	var/eggsFertile = TRUE
 	var/body_color
 	var/icon_prefix = "chicken"
-	flags_pass = PASSTABLE|PASSMOB
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB
 	mob_size = MOB_SIZE_SMALL
 	var/list/feedMessages = list("It clucks happily.","It clucks happily.")
 	var/list/layMessage = list("lays an egg.","squats down and croons.","begins making a huge racket.","begins clucking raucously.")

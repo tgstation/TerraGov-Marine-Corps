@@ -14,6 +14,7 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
+	allow_pass_flags = PASS_AIR|PASS_LOW_STRUCTURE|PASS_THROW
 	/// Needed to keep track of any slowdowns and/or diagonal movement
 	var/next_move_delay = 0
 	/// Path of "turret" attached
@@ -43,7 +44,7 @@
 	/// If something is already controlling the vehicle
 	var/controlled = FALSE
 	/// Flags for unmanned vehicules
-	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS|UNDERCARRIAGE
+	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
 	/// muzzleflash stuff
@@ -123,11 +124,6 @@
 		return equip_turret(I, user)
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload_turret(I, user)
-
-/obj/vehicle/unmanned/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && !ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
 
 /obj/vehicle/unmanned/relaymove(mob/living/user, direction)
 	if(user.incapacitated())

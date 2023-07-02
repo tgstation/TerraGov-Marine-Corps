@@ -3,24 +3,6 @@
 	icon_state = "empdisable"
 	duration = 0.5 SECONDS
 
-/obj/effect/temp_visual/explosion
-	name = "explosion"
-	icon = 'icons/effects/explosion.dmi'
-	icon_state = "explosion"
-	duration = 8
-	light_system = STATIC_LIGHT
-
-/obj/effect/temp_visual/explosion/Initialize(mapload, radius, color)
-	. = ..()
-	set_light(radius, radius, color)
-
-	var/image/I = image(icon, src, icon_state, 10, pixel_x = -16, pixel_y = -16)
-	var/matrix/rotate = matrix()
-	rotate.Turn(rand(0, 359))
-	I.transform = rotate
-	overlays += I //we use an overlay so the explosion and light source are both in the correct location
-	icon_state = null
-
 GLOBAL_LIST_EMPTY(blood_particles)
 /particles/splatter
 	icon = 'icons/effects/effects.dmi'
@@ -178,25 +160,14 @@ GLOBAL_LIST_EMPTY(blood_particles)
 /obj/effect/temp_visual/order/Initialize(mapload, faction)
 	. = ..()
 	prepare_huds()
-	var/marker_flags
-	var/hud_type
-	switch(faction)
-		if(FACTION_TERRAGOV)
-			hud_type = DATA_HUD_SQUAD_TERRAGOV
-		if(FACTION_SOM)
-			hud_type = DATA_HUD_SQUAD_SOM
-		else
-			return
-	switch(hud_type)
-		if(DATA_HUD_SQUAD_TERRAGOV)
-			marker_flags = MINIMAP_FLAG_MARINE
-		if(DATA_HUD_SQUAD_SOM)
-			marker_flags = MINIMAP_FLAG_MARINE_SOM
-		else
-			return
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
-	squad_hud.add_to_hud(src)
-	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on))
+
+	var/datum/atom_hud/squad_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+	if(squad_hud)
+		squad_hud.add_to_hud(src)
+
+	var/marker_flags = GLOB.faction_to_minimap_flag[faction]
+	if(marker_flags)
+		SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on))
 	set_visuals(faction)
 
 /obj/effect/temp_visual/order/attack_order
@@ -218,14 +189,9 @@ GLOBAL_LIST_EMPTY(blood_particles)
 
 ///Set visuals for the hud
 /obj/effect/temp_visual/order/proc/set_visuals(faction)
-	var/hud_type
-	switch(faction)
-		if(FACTION_TERRAGOV)
-			hud_type = SQUAD_HUD_TERRAGOV
-		if(FACTION_SOM)
-			hud_type = SQUAD_HUD_SOM
-		else
-			return
+	var/hud_type = GLOB.faction_to_squad_hud[faction]
+	if(!hud_type)
+		return
 	var/image/holder = hud_list[hud_type]
 	if(!holder)
 		return
