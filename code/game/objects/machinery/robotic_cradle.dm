@@ -281,7 +281,7 @@
 	do_eject()
 
 //This proc ejects whomever is inside the cradle, by force if needed depending if the cradle is destroyed or not.
-/obj/machinery/robotic_cradle/proc/do_eject()
+/obj/machinery/robotic_cradle/proc/do_eject(forceeject)
 	if(!occupant)
 		return
 	if(forceeject)
