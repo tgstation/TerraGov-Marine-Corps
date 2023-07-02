@@ -38,16 +38,16 @@
 	radio = new(src)
 
 /obj/machinery/robotic_cradle/update_icon_state()
-    if(machine_stat & NOPOWER)
-        icon_state = "No power"
-        return
-    if(repairing)
-        icon_state = "pod_1"
-        return
-    if(occupant)
-        icon_state = "pod_0"
-        return
-    icon_state = "idle"
+	if(machine_stat & NOPOWER)
+		icon_state = "No power"
+		return
+	if(repairing)
+		icon_state = "pod_1"
+		return
+	if(occupant)
+		icon_state = "pod_0"
+		return
+	icon_state = "idle"
 
 /obj/machinery/robotic_cradle/power_change()
 	. = ..()
