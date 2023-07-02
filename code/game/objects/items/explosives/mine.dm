@@ -118,7 +118,7 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
 	if(!isliving(A))
 		return
-	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(A.pass_flags, HOVERING))
 		return
 	var/mob/living/L = A
 	if(L.lying_angle) ///so dragged corpses don't trigger mines.
@@ -186,24 +186,27 @@ Stepping directly on the mine will also blow it up
 	return ..()
 
 /// When crossed the tripwire triggers the linked mine
-/obj/effect/mine_tripwire/proc/on_cross(datum/source, atom/A, oldloc, oldlocs)
+/obj/effect/mine_tripwire/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
 	SIGNAL_HANDLER
+	if(!istype(AM))
+		return
+
 	if(!linked_mine)
 		qdel(src)
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(AM.pass_flags, HOVERING))
 		return
 
 	if(linked_mine.triggered) //Mine is already set to go off
 		return
 
-	if(linked_mine && isliving(A))
-		var/mob/living/unlucky_person = A
+	if(linked_mine && isliving(AM))
+		var/mob/living/unlucky_person = AM
 		// Don't trigger for dead people
 		if(unlucky_person.stat == DEAD)
 			return
-		linked_mine.trip_mine(A)
+		linked_mine.trip_mine(AM)
 
 /// PMC specific mine, with IFF for PMC units
 /obj/item/explosive/mine/pmc

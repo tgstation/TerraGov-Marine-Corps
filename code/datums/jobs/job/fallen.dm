@@ -25,6 +25,8 @@
 ///Delete the mob when you log out or when it's dead
 /datum/job/fallen/proc/delete_mob(mob/living/source)
 	SIGNAL_HANDLER
+	if(QDELING(source))
+		return
 	source.visible_message(span_danger("[source] suddenly disappears!"))
 	qdel(source)
 

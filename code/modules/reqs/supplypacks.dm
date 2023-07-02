@@ -239,6 +239,21 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/standard_agls/incendiary)
 	cost = 40
 
+/datum/supply_packs/weapons/ags_flare
+	name = "AGLS-37 AGL Flare Grenades"
+	contains = list(/obj/item/ammo_magazine/standard_agls/flare)
+	cost = 30
+
+/datum/supply_packs/weapons/ags_cloak
+	name = "AGLS-37 AGL Cloak Grenades"
+	contains = list(/obj/item/ammo_magazine/standard_agls/cloak)
+	cost = 30
+
+/datum/supply_packs/weapons/ags_tanglefoot
+	name = "AGLS-37 AGL Tanglefoot Grenades"
+	contains = list(/obj/item/ammo_magazine/standard_agls/tanglefoot)
+	cost = 55
+
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)

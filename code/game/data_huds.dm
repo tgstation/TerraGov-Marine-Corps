@@ -307,9 +307,6 @@
 				var/mob/dead/observer/ghost = get_ghost()
 				if(!ghost?.can_reenter_corpse)
 					status_hud.icon_state = "huddead"
-					if(istype(wear_ear, /obj/item/radio/headset/mainship))
-						var/obj/item/radio/headset/mainship/headset = wear_ear
-						headset.set_undefibbable_on_minimap()
 					return TRUE
 			var/stage
 			switch(dead_ticks)

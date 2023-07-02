@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Leap abilities will no longer incur water slowdown for leaping over water"

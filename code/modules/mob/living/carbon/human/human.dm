@@ -48,7 +48,7 @@
 	AddElement(/datum/element/footstep, isrobot(src) ? FOOTSTEP_MOB_SHOE : FOOTSTEP_MOB_HUMAN, 1)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	AddElement(/datum/element/strippable, GLOB.strippable_human_items, GLOB.strippable_human_layout)
-	AddElement(/datum/element/jump)
+	set_jump_component()
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
@@ -1031,30 +1031,6 @@
 	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
-
-
-/mob/living/carbon/human/proc/set_equipment(equipment)
-	if(!equipment)
-		return FALSE
-
-	var/list/job_paths = subtypesof(/datum/outfit/job)
-	var/list/outfits = list()
-	for(var/path in job_paths)
-		var/datum/outfit/O = path
-		if(initial(O.can_be_admin_equipped))
-			outfits[initial(O.name)] = path
-
-	if(!(equipment in outfits))
-		return FALSE
-
-	var/outfit_type = outfits[equipment]
-	var/datum/outfit/O = new outfit_type
-	delete_equipment(TRUE)
-	equipOutfit(O, FALSE)
-	regenerate_icons()
-
-	return TRUE
-
 
 /mob/living/carbon/human/proc/change_squad(squad)
 	if(!squad || !ismarinejob(job))
