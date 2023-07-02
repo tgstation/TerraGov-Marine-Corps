@@ -146,7 +146,7 @@
 ///Signal handler to check if you can move from one low object to another
 /obj/proc/can_climb_over(datum/source)
 	SIGNAL_HANDLER
-	if(!(flags_atom & ON_BORDER))
+	if(!(flags_atom & ON_BORDER) && density)
 		return TRUE
 
 /obj/proc/updateUsrDialog()
