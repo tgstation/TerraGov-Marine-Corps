@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/defender
 	caste_base_type = /mob/living/carbon/xenomorph/defender
 	name = "Defender"
-	desc = "A alien with an armored head crest."
+	desc = "An alien with an armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Defender Walking"
 	bubble_icon = "alienroyal"

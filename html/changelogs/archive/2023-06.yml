@@ -411,3 +411,20 @@
   - bugfix: Fixed the TTS docker not working properly
   tyeagg:
   - bugfix: smart pipe mapping helper runtiming
+2023-06-29:
+  Pariah919:
+  - rscadd: Added new grenade types to the AGLS, it now has Flare/Tangle/Cloak grenade
+      types.
+  - balance: AGLS now has longer zoom when scoping in.
+2023-06-30:
+  Lumipharon:
+  - bugfix: fixed some DNR bugs
+  - code_imp: jump element changed to a component
+  - admin: Added an Alter Gravity button to the fun menu
+  ivanmixo:
+  - bugfix: Fixed some rock walls and cas parts being acidable
+  novaepee:
+  - rscadd: Trooper Armor
+  - code_imp: have to update hyperscale in light of chest_no_color and leg_no_color
+      to all DMI. You are all truly welcome.
+  - rscadd: 4 new armor color and 3 new visor colors
