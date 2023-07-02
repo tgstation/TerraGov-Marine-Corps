@@ -483,7 +483,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	max_shells = 100 //codex
 	caliber = CALIBER_PEPPERBALL
-	fire_sound = 'gun_fb12' // idk why i called it "fb-12", ah too late now
+	fire_sound = "gun_fb12" // idk why i called it "fb-12", ah too late now
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
 	force = 30 // two shots weeds as it has no bayonet
