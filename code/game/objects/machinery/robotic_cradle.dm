@@ -15,15 +15,15 @@
 	anchored = TRUE
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
-
+	//This var is used to stop more robits from being shoved inside.
 	var/locked = FALSE
-
+	//This var is used to see if the machine is currently repairing or not.
 	var/repairing = FALSE
-
+	//This var is the reference used to pick what notification medics get when a patient is released.
 	var/release_notice = TRUE
-
+	//This var is the reference used for the patient
 	var/mob/living/carbon/human/occupant = null
-
+	//This var is used to eject the robot forcefully, dealing damage to them.
 	var/forceeject = FALSE
 
 	//It uses power
@@ -31,6 +31,7 @@
 	idle_power_usage = 15
 	active_power_usage = 10000 // It rebuilds you from nothing...
 
+	//This var is in reference to the radio the cradle uses to speak to the craw.
 	var/obj/item/radio/headset/mainship/doc/radio
 
 /obj/machinery/robotic_cradle/Initialize(mapload)
@@ -38,8 +39,7 @@
 	radio = new(src)
 
 /obj/machinery/robotic_cradle/Destroy()
-	forceeject = TRUE
-	INVOKE_ASYNC(src, PROC_REF(do_eject))
+	do_eject(forceeject = TRUE)
 	if(radio)
 		QDEL_NULL(radio)
 	return ..()
