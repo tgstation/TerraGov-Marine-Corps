@@ -473,7 +473,9 @@
 
 /mob/living/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
 	if(!target)
-		return 0
+		return FALSE
+	if(stat == DEAD && thrower == SSEXPLOSIONS_THROWS)
+		return FALSE
 	if(pulling && !flying)
 		stop_pulling() //being thrown breaks pulls.
 	if(pulledby)
