@@ -150,25 +150,25 @@
 
 	dropped.visible_message(span_notice("[dropped] starts climbing into \the [src]."),
 	span_notice("You start climbing into \the [src]."))
-    if(!do_after(dropped, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
-        return
-    if(occupant)
-        to_chat(dragger, span_notice("[src] is already occupied!"))
-        return
-    dropped.stop_pulling()
-    dropped.forceMove(src)
-    occupant = dropped
-    icon_state = "pod_0"
-    var/implants = list(/obj/item/implant/neurostim)
-    var/mob/living/carbon/human/H = occupant
-    var/doc_dat
-    med_scan(H, doc_dat, implants, TRUE)
-    start_processing()
-    for(var/obj/O in src)
-        qdel(O)
+	if(!do_after(dropped, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
+		return
+	if(occupant)
+		to_chat(dragger, span_notice("[src] is already occupied!"))
+		return
+	dropped.stop_pulling()
+	dropped.forceMove(src)
+	occupant = dropped
+	icon_state = "pod_0"
+	var/implants = list(/obj/item/implant/neurostim)
+	var/mob/living/carbon/human/H = occupant
+	var/doc_dat
+	med_scan(H, doc_dat, implants, TRUE)
+	start_processing()
+	for(var/obj/O in src)
+		qdel(O)
 
-    say("Automatic mode engaged, initialising procedure.")
-    addtimer(CALLBACK(src, PROC_REF(auto_start)), 20 SECONDS)
+	say("Automatic mode engaged, initialising procedure.")
+	addtimer(CALLBACK(src, PROC_REF(auto_start)), 20 SECONDS)
 
 ///Callback to start auto mode on someone entering
 /obj/machinery/robotic_cradle/proc/auto_start()
@@ -185,9 +185,9 @@
 	. = ..()
 
 	if(!ishuman(user))
-		return // no
+		return //no
 
-    if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
