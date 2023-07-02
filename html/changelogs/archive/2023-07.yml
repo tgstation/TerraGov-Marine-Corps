@@ -11,3 +11,11 @@
   - admin: Added a TTS only mute type
   novaepee:
   - balance: Remove 5 miners that are near LZ in Prison Station.
+2023-07-02:
+  Lumipharon:
+  - bugfix: fixed an issue with the adjust gravity button
+  ivanmixo:
+  - bugfix: Fixed larvas being able to spawn groundside via latejoin post hijack
+  novaepee:
+  - spellcheck: fix grammar on defender's desc
+  - imageadd: new mob sprites for sg-29
