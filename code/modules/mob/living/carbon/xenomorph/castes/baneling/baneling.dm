@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/baneling
 	caste_base_type = /mob/living/carbon/xenomorph/baneling
 	name = "Baneling"
-	desc = ""
+	desc = "A green alien that store chemicals and can run pretty fast . . ."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Baneling Walking"
 	bubble_icon = "alienleft"
@@ -22,7 +22,7 @@
 /// Delete the pod if we evolve or devolve
 /mob/living/carbon/xenomorph/baneling/finish_evolve()
 	if(!isnull(pod_ref))
-		pod_ref.baneling_ref = null
+		pod_ref.xeno_ref = null
 		pod_ref.obj_destruction()
 		pod_ref = null
 	return ..()
@@ -43,37 +43,38 @@
 	/// Time to respawn if we have charges
 	var/respawn_time = 30 SECONDS
 	/// Ref to our baneling
-	var/mob/living/carbon/xenomorph/baneling/baneling_ref
+	var/mob/living/carbon/xenomorph/xeno_ref
 
 /obj/structure/xeno/baneling_pod/New(loc, mob/M)
 	. = ..()
-	baneling_ref = M
-	RegisterSignal(baneling_ref, COMSIG_MOB_DEATH, PROC_REF(handle_baneling_death))
+	xeno_ref = M
+	RegisterSignal(xeno_ref, COMSIG_MOB_DEATH, PROC_REF(handle_baneling_death))
 
 /obj/structure/xeno/baneling_pod/obj_destruction()
-	if(isnull(baneling_ref))
+	if(isnull(xeno_ref))
 		return ..()
 	// If the baneling is in crit or dead , then the pod gets destroyed and baneling never respawns
-	if(baneling_ref.health <= -99)
+	if(xeno_ref.health <= -99)
 		return ..()
-	baneling_ref.balloon_alert(baneling_ref, "YOUR POD IS DESTROYED")
-	to_chat(baneling_ref, span_xenohighdanger("YOUR POD IS DESTROYED"))
-	UnregisterSignal(baneling_ref, COMSIG_MOB_DEATH)
-	baneling_ref = null
+	xeno_ref.balloon_alert(xeno_ref, "YOUR POD IS DESTROYED")
+	to_chat(xeno_ref, span_xenohighdanger("YOUR POD IS DESTROYED"))
+	UnregisterSignal(xeno_ref, COMSIG_MOB_DEATH)
+	xeno_ref = null
+	return ..()
 
 /// Teleports baneling inside of itself, checks for charge and then respawns baneling
 /obj/structure/xeno/baneling_pod/proc/handle_baneling_death(mob/M)
 	if(isnull(M))
 		return
-	baneling_ref.forceMove(src)
+	xeno_ref.forceMove(src)
 	if(stored_charge >= 1)
 		stored_charge--
 		addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time)
 		addtimer(CALLBACK(src, PROC_REF(increase_charge)), charge_refresh_time)
-		to_chat(baneling_ref.client, span_xenohighdanger("You will respawn in 30 seconds"))
+		to_chat(xeno_ref.client, span_xenohighdanger("You will respawn in [respawn_time/10] seconds"))
 		return
 	/// The respawn takes 4 times longer than consuming a charge would
-	to_chat(baneling_ref.client, "You will respawn in [(respawn_time*4)/10] SECONDS")
+	to_chat(xeno_ref.client, "You will respawn in [(respawn_time*4)/10] SECONDS")
 	addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time*4)
 
 /// Increase our current charge
@@ -81,8 +82,10 @@
 	if(stored_charge >= stored_charge_max)
 		return
 	stored_charge++
+	if(stored_charge != stored_charge_max)
+		addtimer(CALLBACK(src, PROC_REF(increase_charge)), charge_refresh_time)
 
 /// Rejuvinates and respawns the baneling
 /obj/structure/xeno/baneling_pod/proc/spawn_baneling()
-	baneling_ref.forceMove(get_turf(loc))
-	baneling_ref.revive()
+	xeno_ref.forceMove(get_turf(loc))
+	xeno_ref.revive()

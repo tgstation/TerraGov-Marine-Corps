@@ -4,7 +4,7 @@
 /datum/action/xeno_action/baneling_explode
 	name = "Baneling Explode"
 	action_icon_state = "baneling_explode"
-	desc = ""
+	desc = "Explode and spread dangerous toxins to kill your foes"
 	ability_name = "baneling explode"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
@@ -12,18 +12,20 @@
 
 /datum/action/xeno_action/baneling_explode/give_action(mob/living/L)
 	. = ..()
-	var/mob/living/carbon/xenomorph/baneling/X = L
+	var/mob/living/carbon/xenomorph/X = L
 	RegisterSignal(X, COMSIG_MOB_DEATH, PROC_REF(handle_smoke))
 
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/baneling/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	handle_smoke(ability = TRUE)
 	X.death(FALSE)
 
-/datum/action/xeno_action/baneling_explode/proc/handle_smoke(smoke_duration, datum/effect_system/smoke_spread/smoke, smoke_range, ability = FALSE)
-	var/mob/living/carbon/xenomorph/baneling/X = owner
+/datum/action/xeno_action/baneling_explode/proc/handle_smoke(mob/M, ability = FALSE)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/owner_T = get_turf(X)
+	var/datum/effect_system/smoke_spread/smoke
 	switch(X.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
 			smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium(owner_T)
@@ -36,13 +38,13 @@
 		if(/datum/reagent/toxin/acid)
 			smoke = new /datum/effect_system/smoke_spread/xeno/acid(owner_T)
 	/// Our smoke size is directly dependant on the amount of plasma we have stored
-	smoke_range = X.plasma_stored/60
+	var/smoke_range = X.plasma_stored/60
 	/// Use up all plasma so that we dont smoke twice because we die.
 	X.use_plasma(X.plasma_stored)
 	/// If this proc is triggered by signal, we want to divide range by 4
 	if(!ability)
-		smoke_range = smoke_range/4
-	smoke_duration = X.smoke_duration
+		smoke_range = smoke_range*0.25
+	var/smoke_duration = X.baneling_smoke_duration
 	smoke.set_up(smoke_range, owner_T, smoke_duration)
 	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
 	smoke.start()
@@ -53,7 +55,7 @@
 /datum/action/xeno_action/select_reagent/baneling
 	name = "Choose Explosion Reagent"
 	action_icon_state = "select_reagent0"
-	desc = ""
+	desc = "Select which reagent will be released when you explode"
 	plasma_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
@@ -67,16 +69,6 @@
 	update_button_icon() //Update immediately to get our default
 
 /datum/action/xeno_action/select_reagent/baneling/action_activate()
-	INVOKE_ASYNC(src, PROC_REF(select_reagent_radial))
-	return COMSIG_KB_ACTIVATED
-
-/datum/action/xeno_action/select_reagent/baneling/update_button_icon()
-	var/mob/living/carbon/xenomorph/X = owner
-	var/atom/A = X.selected_reagent
-	action_icon_state = initial(A.name)
-	return ..()
-
-/datum/action/xeno_action/select_reagent/baneling/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(select_reagent_radial))
 	return COMSIG_KB_ACTIVATED
 
@@ -117,7 +109,7 @@
 
 /datum/action/xeno_action/spawn_pod/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/baneling/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(isnull(X.pod_ref))
 		X.pod_ref = new /obj/structure/xeno/baneling_pod(get_turf(X.loc), owner)
 		succeed_activate()
