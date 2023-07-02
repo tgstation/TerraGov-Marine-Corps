@@ -340,7 +340,7 @@
 		/obj/item/weapon/gun/rifle/som_mg,
 		/obj/item/weapon/gun/rifle/icc_sharpshooter,
 		/obj/item/weapon/gun/rifle/icc_battlecarbine,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser,
