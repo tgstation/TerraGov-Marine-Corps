@@ -1127,6 +1127,30 @@
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
 
+
+/mob/living/carbon/human/proc/set_equipment(equipment)
+	if(!equipment)
+		return FALSE
+
+	var/list/job_paths = subtypesof(/datum/outfit/job)
+	var/list/outfits = list()
+	for(var/path in job_paths)
+		var/datum/outfit/O = path
+		if(initial(O.can_be_admin_equipped))
+			outfits[initial(O.name)] = path
+
+	if(!(equipment in outfits))
+		return FALSE
+
+	var/outfit_type = outfits[equipment]
+	var/datum/outfit/O = new outfit_type
+	delete_equipment(TRUE)
+	equipOutfit(O, FALSE)
+	regenerate_icons()
+
+	return TRUE
+
+
 /mob/living/carbon/human/proc/change_squad(squad)
 	if(!squad || !ismarinejob(job))
 		return FALSE
