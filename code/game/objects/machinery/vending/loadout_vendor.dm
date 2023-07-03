@@ -37,6 +37,9 @@
 	user.client.prefs.loadout_manager.loadout_vendor = src
 	user.client.prefs.loadout_manager.ui_interact(user)
 
+/obj/machinery/loadout_vendor/crash
+	faction = FACTION_CRASH
+
 /obj/machinery/loadout_vendor/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	faction = FACTION_VALHALLA
