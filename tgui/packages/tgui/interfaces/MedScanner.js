@@ -322,7 +322,7 @@ export const MedScanner = (props, context) => {
             ) : null}
           </Section>
         ) : null}
-        {hungry ? <NoticeBox warning>Calorie intake recommended.</NoticeBox> : null}
+        {hungry ? <NoticeBox warning>Calorie intake recommended</NoticeBox> : null}
         {infection ? <NoticeBox warning>{infection}</NoticeBox> : null}
         {implants ? (
           <NoticeBox info>
