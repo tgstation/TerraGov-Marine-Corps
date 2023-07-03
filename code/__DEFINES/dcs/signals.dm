@@ -352,6 +352,7 @@
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
+#define COMSIG_MOB_GUN_FIRE "mob_gun_fire"
 #define COMSIG_GUN_STOP_FIRE "gun_stop_fire"
 #define COMSIG_GUN_FIRE_MODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
 #define COMSIG_GUN_AUTOFIREDELAY_MODIFIED "gun_firedelay_modified"
@@ -362,6 +363,7 @@
 #define COMSIG_GUN_USER_SET "gun_user_set"
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"
 #define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
+#define COMSIG_MOB_GUN_COOLDOWN "mob_gun_cooldown"
 
 #define COMSIG_XENO_FIRE "xeno_fire"
 #define COMSIG_XENO_STOP_FIRE "xeno_stop_fire"

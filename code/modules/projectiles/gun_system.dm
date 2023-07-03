@@ -817,6 +817,7 @@
 
 	last_fired = world.time
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
+	SEND_SIGNAL(gun_user, COMSIG_MOB_GUN_FIRE, src)
 
 	if(!max_chamber_items)
 		in_chamber = null
@@ -1662,7 +1663,7 @@
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
 		delay += extra_delay
 
-	if(world.time >= delay)
+	if(world.time >= delay && SEND_SIGNAL(user, COMSIG_MOB_GUN_COOLDOWN, src))
 		return FALSE
 
 	if(world.time % 3 && !user?.client?.prefs.mute_self_combat_messages)
