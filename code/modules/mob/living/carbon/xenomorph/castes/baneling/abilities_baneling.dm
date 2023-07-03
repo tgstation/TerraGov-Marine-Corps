@@ -44,8 +44,7 @@
 	/// If this proc is triggered by signal, we want to divide range by 4
 	if(!ability)
 		smoke_range = smoke_range*0.25
-	var/smoke_duration = X.baneling_smoke_duration
-	smoke.set_up(smoke_range, owner_T, smoke_duration)
+	smoke.set_up(smoke_range, owner_T, X.baneling_smoke_duration)
 	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
 	smoke.start()
 

@@ -19,14 +19,6 @@
 		return
 	return ..()
 
-/// Delete the pod if we evolve or devolve
-/mob/living/carbon/xenomorph/baneling/finish_evolve()
-	if(!isnull(pod_ref))
-		pod_ref.xeno_ref = null
-		pod_ref.obj_destruction()
-		pod_ref = null
-	return ..()
-
 /obj/structure/xeno/baneling_pod
 	name = "Baneling Pod"
 	desc = "A baneling pod, storing fresh banelings "
@@ -49,13 +41,11 @@
 	. = ..()
 	xeno_ref = M
 	RegisterSignal(xeno_ref, COMSIG_MOB_DEATH, PROC_REF(handle_baneling_death))
+	RegisterSignal(xeno_ref, COMSIG_PARENT_QDELETING, PROC_REF(obj_destruction))
 	addtimer(CALLBACK(src, PROC_REF(increase_charge)),charge_refresh_time)
 
 /obj/structure/xeno/baneling_pod/obj_destruction()
 	if(isnull(xeno_ref))
-		return ..()
-	// If the baneling is in crit or dead , then the pod gets destroyed and baneling never respawns
-	if(xeno_ref.health <= -99)
 		return ..()
 	xeno_ref.balloon_alert(xeno_ref, "YOUR POD IS DESTROYED")
 	to_chat(xeno_ref, span_xenohighdanger("YOUR POD IS DESTROYED"))
