@@ -43,7 +43,7 @@
 	psych_points_output = clamp(psych_points_output, COCOON_PSY_POINTS_REWARD_MIN, COCOON_PSY_POINTS_REWARD_MAX)
 	SSpoints.add_psy_points(hivenumber, psych_points_output)
 	//Gives marine cloneloss for a total of 40.
-	victim.adjustCloneLoss(0.13)
+	victim.adjustCloneLoss(0.5)
 
 /obj/structure/cocoon/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
