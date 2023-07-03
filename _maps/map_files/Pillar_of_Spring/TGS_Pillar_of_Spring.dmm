@@ -5627,12 +5627,14 @@
 "hrA" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	id = "hangar_lockdown"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 1
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/aft_hallway)
 "htr" = (
@@ -6710,8 +6712,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	id = "hangar_lockdown"
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/aft_hallway)
@@ -8594,6 +8598,9 @@
 "llX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -14372,8 +14379,10 @@
 /area/mainship/living/pilotbunks)
 "swv" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	id = "hangar_lockdown"
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/aft_hallway)

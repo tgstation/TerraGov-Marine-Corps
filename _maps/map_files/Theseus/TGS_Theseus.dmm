@@ -1117,7 +1117,7 @@
 "adS" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/green{
-	dir = 1
+	dir = 4
 	},
 /area/mainship/squads/req)
 "adT" = (
@@ -6043,12 +6043,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
-"bLG" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/green{
-	dir = 4
-	},
-/area/mainship/squads/req)
 "bLH" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
@@ -6178,10 +6172,6 @@
 	dir = 8
 	},
 /area/mainship/living/cryo_cells)
-"bMP" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/green,
-/area/mainship/squads/req)
 "bMS" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -60297,11 +60287,11 @@ fLQ
 seG
 bAG
 bnD
-bLG
 bnD
+adS
 fpW
 bnD
-bLG
+bnD
 bnD
 bDM
 seG
@@ -60554,11 +60544,11 @@ lNr
 lNr
 abX
 aat
-adS
+bDM
 bAG
 bzq
 bDM
-bMP
+bAG
 otD
 bDM
 seG
@@ -60812,7 +60802,7 @@ ace
 qNt
 bxX
 acj
-acj
+bxX
 haf
 acj
 acj
