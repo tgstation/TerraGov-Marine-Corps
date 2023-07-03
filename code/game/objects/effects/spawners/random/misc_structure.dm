@@ -63,8 +63,8 @@
 	icon_state = "random_welding"
 	spawn_loot_chance = 100
 	loot = list(
-		/obj/structure/closet/engineering_welding = 50,
-		/obj/structure/closet/engineering_electrical = 5,
+		/obj/structure/closet/secure_closet/engineering_welding = 50,
+		/obj/structure/closet/secure_closet/engineering_electrical = 5,
 		/obj/structure/closet/toolcloset = 5,
 	)
 
@@ -73,16 +73,16 @@
 	spawn_loot_chance = 100
 	loot = list(
 		/obj/structure/closet/toolcloset = 50,
-		/obj/structure/closet/engineering_welding = 5,
-		/obj/structure/closet/engineering_electrical = 5,
+		/obj/structure/closet/secure_closet/engineering_welding = 5,
+		/obj/structure/closet/secure_closet/engineering_electrical = 5,
 	)
 
 /obj/effect/spawner/random/misc/structure/closet/electrical
 	icon_state = "random_electrical"
 	spawn_loot_chance = 100
 	loot = list(
-		/obj/structure/closet/engineering_electrical = 50,
-		/obj/structure/closet/engineering_welding = 5,
+		/obj/structure/closet/secure_closet/engineering_electrical = 50,
+		/obj/structure/closet/secure_closet/engineering_welding = 5,
 		/obj/structure/closet/toolcloset = 5,
 	)
 

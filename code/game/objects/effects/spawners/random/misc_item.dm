@@ -58,7 +58,7 @@
 		/obj/item/flashlight/lamp = 100,
 		/obj/item/flashlight/lamp/green = 5,
 		/obj/item/flashlight/lantern = 3,
-		/obj/item/flashlight/flashlight = 3,
+		/obj/item/flashlight/combat = 3,
 		/obj/item/flashlight/pen = 3,
 		/obj/item/flashlight/lamp/menorah = 1,
 	)
