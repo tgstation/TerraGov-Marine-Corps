@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(vote)
 	var/forced_popup = FALSE
 	/// Shuffle vote choices separately for each client? (topvoting NPC mitigation)
 	var/shuffle_choices = FALSE
-	/// Shuffle vote choices per ckey cache.
+	/// Shuffle vote choices per ckey cache
 	var/list/shuffle_cache = list()
 
 // Called by master_controller
@@ -424,8 +424,9 @@ SUBSYSTEM_DEF(vote)
 			data["choices"] = shuffle_cache[user.client?.ckey]
 			return data
 		shuffle_inplace(data["choices"])
-		shuffle_cache[user.client?.ckey] = data["choices"]
-		return data
+		if(!user.client)
+			return data
+		shuffle_cache[user.client.ckey] = data["choices"]
 
 	return data
 
