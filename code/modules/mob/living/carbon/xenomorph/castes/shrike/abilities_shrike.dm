@@ -388,7 +388,7 @@
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
 	for(var/atom/victim AS in range(VORTEX_RANGE, owner.loc))
 		if(isturf(victim))
-			victim.Shake(3, 3, 1 SECONDS)
+			victim.Shake(2, 2, 0.5 SECONDS)
 			continue
 		if(!ismovableatom(victim))
 			continue
@@ -406,7 +406,7 @@
 			var/turf/targetturf = get_turf(owner)
 			targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
 			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
-		movable_victim.Shake(3, 3, 10)
+		movable_victim.Shake(2, 2, 5)
 		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
 ///randomly throws movable atoms in the radius of the vortex abilites range, different each use.
