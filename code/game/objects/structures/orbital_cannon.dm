@@ -14,7 +14,7 @@
 	bound_height = 64
 	bound_y = 64
 	resistance_flags = RESIST_ALL
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -322,7 +322,7 @@
 
 
 /obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag)
-	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2, small_animation = TRUE)
+	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2)
 	return ..()
 
 
@@ -374,7 +374,7 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE, small_animation = TRUE) //rocket barrage
+		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
 		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
@@ -411,6 +411,13 @@
 	flags_atom = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
 
+/obj/machinery/computer/orbital_cannon_console/Initialize(mapload)
+	. = ..()
+
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 
 /obj/machinery/computer/orbital_cannon_console/ex_act()

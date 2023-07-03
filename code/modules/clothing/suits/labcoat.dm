@@ -11,6 +11,7 @@
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/healthanalyzer,
 		/obj/item/flashlight,
 		/obj/item/radio,
@@ -18,7 +19,7 @@
 	)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/medical/irremovable,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/medical/irremovable)
 	///If the coat is buttoned or not

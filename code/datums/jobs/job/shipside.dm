@@ -19,6 +19,11 @@
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/command/captain
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/command/captain,
+		/datum/outfit/job/command/captain/robot,
+	)
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP|JOB_FLAG_LOUDER_TTS
@@ -63,6 +68,16 @@ Godspeed, captain! And remember, you are not above the law."})
 	l_store = /obj/item/hud_tablet/leadership
 
 
+/datum/outfit/job/command/captain/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
+
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
 	if(!ishuman(new_mob))
@@ -94,7 +109,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	multiple_outfits = TRUE
 	outfits = list(
 		/datum/outfit/job/command/fieldcommander,
-		/datum/outfit/job/command/fieldcommander_robot,
+		/datum/outfit/job/command/fieldcommander/robot,
 	)
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
@@ -155,14 +170,9 @@ Make the TGMC proud!"})
 	l_store = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
-/datum/outfit/job/command/fieldcommander_robot
-	name = FIELD_COMMANDER
-	jobtype = /datum/job/terragov/command/fieldcommander
+/datum/outfit/job/command/fieldcommander/robot
 	species = SPECIES_COMBAT_ROBOT
 
-	id = /obj/item/card/id/dogtag/fc
-	belt = /obj/item/storage/holster/blade/officer/full
-	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/robotic
 	wear_suit = /obj/item/clothing/suit/modular/robot
 	shoes = null
@@ -183,6 +193,11 @@ Make the TGMC proud!"})
 	skills_type = /datum/skills/so
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
 	outfit = /datum/outfit/job/command/staffofficer
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/command/staffofficer,
+		/datum/outfit/job/command/staffofficer/robot,
+	)
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
@@ -233,6 +248,17 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine/full
 	head = /obj/item/clothing/head/tgmccap/ro
+	r_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/binoculars/tactical
+
+
+/datum/outfit/job/command/staffofficer/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
 
@@ -448,10 +474,10 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 /datum/outfit/job/engineering/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
 
 //Ship Engineer
 /datum/job/terragov/engineering/tech
@@ -619,6 +645,11 @@ A happy ship is a well-functioning ship."})
 	skills_type = /datum/skills/cmo
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/medical/professor,
+		/datum/outfit/job/medical/professor/robot,
+	)
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
@@ -672,13 +703,21 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
-	r_store = /obj/item/storage/pouch/medkit/medic
-	l_store = /obj/item/storage/pouch/surgery
+	r_store = /obj/item/storage/pouch/surgery
+	l_store = /obj/item/storage/pouch/medkit/medic
+
+
+/datum/outfit/job/medical/professor/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_hand(new /obj/item/tweezers, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
@@ -692,6 +731,11 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
 	outfit = /datum/outfit/job/medical/medicalofficer
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/medical/medicalofficer,
+		/datum/outfit/job/medical/medicalofficer/robot,
+	)
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
@@ -743,11 +787,21 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
+	r_store = /obj/item/storage/pouch/surgery
+	l_store = /obj/item/storage/pouch/medkit/medic
+
+
+/datum/outfit/job/medical/medicalofficer/robot
+	jobtype = /datum/job/terragov/medical/medicalofficer
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_hand(new /obj/item/tweezers, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 
 //Researcher
@@ -762,6 +816,11 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	skills_type = /datum/skills/researcher
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/medical/researcher,
+		/datum/outfit/job/medical/researcher/robot,
+	)
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
@@ -805,6 +864,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 /datum/outfit/job/medical/researcher
 	name = MEDICAL_RESEARCHER
 	jobtype = /datum/job/terragov/medical/researcher
+
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/rig/research
 	ears = /obj/item/radio/headset/mainship/res
@@ -814,11 +874,21 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
+	r_store = /obj/item/storage/pouch/surgery
+	l_store = /obj/item/storage/pouch/medkit/medic
+
+
+/datum/outfit/job/medical/researcher/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
 
 /datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_hand(new /obj/item/tweezers, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 /datum/job/terragov/civilian
 	job_category = JOB_CAT_CIVILIAN

@@ -55,6 +55,7 @@
 	max_integrity = 120
 	opacity = FALSE
 	alpha = 180
+	allow_pass_flags = PASS_GLASS
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
@@ -129,12 +130,6 @@
 	damage *= max(0, multiplier)
 	take_damage(damage, BRUTE, MELEE)
 	playsound(src, "alien_resin_break", 25)
-
-
-/turf/closed/wall/resin/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return !opacity
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()

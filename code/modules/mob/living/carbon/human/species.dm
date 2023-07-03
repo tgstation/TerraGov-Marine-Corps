@@ -230,7 +230,7 @@
 				. = "Jeri"
 		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
-/datum/species/proc/on_species_gain(mob/living/carbon/human/H, /datum/species/old_species)
+/datum/species/proc/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	SHOULD_CALL_PARENT(TRUE) //remember to call base procs kids
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = H.get_item_by_slot(slot_id)
@@ -659,7 +659,7 @@
 
 /datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.flags_pass |= PASSTABLE
+	H.allow_pass_flags |= PASS_LOW_STRUCTURE
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))

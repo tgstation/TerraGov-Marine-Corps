@@ -39,6 +39,7 @@
 	pixel_x = -16
 	max_integrity = 500
 	layer = ABOVE_FLY_LAYER
+	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	var/log_amount = 10
 
 /obj/structure/flora/tree/add_debris_element()
