@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "Send order is added in text ui so that marines can read"
