@@ -4537,6 +4537,9 @@
 /area/mainship/squads/alpha)
 "bsU" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "bsV" = (
@@ -5536,15 +5539,10 @@
 "bGk" = (
 /obj/structure/janitorialcart,
 /obj/item/tool/mop,
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/req)
-"bGl" = (
 /obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
-/turf/open/floor/mainship/green{
 	dir = 8
 	},
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "bGm" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
@@ -10104,10 +10102,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
-"gas" = (
-/obj/machinery/camera/autoname/mainship,
-/turf/closed/wall/mainship,
-/area/mainship/living/cryo_cells)
 "gaR" = (
 /obj/structure/rack,
 /obj/item/conveyor_switch_construct,
@@ -13880,6 +13874,9 @@
 	dir = 4
 	},
 /obj/machinery/vending/cargo_supply,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "mzG" = (
@@ -61838,7 +61835,7 @@ biu
 bnF
 bpn
 kzX
-bGl
+acj
 byg
 vaF
 jiv
@@ -65437,7 +65434,7 @@ blZ
 blZ
 blZ
 blZ
-gas
+blZ
 blZ
 blZ
 blZ
