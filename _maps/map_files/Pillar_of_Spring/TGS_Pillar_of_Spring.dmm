@@ -5632,9 +5632,6 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
-	dir = 1
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/aft_hallway)
 "htr" = (
@@ -6713,9 +6710,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
-	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/aft_hallway)
@@ -8598,9 +8592,6 @@
 "llX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
-	},
-/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
-	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -14380,9 +14371,6 @@
 "swv" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
-	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/aft_hallway)
