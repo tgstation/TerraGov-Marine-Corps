@@ -386,6 +386,7 @@
 	#define COMPONENT_PROJ_SCANTURF_TARGETFOUND (1<<1)
 
 // /mob signals
+#define COMSIG_MOB_GHOST "mob_ghost"							//from base of mob/ghostize(): ()
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbing)
 #define COMSIG_MOB_REVIVE "mob_revive"							//from base of mob/on_revive(): ()
 #define COMSIG_MOB_STAT_CHANGED "stat_changed"					//from base of mob/stat_change(): (old_stat, new_stat)

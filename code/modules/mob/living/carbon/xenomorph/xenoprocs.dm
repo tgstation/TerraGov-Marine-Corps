@@ -578,3 +578,25 @@
 		return
 	set_light_range_power_color(range, power, color)
 	set_light_on(TRUE)
+
+/mob/living/carbon/xenomorph/proc/start_nuke_timer_display()
+	if(GLOB.active_nuke_list.len)
+		show_many_nuke_timers(GLOB.active_nuke_list)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(nuke_timer_signal))
+
+/mob/living/carbon/xenomorph/proc/nuke_timer_signal(source, nuke)
+	var/list/nukes = list(nuke)
+	show_many_nuke_timers(nukes)
+// todo turn this into a generic element
+/mob/living/carbon/xenomorph/proc/show_many_nuke_timers(list/nukes_to_display)
+	var/nukes = 0
+	// not using len because we need to typecheck
+	for(var/atom/movable/screen/text/nuke_timer/timer in client.screen)
+		nukes += 1
+	if(nukes > 5)
+		return
+	for(var/obj/machinery/nuclearbomb/nuke in nukes_to_display)
+		var/atom/movable/screen/text/nuke_timer/screen_timer = new(client, src, nuke.name, WEAKREF(nuke))
+		// screen_timer.maptext_x = maptext_x + 10
+		screen_timer.maptext_y = clamp(maptext_y - nukes * 2, -50, -40)
+		client?.screen += screen_timer
