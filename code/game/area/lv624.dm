@@ -79,7 +79,7 @@
 	icon_state = "red"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
-/area/lv624/ground/sand2/radiounderground
+/area/lv624/ground/sand2/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/sand3
@@ -87,7 +87,7 @@
 	icon_state = "east"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
-/area/lv624/ground/sand3/radiounderground
+/area/lv624/ground/sand3/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/sand4
@@ -105,7 +105,7 @@
 	icon_state = "northeast"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
-/area/lv624/ground/sand6/radiounderground
+/area/lv624/ground/sand6/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/sand7
@@ -113,7 +113,7 @@
 	icon_state = "southwest"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
-/area/lv624/ground/sand7/radiounderground
+/area/lv624/ground/sand7/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/sand8
@@ -218,14 +218,14 @@
 	name = "Eastern Caves"
 	icon_state = "away"
 
-/area/lv624/ground/caves/east1/radiounderground
+/area/lv624/ground/caves/east1/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/caves/central1
 	name = "Central Caves"
 	icon_state = "away4" //meh
 
-/area/lv624/ground/caves/central1/radiounderground
+/area/lv624/ground/caves/central1/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/caves/central2
@@ -244,21 +244,21 @@
 	name = "South Central Caves"
 	icon_state = "away2"
 
-/area/lv624/ground/caves/central3/radiounderground
+/area/lv624/ground/caves/central3/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/caves/central5
 	name = "South Western Central Caves"
 	icon_state = "purple"
 
-/area/lv624/ground/caves/central5/radiounderground
+/area/lv624/ground/caves/central5/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/caves/central4
 	name = "South Western Caves"
 	icon_state = "yellow"
 
-/area/lv624/ground/caves/central4/radiounderground
+/area/lv624/ground/caves/central4/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 //Lazarus landing
@@ -439,7 +439,7 @@
 	icon_state = "sandtemple"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
-/area/lv624/lazarus/sandtemple/radiounderground
+/area/lv624/lazarus/sandtemple/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/lazarus/sandtemple/sideroom //needed to allow nuke generator within temple to function

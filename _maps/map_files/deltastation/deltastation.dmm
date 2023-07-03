@@ -1577,7 +1577,7 @@
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "aqM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/unmeltable/regular,
@@ -4783,7 +4783,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "aYx" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/medical/beaker/largeweighted,
@@ -5489,7 +5489,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "bgJ" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/ai_node,
@@ -5945,7 +5945,7 @@
 /obj/effect/spawner/random/misc/structure/directional_window/north,
 /obj/structure/prop/mainship/holobarrier,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "bkW" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door{
@@ -7197,7 +7197,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "bxr" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "Holodeck Access"
@@ -9137,7 +9137,7 @@
 "bSR" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "bSV" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -9477,7 +9477,7 @@
 "bVB" = (
 /obj/effect/spawner/random/misc/structure/directional_window,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "bVE" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -10137,7 +10137,7 @@
 /obj/structure/lattice,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "cei" = (
 /obj/effect/turf_decal/tile/transparent/neutral{
 	dir = 1
@@ -10388,7 +10388,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "cgd" = (
 /obj/effect/mapping_helpers/simple_pipes/cyan/visible{
 	dir = 1
@@ -16309,7 +16309,7 @@
 	},
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "dta" = (
 /obj/machinery/door/airlock/mainship/generic{
 	id_tag = "Dorm4";
@@ -16969,7 +16969,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "dzi" = (
 /obj/item/radio/intercom,
 /obj/machinery/door_control{
@@ -17858,7 +17858,7 @@
 	},
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "dHC" = (
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/theater/abandoned)
@@ -18614,7 +18614,7 @@
 "dOv" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "dOB" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/engineering/computercircuit,
@@ -20627,7 +20627,7 @@
 "egT" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "egU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -21173,7 +21173,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "emb" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	name = "Air Outlet Pump"
@@ -23908,7 +23908,7 @@
 /obj/structure/lattice,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "eNT" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 1
@@ -28360,7 +28360,7 @@
 "fIn" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "fIq" = (
 /obj/item/weapon/shield/riot/marine,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -31771,7 +31771,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "gri" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -32837,7 +32837,7 @@
 "gBk" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "gBv" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/purple{
@@ -33141,7 +33141,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "gEj" = (
 /obj/effect/turf_decal/siding/wood/end{
 	dir = 4
@@ -35030,7 +35030,7 @@
 "gZa" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "gZl" = (
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
 	dir = 1
@@ -38052,7 +38052,7 @@
 /obj/effect/spawner/random/misc/structure/directional_window/north,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "hFB" = (
 /obj/effect/spawner/random/misc/structure/broken_window,
 /turf/open/floor/plating,
@@ -42477,7 +42477,7 @@
 "iDb" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "iDh" = (
 /obj/item/paper/crumpled,
 /obj/effect/landmark/weed_node,
@@ -42630,7 +42630,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "iEQ" = (
 /obj/effect/turf_decal/tile/transparent/neutral/anticorner/contrasted,
 /obj/effect/spawner/random/engineering/structure/random_tank_holder,
@@ -42710,7 +42710,7 @@
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "iFL" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral,
@@ -44366,7 +44366,7 @@
 /obj/structure/lattice,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "iVS" = (
 /obj/structure/sink/kitchen,
 /turf/open/floor/iron/cafeteria,
@@ -46060,7 +46060,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "joQ" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/structure/table/woodentable,
@@ -47083,7 +47083,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "jBc" = (
 /obj/effect/spawner/random/misc/structure/directional_window/north,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -47940,7 +47940,7 @@
 /obj/structure/catwalk,
 /obj/effect/mapping_helpers/simple_pipes/orange/visible,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "jLe" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -49474,7 +49474,7 @@
 	},
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "kaK" = (
 /obj/effect/turf_decal/tile/transparent/yellow/half/contrasted{
 	dir = 8
@@ -51714,7 +51714,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "kyM" = (
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
 	dir = 1
@@ -57210,7 +57210,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "lEZ" = (
 /obj/effect/turf_decal/tile/transparent/neutral{
 	dir = 4
@@ -57713,7 +57713,7 @@
 "lKs" = (
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "lKt" = (
 /obj/structure/table/reinforced,
 /obj/item/circuitboard/firealarm,
@@ -60391,7 +60391,7 @@
 "mlg" = (
 /obj/effect/spawner/random/misc/structure/directional_window/east,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "mlh" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/decal/cleanable/dirt,
@@ -62641,7 +62641,7 @@
 /obj/structure/grille/smoothing,
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "mKw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -62682,7 +62682,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "mLr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -67249,7 +67249,7 @@
 "nKY" = (
 /obj/effect/spawner/random/misc/structure/directional_window/north,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "nLd" = (
 /obj/effect/spawner/random/machinery/status_display,
 /turf/closed/wall,
@@ -67305,7 +67305,7 @@
 /area/deltastation/medical/morgue)
 "nLL" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "nLP" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -69411,7 +69411,7 @@
 /obj/effect/landmark/start/job/xenomorph,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "oic" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall/r_wall,
@@ -72439,7 +72439,7 @@
 	},
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "oMw" = (
 /obj/effect/turf_decal/tile/transparent/neutral,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -75205,7 +75205,7 @@
 	name = "WARNING: EXTERNAL AIRLOCK"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "pqI" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/white{
@@ -75521,7 +75521,7 @@
 	},
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "ptL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -76571,7 +76571,7 @@
 /obj/effect/spawner/random/misc/structure/directional_window,
 /obj/effect/spawner/random/misc/structure/directional_window/east,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "pDg" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/landmark/weed_node,
@@ -77738,7 +77738,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "pNY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -81378,7 +81378,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "qyz" = (
 /obj/effect/turf_decal/tile/transparent/blue/anticorner/contrasted{
 	dir = 8
@@ -82486,7 +82486,7 @@
 "qJV" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "qJW" = (
 /obj/effect/decal/cleanable/dirt{
 	dir = 1
@@ -83482,7 +83482,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "qTm" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
@@ -84286,7 +84286,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "rdx" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/effect/turf_decal/tile/transparent/purple/opposingcorners,
@@ -84851,7 +84851,7 @@
 /obj/structure/lattice,
 /obj/effect/spawner/random/misc/structure/directional_window/north,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "rkb" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -89044,7 +89044,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "scy" = (
 /obj/structure/cable,
 /obj/item/radio/intercom,
@@ -89640,7 +89640,7 @@
 "siS" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "siV" = (
 /obj/effect/turf_decal/tile/transparent/purple,
 /obj/structure/prop/camera{
@@ -95610,7 +95610,7 @@
 "tsJ" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "ttb" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/structure/cable,
@@ -96445,7 +96445,7 @@
 /obj/effect/spawner/random/misc/structure/directional_window,
 /obj/effect/spawner/random/misc/structure/directional_window/west,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "tAU" = (
 /obj/effect/turf_decal/tile/transparent/purple/half/contrasted,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -97098,7 +97098,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "tIE" = (
 /obj/effect/spawner/random/misc/structure/office_chair_or_metal/dark/east,
 /obj/effect/decal/cleanable/dirt,
@@ -98303,7 +98303,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "tUw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -98727,7 +98727,7 @@
 	},
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "tYH" = (
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
@@ -100933,7 +100933,7 @@
 /area/deltastation/security/prison)
 "uvo" = (
 /turf/open/floor/plating,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "uvp" = (
 /obj/effect/spawner/random/misc/structure/directional_window,
 /obj/effect/spawner/random/misc/structure/directional_window/east,
@@ -103991,7 +103991,7 @@
 "vaL" = (
 /obj/effect/landmark/corpsespawner/engineer/burst,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "vbb" = (
 /turf/closed/wall/r_wall,
 /area/deltastation/security/interrogation)
@@ -105620,7 +105620,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/northcaves/radiounderground)
+/area/deltastation/asteroidcaves/northcaves/garbledradio)
 "vqZ" = (
 /obj/effect/turf_decal/trimline/neutral/warning{
 	dir = 10
@@ -107030,7 +107030,7 @@
 "vEW" = (
 /obj/effect/spawner/random/misc/structure/directional_window/west,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "vEY" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -110298,7 +110298,7 @@
 "wmr" = (
 /obj/effect/spawner/random/misc/structure/girder,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "wms" = (
 /turf/open/floor/plating,
 /area/deltastation/engineering/supermatter/room)
@@ -114222,7 +114222,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "wZV" = (
 /obj/effect/spawner/random/misc/structure/closet/regular,
 /obj/effect/spawner/random/engineering/mineral,
@@ -119177,7 +119177,7 @@
 /area/deltastation/cargo/storage)
 "xXG" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "xXI" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door{
@@ -119683,7 +119683,7 @@
 /obj/effect/spawner/random/misc/structure/directional_window,
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/westerncaves/radiounderground)
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "ycd" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,

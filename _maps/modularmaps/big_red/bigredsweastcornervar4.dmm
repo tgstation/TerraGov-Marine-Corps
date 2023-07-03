@@ -2,7 +2,7 @@
 "b" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "c" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
@@ -10,11 +10,11 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "f" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "h" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -28,7 +28,7 @@
 /area/bigredv2/caves/rock)
 "k" = (
 /turf/open/floor/plating,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "l" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,
@@ -51,22 +51,22 @@
 /area/bigredv2/caves/south)
 "v" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "A" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "E" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "F" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "M" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "N" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -74,7 +74,7 @@
 "O" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "V" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,

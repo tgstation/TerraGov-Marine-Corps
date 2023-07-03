@@ -187,7 +187,7 @@
 /area/ice_colony/exterior/underground/caves/open
 	icon_state = "explored"
 
-/area/ice_colony/exterior/underground/caves/open/radiounderground
+/area/ice_colony/exterior/underground/caves/open/garbledradio
 	icon_state = "explored"
 	ceiling = CEILING_UNDERGROUND
 
@@ -551,7 +551,7 @@
 /area/ice_colony/underground/crew/bball
 	name = "Underground Sports Center"
 
-/area/ice_colony/underground/crew/bball/radiounderground
+/area/ice_colony/underground/crew/bball/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/underground/crew/chapel
@@ -625,14 +625,14 @@
 /area/ice_colony/underground/hallway/north_west
 	name = "Underground Hallway NW"
 
-/area/ice_colony/underground/hallway/north_west/radiounderground
+/area/ice_colony/underground/hallway/north_west/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/underground/hallway/south_east
 	name = "Underground Hallway SE"
 	icon_state = "hallF"
 
-/area/ice_colony/underground/hallway/south_east/radiounderground
+/area/ice_colony/underground/hallway/south_east/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /*
@@ -658,7 +658,7 @@
 	name = "Underground Engineering Maintenance"
 	icon_state = "maint_engineering"
 
-/area/ice_colony/underground/maintenance/engineering/radiounderground
+/area/ice_colony/underground/maintenance/engineering/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/underground/maintenance/research
@@ -690,7 +690,7 @@
 /area/ice_colony/underground/medical/lobby
 	name = "Underground Medical Laboratory Lobby"
 
-/area/ice_colony/underground/medical/lobby/radiounderground
+/area/ice_colony/underground/medical/lobby/garbledradio
 	name = "Underground Medical Laboratory Lobby"
 	ceiling = CEILING_UNDERGROUND
 
@@ -698,7 +698,7 @@
 	name = "Underground Medical Laboratory Hallway"
 	icon_state = "medbay2"
 
-/area/ice_colony/underground/medical/hallway/radiounderground
+/area/ice_colony/underground/medical/hallway/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/underground/medical/storage
@@ -709,7 +709,7 @@
 	name = "Underground Medical Laboratory Treatment"
 	icon_state = "medbay3"
 
-/area/ice_colony/underground/medical/treatment/radiounderground
+/area/ice_colony/underground/medical/treatment/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/underground/medical/or

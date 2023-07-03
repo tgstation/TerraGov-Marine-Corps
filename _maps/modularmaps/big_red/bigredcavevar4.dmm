@@ -1,18 +1,18 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "ab" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "ac" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "ad" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "ae" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -20,19 +20,19 @@
 "af" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "ag" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "ah" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "ai" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "aj" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
@@ -55,19 +55,19 @@
 "ao" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "ap" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "aq" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "ar" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "at" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -79,12 +79,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "aA" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "aF" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -93,7 +93,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "aK" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -110,30 +110,30 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "aQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "aR" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "aS" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "aT" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "aV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "aW" = (
 /obj/structure/fence,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "aX" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,

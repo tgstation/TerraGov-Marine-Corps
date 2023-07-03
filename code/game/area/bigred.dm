@@ -62,7 +62,7 @@
 	name = "Southern Caves"
 	icon_state = "south"
 
-/area/bigredv2/caves/south/radiounderground
+/area/bigredv2/caves/south/garbledradio
 	ceiling = CEILING_UNDERGROUND
 /area/bigredv2/caves/rustedpreparea
 	name = "Rusted Prep Area"
@@ -84,7 +84,7 @@
 	name = "Eastern Caves"
 	icon_state = "east"
 
-/area/bigredv2/caves/east/radiounderground
+/area/bigredv2/caves/east/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/caves/west
@@ -96,7 +96,7 @@
 	name = "Northeastern Caves"
 	icon_state = "northeast"
 
-/area/bigredv2/caves/northeast/radiounderground
+/area/bigredv2/caves/northeast/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/caves/northwest
@@ -108,7 +108,7 @@
 	name = "Southeastern Caves"
 	icon_state = "southeast"
 
-/area/bigredv2/caves/southeast/radiounderground
+/area/bigredv2/caves/southeast/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/caves/southwest
@@ -128,7 +128,7 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/outside/cargo

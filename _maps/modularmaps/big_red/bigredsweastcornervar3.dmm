@@ -24,23 +24,23 @@
 "p" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "q" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "s" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "t" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "u" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "x" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
@@ -52,10 +52,10 @@
 /area/bigredv2/caves/southwest)
 "C" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "E" = (
 /turf/open/floor/plating,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "G" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -69,11 +69,11 @@
 /area/bigredv2/caves/south)
 "M" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "Q" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "T" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -90,7 +90,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "Y" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,

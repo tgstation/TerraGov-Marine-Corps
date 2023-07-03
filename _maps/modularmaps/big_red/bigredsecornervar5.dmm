@@ -13,7 +13,7 @@
 "e" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "f" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -47,7 +47,7 @@
 "s" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "t" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -58,10 +58,10 @@
 "v" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "x" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "A" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -69,7 +69,7 @@
 "C" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "E" = (
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_12";
@@ -93,14 +93,14 @@
 "L" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "N" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "O" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "P" = (
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_14";
@@ -112,12 +112,12 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "R" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "S" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,

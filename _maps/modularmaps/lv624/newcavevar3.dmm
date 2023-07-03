@@ -131,14 +131,14 @@
 /area/lv624/ground/caves/central1)
 "Dp" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1/radiounderground)
+/area/lv624/ground/caves/central1/garbledradio)
 "DG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "DY" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1/radiounderground)
+/area/lv624/ground/caves/central1/garbledradio)
 "EE" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,

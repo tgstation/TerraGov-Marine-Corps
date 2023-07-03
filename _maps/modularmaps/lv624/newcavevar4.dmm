@@ -191,10 +191,10 @@
 /area/lv624/ground/caves/rock)
 "UY" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1/radiounderground)
+/area/lv624/ground/caves/central1/garbledradio)
 "WQ" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1/radiounderground)
+/area/lv624/ground/caves/central1/garbledradio)
 "Yi" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,

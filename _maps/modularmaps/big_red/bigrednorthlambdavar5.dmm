@@ -12,7 +12,7 @@
 "g" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "h" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
@@ -27,7 +27,7 @@
 /area/space)
 "n" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "p" = (
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor/plating,
@@ -44,7 +44,7 @@
 /area/bigredv2/caves/northeast)
 "z" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "D" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
@@ -55,11 +55,11 @@
 "F" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "G" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "I" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
@@ -82,7 +82,7 @@
 "T" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "W" = (
 /obj/structure/closet/crate/internals,
 /turf/open/floor/plating,

@@ -5,7 +5,7 @@
 /area/lv624/ground/caves/central2)
 "co" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1/radiounderground)
+/area/lv624/ground/caves/central1/garbledradio)
 "dO" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door,
@@ -17,7 +17,7 @@
 /area/lv624/ground/caves/central2)
 "fb" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1/radiounderground)
+/area/lv624/ground/caves/central1/garbledradio)
 "gv" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,

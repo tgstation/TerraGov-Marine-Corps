@@ -151,7 +151,7 @@
 "gG" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "gX" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/secure/right{
@@ -186,7 +186,7 @@
 "hU" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "id" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/misc/trash,
@@ -295,7 +295,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "mW" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "nb" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/tile/blue/taupeblue{
@@ -445,7 +445,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "tv" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "tC" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -496,7 +496,7 @@
 "wV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "xd" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -589,7 +589,7 @@
 /obj/docking_port/stationary/crashmode,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "Da" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rock)
@@ -604,7 +604,7 @@
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "Ea" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/filingcabinet,
@@ -747,7 +747,7 @@
 "LQ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "LX" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
@@ -867,7 +867,7 @@
 "ST" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "Tc" = (
 /obj/structure/girder,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -905,7 +905,7 @@
 "Ve" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "Vi" = (
 /obj/machinery/computer/mecha,
 /turf/open/floor/tile/blue/taupeblue{

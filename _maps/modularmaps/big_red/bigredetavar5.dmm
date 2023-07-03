@@ -39,7 +39,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "cg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -284,7 +284,7 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "mp" = (
 /obj/structure/sign/safety/EVA{
 	dir = 1
@@ -377,7 +377,7 @@
 "pF" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "pL" = (
 /obj/structure/table,
 /obj/effect/landmark/weed_node,
@@ -798,7 +798,7 @@
 /area/bigredv2/outside/general_offices)
 "GP" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "GV" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	name = "\improper Dormitories EVA Maintenance"
@@ -929,7 +929,7 @@
 "Oq" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "Ox" = (
 /obj/item/clothing/under/brown,
 /turf/open/floor/freezer,
@@ -1033,7 +1033,7 @@
 "TC" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "TL" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -1112,7 +1112,7 @@
 /area/bigredv2/outside/general_offices)
 "VO" = (
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "Wv" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -1162,7 +1162,7 @@
 /area/bigredv2/outside/general_offices)
 "ZR" = (
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "ZS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4

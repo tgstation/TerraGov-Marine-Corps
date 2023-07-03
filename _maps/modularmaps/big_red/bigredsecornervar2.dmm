@@ -21,7 +21,7 @@
 /obj/docking_port/stationary/crashmode,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "bb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -31,7 +31,7 @@
 "bc" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "br" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -78,7 +78,7 @@
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "cS" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 8
@@ -104,7 +104,7 @@
 "dr" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "dD" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
@@ -625,7 +625,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "rZ" = (
 /turf/open/floor/mainship/mono,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "sk" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -669,7 +669,7 @@
 "tk" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "tG" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
@@ -729,7 +729,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "vz" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 1
@@ -1071,7 +1071,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "EY" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -1234,7 +1234,7 @@
 "Jr" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "JF" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 4
@@ -1453,14 +1453,14 @@
 /obj/machinery/miner/damaged/platinum,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "QH" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship/floor,
 /area/bigredv2/caves/rustedpreparea)
 "QQ" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "Rd" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 8
@@ -1497,7 +1497,7 @@
 /area/bigredv2/caves/southeast)
 "RG" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "RH" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
@@ -1570,7 +1570,7 @@
 "TL" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "TX" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1657,7 +1657,7 @@
 "Wu" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "Wv" = (
 /obj/machinery/power/apc/drained,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1761,7 +1761,7 @@
 "ZV" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 
 (1,1,1) = {"
 KU

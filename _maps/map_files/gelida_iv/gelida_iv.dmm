@@ -333,7 +333,7 @@
 /area/shuttle/drop2/gelida)
 "alV" = (
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "amo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -345,7 +345,7 @@
 "amr" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "ams" = (
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
@@ -451,7 +451,7 @@
 "aoY" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "aoZ" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/structure/bed/chair{
@@ -1220,7 +1220,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "aQU" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
@@ -1512,7 +1512,7 @@
 "aZY" = (
 /obj/item/lightstick/red/anchored,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "baa" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -1587,7 +1587,7 @@
 /area/gelida/indoors/a_block/admin)
 "bcB" = (
 /turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "bcH" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -1706,7 +1706,7 @@
 /area/gelida/cavestructuretwo)
 "beU" = (
 /turf/closed/mineral/smooth/darkfrostwall,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "beW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -2524,7 +2524,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "bJk" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -2764,7 +2764,7 @@
 "bQk" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "bQv" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/heatinggrate,
@@ -3168,7 +3168,7 @@
 "cfP" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "cgn" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -3400,7 +3400,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "cpg" = (
 /obj/structure/table/mainship{
 	dir = 1;
@@ -3521,7 +3521,7 @@
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "cug" = (
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor/prison,
@@ -4022,7 +4022,7 @@
 /area/gelida/cavestructuretwo)
 "cIQ" = (
 /turf/open/floor/plating/ground/snow/layer2,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "cIZ" = (
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/security)
@@ -4032,7 +4032,7 @@
 /area/gelida/indoors/c_block/garage)
 "cJC" = (
 /turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "cJI" = (
 /turf/closed/shuttle/dropship2/panels{
 	dir = 8
@@ -4223,7 +4223,7 @@
 "cQd" = (
 /obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "cQe" = (
 /obj/machinery/light{
 	dir = 1
@@ -4485,7 +4485,7 @@
 /area/gelida/indoors/a_block/admin)
 "cYz" = (
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "cYD" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 8;
@@ -4551,11 +4551,11 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "dao" = (
 /obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "daK" = (
 /obj/machinery/floodlight,
 /turf/open/floor/prison,
@@ -4675,7 +4675,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "deV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5516,7 +5516,7 @@
 "dIF" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "dII" = (
 /obj/structure/cargo_container,
 /turf/open/floor/prison/cleanmarked,
@@ -6263,7 +6263,7 @@
 /obj/effect/landmark/xeno_resin_door,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "eeK" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -6434,7 +6434,7 @@
 "enp" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "eoh" = (
 /obj/effect/decal/cleanable/greenglow,
 /obj/item/reagent_containers/glass/beaker,
@@ -7441,7 +7441,7 @@
 "eRN" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "eRR" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -7586,7 +7586,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "eVG" = (
 /obj/structure/prop/mainship/gelida/smallwire{
 	dir = 1
@@ -8786,7 +8786,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "fUc" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -9111,7 +9111,7 @@
 "gfi" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "gfl" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
@@ -9253,7 +9253,7 @@
 "gkC" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "gkW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -9441,7 +9441,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "gpR" = (
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/b_block/bridge)
@@ -9864,7 +9864,7 @@
 	},
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "gDB" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/spawner/random/misc/structure/supplycrate{
@@ -10134,7 +10134,7 @@
 "gLO" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "gMe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -11333,7 +11333,7 @@
 /area/gelida/indoors/c_block/mining)
 "hCQ" = (
 /turf/closed/wall/r_wall,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "hCY" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/snowrock,
@@ -11341,7 +11341,7 @@
 "hDd" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "hDe" = (
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor/prison/darkred/full,
@@ -11514,7 +11514,7 @@
 "hLP" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "hMn" = (
 /turf/closed/wall,
 /area/gelida/outdoors/colony_streets/north_west_street)
@@ -12198,7 +12198,7 @@
 "ihG" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "ihZ" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/engineering/cable,
@@ -12352,7 +12352,7 @@
 "ilG" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "ilJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -13224,7 +13224,7 @@
 "iSE" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/mainship/stripesquare,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "iSG" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/structure/bed/chair{
@@ -14052,7 +14052,7 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "jxv" = (
 /obj/structure/rack/nometal,
 /obj/item/reagent_containers/spray/cleaner{
@@ -14264,7 +14264,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "jIV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -14913,7 +14913,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "kaN" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -15179,7 +15179,7 @@
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "kjD" = (
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "kky" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -15479,7 +15479,7 @@
 /area/gelida/indoors/b_block/bridge)
 "kxx" = (
 /turf/open/floor/mainship/stripesquare,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "kxB" = (
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/op_centre)
@@ -15981,7 +15981,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "kNT" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -16072,7 +16072,7 @@
 "kST" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "kTi" = (
 /obj/item/tool/lighter/random{
 	pixel_x = -4;
@@ -16100,7 +16100,7 @@
 "kTt" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "kTF" = (
 /obj/structure/prop/mainship/gelida/smallwire{
 	dir = 1
@@ -16769,7 +16769,7 @@
 "lqC" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "lqI" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison,
@@ -17184,7 +17184,7 @@
 "lEI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "lEJ" = (
 /obj/structure/cable,
 /turf/open/floor/prison/green/full{
@@ -17385,7 +17385,7 @@
 "lLx" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "lLD" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/prison/darkbrown/full,
@@ -18288,7 +18288,7 @@
 "mod" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "moh" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/spawner/random/clothing/sunglasses,
@@ -19052,7 +19052,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "mPL" = (
 /obj/structure/window/framed/colony,
 /obj/structure/platform{
@@ -19336,7 +19336,7 @@
 "nbt" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "nby" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -19920,7 +19920,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "nut" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
@@ -20172,7 +20172,7 @@
 /area/gelida/powergen)
 "nEs" = (
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "nEw" = (
 /obj/structure/cable,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -20308,7 +20308,7 @@
 "nIM" = (
 /obj/item/lightstick/red/anchored,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "nIN" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
@@ -20440,7 +20440,7 @@
 "nMT" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "nNn" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/mainship/stripesquare,
@@ -20721,7 +20721,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "nWA" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -21108,7 +21108,7 @@
 /obj/effect/landmark/xeno_resin_wall,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "ojk" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_door,
@@ -21452,11 +21452,11 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "oyb" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "oyd" = (
 /obj/structure/stairs/cornerdark/seamless{
 	dir = 8
@@ -21547,7 +21547,7 @@
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/mainship/stripesquare,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "oBw" = (
 /obj/machinery/light{
 	dir = 4
@@ -21812,7 +21812,7 @@
 "oHq" = (
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "oHr" = (
 /obj/structure/prop/mainship/gelida/lightstick{
 	pixel_x = -13
@@ -21822,7 +21822,7 @@
 "oHy" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "oHR" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -22077,7 +22077,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "oRP" = (
 /obj/machinery/light{
 	dir = 1
@@ -22170,7 +22170,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "oTW" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/prison,
@@ -22291,7 +22291,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "oXo" = (
 /obj/structure/table/mainship,
 /obj/machinery/prop/mainship/computer/PC{
@@ -22403,7 +22403,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "oZU" = (
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -22442,7 +22442,7 @@
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pcy" = (
 /obj/machinery/light{
 	dir = 8
@@ -22490,12 +22490,12 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "pdD" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pdJ" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -22506,7 +22506,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pdM" = (
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
@@ -22565,7 +22565,7 @@
 "pfm" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pfn" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/whitegreenfull2,
@@ -22808,7 +22808,7 @@
 "pkT" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "pla" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison,
@@ -23032,7 +23032,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "pvC" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door,
@@ -23080,7 +23080,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "pxr" = (
 /turf/open/floor/plating,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "pxY" = (
 /turf/open/floor/prison/blue/plate{
 	dir = 1
@@ -23111,7 +23111,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pyY" = (
 /obj/structure/prop/mainship/gelida/lightstick{
 	pixel_x = -7;
@@ -23144,7 +23144,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pzF" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/whitepurple/full{
@@ -23234,7 +23234,7 @@
 	name = "SOM exit point 24"
 	},
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pBL" = (
 /obj/structure/closet,
 /turf/open/floor/prison/whitepurple/full{
@@ -23270,7 +23270,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "pDT" = (
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pEg" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -23375,7 +23375,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pHY" = (
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_2)
@@ -23499,7 +23499,7 @@
 	name = "SOM exit point 23"
 	},
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pKF" = (
 /obj/structure/table/mainship,
 /obj/item/key/cargo_train,
@@ -23561,7 +23561,7 @@
 /area/gelida/indoors/a_block/admin)
 "pLW" = (
 /turf/closed/mineral/smooth/darkfrostwall,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pMg" = (
 /obj/structure/flora/ausbushes/pointybush{
 	pixel_y = 12
@@ -23592,7 +23592,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pOe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -23684,7 +23684,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "pRa" = (
 /obj/structure/prop/mainship/gelida/lightstick{
 	pixel_x = -10;
@@ -23816,7 +23816,7 @@
 "pVA" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pVU" = (
 /obj/item/clothing/shoes/jackboots{
 	pixel_x = 4;
@@ -23864,7 +23864,7 @@
 "pXd" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pXp" = (
 /obj/item/tool/wirecutters,
 /turf/open/floor/prison/blue{
@@ -23889,7 +23889,7 @@
 "pYl" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "pYo" = (
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_forecon/landing_zone_4)
@@ -23971,7 +23971,7 @@
 "qaM" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qaR" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -24004,7 +24004,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qba" = (
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
@@ -24082,7 +24082,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qex" = (
 /turf/closed/shuttle/dropship2/corners{
 	dir = 1
@@ -24167,7 +24167,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qhT" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -24185,7 +24185,7 @@
 "qih" = (
 /obj/structure/prop/mainship/gelida/propserver,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qin" = (
 /turf/closed/shuttle/dropship2/finleft,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
@@ -24264,7 +24264,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qlC" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -24286,7 +24286,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qmh" = (
 /obj/machinery/light{
 	dir = 4
@@ -24321,7 +24321,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qmF" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -24380,11 +24380,11 @@
 /obj/structure/stairs/seamless,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qpk" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qpm" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -24516,7 +24516,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qwd" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -24575,7 +24575,7 @@
 /obj/structure/stairs/seamless,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "qxs" = (
 /obj/structure/bookcase{
 	pixel_x = 2;
@@ -24593,7 +24593,7 @@
 /area/gelida/indoors/a_block/hallway)
 "qxI" = (
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "qxM" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -24724,7 +24724,7 @@
 "qDM" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "qDN" = (
 /obj/structure/table/mainship,
 /obj/machinery/prop/mainship/computer/PC{
@@ -24753,7 +24753,7 @@
 "qEf" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "qEi" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -24837,7 +24837,7 @@
 "qHK" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "qHZ" = (
 /obj/structure/stairs/cornerdark/seamless,
 /turf/open/floor/prison/whitegreenfull2,
@@ -25446,7 +25446,7 @@
 /area/gelida/indoors/a_block/fitness)
 "raa" = (
 /turf/closed/mineral/smooth/darkfrostwall,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "raz" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/plate,
@@ -25619,7 +25619,7 @@
 /area/gelida/indoors/a_block/dorms)
 "rfq" = (
 /turf/open/floor/plating/ground/snow/layer2,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "rfv" = (
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
@@ -26165,7 +26165,7 @@
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "rvs" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -26892,7 +26892,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "rXK" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -27319,7 +27319,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "soc" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -28704,7 +28704,7 @@
 "tiP" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "tiQ" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -29165,7 +29165,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "tzY" = (
 /turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "tAs" = (
 /obj/machinery/light{
 	dir = 1
@@ -29397,7 +29397,7 @@
 "tJs" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "tJZ" = (
 /obj/structure/table/mainship,
 /turf/open/floor/prison/blue{
@@ -29488,7 +29488,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "tNH" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
@@ -29529,7 +29529,7 @@
 "tOc" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves/radiounderground)
+/area/gelida/caves/east_caves/garbledradio)
 "tOY" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/gloves/botanic_leather,
@@ -29545,7 +29545,7 @@
 "tPt" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "tPN" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/blue/plate{
@@ -29698,7 +29698,7 @@
 "tVH" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "tVK" = (
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/prison,
@@ -29852,7 +29852,7 @@
 "ubb" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/radiounderground)
+/area/gelida/caves/central_caves/garbledradio)
 "ubE" = (
 /obj/machinery/light{
 	dir = 1;
@@ -29983,7 +29983,7 @@
 "ugu" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "ugE" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/darkbrown/full,
@@ -30933,7 +30933,7 @@
 "uQY" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "uRd" = (
 /obj/item/explosive/grenade,
 /turf/open/floor/prison,
@@ -31012,7 +31012,7 @@
 "uTK" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "uUh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -31678,7 +31678,7 @@
 "vrT" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "vsk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/barricade/wooden,
@@ -32899,7 +32899,7 @@
 "wki" = (
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "wko" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -34037,7 +34037,7 @@
 "xdn" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 "xef" = (
 /obj/structure/platform_decoration{
 	dir = 4
@@ -34132,7 +34132,7 @@
 "xjB" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves/radiounderground)
+/area/gelida/caves/west_caves/garbledradio)
 "xjC" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/stripesquare,
@@ -35731,7 +35731,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/black/full,
-/area/gelida/powergen/radiounderground)
+/area/gelida/powergen/garbledradio)
 
 (1,1,1) = {"
 cgS

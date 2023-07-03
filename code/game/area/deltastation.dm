@@ -1374,13 +1374,13 @@
 
 /area/deltastation/asteroidcaves/northcaves
 
-/area/deltastation/asteroidcaves/northcaves/radiounderground
+/area/deltastation/asteroidcaves/northcaves/garbledradio
 
 /area/deltastation/asteroidcaves/northeastcaves
 
 /area/deltastation/asteroidcaves/westerncaves
 
-/area/deltastation/asteroidcaves/westerncaves/radiounderground
+/area/deltastation/asteroidcaves/westerncaves/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/deltastation/asteroidcaves/easterntunnel

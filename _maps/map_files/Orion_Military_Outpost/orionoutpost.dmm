@@ -80,7 +80,7 @@
 "aH" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveS/radiounderground)
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "aJ" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/security,
@@ -401,7 +401,7 @@
 /area/orion_outpost/ground/outpostw)
 "cr" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveN/radiounderground)
+/area/orion_outpost/ground/underground/caveN/garbledradio)
 "cs" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -483,7 +483,7 @@
 "cU" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveN/radiounderground)
+/area/orion_outpost/ground/underground/caveN/garbledradio)
 "cV" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/concrete/edge{
@@ -497,7 +497,7 @@
 "cY" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveS/radiounderground)
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "cZ" = (
 /obj/item/mortal_shell/howitzer/incendiary,
 /obj/machinery/light{
@@ -1556,7 +1556,7 @@
 "iI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveN/radiounderground)
+/area/orion_outpost/ground/underground/caveN/garbledradio)
 "iJ" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer3/laptop,
@@ -2325,7 +2325,7 @@
 "mx" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveS/radiounderground)
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "my" = (
 /obj/structure/cargo_container/hd{
 	dir = 4
@@ -3589,7 +3589,7 @@
 "st" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveN/radiounderground)
+/area/orion_outpost/ground/underground/caveN/garbledradio)
 "su" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/ground/outpostsw)
@@ -3702,7 +3702,7 @@
 "sR" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveS/radiounderground)
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "sS" = (
 /obj/effect/turf_decal/warning_stripes/engineer,
 /obj/effect/turf_decal/warning_stripes/box/small,
@@ -5083,7 +5083,7 @@
 "Aj" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveN/radiounderground)
+/area/orion_outpost/ground/underground/caveN/garbledradio)
 "An" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -5418,7 +5418,7 @@
 "Cc" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveN/radiounderground)
+/area/orion_outpost/ground/underground/caveN/garbledradio)
 "Cd" = (
 /obj/structure/table/mainship,
 /obj/item/storage/toolbox/mechanical,
@@ -5780,7 +5780,7 @@
 "DN" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveS/radiounderground)
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "DO" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/mainship/red{
@@ -6182,7 +6182,7 @@
 "Gd" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveS/radiounderground)
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "Ge" = (
 /obj/effect/turf_decal/warning_stripes/leader,
 /obj/effect/turf_decal/warning_stripes/box/small,
@@ -6308,7 +6308,7 @@
 /area/orion_outpost/surface/building/administration)
 "GN" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveS/radiounderground)
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "GO" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
@@ -6629,7 +6629,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveS/radiounderground)
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "It" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/ground/grasspatch/grassyellow,
@@ -7492,7 +7492,7 @@
 /area/orion_outpost/ground/outpostw)
 "MN" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveE/radiounderground)
+/area/orion_outpost/ground/underground/caveE/garbledradio)
 "MO" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -8067,7 +8067,7 @@
 "Px" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveE/radiounderground)
+/area/orion_outpost/ground/underground/caveE/garbledradio)
 "Py" = (
 /obj/structure/stairs/seamless/platform/alt{
 	dir = 1
@@ -8711,7 +8711,7 @@
 /area/orion_outpost/surface/building/engineering)
 "SV" = (
 /turf/closed/mineral/smooth,
-/area/orion_outpost/ground/underground/caveE/radiounderground)
+/area/orion_outpost/ground/underground/caveE/garbledradio)
 "SW" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
@@ -8877,7 +8877,7 @@
 "TM" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveE/radiounderground)
+/area/orion_outpost/ground/underground/caveE/garbledradio)
 "TN" = (
 /obj/structure/window{
 	dir = 4
@@ -8964,7 +8964,7 @@
 "Um" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveN/radiounderground)
+/area/orion_outpost/ground/underground/caveN/garbledradio)
 "Un" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -9486,7 +9486,7 @@
 "WR" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveE/radiounderground)
+/area/orion_outpost/ground/underground/caveE/garbledradio)
 "WS" = (
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -9570,7 +9570,7 @@
 "Xr" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/underground/caveE/radiounderground)
+/area/orion_outpost/ground/underground/caveE/garbledradio)
 "Xt" = (
 /obj/machinery/light{
 	dir = 4

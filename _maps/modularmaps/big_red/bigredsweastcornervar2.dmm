@@ -1,14 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "h" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "k" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "q" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
@@ -18,22 +18,22 @@
 "w" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "y" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "z" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "A" = (
 /turf/open/floor/plating,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "B" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "D" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -45,7 +45,7 @@
 "I" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "K" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -54,7 +54,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "M" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -85,7 +85,7 @@
 "Y" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "Z" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,

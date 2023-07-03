@@ -16,7 +16,7 @@
 	name = "\improper Eta Lab Secure Storage"
 	},
 /turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "abb" = (
 /obj/item/radio/intercom/general/colony{
 	frequency = 150;
@@ -51,11 +51,11 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "abN" = (
 /obj/structure/filingcabinet,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "abO" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -76,11 +76,11 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "abX" = (
 /obj/machinery/light,
 /turf/open/floor/podhatch/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "abY" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -110,7 +110,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "ack" = (
 /obj/structure/closet/walllocker/hydrant/full,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -136,7 +136,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "acr" = (
 /turf/closed/wall,
 /area/bigredv2/outside/marshal_office)
@@ -161,7 +161,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "acx" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -169,11 +169,11 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "acB" = (
 /obj/structure/table,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "acK" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/hyper{
@@ -195,7 +195,7 @@
 /obj/structure/table,
 /obj/item/weapon/gun/rifle/type71/flamer,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "adh" = (
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
@@ -211,7 +211,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "ady" = (
 /obj/structure/bed/chair,
 /turf/open/floor/tile/darkish,
@@ -1065,7 +1065,7 @@
 /area/bigredv2/outside/marshal_office)
 "akx" = (
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "aky" = (
 /obj/structure/bookcase/manuals/research_and_development,
 /obj/machinery/light{
@@ -1198,15 +1198,15 @@
 /area/bigredv2/outside/marshal_office)
 "akW" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "akX" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "akZ" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 8
 	},
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "ala" = (
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 9
@@ -1315,10 +1315,10 @@
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 10
 	},
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "alJ" = (
 /turf/open/floor/plating/ground/mars/cavetodirt,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "alL" = (
 /turf/open/floor/plating/warning{
 	dir = 9
@@ -1895,7 +1895,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "apY" = (
 /obj/machinery/vending/nanomed{
 	dir = 4
@@ -2591,7 +2591,7 @@
 	on = 1
 	},
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "avE" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -3362,7 +3362,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aEu" = (
 /turf/closed/wall/r_wall,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "aEH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3461,7 +3461,7 @@
 /area/bigredv2/outside/virology)
 "aFD" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "aFM" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -4876,7 +4876,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "aTf" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5093,7 +5093,7 @@
 "aVC" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "aVD" = (
 /obj/effect/spawner/random/misc/structure/stool,
 /turf/open/floor/tile/white,
@@ -6146,7 +6146,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "bpv" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/sw)
@@ -6181,7 +6181,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "bqf" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -6341,7 +6341,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "btj" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor,
@@ -6506,7 +6506,7 @@
 "bvZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwo" = (
 /obj/structure/cable,
 /obj/machinery/light,
@@ -6527,10 +6527,10 @@
 	name = "\improper Eta Lab Storage Bay"
 	},
 /turf/open/floor/marking/loadingarea,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwH" = (
 /turf/open/floor/marking/loadingarea,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwI" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/research/free_access{
@@ -6538,7 +6538,7 @@
 	name = "\improper Eta Lab Decontamination"
 	},
 /turf/open/floor/freezer,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwJ" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
@@ -6548,74 +6548,74 @@
 	dir = 5
 	},
 /turf/open/floor/marking/delivery,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/marking/delivery,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwP" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwQ" = (
 /obj/structure/table,
 /obj/item/tool/screwdriver,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwR" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwS" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwU" = (
 /obj/machinery/shower{
 	dir = 4
 	},
 /turf/open/floor/freezer,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwW" = (
 /obj/structure/closet/l3closet/scientist,
 /turf/open/floor/freezer,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwZ" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxa" = (
 /obj/structure/rack,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxb" = (
 /obj/structure/rack,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxg" = (
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -6623,7 +6623,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxm" = (
 /obj/machinery/light{
 	dir = 8
@@ -6633,12 +6633,12 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxp" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6647,7 +6647,7 @@
 	name = "\improper Eta Lab Robotics"
 	},
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6660,32 +6660,32 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxw" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxx" = (
 /obj/structure/closet/l3closet/scientist,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/freezer,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxy" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxC" = (
 /obj/structure/largecrate/guns,
 /turf/open/floor/marking/bot,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxF" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxI" = (
 /obj/structure/sink{
 	dir = 8
@@ -6693,7 +6693,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxN" = (
 /turf/closed/wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -6702,7 +6702,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxQ" = (
 /obj/machinery/light{
 	dir = 4
@@ -6711,7 +6711,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxR" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
@@ -6722,11 +6722,11 @@
 "bxU" = (
 /obj/structure/largecrate/cow,
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxV" = (
 /obj/structure/largecrate/cow,
 /turf/open/floor/marking/bot,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxY" = (
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 8
@@ -6744,25 +6744,25 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byl" = (
 /obj/machinery/photocopier,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bys" = (
 /obj/structure/prop/mainship/research/circuit_imprinter,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byv" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byw" = (
 /obj/structure/largecrate/mule,
 /turf/open/floor/marking/bot,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byA" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
@@ -6775,7 +6775,7 @@
 	name = "\improper Eta Lab Technical Storage"
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/generic{
@@ -6783,15 +6783,15 @@
 	name = "\improper Eta Lab Dormitories"
 	},
 /turf/open/floor/wood,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byJ" = (
 /obj/structure/closet/l3closet/scientist,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byL" = (
 /obj/machinery/vending/engineering,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6811,7 +6811,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byW" = (
 /obj/machinery/light{
 	dir = 1
@@ -6819,7 +6819,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
@@ -6827,7 +6827,7 @@
 	name = "\improper Eta Lab Robotics"
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bza" = (
 /obj/machinery/light{
 	dir = 8
@@ -6835,7 +6835,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6843,7 +6843,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6851,15 +6851,15 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzn" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzp" = (
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
@@ -6867,26 +6867,26 @@
 	name = "\improper Eta Lab Armory"
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzt" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzu" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzv" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzx" = (
 /obj/machinery/light,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6900,14 +6900,14 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzI" = (
 /obj/machinery/computer/security,
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzJ" = (
 /obj/structure/closet/secure_closet/guncabinet/nt_lab,
 /turf/open/floor/tile/red/full,
@@ -6915,21 +6915,21 @@
 "bzM" = (
 /obj/structure/closet,
 /turf/open/floor/tile/red/full,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzN" = (
 /obj/machinery/computer/security,
 /obj/structure/table,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzQ" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	dir = 1;
 	name = "\improper Eta Lab Server"
 	},
 /turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
@@ -6937,7 +6937,7 @@
 	name = "\improper Eta Lab Security Office"
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzS" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -6948,7 +6948,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzW" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -6957,21 +6957,21 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzZ" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAb" = (
 /obj/structure/bed/chair,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAf" = (
 /obj/machinery/prop/r_n_d/server,
 /turf/open/floor/podhatch/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAg" = (
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -6981,16 +6981,16 @@
 "bAi" = (
 /obj/machinery/computer/security,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAl" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAo" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/paperbin,
@@ -6998,7 +6998,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAq" = (
 /obj/machinery/light{
 	dir = 4
@@ -7006,18 +7006,18 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAs" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAu" = (
 /obj/structure/table,
 /obj/item/storage/box/nt_mre,
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAv" = (
 /obj/machinery/light{
 	dir = 8
@@ -7036,13 +7036,13 @@
 	},
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAA" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7063,13 +7063,13 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAJ" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAN" = (
 /obj/machinery/telecomms/server,
 /turf/open/floor/podhatch/floor,
@@ -7098,16 +7098,16 @@
 "bAU" = (
 /obj/machinery/light,
 /turf/open/floor/tile/red/full,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAW" = (
 /turf/open/floor/tile/dark/yellow2,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAX" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/yellow2,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bBc" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -7116,7 +7116,7 @@
 "bBg" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "bBh" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark/red2{
@@ -7196,7 +7196,7 @@
 	dir = 4
 	},
 /turf/open/ground/jungle/clear,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bBJ" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 10
@@ -7256,7 +7256,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bCv" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -7572,7 +7572,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bIN" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/sandedge/corner{
@@ -7615,7 +7615,7 @@
 "bNC" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "bOB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -7628,7 +7628,7 @@
 /area/bigredv2/outside/e)
 "bOK" = (
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bOR" = (
 /obj/effect/spawner/modularmap/bigred/landingzoneone,
 /turf/open/space/basic,
@@ -7650,7 +7650,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bUf" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -7744,7 +7744,7 @@
 "cjX" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "cku" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7766,12 +7766,12 @@
 /area/bigredv2/outside/marshal_office)
 "cmK" = (
 /turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "cny" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "coO" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -7811,7 +7811,7 @@
 "cua" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/full,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "cuW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7846,7 +7846,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "cCE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7988,7 +7988,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "cVB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -8015,7 +8015,7 @@
 	},
 /obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "cZm" = (
 /obj/machinery/computer/atmoscontrol,
 /obj/effect/decal/cleanable/dirt,
@@ -8032,7 +8032,7 @@
 "dan" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "daL" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
@@ -8061,7 +8061,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "djb" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
@@ -8088,7 +8088,7 @@
 "dnx" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "dnN" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -8177,7 +8177,7 @@
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "dwe" = (
 /obj/structure/table,
 /obj/item/reagent_containers/spray/cleaner,
@@ -8214,7 +8214,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "dEA" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/dmg3,
@@ -8264,7 +8264,7 @@
 "dRJ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "dRR" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
@@ -8349,7 +8349,7 @@
 "eej" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "ees" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/food_or_drink/kitchen,
@@ -8435,7 +8435,7 @@
 "elE" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/podhatch/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "elJ" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -8487,7 +8487,7 @@
 "esb" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "esu" = (
 /obj/effect/spawner/modularmap/bigred/cargoarea,
 /turf/open/space/basic,
@@ -8502,7 +8502,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "euP" = (
 /obj/effect/turf_decal/warning_stripes/box/threeside,
 /turf/open/floor/tile/dark,
@@ -8511,7 +8511,7 @@
 /obj/structure/fence,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "eyt" = (
 /turf/open/floor/carpet/side{
 	dir = 1
@@ -8547,7 +8547,7 @@
 /area/bigredv2/outside/c)
 "eEK" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "eFj" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -8560,7 +8560,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "eIz" = (
 /obj/machinery/light{
 	dir = 4
@@ -8584,7 +8584,7 @@
 "eIX" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "eKb" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -8611,7 +8611,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "eOX" = (
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
@@ -8646,7 +8646,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "eTb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/docking_port/stationary/crashmode,
@@ -8661,7 +8661,7 @@
 "eVV" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "eVY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -8682,7 +8682,7 @@
 "eZU" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "fax" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
@@ -8705,7 +8705,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "fdZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -8757,12 +8757,12 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "fgP" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "fgQ" = (
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreenfull,
@@ -8770,7 +8770,7 @@
 "fgT" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "fhY" = (
 /turf/open/floor/carpet/side{
 	dir = 4
@@ -8794,7 +8794,7 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "fmc" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -8820,7 +8820,7 @@
 /area/bigredv2/outside/virology)
 "foK" = (
 /turf/open/floor/podhatch/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "foX" = (
 /obj/structure/table,
 /obj/effect/spawner/random/food_or_drink/kitchen{
@@ -8848,7 +8848,7 @@
 "fuU" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "fxl" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/purple2{
@@ -8911,7 +8911,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "fDh" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -9005,7 +9005,7 @@
 "fQz" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "fQL" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -9092,7 +9092,7 @@
 "fZp" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "gaB" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -9151,13 +9151,13 @@
 "ghw" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "ghE" = (
 /obj/structure/fence,
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "gkk" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -9205,7 +9205,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "gxX" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -9256,7 +9256,7 @@
 "gDv" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/full,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "gDJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -9365,7 +9365,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/yellow2,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "gNA" = (
 /obj/effect/spawner/modularmap/bigred/cargoentry,
 /turf/open/space/basic,
@@ -9471,7 +9471,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "gZx" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
@@ -9526,7 +9526,7 @@
 "hjp" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "hkm" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkish,
@@ -9545,7 +9545,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/full,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "hmy" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor,
@@ -9659,7 +9659,7 @@
 "hFi" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "hGw" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light,
@@ -9800,7 +9800,7 @@
 "ieW" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "igj" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
@@ -9848,7 +9848,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "irs" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/mineral/smooth/bigred,
@@ -9902,7 +9902,7 @@
 "iCs" = (
 /obj/structure/cable,
 /turf/open/floor/freezer,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "iCO" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/decal/cleanable/dirt,
@@ -9966,7 +9966,7 @@
 "iLI" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/closed/wall/r_wall,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "iMb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -10010,7 +10010,7 @@
 "iSt" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "iSu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -10022,13 +10022,13 @@
 "iTS" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "iUL" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "iVY" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -10059,7 +10059,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "iYQ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -10067,7 +10067,7 @@
 "iZv" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "jaB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door_control{
@@ -10092,7 +10092,7 @@
 /obj/structure/bed,
 /obj/effect/landmark/corpsespawner/PMC,
 /turf/open/floor/wood,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jci" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
@@ -10139,7 +10139,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "jeq" = (
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jeH" = (
 /obj/structure/cable,
 /obj/effect/landmark/xeno_resin_door,
@@ -10158,7 +10158,7 @@
 "jgh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jhk" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/purple2{
@@ -10255,7 +10255,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jsF" = (
 /obj/effect/landmark/patrol_point{
 	id = "SOM_24";
@@ -10273,7 +10273,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "juj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -10293,11 +10293,11 @@
 "jwM" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jwY" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jyd" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/engine,
@@ -10348,7 +10348,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jCI" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -10394,7 +10394,7 @@
 "jHi" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "jHA" = (
 /obj/structure/cable,
 /turf/closed/mineral/smooth/bigred,
@@ -10451,7 +10451,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jOV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -10515,7 +10515,7 @@
 "jYt" = (
 /obj/effect/spawner/modularmap/bigred/lambdalock,
 /turf/open/space/basic,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "kbc" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -10564,7 +10564,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "khk" = (
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
@@ -10575,7 +10575,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "kks" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -10603,7 +10603,7 @@
 "knI" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "knO" = (
 /obj/machinery/recharge_station,
 /obj/effect/landmark/weed_node,
@@ -10660,7 +10660,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "kvX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/job/survivor,
@@ -10693,7 +10693,7 @@
 "kEl" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/marking/bot,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "kEu" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -10753,10 +10753,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "kRr" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "kSj" = (
 /obj/item/stack/sheet/xenochitin,
 /obj/structure/cable,
@@ -10773,7 +10773,7 @@
 /obj/structure/largecrate/mule,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "kUz" = (
 /obj/effect/spawner/modularmap/bigred/east,
 /turf/open/space/basic,
@@ -10818,11 +10818,11 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "kZH" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "lak" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -10870,7 +10870,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "llx" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -10901,7 +10901,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "loH" = (
 /obj/structure/sign/safety/rad_hazard,
 /turf/closed/wall/r_wall,
@@ -10914,7 +10914,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "lpR" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -10961,7 +10961,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "lAq" = (
 /obj/structure/sign/safety/maintenance{
 	dir = 1
@@ -11017,7 +11017,7 @@
 "lIJ" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "lJK" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -11041,7 +11041,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "lNE" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -11080,12 +11080,12 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/yellow2,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "lRk" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "lTA" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -11109,7 +11109,7 @@
 "lVe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "lVi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -11154,7 +11154,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "mdT" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -11216,11 +11216,11 @@
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "mjU" = (
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "mmd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -11237,7 +11237,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "mnP" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -11255,7 +11255,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "msa" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/landmark/weed_node,
@@ -11429,10 +11429,10 @@
 /area/bigredv2/outside/hydroponics)
 "mRr" = (
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "mRs" = (
 /turf/closed/wall/r_wall,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "mRt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -11472,7 +11472,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "mZO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -11510,7 +11510,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "neP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -11556,7 +11556,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "nln" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -11622,7 +11622,7 @@
 /obj/effect/spawner/random/engineering/tool,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "nsO" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/xenomorph,
@@ -11661,7 +11661,7 @@
 "nzC" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/ground/jungle/clear,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "nzJ" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door,
@@ -11713,7 +11713,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "nFa" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -11729,7 +11729,7 @@
 /area/bigredv2/caves/lambda_lab)
 "nFg" = (
 /turf/open/space/basic,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "nGs" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/sandedge,
@@ -11792,7 +11792,7 @@
 "nOA" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "nOC" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
@@ -11812,7 +11812,7 @@
 /area/bigredv2/outside/cargo)
 "nQA" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "nRv" = (
 /obj/structure/bed/chair/office/light,
 /obj/effect/decal/cleanable/dirt,
@@ -11838,11 +11838,11 @@
 "nVU" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "oaq" = (
 /obj/machinery/light,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "obc" = (
 /obj/machinery/light{
 	dir = 4
@@ -11875,7 +11875,7 @@
 "ofP" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "ofR" = (
 /obj/machinery/light{
 	dir = 4
@@ -12144,11 +12144,11 @@
 /obj/structure/largecrate/lisa,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/bot,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "oPY" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "oRK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -12171,11 +12171,11 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "oWc" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "oWn" = (
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
@@ -12247,7 +12247,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "pmR" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/elevatorshaft,
@@ -12338,7 +12338,7 @@
 "pAz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "pBb" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/engineering/tool,
@@ -12421,7 +12421,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "pOu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -12462,7 +12462,7 @@
 "pXY" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "pZN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12475,14 +12475,14 @@
 "qaz" = (
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "qbg" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "qbr" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -12544,7 +12544,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "qjx" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -12685,12 +12685,12 @@
 /area/bigredv2/outside/nw)
 "qMK" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "qMW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "qNa" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -12704,7 +12704,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "qQm" = (
 /obj/structure/flora/pottedplant/ten,
 /obj/effect/ai_node,
@@ -12737,7 +12737,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "qYD" = (
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
@@ -12856,7 +12856,7 @@
 "rlw" = (
 /obj/mecha_wreckage/seraph,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "rlA" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/warning{
@@ -12887,7 +12887,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "rmY" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
@@ -12987,7 +12987,7 @@
 /area/bigredv2/caves/lambda_lab)
 "rDI" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/radiounderground)
+/area/bigredv2/caves/southeast/garbledradio)
 "rFP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/glasses/welding,
@@ -13003,7 +13003,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "rJo" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -13051,7 +13051,7 @@
 "rOm" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "rOr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -13155,7 +13155,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "sjK" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -13179,7 +13179,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "smW" = (
 /obj/effect/spawner/random/misc/structure/stool,
 /obj/effect/ai_node,
@@ -13208,7 +13208,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "sqI" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
@@ -13222,7 +13222,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "svy" = (
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/sandedge{
@@ -13256,7 +13256,7 @@
 "sDV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "sEu" = (
 /obj/structure/table,
 /obj/machinery/computer/pod/old{
@@ -13301,14 +13301,14 @@
 /area/bigredv2/caves/south)
 "sNA" = (
 /turf/open/ground/jungle/clear,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "sNF" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
 "sOq" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "sPO" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -13333,7 +13333,7 @@
 "sTl" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "sTm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -13348,7 +13348,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "sXL" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -13360,7 +13360,7 @@
 /area/bigredv2/outside/c)
 "sZJ" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "sZZ" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
@@ -13454,7 +13454,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "tpG" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -13477,7 +13477,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "tty" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -13551,7 +13551,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "tBD" = (
 /obj/machinery/shower{
 	dir = 8
@@ -13570,7 +13570,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "tFq" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/w)
@@ -13629,7 +13629,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "tLg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/engineer,
@@ -13713,7 +13713,7 @@
 /area/bigredv2/outside/e)
 "tXa" = (
 /turf/open/floor/wood,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "tXP" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
@@ -13801,7 +13801,7 @@
 "ukv" = (
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "ukO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/gibs,
@@ -13879,10 +13879,10 @@
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "uqF" = (
 /turf/closed/wall,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "urz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -13963,21 +13963,21 @@
 "uEL" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/cavetodirt,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "uFe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "uFB" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "uFI" = (
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "uGk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -14047,11 +14047,11 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "uQK" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/radiounderground)
+/area/bigredv2/caves/south/garbledradio)
 "uRH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -14065,7 +14065,7 @@
 "uTU" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "uUl" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood,
@@ -14107,7 +14107,7 @@
 "uXJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "uXM" = (
 /obj/machinery/light{
 	dir = 8
@@ -14120,7 +14120,7 @@
 "vac" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "vbk" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/freezer,
@@ -14210,7 +14210,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "vop" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating,
@@ -14233,14 +14233,14 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "vqu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "vqN" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -14358,7 +14358,7 @@
 "vBO" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "vCI" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/scientist,
@@ -14382,7 +14382,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "vIk" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -14432,7 +14432,7 @@
 "vNN" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/yellow2,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "vNV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -14456,7 +14456,7 @@
 "vRp" = (
 /obj/structure/closet/secure_closet/guncabinet/nt_lab,
 /turf/open/floor/tile/red/full,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "vRL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -14500,7 +14500,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "vUH" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/w)
@@ -14580,7 +14580,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "wdV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -14603,7 +14603,7 @@
 	},
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "wiq" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/light{
@@ -14625,7 +14625,7 @@
 "wmj" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "wmV" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -14683,7 +14683,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "wub" = (
 /obj/item/radio/intercom/general/colony{
 	dir = 1
@@ -14744,7 +14744,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "wzM" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
@@ -14828,7 +14828,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "wPx" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -14901,7 +14901,7 @@
 /area/bigredv2/outside/c)
 "xaJ" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/radiounderground)
+/area/bigredv2/caves/northeast/garbledradio)
 "xba" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -15006,7 +15006,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
-/area/bigredv2/caves/east/radiounderground)
+/area/bigredv2/caves/east/garbledradio)
 "xsz" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
@@ -15089,7 +15089,7 @@
 "xET" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "xFB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -15128,7 +15128,7 @@
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "xLT" = (
 /obj/machinery/light{
 	dir = 4
@@ -15168,7 +15168,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "xPS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -15320,7 +15320,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside/radiounderground)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "yfp" = (
 /obj/structure/table,
 /obj/item/tool/pen/red,

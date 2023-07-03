@@ -421,7 +421,7 @@
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	outside = FALSE
 
-/area/gelida/powergen/radiounderground
+/area/gelida/powergen/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/gelida/cavestructuretwo
@@ -440,19 +440,19 @@
 	name = "Western Caves"
 	icon_state = "yellow"
 
-/area/gelida/caves/west_caves/radiounderground
+/area/gelida/caves/west_caves/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/gelida/caves/central_caves
 	name = "Central Caves"
 	icon_state = "purple"
 
-/area/gelida/caves/central_caves/radiounderground
+/area/gelida/caves/central_caves/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
 /area/gelida/caves/east_caves
 	name = "Eastern Caves"
 	icon_state = "blue-red"
 
-/area/gelida/caves/east_caves/radiounderground
+/area/gelida/caves/east_caves/garbledradio
 	ceiling = CEILING_UNDERGROUND
