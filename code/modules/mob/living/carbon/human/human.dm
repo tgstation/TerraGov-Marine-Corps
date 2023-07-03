@@ -104,24 +104,24 @@
 		//campaign timer
 		if(iscampaigngamemode(SSticker.mode))
 			var/datum/game_mode/hvh/campaign/campaign_mode = SSticker.mode
-			var/datum/game_round/active_round = campaign_mode.current_round
-			if(istype(active_round))
+			var/datum/campaign_mission/active_mission = campaign_mode.current_mission
+			if(istype(active_mission))
 
-				stat("<b>Mission:</b>", active_round.name)
-				stat("<b>Area of operation:</b>", active_round.map_name)
+				stat("<b>Mission:</b>", active_mission.name)
+				stat("<b>Area of operation:</b>", active_mission.map_name)
 
-				if(active_round.max_time_reached)
+				if(active_mission.max_time_reached)
 					stat("<b>Mission status:</b>", "Mission complete")
-				else if(active_round.game_timer)
-					stat("<b>Mission time remaining:</b>", active_round.round_end_countdown())
+				else if(active_mission.game_timer)
+					stat("<b>Mission time remaining:</b>", active_mission.mission_end_countdown())
 
-				if(faction == active_round.starting_faction)
-					stat("<b>[active_round.starting_faction] mission objectives:</b>", active_round.objective_description["starting_faction"])
-				else if(faction == active_round.hostile_faction)
-					stat("<b>[active_round.hostile_faction] mission objectives:</b>", active_round.objective_description["hostile_faction"])
+				if(faction == active_mission.starting_faction)
+					stat("<b>[active_mission.starting_faction] mission objectives:</b>", active_mission.objective_description["starting_faction"])
+				else if(faction == active_mission.hostile_faction)
+					stat("<b>[active_mission.hostile_faction] mission objectives:</b>", active_mission.objective_description["hostile_faction"])
 				else if(faction == FACTION_NEUTRAL)
-					stat("<b>[active_round.starting_faction] Mission objectives:</b>", active_round.objective_description["starting_faction"])
-					stat("<b>[active_round.hostile_faction] Mission objectives:</b>", active_round.objective_description["hostile_faction"])
+					stat("<b>[active_mission.starting_faction] Mission objectives:</b>", active_mission.objective_description["starting_faction"])
+					stat("<b>[active_mission.hostile_faction] Mission objectives:</b>", active_mission.objective_description["hostile_faction"])
 
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)

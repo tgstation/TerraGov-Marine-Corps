@@ -8,12 +8,12 @@
 	var/victory_points = 0
 	///Dictates how many respawns this faction has access to overall
 	var/total_attrition_points = 30
-	///How many attrition points have been dedicated to the current round
+	///How many attrition points have been dedicated to the current mission
 	var/active_attrition_points = 0
-	///Future rounds this faction can currently choose from
-	var/list/datum/game_round/potential_rounds = list(/datum/game_round/tdm, /datum/game_round/tdm/lv624, /datum/game_round/tdm/desparity) //placeholders
-	///Rounds this faction has succesfully completed
-	var/list/datum/game_round/finished_rounds = list()
+	///Future missions this faction can currently choose from
+	var/list/datum/campaign_mission/potential_missions = list(/datum/campaign_mission/tdm, /datum/campaign_mission/tdm/lv624, /datum/campaign_mission/tdm/desparity) //placeholders
+	///Missions this faction has succesfully completed
+	var/list/datum/campaign_mission/finished_missions = list()
 	///List of all rewards the faction has earnt this campaign
 	var/list/datum/campaign_reward/faction_rewards = list()
 

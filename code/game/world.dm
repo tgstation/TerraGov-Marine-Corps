@@ -72,7 +72,7 @@ GLOBAL_VAR(restart_counter)
 	//trigger things to run the whole process
 	Master.sleep_offline_after_initializations = FALSE
 	SSticker.start_immediately = TRUE
-	CONFIG_SET(number/round_end_countdown, 0)
+	CONFIG_SET(number/mission_end_countdown, 0)
 	var/datum/callback/cb
 #ifdef UNIT_TESTS
 	cb = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(RunUnitTests))

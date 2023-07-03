@@ -3,7 +3,7 @@
 /datum/game_mode/hvh/campaign
 	name = "Campaign"
 	config_tag = "Campaign"
-	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS //any changes needed? MODE_LATE_OPENING_SHUTTER_TIMER handled by rounds
+	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS //any changes needed? MODE_LATE_OPENING_SHUTTER_TIMER handled by missions
 	shutters_drop_time = 2 MINUTES //will need changing
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE) //need changing to these lists
 	blacklist_ship_maps = null
@@ -23,8 +23,8 @@
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/standard = -1,
 	)
-	///The current round type being played
-	var/datum/game_round/current_round = /datum/game_round/tdm
+	///The current mission type being played
+	var/datum/campaign_mission/current_mission = /datum/campaign_mission/tdm
 	///campaign stats organised by faction
 	var/list/datum/faction_stats/stat_list = list()
 
@@ -45,7 +45,7 @@
 	. = ..()
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //normal ground map is still loaded, will need to see if we can even stop that...
 		qdel(exit_point)
- 	load_new_round(current_round, factions[1]) //we store the initial round in current_round. This might work better in post_setup, needs testing
+ 	load_new_mission(current_mission, factions[1]) //we store the initial mission in current_mission. This might work better in post_setup, needs testing
 
 	for(var/i in stat_list)
 		var/datum/faction_stats/selected_faction = stat_list[i]
@@ -68,9 +68,9 @@
 	if(round_finished)
 		return PROCESS_KILL
 
-	if(!istype(current_round))  //runtimes as process happens before post_setup, probably need a better method
+	if(!istype(current_mission))  //runtimes as process happens before post_setup, probably need a better method
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0 || current_round.round_state != GAME_ROUND_STATE_ACTIVE)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0 || current_mission.mission_state != MISSION_STATE_ACTIVE)
 		return
 	announce_bioscans_marine_som() //todo: make this faction neutral
 
@@ -97,22 +97,22 @@
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
-///selects the next round to be played
-/datum/game_mode/hvh/campaign/proc/select_next_round(mob/selector) //basic placeholder
-	var/choice = tgui_input_list(selector, "What course of action would you like to take?", "Mission selection", stat_list[selector.faction].potential_rounds, timeout = 2 MINUTES)
+///selects the next mission to be played
+/datum/game_mode/hvh/campaign/proc/select_next_mission(mob/selector) //basic placeholder
+	var/choice = tgui_input_list(selector, "What course of action would you like to take?", "Mission selection", stat_list[selector.faction].potential_missions, timeout = 2 MINUTES)
 	if(!choice)
-		choice = pick(stat_list[selector.faction].potential_rounds) //placeholder pick
+		choice = pick(stat_list[selector.faction].potential_missions) //placeholder pick
 	//probably have some time limit on the choice, so need some logic for that
-	load_new_round(choice, selector.faction)
+	load_new_mission(choice, selector.faction)
 
 	select_attrition_points() //both teams choose the number of lads to commit
 
-///sets up the newly selected round
-/datum/game_mode/hvh/campaign/proc/load_new_round(datum/game_round/new_round, acting_faction)
-	current_round = new new_round(acting_faction)
+///sets up the newly selected mission
+/datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission, acting_faction)
+	current_mission = new new_mission(acting_faction)
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
-///each faction chooses how many attrition points to use for the upcoming round
+///each faction chooses how many attrition points to use for the upcoming mission
 /datum/game_mode/hvh/campaign/proc/select_attrition_points() //placeholder basic
 	for(var/i in stat_list) //note to self: does the input mean this gets delayed for one team until the other chooses?
 		var/datum/faction_stats/team = stat_list[i]
@@ -122,8 +122,8 @@
 		team.total_attrition_points -= choice
 		team.active_attrition_points = choice //unused points are lost
 
-///ends the current round and cleans up
-/datum/game_mode/hvh/campaign/proc/end_current_round()
+///ends the current mission and cleans up
+/datum/game_mode/hvh/campaign/proc/end_current_mission()
 	if(check_finished()) //check if the game should end
 		return
 	send_global_signal(COMSIG_GLOB_CLOSE_TIMED_SHUTTERS)
@@ -137,7 +137,7 @@
 		qdel(exit_point) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
 
 	//add a delay probably
-	select_next_round(stat_list[current_round.winning_faction].get_selector()) //winning team chooses new round
+	select_next_mission(stat_list[current_mission.winning_faction].get_selector()) //winning team chooses new mission
 
 ///////////////////////////respawn stuff/////////
 
@@ -153,9 +153,9 @@
 		return FALSE
 
 	//start of copy paste proc
-	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
+	var/list/dat = list("<div class='notice'>Mission Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
 	if(!GLOB.enter_allowed)
-		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
+		dat += "<div class='notice red'>You may no longer join the mission.</div><br>"
 	var/forced_faction
 	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
 		if(candidate.faction in SSticker.mode.get_joinable_factions(FALSE))
@@ -231,7 +231,7 @@
 		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
 		return
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
+		to_chat(usr, "<span class='warning'>The mission is either not ready, or has already finished!<spawn>")
 		return
 	if(!GLOB.enter_allowed)
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
@@ -241,7 +241,7 @@
 		if(job_datum.job_flags & JOB_FLAG_SPECIALNAME)
 			name_to_check = job_datum.get_special_name(ready_candidate.client)
 		if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(name_to_check))
-			to_chat(usr, "<span class='warning'>Someone has already joined the round with this character name. Please pick another.<spawn>")
+			to_chat(usr, "<span class='warning'>Someone has already joined the mission with this character name. Please pick another.<spawn>")
 			return
 	if(!SSjob.AssignRole(ready_candidate, job_datum, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
@@ -340,7 +340,7 @@
 	. = ..()
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
-		CRASH("game_round loaded without campaign game mode")
+		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/datum/faction_stats/team = current_mode.stat_list[faction]
 
@@ -354,28 +354,28 @@
 	data["ui_theme"] = ui_theme
 
 	//complex ones
-	var/list/potential_rounds_data = list()
-	for(var/datum/game_round/potential_round AS in team.potential_rounds)
-		var/list/round_data = list() //each relevant bit of info regarding the round is added to the list. Many more to come
-		round_data["typepath"] = potential_round.type
-		round_data["name"] = potential_round.name
-		round_data["map_name"] = potential_round.map_name
-		round_data["objective_description"] = potential_round.objective_description["starting_faction"]
-		potential_rounds_data += list(round_data)
-	data["potential_rounds"] = potential_rounds_data
+	var/list/potential_missions_data = list()
+	for(var/datum/campaign_mission/potential_mission AS in team.potential_missions)
+		var/list/mission_data = list() //each relevant bit of info regarding the mission is added to the list. Many more to come
+		mission_data["typepath"] = potential_mission.type
+		mission_data["name"] = potential_mission.name
+		mission_data["map_name"] = potential_mission.map_name
+		mission_data["objective_description"] = potential_mission.objective_description["starting_faction"]
+		potential_missions_data += list(mission_data)
+	data["potential_missions"] = potential_missions_data
 
-	var/list/finished_rounds_data = list()
-	for(var/datum/game_round/finished_round AS in team.finished_rounds)
-		var/list/round_data = list() //each relevant bit of info regarding the round is added to the list. Many more to come
-		round_data["name"] = finished_round.name
-		round_data["map_name"] = finished_round.map_name
-		round_data["starting_faction"] = finished_round.starting_faction
-		round_data["hostile_faction"] = finished_round.hostile_faction
-		round_data["winning_faction"] = finished_round.winning_faction
-		round_data["outcome"] = finished_round.outcome
-		round_data["objective_description"] = finished_round.objective_description[faction == finished_round.starting_faction ? "starting_faction" : "hostile_faction"]
-		finished_rounds_data += list(round_data)
-	data["finished_rounds"] = finished_rounds_data
+	var/list/finished_missions_data = list()
+	for(var/datum/campaign_mission/finished_mission AS in team.finished_missions)
+		var/list/mission_data = list() //each relevant bit of info regarding the mission is added to the list. Many more to come
+		mission_data["name"] = finished_mission.name
+		mission_data["map_name"] = finished_mission.map_name
+		mission_data["starting_faction"] = finished_mission.starting_faction
+		mission_data["hostile_faction"] = finished_mission.hostile_faction
+		mission_data["winning_faction"] = finished_mission.winning_faction
+		mission_data["outcome"] = finished_mission.outcome
+		mission_data["objective_description"] = finished_mission.objective_description[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
+		finished_missions_data += list(mission_data)
+	data["finished_missions"] = finished_missions_data
 
 	var/list/faction_rewards_data = list()
 	for(var/datum/campaign_reward/reward AS in team.faction_rewards)
@@ -404,16 +404,16 @@
 		return
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
-		CRASH("game_round loaded without campaign game mode")
+		CRASH("campaign_mission loaded without campaign game mode")
 	var/datum/faction_stats/team = current_mode.stat_list[faction]
 	switch(action)
 		if("set_attrition_points")
 			team.total_attrition_points -= params["attrition_points"]
 			team.active_attrition_points = params["attrition_points"] //unused points are lost
 
-		if("set_next_round")
-			var/datum/game_round/choice = team.potential_rounds[text2path(params["new_round"])] //locate or something maybe?
-			current_mode.load_new_round(choice, faction)
+		if("set_next_mission")
+			var/datum/campaign_mission/choice = team.potential_missions[text2path(params["new_mission"])] //locate or something maybe?
+			current_mode.load_new_mission(choice, faction)
 
 		if("activate_reward")
 			var/datum/campaign_reward/choice = team.faction_rewards[text2path(params["selected_reward"])] //locate or something maybe?

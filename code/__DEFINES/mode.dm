@@ -157,13 +157,13 @@
 #define SENSOR_CAP_ADDITION_TIME_BONUS 3 MINUTES //additional time granted by capturing a sensor tower
 #define SENSOR_CAP_TIMER_PAUSED "paused"
 
-//game round defines
-#define GAME_ROUND_STATE_NEW "game round state new"
-#define GAME_ROUND_STATE_ACTIVE "game round state active"
-#define GAME_ROUND_STATE_FINISHED "game round state finished"
+//mission defines
+#define MISSION_STATE_NEW "mission state new"
+#define MISSION_STATE_ACTIVE "mission state active"
+#define MISSION_STATE_FINISHED "mission state finished"
 
-#define GAME_ROUND_OUTCOME_MAJOR_VICTORY "major victory"
-#define GAME_ROUND_OUTCOME_MINOR_VICTORY "minor victory"
-#define GAME_ROUND_OUTCOME_DRAW "draw"
-#define GAME_ROUND_OUTCOME_MINOR_LOSS "minor loss"
-#define GAME_ROUND_OUTCOME_MAJOR_LOSS "major loss"
+#define MISSION_OUTCOME_MAJOR_VICTORY "major victory"
+#define MISSION_OUTCOME_MINOR_VICTORY "minor victory"
+#define MISSION_OUTCOME_DRAW "draw"
+#define MISSION_OUTCOME_MINOR_LOSS "minor loss"
+#define MISSION_OUTCOME_MAJOR_LOSS "major loss"
