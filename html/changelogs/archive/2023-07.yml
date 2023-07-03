@@ -19,3 +19,15 @@
   novaepee:
   - spellcheck: fix grammar on defender's desc
   - imageadd: new mob sprites for sg-29
+2023-07-03:
+  Lumipharon:
+  - bugfix: fixed a tile issue
+  ivanmixo:
+  - bugfix: Fixed researcher/md/cmo spawning without their lemo bottle and tweezers
+      if they have the no backpack pref enabled
+  - bugfix: Fixes ghosting humans being set to undefibbable and not processing
+  novaepee:
+  - code_imp: add in mk1 arm and leg plates description that they have the same armor
+      and slowdown to tell players that only changing chestplate influence armor and
+      slowdown
+  - rscadd: Send order is added in text ui so that marines can read

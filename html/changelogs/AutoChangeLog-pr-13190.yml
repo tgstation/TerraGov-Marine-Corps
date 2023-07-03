@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixed researcher/md/cmo spawning without their lemo bottle and tweezers if they have the no backpack pref enabled"
