@@ -374,6 +374,7 @@
 	akimbo_additional_delay = 0.5
 
 	min_scatter = 2
+	min_scatter_unwielded = 3
 	max_scatter = 15
 	max_scatter_unwielded = 25
 	scatter_increase = 2
