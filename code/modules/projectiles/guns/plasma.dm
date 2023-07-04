@@ -109,15 +109,14 @@
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/unremovable/plasma_sniper_scope,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/plasma_sniper_scope)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle
 	name = "\improper PL-38 plasma rifle"
