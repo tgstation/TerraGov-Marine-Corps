@@ -64,7 +64,7 @@
 		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
-	if(is_wired && ismob(mover) && (get_dir(loc, target) & dir))
+	if(is_wired && density && ismob(mover) && (get_dir(loc, target) & dir))
 		return FALSE
 
 	return ..()
