@@ -135,7 +135,7 @@
 
 //This proc is what a robot calls when they try to enter a cradle on their own.
 /obj/machinery/robotic_cradle/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
-	if(dragger.incapacitated() || !isrobot(dropped) || ishumanbasic(dragger))
+	if(dragger.incapacitated() || !ishuman(dragger) || !isrobot(dropped))
 		return
 
 	if(occupant)
