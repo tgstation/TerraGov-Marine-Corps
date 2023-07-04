@@ -193,7 +193,7 @@
 		highlight?.icon_state = initial(highlight.icon_state) + "_[highlight.current_variant]"
 	if(parent)
 		parent.update_clothing_icon()
-	highlight.update_icon()
+	highlight?.update_icon()
 
 /obj/item/armor_module/armor/cape/activate(mob/living/user)
 	. = ..()
@@ -272,7 +272,6 @@
 		"none",
 		"normal",
 	)
-
 
 /obj/item/armor_module/armor/cape_highlight/handle_color(datum/source, mob/user, list/obj/item/secondaries)
 	if(current_variant == "none" && (length(icon_state_variants) == 1))

@@ -48,11 +48,11 @@
 	for(var/datum/item_representation/armor_module/module AS in attachments)
 		if(!initial(module.item_type.icon_state))
 			continue
-		var/icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[module.variant]" : "")
+		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[module.variant]" : "")
 		if(initial(module.item_type.greyscale_config))
-			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  icon_state, dir = SOUTH)
+			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  second_icon_state, dir = SOUTH)
 		else
-			icon_to_convert = icon(initial(module.item_type.icon), icon_state, SOUTH)
+			icon_to_convert = icon(initial(module.item_type.icon), second_icon_state, SOUTH)
 
 		var/translatex = NO_OFFSET
 		var/translatey = MODULAR_ARMOR_OFFSET_Y
@@ -123,11 +123,11 @@
 	for(var/datum/item_representation/armor_module/module AS in attachments)
 		if(!initial(module.item_type.icon_state))
 			continue
-		var/icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[module.variant]" : "")
+		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[module.variant]" : "")
 		if(initial(module.item_type.greyscale_config))
-			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  icon_state, dir = SOUTH)
+			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  second_icon_state, dir = SOUTH)
 		else
-			icon_to_convert = icon(initial(module.item_type.icon), icon_state, SOUTH)
+			icon_to_convert = icon(initial(module.item_type.icon), second_icon_state, SOUTH)
 
 		var/translatex = NO_OFFSET
 		var/translatey = MODULAR_ARMOR_OFFSET_Y

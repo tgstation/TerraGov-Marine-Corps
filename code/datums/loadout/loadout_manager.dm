@@ -177,7 +177,9 @@
 		if(version < 14)
 			if(ispath(module.item_type, /obj/item/armor_module/armor/cape))
 				module.variant = "normal"
-				if(module.item_type != /obj/item/armor_module/armor/cape)
+				if(module.item_type == /obj/item/armor_module/armor/kama)
+					module.variant = "kama"
+				else if(module.item_type != /obj/item/armor_module/armor/cape)
 					var/datum/item_representation/armor_module/new_cape = new
 					new_cape.item_type = /obj/item/armor_module/armor/cape
 					new_cape.attachments = module.attachments
@@ -194,8 +196,10 @@
 					attachments.Remove(module)
 					attachments.Add(new_cape)
 			if(ispath(module.item_type, /obj/item/armor_module/armor/cape_highlight))
-				module.variant = "normal"
-				if(module.item_type != /obj/item/armor_module/armor/cape_highlight)
+				module.variant = "none"
+				if(module.item_type == /obj/item/armor_module/armor/cape_highlight/kama)
+					module.variant = "kama"
+				else if(module.item_type != /obj/item/armor_module/armor/cape_highlight)
 					var/datum/item_representation/armor_module/armor/new_highlight = new
 					new_highlight.item_type = /obj/item/armor_module/armor/cape_highlight
 					new_highlight.attachments = module.attachments
