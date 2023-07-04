@@ -24,6 +24,11 @@
 		"starting_faction" = "starting faction objectives here",
 		"hostile_faction" = "hostile faction objectives here",
 	)
+	///Detailed mission description
+	var/list/mission_brief = list(
+		"starting_faction" = "starting faction mission brief here",
+		"hostile_faction" = "hostile faction mission brief here",
+	)
 	///Victory point rewards for the mission type
 	var/list/victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(0, 0),
@@ -41,7 +46,10 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 0),
 	)
 	///Any additional reward flags, for display purposes
-	var/additional_rewards = null //maybe getting ugh, but might need some reward datum, so they're not tied to a specific mission type
+	var/additional_rewards = list(
+		"starting_faction" = "starting faction mission rewards here",
+		"hostile_faction" = "hostile faction mission rewards here",
+	) //todo: list of the actual reward datums, or just a desc?
 
 	/// Timer used to calculate how long till mission ends
 	var/game_timer

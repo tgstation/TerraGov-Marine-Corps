@@ -361,6 +361,8 @@
 		mission_data["name"] = potential_mission.name
 		mission_data["map_name"] = potential_mission.map_name
 		mission_data["objective_description"] = potential_mission.objective_description["starting_faction"]
+		mission_data["mission_brief"] = potential_mission.mission_brief["starting_faction"]
+		mission_data["mission_rewards"] = potential_mission.additional_rewards["starting_faction"]
 		potential_missions_data += list(mission_data)
 	data["potential_missions"] = potential_missions_data
 
@@ -374,6 +376,8 @@
 		mission_data["winning_faction"] = finished_mission.winning_faction
 		mission_data["outcome"] = finished_mission.outcome
 		mission_data["objective_description"] = finished_mission.objective_description[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
+		mission_data["mission_brief"] = potential_mission.mission_brief[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
+		mission_data["mission_rewards"] = potential_mission.additional_rewards[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
 		finished_missions_data += list(mission_data)
 	data["finished_missions"] = finished_missions_data
 
