@@ -25,7 +25,7 @@
 	if(!use(1))
 		return
 	playsound(T, 'sound/weapons/genhit.ogg', 25, 1)
-	T.ChangeTurf(turf_type, list(/turf/open/floor/plating))
+	T.PlaceOnTop(turf_type)
 
 /obj/item/stack/tile/plasteel
 	force = 6
