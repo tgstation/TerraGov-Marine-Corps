@@ -57,7 +57,7 @@
 /area/bigredv2/outside/general_offices)
 "cy" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,

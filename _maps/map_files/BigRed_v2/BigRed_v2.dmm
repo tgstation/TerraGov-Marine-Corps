@@ -182,7 +182,7 @@
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "acS" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -320,7 +320,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "aeU" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
@@ -855,7 +855,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ajp" = (
 /obj/structure/cable,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -1501,7 +1501,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "anc" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/tile/red/redtaupecorner,
@@ -2212,7 +2212,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/darkish,
@@ -3819,7 +3819,7 @@
 /obj/structure/sign/safety/hydro{
 	dir = 1
 	},
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/freezer,
@@ -4438,7 +4438,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMK" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/yellow/full,
@@ -7349,7 +7349,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDs" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2/corner{
@@ -7984,7 +7984,7 @@
 "cZU" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor,
@@ -10370,7 +10370,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -10439,7 +10439,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /obj/effect/landmark/xeno_resin_door,

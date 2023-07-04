@@ -226,7 +226,7 @@
 /obj/machinery/light/small,
 /obj/structure/closet/crate/critter,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/iron/dark,

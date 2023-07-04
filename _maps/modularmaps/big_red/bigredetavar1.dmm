@@ -97,7 +97,7 @@
 /area/bigredv2/outside/general_offices)
 "fP" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,

@@ -952,7 +952,7 @@
 /area/space)
 "biq" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -1748,7 +1748,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "cfp" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -4101,7 +4101,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "flk" = (
@@ -4300,7 +4300,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "fyc" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
@@ -4373,7 +4373,7 @@
 	},
 /area/mainship/living/chapel)
 "fBs" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -5882,7 +5882,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "hNd" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -7732,7 +7732,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "kta" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -8016,7 +8016,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
 "kFu" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -9036,7 +9036,7 @@
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "lIU" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/blue{
@@ -11288,7 +11288,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/bridgebunks)
 "oEb" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -11877,7 +11877,7 @@
 "pmY" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/atmos_alert,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "pnf" = (
@@ -12665,7 +12665,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/engineering/engineering_workshop)
 "qkW" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/machinery/photocopier,
@@ -12978,7 +12978,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "qFl" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /obj/structure/sign/poster,
@@ -13457,7 +13457,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/structure/table/mainship/nometal,
 /obj/item/folder/black,
 /obj/item/book/manual/orbital_cannon_manual,
@@ -13656,7 +13656,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "ruM" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -13841,7 +13841,7 @@
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "rIq" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "rJe" = (
@@ -14717,7 +14717,7 @@
 	dir = 8;
 	on = 1
 	},
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -15818,7 +15818,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar/droppod)
 "uhP" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "uig" = (
@@ -16034,7 +16034,7 @@
 "uvK" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/engineering/toolbox,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
@@ -16539,7 +16539,7 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "uZR" = (
@@ -16702,7 +16702,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "vhG" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -17622,7 +17622,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 1
 	},
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/orange/corner,
@@ -18897,7 +18897,7 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "xXT" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /obj/structure/sign/prop1,

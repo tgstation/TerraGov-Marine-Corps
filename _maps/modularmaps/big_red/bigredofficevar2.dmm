@@ -106,7 +106,7 @@
 	},
 /obj/item/binoculars,
 /obj/item/facepaint/sniper,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "bO" = (
@@ -299,7 +299,7 @@
 /turf/open/floor/mainship/orange/full,
 /area/bigredv2/outside/office_complex)
 "hC" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "hT" = (
@@ -321,7 +321,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "iY" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo,
@@ -798,7 +798,7 @@
 /area/bigredv2/outside/e)
 "xp" = (
 /obj/machinery/bodyscanner,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile,
@@ -1312,7 +1312,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Ov" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner{
@@ -1641,7 +1641,7 @@
 /area/bigredv2/outside/office_complex)
 "XQ" = (
 /obj/machinery/computer/crew,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/blue{

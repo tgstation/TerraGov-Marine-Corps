@@ -934,7 +934,7 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/storage)
 "adk" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/structure/bed/chair/wheelchair{
@@ -1293,7 +1293,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering/atmos)
 "aer" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /obj/structure/table/mainship/nometal,
@@ -1443,7 +1443,7 @@
 	},
 /area/sulaco/medbay/storage)
 "aeJ" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/machinery/light/mainship/small{
 	dir = 1
 	},
@@ -2530,7 +2530,7 @@
 "anq" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/item/flashlight,
@@ -2560,7 +2560,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/cafeteria)
 "anB" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
 "anC" = (
@@ -2726,7 +2726,7 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "aoz" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aoA" = (
@@ -2920,7 +2920,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
 "apD" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -3187,7 +3187,7 @@
 /obj/machinery/computer/squad_changer{
 	density = 0
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "aqU" = (
@@ -4089,7 +4089,7 @@
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
 "auA" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
 "auB" = (
@@ -4418,7 +4418,7 @@
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "avK" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/prison,
 /area/sulaco/bridge/office)
 "avL" = (
@@ -4777,7 +4777,7 @@
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "axV" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/structure/table/reinforced,
@@ -5078,7 +5078,7 @@
 /area/shuttle/distress/arrive_1)
 "azs" = (
 /obj/structure/closet/secure_closet/staff_officer,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/prison/red/full{
@@ -5232,7 +5232,7 @@
 /turf/open/floor/prison,
 /area/sulaco/engineering/storage)
 "aAs" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/prison,
 /area/sulaco/engineering/storage)
 "aAt" = (
@@ -6078,7 +6078,7 @@
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "aEl" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -6253,7 +6253,7 @@
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "aEW" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /obj/machinery/light/mainship,
@@ -6432,7 +6432,7 @@
 /area/sulaco/engineering/engine)
 "aFT" = (
 /obj/effect/landmark/start/job/researcher,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
@@ -6473,7 +6473,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -6927,7 +6927,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "aJo" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -7898,7 +7898,7 @@
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "aOH" = (
 /obj/structure/cable,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
 "aOK" = (
@@ -8241,7 +8241,7 @@
 /area/sulaco/morgue)
 "aRa" = (
 /obj/machinery/vending/medical/shipside,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/machinery/firealarm,
@@ -8516,7 +8516,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aSs" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/structure/morgue,
@@ -8694,7 +8694,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 10
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "aTq" = (
@@ -9723,7 +9723,7 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bbJ" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -10668,7 +10668,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
 "cba" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/prison/whitegreen/corner,
@@ -10841,7 +10841,7 @@
 	pixel_x = 24;
 	pixel_y = 3
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
 "cqo" = (
@@ -11047,7 +11047,7 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "cCN" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/prison/yellow{
@@ -11747,7 +11747,7 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/engineering/atmos)
 "dzL" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /obj/machinery/light/mainship,
@@ -12969,7 +12969,7 @@
 /obj/item/taperecorder,
 /obj/item/taperecorder,
 /obj/machinery/recharger,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -13104,7 +13104,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
 "frX" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/structure/bed/chair/sofa/left{
@@ -15042,7 +15042,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 4
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -15068,7 +15068,7 @@
 /area/sulaco/medbay)
 "idd" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/structure/closet/emcloset,
@@ -15371,7 +15371,7 @@
 "izb" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/black,
@@ -17348,7 +17348,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/sulaco/hangar/droppod)
 "lfO" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -17477,7 +17477,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -18783,7 +18783,7 @@
 /turf/open/floor/tile/chapel,
 /area/sulaco/marine/chapel)
 "nbD" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
@@ -18860,7 +18860,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "niH" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/tcomms,
@@ -20620,7 +20620,7 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "pwN" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -20933,7 +20933,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 10
 	},
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/tile/chapel{
@@ -22764,7 +22764,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "slc" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/structure/window/reinforced/windowstake{
@@ -23037,7 +23037,7 @@
 /turf/open/floor/prison,
 /area/sulaco/security)
 "sFN" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "sGG" = (
@@ -23046,7 +23046,7 @@
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
 "sHO" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "sId" = (
@@ -23250,7 +23250,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "sTe" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -23907,7 +23907,7 @@
 /area/sulaco/firingrange)
 "tIf" = (
 /obj/structure/closet/secure_closet/pilot_officer,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -24191,7 +24191,7 @@
 	},
 /area/sulaco/marine/chapel)
 "ual" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -24364,7 +24364,7 @@
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
 "ulK" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/hydro,
@@ -25606,7 +25606,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "vXS" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/prison/red,
@@ -26070,7 +26070,7 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "wKl" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/effect/ai_node,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
@@ -26816,7 +26816,7 @@
 /area/sulaco/hallway/lower_foreship)
 "xKf" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/prison/green{

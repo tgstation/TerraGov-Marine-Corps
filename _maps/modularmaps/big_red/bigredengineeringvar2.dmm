@@ -37,7 +37,7 @@
 /area/bigredv2/outside/engineering)
 "cD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor,

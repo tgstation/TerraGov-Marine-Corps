@@ -5756,7 +5756,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/weapon_room)
 "qU" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/black{
@@ -7381,7 +7381,7 @@
 	},
 /area/mainship/living/evacuation)
 "vQ" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/research,
@@ -7755,7 +7755,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "wV" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "wW" = (
@@ -7864,7 +7864,7 @@
 /obj/machinery/cell_charger,
 /obj/effect/spawner/random/engineering/powercell,
 /obj/effect/spawner/random/engineering/powercell,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -8222,7 +8222,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "yn" = (
@@ -9227,14 +9227,14 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "AV" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
 "AW" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/self_destruct)
 "AX" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/black{
@@ -9500,7 +9500,7 @@
 /obj/item/tool/plantspray/weeds,
 /obj/item/tool/plantspray/weeds,
 /obj/structure/closet/crate/freezer,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /obj/item/paper/hydroponics,
@@ -12422,7 +12422,7 @@
 	},
 /area/mainship/living/briefing)
 "KD" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -12792,7 +12792,7 @@
 	},
 /area/mainship/living/briefing)
 "LE" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -13213,7 +13213,7 @@
 	},
 /area/mainship/living/briefing)
 "MQ" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/weapon_room)
 "MR" = (
@@ -13839,7 +13839,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
 "OC" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
@@ -15846,7 +15846,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "UG" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -16613,7 +16613,7 @@
 	},
 /area/mainship/living/grunt_rnr)
 "WU" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/red{
@@ -16904,7 +16904,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "XQ" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -17335,7 +17335,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/corner,

@@ -610,7 +610,7 @@
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/hydroponics/aux)
 "WZ" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},

@@ -722,7 +722,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
 "acF" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Lower Oxygen Supply Console";
 	output_tag = "oxygen_lower_out";
@@ -1240,7 +1240,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_garden)
 "aeH" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/side,
@@ -1852,7 +1852,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "aAV" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -1907,7 +1907,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "aCI" = (
@@ -1991,7 +1991,7 @@
 /turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "aFq" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "aGn" = (
@@ -2014,7 +2014,7 @@
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "aGG" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/machinery/vending/medical/shipside,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/medical_science)
@@ -3882,7 +3882,7 @@
 	},
 /area/mainship/command/cic)
 "bmF" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
@@ -3890,7 +3890,7 @@
 	},
 /area/mainship/living/numbertwobunks)
 "bne" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -4022,7 +4022,7 @@
 /obj/structure/bed/chair/sofa/right{
 	dir = 4
 	},
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -4176,7 +4176,7 @@
 /area/mainship/squads/req)
 "bpw" = (
 /obj/structure/closet/crate,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "bpx" = (
@@ -4797,7 +4797,7 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -7852,7 +7852,7 @@
 /area/mainship/hull/starboard_hull)
 "cmC" = (
 /obj/machinery/iv_drip,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -7956,7 +7956,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
 "cuB" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -8567,7 +8567,7 @@
 /area/mainship/hallways/starboard_hallway)
 "dvM" = (
 /obj/structure/cable,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/ai,
@@ -9308,7 +9308,7 @@
 /area/mainship/hallways/aft_hallway)
 "eKQ" = (
 /obj/effect/landmark/start/job/staffofficer,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/silver{
@@ -10321,7 +10321,7 @@
 /area/mainship/hallways/bow_hallway)
 "gra" = (
 /obj/structure/closet,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
 "gtg" = (
@@ -11048,7 +11048,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/bridge)
 "hBg" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -11146,7 +11146,7 @@
 /area/mainship/hallways/port_hallway)
 "hJa" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "hKi" = (
@@ -11593,7 +11593,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 4
 	},
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/silver{
@@ -11697,7 +11697,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "iNc" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
 "iOm" = (
@@ -11835,7 +11835,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar/droppod)
 "iZE" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -12460,7 +12460,7 @@
 /area/mainship/living/commandbunks)
 "knI" = (
 /obj/machinery/vending/marineFood,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -15210,7 +15210,7 @@
 	},
 /area/mainship/engineering/lower_engineering)
 "oGS" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/orange{
@@ -16174,7 +16174,7 @@
 	},
 /area/mainship/living/tankerbunks)
 "qod" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -16210,7 +16210,7 @@
 /area/mainship/hull/starboard_hull)
 "qpS" = (
 /obj/structure/closet/secure_closet/medical_doctor,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/surgery_hallway)
 "qqj" = (
@@ -16701,7 +16701,7 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/living/port_emb)
 "qZK" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -16905,7 +16905,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -17018,7 +17018,7 @@
 /turf/open/floor/plating,
 /area/mainship/command/cic)
 "rFl" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/machinery/computer/arcade,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
@@ -17142,7 +17142,7 @@
 /obj/item/binoculars,
 /obj/item/book/manual/security_space_law,
 /obj/item/storage/box/cups,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -18885,7 +18885,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "uXD" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "uYg" = (
@@ -20609,7 +20609,7 @@
 "ydD" = (
 /obj/structure/closet,
 /obj/item/toy/beach_ball,
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "yea" = (

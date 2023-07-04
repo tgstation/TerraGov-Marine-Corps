@@ -780,7 +780,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "GX" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /obj/structure/cable,
