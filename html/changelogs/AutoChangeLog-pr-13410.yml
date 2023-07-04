@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes:
+  - rscadd: "Added per client vote choice randomization."
