@@ -1210,7 +1210,7 @@
 /area/bigredv2/outside/medical)
 "IV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "Jw" = (

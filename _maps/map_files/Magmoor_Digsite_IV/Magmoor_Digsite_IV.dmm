@@ -2589,7 +2589,7 @@
 	},
 /area/magmoor/research/containment)
 "bNi" = (
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/structure/mirror{
 	dir = 4
 	},
@@ -4814,7 +4814,7 @@
 /obj/item/tool/stamp,
 /obj/structure/table/mainship,
 /obj/item/tool/pen/blue,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -5101,7 +5101,7 @@
 /obj/machinery/shower{
 	pixel_y = 15
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -7430,7 +7430,7 @@
 /area/magmoor/hydroponics/south)
 "fnF" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -8027,7 +8027,7 @@
 	},
 /area/magmoor/cargo/storage/secure/south)
 "fJA" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
@@ -8117,7 +8117,7 @@
 /area/magmoor/civilian/rnr)
 "fLV" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -8629,7 +8629,7 @@
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "ghh" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/containment)
 "ghi" = (
@@ -10416,7 +10416,7 @@
 /area/magmoor/civilian/arrival/east)
 "hGq" = (
 /obj/effect/turf_decal/warning_stripes/box,
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "hGD" = (
@@ -11411,7 +11411,7 @@
 /area/magmoor/landing)
 "itd" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -11478,7 +11478,7 @@
 /obj/machinery/shower{
 	dir = 1
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -13009,7 +13009,7 @@
 /area/magmoor/engi/power)
 "jAF" = (
 /obj/structure/sink,
-/obj/item/tool/soap/deluxe,
+/obj/effect/spawner/random/misc/soap/deluxeweighted,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -15906,7 +15906,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -16034,7 +16034,7 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/research)
 "lKI" = (
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/structure/table/mainship,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
@@ -16313,7 +16313,7 @@
 /area/magmoor/medical/chemistry)
 "lUN" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -17207,7 +17207,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/structure/curtain/shower,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
@@ -17907,7 +17907,7 @@
 /area/magmoor/compound/south)
 "nhU" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -21720,7 +21720,7 @@
 /area/magmoor/compound/south)
 "pUA" = (
 /obj/structure/sink,
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/tile/cmo,
 /area/magmoor/security/infocenter)
 "pUZ" = (
@@ -22445,7 +22445,7 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 6;
 	pixel_y = -2
@@ -23866,7 +23866,7 @@
 /area/magmoor/mining)
 "rDB" = (
 /obj/item/tool/stamp,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -24996,7 +24996,7 @@
 /area/magmoor/cargo/processing/south)
 "svu" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -26252,7 +26252,7 @@
 	},
 /area/magmoor/compound/north)
 "try" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "tsh" = (
@@ -27199,7 +27199,7 @@
 /area/magmoor/civilian/pool)
 "ubN" = (
 /obj/effect/turf_decal/warning_stripes/box,
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/storage)
 "uca" = (
@@ -27836,7 +27836,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -32987,7 +32987,7 @@
 /area/magmoor/civilian/mosque)
 "yeN" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 7
 	},

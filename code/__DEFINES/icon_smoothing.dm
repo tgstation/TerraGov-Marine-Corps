@@ -103,6 +103,7 @@
 #define SMOOTH_GROUP_SHUTTERS S_OBJ(26)
 
 #define SMOOTH_GROUP_LATTICE  S_OBJ(30)
+#define SMOOTH_GROUP_FENCE  S_OBJ(31)
 
 #define SMOOTH_GROUP_AIRLOCK  S_OBJ(40)							///obj/structure/lattice
 #define SMOOTH_GROUP_GRILLE  S_OBJ(41)
