@@ -265,12 +265,15 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 /obj/item/update_icon()
 	. = ..()
-	if(current_variant)
-		icon_state = initial(icon_state) + "_[current_variant]"
-		item_state = initial(item_state) + "_[current_variant]"
 	if(!greyscale_colors)
 		return
 	update_greyscale()
+
+/obj/item/update_icon_state()
+	. = ..()
+	if(current_variant)
+		icon_state = initial(icon_state) + "_[current_variant]"
+		item_state = initial(item_state) + "_[current_variant]"
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
@@ -1396,16 +1399,16 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/list/selection_list = list()
 	if(colorable_allowed & COLOR_WHEEL_ALLOWED)
 		selection_list += COLOR_WHEEL
-	if(colorable_allowed & PRESET_COLORS_ALLOWED)
+	if(colorable_allowed & PRESET_COLORS_ALLOWED && length(colorable_colors)>1)
 		selection_list += PRESET_COLORS
-	if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
+	if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED && (length(icon_state_variants)>1))
 		selection_list += VARIANTS
 
 	var/selection
 	if(length(selection_list) == 1)
 		selection = selection_list[1]
 	else
-		selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection_list)
+		selection = tgui_input_list(user, "Choose a color setting", name, selection_list)
 
 	if(selection == VARIANTS)
 		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)

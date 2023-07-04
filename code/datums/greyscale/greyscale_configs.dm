@@ -43,6 +43,7 @@
 /datum/greyscale_config/visors
 	icon_file = 'icons/mob/modular/visors.dmi'
 	json_config = 'code/datums/greyscale/json_configs/visors.json'
+	greyscale_flags = HYPERSCALE_ALLOW_GREYSCALE
 
 /datum/greyscale_config/visors/greyscale
 	json_config = 'code/datums/greyscale/json_configs/greyscale_visor.json'
@@ -51,40 +52,12 @@
 /datum/greyscale_config/cape
 	icon_file = 'icons/mob/modular/capes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/cape.json'
-	prefix = "full_"
-
-/datum/greyscale_config/cape/half
-	prefix = "half_"
-
-/datum/greyscale_config/cape/short
-	prefix = "short_"
-
-/datum/greyscale_config/cape/short/old
-	prefix = "short_old_"
-/datum/greyscale_config/cape/scarf
-	prefix = "scarf_"
-
-/datum/greyscale_config/cape/kama
-	prefix = "kama_"
 
 //Cape highlights
 /datum/greyscale_config/cape_highlight
 	icon_file = 'icons/mob/modular/capes_highlight.dmi'
 	json_config = 'code/datums/greyscale/json_configs/cape_highlight.json'
-	prefix = "full_"
-
-/datum/greyscale_config/cape_highlight/half
-	prefix = "half_"
-
-/datum/greyscale_config/cape_highlight/short
-	prefix = "short_"
-
-/datum/greyscale_config/cape_highlight/scarf
-	prefix = "scarf_"
-
-/datum/greyscale_config/cape_highlight/kama
-	prefix = "kama_"
-
+	greyscale_flags = HYPERSCALE_ALLOW_GREYSCALE
 
 /*
 	JAEGER - MK1

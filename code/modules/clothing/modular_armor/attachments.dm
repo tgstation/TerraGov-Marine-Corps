@@ -102,7 +102,7 @@
 ///Adds or removes actions based on whether the parent is in the correct slot.
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(prefered_slot && (slot != prefered_slot))
+	if(prefered_slot && (slot != prefered_slot) || !CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
 		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
 		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
 		old_action?.remove_action(user)
@@ -160,6 +160,10 @@
 	UnregisterSignal(parent, list(COMSIG_ITEM_SECONDARY_COLOR, COMSIG_PARENT_EXAMINE))
 	return ..()
 
+/obj/item/armor_module/armor/color_item(obj/item/facepaint/paint, mob/user)
+	. = ..()
+	parent?.update_icon()
+
 ///Sends a list of available colored attachments to be colored when the parent is right clicked with paint.
 /obj/item/armor_module/armor/proc/handle_color(datum/source, mob/user, list/obj/item/secondaries)
 	SIGNAL_HANDLER
@@ -170,7 +174,7 @@
 		var/obj/item/armor_module/armor/armor_piece = attachments_by_slot[key]
 		if(!armor_piece.secondary_color)
 			continue
-		secondaries+=armor_piece
+		armor_piece.handle_color(source, user, secondaries)
 
 ///Relays the extra controls to the user when the parent is examined.
 /obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user, list/examine_list)

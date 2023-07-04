@@ -14,6 +14,7 @@
 	colorable_colors = VISOR_PALETTES_LIST
 	secondary_color = TRUE
 	flags_item_map_variant = NONE
+	colorable_colors = PRESET_COLORS_ALLOWED|COLOR_WHEEL_ALLOWED
 
 	///whether this helmet should be using its emissive overlay or not
 	var/visor_emissive_on = TRUE

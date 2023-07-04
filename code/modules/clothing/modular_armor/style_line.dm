@@ -82,7 +82,6 @@
 /obj/item/clothing/head/modular/style
 	name = "\improper Nice Hat"
 	desc = "Nice hat bro. How did you find this?"
-	icon = 'icons/obj/clothing/headwear/style_hats.dmi'
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	attachments_allowed = list(
 		/obj/item/armor_module/armor/badge,
