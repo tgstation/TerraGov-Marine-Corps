@@ -294,6 +294,7 @@
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_1.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_1.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_standard
+	w_class = WEIGHT_CLASS_NORMAL
 
 	wield_delay = 0.1 SECONDS
 	aim_slowdown = 0
@@ -304,7 +305,7 @@
 	scatter = 2
 	scatter_unwielded = 8
 
-	fire_mode = GUN_FIREMODE_SEMIAUTO
+	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	fire_delay = 0.25 SECONDS
 	heat_per_fire = 6
 	rounds_per_shot = 50
@@ -317,15 +318,12 @@
 	)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 13, "rail_y" = 22, "under_x" = 18, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/lace,
 	)
 
