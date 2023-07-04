@@ -21,7 +21,7 @@
 /area/deathmatch)
 "av" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /obj/effect/decal/cleanable/dirt,
@@ -176,7 +176,7 @@
 /area/deathmatch)
 "eG" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
@@ -250,7 +250,7 @@
 /area/deathmatch)
 "gJ" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
@@ -399,7 +399,7 @@
 /area/deathmatch)
 "kx" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark2,
@@ -441,7 +441,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
 "lk" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "lm" = (
@@ -679,7 +679,7 @@
 /area/deathmatch)
 "qw" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/structure/window/reinforced{
 	dir = 8
@@ -711,14 +711,14 @@
 /turf/open/floor/stairs,
 /area/deathmatch)
 "ri" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
 /area/deathmatch)
 "rl" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "ro" = (
@@ -901,7 +901,7 @@
 /area/deathmatch)
 "vL" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
@@ -1262,7 +1262,7 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Dp" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
@@ -1672,7 +1672,7 @@
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "MW" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -1783,7 +1783,7 @@
 /area/deathmatch)
 "PH" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/deathmatch)
@@ -1869,7 +1869,7 @@
 /area/deathmatch)
 "Rw" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
@@ -2168,7 +2168,7 @@
 	},
 /area/deathmatch)
 "Yc" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Ye" = (
@@ -2247,7 +2247,7 @@
 /area/deathmatch)
 "ZF" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)

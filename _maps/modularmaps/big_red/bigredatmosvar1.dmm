@@ -157,7 +157,7 @@
 "mT" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "mY" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -240,7 +240,7 @@
 /area/bigredv2/outside/filtration_plant)
 "uf" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "ug" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1

@@ -271,6 +271,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
 			SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 			return
+		if(!wearer.client)
+			var/mob/dead/observer/ghost = wearer.get_ghost()
+			if(!ghost?.can_reenter_corpse)
+				SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
+				return
 		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
 		return
 	if(wearer.assigned_squad)

@@ -82,10 +82,6 @@
 				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
 				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/packet/magnum))
 
-
-#define LATEJOIN_LARVA_DISABLED 0
-
-
 //Balance defines
 #define MARINE_GEAR_SCALING 30
 

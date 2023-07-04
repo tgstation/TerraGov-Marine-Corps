@@ -232,7 +232,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "rA" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/structure/platform{
 	dir = 9
 	},
@@ -250,7 +250,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "vG" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/structure/platform{
 	dir = 4
 	},
@@ -401,7 +401,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "HT" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile,
 /area/deathmatch)
 "HY" = (
@@ -456,7 +456,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Mo" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/structure/platform{
 	dir = 4
 	},
@@ -600,7 +600,7 @@
 /turf/open/floor/tile,
 /area/deathmatch)
 "Ze" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Zp" = (

@@ -278,7 +278,7 @@
 	if(!reinforcement)
 		reinforcement = GIRDER_REINF_METAL
 	var/turf/source_turf = get_turf(src)
-	source_turf.ChangeTurf(reinforcement_to_wall(reinforcement))
+	source_turf.PlaceOnTop(reinforcement_to_wall(reinforcement))
 	qdel(src)
 
 
