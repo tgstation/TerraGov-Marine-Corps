@@ -260,6 +260,21 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
 
+	mission_brief = list(
+		"starting_faction" = "Hostile forces have been attempting to expand the territory under their control in this area. <br>\
+		Although this territory is of limited direct strategic value, \
+		to prevent them from establishing a permanent presence in the area command has ordered your battalion to execute force recon patrols to locate and eliminate any hostile presence. <br>\
+		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
+		"hostile_faction" = "Intelligence indicates that hostile forces are massing for a coordinated push to dislodge us from territory where we are aiming to establish a permanent presence. <br>\
+		Your battalion has been issued orders to regroup and counter attack the enemy push before they can make any progress, and kill their ambitions in this region. <br>\
+		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
+	)
+
+	additional_rewards = list(
+		"starting_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
+		"hostile_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
+	)
+
 /datum/campaign_mission/tdm/check_mission_progress()
 	if(outcome)
 		return TRUE
@@ -333,7 +348,7 @@
 	map_name = "Desparity"
 	map_file = '_maps/map_files/desparity/desparity.dmm'
 
-/////basic destroy stuff mission
+/////basic destroy stuff mission////////
 /datum/campaign_mission/destroy_mission
 	name = "Target Destruction" //(tm)
 	map_name = "Ice Caves"
