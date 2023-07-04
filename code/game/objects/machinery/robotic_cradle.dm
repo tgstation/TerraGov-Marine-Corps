@@ -23,8 +23,6 @@
 	var/release_notice = TRUE
 	//This var is the reference used for the patient
 	var/mob/living/carbon/human/occupant = null
-	//This var is used to eject the robot forcefully, dealing damage to them.
-	var/forceeject = FALSE
 
 	//It uses power
 	use_power = ACTIVE_POWER_USE
@@ -137,7 +135,7 @@
 
 //This proc is what a robot calls when they try to enter a cradle on their own.
 /obj/machinery/robotic_cradle/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
-	if(dragger.incapacitated() || !ishuman(dragger) || ishumanbasic(dragger))
+	if(dragger.incapacitated() || !isrobot(dropped) || ishumanbasic(dragger))
 		return
 
 	if(occupant)
@@ -187,6 +185,17 @@
 	say("Beginning repair procedure.")
 	repair_op()
 
+/obj/machinery/robotic_cradle/MouseDrop_T(mob/M, mob/user)
+	. = ..()
+	move_inside_wrapper(M, user)
+
+/obj/machinery/robotic_cradle/verb/move_inside()
+	set name = "Enter Cradle"
+	set category = "Object"
+	set src in oview(1)
+
+	move_inside_wrapper(usr, usr)
+
 //This proc is called when someone has a robot grabbed either by hand or in a stasis bag. It is also lets docs/engineers use health analyzers on the cradle if they really want to.
 /obj/machinery/robotic_cradle/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -206,7 +215,7 @@
 		to_chat(user, span_notice("[src] is non-functional!"))
 		return
 
-	else if(occupant)
+	if(occupant)
 		to_chat(user, span_notice("[src] is already occupied!"))
 		return
 
