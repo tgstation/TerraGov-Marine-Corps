@@ -20,6 +20,7 @@
 	icon_state = "plasma_minigun"
 	item_state = "plasma_minigun"
 	flags_equip_slot = ITEM_SLOT_BACK
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
 	w_class = WEIGHT_CLASS_BULKY
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_2.ogg'
@@ -150,6 +151,8 @@
 	scatter = -2
 
 	fire_delay = 0.15 SECONDS
+	heat_per_fire = 1
+	rounds_per_shot = 20
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
 	force = 20
@@ -224,7 +227,8 @@
 	gun_firemode = GUN_FIREMODE_AUTOBURST
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
-	heat_per_fire = 1
+	burst_delay = 0.15 SECONDS
+	heat_per_fire = 3
 	rounds_per_shot = 15
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/carbine_standard,
@@ -257,7 +261,7 @@
 	fire_mode = GUN_FIREMODE_AUTOBURST
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
-	heat_per_fire = 1
+	heat_per_fire = 3
 	rounds_per_shot = 15
 	radial_icon_state = "plasma_bouncy"
 
@@ -266,7 +270,7 @@
 	ammo_datum_type = /datum/ammo/energy/plasma/carbine_shotgun
 	icon_state = "plasma_carbine"
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	fire_delay = 0.45 SECONDS
+	fire_delay = 0.8 SECONDS
 	heat_per_fire = 10
 	rounds_per_shot = 66
 	radial_icon_state = "plasma_strong"
@@ -278,7 +282,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.15 SECONDS
 	heat_per_fire = 3
-	rounds_per_shot = 25
+	rounds_per_shot = 20
 	radial_icon_state = "plasma_multi"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/pistol
@@ -299,6 +303,11 @@
 	accuracy_mult_unwielded = 0.9
 	scatter = 2
 	scatter_unwielded = 8
+
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	fire_delay = 0.25 SECONDS
+	heat_per_fire = 6
+	rounds_per_shot = 50
 
 	force = 15
 	mode_list = list(
@@ -325,9 +334,9 @@
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_standard
 	icon_state = "plasma_pistol"
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	fire_delay = 0.15 SECONDS
-	heat_per_fire = 3
-	rounds_per_shot = 25
+	fire_delay = 0.25 SECONDS
+	heat_per_fire = 6
+	rounds_per_shot = 50
 	radial_icon_state = "plasma_weak"
 
 /datum/lasrifle/base/plasma_rifle_mode/pistol_automatic
@@ -345,9 +354,9 @@
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_trifire/four
 	icon_state = "plasma_pistol"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 0.15 SECONDS
-	heat_per_fire = 3
-	rounds_per_shot = 25
+	fire_delay = 0.25 SECONDS
+	heat_per_fire = 6
+	rounds_per_shot = 50
 	radial_icon_state = "plasma_multi"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon
@@ -356,6 +365,7 @@
 	icon_state = "plasma_cannon"
 	item_state = "plasma_cannon"
 	flags_equip_slot = ITEM_SLOT_BACK
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
 	w_class = WEIGHT_CLASS_BULKY
 
 	wield_delay = 1.2 SECONDS

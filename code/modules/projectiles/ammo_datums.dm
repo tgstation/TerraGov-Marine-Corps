@@ -3128,10 +3128,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/plasma/carbine_trifire
 	icon_state = "plasma_ball_small"
 	hud_state = "plasma_blast"
-	damage = 20
+	damage = 15
 	penetration = 10
 	sundering = 0.5
-	damage_falloff = 0.25
+	damage_falloff = 0.7
+	shell_speed = 3
+	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_trifire/additional
+	bonus_projectiles_scatter = 7
+
+/datum/ammo/energy/plasma/carbine_trifire/additional
+	bonus_projectiles_type = null
 
 /datum/ammo/energy/plasma/pistol_standard
 	damage = 35
@@ -3165,6 +3171,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/plasma/pistol_trifire/four
 	bonus_projectiles_type = /datum/ammo/energy/plasma/pistol_trifire/three
 	bonus_projectiles_amount = 3
+	bonus_projectiles_scatter = 7
 
 /datum/ammo/energy/plasma/pistol_trifire/on_hit_turf(turf/T, obj/projectile/proj)
 	reflect(T, proj, 10)
