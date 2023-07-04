@@ -7,6 +7,12 @@
 	muzzle_flash_color = COLOR_DISABLER_BLUE
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.5
+	scatter = 4
+	scatter_unwielded = 35
+	movement_acc_penalty_mult = 5
+	damage_falloff_mult = 0.25
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/minigun
 	name = "\improper PL-73 plasma thrower"
@@ -22,8 +28,13 @@
 	heat_per_fire = 0.5
 	fire_delay = 0.15 SECONDS
 	rounds_per_shot = 7
+
 	wield_delay = 1.1 SECONDS
 	aim_slowdown = 0.7
+	movement_acc_penalty_mult = 6
+
+	scatter = 7
+
 	force = 30
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	mode_list = list(
@@ -91,29 +102,32 @@
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_3.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/sniper
-	wield_delay = 0.8 SECONDS
-	aim_slowdown = 0.9
 	heat_per_fire = 10
 	rounds_per_shot = 67
 	fire_delay = 0.8 SECONDS
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 0.4
+
+	wield_delay = 0.8 SECONDS
+	aim_slowdown = 0.9
+	movement_acc_penalty_mult = 6
+
+	accuracy_mult = 1.2
+	scatter = -4
+
 	force = 25
 	attachable_offset = list("muzzle_x" = 56, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 19, "under_x" = 45, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/plasma_sniper_scope,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
-		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/plasma_sniper_scope)
@@ -128,8 +142,13 @@
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_2.ogg'
+
 	wield_delay = 0.4 SECONDS
 	aim_slowdown = 0.5
+
+	accuracy_mult = 1.1
+	scatter = -2
+
 	fire_delay = 0.15 SECONDS
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
@@ -190,6 +209,18 @@
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/carbine_standard/four
 	icon_state = "plasma_carbine"
+
+	wield_delay = 0.3 SECONDS
+	aim_slowdown = 0.4
+	movement_acc_penalty_mult = 4
+
+	accuracy_mult = 1.05
+	accuracy_mult_unwielded = 0.6
+	scatter = 0
+	scatter_unwielded = 10
+
+	damage_falloff_mult = 0.5
+
 	gun_firemode = GUN_FIREMODE_AUTOBURST
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
@@ -219,7 +250,7 @@
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
-/datum/lasrifle/base/plasma_rifle_mode/carbine_standard
+/datum/lasrifle/base/plasma_rifle_mode/carbine_trifire
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/carbine_standard/four
 	icon_state = "plasma_carbine"
@@ -240,7 +271,7 @@
 	rounds_per_shot = 66
 	radial_icon_state = "plasma_strong"
 
-/datum/lasrifle/base/plasma_rifle_mode/carbine_trifire
+/datum/lasrifle/base/plasma_rifle_mode/carbine_standard
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/carbine_trifire
 	icon_state = "plasma_carbine"
@@ -259,6 +290,16 @@
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_1.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_1.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/pistol_standard
+
+	wield_delay = 0.1 SECONDS
+	aim_slowdown = 0
+	movement_acc_penalty_mult = 2
+
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.9
+	scatter = 2
+	scatter_unwielded = 8
+
 	force = 15
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/pistol_standard,
@@ -316,6 +357,15 @@
 	item_state = "plasma_cannon"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
+
+	wield_delay = 1.2 SECONDS
+	aim_slowdown = 1.2
+	movement_acc_penalty_mult = 6
+
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.5
+	scatter = 2
+
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_2.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_1.ogg'
