@@ -18653,7 +18653,6 @@
 "yaZ" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/obj/item/circuitboard/airalarm,
 /obj/item/circuitboard/airlock,
 /turf/open/floor/wood,
 /area/centcom/valhalla/port)
