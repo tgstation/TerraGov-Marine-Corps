@@ -3007,6 +3007,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = ENERGY
 	bullet_color = COLOR_DISABLER_BLUE
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	shell_speed = 3
 
 /datum/ammo/energy/plasma/minigun_rapid
 	icon_state = "plasma_ball_small"
@@ -3014,8 +3015,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 15
 	sundering = 0.5
 	damage_falloff = 0.5
-	accuracy = 0.9
-	scatter = 10
+	scatter = 3
 
 /datum/ammo/energy/plasma/minigun_incendiary
 	icon_state = "plasma_big"
@@ -3024,8 +3024,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 25
 	sundering = 1
 	damage_falloff = 0.5
-	accuracy = 1
-	scatter = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE
 
 	///Fire burn time
@@ -3043,8 +3041,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 25
 	sundering = 1
 	damage_falloff = 0.5
-	accuracy = 1
-	scatter = 0
 
 /datum/ammo/energy/plasma/minigun_glob/drop_nade(turf/T, radius = 1)
 	if(!T || !isturf(T))
@@ -3072,15 +3068,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 7
 	damage_falloff = 0
 	accuracy = 1.1
-	scatter = -15
+	accurate_range_min = 5
+	shell_speed = 4
+	accurate_range = 30
 
 /datum/ammo/energy/plasma/rifle_standard
 	damage = 15
 	penetration = 10
 	sundering = 0.5
 	damage_falloff = 0.25
-	accuracy = 1
-	scatter = 0
 
 /datum/ammo/energy/plasma/rifle_marksman
 	icon_state = "plasma_big"
@@ -3090,8 +3086,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 2
 	damage_falloff = 0.15
-	accuracy = 1.1
-	scatter = 0
+	accurate_range = 25
 
 /datum/ammo/energy/plasma/carbine_standard
 	icon_state = "plasma_ball_small"
@@ -3099,8 +3094,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0.5
 	damage_falloff = 0.25
-	accuracy = 1.1
-	scatter = 0
 
 /datum/ammo/energy/plasma/carbine_standard/one
 	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_standard
@@ -3126,8 +3119,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 1
 	damage_falloff = 0.5
-	accuracy = 0.8
-	scatter = 15
 
 /datum/ammo/energy/plasma/carbine_shotgun/additional
 	damage = 20
@@ -3141,24 +3132,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0.5
 	damage_falloff = 0.25
-	accuracy = 1.1
-	scatter = 0
 
 /datum/ammo/energy/plasma/pistol_standard
 	damage = 35
 	penetration = 10
 	sundering = 1
 	damage_falloff = 0.5
-	accuracy = 1.1
-	scatter = 0
 
 /datum/ammo/energy/plasma/pistol_automatic
 	damage = 10
 	penetration = 10
 	sundering = 0.5
 	damage_falloff = 0.5
-	accuracy = 1.1
-	scatter = 0
 
 /datum/ammo/energy/plasma/pistol_trifire
 	icon_state = "plasma_ball_small"
@@ -3167,8 +3152,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0.5
 	damage_falloff = 0.5
-	accuracy = 1.1
-	scatter = 0
 
 /datum/ammo/energy/plasma/pistol_trifire/one
 	bonus_projectiles_type = /datum/ammo/energy/plasma/pistol_trifire
@@ -3193,8 +3176,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 25
 	sundering = 5
 	damage_falloff = 0.25
-	accuracy = 1.1
-	scatter = 0
 
 /datum/ammo/energy/plasma/cannon_heavy
 	icon_state = "plasma_ball_big"
@@ -3203,7 +3184,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 35
 	sundering = 10
 	damage_falloff = 0.25
-	accuracy = 1.1
 	shell_speed = 0.1
 
 /datum/ammo/energy/plasma/cannon_flamer
@@ -3373,7 +3353,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 5
 
 // Plasma //
-/datum/ammo/energy/plasma
+/datum/ammo/energy/sectoid_plasma
 	name = "plasma bolt"
 	icon_state = "pulse2"
 	hud_state = "plasma"

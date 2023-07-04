@@ -33,7 +33,7 @@
 	aim_slowdown = 0.7
 	movement_acc_penalty_mult = 6
 
-	scatter = 7
+	scatter = 6
 
 	force = 30
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
