@@ -55,7 +55,7 @@
 /datum/greyscale_config/cape
 	icon_file = 'icons/mob/modular/capes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/cape.json'
-	prefix = "full_"
+
 
 //Cape highlights
 /datum/greyscale_config/cape_highlight

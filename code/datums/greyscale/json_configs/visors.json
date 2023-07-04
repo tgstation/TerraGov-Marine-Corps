@@ -33,35 +33,18 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "traditional"
-<<<<<<< HEAD
-=======
 		}
 	],
 	"trooper_visor": [
 		{
 			"type": "hyperscale",
 			"icon_state": "trooper"
->>>>>>> 2b4447217dbe499f2d06cdfc3952ffc410c57023
 		}
 	],
 	"eva_visor": [
 		{
 			"type": "hyperscale",
 			"icon_state": "eva"
-<<<<<<< HEAD
-=======
-		}
-	],
-	"eva_skull_visor": [
-		{
-			"type": "hyperscale",
-			"icon_state": "eva"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "skull",
-			"blend_mode": "overlay"
->>>>>>> 2b4447217dbe499f2d06cdfc3952ffc410c57023
 		}
 	],
 	"assault_visor": [
@@ -77,7 +60,6 @@
 		}
 	],
 	"r_light": [
-<<<<<<< HEAD
 		{
 			"type": "hyperscale",
 			"icon_state": "r_light"
@@ -105,46 +87,6 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "eva_old"
-=======
-		{
-			"type": "hyperscale",
-			"icon_state": "r_light"
-		}
-	],
-	"r_medium": [
-		{
-			"type": "hyperscale",
-			"icon_state": "r_medium"
-		}
-	],
-	"r_heavy": [
-		{
-			"type": "hyperscale",
-			"icon_state": "r_heavy"
-		}
-	],
-	"xenonaut": [
-		{
-			"type": "hyperscale",
-			"icon_state": "xenonaut"
-		}
-	],
-	"eva_visor_old": [
-		{
-			"type": "hyperscale",
-			"icon_state": "eva_old"
-		}
-	],
-	"eva_skull_visor_old": [
-		{
-			"type": "hyperscale",
-			"icon_state": "eva_old"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "skull_old",
-			"blend_mode": "overlay"
->>>>>>> 2b4447217dbe499f2d06cdfc3952ffc410c57023
 		}
 	],
 	"infantry_visor_old": [
