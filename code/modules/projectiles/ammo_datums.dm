@@ -727,7 +727,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/som_machinegun
 	name = "machinegun bullet"
 	hud_state = "rifle_heavy"
-	damage = 30
+	damage = 28
 	penetration = 12.5
 	sundering = 1
 
@@ -1313,7 +1313,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	if(istype(T, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = T
-		wall_victim.take_damage((autocannon_wall_bonus))
+		wall_victim.take_damage(autocannon_wall_bonus, P.damtype, P.armor_type)
 
 /datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 5
@@ -2389,7 +2389,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T)
 
 /datum/ammo/mortar/incend/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 7, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 2, 3, 7, throw_range = 0)
 	flame_radius(4, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2399,7 +2399,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/smoke/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 0, 1, 3, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
@@ -2419,7 +2419,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	explosion(T, 1, 6, 7, 12)
 
 /datum/ammo/mortar/howi/incend/drop_nade(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 3, 0, 3, throw_range = 0)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2458,7 +2458,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	explosion(T, 1, 2, 5, 3)
 
 /datum/ammo/mortar/rocket/incend/drop_nade(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 3, 0, 3, throw_range = 0)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2472,7 +2472,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/rocket/smoke/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 0, 1, 3, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
@@ -2481,7 +2481,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2.5
 
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 2, small_animation = TRUE)
+	explosion(T, 0, 0, 4, 2)
 
 /datum/ammo/mortar/rocket/smoke/mlrs
 	shell_speed = 2.5
@@ -2812,7 +2812,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/marine/autolaser/charge/on_hit_turf(turf/T, obj/projectile/proj)
 	if(istype(T, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = T
-		wall_victim.take_damage((proj.damage))
+		wall_victim.take_damage(proj.damage, proj.damtype, proj.armor_type)
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting
 	name = "melting machine laser bolt"
@@ -3041,7 +3041,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			var/obj/obj_victim = victim
 			if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
 				continue
-			obj_victim.take_damage(aoe_damage, BURN, ENERGY, 0, armour_penetration = penetration)
+			obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 		if(victim.anchored)
 			continue
 		var/throw_dir = get_dir(T, victim)
@@ -3079,7 +3079,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
 		var/obj/vehicle/sealed/mecha/mech_victim = O
-		mech_victim.take_damage(200, BURN, ENERGY, 0, armour_penetration = penetration)
+		mech_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
 	if(!isxeno(M))
@@ -3418,7 +3418,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/alien/resin/sticky(T)
+	new /obj/alien/resin/sticky/thin(T)
 
 /datum/ammo/xeno/sticky/turret
 	max_range = 9
@@ -3806,7 +3806,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
-	if(T.density || (O.density && !(O.flags_pass & PASSPROJECTILE)))
+	if(T.density || (O.density && !(O.allow_pass_flags & PASS_PROJECTILE)))
 		T = get_turf(proj)
 	drop_leashball(T.density ? proj.loc : T, proj.firer)
 
@@ -4009,3 +4009,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 1
 	max_range = 21
 	nade_type = /obj/item/explosive/grenade/ags
+
+/datum/ammo/grenade_container/ags_grenade/flare
+	hud_state = "grenade_dummy"
+	nade_type = /obj/item/explosive/grenade/flare
+
+/datum/ammo/grenade_container/ags_grenade/cloak
+	hud_state = "grenade_hide"
+	nade_type = /obj/item/explosive/grenade/smokebomb/cloak/ags
+
+/datum/ammo/grenade_container/ags_grenade/tanglefoot
+	hud_state = "grenade_drain"
+	nade_type = /obj/item/explosive/grenade/smokebomb/drain/agls

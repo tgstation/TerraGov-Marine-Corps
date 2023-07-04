@@ -487,11 +487,11 @@
 /obj/machinery/deployable/mounted/moveable/atgun/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(800)
+			take_damage(800, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(150, 200))
+			take_damage(rand(150, 200), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(10, 50))
+			take_damage(rand(10, 50), BRUTE, BOMB)
 
 //AGLS-37, or Automatic Grenade Launching System 37, a fully automatic mounted grenade launcher that fires fragmentation and HE shells, can't be turned.
 
@@ -515,17 +515,20 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/tl102,
+		/obj/item/attachable/scope/unremovable/standard_atgun,
 	)
 
 	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102,
+		/obj/item/attachable/scope/unremovable/standard_atgun,
 	)
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/standard_agls,
 		/obj/item/ammo_magazine/standard_agls/fragmentation,
 		/obj/item/ammo_magazine/standard_agls/incendiary,
+		/obj/item/ammo_magazine/standard_agls/flare,
+		/obj/item/ammo_magazine/standard_agls/cloak,
+		/obj/item/ammo_magazine/standard_agls/tanglefoot,
 	)
 
 	deploy_time = 6 SECONDS

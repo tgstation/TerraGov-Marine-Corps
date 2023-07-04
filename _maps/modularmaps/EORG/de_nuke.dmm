@@ -80,7 +80,7 @@
 	},
 /area/deathmatch)
 "jM" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/deathmatch)
 "jP" = (
@@ -112,7 +112,7 @@
 /turf/open/floor/grime,
 /area/deathmatch)
 "nt" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
@@ -252,7 +252,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "zQ" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "Ab" = (
@@ -341,7 +341,7 @@
 	},
 /area/deathmatch)
 "Jn" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "JT" = (

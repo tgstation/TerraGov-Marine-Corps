@@ -8,7 +8,7 @@
 "d" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "h" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
@@ -18,7 +18,7 @@
 "l" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "n" = (
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor/plating,
@@ -39,6 +39,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
+"v" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "z" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
@@ -56,10 +60,14 @@
 "C" = (
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
+"D" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "H" = (
 /obj/machinery/door/poddoor/two_tile_hor,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "J" = (
 /obj/structure/closet/crate/internals,
 /turf/open/floor/plating,
@@ -70,6 +78,9 @@
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
+"M" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/northeast/garbledradio)
 "N" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
@@ -85,6 +96,9 @@
 "T" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northeast)
+"W" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "X" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
@@ -115,11 +129,11 @@ N
 N
 N
 N
-j
-j
-j
-j
-T
+W
+W
+W
+W
+M
 N
 N
 "}
@@ -147,13 +161,13 @@ N
 N
 N
 N
-T
-T
-B
-j
-j
-j
-T
+M
+M
+D
+W
+W
+W
+M
 N
 N
 "}
@@ -180,14 +194,14 @@ N
 N
 N
 N
-j
-j
-j
-j
-j
-j
-j
-T
+W
+W
+W
+W
+W
+W
+W
+M
 N
 N
 "}
@@ -213,16 +227,16 @@ N
 N
 N
 N
-j
-j
-j
-j
-j
-j
-j
-j
-j
-T
+W
+W
+W
+W
+W
+W
+W
+W
+W
+M
 N
 "}
 (5,1,1) = {"
@@ -246,17 +260,17 @@ N
 N
 N
 N
-j
-j
-u
-j
-u
-j
-j
-B
-j
-u
-T
+W
+W
+v
+W
+v
+W
+W
+D
+W
+v
+M
 N
 "}
 (6,1,1) = {"
@@ -277,20 +291,20 @@ N
 N
 N
 N
-u
-j
+v
+W
 H
-j
-u
-j
+W
+v
+W
 l
-j
-j
-j
-j
-j
-j
-T
+W
+W
+W
+W
+W
+W
+M
 N
 "}
 (7,1,1) = {"
@@ -310,21 +324,21 @@ N
 N
 N
 N
-j
-j
-j
-j
-j
-j
-j
+W
+W
+W
+W
+W
+W
+W
 N
 N
-T
-j
-j
-j
-j
-T
+M
+W
+W
+W
+W
+M
 N
 "}
 (8,1,1) = {"
@@ -344,21 +358,21 @@ N
 N
 N
 N
-j
-j
-j
+W
+W
+W
 N
-j
-j
-N
-N
+W
+W
 N
 N
-j
-j
-j
-j
-B
+N
+N
+W
+W
+W
+W
+D
 T
 "}
 (9,1,1) = {"
@@ -378,9 +392,9 @@ N
 N
 N
 N
-j
-u
-j
+W
+v
+W
 N
 N
 N
@@ -389,11 +403,11 @@ N
 N
 N
 l
-j
-j
-j
-j
-j
+W
+W
+W
+W
+W
 "}
 (10,1,1) = {"
 C
@@ -411,10 +425,10 @@ N
 N
 N
 N
-j
-u
-j
-j
+W
+v
+W
+W
 N
 N
 N
@@ -423,11 +437,11 @@ N
 N
 N
 N
-T
-j
-u
-j
-j
+M
+W
+v
+W
+W
 "}
 (11,1,1) = {"
 C
@@ -444,11 +458,11 @@ N
 N
 N
 N
-j
-j
-j
-j
-j
+W
+W
+W
+W
+W
 N
 N
 N
@@ -459,9 +473,9 @@ N
 N
 N
 N
-j
-u
-j
+W
+v
+W
 "}
 (12,1,1) = {"
 C
@@ -478,11 +492,11 @@ N
 N
 N
 N
-j
-j
-j
-j
-j
+W
+W
+W
+W
+W
 N
 N
 N
@@ -493,9 +507,9 @@ N
 N
 N
 N
-T
-j
-u
+M
+W
+v
 "}
 (13,1,1) = {"
 C
@@ -511,11 +525,11 @@ C
 N
 N
 N
-j
-j
-j
-j
-j
+W
+W
+W
+W
+W
 N
 N
 N
@@ -544,11 +558,11 @@ C
 C
 N
 N
-u
-j
-j
-j
-u
+v
+W
+W
+W
+v
 N
 N
 N
@@ -580,7 +594,7 @@ N
 N
 j
 j
-j
+W
 N
 N
 N
@@ -663,9 +677,9 @@ N
 N
 h
 N
-j
-j
-j
+W
+W
+W
 "}
 (18,1,1) = {"
 C
@@ -697,9 +711,9 @@ N
 N
 h
 N
-j
-j
-u
+W
+W
+v
 "}
 (19,1,1) = {"
 C
@@ -731,9 +745,9 @@ N
 N
 N
 N
-j
-j
-j
+W
+W
+W
 "}
 (20,1,1) = {"
 C
@@ -765,9 +779,9 @@ N
 N
 N
 N
-j
-j
-j
+W
+W
+W
 "}
 (21,1,1) = {"
 C
@@ -800,8 +814,8 @@ N
 N
 N
 N
-j
-j
+W
+W
 "}
 (22,1,1) = {"
 C
@@ -834,8 +848,8 @@ N
 N
 N
 N
-j
-j
+W
+W
 "}
 (23,1,1) = {"
 C
@@ -868,8 +882,8 @@ N
 N
 N
 N
-j
-u
+W
+v
 "}
 (24,1,1) = {"
 C
@@ -902,8 +916,8 @@ N
 N
 N
 N
-B
-j
+D
+W
 "}
 (25,1,1) = {"
 C
@@ -937,7 +951,7 @@ N
 N
 N
 N
-j
+W
 "}
 (26,1,1) = {"
 C

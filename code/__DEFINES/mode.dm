@@ -45,10 +45,9 @@
 #define MODE_SILO_RESPAWN (1<<9)
 #define MODE_HUMAN_ONLY (1<<10)
 #define MODE_TWO_HUMAN_FACTIONS	(1<<11)
-#define MODE_WIN_POINTS (1<<12)
-#define MODE_NO_PERMANENT_WOUNDS (1<<13)
-#define MODE_SILOS_SPAWN_MINIONS (1<<14)
-#define MODE_ALLOW_XENO_QUICKBUILD (1<<15)
+#define MODE_NO_PERMANENT_WOUNDS (1<<12)
+#define MODE_SILOS_SPAWN_MINIONS (1<<13)
+#define MODE_ALLOW_XENO_QUICKBUILD (1<<14)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
@@ -57,10 +56,6 @@
 #define MODE_INFESTATION_DRAW_DEATH "DRAW: Mutual Annihilation"
 
 #define MODE_GENERIC_DRAW_NUKE "DRAW: Nuclear Explosion"
-
-#define MODE_CIVIL_WAR_LOYALIST_MAJOR "Loyalist Major Victory"
-#define MODE_CIVIL_WAR_REBEL_MAJOR "Rebel Major Victory"
-#define MODE_CIVIL_WAR_DRAW "Civil War Draw"
 
 #define MODE_COMBAT_PATROL_MARINE_MAJOR "Marine Major Victory"
 #define MODE_COMBAT_PATROL_MARINE_MINOR "Marine Minor Victory"
@@ -86,10 +81,6 @@
 				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
 				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
 				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/packet/magnum))
-
-
-#define LATEJOIN_LARVA_DISABLED 0
-
 
 //Balance defines
 #define MARINE_GEAR_SCALING 30

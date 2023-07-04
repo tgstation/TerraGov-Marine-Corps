@@ -271,7 +271,7 @@
 	},
 /area/centcom/valhalla/bridge)
 "ato" = (
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/vault{
@@ -934,9 +934,6 @@
 	},
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/bridge)
-"bbJ" = (
-/turf/open/floor/wood/broken/five,
-/area/centcom/valhalla/library)
 "bbO" = (
 /obj/effect/turf_decal/sandedge/corner,
 /turf/open/floor/plating,
@@ -1019,7 +1016,7 @@
 	dir = 1;
 	name = "Station Intercom"
 	},
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/centcom/valhalla/library)
@@ -1551,7 +1548,7 @@
 /obj/machinery/door/window{
 	name = "Shower"
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/security/detectives_office)
@@ -1637,7 +1634,7 @@
 /obj/machinery/door/window{
 	name = "Shower"
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/crew_quarters/captain)
@@ -1717,7 +1714,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "cnL" = (
 /obj/structure/table/reinforced,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -2737,7 +2734,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dBm" = (
 /obj/structure/table,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/item/tank/oxygen/red,
 /obj/item/clothing/mask/breath,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -2906,7 +2903,7 @@
 /area/tdome/tdomeobserve)
 "dJb" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/effect/turf_decal/tile/black{
 	dir = 8
@@ -3315,7 +3312,7 @@
 	},
 /obj/structure/table,
 /obj/machinery/recharger/nopower,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/crew_quarters/captain)
 "egz" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
@@ -3392,7 +3389,7 @@
 "elO" = (
 /obj/structure/table,
 /obj/item/taperecorder,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/library)
 "epz" = (
 /obj/structure/table,
@@ -3669,7 +3666,7 @@
 /obj/machinery/door/window{
 	name = "Shower"
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/chapel/main)
@@ -4133,7 +4130,7 @@
 /area/centcom/valhalla/crew_quarters/captain)
 "fwS" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/structure/noticeboard{
 	desc = "A board for remembering the fallen of the station.";
@@ -4300,7 +4297,7 @@
 /area/centcom/valhalla/quartermaster/storage)
 "fKX" = (
 /obj/structure/closet/cabinet,
-/turf/open/floor/wood/broken/seven,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/crew_quarters)
 "fLl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -4459,7 +4456,7 @@
 	pixel_x = 42;
 	pixel_y = -42
 	},
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "fTg" = (
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -4713,7 +4710,7 @@
 /area/centcom/valhalla/engine/engineering)
 "gle" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/grimy,
 /area/centcom/valhalla/security/detectives_office)
@@ -5005,7 +5002,7 @@
 /area/centcom/valhalla/starboard_hallway)
 "gEA" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/structure/sign/electricshock,
 /turf/open/floor/tile/vault{
@@ -5554,7 +5551,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla/medical/medbay)
 "hrC" = (
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/port)
 "htq" = (
 /obj/structure/table/reinforced,
@@ -5567,7 +5564,7 @@
 /area/centcom/valhalla/quartermaster/storage)
 "htx" = (
 /obj/structure/table/reinforced,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/clothing/under/rank/cargotech,
 /obj/item/clothing/under/rank/cargotech,
 /obj/item/clothing/under/rank/cargotech,
@@ -5812,7 +5809,7 @@
 /area/centcom/valhalla/primary/fore/port)
 "hMy" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/library)
@@ -6330,7 +6327,7 @@
 /area/centcom/valhalla/security/checkpoint)
 "iys" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/effect/turf_decal/tile/black{
 	dir = 1
@@ -7196,7 +7193,7 @@
 /obj/item/clothing/mask/cigarette{
 	pixel_x = 6
 	},
-/obj/item/storage/fancy/cigarettes{
+/obj/effect/spawner/random/misc/cigarettes{
 	pixel_x = -3
 	},
 /obj/item/tool/lighter,
@@ -8525,7 +8522,7 @@
 "lrW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/port)
 "lsy" = (
 /obj/machinery/firealarm{
@@ -8628,7 +8625,7 @@
 	id = "hydrodesk";
 	name = "Hydroponics Counter Shutters"
 	},
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/plating,
 /area/centcom/valhalla/hydroponics)
@@ -9428,7 +9425,7 @@
 	pixel_x = -7;
 	pixel_y = 12
 	},
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -9
 	},
 /obj/item/tool/pen,
@@ -9812,7 +9809,7 @@
 "nek" = (
 /obj/structure/table,
 /obj/machinery/firealarm,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/vault{
 	dir = 5
@@ -9820,7 +9817,7 @@
 /area/centcom/valhalla/library)
 "nez" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/starboard_hallway)
@@ -10241,7 +10238,7 @@
 "nFR" = (
 /obj/machinery/door/firedoor,
 /obj/structure/table/reinforced,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/machinery/door/window{
 	dir = 1;
@@ -10929,9 +10926,6 @@
 /obj/machinery/vending/weapon/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"oJB" = (
-/turf/open/floor/wood/broken/six,
-/area/centcom/valhalla/port)
 "oJI" = (
 /obj/structure/closet/crate,
 /obj/machinery/status_display/ai{
@@ -11336,7 +11330,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/library)
 "pio" = (
 /obj/effect/decal/cleanable/dirt,
@@ -11762,7 +11756,7 @@
 /area/centcom/valhalla/engine/engineering)
 "pZK" = (
 /obj/structure/bed/stool,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/port)
 "pZY" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -11841,7 +11835,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/black,
-/obj/item/storage/fancy/cigarettes/lady_finger,
+/obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/atmos_monitoring)
 "qdC" = (
@@ -11892,8 +11886,8 @@
 "qht" = (
 /obj/structure/table,
 /obj/item/instrument/banjo,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
-/obj/item/storage/fancy/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -11915,7 +11909,7 @@
 "qhV" = (
 /obj/structure/bed/stool,
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken/five,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/port)
 "qia" = (
 /obj/structure/prop/mainship/propcarp{
@@ -11951,9 +11945,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"qlR" = (
-/turf/open/floor/wood/broken/five,
-/area/centcom/valhalla/port)
 "qlV" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/white,
@@ -12012,7 +12003,7 @@
 	},
 /obj/item/camera_film,
 /obj/item/instrument/violin,
-/obj/item/storage/fancy/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -12043,9 +12034,6 @@
 	dir = 1
 	},
 /area/centcom/valhalla/secondary/exit)
-"qsw" = (
-/turf/open/floor/wood/broken/six,
-/area/centcom/valhalla/crew_quarters/theatre)
 "qsK" = (
 /obj/structure/prop/mainship/toolboxforacause2020,
 /turf/open/floor/tile/red/redblue/full,
@@ -12634,9 +12622,6 @@
 	dir = 1
 	},
 /area/centcom/valhalla/secondary/exit)
-"qZP" = (
-/turf/open/floor/wood/broken/seven,
-/area/centcom/valhalla/library)
 "qZS" = (
 /obj/structure/bed/chair,
 /obj/item/radio/intercom{
@@ -13095,7 +13080,7 @@
 /area/centcom/valhalla/medical/medbay)
 "rDY" = (
 /obj/structure/table/reinforced,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
@@ -13113,21 +13098,21 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1;
-	locked = 1
+	dir = 1
 	},
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1;
 	id = "securestoragelockdown";
 	name = "Heavy Blast Shutters"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
 "rHu" = (
 /obj/machinery/alarm{
 	dir = 1
 	},
-/turf/open/floor/wood/broken/five,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/crew_quarters/theatre)
 "rIl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -13389,7 +13374,7 @@
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "scd" = (
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/library)
 "sch" = (
 /obj/effect/decal/cleanable/dirt,
@@ -13514,9 +13499,8 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	locked = 1
-	},
+/obj/machinery/door/airlock/mainship/maint/free_access,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/centcom/valhalla/starboard)
 "slg" = (
@@ -13540,7 +13524,7 @@
 /obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
-/obj/structure/flora/rock/pile/alt2,
+/obj/structure/rock/basalt/pile/alt2,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/space)
 "smw" = (
@@ -15231,7 +15215,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/checkpoint)
 "usm" = (
-/turf/open/floor/wood/broken/seven,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/crew_quarters/theatre)
 "usE" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -15737,7 +15721,7 @@
 /area/centcom/valhalla/hydroponics)
 "vgc" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/item/toy/dice/d20,
 /obj/item/clothing/under/assistantformal,
@@ -17290,10 +17274,10 @@
 /area/centcom/valhalla/primary/fore)
 "wJN" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/item/tool/stamp/hop,
-/turf/open/floor/wood/broken/five,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "wKu" = (
 /turf/open/floor/tile/dark/gray,
@@ -17398,7 +17382,7 @@
 /area/centcom/valhalla/primary/port)
 "wQr" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken/seven,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/port)
 "wQw" = (
 /obj/structure/noticeboard{
@@ -17755,7 +17739,7 @@
 /area/centcom/valhalla/port)
 "xiF" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken/five,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/crew_quarters/theatre)
 "xjs" = (
 /obj/structure/table/reinforced,
@@ -17818,7 +17802,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/turf/open/floor/wood/broken/five,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/centcom/valhalla/port)
 "xlK" = (
 /obj/machinery/alarm{
@@ -17895,7 +17879,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "xpE" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/item/folder/black_random,
 /turf/open/floor/tile/vault{
@@ -18307,7 +18291,7 @@
 /area/centcom/valhalla/bridge)
 "xOY" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/machinery/alarm{
 	dir = 4
@@ -18366,7 +18350,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/miningdock)
@@ -18493,7 +18477,7 @@
 /obj/machinery/door/window{
 	name = "Shower"
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/crew_quarters/heads/hop)
@@ -25140,7 +25124,7 @@ hec
 edn
 ckK
 lfg
-qlR
+hrC
 euF
 sAp
 oAl
@@ -25416,7 +25400,7 @@ hec
 bVr
 ckK
 ipc
-oJB
+hrC
 tFs
 fyE
 ipc
@@ -26372,7 +26356,7 @@ odj
 srV
 aBf
 fad
-bbJ
+scd
 vnN
 ivQ
 acu
@@ -27061,7 +27045,7 @@ wYt
 vgK
 sFI
 vnN
-qZP
+scd
 vnN
 qFr
 icb
@@ -29244,7 +29228,7 @@ mSm
 qFW
 xTw
 lOG
-qsw
+usm
 nBt
 sjq
 sGw

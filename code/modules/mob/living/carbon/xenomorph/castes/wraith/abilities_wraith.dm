@@ -573,7 +573,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
 		return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
-	crosser.flags_pass &= ~PASSMOB
+	crosser.pass_flags &= ~PASS_MOB
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 

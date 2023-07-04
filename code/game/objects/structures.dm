@@ -6,7 +6,7 @@
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	obj_flags = CAN_BE_HIT
 	anchored = TRUE
-	flags_pass = PASSABLE
+	allow_pass_flags = PASSABLE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
@@ -38,7 +38,6 @@
 		if(smoothing_flags & SMOOTH_CORNERS)
 			icon_state = ""
 
-
 /obj/structure/proc/climb_on()
 
 	set name = "Climb structure"
@@ -60,101 +59,67 @@
 
 	do_climb(target)
 
+///Checks to see if a mob can climb onto, or over this object
 /obj/structure/proc/can_climb(mob/living/user)
 	if(!climbable || !can_interact(user))
-		return FALSE
-
-	var/turf/T = src.loc
-	var/turf/U = get_turf(user)
-	if(!istype(T) || !istype(U))
-		return FALSE
-	if(T.density)
-		return FALSE //src is on top of a dense turf.
-	if(!user.Adjacent(src))
-		return FALSE //this catches border objects that don't let you throw things over them, but not barricades
-
-	for(var/obj/O in T.contents)
-		if(istype(O, /obj/structure))
-			var/obj/structure/S = O
-			if(S.climbable)
-				continue
-
-		//dense obstacles (border or not) on the structure's tile
-		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir & get_dir(src,user)))
-			to_chat(user, span_warning("There's \a [O.name] in the way."))
-			return FALSE
-
-	for(var/obj/O in U.contents)
-		if(istype(O, /obj/structure))
-			var/obj/structure/S = O
-			if(S.climbable)
-				continue
-		//dense border obstacles on our tile
-		if(O.density && (O.flags_atom & ON_BORDER) && O.dir & get_dir(user, src))
-			to_chat(user, span_warning("There's \a [O.name] in the way."))
-			return FALSE
-
-	if((flags_atom & ON_BORDER))
-		if(user.loc != loc && user.loc != get_step(T, dir))
-			to_chat(user, span_warning("You need to be up against [src] to leap over."))
-			return
-		if(user.loc == loc)
-			var/turf/target = get_step(T, dir)
-			if(target.density) //Turf is dense, not gonna work
-				to_chat(user, span_warning("You cannot leap this way."))
-				return
-			for(var/atom/movable/A in target)
-				if(A?.density && !(A.flags_atom & ON_BORDER))
-					if(istype(A, /obj/structure))
-						var/obj/structure/S = A
-						if(!S.climbable) //Transfer onto climbable surface
-							to_chat(user, span_warning("You cannot leap this way."))
-							return
-					else
-						to_chat(user, span_warning("You cannot leap this way."))
-						return
-	return TRUE
-
-/obj/structure/proc/do_climb(mob/living/user)
-	if(!can_climb(user) || user.do_actions)
 		return
 
-	user.visible_message(span_warning("[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!"))
+	var/turf/destination_turf = loc
+	var/turf/user_turf = get_turf(user)
+	if(!istype(destination_turf) || !istype(user_turf))
+		return
+	if(!user.Adjacent(src))
+		return
 
-	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_climb), user)))
+	if((flags_atom & ON_BORDER))
+		if(user_turf != destination_turf && user_turf != get_step(destination_turf, dir))
+			to_chat(user, span_warning("You need to be up against [src] to leap over."))
+			return
+		if(user_turf == destination_turf)
+			destination_turf = get_step(destination_turf, dir) //we're moving from the objects turf to the one its facing
+
+	if(destination_turf.density)
+		return
+
+	for(var/obj/object in destination_turf.contents)
+		if(isstructure(object))
+			var/obj/structure/structure = object
+			if(structure.allow_pass_flags & PASS_WALKOVER)
+				continue
+		if(object.density && (!(object.flags_atom & ON_BORDER) || object.dir & get_dir(src,user)))
+			to_chat(user, span_warning("There's \a [object.name] in the way."))
+			return
+
+	for(var/obj/object in user_turf.contents)
+		if(isstructure(object))
+			var/obj/structure/structure = object
+			if(structure.allow_pass_flags & PASS_WALKOVER)
+				continue
+		if(object.density && (object.flags_atom & ON_BORDER) && object.dir & get_dir(user, src))
+			to_chat(user, span_warning("There's \a [object.name] in the way."))
+			return
+
+	return destination_turf
+
+///Attempts to climb onto, or past an object
+/obj/structure/proc/do_climb(mob/living/user)
+	if(user.do_actions || !can_climb(user))
+		return
+
+	user.visible_message(span_warning("[user] starts [flags_atom & ON_BORDER ? "leaping over" : "climbing onto"] \the [src]!"))
+
+	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC))
+		return
+
+	var/turf/destination_turf = can_climb(user)
+	if(!istype(destination_turf))
 		return
 
 	for(var/m in user.buckled_mobs)
 		user.unbuckle_mob(m)
 
-	if(!(flags_atom & ON_BORDER)) //If not a border structure or we are not on its tile, assume default behavior
-		user.forceMove(get_turf(src))
-
-		if(get_turf(user) == get_turf(src))
-			user.visible_message(span_warning("[user] climbs onto \the [src]!"))
-	else //If border structure, assume complex behavior
-		var/turf/target = get_step(get_turf(src), dir)
-		if(user.loc == target)
-			user.forceMove(get_turf(src))
-			user.visible_message(span_warning("[user] leaps over \the [src]!"))
-		else
-			if(target.density) //Turf is dense, not gonna work
-				to_chat(user, span_warning("You cannot leap this way."))
-				return
-			for(var/atom/movable/A in target)
-				if(A?.density && !(A.flags_atom & ON_BORDER))
-					if(istype(A, /obj/structure))
-						var/obj/structure/S = A
-						if(!S.climbable) //Transfer onto climbable surface
-							to_chat(user, span_warning("You cannot leap this way."))
-							return
-					else
-						to_chat(user, span_warning("You cannot leap this way."))
-						return
-			user.forceMove(get_turf(target)) //One more move, we "leap" over the border structure
-
-			if(get_turf(user) == get_turf(target))
-				user.visible_message(span_warning("[user] leaps over \the [src]!"))
+	user.forceMove(destination_turf)
+	user.visible_message(span_warning("[user] [flags_atom & ON_BORDER ? "leaps over" : "climbs onto"] \the [src]!"))
 
 /obj/structure/proc/structure_shaken()
 
@@ -163,7 +128,7 @@
 		if(M.lying_angle)
 			return //No spamming this on people.
 
-		M.Paralyze(10 SECONDS)
+		M.Paralyze(2 SECONDS)
 		to_chat(M, span_warning("You topple as \the [src] moves under you!"))
 
 		if(prob(25))

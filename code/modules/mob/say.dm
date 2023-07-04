@@ -50,7 +50,10 @@
 				to_chat(src, span_danger("You cannot talk in deadchat (muted)."))
 				return
 			if(client?.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
-				to_chat(usr, span_warning("You have deadchat muted."))
+				to_chat(src, span_warning("You have deadchat muted."))
+				return
+			if(is_banned_from(src.ckey, "Deadchat"))
+				to_chat(src, span_warning("You are banned from deadchat."))
 				return
 			if(client.handle_spam_prevention(message, MUTE_DEADCHAT))
 				return
@@ -87,8 +90,6 @@
 		return MODE_HEADSET
 	else if((length(message) > (length(key) + 1)) && (key in GLOB.department_radio_prefixes))
 		var/key_symbol = lowertext(message[length(key) + 1])
-		if(faction == FACTION_TERRAGOV_REBEL)
-			return GLOB.department_radio_keys_rebel[key_symbol]
 		if(faction == FACTION_SOM)
 			return GLOB.department_radio_keys_som[key_symbol]
 		return GLOB.department_radio_keys[key_symbol]

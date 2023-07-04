@@ -173,6 +173,7 @@
 		"black",
 	)
 	current_variant = "black"
+	visorless_offset_y = 0
 
 /obj/item/clothing/head/modular/som/engineer
 	name = "\improper SOM engineering helmet"
@@ -192,6 +193,9 @@
 	icon_state = "som_helmet_bio"
 	item_state = "som_helmet_bio"
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 50, ACID = 70)
+	siemens_coefficient = 0.1
+	permeability_coefficient = 0
+	gas_transfer_coefficient = 0.1
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,

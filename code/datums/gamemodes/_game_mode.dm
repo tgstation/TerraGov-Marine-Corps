@@ -54,7 +54,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	///If the gamemode has a whitelist of valid ship maps. Whitelist overrides the blacklist
 	var/list/whitelist_ship_maps
 	///If the gamemode has a blacklist of disallowed ship maps
-	var/list/blacklist_ship_maps = list(MAP_COMBAT_PATROL_BASE, MAP_TWIN_PILLARS)
+	var/list/blacklist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
 	///If the gamemode has a whitelist of valid ground maps. Whitelist overrides the blacklist
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
@@ -86,15 +86,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 
 /datum/game_mode/proc/pre_setup()
-	if(flags_round_type & MODE_TWO_HUMAN_FACTIONS)
-		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list)
-			new /obj/machinery/computer/shuttle/shuttle_control/dropship/rebel(T)
-		for(var/turf/T AS in GLOB.lz2_shuttle_console_turfs_list)
-			new /obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist(T)
-	else
-		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list + GLOB.lz2_shuttle_console_turfs_list)
-			new /obj/machinery/computer/shuttle/shuttle_control/dropship(T)
-
 	setup_blockers()
 	GLOB.balance.Initialize()
 
@@ -570,7 +561,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 		return FALSE
-	if(!GLOB.enter_allowed)
+	if(!GLOB.enter_allowed || (!GLOB.xeno_enter_allowed && istype(job, /datum/job/xenomorph)))
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return FALSE
 	if(!NP.client.prefs.random_name)

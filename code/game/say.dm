@@ -10,16 +10,6 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_ENGINEERING]" = "engradio",
 	"[FREQ_MEDICAL]" = "medradio",
 	"[FREQ_REQUISITIONS]" = "supradio",
-	"[FREQ_ALPHA_REBEL]" = "alpharadio",
-	"[FREQ_BRAVO_REBEL]" = "bravoradio",
-	"[FREQ_CHARLIE_REBEL]" = "charlieradio",
-	"[FREQ_DELTA_REBEL]" = "deltaradio",
-	"[FREQ_COMMAND_REBEL]" = "comradio",
-	"[FREQ_AI_REBEL]" = "airadio",
-	"[FREQ_CAS_REBEL]" = "casradio",
-	"[FREQ_ENGINEERING_REBEL]" = "engradio",
-	"[FREQ_MEDICAL_REBEL]" = "medradio",
-	"[FREQ_REQUISITIONS_REBEL]" = "supradio",
 	"[FREQ_ZULU]" = "zuluradio",
 	"[FREQ_YANKEE]" = "yankeeradio",
 	"[FREQ_XRAY]" = "xrayradio",
@@ -135,7 +125,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		if(!istype(J))
 			return ""
 
-		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+		paygrade = get_paygrades(J.paygrade, TRUE, gender)
+		return paygrade ? "[paygrade] " : ""
 	else if(istype(speaker, /atom/movable/virtualspeaker))
 		var/atom/movable/virtualspeaker/VT = speaker
 		if(!ishuman(VT.source))
@@ -149,7 +140,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		if(!istype(J))
 			return ""
 
-		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+		paygrade = get_paygrades(J.paygrade, TRUE, gender)
+		return paygrade ? "[paygrade] " : ""
 	else
 		return ""
 

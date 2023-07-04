@@ -9,6 +9,7 @@
 	flags_atom = ON_BORDER
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	climbable = TRUE
 	climb_delay = 10
 
@@ -18,7 +19,8 @@
 	icon_state = null
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -73,38 +75,6 @@
 		new_overlay.pixel_x = -32
 		. += new_overlay
 
-/obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
-	if(mover?.throwing)
-		return TRUE
-
-	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
-		return FALSE
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
-		return TRUE
-
-	if(get_dir(loc, target) & dir)
-		return FALSE
-	else
-		return TRUE
-
-///Checks if we can exit the platform's turf
-/obj/structure/platform/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(O.flags_pass, PASSTABLE))
-		return NONE
-	if(O.throwing)
-		return NONE
-	if(!(direction & dir) || (O.status_flags & INCORPOREAL))
-		return NONE
-
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
-
 /obj/structure/platform/rockcliff
 	icon_state = "rockcliff"
 	name = "rock cliff"
@@ -120,6 +90,11 @@
 	icon_state = "platformtrench"
 	name = "trench wall"
 	desc = "A group of roughly cut planks forming the side of a dug in trench."
+
+/obj/structure/platform/adobe
+	name = "brick wall"
+	desc = "A low adobe brick wall."
+	icon_state = "adobe"
 
 //decorative corner platform bits
 /obj/structure/platform_decoration
@@ -153,3 +128,6 @@
 
 /obj/structure/platform_decoration/metalplatform_deco
 	icon_state = "metalplatform_deco"
+
+/obj/structure/platform_decoration/adobe_deco
+	icon_state = "adobe_deco"

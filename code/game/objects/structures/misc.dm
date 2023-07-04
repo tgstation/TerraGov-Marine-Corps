@@ -154,9 +154,9 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			take_damage(100)
+			take_damage(100, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(50)
+			take_damage(50, BRUTE, BOMB)
 
 ///Releases whatever is inside the tank
 /obj/structure/xenoautopsy/tank/proc/release_occupant()
@@ -232,6 +232,28 @@
 /obj/structure/stairs/seamless/platform/alt
 	icon_state = "railstairs_seamless_vert"
 
+/obj/structure/stairs/seamless/platform/adobe //west and east
+	icon_state = "adobe_stairs"
+
+/obj/structure/stairs/seamless/platform/adobe/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/stairs/seamless/platform/adobe/update_overlays()
+	. = ..()
+	if(dir == WEST || dir == EAST)
+		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
+		. += new_overlay
+
+/obj/structure/stairs/seamless/platform/adobe/straight
+	icon_state = "adobe_stairs_straight"
+
+/obj/structure/stairs/seamless/platform/adobe_vert //north and west
+	icon_state = "adobe_stairs_vertical"
+
+/obj/structure/stairs/seamless/platform/adobe_vert/straight
+	icon_state = "adobe_stairs_vertical_straight"
 
 /obj/structure/stairs/corner
 	icon_state = "staircorners"
@@ -257,22 +279,23 @@
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 100
 
-/obj/structure/plasticflaps/CanAllowThrough(atom/A, turf/T)
-	. = ..()
-	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
+/obj/structure/plasticflaps/CanAllowThrough(atom/movable/mover, turf/T)
+	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
 		return prob(60)
 
-	var/obj/structure/bed/B = A
-	if(istype(A, /obj/structure/bed) && LAZYLEN(B.buckled_mobs))//if it's a bed/chair and someone is buckled, it will not pass
+	var/obj/structure/bed/B = mover
+	if(istype(B) && LAZYLEN(B.buckled_mobs))//if it's a bed/chair and someone is buckled, it will not pass
 		return FALSE
 
-	if(istype(A, /obj/vehicle))	//no vehicles
+	if(istype(mover, /obj/vehicle))	//no vehicles
 		return FALSE
 
-	if(isliving(A)) // You Shall Not Pass!
-		var/mob/living/M = A
+	if(isliving(mover)) // You Shall Not Pass!
+		var/mob/living/M = mover
 		if(!M.lying_angle && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass. //todo kill shitcode
 			return FALSE
+
+	return ..()
 
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)
