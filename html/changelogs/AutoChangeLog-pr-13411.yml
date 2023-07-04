@@ -1,6 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscadd: "Readded the mounted nest minigun back to req"
-  - bugfix: "Fixed mounted nest dropship equipment not letting you mount it"
-  - code_imp: "Refactored mounted nest dropship equipment to use inheritance"

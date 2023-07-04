@@ -1,4 +1,0 @@
-author: "XElectricX"
-delete-after: True
-changes:
-  - bugfix: "Remove empty space before character name if they don't have a rank."

@@ -31,3 +31,18 @@
       and slowdown to tell players that only changing chestplate influence armor and
       slowdown
   - rscadd: Send order is added in text ui so that marines can read
+2023-07-04:
+  Sebbe9123:
+  - rscadd: Adds cloneloss to cocoon.
+  XElectricX:
+  - bugfix: Chamber closing message instead of the opening message is shown when closing
+      the reciever.
+  - bugfix: Remove empty space before character name if they don't have a rank.
+  ivanmixo:
+  - rscadd: Readded the mounted nest minigun back to req
+  - bugfix: Fixed mounted nest dropship equipment not letting you mount it
+  - code_imp: Refactored mounted nest dropship equipment to use inheritance
+  - config: Removed old map definitions in default config
+  - balance: Added a component that prevents the juggling of weapons to bypass firing
+      rate limitations
+  - admin: Added a deadchat specific ban

@@ -1,4 +1,0 @@
-author: "XElectricX"
-delete-after: True
-changes:
-  - bugfix: "Chamber closing message instead of the opening message is shown when closing the reciever."
