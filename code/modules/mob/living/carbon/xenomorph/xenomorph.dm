@@ -81,6 +81,7 @@
 
 	AddElement(/datum/element/footstep, FOOTSTEP_XENO_MEDIUM, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
 	set_jump_component()
+	setup_screen_timers()
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health
 /mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
@@ -437,3 +438,39 @@
 
 /mob/living/carbon/xenomorph/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = 0, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)
+
+/mob/living/carbon/xenomorph/proc/setup_screen_timers()
+	var/list/nuke_start_on_signals = list(
+		COMSIG_GLOB_NUKE_START = WEAKREF(SSdcs),
+		COMSIG_MOB_LOGIN = WEAKREF(src),
+	)
+	var/list/nuke_stop_on_signals = list(
+		COMSIG_GLOB_NUKE_STOP = WEAKREF(SSdcs),
+		COMSIG_MOB_GHOST = WEAKREF(src),
+		COMSIG_MOB_LOGOUT = WEAKREF(src),
+	)
+	var/list/collapse_start_on_signals = list(
+		COMSIG_GLOB_HIVE_COLLAPSING = WEAKREF(SSdcs),
+		COMSIG_MOB_LOGIN = WEAKREF(src),
+	)
+	var/list/collapse_stop_on_signals = list(
+		COMSIG_GLOB_HIVE_COLLAPSE_END = WEAKREF(SSdcs),
+		COMSIG_MOB_GHOST = WEAKREF(src),
+		COMSIG_MOB_LOGOUT = WEAKREF(src),
+	)
+	var/style = "<span class='maptext' style=font-size:16pt;text-align:center;color=red align='top'>"
+	AddComponent(/datum/component/hud_timer, null, "[style] NUKE ACTIVE: ", nuke_start_on_signals, nuke_stop_on_signals, PROC_REF(nuke_hud_timer_callback))
+	AddComponent(/datum/component/hud_timer, null, "[style] HIVE COLLAPSING: ", collapse_start_on_signals, collapse_stop_on_signals, PROC_REF(collapse_hud_timer_callback))
+
+/mob/living/carbon/xenomorph/proc/nuke_hud_timer_callback(source, possible_nuke)
+	var/obj/machinery/nuclearbomb/nuke
+	if(istype(possible_nuke, /obj/machinery/nuclearbomb))
+		nuke = possible_nuke
+	else if(length(GLOB.active_nuke_list))
+		nuke = GLOB.active_nuke_list[length(GLOB.active_nuke_list)]
+	else 
+		return null
+	return nuke.timer
+
+/mob/living/carbon/xenomorph/proc/collapse_hud_timer_callback(source, timer)
+	return timer

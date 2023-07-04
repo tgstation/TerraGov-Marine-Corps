@@ -15,5 +15,3 @@
 		generate_nicknumber()
 
 	generate_name()
-
-	start_nuke_timer_display()

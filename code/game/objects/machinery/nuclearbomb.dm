@@ -57,11 +57,12 @@
 /obj/machinery/nuclearbomb/proc/enable()
 	GLOB.active_nuke_list += src
 	countdown.start()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 	notify_ghosts("[usr] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 	timer_enabled = TRUE
 	timer = addtimer(CALLBACK(src, PROC_REF(explode)), time, TIMER_STOPPABLE)
 	update_minimap_icon()
+	// The timer is needed for when the signal is sent
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 
 ///Disables nuke timer
 /obj/machinery/nuclearbomb/proc/disable()

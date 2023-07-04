@@ -1,55 +1,38 @@
 
-/atom/movable/screen/text/nuke_timer
+/atom/movable/screen/text/screen_timer
 	maptext_x = 12
-	maptext_y = -40
-	// screen_loc = "LEFT,TOP-3"
-	var/nuke_name
-	var/datum/weakref/nuke_ref
-	var/datum/weakref/owner_mob_ref
+	maptext_y = -70
+	var/maptext_string
+	var/timer_id
+	var/datum/weakref/owner_client_ref
 
-/atom/movable/screen/text/nuke_timer/Initialize(mapload, mob, nukename, reference_nuke)
+/atom/movable/screen/text/screen_timer/Initialize(mapload, client/owner_client, timer, text)
 	. = ..()
-	if(!reference_nuke)
-		stack_trace("Missing nuke ref for screen nuke timer!")
-		stop_nuke_timer()
+	if(!timer)
+		stop_timer()
+		CRASH("Invalid time ref for screen nuke timer!")
+	maptext_string = text
+	timer_id = timer
+	owner_client_ref = WEAKREF(owner_client)
+	START_PROCESSING(SSprocessing, src)
 
-	nuke_ref = reference_nuke
-	var/obj/machinery/nuclearbomb/nuke = nuke_ref.resolve()
-	if(!nuke)
-		CRASH("Invalid nuke ref for screen nuke timer!")
-	if(!nukename)
-		nuke_name = "Unknown Nuke"
-	else
-		nuke_name = nukename
-	owner_mob_ref = WEAKREF(mob)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_STOP, PROC_REF(stop_nuke_timer))
-	RegisterSignal(mob, COMSIG_MOB_GHOST, PROC_REF(stop_nuke_timer))
-	RegisterSignal(mob, COMSIG_MOB_LOGOUT, PROC_REF(stop_nuke_timer))
-	START_PROCESSING(SSfastprocess, src)
+	owner_client.screen.Add(src)
 
-/atom/movable/screen/text/nuke_timer/process()
-	var/obj/machinery/nuclearbomb/nuke = nuke_ref?.resolve()
-	if(!nuke)
-		CRASH("Invalid nuke ref for screen nuke timer!")
-	var/nuke_time_left = timeleft(nuke.timer)
-	var/time_formatted = time2text(nuke_time_left, "mm:ss")
-	// Calculate the milliseconds left over from the timeleft() function.
-	var/seconds = round(nuke_time_left MILLISECONDS)
-	var/leftover_milliseconds = round(nuke_time_left - seconds * 10)
-	maptext = "<span class='maptext' style=font-size:16pt;text-align:center valign='top'>Nuke ACTIVE: [nuke_name] [time_formatted]:[leftover_milliseconds]  </span>"
+/atom/movable/screen/text/screen_timer/process()
+	var/time_left = timeleft(timer_id)
+	var/time_formatted = time2text(time_left, "mm:ss")
+	maptext = "[maptext_string] [time_formatted]</span>"
 
-/atom/movable/screen/text/nuke_timer/proc/stop_nuke_timer()
+/atom/movable/screen/text/screen_timer/proc/stop_timer()
 	qdel(src)
 
-/atom/movable/screen/text/nuke_timer/Destroy()
+/atom/movable/screen/text/screen_timer/Destroy()
 	. = ..()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_STOP)
-	STOP_PROCESSING(SSfastprocess, src)
-	if(!owner_mob_ref)
+	STOP_PROCESSING(SSprocessing, src)
+	if(!owner_client_ref)
 		return
-	var/mob/owner = owner_mob_ref.resolve()
-	if(!owner)
+	var/client/client = owner_client_ref.resolve()
+	if(!client)
 		return
-	UnregisterSignal(owner, COMSIG_MOB_GHOST)
-	UnregisterSignal(owner, COMSIG_MOB_LOGOUT)
-	owner?.client.screen -= src
+	if(src in client.screen)
+		client.screen.Remove(src)

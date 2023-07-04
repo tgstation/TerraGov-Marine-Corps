@@ -36,7 +36,9 @@
 #define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
 #define COMSIG_GLOB_AI_MINION_RALLY "!ai_minion_rally"
 #define COMSIG_GLOB_HIVE_TARGET_DRAINED "!hive_target_drained"
-
+#define COMSIG_GLOB_HIVE_COLLAPSING "!hive_collapsing"
+// The end of the hive collapse, either because hive is dead or because it's been saved
+#define COMSIG_GLOB_HIVE_COLLAPSE_END "!hive_collapse_end"
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
