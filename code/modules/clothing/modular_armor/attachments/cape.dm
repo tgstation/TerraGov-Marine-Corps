@@ -15,7 +15,11 @@
 	secondary_color = TRUE
 	attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
 	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight)
-	colorable_allowed = PRESET_COLORS_ALLOWED|ICON_STATE_VARIANTS_ALLOWED|COLOR_WHEEL_ALLOWED
+	attachments_allowed = list(
+		/obj/item/armor_module/armor/cape_highlight,
+		/obj/item/armor_module/armor/cape_highlight/kama,
+	)
+	colorable_allowed = PRESET_COLORS_ALLOWED|ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "normal"
 	icon_state_variants = list(
 		"scarf round" = list(
@@ -176,18 +180,6 @@
 
 	///True if the hood is up, false if not.
 	var/hood = FALSE
-
-/obj/item/armor_module/armor/cape/Initialize()
-	. = ..()
-	AddComponent(/datum/component/attachment_handler, \
-	attachments_by_slot, \
-	list(
-		/obj/item/armor_module/armor/cape_highlight,
-		/obj/item/armor_module/armor/cape_highlight/kama,
-	), \
-	starting_attachments = starting_attachments)
-	update_icon()
-
 
 /obj/item/armor_module/armor/cape/update_icon_state()
 	var/obj/item/armor_module/highlight = attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT]

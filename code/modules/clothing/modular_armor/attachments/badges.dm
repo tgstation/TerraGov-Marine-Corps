@@ -102,3 +102,17 @@
 /obj/item/armor_module/armor/stylehat_badge/ushanka
 	name = "Ushanka Badge"
 	icon_state = "ushanka_badge"
+
+/obj/item/armor_module/armor/visor_glyph
+	name = "Visor Glyph"
+	icon_state = "skull"
+	greyscale_config = /datum/greyscale_config/visors/glyphs
+	slot = ATTACHMENT_SLOT_CAPE_HIGHLIGHT
+	flags_attach_features = ATTACH_APPLY_ON_MOB|ATTACH_SAME_ICON
+	secondary_color = TRUE
+	greyscale_colors = COLOR_WHITE
+	flags_item_map_variant = NONE
+	colorable_allowed = COLOR_WHEEL_ALLOWED
+
+/obj/item/armor_module/armor/visor_glyph/old
+	icon_state = "skull_old"

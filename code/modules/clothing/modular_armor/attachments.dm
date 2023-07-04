@@ -57,12 +57,17 @@
 	///Starting attachments that are spawned with this.
 	var/list/starting_attachments = list()
 
+	///Allowed attachment types
+	var/list/attachments_allowed = list()
+
 	///The signal for this module if it can toggled
 	var/toggle_signal
 
 /obj/item/armor_module/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, starting_attachments = starting_attachments)
+	update_icon()
 
 /// Called before a module is attached.
 /obj/item/armor_module/proc/can_attach(obj/item/attaching_to, mob/user)

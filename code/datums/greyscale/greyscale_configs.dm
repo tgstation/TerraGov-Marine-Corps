@@ -45,6 +45,9 @@
 	json_config = 'code/datums/greyscale/json_configs/visors.json'
 	greyscale_flags = HYPERSCALE_ALLOW_GREYSCALE
 
+/datum/greyscale_config/visors/glyphs
+	json_config = 'code/datums/greyscale/json_configs/visor_glyphs.json'
+
 /datum/greyscale_config/visors/greyscale
 	json_config = 'code/datums/greyscale/json_configs/greyscale_visor.json'
 
