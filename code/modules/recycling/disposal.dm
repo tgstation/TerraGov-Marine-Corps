@@ -15,6 +15,7 @@
 	density = TRUE
 	active_power_usage = 3500 //The pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	var/mode = 1 //Item mode 0=off 1=charging 2=charged
 	var/flush = 0 //True if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null //The attached pipe trunk
@@ -410,7 +411,6 @@
 		qdel(H)
 
 /obj/machinery/disposal/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover, /obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(75))
@@ -418,7 +418,7 @@
 			visible_message(span_notice("[I] lands into [src]."))
 		else
 			visible_message(span_warning("[I] bounces off of [src]'s rim!"))
-		return 0
+		return FALSE
 	else
 		return ..()
 

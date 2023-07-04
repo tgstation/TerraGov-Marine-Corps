@@ -440,7 +440,7 @@
 /area/lv624/ground/caves/central2)
 "In" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "IL" = (
 /turf/closed/wall,
 /area/lv624/ground/caves/central1)
@@ -601,7 +601,7 @@
 /area/lv624/ground/caves/central2)
 "Yt" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "Yv" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)

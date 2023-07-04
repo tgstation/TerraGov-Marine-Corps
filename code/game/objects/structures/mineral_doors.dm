@@ -5,7 +5,7 @@
 	name = "mineral door"
 	density = TRUE
 	opacity = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
 
@@ -35,9 +35,10 @@
 	return try_toggle_state(user)
 
 /obj/structure/mineral_door/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
+
+	return ..()
 
 /*
  * Checks all the requirements for opening/closing a door before opening/closing it

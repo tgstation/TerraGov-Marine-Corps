@@ -84,7 +84,7 @@
 	var/mob/living/M = AM
 	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them
 		return
-	if (CHECK_MULTIPLE_BITFIELDS(M.flags_pass, HOVERING))
+	if (CHECK_MULTIPLE_BITFIELDS(M.pass_flags, HOVERING))
 		return
 
 	pick(playsound(loc, 'sound/effects/shard1.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard2.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard3.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard4.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard5.ogg', 35, TRUE))

@@ -9,6 +9,7 @@
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	max_integrity = 100
 	///high chance to block bullets, offset by being unanchored
 	coverage = 80
@@ -36,6 +37,12 @@
 
 /obj/structure/reagent_dispensers/Initialize(mapload)
 	. = ..()
+
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
 
 /obj/structure/reagent_dispensers/ex_act(severity)
@@ -50,12 +57,6 @@
 			if (prob(5))
 				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
-
-
-/obj/structure/reagent_dispensers/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
 
 //Dispensers
 /obj/structure/reagent_dispensers/watertank

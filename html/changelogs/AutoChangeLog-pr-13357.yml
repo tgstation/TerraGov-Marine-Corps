@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Deployable structures such as turrets now display their hud to the faction that actually deployed it, instead of just marines"
-  - code_imp: "Improved some faction related code"
-  - bugfix: "Suicides no longer show as defibbable on the minimap"

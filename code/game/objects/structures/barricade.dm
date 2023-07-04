@@ -8,6 +8,7 @@
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
+	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
@@ -19,8 +20,6 @@
 	///to specify a non-zero amount of stack to drop when destroyed
 	var/destroyed_stack_amount = 0
 	var/base_acid_damage = 2
-	///Whether things can be thrown over
-	var/allow_thrown_objs = TRUE
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
 	///Whether this barricade has damaged states
 	var/can_change_dmg_state = TRUE
@@ -35,7 +34,8 @@
 	. = ..()
 	update_icon()
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -56,60 +56,18 @@
 		if(-INFINITY to 25)
 			. += span_warning("It's crumbling apart, just a few more blows will tear it apart.")
 
+/obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	. = ..()
 
-/obj/structure/barricade/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
-		return NONE
-
-	if(O.throwing)
-		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
-			if(direction & dir)
-				knownblockers += src
-				return COMPONENT_ATOM_BLOCK_EXIT
-		if(!allow_thrown_objs && !istype(O, /obj/projectile))
-			if(direction & dir)
-				knownblockers += src
-				return COMPONENT_ATOM_BLOCK_EXIT
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
+	if(mover?.throwing && is_wired && iscarbon(mover) && (direction & dir))
+		knownblockers += src
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(closed)
-		return TRUE
-
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
-		return TRUE
-
-	if(mover?.throwing)
-		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
-			if(get_dir(loc, target) & dir)
-				return FALSE
-		if(!allow_thrown_objs && !istype(mover, /obj/projectile))
-			if(get_dir(loc, target) & dir)
-				return FALSE
-		return TRUE
-
-	if(istype(mover, /obj/vehicle/multitile))
-		visible_message(span_danger("[mover] drives over and destroys [src]!"))
-		deconstruct(FALSE)
+	if(is_wired && ismob(mover) && (get_dir(loc, target) & dir))
 		return FALSE
 
-	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
-		return FALSE
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
-		return TRUE
-
-	if(get_dir(loc, target) & dir)
-		return FALSE
-	else
-		return TRUE
+	return ..()
 
 /obj/structure/barricade/attack_animal(mob/user)
 	return attack_alien(user)
@@ -348,12 +306,10 @@
 	coverage = 25
 	max_integrity = 150
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 15, BIO = 100, FIRE = 100, ACID = 10)
-	climbable = FALSE
 	stack_type = /obj/item/stack/rods
 	destroyed_stack_amount = 3
 	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "railing"
-	allow_thrown_objs = FALSE
 	can_wire = FALSE
 
 /obj/structure/barricade/guardrail/update_icon()
@@ -371,7 +327,6 @@
 	icon_state = "wooden"
 	max_integrity = 100
 	layer = OBJ_LAYER
-	climbable = FALSE
 	stack_type = /obj/item/stack/sheet/wood
 	stack_amount = 5
 	destroyed_stack_amount = 3

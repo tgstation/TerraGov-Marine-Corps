@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Objects are more consistant in how they can be climbed or walked over"
+  - balance: "Having a table flipped, or crate opened under you no longer stuns you for 10 seconds"
+  - refactor: "refactored some code for moving between or climbing certain objects"

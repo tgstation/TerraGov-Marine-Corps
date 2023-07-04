@@ -111,6 +111,9 @@
 /datum/greyscale_config/armor_mk1/ranger
 	icon_file = 'icons/mob/modular/mark_one/ranger.dmi'
 
+/datum/greyscale_config/armor_mk1/trooper
+	icon_file = 'icons/mob/modular/mark_one/trooper.dmi'
+
 /datum/greyscale_config/armor_mk1/scout
 	icon_file = 'icons/mob/modular/mark_one/scout.dmi'
 
@@ -150,6 +153,8 @@
 /datum/greyscale_config/armor_mk2/traditional
 	icon_file = 'icons/mob/modular/mark_two/traditional.dmi'
 
+/datum/greyscale_config/armor_mk2/trooper
+	icon_file = 'icons/mob/modular/mark_two/trooper.dmi'
 
 /datum/greyscale_config/xenonaut
 	icon_file = 'icons/mob/modular/xenonauten.dmi'

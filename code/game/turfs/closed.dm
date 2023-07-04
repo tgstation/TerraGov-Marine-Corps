@@ -88,7 +88,7 @@
 	icon_state = "darkfrostwall-0"
 	walltype = "darkfrostwall"
 	base_icon_state = "darkfrostwall"
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	resistance_flags = RESIST_ALL
@@ -319,7 +319,7 @@
 /turf/closed/ice_rock
 	name = "Icy rock"
 	icon = 'icons/turf/rockwall.dmi'
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
 	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice_rock/add_debris_element()
@@ -482,6 +482,7 @@
 /turf/closed/shuttle/dropship1/window
 	icon_state = "shuttle_window_glass"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship1/panel
 	icon_state = "shuttle_interior_panel"
@@ -519,6 +520,7 @@
 /turf/closed/shuttle/dropship1/interiorwindow
 	icon_state = "shuttle_interior_inwards"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship1/interiormisc
 	icon_state = "shuttle_interior_threeside"
@@ -672,6 +674,7 @@
 /turf/closed/shuttle/dropship2/window
 	icon_state = "shuttle_window_glass"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/panel
 	icon_state = "shuttle_interior_panel"
@@ -729,6 +732,8 @@
 
 /turf/closed/shuttle/dropship2/singlewindow
 	icon_state = "shuttle_single_window"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/singlewindow/tadpole
 	icon_state = "shuttle_single_window"
@@ -757,18 +762,24 @@
 
 /turf/closed/shuttle/dropship2/glassone
 	icon_state = "shuttle_glass1"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glassone/tadpole
 	icon_state = "shuttle_glass1"
 	resistance_flags = NONE
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glasstwo
 	icon_state = "shuttle_glass2"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glasstwo/tadpole
 	icon_state = "shuttle_glass2"
 	resistance_flags = NONE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glassthree
 	icon_state = "shuttle_glass3"

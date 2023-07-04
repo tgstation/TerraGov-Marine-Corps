@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed ID's not correctly showing info such as blood type"
-  - admin: "Fixed some issues with the rank and equip button"

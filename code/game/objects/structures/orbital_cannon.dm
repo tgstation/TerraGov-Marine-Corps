@@ -14,7 +14,7 @@
 	bound_height = 64
 	bound_y = 64
 	resistance_flags = RESIST_ALL
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -411,6 +411,13 @@
 	flags_atom = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
 
+/obj/machinery/computer/orbital_cannon_console/Initialize(mapload)
+	. = ..()
+
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 
 /obj/machinery/computer/orbital_cannon_console/ex_act()
