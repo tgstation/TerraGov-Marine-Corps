@@ -177,7 +177,7 @@
 		if(version < 14)
 			if(ispath(module.item_type, /obj/item/armor_module/armor/cape))
 				module.variant = "normal"
-				if(module.item_type == /obj/item/armor_module/armor/kama)
+				if(module.item_type == /obj/item/armor_module/armor/cape/kama)
 					module.variant = "kama"
 				else if(module.item_type != /obj/item/armor_module/armor/cape)
 					var/datum/item_representation/armor_module/new_cape = new
@@ -204,6 +204,7 @@
 					new_highlight.item_type = /obj/item/armor_module/armor/cape_highlight
 					new_highlight.attachments = module.attachments
 					new_highlight.colors = module.colors
+					new_highlight.variant = "none"
 					switch(module.item_type)
 						if(/obj/item/armor_module/armor/cape_highlight/half)
 							new_highlight.variant = "half"
