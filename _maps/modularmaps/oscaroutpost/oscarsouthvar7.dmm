@@ -435,7 +435,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "lM" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "lN" = (

@@ -142,12 +142,10 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		authenticated = FALSE
 
 	if (href_list["UP"])
-		message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship Upward in orbit")
 		do_orbit_checks("UP")
 		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
 	else if (href_list["DOWN"])
-		message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship Downward in orbit")
 		do_orbit_checks("DOWN")
 		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
@@ -160,6 +158,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	if(!can_change_orbit(current_orbit, direction))
 		return
 
+	message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship [direction == "UP" ? "UPWARD" : "DOWNWARD"] in orbit")	
 	var/message = "Prepare for orbital change in 10 seconds.\nMoving [direction] the gravity well.\nSecure all belongings and prepare for engine ignition."
 	priority_announce(message, title = "Orbit Change")
 	addtimer(CALLBACK(src, PROC_REF(do_change_orbit), current_orbit, direction), 10 SECONDS)

@@ -121,7 +121,7 @@
 "au" = (
 /obj/structure/rack,
 /obj/item/tool/shovel/etool,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/pizzabox/meat{
 	pixel_y = 8
 	},
@@ -257,14 +257,14 @@
 "aT" = (
 /obj/item/fuel_cell/full,
 /obj/item/fuel_cell/full,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/item/stack/sheet/glass{
 	amount = 50;
 	pixel_x = 3;
 	pixel_y = 3
 	},
 /obj/item/t_scanner,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/storage/backpack/marine/engineerpack,
 /obj/item/storage/belt/utility/full,
 /obj/item/flashlight,
@@ -344,7 +344,7 @@
 "bl" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/tool/weldpack,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bn" = (

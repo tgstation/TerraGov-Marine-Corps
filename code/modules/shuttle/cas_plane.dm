@@ -370,7 +370,7 @@
 		to_chat(source, span_warning("No active weapon selected!"))
 		return
 	var/area/A = get_area(target)
-	if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
+	if(A.ceiling >= CEILING_UNDERGROUND)
 		to_chat(source, span_warning("That target is too deep underground!"))
 		return
 	if(A.flags_area & OB_CAS_IMMUNE)

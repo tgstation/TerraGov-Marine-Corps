@@ -48,6 +48,7 @@
 	AddElement(/datum/element/footstep, isrobot(src) ? FOOTSTEP_MOB_SHOE : FOOTSTEP_MOB_HUMAN, 1)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	AddElement(/datum/element/strippable, GLOB.strippable_human_items, GLOB.strippable_human_layout)
+	AddComponent(/datum/component/anti_juggling)
 	set_jump_component()
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
@@ -776,7 +777,7 @@
 			return
 
 		// Clear out their species abilities.
-		species.remove_inherent_verbs(src)
+		species.remove_inherent_abilities(src)
 
 	var/datum/species/oldspecies = species
 
