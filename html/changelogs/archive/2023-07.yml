@@ -19,3 +19,61 @@
   novaepee:
   - spellcheck: fix grammar on defender's desc
   - imageadd: new mob sprites for sg-29
+2023-07-03:
+  Lumipharon:
+  - bugfix: fixed a tile issue
+  ivanmixo:
+  - bugfix: Fixed researcher/md/cmo spawning without their lemo bottle and tweezers
+      if they have the no backpack pref enabled
+  - bugfix: Fixes ghosting humans being set to undefibbable and not processing
+  novaepee:
+  - code_imp: add in mk1 arm and leg plates description that they have the same armor
+      and slowdown to tell players that only changing chestplate influence armor and
+      slowdown
+  - rscadd: Send order is added in text ui so that marines can read
+2023-07-04:
+  Sebbe9123:
+  - rscadd: Adds cloneloss to cocoon.
+  XElectricX:
+  - bugfix: Chamber closing message instead of the opening message is shown when closing
+      the reciever.
+  - bugfix: Remove empty space before character name if they don't have a rank.
+  ivanmixo:
+  - rscadd: Readded the mounted nest minigun back to req
+  - bugfix: Fixed mounted nest dropship equipment not letting you mount it
+  - code_imp: Refactored mounted nest dropship equipment to use inheritance
+  - config: Removed old map definitions in default config
+  - balance: Added a component that prevents the juggling of weapons to bypass firing
+      rate limitations
+  - admin: Added a deadchat specific ban
+2023-07-05:
+  Lumipharon:
+  - bugfix: Grenade launchers will no longer vend free grenades through the loadout
+      vendor
+  - qol: Objects are more consistant in how they can be climbed or walked over
+  - balance: Having a table flipped, or crate opened under you no longer stuns you
+      for 10 seconds
+  - refactor: refactored some code for moving between or climbing certain objects
+  - bugfix: fixed a bug with human built walls in modular map errors
+  Pariah919:
+  - balance: PPsh rebalanced, removed autoburst, fires faster, it now builds up scatter
+      as it fires.
+  QualityVan:
+  - code_imp: Species can have a list of inherent actions
+  RipGrayson:
+  - rscadd: Created many shallow cave areas that lead into deeper caverns
+  - qol: Removed all locked door varedits, replaced them with locked door helpers
+      for easier mapper visibility
+  - balance: Many more non-essential items are now randomized where appropriat
+  - bugfix: Fixed gold walls being invisible
+  - bugfix: Fixed camera coverage gap in Theseus
+  - bugfix: Fixed several bars of soap that were inadvertently placed inside of solid
+      turf
+  - bugfix: Fixed some broken AI nodes
+  - bugfix: Fixed some broken spotlights in WO
+  - bugfix: Removed some broken shutters in Pillar of Spring
+  - bugfix: Fixed the boxing ring area in Pillar of Spring not having a proper icon
+  Wayland-Smithy:
+  - rscadd: Added per client vote choice randomization.
+  novaepee:
+  - rscadd: engineer, corpsman, SG, & SL have 1,000 hours rank
