@@ -1306,11 +1306,11 @@
 	icon_state = "facial_soulpatch"
 
 /datum/sprite_accessory/facial_hair/broken_man
-	name = "Broken Man"
+	name = "Broken Man Old"
 	icon_state = "facial_brokenman_noeye"
 
 /datum/sprite_accessory/facial_hair/broken_man
-	name = "Broken Man"
+	name = "Broken Man New"
 	icon_state = "facial_brokenman"
 
 //skin styles - WIP
