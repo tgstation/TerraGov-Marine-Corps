@@ -8,7 +8,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "facial_brokenman_eye",
+			"icon_state": "facial_brokeneye",
 			"blend_mode": "overlay"
 		}
 	]
