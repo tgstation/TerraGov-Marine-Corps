@@ -354,6 +354,18 @@
 	data["ui_theme"] = ui_theme
 
 	//complex ones
+	var/list/current_mission_data = list()
+	current_mission_data["name"] = current_mission.name
+	current_mission_data["map_name"] = current_mission.map_name
+	current_mission_data["starting_faction"] = current_mission.starting_faction
+	current_mission_data["hostile_faction"] = current_mission.hostile_faction
+	current_mission_data["winning_faction"] = current_mission.winning_faction
+	current_mission_data["outcome"] = current_mission.outcome
+	current_mission_data["objective_description"] = current_mission.objective_description[faction == current_mission.starting_faction ? "starting_faction" : "hostile_faction"]
+	current_mission_data["mission_brief"] = current_mission.mission_brief[faction == current_mission.starting_faction ? "starting_faction" : "hostile_faction"]
+	current_mission_data["mission_rewards"] = current_mission.additional_rewards[faction == current_mission.starting_faction ? "starting_faction" : "hostile_faction"]
+	data["current_mission"] = current_mission_data
+
 	var/list/potential_missions_data = list()
 	for(var/datum/campaign_mission/potential_mission AS in team.potential_missions)
 		var/list/mission_data = list() //each relevant bit of info regarding the mission is added to the list. Many more to come
