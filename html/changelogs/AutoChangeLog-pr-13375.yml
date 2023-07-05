@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes:
-  - code_imp: "Species can have a list of inherent actions"
