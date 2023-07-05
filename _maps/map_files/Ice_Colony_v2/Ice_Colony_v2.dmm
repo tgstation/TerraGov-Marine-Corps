@@ -135,7 +135,7 @@
 "acs" = (
 /obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/tile/red/whitered,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "acu" = (
 /obj/machinery/light{
 	dir = 8
@@ -11622,7 +11622,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "blb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12554,7 +12554,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bpe" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/shovel{
@@ -12988,11 +12988,17 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/underground/engineering)
 "bqX" = (
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/medical/lobby)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/hallway/north_west/garbledradio)
 "bqZ" = (
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/medical/treatment)
+/obj/structure/bed/roller,
+/turf/open/floor/tile/red/whitered{
+	dir = 4
+	},
+/area/ice_colony/underground/medical/hallway/garbledradio)
 "bra" = (
 /obj/effect/spawner/random/misc/structure/closet/welding,
 /obj/machinery/light,
@@ -13025,10 +13031,13 @@
 	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "brh" = (
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/crew/bball)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/hallway/north_west/garbledradio)
 "brj" = (
 /obj/structure/closet/wardrobe/engineering_yellow,
 /turf/open/floor/tile/dark/yellow2{
@@ -13133,9 +13142,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west/garbledradio)
-"brK" = (
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/medical/or)
 "brL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/junction,
@@ -13160,7 +13166,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/red/whitered,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "brR" = (
 /obj/structure/bed/chair,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -13219,9 +13225,6 @@
 /obj/machinery/computer3/powermonitor,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
-"bsi" = (
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/medical/lobby)
 "bsk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
@@ -13450,9 +13453,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/hallway/south_east)
-"btd" = (
-/turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
 "btf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -13493,11 +13493,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/hallway/garbledradio)
-"btr" = (
-/turf/open/floor/tile/red/whitered{
-	dir = 4
-	},
-/area/ice_colony/underground/medical/hallway)
 "bts" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
@@ -13540,24 +13535,19 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
-/area/ice_colony/underground/medical/or)
-"btC" = (
-/turf/open/floor/tile/red/whitered{
-	dir = 1
-	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "btD" = (
 /obj/structure/sink,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "btE" = (
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "btF" = (
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/medical/lobby/garbledradio)
@@ -13566,12 +13556,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
-/area/ice_colony/underground/medical/or)
-"btI" = (
-/turf/open/floor/tile/red/whitered{
-	dir = 8
-	},
-/area/ice_colony/underground/medical/hallway)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "btK" = (
 /obj/machinery/computer/security,
 /turf/open/floor/tile/dark/red2{
@@ -13637,9 +13622,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/medical/lobby/garbledradio)
-"bub" = (
-/turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
 "buc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -13686,7 +13668,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bup" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/poddoor/shutters/mainship/open{
@@ -13732,7 +13714,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "buw" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -13807,7 +13789,7 @@
 	on = 1
 	},
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "buR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -13822,7 +13804,7 @@
 	name = "\improper Underground Sports Center"
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "buW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -13852,7 +13834,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bvb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -13871,7 +13853,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bve" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/tile/dark/red2{
@@ -13884,7 +13866,7 @@
 /area/ice_colony/underground/reception/checkpoint_north)
 "bvg" = (
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bvh" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -13896,7 +13878,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bvj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -13927,11 +13909,6 @@
 	dir = 8
 	},
 /area/ice_colony/underground/medical/lobby/garbledradio)
-"bvs" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 4
-	},
-/area/ice_colony/underground/medical/lobby)
 "bvt" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -13993,13 +13970,13 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bvF" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bvG" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -14012,28 +13989,13 @@
 	on = 1
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
-"bvM" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
-"bvN" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	name = "\improper Underground Maintenance"
-	},
-/turf/open/floor/plating,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bvP" = (
 /obj/effect/spawner/random/machinery/photocopier/highspawn,
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bvV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -14048,7 +14010,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bvY" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -14058,13 +14020,13 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bwa" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bwd" = (
 /obj/machinery/light{
 	dir = 8
@@ -14080,27 +14042,27 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwh" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwi" = (
 /obj/machinery/chem_master,
 /turf/open/floor/tile/red/whitered{
@@ -14111,10 +14073,10 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwk" = (
 /turf/open/floor/tile/red/whitered,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwl" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -14122,13 +14084,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bwn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -14137,7 +14099,7 @@
 	name = "\improper Underground Medical Laboratory Lobby"
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bwo" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -14149,7 +14111,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwq" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/maintenance/central/construction)
@@ -14168,7 +14130,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwu" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -14176,12 +14138,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwv" = (
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bww" = (
 /obj/machinery/light{
 	dir = 4
@@ -14223,7 +14185,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bwE" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -14231,35 +14193,31 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bwG" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bwH" = (
 /obj/machinery/sleeper,
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwI" = (
 /obj/machinery/sleep_console,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwK" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves)
-"bwL" = (
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
 "bwM" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder,
@@ -14283,7 +14241,7 @@
 	name = "\improper Underground Medical Laboratory Operating Theatre"
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwP" = (
 /obj/structure/cable,
 /turf/open/floor/tile/chapel,
@@ -14292,13 +14250,13 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -14307,7 +14265,7 @@
 	name = "\improper Underground Maintenance"
 	},
 /turf/open/floor/plating,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bwX" = (
 /obj/structure/closet/walllocker/hydrant/full{
 	dir = 4
@@ -14315,7 +14273,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
-/area/ice_colony/underground/hallway/north_west)
+/area/ice_colony/underground/hallway/north_west/garbledradio)
 "bwY" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -14324,27 +14282,27 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bwZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bxa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/hallway)
+/area/ice_colony/underground/medical/hallway/garbledradio)
 "bxb" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/hallway)
+/area/ice_colony/underground/medical/hallway/garbledradio)
 "bxd" = (
 /obj/machinery/light{
 	dir = 8
@@ -14352,14 +14310,14 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bxf" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bxg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14367,7 +14325,7 @@
 /turf/open/floor/tile/red/whitered/corner{
 	dir = 4
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bxh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -14378,7 +14336,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bxl" = (
 /obj/structure/table/woodentable,
 /obj/structure/cable,
@@ -14402,7 +14360,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "bxp" = (
 /obj/machinery/light{
 	dir = 8
@@ -14410,7 +14368,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/hallway)
+/area/ice_colony/underground/medical/hallway/garbledradio)
 "bxq" = (
 /obj/structure/bed/roller,
 /turf/open/floor/tile/red/whitered{
@@ -14422,18 +14380,18 @@
 	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "bxt" = (
 /obj/structure/curtain/open/medical,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bxv" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/machinery/light,
 /turf/open/floor/tile/darkgreen/darkgreen2,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "bxw" = (
 /obj/machinery/light{
 	dir = 4
@@ -14441,7 +14399,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "bxx" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -14459,7 +14417,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bxC" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -14483,7 +14441,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bxF" = (
 /obj/structure/table/woodentable,
 /obj/structure/cable,
@@ -14511,15 +14469,15 @@
 /area/ice_colony/underground/maintenance/engineering/garbledradio)
 "bxJ" = (
 /turf/open/floor/tile/red/whitered,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bxK" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/tile/red/whitered,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bxL" = (
 /obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/red/whitered,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bxM" = (
 /obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /obj/machinery/light{
@@ -14528,12 +14486,12 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bxN" = (
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bxO" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating,
@@ -14548,7 +14506,7 @@
 	name = "\improper Underground Maintenance"
 	},
 /turf/open/floor/plating,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "bxR" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
@@ -14568,7 +14526,7 @@
 	name = "\improper Underground Medical Laboratory"
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "bxY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14588,11 +14546,11 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bya" = (
 /obj/machinery/body_scanconsole,
 /turf/open/floor/tile/red/whitered,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "byb" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -14610,7 +14568,7 @@
 /obj/item/bedsheet/medical,
 /obj/machinery/light/small,
 /turf/open/floor/tile/red/whitered,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "byg" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -16314,7 +16272,7 @@
 "bET" = (
 /obj/structure/cable,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bEU" = (
 /obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/wood,
@@ -17167,7 +17125,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bId" = (
 /turf/open/shuttle/dropship/four,
 /area/ice_colony/underground/responsehangar)
@@ -17541,7 +17499,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bJA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -19858,7 +19816,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
-/area/ice_colony/underground/medical/hallway)
+/area/ice_colony/underground/medical/hallway/garbledradio)
 "bSO" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -19884,7 +19842,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bSV" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable,
@@ -20933,7 +20891,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "bYC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -21454,7 +21412,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/red/whitered,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "cbS" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating,
@@ -21864,7 +21822,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "cUl" = (
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -22033,7 +21991,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/ice_colony/underground/hallway/north_west)
+/area/ice_colony/underground/hallway/north_west/garbledradio)
 "dgh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -22046,7 +22004,7 @@
 /obj/effect/turf_decal/warning_stripes,
 /obj/item/toy/beach_ball/basketball,
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "diw" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/turf_underlay/icefloor,
@@ -22413,7 +22371,7 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "dQl" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/tile/dark/brown2{
@@ -22741,17 +22699,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/temporary)
-"ewV" = (
-/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
-/turf/open/floor/plating,
-/area/ice_colony/underground/crew/bball)
 "exj" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "eyR" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "eAs" = (
 /obj/machinery/light{
 	dir = 8
@@ -23313,7 +23267,7 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "fHD" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -23850,7 +23804,7 @@
 "gKc" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "gKd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -24020,12 +23974,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
-"gXW" = (
-/obj/effect/spawner/random/misc/plant,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 6
-	},
-/area/ice_colony/underground/medical/lobby)
 "gYp" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
@@ -24034,7 +23982,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "gZF" = (
 /obj/machinery/vending/nanomed{
 	dir = 8
@@ -24751,10 +24699,6 @@
 	dir = 6
 	},
 /area/ice_colony/surface/dorms)
-"izy" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
 "izQ" = (
 /obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -24918,7 +24862,7 @@
 /obj/effect/decal/cleanable/blood/gibs/body,
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "iMY" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -25047,7 +24991,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "iXN" = (
 /obj/structure/fence,
 /obj/effect/landmark/weed_node,
@@ -25546,7 +25490,7 @@
 	name = "Basketball Court"
 	},
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "jKJ" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -26030,11 +25974,6 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east/garbledradio)
-"kyH" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 4
-	},
-/area/ice_colony/underground/crew/bball)
 "kze" = (
 /obj/structure/table,
 /obj/effect/spawner/random/food_or_drink/burger,
@@ -26080,7 +26019,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "kCa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26149,7 +26088,7 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "kGE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -26328,7 +26267,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "lge" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood/gibs,
@@ -26434,7 +26373,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "lrc" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Underground Engineering Locker Room"
@@ -26855,7 +26794,7 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "lWa" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/disposalpipe/segment,
@@ -27782,7 +27721,7 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "nBC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -28113,10 +28052,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
-"okR" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/crew/bball)
 "olf" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
@@ -28135,10 +28070,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
-"onc" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/medical/lobby)
 "onk" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/north)
@@ -28220,7 +28151,7 @@
 "otu" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hallway/north_west)
+/area/ice_colony/underground/hallway/north_west/garbledradio)
 "ovB" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -28358,9 +28289,6 @@
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition/lobby)
-"oFS" = (
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/crew/bball)
 "oGH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -28541,7 +28469,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "oWt" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -28954,7 +28882,7 @@
 "pPP" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "pQS" = (
 /obj/structure/table,
 /obj/item/inflatable/wall,
@@ -29117,7 +29045,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "qcf" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -30301,15 +30229,11 @@
 	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
-"rZd" = (
-/obj/effect/turf_decal/warning_stripes/nscenter,
-/turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
 "rZK" = (
 /obj/effect/turf_decal/warning_stripes/nscenter,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "rZX" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -30641,11 +30565,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
-"swp" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 8
-	},
-/area/ice_colony/underground/crew/bball)
 "swD" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -30748,10 +30667,6 @@
 /obj/item/weapon/gun/revolver/cmb,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command)
-"sDe" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
 "sDv" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
@@ -31156,7 +31071,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "tnw" = (
 /obj/structure/fence,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -31501,7 +31416,7 @@
 "tPX" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "tQj" = (
 /obj/effect/attach_point/weapon/dropship1,
 /turf/open/floor/plating,
@@ -31859,11 +31774,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "uza" = (
 /obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "uzd" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -31894,7 +31809,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "uCG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/yellow2,
@@ -31940,7 +31855,7 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "uFO" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/light,
@@ -32349,7 +32264,7 @@
 	name = "Basketball Court"
 	},
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "veQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -32499,10 +32414,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
-"vtn" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/medical/lobby)
 "vtB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -32657,7 +32568,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
-/area/ice_colony/underground/medical/lobby)
+/area/ice_colony/underground/medical/lobby/garbledradio)
 "vJA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/icefloor/warnplate,
@@ -32839,7 +32750,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "waG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/icefloor,
@@ -33116,7 +33027,7 @@
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "wAC" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -33221,7 +33132,7 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/crew/bball/garbledradio)
 "wIr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -33264,7 +33175,7 @@
 /obj/machinery/computer/operating,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "wLj" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/turf_underlay/icefloor,
@@ -33334,7 +33245,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/treatment)
+/area/ice_colony/underground/medical/treatment/garbledradio)
 "wQi" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -33490,10 +33401,6 @@
 /obj/structure/sign/safety/hazard,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad2)
-"xdy" = (
-/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
-/turf/open/floor/plating,
-/area/ice_colony/underground/medical/lobby)
 "xdX" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
@@ -33528,7 +33435,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/hallway)
+/area/ice_colony/underground/medical/hallway/garbledradio)
 "xgK" = (
 /obj/effect/spawner/random/misc/structure/flavorvending,
 /obj/machinery/light,
@@ -40702,12 +40609,12 @@ xee
 xee
 xee
 xee
-bkt
-bkt
-bkt
-bkt
-bkt
-bkt
+xee
+xee
+xee
+xee
+xee
+xee
 bkt
 bkt
 bkt
@@ -40914,12 +40821,12 @@ vjJ
 vjJ
 eAs
 vjJ
-bkq
-bkq
+vjJ
+vjJ
 bwX
-bkq
-bkq
-bkq
+vjJ
+vjJ
+vjJ
 bkq
 bnN
 bkq
@@ -41126,12 +41033,12 @@ pmf
 pmf
 pmf
 pmf
-wBJ
-wBJ
-wBJ
-wBJ
-wBJ
-wBJ
+pmf
+pmf
+pmf
+pmf
+pmf
+pmf
 wBJ
 wBJ
 wBJ
@@ -41338,12 +41245,12 @@ kQR
 lSP
 cYr
 kQR
-lne
-lne
-lne
-cCN
-lne
-qYq
+kQR
+kQR
+kQR
+bqX
+kQR
+brh
 lne
 lne
 cCN
@@ -41550,12 +41457,12 @@ pmf
 blu
 pmf
 pmf
-wBJ
+pmf
 otu
-wBJ
-wBJ
-wBJ
-wBJ
+pmf
+pmf
+pmf
+pmf
 wBJ
 wBJ
 wBJ
@@ -41762,12 +41669,12 @@ wOE
 uVi
 blM
 wOE
-blP
+wOE
 dfU
-blP
-blP
-blP
-blP
+wOE
+wOE
+wOE
+wOE
 blP
 blP
 blP
@@ -41974,12 +41881,12 @@ cpJ
 btW
 buI
 cpJ
-xdy
-bqX
-xdy
-xdy
-bqX
-bqX
+cpJ
+qLS
+cpJ
+cpJ
+qLS
+qLS
 nyp
 nyp
 byP
@@ -42191,7 +42098,7 @@ bwD
 bvW
 bvW
 vJo
-bqX
+qLS
 byr
 bzc
 byP
@@ -42397,13 +42304,13 @@ bsC
 kWd
 btW
 kWd
-bsi
-bsi
-bsi
-bsi
-bsi
+kWd
+kWd
+kWd
+kWd
+kWd
 bxz
-bqX
+qLS
 byu
 bzd
 byP
@@ -42609,11 +42516,11 @@ bsE
 eMe
 btY
 tVv
-vtn
-vtn
-vtn
+eMe
+eMe
+eMe
 uyQ
-vtn
+eMe
 bxi
 bxX
 pPF
@@ -42822,12 +42729,12 @@ bsm
 yiw
 kIQ
 kIQ
-onc
-onc
-onc
-onc
+kIQ
+kIQ
+kIQ
+kIQ
 brg
-bqX
+qLS
 bJP
 buy
 byP
@@ -43034,12 +42941,12 @@ kWd
 bsX
 buK
 wTH
-bvs
+wTH
 bwE
-bvs
+wTH
 bwE
-gXW
-xdy
+nJB
+cpJ
 bJP
 bzd
 byP
@@ -43251,7 +43158,7 @@ kBq
 bwY
 kBq
 bxE
-xdy
+cpJ
 jan
 bze
 bzA
@@ -43463,7 +43370,7 @@ bwG
 bvg
 bwG
 bxJ
-xdy
+cpJ
 bJS
 bzd
 byP
@@ -43675,7 +43582,7 @@ pPP
 bwZ
 bvg
 bxK
-xdy
+cpJ
 vaS
 bzd
 byP
@@ -43887,7 +43794,7 @@ gKc
 bwm
 pPP
 bxL
-xdy
+cpJ
 bJS
 bzd
 byP
@@ -44099,7 +44006,7 @@ bvP
 bwm
 bvi
 bxM
-bqX
+qLS
 bDu
 bzd
 byP
@@ -44306,12 +44213,12 @@ kWd
 bsZ
 cpJ
 cpJ
-xdy
-xdy
+cpJ
+cpJ
 bwn
-xdy
-bqX
-bqX
+cpJ
+qLS
+qLS
 bNo
 bzd
 byP
@@ -44519,11 +44426,11 @@ buc
 vpk
 vpk
 vpk
-btI
+vpk
 bxa
-btI
+vpk
 bxp
-btI
+vpk
 bNp
 bzd
 byP
@@ -44733,8 +44640,8 @@ drQ
 iRg
 xgw
 bxb
-bvj
-bvj
+iRg
+iRg
 bvj
 byG
 bzd
@@ -44943,11 +44850,11 @@ mdL
 mdL
 bHO
 bSN
-btr
-btr
-btr
-bxq
-bxq
+mdL
+mdL
+mdL
+bqZ
+bqZ
 bxq
 bzf
 byB
@@ -45154,13 +45061,13 @@ dYI
 dYI
 dYI
 bHT
-bqZ
-bqZ
-bqZ
-bqZ
-bqZ
-bqZ
-bqZ
+dYI
+dYI
+dYI
+dYI
+dYI
+dYI
+dYI
 byB
 byB
 seh
@@ -45372,7 +45279,7 @@ bxd
 bwH
 bxN
 bxZ
-bqZ
+dYI
 bys
 mYC
 dKo
@@ -45580,11 +45487,11 @@ buP
 bIc
 bwf
 bwI
-btd
+eLN
 bwI
-btd
+eLN
 bya
-bqZ
+dYI
 bys
 rof
 seh
@@ -45791,12 +45698,12 @@ dpQ
 eLN
 qaq
 bwg
-bwL
+bET
 wQb
 leR
 wQb
 brQ
-bqZ
+dYI
 seh
 hls
 bzp
@@ -46008,7 +45915,7 @@ bxf
 bJy
 uza
 acs
-bqZ
+dYI
 bxO
 hls
 bzp
@@ -46215,12 +46122,12 @@ buk
 dpQ
 bvG
 eLN
-sDe
+dpQ
 bwf
 bvE
 bxt
 bye
-bqZ
+dYI
 bxO
 rof
 bzp
@@ -46432,7 +46339,7 @@ bxg
 bvE
 uza
 acs
-bqZ
+dYI
 vdV
 hls
 bzp
@@ -46644,7 +46551,7 @@ bwt
 oWh
 bxt
 bye
-bqZ
+dYI
 seh
 rof
 bzp
@@ -46845,18 +46752,18 @@ rOE
 brp
 pmf
 bsp
-brK
+dYI
 btB
 bum
 bva
 bYA
 bwj
-brK
+dYI
 bwt
 bvE
 uza
 acs
-bqZ
+dYI
 seh
 mEG
 bAb
@@ -47057,18 +46964,18 @@ pmf
 brp
 pmf
 bsq
-brK
-btC
+dYI
+bwv
 eyR
 tPX
 bvJ
 bwk
-brK
+dYI
 bwt
 bvE
 bxt
 bye
-bqZ
+dYI
 vdV
 byT
 bzp
@@ -47269,7 +47176,7 @@ pmf
 brp
 pmf
 bsq
-brK
+dYI
 btD
 fGw
 iMC
@@ -47280,7 +47187,7 @@ bwu
 bwR
 uza
 acs
-bqZ
+dYI
 seh
 hls
 bzp
@@ -47481,18 +47388,18 @@ pmf
 oRQ
 pmf
 bsq
-brK
+dYI
 btE
 bET
 wKw
-bvM
+bwS
 cbQ
-brK
+dYI
 bwv
 bla
 bxt
 bye
-bqZ
+dYI
 seh
 hls
 bzp
@@ -47693,18 +47600,18 @@ boF
 bBK
 pmf
 bsq
-brK
+dYI
 btG
 bpd
 bvd
-bvM
+bwS
 bwp
-brK
+dYI
 bSU
 bwS
 wzW
 waA
-bqZ
+dYI
 bys
 hls
 bzp
@@ -47905,18 +47812,18 @@ pmf
 brp
 pmf
 bsr
-brK
-brK
-brK
-brK
-bvN
-brK
-brK
-bqZ
+dYI
+dYI
+dYI
+dYI
 bwT
-bqZ
-bqZ
-bqZ
+dYI
+dYI
+dYI
+bwT
+dYI
+dYI
+dYI
 bzg
 hls
 bzp
@@ -49818,11 +49725,11 @@ uEj
 uEj
 uEj
 uEj
-brh
-brh
-brh
-brh
-brh
+uEj
+uEj
+uEj
+uEj
+uEj
 hls
 byp
 qGt
@@ -50030,8 +49937,8 @@ boO
 mwb
 uHu
 jzO
-swp
-swp
+uHu
+uHu
 iXl
 bxo
 bxQ
@@ -50244,9 +50151,9 @@ mCT
 pYQ
 veP
 wHG
-oFS
+pMP
 bxr
-brh
+uEj
 rof
 byp
 byp
@@ -50453,12 +50360,12 @@ mbc
 bsU
 cnz
 wZB
-bub
-bub
+fzW
+fzW
 nAu
-okR
+tiT
 bxr
-brh
+uEj
 hls
 byq
 bvh
@@ -50668,9 +50575,9 @@ jFd
 rZK
 qcd
 uFf
-oFS
+pMP
 bxr
-brh
+uEj
 hls
 byq
 bOf
@@ -50878,11 +50785,11 @@ pMP
 eLw
 fzW
 syt
-bub
+fzW
 gZf
-oFS
+pMP
 bxr
-brh
+uEj
 hls
 vdV
 bOf
@@ -51090,11 +50997,11 @@ tiT
 eLw
 fzW
 fzW
-bub
+fzW
 gZf
-oFS
+pMP
 bxr
-brh
+uEj
 byg
 seh
 bOl
@@ -51301,12 +51208,12 @@ brR
 pMP
 eLw
 fzW
-bub
-bub
+fzW
+fzW
 gZf
-oFS
+pMP
 bxr
-brh
+uEj
 vtB
 byH
 byH
@@ -51514,11 +51421,11 @@ btQ
 wFl
 kCC
 dhD
-rZd
+kCC
 uCB
-oFS
+pMP
 bxv
-brh
+uEj
 bJB
 seh
 byI
@@ -51725,12 +51632,12 @@ brR
 pMP
 eLw
 fzW
-bub
-izy
+fzW
+syt
 gZf
-okR
+tiT
 bxr
-brh
+uEj
 uIt
 seh
 byI
@@ -51938,11 +51845,11 @@ pMP
 eLw
 fzW
 buQ
-bub
+fzW
 gZf
-oFS
+pMP
 bxr
-brh
+uEj
 bJB
 seh
 byI
@@ -52150,11 +52057,11 @@ tiT
 eLw
 fzW
 buR
-bub
+fzW
 gZf
-oFS
+pMP
 bxr
-brh
+uEj
 bJB
 vdV
 byI
@@ -52364,9 +52271,9 @@ jez
 mzq
 lrb
 dPl
-oFS
+pMP
 bxr
-brh
+uEj
 bJB
 seh
 byI
@@ -52574,11 +52481,11 @@ pMP
 eLw
 fzW
 buR
-bub
+fzW
 gZf
-okR
+tiT
 bxr
-brh
+uEj
 bJB
 seh
 byI
@@ -52788,9 +52695,9 @@ lRv
 hcU
 jKu
 lUw
-oFS
+pMP
 bxr
-brh
+uEj
 bJB
 bys
 byI
@@ -52999,10 +52906,10 @@ drc
 drc
 xfZ
 drc
-kyH
+drc
 cUi
 bxw
-brh
+uEj
 bJB
 byt
 byI
@@ -53210,11 +53117,11 @@ vbf
 vbf
 vbf
 buV
-ewV
-ewV
-brh
-brh
-brh
+vbf
+vbf
+uEj
+uEj
+uEj
 bJC
 bkt
 byI
@@ -53421,12 +53328,12 @@ tbq
 sBR
 sBR
 sBR
-buW
-brn
-brn
-bsW
-brn
-brn
+lEG
+sBR
+sBR
+tbq
+sBR
+sBR
 bJD
 brn
 brn
@@ -53634,11 +53541,11 @@ qBi
 qBi
 qBi
 lEG
-uPy
-uPy
-uPy
-uPy
-uPy
+qBi
+qBi
+qBi
+qBi
+qBi
 bJD
 uPy
 uPy
@@ -53846,11 +53753,11 @@ rWj
 rWj
 hVZ
 jXY
-goZ
-goZ
-goZ
-goZ
-qqC
+rWj
+rWj
+rWj
+rWj
+oEo
 xLT
 goZ
 goZ
@@ -54058,11 +53965,11 @@ qBi
 aoK
 bRG
 bIn
-bsv
-btb
-bsv
-bsv
-bsv
+vln
+hUI
+vln
+vln
+vln
 bsv
 bsv
 byJ
