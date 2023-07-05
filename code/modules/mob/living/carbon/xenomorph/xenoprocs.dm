@@ -578,4 +578,3 @@
 		return
 	set_light_range_power_color(range, power, color)
 	set_light_on(TRUE)
-
