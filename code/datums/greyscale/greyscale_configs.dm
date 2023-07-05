@@ -309,4 +309,3 @@
 /datum/greyscale_config/broken_man
 	icon_file = 'icons/mob/human_face.dmi'
 	json_config = 'code/datums/greyscale/json_configs/broken_man.json'
-	
