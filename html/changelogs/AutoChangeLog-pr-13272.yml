@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - balance: "PPsh rebalanced, removed autoburst, fires faster, it now builds up scatter as it fires."

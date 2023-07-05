@@ -799,7 +799,7 @@
 			return
 
 		// Clear out their species abilities.
-		species.remove_inherent_verbs(src)
+		species.remove_inherent_abilities(src)
 
 	var/datum/species/oldspecies = species
 
