@@ -3,6 +3,11 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "chest"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"chest_no_color",
+			"blend_mode":"overlay"
 		}
 	],
 	"helmet":[
@@ -31,6 +36,11 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "leg"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"leg_no_color",
+			"blend_mode":"overlay"
 		}
 	]
 }

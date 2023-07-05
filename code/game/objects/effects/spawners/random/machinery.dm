@@ -168,6 +168,10 @@
 		/obj/machinery/photocopier,
 	)
 
+/obj/effect/spawner/random/machinery/photocopier/highspawn
+	spawn_loot_chance = 85
+
+
 /obj/effect/spawner/random/machinery/machine_frame
 	name = "machine frame spawner"
 	icon_state = "random_frame"

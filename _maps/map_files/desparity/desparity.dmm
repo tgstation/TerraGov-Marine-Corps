@@ -754,7 +754,7 @@
 /area/lv624/lazarus/research/caves)
 "es" = (
 /obj/structure/table,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 3
 	},
 /obj/item/tool/pen,
@@ -1004,7 +1004,7 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/tool/pen,
@@ -1048,7 +1048,7 @@
 /area/lv624/ground/caves/east1)
 "fI" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
@@ -2034,7 +2034,7 @@
 /area/lv624/lazarus/fitness)
 "kF" = (
 /obj/structure/table,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 5
 	},
 /obj/item/tool/pen/blue,
@@ -10040,7 +10040,7 @@
 /obj/structure/table/woodentable,
 /obj/item/trash/cigbutt/cigarbutt,
 /obj/machinery/cell_charger,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/effect/spawner/random/clothing/sunglasses,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8

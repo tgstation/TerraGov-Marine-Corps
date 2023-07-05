@@ -81,9 +81,12 @@
 	if(type == CLOAK_ABILITY)
 		right_click_proc = CALLBACK(controlled, /obj/vehicle/unmanned/droid/scout/proc/cloak_drone)
 		return
+	if(type == CARGO_ABILITY)
+		right_click_proc = CALLBACK(controlled, /obj/vehicle/unmanned/droid/ripley/proc/handle_cargo)
+		return
 	right_click_proc = null
 
-/// called by control click, allow to interact with the target 
+/// called by control click, allow to interact with the target
 /datum/component/remote_control/proc/remote_interact(mob/user, atom/target, params)
 	if(!istype(target, /obj/structure/barricade/plasteel))
 		return
