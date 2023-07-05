@@ -122,13 +122,19 @@
 /datum/element/hud_timer/nuke
 	timer_text = "NUKE ACTIVE: ${timer}"
 
+// TODO, make this applied in the base type somehow?
+/datum/element/hud_timer/nuke/New()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(timer_start_signal))
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_STOP, PROC_REF(timer_stop_signal))
+
 /datum/element/hud_timer/nuke/Attach(mob/target, time_to_display, text, start_signals, stop_signals, signal_callback, start_immediately)
 	start_signals = list(
-		COMSIG_GLOB_NUKE_START = WEAKREF(SSdcs),
+		// COMSIG_GLOB_NUKE_START = WEAKREF(SSdcs),
 		COMSIG_MOB_LOGIN = WEAKREF(target),
 	)
 	stop_signals = list(
-		COMSIG_GLOB_NUKE_STOP = WEAKREF(SSdcs),
+		// COMSIG_GLOB_NUKE_STOP = WEAKREF(SSdcs),
 		COMSIG_MOB_GHOST = WEAKREF(target),
 		COMSIG_MOB_LOGOUT = WEAKREF(target),
 	)
@@ -145,16 +151,26 @@
 		return null
 	return possible_nuke.timer
 
+/datum/element/hud_timer/nuke/Destroy(force)
+	. = ..()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_STOP)
+
 /datum/element/hud_timer/hive_collapse
 	timer_text = "HIVE COLLAPSE: ${timer}"
 
+/datum/element/hud_timer/hive_collapse/New()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_COLLAPSING, PROC_REF(timer_start_signal))
+	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_COLLAPSE_END, PROC_REF(timer_stop_signal))
+
 /datum/element/hud_timer/hive_collapse/Attach(mob/target, time_to_display, text, start_signals, stop_signals, signal_callback, start_immediately)
 	start_signals = list(
-		COMSIG_GLOB_HIVE_COLLAPSING = WEAKREF(SSdcs),
+		// COMSIG_GLOB_HIVE_COLLAPSING = WEAKREF(SSdcs),
 		COMSIG_MOB_LOGIN = WEAKREF(target),
 	)
 	stop_signals = list(
-		COMSIG_GLOB_HIVE_COLLAPSE_END = WEAKREF(SSdcs),
+		// COMSIG_GLOB_HIVE_COLLAPSE_END = WEAKREF(SSdcs),
 		COMSIG_MOB_GHOST = WEAKREF(target),
 		COMSIG_MOB_LOGOUT = WEAKREF(target),
 	)
