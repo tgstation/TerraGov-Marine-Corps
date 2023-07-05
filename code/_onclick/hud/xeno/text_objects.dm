@@ -21,7 +21,10 @@
 /atom/movable/screen/text/screen_timer/process()
 	var/time_left = timeleft(timer_id)
 	var/time_formatted = time2text(time_left, "mm:ss")
-	maptext = "[maptext_string] [time_formatted]</span>"
+	var/result_text = replacetextEx(maptext_string, "${timer}", time_formatted)
+	if(!result_text)
+		result_text = result_text + "\n" + time_formatted
+	maptext = result_text
 
 /atom/movable/screen/text/screen_timer/proc/stop_timer()
 	qdel(src)
