@@ -1313,6 +1313,7 @@
 	name = "Broken Man"
 	icon_state = "facial_brokenman_s"
 	greyscale_config = /datum/greyscale_config/hair/broken_man
+	greyscale_colors = "#ee4242"
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery
