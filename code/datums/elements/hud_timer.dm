@@ -125,12 +125,12 @@
 /datum/element/hud_timer/nuke/Attach(mob/target, time_to_display, text, start_signals, stop_signals, signal_callback, start_immediately)
 	start_signals = list(
 		COMSIG_GLOB_NUKE_START = WEAKREF(SSdcs),
-		COMSIG_MOB_LOGIN = WEAKREF(src),
+		COMSIG_MOB_LOGIN = WEAKREF(target),
 	)
 	stop_signals = list(
 		COMSIG_GLOB_NUKE_STOP = WEAKREF(SSdcs),
-		COMSIG_MOB_GHOST = WEAKREF(src),
-		COMSIG_MOB_LOGOUT = WEAKREF(src),
+		COMSIG_MOB_GHOST = WEAKREF(target),
+		COMSIG_MOB_LOGOUT = WEAKREF(target),
 	)
 	callback = PROC_REF(get_nuke_callback)
 	. = ..()
@@ -141,28 +141,24 @@
 		return possible_nuke.timer
 	else if(length(GLOB.active_nuke_list))
 		possible_nuke = GLOB.active_nuke_list[length(GLOB.active_nuke_list)]
-	else 
+	else
 		return null
 	return possible_nuke.timer
 
 /datum/element/hud_timer/hive_collapse
 	timer_text = "HIVE COLLAPSE: ${timer}"
 
-/datum/element/hud_timer/hive_collapse/Attach(mob/target,
-	time_to_display,
-	text,
+/datum/element/hud_timer/hive_collapse/Attach(mob/target, time_to_display, text, start_signals, stop_signals, signal_callback, start_immediately)
 	start_signals = list(
 		COMSIG_GLOB_HIVE_COLLAPSING = WEAKREF(SSdcs),
-		COMSIG_MOB_LOGIN = WEAKREF(src),
-	),
+		COMSIG_MOB_LOGIN = WEAKREF(target),
+	)
 	stop_signals = list(
 		COMSIG_GLOB_HIVE_COLLAPSE_END = WEAKREF(SSdcs),
-		COMSIG_MOB_GHOST = WEAKREF(src),
-		COMSIG_MOB_LOGOUT = WEAKREF(src),
-	),
-	signal_callback = PROC_REF(get_hive_collapse_callback),
-	start_immediately
-)
+		COMSIG_MOB_GHOST = WEAKREF(target),
+		COMSIG_MOB_LOGOUT = WEAKREF(target),
+	)
+	callback = PROC_REF(get_hive_collapse_callback)
 	. = ..()
 
 /datum/element/hud_timer/hive_collapse/proc/get_hive_collapse_callback(source, hive_timer)

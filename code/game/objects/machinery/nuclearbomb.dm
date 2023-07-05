@@ -49,6 +49,8 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
 
 /obj/machinery/nuclearbomb/Destroy()
+	if(timer_enabled)
+		disable()
 	GLOB.nuke_list -= src
 	QDEL_NULL(countdown)
 	return ..()

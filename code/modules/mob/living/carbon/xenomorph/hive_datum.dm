@@ -883,6 +883,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(living_xeno_ruler)
 		if(D.orphan_hive_timer)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_COLLAPSE_END, D.orphan_hive_timer)
 			deltimer(D.orphan_hive_timer)
 			D.orphan_hive_timer = null
 		return
@@ -890,9 +891,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D.orphan_hive_timer)
 		return
 
-
 	D.orphan_hive_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode, orphan_hivemind_collapse)), DISTRESS_ORPHAN_HIVEMIND, TIMER_STOPPABLE)
-
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_COLLAPSING, D.orphan_hive_timer)
 
 /datum/hive_status/normal/burrow_larva(mob/living/carbon/xenomorph/larva/L)
 	if(!is_ground_level(L.z))

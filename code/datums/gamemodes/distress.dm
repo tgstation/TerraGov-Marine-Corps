@@ -66,7 +66,6 @@
 
 	if(round_stage != INFESTATION_MARINE_DEPLOYMENT || length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
 		if(siloless_hive_timer)
-			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_COLLAPSE_END, siloless_hive_timer)
 			deltimer(siloless_hive_timer)
 			siloless_hive_timer = null
 		return
@@ -77,7 +76,6 @@
 
 	silo_owner.xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
 	siloless_hive_timer = addtimer(CALLBACK(src, PROC_REF(siloless_hive_collapse)), DISTRESS_SILO_COLLAPSE, TIMER_STOPPABLE)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_COLLAPSING, siloless_hive_timer)
 
 ///called by [/proc/update_silo_death_timer] after [DISTRESS_SILO_COLLAPSE] elapses to end the round
 /datum/game_mode/infestation/distress/proc/siloless_hive_collapse()
