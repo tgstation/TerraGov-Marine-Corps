@@ -1,5 +1,5 @@
 // points per minute
-#define DROPSHIP_POINT_RATE 18 * ((GLOB.current_orbit+3)/6)
+#define DROPSHIP_POINT_RATE 18 * ((GLOB.current_orbit+3)/3) //24 p/s worst case, 48 p/s best case
 #define SUPPLY_POINT_RATE 20 * (GLOB.current_orbit/3)
 
 SUBSYSTEM_DEF(points)
@@ -9,7 +9,10 @@ SUBSYSTEM_DEF(points)
 	flags = SS_KEEP_TIMING
 
 	wait = 10 SECONDS
+
+	///The amount of points the dropship fabricator has. Default value set by [/datum/gamemode/proc/setup]
 	var/dropship_points = 0
+
 	///Assoc list of supply points
 	var/supply_points = list()
 	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]

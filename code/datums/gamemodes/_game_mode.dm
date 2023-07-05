@@ -105,7 +105,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	spawn_characters()
 	transfer_characters()
 	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_HUMAN_ONLY))
-	SSpoints.dropship_points = 0
+	SSpoints.dropship_points = 500
 	SSpoints.supply_points[FACTION_TERRAGOV] = 0
 
 	for(var/hivenum in GLOB.hive_datums)
