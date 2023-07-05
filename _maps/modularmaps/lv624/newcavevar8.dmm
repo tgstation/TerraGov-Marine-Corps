@@ -122,7 +122,7 @@
 /area/lv624/ground/caves/central2)
 "rC" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1/garbledradio)
+/area/lv624/ground/caves/central1)
 "rT" = (
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{
 	dir = 4;
@@ -241,9 +241,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"DQ" = (
-/turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1/garbledradio)
 "Gy" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
@@ -3014,7 +3011,7 @@ Ad
 lF
 sR
 wS
-DQ
+hq
 "}
 (77,1,1) = {"
 Aj
@@ -3049,7 +3046,7 @@ Ad
 zH
 sR
 dX
-DQ
+hq
 "}
 (78,1,1) = {"
 Aj
@@ -3084,7 +3081,7 @@ Ad
 Di
 sR
 Ol
-DQ
+hq
 "}
 (79,1,1) = {"
 ss
@@ -3119,7 +3116,7 @@ Ad
 hq
 rT
 hq
-DQ
+hq
 "}
 (80,1,1) = {"
 Aj

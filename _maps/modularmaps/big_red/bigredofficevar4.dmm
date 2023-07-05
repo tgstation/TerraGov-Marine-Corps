@@ -99,9 +99,11 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "du" = (
+/obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
+	locked = 1;
 	name = "\improper Private Office"
 	},
 /turf/open/floor,
@@ -148,10 +150,10 @@
 "fw" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
+	locked = 1;
 	name = "\improper Private Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "fy" = (
@@ -190,6 +192,7 @@
 /area/bigredv2/outside/office_complex)
 "hk" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
+	locked = 1;
 	name = "\improper Office Complex Janitor Room"
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -197,7 +200,6 @@
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "hl" = (
@@ -442,6 +444,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
+	locked = 1;
 	name = "\improper Office Complex"
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -449,7 +452,6 @@
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "rE" = (
@@ -459,9 +461,6 @@
 "sb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "sw" = (
@@ -594,9 +593,9 @@
 "wz" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
+	locked = 1;
 	name = "\improper Private Office"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "wG" = (
@@ -791,7 +790,7 @@
 /area/bigredv2/outside/office_complex)
 "CT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "DD" = (
@@ -820,9 +819,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/generic{
+	locked = 1;
 	name = "\improper Office Complex Storage"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "EF" = (
@@ -1160,6 +1159,7 @@
 /area/bigredv2/outside/office_complex)
 "Rm" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
+	locked = 1;
 	name = "\improper Office Complex"
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -1167,7 +1167,6 @@
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Rq" = (
@@ -1374,13 +1373,13 @@
 "Zp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
+	locked = 1;
 	name = "\improper Office Complex"
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Zu" = (

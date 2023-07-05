@@ -158,7 +158,7 @@
 
 /area/mainship/hallways/boxingring
 	name = "Boxing Ring"
-	icon_state = "livingspace"
+	icon_state = "Holodeck"
 
 /area/mainship/hallways/repair_bay
 	name = "Vehicle Repair Bay"

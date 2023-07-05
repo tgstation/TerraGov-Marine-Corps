@@ -722,7 +722,7 @@
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
 	active_attachable?.set_target(object)
-	if(object == target || (gun_user && object == gun_user))
+	if(object == target || object == gun_user)
 		return
 	if(target)
 		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
@@ -817,8 +817,6 @@
 
 	last_fired = world.time
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
-	if(gun_user)
-		SEND_SIGNAL(gun_user, COMSIG_MOB_GUN_FIRE, src)
 
 	if(!max_chamber_items)
 		in_chamber = null
@@ -1169,7 +1167,7 @@
 		ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
 		playsound(src, cocked_sound, 25, 1)
 		if(chamber_closed_message)
-			to_chat(user, span_notice(chamber_closed_message))
+			to_chat(user, span_notice(chamber_opened_message))
 		cycle(user, FALSE)
 	update_ammo_count()
 	update_icon()
@@ -1664,7 +1662,7 @@
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
 		delay += extra_delay
 
-	if(world.time >= delay && (!user || SEND_SIGNAL(user, COMSIG_MOB_GUN_COOLDOWN, src)))
+	if(world.time >= delay)
 		return FALSE
 
 	if(world.time % 3 && !user?.client?.prefs.mute_self_combat_messages)

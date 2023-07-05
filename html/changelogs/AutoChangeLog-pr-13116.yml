@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - rscadd: "Added a new powerloader drone that the AI can control."
-  - rscadd: "Added the new type of drone to all ship maps."

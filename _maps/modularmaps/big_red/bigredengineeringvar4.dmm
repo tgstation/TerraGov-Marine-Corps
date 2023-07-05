@@ -103,7 +103,7 @@
 /area/bigredv2/outside/c)
 "fh" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/machinery/machine_frame,
+/obj/machinery/constructable_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "fm" = (
@@ -618,7 +618,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "JZ" = (
-/obj/effect/spawner/random/machinery/machine_frame,
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Ke" = (
@@ -710,7 +710,7 @@
 /area/bigredv2/outside/engineering)
 "Pd" = (
 /obj/structure/table,
-/obj/effect/spawner/random/misc/earmuffs,
+/obj/item/clothing/ears/earmuffs,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)

@@ -1,9 +1,8 @@
 /obj/structure/fence
 	name = "fence"
 	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it."
-	icon = 'icons/obj/smooth_objects/fence.dmi'
-	base_icon_state = "fence"
-	icon_state = "fence-icon"
+	icon = 'icons/obj/structures/fence.dmi'
+	icon_state = "fence0"
 	density = TRUE
 	anchored = TRUE //We can not be moved.
 	coverage = 5
@@ -12,19 +11,19 @@
 	resistance_flags = XENO_DAMAGEABLE
 	minimap_color = MINIMAP_FENCE
 	var/cut = FALSE //Cut fences can be passed through
-	coverage = 0 //4 rods doesn't provide any cover
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_FENCE)
-	canSmoothWith = list(SMOOTH_GROUP_FENCE)
+	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
+	var/basestate = "fence"
+	coverage = 0 //Were like 4 rods
+	//We dont have armor do to being a bit more healthy!
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(100, 125))//Almost broken or half way
+			take_damage(rand(100, 125), BRUTE, BOMB)//Almost broken or half way
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 75))
+			take_damage(rand(50, 75), BRUTE, BOMB)
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -61,7 +60,7 @@
 		repair_damage(max_integrity)
 		cut = 0
 		density = TRUE
-		icon = 'icons/obj/smooth_objects/fence.dmi'
+		update_icon()
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message(span_notice("[user] repairs [src] with [R]."),
 		"<span class='notice'>You repair [src] with [R]")
@@ -82,20 +81,20 @@
 				M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
 				M.apply_damage(7, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(10)
+				take_damage(10, BRUTE, MELEE)
 			if(GRAB_AGGRESSIVE)
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				if(prob(50))
 					M.Paralyze(20)
 				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(25)
+				take_damage(25, BRUTE, MELEE)
 			if(GRAB_NECK)
 				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
 				M.Paralyze(10 SECONDS)
 				M.apply_damage(20, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(50)
+				take_damage(50, BRUTE, MELEE)
 
 	else if(iswirecutter(I))
 		user.visible_message(span_notice("[user] starts cutting through [src] with [I]."),
@@ -116,7 +115,8 @@
 		new /obj/item/stack/rods(loc)
 	cut = TRUE
 	density = FALSE
-	icon = 'icons/obj/smooth_objects/brokenfence.dmi'
+	update_icon() //Make it appear cut through!
+
 
 /obj/structure/fence/Initialize(mapload, start_dir)
 	. = ..()
@@ -128,12 +128,37 @@
 	if(start_dir)
 		setDir(start_dir)
 
+	update_nearby_icons()
+
 /obj/structure/fence/Destroy()
 	density = FALSE
-	icon = 'icons/obj/smooth_objects/brokenfence.dmi'
+	update_nearby_icons()
 	return ..()
+
+//This proc is used to update the icons of nearby windows.
+/obj/structure/fence/proc/update_nearby_icons()
+	update_icon()
+	for(var/direction in GLOB.cardinals)
+		for(var/obj/structure/fence/W in get_step(src, direction))
+			W.update_icon()
+
+//merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
+/obj/structure/fence/update_icon()
+	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
+	//this way it will only update full-tile ones
+	//This spawn is here so windows get properly updated when one gets deleted.
+	spawn(2)
+		if(!src)
+			return
+		for(var/obj/structure/fence/W in orange(src, 1))
+			if(abs(x - W.x) - abs(y - W.y)) //Doesn't count grilles, placed diagonally to src
+				junction |= get_dir(src, W)
+		if(cut)
+			icon_state = "broken[basestate][junction]"
+		else
+			icon_state = "[basestate][junction]"
 
 /obj/structure/fence/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		take_damage(round(exposed_volume / 100), BURN, "fire")
+		take_damage(round(exposed_volume / 100), BURN, FIRE)
 	return ..()

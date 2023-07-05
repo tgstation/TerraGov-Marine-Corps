@@ -21,17 +21,13 @@
 /obj/docking_port/stationary/crashmode,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/garbledradio)
+/area/bigredv2/caves/southeast)
 "bb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
-"bc" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/garbledradio)
 "br" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -78,7 +74,7 @@
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/garbledradio)
+/area/bigredv2/caves/southeast)
 "cS" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 8
@@ -104,7 +100,7 @@
 "dr" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/garbledradio)
+/area/bigredv2/caves/southeast)
 "dD" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
@@ -342,9 +338,9 @@
 /area/bigredv2/caves/rustedpreparea)
 "jr" = (
 /obj/machinery/door/airlock/mainship/command{
-	dir = 1
+	dir = 1;
+	locked = 1
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/mainship/floor,
 /area/bigredv2/caves/southeast)
 "jx" = (
@@ -625,7 +621,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "rZ" = (
 /turf/open/floor/mainship/mono,
-/area/bigredv2/caves/southeast/garbledradio)
+/area/bigredv2/caves/southeast)
 "sk" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -666,10 +662,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/rustedpreparea)
-"tk" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mainship/mono,
-/area/bigredv2/caves/southeast/garbledradio)
 "tG" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
@@ -729,7 +721,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/caves/southeast/garbledradio)
+/area/bigredv2/caves/southeast)
 "vz" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 1
@@ -864,9 +856,9 @@
 /area/bigredv2/caves/rustedpreparea)
 "zy" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 2
+	dir = 2;
+	locked = 1
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rock)
 "zC" = (
@@ -1071,7 +1063,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/garbledradio)
+/area/bigredv2/caves/southeast)
 "EY" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -1234,7 +1226,7 @@
 "Jr" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/garbledradio)
+/area/bigredv2/caves/southeast)
 "JF" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 4
@@ -1416,8 +1408,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/southeast)
 "OZ" = (
-/obj/machinery/door/airlock/mainship/command/cic,
-/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/mainship/command/cic{
+	locked = 1
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "Pt" = (
@@ -1453,14 +1446,11 @@
 /obj/machinery/miner/damaged/platinum,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/garbledradio)
+/area/bigredv2/caves/southeast)
 "QH" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship/floor,
 /area/bigredv2/caves/rustedpreparea)
-"QQ" = (
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/garbledradio)
 "Rd" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 8
@@ -1495,9 +1485,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
-"RG" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/garbledradio)
 "RH" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
@@ -1567,10 +1554,6 @@
 	dir = 9
 	},
 /area/bigredv2/caves/rustedpreparea)
-"TL" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast/garbledradio)
 "TX" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1654,10 +1637,6 @@
 /obj/structure/girder,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
-"Wu" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/garbledradio)
 "Wv" = (
 /obj/machinery/power/apc/drained,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1737,7 +1716,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/rustedpreparea)
 "Zv" = (
-/obj/effect/spawner/random/machinery/machine_frame,
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
 "ZB" = (
@@ -1758,10 +1737,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
-"ZV" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast/garbledradio)
 
 (1,1,1) = {"
 KU
@@ -1780,13 +1755,13 @@ KU
 KU
 KU
 KU
-RG
-ZV
-RG
-RG
-RG
+oh
+TC
+oh
+oh
+oh
 EV
-QQ
+Fq
 KU
 KU
 KU
@@ -1847,15 +1822,15 @@ KU
 KU
 KU
 KU
-QQ
-QQ
-RG
-RG
-RG
+Fq
+Fq
+oh
+oh
+oh
 KU
-RG
-RG
-QQ
+oh
+oh
+Fq
 KU
 KU
 KU
@@ -1916,15 +1891,15 @@ KU
 KU
 KU
 KU
-RG
-RG
-RG
-RG
-RG
+oh
+oh
+oh
+oh
+oh
 KU
-QQ
-RG
-QQ
+Fq
+oh
+Fq
 Ci
 Ci
 Ci
@@ -1984,16 +1959,16 @@ KU
 KU
 KU
 KU
-QQ
-RG
-RG
-Wu
-RG
+Fq
+oh
+oh
+Ym
+oh
 KU
 KU
 KU
-RG
-QQ
+oh
+Fq
 oh
 oh
 oh
@@ -2053,16 +2028,16 @@ KU
 KU
 KU
 KU
-RG
-Wu
-QQ
-RG
-RG
+oh
+Ym
+Fq
+oh
+oh
 KU
 KU
 KU
-ZV
-QQ
+TC
+Fq
 xW
 OR
 OR
@@ -2120,18 +2095,18 @@ KU
 KU
 KU
 KU
-TL
-QQ
-RG
-RG
-QQ
-RG
-ZV
+zC
+Fq
+oh
+oh
+Fq
+oh
+TC
 KU
 KU
 KU
-RG
-QQ
+oh
+Fq
 aM
 KU
 KU
@@ -2189,18 +2164,18 @@ KU
 KU
 KU
 KU
-RG
-RG
-RG
-QQ
-RG
-RG
+oh
+oh
+oh
+Fq
+oh
+oh
 KU
 KU
 KU
 KU
-RG
-QQ
+oh
+Fq
 Ci
 KU
 KU
@@ -2258,18 +2233,18 @@ KU
 KU
 KU
 KU
-RG
-RG
-Wu
-RG
+oh
+oh
+Ym
+oh
 KU
 KU
 KU
 KU
 KU
 KU
-RG
-QQ
+oh
+Fq
 Ci
 Ww
 dD
@@ -2327,18 +2302,18 @@ KU
 KU
 KU
 KU
-RG
-QQ
-RG
-RG
+oh
+Fq
+oh
+oh
 KU
 KU
 KU
 KU
 KU
 KU
-ZV
-QQ
+TC
+Fq
 jr
 Hb
 Ny
@@ -2395,18 +2370,18 @@ KU
 KU
 KU
 KU
-QQ
-RG
-QQ
-RG
-RG
+Fq
+oh
+Fq
+oh
+oh
 KU
 KU
 KU
 KU
-RG
-RG
-RG
+oh
+oh
+oh
 dr
 Ci
 nW
@@ -2464,19 +2439,19 @@ KU
 KU
 KU
 KU
-RG
-RG
-QQ
-RG
-QQ
-QQ
-QQ
-QQ
-QQ
-RG
-RG
-RG
-QQ
+oh
+oh
+Fq
+oh
+Fq
+Fq
+Fq
+Fq
+Fq
+oh
+oh
+oh
+Fq
 Ci
 Ci
 Ci
@@ -2533,18 +2508,18 @@ KU
 KU
 KU
 KU
-RG
+oh
 cJ
-RG
-QQ
-RG
-RG
-RG
-RG
-QQ
-RG
-Wu
-RG
+oh
+Fq
+oh
+oh
+oh
+oh
+Fq
+oh
+Ym
+oh
 KU
 KU
 KU
@@ -2602,18 +2577,18 @@ KU
 KU
 KU
 KU
-RG
-ZV
-RG
-RG
-RG
-Wu
-RG
-RG
-Wu
-ZV
-RG
-ZV
+oh
+TC
+oh
+oh
+oh
+Ym
+oh
+oh
+Ym
+TC
+oh
+TC
 KU
 KU
 KU
@@ -2661,8 +2636,8 @@ uz
 jS
 "}
 (14,1,1) = {"
-QQ
-RG
+Fq
+oh
 KU
 KU
 KU
@@ -2670,19 +2645,19 @@ KU
 KU
 KU
 KU
-QQ
-RG
-RG
-RG
-RG
-RG
-RG
-RG
-RG
-RG
-RG
-RG
-QQ
+Fq
+oh
+oh
+oh
+oh
+oh
+oh
+oh
+oh
+oh
+oh
+oh
+Fq
 KU
 KU
 KU
@@ -2730,7 +2705,7 @@ uz
 jS
 "}
 (15,1,1) = {"
-QQ
+Fq
 KU
 KU
 KU
@@ -2739,17 +2714,17 @@ KU
 KU
 KU
 KU
-RG
-RG
-RG
-RG
-Wu
-RG
-RG
-RG
-RG
-RG
-QQ
+oh
+oh
+oh
+oh
+Ym
+oh
+oh
+oh
+oh
+oh
+Fq
 KU
 KU
 KU
@@ -2799,7 +2774,7 @@ uz
 jS
 "}
 (16,1,1) = {"
-QQ
+Fq
 KU
 KU
 KU
@@ -2807,19 +2782,19 @@ KU
 KU
 KU
 dr
-QQ
-RG
-QQ
-Wu
-RG
-RG
-RG
-RG
-Wu
-RG
-RG
-RG
-RG
+Fq
+oh
+Fq
+Ym
+oh
+oh
+oh
+oh
+Ym
+oh
+oh
+oh
+oh
 KU
 KU
 KU
@@ -2868,27 +2843,27 @@ uz
 jS
 "}
 (17,1,1) = {"
-RG
+oh
 KU
 KU
 KU
 KU
 KU
 KU
-RG
-RG
-RG
-QQ
-RG
-RG
-RG
+oh
+oh
+oh
+Fq
+oh
+oh
+oh
 Ci
-RG
-RG
+oh
+oh
 Jr
-bc
-bc
-bc
+TX
+TX
+TX
 KU
 KU
 KU
@@ -2937,25 +2912,25 @@ uz
 jS
 "}
 (18,1,1) = {"
-Wu
+Ym
 KU
 KU
 KU
 KU
 KU
 KU
-TL
-RG
-QQ
-RG
+zC
+oh
+Fq
+oh
 aW
-RG
+oh
 KU
 Ci
 vm
 vm
 KU
-RG
+oh
 TC
 oh
 oh
@@ -3006,22 +2981,22 @@ uz
 jS
 "}
 (19,1,1) = {"
-RG
+oh
 KU
 KU
 KU
 KU
 KU
-RG
-RG
-RG
-QQ
-RG
+oh
+oh
+oh
+Fq
+oh
 KU
 KU
 KU
 Ci
-tk
+ZB
 rZ
 KU
 KU
@@ -3075,17 +3050,17 @@ Qn
 jS
 "}
 (20,1,1) = {"
-RG
+oh
 KU
 KU
-RG
-Wu
-RG
-RG
-RG
-RG
-RG
-Wu
+oh
+Ym
+oh
+oh
+oh
+oh
+oh
+Ym
 KU
 KU
 KU
@@ -3144,16 +3119,16 @@ Qn
 jS
 "}
 (21,1,1) = {"
-RG
-RG
-RG
-RG
-RG
-RG
-RG
-RG
-QQ
-RG
+oh
+oh
+oh
+oh
+oh
+oh
+oh
+oh
+Fq
+oh
 KU
 KU
 KU
@@ -3213,16 +3188,16 @@ Qn
 jS
 "}
 (22,1,1) = {"
-RG
-RG
-RG
-RG
-QQ
-QQ
-RG
-RG
-RG
-RG
+oh
+oh
+oh
+oh
+Fq
+Fq
+oh
+oh
+oh
+oh
 KU
 KU
 KU
@@ -3283,14 +3258,14 @@ jS
 "}
 (23,1,1) = {"
 Qz
-RG
-RG
-QQ
-RG
-Wu
-RG
-ZV
-RG
+oh
+oh
+Fq
+oh
+Ym
+oh
+TC
+oh
 KU
 KU
 KU
@@ -3351,14 +3326,14 @@ Qn
 jS
 "}
 (24,1,1) = {"
-RG
-QQ
+oh
+Fq
 dr
-RG
-RG
-RG
-RG
-QQ
+oh
+oh
+oh
+oh
+Fq
 KU
 KU
 KU
@@ -3420,10 +3395,10 @@ Qn
 jS
 "}
 (25,1,1) = {"
-QQ
-RG
-RG
-QQ
+Fq
+oh
+oh
+Fq
 KU
 KU
 KU
@@ -3489,10 +3464,10 @@ Qn
 jS
 "}
 (26,1,1) = {"
-RG
-RG
-RG
-QQ
+oh
+oh
+oh
+Fq
 KU
 KU
 KU

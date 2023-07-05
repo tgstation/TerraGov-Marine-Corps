@@ -42002,7 +42002,7 @@
 /area/prison/research/secret/biolab)
 "huy" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/item/tool/extinguisher,
 /obj/item/assembly/infra,
 /obj/effect/spawner/random/engineering/powercell,
 /obj/structure/cable,

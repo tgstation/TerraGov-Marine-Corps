@@ -23,6 +23,9 @@ endmap
 map pillar_of_spring
 endmap
 
+map risingstar
+endmap
+
 map sulaco
 endmap
 

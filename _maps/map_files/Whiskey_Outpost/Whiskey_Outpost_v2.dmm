@@ -121,9 +121,9 @@
 "ax" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 2;
+	locked = 1;
 	name = "Court Of The Moth King"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "aB" = (
@@ -774,7 +774,7 @@
 /area/whiskey_outpost)
 "dw" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/flashlight/lamp{
 	pixel_x = 6;
@@ -899,7 +899,7 @@
 "ee" = (
 /obj/structure/cable,
 /obj/item/storage/toolbox/mechanical,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/item/tool/extinguisher/mini,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/yellow,
 /area/whiskey_outpost)
@@ -1242,7 +1242,7 @@
 /obj/item/binoculars,
 /obj/item/binoculars,
 /obj/item/binoculars,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/folder/blue,
 /obj/item/tool/pen,
 /obj/structure/table/mainship,
@@ -3678,7 +3678,10 @@
 /obj/item/storage/donut_box,
 /obj/item/tool/lighter/zippo,
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	desc = "A premium single-malt whiskey. To celebrate your impending doom";
+	name = "\improper Whiskey Outpost Whiskey"
+	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "rE" = (
@@ -3724,7 +3727,10 @@
 /area/whiskey_outpost/outside/south)
 "sf" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	desc = "A premium single-malt whiskey. To celebrate your impending doom";
+	name = "\improper Whiskey Outpost Whiskey"
+	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "sh" = (
@@ -4054,9 +4060,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "uo" = (
-/obj/effect/spawner/random/misc/cigarettes,
+/obj/item/storage/fancy/cigarettes/luckystars,
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	desc = "A premium single-malt whiskey. To celebrate your impending doom";
+	name = "\improper Whiskey Outpost Whiskey"
+	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "uq" = (
@@ -4260,7 +4269,10 @@
 "vz" = (
 /obj/item/storage/box/tgmc_mre,
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	desc = "A premium single-malt whiskey. To celebrate your impending doom";
+	name = "\improper Whiskey Outpost Whiskey"
+	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "vA" = (
@@ -4271,7 +4283,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "vH" = (
-/obj/effect/spawner/random/misc/cigarettes,
+/obj/item/storage/fancy/cigarettes/kpack,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
@@ -4532,7 +4544,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "xj" = (
-/obj/effect/spawner/random/misc/cigarettes,
+/obj/item/storage/fancy/cigarettes/luckystars,
 /obj/item/tool/lighter/zippo,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/whiteyellow/full,
@@ -4577,7 +4589,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/south)
 "xt" = (
-/obj/effect/spawner/random/misc/cigarettes,
+/obj/item/storage/fancy/cigarettes/kpack,
 /obj/item/tool/lighter/random,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/whiteyellow/full,
@@ -4924,7 +4936,7 @@
 /turf/open/shuttle/dropship/eight,
 /area/whiskey_outpost/outside/east)
 "zM" = (
-/obj/item/deployable_floodlight,
+/obj/machinery/deployable/floodlight,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "zP" = (
@@ -6369,7 +6381,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "KG" = (
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/folder/white,
 /obj/structure/table/mainship,
@@ -7642,7 +7654,10 @@
 "Vl" = (
 /obj/item/tool/lighter/random,
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	desc = "A premium single-malt whiskey. To celebrate your impending doom";
+	name = "\improper Whiskey Outpost Whiskey"
+	},
 /obj/effect/spawner/random/medical/pillbottle{
 	pixel_x = 3;
 	pixel_y = 4
@@ -8052,11 +8067,26 @@
 /area/whiskey_outpost/outside/west)
 "Zq" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
-/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
-/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
-/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
-/obj/effect/spawner/random/food_or_drink/beer/whiskeyoutpost,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	desc = "A premium single-malt whiskey. To celebrate your impending doom";
+	name = "\improper Whiskey Outpost Whiskey"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	desc = "A premium single-malt whiskey. To celebrate your impending doom";
+	name = "\improper Whiskey Outpost Whiskey"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	desc = "A premium single-malt whiskey. To celebrate your impending doom";
+	name = "\improper Whiskey Outpost Whiskey"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	desc = "A premium single-malt whiskey. To celebrate your impending doom";
+	name = "\improper Whiskey Outpost Whiskey"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	desc = "A premium single-malt whiskey. To celebrate your impending doom";
+	name = "\improper Whiskey Outpost Whiskey"
+	},
 /obj/item/storage/firstaid/toxin{
 	pixel_x = 5;
 	pixel_y = 5
@@ -8065,7 +8095,7 @@
 	pixel_x = -8;
 	pixel_y = 6
 	},
-/obj/effect/spawner/random/misc/cigarettes{
+/obj/item/storage/fancy/cigarettes/dromedaryco{
 	pixel_x = -5
 	},
 /obj/item/toy/deck/kotahi,

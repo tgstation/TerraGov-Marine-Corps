@@ -181,7 +181,7 @@ const VotersList = (props, context) => {
 // Display choices
 const ChoicesPanel = (props, context) => {
   const { act, data } = useBackend(context);
-  const { choices, selected_choice, vote_counts } = data;
+  const { choices, selected_choice } = data;
 
   return (
     <Stack.Item grow>
@@ -189,24 +189,22 @@ const ChoicesPanel = (props, context) => {
         {choices.length !== 0 ? (
           <LabeledList>
             {choices.map((choice, i) => (
-              <Box key={choice.num_index}>
+              <Box key={choice.id}>
                 <LabeledList.Item
                   label={choice.name.replace(/^\w/, (c) => c.toUpperCase())}
                   textAlign="right"
                   buttons={
                     <Button
                       color={
-                        selected_choice.includes(choice.num_index)
-                          ? 'green'
-                          : 'orange'
+                        selected_choice.includes(i + 1) ? 'green' : 'orange'
                       }
                       onClick={() => {
-                        act('vote', { index: choice.num_index });
+                        act('vote', { index: i + 1 });
                       }}>
                       Vote
                     </Button>
                   }>
-                  {selected_choice.includes(choice.num_index) && (
+                  {selected_choice.includes(i + 1) && (
                     <Icon
                       alignSelf="right"
                       mr={2}
@@ -214,7 +212,7 @@ const ChoicesPanel = (props, context) => {
                       name="vote-yea"
                     />
                   )}
-                  {vote_counts[choice.num_index - 1]} Votes
+                  {choice.votes} Votes
                 </LabeledList.Item>
                 <LabeledList.Divider />
               </Box>

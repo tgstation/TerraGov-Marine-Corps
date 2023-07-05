@@ -36,7 +36,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/alpha)
 "aag" = (
-/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/commandbunks)
 "aah" = (
@@ -1047,8 +1046,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "adF" = (
-/obj/vehicle/unmanned/droid/ripley,
-/turf/open/floor/mech_bay_recharge_floor,
+/turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "adG" = (
 /obj/machinery/camera/autoname/mainship,
@@ -1118,7 +1116,7 @@
 "adS" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/green{
-	dir = 4
+	dir = 1
 	},
 /area/mainship/squads/req)
 "adT" = (
@@ -1436,7 +1434,7 @@
 /area/mainship/hallways/bow_hallway)
 "aqJ" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/machinery/status_display{
 	pixel_y = 32
@@ -1582,7 +1580,7 @@
 "atY" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/clothing/glasses/welding,
-/obj/effect/spawner/random/misc/earmuffs,
+/obj/item/clothing/ears/earmuffs,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -2471,7 +2469,7 @@
 /area/mainship/living/starboard_emb)
 "aZd" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/table_lighting,
+/obj/item/flashlight/lamp,
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
 "aZe" = (
@@ -2597,9 +2595,9 @@
 /area/mainship/command/telecomms)
 "baO" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/engineering/radio/highspawn,
-/obj/effect/spawner/random/engineering/radio/highspawn,
-/obj/effect/spawner/random/engineering/radio/highspawn,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
 /obj/item/folder/black,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
@@ -2666,7 +2664,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bbt" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
+/obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "bbv" = (
@@ -2737,7 +2735,7 @@
 	},
 /area/mainship/medical/upper_medical)
 "bcB" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/machinery/vending/snack,
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -3186,7 +3184,7 @@
 /area/mainship/living/basketball)
 "bif" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/item/storage/box/ids,
 /obj/item/storage/briefcase,
@@ -3755,7 +3753,7 @@
 /area/mainship/hallways/starboard_hallway)
 "bli" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "blj" = (
@@ -3765,7 +3763,7 @@
 "blk" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/folder/black,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -4001,7 +3999,7 @@
 	},
 /area/mainship/living/starboard_emb)
 "bog" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/machinery/vending/snack,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "bok" = (
@@ -4146,11 +4144,11 @@
 /obj/item/stack/sheet/cardboard{
 	amount = 50
 	},
+/obj/item/stack/sheet/wood/large_stack,
 /obj/item/stack/sheet/glass/reinforced{
 	amount = 50
 	},
 /obj/item/tool/hand_labeler,
-/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -4182,18 +4180,17 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "bpx" = (
-/obj/machinery/computer/mech_bay_power_console,
-/turf/open/floor/mainship/floor,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid,
+/obj/item/storage/firstaid/fire,
+/obj/structure/closet/crate/medical,
+/turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "bpz" = (
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid,
-/obj/item/storage/firstaid/adv,
-/obj/item/storage/firstaid/o2,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "bpB" = (
@@ -4521,7 +4518,7 @@
 /area/mainship/medical/operating_room_four)
 "bsJ" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/machinery/status_display{
 	pixel_y = 32
@@ -4538,10 +4535,7 @@
 	},
 /area/mainship/squads/alpha)
 "bsU" = (
-/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
+/obj/structure/reagent_dispensers,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "bsV" = (
@@ -5535,16 +5529,21 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "bGj" = (
-/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "bGk" = (
 /obj/structure/janitorialcart,
 /obj/item/tool/mop,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
+"bGl" = (
 /obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/green{
 	dir = 8
 	},
-/turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "bGm" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
@@ -5621,7 +5620,7 @@
 /area/mainship/medical/medical_science)
 "bHm" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/engineering/radio/highspawn,
+/obj/item/radio,
 /obj/item/healthanalyzer,
 /obj/item/healthanalyzer,
 /obj/item/reagent_scanner,
@@ -5789,7 +5788,7 @@
 /turf/open/floor/wood,
 /area/mainship/squads/req)
 "bJO" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/machinery/vending/snack,
 /turf/open/floor/wood,
 /area/mainship/squads/req)
 "bJP" = (
@@ -6045,6 +6044,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
+"bLG" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "bLH" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
@@ -6146,11 +6151,11 @@
 /area/mainship/squads/req)
 "bMI" = (
 /obj/item/reagent_containers/spray/cleaner,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/structure/table/mainship/nometal,
 /obj/item/clothing/mask/cigarette/cigar,
-/obj/effect/spawner/random/misc/cigarettes,
+/obj/item/storage/fancy/cigarettes/luckystars,
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/wood,
 /area/mainship/squads/req)
@@ -6174,6 +6179,10 @@
 	dir = 8
 	},
 /area/mainship/living/cryo_cells)
+"bMP" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/green,
+/area/mainship/squads/req)
 "bMS" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -6673,7 +6682,7 @@
 /area/mainship/living/grunt_rnr)
 "bRN" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -6836,7 +6845,7 @@
 	},
 /area/mainship/engineering/ce_room)
 "bTB" = (
-/obj/effect/spawner/random/misc/cigarettes,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
 /obj/item/ashtray/bronze,
 /obj/item/tool/lighter/zippo,
 /obj/machinery/door_control/mainship/corporate,
@@ -6998,7 +7007,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "bUJ" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "bUK" = (
@@ -7140,7 +7149,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "bWI" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "bWJ" = (
@@ -7248,7 +7257,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "bYh" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "bYi" = (
@@ -7791,7 +7800,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "cjW" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/obj/machinery/vending/coffee,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "ckd" = (
@@ -8180,7 +8189,7 @@
 /area/mainship/living/evacuation/pod/two)
 "cMO" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/paperbin{
+/obj/structure/paper_bin{
 	pixel_x = 8;
 	pixel_y = 10
 	},
@@ -8527,7 +8536,7 @@
 /area/mainship/hallways/starboard_hallway)
 "dsp" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/table_lighting,
+/obj/item/flashlight/lamp,
 /obj/item/tool/crowbar,
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
@@ -8575,10 +8584,10 @@
 /area/mainship/hull/port_hull)
 "dwv" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/item/tool/extinguisher/mini,
+/obj/item/tool/extinguisher/mini,
+/obj/item/tool/extinguisher/mini,
+/obj/item/tool/extinguisher/mini,
 /obj/machinery/camera/autoname/mainship,
 /obj/item/stack/sheet/metal/medium_stack,
 /obj/item/stack/sheet/metal/medium_stack,
@@ -8972,7 +8981,7 @@
 /area/mainship/hallways/hangar)
 "ebn" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "ebs" = (
@@ -9047,12 +9056,12 @@
 /area/mainship/hallways/repair_bay)
 "ehB" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "eid" = (
-/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/repair_bay)
 "eiT" = (
@@ -9317,7 +9326,7 @@
 /area/mainship/medical/lower_medical)
 "eMi" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/table_lighting,
+/obj/item/flashlight/lamp,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "eMT" = (
@@ -9740,7 +9749,7 @@
 /area/mainship/living/officer_study)
 "fxh" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/table_lighting,
+/obj/item/flashlight/lamp,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -9874,7 +9883,7 @@
 /obj/item/tool/shovel/etool,
 /obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/taperoll/engineering,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/item/tool/extinguisher/mini,
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_rnr)
@@ -9950,7 +9959,7 @@
 /area/mainship/squads/req)
 "fMI" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/repair_bay)
@@ -10094,6 +10103,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
+"gas" = (
+/obj/machinery/camera/autoname/mainship,
+/turf/closed/wall/mainship,
+/area/mainship/living/cryo_cells)
 "gaR" = (
 /obj/structure/rack,
 /obj/item/conveyor_switch_construct,
@@ -10164,7 +10177,7 @@
 "geQ" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/crowbar,
-/obj/effect/spawner/random/misc/table_lighting,
+/obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "geX" = (
@@ -10206,11 +10219,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "ggd" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "ggn" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
+/obj/machinery/vending/cigarette,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -10506,7 +10519,6 @@
 	dir = 1
 	},
 /obj/machinery/door/window,
-/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/corporateliaison)
 "gIn" = (
@@ -11189,7 +11201,7 @@
 	},
 /area/mainship/engineering/lower_engine_monitoring)
 "hQB" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/obj/machinery/vending/coffee,
 /turf/open/floor/mainship/silver,
 /area/mainship/hallways/bow_hallway)
 "hSb" = (
@@ -11437,7 +11449,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "isK" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
+/obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "isY" = (
@@ -11875,7 +11887,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "jeI" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/machinery/vending/snack,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "jeN" = (
@@ -12142,7 +12154,7 @@
 "jFR" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/belt/utility/full,
-/obj/effect/spawner/random/engineering/radio/highspawn,
+/obj/item/radio,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -12973,7 +12985,7 @@
 	},
 /area/mainship/hallways/hangar)
 "lel" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "ler" = (
@@ -13085,7 +13097,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "llh" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "llV" = (
@@ -13866,9 +13878,6 @@
 	dir = 4
 	},
 /obj/machinery/vending/cargo_supply,
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "mzG" = (
@@ -14310,7 +14319,7 @@
 "ngq" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/crowbar,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/item/tool/extinguisher,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/lower_engineering)
 "ngN" = (
@@ -14462,7 +14471,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "nui" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/obj/machinery/vending/coffee,
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -14491,7 +14500,7 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/door_control/mainship/research{
-	dir = 4;
+	dir = 1;
 	name = "Exterior Doors";
 	pixel_x = -10;
 	pixel_y = 8
@@ -14719,8 +14728,8 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/clipboard,
 /obj/item/paper,
+/obj/item/storage/firstaid/regular,
 /obj/item/storage/box/donkpockets,
-/obj/effect/spawner/random/medical/firstaid/alwaysspawns,
 /turf/open/floor/mainship/white{
 	dir = 1
 	},
@@ -15127,7 +15136,6 @@
 /obj/machinery/door/window{
 	dir = 8
 	},
-/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/bridgebunks)
 "ozv" = (
@@ -15620,7 +15628,7 @@
 	},
 /area/mainship/command/cic)
 "pqd" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/machinery/vending/snack,
 /turf/open/floor/mainship/silver,
 /area/mainship/hallways/bow_hallway)
 "pqz" = (
@@ -15672,9 +15680,9 @@
 	pixel_x = 17
 	},
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
-/obj/effect/spawner/random/engineering/radio/highspawn,
+/obj/item/radio,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "pxc" = (
@@ -15711,7 +15719,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "pAf" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/silver{
 	dir = 6
 	},
@@ -15728,7 +15736,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
 "pBu" = (
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
@@ -15983,7 +15991,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway)
 "pXm" = (
-/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/repair_bay)
 "pXO" = (
@@ -16150,7 +16158,7 @@
 /area/mainship/engineering/ce_room)
 "qml" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/carpet/side{
 	dir = 4
@@ -16242,7 +16250,7 @@
 /area/mainship/living/tankerbunks)
 "qrK" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/earmuffs,
+/obj/item/clothing/ears/earmuffs,
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
@@ -17121,7 +17129,7 @@
 	},
 /area/mainship/medical/upper_medical)
 "rQa" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
+/obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "rQH" = (
@@ -17200,7 +17208,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation/pod/three)
 "rWR" = (
-/obj/effect/spawner/random/misc/table_lighting,
+/obj/item/flashlight/lamp,
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/marinemainship{
 	dir = 8;
@@ -17890,7 +17898,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/lower_medical)
 "tkF" = (
@@ -18351,7 +18358,7 @@
 "tXZ" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/cell_charger,
-/obj/effect/spawner/random/engineering/powercell,
+/obj/item/cell/high,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -18818,7 +18825,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "uSC" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -18849,7 +18856,7 @@
 /obj/item/storage/box/lights,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/tool/mop,
-/obj/effect/spawner/random/misc/soap/regularweighted,
+/obj/item/tool/soap,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
 "uUO" = (
@@ -18932,7 +18939,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "vao" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
+/obj/machinery/vending/cigarette,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -19175,7 +19182,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/commandbunks)
 "vyW" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "vzW" = (
@@ -19185,14 +19192,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_umbilical)
-"vzY" = (
-/obj/structure/toilet,
-/obj/machinery/light/mainship/small{
-	dir = 1
-	},
-/obj/effect/spawner/random/misc/soap/regularweighted,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/port_emb)
 "vAo" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
@@ -19502,7 +19501,7 @@
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "weh" = (
-/obj/effect/spawner/random/misc/table_lighting,
+/obj/item/flashlight/lamp,
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;
@@ -19911,7 +19910,7 @@
 	},
 /area/mainship/living/port_emb)
 "wRI" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
+/obj/machinery/vending/cigarette,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -20104,7 +20103,7 @@
 /turf/open/floor/mainship/purple/full,
 /area/mainship/hallways/hangar)
 "xjo" = (
-/obj/structure/dropship_equipment/weapon_holder/machinegun,
+/obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xjw" = (
@@ -20128,7 +20127,7 @@
 /area/mainship/command/self_destruct)
 "xmg" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/engineering/structure/handheld_lighting,
+/obj/item/flashlight/combat,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/repair_bay)
 "xmy" = (
@@ -57228,7 +57227,7 @@ urF
 wwu
 uwr
 bSO
-vzY
+ciU
 nUn
 ead
 uTP
@@ -60289,11 +60288,11 @@ fLQ
 seG
 bAG
 bnD
+bLG
 bnD
-adS
 fpW
 bnD
-bnD
+bLG
 bnD
 bDM
 seG
@@ -60546,11 +60545,11 @@ lNr
 lNr
 abX
 aat
-bDM
+adS
 bAG
 bzq
 bDM
-bAG
+bMP
 otD
 bDM
 seG
@@ -60804,7 +60803,7 @@ ace
 qNt
 bxX
 acj
-bxX
+acj
 haf
 acj
 acj
@@ -61827,7 +61826,7 @@ biu
 bnF
 bpn
 kzX
-acj
+bGl
 byg
 vaF
 jiv
@@ -65426,7 +65425,7 @@ blZ
 blZ
 blZ
 blZ
-blZ
+gas
 blZ
 blZ
 blZ

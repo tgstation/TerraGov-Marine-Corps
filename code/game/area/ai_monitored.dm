@@ -2,7 +2,7 @@
 
 // Stub defined ai_monitored.dm
 /area/deltastation/ai_monitored
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_METAL
 
 /area/deltastation/ai_monitored/turret_protected
 

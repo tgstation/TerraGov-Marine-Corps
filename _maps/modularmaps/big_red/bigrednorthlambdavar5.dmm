@@ -9,10 +9,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"g" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
 "h" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
@@ -25,9 +21,6 @@
 "j" = (
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
-"n" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
 "p" = (
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor/plating,
@@ -42,9 +35,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"z" = (
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/garbledradio)
 "D" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
@@ -55,11 +45,11 @@
 "F" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
+/area/bigredv2/caves/northeast)
 "G" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/garbledradio)
+/area/bigredv2/caves/northeast)
 "I" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
@@ -79,10 +69,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"T" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
 "W" = (
 /obj/structure/closet/crate/internals,
 /turf/open/floor/plating,
@@ -120,11 +106,11 @@ s
 s
 s
 s
-n
-n
-n
-n
-z
+X
+X
+X
+X
+E
 s
 s
 "}
@@ -152,13 +138,13 @@ s
 s
 s
 s
-z
-z
-g
-n
-n
-n
-z
+E
+E
+N
+X
+X
+X
+E
 s
 s
 "}
@@ -185,14 +171,14 @@ s
 s
 s
 s
-n
-n
-n
-n
-n
-n
-n
-z
+X
+X
+X
+X
+X
+X
+X
+E
 s
 s
 "}
@@ -218,16 +204,16 @@ s
 s
 s
 s
-n
-n
-n
-n
-n
-n
-n
-n
-n
-z
+X
+X
+X
+X
+X
+X
+X
+X
+X
+E
 s
 "}
 (5,1,1) = {"
@@ -251,17 +237,17 @@ s
 s
 s
 s
-n
-n
-T
-n
-T
-n
-n
-g
-n
-T
-z
+X
+X
+v
+X
+v
+X
+X
+N
+X
+v
+E
 s
 "}
 (6,1,1) = {"
@@ -282,20 +268,20 @@ s
 s
 s
 s
-T
-n
-n
-n
-T
-n
+v
+X
+X
+X
+v
+X
 G
-n
-n
-n
-n
-n
-n
-z
+X
+X
+X
+X
+X
+X
+E
 s
 "}
 (7,1,1) = {"
@@ -315,21 +301,21 @@ s
 s
 s
 s
-n
-n
-n
-n
-n
-n
-n
+X
+X
+X
+X
+X
+X
+X
 s
 s
-z
-n
-n
-n
-n
-z
+E
+X
+X
+X
+X
+E
 s
 "}
 (8,1,1) = {"
@@ -349,22 +335,22 @@ s
 s
 s
 s
-n
-n
-n
+X
+X
+X
 s
-n
-n
-s
-s
+X
+X
 s
 s
-n
-n
-n
-n
-g
-z
+s
+s
+X
+X
+X
+X
+N
+E
 "}
 (9,1,1) = {"
 j
@@ -383,9 +369,9 @@ s
 s
 s
 s
-n
-T
-n
+X
+v
+X
 s
 s
 s
@@ -394,11 +380,11 @@ s
 s
 s
 G
-n
-n
-n
-n
-n
+X
+X
+X
+X
+X
 "}
 (10,1,1) = {"
 j
@@ -416,10 +402,10 @@ s
 s
 s
 s
-n
-T
-n
-n
+X
+v
+X
+X
 s
 s
 s
@@ -428,11 +414,11 @@ s
 s
 s
 s
-z
-n
-T
-n
-n
+E
+X
+v
+X
+X
 "}
 (11,1,1) = {"
 j
@@ -449,11 +435,11 @@ s
 s
 s
 s
-n
-n
-n
-n
-n
+X
+X
+X
+X
+X
 s
 s
 s
@@ -464,9 +450,9 @@ s
 s
 s
 s
-n
-T
-n
+X
+v
+X
 "}
 (12,1,1) = {"
 j
@@ -483,11 +469,11 @@ s
 s
 s
 s
-n
-n
-n
-n
-n
+X
+X
+X
+X
+X
 s
 s
 s
@@ -498,9 +484,9 @@ s
 s
 s
 s
-z
-n
-T
+E
+X
+v
 "}
 (13,1,1) = {"
 j
@@ -516,11 +502,11 @@ j
 s
 s
 s
-n
-n
-n
-n
-n
+X
+X
+X
+X
+X
 s
 s
 s
@@ -549,11 +535,11 @@ j
 j
 s
 s
-T
-n
-n
-n
-T
+v
+X
+X
+X
+v
 s
 s
 s
@@ -583,9 +569,9 @@ j
 j
 s
 s
-n
-n
-n
+X
+X
+X
 s
 s
 s
@@ -617,9 +603,9 @@ j
 j
 s
 s
-n
-n
-n
+X
+X
+X
 s
 s
 s
@@ -650,8 +636,8 @@ j
 j
 j
 s
-n
-n
+X
+X
 X
 s
 s
@@ -668,9 +654,9 @@ s
 s
 u
 s
-n
-n
-n
+X
+X
+X
 "}
 (18,1,1) = {"
 j
@@ -684,7 +670,7 @@ j
 j
 j
 s
-n
+X
 v
 X
 s
@@ -702,9 +688,9 @@ s
 s
 u
 s
-n
-n
-T
+X
+X
+v
 "}
 (19,1,1) = {"
 j
@@ -736,9 +722,9 @@ s
 s
 s
 s
-n
-n
-n
+X
+X
+X
 "}
 (20,1,1) = {"
 j
@@ -770,9 +756,9 @@ s
 s
 s
 s
-n
-n
-n
+X
+X
+X
 "}
 (21,1,1) = {"
 j
@@ -805,8 +791,8 @@ s
 s
 s
 s
-n
-n
+X
+X
 "}
 (22,1,1) = {"
 j
@@ -839,8 +825,8 @@ s
 s
 s
 s
-n
-n
+X
+X
 "}
 (23,1,1) = {"
 j
@@ -873,8 +859,8 @@ s
 s
 s
 s
-n
-T
+X
+v
 "}
 (24,1,1) = {"
 j
@@ -907,8 +893,8 @@ s
 s
 s
 s
-g
-n
+N
+X
 "}
 (25,1,1) = {"
 j
@@ -942,7 +928,7 @@ s
 s
 s
 s
-n
+X
 "}
 (26,1,1) = {"
 j

@@ -1080,7 +1080,7 @@
 /area/mainship/squads/req)
 "afd" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/misc/paperbin,
+/obj/structure/paper_bin,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1283,8 +1283,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/vehicle/unmanned/droid,
-/turf/open/floor/mech_bay_recharge_floor,
+/turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "agd" = (
 /obj/structure/prop/mainship/mapping_computer,
@@ -2147,7 +2146,7 @@
 /area/mainship/medical/lower_medical)
 "ajO" = (
 /obj/item/storage/box/monkeycubes,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/item/tool/extinguisher,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
@@ -2287,7 +2286,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bEy" = (
-/obj/structure/dropship_equipment/weapon_holder/machinegun,
+/obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bOe" = (
@@ -2402,10 +2401,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
-"gUp" = (
-/obj/vehicle/unmanned/droid/ripley,
-/turf/open/floor/mech_bay_recharge_floor,
-/area/mainship/hallways/hangar)
 "hni" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -2744,13 +2739,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
-"wYr" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/vehicle/unmanned/droid/scout,
-/turf/open/floor/mech_bay_recharge_floor,
-/area/mainship/command/telecomms)
 "xsM" = (
 /obj/machinery/light{
 	dir = 1
@@ -2942,7 +2930,7 @@ agb
 ahI
 aey
 aeM
-wYr
+agb
 afl
 aoI
 aaa
@@ -3948,7 +3936,7 @@ aba
 ada
 adm
 abI
-gUp
+dwY
 dwY
 dwY
 dwY

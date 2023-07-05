@@ -961,6 +961,8 @@ below 100 is not dizzy
 	if(QDELETED(src))
 		stack_trace("[candidate] was put into a qdeleted mob [src]")
 		return
+	if(stat != DEAD)
+		REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
 	candidate.mind.transfer_to(src, TRUE)
 
 /mob/living/carbon/xenomorph/transfer_mob(mob/candidate)

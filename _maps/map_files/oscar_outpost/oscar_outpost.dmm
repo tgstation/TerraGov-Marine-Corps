@@ -2303,7 +2303,7 @@
 "qh" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/engineering/toolbox,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/item/tool/extinguisher/mini,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
@@ -4226,10 +4226,10 @@
 /area/oscar_outpost/village/south)
 "Bb" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/item/tool/extinguisher,
+/obj/item/tool/extinguisher,
+/obj/item/tool/extinguisher,
+/obj/item/tool/extinguisher,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Be" = (
@@ -7395,7 +7395,7 @@
 /area/oscar_outpost/village/central)
 "OK" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/item/tool/extinguisher,
 /obj/machinery/light{
 	dir = 4
 	},

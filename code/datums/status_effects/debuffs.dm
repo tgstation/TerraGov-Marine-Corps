@@ -166,13 +166,13 @@
 	. = ..()
 	if(!.)
 		return
-	//Robots and synths are generally resistant to blinding, so we apply an overlay directly instead
-	owner.overlay_fullscreen("repair-mode", /atom/movable/screen/fullscreen/blind)
+	owner.disabilities |= BLIND
+	owner.blind_eyes(1)
 	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/incapacitating/repair_mode/on_remove()
-	owner.clear_fullscreen("repair-mode")
+	owner.disabilities &= ~BLIND
 	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
 	return ..()

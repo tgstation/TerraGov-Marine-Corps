@@ -11,7 +11,6 @@
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/healthanalyzer,
 		/obj/item/flashlight,
 		/obj/item/radio,

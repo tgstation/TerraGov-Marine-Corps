@@ -225,7 +225,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "zW" = (
-/obj/effect/spawner/random/machinery/machine_frame,
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "Cx" = (
@@ -361,7 +361,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "Wq" = (
-/obj/effect/spawner/random/engineering/ore_box,
+/obj/structure/ore_box,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "Xc" = (

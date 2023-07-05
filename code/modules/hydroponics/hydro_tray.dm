@@ -10,7 +10,7 @@
 	coverage = 40
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	max_integrity = 40
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
@@ -129,12 +129,6 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/Initialize(mapload)
 	. = ..()
-
-	var/static/list/connections = list(
-		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
-	)
-	AddElement(/datum/element/connect_loc, connections)
-
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
 	create_reagents(200, AMOUNT_VISIBLE|REFILLABLE)

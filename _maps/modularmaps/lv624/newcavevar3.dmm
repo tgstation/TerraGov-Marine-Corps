@@ -79,6 +79,9 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
+"oe" = (
+/turf/closed/mineral/smooth,
+/area/lv624/ground/caves/central1)
 "oW" = (
 /obj/structure/rack,
 /turf/open/floor/tile/vault{
@@ -131,14 +134,14 @@
 /area/lv624/ground/caves/central1)
 "Dp" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1/garbledradio)
+/area/lv624/ground/caves/central1)
 "DG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "DY" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1/garbledradio)
+/area/lv624/ground/caves/central1)
 "EE" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
@@ -3041,7 +3044,7 @@ GV
 GV
 GV
 zK
-GV
+oe
 Dp
 Dp
 Dp

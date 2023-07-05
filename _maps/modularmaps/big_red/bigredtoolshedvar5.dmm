@@ -221,7 +221,7 @@
 /area/bigredv2/outside/c)
 "Q" = (
 /obj/structure/table/holotable,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/item/tool/extinguisher,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "R" = (

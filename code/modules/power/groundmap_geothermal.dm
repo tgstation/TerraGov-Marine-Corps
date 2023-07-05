@@ -34,11 +34,11 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	update_icon()
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator"))
 
-	if(is_ground_level(z))
-		GLOB.generators_on_ground += 1
-
 	if(corrupted)
 		corrupt(corrupted)
+
+	if(is_ground_level(z))
+		GLOB.generators_on_ground += 1
 
 /obj/machinery/power/geothermal/Destroy() //just in case
 	if(is_ground_level(z))
@@ -101,8 +101,6 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		if(!GLOB.generators_on_ground)	//Prevent division by 0
-			return PROCESS_KILL
 		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
 			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
 			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground)

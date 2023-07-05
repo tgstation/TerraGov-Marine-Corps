@@ -53,7 +53,7 @@
 "A" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
+/area/bigredv2/caves/northeast)
 "D" = (
 /obj/structure/curtain/medical,
 /obj/machinery/alarm{
@@ -63,19 +63,12 @@
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
-"I" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
 "N" = (
 /obj/structure/curtain/medical,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
-"S" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
 "T" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -97,16 +90,16 @@
 /area/bigredv2/caves/lambda_lab)
 "Y" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/garbledradio)
+/area/bigredv2/caves/northeast)
 "Z" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 
 (1,1,1) = {"
 Y
-I
+q
 Y
-I
+q
 Z
 Z
 "}
@@ -121,71 +114,71 @@ Z
 (3,1,1) = {"
 Z
 Z
-I
-I
-I
+q
+q
+q
 Z
 "}
 (4,1,1) = {"
 Z
 Z
-I
-I
-I
-S
+q
+q
+q
+o
 "}
 (5,1,1) = {"
 Z
-I
-I
-I
-I
-I
+q
+q
+q
+q
+q
 "}
 (6,1,1) = {"
 Z
 Z
-I
-S
-I
+q
+o
+q
 Z
 "}
 (7,1,1) = {"
 Z
 Z
-I
-I
-I
+q
+q
+q
 Z
 "}
 (8,1,1) = {"
 Z
 Z
-I
-I
-I
-I
+q
+q
+q
+q
 "}
 (9,1,1) = {"
 Z
-I
-I
-I
+q
+q
+q
 o
 j
 "}
 (10,1,1) = {"
-I
-I
-S
-I
+q
+q
+o
+q
 q
 j
 "}
 (11,1,1) = {"
-I
-I
-I
+q
+q
+q
 q
 q
 j

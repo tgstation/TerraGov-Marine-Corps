@@ -267,9 +267,7 @@
 /turf/closed/wall/mineral/gold
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "gold-0"
-	base_icon_state = "gold"
+	icon_state = "gold0"
 	walltype = "gold"
 	mineral = "gold"
 

@@ -374,7 +374,7 @@
 /area/bigredv2/outside/telecomm)
 "jz" = (
 /obj/structure/table,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/item/tool/extinguisher,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "jG" = (
@@ -1492,7 +1492,7 @@
 /obj/structure/mirror/broken{
 	dir = 4
 	},
-/obj/effect/spawner/random/misc/soap/deluxeweighted,
+/obj/item/tool/soap/deluxe,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)

@@ -3,10 +3,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"e" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
 "f" = (
 /obj/machinery/chem_dispenser,
 /turf/open/floor/tile/whiteyellow{
@@ -33,18 +29,9 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"l" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
 "m" = (
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"n" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
 "q" = (
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor/plating,
@@ -55,7 +42,7 @@
 "t" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
+/area/bigredv2/caves/northeast)
 "x" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
@@ -78,9 +65,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"K" = (
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/garbledradio)
 "M" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -88,10 +72,7 @@
 "N" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
-"P" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
+/area/bigredv2/caves/northeast)
 "S" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
@@ -102,7 +83,7 @@
 "W" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast/garbledradio)
+/area/bigredv2/caves/northeast)
 "X" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -134,11 +115,11 @@ s
 s
 s
 s
-P
-P
-P
-P
-K
+i
+i
+i
+i
+g
 s
 s
 "}
@@ -166,13 +147,13 @@ F
 s
 s
 s
-K
-K
-l
-P
-P
-P
-K
+g
+g
+M
+i
+i
+i
+g
 s
 s
 "}
@@ -200,13 +181,13 @@ F
 s
 s
 s
-P
-P
-P
-P
-P
-P
-K
+i
+i
+i
+i
+i
+i
+g
 s
 s
 "}
@@ -234,14 +215,14 @@ F
 s
 s
 s
-P
-P
-P
-P
-P
-P
-P
-K
+i
+i
+i
+i
+i
+i
+i
+g
 s
 "}
 (5,1,1) = {"
@@ -268,14 +249,14 @@ F
 s
 s
 s
-P
-e
-P
-P
-l
-P
-e
-K
+i
+c
+i
+i
+M
+i
+c
+g
 s
 "}
 (6,1,1) = {"
@@ -303,13 +284,13 @@ s
 s
 s
 W
-P
-P
-P
-P
-P
-P
-K
+i
+i
+i
+i
+i
+i
+g
 s
 "}
 (7,1,1) = {"
@@ -338,12 +319,12 @@ s
 s
 s
 s
-K
-P
-P
-P
-P
-K
+g
+i
+i
+i
+i
+g
 s
 "}
 (8,1,1) = {"
@@ -373,12 +354,12 @@ s
 s
 s
 s
-P
-P
-P
-P
-l
-K
+i
+i
+i
+i
+M
+g
 "}
 (9,1,1) = {"
 F
@@ -408,11 +389,11 @@ s
 s
 s
 W
-P
-P
-P
-P
-P
+i
+i
+i
+i
+i
 "}
 (10,1,1) = {"
 F
@@ -442,11 +423,11 @@ s
 s
 s
 s
-K
-P
-e
-P
-P
+g
+i
+c
+i
+i
 "}
 (11,1,1) = {"
 F
@@ -478,9 +459,9 @@ s
 s
 s
 s
-P
-e
-P
+i
+c
+i
 "}
 (12,1,1) = {"
 F
@@ -512,9 +493,9 @@ s
 s
 s
 s
-K
-P
-e
+g
+i
+c
 "}
 (13,1,1) = {"
 F
@@ -682,9 +663,9 @@ s
 s
 x
 N
-P
-P
-P
+i
+i
+i
 "}
 (18,1,1) = {"
 F
@@ -716,9 +697,9 @@ s
 s
 x
 N
-P
-P
-e
+i
+i
+c
 "}
 (19,1,1) = {"
 F
@@ -750,9 +731,9 @@ s
 s
 N
 N
-P
-P
-P
+i
+i
+i
 "}
 (20,1,1) = {"
 F
@@ -782,11 +763,11 @@ s
 s
 s
 s
-P
-P
-P
-P
-P
+i
+i
+i
+i
+i
 "}
 (21,1,1) = {"
 F
@@ -816,11 +797,11 @@ s
 s
 s
 s
-P
-P
-l
-P
-P
+i
+i
+M
+i
+i
 "}
 (22,1,1) = {"
 F
@@ -849,12 +830,12 @@ s
 s
 s
 s
-P
-P
-P
-P
-P
-P
+i
+i
+i
+i
+i
+i
 "}
 (23,1,1) = {"
 F
@@ -882,13 +863,13 @@ s
 s
 s
 s
-P
-e
-P
-P
-P
-P
-e
+i
+c
+i
+i
+i
+i
+c
 "}
 (24,1,1) = {"
 F
@@ -916,13 +897,13 @@ s
 s
 s
 s
-P
-P
-P
-P
-P
-l
-P
+i
+i
+i
+i
+i
+M
+i
 "}
 (25,1,1) = {"
 F
@@ -949,14 +930,14 @@ s
 s
 s
 s
-P
-P
-P
-P
-P
-P
-P
-P
+i
+i
+i
+i
+i
+i
+i
+i
 "}
 (26,1,1) = {"
 F
@@ -983,13 +964,13 @@ s
 s
 s
 s
-l
-P
-P
-P
+M
+i
+i
+i
 t
-P
-P
+i
+i
 s
 "}
 (27,1,1) = {"
@@ -1016,12 +997,12 @@ F
 s
 s
 s
-P
-P
-P
-P
-P
-P
+i
+i
+i
+i
+i
+i
 s
 s
 s
@@ -1049,12 +1030,12 @@ F
 F
 s
 s
-e
-P
-P
-P
-n
-P
+c
+i
+i
+i
+J
+i
 s
 s
 s
@@ -1084,10 +1065,10 @@ F
 s
 s
 s
-P
-P
-P
-P
+i
+i
+i
+i
 s
 s
 s
@@ -1118,10 +1099,10 @@ F
 s
 s
 s
-P
-P
-P
-P
+i
+i
+i
+i
 s
 s
 k
@@ -1152,10 +1133,10 @@ F
 s
 s
 s
-P
-P
-P
-P
+i
+i
+i
+i
 s
 s
 k
@@ -1185,11 +1166,11 @@ F
 F
 s
 s
-P
-P
-P
-P
-P
+i
+i
+i
+i
+i
 s
 s
 k
@@ -1219,11 +1200,11 @@ F
 F
 s
 s
-P
-P
-e
-P
-n
+i
+i
+c
+i
+J
 s
 s
 k
@@ -1254,10 +1235,10 @@ F
 s
 s
 s
-P
-P
-P
-P
+i
+i
+i
+i
 s
 s
 k
@@ -1287,9 +1268,9 @@ F
 F
 s
 s
-P
-P
-P
+i
+i
+i
 i
 s
 s
@@ -1321,8 +1302,8 @@ F
 F
 s
 s
-P
-P
+i
+i
 i
 M
 s

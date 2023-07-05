@@ -6,7 +6,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bg" = (
-/obj/effect/spawner/random/machinery/machine_frame,
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bp" = (
@@ -649,7 +649,7 @@
 /area/bigredv2/outside/engineering)
 "IS" = (
 /obj/structure/table,
-/obj/effect/spawner/random/misc/earmuffs,
+/obj/item/clothing/ears/earmuffs,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -794,7 +794,7 @@
 /area/bigredv2/outside/engineering)
 "Ol" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/machinery/machine_frame,
+/obj/machinery/constructable_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Op" = (

@@ -17,6 +17,10 @@ map lv624
 	minplayers 25
 endmap
 
+map desertdam
+	minplayers 90
+endmap
+
 map bigred_v2
 	minplayers 25
 endmap

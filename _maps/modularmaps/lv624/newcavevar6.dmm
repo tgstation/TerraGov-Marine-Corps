@@ -446,6 +446,9 @@
 /obj/machinery/computer/atmos_alert,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
+"GG" = (
+/turf/closed/mineral/smooth,
+/area/lv624/ground/caves/central1)
 "GP" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
@@ -587,7 +590,7 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Rd" = (
-/obj/effect/spawner/random/machinery/machine_frame,
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Re" = (
@@ -647,7 +650,7 @@
 /area/lv624/ground/caves/central2)
 "Ui" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1/garbledradio)
+/area/lv624/ground/caves/central1)
 "Un" = (
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
@@ -661,7 +664,7 @@
 /area/lv624/ground/caves/central2)
 "UW" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1/garbledradio)
+/area/lv624/ground/caves/central1)
 "Vc" = (
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/dark2,
@@ -3552,7 +3555,7 @@ aa
 aa
 aa
 aI
-aa
+GG
 Ui
 Ui
 Ui
