@@ -959,7 +959,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon, ammo.bullet_color)
 		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
 		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
-		laser_effect.RegisterSignal(src, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
+		laser_effect.RegisterSignal(src, COMSIG_QDELETING, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
 		return
 	qdel(src)
 

@@ -425,7 +425,7 @@
 	if(object == current_target || object == living_user)
 		return
 	if(current_target)
-		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(current_target, COMSIG_QDELETING)
 	current_target = object
 
 /obj/item/weapon/chainsword

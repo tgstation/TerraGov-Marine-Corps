@@ -42,7 +42,7 @@
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, PROC_REF(spiderling_rage))
 	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, PROC_REF(parent_resist))
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, PROC_REF(apply_spiderling_jelly))
-	RegisterSignal(escorted_atom, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), PROC_REF(toggle_rest))
+	RegisterSignals(escorted_atom, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), PROC_REF(toggle_rest))
 	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_MARK, PROC_REF(decide_mark))
 
 /// Decides what to do when widow uses spiderling mark ability
@@ -50,7 +50,7 @@
 	SIGNAL_HANDLER
 	if(!A)
 		only_set_escorted_atom()
-		UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
 		atom_to_walk_to = null
 		return
 	if(atom_to_walk_to == A)
@@ -61,7 +61,7 @@
 		return
 	if(isobj(A))
 		var/obj/obj_target = A
-		RegisterSignal(obj_target, COMSIG_PARENT_QDELETING, PROC_REF(only_set_escorted_atom))
+		RegisterSignal(obj_target, COMSIG_QDELETING, PROC_REF(only_set_escorted_atom))
 		go_to_obj_target(source, A)
 		return
 
@@ -116,14 +116,14 @@
 	if(action_type == MOVING_TO_ATOM)
 		RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(attack_target))
 		if(!isobj(atom_to_walk_to))
-			RegisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(look_for_new_state))
+			RegisterSignals(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(look_for_new_state))
 	return ..()
 
 /datum/ai_behavior/spiderling/unregister_action_signals(action_type)
 	if(action_type == MOVING_TO_ATOM)
 		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 		if(!isnull(atom_to_walk_to))
-			UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+			UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
 	return ..()
 
 /// This happens when the spiderlings mother dies, they move faster and will attack any nearby marines

@@ -445,7 +445,7 @@
 		COMSIG_KB_GUN_SAFETY,
 		COMSIG_KB_UNIQUEACTION,
 		COMSIG_KB_AUTOEJECT,
-		COMSIG_PARENT_QDELETING,
+		COMSIG_QDELETING,
 		COMSIG_RANGED_ACCURACY_MOD_CHANGED,
 		COMSIG_RANGED_SCATTER_MOD_CHANGED,
 		COMSIG_MOB_SKILLS_CHANGED,
@@ -464,7 +464,7 @@
 		return
 	gun_user = user
 	setup_bullet_accuracy()
-	RegisterSignal(gun_user, list(COMSIG_RANGED_ACCURACY_MOD_CHANGED,
+	RegisterSignals(gun_user, list(COMSIG_RANGED_ACCURACY_MOD_CHANGED,
 		COMSIG_RANGED_SCATTER_MOD_CHANGED,
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
@@ -480,8 +480,8 @@
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	else
 		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, PROC_REF(unique_action))
-	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, PROC_REF(clean_gun_user))
-	RegisterSignal(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), PROC_REF(stop_fire))
+	RegisterSignal(gun_user, COMSIG_QDELETING, PROC_REF(clean_gun_user))
+	RegisterSignals(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), PROC_REF(stop_fire))
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, PROC_REF(activate_rail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, PROC_REF(activate_underrail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, PROC_REF(unload_gun))
@@ -725,10 +725,10 @@
 	if(object == target || (gun_user && object == gun_user))
 		return
 	if(target)
-		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(target, COMSIG_QDELETING)
 	target = object
 	if(target)
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clean_target))
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clean_target))
 
 ///Set the target to it's turf, so we keep shooting even when it was qdeled
 /obj/item/weapon/gun/proc/clean_target()
