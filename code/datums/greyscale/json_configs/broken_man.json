@@ -3,7 +3,7 @@
 		{
 			"type": "icon_state",
 			"icon_state": "facial_broken",
-			"blend_mode": "overlay",
+			"blend_mode": "multiply",
 			"color_ids": [ 1 ]
 		},
 		{

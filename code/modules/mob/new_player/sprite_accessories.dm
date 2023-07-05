@@ -60,6 +60,8 @@
 
 	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Vat-Grown", "Vatborn") // Restrict some styles to specific species
 	var/do_colouration = TRUE	// Whether or not the accessory can be affected by colouration
+	
+	var/datum/greyscale_config/greyscale_config
 
 
 /*
