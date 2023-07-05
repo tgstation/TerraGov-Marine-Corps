@@ -1,9 +1,3 @@
-/// Send a to_chat() to all ongoing CAS operations.
-/proc/message_cas(text)
-	for(var/obj/docking_port/mobile/marine_dropship/casplane/plane in GLOB.active_cas_planes)
-		to_chat(plane.eyeobj.eye_user, text)
-
-///// ACTIONS
 /datum/action/innate/camera_off/cas
 	name = "Exit CAS mode"
 

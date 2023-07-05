@@ -153,8 +153,6 @@
 
 	// AT THIS POINT, A FIREMISSION IS READY TO START!
 
-	GLOB.active_cas_planes += src
-
 	var/starting_point
 	if(length(GLOB.active_cas_targets))
 		starting_point = tgui_input_list(user, "Select a CAS target", "CAS Targeting", GLOB.active_cas_targets)
@@ -201,8 +199,6 @@
 		return
 	if(eyeobj?.eye_user != user)
 		return
-
-	GLOB.active_cas_planes -= src
 
 	UnregisterSignal(user, COMSIG_MOB_CLICKON)
 	UnregisterSignal(user, COMSIG_TOPIC)

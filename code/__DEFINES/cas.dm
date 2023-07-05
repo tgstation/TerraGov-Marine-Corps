@@ -14,5 +14,5 @@
 #define CAS_USABLE FALSE
 #endif
 
-///Provide a link for CAS users to click to jump to. Pair with /proc/message_cas()
+///Provide a link for CAS users to click to jump to.
 #define CAS_JUMP_LINK(location) "(<a href='?_src_=usr;cas_jump=\ref[location];'>JUMP</a>)"

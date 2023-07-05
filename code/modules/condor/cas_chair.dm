@@ -1,6 +1,3 @@
-///A list of (/obj/docking_port/mobile/marine_dropship/casplane) currently operating a CAS fire mission.
-GLOBAL_LIST_EMPTY(active_cas_planes)
-
 /obj/structure/caspart/caschair
 	name = "\improper Condor Jet pilot seat"
 	icon_state = "chair"
