@@ -135,13 +135,13 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 
 	//Coloring vars
-	///Some defines to determin if the item is allowed to be recolored.
+	///Some defines to determine if the item is allowed to be recolored.
 	var/colorable_allowed = NONE
 	///optional assoc list of colors we can color this item
 	var/list/colorable_colors = list()
-	///List of icon_state suffixes for item varients.
+	///List of icon_state suffixes for item variants.
 	var/list/icon_state_variants = list()
-	///Current varient selected.
+	///Current variant selected.
 	var/current_variant
 
 
