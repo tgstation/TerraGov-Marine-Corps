@@ -254,7 +254,7 @@
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
-/datum/lasrifle/base/plasma_rifle_mode/carbine_trifire
+/datum/lasrifle/base/plasma_rifle_mode/carbine_standard
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/carbine_standard/four
 	icon_state = "plasma_carbine"
@@ -275,7 +275,7 @@
 	rounds_per_shot = 66
 	radial_icon_state = "plasma_strong"
 
-/datum/lasrifle/base/plasma_rifle_mode/carbine_standard
+/datum/lasrifle/base/plasma_rifle_mode/carbine_trifire
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/carbine_trifire
 	icon_state = "plasma_carbine"

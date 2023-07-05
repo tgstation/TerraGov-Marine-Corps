@@ -346,7 +346,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	bonus_projectiles_amount = 1
 	fire_bonus_projectiles(proj, T, proj.shot_from, new_range, proj.projectile_speed, new_angle, null, get_step(T, dir_to_proj))
-	bonus_projectiles_amount = 0
+	bonus_projectiles_amount = initial(bonus_projectiles_amount)
 
 /*
 //================================================
@@ -3134,6 +3134,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.7
 	shell_speed = 3
 	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_trifire/additional
+	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 7
 
 /datum/ammo/energy/plasma/carbine_trifire/additional
