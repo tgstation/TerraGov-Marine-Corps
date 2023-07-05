@@ -2,7 +2,7 @@
 	"facial_brokenman_s": [
 		{
 			"type": "icon_state",
-			"icon_state": "facial_brokenman",
+			"icon_state": "facial_broken",
 			"blend_mode": "overlay",
 			"color_ids": [ 1 ]
 		},
