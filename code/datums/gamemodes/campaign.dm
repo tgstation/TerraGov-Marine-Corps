@@ -355,6 +355,7 @@
 
 	//complex ones
 	var/list/current_mission_data = list()
+	var/current_mission = current_mode.current_mission
 	current_mission_data["name"] = current_mission.name
 	current_mission_data["map_name"] = current_mission.map_name
 	current_mission_data["starting_faction"] = current_mission.starting_faction
