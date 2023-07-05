@@ -1312,6 +1312,7 @@
 /datum/sprite_accessory/facial_hair/broken_man
 	name = "Broken Man"
 	icon_state = "facial_brokenman_s"
+	greyscale_config = /datum/greyscale_config/hair/broken_man
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery
