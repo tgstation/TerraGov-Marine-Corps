@@ -9,6 +9,7 @@
 
 /obj/machinery/robotic_cradle
 	name = "robotic cradle"
+	desc = "A highly experimental robotic maintenence machine using a bath of industrial nanomachines to quickly restore any robotic machine inserted."
 	icon = 'icons/obj/machines/synthpod.dmi'
 	icon_state = "idle"
 	density = TRUE
