@@ -9716,10 +9716,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"mza" = (
-/obj/structure/prop/mainship/sensor_computer3,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic)
 "mzh" = (
 /obj/machinery/vending/engivend,
 /obj/effect/decal/cleanable/dirt,
@@ -16714,8 +16710,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/tankerbunks)
 "vjs" = (
-/obj/machinery/cic_maptable,
-/obj/structure/table/mainship/nometal,
+/obj/machinery/cic_maptable/big,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "vjC" = (
@@ -52731,7 +52726,7 @@ vmD
 pvX
 pQn
 vfH
-woR
+yaz
 bth
 wHL
 vfH
@@ -52988,7 +52983,7 @@ lwj
 jwK
 nvN
 vfH
-mza
+woR
 qKz
 rjL
 vfH

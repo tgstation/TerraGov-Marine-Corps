@@ -52,3 +52,10 @@
 
 /obj/machinery/cic_maptable/som_maptable
 	allowed_flags = MINIMAP_FLAG_MARINE_SOM
+
+/obj/machinery/cic_maptable/big
+	icon = 'icons/Marine/mainship_props96.dmi'
+	layer = ABOVE_OBJ_LAYER
+	pixel_x = -3
+	pixel_y = -14
+	bound_width = 64

@@ -11175,6 +11175,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
+"GL" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/mainship/floor,
+/area/mainship/command/cic)
 "GM" = (
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
@@ -16746,14 +16750,12 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/command/cic)
 "Xp" = (
-/obj/machinery/computer/crew,
+/obj/machinery/cic_maptable/big,
 /turf/open/floor/mainship/green{
 	dir = 9
 	},
 /area/mainship/command/cic)
 "Xq" = (
-/obj/machinery/cic_maptable,
-/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/green{
 	dir = 5
 	},
@@ -17048,6 +17050,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/command/cic)
 "Ym" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
 /turf/open/floor/mainship/green{
 	dir = 10
 	},
@@ -22070,7 +22075,7 @@ Gn
 SW
 UN
 Wj
-UU
+GL
 UU
 UU
 eP
