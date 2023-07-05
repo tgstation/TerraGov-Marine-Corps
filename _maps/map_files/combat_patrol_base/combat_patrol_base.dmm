@@ -736,9 +736,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "kT" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
+/obj/structure/prop/mainship/prop_so,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "la" = (
@@ -753,11 +751,6 @@
 	dir = 10
 	},
 /area/mainship/patrol_base/som)
-"lm" = (
-/obj/machinery/photocopier,
-/obj/machinery/light,
-/turf/open/floor/mainship/blue,
-/area/mainship/patrol_base)
 "ln" = (
 /obj/effect/turf_decal/warning_stripes/stripedsquare,
 /obj/machinery/light{
@@ -827,7 +820,9 @@
 	},
 /area/mainship/patrol_base/som)
 "mC" = (
-/obj/machinery/cic_maptable/big,
+/obj/machinery/cic_maptable/big{
+	pixel_x = -3
+	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "mH" = (
@@ -1318,6 +1313,9 @@
 /obj/structure/prop/mainship/prop_so{
 	dir = 1
 	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "tp" = (
@@ -1406,6 +1404,7 @@
 /obj/machinery/computer/security/marinemainship{
 	pixel_y = 18
 	},
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/blue{
 	dir = 9
 	},
@@ -1812,6 +1811,12 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
+"Av" = (
+/obj/machinery/photocopier,
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/mainship/patrol_base)
 "AD" = (
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/mainship,
@@ -1940,6 +1945,12 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"CZ" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/mainship/patrol_base)
 "De" = (
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/mainship,
@@ -2621,6 +2632,14 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
+"Nr" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/patrol_base)
 "Ns" = (
 /obj/structure/largecrate,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -2959,9 +2978,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
 "Ri" = (
-/obj/machinery/cic_maptable/big{
-	pixel_x = -19
-	},
+/obj/machinery/cic_maptable/big,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Rr" = (
@@ -9281,7 +9298,7 @@ kA
 kA
 Fw
 up
-tq
+CZ
 Cd
 Cj
 Uw
@@ -9342,7 +9359,7 @@ Fw
 kA
 kA
 PQ
-On
+Nr
 kA
 kA
 sA
@@ -9531,7 +9548,7 @@ Fw
 cO
 kA
 aB
-lm
+eH
 GL
 Mn
 yA
@@ -9653,7 +9670,7 @@ kA
 kA
 Fw
 Jc
-rH
+Av
 Ek
 ud
 Uw

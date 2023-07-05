@@ -3362,6 +3362,7 @@
 	pixel_x = -5;
 	pixel_y = 6
 	},
+/obj/item/minimap_tablet,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
 "arA" = (
@@ -4197,19 +4198,17 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 9
 	},
-/obj/machinery/cic_maptable/big,
 /turf/open/floor/mainship/terragov/west{
 	dir = 8
 	},
 /area/sulaco/bridge)
 "avb" = (
+/obj/machinery/cic_maptable/big,
 /turf/open/floor/mainship/terragov{
 	dir = 8
 	},
 /area/sulaco/bridge)
 "avc" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/minimap_tablet,
 /turf/open/floor/mainship/terragov/west{
 	dir = 4
 	},
@@ -24998,10 +24997,6 @@
 /obj/machinery/door/poddoor/opened/sb,
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hallway/central_hall)
-"vfQ" = (
-/obj/item/minimap_tablet,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/bridge)
 "vgl" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hallway/lower_foreship)
@@ -47961,7 +47956,7 @@ llL
 aBR
 apu
 asd
-vfQ
+asd
 asd
 ats
 ava

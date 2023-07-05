@@ -5920,6 +5920,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
+"rA" = (
+/turf/open/floor/mainship/green{
+	dir = 10
+	},
+/area/mainship/command/cic)
 "rB" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/recharger,
@@ -12453,6 +12458,16 @@
 	dir = 6
 	},
 /area/mainship/living/briefing)
+"KH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/mob/living/simple_animal/corgi/ian,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/command/cic)
 "KI" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/blue{
@@ -13979,6 +13994,11 @@
 /obj/item/stack/sheet/metal/large_stack,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"OX" = (
+/turf/open/floor/mainship/green{
+	dir = 9
+	},
+/area/mainship/command/cic)
 "Pa" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/spray,
@@ -16414,10 +16434,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
-"Wk" = (
-/mob/living/simple_animal/corgi/ian,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/cic)
 "Wl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -16752,7 +16768,7 @@
 "Xp" = (
 /obj/machinery/cic_maptable/big,
 /turf/open/floor/mainship/green{
-	dir = 9
+	dir = 1
 	},
 /area/mainship/command/cic)
 "Xq" = (
@@ -17053,9 +17069,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/turf/open/floor/mainship/green{
-	dir = 10
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/command/cic)
 "Yn" = (
 /obj/structure/window/framed/mainship,
@@ -17063,9 +17077,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "Yo" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
 /turf/open/floor/mainship/green{
 	dir = 6
 	},
@@ -22075,8 +22086,8 @@ Gn
 SW
 UN
 Wj
-GL
-UU
+OX
+rA
 UU
 eP
 zm
@@ -22172,7 +22183,7 @@ Wg
 RE
 SX
 UO
-Wk
+GL
 Xp
 Ym
 UU
@@ -22269,7 +22280,7 @@ jk
 Wg
 RG
 SZ
-UK
+KH
 UU
 Xq
 Yo

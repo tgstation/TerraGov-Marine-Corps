@@ -56,6 +56,5 @@
 /obj/machinery/cic_maptable/big
 	icon = 'icons/Marine/mainship_props96.dmi'
 	layer = ABOVE_OBJ_LAYER
-	pixel_x = -3
+	pixel_x = -16
 	pixel_y = -14
-	bound_width = 64

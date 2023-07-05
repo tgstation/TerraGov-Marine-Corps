@@ -13792,7 +13792,6 @@
 	},
 /area/mainship/hallways/hangar)
 "mra" = (
-/obj/machinery/cic_maptable/big,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -14017,6 +14016,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"mJL" = (
+/obj/machinery/cic_maptable/big,
+/turf/open/floor/mainship/floor,
+/area/mainship/command/cic)
 "mJN" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -33297,7 +33300,7 @@ pBS
 lNG
 uZL
 wPw
-tmp
+mJL
 wPw
 ocE
 sSR
