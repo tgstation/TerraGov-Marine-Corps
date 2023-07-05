@@ -1,6 +1,7 @@
 // Adds a timer that ticks down based on the timer datums
 /datum/element/hud_timer
 	element_flags = ELEMENT_BESPOKE
+	argument_hash_start_idx = 3
 	var/datum/weakref/owner_weakref
 	var/datum/weakref/callback_target_ref
 	var/style_start = "<span class='maptext' style=font-size:16pt;text-align:center; align='top'>"
