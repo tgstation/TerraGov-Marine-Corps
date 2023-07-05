@@ -60,7 +60,7 @@
 
 	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Vat-Grown", "Vatborn") // Restrict some styles to specific species
 	var/do_colouration = TRUE	// Whether or not the accessory can be affected by colouration
-	
+
 	var/datum/greyscale_config/greyscale_config
 
 
@@ -1314,6 +1314,9 @@
 /datum/sprite_accessory/facial_hair/broken_man
 	name = "Broken Man"
 	icon_state = "facial_brokenman_s"
+	greyscale_config = /datum/greyscale_config/hair/broken_man
+
+	
 	
 //skin styles - WIP
 //going to have to re-integrate this with surgery
