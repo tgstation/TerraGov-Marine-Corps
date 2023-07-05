@@ -1309,9 +1309,9 @@
 	name = "Rough Man"
 	icon_state = "facial_roughman"
 
-/datum/greyscale_config/hair/broken_man
+/datum/sprite_accessory/facial_hair/broken_man
 	name = "Broken Man"
-	icon_state = "facial_brokenman"
+	icon_state = "facial_brokenman_s"
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery
