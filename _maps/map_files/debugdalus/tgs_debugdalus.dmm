@@ -1283,7 +1283,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mainship,
+/obj/vehicle/unmanned/droid,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/command/telecomms)
 "agd" = (
 /obj/structure/prop/mainship/mapping_computer,
@@ -2401,6 +2402,10 @@
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
+"gUp" = (
+/obj/vehicle/unmanned/droid/ripley,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/mainship/hallways/hangar)
 "hni" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -2739,6 +2744,13 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"wYr" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/vehicle/unmanned/droid/scout,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/mainship/command/telecomms)
 "xsM" = (
 /obj/machinery/light{
 	dir = 1
@@ -2930,7 +2942,7 @@ agb
 ahI
 aey
 aeM
-agb
+wYr
 afl
 aoI
 aaa
@@ -3936,7 +3948,7 @@ aba
 ada
 adm
 abI
-dwY
+gUp
 dwY
 dwY
 dwY

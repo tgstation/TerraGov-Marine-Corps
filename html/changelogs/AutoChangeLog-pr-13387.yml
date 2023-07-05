@@ -1,0 +1,7 @@
+author: "Kapu1178"
+delete-after: True
+changes:
+  - rscadd: "CAS will now get JUMP links in chat when a lase is deployed."
+  - rscadd: "CAS now has a Jump to Lase ability button."
+  - qol: "Clicking the Condor cockpit as the pilot will now attempt to move you out. No more resist needed."
+  - code_imp: "Cleaned up CAS code. Please contribute CAS features. I beg you."

@@ -1,0 +1,5 @@
+author: "Scarlet-Oduko"
+delete-after: True
+changes:
+  - rscadd: "SP-13 and ammo to smartgunner prep vendor"
+  - balance: "SP-13 can be one handed, recoil of 2 and scatter of 7 when wielded."
