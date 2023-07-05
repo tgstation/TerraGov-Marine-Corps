@@ -1309,7 +1309,7 @@
 	name = "Rough Man"
 	icon_state = "facial_roughman"
 
-/datum/sprite_accessory/facial_hair/broken_man
+/datum/greyscale_config/hair/broken_man
 	name = "Broken Man"
 	icon_state = "facial_brokenman"
 
