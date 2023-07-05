@@ -100,15 +100,9 @@
 /obj/item/armor_module/armor/visor/marine/eva/skull
 	name = "\improper Jaeger Pattern EVA Skull visor"
 	icon_state = "eva_visor"
-	attachments_by_slot = list(
-		ATTACHMENT_SLOT_CAPE_HIGHLIGHT,
-	)
-	attachments_allowed = list(
-		/obj/item/armor_module/armor/visor_glyph
-	)
-	starting_attachments = list(
-		/obj/item/armor_module/armor/visor_glyph
-	)
+	attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
+	attachments_allowed = list(/obj/item/armor_module/armor/visor_glyph)
+	starting_attachments = list(/obj/item/armor_module/armor/visor_glyph)
 
 /obj/item/armor_module/armor/visor/marine/assault
 	name = "\improper Jaeger Pattern Assault visor"
@@ -179,15 +173,9 @@
 /obj/item/armor_module/armor/visor/marine/old/eva/skull
 	name = "\improper Jaeger Pattern EVA Skull visor"
 	icon_state = "eva_visor_old"
-	attachments_by_slot = list(
-		ATTACHMENT_SLOT_CAPE_HIGHLIGHT,
-	)
-	attachments_allowed = list(
-		/obj/item/armor_module/armor/visor_glyph/old
-	)
-	starting_attachments = list(
-		/obj/item/armor_module/armor/visor_glyph/old
-	)
+	attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
+	attachments_allowed = list(/obj/item/armor_module/armor/visor_glyph/old)
+	starting_attachments = list(/obj/item/armor_module/armor/visor_glyph/old)
 
 /obj/item/armor_module/armor/visor/marine/old/assault
 	name = "\improper Jaeger Pattern Assault visor"
