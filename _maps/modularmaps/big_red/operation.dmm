@@ -995,8 +995,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)
 "IT" = (
-/obj/machinery/computer/communications,
 /obj/structure/table,
+/obj/machinery/computer/guestpass,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
