@@ -58,3 +58,5 @@
 	layer = ABOVE_OBJ_LAYER
 	pixel_x = -16
 	pixel_y = -14
+	coverage = 75
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
