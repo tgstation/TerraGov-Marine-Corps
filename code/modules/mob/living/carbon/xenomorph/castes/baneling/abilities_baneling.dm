@@ -21,7 +21,8 @@
 	handle_smoke(ability = TRUE)
 	X.death(FALSE)
 
-/datum/action/xeno_action/baneling_explode/proc/handle_smoke(mob/M, ability = FALSE)
+/// This proc defines, and sets up and then lastly starts the smoke, if ability is false we divide range by 4.
+/datum/action/xeno_action/baneling_explode/proc/handle_smoke(src, ability = FALSE)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/owner_T = get_turf(X)
@@ -37,7 +38,6 @@
 			smoke = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(owner_T)
 		if(/datum/reagent/toxin/acid)
 			smoke = new /datum/effect_system/smoke_spread/xeno/acid(owner_T)
-	/// Our smoke size is directly dependant on the amount of plasma we have stored
 	var/smoke_range = X.plasma_stored/60
 	/// Use up all plasma so that we dont smoke twice because we die.
 	X.use_plasma(X.plasma_stored)
@@ -72,7 +72,6 @@
 	return COMSIG_KB_ACTIVATED
 
 /datum/action/xeno_action/select_reagent/baneling/select_reagent_radial()
-		//List of toxin images
 	var/static/list/reagent_images_list = list(
 		DEFILER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
 		DEFILER_HEMODILE = image('icons/mob/actions.dmi', icon_state = DEFILER_HEMODILE),
