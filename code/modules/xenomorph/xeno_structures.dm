@@ -1235,7 +1235,7 @@ TUNNEL
 	///The type of pheromone currently being emitted.
 	var/datum/aura_bearer/current_aura
 	///Strength of pheromones given by this tower.
-	var/aura_strength = 8
+	var/aura_strength = 6
 	///Radius (in tiles) of the pheromones given by this tower.
 	var/aura_radius = 32
 
