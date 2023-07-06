@@ -447,7 +447,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon_state = "minigun_sg"
 	item_state = "minigun_sg"
 	fire_animation = "minigun_sg_fire"
-	max_shells = 1000 //codex
+	max_shells = 2000 //codex
 	caliber = CALIBER_10x26_CASELESS //codex
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
 	wield_delay = 1.5 SECONDS
