@@ -27,6 +27,7 @@
 	maptext = result_text
 
 /atom/movable/screen/text/screen_timer/proc/stop_timer()
+	SIGNAL_HANDLER
 	qdel(src)
 
 /atom/movable/screen/text/screen_timer/Destroy()
