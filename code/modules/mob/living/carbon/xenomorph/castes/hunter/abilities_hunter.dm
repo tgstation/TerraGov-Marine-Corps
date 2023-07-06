@@ -57,7 +57,7 @@
 	RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(plasma_regen))
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
-	RegisterSignal(owner, list(
+	RegisterSignals(owner, list(
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_LIVING_IGNITED,
@@ -65,7 +65,7 @@
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
 
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), PROC_REF(cancel_stealth))
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), PROC_REF(cancel_stealth))
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(damage_taken))
 
@@ -325,11 +325,11 @@
 		return fail_activate()
 
 	if(marked_target)
-		UnregisterSignal(marked_target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(marked_target, COMSIG_QDELETING)
 
 	marked_target = A
 
-	RegisterSignal(marked_target, COMSIG_PARENT_QDELETING, PROC_REF(unset_target)) //For var clean up
+	RegisterSignal(marked_target, COMSIG_QDELETING, PROC_REF(unset_target)) //For var clean up
 
 	to_chat(X, span_xenodanger("We psychically mark [A] as our quarry."))
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
@@ -343,7 +343,7 @@
 ///Nulls the target of our hunter's mark
 /datum/action/xeno_action/activable/hunter_mark/proc/unset_target()
 	SIGNAL_HANDLER
-	UnregisterSignal(marked_target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(marked_target, COMSIG_QDELETING)
 	marked_target = null //Nullify hunter's mark target and clear the var
 
 // ***************************************

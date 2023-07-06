@@ -41,11 +41,11 @@
 ///Set the connected var
 /obj/machinery/sleep_console/proc/set_connected(obj/future_connected)
 	if(connected)
-		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(connected, COMSIG_QDELETING)
 	connected = null
 	if(future_connected)
 		connected = future_connected
-		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(clean_connected))
+		RegisterSignal(connected, COMSIG_QDELETING, PROC_REF(clean_connected))
 
 ///Clean the connected var
 /obj/machinery/sleep_console/proc/clean_connected()
@@ -182,11 +182,11 @@
 ///Set the connected var
 /obj/machinery/sleeper/proc/set_connected(obj/future_connected)
 	if(connected)
-		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(connected, COMSIG_QDELETING)
 	connected = null
 	if(future_connected)
 		connected = future_connected
-		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(clean_connected))
+		RegisterSignal(connected, COMSIG_QDELETING, PROC_REF(clean_connected))
 
 ///Clean the connected var
 /obj/machinery/sleeper/proc/clean_connected()

@@ -37,7 +37,7 @@
 /obj/machinery/computer/camera_advanced/proc/CreateEye()
 	eyeobj = new()
 	eyeobj.origin = src
-	RegisterSignal(eyeobj, COMSIG_PARENT_QDELETING, PROC_REF(clear_eye_ref))
+	RegisterSignal(eyeobj, COMSIG_QDELETING, PROC_REF(clear_eye_ref))
 
 /**
  * This proc is used to make sure no references or other leftovers are left behind if the computer's eye is deleted.
@@ -45,7 +45,7 @@
 **/
 /obj/machinery/computer/camera_advanced/proc/clear_eye_ref()
 	SIGNAL_HANDLER
-	UnregisterSignal(eyeobj, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(eyeobj, COMSIG_QDELETING)
 	if(current_user)
 		remove_eye_control(current_user)
 	eyeobj = null

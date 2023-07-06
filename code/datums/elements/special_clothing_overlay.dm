@@ -45,7 +45,7 @@
 	SIGNAL_HANDLER
 	RegisterSignal(equipper, COMSIG_HUMAN_APPLY_OVERLAY, PROC_REF(add_as_overlay))
 	RegisterSignal(equipper, COMSIG_HUMAN_REMOVE_OVERLAY, PROC_REF(remove_as_overlay))
-	RegisterSignal(source, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
+	RegisterSignals(source, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
 
 /**
  * Signal handler for adding the overlay to the wearer

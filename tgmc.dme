@@ -340,6 +340,7 @@
 #include "code\datums\round_statistics.dm"
 #include "code\datums\saymode.dm"
 #include "code\datums\shuttles.dm"
+#include "code\datums\signals.dm"
 #include "code\datums\skills.dm"
 #include "code\datums\tgs_event_handler.dm"
 #include "code\datums\verbs.dm"

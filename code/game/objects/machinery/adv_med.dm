@@ -242,10 +242,10 @@
 ///Wrapper to guarantee connected bodyscanner references are properly nulled and avoid hard deletes.
 /obj/machinery/body_scanconsole/proc/set_connected(obj/machinery/bodyscanner/new_connected)
 	if(connected)
-		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(connected, COMSIG_QDELETING)
 	connected = new_connected
 	if(connected)
-		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(on_bodyscanner_deletion))
+		RegisterSignal(connected, COMSIG_QDELETING, PROC_REF(on_bodyscanner_deletion))
 
 
 ///Called by the deletion of the connected bodyscanner.
