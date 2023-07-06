@@ -77,3 +77,37 @@
   - rscadd: Added per client vote choice randomization.
   novaepee:
   - rscadd: engineer, corpsman, SG, & SL have 1,000 hours rank
+2023-07-06:
+  Kapu1178:
+  - rscadd: CAS will now get JUMP links in chat when a lase is deployed.
+  - rscadd: CAS now has a Jump to Lase ability button.
+  - qol: Clicking the Condor cockpit as the pilot will now attempt to move you out.
+      No more resist needed.
+  - code_imp: Cleaned up CAS code. Please contribute CAS features. I beg you.
+  Lumipharon:
+  - bugfix: Barb wired plasteel cades are no longer one way doors
+  - bugfix: fixed an issue with tad leaving behind turfs
+  - bugfix: Shallow caves are no longer enterable by air support or OB
+  Pariah919:
+  - balance: Disposable RPGs are now 100 points from 50.
+  - balance: SADAR now costs 400 points less, SADAR rockets cost 10 points less across
+      the board.
+  RipGrayson:
+  - bugfix: Fixed a couple broken area APCs
+  - rscadd: Added a new powerloader drone that the AI can control.
+  - rscadd: Added the new type of drone to all ship maps.
+  Scarlet-Oduko:
+  - rscadd: SP-13 and ammo to smartgunner prep vendor
+  - balance: SP-13 can be one handed, recoil of 2 and scatter of 7 when wielded.
+  XElectricX:
+  - bugfix: Corrupted thermal generators check if there actually are any groundside
+      for psy point generation.
+  ivanmixo:
+  - bugfix: Fixed BAS (and probably other sentries) not losing target when undeployed
+  - bugfix: Fixed nuke being activable post hijack
+  - bugfix: Fixed a sentry runtime
+  - admin: Orbit changes only message admins if successful
+  - bugfix: Fixed MD outfit trying to give humans the robot variant
+  - code_imp: Ported tg's SDQL improvements
+  - balance: Changing direction mid charge as a primordial bull now makes you lose
+      speed
