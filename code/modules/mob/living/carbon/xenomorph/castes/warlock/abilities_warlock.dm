@@ -103,6 +103,7 @@
 			return
 
 	succeed_activate()
+	xeno_owner.allow_pass_flags |= PASS_XENO
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 
 	action_icon_state = "psy_shield_reflect"
@@ -122,6 +123,7 @@
 /datum/action/xeno_action/activable/psychic_shield/proc/cancel_shield()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	action_icon_state = "psy_shield"
+	xeno_owner.allow_pass_flags &= ~PASS_XENO
 	xeno_owner.update_glow()
 	update_button_icon()
 	add_cooldown()
