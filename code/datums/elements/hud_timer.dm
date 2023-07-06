@@ -50,6 +50,7 @@
 	global_signals_registered = TRUE
 
 /datum/element/hud_timer/Detach(datum/source)
+	remove_timers(list(source))
 	for(var/datum/weakref/weakref in users)
 		var/mob/user = weakref.resolve()
 		if(user == source)
@@ -72,52 +73,49 @@
 	for(var/signal in signals_to_remove)
 		if(is_global_signal(signals_to_remove[signal]))
 			return
-		handle_signal(signals_to_remove[signal], signal, register = FALSE)
+		handle_signal(signals_to_remove[signal], signal, register = FALSE, check_global = FALSE)
 
-/datum/element/hud_timer/proc/handle_signal(datum/weakref/weakref_target, signal, callback, register = TRUE)
+/datum/element/hud_timer/proc/handle_signal(datum/weakref/weakref_target, signal, callback, register = TRUE, check_global = TRUE)
 	var/resolved = weakref_target.resolve()
-	if(global_signals_registered && istype(resolved, /datum/controller/subsystem/processing/dcs))
+	if(check_global && global_signals_registered && istype(resolved, /datum/controller/subsystem/processing/dcs))
 		return
 	if(register)
 		RegisterSignal(resolved, signal, callback)
 	else
 		UnregisterSignal(resolved, signal)
-	global_signals_registered = TRUE	
 
 /datum/element/hud_timer/proc/is_global_signal(datum/weakref/signal_target)
 	var/resolved = signal_target.resolve()
 	return global_signals_registered && istype(resolved, /datum/controller/subsystem/processing/dcs)
 
 /datum/element/hud_timer/proc/add_timer(time_to_display)
-	if(time_to_display in timers)
-		return
 	timers.Add(time_to_display)
 	add_new_timer(time_to_display)
 
 /datum/element/hud_timer/proc/timer_start_signal(...)
 	SIGNAL_HANDLER
-	var/timer = handle_callback()
+	var/timer = handle_callback(arglist(args))
 	if(!timer)
 		return
 	add_timer(timer)
 
 /datum/element/hud_timer/proc/timer_stop_signal(...)
 	SIGNAL_HANDLER
-	var/timer_to_stop = handle_callback()
+	var/timer_to_stop = handle_callback(arglist(args))
 	if(!timer_to_stop)
 		return
 	remove_timers()
 	timers.Remove(timer_to_stop)
 	add_all_timers()
 
-/datum/element/hud_timer/proc/handle_callback()
+/datum/element/hud_timer/proc/handle_callback(...)
 	var/callback_target = resolve_ref(callback_target_ref)
 	if(!callback_target)
 		return FALSE
-	var/timer_to_stop = call(callback_target, callback)(arglist(args))
-	if(!timer_to_stop)
+	var/timer = call(callback_target, callback)(arglist(args))
+	if(!timer)
 		return FALSE
-	return timer_to_stop
+	return timer
 
 /datum/element/hud_timer/proc/add_all_timers()
 	for(var/timer in timers)
@@ -128,9 +126,15 @@
 		var/datum/weakref/weakref = owner_weakref
 		var/displays
 		var/mob/owner = resolve_ref(weakref)
+		if(!owner)
+			users.Remove(weakref)
+			continue
 		if(!owner || !owner.client)
 			continue
 		for(var/atom/movable/screen/text/screen_timer/display in owner.client?.screen)
+			if(display.timer_id == timer_to_add)
+				displays = 10
+				break
 			displays += 1
 		if(displays > 5)
 			return
@@ -138,8 +142,9 @@
 		var/atom/movable/screen/text/screen_timer/screen_timer = new(0, owner.client, timer_to_add, "[style_start][timer_text][style_end]")
 		screen_timer.maptext_y = clamp(screen_timer.maptext_y - displays * 12, -130, -70)
 
-/datum/element/hud_timer/proc/remove_timers()
-	for(var/owner_weakref in users)
+/datum/element/hud_timer/proc/remove_timers(targets)
+	var/target = length(targets) ? targets : users
+	for(var/owner_weakref in target)
 		var/datum/weakref/weakref = owner_weakref
 		var/mob/owner = resolve_ref(weakref)
 		if(!owner)
@@ -215,4 +220,9 @@
 
 /datum/element/hud_timer/hive_collapse/proc/get_hive_collapse_callback(source, hive_timer)
 	SIGNAL_HANDLER
+	if(!hive_timer)
+		if(!istype(SSticker.mode, /datum/game_mode/infestation/distress))
+			return null
+		var/datum/game_mode/infestation/distress/gamemode = SSticker.mode
+		return gamemode.orphan_hive_timer
 	return hive_timer

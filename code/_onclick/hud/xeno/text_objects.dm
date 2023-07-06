@@ -19,6 +19,13 @@
 	owner_client.screen.Add(src)
 
 /atom/movable/screen/text/screen_timer/process()
+	if(!owner_client_ref)
+		return
+	var/client/client = owner_client_ref.resolve()
+	// Lets make sure we never just run with no reason
+	if(!client)
+		stop_timer()
+		return
 	var/time_left = timeleft(timer_id)
 	var/time_formatted = time2text(time_left, "mm:ss")
 	var/result_text = replacetextEx(maptext_string, "${timer}", time_formatted)
