@@ -159,11 +159,11 @@
 	. = ..()
 	if(!secondary_color)
 		return
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, PROC_REF(handle_color))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(extra_examine))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY_ALTERNATE, PROC_REF(handle_color))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(extra_examine))
 
 /obj/item/armor_module/armor/on_detach(obj/item/detaching_from, mob/user)
-	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACKBY_ALTERNATE, COMSIG_ATOM_EXAMINE))
 	return ..()
 
 /obj/item/armor_module/armor/update_item_sprites()

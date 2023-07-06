@@ -351,7 +351,7 @@ directive is properly returned.
 			else
 				. += span_notice("\The [src] is full!")
 
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
 
 
 /// Updates the icon of the atom

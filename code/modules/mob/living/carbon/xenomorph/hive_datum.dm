@@ -1076,7 +1076,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		remove_from_larva_candidate_queue(observer)
 		return FALSE
 	LAZYADD(candidate, observer)
-	RegisterSignal(observer, COMSIG_PARENT_QDELETING, PROC_REF(clean_observer))
+	RegisterSignal(observer, COMSIG_QDELETING, PROC_REF(clean_observer))
 	observer.larva_position = LAZYLEN(candidate)
 	to_chat(observer, span_warning("There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph."))
 	return TRUE
@@ -1084,7 +1084,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /// Remove an observer from the larva candidate queue
 /datum/hive_status/proc/remove_from_larva_candidate_queue(mob/dead/observer/observer)
 	LAZYREMOVE(candidate, observer)
-	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(observer, COMSIG_QDELETING)
 	observer.larva_position = 0
 	var/datum/action/observer_action/join_larva_queue/join = observer.actions_by_path[/datum/action/observer_action/join_larva_queue]
 	join.set_toggle(FALSE)
@@ -1113,7 +1113,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	while(stored_larva > 0 && LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, 1)
 		LAZYREMOVE(candidate, observer_in_queue)
-		UnregisterSignal(observer_in_queue, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(observer_in_queue, COMSIG_QDELETING)
 		if(try_to_give_larva(observer_in_queue))
 			stored_larva--
 			slot_really_taken++

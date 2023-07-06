@@ -126,7 +126,7 @@
 
 /datum/action/xeno_action/ready_charge/proc/do_start_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
-	RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
+	RegisterSignals(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
 	charger.is_charging = CHARGE_ON
 	charger.update_icons()
 

@@ -864,7 +864,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	target.observers |= src
 	target.hud_used.show_hud(target.hud_used.hud_version, src)
 	observetarget = target
-	RegisterSignal(observetarget, COMSIG_PARENT_QDELETING, PROC_REF(clean_observetarget))
+	RegisterSignal(observetarget, COMSIG_QDELETING, PROC_REF(clean_observetarget))
 
 ///Signal handler to clean the observedtarget
 /mob/dead/observer/proc/clean_observetarget()

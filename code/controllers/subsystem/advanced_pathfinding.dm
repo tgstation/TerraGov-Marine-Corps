@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	if(!creator)
 		return
 	src.creator = creator
-	RegisterSignal(creator, COMSIG_PARENT_QDELETING, PROC_REF(clean_creator))
+	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clean_creator))
 	goal_image = image('icons/mob/actions.dmi', src, "minion_rendez_vous")
 	goal_image.layer = HUD_PLANE
 	goal_image.alpha = 180

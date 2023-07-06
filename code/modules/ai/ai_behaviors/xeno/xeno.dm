@@ -17,7 +17,7 @@
 
 /datum/ai_behavior/xeno/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
-	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
+	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(check_for_critical_health))
 	return ..()
 
@@ -172,7 +172,7 @@
 				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
 				return
 			if(ismachinery(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
+				RegisterSignal(atom_to_walk_to, COMSIG_PREQDELETED, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
 				return
 
 	return ..()
@@ -185,7 +185,7 @@
 				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
 				return
 			if(ismachinery(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED)
+				UnregisterSignal(atom_to_walk_to, COMSIG_PREQDELETED)
 				return
 
 	return ..()

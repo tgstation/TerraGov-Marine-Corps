@@ -49,7 +49,7 @@
 
 /obj/vehicle/unmanned/droid/Destroy()
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 	if(!remote_user) //No remote user, no need to do this.
 		return ..()
@@ -124,7 +124,7 @@
 	user = source
 
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 		to_chat(source, (span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console")))
 		return
@@ -132,7 +132,7 @@
 		to_chat(source, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
 	beacon_datum = new /datum/supply_beacon(user.name, src.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
+	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [loc.x]. LATITUDE [loc.y]. Area ID: [get_area(src)]\""))
 
 ///removes the beacon when we delete the droid

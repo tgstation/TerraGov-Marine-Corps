@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(silo)
 	var/larva_spawn_rate_temporary_buff = 0
 
 /datum/controller/subsystem/silo/Initialize()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(start_spawning))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(start_spawning))
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/silo/fire(resumed = 0)
