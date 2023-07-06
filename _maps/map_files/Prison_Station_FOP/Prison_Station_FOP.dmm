@@ -37921,13 +37921,13 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "crm" = (
-/obj/machinery/computer/communications/bee,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "crn" = (
-/obj/machinery/computer/communications/bee,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/bluefloor,
 /area/prison/pirate)

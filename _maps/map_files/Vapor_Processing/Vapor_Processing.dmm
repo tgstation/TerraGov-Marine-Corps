@@ -2242,7 +2242,7 @@
 /area/lv624/lazarus/canteen)
 "lo" = (
 /obj/structure/table/flipped,
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},

@@ -5907,7 +5907,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
@@ -15556,7 +15556,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/center)
 "bBZ" = (

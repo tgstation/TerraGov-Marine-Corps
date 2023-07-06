@@ -171,6 +171,12 @@
 	desc = "Oversees all research"
 	icon_state = "rdcomp"
 
+/obj/machinery/prop/computer/communications
+	name = "communications console"
+	desc = "This can be used for various important functions."
+	icon_state = "comm"
+	icon = 'icons/obj/machines/computer.dmi'
+
 /obj/machinery/prop/r_n_d/server/alt
 	name = "Alternate R&D Server"
 	icon = 'icons/obj/machines/research.dmi'

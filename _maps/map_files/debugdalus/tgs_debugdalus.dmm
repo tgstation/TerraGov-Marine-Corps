@@ -2311,11 +2311,11 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "dkH" = (
-/obj/machinery/computer/communications,
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
+/obj/machinery/computer/communications,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "dwY" = (

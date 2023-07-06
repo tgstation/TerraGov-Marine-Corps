@@ -2614,9 +2614,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/sand8)
-"bsq" = (
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
 "bsG" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
@@ -3113,7 +3110,7 @@
 "bTH" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/garbledradio)
 "bTL" = (
 /obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall,
@@ -4147,7 +4144,7 @@
 "doP" = (
 /obj/structure/showcase/six,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/garbledradio)
 "dpq" = (
 /turf/open/ground/coast{
 	dir = 8
@@ -6230,7 +6227,7 @@
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/pistol/holdout,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/garbledradio)
 "gcF" = (
 /obj/effect/ai_node,
 /turf/open/floor/engine/cult{
@@ -7141,10 +7138,6 @@
 "hlK" = (
 /turf/open/space/basic,
 /area/lv624/lazarus/atmos)
-"hlO" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
 "hlQ" = (
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage/outdoors)
@@ -9416,7 +9409,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/garbledradio)
 "knr" = (
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/river3)
@@ -12253,7 +12246,7 @@
 /obj/item/clothing/suit/armor/vest,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/garbledradio)
 "nWt" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
@@ -16399,9 +16392,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/spaceport)
-"tsW" = (
-/turf/closed/wall/r_wall/chigusa,
-/area/lv624/ground/caves/rock)
 "ttW" = (
 /obj/structure/flora/jungle/vines{
 	pixel_y = 1
@@ -16761,7 +16751,7 @@
 	name = "Strange Temple"
 	},
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/garbledradio)
 "tRq" = (
 /obj/item/trash/chips,
 /turf/open/floor/plating,
@@ -18695,7 +18685,7 @@
 	},
 /obj/structure/table/mainship,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
+/area/lv624/lazarus/sandtemple/garbledradio)
 "wrq" = (
 /obj/structure/cable,
 /turf/open/floor/tile/chapel{
@@ -58010,7 +58000,7 @@ goW
 goW
 goW
 goW
-tsW
+fSa
 fSa
 fSa
 tPY
@@ -58187,10 +58177,10 @@ gKr
 sDq
 gKr
 gKr
-tsW
+fSa
 bTH
-bsq
-jQc
+ceV
+qRq
 tDa
 fSa
 sqN
@@ -58364,10 +58354,10 @@ gKr
 gKr
 gKr
 gKr
-tsW
+fSa
 gcl
 knh
-hlO
+mOP
 fys
 fSa
 sqN
@@ -58543,7 +58533,7 @@ gKr
 gKr
 gKr
 wqE
-bsq
+ceV
 nWg
 fys
 fSa
@@ -58721,7 +58711,7 @@ gKr
 gKr
 gKr
 doP
-bsq
+ceV
 gKr
 gKr
 gKr
@@ -58896,8 +58886,8 @@ gKr
 gKr
 gKr
 gKr
-qfl
-qfl
+fSa
+fSa
 gKr
 gKr
 gKr
