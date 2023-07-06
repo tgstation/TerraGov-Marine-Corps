@@ -102,9 +102,6 @@
 
 	var/list/assigned_oranges_ears = SSspatial_grid.assign_oranges_ears(hearables_from_grid)
 
-	var/old_luminosity = center_turf.luminosity
-	center_turf.luminosity = 6 //man if only we had an inbuilt dview()
-
 	//this is the ENTIRE reason all this shit is worth it due to how view() and the contents list works and can be optimized
 	//internally, the contents list is secretly two linked lists, one for /obj's and one for /mob's (/atom/movable counts as /obj here)
 	//by default, for(var/atom/name in view()) iterates through both the /obj linked list then the /mob linked list of each turf
@@ -118,7 +115,6 @@
 	for(var/mob/oranges_ear/remaining_ear as anything in assigned_oranges_ears)//we need to clean up our mess
 		remaining_ear.unassign()
 
-	center_turf.luminosity = old_luminosity
 	return .
 
 /**
