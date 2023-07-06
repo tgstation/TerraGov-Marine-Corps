@@ -143,36 +143,6 @@ OPERATIONS
 	containertype = null
 	cost = 100
 
-/datum/supply_packs/operations/c10
-	name = "10 dollars"
-	contains = list(/obj/item/spacecash/c10)
-	cost = 1
-
-/datum/supply_packs/operations/c20
-	name = "20 dollars"
-	contains = list(/obj/item/spacecash/c20)
-	cost = 2
-
-/datum/supply_packs/operations/c50
-	name = "50 dollars"
-	contains = list(/obj/item/spacecash/c50)
-	cost = 5
-
-/datum/supply_packs/operations/c100
-	name = "100 dollars"
-	contains = list(/obj/item/spacecash/c100)
-	cost = 10
-
-/datum/supply_packs/operations/c200
-	name = "200 dollars"
-	contains = list(/obj/item/spacecash/c200)
-	cost = 20
-
-/datum/supply_packs/operations/c500
-	name = "500 dollars"
-	contains = list(/obj/item/spacecash/c500)
-	cost = 50
-
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -1464,6 +1434,37 @@ SUPPLIES
 		/obj/item/toy/plush/therapy_purple,
 	)
 	cost = 40
+
+/datum/supply_packs/operations/dollarten
+	name = "10 dollars"
+	contains = list(/obj/item/spacecash/c10)
+	cost = 1
+
+/datum/supply_packs/operations/dollartwenty
+	name = "20 dollars"
+	contains = list(/obj/item/spacecash/c20)
+	cost = 2
+
+/datum/supply_packs/operations/dollarfifty
+	name = "50 dollars"
+	contains = list(/obj/item/spacecash/c50)
+	cost = 5
+
+/datum/supply_packs/operations/dollarhundred
+	name = "100 dollars"
+	contains = list(/obj/item/spacecash/c100)
+	cost = 10
+
+/datum/supply_packs/operations/dollartwohundred
+	name = "200 dollars"
+	contains = list(/obj/item/spacecash/c200)
+	cost = 20
+
+/datum/supply_packs/operations/dullarfivehundred
+	name = "500 dollars"
+	contains = list(/obj/item/spacecash/c500)
+	cost = 50
+
 /*******************************************************************************
 Imports
 *******************************************************************************/
