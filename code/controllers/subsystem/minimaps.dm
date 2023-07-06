@@ -143,14 +143,14 @@ SUBSYSTEM_DEF(minimaps)
 		holder.raw_blips += minimaps_by_z["[ztarget]"].images_raw["[flag]"]
 	updators_by_datum[target] = holder
 	update_targets_unsorted += holder
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_updator))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_updator))
 
 /**
  * Removes a atom from the subsystems updating overlays
  */
 /datum/controller/subsystem/minimaps/proc/remove_updator(atom/target)
 	SIGNAL_HANDLER
-	UnregisterSignal(target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(target, COMSIG_QDELETING)
 	var/datum/minimap_updator/holder = updators_by_datum[target]
 	updators_by_datum -= target
 	for(var/key in update_targets)
@@ -226,7 +226,7 @@ SUBSYSTEM_DEF(minimaps)
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
 	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, hud_flags)
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_marker))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker))
 
 /**
  * removes an image from raw tracked lists, invoked by callback
@@ -282,7 +282,7 @@ SUBSYSTEM_DEF(minimaps)
 	SIGNAL_HANDLER
 	if(!removal_cbs[source]) //already removed
 		return
-	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
+	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
 	for(var/flag in GLOB.all_minimap_flags)
 		minimaps_by_z["[source.z]"].images_assoc["[flag]"] -= source
 	images_by_source -= source
@@ -452,13 +452,13 @@ SUBSYSTEM_DEF(minimaps)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
 	var/atom/movable/new_track = to_track ? to_track : owner
 	if(locator_override)
-		UnregisterSignal(locator_override, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(locator_override, COMSIG_QDELETING)
 	if(owner)
 		UnregisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED)
 	if(!minimap_displayed)
 		locator_override = to_track
 		if(to_track)
-			RegisterSignal(to_track, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
+			RegisterSignal(to_track, COMSIG_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
 		if(owner)
 			RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 			if(tracking.z != new_track.z)
@@ -467,7 +467,7 @@ SUBSYSTEM_DEF(minimaps)
 	locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	locator_override = to_track
 	if(to_track)
-		RegisterSignal(to_track, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
+		RegisterSignal(to_track, COMSIG_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
 	RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 	if(tracking.z != new_track.z)
 		on_owner_z_change(new_track, tracking.z, new_track.z)
@@ -477,7 +477,7 @@ SUBSYSTEM_DEF(minimaps)
 ///CLears the locator override in case the override target is deleted
 /datum/action/minimap/proc/clear_locator_override()
 	SIGNAL_HANDLER
-	UnregisterSignal(locator_override, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(locator_override, COMSIG_QDELETING)
 	if(owner)
 		UnregisterSignal(locator_override, COMSIG_MOVABLE_Z_CHANGED)
 		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED)

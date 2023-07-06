@@ -473,31 +473,31 @@ WEAPONS
 /datum/supply_packs/weapons/rpg_regular
 	name = "RL-152 SADAR HE rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar)
-	cost = 60
+	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_regular_unguided
 	name = "RL-152 SADAR HE rocket (Unguided)"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/unguided)
-	cost = 60
+	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_ap
 	name = "RL-152 SADAR AP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/ap)
-	cost = 70
+	cost = 60
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_wp
 	name = "RL-152 SADAR WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
-	cost = 50
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_wp_unguided
 	name = "RL-152 SADAR WP rocket (Unguided)"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp/unguided)
-	cost = 50
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/zx76
@@ -643,7 +643,7 @@ WEAPONS
 /datum/supply_packs/weapons/rpgoneuse
 	name = "RL-72 Disposable RPG"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/oneuse)
-	cost = 50
+	cost = 100
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/mateba
@@ -1757,6 +1757,11 @@ VEHICLES
 /datum/supply_packs/vehicles/droid_scout
 	name = "Scout droid"
 	contains = list(/obj/vehicle/unmanned/droid/scout)
+	cost = 300
+
+/datum/supply_packs/vehicles/droid_powerloader
+	name = "Powerloader droid"
+	contains = list(/obj/vehicle/unmanned/droid/ripley)
 	cost = 300
 
 /datum/supply_packs/vehicles/droid_weapon

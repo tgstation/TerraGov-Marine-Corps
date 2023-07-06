@@ -792,6 +792,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 
 /datum/outfit/job/medical/medicalofficer/robot
+	species = SPECIES_COMBAT_ROBOT
 	jobtype = /datum/job/terragov/medical/medicalofficer
 
 	w_uniform = /obj/item/clothing/under/marine/robotic

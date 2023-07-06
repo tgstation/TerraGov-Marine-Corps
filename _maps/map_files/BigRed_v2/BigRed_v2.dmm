@@ -6655,7 +6655,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bxu" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
@@ -6764,10 +6764,12 @@
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byA" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 6
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "byE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
@@ -6892,7 +6894,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzE" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -6909,9 +6911,10 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzJ" = (
-/obj/structure/closet/secure_closet/guncabinet/nt_lab,
-/turf/open/floor/tile/red/full,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzM" = (
 /obj/structure/closet,
 /turf/open/floor/tile/red/full,
@@ -6936,6 +6939,7 @@
 	dir = 1;
 	name = "\improper Eta Lab Security Office"
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bzS" = (
@@ -6973,11 +6977,19 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAg" = (
-/turf/open/floor/podhatch/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAh" = (
-/turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAi" = (
 /obj/machinery/computer/security,
 /turf/open/floor/tile/dark,
@@ -7023,13 +7035,13 @@
 	dir = 8
 	},
 /turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAw" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	name = "\improper Eta Lab Server"
 	},
 /turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAz" = (
 /obj/machinery/light{
 	dir = 8
@@ -7051,13 +7063,13 @@
 	name = "\improper Eta Lab Director's Office"
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAF" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAH" = (
 /obj/structure/lamarr,
 /turf/open/floor/tile/dark/blue2{
@@ -7073,28 +7085,28 @@
 "bAN" = (
 /obj/machinery/telecomms/server,
 /turf/open/floor/podhatch/floor,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAO" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAP" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAQ" = (
 /obj/structure/closet/secure_closet/security/science,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAR" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAS" = (
 /turf/open/floor/tile/dark/blue2,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAU" = (
 /obj/machinery/light,
 /turf/open/floor/tile/red/full,
@@ -7196,7 +7208,7 @@
 	dir = 4
 	},
 /turf/open/ground/jungle/clear,
-/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "bBJ" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 10
@@ -7571,6 +7583,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bIN" = (
@@ -7997,7 +8010,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "cXf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -8060,6 +8073,7 @@
 "dgG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "djb" = (
@@ -8798,7 +8812,7 @@
 "fmc" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "fmM" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -9530,7 +9544,7 @@
 "hkm" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "hkN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -9752,7 +9766,7 @@
 "hXQ" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/blue2,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "hZr" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -10425,7 +10439,7 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/gibs/down,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jLx" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/xenoautopsy/tank/broken,
@@ -11661,7 +11675,7 @@
 "nzC" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/ground/jungle/clear,
-/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "nzJ" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door,
@@ -12116,7 +12130,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "oKE" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -12132,10 +12146,6 @@
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
-"oOp" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "oOU" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2,
@@ -12246,6 +12256,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "pmR" = (
@@ -12622,7 +12633,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 8
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "qAm" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -13299,9 +13310,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
-"sNA" = (
-/turf/open/ground/jungle/clear,
-/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "sNF" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
@@ -13878,6 +13886,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "uqF" = (
@@ -14417,7 +14426,7 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "vMG" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -14602,6 +14611,7 @@
 	on = 1
 	},
 /obj/effect/landmark/excavation_site_spawner,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "wiq" = (
@@ -15135,7 +15145,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkish,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "xMA" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -15270,7 +15280,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside)
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "xYY" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/purple2{
@@ -35100,9 +35110,9 @@ knI
 knI
 mRs
 mRs
-bwF
-bwF
-bwF
+mRs
+mRs
+mRs
 aaa
 aaa
 aaa
@@ -35319,7 +35329,7 @@ mRs
 bAf
 bAv
 bAN
-bwF
+mRs
 aaa
 aaa
 aaa
@@ -35535,8 +35545,8 @@ mRr
 mRs
 foK
 hkm
-bAg
-bwF
+foK
+mRs
 aaa
 aaa
 aaa
@@ -35751,9 +35761,9 @@ bzp
 uTU
 mRs
 vac
-bAh
-bAh
-bwF
+cmK
+cmK
+mRs
 aaa
 aaa
 aaa
@@ -35969,8 +35979,8 @@ mRr
 mRs
 knI
 bAw
-bwJ
-bwF
+knI
+mRs
 aaa
 aaa
 aaa
@@ -36185,9 +36195,9 @@ bzp
 bzx
 mRs
 cmK
-bAh
+cmK
 bAO
-bwF
+mRs
 aaa
 aaa
 aaa
@@ -36402,9 +36412,9 @@ bzp
 mRr
 mRs
 cmK
-oOp
+vac
 bAO
-bwF
+mRs
 aaa
 aaa
 aaa
@@ -36621,7 +36631,7 @@ bzQ
 cmK
 xLT
 bAP
-bwF
+mRs
 aaa
 aaa
 aaa
@@ -36836,9 +36846,9 @@ bzp
 mRr
 mRs
 mRs
-bwF
-bwF
-bwF
+mRs
+mRs
+mRs
 aaa
 aaa
 aaa
@@ -37055,7 +37065,7 @@ uqF
 bAi
 bAz
 bAQ
-bwF
+mRs
 aaa
 aaa
 aaa
@@ -37270,9 +37280,9 @@ ljD
 ply
 bzR
 whE
-aVC
-xpz
-bwF
+bzJ
+bAg
+mRs
 aaa
 aaa
 aaa
@@ -37488,8 +37498,8 @@ upY
 uqF
 bOK
 wyH
-bxg
-bxN
+bOK
+uqF
 aaa
 aaa
 aaa
@@ -37705,8 +37715,8 @@ dgG
 iTS
 bAl
 bAA
-bxg
-bxN
+bOK
+uqF
 aaa
 aaa
 aaa
@@ -37923,7 +37933,7 @@ iTS
 bAl
 bAl
 bAl
-bxN
+uqF
 aaa
 aaa
 aaa
@@ -38140,7 +38150,7 @@ uqF
 iTS
 iTS
 iTS
-bxN
+uqF
 aaa
 aaa
 aaa
@@ -38352,12 +38362,12 @@ bUa
 bUa
 bza
 dan
-ydj
+byA
 nEK
 nEK
 qyN
-bxY
-bxY
+bUa
+bUa
 bxY
 gQb
 bxY
@@ -38573,7 +38583,7 @@ fCK
 bAm
 bAm
 cVB
-rci
+bAh
 jLr
 iMb
 rci
@@ -38790,7 +38800,7 @@ mRr
 mRr
 mRr
 bzC
-hZY
+uTU
 oJN
 xpz
 ykx
@@ -39007,7 +39017,7 @@ knI
 knI
 knI
 bAD
-bwF
+mRs
 fmc
 bya
 sdN
@@ -40309,8 +40319,8 @@ bzI
 bxu
 bAq
 bAH
-byA
-bwF
+tEN
+mRs
 bBl
 bxg
 qmk
@@ -40526,8 +40536,8 @@ mRs
 mRs
 mRs
 mRs
-bwF
-bwF
+mRs
+mRs
 bBm
 bxg
 qmk
@@ -40743,8 +40753,8 @@ vRp
 vRp
 vRp
 vRp
-bzJ
-bwF
+vRp
+mRs
 bBl
 bxg
 qmk
@@ -40960,8 +40970,8 @@ fdl
 fdl
 fgN
 bOK
-bxg
-bwF
+bOK
+mRs
 bBc
 bxg
 jAB
@@ -41613,7 +41623,7 @@ bzM
 bzM
 bzM
 mRs
-knI
+bwJ
 bwJ
 bBH
 bwJ
@@ -41828,13 +41838,13 @@ mRs
 mRs
 mRs
 mRs
-bwF
-bwF
-sNA
-sNA
-sNA
-sNA
-sNA
+mRs
+mRs
+bBp
+bBp
+bBp
+bBp
+bBp
 bwF
 bvP
 bvP
@@ -42047,11 +42057,11 @@ bAs
 bAJ
 svd
 mRs
-sNA
-sNA
-sNA
-sNA
-sNA
+bBp
+bBp
+bBp
+bBp
+bBp
 bwF
 bvP
 bvP
@@ -42264,11 +42274,11 @@ bOK
 dRJ
 bAW
 mRs
-sNA
-sNA
+bBp
+bBp
 nzC
-sNA
-sNA
+bBp
+bBp
 bwF
 bvP
 bCE
@@ -42481,11 +42491,11 @@ fgP
 bAu
 bAX
 mRs
-sNA
-sNA
-sNA
-sNA
-sNA
+bBp
+bBp
+bBp
+bBp
+bBp
 bwF
 bvP
 bvP
@@ -42698,11 +42708,11 @@ qYv
 mmu
 lRa
 mRs
-sNA
-sNA
+bBp
+bBp
 bBI
-sNA
-sNA
+bBp
+bBp
 bwF
 bvP
 bvP
@@ -42915,11 +42925,11 @@ bzu
 bzu
 cYN
 mRs
-mRs
-mRs
-mRs
-mRs
-mRs
+bwF
+bwF
+bwF
+bwF
+bwF
 bwF
 bwF
 vzx
@@ -53892,7 +53902,7 @@ nQA
 xaJ
 xaJ
 xaJ
-aEu
+adZ
 lwj
 aUy
 xaJ

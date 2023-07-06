@@ -159,10 +159,10 @@
 	if(!secondary_color)
 		return
 	RegisterSignal(parent, COMSIG_ITEM_SECONDARY_COLOR, PROC_REF(handle_color))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(extra_examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(extra_examine))
 
 /obj/item/armor_module/armor/on_detach(obj/item/detaching_from, mob/user)
-	UnregisterSignal(parent, list(COMSIG_ITEM_SECONDARY_COLOR, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(parent, list(COMSIG_ATOM_EXAMINE, COMSIG_ITEM_SECONDARY_COLOR))
 	return ..()
 
 /obj/item/armor_module/armor/color_item(obj/item/facepaint/paint, mob/user)

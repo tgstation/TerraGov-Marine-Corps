@@ -10973,6 +10973,18 @@
 	pixel_x = -7;
 	pixel_y = -2
 	},
+/obj/machinery/door_control/old/medbay{
+	id = "Medbay";
+	name = "Lockdown Shutter-Control Medbay Shutters";
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/machinery/door_control/old/cic{
+	id = "port blast";
+	name = "Lockdown Shutter-Control Aft Shutters";
+	pixel_x = 2;
+	pixel_y = -2
+	},
 /turf/open/floor/prison,
 /area/sulaco/security)
 "cyo" = (
@@ -11451,6 +11463,10 @@
 "cXy" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/poddoor/shutters/opened{
+	id = "mfsinnerhwshutters";
+	name = "Lower Foreship Lockdown Shutters"
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hallway/lower_foreship)
 "cYh" = (
@@ -18183,6 +18199,11 @@
 	dir = 2
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/shutters/opened{
+	dir = 1;
+	id = "mfsinnerhwshutters";
+	name = "Lower Foreship Lockdown Shutters"
+	},
 /turf/open/floor/prison,
 /area/sulaco/marine/chapel)
 "mmI" = (
@@ -18717,6 +18738,10 @@
 	dir = 8
 	},
 /area/sulaco/marine)
+"mWM" = (
+/obj/machinery/computer/mech_bay_power_console,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "mYf" = (
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
@@ -22807,6 +22832,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/opened{
+	id = "mfsinnerhwshutters";
+	name = "Lower Foreship Lockdown Shutters"
+	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "soQ" = (
@@ -24067,6 +24096,11 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
+/obj/machinery/door/poddoor/shutters/opened{
+	dir = 1;
+	id = "mfsinnerhwshutters";
+	name = "Lower Foreship Lockdown Shutters"
+	},
 /turf/open/floor/prison,
 /area/sulaco/marine/chapel)
 "tRg" = (
@@ -24394,6 +24428,11 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"umA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/vehicle/unmanned/droid/ripley,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/sulaco/cargo)
 "umL" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -25387,6 +25426,10 @@
 "vME" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/poddoor/shutters/opened{
+	id = "mfsinnerhwshutters";
+	name = "Lower Foreship Lockdown Shutters"
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/security)
 "vMT" = (
@@ -25923,6 +25966,10 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hangar/storage)
+"wxu" = (
+/obj/machinery/status_display/ai,
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "wxy" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -26923,6 +26970,10 @@
 /obj/structure/sign/security,
 /obj/machinery/door/firedoor/mainship,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/shutters/opened{
+	id = "mfsinnerhwshutters";
+	name = "Lower Foreship Lockdown Shutters"
+	},
 /turf/open/floor/prison,
 /area/sulaco/security)
 "xOu" = (
@@ -46288,7 +46339,7 @@ qzc
 wYX
 aLk
 sQd
-euR
+uRT
 vTH
 qXN
 qXN
@@ -46802,7 +46853,7 @@ aLG
 xla
 aLk
 lGX
-uRT
+euR
 aFa
 gjL
 aFa
@@ -47573,7 +47624,7 @@ xJd
 avL
 aLk
 mAk
-aLf
+wxu
 vTH
 aDO
 aDO
@@ -52609,7 +52660,7 @@ aCg
 aCg
 dGX
 aAI
-aAI
+aFz
 aGC
 aKs
 aGC
@@ -53128,7 +53179,7 @@ aKs
 aAI
 aAI
 uZM
-aFz
+aAI
 aAI
 aAI
 nVS
@@ -53459,7 +53510,7 @@ aaa
 nzi
 mDu
 bOh
-vRR
+umA
 bPM
 bPM
 dyW
@@ -53716,7 +53767,7 @@ aaa
 nzi
 mDu
 bOh
-bPM
+mWM
 bPM
 bPM
 fCm
@@ -54156,7 +54207,7 @@ aEP
 aAI
 aAI
 aAI
-aFz
+aAI
 aAI
 aAI
 aCg
@@ -54665,7 +54716,7 @@ aCg
 aCg
 aCg
 aAI
-aAI
+aFz
 aGC
 aEP
 aGC

@@ -294,7 +294,7 @@
 ///Set up the link between belt and object
 /obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
 	reequip_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
-	RegisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), PROC_REF(detach_item))
+	RegisterSignals(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_QDELETING), PROC_REF(detach_item))
 	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 	to_chat(user, span_notice("[src] clicks as you hook \the [to_attach] into it."))
 	update_icon()
@@ -304,7 +304,7 @@
 	SIGNAL_HANDLER
 	if(!reequip_component)
 		return
-	UnregisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_QDELETING))
 	if(ishuman(loc))
 		to_chat(loc, span_notice("[src] clicks as \the [reequip_component.parent] unhook[reequip_component.parent.p_s()] from it."))
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)

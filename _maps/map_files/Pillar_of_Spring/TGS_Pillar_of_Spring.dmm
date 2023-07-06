@@ -6690,6 +6690,7 @@
 	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
+/obj/machinery/computer/mech_bay_power_console,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -8475,9 +8476,8 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/turf/open/floor/mainship/green{
-	dir = 5
-	},
+/obj/vehicle/unmanned/droid/ripley,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/squads/req)
 "lht" = (
 /obj/machinery/door/poddoor/railing{
