@@ -397,8 +397,6 @@
 	// Baneling vars
 	/// How long smoke lasts for when baneling explodes
 	var/baneling_smoke_duration = 4
-	/// Reference to banelings pod
-	var/obj/structure/xeno/baneling_pod/pod_ref
 
 	//Runner vars
 	var/savage = FALSE
