@@ -56,8 +56,12 @@
 
 	/// The voice that this movable makes when speaking
 	var/voice
+	/// The pitch adjustment that this movable uses when speaking.
+	var/pitch = 0
 	/// The filter to apply to the voice when processing the TTS audio message.
 	var/voice_filter = ""
+	/// Set to anything other than "" to activate the silicon voice effect for TTS messages.
+	var/tts_silicon_voice_effect = ""
 
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_movable_lights

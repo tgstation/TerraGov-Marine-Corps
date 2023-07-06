@@ -68,7 +68,7 @@
 	active_power_usage = 100
 	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	wrenchable = TRUE
-	voice_filter = "aderivative"
+	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 
 	///Whether this vendor is active or not.
 	var/active = TRUE

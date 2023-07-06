@@ -4,7 +4,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 44
+#define SAVEFILE_VERSION_MAX 45
 
 /datum/preferences/proc/savefile_needs_update(savefile/S)
 	var/savefile_version
@@ -85,6 +85,18 @@
 		if(istype(manager))
 			loadout_manager.loadouts_data = convert_loadouts_list(manager?.loadouts_data)
 
+	if(savefile_version <= 45) // merged sound_tts_blips and sound_tts
+		var/used_blips = FALSE
+		READ_FILE(S["sound_tts_blips"], used_blips)
+		var/used_tts = TRUE
+		READ_FILE(S["sound_tts"], used_tts)
+		var/new_val = TTS_SOUND_ENABLED
+		if(!sound_tts)
+			new_val = TTS_SOUND_OFF
+		else if(used_blips)
+			new_val = TTS_SOUND_BLIPS
+		WRITE_FILE(S["sound_tts"], new_val)
+
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	save_preferences()
@@ -151,7 +163,6 @@
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["sound_tts"], sound_tts)
 	READ_FILE(S["volume_tts"], volume_tts)
-	READ_FILE(S["sound_tts_blips"], sound_tts_blips)
 
 	READ_FILE(S["key_bindings"], key_bindings)
 	READ_FILE(S["custom_emotes"], custom_emotes)
@@ -206,8 +217,7 @@
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 	sound_tts = sanitize_integer(sound_tts, FALSE, TRUE, initial(sound_tts))
-	volume_tts = sanitize_integer(volume_tts, 0, 100, initial(volume_tts))
-	sound_tts_blips = sanitize_integer(sound_tts_blips, FALSE, TRUE, initial(sound_tts_blips))
+	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
 
 	key_bindings = sanitize_islist(key_bindings, list())
 	custom_emotes = sanitize_is_full_emote_list(custom_emotes)
@@ -275,8 +285,7 @@
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 	sound_tts = sanitize_integer(sound_tts, FALSE, TRUE, initial(sound_tts))
-	volume_tts = sanitize_integer(volume_tts, 0, 100, initial(volume_tts))
-	sound_tts_blips = sanitize_integer(sound_tts_blips, FALSE, TRUE, initial(sound_tts_blips))
+	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
 
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
@@ -324,7 +333,6 @@
 	WRITE_FILE(S["tooltips"], tooltips)
 	WRITE_FILE(S["sound_tts"], sound_tts)
 	WRITE_FILE(S["volume_tts"], volume_tts)
-	WRITE_FILE(S["sound_tts_blips"], sound_tts_blips)
 
 	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
@@ -424,6 +432,7 @@
 	READ_FILE(S["religion"], religion)
 
 	READ_FILE(S["tts_voice"], tts_voice)
+	READ_FILE(S["tts_pitch"], tts_pitch)
 
 	READ_FILE(S["med_record"], med_record)
 	READ_FILE(S["sec_record"], sec_record)
@@ -487,6 +496,7 @@
 	religion = sanitize_inlist(religion, RELIGION_CHOICES, initial(religion))
 
 	tts_voice = sanitize_inlist_tts(tts_voice)
+	tts_pitch = sanitize_integer(tts_pitch, -12, 12, initial(tts_pitch))
 
 	med_record = sanitize_text(med_record, initial(med_record))
 	sec_record = sanitize_text(sec_record, initial(sec_record))
@@ -575,6 +585,7 @@
 	religion = sanitize_inlist(religion, RELIGION_CHOICES, initial(religion))
 
 	tts_voice = sanitize_inlist_tts(tts_voice)
+	tts_pitch = sanitize_integer(tts_pitch, -12, 12, initial(tts_pitch))
 
 	med_record = sanitize_text(med_record, initial(med_record))
 	sec_record = sanitize_text(sec_record, initial(sec_record))
@@ -632,6 +643,7 @@
 	WRITE_FILE(S["religion"], religion)
 
 	WRITE_FILE(S["tts_voice"], tts_voice)
+	WRITE_FILE(S["tts_pitch"], tts_pitch)
 
 	WRITE_FILE(S["med_record"], med_record)
 	WRITE_FILE(S["sec_record"], sec_record)
