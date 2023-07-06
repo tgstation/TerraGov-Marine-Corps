@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixed MD outfit trying to give humans the robot variant"

@@ -1,4 +1,0 @@
-author: "XElectricX"
-delete-after: True
-changes:
-  - bugfix: "Corrupted thermal generators check if there actually are any groundside for psy point generation."

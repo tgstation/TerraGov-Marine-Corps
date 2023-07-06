@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - code_imp: "Ported tg's SDQL improvements"
