@@ -10,8 +10,8 @@
 /obj/machinery/robotic_cradle
 	name = "robotic cradle"
 	desc = "A highly experimental robotic maintenence machine using a bath of industrial nanomachines to quickly restore any robotic machine inserted."
-	icon = 'icons/obj/machines/synthpod.dmi'
-	icon_state = "idle"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "borgcharger0"
 	density = TRUE
 	anchored = TRUE
 	max_integrity = 350
@@ -45,15 +45,15 @@
 
 /obj/machinery/robotic_cradle/update_icon_state()
 	if(machine_stat & NOPOWER)
-		icon_state = "No power"
+		icon_state = "borgcharger0"
 		return
 	if(repairing)
-		icon_state = "pod_1"
+		icon_state = "borgcharger1"
 		return
 	if(occupant)
-		icon_state = "pod_0"
+		icon_state = "borgcharger1"
 		return
-	icon_state = "idle"
+	icon_state = "borgcharger0"
 
 /obj/machinery/robotic_cradle/power_change()
 	. = ..()
