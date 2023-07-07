@@ -9857,7 +9857,7 @@
 	},
 /area/prison/medbay)
 "aFw" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "aFx" = (
@@ -37921,13 +37921,13 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "crm" = (
-/obj/machinery/computer/communications/bee,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "crn" = (
-/obj/machinery/computer/communications/bee,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
@@ -42002,7 +42002,7 @@
 /area/prison/research/secret/biolab)
 "huy" = (
 /obj/structure/table/reinforced,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/assembly/infra,
 /obj/effect/spawner/random/engineering/powercell,
 /obj/structure/cable,

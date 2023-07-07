@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(tts)
 /datum/controller/subsystem/tts/stat_entry(msg)
 	if(!CONFIG_GET(string/tts_http_url))
 		return ..()
-	return ..("Active:[length(in_process_http_messages)]|Standby:[length(queued_http_messages.L)]|Avg:[average_tts_messages_time]")
+	return ..("Active:[length(in_process_http_messages)]|Standby:[length(queued_http_messages?.L)]|Avg:[average_tts_messages_time]")
 
 /proc/cmp_word_length_asc(datum/tts_request/a, datum/tts_request/b)
 	return length(b.message) - length(a.message)

@@ -25,7 +25,7 @@
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		if(exit_point.id == id)
 			linked_point = exit_point
-			RegisterSignal(linked_point, COMSIG_PARENT_QDELETING, PROC_REF(delete_link))
+			RegisterSignal(linked_point, COMSIG_QDELETING, PROC_REF(delete_link))
 			return
 
 ///Removes the linked patrol exist point

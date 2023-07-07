@@ -79,10 +79,16 @@
 	icon_state = "red"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
+/area/lv624/ground/sand2/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/sand3
 	name = "\improper Eastern Barrens"
 	icon_state = "east"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/lv624/ground/sand3/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/sand4
 	name = "\improper North Western Barrens"
@@ -99,10 +105,16 @@
 	icon_state = "northeast"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
+/area/lv624/ground/sand6/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/sand7
 	name = "\improper South Western Barrens"
 	icon_state = "southwest"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/lv624/ground/sand7/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/sand8
 	name = "\improper South Central Barrens"
@@ -206,9 +218,15 @@
 	name = "Eastern Caves"
 	icon_state = "away"
 
+/area/lv624/ground/caves/east1/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/caves/central1
 	name = "Central Caves"
 	icon_state = "away4" //meh
+
+/area/lv624/ground/caves/central1/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/caves/central2
 	name = "Central Caves"
@@ -226,13 +244,22 @@
 	name = "South Central Caves"
 	icon_state = "away2"
 
+/area/lv624/ground/caves/central3/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/caves/central5
 	name = "South Western Central Caves"
 	icon_state = "purple"
 
+/area/lv624/ground/caves/central5/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/caves/central4
 	name = "South Western Caves"
 	icon_state = "yellow"
+
+/area/lv624/ground/caves/central4/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 //Lazarus landing
 /area/lv624/lazarus
@@ -377,10 +404,10 @@
 	name = "\improper Research Lab"
 	icon_state = "toxlab"
 	minimap_color = MINIMAP_AREA_RESEARCH
- 
+
 /area/lv624/lazarus/research/caves
 	ceiling = CEILING_DEEP_UNDERGROUND
- 
+
 /area/lv624/lazarus/fitness
 	name = "\improper Fitness Room"
 	icon_state = "fitness"
@@ -412,6 +439,9 @@
 	icon_state = "sandtemple"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
+/area/lv624/lazarus/sandtemple/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/lazarus/sandtemple/sideroom //needed to allow nuke generator within temple to function
 	name = "\improper Mysterious Temple"
 	icon_state = "purple"
@@ -421,6 +451,7 @@
 	name = "\improper Table Fort"
 	icon_state = "tablefort"
 	always_unpowered = TRUE
+	outside = FALSE
 
 /area/lv624/lazarus/crashed_ship
 	name = "\improper Crashed Ship"

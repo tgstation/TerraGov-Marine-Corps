@@ -375,15 +375,20 @@
 		/obj/item/attachable/stock/ppsh,
 	)
 
-	fire_delay = 0.15 SECONDS
-	burst_amount = 6
+	fire_delay = 0.1 SECONDS
+	burst_amount = 1
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.8
-	scatter = 5
-	scatter_unwielded = 15
-	aim_slowdown = 0.3
-	wield_delay = 0.35 SECONDS
+	akimbo_additional_delay = 0.5
 
+	min_scatter = 2
+	min_scatter_unwielded = 3
+	max_scatter = 15
+	max_scatter_unwielded = 25
+	scatter_increase = 2
+	scatter_increase_unwielded = 8
+	scatter_decay = 0.5
+	scatter_decay_unwielded = 0.1
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.

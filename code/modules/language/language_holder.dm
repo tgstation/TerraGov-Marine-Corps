@@ -10,7 +10,7 @@
 
 /datum/language_holder/New(owner)
 	src.owner = owner
-	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_language))
+	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(clean_language))
 
 	languages = typecacheof(languages)
 	shadow_languages = typecacheof(shadow_languages)

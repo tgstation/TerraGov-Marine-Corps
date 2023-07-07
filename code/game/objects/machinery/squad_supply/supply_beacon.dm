@@ -104,7 +104,7 @@
 
 /obj/item/beacon/supply_beacon/Destroy()
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 	return ..()
 
@@ -119,13 +119,13 @@
 	if(!.)
 		return
 	beacon_datum = new /datum/supply_beacon("[H.name] + [A]", loc, H.faction)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
+	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 
 /obj/item/beacon/supply_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()
 	if(!.)
 		return
-	UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 	QDEL_NULL(beacon_datum)
 
 /datum/supply_beacon

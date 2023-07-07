@@ -741,7 +741,7 @@
 /area/bigredv2/outside/office_complex)
 "HK" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "HM" = (
