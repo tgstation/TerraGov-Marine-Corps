@@ -355,7 +355,7 @@
 
 	//complex ones
 	var/list/current_mission_data = list()
-	var/current_mission = current_mode.current_mission
+	var/datum/campaign_mission/current_mission = current_mode.current_mission
 	current_mission_data["name"] = current_mission.name
 	current_mission_data["map_name"] = current_mission.map_name
 	current_mission_data["starting_faction"] = current_mission.starting_faction
@@ -389,8 +389,8 @@
 		mission_data["winning_faction"] = finished_mission.winning_faction
 		mission_data["outcome"] = finished_mission.outcome
 		mission_data["objective_description"] = finished_mission.objective_description[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
-		mission_data["mission_brief"] = potential_mission.mission_brief[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
-		mission_data["mission_rewards"] = potential_mission.additional_rewards[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
+		mission_data["mission_brief"] = finished_mission.mission_brief[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
+		mission_data["mission_rewards"] = finished_mission.additional_rewards[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
 		finished_missions_data += list(mission_data)
 	data["finished_missions"] = finished_missions_data
 
