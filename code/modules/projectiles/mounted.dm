@@ -319,16 +319,16 @@
 
 /// Can be anchored and unanchored from the ground by Alt Right Click.
 /obj/machinery/deployable/mounted/moveable/AltRightClick(mob/living/user)
-    . = ..()
-    if(!Adjacent(user) || !ishuman(user) || user.lying_angle || user.incapacitated())
-        return
+	. = ..()
+	if(!Adjacent(user) || !ishuman(user) || user.lying_angle || user.incapacitated())
+		return
 
-    if(anchor_time)
-        balloon_alert(user, "You begin [anchored ? "unanchoring" : "anchoring"] [src]")
-        if(!do_after(user, anchor_time, TRUE, src))
-            balloon_alert(user, "Interrupted!")
-            return
+	if(anchor_time)
+		balloon_alert(user, "You begin [anchored ? "unanchoring" : "anchoring"] [src]")
+		if(!do_after(user, anchor_time, TRUE, src))
+			balloon_alert(user, "Interrupted!")
+			return
 
-    anchored = !anchored
+	anchored = !anchored
 
-    balloon_alert(user, "You [anchored ? "anchor" : "unanchor"] [src]")
+	balloon_alert(user, "You [anchored ? "anchor" : "unanchor"] [src]")
