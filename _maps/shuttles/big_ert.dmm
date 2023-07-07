@@ -2,11 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ab" = (
-/turf/closed/wall/mainship/white{
-
-	},
-/area/shuttle/big_ert)
 "ac" = (
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating,
@@ -255,10 +250,10 @@
 /area/shuttle/big_ert)
 "aR" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/communications,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/computer/communications,
 /turf/open/floor/carpet/edge2{
 	dir = 10
 	},
@@ -1145,7 +1140,7 @@ ag
 aa
 "}
 (9,1,1) = {"
-ab
+ag
 ag
 ag
 ag
@@ -1161,7 +1156,7 @@ ag
 ag
 ag
 ag
-ab
+ag
 "}
 (10,1,1) = {"
 ac
@@ -1240,7 +1235,7 @@ cG
 ac
 "}
 (14,1,1) = {"
-ab
+ag
 ag
 ag
 az
@@ -1256,7 +1251,7 @@ ag
 ag
 ag
 ag
-ab
+ag
 "}
 (15,1,1) = {"
 aa

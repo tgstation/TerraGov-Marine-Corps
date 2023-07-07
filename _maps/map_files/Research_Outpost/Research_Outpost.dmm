@@ -538,7 +538,7 @@
 	},
 /area/outpost/yard/central)
 "cV" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)
 "cX" = (

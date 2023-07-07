@@ -451,6 +451,7 @@
 	name = "\improper Table Fort"
 	icon_state = "tablefort"
 	always_unpowered = TRUE
+	outside = FALSE
 
 /area/lv624/lazarus/crashed_ship
 	name = "\improper Crashed Ship"

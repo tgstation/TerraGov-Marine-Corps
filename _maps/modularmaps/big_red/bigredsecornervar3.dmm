@@ -484,7 +484,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "uT" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
@@ -710,7 +710,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Ko" = (
-/obj/machinery/computer/communications/bee,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 5

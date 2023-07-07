@@ -1082,7 +1082,7 @@
 /turf/open/floor/tile/white,
 /area/medical/medbay2)
 "eW" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /obj/structure/cable,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -2242,7 +2242,7 @@
 /area/lv624/lazarus/canteen)
 "lo" = (
 /obj/structure/table/flipped,
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},

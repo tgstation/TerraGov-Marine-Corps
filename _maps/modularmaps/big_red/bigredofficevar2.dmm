@@ -1638,7 +1638,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "XQ" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /obj/machinery/alarm{
 	dir = 1
 	},
