@@ -3088,6 +3088,34 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.15
 	accurate_range = 25
 
+/datum/ammo/energy/plasma/rifle_overcharge
+	icon_state = "plasma_ball_big"
+	hud_state = "plasma_sphere"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ENERGY|AMMO_SUNDERING|AMMO_INCENDIARY
+	damage = 50
+	penetration = 20
+	sundering = 4
+	max_range = 50
+	damage_falloff = 0.25
+	shell_speed = 3.5
+	var/shatter_duration = 5 SECONDS
+
+/datum/ammo/energy/plasma/rifle_overcharge/on_hit_turf(turf/T, obj/projectile/proj)
+	reflect(T, proj, 5)
+
+/datum/ammo/energy/plasma/rifle_overcharge/on_hit_obj(obj/O, obj/projectile/proj)
+	reflect(get_turf(O), proj, 5)
+
+/datum/ammo/energy/plasma/rifle_overcharge/do_at_max_range(turf/T, obj/projectile/proj)
+	explosion(T, 0, 2, 1, 0, throw_range = 0)
+
+/datum/ammo/energy/plasma/rifle_overcharge/on_hit_mob(mob/M, obj/projectile/proj)
+	explosion(get_turf(M), 0, 2, 1, 0, throw_range = 0)
+	if(!isliving(M))
+		return
+	var/mob/living/living_victim = M
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+
 /datum/ammo/energy/plasma/carbine_standard
 	icon_state = "plasma_ball_small"
 	damage = 20
@@ -3110,35 +3138,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/plasma/carbine_standard/on_hit_turf(turf/T, obj/projectile/proj)
 	reflect(T, proj, 10)
 
-/datum/ammo/energy/plasma/carbine_shotgun
-	hud_state = "plasma_blast"
-	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_shotgun/additional
-	bonus_projectiles_amount = 2
-	bonus_projectiles_scatter = 6
-	damage = 60
-	penetration = 10
-	sundering = 1
-	damage_falloff = 0.5
-
-/datum/ammo/energy/plasma/carbine_shotgun/additional
-	damage = 20
-	penetration = 5
-	bonus_projectiles_type = null
-
 /datum/ammo/energy/plasma/carbine_trifire
 	icon_state = "plasma_ball_small"
 	hud_state = "plasma_blast"
-	damage = 15
-	penetration = 10
+	damage = 10
+	penetration = 35
 	sundering = 0.5
-	damage_falloff = 0.7
-	shell_speed = 3
-	bonus_projectiles_type = /datum/ammo/energy/plasma/carbine_trifire/additional
-	bonus_projectiles_amount = 2
-	bonus_projectiles_scatter = 7
+	damage_falloff = 0.5
+	shell_speed = 4
 
-/datum/ammo/energy/plasma/carbine_trifire/additional
-	bonus_projectiles_type = null
+/datum/ammo/energy/plasma/carbine_trifire/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 10, slowdown = 0.2)
 
 /datum/ammo/energy/plasma/pistol_standard
 	damage = 35
@@ -3192,7 +3202,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 35
 	sundering = 10
 	damage_falloff = 0.25
-	shell_speed = 0.1
+	shell_speed = 4
+	var/shatter_duration = 5 SECONDS
+
+/datum/ammo/energy/plasma/cannon_heavy/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+	var/mob/living/living_victim = M
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+
 
 /datum/ammo/energy/plasma/cannon_flamer
 	//copy paste of flamer standard code kuro fix this
