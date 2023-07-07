@@ -88,7 +88,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
 "acb" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
@@ -1341,16 +1341,16 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "alV" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/item/grown/log,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "alW" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "alY" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1479,7 +1479,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "amU" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
@@ -1865,7 +1865,7 @@
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/caves/lambda_lab)
 "apB" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
@@ -1961,7 +1961,7 @@
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/caves/lambda_lab)
 "aqn" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/caves/lambda_lab)
 "aqo" = (
@@ -3076,7 +3076,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/hydroponics)
 "aCf" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "aCh" = (
@@ -9838,7 +9838,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "iCO" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
@@ -12958,7 +12958,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/virology)
 "rVJ" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreenfull,

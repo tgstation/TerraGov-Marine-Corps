@@ -551,7 +551,7 @@
 /turf/open/floor/plating/scorched,
 /area/bigredv2/outside/general_offices)
 "Ap" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "AE" = (

@@ -1983,7 +1983,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "czH" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -6108,7 +6108,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar/droppod)
 "iaQ" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -7629,7 +7629,7 @@
 	},
 /area/mainship/hallways/hangar)
 "klu" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/item/seeds/goldappleseed,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -10980,7 +10980,7 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "ohF" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "oiy" = (

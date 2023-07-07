@@ -5971,7 +5971,7 @@
 	},
 /area/sulaco/disposal)
 "aDO" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "aDR" = (
@@ -6286,7 +6286,7 @@
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "aFe" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
@@ -9924,7 +9924,7 @@
 /obj/structure/sink/kitchen{
 	pixel_y = 30
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/item/seeds/goldappleseed,
 /obj/item/tool/minihoe,
 /obj/item/tool/plantspray/weeds,

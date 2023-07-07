@@ -5,7 +5,7 @@
 /area/bigredv2/outside/space_port)
 "ak" = (
 /obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "al" = (
@@ -625,7 +625,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "qR" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -781,7 +781,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "uB" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1

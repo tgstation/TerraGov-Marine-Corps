@@ -602,7 +602,7 @@
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "aKc" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/hydroponics)
@@ -1441,7 +1441,7 @@
 	},
 /area/centcom/valhalla/primary/fore/port)
 "bUK" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
@@ -1594,7 +1594,7 @@
 /turf/open/floor/engine,
 /area/centcom/valhalla/engine/engineering)
 "cbs" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/air_alarm,
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark/gray,
@@ -3671,7 +3671,7 @@
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/chapel/main)
 "eOJ" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
@@ -6050,7 +6050,7 @@
 /turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "idh" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/firealarm{
 	dir = 1
 	},
@@ -8184,7 +8184,7 @@
 /area/centcom/valhalla/starboard_hallway)
 "kWX" = (
 /obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/hydroponics)
 "kYp" = (
@@ -8834,7 +8834,7 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/crew_quarters/cafeteria)
 "lWa" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
@@ -17943,7 +17943,7 @@
 /turf/open/floor/grass,
 /area/centcom/valhalla/secondary/entry)
 "xtx" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
@@ -17985,7 +17985,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/primary/starboard)
 "xzr" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/item/radio/intercom{
 	name = "Station Intercom"
 	},

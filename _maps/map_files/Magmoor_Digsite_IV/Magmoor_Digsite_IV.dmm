@@ -1001,7 +1001,7 @@
 	},
 /area/magmoor/landing/two)
 "aLv" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/light/small,
 /turf/open/floor/grass,
 /area/magmoor/hydroponics/south)
@@ -1362,7 +1362,7 @@
 	},
 /area/magmoor/command/office/main)
 "aXZ" = (
-/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/machinery/hydroponics/soil,
 /turf/open/floor/grass,
 /area/magmoor/hydroponics/south)
 "aYh" = (
@@ -4031,7 +4031,7 @@
 /turf/open/floor/plating,
 /area/magmoor/security/lobby)
 "cTq" = (
-/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/machinery/hydroponics/soil,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -8215,7 +8215,7 @@
 	},
 /area/magmoor/civilian/mosque)
 "fQW" = (
-/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/machinery/hydroponics/soil,
 /obj/machinery/light/small,
 /turf/open/floor/grass,
 /area/magmoor/hydroponics/south)
@@ -11308,7 +11308,7 @@
 	},
 /area/magmoor/compound/southwest)
 "ioE" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/grass,
 /area/magmoor/hydroponics/south)
 "ipd" = (
@@ -29884,7 +29884,7 @@
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "wbx" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/light/small{
 	dir = 1
 	},

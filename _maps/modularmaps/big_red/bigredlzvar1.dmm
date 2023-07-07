@@ -627,7 +627,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "qm" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -826,7 +826,7 @@
 /area/bigredv2/outside/marshal_office)
 "wc" = (
 /obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "wl" = (
@@ -1309,7 +1309,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "IB" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},

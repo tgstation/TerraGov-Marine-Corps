@@ -1634,7 +1634,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "eN" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/item/seeds/berryseed,
 /obj/item/seeds/cornseed,
 /turf/open/floor/plating/plating_catwalk,
@@ -1875,7 +1875,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "fw" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/item/seeds/brownmold,
 /obj/item/seeds/cabbageseed,
 /turf/open/floor/plating/plating_catwalk,
@@ -7007,7 +7007,7 @@
 	},
 /area/mainship/medical/lounge)
 "uP" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 10
 	},
@@ -9051,13 +9051,13 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "Ay" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 9
 	},
 /area/mainship/living/port_garden)
 "Az" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 5
 	},
@@ -9481,13 +9481,13 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/medical/lower_medical)
 "BN" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
 /area/mainship/living/port_garden)
 "BO" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -10088,7 +10088,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cafeteria_starboard)
 "DJ" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -11750,7 +11750,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "IA" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 6
 	},
