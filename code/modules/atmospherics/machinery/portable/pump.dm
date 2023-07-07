@@ -5,18 +5,6 @@
 
 	/// If the pump is on, controls icon_state
 	var/on = FALSE
-	var/obj/machinery/atmospherics/components/binary/pump/connected_pump
-
-/obj/machinery/portable_atmospherics/pump/Initialize(mapload)
-	. = ..()
-	connected_pump = new(src, FALSE)
-	connected_pump.on = TRUE
-	connected_pump.machine_stat = 0
-	connected_pump.build_network()
-
-/obj/machinery/portable_atmospherics/pump/Destroy()
-	QDEL_NULL(connected_pump)
-	return ..()
 
 /obj/machinery/portable_atmospherics/pump/update_icon()
 	icon_state = "psiphon:[on]"
@@ -33,5 +21,4 @@
 		return
 	if(prob(50 / severity))
 		on = !on
-	connected_pump.target_pressure = rand(0, 100 * ONE_ATMOSPHERE)
 	update_icon()
