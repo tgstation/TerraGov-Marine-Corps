@@ -1,6 +1,6 @@
 // Please note this is cosmetic only and not buildable by players.
 /obj/machinery/air_alarm
-	name = "alarm"
+	name = "air alarm"
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "alarm_powered"
 	pixel_x = -16
