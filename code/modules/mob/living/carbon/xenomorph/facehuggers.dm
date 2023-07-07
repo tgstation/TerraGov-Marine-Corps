@@ -353,7 +353,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
+/obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	. = ..()
 	update_icon()
 

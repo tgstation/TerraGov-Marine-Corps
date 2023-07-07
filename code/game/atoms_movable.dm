@@ -494,10 +494,13 @@
 			throw_impact(A, speed)
 
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
+/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
+
+	if(!targetted_throw)
+		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))
 
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW) & COMPONENT_MOVABLE_BLOCK_PRE_THROW)
 		return FALSE

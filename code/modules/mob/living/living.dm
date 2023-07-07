@@ -471,7 +471,7 @@
 	now_pushing = FALSE
 
 
-/mob/living/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
+/mob/living/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	if(!target)
 		return 0
 	if(pulling && !flying)
