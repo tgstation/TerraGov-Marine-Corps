@@ -1,5 +1,4 @@
 #define HYDRO_SPEED_MULTIPLIER 1
-//todo, why is this /obj/machinery/portable_atmospherics
 /obj/machinery/hydroponics
 	name = "hydroponics tray"
 	icon = 'icons/obj/machines/hydroponics.dmi'
