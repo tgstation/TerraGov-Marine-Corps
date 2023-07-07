@@ -199,6 +199,7 @@
 	. = ..()
 	hood = !hood
 	update_icon()
+	update_greyscale()
 	user.update_inv_w_uniform()
 
 
@@ -232,7 +233,9 @@
 	highlight.icon_state_variants.Add("none")
 	ENABLE_BITFIELD(highlight.colorable_allowed, PRESET_COLORS_ALLOWED)
 	update_icon()
+	update_greyscale()
 	highlight.update_icon()
+	highlight.update_greyscale()
 	user.update_inv_w_uniform()
 
 /obj/item/armor_module/armor/cape/kama

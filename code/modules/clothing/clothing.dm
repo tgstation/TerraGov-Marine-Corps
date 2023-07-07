@@ -81,6 +81,13 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
+/obj/item/clothing/update_greyscale()
+	. = ..()
+	if(!greyscale_config)
+		return
+	for(var/key in item_icons)
+		item_icons[key] = icon
+
 /obj/item/clothing/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
 		var/image/bloodsies = mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
@@ -119,11 +126,6 @@
 		var/mob/M = src.loc
 		M.update_inv_ears()
 
-/obj/item/clothing/ears/update_greyscale(list/colors, update)
-	. = ..()
-	if(!greyscale_config)
-		return
-	item_icons = list(slot_ear_str = icon)
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
@@ -191,12 +193,6 @@
 		var/mob/M = loc
 		M.update_inv_wear_suit()
 
-/obj/item/clothing/suit/update_greyscale(list/colors, update)
-	. = ..()
-	if(!greyscale_config)
-		return
-	item_icons = list(slot_wear_suit_str = icon)
-
 /obj/item/clothing/suit/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return ..()
@@ -228,11 +224,6 @@
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
 
-
-/obj/item/clothing/gloves/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_gloves()
 
 /obj/item/clothing/gloves/update_greyscale(list/colors, update)
 	. = ..()
@@ -293,11 +284,6 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
 
-/obj/item/clothing/mask/update_greyscale(list/colors, update)
-	. = ..()
-	if(!greyscale_config)
-		return
-	item_icons = list(slot_wear_mask_str = icon)
 
 ////////////////////////////////////////////////////////////////////////
 //Shoes
@@ -323,11 +309,6 @@
 		var/mob/M = src.loc
 		M.update_inv_shoes()
 
-/obj/item/clothing/shoes/update_greyscale(list/colors, update)
-	. = ..()
-	if(!greyscale_config)
-		return
-	item_icons = list(slot_shoes_str = icon)
 
 /obj/item/clothing/shoes/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])

@@ -18,7 +18,7 @@
 		return
 	item_type = item_to_copy.type
 	if(item_to_copy.current_variant && item_to_copy.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
-		variant = item_to_copy.current_variant
+		variant = GLOB.loadout_variant_keys[item_to_copy.current_variant]
 	if(!item_to_copy.greyscale_config)
 		return
 	colors = item_to_copy.greyscale_colors
@@ -43,7 +43,7 @@
 	if(item.greyscale_config)
 		item.set_greyscale_colors(colors)
 	if(item.current_variant && item.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
-		item.current_variant = variant
+		item.current_variant = GLOB.loadout_variant_keys[variant]
 		item.update_icon()
 	return item
 

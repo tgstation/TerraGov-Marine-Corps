@@ -89,11 +89,6 @@
 		var/mob/M = src.loc
 		M.update_inv_w_uniform()
 
-/obj/item/clothing/under/update_greyscale(list/colors, update)
-	. = ..()
-	if(!greyscale_config)
-		return
-	item_icons = list(slot_w_uniform_str = icon)
 
 /obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
 	. = ..()

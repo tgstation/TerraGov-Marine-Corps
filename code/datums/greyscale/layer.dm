@@ -59,7 +59,6 @@
 		CRASH("Icon state layers can not have more than one color id")
 
 /datum/greyscale_layer/icon_state/InternalGenerate(list/colors, list/render_steps, datum/greyscale_config/parent)
-	. = ..()
 	var/icon/new_icon = icon(icon)
 	if(length(colors))
 		new_icon.Blend(colors[1], ICON_MULTIPLY)
@@ -124,7 +123,6 @@
 				icon_file_colors.Add(pixel)
 
 /datum/greyscale_layer/hyperscale/InternalGenerate(list/colors, list/render_steps, datum/greyscale_config/parent)
-	. = ..()
 	var/icon/new_icon = icon(icon)
 	if((length(icon_file_colors) > length(colors) && !CHECK_BITFIELD(parent.greyscale_flags, HYPERSCALE_ALLOW_GREYSCALE)))
 		CRASH("[src] set to Hyperscale, expected [length(icon_file_colors)], got [length(colors)].")

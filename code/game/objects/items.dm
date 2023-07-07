@@ -152,6 +152,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(species_exception)
 		species_exception = string_list(species_exception)
 
+	colorable_colors = string_list(colorable_colors)
+	icon_state_variants = string_list(icon_state_variants)
+
 	. = ..()
 
 	for(var/path in actions_types)
@@ -266,12 +269,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		dropped(user)
 
 
-/obj/item/update_icon()
-	. = ..()
-	if(!greyscale_colors)
-		return
-	update_greyscale()
-
 /obj/item/update_icon_state()
 	. = ..()
 	if(current_variant)
@@ -324,7 +321,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	. = ..()
 	if(.)
 		return
-	if(!istype(I, .obj/item/facepaint))
+	if(!istype(I, /obj/item/facepaint))
 		return
 	alternate_color_item(I, user)
 
@@ -1392,11 +1389,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/vendor_equip(mob/user)
 	return FALSE
 
-
+///Colors the item or selects variants.
 /obj/item/proc/color_item(obj/item/facepaint/paint, mob/user)
 
 	if(paint.uses < 1)
-		to_chat(user, span_warning("\the [paint] is out of color!"))
+		balloon_alert(user, "\the [paint] is out of color!")
 		return
 
 	var/list/selection_list = list()
@@ -1413,21 +1410,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		selection = tgui_input_list(user, "Choose a color setting", name, selection_list)
 
-	if(selection == VARIANTS)
-		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
-
-		if(!variant)
-			return
-
-		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-			return
-
-		current_variant = variant
-		update_icon()
-		return
-
 	var/new_color
 	switch(selection)
+		if(VARIANTS)
+			var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+
+			if(!variant)
+				return
+
+			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+				return
+
+			current_variant = variant
+			update_icon()
+			update_greyscale()
+			return
 		if(PRESET_COLORS)
 			var/color_selection
 			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
@@ -1449,7 +1446,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	set_greyscale_colors(new_color)
 	update_icon()
+	update_greyscale()
 
+///Is called when the item is alternate attacked by paint. Handles coloring any secondary colors that are registered to COMSIG_ITEM_SECONDARY_COLOR
 /obj/item/proc/alternate_color_item(obj/item/facepaint/paint, mob/user)
 	var/list/obj/item/secondaries = list()
 	SEND_SIGNAL(src, COMSIG_ITEM_SECONDARY_COLOR, user, secondaries)
@@ -1464,4 +1463,5 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 	selection.color_item(paint, user)
 	update_icon()
+	update_greyscale()
 
