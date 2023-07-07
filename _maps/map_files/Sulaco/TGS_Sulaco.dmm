@@ -1566,7 +1566,7 @@
 	},
 /area/sulaco/engineering/atmos)
 "afi" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/prison/yellow{
 	dir = 1
 	},
@@ -1773,7 +1773,7 @@
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
 "ahn" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
 "ahy" = (
@@ -2289,7 +2289,7 @@
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
 "aly" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/prison/yellow{
 	dir = 10
 	},
@@ -17840,7 +17840,7 @@
 	},
 /area/sulaco/medbay)
 "lPh" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/prison/yellow,
 /area/sulaco/engineering/atmos)
 "lPo" = (

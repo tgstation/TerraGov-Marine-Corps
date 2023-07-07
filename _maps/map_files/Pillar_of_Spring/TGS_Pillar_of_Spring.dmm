@@ -748,7 +748,7 @@
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
 "aTl" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
 "aTo" = (

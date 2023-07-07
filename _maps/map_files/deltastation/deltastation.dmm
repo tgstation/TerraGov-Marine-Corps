@@ -29956,7 +29956,7 @@
 /area/deltastation/cargo/storage)
 "fYE" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /obj/machinery/light/small,
 /obj/effect/turf_decal/bot/right,
 /turf/open/floor/iron/checker,
@@ -94659,7 +94659,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/security/courtroom)
 "tkw" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/science/ordnance/storage)
@@ -106624,7 +106624,7 @@
 /area/deltastation/tcommsat/server)
 "vBW" = (
 /obj/effect/spawner/random/misc/structure/directional_window/west,
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 8

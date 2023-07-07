@@ -5,7 +5,6 @@
 
 	var/on = FALSE
 	var/volume_rate = 1000
-	volume = 1000
 
 	var/list/scrubbing = list()
 
@@ -33,7 +32,6 @@
 	idle_power_usage = 10
 
 	volume_rate = 1500
-	volume = 50000
 
 	var/movable = FALSE
 

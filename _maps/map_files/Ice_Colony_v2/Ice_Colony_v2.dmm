@@ -1465,11 +1465,11 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "aky" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation/smes)
 "akB" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /obj/machinery/light,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation/smes)
@@ -13230,7 +13230,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "bsg" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bsh" = (

@@ -4274,7 +4274,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "dcB" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -7671,7 +7671,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/research)
 "fzD" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
 "fAt" = (
@@ -8506,7 +8506,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/layer1{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -20809,7 +20809,7 @@
 	},
 /area/magmoor/security/infocenter)
 "poC" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
@@ -25016,7 +25016,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},

@@ -6,7 +6,6 @@
 	icon_state = "hydrotray3"
 	density = TRUE
 	anchored = TRUE
-	volume = 100
 	coverage = 40
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
