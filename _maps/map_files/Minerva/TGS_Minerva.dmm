@@ -14539,9 +14539,7 @@
 /area/mainship/engineering/engineering_workshop)
 "QI" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	id_tag = "waste_lower_out"
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
 "QJ" = (
