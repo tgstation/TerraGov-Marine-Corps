@@ -47,8 +47,15 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/solars
 	name = "Solars computer or broken computer spawner"
 	loot = list(
-		/obj/machinery/computer/solars= 80,
+		/obj/machinery/computer/solars = 80,
 		/obj/effect/spawner/random/machinery/random_broken_computer = 20,
+	)
+
+/obj/effect/spawner/random/machinery/random_broken_computer/crew
+	name = "Crew monitor prop or broken computer spawner"
+	loot = list(
+		/obj/machinery/prop/computer/crew = 70,
+		/obj/effect/spawner/random/machinery/random_broken_computer = 30,
 	)
 
 /obj/effect/spawner/random/machinery/random_broken_computer/rdconsole

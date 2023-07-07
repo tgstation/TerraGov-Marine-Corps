@@ -10,7 +10,7 @@
 /obj/item/ammo_magazine/smg/m25,
 /obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "aax" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -54,7 +54,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "adx" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
@@ -1569,7 +1569,7 @@
 "aQV" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "aQY" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/dirt,
@@ -1632,7 +1632,7 @@
 "aSm" = (
 /obj/item/attachable/quickfire,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "aSq" = (
 /turf/open/floor/plating/warning{
 	dir = 10
@@ -2069,7 +2069,7 @@
 /obj/item/ammo_casing,
 /obj/effect/landmark/dropship_start_location,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "bdK" = (
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
@@ -2279,7 +2279,7 @@
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "bjj" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/jungle/vines/heavy,
@@ -2729,7 +2729,7 @@
 /obj/effect/decal/remains/human,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "byV" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
@@ -2804,7 +2804,7 @@
 /obj/item/ammo_magazine/smg/m25,
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "bCC" = (
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
@@ -2957,7 +2957,7 @@
 	},
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "bKq" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/plating/ground/dirt,
@@ -3106,7 +3106,7 @@
 "bSS" = (
 /obj/item/attachable/reddot,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "bTH" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating/ground/dirt,
@@ -3309,7 +3309,7 @@
 	},
 /obj/effect/spawner/random/medical/health_analyzer,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "ckd" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
@@ -3477,7 +3477,7 @@
 /obj/effect/decal/remains/human,
 /obj/item/weapon/gun/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "cvU" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
@@ -3575,7 +3575,7 @@
 "cBi" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "cBS" = (
 /obj/structure/catwalk,
 /turf/open/ground/grass/beach,
@@ -3606,7 +3606,7 @@
 "cEi" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "cEv" = (
 /obj/effect/ai_node,
 /obj/effect/spawner/random/engineering/wood,
@@ -3686,7 +3686,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "cIW" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard,
@@ -3788,7 +3788,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "cQj" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
@@ -5126,7 +5126,7 @@
 /turf/open/floor/plating/warning{
 	dir = 10
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "eBC" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -5228,7 +5228,7 @@
 "eLz" = (
 /obj/item/weapon/gun/smg/uzi,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "eMv" = (
 /obj/item/stack/sheet/wood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5616,7 +5616,7 @@
 "flG" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "flN" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/warning{
@@ -5684,7 +5684,7 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "frN" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -5734,7 +5734,7 @@
 /obj/item/ammo_casing,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "fwb" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -5772,7 +5772,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "fxm" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/flora/jungle/vines,
@@ -5945,7 +5945,7 @@
 /turf/open/floor/plating/warning{
 	dir = 5
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "fKd" = (
 /obj/structure/flora/jungle/vines{
 	pixel_y = 1
@@ -6077,7 +6077,7 @@
 /obj/item/ammo_casing,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "fWZ" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/engine/cult{
@@ -6802,7 +6802,7 @@
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "gQt" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/xeno_resin_wall,
@@ -6878,7 +6878,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/gun/smg/uzi,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "gVY" = (
 /obj/effect/spawner/random/engineering/ore_box,
 /turf/open/liquid/water/river/autosmooth,
@@ -6918,7 +6918,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "gZm" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -7007,7 +7007,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "hel" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
@@ -7181,7 +7181,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "hnV" = (
 /obj/structure/closet/lasertag/red,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -7250,7 +7250,7 @@
 /obj/item/ammo_casing,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "hwp" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/grass2,
@@ -7284,7 +7284,7 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "hyS" = (
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/blue/whiteblue{
@@ -7472,7 +7472,7 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "hNX" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7532,7 +7532,7 @@
 "hPn" = (
 /obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "hPr" = (
 /obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -7554,7 +7554,7 @@
 /area/lv624/lazarus/secure_storage)
 "hRy" = (
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "hRG" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/chips,
@@ -8012,7 +8012,7 @@
 /obj/structure/table,
 /obj/item/storage/belt/marine,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "iyl" = (
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
@@ -8491,7 +8491,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "jeR" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/grass2,
@@ -8514,7 +8514,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "jgP" = (
 /obj/structure/fence,
 /obj/effect/turf_decal/riverdecal/edge{
@@ -8599,7 +8599,7 @@
 "jnE" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "jnG" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 8;
@@ -8817,7 +8817,7 @@
 "jCh" = (
 /obj/machinery/floodlight,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "jCs" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/purple/whitepurple{
@@ -9148,7 +9148,7 @@
 	},
 /obj/effect/spawner/random/weaponry/explosive/grenade,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "jXa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -9352,7 +9352,7 @@
 /obj/machinery/floodlight,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "kju" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -10189,7 +10189,7 @@
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "llU" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -10795,7 +10795,7 @@
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "mcM" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
@@ -10813,7 +10813,7 @@
 /obj/item/storage/backpack/marine,
 /obj/effect/spawner/random/weaponry/explosive/grenade,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "meq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/misc/trash,
@@ -11124,7 +11124,7 @@
 "mvX" = (
 /obj/item/ammo_magazine/smg/uzi/extended,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "mwl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -11469,7 +11469,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "mRv" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 4;
@@ -11558,7 +11558,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "mXE" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/jungle/vines/heavy,
@@ -11769,7 +11769,7 @@
 "nlg" = (
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "nlZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
@@ -11876,7 +11876,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "nww" = (
 /turf/open/ground/grass/beach/corner,
 /area/lv624/ground/jungle9)
@@ -12363,7 +12363,7 @@
 	},
 /obj/item/attachable/suppressor,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "odQ" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/xeno_resin_door,
@@ -12660,7 +12660,7 @@
 /obj/item/ammo_magazine/smg/uzi/extended,
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "oCn" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -13289,7 +13289,7 @@
 /obj/item/ammo_casing,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "pyh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -13535,7 +13535,7 @@
 /obj/item/ammo_casing,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "pRL" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -13648,7 +13648,7 @@
 /turf/open/floor/plating/warning{
 	dir = 6
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "pWC" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
@@ -13811,7 +13811,7 @@
 /obj/effect/spawner/random/weaponry/explosive/grenade,
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "qhK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13830,7 +13830,7 @@
 /obj/item/attachable/suppressor,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "qkL" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/tile/whiteyellow/full,
@@ -14421,7 +14421,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "qWu" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -14520,7 +14520,7 @@
 	},
 /obj/effect/spawner/random/weaponry/explosive/grenade,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "rbe" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
@@ -14875,7 +14875,7 @@
 /obj/item/ammo_casing,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "rxM" = (
 /obj/item/stack/sheet/wood,
 /obj/structure/cable,
@@ -15201,7 +15201,7 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "rQD" = (
 /obj/structure/flora/grass/brown,
 /turf/open/ground/grass,
@@ -15300,7 +15300,7 @@
 "rWi" = (
 /obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "rWv" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle2)
@@ -15658,7 +15658,7 @@
 "swH" = (
 /obj/effect/spawner/random/engineering/structure/handheld_lighting,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "swL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -15712,7 +15712,7 @@
 /turf/open/floor/plating/warning{
 	dir = 9
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "syY" = (
 /obj/item/tool/mop,
 /obj/structure/rack,
@@ -16341,7 +16341,7 @@
 /obj/effect/decal/remains/human,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "tpS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/engine/cult{
@@ -17289,7 +17289,7 @@
 	},
 /obj/item/weapon/gun/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "uzK" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
@@ -17441,7 +17441,7 @@
 /obj/item/ammo_casing,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "uNU" = (
 /obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating,
@@ -17648,7 +17648,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "vds" = (
 /obj/structure/bed,
 /obj/structure/window/reinforced{
@@ -18174,7 +18174,7 @@
 /obj/effect/spawner/random/weaponry/explosive/grenade,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "vMc" = (
 /obj/structure/table,
 /obj/item/megaphone,
@@ -18447,7 +18447,7 @@
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "wee" = (
 /obj/structure/flora/pottedplant,
 /obj/item/trash/cheesie,
@@ -18569,7 +18569,7 @@
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "wjU" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -19072,7 +19072,7 @@
 	},
 /obj/effect/spawner/random/medical/firstaid/alwaysspawns,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "wMT" = (
 /obj/machinery/conveyor/inverted{
 	dir = 9
@@ -19738,7 +19738,7 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "xzC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -20097,7 +20097,7 @@
 	},
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/lv624/lazarus/tablefort)
 "xVF" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
