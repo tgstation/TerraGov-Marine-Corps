@@ -151,14 +151,15 @@
 	scatter = -2
 
 	fire_delay = 0.15 SECONDS
-	heat_per_fire = 1
-	rounds_per_shot = 20
+	heat_per_fire = 3
+	rounds_per_shot = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
 	force = 20
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/rifle_standard,
-		"Marksman" = /datum/lasrifle/base/plasma_rifle_mode/rifle_marksman,
+		"Piercing" = /datum/lasrifle/base/plasma_rifle_mode/rifle_marksman,
+		"Overcharge" = /datum/lasrifle/base/plasma_rifle_mode/rifle_overcharge,
 	)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 16,"rail_x" = 25, "rail_y" = 25, "under_x" = 37, "under_y" = 10, "stock_x" = 0, "stock_y" = 13)
 	attachable_allowed = list(
@@ -185,8 +186,8 @@
 	icon_state = "plasma_rifle"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.15 SECONDS
-	heat_per_fire = 1
-	rounds_per_shot = 20
+	heat_per_fire = 3
+	rounds_per_shot = 10
 	radial_icon_state = "plasma_weak"
 
 /datum/lasrifle/base/plasma_rifle_mode/rifle_marksman
@@ -195,9 +196,19 @@
 	icon_state = "plasma_rifle"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.45 SECONDS
-	heat_per_fire = 2
-	rounds_per_shot = 40
+	heat_per_fire = 6
+	rounds_per_shot = 20
 	radial_icon_state = "plasma_strong"
+
+/datum/lasrifle/base/plasma_rifle_mode/rifle_overcharge
+	fire_sound = 'sound/weapons/guns/fire/plasma_fire_blast.ogg'
+	ammo_datum_type = /datum/ammo/energy/plasma/rifle_overcharge
+	icon_state = "plasma_rifle"
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	fire_delay = 0.50 SECONDS
+	heat_per_fire = 100
+	rounds_per_shot = 50
+	radial_icon_state = "plasma_cannon"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/carbine
 	name = "\improper PL-51 plasma carbine"
@@ -228,11 +239,10 @@
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
 	burst_delay = 0.15 SECONDS
-	heat_per_fire = 3
-	rounds_per_shot = 15
+	heat_per_fire = 6
+	rounds_per_shot = 5
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/carbine_standard,
-		"Shotgun" = /datum/lasrifle/base/plasma_rifle_mode/carbine_shotgun,
 		"Tri-fire" = /datum/lasrifle/base/plasma_rifle_mode/carbine_trifire,
 	)
 	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 17,"rail_x" = 25, "rail_y" = 25, "under_x" = 33, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
@@ -261,28 +271,19 @@
 	fire_mode = GUN_FIREMODE_AUTOBURST
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
-	heat_per_fire = 3
-	rounds_per_shot = 15
+	heat_per_fire = 6
+	rounds_per_shot = 5
 	radial_icon_state = "plasma_bouncy"
-
-/datum/lasrifle/base/plasma_rifle_mode/carbine_shotgun
-	fire_sound = 'sound/weapons/guns/fire/plasma_fire_heavy.ogg'
-	ammo_datum_type = /datum/ammo/energy/plasma/carbine_shotgun
-	icon_state = "plasma_carbine"
-	fire_mode = GUN_FIREMODE_SEMIAUTO
-	fire_delay = 0.8 SECONDS
-	heat_per_fire = 10
-	rounds_per_shot = 66
-	radial_icon_state = "plasma_strong"
 
 /datum/lasrifle/base/plasma_rifle_mode/carbine_trifire
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/carbine_trifire
 	icon_state = "plasma_carbine"
-	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_mode = GUN_FIREMODE_AUTOBURST
 	fire_delay = 0.15 SECONDS
-	heat_per_fire = 3
-	rounds_per_shot = 20
+	burst_amount = 3
+	heat_per_fire = 2
+	rounds_per_shot = 10
 	radial_icon_state = "plasma_multi"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/pistol
@@ -366,8 +367,8 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
 	w_class = WEIGHT_CLASS_BULKY
 
-	wield_delay = 1.2 SECONDS
-	aim_slowdown = 1.2
+	wield_delay = 1.5 SECONDS
+	aim_slowdown = 1.1
 	movement_acc_penalty_mult = 6
 
 	accuracy_mult = 1
@@ -381,8 +382,8 @@
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_standard
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 1.2 SECONDS
-	heat_per_fire = 25
-	rounds_per_shot = 100
+	heat_per_fire = 33
+	rounds_per_shot = 50
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_rifle_mode/cannon_standard,
 		"Heavy" = /datum/lasrifle/base/plasma_rifle_mode/cannon_heavy,
@@ -395,8 +396,6 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
@@ -412,8 +411,8 @@
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_standard
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 1.2 SECONDS
-	heat_per_fire = 25
-	rounds_per_shot = 100
+	heat_per_fire = 33
+	rounds_per_shot = 50
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_cannon"
 
@@ -422,8 +421,9 @@
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_heavy
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 2 SECONDS
-	heat_per_fire = 35
-	rounds_per_shot = 150
+	heat_per_fire = 45
+	rounds_per_shot = 75
+	windup_delay = 0.5 SECONDS
 	icon_state = "plasma_cannon"
 	radial_icon_state = "laser_swarm"
 
@@ -431,8 +431,8 @@
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	ammo_datum_type = /datum/ammo/energy/plasma/cannon_flamer
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 1.5 SECONDS
-	heat_per_fire = 15
-	rounds_per_shot = 75
+	fire_delay = 0.25 SECONDS
+	heat_per_fire = 25
+	rounds_per_shot = 20
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_fire"
