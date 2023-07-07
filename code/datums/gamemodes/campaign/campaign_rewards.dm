@@ -87,7 +87,7 @@
 	detailed_desc = "Your battalion has been assigned a single Vanguard heavy combat mech. The Vanguard has extreme durability and offensive capability. Able to wade through the thickest of fighting with ease, it is the TGMC's premier assault mech, although its speed and maneuverability are somewhat lackluster."
 	uses = 1
 	equipment_to_spawn = list(
-		/obj/vehicle/sealed/mecha/combat/greyscale/vanguard,
+		/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill,
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_projector,
 		/obj/item/mecha_ammo/vendable/heavycannon,
