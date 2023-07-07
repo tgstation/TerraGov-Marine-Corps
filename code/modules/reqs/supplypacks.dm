@@ -1435,32 +1435,32 @@ SUPPLIES
 	)
 	cost = 40
 
-/datum/supply_packs/operations/dollarten
+/datum/supply_packs/supplies/dollarten
 	name = "10 dollars"
 	contains = list(/obj/item/spacecash/c10)
 	cost = 1
 
-/datum/supply_packs/operations/dollartwenty
+/datum/supply_packs/supplies/dollartwenty
 	name = "20 dollars"
 	contains = list(/obj/item/spacecash/c20)
 	cost = 2
 
-/datum/supply_packs/operations/dollarfifty
+/datum/supply_packs/supplies/dollarfifty
 	name = "50 dollars"
 	contains = list(/obj/item/spacecash/c50)
 	cost = 5
 
-/datum/supply_packs/operations/dollarhundred
+/datum/supply_packs/supplies/dollarhundred
 	name = "100 dollars"
 	contains = list(/obj/item/spacecash/c100)
 	cost = 10
 
-/datum/supply_packs/operations/dollartwohundred
+/datum/supply_packs/supplies/dollartwohundred
 	name = "200 dollars"
 	contains = list(/obj/item/spacecash/c200)
 	cost = 20
 
-/datum/supply_packs/operations/dullarfivehundred
+/datum/supply_packs/supplies/dollarfivehundred
 	name = "500 dollars"
 	contains = list(/obj/item/spacecash/c500)
 	cost = 50
