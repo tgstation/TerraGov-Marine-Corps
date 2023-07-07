@@ -216,7 +216,6 @@
 	if(operator.get_active_held_item())
 		to_chat(operator, span_warning("You need a free hand to shoot the [src]."))
 		return FALSE
-
 	var/atom/target = object
 
 	if(!istype(target))
@@ -230,6 +229,9 @@
 	var/obj/item/weapon/gun/gun = internal_item
 	//we can only fire in a 90 degree cone
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
+		if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_ANCHORED_FIRING_ONLY) && !anchored)
+			to_chat(operator, "[src] cannot be fired without it being anchored.")
+			return FALSE
 		operator.setDir(dir)
 		gun.set_target(target)
 		update_icon_state()
