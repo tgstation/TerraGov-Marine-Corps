@@ -12273,6 +12273,11 @@
 	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
+"nZb" = (
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor,
+/area/lv624/lazarus/spaceport)
 "nZT" = (
 /obj/effect/ai_node,
 /turf/open/liquid/water/river/autosmooth,
@@ -53506,7 +53511,7 @@ tbe
 hWp
 tbe
 tbe
-hny
+nZb
 tbe
 ofx
 vbA
