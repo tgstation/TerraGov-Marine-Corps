@@ -8142,7 +8142,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/overgrown)
 "OL" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/tile/green,
 /area/lv624/lazarus/medbay)
 "OM" = (

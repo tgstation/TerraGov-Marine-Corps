@@ -18643,7 +18643,7 @@
 /area/lv624/lazarus/main_hall)
 "wor" = (
 /obj/structure/table/woodentable,
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "wpf" = (

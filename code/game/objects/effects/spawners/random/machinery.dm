@@ -40,7 +40,7 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor
 	name = "Crew monitor or broken computer spawner"
 	loot = list(
-		/obj/machinery/computer/crew = 65,
+		/obj/machinery/prop/computer/crew = 65,
 		/obj/effect/spawner/random/machinery/random_broken_computer = 35,
 	)
 
@@ -49,13 +49,6 @@
 	loot = list(
 		/obj/machinery/computer/solars = 80,
 		/obj/effect/spawner/random/machinery/random_broken_computer = 20,
-	)
-
-/obj/effect/spawner/random/machinery/random_broken_computer/crew
-	name = "Crew monitor prop or broken computer spawner"
-	loot = list(
-		/obj/machinery/prop/computer/crew = 70,
-		/obj/effect/spawner/random/machinery/random_broken_computer = 30,
 	)
 
 /obj/effect/spawner/random/machinery/random_broken_computer/rdconsole

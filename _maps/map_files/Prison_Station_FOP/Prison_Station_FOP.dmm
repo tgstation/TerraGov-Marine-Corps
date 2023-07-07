@@ -9857,7 +9857,7 @@
 	},
 /area/prison/medbay)
 "aFw" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "aFx" = (
