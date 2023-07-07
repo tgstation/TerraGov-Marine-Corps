@@ -7,7 +7,7 @@
 	icon_state = "chest"
 	item_state = "chest"
 	icon = null
-	item_icons = list()
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(

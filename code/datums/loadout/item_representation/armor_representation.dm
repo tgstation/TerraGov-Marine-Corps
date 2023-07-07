@@ -34,7 +34,7 @@
 	tgui_data["name"] = initial(item_type.name)
 	tgui_data["icons"] = list()
 	var/icon/icon_to_convert
-	var/icon_state = initial(item_type.icon_state) + (variant ? "_[variant]" : "")
+	var/icon_state = initial(item_type.icon_state) + (variant ? "_[GLOB.loadout_variant_keys[variant]]" : "")
 	if(initial(item_type.greyscale_config))
 		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
 	else
@@ -48,7 +48,7 @@
 	for(var/datum/item_representation/armor_module/module AS in attachments)
 		if(!initial(module.item_type.icon_state))
 			continue
-		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[module.variant]" : "")
+		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[GLOB.loadout_variant_keys[module.variant]]" : "")
 		if(initial(module.item_type.greyscale_config))
 			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  second_icon_state, dir = SOUTH)
 		else
@@ -109,7 +109,7 @@
 	tgui_data["name"] = initial(item_type.name)
 	tgui_data["icons"] = list()
 	var/icon/icon_to_convert
-	var/icon_state = initial(item_type.icon_state) + (variant ? "_[variant]" : "")
+	var/icon_state = initial(item_type.icon_state) + (variant ? "_[GLOB.loadout_variant_keys[variant]]" : "")
 	if(initial(item_type.greyscale_config))
 		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
 	else
@@ -123,7 +123,7 @@
 	for(var/datum/item_representation/armor_module/module AS in attachments)
 		if(!initial(module.item_type.icon_state))
 			continue
-		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[module.variant]" : "")
+		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[GLOB.loadout_variant_keys[module.variant]]" : "")
 		if(initial(module.item_type.greyscale_config))
 			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  second_icon_state, dir = SOUTH)
 		else

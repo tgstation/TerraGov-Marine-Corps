@@ -161,13 +161,13 @@
 		"rapier (right)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"rapier right"
+				"rapier (right)"
 			),
 		),
 		"rapier (left)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"rapier left"
+				"rapier (left)"
 			),
 		),
 		"jacket" = list(

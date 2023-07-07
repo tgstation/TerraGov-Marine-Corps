@@ -56,10 +56,9 @@
 	desc = "A fashionable jacket. Get them with style."
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket_worn"
-	item_icons = list()
 	icon_state_variants = list(
 		"normal",
-		"webbing",
+		"webbing123",
 	)
 	current_variant = "normal"
 	greyscale_colors = ARMOR_PALETTE_BLACK

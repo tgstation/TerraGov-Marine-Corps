@@ -294,6 +294,7 @@
 	breathy = FALSE
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
+	item_icons = list(slot_wear_mask_str)
 	item_state_worn = TRUE
 	greyscale_colors = ARMOR_PALETTE_DRAB
 

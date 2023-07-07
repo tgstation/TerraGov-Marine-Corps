@@ -86,6 +86,8 @@
 	if(!greyscale_config)
 		return
 	for(var/key in item_icons)
+		if(key == slot_l_hand_str || key == slot_r_hand_str)
+			continue
 		item_icons[key] = icon
 
 /obj/item/clothing/apply_blood(mutable_appearance/standing)

@@ -18,7 +18,13 @@
 		return
 	item_type = item_to_copy.type
 	if(item_to_copy.current_variant && item_to_copy.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
-		variant = GLOB.loadout_variant_keys[item_to_copy.current_variant]
+		for(var/key in GLOB.loadout_variant_keys)
+			var/val = GLOB.loadout_variant_keys[key]
+			if(val != item_to_copy.current_variant)
+				continue
+			variant = key
+			break
+
 	if(!item_to_copy.greyscale_config)
 		return
 	colors = item_to_copy.greyscale_colors
@@ -53,7 +59,7 @@
 /datum/item_representation/proc/get_tgui_data()
 	var/list/tgui_data = list()
 	var/icon/icon_to_convert
-	var/icon_state = initial(item_type.icon_state) + (variant ? "_[variant]" : "")
+	var/icon_state = initial(item_type.icon_state) + (variant ? "_[GLOB.loadout_variant_keys[variant]]" : "")
 	if(initial(item_type.greyscale_config))
 		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
 	else

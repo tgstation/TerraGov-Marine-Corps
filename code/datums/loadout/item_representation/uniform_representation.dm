@@ -40,7 +40,7 @@
 /datum/item_representation/uniform_representation/get_tgui_data()
 	var/list/tgui_data = list()
 	var/icon/icon_to_convert
-	var/icon_state = initial(item_type.icon_state) + (variant ? "_[variant]" : "")
+	var/icon_state = initial(item_type.icon_state) + (variant ? "_[GLOB.loadout_variant_keys[variant]]" : "")
 	if(initial(item_type.greyscale_config))
 		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
 	else
@@ -55,7 +55,7 @@
 	for(var/datum/item_representation/armor_module/attachment AS in attachments)
 		if(!initial(attachment.item_type.icon_state))
 			continue
-		var/second_icon_state = initial(attachment.item_type.icon_state) + (attachment.variant ? "_[attachment.variant]" : "")
+		var/second_icon_state = initial(attachment.item_type.icon_state) + (attachment.variant ? "_[GLOB.loadout_variant_keys[attachment.variant]]" : "")
 		if(initial(attachment.item_type.greyscale_config))
 			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(attachment.item_type.greyscale_config), attachment.colors), second_icon_state, dir = SOUTH)
 		else
