@@ -41362,13 +41362,6 @@
 	dir = 5
 	},
 /area/prison/hangar/main)
-"fGm" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/obj/item/frame/air_alarm,
-/turf/open/floor/plating,
-/area/prison/maintenance/hangar_barracks)
 "fGC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -107242,7 +107235,7 @@ byu
 bzn
 bzn
 bzn
-fGm
+ghl
 ern
 suo
 bId

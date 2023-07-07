@@ -281,9 +281,7 @@
 /turf/open/floor/engine,
 /area/mainship/hull/starboard_hull)
 "abe" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	id_tag = "waste_lower_out"
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
 /turf/open/floor/engine,
 /area/mainship/hull/starboard_hull)
 "abf" = (
@@ -925,7 +923,6 @@
 "adj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
-	id_tag = "mixed_lower_out"
 	},
 /turf/open/floor/engine,
 /area/mainship/hull/port_hull)
@@ -17577,7 +17574,6 @@
 "szr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
-	id_tag = "nit_lower_out"
 	},
 /turf/open/floor/engine/nitrogen,
 /area/mainship/hull/port_hull)
@@ -19317,7 +19313,6 @@
 "vPj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
-	id_tag = "oxygen_lower_out"
 	},
 /turf/open/floor/engine,
 /area/mainship/hull/port_hull)
@@ -19992,7 +19987,6 @@
 /area/mainship/hallways/hangar)
 "wYp" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/circuitboard/airalarm,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},

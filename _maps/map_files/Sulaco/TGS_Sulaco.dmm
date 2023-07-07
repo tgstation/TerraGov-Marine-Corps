@@ -1245,7 +1245,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	id_tag = "nit_out";
 	on = 0
 	},
 /turf/open/floor/engine/nitrogen,
@@ -1262,7 +1261,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	id_tag = "oxyvent";
 	on = 0
 	},
 /turf/open/floor/engine,
@@ -1701,7 +1699,6 @@
 "ahm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8;
-	id_tag = "waste_out";
 	name = "Waste Air Vent";
 	on = 0
 	},
@@ -24108,9 +24105,7 @@
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
-	id_tag = "mbayexit"
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
