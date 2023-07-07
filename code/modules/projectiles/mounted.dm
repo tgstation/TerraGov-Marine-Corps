@@ -238,6 +238,10 @@
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
 		return FALSE
 
+	if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_NO_ROTATE_ANCHORED) && anchored)
+		to_chat(operator, "[src] cannot be rotated while anchored.")
+		return FALSE
+
 	var/list/leftright = LeftAndRightOfDir(dir)
 	var/left = leftright[1] - 1
 	var/right = leftright[2] + 1
@@ -310,15 +314,21 @@
 //Deployable guns that can be moved.
 /obj/machinery/deployable/mounted/moveable
 	anchored = FALSE
+	/// Sets how long a deployable takes to be anchored
+	var/anchor_time = 0 SECONDS
 
 /// Can be anchored and unanchored from the ground by Alt Right Click.
 /obj/machinery/deployable/mounted/moveable/AltRightClick(mob/living/user)
-	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
-		return
+    . = ..()
+    if(!Adjacent(user) || !ishuman(user) || user.lying_angle || user.incapacitated())
+        return
 
-	if(!anchored)
-		anchored = TRUE
-		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
-	else
-		anchored = FALSE
-		to_chat(user, span_warning("You unanchored the gun from the ground. It may be moved."))
+    if(anchor_time)
+        balloon_alert(user, "You begin [anchored ? "unanchoring" : "anchoring"] [src]")
+        if(!do_after(user, anchor_time, TRUE, src))
+            balloon_alert(user, "Interrupted!")
+            return
+
+    anchored = !anchored
+
+    balloon_alert(user, "You [anchored ? "anchor" : "unanchor"] [src]")
