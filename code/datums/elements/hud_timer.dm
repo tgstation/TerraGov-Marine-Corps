@@ -5,7 +5,6 @@
 	var/list/users = list()
 	var/datum/weakref/callback_target_ref
 	var/style_start = "<span class='maptext' style=font-size:16pt;text-align:center; align='top'>"
-	// <span class='maptext' style=font-size:16pt;text-align:center;color=red align='top'>
 	var/style_end = "</span>"
 	var/timer_text
 	// The list of timers that are currently being displayed
@@ -164,11 +163,6 @@
 /datum/element/hud_timer/nuke
 	timer_text = "NUKE ACTIVE: ${timer}"
 
-// /datum/element/hud_timer/nuke/New()
-// 	. = ..()
-// 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(timer_start_signal))
-// 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_STOP, PROC_REF(timer_stop_signal))
-
 /datum/element/hud_timer/nuke/Attach(mob/target, time_to_display, text, start_signals, stop_signals, signal_callback, callback_target, start_immediately = TRUE)
 	start_signals = list(
 		COMSIG_GLOB_NUKE_START = WEAKREF(SSdcs),
@@ -192,18 +186,8 @@
 		return null
 	return possible_nuke.timer
 
-// /datum/element/hud_timer/nuke/Destroy(force)
-// 	. = ..()
-// 	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
-// 	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_STOP)
-
 /datum/element/hud_timer/hive_collapse
 	timer_text = "HIVE COLLAPSE: ${timer}"
-
-// /datum/element/hud_timer/hive_collapse/New()
-// 	. = ..()
-// 	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_COLLAPSING, PROC_REF(timer_start_signal))
-// 	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_COLLAPSE_END, PROC_REF(timer_stop_signal))
 
 /datum/element/hud_timer/hive_collapse/Attach(mob/target, time_to_display, text, start_signals, stop_signals, signal_callback, callback_target, start_immediately = TRUE)
 	start_signals = list(
