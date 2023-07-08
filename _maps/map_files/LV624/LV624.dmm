@@ -2266,7 +2266,7 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "biS" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/structure/sink,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
@@ -2597,7 +2597,7 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "brD" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -3135,7 +3135,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1/garbledradio)
 "bVh" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -3728,7 +3728,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "cMg" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/structure/sink{
 	dir = 8
 	},
@@ -6034,7 +6034,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "fSm" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/structure/sink{
 	dir = 4
 	},
@@ -17540,7 +17540,7 @@
 	},
 /area/lv624/ground/jungle9)
 "uVd" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
 	},

@@ -168,7 +168,7 @@
 	icon_state = "random_hydrotray"
 	spawn_loot_chance = 65
 	loot = list(
-		/obj/machinery/portable_atmospherics/hydroponics/slashable = 8,
+		/obj/machinery/hydroponics/slashable = 8,
 		/obj/effect/spawner/random/misc/seeds = 1,
 		/obj/effect/spawner/random/machinery/machine_frame = 1,
 	)

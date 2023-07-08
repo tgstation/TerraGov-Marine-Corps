@@ -753,7 +753,7 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 Checks if that loc and dir has a item on the wall
 */
 GLOBAL_LIST_INIT(wallitems, typecacheof(list(
-	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom,
+	/obj/machinery/power/apc, /obj/machinery/air_alarm, /obj/item/radio/intercom,
 	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/wallmounted/peppertank,
 	/obj/machinery/status_display, /obj/machinery/light_switch, /obj/structure/sign,
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/door_control,

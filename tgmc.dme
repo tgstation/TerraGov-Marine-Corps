@@ -515,7 +515,6 @@
 #include "code\datums\weather\weather_types\sand_storm.dm"
 #include "code\datums\weather\weather_types\snow_storm.dm"
 #include "code\datums\wires\_wires.dm"
-#include "code\datums\wires\airalarm.dm"
 #include "code\datums\wires\airlock.dm"
 #include "code\datums\wires\apc.dm"
 #include "code\datums\wires\radio.dm"

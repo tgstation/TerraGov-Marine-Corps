@@ -498,7 +498,7 @@
 /area/bigredv2/outside/marshal_office)
 "ms" = (
 /obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "mC" = (
@@ -1067,7 +1067,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "CZ" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -1397,7 +1397,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "MX" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -1458,7 +1458,7 @@
 /area/bigredv2/outside/space_port)
 "Ov" = (
 /obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
