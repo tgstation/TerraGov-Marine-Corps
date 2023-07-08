@@ -144,7 +144,7 @@
 	to_chat(world, span_round_body("Next mission selected by [starting_faction] as [name] on the battlefield of [map_name]."))
 
 ///Intro when the mission is started
-/datum/campaign_mission/proc/play_start_intro() //todo: make generic
+/datum/campaign_mission/proc/play_start_intro()
 	var/op_name_starting = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	var/op_name_hostile = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 
@@ -246,7 +246,7 @@
 	return list(team_one_alive, team_two_alive, team_one_dead, team_two_dead)
 
 ///Sends a maptext message to a specified faction
-/datum/campaign_mission/proc/map_text_broadcast(faction, message, display_source = "OVERWATCH", atom/movable/screen/text/screen_text/picture/display_picture, sound_effect = "sound/effects/CIC_order.ogg")
+/datum/campaign_mission/proc/map_text_broadcast(faction, message, title = "OVERWATCH", atom/movable/screen/text/screen_text/picture/display_picture, sound_effect = "sound/effects/CIC_order.ogg")
 	if(!faction || !message)
 		return
 	if(!display_picture)
@@ -255,8 +255,8 @@
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction != faction)
 			continue
-		human.playsound_local(human, sound_effect, 10, 1)
-		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[display_source]</u></span><br>" + "[message]", display_picture)
+		human.playsound_local(null, sound_effect, 10, 1)
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[title]</u></span><br>" + "[message]", display_picture)
 
 /////basic tdm mission - i.e. combat patrol
 /datum/campaign_mission/tdm
@@ -292,15 +292,18 @@
 		Your battalion has been issued orders to regroup and counter attack the enemy push before they can make any progress, and kill their ambitions in this region. <br>\
 		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
 	)
-	intro_message = list(
-		"starting_faction" = "Eliminate all enemy resistance in the AO. Good hunting!",
-		"hostile_faction" = "Eliminate all enemy resistance in the AO. Good hunting!",
-	)
 
 	additional_rewards = list(
 		"starting_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
 		"hostile_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
 	)
+
+/datum/campaign_mission/tdm/play_start_intro()
+	intro_message = list(
+		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
+		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
+	)
+	. = ..()
 
 /datum/campaign_mission/tdm/check_mission_progress()
 	if(outcome)
