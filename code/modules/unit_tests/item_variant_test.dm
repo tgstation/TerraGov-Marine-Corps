@@ -11,5 +11,5 @@
 				break
 			if(found)
 				continue
-			Fail("[item_to_test] of type [item_type] has the variant '[variant]' in its icon_state_variants, \
+			Fail("[item_type] has the variant '[variant]' in its icon_state_variants, \
 				but it has not been added to GLOB.loadout_variant_keys.")
