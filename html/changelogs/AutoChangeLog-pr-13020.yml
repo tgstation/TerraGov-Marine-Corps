@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "reduced sunder of HVAP and IFF railgun rounds"
+  - balance: "railgun must be fully wielded to fire"
