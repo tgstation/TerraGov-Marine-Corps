@@ -59,6 +59,11 @@
 	var/max_time_reached = FALSE
 	///Delay from shutter drop until game timer starts
 	var/game_timer_delay = 1 MINUTES //test num
+	///Map text intro message for the start of the mission
+	var/list/intro_message = list(
+		"starting_faction" = "starting faction intro text here",
+		"hostile_faction" = "hostile faction intro text here",
+	)
 
 /datum/campaign_mission/New(initiating_faction)
 	. = ..()
@@ -140,13 +145,18 @@
 
 ///Intro when the mission is started
 /datum/campaign_mission/proc/play_start_intro() //todo: make generic
-	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-	var/op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-		if(human.faction == FACTION_TERRAGOV)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
-		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
+	var/op_name_starting = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+	var/op_name_hostile = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+
+	map_text_broadcast(starting_faction, intro_message["starting_faction"], op_name_starting)
+	map_text_broadcast(hostile_faction, intro_message["hostile_faction"], op_name_hostile)
+
+	//todo: use some of the below stuff
+	//for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+	//	if(human.faction == FACTION_TERRAGOV)
+	//		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
+	//	else
+	//		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
 
 
 ///Outro when the mission is finished
@@ -281,6 +291,10 @@
 		"hostile_faction" = "Intelligence indicates that hostile forces are massing for a coordinated push to dislodge us from territory where we are aiming to establish a permanent presence. <br>\
 		Your battalion has been issued orders to regroup and counter attack the enemy push before they can make any progress, and kill their ambitions in this region. <br>\
 		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
+	)
+	intro_message = list(
+		"starting_faction" = "Eliminate all enemy resistance in the AO. Good hunting!",
+		"hostile_faction" = "Eliminate all enemy resistance in the AO. Good hunting!",
 	)
 
 	additional_rewards = list(
