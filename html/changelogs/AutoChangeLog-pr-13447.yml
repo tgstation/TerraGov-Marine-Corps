@@ -1,0 +1,4 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - bugfix: "Marines will no longer survive nuke by the sheer strength of their unga."
