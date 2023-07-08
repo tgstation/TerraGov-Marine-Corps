@@ -11857,8 +11857,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/structure/computerframe,
-/turf/open/floor/plating,
+/obj/machinery/robotic_cradle,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "pmY" = (
 /obj/structure/table/mainship/nometal,

@@ -7636,6 +7636,15 @@
 "cdF" = (
 /turf/open/floor/mainship/blue,
 /area/mainship/hallways/port_hallway)
+"cdI" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/robotic_cradle,
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
+/area/mainship/medical/lower_medical)
 "cdQ" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -51814,7 +51823,7 @@ doe
 kpy
 qvb
 iOS
-hVU
+cdI
 bJC
 lMe
 bGZ
@@ -52071,7 +52080,7 @@ wRf
 qvb
 dFM
 iGu
-bHi
+iGu
 iGu
 lMe
 iGu

@@ -19082,6 +19082,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
+"nBH" = (
+/obj/machinery/robotic_cradle,
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay)
 "nCb" = (
 /obj/machinery/power/fusion_engine{
 	name = "\improper S-52 fusion reactor #10"
@@ -55338,7 +55342,7 @@ akM
 oxz
 afc
 eqh
-ade
+nBH
 pKP
 ade
 gXI

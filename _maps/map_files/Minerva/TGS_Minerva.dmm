@@ -12838,12 +12838,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/briefing)
 "LK" = (
-/obj/machinery/bodyscanner{
-	dir = 8
-	},
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/machinery/robotic_cradle,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -23128,7 +23126,7 @@ pj
 pb
 pk
 rY
-zE
+rY
 uX
 zE
 rY
