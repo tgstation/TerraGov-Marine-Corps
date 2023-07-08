@@ -1,7 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - bugfix: "Fixed the sand temple being permanently powered"
-  - bugfix: "Fixed ground maps having communications consoles"
-  - bugfix: "Fixed ground maps having crew monitors"
-  - bugfix: "Fixed table fort incorrectly being located deep underground"
