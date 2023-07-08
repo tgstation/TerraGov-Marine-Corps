@@ -235,6 +235,19 @@
 
 	return list(team_one_alive, team_two_alive, team_one_dead, team_two_dead)
 
+///Sends a maptext message to a specified faction
+/datum/campaign_mission/proc/map_text_broadcast(faction, message, display_source = "OVERWATCH", atom/movable/screen/text/screen_text/picture/display_picture, sound_effect = "sound/effects/CIC_order.ogg")
+	if(!faction || !message)
+		return
+	if(!display_picture)
+		display_picture = GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown
+
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		if(human.faction != faction)
+			continue
+		human.playsound_local(human, sound_effect, 10, 1)
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[display_source]</u></span><br>" + "[message]", display_picture)
+
 /////basic tdm mission - i.e. combat patrol
 /datum/campaign_mission/tdm
 	name = "Combat patrol"
