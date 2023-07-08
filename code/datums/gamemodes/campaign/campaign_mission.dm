@@ -49,8 +49,7 @@
 	var/additional_rewards = list(
 		"starting_faction" = "starting faction mission rewards here",
 		"hostile_faction" = "hostile faction mission rewards here",
-	) //todo: list of the actual reward datums, or just a desc?
-
+	)
 	/// Timer used to calculate how long till mission ends
 	var/game_timer
 	///The length of time until mission ends, if timed
@@ -64,6 +63,32 @@
 		"starting_faction" = "starting faction intro text here",
 		"hostile_faction" = "hostile faction intro text here",
 	)
+	var/list/outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			"starting_faction" = "<u>Major victory</u><br> All mission objectives achieved, outstanding work!",
+			"hostile_faction" = "<u>Major loss</u><br> All surviving forces fallback, we'll get them next time.",
+		),
+		MISSION_OUTCOME_MINOR_VICTORY = list(
+			"starting_faction" = "<u>Minor victory</u><br> That's a successful operation team, nice work. Head back to base!",
+			"hostile_faction" = "<u>Minor loss</u><br> Pull back all forces, we'll get them next time.",
+		),
+		MISSION_OUTCOME_DRAW = list(
+			"starting_faction" = "<u>Draw</u><br> Mission objectives not met, pull back and regroup.",
+			"hostile_faction" = "<u>Draw</u><br> Enemy operation disrupted, they're getting nothing out of this one. Good work.",
+		),
+		MISSION_OUTCOME_MINOR_LOSS = list(
+			"starting_faction" = "<u>Minor loss</u><br> starting faction intro text here",
+			"hostile_faction" = "<u>Minor victory</u><br> Excellent work, the enemy operation is in disarray. Get ready for the next move.",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			"starting_faction" = "<u>Major loss</u><br> All surviving forces retreat. The operation is a failure.",
+			"hostile_faction" = "<u>Major victory</u><br> Enemy forces routed, outstanding work! Regroup and get ready to counter attack!",
+		),
+	)
+	///Operation name for starting faction
+	var/op_name_starting
+	///Operation name for hostile faction
+	var/op_name_hostile
 
 /datum/campaign_mission/New(initiating_faction)
 	. = ..()
@@ -77,6 +102,9 @@
 		if(faction == starting_faction)
 			continue
 		hostile_faction = faction
+
+	op_name_starting = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+	op_name_hostile = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 
 	play_selection_intro()
 	load_map()
@@ -133,9 +161,9 @@
 /datum/campaign_mission/proc/end_mission()
 	SHOULD_CALL_PARENT(TRUE)
 	STOP_PROCESSING(SSslowprocess, src)
+	mission_state = MISSION_STATE_FINISHED
 	apply_outcome() //figure out where best to put this
 	play_outro()
-	mission_state = MISSION_STATE_FINISHED
 	mode.end_current_mission()
 
 ///Intro when the mission is selected
@@ -145,25 +173,17 @@
 
 ///Intro when the mission is started
 /datum/campaign_mission/proc/play_start_intro()
-	var/op_name_starting = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-	var/op_name_hostile = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-
 	map_text_broadcast(starting_faction, intro_message["starting_faction"], op_name_starting)
 	map_text_broadcast(hostile_faction, intro_message["hostile_faction"], op_name_hostile)
-
-	//todo: use some of the below stuff
-	//for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-	//	if(human.faction == FACTION_TERRAGOV)
-	//		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
-	//	else
-	//		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
-
 
 ///Outro when the mission is finished
 /datum/campaign_mission/proc/play_outro() //todo: make generic
 	to_chat(world, span_round_header("|[starting_faction] [outcome]|"))
 	log_game("[outcome]\nMission: [name]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the [starting_faction] and [hostile_faction], and their struggle on [map_name]."))
+
+	map_text_broadcast(starting_faction, outro_message[outcome]["starting_faction"], op_name_starting)
+	map_text_broadcast(hostile_faction, outro_message[outcome]["hostile_faction"], op_name_hostile)
 
 ///Applies the correct outcome for the mission
 /datum/campaign_mission/proc/apply_outcome()
