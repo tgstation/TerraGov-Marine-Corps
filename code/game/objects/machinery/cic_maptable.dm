@@ -14,6 +14,10 @@
 	///minimap obj ref that we will display to users
 	var/atom/movable/screen/minimap/map
 
+/obj/machinery/cic_maptable/Initialize(mapload)
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
+
 /obj/machinery/cic_maptable/Destroy()
 	map = null
 	return ..()
@@ -41,6 +45,13 @@
 	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
 	source.unset_interaction()
 
+///Updates the z-level this maptable views
+/obj/machinery/cic_maptable/proc/change_targeted_z(datum/source, new_z)
+	SIGNAL_HANDLER
+	if(!isnum(new_z))
+		return
+	targetted_zlevel = new_z
+
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)
 	. = ..()
 	user.client.screen -= map
@@ -52,3 +63,6 @@
 
 /obj/machinery/cic_maptable/som_maptable
 	allowed_flags = MINIMAP_FLAG_MARINE_SOM
+
+/obj/machinery/cic_maptable/no_flags
+	allowed_flags = NONE

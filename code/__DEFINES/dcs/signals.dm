@@ -69,6 +69,9 @@
 ///called when an AI is requested by a holopad
 #define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
 
+///Sent when a new campaign mission is started
+#define COMSIG_GLOB_CAMPAIGN_MISSION_LOADED "!campaign_mission_loaded"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
