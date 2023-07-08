@@ -30,13 +30,13 @@
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(),
 		),
-		"scarf_test" = list(
+		"scarf" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
 				"scarf",
 			),
 		),
-		"striped_test" = list(
+		"striped" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(),
 		),
