@@ -274,8 +274,8 @@
 //////////////////tgui stuff/////////////////
 
 /obj/machinery/tgui_test
-	name = "Kwik-E-Quip vendor"
-	desc = "An advanced vendor to instantly arm soldiers with specific sets of equipment, allowing for immediate combat deployment."
+	name = "placeholder"
+	desc = "placeholder"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "specialist"
 	density = TRUE
@@ -285,25 +285,10 @@
 	req_one_access = null
 	interaction_flags = INTERACT_MACHINE_TGUI
 	///The faction of this quick load vendor
-	var/faction = FACTION_NEUTRAL
-	//the different tabs in the vendor
-	var/list/categories = list(
-		"Squad Marine",
-		"Squad Engineer",
-		"Squad Corpsman",
-		"Squad Smartgunner",
-		"Squad Leader",
-	)
+	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/tgui_test/som
 	faction = FACTION_SOM
-	categories = list(
-		"SOM Squad Standard",
-		"SOM Squad Engineer",
-		"SOM Squad Medic",
-		"SOM Squad Veteran",
-		"SOM Squad Leader",
-	)
 
 /obj/machinery/tgui_test/can_interact(mob/user)
 	. = ..()
@@ -418,10 +403,16 @@
 	. = ..()
 	if(.)
 		return
+
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
 		CRASH("campaign_mission loaded without campaign game mode")
+
 	var/datum/faction_stats/team = current_mode.stat_list[faction]
+	var/mob/user = usr
+	if(user != team.faction_leader)
+		return
+
 	switch(action)
 		if("set_attrition_points")
 			team.total_attrition_points -= params["attrition_points"]
