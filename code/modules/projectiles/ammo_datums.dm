@@ -1203,11 +1203,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "ptrs"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SUNDERING
 	hud_state = "sniper_fire"
-	accurate_range_min = 3
+	accurate_range_min = 4
 	shell_speed = 5
-	damage = 140
+	damage = 120
 	penetration = 60
-	sundering = 50
+	sundering = 35
 
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"
