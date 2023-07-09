@@ -636,7 +636,7 @@
 /area/bigredv2/outside/se)
 "SX" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "Tv" = (
 /obj/item/stack/sheet/wood,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{

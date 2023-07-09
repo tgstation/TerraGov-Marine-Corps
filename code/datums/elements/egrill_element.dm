@@ -7,7 +7,7 @@
 	. = ..()
 	RegisterSignal(target, COMSIG_ATOM_BUMPED, PROC_REF(bumped))
 	RegisterSignal(target, COMSIG_ATOM_ATTACK_HAND, PROC_REF(attack_hand))
-	RegisterSignal(target, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby))
+	RegisterSignal(target, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby))
 	RegisterSignal(target, COMSIG_OBJ_ATTACK_ALIEN, PROC_REF(attack_alien))
 	START_PROCESSING(SSegrill, target)
 
@@ -15,7 +15,7 @@
 	UnregisterSignal(source, list(
 		COMSIG_ATOM_BUMPED,
 		COMSIG_ATOM_ATTACK_HAND,
-		COMSIG_PARENT_ATTACKBY,
+		COMSIG_ATOM_ATTACKBY,
 		COMSIG_OBJ_ATTACK_ALIEN,
 	))
 	STOP_PROCESSING(SSegrill, source)

@@ -104,7 +104,7 @@
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
-			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
+			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
 			/obj/item/weapon/gun/rifle/tx54 = 2,
 			/obj/item/ammo_magazine/rifle/tx54 = 10,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
@@ -325,7 +325,7 @@
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
-			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
+			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
 			/obj/item/explosive/grenade = 600,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
@@ -520,7 +520,7 @@
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
-			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
+			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
 			/obj/item/weapon/gun/rifle/tx54 = -1,
 			/obj/item/ammo_magazine/rifle/tx54 = -1,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = -1,

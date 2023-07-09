@@ -133,7 +133,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "vy" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "vT" = (

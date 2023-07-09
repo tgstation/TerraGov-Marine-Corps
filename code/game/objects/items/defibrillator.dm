@@ -37,7 +37,7 @@
 /obj/item/defibrillator/Destroy()
 	QDEL_NULL(sparks)
 	if(dcell)
-		UnregisterSignal(dcell, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(dcell, COMSIG_QDELETING)
 		QDEL_NULL(dcell)
 	return ..()
 
@@ -113,10 +113,10 @@
 ///Wrapper to guarantee powercells are properly nulled and avoid hard deletes.
 /obj/item/defibrillator/proc/set_dcell(obj/item/cell/new_cell)
 	if(dcell)
-		UnregisterSignal(dcell, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(dcell, COMSIG_QDELETING)
 	dcell = new_cell
 	if(dcell)
-		RegisterSignal(dcell, COMSIG_PARENT_QDELETING, PROC_REF(on_cell_deletion))
+		RegisterSignal(dcell, COMSIG_QDELETING, PROC_REF(on_cell_deletion))
 
 
 ///Called by the deletion of the referenced powercell.
@@ -194,7 +194,7 @@
 	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
 		return
-	
+
 	var/mob/dead/observer/G = H.get_ghost()
 	if(G)
 		G.reenter_corpse()

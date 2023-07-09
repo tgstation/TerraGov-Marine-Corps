@@ -71,7 +71,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(set_goal_node))
 	set_goal_node(null, null, GLOB.goal_nodes[identifier])
-	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, PROC_REF(clean_goal_node))
+	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
 	late_initialize()
 
 ///Set behaviour to base behavior
@@ -104,7 +104,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET)
 	if(goal_node)
-		UnregisterSignal(goal_node, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(goal_node, COMSIG_QDELETING)
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
@@ -182,9 +182,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Set the current node to next_node
 /datum/ai_behavior/proc/set_current_node(obj/effect/ai_node/next_node)
 	if(current_node)
-		UnregisterSignal(current_node, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(current_node, COMSIG_QDELETING)
 	if(next_node)
-		RegisterSignal(current_node, COMSIG_PARENT_QDELETING, PROC_REF(look_for_next_node))
+		RegisterSignal(current_node, COMSIG_QDELETING, PROC_REF(look_for_next_node))
 	current_node = next_node
 
 ///Signal handler when the ai is blocked by an obstacle
@@ -248,10 +248,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(identifier && src.identifier != identifier)
 		return
 	if(goal_node)
-		UnregisterSignal(goal_node, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(goal_node, COMSIG_QDELETING)
 	goal_node = new_goal_node
 	goal_nodes = null
-	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, PROC_REF(clean_goal_node))
+	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
 
 ///Set the escorted atom
 /datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort)
@@ -260,7 +260,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	escorted_atom = atom_to_escort
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 	RegisterSignal(escorted_atom, COMSIG_ESCORTED_ATOM_CHANGING, PROC_REF(set_escorted_atom))
-	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, PROC_REF(clean_escorted_atom))
+	RegisterSignal(escorted_atom, COMSIG_QDELETING, PROC_REF(clean_escorted_atom))
 	RegisterSignal(escorted_atom, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, PROC_REF(set_agressivity))
 	base_action = ESCORTING_ATOM
 	change_action(ESCORTING_ATOM, escorted_atom)
@@ -279,7 +279,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	SIGNAL_HANDLER
 	if(!escorted_atom)
 		return
-	UnregisterSignal(escorted_atom, list(COMSIG_ESCORTED_ATOM_CHANGING ,COMSIG_PARENT_QDELETING, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED))
+	UnregisterSignal(escorted_atom, list(COMSIG_ESCORTED_ATOM_CHANGING ,COMSIG_QDELETING, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED))
 	escorted_atom = null
 	base_action = initial(base_action)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))

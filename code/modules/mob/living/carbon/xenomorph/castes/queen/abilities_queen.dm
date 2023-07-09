@@ -178,7 +178,7 @@
 		target.hud_set_queen_overwatch()
 	watcher.reset_perspective()
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, PROC_REF(on_xeno_death))
-	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(on_xeno_evolution))
+	RegisterSignals(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(on_xeno_evolution))
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	RegisterSignal(watcher, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(on_damage_taken))
 	overwatch_active = TRUE

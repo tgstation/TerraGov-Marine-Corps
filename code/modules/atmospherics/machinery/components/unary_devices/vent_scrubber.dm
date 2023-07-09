@@ -14,8 +14,6 @@
 	level = 1
 	layer = ATMOS_DEVICE_LAYER
 	flags_atom = SHUTTLE_IMMUNE
-
-	var/id_tag = null
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
 
 	var/filter_types = list()///datum/gas/carbon_dioxide)
@@ -24,12 +22,6 @@
 	var/list/turf/adjacent_turfs = list()
 
 	pipe_state = "scrubber"
-
-/obj/machinery/atmospherics/components/unary/vent_scrubber/New()
-	. = ..()
-	if(!id_tag)
-		id_tag = assign_uid_vents()
-
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/auto_use_power()
 	if(!on || welded || !is_operational() || !powered(power_channel))

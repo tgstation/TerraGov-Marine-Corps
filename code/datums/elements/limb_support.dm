@@ -10,7 +10,7 @@
 		limbs_to_support = limbflags
 
 	RegisterSignal(target, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
-	RegisterSignal(target, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
+	RegisterSignals(target, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
 
 /datum/element/limb_support/proc/equipped(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER

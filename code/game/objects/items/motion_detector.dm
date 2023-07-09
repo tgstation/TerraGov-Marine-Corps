@@ -73,8 +73,8 @@
 		clean_operator()
 		return
 	operator = user
-	RegisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET), PROC_REF(clean_operator))
-	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY), PROC_REF(clean_operator))
+	RegisterSignals(operator, list(COMSIG_QDELETING, COMSIG_GUN_USER_UNSET), PROC_REF(clean_operator))
+	RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY), PROC_REF(clean_operator))
 	UnregisterSignal(operator, COMSIG_GUN_USER_SET)
 	START_PROCESSING(SSobj, src)
 	update_icon()
@@ -120,7 +120,7 @@
 	if(operator)
 		if(!QDELETED(operator))
 			RegisterSignal(operator, COMSIG_GUN_USER_SET, PROC_REF(start_processing_again))
-		UnregisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET))
+		UnregisterSignal(operator, list(COMSIG_QDELETING, COMSIG_GUN_USER_UNSET))
 		UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY))
 		operator = null
 	update_icon()

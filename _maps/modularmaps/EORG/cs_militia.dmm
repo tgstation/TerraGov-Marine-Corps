@@ -39,7 +39,7 @@
 	},
 /area/deathmatch)
 "dg" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "ds" = (

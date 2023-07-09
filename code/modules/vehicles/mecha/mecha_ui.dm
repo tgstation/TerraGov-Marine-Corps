@@ -298,7 +298,7 @@
 				to_chat(occupants, "[icon2html(src, occupants)][span_warning("Unable to disconnect from the air system port!")]")
 				return
 			var/obj/machinery/atmospherics/components/unary/portables_connector/possible_port = locate() in loc
-			if(internal_tank.connect(possible_port))
+			if(internal_tank.connect(new_port = possible_port))
 				to_chat(occupants, "[icon2html(src, occupants)][span_notice("Connected to the air system port.")]")
 				log_message("Connected to gas port.", LOG_MECHA)
 				return TRUE
