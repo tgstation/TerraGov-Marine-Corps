@@ -13,12 +13,6 @@
 	pixel_x = -16
 	old_x = -16
 
-/// We do this to avoid a runtime with images assoc because baneling goes inside of their pod if they have one and there is no atom.z value inside of the pod
-/mob/living/carbon/xenomorph/baneling/on_death()
-	if(!isnull(pod_ref))
-		return
-	return ..()
-
 /obj/structure/xeno/baneling_pod
 	name = "Baneling Pod"
 	desc = "A baneling pod, storing fresh banelings "
@@ -26,23 +20,17 @@
 	icon_state = "Baneling Pod"
 	density = FALSE
 	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
-	/// Maximum amount of stored charge
-	var/stored_charge_max = 2
 	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
 	var/stored_charge = 0
-	/// How long until we get another charge
-	var/charge_refresh_time = 180 SECONDS
-	/// Time to respawn if we have charges
-	var/respawn_time = 30 SECONDS
 	/// Ref to our baneling
 	var/mob/living/carbon/xenomorph/xeno_ref
 
-/obj/structure/xeno/baneling_pod/New(loc, mob/M)
+/obj/structure/xeno/baneling_pod/Initialize(mapload, _hivenumber, var/mob/living/carbon/xenomorph/xeno)
 	. = ..()
-	xeno_ref = M
+	xeno_ref = xeno
 	RegisterSignal(xeno_ref, COMSIG_MOB_DEATH, PROC_REF(handle_baneling_death))
 	RegisterSignal(xeno_ref, COMSIG_PARENT_QDELETING, PROC_REF(obj_destruction))
-	addtimer(CALLBACK(src, PROC_REF(increase_charge)),charge_refresh_time)
+	addtimer(CALLBACK(src, PROC_REF(increase_charge)), BANELING_CHARGE_GAIN_TIME)
 
 /obj/structure/xeno/baneling_pod/obj_destruction()
 	if(isnull(xeno_ref))
@@ -60,21 +48,21 @@
 	xeno_ref.forceMove(src)
 	if(stored_charge >= 1)
 		stored_charge--
-		addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time)
-		addtimer(CALLBACK(src, PROC_REF(increase_charge)), charge_refresh_time)
-		to_chat(xeno_ref.client, span_xenohighdanger("You will respawn in [respawn_time/10] seconds"))
+		addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), BANELING_CHARGE_RESPAWN_TIME)
+		addtimer(CALLBACK(src, PROC_REF(increase_charge)), BANELING_CHARGE_GAIN_TIME)
+		to_chat(xeno_ref.client, span_xenohighdanger("You will respawn in [BANELING_CHARGE_RESPAWN_TIME/10] seconds"))
 		return
 	/// The respawn takes 4 times longer than consuming a charge would
-	to_chat(xeno_ref.client, "You will respawn in [(respawn_time*4)/10] SECONDS")
-	addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), respawn_time*4)
+	to_chat(xeno_ref.client, "You will respawn in [(BANELING_CHARGE_RESPAWN_TIME*4)/10] SECONDS")
+	addtimer(CALLBACK(src, PROC_REF(spawn_baneling)), BANELING_CHARGE_RESPAWN_TIME*4)
 
 /// Increase our current charge
 /obj/structure/xeno/baneling_pod/proc/increase_charge()
-	if(stored_charge >= stored_charge_max)
+	if(stored_charge >= BANELING_CHARGE_MAX)
 		return
 	stored_charge++
-	if(stored_charge != stored_charge_max)
-		addtimer(CALLBACK(src, PROC_REF(increase_charge)), charge_refresh_time)
+	if(stored_charge != BANELING_CHARGE_MAX)
+		addtimer(CALLBACK(src, PROC_REF(increase_charge)), BANELING_CHARGE_GAIN_TIME)
 
 /// Rejuvinates and respawns the baneling
 /obj/structure/xeno/baneling_pod/proc/spawn_baneling()
