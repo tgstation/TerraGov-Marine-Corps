@@ -146,9 +146,6 @@
 	if(!(candidate.faction in factions))
 		return FALSE
 
-	if(stat_list[candidate.faction].active_attrition_points <= 0)
-		return FALSE
-
 	if(!candidate?.client)
 		return FALSE
 
@@ -258,6 +255,8 @@
 	if(job.faction != faction)
 		return FALSE
 	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
+		return FALSE
+	if(job.job_cost > stat_list[faction].active_attrition_points)
 		return FALSE
 	if(is_banned_from(candidate.ckey, job.title))
 		return FALSE
