@@ -60,3 +60,10 @@
 	pixel_y = -14
 	coverage = 75
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+
+/obj/machinery/cic_maptable/big/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
