@@ -14703,7 +14703,7 @@
 	},
 /area/mainship/hallways/hangar)
 "sPA" = (
-/obj/machinery/cic_maptable/big,
+/obj/machinery/cic_maptable_big,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "sQz" = (

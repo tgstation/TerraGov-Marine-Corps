@@ -5987,6 +5987,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "rG" = (
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/green{
 	dir = 9
 	},
@@ -8523,7 +8524,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
 "yR" = (
-/obj/machinery/cic_maptable/big,
+/obj/machinery/cic_maptable_big,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -13999,6 +14000,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "OY" = (
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/green{
 	dir = 5
 	},

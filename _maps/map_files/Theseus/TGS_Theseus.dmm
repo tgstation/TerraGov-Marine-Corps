@@ -9260,8 +9260,7 @@
 /area/mainship/hallways/hangar)
 "fej" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 1;
-	
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/mainship/hull/port_hull)
@@ -13929,7 +13928,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
 "mLa" = (
-/obj/machinery/cic_maptable/big,
+/obj/machinery/cic_maptable_big,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "mLz" = (
@@ -19687,6 +19686,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "wyq" = (
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -20273,8 +20273,7 @@
 /area/mainship/hull/port_hull)
 "xDI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 1;
-	
+	dir = 1
 	},
 /turf/open/floor/engine/nitrogen,
 /area/mainship/hull/port_hull)
