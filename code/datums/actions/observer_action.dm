@@ -30,16 +30,6 @@
 		return FALSE
 	check_hive_status(usr)
 
-/datum/action/observer_action/campaign_respawn
-	name = "Respawn"
-	action_icon_state = "larva_queue"
-
-/datum/action/observer_action/campaign_respawn/action_activate()
-	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
-	if(!istype(mode))
-		return
-	mode.attempt_attrition_respawn(owner)
-
 /datum/action/observer_action/join_larva_queue
 	name = "Join Larva Queue"
 	action_icon_state = "larva_queue"
@@ -107,3 +97,19 @@
 		return
 	var/mob/living/carbon/human/H = new_mob
 	H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
+
+//respawn button for campaign gamemode
+/datum/action/observer_action/campaign_respawn
+	name = "Respawn"
+	action_icon_state = "respawn"
+
+/datum/action/observer_action/campaign_respawn/give_action(mob/M)
+	if(!istype(SSticker.mode, /datum/game_mode/hvh/campaign))
+		return
+	return ..()
+
+/datum/action/observer_action/campaign_respawn/action_activate()
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	if(!istype(mode))
+		return
+	mode.attempt_attrition_respawn(owner)
