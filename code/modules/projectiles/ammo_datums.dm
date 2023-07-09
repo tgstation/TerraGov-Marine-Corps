@@ -427,6 +427,29 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 15
 	sundering = 2
 
+/datum/ammo/bullet/pistol/frag
+	name = "frag pistol bullet"
+	hud_state = "pistol_ap"
+	damage = 30
+	penetration = 12.5
+	shrapnel_chance = 15
+	sundering = 2
+	bonus_projectiles_type = /datum/ammo/bullet/frag_spread
+	bonus_projectiles_scatter = 20
+	var/bonus_projectile_quantity = 4
+
+/datum/ammo/bullet/pistol/frag/on_hit_mob(mob/M, obj/projectile/proj)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, M) )
+
+/datum/ammo/bullet/pistol/frag/do_at_max_range(turf/T, obj/projectile/proj)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
+
+/datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, O) )
+
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
 	hud_state = "pistol_heavy"
@@ -1508,6 +1531,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T.density ? P.loc : T)
 
 //The secondary projectiles
+/datum/ammo/bullet/frag_spread
+	name = "Shrapnel"
+	icon_state = "buckshot"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	accuracy_var_low = 5
+	accuracy_var_high = 5
+	max_range = 4
+	damage = 5
+	penetration = 20
+	sundering = 2
+	damage_falloff = 0
+
 /datum/ammo/bullet/tx54_spread
 	name = "Shrapnel"
 	icon_state = "flechette"

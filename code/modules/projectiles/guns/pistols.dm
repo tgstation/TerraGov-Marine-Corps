@@ -733,7 +733,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "sp13"
 	item_state = "sp13"
 	caliber = CALIBER_9X19 //codex
-	max_shells = 30 //codex
+	max_shells = 15 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
@@ -742,11 +742,15 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/flashlight,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_IFF
@@ -758,10 +762,10 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 	aim_slowdown = 0.2
 	wield_delay = 0.4 SECONDS
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.3 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.85
 	scatter = 3
-	scatter_unwielded = 7
+	scatter_unwielded = 5
 	recoil = -2
-	recoil_unwielded = 2
+	recoil_unwielded = 1

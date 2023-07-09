@@ -242,9 +242,9 @@
 
 //SP-13 (Calico)
 /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
-	name = "\improper SP-13 magazine (9mm AP)"
+	name = "\improper SP-13 magazine (9mm)"
 	caliber = CALIBER_9X19
 	icon_state = "tx13"
-	max_rounds = 30
+	max_rounds = 15
 	w_class = WEIGHT_CLASS_SMALL
-	default_ammo = /datum/ammo/bullet/pistol/ap
+	default_ammo = /datum/ammo/bullet/pistol/frag
