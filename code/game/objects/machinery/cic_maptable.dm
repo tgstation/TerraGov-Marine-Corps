@@ -119,8 +119,6 @@
 		map = SSminimaps.fetch_minimap_object(editing_z, minimap_flag)
 	user.client.screen += map
 	user.client.screen += drawing_tools
-	if(isobserver(user))
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
 ///Handles closing the map, including removing all on-screen indicators and similar
 /obj/machinery/cic_maptable_big/on_unset_interaction(mob/user)
@@ -130,13 +128,3 @@
 	user.client.mouse_pointer_icon = null
 	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
 		tool.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP))
-
-//Bugfix to handle cases for ghosts/observers that dont automatically close uis on move.
-/obj/machinery/cic_maptable_big/proc/on_move(mob/dead/observer/source, oldloc)
-	SIGNAL_HANDLER
-	if(!istype(source))
-		CRASH("on_move called by non observer")
-	if(Adjacent(source))
-		return
-	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
-	source.unset_interaction()
