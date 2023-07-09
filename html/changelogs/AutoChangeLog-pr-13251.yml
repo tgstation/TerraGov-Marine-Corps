@@ -1,6 +1,0 @@
-author: "Sebbe9123"
-delete-after: True
-changes:
-  - rscadd: "Robots now get cloneloss the same as marines"
-  - rscadd: "Robotic cradle. A shipside machine that fully restores a robot."
-  - balance: "Robots can now be health analyzed."

@@ -122,3 +122,23 @@
   - bugfix: Fixed table fort incorrectly being located deep underground
   novaepee:
   - rscadd: You can get more money from req
+2023-07-09:
+  Arturlang:
+  - bugfix: Marines will no longer survive nuke by the sheer strength of their unga.
+  Lumipharon:
+  - qol: Slowdown stacks now have their own hud icon instead of using the stagger
+      icon
+  - balance: reduced sunder of HVAP and IFF railgun rounds
+  - balance: railgun must be fully wielded to fire
+  - balance: Made throwing perform more accurately in diagonal directions
+  Pariah919:
+  - balance: You can now fire combat shotguns one handed again.
+  Sebbe9123:
+  - rscadd: Robots now get cloneloss the same as marines
+  - rscadd: Robotic cradle. A shipside machine that fully restores a robot.
+  - balance: Robots can now be health analyzed.
+  ivanmixo:
+  - rscadd: Canisters, portapumps and scrubbers can be wrenched down to ports now
+  - bugfix: Space heaters actually heat you up if you stand near them now
+  - rscdel: Removed air alarm functionality and the frame, it is purely cosmetic now
+  - code_imp: Removed a bunch of unused variables from various atmospheric machinery

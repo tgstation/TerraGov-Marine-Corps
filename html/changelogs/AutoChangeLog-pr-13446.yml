@@ -1,7 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscadd: "Canisters, portapumps and scrubbers can be wrenched down to ports now"
-  - bugfix: "Space heaters actually heat you up if you stand near them now"
-  - rscdel: "Removed air alarm functionality and the frame, it is purely cosmetic now"
-  - code_imp: "Removed a bunch of unused variables from various atmospheric machinery"
