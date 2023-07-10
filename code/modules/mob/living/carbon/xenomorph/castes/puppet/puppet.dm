@@ -15,7 +15,7 @@
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -1
-	flags_pass = PASSXENO
+	allow_pass_flags = PASS_XENO
 	///pheromone list we arent allowed to receive
 	var/list/illegal_pheromones = list(AURA_XENO_RECOVERY, AURA_XENO_WARDING, AURA_XENO_FRENZY)
 	///our master
