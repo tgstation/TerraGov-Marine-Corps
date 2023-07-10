@@ -777,7 +777,7 @@
 /datum/reagent/medicine/quickclotplus/on_mob_delete(mob/living/L, metabolism)
 	if(target_IB)
 		to_chat(L, span_warning("The searing pain in your [target_IB.parent_limb.display_name] returns to a dull ache..."))
-		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(target_IB, COMSIG_QDELETING)
 		target_IB = null
 
 /datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism)
@@ -792,7 +792,7 @@
 	if(!ticks_left)
 		to_chat(L, span_alert("The searing pain in your [target_IB.parent_limb.display_name] peaks, then slowly fades away entirely."))
 		target_IB.parent_limb.createwound(CUT, target_IB.damage / 2)
-		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(target_IB, COMSIG_QDELETING)
 		QDEL_NULL(target_IB)
 		L.adjustCloneLoss(5*effect_str)
 	return ..()
@@ -807,7 +807,7 @@
 	for(var/datum/limb/possible_limb AS in body.limbs)
 		for(var/datum/wound/internal_bleeding/possible_IB in possible_limb.wounds)
 			target_IB = possible_IB
-			RegisterSignal(target_IB, COMSIG_PARENT_QDELETING, PROC_REF(clear_wound))
+			RegisterSignal(target_IB, COMSIG_QDELETING, PROC_REF(clear_wound))
 			break
 		if(target_IB)
 			break
@@ -819,7 +819,7 @@
 /datum/reagent/medicine/quickclotplus/proc/clear_wound(atom/target)
 	SIGNAL_HANDLER
 	if(target_IB)
-		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(target_IB, COMSIG_QDELETING)
 		target_IB = null
 
 

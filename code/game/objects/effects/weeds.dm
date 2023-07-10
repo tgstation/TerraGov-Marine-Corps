@@ -113,9 +113,9 @@
 ///Set the parent_node to node
 /obj/alien/weeds/proc/set_parent_node(atom/node)
 	if(parent_node)
-		UnregisterSignal(parent_node, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(parent_node, COMSIG_QDELETING)
 	parent_node = node
-	RegisterSignal(parent_node, COMSIG_PARENT_QDELETING, PROC_REF(clean_parent_node))
+	RegisterSignal(parent_node, COMSIG_QDELETING, PROC_REF(clean_parent_node))
 
 ///Clean the parent node var
 /obj/alien/weeds/proc/clean_parent_node()
@@ -159,7 +159,7 @@
 	if(!ishuman(crosser))
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(crosser.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))
 		return
 
 	var/mob/living/carbon/human/victim = crosser
@@ -323,7 +323,7 @@
 	if(!ishuman(crosser))
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(crosser.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))
 		return
 
 	var/mob/living/carbon/human/victim = crosser

@@ -17,6 +17,8 @@
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
+	allow_pass_flags = PASS_GLASS|PASS_AIR
+	flags_atom = ON_BORDER
 
 	var/obj/item/circuitboard/airlock/electronics = null
 
@@ -46,24 +48,6 @@
 
 /obj/structure/windoor_assembly/update_icon_state()
 	icon_state = "[facing]_[secure]windoor_assembly[state]"
-
-/obj/structure/windoor_assembly/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-
-	if(get_dir(loc, target) & dir) //Make sure looking at appropriate border
-		return FALSE
-
-/obj/structure/windoor_assembly/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
-
 
 /obj/structure/windoor_assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()

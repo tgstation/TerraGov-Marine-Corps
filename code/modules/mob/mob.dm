@@ -320,6 +320,11 @@
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE, override_nodrop = FALSE)
 	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent, override_nodrop)
 
+/// Tries to equip an item to the slot provided, otherwise tries to put it in hands, if hands are full the item is deleted
+/mob/proc/equip_to_slot_or_hand(obj/item/W, slot, permanent = FALSE, override_nodrop = FALSE)
+	if(!equip_to_slot_if_possible(W, slot, TRUE, FALSE, FALSE, FALSE, permanent, override_nodrop))
+		put_in_any_hand_if_possible(W, TRUE, FALSE)
+
 ///Attempts to store an item in a valid location based on SLOT_EQUIP_ORDER
 /mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE)
 	if(!istype(W))

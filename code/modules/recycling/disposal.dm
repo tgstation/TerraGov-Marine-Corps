@@ -15,6 +15,7 @@
 	density = TRUE
 	active_power_usage = 3500 //The pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	var/mode = 1 //Item mode 0=off 1=charging 2=charged
 	var/flush = 0 //True if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null //The attached pipe trunk
@@ -52,11 +53,11 @@
 ///Set the trunk of the disposal
 /obj/machinery/disposal/proc/set_trunk(obj/future_trunk)
 	if(trunk)
-		UnregisterSignal(trunk, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(trunk, COMSIG_QDELETING)
 	trunk = null
 	if(future_trunk)
 		trunk = future_trunk
-		RegisterSignal(trunk, COMSIG_PARENT_QDELETING, PROC_REF(clean_trunk))
+		RegisterSignal(trunk, COMSIG_QDELETING, PROC_REF(clean_trunk))
 
 ///Signal handler to clean trunk to prevent harddel
 /obj/machinery/disposal/proc/clean_trunk()
@@ -410,7 +411,6 @@
 		qdel(H)
 
 /obj/machinery/disposal/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover, /obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(75))
@@ -418,7 +418,7 @@
 			visible_message(span_notice("[I] lands into [src]."))
 		else
 			visible_message(span_warning("[I] bounces off of [src]'s rim!"))
-		return 0
+		return FALSE
 	else
 		return ..()
 
@@ -1165,11 +1165,11 @@
 ///Set the linked atom
 /obj/structure/disposalpipe/trunk/proc/set_linked(obj/to_link)
 	if(linked)
-		UnregisterSignal(linked, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(linked, COMSIG_QDELETING)
 	linked = null
 	if(to_link)
 		linked = to_link
-		RegisterSignal(linked, COMSIG_PARENT_QDELETING, PROC_REF(clean_linked))
+		RegisterSignal(linked, COMSIG_QDELETING, PROC_REF(clean_linked))
 
 ///Signal handler to clean linked from harddeling
 /obj/structure/disposalpipe/trunk/proc/clean_linked()

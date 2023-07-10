@@ -36,7 +36,7 @@
 
 	carbon_mob.internal_organs |= src
 	owner = carbon_mob
-	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_owner))
+	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(clean_owner))
 
 	if(!ishuman(carbon_mob))
 		return

@@ -1150,13 +1150,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "crude heavy sniper bullet"
 	hud_state = "sniper_crude"
 	handful_amount = 5
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	damage = 120
 	penetration = 20
-	sundering = 10
+	accurate_range_min = 0
+	///shatter effection duration when hitting mobs
+	var/shatter_duration = 10 SECONDS
 
-/datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5)
+/datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
@@ -1362,7 +1368,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 21
 	damage = 100
 	penetration = 30
-	sundering = 100
+	sundering = 50
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 2, knockback = 3)
@@ -1371,9 +1377,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "smart armor piercing railgun slug"
 	hud_state = "railgun_smart"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
-	damage = 75
+	damage = 100
 	penetration = 20
-	sundering = 50
+	sundering = 20
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 3, slowdown = 3)
@@ -3806,7 +3812,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
-	if(T.density || (O.density && !(O.flags_pass & PASSPROJECTILE)))
+	if(T.density || (O.density && !(O.allow_pass_flags & PASS_PROJECTILE)))
 		T = get_turf(proj)
 	drop_leashball(T.density ? proj.loc : T, proj.firer)
 
@@ -4018,3 +4024,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 1
 	max_range = 21
 	nade_type = /obj/item/explosive/grenade/ags
+
+/datum/ammo/grenade_container/ags_grenade/flare
+	hud_state = "grenade_dummy"
+	nade_type = /obj/item/explosive/grenade/flare
+
+/datum/ammo/grenade_container/ags_grenade/cloak
+	hud_state = "grenade_hide"
+	nade_type = /obj/item/explosive/grenade/smokebomb/cloak/ags
+
+/datum/ammo/grenade_container/ags_grenade/tanglefoot
+	hud_state = "grenade_drain"
+	nade_type = /obj/item/explosive/grenade/smokebomb/drain/agls

@@ -86,7 +86,6 @@
 	var/list/inherent_traits = list()
 	var/species_flags = NONE       // Various specific features.
 
-	var/list/abilities = list()	// For species-derived or admin-given powers
 	var/list/preferences = list()
 	var/list/screams = list()
 	var/list/paincries = list()
@@ -107,6 +106,8 @@
 
 	/// inherent Species-specific verbs.
 	var/list/inherent_verbs
+	/// inherent species-specific actions
+	var/list/inherent_actions
 	var/list/has_organ = list(
 		"heart" = /datum/internal_organ/heart,
 		"lungs" = /datum/internal_organ/lungs,
@@ -245,20 +246,30 @@
 	for(var/oldtrait in inherent_traits)
 		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
 
-/datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
+/// Removes all species-specific verbs and actions
+/datum/species/proc/remove_inherent_abilities(mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			H.verbs -= verb_path
+	if(inherent_actions)
+		for(var/action_path in inherent_actions)
+			var/datum/action/old_species_action = H.actions_by_path[action_path]
+			qdel(old_species_action)
 	return
 
-/datum/species/proc/add_inherent_verbs(mob/living/carbon/human/H)
+/// Adds all species-specific verbs and actions
+/datum/species/proc/add_inherent_abilities(mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			H.verbs |= verb_path
+	if(inherent_actions)
+		for(var/action_path in inherent_actions)
+			var/datum/action/new_species_action = new action_path(H)
+			new_species_action.give_action(H)
 	return
 
 /datum/species/proc/handle_post_spawn(mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
-	add_inherent_verbs(H)
+	add_inherent_abilities(H)
 
 /datum/species/proc/handle_death(mob/living/carbon/human/H) //Handles any species-specific death events.
 
@@ -417,7 +428,7 @@
 	body_temperature = 350
 
 	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB)
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
+	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
 		SLOT_W_UNIFORM,
@@ -441,22 +452,19 @@
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
+	inherent_actions = list(/datum/action/repair_self)
+
 /datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
 	H.voice_filter = "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=1,rubberband=pitch=0.8"
 	H.health_threshold_crit = -100
-	var/datum/action/repair_self/repair_action = new()
-	repair_action.give_action(H)
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
 	H.voice_filter = initial(H.voice_filter)
 	H.health_threshold_crit = -50
-	var/datum/action/repair_self/repair_action = H.actions_by_path[/datum/action/repair_self]
-	repair_action.remove_action(H)
-	qdel(repair_action)
 
 /datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health <= 0 && H.health > -50)
@@ -557,7 +565,6 @@
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
-
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
@@ -610,7 +617,6 @@
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
-
 /datum/species/early_synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
@@ -659,7 +665,7 @@
 
 /datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.flags_pass |= PASSTABLE
+	H.allow_pass_flags |= PASS_LOW_STRUCTURE
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))

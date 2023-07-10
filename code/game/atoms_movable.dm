@@ -25,6 +25,8 @@
 
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH|CANUNCONSCIOUS|CANCONFUSE	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 	var/generic_canpass = TRUE
+	///What things this atom can move past, if it has the corrosponding flag
+	var/pass_flags = NONE
 	///TRUE if we should not push or shuffle on bump/enter
 	var/moving_diagonally = FALSE
 
@@ -482,13 +484,13 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if((!L.density || (L.flags_pass & PASSPROJECTILE)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
+			if((!L.density || (L.pass_flags & PASS_PROJECTILE)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
 				continue
 			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
 				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
 				return A
 			throw_impact(A, speed)
-		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.flags_pass & PASSPROJECTILE) || iscarbon(src)) && !flying)
+		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.allow_pass_flags & PASS_PROJECTILE) || iscarbon(src)) && !flying)
 			throw_impact(A, speed)
 
 
@@ -499,6 +501,8 @@
 
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW) & COMPONENT_MOVABLE_BLOCK_PRE_THROW)
 		return FALSE
+
+	var/turf/origin = get_turf(src)
 
 	if(spin)
 		animation_spin(5, 1)
@@ -529,11 +533,14 @@
 		dy = NORTH
 	else
 		dy = SOUTH
-	var/dist_travelled = 0
+
 	var/dist_since_sleep = 0
+
+	//while(get_dist_euclide_square(origin, src) < range)
+
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
+		while(!gc_destroyed && target &&((get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
@@ -545,7 +552,6 @@
 					parrier = hit_check_return
 					break
 				error += dist_x
-				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
@@ -560,14 +566,13 @@
 					parrier = hit_check_return
 					break
 				error -= dist_y
-				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
 					sleep(0.1 SECONDS)
 	else
 		var/error = dist_y/2 - dist_x
-		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
+		while(!gc_destroyed && target &&((get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
@@ -579,7 +584,6 @@
 					parrier = hit_check_return
 					break
 				error += dist_y
-				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
@@ -594,7 +598,6 @@
 					parrier = hit_check_return
 					break
 				error -= dist_x
-				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
@@ -1079,9 +1082,9 @@
 
 /atom/movable/proc/set_flying(flying)
 	if (flying)
-		ENABLE_BITFIELD(flags_pass, HOVERING)
+		ENABLE_BITFIELD(pass_flags, HOVERING)
 		return
-	DISABLE_BITFIELD(flags_pass, HOVERING)
+	DISABLE_BITFIELD(pass_flags, HOVERING)
 
 ///returns bool for if we want to get forcepushed
 /atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)

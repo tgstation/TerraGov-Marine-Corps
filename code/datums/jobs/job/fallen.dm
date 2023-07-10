@@ -1,5 +1,5 @@
 /datum/job/fallen/after_spawn(mob/living/new_mob, mob/M, latejoin)
-	RegisterSignal(new_mob, list(COMSIG_MOB_DEATH, COMSIG_MOB_LOGOUT), PROC_REF(delete_mob))
+	RegisterSignals(new_mob, list(COMSIG_MOB_DEATH, COMSIG_MOB_LOGOUT), PROC_REF(delete_mob))
 	to_chat(new_mob, span_danger("This is a place for everyone to experiment and RP. Standard rules applies here. Do not blow up the vendors, do not grief,\
 	do not try to lag the server with explosions. Alternatively, don't fill the xeno asteroid with walls or other structures."))
 
@@ -25,6 +25,8 @@
 ///Delete the mob when you log out or when it's dead
 /datum/job/fallen/proc/delete_mob(mob/living/source)
 	SIGNAL_HANDLER
+	if(QDELING(source))
+		return
 	source.visible_message(span_danger("[source] suddenly disappears!"))
 	qdel(source)
 

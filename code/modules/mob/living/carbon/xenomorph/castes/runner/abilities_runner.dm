@@ -176,18 +176,18 @@
 	succeed_activate()
 	add_cooldown()
 	X.usedPounce = TRUE // this is needed for throwing code
-	X.flags_pass = PASSTABLE|PASSFIRE
+	X.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
-	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_flags_pass)), 6)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_allow_pass_flags)), 6)
 
 	return TRUE
 
-/mob/living/carbon/xenomorph/proc/reset_flags_pass()
+/mob/living/carbon/xenomorph/proc/reset_allow_pass_flags()
 	if(!xeno_caste.hardcore)
-		flags_pass = initial(flags_pass) //Reset the passtable.
+		pass_flags = initial(pass_flags) //Reset the PASS_LOW_STRUCTURE.
 	else
-		flags_pass = NONE //Reset the passtable.
+		pass_flags = NONE //Reset the PASS_LOW_STRUCTURE.
 
 	//AI stuff
 /datum/action/xeno_action/activable/pounce/ai_should_start_consider()
@@ -250,7 +250,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(evasion_deactivate)), RUNNER_EVASION_DURATION)
 
-	RegisterSignal(R, list(COMSIG_LIVING_STATUS_STUN,
+	RegisterSignals(R, list(COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
 		COMSIG_LIVING_STATUS_PARALYZE,
 		COMSIG_LIVING_STATUS_IMMOBILIZE,

@@ -12,7 +12,7 @@
 	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER
-	flags_pass = PASSLASER
+	allow_pass_flags = PASS_GLASS
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
 
@@ -22,7 +22,6 @@
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	max_integrity = 100
-
 
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
@@ -38,13 +37,6 @@
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
-/obj/machinery/door/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/moveblockers)
-	SIGNAL_HANDLER
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	moveblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
@@ -85,13 +77,6 @@
 		open_and_close()
 	else
 		do_animate("deny")
-
-/obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-	if(get_dir(loc, target) & dir) //Make sure looking at appropriate border
-		return ..()
-	return TRUE
 
 /obj/machinery/door/window/open(forced = DOOR_NOT_FORCED)
 	if(operating)

@@ -188,7 +188,7 @@
 /obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	if(named)
-		name = "[named] laser"
+		name = "\improper[named] at [get_area_name(src)]"
 	target_id = UNIQUEID //giving it a unique id.
 	squad = assigned_squad
 	if(squad)

@@ -19,7 +19,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "cn" = (
@@ -96,7 +96,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "gi" = (
@@ -107,7 +107,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "iF" = (
@@ -118,7 +118,7 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "iN" = (
@@ -150,7 +150,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "lX" = (
@@ -162,7 +162,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "mV" = (
@@ -230,7 +230,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "tr" = (
@@ -363,7 +363,7 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "DR" = (
@@ -466,7 +466,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "LL" = (
@@ -527,7 +527,7 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "QR" = (
@@ -594,7 +594,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "Wh" = (
@@ -610,7 +610,7 @@
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/hydroponics/aux)
 "WZ" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -620,7 +620,7 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "YC" = (
