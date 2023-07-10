@@ -16,7 +16,6 @@
 "aY" = (/obj/structure/largecrate/random/barrel/red,/turf/open/floor/tile/dark/yellow2{dir = 8},/area/lv624/lazarus/quartstorage)
 "aZ" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/tile/green/whitegreenfull,/area/bigredv2/outside/medical)
 "bc" = (/obj/structure/bed/chair{dir = 4},/turf/open/floor/tile/dark,/area/space)
-"bf" = (/turf/open/floor/tile/blue/taupeblue{dir = 4},/area/space)
 "bh" = (/obj/structure/table,/obj/machinery/microwave,/turf/open/floor/tile/white,/area/lv624/lazarus/main_hall)
 "bj" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/obj/structure/flora/ausbushes/fullgrass,/turf/open/ground/grass/weedable,/area/lv624/lazarus/main_hall)
 "bk" = (/obj/structure/flora/ausbushes/grassybush{pixel_x = -4; pixel_y = -10},/turf/open/ground/grass/weedable,/area/space)
@@ -131,7 +130,7 @@
 "hS" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/tile/red/whitered{dir = 1},/area/bigredv2/outside/medical)
 "hT" = (/obj/machinery/landinglight/ds1{dir = 4},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "hW" = (/obj/machinery/door/airlock/mainship/research/free_access{dir = 1; name = "\improper Eta Lab Decontamination"},/turf/open/floor/tile/dark,/area/space)
-"hY" = (/turf/open/floor/tile/blue/taupeblue{dir = 9},/area/space)
+"hY" = (/obj/structure/closet/secure_closet/engineering_welding,/turf/open/floor,/area/space)
 "hZ" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor,/area/lv624/lazarus/kitchen)
 "ia" = (/obj/structure/table/reinforced,/obj/machinery/computer/med_data/laptop,/turf/open/floor/tile/green/whitegreenfull,/area/bigredv2/outside/medical)
 "ib" = (/obj/machinery/robotic_fabricator,/turf/open/floor/mainship/orange/full,/area/space)
@@ -240,7 +239,6 @@
 "nV" = (/obj/structure/flora/pottedplant/two,/turf/open/floor/tile/purple/whitepurple{dir = 9},/area/bigredv2/outside/medical)
 "nX" = (/turf/open/floor/tile/darkgreen/darkgreen2{dir = 1},/area/space)
 "oa" = (/obj/structure/rack,/obj/effect/spawner/random/weaponry/gun/shotgun,/obj/item/ammo_magazine/shotgun/buckshot,/obj/item/ammo_magazine/shotgun/buckshot,/turf/open/floor/tile/red/full,/area/space)
-"oh" = (/turf/open/floor/tile/blue/taupeblue{dir = 1},/area/space)
 "oj" = (/turf/open/floor/tile/blue/whitebluefull,/area/space)
 "ok" = (/obj/effect/attach_point/weapon/dropship1,/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "oo" = (/obj/structure/fence,/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,/area/space)
@@ -356,7 +354,6 @@
 "vs" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/tile/red/whitered/full,/area/bigredv2/outside/medical)
 "vt" = (/turf/closed/wall/r_wall,/area/lv624/lazarus/spaceport{name = "\improper Northern Space Port"})
 "vu" = (/turf/open/floor,/area/space)
-"vw" = (/turf/open/floor/tile/blue/taupeblue{dir = 8},/area/space)
 "vx" = (/obj/machinery/atmospherics/components/unary/thermomachine/freezer,/turf/open/floor/tile/white,/area/bigredv2/outside/medical)
 "vy" = (/turf/open/floor/tile/dark/yellow2{dir = 6},/area/space)
 "vA" = (/obj/structure/cable,/obj/machinery/power/apc/drained{dir = 1},/turf/open/floor/plating,/area/lv624/lazarus/quartstorage)
@@ -475,7 +472,6 @@
 "CE" = (/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "CM" = (/obj/item/paper,/obj/item/tool/pen/red,/obj/structure/table/flipped,/turf/open/floor/tile/blue/whitebluefull,/area/bigredv2/outside/medical)
 "CO" = (/turf/open/floor/tile/dark/blue2{dir = 9},/area/space)
-"CQ" = (/turf/open/floor/tile/blue/taupeblue{dir = 6},/area/space)
 "CR" = (/turf/open/floor/tile/red/whitered{dir = 10},/area/bigredv2/outside/medical)
 "CS" = (/obj/structure/bed/chair/office/dark{dir = 8},/turf/open/floor/tile/white,/area/bigredv2/outside/general_offices)
 "CT" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/tile/red/whitered{dir = 8},/area/bigredv2/outside/medical)
@@ -514,7 +510,6 @@
 "EY" = (/turf/open/floor/plating,/area/lv624/lazarus/quartstorage)
 "Fa" = (/turf/open/floor/tile/dark2,/area/space)
 "Fc" = (/obj/effect/spawner/random/misc/structure/supplycrate,/turf/open/floor/tile/brown/full,/area/space)
-"Fe" = (/turf/open/floor/tile/blue/taupeblue{dir = 5},/area/space)
 "Fj" = (/obj/effect/spawner/random/machinery/dead_ai,/turf/open/floor/bcircuit/anim,/area/space)
 "Fq" = (/obj/structure/bed/chair{dir = 8},/turf/open/floor/grayscale/black,/area/lv624/lazarus/kitchen)
 "Fv" = (/obj/structure/flora/ausbushes/ywflowers,/turf/open/ground/grass/weedable,/area/lv624/lazarus/main_hall)
@@ -537,7 +532,6 @@
 "Gu" = (/turf/closed/wall,/turf/open/ground/grass/weedable,/area/space)
 "Gx" = (/obj/mecha_wreckage/seraph,/turf/open/floor/tile/dark/yellow2{dir = 1},/area/space)
 "GA" = (/obj/structure/filingcabinet,/turf/open/floor/tile/purple/whitepurple,/area/bigredv2/outside/medical)
-"GG" = (/turf/open/floor/tile/blue/taupeblue,/area/space)
 "GH" = (/obj/machinery/light{dir = 4},/turf/open/floor/tile/white,/area/bigredv2/outside/general_offices)
 "GN" = (/obj/structure/table,/obj/item/trash/plate,/obj/item/reagent_containers/food/snacks/pizzapasta/pineapple,/obj/effect/decal/cleanable/blood/gibs,/turf/open/floor/tile/white,/area/lv624/lazarus/main_hall)
 "GP" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/tile/green/whitegreen,/area/bigredv2/outside/medical)
@@ -573,7 +567,6 @@
 "Iu" = (/turf/open/floor/plating,/area/space)
 "IB" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/tile/red/whitered{dir = 8},/area/bigredv2/outside/medical)
 "IC" = (/obj/structure/bed/chair{dir = 1},/turf/open/floor/tile/red/full,/area/space)
-"ID" = (/turf/open/floor/tile/blue/taupeblue{dir = 10},/area/space)
 "IE" = (/obj/structure/flora/ausbushes/grassybush,/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,/area/space)
 "IH" = (/obj/effect/landmark/corpsespawner/colonist,/turf/open/floor,/area/lv624/lazarus/kitchen)
 "IJ" = (/obj/item/mecha_parts/part/phazon_head,/turf/open/floor/tile/dark,/area/space)
@@ -938,14 +931,14 @@ gEgEOnOnOnOnOnWAWAWAWAWAWAOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOn
 gEgEOnOnOnOnOnWAWAWAWAWAWAWAOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnPnlHmbOcgRTszAnyTsPYdPUJTsnymHAczATsTsTsTsTsTsTsTslHlHlHTsTsTsnymHAczAlHPnPnPnPnPnPnPnPnBJvuvuvuCzvuvuvuCzvuvuBqBJPnPnPnPnBJvuvuvuvuvuvuvuvuvuvuvuBJpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvupWPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAOnOnOngEgE
 gEgEOnOnOnOnOnOnWAWAWAWAWAWAWAOnOnOnOnWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnPnlHrnCMOHAcAcAcAcdPJoUJTsnyAcmHzATsrWxDecHBAnTslvDJvxDJgfTsmHnyAcAczAlHPnPnPnPnPnPnPnPnBJvuvuvukWvuvuvukWvuvuBqBJPnPnPnPnBJvuvuvuvuvuvuvuvuvuvuvuBJpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvupWPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnPnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAWAOnOngEgE
 gEgEOnOnOnOnOnOnOnWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnPnlHioajbowQwCAcApdPMrUJTsnyAcejYCAcAcgfAcaZTWTsXShrhpktAcgfkKnyacajzAscPnPnPnPnPnPnPnpWpWkWAQkWkWkWAQkWkWkWAQkWpWpWBJBJpWpWvuvuvuvuvuvuvuvuvuvuvupWpWWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvupWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWPnPnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAWAOnOngEgE
-gEgEOnOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnscAcnvYMTsNDxTTsuodPUJTsnyxFAcYCBQgfmHgfAczgTsqJAcgfGtgftnkKWFAcAccBscPnPnPnPnPnPnPnBJvuvuvuvukWBUvuvukWvuvuvuvuaJvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWPnPnOnOnOnOnOnOnWAWAWAWAOnOnOnOnWAWAWAOnOngigE
-gEgEOnOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnscRHDsRETsuxIWTsdPdPUJTsjvyGyGzATswOPQAcgfZOTsKWMpAcxLowTsAcnyyGyGzAscPnPnPnPnPnPnPnBJvuvuvuvuCzvuvuvuCzvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWPnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAWAOngEgE
-gEgEOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnscTsTsTsTsNDrFTsTsTsTsTsnytwlFzATsTsTsMaTsTsTsTsTseaTsTsTsTssrtwVazAscPnPnPnPnPnPnPnBJvuvuvuvukWvuvuvukWvuvuvuvupWBJBJpWvuvuvuvuvuvuvuvuvuvuvuvuvupWWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWPnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnWAWAWAOngEgE
-gEgEOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAOnOnOnWAWAWAWAWAWAOnOnOnOnWAWAWAWAWAOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnlHDKUkUkUkiMUOUkUkUkUkUkajacmHAcUkhSUkUkUkpyJEpyUkUkHVJEpyUkAcAcmHAclHPnPnPnPnPnPnPnpWpWvuvuvukWkWAQkWkWkWAQkWpWpWPnPnpWpWvuvuvuvuvuvuvuvuvuvuvupWpWWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAOngEgE
-gEgEOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnWAWAWAWAWAWAOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnlHzAAcAcAcAcmHAcAcAcAcAcmHajAcAcAcAcAcAcAcAcmHAcAcAcAcAcAcAcAcWsAcAclHPnPnPnPnPnPnPnPnBJvuvuvukWhYohFekWvuvuQaBJPnPnPnPnBJvuvuvuvuvuvuvuvuvuvuvuBJpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAOngEgE
-gEgEOnOnOnOnOnOnOnOnOnOnOnWAWAWAOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnlHCRtwtwtwtwxitwtwAcoTtwtwtwtwAFAcActwAFtwtwtwtwActwtwtwAFtwActwAFNplHPnPnPnPnPnPnPnPnBJvuvuvuCzvwvubfCzvufkPnBJPnPnPnPnBJvuvuvuvuvuvuvuvuvuvuvuBJpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnWAWAWAOngEgE
-gEgEOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnscTsTsqFTsTsTsTsTsqFTsTsTsTsTsTsWGAcTsTsTsTsTsTskwTsTsTsTsTsIKTsTsTsscPnPnPnPnPnPnPnPnBJvuvuvukWvwvubfkWvuQafbesPnPnPnPnBJvuvuwkvuvuvuvuvuvuvuvuBJpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAWAOngEgE
-gEgEOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAOnOnWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnscQqAcNAAcYVTsQqmHCaajYVTsnNzPKjAcmHUPUPsTyNnVGUAcuhbAZQTsUtzEzEscPnPnPnPnPnPnPnPnPnPnpWBJBJBJpWIDGGCQpWBJBJesesTcTcPnfbpWBJBJBJpWvuvuvupWBJBJBJpWpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAWAWAOngEgE
+gEgEOnOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnscAcnvYMTsNDxTTsuodPUJTsnyxFAcYCBQgfmHgfAczgTsqJAcgfGtgftnkKWFAcAccBscPnPnPnPnPnPnPnBJvuhYvuvuvuBUvuvukWvuvuvuvuaJvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWPnPnOnOnOnOnOnOnWAWAWAWAOnOnOnOnWAWAWAOnOngigE
+gEgEOnOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnscRHDsRETsuxIWTsdPdPUJTsjvyGyGzATswOPQAcgfZOTsKWMpAcxLowTsAcnyyGyGzAscPnPnPnPnPnPnPnBJvuvuvuvuvuvuvuvuCzvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWPnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAWAOngEgE
+gEgEOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnscTsTsTsTsNDrFTsTsTsTsTsnytwlFzATsTsTsMaTsTsTsTsTseaTsTsTsTssrtwVazAscPnPnPnPnPnPnPnBJvuvuvuvuvuvuvuvukWvuvuvuvupWBJBJpWvuvuvuvuvuvuvuvuvuvuvuvuvupWWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWPnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnWAWAWAOngEgE
+gEgEOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAOnOnOnWAWAWAWAWAWAOnOnOnOnWAWAWAWAWAOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnlHDKUkUkUkiMUOUkUkUkUkUkajacmHAcUkhSUkUkUkpyJEpyUkUkHVJEpyUkAcAcmHAclHPnPnPnPnPnPnPnpWpWvuvuvuvuvuvuvukWkWAQkWpWpWPnPnpWpWvuvuvuvuvuvuvuvuvuvuvupWpWWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAOngEgE
+gEgEOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnWAWAWAWAWAWAOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnlHzAAcAcAcAcmHAcAcAcAcAcmHajAcAcAcAcAcAcAcAcmHAcAcAcAcAcAcAcAcWsAcAclHPnPnPnPnPnPnPnPnBJvuvuvuvuvuvuvukWvuvuQaBJPnPnPnPnBJvuvuvuvuvuvuvuvuvuvuvuBJpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAOngEgE
+gEgEOnOnOnOnOnOnOnOnOnOnOnWAWAWAOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnPnlHCRtwtwtwtwxitwtwAcoTtwtwtwtwAFAcActwAFtwtwtwtwActwtwtwAFtwActwAFNplHPnPnPnPnPnPnPnPnBJvuvuvuvuvuvuvuCzvufkPnBJPnPnPnPnBJvuvuvuvuvuvuvuvuvuvuvuBJpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnWAWAWAOngEgE
+gEgEOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnscTsTsqFTsTsTsTsTsqFTsTsTsTsTsTsWGAcTsTsTsTsTsTskwTsTsTsTsTsIKTsTsTsscPnPnPnPnPnPnPnPnBJvuvuvuvuvuvuvukWvuQafbesPnPnPnPnBJvuvuwkvuvuvuvuvuvuvuvuBJpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAWAOngEgE
+gEgEOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAOnOnWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnscQqAcNAAcYVTsQqmHCaajYVTsnNzPKjAcmHUPUPsTyNnVGUAcuhbAZQTsUtzEzEscPnPnPnPnPnPnPnPnPnPnpWBJBJBJpWvuvuvupWBJBJesesTcTcPnfbpWBJBJBJpWvuvuvupWBJBJBJpWpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAWAWAOngEgE
 gEgEOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnsclNCaAcvsTWTslNVCEfCaTWTsUqqMwBAcupNsNiHniadfzlOERwBeQzTsUtQozEscPnPnPnPnPnPnPnPnPnPnPnPnPnPnpWpWAQpWpWPnPnPnfbfbSrfbfbfbPnPnPnpWpWvupWpWPnPnPnPnpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnWAWAWAWAOnOngEgE
 gEgEOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnscxxAcHqAcCaTsxxWsUwAcCaTsfhfwvgmHBxQHJkmZdQwZPsVBrvbXYzTsFTFTqHscPnPnPnPnPnPnPnPnPnPnPnPnPnPnpnWAWAWApnPnPnPnPnSrSrfbfbPnPnPnPnpnWAWAWAPnPnPnPnPnpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWpWpWpWpWpWOnOnOnOnOnOnOnWAWAWAWAWAOnOnWAWAWAWAOnOnOngEgE
 gEgEOnOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAWAOnOnOnWAWAWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAWAOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnOnPnPnPnPnPnPnPnPnscmHCaAcCaAcTsmHCaAcvsAcTsDyGPcEcEAcAccEXsTshQGAciosWSJYTsscscscscPnPnPnPnPnPnPnPnPnPnPnPnPnPnpnWAWAWApnPnPnPnPnSrSrSrPnPnPnPnPnpnWAWAWAPnPnPnPnPnpnWAWAWApnPnPnPnPnPnPnpWvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvuvupWOnOnOnOnOnOnOnOnOnOnOnOnWAWAWAWAOnOnOnWAWAWAWAOnOnOngEgE
