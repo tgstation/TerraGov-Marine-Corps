@@ -2,7 +2,7 @@
 
 /datum/unit_test/area_apc_sanity/Run()
 	for(var/area/tested_area in world)
-		var/list/cached_apc_list = tested_area.get_apc()
+		var/list/cached_apc_list = tested_area.get_apc_list()
 		if(tested_area.requires_power && !tested_area.always_unpowered)
 			TEST_ASSERT(length(cached_apc_list), "[tested_area.type] doesn't have an APC while it needs one.")
 		if(!tested_area.requires_power || tested_area.always_unpowered)
