@@ -390,15 +390,21 @@
 	return FALSE
 
 
-/proc/create_squad(var/user, var/squad_name, var/squad_faction)
+/proc/create_squad(squad_name, squad_color, first_user)
 	//Create the squad
-	if(!istype(user,/mob/living/carbon/human))
+	if(!squad_name)
 		return
-	var/mob/living/carbon/human/creator = user
-	var/datum/squad/new_squad
+	if(!squad_color)
+		return
+	if(!first_user)
+		return
+
+	var/mob/living/carbon/human/creator = first_user
+	var/squad_faction = creator.faction
+	var/datum/squad/new_squad = new
 	new_squad.name = squad_name
 	new_squad.id = lowertext(squad_name) + "_squad"
-	new_squad.color = input(creator, "Pick a color for your squad", "Pick color") as null|color
+	new_squad.color = squad_color
 	new_squad.access = list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	new_squad.radio_freq = 1470 + 2 * length(new_squad.squad_radio_freqs)
 	new_squad.squad_radio_freqs += new_squad.radio_freq
@@ -415,7 +421,7 @@
 		terragov_server_freqs += new_squad.radio_freq
 		terragov_bus_freqs += new_squad.radio_freq
 		terragov_receiver_freqs += new_squad.radio_freq
-	if(new_squad.faction == FACTION_SOM)
+	else
 		var/list/som_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/zulu]
 		var/list/som_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three/som]
 		var/list/som_receiver_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/receiver/preset_left/som]
@@ -423,7 +429,9 @@
 		som_bus_freqs += new_squad.radio_freq
 		som_receiver_freqs += new_squad.radio_freq
 	SSjob.active_squads[new_squad.faction] += new_squad
-	SSjob.squads_by_name[new_squad.name] = new_squad
+	SSjob.squads[new_squad.id] = new_squad
+	LAZYSET(SSjob.squads_by_name[new_squad.faction], new_squad.name, new_squad)
+	creator.change_squad(new_squad)
 	new_squad.promote_leader(creator)
-	new_squad = new
+	tracking_id = SSdirection.init_squad(new_squad.name, new_squad.squad_leader)
 	return new_squad
