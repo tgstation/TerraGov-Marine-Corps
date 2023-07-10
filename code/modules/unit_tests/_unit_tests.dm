@@ -62,6 +62,7 @@
 #include "weed_ability.dm"
 #include "weed_spread.dm"
 #include "xeno_logical_scaling.dm"
+#include "item_variant_test.dm"
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

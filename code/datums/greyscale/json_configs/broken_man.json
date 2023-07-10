@@ -1,0 +1,15 @@
+{
+	"facial_brokenman_s": [
+		{
+			"type": "icon_state",
+			"icon_state": "facial_broken",
+			"blend_mode": "multiply",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "facial_brokeneye",
+			"blend_mode": "overlay"
+		}
+	]
+}

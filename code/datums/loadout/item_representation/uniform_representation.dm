@@ -8,6 +8,8 @@
 	///Icon_state suffix for the saved icon_state varient.
 	var/current_variant
 
+
+
 /datum/item_representation/uniform_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
@@ -37,7 +39,12 @@
 
 /datum/item_representation/uniform_representation/get_tgui_data()
 	var/list/tgui_data = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+	var/icon/icon_to_convert
+	var/icon_state = initial(item_type.icon_state) + (variant ? "_[GLOB.loadout_variant_keys[variant]]" : "")
+	if(initial(item_type.greyscale_config))
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
+	else
+		icon_to_convert = icon(initial(item_type.icon), icon_state, SOUTH)
 	tgui_data["icons"] = list()
 	tgui_data["icons"] += list(list(
 		"icon" = icon2base64(icon_to_convert),
@@ -48,10 +55,11 @@
 	for(var/datum/item_representation/armor_module/attachment AS in attachments)
 		if(!initial(attachment.item_type.icon_state))
 			continue
+		var/second_icon_state = initial(attachment.item_type.icon_state) + (attachment.variant ? "_[GLOB.loadout_variant_keys[attachment.variant]]" : "")
 		if(initial(attachment.item_type.greyscale_config))
-			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(attachment.item_type.greyscale_config), attachment.colors), initial(attachment.item_type.icon_state), dir = SOUTH)
+			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(attachment.item_type.greyscale_config), attachment.colors), second_icon_state, dir = SOUTH)
 		else
-			icon_to_convert = icon(initial(attachment.item_type.icon), initial(attachment.item_type.icon_state), SOUTH)
+			icon_to_convert = icon(initial(attachment.item_type.icon), second_icon_state, SOUTH)
 		tgui_data["icons"] += list(list(
 			"icon" = icon2base64(icon_to_convert),
 			"translateX" = NO_OFFSET,
