@@ -112,7 +112,7 @@
 	current_mission = new new_mission(acting_faction)
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
-///each faction chooses how many attrition points to use for the upcoming mission
+///each faction chooses how many attrition points to use for the upcoming mission - PLACEHOLDER UNTIL INTERFACE
 /datum/game_mode/hvh/campaign/proc/select_attrition_points() //placeholder basic
 	for(var/i in stat_list) //note to self: does the input mean this gets delayed for one team until the other chooses?
 		var/datum/faction_stats/team = stat_list[i]

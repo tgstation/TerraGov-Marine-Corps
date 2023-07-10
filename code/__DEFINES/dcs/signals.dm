@@ -71,6 +71,8 @@
 
 ///Sent when a new campaign mission is started
 #define COMSIG_GLOB_CAMPAIGN_MISSION_LOADED "!campaign_mission_loaded"
+///Sent when a campaign objective has been destroyed
+#define COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED "!campaign_objective_destroyed"
 
 //////////////////////////////////////////////////////////////////
 

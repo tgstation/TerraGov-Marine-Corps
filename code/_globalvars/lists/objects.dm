@@ -29,6 +29,8 @@ GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)				///list of spawn locations for nuke d
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
 GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light can be shut down
 GLOBAL_LIST_EMPTY(main_overwatch_consoles)			//list of all main overwatch consoles
+///List of all objectives to destroy in the campaign gamemode
+GLOBAL_LIST_EMPTY(campaign_destroy_objectives)
 
 
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions
