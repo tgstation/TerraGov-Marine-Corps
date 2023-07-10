@@ -558,3 +558,5 @@ GLOBAL_LIST_INIT(drop_pod_recipe, list(
 /obj/item/factory_part/drop_pod/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.drop_pod_recipe
+
+
