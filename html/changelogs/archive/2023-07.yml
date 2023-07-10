@@ -142,3 +142,9 @@
   - bugfix: Space heaters actually heat you up if you stand near them now
   - rscdel: Removed air alarm functionality and the frame, it is purely cosmetic now
   - code_imp: Removed a bunch of unused variables from various atmospheric machinery
+2023-07-10:
+  Lumipharon:
+  - bugfix: fixed handheld radios not actually hearing things
+  - bugfix: Underbarrel weapons no longer get delayed by the anti-juggle component
+  Scarlet-Oduko:
+  - bugfix: SG pistol no longer locks you out of your goggles

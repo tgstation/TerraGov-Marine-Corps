@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Underbarrel weapons no longer get delayed by the anti-juggle component"
