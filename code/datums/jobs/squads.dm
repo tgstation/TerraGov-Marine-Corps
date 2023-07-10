@@ -433,5 +433,5 @@
 	LAZYSET(SSjob.squads_by_name[new_squad.faction], new_squad.name, new_squad)
 	creator.change_squad(new_squad)
 	new_squad.promote_leader(creator)
-	tracking_id = SSdirection.init_squad(new_squad.name, new_squad.squad_leader)
+	new_squad.tracking_id = SSdirection.init_squad(new_squad.name, new_squad.squad_leader)
 	return new_squad
