@@ -129,6 +129,7 @@
 	send_global_signal(COMSIG_GLOB_CLOSE_TIMED_SHUTTERS)
 
 	for(var/faction in factions)
+		stat_list[faction].total_attrition_points += round(length(GLOB.clients) * 0.5 * stat_list[faction].attrition_gain_multiplier)
 		for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction]) //forcemove everyone by faction back to their spawn points, to clear out the z-level
 			human_mob.revive(TRUE)
 			human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job.type]))
@@ -398,7 +399,6 @@
 
 	return data
 
-//todo: leadership only controls
 /obj/machinery/tgui_test/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)

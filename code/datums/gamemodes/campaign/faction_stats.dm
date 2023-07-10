@@ -10,6 +10,8 @@
 	var/total_attrition_points = 30
 	///How many attrition points have been dedicated to the current mission
 	var/active_attrition_points = 0
+	///Multiplier on the passive attrition point gain for this faction
+	var/attrition_gain_multiplier = 1
 	///Future missions this faction can currently choose from
 	var/list/datum/campaign_mission/potential_missions = list(/datum/campaign_mission/tdm, /datum/campaign_mission/tdm/lv624, /datum/campaign_mission/tdm/desparity) //placeholders
 	///Missions this faction has succesfully completed
