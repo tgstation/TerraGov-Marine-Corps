@@ -58,7 +58,7 @@
 	item_state = "leather_jacket_worn"
 	icon_state_variants = list(
 		"normal",
-		"webbing123",
+		"webbing",
 	)
 	current_variant = "normal"
 	greyscale_colors = ARMOR_PALETTE_BLACK
