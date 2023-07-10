@@ -290,9 +290,11 @@
 	return null
 
 /area/proc/get_apc()
+	RETURN_TYPE(/list)
+	. = list()
 	for(var/obj/machinery/power/apc/APC AS in GLOB.apcs_list)
 		if(APC.area == src)
-			return APC
+			. += APC
 
 
 /proc/power_failure(announce = TRUE)
