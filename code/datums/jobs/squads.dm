@@ -409,29 +409,29 @@
 	new_squad.radio_freq = 1470 + 2 * length(new_squad.squad_radio_freqs)
 	new_squad.squad_radio_freqs += new_squad.radio_freq
 	var/radio_channel_name = new_squad.name
-	var/name_radio = new_squad.name + "radio"
-	LAZYADDASSOC(GLOB.freqtospan, new_squad.radio_freq, name_radio)
-	LAZYADDASSOC(GLOB.radiochannels, radio_channel_name, new_squad.radio_freq)
-	LAZYADDASSOC(GLOB.reverseradiochannels, new_squad.radio_freq, radio_channel_name)
+	var/name_radio = lowertext(new_squad.name) + "radio"
+	LAZYADDASSOCSIMPLE(GLOB.freqtospan, "[new_squad.radio_freq]", name_radio)
+	LAZYADDASSOCSIMPLE(GLOB.radiochannels, "[radio_channel_name]", new_squad.radio_freq)
+	LAZYADDASSOCSIMPLE(GLOB.reverseradiochannels, "[new_squad.radio_freq]", radio_channel_name)
 	new_squad.faction = squad_faction
 	if(new_squad.faction == FACTION_TERRAGOV)
 		var/list/terragov_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/alpha]
 		var/list/terragov_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three]
 		var/list/terragov_receiver_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/receiver/preset_left]
-		terragov_server_freqs += new_squad.radio_freq
-		terragov_bus_freqs += new_squad.radio_freq
-		terragov_receiver_freqs += new_squad.radio_freq
+		LAZYADDASSOCSIMPLE(terragov_server_freqs, 1, new_squad.radio_freq)
+		LAZYADDASSOCSIMPLE(terragov_bus_freqs, 1, new_squad.radio_freq)
+		LAZYADDASSOCSIMPLE(terragov_receiver_freqs, 1, new_squad.radio_freq)
 	else
 		var/list/som_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/zulu]
 		var/list/som_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three/som]
 		var/list/som_receiver_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/receiver/preset_left/som]
-		som_server_freqs += new_squad.radio_freq
-		som_bus_freqs += new_squad.radio_freq
-		som_receiver_freqs += new_squad.radio_freq
+		LAZYADDASSOCSIMPLE(som_server_freqs, 1, new_squad.radio_freq)
+		LAZYADDASSOCSIMPLE(som_bus_freqs, 1, new_squad.radio_freq)
+		LAZYADDASSOCSIMPLE(som_receiver_freqs, 1, new_squad.radio_freq)
 	SSjob.active_squads[new_squad.faction] += new_squad
 	SSjob.squads[new_squad.id] = new_squad
 	LAZYSET(SSjob.squads_by_name[new_squad.faction], new_squad.name, new_squad)
-	creator.change_squad(new_squad)
+	creator.change_squad(new_squad.id)
 	new_squad.promote_leader(creator)
 	new_squad.tracking_id = SSdirection.init_squad(new_squad.name, new_squad.squad_leader)
 	return new_squad
