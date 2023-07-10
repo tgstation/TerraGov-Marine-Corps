@@ -140,6 +140,11 @@
 	description = "A Tadpole model for hauling, engineering and general maintenance. Patented by Nakamura Engineering, and is a rather reliable way to transport goods."
 	display_name = "Tadpole NK-Haul Model"
 
+/datum/map_template/shuttle/minidropship/viking
+	suffix = "_viking"
+	description = "Wh- wha- how??? Only for the most skilled operatives."
+	display_name = "Viking Boat"
+
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
 	name = "Escape Pod"

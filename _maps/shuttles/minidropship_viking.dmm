@@ -1,0 +1,138 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/wall/wood/reinforced,
+/area/shuttle/minidropship)
+"c" = (
+/obj/machinery/vending/nanomed/tadpolemed{
+	dir = 1
+	},
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"d" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"e" = (
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"h" = (
+/obj/structure/barricade/sandbags{
+	dir = 8
+	},
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"n" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"t" = (
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"u" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"x" = (
+/turf/template_noop,
+/area/template_noop)
+"B" = (
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"E" = (
+/obj/structure/barricade/sandbags{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	pixel_y = -7
+	},
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"I" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	pixel_y = 3
+	},
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/structure/barricade/sandbags{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship/dropship_one,
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"Q" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	pixel_y = 3
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"S" = (
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	pixel_y = -7
+	},
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+"W" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	pixel_y = 3
+	},
+/obj/structure/barricade/sandbags{
+	dir = 8
+	},
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
+
+(1,1,1) = {"
+x
+W
+h
+h
+d
+h
+h
+E
+x
+"}
+(2,1,1) = {"
+I
+u
+t
+t
+e
+t
+t
+c
+a
+"}
+(3,1,1) = {"
+x
+Q
+B
+B
+n
+B
+B
+S
+x
+"}
