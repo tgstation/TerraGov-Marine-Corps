@@ -15,7 +15,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
 	)
 	plasma_cost = 750
-	gamemode_flags = ABILITY_DISTRESS
+	gamemode_flags = ABILITY_NUCLEARWAR
 
 /datum/action/xeno_action/activable/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
