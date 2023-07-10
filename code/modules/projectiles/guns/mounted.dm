@@ -454,7 +454,7 @@
 	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
 	coverage = 75 //has a shield
-	anchor_time = 3 SECONDS
+	anchor_time = 1 SECONDS
 
 /obj/item/storage/internal/ammo_rack
 	storage_slots = 10
