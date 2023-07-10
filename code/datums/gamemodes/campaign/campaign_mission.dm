@@ -425,7 +425,7 @@
 	var/min_destruction_amount = 2 //placeholder number
 	///How many objectives currently destroyed
 	var/objectives_destroyed = 0
-
+	///Overwatch messages for destroying objectives
 	var/list/objective_destruction_messages = list(
 		"first" = list(
 			"starting_faction" = "First objective destroyed, keep it up!",
