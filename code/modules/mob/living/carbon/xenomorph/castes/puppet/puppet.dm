@@ -128,14 +128,14 @@
 	if(action_type == MOVING_TO_ATOM)
 		RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(attack_target))
 		if(!isobj(atom_to_walk_to))
-			RegisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(look_for_new_state))
+			RegisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(look_for_new_state))
 	return ..()
 
 /datum/ai_behavior/puppet/unregister_action_signals(action_type)
 	if(action_type == MOVING_TO_ATOM)
 		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 		if(!isnull(atom_to_walk_to))
-			UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+			UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
 	return ..()
 
 /datum/ai_behavior/puppet/proc/seek_and_attack_closest(mob/living/source)

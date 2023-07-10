@@ -179,7 +179,7 @@
 
 /// Adds a puppet to our list, this is basically just widow code
 /datum/action/xeno_action/activable/refurbish_husk/proc/add_puppet(mob/living/carbon/xenomorph/puppet/new_puppet)
-	RegisterSignal(new_puppet, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(remove_puppet))
+	RegisterSignal(new_puppet, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(remove_puppet))
 	RegisterSignal(new_puppet, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack)) //harvesting claws
 	puppets += new_puppet
 
@@ -187,7 +187,7 @@
 /datum/action/xeno_action/activable/refurbish_husk/proc/remove_puppet(datum/source)
 	SIGNAL_HANDLER
 	puppets -= source
-	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING, COMSIG_XENOMORPH_POSTATTACK_LIVING))
+	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_QDELETING, COMSIG_XENOMORPH_POSTATTACK_LIVING))
 
 /datum/action/xeno_action/activable/refurbish_husk/proc/postattack(mob/living/source, useless, damage)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
@@ -325,7 +325,7 @@
 	active_target = victim
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(relay_speech))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(cancel)) //if we move, cancel
-	RegisterSignal(victim, COMSIG_PARENT_QDELETING, PROC_REF(cancel)) // should prevent a harddel
+	RegisterSignal(victim, COMSIG_QDELETING, PROC_REF(cancel)) // should prevent a harddel
 	talking = TRUE
 	add_cooldown()
 	
@@ -342,7 +342,7 @@
 		owner.balloon_alert(owner, "cancelled!")
 	talking = FALSE
 	active_target = null
-	UnregisterSignal(owner, list(COMSIG_MOB_SAY, COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(owner, list(COMSIG_MOB_SAY, COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 // ***************************************
 // *********** Living Construct (Primordial)
