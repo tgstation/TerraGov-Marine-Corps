@@ -22,23 +22,27 @@
 	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
 	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
 	var/stored_charge = 0
-	/// Ref to our baneling
-	var/mob/living/carbon/xenomorph/xeno_ref
+	/// Ref to our xeno
+	var/xeno_ref
 
-/obj/structure/xeno/baneling_pod/Initialize(mapload, _hivenumber, var/mob/living/carbon/xenomorph/xeno)
+/obj/structure/xeno/baneling_pod/Initialize(mapload, _hivenumber, var/mob/living/carbon/xenomorph/xeno, ability_ref)
 	. = ..()
 	xeno_ref = xeno
 	RegisterSignal(xeno_ref, COMSIG_MOB_DEATH, PROC_REF(handle_baneling_death))
 	RegisterSignal(xeno_ref, COMSIG_PARENT_QDELETING, PROC_REF(obj_destruction))
+	RegisterSignal(ability_ref, COMSIG_ACTION_TRIGGER, PROC_REF(obj_destruction))
 	addtimer(CALLBACK(src, PROC_REF(increase_charge)), BANELING_CHARGE_GAIN_TIME)
 
 /obj/structure/xeno/baneling_pod/obj_destruction()
-	if(isnull(xeno_ref))
+	if(!length(contents))
+		xeno_ref.balloon_alert(xeno_ref, "YOUR POD IS DESTROYED")
+		to_chat(xeno_ref, span_xenohighdanger("YOUR POD IS DESTROYED"))
+		UnregisterSignal(xeno_ref, COMSIG_MOB_DEATH)
+		xeno_ref = null
+	xeno_ref.forceMove(get_turf(loc))
+	if(xeno_ref.stat & DEAD)
 		return ..()
-	xeno_ref.balloon_alert(xeno_ref, "YOUR POD IS DESTROYED")
-	to_chat(xeno_ref, span_xenohighdanger("YOUR POD IS DESTROYED"))
-	UnregisterSignal(xeno_ref, COMSIG_MOB_DEATH)
-	xeno_ref = null
+	xeno_ref.death(FALSE)
 	return ..()
 
 /// Teleports baneling inside of itself, checks for charge and then respawns baneling
