@@ -1064,6 +1064,11 @@
 			/obj/item/armor_module/module/style/light_armor = -1,
 			/obj/item/armor_module/module/style/medium_armor = -1,
 			/obj/item/armor_module/module/style/heavy_armor = -1,
+			/obj/item/clothing/head/modular/marine/kabuto = -1,
+			/obj/item/armor_module/armor/chest/marine/kabuto = -1,
+			/obj/item/armor_module/armor/legs/marine/kabuto = -1,
+			/obj/item/armor_module/armor/arms/marine/kabuto = -1,
+
 		),
 		"Jaeger Mk.I chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,

@@ -89,6 +89,11 @@
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Trooper class of helmet."
 	icon_state = "trooper_visor"
 
+/obj/item/armor_module/armor/visor/marine/kabuto
+	name = "\improper Style Pattern Kabuto visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Kabuto class of helmet."
+	icon_state = "kabuto_visor"
+
 /obj/item/armor_module/armor/visor/marine/eva
 	name = "\improper Jaeger Pattern EVA visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EVA class of helmet."
@@ -171,6 +176,6 @@
 	icon_state = "assault_visor_old"
 
 /obj/item/armor_module/armor/visor/marine/old/eod
-	name = "\improper Jaeger Pattern EOD visor"
+	name = "\improper Pattern EOD visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EOD class of helmet."
 	icon_state = "eod_visor_old"

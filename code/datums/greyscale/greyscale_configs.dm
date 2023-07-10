@@ -120,6 +120,9 @@
 /datum/greyscale_config/armor_mk1/skirmisher
 	icon_file = 'icons/mob/modular/mark_one/skirmisher.dmi'
 
+/datum/greyscale_config/armor_mk1/kabuto
+	icon_file = 'icons/mob/modular/mark_one/kabuto.dmi'
+
 //Mark 2
 
 /datum/greyscale_config/armor_mk2
