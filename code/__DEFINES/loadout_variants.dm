@@ -36,6 +36,7 @@
 #define LEATHER_JACKET_WEBBING "leather_jacket_webbing"
 
 
+///saved loadout key = icon_state, AGAIN DO NOT EDIT THE KEYS IT WILL BREAK LOADOUTS
 GLOBAL_LIST_INIT(loadout_variant_keys, list(
 	NORMAL = "normal",
 	CAPE_SCARF_ROUND = "scarf round",
