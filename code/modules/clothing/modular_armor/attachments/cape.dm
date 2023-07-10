@@ -24,156 +24,175 @@
 	icon_state_variants = list(
 		"scarf round" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"scarf tied" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"scarf" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
 				"scarf",
+				"none",
 			),
 		),
 		"striped" = list(
 			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"geist" = list(
 			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"ghille" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"ghille (left)" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"ghille (right)" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"ghille (alt)" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"drifter" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"normal" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
-				"normal"
+				"normal",
+				"none",
 			),
 		),
 		"short" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
-				"short"
+				"short",
+				"none",
 			),
 		),
 		"short (old)" = list(
 			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"shredded" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
-				"shredded"
+				"shredded",
+				"none",
 			),
 		),
 		"half" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
-				"half"
+				"half",
+				"none",
 			),
 		),
 		"full" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
-				"full"
+				"full",
+				"none",
 			),
 		),
 		"back" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"back"
+				"back",
+				"none",
 			),
 		),
 		"cover" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"cover"
+				"cover",
+				"none",
 			),
 		),
 		"cover (alt)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"cover (alt)"
+				"cover (alt)",
+				"none",
 			),
 		),
 		"overlord" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"overlord"
+				"overlord",
+				"none",
 			),
 		),
 		"overlord (alt 1)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"overlord (alt)"
+				"overlord (alt)",
+				"none",
 			),
 		),
 		"overlord (alt 2)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"overlord (alt 2)"
+				"overlord (alt 2)",
+				"none",
 			),
 		),
 		"shoal" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"shoal"
+				"shoal",
+				"none",
 			),
 		),
 		"shoal (back)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"shoal (back)"
+				"shoal (back)",
+				"none",
 			),
 		),
 		"shoal (alt)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"shoal (alt)"
+				"shoal (alt)",
+				"none",
 			),
 		),
 		"star" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"star"
+				"star",
+				"none",
 			),
 		),
 		"rapier (right)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"rapier (right)"
+				"rapier (right)",
+				"none",
 			),
 		),
 		"rapier (left)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"rapier (left)"
+				"rapier (left)",
+				"none",
 			),
 		),
 		"jacket" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"jacket"
+				"jacket",
+				"none",
 			),
 		),
 	)
@@ -230,7 +249,6 @@
 		new_action.give_action(user)
 	highlight.current_variant = "none"
 	highlight.icon_state_variants = icon_state_variants[current_variant][HIGHLIGHT_VARIANTS]
-	highlight.icon_state_variants.Add("none")
 	ENABLE_BITFIELD(highlight.colorable_allowed, PRESET_COLORS_ALLOWED)
 	update_icon()
 	update_greyscale()
