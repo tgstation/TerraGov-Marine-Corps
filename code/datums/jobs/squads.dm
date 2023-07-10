@@ -18,6 +18,7 @@
 	var/list/marines_list = list() // list of humans in that squad.
 
 	var/radio_freq = 1461
+	var/static/squad_radio_freqs = list()
 	var/mob/living/carbon/human/squad_leader
 	var/mob/living/carbon/human/overwatch_officer
 
@@ -387,3 +388,42 @@
 		if(squad.assign_initial(player, job, latejoin))
 			return TRUE
 	return FALSE
+
+
+/proc/create_squad(var/user, var/squad_name, var/squad_faction)
+	//Create the squad
+	if(!istype(user,/mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/creator = user
+	var/datum/squad/new_squad
+	new_squad.name = squad_name
+	new_squad.id = lowertext(squad_name) + "_squad"
+	new_squad.color = input(creator, "Pick a color for your squad", "Pick color") as null|color
+	new_squad.access = list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
+	new_squad.radio_freq = 1470 + 2 * length(new_squad.squad_radio_freqs)
+	new_squad.squad_radio_freqs += new_squad.radio_freq
+	var/radio_channel_name = new_squad.name
+	var/name_radio = new_squad.name + "radio"
+	LAZYADDASSOC(GLOB.freqtospan, new_squad.radio_freq, name_radio)
+	LAZYADDASSOC(GLOB.radiochannels, radio_channel_name, new_squad.radio_freq)
+	LAZYADDASSOC(GLOB.reverseradiochannels, new_squad.radio_freq, radio_channel_name)
+	new_squad.faction = squad_faction
+	if(new_squad.faction == FACTION_TERRAGOV)
+		var/list/terragov_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/alpha]
+		var/list/terragov_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three]
+		var/list/terragov_receiver_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/receiver/preset_left]
+		terragov_server_freqs += new_squad.radio_freq
+		terragov_bus_freqs += new_squad.radio_freq
+		terragov_receiver_freqs += new_squad.radio_freq
+	if(new_squad.faction == FACTION_SOM)
+		var/list/som_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/zulu]
+		var/list/som_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three/som]
+		var/list/som_receiver_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/receiver/preset_left/som]
+		som_server_freqs += new_squad.radio_freq
+		som_bus_freqs += new_squad.radio_freq
+		som_receiver_freqs += new_squad.radio_freq
+	SSjob.active_squads[new_squad.faction] += new_squad
+	SSjob.squads_by_name[new_squad.name] = new_squad
+	new_squad.promote_leader(creator)
+	new_squad = new
+	return new_squad

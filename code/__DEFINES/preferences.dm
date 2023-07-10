@@ -148,19 +148,11 @@
 
 
 #define SELECTABLE_SQUADS list(\
-	"Alpha",\
-	"Bravo",\
-	"Charlie",\
-	"Delta",\
-	"None"\
+	"Alpha"\
 	)
 
 #define SELECTABLE_SQUADS_SOM list(\
-	"Zulu",\
-	"Yankee",\
-	"Xray",\
-	"Whiskey",\
-	"None"\
+	"Zulu"\
 	)
 
 
