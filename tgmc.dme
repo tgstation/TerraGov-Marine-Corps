@@ -229,7 +229,6 @@
 #include "code\_onclick\hud\screen_objects\text_objects.dm"
 #include "code\_onclick\hud\xeno\hivemind.dm"
 #include "code\_onclick\hud\xeno\larva.dm"
-#include "code\_onclick\hud\xeno\text_objects.dm"
 #include "code\_onclick\hud\xeno\xeno.dm"
 #include "code\controllers\admin.dm"
 #include "code\controllers\controller.dm"
