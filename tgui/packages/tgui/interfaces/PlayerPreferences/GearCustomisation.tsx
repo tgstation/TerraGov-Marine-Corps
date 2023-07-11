@@ -9,9 +9,9 @@ export const GearCustomization = (props, context) => {
 
   // These correspond to the gear slot and you need to update them if the defines change
   const slotMapping = {
-    10: 'Head',
-    8: 'Eyewear',
-    9: 'Mouth',
+    11: 'Head',
+    9: 'Eyewear',
+    10: 'Mouth',
     22: 'Miscellaneous',
   };
 
