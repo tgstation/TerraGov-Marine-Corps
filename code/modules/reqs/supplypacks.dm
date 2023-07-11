@@ -1139,8 +1139,6 @@ MEDICAL
 		/obj/item/storage/surgical_tray,
 		/obj/item/clothing/mask/breath/medical,
 		/obj/item/tank/anesthetic,
-		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
-		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
 	)
 	cost = 100
 	access = ACCESS_MARINE_MEDBAY

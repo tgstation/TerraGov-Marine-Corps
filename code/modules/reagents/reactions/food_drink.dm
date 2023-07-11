@@ -240,11 +240,6 @@
 	results = list(/datum/reagent/consumable/ethanol/toxins_special = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/ethanol/vermouth = 1, /datum/reagent/toxin/phoron = 2)
 
-/datum/chemical_reaction/beepsky_smash
-	name = "Beepksy Smash"
-	results = list(/datum/reagent/consumable/ethanol/beepsky_smash = 4)
-	required_reagents = list(/datum/reagent/consumable/drink/limejuice = 2, /datum/reagent/consumable/ethanol/whiskey = 2, /datum/reagent/iron = 1)
-
 /datum/chemical_reaction/doctor_delight
 	name = "The Doctor's Delight"
 	results = list(/datum/reagent/consumable/drink/doctor_delight = 5)

@@ -166,7 +166,6 @@
 	products = list(
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
-			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
 			/obj/item/reagent_containers/hypospray/advanced = 5,
 			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 5,
 			/obj/item/reagent_containers/hypospray/advanced/kelotane = 5,
@@ -358,7 +357,6 @@
 	desc = "Dedicated for the surgeron with wings, this humble box contains a lot for its size."
 	products = list(
 		"Autoinjectors" = list(
-			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 2,
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 1,
 			/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 1,
 			/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
