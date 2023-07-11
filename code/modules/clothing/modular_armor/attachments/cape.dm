@@ -69,6 +69,7 @@
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
 				"normal",
+				"normal (alt)",
 				"none",
 			),
 		),
@@ -205,14 +206,12 @@
 	if(hood)
 		icon_state = initial(icon_state) + "_[current_variant]_h"
 		item_state = initial(item_state) + "_[current_variant]_h"
-		highlight?.icon_state = initial(highlight.icon_state) + "_[highlight.current_variant]_h"
 	else
 		icon_state = initial(icon_state) + "_[current_variant]"
 		item_state = initial(item_state) + "_[current_variant]"
-		highlight?.icon_state = initial(highlight.icon_state) + "_[highlight.current_variant]"
+	highlight?.update_icon()
 	if(parent)
 		parent.update_clothing_icon()
-	highlight?.update_icon()
 
 /obj/item/armor_module/armor/cape/activate(mob/living/user)
 	. = ..()
@@ -292,7 +291,18 @@
 	icon_state_variants = list(
 		"none",
 		"normal",
+		"normal (alt)",
 	)
+
+/obj/item/armor_module/armor/cape_highlight/update_icon_state()
+	if(!parent)
+		return
+	var/obj/item/armor_module/armor/cape/cape_parent = parent
+	if(cape_parent.hood)
+		icon_state = initial(icon_state) + "_[current_variant]_h"
+	else
+		icon_state = initial(icon_state) + "_[current_variant]"
+
 
 /obj/item/armor_module/armor/cape_highlight/handle_color(datum/source, mob/user, list/obj/item/secondaries)
 	if(current_variant == "none" && (length(icon_state_variants) == 1))
