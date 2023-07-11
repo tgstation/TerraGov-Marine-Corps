@@ -8,7 +8,7 @@
 		if(length(cached_apc_list) && (!tested_area.requires_power || tested_area.always_unpowered))
 			Fail("[tested_area] has APC(s) while not needing power.")
 			for(var/obj/machinery/power/apc/found_apc in cached_apc_list)
-				Fail("Unneded APC at [found_apc.x], [found_apc.y], [found_apc.z]")
+				Fail("Unneeded APC at [found_apc.x], [found_apc.y], [found_apc.z]")
 		if(length(cached_apc_list) > 1)
 			Fail("[tested_area] has multiple APCs.")
 			for(var/obj/machinery/power/apc/found_apc in cached_apc_list)
