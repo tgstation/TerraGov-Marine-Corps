@@ -178,3 +178,27 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
+
+//Parent for all passive attrition modifiers
+/datum/campaign_reward/attrition_modifier
+	reward_flags = REWARD_PASSIVE_EFFECT
+	var/attrition_mod = 0
+
+/datum/campaign_reward/attrition_modifier/passive_effect()
+	faction.attrition_gain_multiplier += attrition_mod
+
+/datum/campaign_reward/attrition_modifier/Destroy(force, ...)
+	. = ..()
+	faction.attrition_gain_multiplier -= attrition_mod
+
+/datum/campaign_reward/attrition_modifier/bonus_standard
+	name = "Improved supply lines"
+	desc = "+20% passive Attrition Point gain"
+	detailed_desc = "Improved supply lines allow for the smooth transfer of men and materiel, allowing for the deployment of more combat forces."
+	attrition_mod = 0.2
+
+/datum/campaign_reward/attrition_modifier/malus_standard
+	name = "Degraded supply lines"
+	desc = "-20% passive Attrition Point gain"
+	detailed_desc = "Damage to our supply lines have increased the difficulty and time required to move men and materiel, resulting in a lower deployment of combat forces."
+	attrition_mod = -0.2
