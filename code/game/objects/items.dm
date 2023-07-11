@@ -151,9 +151,10 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	if(species_exception)
 		species_exception = string_list(species_exception)
-
-	colorable_colors = string_list(colorable_colors)
-	icon_state_variants = string_list(icon_state_variants)
+	if(length(colorable_colors))
+		colorable_colors = string_list(colorable_colors)
+	if(length(icon_state_variants))
+		icon_state_variants = string_list(icon_state_variants)
 
 	. = ..()
 
