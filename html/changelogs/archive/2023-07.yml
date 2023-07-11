@@ -148,3 +148,19 @@
   - bugfix: Underbarrel weapons no longer get delayed by the anti-juggle component
   Scarlet-Oduko:
   - bugfix: SG pistol no longer locks you out of your goggles
+2023-07-11:
+  Kapu1178:
+  - code_imp: Saved a large amount of tick time in sound.
+  hyper2snyper:
+  - rscadd: There are now 30 cape types. Thank you Orca.
+  - rscadd: Skull on the Eva helmets is colorable.
+  - rscadd: Color wheel added to some visors and cape highlights
+  wirpy:
+  - bugfix: broken man sprite
+  - imageadd: Broken man greyscale sprite + seperate uncolorable eye part
+  - rscadd: re-named old broken man sprite to ---> rough man
+  - config: broken man and general hair section added to greyscale config
+  - rscadd: greyscale json for broken man
+  - rscadd: greyscale functionality to hair & beards in update_icons.dm
+  - rscadd: broken man & rough man to sprite_accessories.dm
+  - rscadd: greyscale var to  sprite_accessories.dm
