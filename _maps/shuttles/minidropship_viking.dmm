@@ -43,6 +43,10 @@
 "x" = (
 /turf/template_noop,
 /area/template_noop)
+"z" = (
+/obj/effect/attach_point/crew_weapon/minidropship,
+/turf/open/floor/wood/variable/wide,
+/area/shuttle/minidropship)
 "B" = (
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -118,7 +122,7 @@ x
 I
 u
 t
-t
+z
 e
 t
 t
