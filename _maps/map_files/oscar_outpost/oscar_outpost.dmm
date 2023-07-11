@@ -2903,7 +2903,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "tF" = (
-/obj/machinery/floodlight/combat,
+/obj/machinery/floodlight,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "tG" = (
@@ -2989,10 +2989,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"uf" = (
-/obj/item/storage/box/loot/howitzer_pack,
-/turf/open/floor,
-/area/oscar_outpost/village/central)
 "uh" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/effect/ai_node,
@@ -3526,9 +3522,6 @@
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
-"xx" = (
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/road)
 "xy" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship/open{
@@ -9123,7 +9116,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/floodlight/combat,
+/obj/machinery/floodlight,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "Wg" = (
@@ -24734,7 +24727,7 @@ ZL
 DU
 DU
 DU
-xx
+DU
 DU
 DU
 DU
@@ -35840,7 +35833,7 @@ DU
 GY
 Uh
 ZG
-uf
+Pa
 ap
 YE
 Uh

@@ -10841,7 +10841,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
 "hmw" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/light{
 	dir = 1;
 	pixel_x = 16
@@ -16817,7 +16817,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "lsR" = (
-/obj/machinery/portable_atmospherics/canister/empty{
+/obj/machinery/portable_atmospherics/canister{
 	pixel_y = 18
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -16933,11 +16933,11 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/n_rockies)
 "lzg" = (
-/obj/machinery/portable_atmospherics/canister/empty{
+/obj/machinery/portable_atmospherics/canister{
 	pixel_x = -1;
 	pixel_y = 25
 	},
-/obj/machinery/portable_atmospherics/canister/empty{
+/obj/machinery/portable_atmospherics/canister{
 	pixel_x = 8;
 	pixel_y = 15
 	},
@@ -17203,7 +17203,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/bridge)
 "lHK" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -18435,7 +18435,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "muT" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -19114,7 +19114,7 @@
 	},
 /area/gelida/indoors/b_block/bridge)
 "mTy" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "mTK" = (
@@ -19396,7 +19396,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "ner" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/plating/platebotc,
 /area/gelida/indoors/b_block/bridge)
 "neF" = (
@@ -25092,7 +25092,7 @@
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "qRu" = (
-/obj/machinery/portable_atmospherics/canister/empty{
+/obj/machinery/portable_atmospherics/canister{
 	pixel_y = 18
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26276,7 +26276,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/fitness)
 "rCP" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/structure/window{
 	dir = 4
 	},
@@ -29445,7 +29445,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "tPp" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/plating/platebotc,
 /area/gelida/indoors/b_block/hydro)
 "tPt" = (
@@ -30439,7 +30439,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/medical)
 "uDG" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_2)
 "uDM" = (
@@ -32081,7 +32081,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "vIT" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/structure/window{
 	dir = 8
 	},

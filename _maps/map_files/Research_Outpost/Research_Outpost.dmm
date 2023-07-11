@@ -538,7 +538,7 @@
 	},
 /area/outpost/yard/central)
 "cV" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)
 "cX" = (
@@ -2205,7 +2205,7 @@
 	},
 /area/outpost/yard/south)
 "ko" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -5791,7 +5791,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/central)
 "As" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -9227,7 +9227,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/armoury)
 "Qp" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/dark,
 /area/outpost/science/hydponics)
 "Qq" = (

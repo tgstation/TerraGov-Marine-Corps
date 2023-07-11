@@ -1,0 +1,11 @@
+author: "wirpy"
+delete-after: True
+changes:
+  - bugfix: "broken man sprite"
+  - imageadd: "Broken man greyscale sprite + seperate uncolorable eye part"
+  - rscadd: "re-named old broken man sprite to ---> rough man"
+  - config: "broken man and general hair section added to greyscale config"
+  - rscadd: "greyscale json for broken man"
+  - rscadd: "greyscale functionality to hair & beards in update_icons.dm"
+  - rscadd: "broken man & rough man to sprite_accessories.dm"
+  - rscadd: "greyscale var to  sprite_accessories.dm"

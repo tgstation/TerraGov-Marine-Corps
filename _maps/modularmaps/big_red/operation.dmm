@@ -73,7 +73,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "dX" = (
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "ee" = (
@@ -995,7 +995,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)
 "IT" = (
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6

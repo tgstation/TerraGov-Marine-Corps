@@ -9993,7 +9993,7 @@
 	},
 /area/orion_outpost/surface/building/administration)
 "Zw" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/mainship/sterile/dark,
 /area/orion_outpost/surface/building/medbay)
 "Zy" = (

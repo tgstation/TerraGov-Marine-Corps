@@ -1231,8 +1231,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost)
 "fP" = (
-/obj/machinery/computer/communications,
 /obj/structure/table/mainship,
+/obj/machinery/computer/communications,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "fQ" = (

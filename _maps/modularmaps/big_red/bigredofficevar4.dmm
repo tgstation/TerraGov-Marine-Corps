@@ -1333,7 +1333,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "XX" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/drip,

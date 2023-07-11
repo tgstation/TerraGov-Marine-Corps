@@ -142,7 +142,7 @@
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/secomplex)
 "jl" = (
-/obj/machinery/computer/communications/bee,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
@@ -214,7 +214,7 @@
 /area/bigredv2/caves/secomplex)
 "mH" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "mS" = (

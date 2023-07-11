@@ -1634,7 +1634,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "eN" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/item/seeds/berryseed,
 /obj/item/seeds/cornseed,
 /turf/open/floor/plating/plating_catwalk,
@@ -1875,7 +1875,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "fw" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/item/seeds/brownmold,
 /obj/item/seeds/cabbageseed,
 /turf/open/floor/plating/plating_catwalk,
@@ -1939,7 +1939,7 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/hull/port_hull)
 "fE" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
@@ -5760,7 +5760,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/weapon_room)
 "qU" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/black{
@@ -7011,7 +7011,7 @@
 	},
 /area/mainship/medical/lounge)
 "uP" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 10
 	},
@@ -7385,7 +7385,7 @@
 	},
 /area/mainship/living/evacuation)
 "vQ" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/research,
@@ -7759,7 +7759,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "wV" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "wW" = (
@@ -7868,7 +7868,7 @@
 /obj/machinery/cell_charger,
 /obj/effect/spawner/random/engineering/powercell,
 /obj/effect/spawner/random/engineering/powercell,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -8226,7 +8226,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "yn" = (
@@ -9055,13 +9055,13 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "Ay" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 9
 	},
 /area/mainship/living/port_garden)
 "Az" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 5
 	},
@@ -9231,14 +9231,14 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "AV" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
 "AW" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/self_destruct)
 "AX" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/black{
@@ -9485,13 +9485,13 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/medical/lower_medical)
 "BN" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
 /area/mainship/living/port_garden)
 "BO" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -9504,7 +9504,7 @@
 /obj/item/tool/plantspray/weeds,
 /obj/item/tool/plantspray/weeds,
 /obj/structure/closet/crate/freezer,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /obj/item/paper/hydroponics,
@@ -10092,7 +10092,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cafeteria_starboard)
 "DJ" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -11262,7 +11262,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "Hb" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -11754,7 +11754,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "IA" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/mainship/green{
 	dir = 6
 	},
@@ -12426,7 +12426,7 @@
 	},
 /area/mainship/living/briefing)
 "KD" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -12796,7 +12796,7 @@
 	},
 /area/mainship/living/briefing)
 "LE" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -12838,12 +12838,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/briefing)
 "LK" = (
-/obj/machinery/bodyscanner{
-	dir = 8
-	},
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/machinery/robotic_cradle,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -13217,7 +13215,7 @@
 	},
 /area/mainship/living/briefing)
 "MQ" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/weapon_room)
 "MR" = (
@@ -13843,7 +13841,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
 "OC" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
@@ -14539,9 +14537,7 @@
 /area/mainship/engineering/engineering_workshop)
 "QI" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	id_tag = "waste_lower_out"
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
 "QJ" = (
@@ -15850,7 +15846,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "UG" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -16617,7 +16613,7 @@
 	},
 /area/mainship/living/grunt_rnr)
 "WU" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/red{
@@ -16862,7 +16858,7 @@
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
 "XK" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
 "XL" = (
@@ -16908,7 +16904,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "XQ" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -17339,7 +17335,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/corner,
@@ -23128,7 +23124,7 @@ pj
 pb
 pk
 rY
-zE
+rY
 uX
 zE
 rY

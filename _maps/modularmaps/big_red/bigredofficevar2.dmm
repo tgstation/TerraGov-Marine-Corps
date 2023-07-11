@@ -82,33 +82,6 @@
 "bB" = (
 /turf/open/floor,
 /area/bigredv2/outside/e)
-"bG" = (
-/obj/item/fuel_cell/full,
-/obj/item/fuel_cell/full,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
-/obj/item/t_scanner,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
-/obj/item/storage/backpack/marine/engineerpack,
-/obj/item/storage/belt/utility/full,
-/obj/item/flashlight,
-/obj/item/clothing/suit/storage/hazardvest,
-/obj/item/clothing/suit/storage/hazardvest,
-/obj/structure/table/mainship,
-/obj/item/facepaint/black,
-/turf/open/floor/mainship/orange/full,
-/area/bigredv2/outside/office_complex)
-"bI" = (
-/obj/structure/rack,
-/obj/item/tool/shovel/etool,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
-/obj/item/pizzabox/meat{
-	pixel_y = 8
-	},
-/obj/item/binoculars,
-/obj/item/facepaint/sniper,
-/obj/machinery/alarm,
-/turf/open/floor/mainship/cargo,
-/area/bigredv2/outside/office_complex)
 "bO" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/mono,
@@ -155,11 +128,6 @@
 /obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
-"cF" = (
-/obj/structure/table,
-/obj/effect/spawner/random/misc/paperbin,
-/turf/open/floor,
-/area/bigredv2/outside/office_complex)
 "cI" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -176,13 +144,6 @@
 "cV" = (
 /obj/structure/closet/jcloset,
 /turf/open/floor/tile/whiteyellow/full,
-/area/bigredv2/outside/office_complex)
-"dp" = (
-/obj/structure/closet/secure_closet/engineering_personal,
-/obj/item/tool/weldpack,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
-/obj/effect/spawner/random/weaponry/ammo,
-/turf/open/floor/mainship/orange/full,
 /area/bigredv2/outside/office_complex)
 "dv" = (
 /obj/machinery/door/poddoor/mainship/open,
@@ -282,6 +243,25 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/office_complex)
+"hh" = (
+/obj/machinery/air_alarm{
+	dir = 4
+	},
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
+	},
+/area/bigredv2/outside/office_complex)
+"ho" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "\improper Private Office"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/office_complex)
 "hs" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -297,10 +277,6 @@
 	pixel_y = 3
 	},
 /turf/open/floor/mainship/orange/full,
-/area/bigredv2/outside/office_complex)
-"hC" = (
-/obj/machinery/alarm,
-/turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "hT" = (
 /obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
@@ -319,12 +295,6 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/office_complex)
-"iY" = (
-/obj/machinery/alarm{
-	dir = 8
-	},
-/turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "ju" = (
 /obj/effect/turf_decal/tracks/wheels/bloody{
@@ -369,6 +339,17 @@
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
+/area/bigredv2/outside/office_complex)
+"kF" = (
+/obj/machinery/air_alarm{
+	dir = 8
+	},
+/turf/open/floor/mainship/cargo,
+/area/bigredv2/outside/office_complex)
+"kK" = (
+/obj/structure/table,
+/obj/effect/spawner/random/misc/paperbin,
+/turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "lh" = (
 /obj/effect/landmark/weed_node,
@@ -521,6 +502,11 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
+/area/bigredv2/outside/office_complex)
+"qd" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "qr" = (
 /obj/machinery/door_control{
@@ -796,13 +782,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/e)
-"xp" = (
-/obj/machinery/bodyscanner,
-/obj/machinery/alarm{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile,
-/area/bigredv2/outside/office_complex)
 "xx" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 1
@@ -855,6 +834,20 @@
 	dir = 9
 	},
 /area/bigredv2/outside/e)
+"yV" = (
+/obj/structure/table/mainship,
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/paperbin,
+/obj/item/tool/pen,
+/obj/item/clipboard,
+/obj/item/pinpointer,
+/obj/machinery/vending/nanomed,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/blue,
+/area/bigredv2/outside/office_complex)
 "zb" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/plating_catwalk,
@@ -932,6 +925,15 @@
 /obj/item/healthanalyzer,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/office_complex)
+"Ba" = (
+/obj/machinery/air_alarm{
+	dir = 1
+	},
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
+/area/bigredv2/outside/office_complex)
 "Bc" = (
 /obj/item/radio/intercom{
 	dir = 1;
@@ -971,9 +973,27 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
-"CW" = (
-/obj/effect/spawner/random/machinery/machine_frame,
-/turf/open/floor/mainship/cargo,
+"Cn" = (
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/item/t_scanner,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/item/storage/backpack/marine/engineerpack,
+/obj/item/storage/belt/utility/full,
+/obj/item/flashlight,
+/obj/item/clothing/suit/storage/hazardvest,
+/obj/item/clothing/suit/storage/hazardvest,
+/obj/structure/table/mainship,
+/obj/item/facepaint/black,
+/turf/open/floor/mainship/orange/full,
+/area/bigredv2/outside/office_complex)
+"Cu" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/obj/item/tool/weldpack,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/weaponry/ammo,
+/turf/open/floor/mainship/orange/full,
 /area/bigredv2/outside/office_complex)
 "Dc" = (
 /obj/effect/landmark/weed_node,
@@ -1071,31 +1091,6 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/outside/office_complex)
-"FM" = (
-/obj/structure/table/mainship,
-/obj/machinery/power/apc/mainship{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/effect/spawner/random/misc/paperbin,
-/obj/item/tool/pen,
-/obj/item/clipboard,
-/obj/item/pinpointer,
-/obj/machinery/vending/nanomed,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/blue,
-/area/bigredv2/outside/office_complex)
-"FR" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1;
-	name = "\improper Private Office"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/effect/turf_decal/tracks/wheels/bloody{
-	dir = 1
-	},
-/turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "FT" = (
 /turf/open/floor/mainship/stripesquare,
@@ -1289,6 +1284,13 @@
 /obj/item/stack/sheet/plasteel,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
+"Nw" = (
+/obj/machinery/bodyscanner,
+/obj/machinery/air_alarm{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile,
+/area/bigredv2/outside/office_complex)
 "Nz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tracks/wheels/bloody{
@@ -1310,14 +1312,6 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/bigredv2/outside/office_complex)
-"Ov" = (
-/obj/machinery/alarm{
-	dir = 4
-	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 8
-	},
 /area/bigredv2/outside/office_complex)
 "Ow" = (
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/corpsman,
@@ -1375,11 +1369,6 @@
 /turf/open/floor/mainship/blue{
 	dir = 9
 	},
-/area/bigredv2/outside/office_complex)
-"PX" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "Qd" = (
 /obj/structure/shuttle/engine/propulsion/burst/left,
@@ -1459,6 +1448,18 @@
 /obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
+"SA" = (
+/obj/item/pizzabox/meat{
+	pixel_y = 8
+	},
+/obj/item/binoculars,
+/obj/item/facepaint/sniper,
+/obj/machinery/air_alarm,
+/obj/structure/rack,
+/obj/item/tool/shovel/etool,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/turf/open/floor/mainship/cargo,
+/area/bigredv2/outside/office_complex)
 "SE" = (
 /obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
 /turf/open/floor/mainship/red/full,
@@ -1476,6 +1477,10 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner,
+/area/bigredv2/outside/office_complex)
+"Tm" = (
+/obj/machinery/air_alarm,
+/turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "Tx" = (
 /turf/closed/wall,
@@ -1637,15 +1642,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
-"XQ" = (
-/obj/machinery/computer/crew,
-/obj/machinery/alarm{
-	dir = 1
-	},
-/turf/open/floor/mainship/blue{
-	dir = 6
-	},
-/area/bigredv2/outside/office_complex)
 "Yc" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -1738,6 +1734,10 @@
 /obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
+"ZW" = (
+/obj/effect/spawner/random/machinery/machine_frame,
+/turf/open/floor/mainship/cargo,
+/area/bigredv2/outside/office_complex)
 
 (1,1,1) = {"
 qL
@@ -1803,7 +1803,7 @@ TD
 bW
 VW
 Uz
-xp
+Nw
 ZJ
 vS
 wM
@@ -1819,7 +1819,7 @@ qL
 sB
 oU
 Uz
-bI
+SA
 FT
 gR
 Bc
@@ -1850,7 +1850,7 @@ Zd
 jO
 Uz
 Bn
-PX
+qd
 Mp
 Uz
 Ks
@@ -1876,7 +1876,7 @@ zG
 JK
 Nj
 hw
-bG
+Cn
 Uz
 ZA
 ak
@@ -1898,10 +1898,10 @@ Uz
 Zw
 uk
 zG
-CW
+ZW
 Nj
 bQ
-dp
+Cu
 Uz
 xU
 cv
@@ -1968,7 +1968,7 @@ kc
 bX
 US
 MU
-FM
+yV
 Uz
 ET
 tF
@@ -1984,7 +1984,7 @@ gN
 Wn
 hs
 Lx
-iY
+kF
 mY
 ME
 SY
@@ -1993,7 +1993,7 @@ SY
 bX
 yx
 Qy
-XQ
+Ba
 Uz
 LE
 tF
@@ -2069,7 +2069,7 @@ Yc
 Yc
 oU
 Uz
-hC
+Tm
 fs
 Qr
 lp
@@ -2181,7 +2181,7 @@ Tx
 WY
 Ej
 qN
-Ov
+hh
 EY
 qr
 Yo
@@ -2248,7 +2248,7 @@ Tx
 oR
 aU
 NO
-FR
+ho
 wf
 oR
 Xl
@@ -2349,7 +2349,7 @@ Tx
 Tx
 Tx
 Tx
-cF
+kK
 oR
 mv
 Tx

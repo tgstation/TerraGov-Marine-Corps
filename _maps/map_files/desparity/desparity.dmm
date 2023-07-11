@@ -121,7 +121,7 @@
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "aT" = (
-/obj/machinery/portable_atmospherics/hydroponics/slashable,
+/obj/machinery/hydroponics/slashable,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
 	},
@@ -778,7 +778,7 @@
 /area/lv624/ground/caves/east1)
 "ey" = (
 /obj/structure/table,
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /turf/open/floor/tile/dark/purple2,
 /area/lv624/lazarus/research/caves)
 "eB" = (
@@ -1230,7 +1230,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "gD" = (
-/obj/machinery/portable_atmospherics/hydroponics/slashable,
+/obj/machinery/hydroponics/slashable,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3092,7 +3092,7 @@
 /turf/open/liquid/water/river,
 /area/lv624/lazarus/spaceport)
 "qo" = (
-/obj/machinery/portable_atmospherics/hydroponics/slashable,
+/obj/machinery/hydroponics/slashable,
 /turf/open/floor/tile/green/greentaupe,
 /area/lv624/lazarus/hydroponics)
 "qp" = (
@@ -4271,7 +4271,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/lazarus/spaceport)
 "wf" = (
-/obj/machinery/portable_atmospherics/hydroponics/slashable,
+/obj/machinery/hydroponics/slashable,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -6726,7 +6726,7 @@
 /turf/closed/shuttle/dropship_regular/top_corner/alt,
 /area/lv624/ground/jungle9)
 "Ir" = (
-/obj/machinery/portable_atmospherics/hydroponics/slashable,
+/obj/machinery/hydroponics/slashable,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 6
 	},
@@ -7048,7 +7048,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "JE" = (
-/obj/machinery/portable_atmospherics/hydroponics/slashable,
+/obj/machinery/hydroponics/slashable,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -8142,7 +8142,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/overgrown)
 "OL" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/tile/green,
 /area/lv624/lazarus/medbay)
 "OM" = (

@@ -343,9 +343,13 @@
 				simple_status_hud.icon_state = "hud_con_stun"
 				status_hud.icon_state = "hud_con_stun"
 				return TRUE
-			if(stagger || slowdown)
+			if(stagger)
 				simple_status_hud.icon_state = "hud_con_stagger"
 				status_hud.icon_state = "hud_con_stagger"
+				return TRUE
+			if(slowdown)
+				simple_status_hud.icon_state = "hud_con_slowdown"
+				status_hud.icon_state = "hud_con_slowdown"
 				return TRUE
 			else
 				if(species.species_flags & ROBOTIC_LIMBS)
