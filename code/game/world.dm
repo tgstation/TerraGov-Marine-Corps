@@ -313,7 +313,7 @@ GLOBAL_VAR(restart_counter)
 	// var/webmap_host = CONFIG_GET(string/webmap_host)
 	var/shipname = length_char(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
 	var/map_name = length_char(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
-	var/ground_map_file = length_char(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
+	// var/ground_map_file = length_char(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
 
 	var/new_status = ""
 	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name]</a></b>"
