@@ -365,8 +365,7 @@
 	<A href='byond://?src=[REF(src)];automed_damage=1'>+1</A>
 	<A href='byond://?src=[REF(src)];automed_damage=5'>+5</A>
 	<A href='byond://?src=[REF(src)];automed_damage=10'>+10</A>
-	<A href='byond://?src=[REF(src)];automed_damage=50'>+50</A><BR>
-	<A href='byond://?src=[REF(src)];automed_damage=50'>+100</A>
+	<A href='byond://?src=[REF(src)];automed_damage=50'>+50</A>
 	<A href='byond://?src=[REF(src)];automed_damage=100'>+100</A><BR>
 	<BR>
 	<B>Pain Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
