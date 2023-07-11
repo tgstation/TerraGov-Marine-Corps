@@ -142,6 +142,7 @@
 		/obj/item/armor_module/armor/visor/marine/ranger,
 		/obj/item/armor_module/armor/visor/marine/traditional,
 		/obj/item/armor_module/armor/visor/marine/trooper,
+		/obj/item/armor_module/armor/visor/marine/kabuto,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -212,3 +213,9 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Trooper markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/trooper, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk2/trooper
+
+/obj/item/clothing/head/modular/marine/kabuto
+	name = "Style Pattern Kabuto Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Kabuto markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/kabuto, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/kabuto
