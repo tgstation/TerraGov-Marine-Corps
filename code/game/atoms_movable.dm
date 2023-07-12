@@ -510,11 +510,12 @@
 	if(spin)
 		animation_spin(5, 1)
 
-	if(flying)
-		pass_flags |= PASS_MOB
-
 	set_throwing(TRUE)
 	src.thrower = thrower
+
+	var/original_layer = layer
+	if(flying)
+		set_flying(TRUE, FLY_LAYER)
 
 	var/originally_dir_locked = flags_atom & DIRLOCK
 	if(!originally_dir_locked)
@@ -550,7 +551,7 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed)
+				var/hit_check_return = hit_check(speed, flying)
 				if(hit_check_return)
 					parrier = hit_check_return
 					break
@@ -564,7 +565,7 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed)
+				var/hit_check_return = hit_check(speed, flying)
 				if(hit_check_return)
 					parrier = hit_check_return
 					break
@@ -582,7 +583,7 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed)
+				var/hit_check_return = hit_check(speed, flying)
 				if(hit_check_return)
 					parrier = hit_check_return
 					break
@@ -596,7 +597,7 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed)
+				var/hit_check_return = hit_check(speed, flying)
 				if(hit_check_return)
 					parrier = hit_check_return
 					break
@@ -615,13 +616,15 @@
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
-		stop_throw()
+		stop_throw(flying, original_layer)
 		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
 
 /// Annul all throw var to ensure a clean exit out of throw state
-/atom/movable/proc/stop_throw()
+/atom/movable/proc/stop_throw(flying = FALSE, original_layer)
 	set_throwing(FALSE)
+	if(flying)
+		set_flying(FALSE, original_layer)
 	thrower = null
 	throw_source = null
 
@@ -1076,19 +1079,25 @@
 	. = grab_state
 	grab_state = newstate
 
-
-/atom/movable/proc/set_throwing(new_throwing)
+///Toggles AM between throwing states
+/atom/movable/proc/set_throwing(new_throwing, flying)
 	if(new_throwing == throwing)
 		return
 	. = throwing
 	throwing = new_throwing
-	pass_flags ^= PASS_THROW //we'll replace the above entirely later
+	if(throwing)
+		pass_flags |= PASS_THROW
+	else
+		pass_flags &= ~PASS_THROW
 
-/atom/movable/proc/set_flying(flying)
-	if (flying)
-		ENABLE_BITFIELD(pass_flags, HOVERING)
+///Toggles AM between flying states
+/atom/movable/proc/set_flying(flying, new_layer)
+	if(flying)
+		pass_flags |= HOVERING
+		layer = new_layer
 		return
-	DISABLE_BITFIELD(pass_flags, HOVERING)
+	pass_flags &= ~HOVERING
+	layer = new_layer ? new_layer : initial(layer)
 
 ///returns bool for if we want to get forcepushed
 /atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
