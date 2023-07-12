@@ -40,7 +40,7 @@
 /// Wrapper proc to set the host of our ui datum, aka the loadout vendor that's showing us the loadouts
 /datum/loadout_manager/proc/set_host(_loadout_vendor)
 	loadout_vendor = _loadout_vendor
-	RegisterSignal(loadout_vendor, COMSIG_PARENT_QDELETING, PROC_REF(close_ui))
+	RegisterSignal(loadout_vendor, COMSIG_QDELETING, PROC_REF(close_ui))
 
 /// Wrapper proc to handle loadout vendor being qdeleted while we have loadout manager opened
 /datum/loadout_manager/proc/close_ui()
@@ -166,7 +166,6 @@
 			if(ispath(module.item_type, /obj/item/armor_module/greyscale))
 				module.item_type = text2path(splicetext("[module.item_type]", 24, 33, "armor"))
 			module.colors = initial(module.item_type.greyscale_colors)
-			update_attachments(module.attachments, version)
 			if(!istype(module, /datum/item_representation/armor_module/armor) && !istype(module, /datum/item_representation/armor_module/colored))
 				continue
 			var/datum/item_representation/armor_module/new_module = new
@@ -175,7 +174,53 @@
 			new_module.colors = module.colors
 			attachments.Remove(module)
 			attachments.Add(new_module)
-
+		if(version < 14)
+			if(ispath(module.item_type, /obj/item/armor_module/armor/cape))
+				module.variant = NORMAL
+				if(module.item_type == /obj/item/armor_module/armor/cape/kama)
+					module.variant = CAPE_KAMA
+				else if(module.item_type != /obj/item/armor_module/armor/cape)
+					var/datum/item_representation/armor_module/new_cape = new
+					new_cape.item_type = /obj/item/armor_module/armor/cape
+					new_cape.attachments = module.attachments
+					new_cape.colors = module.colors
+					switch(module.item_type)
+						if(/obj/item/armor_module/armor/cape/half)
+							new_cape.variant = CAPE_HALF
+						if(/obj/item/armor_module/armor/cape/scarf)
+							new_cape.variant = CAPE_SCARF
+						if(/obj/item/armor_module/armor/cape/short)
+							new_cape.variant = CAPE_SHORT
+						if(/obj/item/armor_module/armor/cape/short/classic)
+							new_cape.variant = CAPE_SHORT_OLD
+					attachments.Remove(module)
+					attachments.Add(new_cape)
+			if(ispath(module.item_type, /obj/item/armor_module/armor/cape_highlight))
+				module.variant = CAPE_HIGHLIGHT_NONE
+				if(module.item_type == /obj/item/armor_module/armor/cape_highlight/kama)
+					module.variant = CAPE_KAMA
+				else if(module.item_type != /obj/item/armor_module/armor/cape_highlight)
+					var/datum/item_representation/armor_module/armor/new_highlight = new
+					new_highlight.item_type = /obj/item/armor_module/armor/cape_highlight
+					new_highlight.attachments = module.attachments
+					new_highlight.colors = module.colors
+					new_highlight.variant = CAPE_HIGHLIGHT_NONE
+					switch(module.item_type)
+						if(/obj/item/armor_module/armor/cape_highlight/half)
+							new_highlight.variant = CAPE_HALF
+						if(/obj/item/armor_module/armor/cape_highlight/scarf)
+							new_highlight.variant = CAPE_SCARF
+					attachments.Remove(module)
+					attachments.Add(new_highlight)
+			if(ispath(module.item_type, /obj/item/armor_module/armor/visor/marine/eva/skull))
+				var/datum/item_representation/armor_module/armor/new_glyph = new
+				new_glyph.item_type = /obj/item/armor_module/armor/visor_glyph
+				module.attachments.Add(new_glyph)
+			if(ispath(module.item_type, /obj/item/armor_module/armor/visor/marine/old/eva/skull))
+				var/datum/item_representation/armor_module/armor/new_glyph = new
+				new_glyph.item_type = /obj/item/armor_module/armor/visor_glyph/old
+				module.attachments.Add(new_glyph)
+		update_attachments(module.attachments, version)
 
 ///Modifies a legacy loadout to make it valid for the current loadout version
 /datum/loadout_manager/proc/legacy_version_fix(datum/loadout/loadout, loadout_name, loadout_job, datum/tgui/ui)

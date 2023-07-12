@@ -7,7 +7,7 @@
 	icon_state = "chest"
 	item_state = "chest"
 	icon = null
-	item_icons = list()
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
@@ -38,7 +38,7 @@
 
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	greyscale_config = /datum/greyscale_config/xenonaut
-	colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	colorable_colors = ARMOR_PALETTES_LIST
 	greyscale_colors = ARMOR_PALETTE_DRAB
 

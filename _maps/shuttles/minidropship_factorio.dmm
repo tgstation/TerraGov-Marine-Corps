@@ -57,7 +57,7 @@
 "t" = (
 /obj/structure/table/mainship,
 /obj/item/stack/sheet/metal/medium_stack,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/machinery/vending/nanomed/tadpolemed{
 	dir = 4
 	},

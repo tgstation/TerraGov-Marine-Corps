@@ -82,8 +82,6 @@
 
 	var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
-	var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
-	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
 	// Show all the death timers in milliseconds
 	.["hive_death_timers"] = list()
 	// The key for caste_death_timer is the mob's type
@@ -184,8 +182,7 @@
 	.["static_info"] = GLOB.hive_ui_static_data
 
 	.["hive_name"] = name
-	.["hive_silo_max"] = DISTRESS_SILO_COLLAPSE MILLISECONDS //Timers are defined in miliseconds.
-	.["hive_orphan_max"] = DISTRESS_ORPHAN_HIVEMIND MILLISECONDS
+	.["hive_orphan_max"] = NUCLEAR_WAR_ORPHAN_HIVEMIND MILLISECONDS
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	.["hive_larva_threshold"] = xeno_job.job_points_needed
@@ -865,13 +862,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal // subtype for easier typechecking and overrides
 	hive_flags = HIVE_CAN_HIJACK
 
-///Signal handler to tell the hive to check for siloless in MINIMUM_TIME_SILO_LESS_COLLAPSE
-/datum/hive_status/normal/proc/set_siloless_collapse_timer()
-	SIGNAL_HANDLER
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
-	hive_flags |= HIVE_CAN_COLLAPSE_FROM_SILO
-	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), src), MINIMUM_TIME_SILO_LESS_COLLAPSE)
-
 /datum/hive_status/normal/handle_ruler_timer()
 	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
 		return
@@ -891,7 +881,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 
 
-	D.orphan_hive_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode, orphan_hivemind_collapse)), DISTRESS_ORPHAN_HIVEMIND, TIMER_STOPPABLE)
+	D.orphan_hive_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode, orphan_hivemind_collapse)), NUCLEAR_WAR_ORPHAN_HIVEMIND, TIMER_STOPPABLE)
 
 
 /datum/hive_status/normal/burrow_larva(mob/living/carbon/xenomorph/larva/L)
@@ -1014,7 +1004,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
-	SSticker.mode.update_silo_death_timer(src)
 	GLOB.xeno_enter_allowed = FALSE
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, PROC_REF(on_hijack_depart))
@@ -1076,7 +1065,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		remove_from_larva_candidate_queue(observer)
 		return FALSE
 	LAZYADD(candidate, observer)
-	RegisterSignal(observer, COMSIG_PARENT_QDELETING, PROC_REF(clean_observer))
+	RegisterSignal(observer, COMSIG_QDELETING, PROC_REF(clean_observer))
 	observer.larva_position = LAZYLEN(candidate)
 	to_chat(observer, span_warning("There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph."))
 	return TRUE
@@ -1084,7 +1073,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /// Remove an observer from the larva candidate queue
 /datum/hive_status/proc/remove_from_larva_candidate_queue(mob/dead/observer/observer)
 	LAZYREMOVE(candidate, observer)
-	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(observer, COMSIG_QDELETING)
 	observer.larva_position = 0
 	var/datum/action/observer_action/join_larva_queue/join = observer.actions_by_path[/datum/action/observer_action/join_larva_queue]
 	join.set_toggle(FALSE)
@@ -1113,7 +1102,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	while(stored_larva > 0 && LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, 1)
 		LAZYREMOVE(candidate, observer_in_queue)
-		UnregisterSignal(observer_in_queue, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(observer_in_queue, COMSIG_QDELETING)
 		if(try_to_give_larva(observer_in_queue))
 			stored_larva--
 			slot_really_taken++

@@ -54,7 +54,7 @@
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
 	xeno_owner = _xeno_owner
-	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_mob_owner))
+	RegisterSignal(xeno_owner, COMSIG_QDELETING, PROC_REF(clean_mob_owner))
 	RegisterSignal(loc, COMSIG_ATOM_ENTERED, PROC_REF(atom_enter_turf))
 	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
 
@@ -75,7 +75,7 @@
 
 /// Set xeno_owner to null to avoid hard del
 /obj/effect/xenomorph/spray/proc/clean_mob_owner()
-	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(xeno_owner, COMSIG_QDELETING)
 	xeno_owner = null
 
 /// Signal handler to burn and maybe stun the human entering the acid spray

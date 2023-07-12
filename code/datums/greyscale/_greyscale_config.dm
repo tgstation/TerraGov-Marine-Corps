@@ -27,6 +27,9 @@
 	/// This is used to differentiate sprites that can use the same json, but you dont want a ton of different icon files. It applies this prefix to the icon states before gathering the icons.
 	var/prefix = ""
 
+	/// Flags that can be used to modify use
+	var/greyscale_flags = NONE
+
 // There's more sanity checking here than normal because this is designed for spriters to work with
 // Sensible error messages that tell you exactly what's wrong is the best way to make this easy to use
 /datum/greyscale_config/New()
@@ -139,7 +142,7 @@
 			layer_icon = GenerateLayerGroup(colors, layer, render_steps)
 			layer = layer[1] // When there are multiple layers in a group like this we use the first one's blend mode
 		else
-			layer_icon = layer.Generate(colors, render_steps)
+			layer_icon = layer.Generate(colors, render_steps, src)
 		if(!new_icon)
 			new_icon = layer_icon
 		else

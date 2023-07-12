@@ -132,10 +132,29 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/active = FALSE
 
+
+
+	//Coloring vars
+	///Some defines to determine if the item is allowed to be recolored.
+	var/colorable_allowed = NONE
+	///optional assoc list of colors we can color this item
+	var/list/colorable_colors = list()
+	///List of icon_state suffixes for item variants.
+	var/list/icon_state_variants = list()
+	///Current variant selected.
+	var/current_variant
+
+
+
+
 /obj/item/Initialize(mapload)
 
 	if(species_exception)
 		species_exception = string_list(species_exception)
+	if(length(colorable_colors))
+		colorable_colors = string_list(colorable_colors)
+	if(length(icon_state_variants))
+		icon_state_variants = string_list(icon_state_variants)
 
 	. = ..()
 
@@ -151,6 +170,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	if(flags_item_map_variant)
 		update_item_sprites()
+
+	if(current_variant)
+		update_icon()
 
 /obj/item/Destroy()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
@@ -248,10 +270,20 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		dropped(user)
 
 
+/obj/item/update_icon_state()
+	. = ..()
+	if(current_variant)
+		icon_state = initial(icon_state) + "_[current_variant]"
+		item_state = initial(item_state) + "_[current_variant]"
+
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
 /obj/item/attackby(obj/item/I, mob/user, params)
 	. = ..()
+
+	if(istype(I, /obj/item/facepaint) && colorable_allowed != NONE)
+		color_item(I, user)
+		return
 
 	if(!istype(I, /obj/item/storage))
 		return
@@ -284,6 +316,16 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	else if(S.can_be_inserted(src))
 		S.handle_item_insertion(src, FALSE, user)
+
+
+/obj/item/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(!istype(I, /obj/item/facepaint))
+		return
+	alternate_color_item(I, user)
+
 
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
 	return ITALICS | REDUCE_RANGE
@@ -642,19 +684,44 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				icon_state = "m_[icon_state]"
-				item_state = "m_[item_state]"
+				if(colorable_allowed & PRESET_COLORS_ALLOWED)
+					greyscale_colors = ARMOR_PALETTE_DRAB
+				else if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
+					current_variant = JUNGLE_VARIANT
+				else
+					icon_state = "m_[icon_state]"
+					item_state = "m_[item_state]"
 		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				icon_state = "s_[icon_state]"
-				item_state = "s_[item_state]"
+				if(colorable_allowed & PRESET_COLORS_ALLOWED)
+					greyscale_colors = ARMOR_PALETTE_SNOW
+				else if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
+					current_variant = SNOW_VARIANT
+				else
+					icon_state = "s_[icon_state]"
+					item_state = "s_[item_state]"
 		if(MAP_ARMOR_STYLE_PRISON)
 			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				icon_state = "k_[icon_state]"
-				item_state = "k_[item_state]"
+				if(colorable_allowed & PRESET_COLORS_ALLOWED)
+					greyscale_colors = ARMOR_PALETTE_BLACK
+				else if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
+					current_variant = PRISON_VARIANT
+				else
+					icon_state = "k_[icon_state]"
+					item_state = "k_[item_state]"
+		if(MAP_ARMOR_STYLE_DESERT)
+			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
+				if(colorable_allowed & PRESET_COLORS_ALLOWED)
+					greyscale_colors = ARMOR_PALETTE_DESERT
+				else if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
+					current_variant = DESERT_VARIANT
 
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && (flags_item_map_variant & ITEM_ICE_PROTECTION))
 		min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+
+	if(!greyscale_colors)
+		return
+	update_greyscale()
 
 
 ///Play small animation and jiggle when picking up an object
@@ -869,9 +936,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(zoom_allow_movement)
 		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, PROC_REF(zoom_item_turnoff))
 	else
-		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
+		RegisterSignals(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
 	RegisterSignal(user, COMSIG_MOB_FACE_DIR, PROC_REF(change_zoom_offset))
-	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
+	RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
 
 
 ///called when zoom is deactivated.
@@ -1322,4 +1389,80 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Controls how vendors will try to equip this item. Returns whether item was sucessfully equipped
 /obj/item/proc/vendor_equip(mob/user)
 	return FALSE
+
+///Colors the item or selects variants.
+/obj/item/proc/color_item(obj/item/facepaint/paint, mob/user)
+
+	if(paint.uses < 1)
+		balloon_alert(user, "\the [paint] is out of color!")
+		return
+
+	var/list/selection_list = list()
+	if(colorable_allowed & COLOR_WHEEL_ALLOWED)
+		selection_list += COLOR_WHEEL
+	if(colorable_allowed & PRESET_COLORS_ALLOWED && length(colorable_colors)>1)
+		selection_list += PRESET_COLORS
+	if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED && (length(icon_state_variants)>1))
+		selection_list += VARIANTS
+
+	var/selection
+	if(length(selection_list) == 1)
+		selection = selection_list[1]
+	else
+		selection = tgui_input_list(user, "Choose a color setting", name, selection_list)
+
+	var/new_color
+	switch(selection)
+		if(VARIANTS)
+			var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+
+			if(!variant)
+				return
+
+			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+				return
+
+			current_variant = variant
+			update_icon()
+			update_greyscale()
+			return
+		if(PRESET_COLORS)
+			var/color_selection
+			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+			if(!color_selection)
+				return
+			if(islist(colorable_colors[color_selection]))
+				var/old_list = colorable_colors[color_selection]
+				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
+				if(!color_selection)
+					return
+				new_color = old_list[color_selection]
+			else
+				new_color = colorable_colors[color_selection]
+		if(COLOR_WHEEL)
+			new_color = input(user, "Pick a color", "Pick color") as null|color
+
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	set_greyscale_colors(new_color)
+	update_icon()
+	update_greyscale()
+
+///Is called when the item is alternate attacked by paint. Handles coloring any secondary colors that are registered to COMSIG_ITEM_SECONDARY_COLOR
+/obj/item/proc/alternate_color_item(obj/item/facepaint/paint, mob/user)
+	var/list/obj/item/secondaries = list()
+	SEND_SIGNAL(src, COMSIG_ITEM_SECONDARY_COLOR, user, secondaries)
+	if(!length(secondaries))
+		return
+	if(length(secondaries) == 1)
+		secondaries[1].color_item(paint, user)
+		update_icon()
+		return
+	var/obj/item/selection = tgui_input_list(user, "Select secondary to color.", "Secondary Color Selection", secondaries)
+	if(!selection)
+		return
+	selection.color_item(paint, user)
+	update_icon()
+	update_greyscale()
 

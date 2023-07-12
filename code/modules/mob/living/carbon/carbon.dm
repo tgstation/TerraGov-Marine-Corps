@@ -151,9 +151,7 @@
 
 ///Throws active held item at target in params
 /mob/proc/throw_item(atom/target)
-	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_MOB_THROW, target)
-
+	return
 
 /mob/living/carbon/throw_item(atom/target)
 	. = ..()
@@ -179,17 +177,26 @@
 	thrown_thing = I.on_thrown(src, target)
 
 	//actually throw it!
-	if (thrown_thing)
-		visible_message(span_warning("[src] has thrown [thrown_thing]."), null, null, 5)
+	if(!thrown_thing)
+		return
 
-		if(!lastarea)
-			lastarea = get_area(src.loc)
-		if(isspaceturf(loc))
-			inertia_dir = get_dir(target, src)
-			step(src, inertia_dir)
+	var/list/throw_modifiers = list()
+	throw_modifiers["targetted_throw"] = TRUE
+	throw_modifiers["range_modifier"] = 0
+	throw_modifiers["speed_modifier"] = 0
+	SEND_SIGNAL(src, COMSIG_MOB_THROW, target, thrown_thing, throw_modifiers)
 
-		playsound(src, 'sound/effects/throw.ogg', 30, 1)
-		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
+	if(!lastarea)
+		lastarea = get_area(src.loc)
+	if(isspaceturf(loc))
+		inertia_dir = get_dir(target, src)
+		step(src, inertia_dir)
+
+	visible_message(span_warning("[src] has thrown [thrown_thing]."), null, null, 5)
+
+	playsound(src, 'sound/effects/throw.ogg', 30, 1)
+
+	thrown_thing.throw_at(target, thrown_thing.throw_range + throw_modifiers["range_modifier"], max(1, thrown_thing.throw_speed + throw_modifiers["speed_modifier"]), src, spin_throw, !throw_modifiers["targetted_throw"], throw_modifiers["targetted_throw"])
 
 ///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
 /obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)

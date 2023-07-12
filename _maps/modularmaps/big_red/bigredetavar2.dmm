@@ -31,7 +31,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "bq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -111,7 +111,7 @@
 /area/bigredv2/outside/hydroponics)
 "eA" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "eP" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -153,7 +153,7 @@
 "fl" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "fM" = (
 /obj/machinery/vending/snack,
 /turf/open/floor,
@@ -175,7 +175,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "gW" = (
 /obj/item/shard,
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
@@ -185,7 +185,7 @@
 /obj/item/stack/sheet/metal,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "hH" = (
 /turf/open/shuttle/dropship/seven,
 /area/bigredv2/outside/general_offices)
@@ -240,7 +240,7 @@
 "kv" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/shuttle/dropship2/corners,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "kx" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -287,7 +287,7 @@
 "mz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "mN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/dmg3,
@@ -309,13 +309,13 @@
 /turf/closed/shuttle/dropship2/corners{
 	dir = 1
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "oC" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/shuttle/dropship2/singlewindow{
 	dir = 1
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "oH" = (
 /obj/item/stack/sheet/wood,
 /turf/open/floor/wood/variable/damaged/standard,
@@ -442,7 +442,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "uo" = (
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
@@ -501,7 +501,7 @@
 /area/bigredv2/outside/general_offices)
 "wL" = (
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "xf" = (
 /obj/structure/closet/l3closet,
 /turf/open/floor/plating/dmg1,
@@ -551,7 +551,7 @@
 /turf/open/floor/plating/scorched,
 /area/bigredv2/outside/general_offices)
 "Ap" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "AE" = (
@@ -830,7 +830,7 @@
 /obj/effect/spawner/gibspawner/human,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "QB" = (
 /turf/closed/wall,
 /area/bigredv2/outside/hydroponics)
@@ -988,7 +988,7 @@
 /area/bigredv2/outside/general_offices)
 "Yu" = (
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Za" = (
 /obj/item/stack/sheet/wood,
 /obj/effect/ai_node,

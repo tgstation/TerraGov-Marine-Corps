@@ -3,11 +3,18 @@
 
 #define COLOR_WHEEL "Color Wheel"
 #define PRESET_COLORS "Preset Colors"
+#define VARIANTS "Variant"
 
-#define COLOR_WHEEL_ALLOWED 1
-#define COLOR_WHEEL_NOT_ALLOWED 2
-#define COLOR_WHEEL_ONLY 3
-#define NOT_COLORABLE 4
+#define COLOR_WHEEL_ALLOWED (1<<0)
+#define PRESET_COLORS_ALLOWED (1<<1)
+#define ICON_STATE_VARIANTS_ALLOWED (1<<2)
+
+
+#define JUNGLE_VARIANT "jungle"
+#define SNOW_VARIANT "snow"
+#define PRISON_VARIANT "prison"
+#define DESERT_VARIANT "desert"
+
 
 //Default
 #define ARMOR_PALETTE_DRAB "#241d16#363021#444732#665f44#80706a"
@@ -59,6 +66,7 @@
 #define ARMOR_PALETTE_LEAF "#231929#212332#323E4C#3D5954#4B6D59"
 #define ARMOR_PALETTE_FOREST "#2D2D1D#444439#576048#657753#A1A382"
 #define ARMOR_PALETTE_SMOKED_GREEN "#1B2121#2A2E2A#394042#4F585D#6D777C"
+#define ARMOR_PALETTE_PINE "#282C27#3E453C#576857#6A806A#769076"
 
 //Blue
 #define ARMOR_PALETTE_BLUE "#111f28#182634#243548#435872#6382a8"
@@ -117,7 +125,7 @@
 
 
 #define ARMOR_PALETTES_LIST list(\
-		"Default" = list(\
+		"Default Armor" = list(\
 			"Drab" = ARMOR_PALETTE_DRAB,\
 			"Brown" = ARMOR_PALETTE_BROWN,\
 			"Wood" = ARMOR_PALETTE_WOOD,\
@@ -167,6 +175,7 @@
 			"Leaf" = ARMOR_PALETTE_LEAF,\
 			"Forest" = ARMOR_PALETTE_FOREST,\
 			"Smoked Green" = ARMOR_PALETTE_SMOKED_GREEN,\
+			"Pine" = ARMOR_PALETTE_PINE,\
 		),\
 		"Blue" = list(\
 			"Dark Blue" = ARMOR_PALETTE_BLUE,\
@@ -190,7 +199,7 @@
 	)
 
 #define VISOR_PALETTES_LIST list(\
-		"Default" = list(\
+		"Default Visors" = list(\
 			"Gold" = VISOR_PALETTE_GOLD,\
 			"Silver" = VISOR_PALETTE_SILVER,\
 			"Black" = VISOR_PALETTE_BLACK,\

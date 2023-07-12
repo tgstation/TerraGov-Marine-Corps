@@ -24,13 +24,13 @@
 
 /// Used to actualy create the layer using the given colors
 /// Do not override, use InternalGenerate instead
-/datum/greyscale_layer/proc/Generate(list/colors, list/render_steps)
+/datum/greyscale_layer/proc/Generate(list/colors, list/render_steps, datum/greyscale_config/parent)
 	var/list/processed_colors = list()
 	for(var/i in color_ids)
 		processed_colors += colors[i]
-	return InternalGenerate(processed_colors, render_steps)
+	return InternalGenerate(processed_colors, render_steps, parent)
 
-/datum/greyscale_layer/proc/InternalGenerate(list/colors, list/render_steps)
+/datum/greyscale_layer/proc/InternalGenerate(list/colors, list/render_steps, datum/greyscale_config/parent)
 
 ////////////////////////////////////////////////////////
 // Subtypes
@@ -58,8 +58,7 @@
 	if(length(color_ids) > 1)
 		CRASH("Icon state layers can not have more than one color id")
 
-/datum/greyscale_layer/icon_state/InternalGenerate(list/colors, list/render_steps)
-	. = ..()
+/datum/greyscale_layer/icon_state/InternalGenerate(list/colors, list/render_steps, datum/greyscale_config/parent)
 	var/icon/new_icon = icon(icon)
 	if(length(colors))
 		new_icon.Blend(colors[1], ICON_MULTIPLY)
@@ -78,7 +77,7 @@
 	if(!reference_config)
 		CRASH("An unknown greyscale configuration was given to a reference layer: [json_data["reference_type"]]")
 
-/datum/greyscale_layer/reference/InternalGenerate(list/colors, list/render_steps)
+/datum/greyscale_layer/reference/InternalGenerate(list/colors, list/render_steps, datum/greyscale_config/parent)
 	return reference_config.Generate(colors.Join(), render_steps)
 
 
@@ -90,8 +89,8 @@
 	///This is the icon of the layer
 	var/icon/icon
 
-/datum/greyscale_layer/hyperscale/Generate(list/colors, list/render_steps)
-	return InternalGenerate(colors, render_steps)
+/datum/greyscale_layer/hyperscale/Generate(list/colors, list/render_steps, datum/greyscale_config/parent)
+	return InternalGenerate(colors, render_steps, parent)
 
 
 /datum/greyscale_layer/hyperscale/New(icon_file, list/json_data, prefix)
@@ -123,11 +122,14 @@
 					continue
 				icon_file_colors.Add(pixel)
 
-/datum/greyscale_layer/hyperscale/InternalGenerate(list/colors, list/render_steps)
-	. = ..()
+/datum/greyscale_layer/hyperscale/InternalGenerate(list/colors, list/render_steps, datum/greyscale_config/parent)
 	var/icon/new_icon = icon(icon)
-	if(length(icon_file_colors) > length(colors))
+	if((length(icon_file_colors) > length(colors) && !CHECK_BITFIELD(parent.greyscale_flags, HYPERSCALE_ALLOW_GREYSCALE)))
 		CRASH("[src] set to Hyperscale, expected [length(icon_file_colors)], got [length(colors)].")
+	if(CHECK_BITFIELD(parent.greyscale_flags, HYPERSCALE_ALLOW_GREYSCALE) && (length(colors) == 1))
+		new_icon.Blend(colors[1], ICON_MULTIPLY)
+		return new_icon
+
 	for(var/i=1 to length(icon_file_colors))
 		new_icon.SwapColor(icon_file_colors[i], colors[i])
 

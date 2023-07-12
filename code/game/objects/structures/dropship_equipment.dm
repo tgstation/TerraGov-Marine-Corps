@@ -468,210 +468,92 @@
 	icon_state = "sentry_system_installed"
 	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
 
-/obj/structure/dropship_equipment/mg_holder
+/obj/structure/dropship_equipment/weapon_holder
+	equip_category = DROPSHIP_CREW_WEAPON
+	///The type of deployable that this holder holds
+	var/obj/machinery/deployable/deployable_type
+	///The reference to the deployable itself
+	var/obj/machinery/deployable/held_deployable
+	///The sprite used when we are deployed
+	var/deployed_icon_state = "mg_system_deployed"
+	///The sprite used when we aren't deployed
+	var/undeployed_icon_state = "mg_system"
+
+/obj/structure/dropship_equipment/weapon_holder/Initialize(mapload)
+	. = ..()
+	if(held_deployable)
+		return
+	var/obj/machinery/deployable/new_deployable = new deployable_type(src)
+	held_deployable = new_deployable.loc //new_deployable.loc, since it deploys on new(), is located within the held_deployable. Therefore new_deployable.loc = held_deployable.
+
+/obj/structure/dropship_equipment/weapon_holder/examine(mob/user)
+	. = ..()
+	if(!held_deployable)
+		. += "Its [initial(deployable_type.name)] is missing."
+
+/obj/structure/dropship_equipment/weapon_holder/update_equipment()
+	if(!held_deployable)
+		return
+	if(ship_base)
+		held_deployable.loc = loc
+	else
+		held_deployable.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/weapon_holder/update_icon_state()
+	if(ship_base)
+		icon_state = deployed_icon_state
+	else
+		icon_state = undeployed_icon_state
+
+/obj/structure/dropship_equipment/weapon_holder/Destroy()
+	if(held_deployable)
+		QDEL_NULL(held_deployable)
+	return ..()
+
+/obj/structure/dropship_equipment/weapon_holder/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(held_deployable.loc != src)
+		return TRUE
+
+/obj/structure/dropship_equipment/weapon_holder/machinegun
 	name = "machinegun deployment system"
 	desc = "A box that deploys a modified M56D crewserved machine gun. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
-	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "mg_system"
 	point_cost = 300
-	///machine type for the internal gun and for checking if the gun is deployed
-	var/obj/machinery/deployable/mounted/deployed_mg
+	deployable_type = /obj/item/weapon/gun/tl102/hsg_nest
 
-/obj/structure/dropship_equipment/mg_holder/Initialize(mapload)
-	. = ..()
-	if(deployed_mg)
-		return
-	var/obj/item/weapon/gun/tl102/hsg_nest/new_gun = new(src)
-	deployed_mg = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mg. Therefore new_gun.loc = deployed_mg.
-
-/obj/structure/dropship_equipment/mg_holder/examine(mob/user)
-	. = ..()
-	if(!deployed_mg)
-		. += "Its machine gun is missing."
-
-/obj/structure/dropship_equipment/mg_holder/update_equipment()
-	if(!deployed_mg)
-		return
-	if(ship_base)
-		deployed_mg.loc = loc
-	else
-		deployed_mg.loc = src
-	update_icon()
-
-/obj/structure/dropship_equipment/mg_holder/update_icon_state()
-	if(ship_base)
-		icon_state = "mg_system_deployed"
-	else
-		icon_state = "mg_system"
-
-/obj/structure/dropship_equipment/mg_holder/Destroy()
-	if(deployed_mg)
-		QDEL_NULL(deployed_mg)
-	return ..()
-
-/obj/structure/dropship_equipment/minigun_holder
+/obj/structure/dropship_equipment/weapon_holder/minigun
 	name = "minigun deployment system"
 	desc = "A box that deploys a modified MG-2005 crewserved minigun. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
-	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "minigun_system"
 	point_cost = 0 //this removes it from the fabricator
-	///machine type for the internal gun and for checking if the gun is deployed
-	var/obj/machinery/deployable/mounted/deployed_minigun
+	deployable_type = /obj/item/weapon/gun/standard_minigun/nest
+	undeployed_icon_state = "minigun_system"
 
-/obj/structure/dropship_equipment/minigun_holder/Initialize(mapload)
-	. = ..()
-	if(deployed_minigun)
-		return
-	var/obj/item/weapon/gun/standard_minigun/nest/new_gun = new(src)
-	deployed_minigun = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_minigun. Therefore new_gun.loc = deployed_minigun.
-
-/obj/structure/dropship_equipment/minigun_holder/examine(mob/user)
-	. = ..()
-	if(!deployed_minigun)
-		. += "Its minigun is missing."
-
-/obj/structure/dropship_equipment/minigun_holder/update_equipment()
-	if(!deployed_minigun)
-		return
-	if(ship_base)
-		deployed_minigun.loc = loc
-	else
-		deployed_minigun.loc = src
-	update_icon()
-
-/obj/structure/dropship_equipment/minigun_holder/update_icon_state()
-	if(ship_base)
-		icon_state = "mg_system_deployed"
-	else
-		icon_state = "minigun_system"
-
-/obj/structure/dropship_equipment/minigun_holder/Destroy()
-	if(deployed_minigun)
-		QDEL_NULL(deployed_minigun)
-	return ..()
-
-/obj/structure/dropship_equipment/heavylaser_holder
+/obj/structure/dropship_equipment/weapon_holder/heavylaser
 	name = "heavy laser deployment system"
 	desc = "A box that deploys a modified TE-9001 crewserved heavylaser. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
-	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "hl_system"
 	point_cost = 0 //this removes it from the fabricator
-	///machine type for the internal gun and for checking if the gun is deployed
-	var/obj/machinery/deployable/mounted/deployed_heavylaser
+	deployable_type = /obj/item/weapon/gun/heavy_laser
+	undeployed_icon_state = "hl_system"
 
-/obj/structure/dropship_equipment/heavylaser_holder/Initialize(mapload)
-	. = ..()
-	if(deployed_heavylaser)
-		return
-	var/obj/item/weapon/gun/heavy_laser/new_gun = new(src)
-	deployed_heavylaser = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavylaser. Therefore new_gun.loc = deployed_heavylaser.
-
-/obj/structure/dropship_equipment/heavylaser_holder/examine(mob/user)
-	. = ..()
-	if(!deployed_heavylaser)
-		. += "Its heavy laser is missing."
-
-/obj/structure/dropship_equipment/heavylaser_holder/update_equipment()
-	if(!deployed_heavylaser)
-		return
-	if(ship_base)
-		deployed_heavylaser.loc = loc
-	else
-		deployed_heavylaser.loc = src
-	update_icon()
-
-/obj/structure/dropship_equipment/heavylaser_holder/update_icon_state()
-	if(ship_base)
-		icon_state = "mg_system_deployed"
-	else
-		icon_state = "hl_system"
-
-/obj/structure/dropship_equipment/heavylaser_holder/Destroy()
-	if(deployed_heavylaser)
-		QDEL_NULL(deployed_heavylaser)
-	return ..()
-
-/obj/structure/dropship_equipment/heavy_rr_holder
+/obj/structure/dropship_equipment/weapon_holder/heavy_rr
 	name = "heavy recoilless rifle deployment system"
 	desc = "A box that deploys a modified RR-15 crewserved recoilless rifle. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
-	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "rr_system"
 	point_cost = 0 //this removes it from the fabricator
-	///machine type for the internal gun and for checking if the gun is deployed
-	var/obj/machinery/deployable/mounted/deployed_heavyrr
+	deployable_type = /obj/item/weapon/gun/launcher/rocket/heavy_rr
+	undeployed_icon_state = "rr_system"
 
-/obj/structure/dropship_equipment/heavy_rr_holder/Initialize(mapload)
-	. = ..()
-	if(deployed_heavyrr)
-		return
-	var/obj/item/weapon/gun/launcher/rocket/heavy_rr/new_gun = new(src)
-	deployed_heavyrr = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavyrr. Therefore new_gun.loc = deployed_heavyrr.
-
-/obj/structure/dropship_equipment/heavy_rr_holder/examine(mob/user)
-	. = ..()
-	if(!deployed_heavyrr)
-		. += "Its recoilless rifle is missing."
-
-/obj/structure/dropship_equipment/heavy_rr_holder/update_equipment()
-	if(!deployed_heavyrr)
-		return
-	if(ship_base)
-		deployed_heavyrr.loc = loc
-	else
-		deployed_heavyrr.loc = src
-	update_icon()
-
-/obj/structure/dropship_equipment/heavy_rr_holder/update_icon_state()
-	if(ship_base)
-		icon_state = "mg_system_deployed"
-	else
-		icon_state = "rr_system"
-
-/obj/structure/dropship_equipment/heavy_rr_holder/Destroy()
-	if(deployed_heavyrr)
-		QDEL_NULL(deployed_heavyrr)
-	return ..()
-
-/obj/structure/dropship_equipment/mortar_holder
+/obj/structure/dropship_equipment/weapon_holder/mortar_holder
 	name = "mortar deployment system"
 	desc = "A box that deploys a TA-55DB mortar. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
-	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "mortar_system"
 	point_cost = 300
-	///machine type for the internal gun and for checking if the gun is deployed
-	var/obj/machinery/deployable/mortar/double/deployed_mortar
+	deployable_type = /obj/item/mortar_kit/double
 
-/obj/structure/dropship_equipment/mortar_holder/Initialize(mapload)
-	. = ..()
-	if(deployed_mortar)
-		return
-	var/obj/item/mortar_kit/double/new_gun = new(src)
-	deployed_mortar = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mortar. Therefore new_gun.loc = deployed_mg.
-
-/obj/structure/dropship_equipment/mortar_holder/examine(mob/user)
-	. = ..()
-	if(!deployed_mortar)
-		. += "Its mortar is missing."
-
-/obj/structure/dropship_equipment/mortar_holder/update_equipment()
-	if(!deployed_mortar)
-		return
-	if(ship_base)
-		deployed_mortar.loc = loc
-	else
-		deployed_mortar.loc = src
-	update_icon()
-
-/obj/structure/dropship_equipment/mortar_holder/update_icon_state()
-	if(ship_base)
-		icon_state = "mg_system_deployed"
-	else
-		icon_state = "mg_system"
-
-/obj/structure/dropship_equipment/mortar_holder/Destroy()
-	if(deployed_mortar)
-		QDEL_NULL(deployed_mortar)
-	return ..()
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
 
 /obj/structure/dropship_equipment/fuel
@@ -963,7 +845,7 @@
 	. = ..()
 	if(!deployed_table)
 		deployed_table = new(src)
-		RegisterSignal(deployed_table, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby_wrapper))//if something (like a powerloader) clicks on the deployed thing relay it
+		RegisterSignal(deployed_table, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby_wrapper))//if something (like a powerloader) clicks on the deployed thing relay it
 
 /obj/structure/dropship_equipment/operatingtable/proc/attackby_wrapper(datum/source, obj/item/I, mob/user, params)
 	attackby(I, user, params)

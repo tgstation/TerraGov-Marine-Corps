@@ -104,7 +104,7 @@
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
-			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
+			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
 			/obj/item/weapon/gun/rifle/tx54 = 2,
 			/obj/item/ammo_magazine/rifle/tx54 = 10,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
@@ -325,7 +325,7 @@
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
-			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
+			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
 			/obj/item/explosive/grenade = 600,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
@@ -520,7 +520,7 @@
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
-			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
+			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
 			/obj/item/weapon/gun/rifle/tx54 = -1,
 			/obj/item/ammo_magazine/rifle/tx54 = -1,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = -1,
@@ -1064,6 +1064,11 @@
 			/obj/item/armor_module/module/style/light_armor = -1,
 			/obj/item/armor_module/module/style/medium_armor = -1,
 			/obj/item/armor_module/module/style/heavy_armor = -1,
+			/obj/item/clothing/head/modular/marine/kabuto = -1,
+			/obj/item/armor_module/armor/chest/marine/kabuto = -1,
+			/obj/item/armor_module/armor/legs/marine/kabuto = -1,
+			/obj/item/armor_module/armor/arms/marine/kabuto = -1,
+
 		),
 		"Jaeger Mk.I chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
@@ -1149,10 +1154,6 @@
 			/obj/item/clothing/shoes/cowboy = -1,
 			/obj/item/armor_module/armor/badge = -1,
 			/obj/item/armor_module/armor/cape = -1,
-			/obj/item/armor_module/armor/cape/half = -1,
-			/obj/item/armor_module/armor/cape/scarf = -1,
-			/obj/item/armor_module/armor/cape/short = -1,
-			/obj/item/armor_module/armor/cape/short/classic = -1,
 			/obj/item/armor_module/armor/cape/kama = -1,
 			/obj/item/armor_module/module/pt_belt = -1,
 		),
