@@ -140,6 +140,69 @@
 	else
 		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 
+/obj/effect/mapping_helpers/airlock/abandoned
+	name = "airlock abandoned helper"
+	icon_state = "airlock_abandoned_helper"
+
+/obj/effect/mapping_helpers/airlock/abandoned/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(airlock)
+		if(airlock.abandoned)
+			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried make [airlock] abandoned but it's already abandoned!")
+		else
+			airlock.abandoned = TRUE
+			var/turf/current_turf = get_turf(airlock)
+			current_turf.flags_atom |= AI_BLOCKED
+	else
+		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+
+/obj/effect/mapping_helpers/airlock/welded
+	name = "airlock welded helper"
+	icon_state = "airlock_welded_helper"
+
+/obj/effect/mapping_helpers/airlock/welded/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(airlock)
+		if(airlock.welded)
+			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already welded!")
+		else
+			airlock.welded = TRUE
+			var/turf/current_turf = get_turf(airlock)
+			current_turf.flags_atom |= AI_BLOCKED
+	else
+		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+
+/obj/effect/mapping_helpers/broken_apc
+	name = "broken apc helper"
+	icon_state = "airlock_brokenapc_helper"
+	///chance that we actually break the APC
+	var/breakchance = 100
+
+/obj/effect/mapping_helpers/broken_apc/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	if(!prob(breakchance))
+		return
+	var/obj/machinery/power/apc/apc = locate(/obj/machinery/power/apc) in loc
+	if(apc)
+		if(apc.machine_stat && (BROKEN))
+			log_world("### MAP WARNING, [src] tried to break an APC at [AREACOORD(src)] but it was already broken")
+			return
+		else
+			apc.do_break()
+	else
+		log_world("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
+
 /obj/effect/mapping_helpers/airlock/unres
 	name = "airlock unresctricted side helper"
 	icon_state = "airlock_unres_helper"
