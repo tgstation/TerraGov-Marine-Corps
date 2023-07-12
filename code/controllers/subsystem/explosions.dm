@@ -438,7 +438,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 							),
 						throw_turf[affected_turf][throw_source][1], // Distance
 						EXPLOSION_THROW_SPEED,
-						null, //Thrower
+						SSEXPLOSIONS_THROWS, //Thrower
 						TRUE //Spin
 					)
 		cost_throwTurf = MC_AVERAGE(cost_throwTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
