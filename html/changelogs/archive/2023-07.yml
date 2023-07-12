@@ -164,3 +164,18 @@
   - rscadd: greyscale functionality to hair & beards in update_icons.dm
   - rscadd: broken man & rough man to sprite_accessories.dm
   - rscadd: greyscale var to  sprite_accessories.dm
+2023-07-12:
+  Lumipharon:
+  - rscadd: Added a jump throw mechanic
+  MacBlaze1:
+  - balance: TA-50 mortar now has 400 effective health against marines, because it
+      has 50 laser, bullet, and energy armor plus other ones on 200 health, with the
+      howitzer and MLRS also having 2x increases against marines.
+  hyper2snyper:
+  - bugfix: Fixes the spam of None in the highlight variant selector on capes.
+  - bugfix: Fixes visor colors being inaccessible due to how string_list() works
+  - bugfix: Fixes some orientations on cape sprites.
+  ivanmixo:
+  - rscdel: Deleted the distress signal gamemode
+  novaepee:
+  - rscadd: Kabuto armor, a Japanese-Inspired Armor; find it in the style line tab!

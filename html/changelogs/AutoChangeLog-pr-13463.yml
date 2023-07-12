@@ -1,6 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes:
-  - bugfix: "Fixes the spam of None in the highlight variant selector on capes."
-  - bugfix: "Fixes visor colors being inaccessible due to how string_list() works"
-  - bugfix: "Fixes some orientations on cape sprites."
