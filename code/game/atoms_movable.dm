@@ -484,13 +484,13 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if((!L.density || (L.pass_flags & PASS_PROJECTILE)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
+			if(pass_flags & PASS_MOB || (!L.density || (L.pass_flags & PASS_THROW)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
 				continue
 			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
 				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
 				return A
 			throw_impact(A, speed)
-		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.allow_pass_flags & PASS_PROJECTILE) || iscarbon(src)) && !flying)
+		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.allow_pass_flags & PASS_THROW) || iscarbon(src)) && !flying)
 			throw_impact(A, speed)
 
 
@@ -510,9 +510,11 @@
 	if(spin)
 		animation_spin(5, 1)
 
-	if(!flying)
-		set_throwing(TRUE)
-		src.thrower = thrower
+	if(flying)
+		pass_flags |= PASS_MOB
+
+	set_throwing(TRUE)
+	src.thrower = thrower
 
 	var/originally_dir_locked = flags_atom & DIRLOCK
 	if(!originally_dir_locked)
@@ -1080,6 +1082,7 @@
 		return
 	. = throwing
 	throwing = new_throwing
+	pass_flags ^= PASS_THROW //we'll replace the above entirely later
 
 /atom/movable/proc/set_flying(flying)
 	if (flying)
