@@ -36,8 +36,7 @@ SUBSYSTEM_DEF(mapping)
 	///The number of connected clients for the previous round
 	var/last_round_player_count
 
-	///shows the default gravity value for each z level. recalculated when gravity generators change.
-	///List in the form: list(z level num = max generator gravity in that z level OR the gravity level trait)
+	///shows the gravity value for each z level
 	var/list/gravity_by_z_level = list()
 
 //dlete dis once #39770 is resolved
@@ -385,10 +384,12 @@ SUBSYSTEM_DEF(mapping)
 		var/area/A = B
 		A.reg_in_areas_in_z()
 
+///Generates baseline gravity levels for all z-levels based off traits
 /datum/controller/subsystem/mapping/proc/calculate_default_z_level_gravities()
 	for(var/z_level in 1 to length(z_list))
 		calculate_z_level_gravity(z_level)
 
+///Calculates the gravity for a z-level
 /datum/controller/subsystem/mapping/proc/calculate_z_level_gravity(z_level_number)
 	if(!isnum(z_level_number) || z_level_number < 1)
 		return FALSE
