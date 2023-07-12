@@ -977,27 +977,16 @@ below 100 is not dizzy
 /mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
 	var/gravity = get_gravity()
 	if(gravity < 1) //low grav
-		var/list/modifiers = GLOB.low_gravity_modifiers["jump_modifiers"]
-		duration *= modifiers[1]
-		cooldown *= modifiers[2]
-		cost *= modifiers[3]
-		height *= modifiers[4]
-		flags_pass |= modifiers[5]
+		duration *= 2.5 - gravity
+		cooldown *= 2 - gravity
+		cost *= gravity * 0.5
+		height *= 2 - gravity
+		if(gravity <= 0.75)
+			flags_pass |= PASS_DEFENSIVE_STRUCTURE
 	else if(gravity > 1) //high grav
-		var/list/modifiers = GLOB.high_gravity_modifiers["jump_modifiers"]
-		duration *= modifiers[1]
-		cooldown *= modifiers[2]
-		cost *= modifiers[3]
-		height *= modifiers[4]
+		duration *= gravity * 0.5
+		cooldown *= gravity
+		cost *= gravity
+		height *= gravity * 0.5
 
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)
-
-GLOBAL_LIST_INIT(low_gravity_modifiers, list(
-	"jump_modifiers" = list(2, 1.5, 0.25, 1.5, PASS_DEFENSIVE_STRUCTURE),
-	"throw_modifiers" = list(),
-))
-
-GLOBAL_LIST_INIT(high_gravity_modifiers, list(
-	"jump_modifiers" = list(0.75, 1.5, 1.5, 0.75),
-	"throw_modifiers" = list(),
-))

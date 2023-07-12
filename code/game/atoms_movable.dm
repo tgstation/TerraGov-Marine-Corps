@@ -501,9 +501,9 @@
 
 	var/gravity = get_gravity()
 	if(gravity < 1)
-		range = round(range * 1.5)
+		range = round(range * (2 - gravity))
 	else if(gravity > 1)
-		range = ROUND_UP(range * 0.5)
+		range = ROUND_UP(range * (2 - gravity))
 
 	if(!targetted_throw)
 		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))

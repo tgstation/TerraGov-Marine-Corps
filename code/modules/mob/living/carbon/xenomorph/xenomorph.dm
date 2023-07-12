@@ -438,17 +438,14 @@
 /mob/living/carbon/xenomorph/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
 	var/gravity = get_gravity()
 	if(gravity < 1) //low grav
-		var/list/modifiers = GLOB.low_gravity_modifiers["jump_modifiers"]
-		duration *= modifiers[1]
-		cooldown *= modifiers[2]
-		cost *= modifiers[3]
-		height *= modifiers[4]
-		flags_pass |= modifiers[5]
+		duration *= 2.5 - gravity
+		cooldown *= 2 - gravity
+		height *= 2 - gravity
+		if(gravity <= 0.75)
+			flags_pass |= PASS_DEFENSIVE_STRUCTURE
 	else if(gravity > 1) //high grav
-		var/list/modifiers = GLOB.high_gravity_modifiers["jump_modifiers"]
-		duration *= modifiers[1]
-		cooldown *= modifiers[2]
-		cost *= modifiers[3]
-		height *= modifiers[4]
+		duration *= gravity * 0.5
+		cooldown *= gravity
+		height *= gravity * 0.5
 
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = 0, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)

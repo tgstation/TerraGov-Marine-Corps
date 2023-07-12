@@ -1,6 +1,6 @@
 /datum/component/stamina_behavior
 	var/stamina_state = STAMINA_STATE_IDLE
-
+	///multiplier on stamina cost
 	var/drain_modifier = 1
 
 
@@ -58,6 +58,7 @@
 		return
 	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
 
+///changes the drain modifier if gravity changes
 /datum/component/stamina_behavior/proc/on_change_z(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
 	var/mob/living/stamina_holder = parent
