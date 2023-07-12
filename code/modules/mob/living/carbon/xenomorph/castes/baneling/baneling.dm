@@ -27,7 +27,7 @@
 	. = ..()
 	xeno_ref = xeno
 	RegisterSignal(xeno_ref, COMSIG_MOB_DEATH, PROC_REF(handle_baneling_death))
-	RegisterSignal(xeno_ref, COMSIG_PARENT_QDELETING, PROC_REF(obj_destruction))
+	RegisterSignal(xeno_ref, COMSIG_QDELETING, PROC_REF(obj_destruction))
 	RegisterSignal(ability_ref, COMSIG_ACTION_TRIGGER, PROC_REF(obj_destruction))
 	addtimer(CALLBACK(src, PROC_REF(increase_charge)), BANELING_CHARGE_GAIN_TIME)
 
