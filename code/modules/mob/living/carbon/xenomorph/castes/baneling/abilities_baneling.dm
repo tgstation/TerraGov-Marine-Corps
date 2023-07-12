@@ -101,8 +101,6 @@
 	desc = "Spawn a pod that we will respawn inside of upon death. If the pod is destroyed and we die it's over.."
 	ability_name = "spawn pod"
 	plasma_cost = 150
-	///Ref to our pod so we can check if we already have one
-	var/obj/structure/xeno/baneling_pod/pod_ref
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_SPAWN_POD,
 	)

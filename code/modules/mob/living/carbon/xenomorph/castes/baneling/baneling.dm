@@ -44,8 +44,8 @@
 	return ..()
 
 /// Teleports baneling inside of itself, checks for charge and then respawns baneling
-/obj/structure/xeno/baneling_pod/proc/handle_baneling_death(mob/M)
-	if(isnull(M))
+/obj/structure/xeno/baneling_pod/proc/handle_baneling_death()
+	if(isnull(xeno_ref))
 		return
 	xeno_ref.forceMove(src)
 	if(xeno_ref.stored_charge >= 1)
