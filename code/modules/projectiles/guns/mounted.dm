@@ -233,47 +233,46 @@
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
-//RR-15 mounted heavy recoilless rifle
+//ISG-15 mounted heavy infantry support gun
 
-/obj/item/weapon/gun/launcher/rocket/heavy_rr
-	name = "\improper RR-15 mounted heavy recoilless rifle"
-	desc = "The RR-15 mounted recoilless rifle is a non-IFF, modernized version of the L6 Wombat using 75mm. Reintroduced due to the rather close quarter nature of combat against xenomorphs, this thing will kill mostly anything on its way."
+/obj/item/weapon/gun/heavy_isg
+	name = "\improper ISG-15 mounted smart heavy infantry support gun"
+	desc = "The ISG-15 is a heavy infantry support gun. This  will most definitely give a very bad day to anything that gets caught in the blast radius. Take quite a while to dial in the shot, but is IFF-Capable. Uses 15cm shells."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "heavyrr"
+	icon_state = "isg"
 
 	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/heavy_rr
+	default_ammo_type = /obj/item/ammo_magazine/heavy_isg
 	max_shells = 1 //codex
-	caliber = CALIBER_75MM // codex
+	caliber = CALIBER_15CM // codex
 
 	scatter = 10
 	deployed_scatter_change = -10
-	windup_delay = 1 SECONDS
-	fire_delay = 3 SECONDS
+	windup_delay = 8 SECONDS
+	fire_delay = 10 SECONDS
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	backblastdamage = FALSE
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_rr)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_isg)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
-	deployable_item = /obj/machinery/deployable/mounted
+	deployable_item = /obj/machinery/deployable/mounted/moveable
 
 	max_integrity = 600
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death

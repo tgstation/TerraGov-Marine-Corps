@@ -1979,23 +1979,22 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/mech/drop_nade(turf/T)
 	explosion(T, 0, 0, 5, 5)
 
-/datum/ammo/rocket/heavy_rr
-	name = "75mm round"
+/datum/ammo/rocket/heavy_isg
+	name = "15cm round"
 	icon_state = "heavyrr"
 	hud_state = "shell_he"
 	hud_state_empty = "shell_empty"
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	accuracy = 40
-	accurate_range = 15
-	max_range = 40
-	shell_speed = 3
+	flags_ammo_behavior = AMMO_ROCKET
+	damage = 50
 	penetration = 200
-	damage = 200
-	sundering = 50
+	max_range = 30
+	shell_speed = 0.75
+	accuracy = 30
+	accurate_range = 21
 	handful_amount = 1
 
-/datum/ammo/rocket/heavy_rr/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 4)
+/datum/ammo/rocket/heavy_isg/drop_nade(turf/T)
+	explosion(T, 0, 6, 9, 12)
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"

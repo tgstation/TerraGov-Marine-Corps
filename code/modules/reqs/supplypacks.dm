@@ -299,6 +299,16 @@ WEAPONS
 	)
 	cost = 20
 
+/datum/supply_packs/weapons/hisg
+	name = "ISG-15 Heavy Infantry Support Gun"
+	contains = list(/obj/item/weapon/gun/heavy_isg)
+	cost = 1600
+
+/datum/supply_packs/weapons/hisg_ammo
+	name = "ISG-15 HE Shell"
+	contains = list(/obj/item/ammo_magazine/heavy_isg)
+	cost = 175
+
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
@@ -1856,11 +1866,6 @@ VEHICLES
 	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavylaser)
 	cost = 900
 
-/datum/supply_packs/vehicles/mounted_rr
-	name = "Mounted Heavy Recoilless Rifle"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavy_rr)
-	cost = 1800
-
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Mounted HSG ammo"
 	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
@@ -1877,12 +1882,6 @@ VEHICLES
 	name = "Mounted Heavy Laser ammo (x3)"
 	contains = list(/obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser)
 	cost = 50
-	containertype = /obj/structure/closet/crate/ammo
-
-/datum/supply_packs/vehicles/rr_ammo
-	name = "Mounted Recoilless Rifle shell (x2)"
-	contains = list(/obj/item/ammo_magazine/heavy_rr, /obj/item/ammo_magazine/heavy_rr)
-	cost = 70
 	containertype = /obj/structure/closet/crate/ammo
 
 /*******************************************************************************

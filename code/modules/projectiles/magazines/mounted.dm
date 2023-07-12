@@ -177,15 +177,15 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "hl_mag"
 
-/obj/item/ammo_magazine/heavy_rr
-	name = "RR-15 HE shell (75mm Shell)"
-	desc = "A 75mm HE shell for the RR-15 mounted heavy recoilless rifle."
+/obj/item/ammo_magazine/heavy_isg
+	name = "ISG-15 HE shell (155mm Shell)"
+	desc = "A 15cm HE shell for the ISG-15 mounted heavy recoilless rifle."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "75shell"
-	item_state = "75shell"
+	icon_state = "isg_ammo"
+	item_state = "isg_ammo"
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
-	caliber = CALIBER_75MM
+	caliber = CALIBER_15CM
 	max_rounds = 1
-	default_ammo = /datum/ammo/rocket/heavy_rr
-	reload_delay = 10 SECONDS
+	default_ammo = /datum/ammo/rocket/heavy_isg
+	reload_delay = 8 SECONDS
