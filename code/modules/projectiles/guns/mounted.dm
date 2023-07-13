@@ -351,7 +351,7 @@
 	icon_state = "t27"
 	item_state = "t27"
 	caliber = CALIBER_10x27_CASELESS // codex
-	max_shells = 100 //codex
+	max_shells = 150 //codex
 	force = 40
 	aim_slowdown = 1.2
 	wield_delay = 2 SECONDS
@@ -386,7 +386,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.1 SECONDS
+	aim_fire_delay = 0.05 SECONDS
 	aim_speed_modifier = 5
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
@@ -399,13 +399,13 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	deploy_time = 1 SECONDS
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.25
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
 
 
 /obj/item/weapon/gun/standard_mmg/machinegunner
-	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg)
+	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg, /obj/item/attachable/heavy_barrel)
 
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
