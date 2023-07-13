@@ -152,7 +152,7 @@
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(airlock)
 		if(airlock.abandoned)
-			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried make [airlock] abandoned but it's already abandoned!")
+			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
 		else
 			airlock.abandoned = TRUE
 			var/turf/current_turf = get_turf(airlock)
