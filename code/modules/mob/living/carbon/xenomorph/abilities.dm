@@ -1131,7 +1131,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
-	gamemode_flags = ABILITY_DISTRESS
+	gamemode_flags = ABILITY_NUCLEARWAR
 	plasma_cost = 100
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
@@ -1226,7 +1226,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGURGITATE,
 	)
 	plasma_cost = 100
-	gamemode_flags = ABILITY_DISTRESS
+	gamemode_flags = ABILITY_NUCLEARWAR
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 

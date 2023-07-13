@@ -31,6 +31,7 @@
 #define CAPE_JACKET "cape_jacket"
 #define CAPE_KAMA "cape_kama"
 #define SOM_BLACK "SOM_black"
+#define CAPE_HIGHLIGHT_NORMAL_ALT "normal_alt"
 
 #define CAPE_HIGHLIGHT_NONE "cape_highlight_none"
 #define LEATHER_JACKET_WEBBING "leather_jacket_webbing"
@@ -71,4 +72,5 @@ GLOBAL_LIST_INIT(loadout_variant_keys, list(
 	CAPE_HIGHLIGHT_NONE = "none",
 	LEATHER_JACKET_WEBBING = "webbing",
 	SOM_BLACK = "black",
+	CAPE_HIGHLIGHT_NORMAL_ALT = "normal (alt)",
 ))

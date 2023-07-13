@@ -152,7 +152,7 @@
 	return ..()
 
 
-/obj/item/clothing/head/cat/throw_at(atom/target, range, speed, thrower, spin)
+/obj/item/clothing/head/cat/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	qdel(src)
 
 

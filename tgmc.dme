@@ -442,7 +442,6 @@
 #include "code\datums\gamemodes\_game_mode.dm"
 #include "code\datums\gamemodes\combat_patrol.dm"
 #include "code\datums\gamemodes\crash.dm"
-#include "code\datums\gamemodes\distress.dm"
 #include "code\datums\gamemodes\extended.dm"
 #include "code\datums\gamemodes\infestation.dm"
 #include "code\datums\gamemodes\nuclear_war.dm"

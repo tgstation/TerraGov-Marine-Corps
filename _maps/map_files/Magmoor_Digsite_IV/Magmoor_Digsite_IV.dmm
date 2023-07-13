@@ -272,6 +272,10 @@
 	dir = 8
 	},
 /area/magmoor/engi/power)
+"aka" = (
+/obj/structure/prop/vehicle/truck/truckcargo,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound)
 "ake" = (
 /obj/structure/closet/secure_closet/medical3/colony,
 /turf/open/floor/mainship/sterile/side{
@@ -11490,6 +11494,10 @@
 /obj/structure/flora/ausbushes/genericbush,
 /turf/open/floor/grass,
 /area/magmoor/civilian/clean)
+"ivb" = (
+/obj/effect/spawner/random/engineering/pickaxe,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound)
 "ivv" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
@@ -12684,6 +12692,12 @@
 	dir = 8
 	},
 /area/magmoor/command/commandroom)
+"jnF" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/magmoor/compound)
 "jnG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -14649,6 +14663,10 @@
 	dir = 8
 	},
 /area/magmoor/compound/east)
+"kHk" = (
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/magmoor/compound)
 "kHq" = (
 /turf/open/floor/mainship/silver{
 	dir = 8
@@ -15890,10 +15908,8 @@
 	},
 /area/magmoor/landing)
 "lEa" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 1
-	},
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound)
 "lEj" = (
 /obj/structure/window/framed/colony,
@@ -17322,6 +17338,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
+"mMk" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound)
 "mMu" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -27809,6 +27829,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
+"uto" = (
+/obj/effect/landmark/corpsespawner/miner,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/magmoor/compound)
 "utE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 1;
@@ -31468,6 +31492,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/civilian/clean/shower)
+"xdo" = (
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/magmoor/compound)
 "xdD" = (
 /turf/closed/wall,
 /area/magmoor/engi/thermal)
@@ -32638,9 +32666,9 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound)
 "xQa" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/magmoor/compound/southwest)
+/obj/effect/spawner/random/engineering/pickaxe,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/magmoor/compound)
 "xQq" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
@@ -49250,10 +49278,10 @@ kcF
 lGN
 xmr
 pKb
+dmu
 hiG
-hiG
-hiG
-hiG
+mMk
+dmu
 hiG
 hiG
 ohT
@@ -49483,12 +49511,12 @@ wca
 lGN
 xmr
 aje
-pKb
-hiG
-hiG
+ewm
+lEa
+ivb
 noo
 bgh
-hiG
+aka
 ohT
 lpK
 ehQ
@@ -49717,9 +49745,9 @@ lWt
 tmb
 hIT
 hIT
-uRB
-cJW
-hIT
+rgm
+jnF
+xdo
 pKb
 hiG
 ohT
@@ -49950,9 +49978,9 @@ jiE
 jiE
 paE
 hIT
-hIT
-hIT
-hIT
+xQa
+xdo
+kHk
 hIT
 sgB
 ohT
@@ -50184,7 +50212,7 @@ jiE
 jiE
 jiE
 hIT
-hIT
+uto
 aje
 hIT
 bou
@@ -52284,7 +52312,7 @@ kKp
 hIT
 hIT
 hIT
-lEa
+sgB
 woH
 inQ
 rVY

@@ -494,10 +494,13 @@
 			throw_impact(A, speed)
 
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
+/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
+
+	if(!targetted_throw)
+		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))
 
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW) & COMPONENT_MOVABLE_BLOCK_PRE_THROW)
 		return FALSE
@@ -536,11 +539,9 @@
 
 	var/dist_since_sleep = 0
 
-	//while(get_dist_euclide_square(origin, src) < range)
-
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
@@ -572,7 +573,7 @@
 					sleep(0.1 SECONDS)
 	else
 		var/error = dist_y/2 - dist_x
-		while(!gc_destroyed && target &&((get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)

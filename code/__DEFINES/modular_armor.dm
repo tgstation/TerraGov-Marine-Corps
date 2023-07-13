@@ -125,7 +125,7 @@
 
 
 #define ARMOR_PALETTES_LIST list(\
-		"Default" = list(\
+		"Default Armor" = list(\
 			"Drab" = ARMOR_PALETTE_DRAB,\
 			"Brown" = ARMOR_PALETTE_BROWN,\
 			"Wood" = ARMOR_PALETTE_WOOD,\
@@ -199,7 +199,7 @@
 	)
 
 #define VISOR_PALETTES_LIST list(\
-		"Default" = list(\
+		"Default Visors" = list(\
 			"Gold" = VISOR_PALETTE_GOLD,\
 			"Silver" = VISOR_PALETTE_SILVER,\
 			"Black" = VISOR_PALETTE_BLACK,\

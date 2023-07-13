@@ -24,156 +24,176 @@
 	icon_state_variants = list(
 		"scarf round" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"scarf tied" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"scarf" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
 				"scarf",
+				"none",
 			),
 		),
 		"striped" = list(
 			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"geist" = list(
 			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"ghille" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"ghille (left)" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"ghille (right)" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"ghille (alt)" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"drifter" = list(
 			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"normal" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
-				"normal"
+				"normal",
+				"normal (alt)",
+				"none",
 			),
 		),
 		"short" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
-				"short"
+				"short",
+				"none",
 			),
 		),
 		"short (old)" = list(
 			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list(),
+			HIGHLIGHT_VARIANTS = list("none"),
 		),
 		"shredded" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
-				"shredded"
+				"shredded",
+				"none",
 			),
 		),
 		"half" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
-				"half"
+				"half",
+				"none",
 			),
 		),
 		"full" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
-				"full"
+				"full",
+				"none",
 			),
 		),
 		"back" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"back"
+				"back",
+				"none",
 			),
 		),
 		"cover" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"cover"
+				"cover",
+				"none",
 			),
 		),
 		"cover (alt)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"cover (alt)"
+				"cover (alt)",
+				"none",
 			),
 		),
 		"overlord" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"overlord"
+				"overlord",
+				"none",
 			),
 		),
 		"overlord (alt 1)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"overlord (alt)"
+				"overlord (alt)",
+				"none",
 			),
 		),
 		"overlord (alt 2)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"overlord (alt 2)"
+				"overlord (alt 2)",
+				"none",
 			),
 		),
 		"shoal" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"shoal"
+				"shoal",
+				"none",
 			),
 		),
 		"shoal (back)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"shoal (back)"
+				"shoal (back)",
+				"none",
 			),
 		),
 		"shoal (alt)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"shoal (alt)"
+				"shoal (alt)",
+				"none",
 			),
 		),
 		"star" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"star"
+				"star",
+				"none",
 			),
 		),
 		"rapier (right)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"rapier (right)"
+				"rapier (right)",
+				"none",
 			),
 		),
 		"rapier (left)" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"rapier (left)"
+				"rapier (left)",
+				"none",
 			),
 		),
 		"jacket" = list(
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
-				"jacket"
+				"jacket",
+				"none",
 			),
 		),
 	)
@@ -186,14 +206,12 @@
 	if(hood)
 		icon_state = initial(icon_state) + "_[current_variant]_h"
 		item_state = initial(item_state) + "_[current_variant]_h"
-		highlight?.icon_state = initial(highlight.icon_state) + "_[highlight.current_variant]_h"
 	else
 		icon_state = initial(icon_state) + "_[current_variant]"
 		item_state = initial(item_state) + "_[current_variant]"
-		highlight?.icon_state = initial(highlight.icon_state) + "_[highlight.current_variant]"
+	highlight?.update_icon()
 	if(parent)
 		parent.update_clothing_icon()
-	highlight?.update_icon()
 
 /obj/item/armor_module/armor/cape/activate(mob/living/user)
 	. = ..()
@@ -230,7 +248,6 @@
 		new_action.give_action(user)
 	highlight.current_variant = "none"
 	highlight.icon_state_variants = icon_state_variants[current_variant][HIGHLIGHT_VARIANTS]
-	highlight.icon_state_variants.Add("none")
 	ENABLE_BITFIELD(highlight.colorable_allowed, PRESET_COLORS_ALLOWED)
 	update_icon()
 	update_greyscale()
@@ -274,7 +291,18 @@
 	icon_state_variants = list(
 		"none",
 		"normal",
+		"normal (alt)",
 	)
+
+/obj/item/armor_module/armor/cape_highlight/update_icon_state()
+	if(!parent)
+		return
+	var/obj/item/armor_module/armor/cape/cape_parent = parent
+	if(cape_parent.hood)
+		icon_state = initial(icon_state) + "_[current_variant]_h"
+	else
+		icon_state = initial(icon_state) + "_[current_variant]"
+
 
 /obj/item/armor_module/armor/cape_highlight/handle_color(datum/source, mob/user, list/obj/item/secondaries)
 	if(current_variant == "none" && (length(icon_state_variants) == 1))
