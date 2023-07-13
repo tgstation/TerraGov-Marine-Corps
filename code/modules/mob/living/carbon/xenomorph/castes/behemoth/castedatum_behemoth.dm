@@ -10,11 +10,11 @@
 	wound_type = "behemoth"
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 22
 
 	// *** Speed *** //
-	speed = 0.4
-	weeds_speed_mod = -0.1
+	speed = 0
+	weeds_speed_mod = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 175
@@ -34,8 +34,8 @@
 
 	// *** Defense *** //
 	sunder_recover = 1.0
-	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 100, BIO = 100, FIRE = 35, ACID = 35)
-	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 100, BIO = 35, FIRE = 35, ACID = 35)
+	hard_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "crusher"
@@ -72,10 +72,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 22
 
 	// *** Speed *** //
-	speed = 0.4
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -88,8 +88,8 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 110, BIO = 110, FIRE = 40, ACID = 40)
-	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 110, BIO = 40, FIRE = 40, ACID = 40)
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
 /datum/xeno_caste/behemoth/elder
@@ -97,10 +97,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 23
 
 	// *** Speed *** //
-	speed = 0.3
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 225
@@ -113,8 +113,8 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 120, BIO = 120, FIRE = 45, ACID = 45)
-	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 120, BIO = 45, FIRE = 45, ACID = 45)
+	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
 /datum/xeno_caste/behemoth/ancient
@@ -123,10 +123,10 @@
 	ancient_message = "Let the land quake in fear as it is torn asunder."
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 23
 
 	// *** Speed *** //
-	speed = 0.3
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 250
@@ -139,8 +139,8 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 130, BIO = 130, FIRE = 50, ACID = 50)
-	hard_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 130, BIO = 50, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
 /datum/xeno_caste/behemoth/primordial
@@ -153,7 +153,7 @@
 	melee_damage = 21
 
 	// *** Speed *** //
-	speed = 0.3
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 250
@@ -164,8 +164,8 @@
 
 	// *** Defense *** //
 	sunder_recover = 1.0
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 130, BIO = 130, FIRE = 50, ACID = 50)
-	hard_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 130, BIO = 50, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	// *** Abilities *** ///
 	actions = list(
