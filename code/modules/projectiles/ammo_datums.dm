@@ -940,7 +940,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "shotgun_tracker"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/frag/frag_spread
-	bonus_projectiles_amount = 3
+	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 6
 	accuracy_var_low = 8
 	accuracy_var_high = 8
@@ -950,7 +950,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 0
 
 /datum/ammo/bullet/shotgun/frag/drop_nade(turf/T)
-	explosion(T, 0, 0, 1, 1)
+	explosion(T, 0, 0, 2, 1)
 
 /datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
