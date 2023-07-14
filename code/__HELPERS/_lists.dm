@@ -1,3 +1,6 @@
+///If value is a list, wrap it in a list so it can be used with list add/remove operations
+#define LIST_VALUE_WRAP_LISTS(value) (islist(value) ? list(value) : value)
+
 #define LAZYINITLIST(L) if (!L) L = list()
 #define UNSETEMPTY(L) if (L && !length(L)) L = null
 #define LAZYREMOVE(L, I) if(L) { L -= I; if(!length(L)) { L = null; } }
@@ -535,6 +538,13 @@
 			.[i] = key
 			.[key] = value
 
+///Flattens a keyed list into a list of it's contents
+/proc/flatten_list(list/key_list)
+	if(!islist(key_list))
+		return null
+	. = list()
+	for(var/key in key_list)
+		. |= LIST_VALUE_WRAP_LISTS(key_list[key])
 
 //Return a list with no duplicate entries
 /proc/uniqueList(list/L)

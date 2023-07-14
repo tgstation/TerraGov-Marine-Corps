@@ -81,7 +81,7 @@
 
 	AddElement(/datum/element/footstep, FOOTSTEP_XENO_MEDIUM, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
 	set_jump_component()
-	setup_screen_timers()
+	// setup_screen_timers()
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health
 /mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
@@ -439,9 +439,13 @@
 /mob/living/carbon/xenomorph/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = 0, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)
 
-/mob/living/carbon/xenomorph/proc/setup_screen_timers()
-	AddElement(/datum/element/hud_timer/nuke)
-	AddElement(/datum/element/hud_timer/hive_collapse)
+// /mob/living/carbon/xenomorph/proc/setup_screen_timers()
+// 	RegisterSignal(src, COMSIG_GLOB_NUKE_START, PROC_REF(start_nuke_screen_timer))
+// 	RegisterSignal(src, COMSIG_GLOB_HIVE_COLLAPSING, PROC_REF(start_hivecollapse_screen_timer))
 
-/mob/living/carbon/xenomorph/proc/collapse_hud_timer_callback(source, timer)
-	return timer
+// /mob/living/carbon/xenomorph/proc/start_nuke_screen_timer(source, timer)
+// 	var/atom/movable/screen/text/screen_timer/hudtimer = new()
+// 	return timer
+
+// /mob/living/carbon/xenomorph/proc/start_hivecollapse_screen_timer(source, timer)
+// 	return timer
