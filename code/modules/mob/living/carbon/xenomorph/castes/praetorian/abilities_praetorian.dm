@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	span_danger("We dash towards \the [A], spraying acid down our path!") )
 	succeed_activate()
 
-	owner.pass_flags = HOVERING
+	owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	owner.throw_at(A, range, 2, owner)
 
 	return TRUE
