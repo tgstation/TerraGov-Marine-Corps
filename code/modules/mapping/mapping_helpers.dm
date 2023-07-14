@@ -171,14 +171,14 @@
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]"
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 		return
 	if(airlock.welded)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already welded!")
 	else
 		airlock.welded = TRUE
 		var/turf/current_turf = get_turf(airlock)
-		current_turf.flags_atom |= AI_BLOCKED)
+		current_turf.flags_atom |= AI_BLOCKED
 
 /obj/effect/mapping_helpers/broken_apc
 	name = "broken apc helper"
