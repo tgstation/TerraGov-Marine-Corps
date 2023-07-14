@@ -103,8 +103,8 @@
 	toggle_action = new(parent)
 	scan_action = new(parent)
 	configure_action = new(parent)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
-	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
+	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, PROC_REF(action_toggle))
 	RegisterSignal(scan_action, COMSIG_ACTION_TRIGGER, PROC_REF(scan_user))
@@ -117,25 +117,13 @@
 /datum/component/suit_autodoc/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
-		COMSIG_PARENT_EXAMINE,
+		COMSIG_ATOM_EXAMINE,
 		COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_EQUIPPED_TO_SLOT))
 	QDEL_NULL(toggle_action)
 	QDEL_NULL(scan_action)
 	QDEL_NULL(configure_action)
-
-/**
-	Specifically registers signals with the wearer to ensure we capture damage taken events
-*/
-/datum/component/suit_autodoc/proc/RegisterSignals(mob/user)
-	RegisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
-
-/**
-	Removes specific user signals
-*/
-/datum/component/suit_autodoc/proc/UnregisterSignals(mob/user)
-	UnregisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN)
 
 /**
 	Hook into the examine of the parent to show additional information about the suit_autodoc
@@ -191,7 +179,7 @@
 		return
 	enabled = FALSE
 	toggle_action.set_toggle(FALSE)
-	UnregisterSignals(wearer)
+	UnregisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
 		wearer.balloon_alert(wearer, "The automedical suite deactivates")
@@ -207,7 +195,7 @@
 		return
 	enabled = TRUE
 	toggle_action.set_toggle(TRUE)
-	RegisterSignals(wearer)
+	RegisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
 	START_PROCESSING(SSobj, src)
 	if(!silent)
 		wearer.balloon_alert(wearer, "The automedical suite activates")

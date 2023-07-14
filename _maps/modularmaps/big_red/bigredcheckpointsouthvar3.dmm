@@ -22,9 +22,9 @@
 "e" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	dir = 4;
-	locked = 1;
 	name = "\improper Checkpoint Office"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)

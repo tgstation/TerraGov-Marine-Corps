@@ -317,5 +317,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.
 		if(QDELETED(victim_turf) || victim_turf.z != z_level)
 			continue
-		victim.adjustFireLoss(victim.maxHealth*2)
+		victim.adjustFireLoss(victim.maxHealth * 4)
+		victim.death()
 		CHECK_TICK

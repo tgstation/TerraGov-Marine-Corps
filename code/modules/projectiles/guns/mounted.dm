@@ -490,7 +490,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
-	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_ROTATE_ANCHORED|DEPLOYED_ANCHORED_FIRING_ONLY
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -511,6 +511,7 @@
 	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
 	coverage = 75 //has a shield
+	anchor_time = 1 SECONDS
 
 /obj/item/storage/internal/ammo_rack
 	storage_slots = 10

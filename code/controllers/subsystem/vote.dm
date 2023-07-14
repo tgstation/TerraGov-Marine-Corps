@@ -32,6 +32,10 @@ SUBSYSTEM_DEF(vote)
 	var/shipmap_timer_id
 	/// Pop up this vote screen on everyone's screen?
 	var/forced_popup = FALSE
+	/// Shuffle vote choices separately for each client? (topvoting NPC mitigation)
+	var/shuffle_choices = FALSE
+	/// Shuffle vote choices per ckey cache
+	var/list/shuffle_cache = list()
 
 // Called by master_controller
 /datum/controller/subsystem/vote/fire()
@@ -55,6 +59,8 @@ SUBSYSTEM_DEF(vote)
 	voted.Cut()
 	voting.Cut()
 	vote_happening = FALSE
+	shuffle_choices = FALSE
+	shuffle_cache.Cut()
 
 	remove_action_buttons()
 
@@ -280,7 +286,7 @@ SUBSYSTEM_DEF(vote)
 						if(VM.config_min_users && players < VM.config_min_users)
 							continue
 					maps += VM.map_name
-					shuffle_inplace(maps)
+					shuffle_choices = TRUE
 				for(var/valid_map in maps)
 					choices.Add(valid_map)
 			if("shipmap")
@@ -309,7 +315,7 @@ SUBSYSTEM_DEF(vote)
 						if(VM.config_min_users && players < VM.config_min_users)
 							continue
 					maps += VM.map_name
-					shuffle_inplace(maps)
+					shuffle_choices = TRUE
 				for(var/valid_map in maps)
 					choices.Add(valid_map)
 			if("custom")
@@ -386,6 +392,7 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/ui_data(mob/user)
 	var/list/data = list(
 		"choices" = list(),
+		"vote_counts" = list(),
 		"lower_admin" = !!user.client?.holder,
 		"mode" = mode,
 		"question" = question,
@@ -403,11 +410,23 @@ SUBSYSTEM_DEF(vote)
 	if(!!user.client?.holder)
 		data["voting"] = voting
 
+	var/choice_num = 1
 	for(var/key in choices)
 		data["choices"] += list(list(
 			"name" = key,
-			"votes" = choices[key] || 0
+			"num_index" = choice_num++
 		))
+		data["vote_counts"] += choices[key] || 0
+
+	if(shuffle_choices)
+		// if useLocalState can be made to work with Vote.js this could be pure clientside
+		if(user.client?.ckey in shuffle_cache)
+			data["choices"] = shuffle_cache[user.client?.ckey]
+			return data
+		shuffle_inplace(data["choices"])
+		if(!user.client)
+			return data
+		shuffle_cache[user.client.ckey] = data["choices"]
 
 	return data
 

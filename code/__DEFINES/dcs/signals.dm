@@ -76,9 +76,9 @@
 /// before a component is removed from a datum because of RemoveComponent: (/datum/component)
 #define COMSIG_COMPONENT_REMOVING "component_removing"
 /// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
-#define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"
+#define COMSIG_PREQDELETED "parent_preqdeleted"
 /// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
-#define COMSIG_PARENT_QDELETING "parent_qdeleting"
+#define COMSIG_QDELETING "parent_qdeleting"
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
 
@@ -157,8 +157,8 @@
 #define COMSIG_CLIENT_PREFERENCES_UIACTED "client_preferences_uiacted" //called after preferences have been updated for this client after /datum/preferences/ui_act has completed
 
 // /atom signals
-#define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)
-#define COMSIG_PARENT_ATTACKBY_ALTERNATE "atom_attackby_alternate" //from base of atom/attackby_alternate(): (/obj/item, /mob/living)
+#define COMSIG_ATOM_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)
+#define COMSIG_ATOM_ATTACKBY_ALTERNATE "atom_attackby_alternate" //from base of atom/attackby_alternate(): (/obj/item, /mob/living)
 	#define COMPONENT_NO_AFTERATTACK (1<<0)						//Return this in response if you don't want afterattack to be called
 
 #define COMSIG_ATOM_CONTENTS_DEL "atom_contents_del"			//from base of atom/handle_atom_del(): (atom/deleted)
@@ -176,7 +176,7 @@
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
 	#define COMPONENT_NO_ATTACK_HAND (1<<0)						//works on all attack_hands.
 #define COMSIG_ATOM_ATTACK_POWERLOADER "atom_attack_powerloader"//from base of atom/attack_powerloader: (mob/living/user, obj/item/powerloader_clamp/attached_clamp)
-#define COMSIG_PARENT_EXAMINE "atom_examine"					//from base of atom/examine(): (/mob)
+#define COMSIG_ATOM_EXAMINE "atom_examine"					//from base of atom/examine(): (/mob)
 ///from base of atom/get_examine_name(): (/mob, list/overrides)
 #define COMSIG_ATOM_GET_EXAMINE_NAME "atom_examine_name"
 	//Positions for overrides list
@@ -264,6 +264,7 @@
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
 #define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct"				//from base of obj/deconstruct(): (disassembled)
+#define COMSIG_OBJ_TRY_ALLOW_THROUGH "obj_try_allow_through"	//from obj/CanAllowThrough()
 ///from base of /turf/proc/levelupdate(). (intact) true to hide and false to unhide
 #define COMSIG_OBJ_HIDE "obj_hide"
 #define COMSIG_OBJ_ATTACK_ALIEN "obj_attack_alien"				//from obj/attack_alien(): (/mob/living/carbon/xenomorph)
@@ -318,6 +319,8 @@
 	#define COMPONENT_ITEM_CLICKON_BYPASS (1<<0)
 #define COMSIG_ITEM_TOGGLE_BUMP_ATTACK "item_toggle_bump_attack"		//from base of obj/item/proc/toggle_item_bump_attack(): (/mob/user, enable_bump_attack)
 
+#define COMSIG_ITEM_SECONDARY_COLOR "item_secondary_color" //from base of /obj/item/proc/alternate_color_item() : (mob/user, list/obj/item)
+
 #define COMSIG_ITEM_HYDRO_CANNON_TOGGLED "hydro_cannon_toggled"
 
 #define COMSIG_NEW_REAGENT_ADD "new_reagent_add"					//from add_reagent(): (reagent_path, amount); it is sent when a reagent gets added for the first time to a holder
@@ -352,6 +355,7 @@
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
+#define COMSIG_MOB_GUN_FIRE "mob_gun_fire"
 #define COMSIG_GUN_STOP_FIRE "gun_stop_fire"
 #define COMSIG_GUN_FIRE_MODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
 #define COMSIG_GUN_AUTOFIREDELAY_MODIFIED "gun_firedelay_modified"
@@ -362,6 +366,7 @@
 #define COMSIG_GUN_USER_SET "gun_user_set"
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"
 #define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
+#define COMSIG_MOB_GUN_COOLDOWN "mob_gun_cooldown"
 
 #define COMSIG_XENO_FIRE "xeno_fire"
 #define COMSIG_XENO_STOP_FIRE "xeno_stop_fire"

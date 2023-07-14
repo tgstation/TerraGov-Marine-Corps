@@ -53,11 +53,11 @@
 ///Set the trunk of the disposal
 /obj/machinery/disposal/proc/set_trunk(obj/future_trunk)
 	if(trunk)
-		UnregisterSignal(trunk, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(trunk, COMSIG_QDELETING)
 	trunk = null
 	if(future_trunk)
 		trunk = future_trunk
-		RegisterSignal(trunk, COMSIG_PARENT_QDELETING, PROC_REF(clean_trunk))
+		RegisterSignal(trunk, COMSIG_QDELETING, PROC_REF(clean_trunk))
 
 ///Signal handler to clean trunk to prevent harddel
 /obj/machinery/disposal/proc/clean_trunk()
@@ -1165,11 +1165,11 @@
 ///Set the linked atom
 /obj/structure/disposalpipe/trunk/proc/set_linked(obj/to_link)
 	if(linked)
-		UnregisterSignal(linked, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(linked, COMSIG_QDELETING)
 	linked = null
 	if(to_link)
 		linked = to_link
-		RegisterSignal(linked, COMSIG_PARENT_QDELETING, PROC_REF(clean_linked))
+		RegisterSignal(linked, COMSIG_QDELETING, PROC_REF(clean_linked))
 
 ///Signal handler to clean linked from harddeling
 /obj/structure/disposalpipe/trunk/proc/clean_linked()

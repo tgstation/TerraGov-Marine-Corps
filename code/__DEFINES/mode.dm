@@ -82,10 +82,6 @@
 				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
 				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/packet/magnum))
 
-
-#define LATEJOIN_LARVA_DISABLED 0
-
-
 //Balance defines
 #define MARINE_GEAR_SCALING 30
 
@@ -95,9 +91,8 @@
 
 #define EVACUATION_TIME_LOCK 30 MINUTES
 
-//Distress mode collapse duration
-#define DISTRESS_ORPHAN_HIVEMIND 5 MINUTES
-#define DISTRESS_SILO_COLLAPSE 5 MINUTES
+//Nuclear war mode collapse duration
+#define NUCLEAR_WAR_ORPHAN_HIVEMIND 5 MINUTES
 
 #define SHUTTLE_HIJACK_LOCK 30 MINUTES
 
@@ -140,14 +135,12 @@
 #define SILO_BASE_OUTPUT_PER_MARINE 0.035
 /// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
 #define SILO_OUTPUT_PONDERATION 1.75
-//Time (after shutters open) before siloless timer can start
-#define MINIMUM_TIME_SILO_LESS_COLLAPSE 15 MINUTES
 
 #define INFESTATION_MARINE_DEPLOYMENT 0
 #define INFESTATION_MARINE_CRASHING 1
 #define INFESTATION_DROPSHIP_CAPTURED_XENOS 2
 
-#define DISTRESS_LARVA_POINTS_NEEDED 8
+#define NUCLEAR_WAR_LARVA_POINTS_NEEDED 8
 #define CRASH_LARVA_POINTS_NEEDED 10
 
 #define FREE_XENO_AT_START 2
