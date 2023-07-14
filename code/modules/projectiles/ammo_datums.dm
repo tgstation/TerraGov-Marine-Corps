@@ -1994,7 +1994,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 1
 
 /datum/ammo/rocket/heavy_isg/drop_nade(turf/T)
-	explosion(T, 0, 6, 9, 12)
+	explosion(T, 0, 7, 8, 12)
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
