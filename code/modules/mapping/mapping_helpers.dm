@@ -130,15 +130,16 @@
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	if(airlock)
-		if(airlock.locked)
-			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
-		else
-			airlock.locked = TRUE
-			var/turf/current_turf = get_turf(airlock)
-			current_turf.flags_atom |= AI_BLOCKED
+	if(!airlock)
+		return
+	if(airlock.locked)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
 	else
-		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		airlock.locked = TRUE
+		var/turf/current_turf = get_turf(airlock)
+		current_turf.flags_atom |= AI_BLOCKED
+	else
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 
 /obj/effect/mapping_helpers/airlock/abandoned
 	name = "airlock abandoned helper"
@@ -150,15 +151,16 @@
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	if(airlock)
-		if(airlock.abandoned)
-			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
-		else
-			airlock.abandoned = TRUE
-			var/turf/current_turf = get_turf(airlock)
-			current_turf.flags_atom |= AI_BLOCKED
+	if(!airlock)
+		return
+	if(airlock.abandoned)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
 	else
-		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		airlock.abandoned = TRUE
+		var/turf/current_turf = get_turf(airlock)
+		current_turf.flags_atom |= AI_BLOCKED
+	else
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
 
 /obj/effect/mapping_helpers/airlock/welded
 	name = "airlock welded helper"
@@ -170,15 +172,16 @@
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	if(airlock)
-		if(airlock.welded)
-			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already welded!")
-		else
-			airlock.welded = TRUE
-			var/turf/current_turf = get_turf(airlock)
-			current_turf.flags_atom |= AI_BLOCKED
+	if(!airlock)
+		return
+	if(airlock.welded)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already welded!")
 	else
-		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		airlock.welded = TRUE
+		var/turf/current_turf = get_turf(airlock)
+		current_turf.flags_atom |= AI_BLOCKED
+	else
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 
 /obj/effect/mapping_helpers/broken_apc
 	name = "broken apc helper"
@@ -194,14 +197,20 @@
 	if(!prob(breakchance))
 		return
 	var/obj/machinery/power/apc/apc = locate(/obj/machinery/power/apc) in loc
-	if(apc)
-		if(apc.machine_stat && (BROKEN))
-			log_world("### MAP WARNING, [src] tried to break an APC at [AREACOORD(src)] but it was already broken")
-			return
-		else
-			apc.do_break()
+	if(!apc)
+		return
+	if(apc.machine_stat && (BROKEN)) //there's a small chance of APCs being broken on round start, just return if it's already happened
+		return
 	else
-		log_world("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
+		apc.do_break()
+	else
+		stack_trace("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
+
+/obj/effect/mapping_helpers/broken_apc/lowchance
+	breakchance = 25
+
+/obj/effect/mapping_helpers/broken_apc/highchance
+	breakchance = 75
 
 /obj/effect/mapping_helpers/airlock/unres
 	name = "airlock unresctricted side helper"
