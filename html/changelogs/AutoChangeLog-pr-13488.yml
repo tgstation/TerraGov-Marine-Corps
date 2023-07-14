@@ -1,0 +1,4 @@
+author: "iLikeMemes"
+delete-after: True
+changes:
+  - bugfix: "fixed queen's description still mentioning that she lays eggs."
