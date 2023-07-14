@@ -83,10 +83,12 @@
 #define IS_DEPLOYED (1<<12) //If this is on an item, said item is currently deployed
 #define DEPLOYED_NO_PICKUP  (1<<13) //Disables deployed item pickup
 #define DEPLOYED_NO_ROTATE  (1<<14) //Disables deployed item rotation abilities to rotate.
-#define DEPLOYED_WRENCH_DISASSEMBLE (1<<15) //If this is on an item, the item can only be disassembled using a wrench once deployed.
-#define FULLY_WIELDED (1<<16) //If the item is properly wielded. Used for guns
+#define DEPLOYED_NO_ROTATE_ANCHORED (1<<15) //Disables deployed item rotation if anchored.
+#define DEPLOYED_WRENCH_DISASSEMBLE (1<<16) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<17) //Disables firing deployable if it is not anchored.
+#define FULLY_WIELDED (1<<18) //If the item is properly wielded. Used for guns
 ///If a holster has underlay sprites
-#define HAS_UNDERLAY (1<<17)
+#define HAS_UNDERLAY (1<<19)
 
 //==========================================================================================
 

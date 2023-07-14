@@ -2258,7 +2258,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2
 	damage = 90
 	penetration = 30
-	sundering = 10
+	sundering = 25
 	max_range = 30
 	handful_amount = 1
 
@@ -2274,8 +2274,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	damage = 200
-	penetration = 40
-	sundering = 65
+	penetration = 70
+	sundering = 25
 
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
 	explosion(T, 0, 0, 0, 1)
@@ -2297,7 +2297,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	damage = 50
 	penetration = 50
-	sundering = 25
+	sundering = 35
 
 /datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
 	explosion(T, 0, 3, 5, 0)
