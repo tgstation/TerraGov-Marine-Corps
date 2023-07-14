@@ -612,12 +612,12 @@ WEAPONS
 /datum/supply_packs/weapons/smarttarget_rifle_ammo
 	name = "SG-62 smart target rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smarttargetrifle)
-	cost = 40
+	cost = 35
 
 /datum/supply_packs/weapons/spotting_rifle_ammo
 	name = "SR-153 spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle)
-	cost = 20
+	cost = 15
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/highimpact
 	name = "SR-153 high impact spotting rifle ammo"
