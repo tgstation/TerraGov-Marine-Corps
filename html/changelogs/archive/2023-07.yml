@@ -179,3 +179,9 @@
   - rscdel: Deleted the distress signal gamemode
   novaepee:
   - rscadd: Kabuto armor, a Japanese-Inspired Armor; find it in the style line tab!
+2023-07-13:
+  Arturlang:
+  - bugfix: The nuclear explosion will actually, properly, goddamn, kill you, instead
+      of just singing you slightly
+  novaepee:
+  - balance: move miner near Magmoor's west landing zone further north

@@ -33,7 +33,6 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0	//for mapping use
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
-	var/emergency = FALSE
 	///used to determine various abandoned door effects
 	var/abandoned = FALSE
 	smoothing_groups = list(SMOOTH_GROUP_AIRLOCK)
@@ -186,6 +185,8 @@
 /obj/machinery/door/airlock/update_icon()
 	if(overlays) overlays.Cut()
 	if(density)
+		if(emergency && hasPower())
+			overlays += image(icon, "emergency_access_on")
 		if(locked && lights)
 			icon_state = "door_locked"
 		else
