@@ -100,9 +100,10 @@
 
 
 /obj/structure/closet/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(wall_mounted)
 		return TRUE
+	return ..()
+
 
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
@@ -473,7 +474,7 @@
 		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = source)
 		balloon_alert(source, "You struggle to get your bearings")
 	origin.UnregisterSignal(source, COMSIG_LIVING_DO_RESIST)
-	UnregisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED)
+	UnregisterSignal(source, COMSIG_MOVABLE_CLOSET_DUMPED)
 
 
 #undef CLOSET_INSERT_END

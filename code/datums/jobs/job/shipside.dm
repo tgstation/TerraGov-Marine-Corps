@@ -19,6 +19,11 @@
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/command/captain
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/command/captain,
+		/datum/outfit/job/command/captain/robot,
+	)
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP|JOB_FLAG_LOUDER_TTS
@@ -36,18 +41,6 @@
 		<b>Duty</b>: Lead the TGMC platoon and complete your mission. Support the marines and communicate with your command staff, execute orders.
 	"}
 	minimap_icon = "captain"
-
-/datum/job/terragov/command/captain/rebel
-	title = REBEL_CAPTAIN
-	faction = FACTION_TERRAGOV_REBEL
-	access = ALL_MARINE_REBEL_ACCESS
-	minimal_access = ALL_MARINE_REBEL_ACCESS
-	outfit = /datum/outfit/job/command/captain/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 /datum/job/terragov/command/captain/radio_help_message(mob/M)
 	. = ..()
@@ -74,10 +67,16 @@ Godspeed, captain! And remember, you are not above the law."})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership
 
-/datum/outfit/job/command/captain/rebel
-	jobtype = /datum/job/terragov/command/captain/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
+/datum/outfit/job/command/captain/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
 
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
@@ -110,7 +109,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	multiple_outfits = TRUE
 	outfits = list(
 		/datum/outfit/job/command/fieldcommander,
-		/datum/outfit/job/command/fieldcommander_robot,
+		/datum/outfit/job/command/fieldcommander/robot,
 	)
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
@@ -129,23 +128,6 @@ Godspeed, captain! And remember, you are not above the law."})
 		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you will need for the mission, keep good relations between command and the marines. Assist the captain if available.
 	"}
 	minimap_icon = "fieldcommander"
-
-/datum/job/terragov/command/fieldcommander/rebel
-	title = REBEL_FIELD_COMMANDER
-	faction = FACTION_TERRAGOV_REBEL
-	access = ALL_MARINE_REBEL_ACCESS
-	minimal_access = ALL_MARINE_REBEL_ACCESS
-	outfit = /datum/outfit/job/command/fieldcommander/rebel
-	outfits = list(
-		/datum/outfit/job/command/fieldcommander,
-		/datum/outfit/job/command/fieldcommander_robot/rebel,
-	)
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
-
 
 /datum/job/terragov/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
@@ -188,14 +170,9 @@ Make the TGMC proud!"})
 	l_store = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
-/datum/outfit/job/command/fieldcommander_robot
-	name = FIELD_COMMANDER
-	jobtype = /datum/job/terragov/command/fieldcommander
+/datum/outfit/job/command/fieldcommander/robot
 	species = SPECIES_COMBAT_ROBOT
 
-	id = /obj/item/card/id/dogtag/fc
-	belt = /obj/item/storage/holster/blade/officer/full
-	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/robotic
 	wear_suit = /obj/item/clothing/suit/modular/robot
 	shoes = null
@@ -204,14 +181,6 @@ Make the TGMC proud!"})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
-
-/datum/outfit/job/command/fieldcommander/rebel
-	jobtype = /datum/job/terragov/command/fieldcommander/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
-
-/datum/outfit/job/command/fieldcommander_robot/rebel
-	jobtype = /datum/job/terragov/command/fieldcommander/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 //Staff Officer
 /datum/job/terragov/command/staffofficer
@@ -224,6 +193,11 @@ Make the TGMC proud!"})
 	skills_type = /datum/skills/so
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
 	outfit = /datum/outfit/job/command/staffofficer
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/command/staffofficer,
+		/datum/outfit/job/command/staffofficer/robot,
+	)
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
@@ -242,18 +216,6 @@ Make the TGMC proud!"})
 	"}
 
 	minimap_icon = "staffofficer"
-
-/datum/job/terragov/command/staffofficer/rebel
-	title = REBEL_STAFF_OFFICER
-	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_BRIG_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_ALPHA_REBEL, ACCESS_MARINE_BRAVO_REBEL, ACCESS_MARINE_CHARLIE_REBEL, ACCESS_MARINE_DELTA_REBEL)
-	minimal_access = ALL_MARINE_REBEL_ACCESS
-	outfit = /datum/outfit/job/command/staffofficer/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 /datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
 	. = ..()
@@ -289,9 +251,16 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
 
-/datum/outfit/job/command/staffofficer/rebel
-	jobtype = /datum/job/terragov/command/staffofficer/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
+
+/datum/outfit/job/command/staffofficer/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/binoculars/tactical
 
 //Pilot Officer
 /datum/job/terragov/command/pilot
@@ -320,18 +289,6 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>Duty</b>: Choose between the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
 	minimap_icon = "pilot"
-
-/datum/job/terragov/command/pilot/rebel
-	title = REBEL_PILOT_OFFICER
-	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_PILOT_REBEL)
-	minimal_access = list(ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_PILOT_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
-	outfit = /datum/outfit/job/command/pilot/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 /datum/job/terragov/command/pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -374,10 +331,6 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	head = /obj/item/clothing/head/helmet/marine/pilot
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/hud_tablet/pilot
-
-/datum/outfit/job/command/pilot/rebel
-	jobtype = /datum/job/terragov/command/pilot/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 //Mech pilot
 /datum/job/terragov/command/mech_pilot
@@ -480,18 +433,6 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	"}
 	minimap_icon = "cse"
 
-/datum/job/terragov/engineering/chief/rebel
-	title = REBEL_CHIEF_SHIP_ENGINEER
-	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_CE_REBEL, ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_PREP_REBEL)
-	minimal_access = list(ACCESS_MARINE_CE_REBEL, ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
-	outfit = /datum/outfit/job/engineering/chief/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
-
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
@@ -531,16 +472,12 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	r_store = /obj/item/storage/pouch/construction
 	back = /obj/item/storage/backpack/marine/engineerpack
 
-/datum/outfit/job/engineering/chief/rebel
-	jobtype = /datum/job/terragov/engineering/chief/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
-
 /datum/outfit/job/engineering/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
 
 //Ship Engineer
 /datum/job/terragov/engineering/tech
@@ -569,18 +506,6 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		<b>Duty</b>: Maintain the ship, be in charge of the engines. Be the secondary engineer to a forward operating base, prepare the shipside defenses if needed. Help the Pilot Officer in preparing the dropship.
 	"}
 	minimap_icon = "st"
-
-/datum/job/terragov/engineering/tech/rebel
-	title = REBEL_SHIP_TECH
-	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_CIVILIAN_ENGINEERING)
-	minimal_access = list(ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_CIVILIAN_ENGINEERING)
-	outfit = /datum/outfit/job/engineering/tech/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 /datum/job/terragov/engineering/tech/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -622,10 +547,6 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	r_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/engineerpack
 
-/datum/outfit/job/engineering/tech/rebel
-	jobtype = /datum/job/terragov/engineering/tech/rebel
-	ears = /obj/item/radio/headset/mainship/st/rebel
-
 /datum/job/terragov/requisitions
 	job_category = JOB_CAT_REQUISITIONS
 	selection_color = "#BAAFD9"
@@ -664,17 +585,6 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	"}
 	minimap_icon = "requisition"
 
-/datum/job/terragov/requisitions/officer/rebel
-	title = REBEL_REQUISITIONS_OFFICER
-	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ALPHA_REBEL, ACCESS_MARINE_BRAVO_REBEL, ACCESS_MARINE_CHARLIE_REBEL, ACCESS_MARINE_DELTA_REBEL)
-	minimal_access = list(ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ALPHA_REBEL, ACCESS_MARINE_BRAVO_REBEL, ACCESS_MARINE_CHARLIE_REBEL, ACCESS_MARINE_DELTA_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
-	outfit = /datum/outfit/job/requisitions/officer/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 /datum/job/terragov/requisitions/officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -716,10 +626,6 @@ A happy ship is a well-functioning ship."})
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/large
 
-/datum/outfit/job/requisitions/officer/rebel
-	jobtype = /datum/job/terragov/requisitions/officer/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
-
 /datum/job/terragov/medical
 	job_category = JOB_CAT_MEDICAL
 	selection_color = "#BBFFBB"
@@ -739,6 +645,11 @@ A happy ship is a well-functioning ship."})
 	skills_type = /datum/skills/cmo
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/medical/professor,
+		/datum/outfit/job/medical/professor/robot,
+	)
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
@@ -756,18 +667,6 @@ A happy ship is a well-functioning ship."})
 		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
 	minimap_icon = "chief_medical"
-
-/datum/job/terragov/medical/professor/rebel
-	title = REBEL_CHIEF_MEDICAL_OFFICER
-	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_CMO_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
-	minimal_access = list(ACCESS_MARINE_CMO_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
-	outfit = /datum/outfit/job/medical/professor/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 
 /datum/job/terragov/medical/professor/radio_help_message(mob/M)
@@ -804,17 +703,21 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
-	r_store = /obj/item/storage/pouch/medkit/medic
-	l_store = /obj/item/storage/pouch/surgery
+	r_store = /obj/item/storage/pouch/surgery
+	l_store = /obj/item/storage/pouch/medkit/medic
 
-/datum/outfit/job/medical/professor/rebel
-	jobtype = /datum/job/terragov/medical/professor/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
+
+/datum/outfit/job/medical/professor/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_hand(new /obj/item/tweezers, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
@@ -828,6 +731,11 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
 	outfit = /datum/outfit/job/medical/medicalofficer
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/medical/medicalofficer,
+		/datum/outfit/job/medical/medicalofficer/robot,
+	)
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
@@ -843,18 +751,6 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		<b>Duty</b>: Tend severely wounded patients to your aid in the form of surgery, repair broken bones and damaged organs, fix internal bleeding and prevent the birth of a xenomorph larva. Develop superior healing medicines.
 	"}
 	minimap_icon = "medical"
-
-/datum/job/terragov/medical/medicalofficer/rebel
-	title = REBEL_MEDICAL_DOCTOR
-	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
-	minimal_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	outfit = /datum/outfit/job/medical/medicalofficer/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 /datum/job/terragov/medical/medicalofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -891,15 +787,22 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
+	r_store = /obj/item/storage/pouch/surgery
+	l_store = /obj/item/storage/pouch/medkit/medic
 
-/datum/outfit/job/medical/medicalofficer/rebel
-	jobtype = /datum/job/terragov/medical/medicalofficer/rebel
-	ears = /obj/item/radio/headset/mainship/doc/rebel
+
+/datum/outfit/job/medical/medicalofficer/robot
+	species = SPECIES_COMBAT_ROBOT
+	jobtype = /datum/job/terragov/medical/medicalofficer
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_hand(new /obj/item/tweezers, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 
 //Researcher
@@ -914,6 +817,11 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	skills_type = /datum/skills/researcher
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/medical/researcher,
+		/datum/outfit/job/medical/researcher/robot,
+	)
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
@@ -929,18 +837,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		<b>Duty</b>: Research extraterrestrial life aboard the ship if provided by Nanotrasen/TerraGov, synthesize chemicals for the benefit of the marines. Find out the cause of why and when. Learn new things for humankind. Act as a secondary medical officer in practice.
 	"}
 	minimap_icon = "researcher"
-
-/datum/job/terragov/medical/researcher/rebel
-	title = REBEL_MEDICAL_RESEARCHER
-	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_CIVILIAN_ENGINEERING)
-	minimal_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	outfit = /datum/outfit/job/medical/researcher/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 
 /datum/job/terragov/medical/researcher/radio_help_message(mob/M)
@@ -969,6 +865,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 /datum/outfit/job/medical/researcher
 	name = MEDICAL_RESEARCHER
 	jobtype = /datum/job/terragov/medical/researcher
+
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/rig/research
 	ears = /obj/item/radio/headset/mainship/res
@@ -978,15 +875,21 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
+	r_store = /obj/item/storage/pouch/surgery
+	l_store = /obj/item/storage/pouch/medkit/medic
 
-/datum/outfit/job/medical/researcher/rebel
-	jobtype = /datum/job/terragov/medical/researcher/rebel
-	ears = /obj/item/radio/headset/mainship/doc/rebel
+
+/datum/outfit/job/medical/researcher/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
 
 /datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_hand(new /obj/item/tweezers, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_hand(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 /datum/job/terragov/civilian
 	job_category = JOB_CAT_CIVILIAN
@@ -1095,16 +998,6 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	"}
 	minimap_icon = "synth"
 
-/datum/job/terragov/silicon/synthetic/rebel
-	title = REBEL_SYNTHETIC
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/civilian/synthetic/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-	)
-
-
 /datum/job/terragov/silicon/synthetic/get_special_name(client/preference_source)
 	return preference_source.prefs.synthetic_name
 
@@ -1153,10 +1046,6 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	r_store = /obj/item/storage/pouch/general/medium
 	l_store = /obj/item/storage/pouch/general/medium
 
-/datum/outfit/job/civilian/synthetic/rebel
-	jobtype = /datum/job/terragov/silicon/synthetic/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
-
 
 /datum/job/terragov/silicon/ai
 	title = SILICON_AI
@@ -1185,15 +1074,6 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		<b>Duty</b>: Assist the crew whenever you’re needed, be the doorknob of the ship. Recon the areas for threats via cameras, report your findings to the crew at various communication channels. Follow your laws.
 	"}
-
-/datum/job/terragov/silicon/ai/rebel
-	title = REBEL_SILICON_AI
-	faction = FACTION_TERRAGOV_REBEL
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
 
 
 /datum/job/terragov/silicon/ai/get_special_name(client/preference_source)

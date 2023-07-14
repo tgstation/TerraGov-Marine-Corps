@@ -734,34 +734,34 @@
 			return
 	go_out()
 
-/obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
-	if(dragger.incapacitated() || !ishuman(dragger))
+/obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/target, mob/user)
+	if(!ishuman(target) || !ishuman(user) || user.incapacitated(TRUE))
 		return
 
 	if(occupant)
-		to_chat(dragger, span_notice("[src] is already occupied!"))
+		to_chat(user, span_notice("[src] is already occupied!"))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(dragger, span_notice("[src] is non-functional!"))
+		to_chat(user, span_notice("[src] is non-functional!"))
 		return
 
-	if(dragger.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_TRAINED && !event)
-		dropped.visible_message(span_notice("[dropped] fumbles around figuring out how to get into \the [src]."),
+	if(user.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_TRAINED && !event)
+		target.visible_message(span_notice("[target] fumbles around figuring out how to get into \the [src]."),
 		span_notice("You fumble around figuring out how to get into \the [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(dropped, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
+		if(!do_after(target, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	dropped.visible_message(span_notice("[dropped] starts climbing into \the [src]."),
+	target.visible_message(span_notice("[target] starts climbing into \the [src]."),
 	span_notice("You start climbing into \the [src]."))
-	if(do_after(dropped, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
+	if(do_after(target, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
 		if(occupant)
-			to_chat(dragger, span_notice("[src] is already occupied!"))
+			to_chat(user, span_notice("[src] is already occupied!"))
 			return
-		dropped.stop_pulling()
-		dropped.forceMove(src)
-		occupant = dropped
+		target.stop_pulling()
+		target.forceMove(src)
+		occupant = target
 		icon_state = "autodoc_closed"
 		var/implants = list(/obj/item/implant/neurostim)
 		var/mob/living/carbon/human/H = occupant
@@ -787,8 +787,7 @@
 
 
 /obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M) || !ishuman(user))
-		return
+	. = ..()
 	move_inside_wrapper(M, user)
 
 /obj/machinery/autodoc/verb/move_inside()

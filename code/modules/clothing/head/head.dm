@@ -10,13 +10,19 @@
 	w_class = WEIGHT_CLASS_SMALL
 	blood_sprite_state = "helmetblood"
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
-	attachments_allowed = list(/obj/item/armor_module/greyscale/badge)
+	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/anti_hug = 0
 
 /obj/item/clothing/head/update_clothing_icon()
 	if (ismob(loc))
 		var/mob/M = loc
 		M.update_inv_head()
+
+/obj/item/clothing/head/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_head_str = icon)
 
 /obj/item/clothing/head/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])

@@ -27,7 +27,7 @@
 
 
 /turf/closed/wall/resin/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 1.25, BURN, "fire")
+	take_damage(burnlevel * 1.25, BURN, FIRE)
 
 
 /turf/closed/wall/resin/proc/thicken()
@@ -55,6 +55,7 @@
 	max_integrity = 120
 	opacity = FALSE
 	alpha = 180
+	allow_pass_flags = PASS_GLASS
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
@@ -76,18 +77,18 @@
 /turf/closed/wall/resin/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(600) // Heavy and devastate instakill walls.
+			take_damage(600, BRUTE, BOMB) // Heavy and devastate instakill walls.
 		if(EXPLODE_HEAVY)
-			take_damage(rand(400))
+			take_damage(rand(400), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(75, 100))
+			take_damage(rand(75, 100), BRUTE, BOMB)
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
-	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
-		SSresinshaping.decrement_build_counter(X)
+	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		SSresinshaping.quickbuilds++
 		take_damage(max_integrity) // Ensure its destroyed
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
@@ -110,7 +111,7 @@
 
 /turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
 	if(I.flags_item & NOBLUDGEON || !isliving(user))
-		return attack_hand(user)
+		return
 
 	user.changeNext_move(I.attack_speed)
 	user.do_attack_animation(src, used_item = I)
@@ -127,14 +128,8 @@
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 
 	damage *= max(0, multiplier)
-	take_damage(damage)
+	take_damage(damage, BRUTE, MELEE)
 	playsound(src, "alien_resin_break", 25)
-
-
-/turf/closed/wall/resin/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return !opacity
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()

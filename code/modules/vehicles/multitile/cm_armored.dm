@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/hitbox/cm_armored
 	name = "Armored Vehicle"
 	desc = "Get inside to operate the vehicle."
-	flags_pass = PASSABLE
+	allow_pass_flags = PASSABLE
 	var/lastsound = 0
 
 //If something want to delete this, it's probably either an admin or the shuttle

@@ -41,7 +41,7 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_GRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
@@ -54,7 +54,7 @@
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
 	xeno_owner = _xeno_owner
-	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_mob_owner))
+	RegisterSignal(xeno_owner, COMSIG_QDELETING, PROC_REF(clean_mob_owner))
 	RegisterSignal(loc, COMSIG_ATOM_ENTERED, PROC_REF(atom_enter_turf))
 	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
 
@@ -69,19 +69,19 @@
 	if(!ishuman(moved_in))
 		return
 	var/mob/living/carbon/human/victim = moved_in
-	if(victim.flags_pass & HOVERING)
+	if(victim.pass_flags & HOVERING)
 		return
 	victim.acid_spray_entered(null, src, acid_damage, slow_amt)
 
 /// Set xeno_owner to null to avoid hard del
 /obj/effect/xenomorph/spray/proc/clean_mob_owner()
-	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(xeno_owner, COMSIG_QDELETING)
 	xeno_owner = null
 
 /// Signal handler to burn and maybe stun the human entering the acid spray
 /mob/living/carbon/human/proc/acid_spray_entered(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
-	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING) || stat == DEAD)
+	if(CHECK_MULTIPLE_BITFIELDS(pass_flags, HOVERING) || stat == DEAD)
 		return
 
 	if(acid_spray.xeno_owner && TIMER_COOLDOWN_CHECK(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays

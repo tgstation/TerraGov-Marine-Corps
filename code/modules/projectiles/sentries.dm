@@ -73,14 +73,13 @@
 	if(!z)
 		return
 	var/marker_flags
-	if(iff_signal == TGMC_LOYALIST_IFF)
-		marker_flags = MINIMAP_FLAG_MARINE
-	else if(iff_signal == TGMC_REBEL_IFF)
-		marker_flags = MINIMAP_FLAG_MARINE_REBEL
-	else if(iff_signal == SOM_IFF)
-		marker_flags = MINIMAP_FLAG_MARINE_SOM
-	else
-		marker_flags = MINIMAP_FLAG_MARINE
+	switch(iff_signal)
+		if(TGMC_LOYALIST_IFF)
+			marker_flags = MINIMAP_FLAG_MARINE
+		if(SOM_IFF)
+			marker_flags = MINIMAP_FLAG_MARINE_SOM
+		else
+			marker_flags = MINIMAP_FLAG_MARINE
 	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "sentry[firing ? "_firing" : "_passive"]"))
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
@@ -428,15 +427,15 @@
 		if(smoke?.opacity)
 			return FALSE
 
-		if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_pass & PASSPROJECTILE) && !(T.type in ignored_terrains))
+		if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE) && !(T.type in ignored_terrains))
 			return FALSE
 
 		for(var/obj/machinery/MA in T)
-			if(MA.density && !(MA.flags_pass & PASSPROJECTILE) && !(MA.type in ignored_terrains))
+			if(MA.density && !(MA.allow_pass_flags & PASS_PROJECTILE) && !(MA.type in ignored_terrains))
 				return FALSE
 
 		for(var/obj/structure/S in T)
-			if(S.density && !(S.flags_pass & PASSPROJECTILE) && !(S.type in ignored_terrains))
+			if(S.density && !(S.allow_pass_flags & PASS_PROJECTILE) && !(S.type in ignored_terrains))
 				return FALSE
 
 	return TRUE

@@ -8,6 +8,7 @@
 	icon_state = "pill1"
 	item_state = "pill"
 	possible_transfer_amounts = null
+	amount_per_transfer_from_this = 15
 	init_reagent_flags = AMOUNT_SKILLCHECK
 	w_class = WEIGHT_CLASS_TINY
 	volume = 60

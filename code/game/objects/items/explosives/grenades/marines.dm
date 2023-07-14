@@ -94,7 +94,7 @@
 	forceMove(hit_atom)
 	saved_overlay = stuck_overlay
 	stuck_to = hit_atom
-	RegisterSignal(stuck_to, COMSIG_PARENT_QDELETING, PROC_REF(clean_refs))
+	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
@@ -108,7 +108,7 @@
 /obj/item/explosive/grenade/sticky/proc/clean_refs()
 	stuck_to.cut_overlay(saved_overlay)
 	SIGNAL_HANDLER
-	UnregisterSignal(stuck_to, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(stuck_to, COMSIG_QDELETING)
 	stuck_to = null
 	saved_overlay = null
 
@@ -281,6 +281,12 @@
 	icon_state_mini = "grenade_green"
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
+/obj/item/explosive/grenade/smokebomb/cloak/ags
+	name = "\improper AGLS-37 SCDP smoke grenade"
+	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
+	icon_state = "ags_cloak"
+	smokeradius = 4
+
 /obj/item/explosive/grenade/smokebomb/drain
 	name = "\improper M40-T smoke grenade"
 	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
@@ -291,6 +297,13 @@
 	icon_state_mini = "grenade_blue"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+
+/obj/item/explosive/grenade/smokebomb/drain/agls
+	name = "\improper AGLS-T smoke grenade"
+	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
+	icon_state = "ags_pgas"
+	det_time = 3 SECONDS
+	smokeradius = 4
 
 /obj/item/explosive/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"

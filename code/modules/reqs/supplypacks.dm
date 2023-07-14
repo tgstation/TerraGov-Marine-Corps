@@ -131,11 +131,6 @@ OPERATIONS
 	containertype = /obj/structure/closet/crate/secure/explosives
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/operations/cash
-	name = "200 dollars"
-	contains = list(/obj/item/spacecash/c500)
-	cost = 50
-
 /datum/supply_packs/operations/droppod
 	name = "drop pod"
 	contains = list(/obj/structure/droppod)
@@ -238,6 +233,21 @@ WEAPONS
 	name = "AGLS-37 AGL White Phosphorous Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/incendiary)
 	cost = 40
+
+/datum/supply_packs/weapons/ags_flare
+	name = "AGLS-37 AGL Flare Grenades"
+	contains = list(/obj/item/ammo_magazine/standard_agls/flare)
+	cost = 30
+
+/datum/supply_packs/weapons/ags_cloak
+	name = "AGLS-37 AGL Cloak Grenades"
+	contains = list(/obj/item/ammo_magazine/standard_agls/cloak)
+	cost = 30
+
+/datum/supply_packs/weapons/ags_tanglefoot
+	name = "AGLS-37 AGL Tanglefoot Grenades"
+	contains = list(/obj/item/ammo_magazine/standard_agls/tanglefoot)
+	cost = 55
 
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
@@ -458,31 +468,31 @@ WEAPONS
 /datum/supply_packs/weapons/rpg_regular
 	name = "RL-152 SADAR HE rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar)
-	cost = 60
+	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_regular_unguided
 	name = "RL-152 SADAR HE rocket (Unguided)"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/unguided)
-	cost = 60
+	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_ap
 	name = "RL-152 SADAR AP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/ap)
-	cost = 70
+	cost = 60
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_wp
 	name = "RL-152 SADAR WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
-	cost = 50
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_wp_unguided
 	name = "RL-152 SADAR WP rocket (Unguided)"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp/unguided)
-	cost = 50
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/zx76
@@ -628,7 +638,7 @@ WEAPONS
 /datum/supply_packs/weapons/rpgoneuse
 	name = "RL-72 Disposable RPG"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/oneuse)
-	cost = 50
+	cost = 100
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/mateba
@@ -778,6 +788,12 @@ EXPLOSIVES
 	contains = list(/obj/item/explosive/plastique)
 	cost = 30
 
+/datum/supply_packs/explosives/plastique_incendiary
+	name = "EX-62 Genghis incendiary charge"
+	contains = list(/obj/item/explosive/plastique/genghis_charge)
+	cost = 150
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/explosives/detpack
 	name = "detpack explosive"
 	contains = list(/obj/item/detpack)
@@ -823,6 +839,11 @@ EXPLOSIVES
 /datum/supply_packs/explosives/mlrs_rockets
 	name = "TA-40L MLRS Rocket Pack (x16)"
 	contains = list(/obj/item/storage/box/mlrs_rockets)
+	cost = 60
+
+/datum/supply_packs/explosives/mlrs_rockets_gas
+	name = "TA-40L X-50 MLRS Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rockets_gas)
 	cost = 60
 
 /datum/supply_packs/explosives/howitzer
@@ -1413,6 +1434,37 @@ SUPPLIES
 		/obj/item/toy/plush/therapy_purple,
 	)
 	cost = 40
+
+/datum/supply_packs/supplies/dollarten
+	name = "10 dollars"
+	contains = list(/obj/item/spacecash/c10)
+	cost = 1
+
+/datum/supply_packs/supplies/dollartwenty
+	name = "20 dollars"
+	contains = list(/obj/item/spacecash/c20)
+	cost = 2
+
+/datum/supply_packs/supplies/dollarfifty
+	name = "50 dollars"
+	contains = list(/obj/item/spacecash/c50)
+	cost = 5
+
+/datum/supply_packs/supplies/dollarhundred
+	name = "100 dollars"
+	contains = list(/obj/item/spacecash/c100)
+	cost = 10
+
+/datum/supply_packs/supplies/dollartwohundred
+	name = "200 dollars"
+	contains = list(/obj/item/spacecash/c200)
+	cost = 20
+
+/datum/supply_packs/supplies/dollarfivehundred
+	name = "500 dollars"
+	contains = list(/obj/item/spacecash/c500)
+	cost = 50
+
 /*******************************************************************************
 Imports
 *******************************************************************************/
@@ -1733,6 +1785,11 @@ VEHICLES
 	contains = list(/obj/vehicle/unmanned/droid/scout)
 	cost = 300
 
+/datum/supply_packs/vehicles/droid_powerloader
+	name = "Powerloader droid"
+	contains = list(/obj/vehicle/unmanned/droid/ripley)
+	cost = 300
+
 /datum/supply_packs/vehicles/droid_weapon
 	name = "Droid weapon"
 	contains = list(/obj/item/uav_turret/droid)
@@ -1786,23 +1843,34 @@ VEHICLES
 
 /datum/supply_packs/vehicles/mounted_hsg
 	name = "Mounted HSG"
-	contains = list(/obj/structure/dropship_equipment/mg_holder)
+	contains = list(/obj/structure/dropship_equipment/weapon_holder/machinegun)
 	cost = 500
+
+/datum/supply_packs/vehicles/minigun_nest
+	name = "Mounted Minigun"
+	contains = list(/obj/structure/dropship_equipment/weapon_holder/minigun)
+	cost = 750
 
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Mounted Heavy Laser"
-	contains = list(/obj/structure/dropship_equipment/heavylaser_holder)
+	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavylaser)
 	cost = 900
 
 /datum/supply_packs/vehicles/mounted_rr
 	name = "Mounted Heavy Recoilless Rifle"
-	contains = list(/obj/structure/dropship_equipment/heavy_rr_holder)
+	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavy_rr)
 	cost = 1800
 
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Mounted HSG ammo"
 	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
 	cost = 100
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/minigun_ammo
+	name = "Mounted Minigun ammo"
+	contains = list(/obj/item/ammo_magazine/heavy_minigun)
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/hl_ammo

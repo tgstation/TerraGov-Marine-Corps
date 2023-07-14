@@ -74,12 +74,8 @@
 			I.pixel_x = rand(-6,6)
 			I.pixel_y = rand(-6,6)
 			overlays += I
-		else
-			var/obj/structure/jungle_plant/J = new(src)
-			J.pixel_x = rand(-6,6)
-			J.pixel_y = rand(-6,6)
 	if(vines_spawn && prob(8))
-		new /obj/structure/jungle/vines(src)
+		new /obj/structure/flora/jungle/vines(src)
 
 
 /turf/open/ground/jungle/proc/Spread(probability, prob_loss = 50)
@@ -115,13 +111,6 @@
 	icon_state = "grass_path"
 	icon_spawn_state = "dirt"
 
-
-/turf/open/ground/jungle/path/Initialize(mapload, ...)
-	. = ..()
-	for(var/obj/structure/bush/B in src)
-		qdel(B)
-
-
 /turf/open/ground/jungle/impenetrable
 	vines_spawn = TRUE
 	icon_state = "grass_impenetrable"
@@ -129,12 +118,6 @@
 
 /turf/open/ground/jungle/impenetrable/nobush
 	vines_spawn = FALSE
-
-/turf/open/ground/jungle/impenetrable/Initialize()
-	. = ..()
-	if(vines_spawn)
-		var/obj/structure/bush/B = new(src)
-		ENABLE_BITFIELD(B.resistance_flags, INDESTRUCTIBLE)
 
 //ELEVATOR SHAFT-----------------------------------//
 /turf/open/ground/empty

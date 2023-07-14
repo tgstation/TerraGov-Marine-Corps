@@ -204,7 +204,7 @@ What a mess.*/
 			var/t1 = input("Search String: (Partial Name or ID or Fingerprints or Rank)", "Secure. records", null, null)  as text
 			if ((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || !in_range(src, usr)))
 				return
-			Perp = new/list()
+			Perp = list()
 			t1 = lowertext(t1)
 			var/list/components = splittext(t1, " ")
 			if(length(components) > 5)
@@ -213,7 +213,7 @@ What a mess.*/
 				var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["fingerprint"] + " " + R.fields["rank"]
 				for(var/i = 1, length(i<=components), i++)
 					if(findtext(temptext,components[i]))
-						var/prelist = new/list(2)
+						var/list/prelist[2]
 						prelist[1] = R
 						Perp += prelist
 			for(var/i = 1, length(i<=Perp), i+=2)

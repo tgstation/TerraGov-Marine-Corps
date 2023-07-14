@@ -278,7 +278,7 @@
 	if(!reinforcement)
 		reinforcement = GIRDER_REINF_METAL
 	var/turf/source_turf = get_turf(src)
-	source_turf.ChangeTurf(reinforcement_to_wall(reinforcement))
+	source_turf.PlaceOnTop(reinforcement_to_wall(reinforcement))
 	qdel(src)
 
 
@@ -348,9 +348,9 @@
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			take_damage(200)
+			take_damage(200, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(25)
+			take_damage(25, BRUTE, BOMB)
 
 
 /obj/structure/girder/displaced

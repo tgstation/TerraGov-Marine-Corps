@@ -180,8 +180,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /**
  *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
  *	Variables:
- *	bypass_window - check for PASSLASER - laser like behavior
- *	projectile - check for PASSPROJECTILE - bullet like behavior
+ *	bypass_window - check for PASS_GLASS - laser like behavior
+ *	projectile - check for PASS_PROJECTILE - bullet like behavior
  *	bypass_xeno - whether to bypass dense xeno structures like flamers
  *	air_pass - whether to bypass non airtight atoms
  */
@@ -213,13 +213,13 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	for(var/obj/object in loc)
 		if(!object.density)
 			continue
-		if((object.flags_pass & PASSPROJECTILE) && projectile)
+		if((object.allow_pass_flags & PASS_PROJECTILE) && projectile)
 			continue
 		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
-		if((object.flags_pass & PASSLASER) && bypass_window)
+		if((object.allow_pass_flags & PASS_GLASS) && bypass_window)
 			continue
-		if((object.flags_pass & PASSAIR) && air_pass)
+		if((object.allow_pass_flags & PASS_AIR) && air_pass)
 			continue
 		if(object.flags_atom & ON_BORDER && object.dir != direction)
 			continue
@@ -753,7 +753,7 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 Checks if that loc and dir has a item on the wall
 */
 GLOBAL_LIST_INIT(wallitems, typecacheof(list(
-	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom,
+	/obj/machinery/power/apc, /obj/machinery/air_alarm, /obj/item/radio/intercom,
 	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/wallmounted/peppertank,
 	/obj/machinery/status_display, /obj/machinery/light_switch, /obj/structure/sign,
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/door_control,
@@ -1247,7 +1247,7 @@ will handle it, but:
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration solid walls
  *	bypass_window - whether it will go through transparent windows like lasers
- *	projectile - whether PASSPROJECTILE will be checked to ignore dense objects like projectiles
+ *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects like projectiles
  *	bypass_xeno - whether to bypass dense xeno structures like flamers
  *	air_pass - whether to bypass non airtight atoms
  */
@@ -1297,7 +1297,7 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
  *	start -start point of the path
  *	end - end point of the path
  *	bypass_window - whether it will go through transparent windows in the same way as lasers
- *	projectile - whether PASSPROJECTILE will be checked to ignore dense objects in the same way as projectiles
+ *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects in the same way as projectiles
  *	bypass_xeno - whether to bypass dense xeno structures in the same way as flamers
  *	air_pass - whether to bypass non airtight atoms
  */

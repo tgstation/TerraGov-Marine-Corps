@@ -11,7 +11,7 @@
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
-	flags_pass = PASSABLE|PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
+	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
 
 	a_intent = INTENT_HELP
@@ -102,9 +102,6 @@
 /mob/living/carbon/xenomorph/hivemind/gib()
 	return_to_core()
 
-/mob/living/carbon/xenomorph/hivemind/lay_down()
-	return
-
 /mob/living/carbon/xenomorph/hivemind/set_resting()
 	return
 
@@ -127,7 +124,7 @@
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		resistance_flags = BANISH_IMMUNE
-		flags_pass = PASSTABLE|PASSMOB|PASSXENO
+		pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
 		density = TRUE
 		hive.xenos_by_upgrade[upgrade] -= src
 		upgrade = XENO_UPGRADE_MANIFESTATION
@@ -139,7 +136,7 @@
 		return
 	status_flags = initial(status_flags)
 	resistance_flags = initial(resistance_flags)
-	flags_pass = initial(flags_pass)
+	pass_flags = initial(pass_flags)
 	density = FALSE
 	hive.xenos_by_upgrade[upgrade] -= src
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -296,10 +293,9 @@
 	return
 
 /obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(isxenohivemind(mover))
 		return FALSE
-
+	return ..()
 
 // =================
 // hivemind core
@@ -316,6 +312,7 @@
 
 /obj/structure/xeno/hivemindcore/Initialize(mapload)
 	. = ..()
+	GLOB.hive_datums[hivenumber].hivemindcores += src
 	new /obj/alien/weeds/node(loc)
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 	for(var/turfs in RANGE_TURFS(XENO_HIVEMIND_DETECTION_RANGE, src))
@@ -334,6 +331,7 @@
 		QDEL_NULL(parent)
 	else
 		parent = null
+	GLOB.hive_datums[hivenumber].hivemindcores -= src
 	return ..()
 
 //hivemind cores

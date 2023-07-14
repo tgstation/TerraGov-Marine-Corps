@@ -627,12 +627,14 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 ///Removes an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/remove_aim_mode_fire_delay(source)
+	if(!(source in aim_fire_delay_mods))
+		return
 	aim_fire_delay_mods -= source
 	recalculate_aim_mode_fire_delay()
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
-	if(CHECK_BITFIELD(flags_item, WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
+	if((flags_item & WIELDED) || (flags_item & IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
 		toggle_aim_mode(user)
 		return
 
@@ -659,7 +661,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			gunattachment.modify_auto_burst_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming."))
 		return
-	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(!(flags_item & WIELDED) && !(flags_item & IS_DEPLOYED))
 		to_chat(user, span_notice("You need to wield your gun before aiming."))
 		return
 	if(!user.wear_id)
@@ -667,13 +669,13 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return
 	to_chat(user, span_notice("You steady your breathing..."))
 
-	if(user.do_actions && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(user.do_actions)
 		return
 	if(!user.marksman_aura)
-		if(!do_after(user, aim_time, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+		if(!do_after(user, aim_time, TRUE, (flags_item & IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = (flags_item & IS_DEPLOYED) ? FALSE : TRUE))
 			to_chat(user, span_warning("<b>Your concentration is interrupted!</b>"))
 			return
-	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(!(flags_item & WIELDED) && !(flags_item & IS_DEPLOYED))
 		to_chat(user, span_notice("You need to wield your gun before aiming."))
 		return
 	user.overlays += aim_mode_visual
@@ -691,7 +693,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /// Signal handler to activate the rail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_rail_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(gun_user?.get_active_held_item() != src && !(flags_item & IS_DEPLOYED))
 		return
 	activate_attachment(ATTACHMENT_SLOT_RAIL, gun_user)
 	return COMSIG_KB_ACTIVATED
@@ -699,7 +701,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /// Signal handler to activate the underrail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_underrail_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(gun_user?.get_active_held_item() != src && !(flags_item & IS_DEPLOYED))
 		return
 	activate_attachment(ATTACHMENT_SLOT_UNDER, gun_user)
 	return COMSIG_KB_ACTIVATED

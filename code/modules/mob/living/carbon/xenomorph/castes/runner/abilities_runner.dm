@@ -143,6 +143,8 @@
 /datum/action/xeno_action/activable/pounce/proc/prepare_to_pounce()
 	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		owner.layer = MOB_LAYER
+		var/datum/action/xeno_action/xenohide/hide_action = owner.actions_by_path[/datum/action/xeno_action/xenohide]
+		hide_action?.button?.cut_overlay(mutable_appearance('icons/mob/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
 	if(owner.buckled)
 		owner.buckled.unbuckle_mob(owner)
 
@@ -174,18 +176,18 @@
 	succeed_activate()
 	add_cooldown()
 	X.usedPounce = TRUE // this is needed for throwing code
-	X.flags_pass = PASSTABLE|PASSFIRE
+	X.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
-	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_flags_pass)), 6)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_allow_pass_flags)), 6)
 
 	return TRUE
 
-/mob/living/carbon/xenomorph/proc/reset_flags_pass()
+/mob/living/carbon/xenomorph/proc/reset_allow_pass_flags()
 	if(!xeno_caste.hardcore)
-		flags_pass = initial(flags_pass) //Reset the passtable.
+		pass_flags = initial(pass_flags) //Reset the PASS_LOW_STRUCTURE.
 	else
-		flags_pass = NONE //Reset the passtable.
+		pass_flags = NONE //Reset the PASS_LOW_STRUCTURE.
 
 	//AI stuff
 /datum/action/xeno_action/activable/pounce/ai_should_start_consider()
@@ -248,7 +250,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(evasion_deactivate)), RUNNER_EVASION_DURATION)
 
-	RegisterSignal(R, list(COMSIG_LIVING_STATUS_STUN,
+	RegisterSignals(R, list(COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
 		COMSIG_LIVING_STATUS_PARALYZE,
 		COMSIG_LIVING_STATUS_IMMOBILIZE,

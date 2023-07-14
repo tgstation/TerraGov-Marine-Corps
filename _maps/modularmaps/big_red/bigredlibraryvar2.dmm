@@ -56,9 +56,9 @@
 "jD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1;
 	name = "\improper Library"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "li" = (
@@ -197,9 +197,9 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	locked = 1;
 	name = "\improper Greenhouse Storage"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Cn" = (
@@ -214,9 +214,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/generic{
-	locked = 1;
 	name = "\improper Library Backroom"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Ey" = (
@@ -252,7 +252,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "FH" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/wood,

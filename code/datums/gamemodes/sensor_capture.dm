@@ -13,8 +13,8 @@
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
 	. = ..()
-	for(var/turf/T AS in GLOB.sensor_towers_patrol)
-		new /obj/structure/sensor_tower_patrol(T)
+	for(var/turf/T AS in GLOB.sensor_towers)
+		new /obj/structure/sensor_tower(T)
 
 /datum/game_mode/combat_patrol/sensor_capture/announce()
 	to_chat(world, "<b>The current game mode is - Sensor Capture!</b>")
