@@ -26,6 +26,9 @@
 #define CAT_SMR "SUITS AND ARMOR" // Synth's suits
 #define CAT_SHN "HATS" // Synth's non-protective hats
 
+#define VENDOR_FACTION_NEUTRAL "Neutral"
+#define VENDOR_FACTION_CRASH "Valhalla"
+#define VENDOR_FACTION_VALHALLA "Crash"
 
 GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MOD = 1,
@@ -221,7 +224,7 @@ GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
 
 ///All the vendor types which the automated loadout vendor can take items from.
 GLOBAL_LIST_INIT(loadout_linked_vendor, list(
-	FACTION_NEUTRAL = list(
+	VENDOR_FACTION_NEUTRAL = list(
 		/obj/machinery/vending/weapon,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
@@ -230,7 +233,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
-	FACTION_VALHALLA = list(
+	VENDOR_FACTION_VALHALLA = list(
 		/obj/machinery/vending/weapon/valhalla,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
@@ -240,6 +243,15 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/machinery/vending/medical/shipside,
+	),
+	VENDOR_FACTION_CRASH = list(
+		/obj/machinery/vending/weapon/crash,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed,
+		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/tool,
 	)
 ))
 
