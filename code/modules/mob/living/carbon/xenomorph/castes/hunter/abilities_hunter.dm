@@ -57,15 +57,15 @@
 	RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(plasma_regen))
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
-	RegisterSignal(owner, list(
+	RegisterSignals(owner, list(
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_THROW_HIT,
-		COMSIG_XENOMORPH_FIRE_BURNING,
+		COMSIG_LIVING_IGNITED,
 		COMSIG_LIVING_ADD_VENTCRAWL), PROC_REF(cancel_stealth))
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
 
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), PROC_REF(cancel_stealth))
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), PROC_REF(cancel_stealth))
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(damage_taken))
 
@@ -89,7 +89,7 @@
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_ATTACK_OBJ,
 		COMSIG_XENOMORPH_THROW_HIT,
-		COMSIG_XENOMORPH_FIRE_BURNING,
+		COMSIG_LIVING_IGNITED,
 		COMSIG_LIVING_ADD_VENTCRAWL,
 		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
 		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
@@ -164,7 +164,7 @@
 		M.add_slowdown(1)
 		to_chat(owner, span_xenodanger("Pouncing from the shadows, we stagger our victim."))
 
-/datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
+/datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	if(!can_sneak_attack)
 		return
@@ -174,7 +174,7 @@
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 		flavour = "vicious"
 	else
-		armor_pen = HUNTER_SNEAK_SLASH_ARMOR_PEN
+		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		staggerslow_stacks *= 2
 		flavour = "deadly"
 
@@ -325,11 +325,11 @@
 		return fail_activate()
 
 	if(marked_target)
-		UnregisterSignal(marked_target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(marked_target, COMSIG_QDELETING)
 
 	marked_target = A
 
-	RegisterSignal(marked_target, COMSIG_PARENT_QDELETING, PROC_REF(unset_target)) //For var clean up
+	RegisterSignal(marked_target, COMSIG_QDELETING, PROC_REF(unset_target)) //For var clean up
 
 	to_chat(X, span_xenodanger("We psychically mark [A] as our quarry."))
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
@@ -343,7 +343,7 @@
 ///Nulls the target of our hunter's mark
 /datum/action/xeno_action/activable/hunter_mark/proc/unset_target()
 	SIGNAL_HANDLER
-	UnregisterSignal(marked_target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(marked_target, COMSIG_QDELETING)
 	marked_target = null //Nullify hunter's mark target and clear the var
 
 // ***************************************

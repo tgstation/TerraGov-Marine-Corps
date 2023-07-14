@@ -8,6 +8,7 @@
 	dextrous = TRUE
 
 	initial_language_holder = /datum/language_holder/synthetic
+	voice_filter = "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=1,rubberband=pitch=0.8"
 
 	var/obj/machinery/camera/builtInCamera = null
 	var/obj/item/radio/headset/mainship/mcom/silicon/radio = null
@@ -18,6 +19,8 @@
 /mob/living/silicon/Initialize(mapload)
 	. = ..()
 	radio = new(src)
+	if(SStts.tts_enabled)
+		voice = pick(SStts.available_speakers)
 
 
 /mob/living/silicon/Destroy()
@@ -50,10 +53,6 @@
 
 
 /mob/living/silicon/put_in_r_hand(obj/item/I)
-	return
-
-
-/mob/living/silicon/stripPanelEquip(obj/item/I, mob/M, slot)
 	return
 
 
@@ -145,8 +144,6 @@
 		if("Squad HUD")
 			if(GLOB.huds[faction] == FACTION_TERRAGOV)
 				H = DATA_HUD_SQUAD_TERRAGOV
-			else if(GLOB.huds[faction] == FACTION_TERRAGOV_REBEL)
-				H = DATA_HUD_SQUAD_REBEL
 			else if(GLOB.huds[faction] == FACTION_SOM)
 				H = DATA_HUD_SQUAD_SOM
 			HUD_nbr = 3

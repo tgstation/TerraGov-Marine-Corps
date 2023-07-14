@@ -200,6 +200,11 @@ export const CharacterCustomization = (props, context) => {
                 value={'religion'}
                 action={'religion'}
               />
+              <SelectFieldPreference
+                label={'TTS voice'} // tivi todo make sure this looks good and works
+                value={'tts_voice'}
+                action={'tts_voice'}
+              />
             </LabeledList>
           </Flex.Item>
         </Flex>

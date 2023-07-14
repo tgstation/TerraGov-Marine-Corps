@@ -33,10 +33,10 @@
 	reagent_select_action = new
 	LAZYADD(item_parent.actions, reagent_select_action)
 
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
 	RegisterSignal(parent, COMSIG_ITEM_UNIQUE_ACTION, PROC_REF(activate_blade))
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(attack))
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby))
 	RegisterSignal(reagent_select_action, COMSIG_ACTION_TRIGGER, PROC_REF(select_reagent))
 
 /datum/component/harvester/Destroy(force, silent)
@@ -48,10 +48,10 @@
 /datum/component/harvester/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
-		COMSIG_PARENT_EXAMINE,
+		COMSIG_ATOM_EXAMINE,
 		COMSIG_ITEM_UNIQUE_ACTION,
 		COMSIG_ITEM_ATTACK,
-		COMSIG_PARENT_ATTACKBY,
+		COMSIG_ATOM_ATTACKBY,
 	))
 
 ///Adds additional text for the component when examining the item
@@ -76,7 +76,7 @@
 	if(user.do_actions)
 		return
 
-	if(!isreagentcontainer(cont) || istype(cont, /obj/item/reagent_containers/pill))
+	if(!isreagentcontainer(cont))
 		user.balloon_alert(user, "incompatible")
 		return
 
@@ -113,6 +113,8 @@
 	user.balloon_alert(user, "[loaded_reagents[reagent_to_load]]u")
 	if(length(loaded_reagents) == 1)
 		update_selected_reagent(reagent_to_load)
+	if(istype(container, /obj/item/reagent_containers/pill))
+		qdel(container)
 
 ///Handles behavior when activating the weapon
 /datum/component/harvester/proc/activate_blade_async(datum/source, mob/user)

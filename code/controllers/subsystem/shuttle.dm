@@ -47,9 +47,9 @@ SUBSYSTEM_DEF(shuttle)
 	/// safety to stop shuttles loading over each other
 	var/loading_shuttle = FALSE
 
-/datum/controller/subsystem/shuttle/Initialize(timeofday)
+/datum/controller/subsystem/shuttle/Initialize()
 	initial_load()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/shuttle/proc/initial_load()
 	for(var/s in stationary)

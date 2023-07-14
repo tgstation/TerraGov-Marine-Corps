@@ -96,10 +96,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 78
 	bonus_overlay = "ppsh_ex"
-	scatter_mod = 5
-	scatter_unwielded_mod = 10
-	wield_delay_mod = 0.2 SECONDS
-	aim_speed_mod = 0.3
+	aim_speed_mod = 0.2
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
@@ -151,6 +148,13 @@
 	icon_state_mini = "mag_smg_yellow"
 	w_class = WEIGHT_CLASS_NORMAL
 	aim_speed_mod = 0.1
+
+/obj/item/ammo_magazine/smg/som/rad
+	name = "\improper V-21 radioactive submachinegun magazine (10x20mm)"
+	desc = "A 10x20mm caseless submachinegun magazine, loaded with radioactive rounds. Handle with care."
+	icon_state = "v21_rad"
+	default_ammo = /datum/ammo/bullet/smg/rad
+	icon_state_mini = "mag_smg_green"
 
 //-------------------------------------------------------
 //PL-38, ICC Machinepistol

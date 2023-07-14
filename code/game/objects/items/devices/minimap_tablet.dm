@@ -320,9 +320,12 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 			SSminimaps.remove_marker(nearest)
 		return
 	var/label_text = MAPTEXT(tgui_input_text(source, title = "Label Name", max_length = 35))
-	if(CHAT_FILTER_CHECK(label_text))
+	var/filter_result = CAN_BYPASS_FILTER(user) ? null : is_ic_filtered(label_text)
+	if(filter_result)
 		to_chat(source, span_warning("That label contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[label_text]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
+		log_filter("IC", label_text, filter_result)
 		return
 	if(!label_text)
 		return
@@ -337,7 +340,9 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	textbox.maptext = label_text
 
 	labelled_turfs += target
-	SSminimaps.add_marker(target, zlevel, minimap_flag, "label", 'icons/UI_icons/map_blips.dmi', list(textbox))
+	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, "label")
+	blip.overlays += textbox
+	SSminimaps.add_marker(target, minimap_flag, blip)
 	log_minimap_drawing("[key_name(source)] has added the label [label_text] at [c_x], [c_y]")
 
 /atom/movable/screen/minimap_tool/clear

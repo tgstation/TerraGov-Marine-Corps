@@ -46,13 +46,17 @@
 	var/text = tgui_input_text(human_owner, "Maximum message length [MAX_COMMAND_MESSAGE_LEN]", "Send message to squad",  max_length = MAX_COMMAND_MESSAGE_LEN, multiline = TRUE)
 	if(!text)
 		return
-	if(CHAT_FILTER_CHECK(text))
+	var/filter_result = CAN_BYPASS_FILTER(human_owner) ? null : is_ic_filtered(text)
+	if(filter_result)
 		to_chat(human_owner, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[text]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
+		log_filter("IC", text, filter_result)
 		return
 	if(!can_use_action(TRUE))
 		return
 	human_owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
+	to_chat(owner, "<h2 class='alert'>You have received orders to...</h2><br>[span_alert(text)]<br><br>")
 	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
 	deadchat_broadcast(" has sent the command order \"[text]\"", human_owner, human_owner)

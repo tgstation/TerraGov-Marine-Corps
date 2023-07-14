@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.IgniteMob()
 
 
-/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
+/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target, origin_override)
 	var/effect_icon = ""
 	var/proj_type = /obj/projectile
 	if(istype(main_proj, /obj/projectile/hitscan))
@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(target, main_proj.firer, source, range, speed, new_angle, TRUE)
+		new_proj.fire_at(target, shooter, source, range, speed, new_angle, TRUE, loc_override = origin_override)
 
 ///A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
 /datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, atom/shooter, atom/source, projectile_amount, range, speed, angle, target)
@@ -308,11 +308,41 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/drop_nade(turf/T)
 	return
 
-///called on projectile process() when SPECIAL_PROCESS flag is active
+///called on projectile process() when AMMO_SPECIAL_PROCESS flag is active
 /datum/ammo/proc/ammo_process(obj/projectile/proj, damage)
 	CRASH("ammo_process called with unimplemented process!")
 
+///bounces the projectile by creating a new projectile and calculating an angle of reflection
+/datum/ammo/proc/reflect(turf/T, obj/projectile/proj, scatter_variance)
+	if(!bonus_projectiles_type)
+		return
 
+	var/new_range = proj.proj_max_range - proj.distance_travelled
+	if(new_range <= 0)
+		return
+
+	var/dir_to_proj = get_dir(T, proj)
+	if(ISDIAGONALDIR(dir_to_proj))
+		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
+		for(var/direction in cardinals)
+			var/turf/turf_to_check = get_step(T, direction)
+			if(turf_to_check.density)
+				cardinals -= direction
+		dir_to_proj = pick(cardinals)
+
+	var/perpendicular_angle = Get_Angle(T, get_step(T, dir_to_proj))
+	var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180) + rand(-scatter_variance, scatter_variance))
+
+	if(new_angle < -360)
+		new_angle += 720 //north is 0 instead of 360
+	else if(new_angle < 0)
+		new_angle += 360
+	else if(new_angle > 360)
+		new_angle -= 360
+
+	bonus_projectiles_amount = 1
+	fire_bonus_projectiles(proj, T, proj.shot_from, new_range, proj.projectile_speed, new_angle, null, get_step(T, dir_to_proj))
+	bonus_projectiles_amount = 0
 
 /*
 //================================================
@@ -545,6 +575,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/revolver/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
+	bonus_projectiles_scatter = 0
 
 /datum/ammo/bullet/revolver/ricochet/one
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet
@@ -562,31 +593,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
-	. = ..()
-	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
-
-	// Check for the neightbour tile
-	var/rico_dir_check
-	switch(ricochet_angle)
-		if(-INFINITY to 45)
-			rico_dir_check = EAST
-		if(46 to 135)
-			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
-		if(136 to 225)
-			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
-		if(126 to 315)
-			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
-		if(316 to INFINITY)
-			rico_dir_check = WEST
-
-	var/turf/next_turf = get_step(T, rico_dir_check)
-	if(next_turf.density)
-		ricochet_angle += 180
-
-	bonus_projectiles_amount = 1
-	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle)
-	bonus_projectiles_amount = 0
-
+	reflect(T, proj, 10)
 
 /*
 //================================================
@@ -633,6 +640,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 18
 	penetration = 0
+
+/datum/ammo/bullet/smg/rad
+	name = "radioactive submachinegun bullet"
+	hud_state = "smg_rad"
+	damage = 15
+	penetration = 15
+	sundering = 1
+
+/datum/ammo/bullet/smg/rad/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+	var/mob/living/living_victim = M
+	if(!prob(living_victim.modify_by_armor(proj.damage, BIO, penetration, proj.def_zone)))
+		return
+	living_victim.apply_radiation(2, 2)
 
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
@@ -705,7 +727,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/som_machinegun
 	name = "machinegun bullet"
 	hud_state = "rifle_heavy"
-	damage = 30
+	damage = 28
 	penetration = 12.5
 	sundering = 1
 
@@ -1098,8 +1120,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SUNDERING
 	accuracy_var_high = 7
 	max_range = 20
-	damage = 50
-	penetration = 20
+	damage = 70
+	penetration = 30
 	sundering = 5
 
 /datum/ammo/bullet/sniper/flak
@@ -1107,10 +1129,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper_flak"
 	damage = 90
 	penetration = 0
-	sundering = 25
-	airburst_multiplier = 0.2
+	sundering = 15
+	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
+	staggerstun(victim, proj,  max_range = 30, slowdown = 2)
 	airburst(victim, proj)
 
 /datum/ammo/bullet/sniper/svd
@@ -1127,13 +1150,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "crude heavy sniper bullet"
 	hud_state = "sniper_crude"
 	handful_amount = 5
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	damage = 120
 	penetration = 20
-	sundering = 10
+	accurate_range_min = 0
+	///shatter effection duration when hitting mobs
+	var/shatter_duration = 10 SECONDS
 
-/datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5)
+/datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
@@ -1355,16 +1384,22 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	accurate_range_min = 6
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	accurate_range = 5
-	damage = 40
-	penetration = 100
-	sundering = 8
+	damage = 30
+	penetration = 50
+	sundering = 1
 	max_range = 35
+	///Bonus flat damage to walls, balanced around resin walls.
+	var/autocannon_wall_bonus = 20
 
 /datum/ammo/bullet/auto_cannon/on_hit_turf(turf/T, obj/projectile/P)
 	P.proj_max_range -= 20
+
+	if(istype(T, /turf/closed/wall))
+		var/turf/closed/wall/wall_victim = T
+		wall_victim.take_damage(autocannon_wall_bonus, P.damtype, P.armor_type)
 
 /datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 5
@@ -1376,15 +1411,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/auto_cannon/flak
 	name = "autocannon smart-detonating bullet"
 	hud_state = "sniper_flak"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
-	damage = 40
-	penetration = 20
-	sundering = 12
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_EXPLOSIVE
+	damage = 50
+	penetration = 30
+	sundering = 5
 	max_range = 30
 	airburst_multiplier = 1
+	autocannon_wall_bonus = 5
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
+
+/datum/ammo/bullet/auto_cannon/do_at_max_range(turf/T, obj/projectile/proj)
+	airburst(T, proj)
 
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
@@ -1409,7 +1448,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 21
 	damage = 100
 	penetration = 30
-	sundering = 100
+	sundering = 50
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 2, knockback = 3)
@@ -1418,9 +1457,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "smart armor piercing railgun slug"
 	hud_state = "railgun_smart"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
-	damage = 75
+	damage = 100
 	penetration = 20
-	sundering = 50
+	sundering = 20
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 3, slowdown = 3)
@@ -2107,7 +2146,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"
-	icon_state = "shell"
+	icon_state = "recoilless_rifle_he"
 	hud_state = "shell_he"
 	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
@@ -2125,6 +2164,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/heat
 	name = "HEAT shell"
+	icon_state = "recoilless_rifle_heat"
 	hud_state = "shell_heat"
 	damage = 200
 	penetration = 100
@@ -2135,6 +2175,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
+	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
@@ -2148,6 +2189,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/chemical
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_smoke"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
 	accurate_range = 21
@@ -2169,16 +2211,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/recoilless/chemical/cloak
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_cloak"
 	hud_state = "shell_cloak"
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
 /datum/ammo/rocket/recoilless/chemical/plasmaloss
 	name = "low velocity chemical shell"
+	icon_state = "recoilless_rifle_tanglefoot"
 	hud_state = "shell_tanglefoot"
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
 /datum/ammo/rocket/recoilless/low_impact
 	name = "low impact explosive shell"
+	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
@@ -2268,30 +2313,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/effects/portal_opening.ogg', 50, 1)
 	for(var/mob/living/victim in hearers(outer_range, T))
 		var/strength
-		var/datum/looping_sound/geiger/geiger_counter = new(null, FALSE)
+		var/sound_level
 		if(get_dist(victim, T) <= inner_range)
 			strength = rad_strength
-			geiger_counter.severity = 4
+			sound_level = 4
 		else if(get_dist(victim, T) <= mid_range)
 			strength = rad_strength * 0.7
-			geiger_counter.severity = 3
+			sound_level = 3
 		else
 			strength = rad_strength * 0.3
-			geiger_counter.severity = 2
-		irradiate(victim, strength)
-		geiger_counter.start(victim)
-	explosion(T, 0, 0, 3, 0)
+			sound_level = 2
 
-///Applies the actual rad effects
-/datum/ammo/rocket/som/rad/proc/irradiate(mob/living/victim, strength)
-	var/effective_strength = max(victim.modify_by_armor(strength, BIO), strength * 0.25)
-	victim.adjustCloneLoss(effective_strength)
-	victim.adjustStaminaLoss(effective_strength * 7)
-	victim.adjust_stagger(effective_strength / 2)
-	victim.add_slowdown(effective_strength / 2)
-	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
-	victim.adjust_radiation(effective_strength * 20) //Radiation status effect, duration is in deciseconds
-	to_chat(victim, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))
+		strength = victim.modify_by_armor(strength, BIO, 25)
+		victim.apply_radiation(strength, sound_level)
+
+	explosion(T, 0, 0, 3, 0)
 
 /datum/ammo/rocket/atgun_shell
 	name = "high explosive ballistic cap shell"
@@ -2439,7 +2475,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T)
 
 /datum/ammo/mortar/incend/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 7, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 2, 3, 7, throw_range = 0)
 	flame_radius(4, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2449,7 +2485,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/smoke/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 0, 1, 3, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
@@ -2469,7 +2505,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	explosion(T, 1, 6, 7, 12)
 
 /datum/ammo/mortar/howi/incend/drop_nade(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 3, 0, 3, throw_range = 0)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2508,7 +2544,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	explosion(T, 1, 2, 5, 3)
 
 /datum/ammo/mortar/rocket/incend/drop_nade(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	explosion(T, 0, 3, 0, 3, throw_range = 0)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2516,11 +2552,33 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
 	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
 
+/datum/ammo/mortar/rocket/smoke
+	///the smoke effect at the point of detonation
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
+
+/datum/ammo/mortar/rocket/smoke/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 1, 3, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+
 /datum/ammo/mortar/rocket/mlrs
 	shell_speed = 2.5
 
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 2, small_animation = TRUE)
+	explosion(T, 0, 0, 4, 2)
+
+/datum/ammo/mortar/rocket/smoke/mlrs
+	shell_speed = 2.5
+	smoketype = /datum/effect_system/smoke_spread/mustard
+
+/datum/ammo/mortar/rocket/smoke/mlrs/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 2, 0, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(5, T, 6)
+	smoke.start()
 
 /*
 //================================================
@@ -2570,7 +2628,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "tesla"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SPECIAL_PROCESS
 	shell_speed = 0.1
 	damage = 20
 	penetration = 20
@@ -2580,7 +2638,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	zap_beam(proj, 4, damage)
 
 /datum/ammo/energy/tesla/focused
-	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS|AMMO_IFF
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SPECIAL_PROCESS|AMMO_IFF
 	shell_speed = 0.1
 	damage = 10
 	penetration = 10
@@ -2708,9 +2766,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 20
 	penetration = 10
-	sundering = 1
+	sundering = 1.5
 	max_range = 30
 	hitscan_effect_icon = "beam"
+
+/datum/ammo/energy/lasgun/marine/carbine
+	sundering = 1
+	max_range = 18
 
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
@@ -2721,11 +2783,56 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 2
 	hitscan_effect_icon = "beam_heavy"
 
+/datum/ammo/energy/lasgun/marine/weakening
+	name = "weakening laser bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 30
+	penetration = 10
+	sundering = 0
+	damage_type = STAMINA
+	hitscan_effect_icon = "blue_beam"
+	bullet_color = COLOR_DISABLER_BLUE
+	///plasma drained per hit
+	var/plasma_drain = 25
+
+/datum/ammo/energy/lasgun/marine/weakening/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 6, slowdown = 1)
+
+	if(!isxeno(M))
+		return
+	var/mob/living/carbon/xenomorph/xeno_victim = M
+	xeno_victim.use_plasma(plasma_drain * xeno_victim.xeno_caste.plasma_regen_limit)
+
+/datum/ammo/energy/lasgun/marine/microwave
+	name = "microwave laser bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 20
+	penetration = 20
+	sundering = 2
+	hitscan_effect_icon = "beam_grass"
+	bullet_color = LIGHT_COLOR_GREEN
+	///number of microwave stacks to apply when hitting mobvs
+	var/microwave_stacks = 1
+
+/datum/ammo/energy/lasgun/marine/microwave/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	var/datum/status_effect/stacking/microwave/debuff = living_victim.has_status_effect(STATUS_EFFECT_MICROWAVE)
+
+	if(debuff)
+		debuff.add_stacks(microwave_stacks)
+	else
+		living_victim.apply_status_effect(STATUS_EFFECT_MICROWAVE, microwave_stacks)
+
 /datum/ammo/energy/lasgun/marine/blast
 	name = "wide range laser blast"
 	icon_state = "heavylaser2"
 	hud_state = "laser_spread"
-	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/spread
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/blast/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 5
 	accuracy_var_low = 9
@@ -2736,40 +2843,85 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 1
 	hitscan_effect_icon = "pu_laser"
+	bullet_color = LIGHT_COLOR_PURPLE
 
-/datum/ammo/energy/lasgun/marine/spread
+/datum/ammo/energy/lasgun/marine/blast/spread
 	name = "additional laser blast"
-	icon_state = "laser2"
-	shell_speed = 2
-	accuracy_var_low = 9
-	accuracy_var_high = 9
-	accurate_range = 5
-	max_range = 8
+
+/datum/ammo/energy/lasgun/marine/impact
+	name = "impact laser blast"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
 	damage = 35
-	penetration = 20
-	sundering = 1
+	penetration = 10
+	sundering = 0
 	hitscan_effect_icon = "pu_laser"
+	bullet_color = LIGHT_COLOR_PURPLE
+
+/datum/ammo/energy/lasgun/marine/impact/on_hit_mob(mob/M, obj/projectile/proj)
+	var/knockback_dist = round(LERP(3, 1, proj.distance_travelled / 6), 1)
+	staggerstun(M, proj, max_range = 6, knockback = knockback_dist)
+
+/datum/ammo/energy/lasgun/marine/cripple
+	name = "impact laser blast"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 20
+	penetration = 10
+	sundering = 0
+	hitscan_effect_icon = "blue_beam"
+	bullet_color = COLOR_DISABLER_BLUE
+
+/datum/ammo/energy/lasgun/marine/cripple/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, slowdown = 1.5)
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
-	damage = 15
+	damage = 18
 	penetration = 15
+	sundering = 1
 
-/datum/ammo/energy/lasgun/marine/autolaser/efficiency
-	name = "efficient machine laser bolt"
+/datum/ammo/energy/lasgun/marine/autolaser/burst
+	name = "burst machine laser bolt"
 	hud_state = "laser_efficiency"
-	damage = 8.5
-	hitscan_effect_icon = "beam_particle"
+	damage = 12
 
-/datum/ammo/energy/lasgun/marine/autolaser/swarm
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
-	name = "swarm laser bolt"
-	icon_state = "swarm_laser"
-	hud_state = "plasma_sphere"
-	max_range = 40
-	shell_speed = 0.1
+/datum/ammo/energy/lasgun/marine/autolaser/charge
+	name = "charged machine laser bolt"
+	hud_state = "laser_efficiency"
+	damage = 50
+	penetration = 30
+	sundering = 3
+	hitscan_effect_icon = "beam_heavy"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
+
+/datum/ammo/energy/lasgun/marine/autolaser/charge/on_hit_turf(turf/T, obj/projectile/proj)
+	if(istype(T, /turf/closed/wall))
+		var/turf/closed/wall/wall_victim = T
+		wall_victim.take_damage(proj.damage, proj.damtype, proj.armor_type)
+
+/datum/ammo/energy/lasgun/marine/autolaser/melting
+	name = "melting machine laser bolt"
+	hud_state = "laser_efficiency"
 	damage = 15
-	bullet_color = COLOR_TESLA_BLUE
+	penetration = 20
+	sundering = 0
+	hitscan_effect_icon = "beam_solar"
+	bullet_color = LIGHT_COLOR_YELLOW
+	///number of melting stacks to apply when hitting mobs
+	var/melt_stacks = 2
+
+/datum/ammo/energy/lasgun/marine/autolaser/melting/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
+
+	if(debuff)
+		debuff.add_stacks(melt_stacks)
+	else
+		living_victim.apply_status_effect(STATUS_EFFECT_MELTING, melt_stacks)
 
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
@@ -2778,7 +2930,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 30
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
-	sundering = 4
+	sundering = 5
 	max_range = 40
 	damage_falloff = 0
 	hitscan_effect_icon = "beam_heavy"
@@ -2787,19 +2939,75 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "sniper heat bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
-	shell_speed = 2.5
 	damage = 40
-	penetration = 0
+	penetration = 10
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
+	bullet_color = COLOR_DISABLER_BLUE
+
+/datum/ammo/energy/lasgun/marine/shatter
+	name = "sniper shattering bolt"
+	icon_state = "microwavelaser"
+	hud_state = "laser_heat"
+	damage = 40
+	penetration = 30
+	accurate_range_min = 5
+	sundering = 10
+	hitscan_effect_icon = "pu_laser"
+	bullet_color = LIGHT_COLOR_PURPLE
+	///shatter effection duration when hitting mobs
+	var/shatter_duration = 5 SECONDS
+
+/datum/ammo/energy/lasgun/marine/shatter/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+
+	var/mob/living/living_victim = M
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+
+/datum/ammo/energy/lasgun/marine/ricochet
+	name = "sniper laser bolt"
+	icon_state = "microwavelaser"
+	hud_state = "laser_heat"
+	damage = 100
+	penetration = 30
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
+	sundering = 1
+	hitscan_effect_icon = "u_laser_beam"
+	bonus_projectiles_scatter = 0
+	bullet_color = COLOR_DISABLER_BLUE
+
+/datum/ammo/energy/lasgun/marine/ricochet/one
+	damage = 80
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet
+
+/datum/ammo/energy/lasgun/marine/ricochet/two
+	damage = 65
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/one
+
+/datum/ammo/energy/lasgun/marine/ricochet/three
+	damage = 50
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/two
+
+/datum/ammo/energy/lasgun/marine/ricochet/four
+	damage = 40
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/three
+
+/datum/ammo/energy/lasgun/marine/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
+	reflect(T, proj, 5)
+
+/datum/ammo/energy/lasgun/marine/ricochet/on_hit_obj(obj/O, obj/projectile/proj)
+	reflect(get_turf(O), proj, 5)
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
 	damage = 20
 	penetration = 5
+	sundering = 1
 	hitscan_effect_icon = "beam_particle"
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
 	name = "disabler bolt"
@@ -2808,7 +3016,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 70
 	penetration = 0
 	damage_type = STAMINA
-	hitscan_effect_icon = "stun"
+	hitscan_effect_icon = "beam_stun"
+	bullet_color = LIGHT_COLOR_YELLOW
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"
@@ -2820,6 +3029,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 0.5
 	hitscan_effect_icon = "beam_incen"
+	bullet_color = COLOR_LASER_RED
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
@@ -2917,7 +3127,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			var/obj/obj_victim = victim
 			if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
 				continue
-			obj_victim.take_damage(aoe_damage, BURN, ENERGY, 0, armour_penetration = penetration)
+			obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 		if(victim.anchored)
 			continue
 		var/throw_dir = get_dir(T, victim)
@@ -2955,9 +3165,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
 		var/obj/vehicle/sealed/mecha/mech_victim = O
-		mech_victim.take_damage(rand(200, 400), BURN, ENERGY, 0, armour_penetration = penetration)
-	else
-		O.take_damage(damage, BURN, ENERGY, 0, armour_penetration = penetration)
+		mech_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
 	if(!isxeno(M))
@@ -3296,7 +3504,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/alien/resin/sticky(T)
+	new /obj/alien/resin/sticky/thin(T)
 
 /datum/ammo/xeno/sticky/turret
 	max_range = 9
@@ -3463,7 +3671,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	var/turf/target_turf = get_turf(victim)
-	drop_nade(target_turf.density ? get_turf(proj) : target_turf, proj.firer)
+	drop_nade(target_turf.density ? proj.loc : target_turf, proj.firer)
 
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
@@ -3485,8 +3693,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
 		P.damage *= 7 //Globs deal much higher damage to mechs.
-	var/turf/T = get_turf(O)
-	drop_nade(T.density ? P.loc : T, P.firer)
+	var/turf/target_turf = get_turf(O)
+	drop_nade(O.density ? P.loc : target_turf, P.firer)
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T, P.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
@@ -3684,7 +3892,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
-	if(T.density || (O.density && !(O.flags_pass & PASSPROJECTILE)))
+	if(T.density || (O.density && !(O.allow_pass_flags & PASS_PROJECTILE)))
 		T = get_turf(proj)
 	drop_leashball(T.density ? proj.loc : T, proj.firer)
 
@@ -3854,13 +4062,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 15
 	max_range = 10
 
-/datum/ammo/grenade_container/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/grenade_container/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/grenade_container/on_hit_obj(obj/O,obj/projectile/P)
-	drop_nade(get_turf(P))
+/datum/ammo/grenade_container/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : O.loc)
 
-/datum/ammo/grenade_container/on_hit_turf(turf/T,obj/projectile/P)
+/datum/ammo/grenade_container/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/grenade_container/do_at_max_range(turf/T, obj/projectile/P)
@@ -3887,3 +4095,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 1
 	max_range = 21
 	nade_type = /obj/item/explosive/grenade/ags
+
+/datum/ammo/grenade_container/ags_grenade/flare
+	hud_state = "grenade_dummy"
+	nade_type = /obj/item/explosive/grenade/flare
+
+/datum/ammo/grenade_container/ags_grenade/cloak
+	hud_state = "grenade_hide"
+	nade_type = /obj/item/explosive/grenade/smokebomb/cloak/ags
+
+/datum/ammo/grenade_container/ags_grenade/tanglefoot
+	hud_state = "grenade_drain"
+	nade_type = /obj/item/explosive/grenade/smokebomb/drain/agls

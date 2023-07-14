@@ -53,12 +53,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
-"aH" = (
-/obj/structure/platform/metalplatform{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som)
 "aL" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 10
@@ -202,9 +196,6 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "dt" = (
-/obj/structure/platform/metalplatform{
-	dir = 1
-	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -363,6 +354,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/platform/metalplatform,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "fz" = (
@@ -505,6 +497,7 @@
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
+/obj/structure/platform/metalplatform,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "hq" = (
@@ -612,9 +605,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "jf" = (
-/obj/structure/platform/metalplatform{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -745,12 +735,6 @@
 "la" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
-/area/mainship/patrol_base/som)
-"lf" = (
-/obj/structure/platform/metalplatform{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "lk" = (
 /obj/machinery/light{
@@ -907,15 +891,6 @@
 /obj/structure/sign/double/map/right,
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base)
-"nI" = (
-/obj/structure/platform/metalplatform{
-	dir = 1
-	},
-/obj/structure/platform/metalplatform{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som)
 "nJ" = (
 /turf/open/floor/mainship/black/corner{
 	dir = 8
@@ -1215,7 +1190,16 @@
 /area/mainship/patrol_base/som)
 "sd" = (
 /obj/structure/prop/mainship/sensor_computer3,
+/obj/structure/platform/metalplatform{
+	dir = 4
+	},
 /turf/open/floor/mainship/office,
+/area/mainship/patrol_base/som)
+"se" = (
+/obj/structure/platform/metalplatform{
+	dir = 6
+	},
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/mainship/patrol_base/som)
 "sg" = (
 /obj/structure/table/mainship/nometal,
@@ -1954,14 +1938,6 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"CT" = (
-/obj/structure/platform_decoration/metalplatform_deco{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "De" = (
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/mainship,
@@ -2221,12 +2197,6 @@
 /area/mainship/patrol_base/som)
 "HC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som)
-"HE" = (
-/obj/structure/platform_decoration/metalplatform_deco{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -2658,6 +2628,9 @@
 "Nv" = (
 /obj/structure/rack,
 /obj/item/mortal_shell/howitzer/he,
+/obj/structure/platform/metalplatform{
+	dir = 8
+	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "NB" = (
@@ -2871,6 +2844,10 @@
 	dir = 8
 	},
 /area/mainship/patrol_base)
+"PJ" = (
+/obj/structure/platform/metalplatform,
+/turf/open/floor/mainship/office,
+/area/mainship/patrol_base/som)
 "PK" = (
 /obj/machinery/light{
 	dir = 4
@@ -2909,14 +2886,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som)
-"Qn" = (
-/obj/structure/platform/metalplatform{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 4
-	},
 /area/mainship/patrol_base/som)
 "Qr" = (
 /turf/open/floor/mainship/blue,
@@ -2967,6 +2936,12 @@
 /turf/open/floor/mainship/red/corner{
 	dir = 4
 	},
+/area/mainship/patrol_base/som)
+"QX" = (
+/obj/structure/platform/metalplatform{
+	dir = 10
+	},
+/turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "Rc" = (
 /obj/machinery/quick_vendor/som,
@@ -3461,6 +3436,9 @@
 	dir = 1
 	},
 /obj/machinery/light,
+/obj/structure/platform/metalplatform{
+	dir = 4
+	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "Wy" = (
@@ -4745,10 +4723,10 @@ Zk
 qZ
 If
 us
-Qn
-Qn
-Qn
-CT
+SD
+SD
+SD
+SD
 SD
 SD
 HN
@@ -4809,8 +4787,8 @@ zt
 Nv
 Nv
 Nv
-Mv
-aH
+QX
+Fk
 Fk
 Fk
 If
@@ -4933,8 +4911,8 @@ If
 Mv
 Mv
 Mv
-Mv
-aH
+PJ
+Fk
 Fk
 Fk
 If
@@ -4996,7 +4974,7 @@ Mv
 Mv
 Mv
 fy
-aH
+Fk
 Fk
 Fk
 If
@@ -5057,7 +5035,7 @@ If
 No
 sd
 Wv
-If
+se
 dt
 Fk
 Fk
@@ -5116,11 +5094,11 @@ ax
 MW
 UT
 zt
-Mv
-nI
-lf
+PJ
+Fk
+Fk
 jf
-HE
+Fk
 Fk
 Fk
 Ea
@@ -5178,8 +5156,8 @@ JJ
 MW
 UT
 zt
-Mv
-aH
+PJ
+Fk
 Fk
 Fk
 Fk
@@ -5240,8 +5218,8 @@ JJ
 MW
 UT
 If
-Mv
-aH
+PJ
+Fk
 Fk
 Fk
 Fk
@@ -5302,8 +5280,8 @@ JJ
 MW
 UT
 If
-Mv
-aH
+PJ
+Fk
 Fk
 Fk
 Fk
@@ -5365,7 +5343,7 @@ MW
 qZ
 If
 hp
-aH
+Fk
 Fk
 Fk
 Fk

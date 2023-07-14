@@ -72,7 +72,7 @@
 /area/bigredv2/outside/marshal_office)
 "cj" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/structure/barricade/metal,
 /turf/open/floor/tile/dark/green2{
 	dir = 6
@@ -189,7 +189,7 @@
 /area/bigredv2/outside/space_port)
 "eY" = (
 /obj/structure/table,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "fb" = (
@@ -552,7 +552,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "oO" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -567,7 +567,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "pd" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -1093,7 +1093,7 @@
 /area/bigredv2/outside/space_port)
 "Ac" = (
 /obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
@@ -1231,7 +1231,7 @@
 /area/bigredv2/outside/marshal_office)
 "Fb" = (
 /obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "Fl" = (
@@ -1553,6 +1553,10 @@
 /obj/machinery/landinglight/ds1,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
+"Mn" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
 "Mu" = (
 /obj/structure/cable,
 /obj/machinery/light,
@@ -1935,7 +1939,7 @@
 /obj/structure/mirror/broken{
 	dir = 4
 	},
-/obj/item/tool/soap/deluxe,
+/obj/effect/spawner/random/misc/soap/deluxeweighted,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
@@ -5247,7 +5251,7 @@ uy
 jH
 AH
 KW
-KW
+Mn
 KW
 jH
 pO

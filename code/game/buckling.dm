@@ -23,9 +23,9 @@
 	if(!(buckling_mob.buckle_flags & CAN_BE_BUCKLED) && !force)
 		if(!silent)
 			if(buckling_mob == usr)
-				to_chat(buckling_mob, span_warning("You are unable to buckle yourself to [src]!"))
+				balloon_alert_to_viewers("can't buckle")
 			else
-				to_chat(usr, span_warning("You are unable to buckle [buckling_mob] to [src]!"))
+				balloon_alert_to_viewers("can't buckle [buckling_mob] to [src]")
 		return FALSE
 
 	// This signal will check if the mob is mounting this atom to ride it. There are 3 possibilities for how this goes

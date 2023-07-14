@@ -63,6 +63,10 @@
 	if(!anchored)
 		balloon_alert(user, "Must be anchored!")
 		return
+	change_state()
+
+///Turns the unboxer on/off
+/obj/machinery/unboxer/proc/change_state()
 	on = !on
 	if(on)
 		START_PROCESSING(SSmachines, src)
@@ -77,9 +81,7 @@
 
 /obj/machinery/unboxer/process()
 	if(production_amount_left <= 0)
-		balloon_alert_to_viewers("No material left!")
-		STOP_PROCESSING(SSmachines, src)
-		update_icon()
+		change_state()
 		return
 	new production_type(get_step(src, dir))
 	production_amount_left--
@@ -97,6 +99,8 @@
 	production_amount_left += to_refill
 	refill.refill_amount -= to_refill
 	visible_message(span_notice("[user] restocks \the [src] with \the [refill]!"), span_notice("You restock \the [src] with [refill]!"))
+	if(!on)
+		change_state()
 	if(refill.refill_amount <= 0)
 		qdel(refill)
 		new /obj/item/stack/sheet/metal(user.loc)//simulates leftover trash

@@ -143,6 +143,8 @@
 /datum/action/xeno_action/activable/pounce/proc/prepare_to_pounce()
 	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		owner.layer = MOB_LAYER
+		var/datum/action/xeno_action/xenohide/hide_action = owner.actions_by_path[/datum/action/xeno_action/xenohide]
+		hide_action?.button?.cut_overlay(mutable_appearance('icons/mob/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
 	if(owner.buckled)
 		owner.buckled.unbuckle_mob(owner)
 
@@ -174,18 +176,18 @@
 	succeed_activate()
 	add_cooldown()
 	X.usedPounce = TRUE // this is needed for throwing code
-	X.flags_pass = PASSTABLE|PASSFIRE
+	X.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
-	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_flags_pass)), 6)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_allow_pass_flags)), 6)
 
 	return TRUE
 
-/mob/living/carbon/xenomorph/proc/reset_flags_pass()
+/mob/living/carbon/xenomorph/proc/reset_allow_pass_flags()
 	if(!xeno_caste.hardcore)
-		flags_pass = initial(flags_pass) //Reset the passtable.
+		pass_flags = initial(pass_flags) //Reset the PASS_LOW_STRUCTURE.
 	else
-		flags_pass = NONE //Reset the passtable.
+		pass_flags = NONE //Reset the PASS_LOW_STRUCTURE.
 
 	//AI stuff
 /datum/action/xeno_action/activable/pounce/ai_should_start_consider()
@@ -233,6 +235,13 @@
 			owner.balloon_alert(owner, "Already evading")
 		return FALSE
 
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+
+	if(xeno_owner.on_fire)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "Can't while on fire!")
+		return FALSE
+
 /datum/action/xeno_action/evasion/action_activate()
 	var/mob/living/carbon/xenomorph/runner/R = owner
 
@@ -241,16 +250,16 @@
 
 	addtimer(CALLBACK(src, PROC_REF(evasion_deactivate)), RUNNER_EVASION_DURATION)
 
-	RegisterSignal(R, list(COMSIG_LIVING_STATUS_STUN,
+	RegisterSignals(R, list(COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
 		COMSIG_LIVING_STATUS_PARALYZE,
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
 		COMSIG_LIVING_STATUS_UNCONSCIOUS,
 		COMSIG_LIVING_STATUS_SLEEP,
-		COMSIG_LIVING_STATUS_STAGGER), PROC_REF(evasion_debuff_check))
+		COMSIG_LIVING_STATUS_STAGGER,
+		COMSIG_LIVING_IGNITED), PROC_REF(evasion_debuff_check))
 
 	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(evasion_dodge)) //This is where we actually check to see if we dodge the projectile.
-	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, PROC_REF(evasion_burn_check)) //Register status effects and fire which impact evasion.
 	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, PROC_REF(evasion_flamer_hit)) //Register status effects and fire which impact evasion.
 	RegisterSignal(R, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge)) //Register status effects and fire which impact evasion.
 
@@ -276,14 +285,6 @@
 	else //If all of our evasion stacks have burnt away, cancel out
 		evasion_deactivate()
 
-///Called when the owner is burning; reduces evasion stacks proportionate to fire stacks
-/datum/action/xeno_action/evasion/proc/evasion_burn_check()
-	SIGNAL_HANDLER
-
-	var/mob/living/carbon/xenomorph/runner/R = owner
-	evasion_stacks = 0 //We lose all evasion stacks
-	to_chat(R, span_danger("Being on fire compromises our ability to dodge! We have lost all evasion stacks!"))
-
 ///After getting hit with an Evasion disabling debuff, this is where we check to see if evasion is active, and if we actually have debuff stacks
 /datum/action/xeno_action/evasion/proc/evasion_debuff_check(datum/source, amount)
 	SIGNAL_HANDLER
@@ -305,8 +306,8 @@
 		COMSIG_LIVING_STATUS_UNCONSCIOUS,
 		COMSIG_LIVING_STATUS_SLEEP,
 		COMSIG_LIVING_STATUS_STAGGER,
+		COMSIG_LIVING_IGNITED,
 		COMSIG_XENO_PROJECTILE_HIT,
-		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_PRE_THROW_IMPACT,
 		COMSIG_ATOM_BULLET_ACT
 		))

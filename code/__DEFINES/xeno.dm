@@ -38,6 +38,11 @@
 #define TRAP_ACID_NORMAL "acid"
 #define TRAP_ACID_STRONG "strong acid"
 
+//Xeno acid strength defines
+#define WEAK_ACID_STRENGTH 0.016
+#define REGULAR_ACID_STRENGTH 0.04
+#define STRONG_ACID_STRENGTH 0.1
+
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 		/obj/alien/weeds/node,
@@ -112,8 +117,6 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
 #define UPGRADE_FLAG_ONETIME (1<<0)
-
-#define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
 
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,

@@ -32,7 +32,7 @@
 	span_xenodanger("We call forth the larvas to rise from their slumber!"))
 
 	if(stored_larva)
-		RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
+		RegisterSignals(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
 		caller.hive.give_larva_to_next_in_queue()
 		notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
 		addtimer(CALLBACK(src, PROC_REF(calling_larvas_end), caller), CALLING_BURROWED_DURATION)
@@ -181,11 +181,11 @@
 			upper_right = locate(owner.x + 3, owner.y + 1, owner.z)
 
 	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 2x3 block is found.
-		affected_tile.Shake(4, 4, 2 SECONDS)
+		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(4, 4, 20)
+				affected.Shake(duration = 0.5 SECONDS)
 				continue
 			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
 				var/mob/living/carbon/human/H = affected

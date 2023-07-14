@@ -86,7 +86,7 @@
 /obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(!active || stuck_to || isturf(hit_atom))
-		return
+		return TRUE
 	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
 	stuck_overlay.pixel_x = rand(-5, 5)
 	stuck_overlay.pixel_y = rand(-7, 7)
@@ -94,11 +94,10 @@
 	forceMove(hit_atom)
 	saved_overlay = stuck_overlay
 	stuck_to = hit_atom
-	RegisterSignal(stuck_to, COMSIG_PARENT_QDELETING, PROC_REF(clean_refs))
+	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
-		stuck_to.cut_overlay(saved_overlay)
 		clean_refs()
 	return ..()
 
@@ -107,10 +106,45 @@
 
 ///Cleans references to prevent hard deletes.
 /obj/item/explosive/grenade/sticky/proc/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
 	SIGNAL_HANDLER
-	UnregisterSignal(stuck_to, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(stuck_to, COMSIG_QDELETING)
 	stuck_to = null
 	saved_overlay = null
+
+/obj/item/explosive/grenade/sticky/trailblazer
+	name = "\improper M45 Trailblazer grenade"
+	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. It is set to detonate in 5 seconds."
+	icon_state = "grenade_sticky_fire"
+	item_state = "grenade_sticky_fire"
+	det_time = 5 SECONDS
+	light_impact_range = 1
+
+/obj/item/explosive/grenade/sticky/trailblazer/prime()
+	flame_radius(0.5, get_turf(src))
+	playsound(loc, "incendiary_explosion", 35)
+	if(stuck_to)
+		clean_refs()
+	qdel(src)
+
+/obj/item/explosive/grenade/sticky/trailblazer/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(.)
+		return
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
+	var/turf/T = get_turf(src)
+	T.ignite(25, 25)
+
+///causes fire tiles underneath target when stuck_to
+/obj/item/explosive/grenade/sticky/trailblazer/proc/make_fire(datum/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	var/turf/T = get_turf(src)
+	T.ignite(25, 25)
+
+/obj/item/explosive/grenade/sticky/trailblazer/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
+	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
+	return ..()
 
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
@@ -247,6 +281,12 @@
 	icon_state_mini = "grenade_green"
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
+/obj/item/explosive/grenade/smokebomb/cloak/ags
+	name = "\improper AGLS-37 SCDP smoke grenade"
+	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
+	icon_state = "ags_cloak"
+	smokeradius = 4
+
 /obj/item/explosive/grenade/smokebomb/drain
 	name = "\improper M40-T smoke grenade"
 	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
@@ -257,6 +297,13 @@
 	icon_state_mini = "grenade_blue"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+
+/obj/item/explosive/grenade/smokebomb/drain/agls
+	name = "\improper AGLS-T smoke grenade"
+	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
+	icon_state = "ags_pgas"
+	det_time = 3 SECONDS
+	smokeradius = 4
 
 /obj/item/explosive/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
@@ -325,6 +372,9 @@
 	var/fuel = 0
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
+
+/obj/item/explosive/grenade/flare/dissolvability(acid_strength)
+	return 2
 
 /obj/item/explosive/grenade/flare/Initialize(mapload)
 	. = ..()
@@ -457,14 +507,14 @@
 	if(!istype(TU))
 		return
 	if(is_ground_level(TU.z))
-		target = new(src, name, user_squad)//da lazer is stored in the grenade
+		target = new(src, null, name, user_squad)//da lazer is stored in the grenade
 
 /obj/item/explosive/grenade/flare/cas/process()
 	. = ..()
 	var/turf/TU = get_turf(src)
 	if(is_ground_level(TU.z))
 		if(!target && active)
-			target = new(src, name, user_squad)
+			target = new(src, null, name, user_squad)
 
 /obj/item/explosive/grenade/flare/cas/turn_off()
 	QDEL_NULL(target)

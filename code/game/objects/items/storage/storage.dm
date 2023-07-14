@@ -75,7 +75,6 @@
 	///What sound gets played when the item is tactical refilled
 	var/refill_sound = null
 
-
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
 		return

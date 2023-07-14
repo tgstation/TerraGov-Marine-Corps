@@ -28,7 +28,7 @@
 
 /obj/machinery/deployable/teleporter/Initialize(mapload)
 	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "teleporter")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "teleporter"))
 
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
@@ -161,7 +161,7 @@
 
 /obj/item/teleporter_kit/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
+	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
 	cell = new /obj/item/cell/high(src)
 	tele_tag++
 	self_tele_tag = tele_tag

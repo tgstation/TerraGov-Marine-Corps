@@ -46,11 +46,11 @@ SUBSYSTEM_DEF(monitor)
 	var/list/b18_in_use = list()
 	var/list/b17_in_use = list()
 
-/datum/controller/subsystem/monitor/Initialize(start_timeofday)
-	. = ..()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), PROC_REF(set_groundside_calculation))
+/datum/controller/subsystem/monitor/Initialize()
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), PROC_REF(set_groundside_calculation))
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(set_shipside_calculation))
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
 	var/total_living_players = length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) + length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(monitor)
 
 
 	//Automatic respawn buff, if a stalemate is detected and a lot of ghosts are waiting to play
-	if(current_state != STATE_BALANCED || !stalemate || GLOB.observer_list <= 0.5 * total_living_players)
+	if(current_state != STATE_BALANCED || !stalemate || length(GLOB.observer_list) <= 0.5 * total_living_players)
 		SSsilo.larva_spawn_rate_temporary_buff = 0
 		return
 	for(var/mob/dead/observer/observer AS in GLOB.observer_list)

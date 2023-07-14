@@ -1,31 +1,236 @@
 {
-	"cape": [
+	"cape_scarf round": [
 		{
-			"type": "icon_state",
-			"icon_state": "full_color1",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "scarf_round"
 		}
 	],
-	"cape_hood": [
+	"cape_striped": [
 		{
-			"type": "icon_state",
-			"icon_state": "full_hood_color1",
-			"blend_mode": "overlay",
-			"color_ids": [1]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "hood_shadow",
-			"blend_mode": "overlay"
+			"type": "hyperscale",
+			"icon_state": "striped"
 		}
 	],
-	"cape_highlight": [
+	"cape_striped_h": [
 		{
-			"type": "icon_state",
-			"icon_state": "full_color2",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "striped_h"
+		}
+	],
+	"cape_geist": [
+		{
+			"type": "hyperscale",
+			"icon_state": "geist"
+		}
+	],
+	"cape_geist_h": [
+		{
+			"type": "hyperscale",
+			"icon_state": "geist_h"
+		}
+	],
+	"cape_scarf tied": [
+		{
+			"type": "hyperscale",
+			"icon_state": "scarf_tied"
+		}
+	],
+	"cape_ghille": [
+		{
+			"type": "hyperscale",
+			"icon_state": "ghille"
+		}
+	],
+	"cape_ghille (right)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "ghille_right"
+		}
+	],
+	"cape_ghille (left)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "ghille_left"
+		}
+	],
+	"cape_ghille (alt)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "ghille_2"
+		}
+	],
+	"cape_drifter": [
+		{
+			"type": "hyperscale",
+			"icon_state": "drifter"
+		}
+	],
+	"cape_scarf": [
+		{
+			"type": "hyperscale",
+			"icon_state": "scarf"
+		}
+	],
+	"cape_scarf_h": [
+		{
+			"type": "hyperscale",
+			"icon_state": "scarf_h"
+		}
+	],
+	"cape_normal": [
+		{
+			"type": "hyperscale",
+			"icon_state": "normal"
+		}
+	],
+	"cape_normal_h": [
+		{
+			"type": "hyperscale",
+			"icon_state": "normal_h"
+		}
+	],
+	"cape_short": [
+		{
+			"type": "hyperscale",
+			"icon_state": "short"
+		}
+	],
+	"cape_short_h": [
+		{
+			"type": "hyperscale",
+			"icon_state": "short_h"
+		}
+	],
+	"cape_shredded": [
+		{
+			"type": "hyperscale",
+			"icon_state": "shredded"
+		}
+	],
+	"cape_shredded_h": [
+		{
+			"type": "hyperscale",
+			"icon_state": "shredded_h"
+		}
+	],
+	"cape_half": [
+		{
+			"type": "hyperscale",
+			"icon_state": "half"
+		}
+	],
+	"cape_half_h": [
+		{
+			"type": "hyperscale",
+			"icon_state": "half_h"
+		}
+	],
+	"cape_full": [
+		{
+			"type": "hyperscale",
+			"icon_state": "full"
+		}
+	],
+	"cape_full_h": [
+		{
+			"type": "hyperscale",
+			"icon_state": "full_h"
+		}
+	],
+	"cape_back": [
+		{
+			"type": "hyperscale",
+			"icon_state": "back"
+		}
+	],
+	"cape_cover": [
+		{
+			"type": "hyperscale",
+			"icon_state": "cover_1"
+		}
+	],
+	"cape_cover (alt)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "cover_2"
+		}
+	],
+	"cape_overlord": [
+		{
+			"type": "hyperscale",
+			"icon_state": "overlord"
+		}
+	],
+	"cape_overlord (alt 1)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "overlord_2"
+		}
+	],
+	"cape_overlord (alt 2)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "overlord_3"
+		}
+	],
+	"cape_shoal": [
+		{
+			"type": "hyperscale",
+			"icon_state": "shoal"
+		}
+	],
+	"cape_shoal (back)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "shoal_back"
+		}
+	],
+	"cape_star": [
+		{
+			"type": "hyperscale",
+			"icon_state": "star"
+		}
+	],
+	"cape_shoal (alt)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "shoal_2"
+		}
+	],
+	"cape_rapier (right)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "rapier_right"
+		}
+	],
+	"cape_rapier (left)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "rapier_left"
+		}
+	],
+	"cape_jacket": [
+		{
+			"type": "hyperscale",
+			"icon_state": "jacket"
+		}
+	],
+	"cape_kama": [
+		{
+			"type": "hyperscale",
+			"icon_state": "kama"
+		}
+	],
+	"cape_short (old)": [
+		{
+			"type": "hyperscale",
+			"icon_state": "old_short"
+		}
+	],
+	"cape_short (old)_h": [
+		{
+			"type": "hyperscale",
+			"icon_state": "old_short_h"
 		}
 	]
 }

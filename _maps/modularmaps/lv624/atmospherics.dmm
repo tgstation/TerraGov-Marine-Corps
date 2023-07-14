@@ -101,7 +101,7 @@
 /area/lv624/lazarus/atmos)
 "iF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -334,7 +334,7 @@
 /area/lv624/lazarus/atmos)
 "CJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -599,7 +599,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "WZ" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/tile/dark/brown2,
 /area/lv624/lazarus/atmos)
 "Xp" = (

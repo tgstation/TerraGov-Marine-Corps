@@ -222,43 +222,41 @@
 	toggle_particles(FALSE)
 	return ..()
 
-/datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
-	var/mob/living/carbon/xenomorph/defiler/X = owner
-	set waitfor = FALSE
+/datum/action/xeno_action/emit_neurogas/proc/dispense_gas(time_left = 3, datum/effect_system/smoke_spread/emitted_gas)
+	if(time_left <= 0)
+		return
+	var/mob/living/carbon/xenomorph/defiler/defiler_owner = owner
 	var/smoke_range = 2
-	var/datum/effect_system/smoke_spread/xeno/gas
 
-	switch(X.selected_reagent)
-		if(/datum/reagent/toxin/xeno_neurotoxin)
-			gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(X)
-		if(/datum/reagent/toxin/xeno_hemodile)
-			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X)
-		if(/datum/reagent/toxin/xeno_transvitox)
-			gas = new /datum/effect_system/smoke_spread/xeno/transvitox(X)
-		if(/datum/reagent/toxin/xeno_ozelomelyn)
-			gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(X)
+	if(!emitted_gas)
+		switch(defiler_owner.selected_reagent)
+			if(/datum/reagent/toxin/xeno_neurotoxin)
+				emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(defiler_owner)
+			if(/datum/reagent/toxin/xeno_hemodile)
+				emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile(defiler_owner)
+			if(/datum/reagent/toxin/xeno_transvitox)
+				emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox(defiler_owner)
+			if(/datum/reagent/toxin/xeno_ozelomelyn)
+				emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(defiler_owner)
 
-	while(count)
-		if(X.stagger) //If we got staggered, return
-			to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
-			toggle_particles(FALSE)
-			return
-		if(X.IsStun() || X.IsParalyzed())
-			to_chat(X, span_xenowarning("We try to emit toxins but are disabled!"))
-			toggle_particles(FALSE)
-			return
-		var/turf/T = get_turf(X)
-		playsound(T, 'sound/effects/smoke.ogg', 25)
-		if(count > 1)
-			gas.set_up(smoke_range, T)
-		else //last emission is larger
-			gas.set_up(CEILING(smoke_range*1.3,1), T)
-		gas.start()
-		T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
-		count = max(0,count - 1)
-		sleep(DEFILER_GAS_DELAY)
-
+	if(defiler_owner.stagger) //If we got staggered, return
+		to_chat(defiler_owner, span_xenowarning("We try to emit toxins but are staggered!"))
+		toggle_particles(FALSE)
+		return
+	if(defiler_owner.IsStun() || defiler_owner.IsParalyzed())
+		to_chat(defiler_owner, span_xenowarning("We try to emit toxins but are disabled!"))
+		toggle_particles(FALSE)
+		return
+	var/turf/T = get_turf(defiler_owner)
+	playsound(T, 'sound/effects/smoke.ogg', 25)
+	if(time_left > 1)
+		emitted_gas.set_up(smoke_range, T)
+	else //last emission is larger
+		emitted_gas.set_up(CEILING(smoke_range*1.3,1), T)
+	emitted_gas.start()
+	T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 	toggle_particles(FALSE)
+	addtimer(CALLBACK(src, PROC_REF(dispense_gas), time_left - 1, emitted_gas), DEFILER_GAS_DELAY)
 
 // Toggles particles on or off, depending on the defined var.
 /datum/action/xeno_action/emit_neurogas/proc/toggle_particles(activate)
@@ -348,7 +346,7 @@
 /datum/action/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
-	desc = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
+	desc = "Selects which reagent to use for reagent slash and noxious gas. Neuro causes increasing pain and stamina damage. Hemodile slows targets down, multiplied by each other xeno-based toxin. Transvitox converts burns to toxin, and causes additional toxin damage when they take brute damage, both effects multiplied by other xeno-based toxins. Ozelomelyn purges all medicines from their system rapidly and causes minor toxin damage."
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
@@ -460,7 +458,7 @@
 
 
 ///Called when we slash while reagent slash is active
-/datum/action/xeno_action/reagent_slash/proc/reagent_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
+/datum/action/xeno_action/reagent_slash/proc/reagent_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 
 	if(!target?.can_sting()) //We only care about targets that we can actually sting
@@ -516,7 +514,7 @@
 	desc = "Throw one of your tentacles forward to grab a tallhost or item."
 	ability_name = "Tentacle"
 	cooldown_timer = 20 SECONDS
-	plasma_cost = 200
+	plasma_cost = 175
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENTACLE,
 	)
@@ -561,7 +559,7 @@
 /datum/action/xeno_action/activable/tentacle/use_ability(atom/movable/target)
 	var/atom/movable/tentacle_end/tentacle_end = new (get_turf(owner))
 	tentacle = owner.beam(tentacle_end,"curse0",'icons/effects/beam.dmi')
-	RegisterSignal(tentacle_end, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(finish_grab))
+	RegisterSignals(tentacle_end, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(finish_grab))
 	tentacle_end.throw_at(target, TENTACLE_ABILITY_RANGE * 1.5, 3, owner, FALSE) //Too hard to hit if just TENTACLE_ABILITY_RANGE
 	succeed_activate()
 	add_cooldown()
@@ -583,7 +581,8 @@
 	target.throw_at(owner, TENTACLE_ABILITY_RANGE, 1, owner, FALSE)
 	if(isliving(target))
 		var/mob/living/loser = target
-		loser.apply_effects(stun = 1, weaken = 0.1)
+		loser.apply_effects(weaken = 0.1)
+		loser.adjust_stagger(5)
 
 ///signal handler to delete tetacle after we are done draggging owner along
 /datum/action/xeno_action/activable/tentacle/proc/delete_beam(datum/source, atom/impacted)

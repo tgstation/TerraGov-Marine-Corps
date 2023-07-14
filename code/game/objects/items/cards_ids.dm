@@ -40,7 +40,7 @@
 	set src in usr
 
 	if (t)
-		name = text("data disk- '[]'", t)
+		name = "data disk- '[t]'"
 	else
 		name = "data disk"
 

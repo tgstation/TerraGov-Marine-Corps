@@ -68,6 +68,7 @@
 	active_power_usage = 100
 	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	wrenchable = TRUE
+	voice_filter = "aderivative"
 
 	///Whether this vendor is active or not.
 	var/active = TRUE
@@ -173,6 +174,13 @@
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	wires = new /datum/wires/vending(src)
+
+	if(SStts.tts_enabled)
+		var/static/vendor_voice_by_type = list()
+		if(!vendor_voice_by_type[type])
+			vendor_voice_by_type[type] = pick(SStts.available_speakers)
+		voice = vendor_voice_by_type[type]
+
 	slogan_list = splittext(product_slogans, ";")
 
 	// So not all machines speak at the exact same time.
@@ -564,11 +572,6 @@
 		flick(icon_deny, src)
 		return
 
-	if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(R.product_path, GLOB.hvh_restricted_items_list))
-		to_chat(user, span_warning("This item is banned by the Space Geneva Convention."))
-		flick(icon_deny, src)
-		return
-
 	if(R.category == CAT_HIDDEN && !extended_inventory)
 		return
 
@@ -615,7 +618,7 @@
 
 
 /obj/machinery/vending/MouseDrop_T(atom/movable/A, mob/user)
-
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 

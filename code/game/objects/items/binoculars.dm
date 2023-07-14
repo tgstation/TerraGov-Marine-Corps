@@ -254,7 +254,7 @@
 			return
 		if(MODE_RAILGUN)
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))
-			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 300 SECONDS) > world.time)
+			if((GLOB.marine_main_ship?.rail_gun?.last_firing + COOLDOWN_RAILGUN_FIRE) > world.time)
 				to_chat(user, "[icon2html(src, user)] [span_warning("The Rail Gun hasn't cooled down yet!")]")
 			else if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
@@ -312,13 +312,15 @@
 	QDEL_NULL(laser)
 
 ///Sets or unsets the binocs linked mortar.
-/obj/item/binoculars/tactical/proc/set_mortar(mortar)
+/obj/item/binoculars/tactical/proc/set_mortar(obj/machinery/deployable/mortar/mortar)
 	if(mortar in linked_mortars)
-		UnregisterSignal(mortar, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(mortar, COMSIG_QDELETING)
 		linked_mortars -= mortar
+		LAZYREMOVE(mortar.linked_struct_binoculars, src)
 		return FALSE
 	linked_mortars += mortar
-	RegisterSignal(mortar, COMSIG_PARENT_QDELETING, PROC_REF(clean_refs))
+	LAZYADD(mortar.linked_struct_binoculars, src)
+	RegisterSignal(mortar, COMSIG_QDELETING, PROC_REF(clean_refs))
 	return TRUE
 
 ///Proc called when linked_mortar is deleted.

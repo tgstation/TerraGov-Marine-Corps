@@ -6,7 +6,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bg" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bp" = (
@@ -635,7 +635,7 @@
 /area/bigredv2/outside/s)
 "Ib" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor,
@@ -649,7 +649,7 @@
 /area/bigredv2/outside/engineering)
 "IS" = (
 /obj/structure/table,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -759,7 +759,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Mq" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "Nb" = (
 /obj/item/stack/sheet/metal,
@@ -794,7 +794,7 @@
 /area/bigredv2/outside/engineering)
 "Ol" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Op" = (
@@ -904,9 +904,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"UN" = (
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "UO" = (
@@ -1531,7 +1528,7 @@ Kn
 GE
 UO
 Uf
-UN
+vr
 Um
 vr
 vr
