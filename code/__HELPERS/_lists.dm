@@ -1,5 +1,3 @@
-///If value is a list, wrap it in a list so it can be used with list add/remove operations
-#define LIST_VALUE_WRAP_LISTS(value) (islist(value) ? list(value) : value)
 
 #define LAZYINITLIST(L) if (!L) L = list()
 #define UNSETEMPTY(L) if (L && !length(L)) L = null
