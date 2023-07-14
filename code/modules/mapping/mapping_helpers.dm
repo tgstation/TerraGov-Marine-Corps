@@ -131,6 +131,7 @@
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 		return
 	if(airlock.locked)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
@@ -138,8 +139,6 @@
 		airlock.locked = TRUE
 		var/turf/current_turf = get_turf(airlock)
 		current_turf.flags_atom |= AI_BLOCKED
-	else
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 
 /obj/effect/mapping_helpers/airlock/abandoned
 	name = "airlock abandoned helper"
@@ -152,6 +151,7 @@
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 		return
 	if(airlock.abandoned)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
@@ -159,8 +159,6 @@
 		airlock.abandoned = TRUE
 		var/turf/current_turf = get_turf(airlock)
 		current_turf.flags_atom |= AI_BLOCKED
-	else
-		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
 
 /obj/effect/mapping_helpers/airlock/welded
 	name = "airlock welded helper"
@@ -173,15 +171,14 @@
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]"
 		return
 	if(airlock.welded)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already welded!")
 	else
 		airlock.welded = TRUE
 		var/turf/current_turf = get_turf(airlock)
-		current_turf.flags_atom |= AI_BLOCKED
-	else
-		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		current_turf.flags_atom |= AI_BLOCKED)
 
 /obj/effect/mapping_helpers/broken_apc
 	name = "broken apc helper"
@@ -198,13 +195,12 @@
 		return
 	var/obj/machinery/power/apc/apc = locate(/obj/machinery/power/apc) in loc
 	if(!apc)
+		stack_trace("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
 		return
 	if(apc.machine_stat && (BROKEN)) //there's a small chance of APCs being broken on round start, just return if it's already happened
 		return
 	else
 		apc.do_break()
-	else
-		stack_trace("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
 
 /obj/effect/mapping_helpers/broken_apc/lowchance
 	breakchance = 25
