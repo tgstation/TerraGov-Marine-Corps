@@ -230,7 +230,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "ma" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/wood,
 /area/deathmatch)
 "ne" = (
@@ -1027,7 +1027,7 @@
 /area/deathmatch)
 "SW" = (
 /obj/effect/decal/cleanable/cobweb2,
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/wood,
 /area/deathmatch)
 "SY" = (
@@ -1152,7 +1152,7 @@
 /area/deathmatch)
 "Xv" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/wood,
 /area/deathmatch)
 "Xw" = (

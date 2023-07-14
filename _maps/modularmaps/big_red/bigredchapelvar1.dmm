@@ -10,7 +10,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "c" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,

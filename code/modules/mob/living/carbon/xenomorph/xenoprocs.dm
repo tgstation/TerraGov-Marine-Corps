@@ -169,9 +169,6 @@
 		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 		if(hivemind_countdown)
 			stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
-		var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
-		if(siloless_countdown)
-			stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
@@ -543,12 +540,12 @@
 ///Set the var tracked to to_track
 /mob/living/carbon/xenomorph/proc/set_tracked(atom/to_track)
 	if(tracked)
-		UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(tracked, COMSIG_QDELETING)
 		if (tracked == to_track)
 			clean_tracked()
 			return
 	tracked = to_track
-	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, PROC_REF(clean_tracked))
+	RegisterSignal(tracked, COMSIG_QDELETING, PROC_REF(clean_tracked))
 
 ///Signal handler to null tracked
 /mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)

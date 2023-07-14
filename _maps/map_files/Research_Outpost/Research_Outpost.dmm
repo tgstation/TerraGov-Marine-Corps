@@ -538,7 +538,7 @@
 	},
 /area/outpost/yard/central)
 "cV" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)
 "cX" = (
@@ -2205,7 +2205,7 @@
 	},
 /area/outpost/yard/south)
 "ko" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2357,7 +2357,7 @@
 /area/outpost/medbay)
 "kU" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -2793,7 +2793,7 @@
 /area/outpost/lz2)
 "nc" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/rd_office)
 "nd" = (
@@ -3246,7 +3246,7 @@
 /area/outpost/cargo)
 "oW" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -5305,7 +5305,7 @@
 /area/outpost/hallway/central)
 "yg" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark2,
 /area/outpost/arrivals/securitylz2)
 "yh" = (
@@ -5791,7 +5791,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/central)
 "As" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -6716,7 +6716,7 @@
 /area/outpost/brig)
 "EL" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
@@ -7168,7 +7168,7 @@
 /area/outpost/science/rd_office)
 "GO" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
@@ -7515,7 +7515,7 @@
 /area/outpost/dormitories)
 "Iz" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -7536,7 +7536,7 @@
 /area/outpost/lz2)
 "IF" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/science/security)
 "IG" = (
@@ -7575,7 +7575,7 @@
 /area/outpost/yard/central)
 "IS" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/arrivals)
 "IT" = (
@@ -9085,7 +9085,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -9227,7 +9227,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/armoury)
 "Qp" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/dark,
 /area/outpost/science/hydponics)
 "Qq" = (
@@ -9425,7 +9425,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},

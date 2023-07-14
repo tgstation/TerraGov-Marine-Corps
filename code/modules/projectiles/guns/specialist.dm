@@ -939,13 +939,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/scope/marine,
 	)
 
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
 	fire_delay = 3 SECONDS
 	burst_amount = 1
 	accuracy_mult = 2
-	recoil = 0
+	recoil = 3
 	scatter = 0
 	movement_acc_penalty_mult = 6
 

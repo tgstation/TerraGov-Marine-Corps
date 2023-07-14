@@ -72,14 +72,17 @@
 /area/icy_caves/caves/south
 	name = "Southern Caves"
 	icon_state = "cave"
+	ceiling = CEILING_UNDERGROUND
 
 /area/icy_caves/caves/east
 	name = "Eastern Caves"
 	icon_state = "cave"
+	ceiling = CEILING_UNDERGROUND
 
 /area/icy_caves/caves/west
 	name = "Western Caves"
 	icon_state = "cave"
+	ceiling = CEILING_UNDERGROUND
 
 /area/icy_caves/caves/rock
 	name = "Enclosed Area"

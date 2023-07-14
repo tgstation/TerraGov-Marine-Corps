@@ -7,10 +7,6 @@ mode Crash
 	deploytimelock 45
 endmode
 
-mode Distress Signal
-	requiredplayers 2
-endmode
-
 mode Nuclear War
 	requiredplayers 2
 endmode

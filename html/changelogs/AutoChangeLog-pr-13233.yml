@@ -1,0 +1,7 @@
+author: "Overdrive659"
+delete-after: True
+changes:
+  - rscadd: "Added rocks to lava rivers"
+  - rscdel: "Removed infuriating lavaspaces"
+  - balance: "Marine LZs bulked"
+  - balance: "Moved diskys"

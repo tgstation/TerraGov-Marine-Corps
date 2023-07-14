@@ -332,11 +332,11 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_equip))
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(handle_unequip))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(parent_examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(parent_examine))
 
 
 /obj/item/armor_module/module/eshield/on_detach(obj/item/detaching_from, mob/user)
-	UnregisterSignal(parent, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_EQUIPPED, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(parent, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_EXAMINE))
 	return ..()
 
 ///Called to give extra info on parent examine.
@@ -625,14 +625,14 @@
 
 /obj/item/armor_module/module/antenna/Destroy()
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 	return ..()
 
 /obj/item/armor_module/module/antenna/activate(mob/living/user)
 	var/turf/location = get_turf(src)
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 		user.show_message(span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
@@ -644,7 +644,7 @@
 		to_chat(user, span_warning("This won't work if you're standing deep underground."))
 		return FALSE
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
+	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 
 /// Signal handler to nullify beacon datum

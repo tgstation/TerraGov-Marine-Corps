@@ -139,6 +139,9 @@
 		/obj/item/storage/firstaid/adv = 5,
 	)
 
+/obj/effect/spawner/random/medical/firstaid/alwaysspawns
+	spawn_loot_chance = 100
+
 /obj/effect/spawner/random/medical/medicalcloset
 	name = "medical closet spawner"
 	icon_state = "random_medical_closet"
@@ -232,6 +235,7 @@
 /obj/effect/spawner/random/medical/beaker/bluespace
 	name = "Random bluespace beaker spawner"
 	icon_state = "random_bluespace_beaker"
+	spawn_loot_chance = 100
 	loot = list(
 		/obj/item/reagent_containers/glass/beaker/bluespace = 8,
 		/obj/effect/spawner/random/medical/beaker = 2,

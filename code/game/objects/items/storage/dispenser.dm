@@ -25,9 +25,9 @@
 	for(var/mob/living/carbon/human/human in view(2, src))
 		if(!(human.species.species_flags & ROBOTIC_LIMBS)) // can only affect robots
 			continue
-		RegisterSignal(human, COMSIG_PARENT_QDELETING, PROC_REF(on_affecting_qdel))
+		RegisterSignal(human, COMSIG_QDELETING, PROC_REF(on_affecting_qdel))
 		affecting_list[human] = beam(human, "blood_light", maxdistance = 3)
-		RegisterSignal(affecting_list[human], COMSIG_PARENT_QDELETING, PROC_REF(on_beam_qdel))
+		RegisterSignal(affecting_list[human], COMSIG_QDELETING, PROC_REF(on_beam_qdel))
 		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
 	for(var/turf/turfs AS in RANGE_TURFS(2, src))
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(entered_tiles))
@@ -39,7 +39,7 @@
 		if(!line_of_sight(src, affecting, 2))
 			qdel(affecting_list[affecting])
 			affecting_list -= affecting
-			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
+			UnregisterSignal(affecting, COMSIG_QDELETING)
 			continue
 		affecting.heal_overall_damage(2, 2, TRUE, TRUE)
 
@@ -53,10 +53,10 @@
 	if(!line_of_sight(src, entering))
 		return
 
-	RegisterSignal(entering, COMSIG_PARENT_QDELETING, PROC_REF(on_affecting_qdel))
+	RegisterSignal(entering, COMSIG_QDELETING, PROC_REF(on_affecting_qdel))
 	entering.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
 	affecting_list[entering] = beam(entering, "blood_light", maxdistance = 3)
-	RegisterSignal(affecting_list[entering], COMSIG_PARENT_QDELETING, PROC_REF(on_beam_qdel))
+	RegisterSignal(affecting_list[entering], COMSIG_QDELETING, PROC_REF(on_beam_qdel))
 
 ///cleans human from affecting_list when it gets qdeletted
 /obj/machinery/deployable/dispenser/proc/on_affecting_qdel(datum/source)
@@ -67,7 +67,7 @@
 /obj/machinery/deployable/dispenser/proc/on_beam_qdel(datum/source)
 	SIGNAL_HANDLER
 	var/datum/beam/beam = source
-	UnregisterSignal(beam.target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(beam.target, COMSIG_QDELETING)
 	affecting_list -= beam.target
 
 /obj/machinery/deployable/dispenser/attack_hand(mob/living/user)
@@ -94,7 +94,7 @@
 		UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
 	for(var/mob/living/carbon/human/affecting AS in affecting_list)
 		qdel(affecting_list[affecting])
-		UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(affecting, COMSIG_QDELETING)
 	affecting_list = null
 	STOP_PROCESSING(SSobj, src)
 	flick("dispenser_undeploy", src)

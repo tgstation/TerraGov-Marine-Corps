@@ -231,7 +231,7 @@
 	RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_resin_drag))
 	RegisterSignal(owner, COMSIG_MOB_MOUSEDRAG, PROC_REF(preshutter_resin_drag))
 	RegisterSignal(owner, COMSIG_MOB_MOUSEUP, PROC_REF(stop_resin_drag))
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(end_resin_drag))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(end_resin_drag))
 
 /// Extra handling to remove the stuff needed for dragging
 /datum/action/xeno_action/activable/secrete_resin/remove_action(mob/living/carbon/xenomorph/X)
@@ -835,10 +835,10 @@
 	if(object == current_target || object == owner)
 		return
 	if(current_target)
-		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(current_target, COMSIG_QDELETING)
 	current_target = object
 	if(current_target)
-		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_target))
+		RegisterSignal(current_target, COMSIG_QDELETING, PROC_REF(clean_target))
 
 ///Cleans the current target in case of Hardel
 /datum/action/xeno_action/activable/xeno_spit/proc/clean_target()
@@ -1131,7 +1131,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
-	gamemode_flags = ABILITY_DISTRESS
+	gamemode_flags = ABILITY_NUCLEARWAR
 	plasma_cost = 100
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
@@ -1226,7 +1226,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGURGITATE,
 	)
 	plasma_cost = 100
-	gamemode_flags = ABILITY_DISTRESS
+	gamemode_flags = ABILITY_NUCLEARWAR
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 

@@ -134,7 +134,7 @@
 	. = ..()
 	setDir(t)
 
-/obj/item/assembly/infra/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
+/obj/item/assembly/infra/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	. = ..()
 	olddir = dir
 

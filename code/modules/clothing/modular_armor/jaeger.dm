@@ -38,7 +38,7 @@
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	greyscale_config = /datum/greyscale_config/armor_mk2/infantry
-	colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	colorable_colors = ARMOR_PALETTES_LIST
 	greyscale_colors = ARMOR_PALETTE_DRAB
 
@@ -74,6 +74,11 @@
 	desc = "A Skirmisher-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a light amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	greyscale_config = /datum/greyscale_config/armor_mk2/skirmisher
 
+/obj/item/clothing/suit/modular/jaeger/light/trooper
+	name = "\improper Jaeger Trooper light exoskeleton"
+	desc = "A Trooper-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a light amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	greyscale_config = /datum/greyscale_config/armor_mk2/trooper
+
 // Heavy
 /obj/item/clothing/suit/modular/jaeger/heavy
 	name = "\improper Jaeger Gungnir heavy exoskeleton"
@@ -106,7 +111,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
 	greyscale_colors = ARMOR_PALETTE_DRAB
-	colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	colorable_colors = ARMOR_PALETTES_LIST
 	greyscale_config = /datum/greyscale_config/armor_mk2/infantry
 
@@ -136,6 +141,8 @@
 		/obj/item/armor_module/armor/visor/marine/helljumper,
 		/obj/item/armor_module/armor/visor/marine/ranger,
 		/obj/item/armor_module/armor/visor/marine/traditional,
+		/obj/item/armor_module/armor/visor/marine/trooper,
+		/obj/item/armor_module/armor/visor/marine/kabuto,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -200,3 +207,15 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has traditional Ranger markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/traditional, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk2/traditional
+
+/obj/item/clothing/head/modular/marine/trooper
+	name = "Jaeger Pattern Trooper Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Trooper markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/trooper, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk2/trooper
+
+/obj/item/clothing/head/modular/marine/kabuto
+	name = "Style Pattern Kabuto Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Kabuto markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/kabuto, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/kabuto

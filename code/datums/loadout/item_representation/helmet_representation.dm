@@ -35,10 +35,11 @@
 	tgui_data["name"] = initial(item_type.name)
 	tgui_data["icons"] = list()
 	var/icon/icon_to_convert
+	var/icon_state = initial(item_type.icon_state) + (variant ? "_[GLOB.loadout_variant_keys[variant]]" : "")
 	if(initial(item_type.greyscale_config))
-		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors),  initial(item_type.icon_state), dir = SOUTH)
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
 	else
-		icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+		icon_to_convert = icon(initial(item_type.icon), icon_state, SOUTH)
 	tgui_data["icons"] += list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,
@@ -48,10 +49,11 @@
 	for(var/datum/item_representation/armor_module/module AS in attachments)
 		if(!initial(module.item_type.icon_state))
 			continue
+		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[GLOB.loadout_variant_keys[module.variant]]" : "")
 		if(initial(module.item_type.greyscale_config))
-			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  initial(module.item_type.icon_state),  dir = SOUTH)
+			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  second_icon_state, dir = SOUTH)
 		else
-			icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
+			icon_to_convert = icon(initial(module.item_type.icon), second_icon_state, SOUTH)
 
 		var/translatex = NO_OFFSET
 		var/translatey = "40%"
@@ -108,10 +110,11 @@
 	tgui_data["name"] = initial(item_type.name)
 	tgui_data["icons"] = list()
 	var/icon/icon_to_convert
-	if(colors)
-		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors),  initial(item_type.icon_state), dir = SOUTH)
+	var/icon_state = initial(item_type.icon_state) + (variant ? "_[GLOB.loadout_variant_keys[variant]]" : "")
+	if(initial(item_type.greyscale_config))
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
 	else
-		icon_to_convert = icon(initial(item_type.icon), current_variant ? initial(item_type.icon_state) + "_[current_variant]" : initial(item_type.icon_state), SOUTH)
+		icon_to_convert = icon(initial(item_type.icon), icon_state, SOUTH)
 	tgui_data["icons"] += list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,
@@ -121,10 +124,11 @@
 	for(var/datum/item_representation/armor_module/module AS in attachments)
 		if(!initial(module.item_type.icon_state))
 			continue
+		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[GLOB.loadout_variant_keys[module.variant]]" : "")
 		if(initial(module.item_type.greyscale_config))
-			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  initial(module.item_type.icon_state), dir = SOUTH)
+			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(module.item_type.greyscale_config), module.colors),  second_icon_state, dir = SOUTH)
 		else
-			icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
+			icon_to_convert = icon(initial(module.item_type.icon), second_icon_state, SOUTH)
 
 		var/translatex = NO_OFFSET
 		var/translatey = "40%"

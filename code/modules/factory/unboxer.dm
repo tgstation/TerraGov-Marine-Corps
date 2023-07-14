@@ -345,3 +345,9 @@
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/thermobaric_wp
 	refill_amount = 15
+
+/obj/item/factory_refill/drop_pod_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/drop_pod
+	refill_amount = 6
