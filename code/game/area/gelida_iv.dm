@@ -336,6 +336,7 @@
 /area/gelida/outdoors/w_rockies
 	name = "West Colony - Rockies"
 	icon_state = "away2"
+	ceiling = CEILING_UNDERGROUND
 
 /area/gelida/outdoors/p_n_rockies
 	name = "North Processor - Rockies"
@@ -420,6 +421,9 @@
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	outside = FALSE
 
+/area/gelida/powergen/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/gelida/cavestructuretwo
 	name = "Underground Abandoned Structure"
 	icon_state = "garage"
@@ -436,10 +440,19 @@
 	name = "Western Caves"
 	icon_state = "yellow"
 
+/area/gelida/caves/west_caves/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/gelida/caves/central_caves
 	name = "Central Caves"
 	icon_state = "purple"
 
+/area/gelida/caves/central_caves/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/gelida/caves/east_caves
 	name = "Eastern Caves"
 	icon_state = "blue-red"
+
+/area/gelida/caves/east_caves/garbledradio
+	ceiling = CEILING_UNDERGROUND

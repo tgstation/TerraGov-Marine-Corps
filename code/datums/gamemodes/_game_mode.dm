@@ -116,9 +116,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 ///Gamemode setup run after the game has started
 /datum/game_mode/proc/post_setup()
 	addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
-	if(flags_round_type & MODE_SILO_RESPAWN)
-		var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		HN.RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), TYPE_PROC_REF(/datum/hive_status/normal, set_siloless_collapse_timer))
 	if(!SSdbcore.Connect())
 		return
 	var/sql
@@ -332,14 +329,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	return
 
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
-	return
-
-/// called to check for updates that might require starting/stopping the siloless collapse timer
-/datum/game_mode/proc/update_silo_death_timer(datum/hive_status/silo_owner)
-	return
-
-///starts the timer to end the round when no silo is left
-/datum/game_mode/proc/get_siloless_collapse_countdown()
 	return
 
 ///Provides the amount of time left before the game ends, used for the stat panel

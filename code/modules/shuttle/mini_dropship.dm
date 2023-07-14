@@ -222,7 +222,7 @@
 
 	if(!ui)
 		ui_user = user
-		RegisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(clean_ui_user))
+		RegisterSignals(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(clean_ui_user))
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
 
@@ -235,7 +235,7 @@
 	SIGNAL_HANDLER
 	if(ui_user)
 		remove_eye_control(ui_user)
-		UnregisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED))
+		UnregisterSignal(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 		ui_user = null
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_data(mob/user)

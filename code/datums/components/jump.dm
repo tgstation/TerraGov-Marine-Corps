@@ -31,7 +31,7 @@
 	RegisterSignal(parent, COMSIG_KB_LIVING_JUMP, PROC_REF(do_jump))
 
 /datum/component/jump/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_KB_LIVING_JUMP)
+	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP, COMSIG_MOB_THROW))
 
 /datum/component/jump/InheritComponent(datum/component/new_component, original_component, _jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
@@ -67,6 +67,7 @@
 	jumper.adjustStaminaLoss(stamina_cost)
 	jumper.pass_flags |= jumper_allow_pass_flags
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	RegisterSignal(parent, COMSIG_MOB_THROW, PROC_REF(jump_throw))
 
 	jumper.add_filter(JUMP_COMPONENT, 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
 	var/shadow_filter = jumper.get_filter(JUMP_COMPONENT)
@@ -94,3 +95,16 @@
 	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
 	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)
+	UnregisterSignal(parent, COMSIG_MOB_THROW)
+
+///Jump throw bonuses
+/datum/component/jump/proc/jump_throw(mob/living/thrower, target, thrown_thing, list/throw_modifiers)
+	SIGNAL_HANDLER
+	var/obj/item/throw_item = thrown_thing
+	if(!istype(throw_item))
+		return
+	if(throw_item.w_class > WEIGHT_CLASS_NORMAL)
+		return
+	throw_modifiers["targetted_throw"] = FALSE
+	throw_modifiers["speed_modifier"] -= 1
+	throw_modifiers["range_modifier"] += 4

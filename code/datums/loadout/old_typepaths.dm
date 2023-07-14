@@ -47,6 +47,13 @@
 /obj/item/armor_module/greyscale/cape_highlight/half
 /obj/item/armor_module/greyscale/cape_highlight/scarf
 
+/obj/item/armor_module/armor/cape/half
+/obj/item/armor_module/armor/cape/scarf
+/obj/item/armor_module/armor/cape/short
+/obj/item/armor_module/armor/cape/short/classic
+
+/obj/item/armor_module/armor/cape_highlight/half
+/obj/item/armor_module/armor/cape_highlight/scarf
 
 //Changing item_representation typepaths also breaks loadouts horribly.
 

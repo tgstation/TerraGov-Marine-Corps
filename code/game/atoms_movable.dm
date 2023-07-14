@@ -484,30 +484,38 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if((!L.density || (L.pass_flags & PASS_PROJECTILE)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
+			if(pass_flags & PASS_MOB || (!L.density || (L.pass_flags & PASS_THROW)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
 				continue
 			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
 				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
 				return A
 			throw_impact(A, speed)
-		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.allow_pass_flags & PASS_PROJECTILE) || iscarbon(src)) && !flying)
+		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.allow_pass_flags & PASS_THROW) || iscarbon(src)) && !flying)
 			throw_impact(A, speed)
 
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
+/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
 
+	if(!targetted_throw)
+		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))
+
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW) & COMPONENT_MOVABLE_BLOCK_PRE_THROW)
 		return FALSE
+
+	var/turf/origin = get_turf(src)
 
 	if(spin)
 		animation_spin(5, 1)
 
-	if(!flying)
-		set_throwing(TRUE)
-		src.thrower = thrower
+	set_throwing(TRUE)
+	src.thrower = thrower
+
+	var/original_layer = layer
+	if(flying)
+		set_flying(TRUE, FLY_LAYER)
 
 	var/originally_dir_locked = flags_atom & DIRLOCK
 	if(!originally_dir_locked)
@@ -531,23 +539,23 @@
 		dy = NORTH
 	else
 		dy = SOUTH
-	var/dist_travelled = 0
+
 	var/dist_since_sleep = 0
+
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed)
+				var/hit_check_return = hit_check(speed, flying)
 				if(hit_check_return)
 					parrier = hit_check_return
 					break
 				error += dist_x
-				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
@@ -557,31 +565,29 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed)
+				var/hit_check_return = hit_check(speed, flying)
 				if(hit_check_return)
 					parrier = hit_check_return
 					break
 				error -= dist_y
-				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
 					sleep(0.1 SECONDS)
 	else
 		var/error = dist_y/2 - dist_x
-		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed)
+				var/hit_check_return = hit_check(speed, flying)
 				if(hit_check_return)
 					parrier = hit_check_return
 					break
 				error += dist_y
-				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
@@ -591,12 +597,11 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed)
+				var/hit_check_return = hit_check(speed, flying)
 				if(hit_check_return)
 					parrier = hit_check_return
 					break
 				error -= dist_x
-				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
@@ -611,13 +616,15 @@
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
-		stop_throw()
+		stop_throw(flying, original_layer)
 		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
 
 /// Annul all throw var to ensure a clean exit out of throw state
-/atom/movable/proc/stop_throw()
+/atom/movable/proc/stop_throw(flying = FALSE, original_layer)
 	set_throwing(FALSE)
+	if(flying)
+		set_flying(FALSE, original_layer)
 	thrower = null
 	throw_source = null
 
@@ -1072,18 +1079,25 @@
 	. = grab_state
 	grab_state = newstate
 
-
-/atom/movable/proc/set_throwing(new_throwing)
+///Toggles AM between throwing states
+/atom/movable/proc/set_throwing(new_throwing, flying)
 	if(new_throwing == throwing)
 		return
 	. = throwing
 	throwing = new_throwing
+	if(throwing)
+		pass_flags |= PASS_THROW
+	else
+		pass_flags &= ~PASS_THROW
 
-/atom/movable/proc/set_flying(flying)
-	if (flying)
-		ENABLE_BITFIELD(pass_flags, HOVERING)
+///Toggles AM between flying states
+/atom/movable/proc/set_flying(flying, new_layer)
+	if(flying)
+		pass_flags |= HOVERING
+		layer = new_layer
 		return
-	DISABLE_BITFIELD(pass_flags, HOVERING)
+	pass_flags &= ~HOVERING
+	layer = new_layer ? new_layer : initial(layer)
 
 ///returns bool for if we want to get forcepushed
 /atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)

@@ -318,7 +318,7 @@
 
 	action_icon_state = "psy_crush_activate"
 	update_button_icon()
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), PROC_REF(stop_crush))
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), PROC_REF(stop_crush))
 	do_channel(target_turf)
 
 ///Checks if the owner is close enough/can see the target

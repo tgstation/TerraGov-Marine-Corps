@@ -340,9 +340,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
 			if(rulerless_countdown)
 				stat("<b>Orphan hivemind collapse timer:</b>", rulerless_countdown)
-			var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
-			if(siloless_countdown)
-				stat("<b>Silo less hive collapse timer:</b>", siloless_countdown)
 		if(GLOB.respawn_allowed)
 			status_value = (GLOB.key_to_time_of_role_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
 			if(status_value <= 0)
@@ -842,7 +839,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	target.observers |= src
 	target.hud_used.show_hud(target.hud_used.hud_version, src)
 	observetarget = target
-	RegisterSignal(observetarget, COMSIG_PARENT_QDELETING, PROC_REF(clean_observetarget))
+	RegisterSignal(observetarget, COMSIG_QDELETING, PROC_REF(clean_observetarget))
 
 ///Signal handler to clean the observedtarget
 /mob/dead/observer/proc/clean_observetarget()

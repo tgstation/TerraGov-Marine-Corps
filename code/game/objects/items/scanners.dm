@@ -180,6 +180,7 @@ REAGENT SCANNER
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
+	data["species"] = patient.species.species_flags & ROBOTIC_LIMBS ? "robot" : "human"
 
 	var/list/limb_data_lists = list()
 	if(ishuman(patient))

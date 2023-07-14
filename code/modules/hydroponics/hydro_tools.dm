@@ -36,9 +36,9 @@
 		var/obj/item/seeds/S = target
 		grown_seed = S.seed
 
-	else if(istype(target,/obj/machinery/portable_atmospherics/hydroponics))
+	else if(istype(target,/obj/machinery/hydroponics))
 
-		var/obj/machinery/portable_atmospherics/hydroponics/H = target
+		var/obj/machinery/hydroponics/H = target
 		grown_seed = H.seed
 		grown_reagents = H.reagents
 

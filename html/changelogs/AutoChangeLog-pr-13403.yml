@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "Added a component that prevents the juggling of weapons to bypass firing rate limitations"

@@ -18,6 +18,12 @@
 		var/mob/M = loc
 		M.update_inv_head()
 
+/obj/item/clothing/head/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_head_str = icon)
+
 /obj/item/clothing/head/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return ..()
