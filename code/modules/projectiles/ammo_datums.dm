@@ -1250,6 +1250,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 30
 	sundering = 5
+	shell_speed = 4
 	damage_falloff = 0.5
 	accurate_range = 25
 	accurate_range_min = 3
@@ -1263,6 +1264,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 70
 	penetration = 20
 	sundering = 5
+	shell_speed = 4
 	accuracy = 15
 
 /datum/ammo/bullet/spottingrifle/highimpact

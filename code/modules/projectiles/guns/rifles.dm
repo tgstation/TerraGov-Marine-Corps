@@ -1317,7 +1317,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_WIELDED_FIRING_ONLY|GUN_ATTACHMENT_FIRE_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	flags_attach_features = NONE
-	fire_delay = 2 SECONDS
+	fire_delay = 1 SECONDS
 	pixel_shift_x = 18
 	pixel_shift_y = 16
 

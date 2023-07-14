@@ -289,7 +289,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smarttargetrifle
 	max_rounds = 40
-	reload_delay = 0.5 SECONDS
 	icon_state_mini = "mag_sg29"
 
 //-------------------------------------------------------
