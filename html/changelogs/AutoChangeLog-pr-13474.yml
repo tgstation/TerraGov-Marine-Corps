@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - rscadd: "Added support for AI players to set emergency access on shipside doors"
-  - imageadd: "Added some graphics for emergency access on doors"

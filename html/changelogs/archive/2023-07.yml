@@ -185,3 +185,24 @@
       of just singing you slightly
   novaepee:
   - balance: move miner near Magmoor's west landing zone further north
+2023-07-14:
+  AusarAtkin:
+  - rscadd: Added Drop Pods to Reqtorio, and the refills for them to the supply console.
+  Barnet2:
+  - balance: Decreased sunder on TAT APCR and increaed pen, increased sunder slightly
+      on other rounds
+  - balance: TAT has an anchor channel time of 1 second, and cannot be rotated while
+      anchored, or fired while unanchored.
+  Lumipharon:
+  - bugfix: fixed jump throws not going over objects that they should
+  RipGrayson:
+  - rscadd: Added support for AI players to set emergency access on shipside doors
+  - imageadd: Added some graphics for emergency access on doors
+  Scarlet-Oduko:
+  - bugfix: no more infinite SG pistols, now you can get goggles with them
+  forestbbbbbbb:
+  - bugfix: Fix vali necro overlay not disappearing
+  novaepee:
+  - imageadd: add three more orange colors
+  tyeagg:
+  - rscadd: big map table to cic

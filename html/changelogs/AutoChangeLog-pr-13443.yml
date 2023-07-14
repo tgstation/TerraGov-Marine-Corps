@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Decreased sunder on TAT APCR and increaed pen, increased sunder slightly on other rounds"
-  - balance: "TAT has an anchor channel time of 1 second, and cannot be rotated while anchored, or fired while unanchored."
