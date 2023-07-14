@@ -47,7 +47,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
 
-/datum/game_mode/infestation/nucler_war/scale_roles(initial_players_assigned)
+/datum/game_mode/infestation/nuclear_war/scale_roles(initial_players_assigned)
 	. = ..()
 	if(!.)
 		return

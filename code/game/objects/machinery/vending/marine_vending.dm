@@ -229,7 +229,6 @@
 	)
 
 /obj/machinery/vending/weapon/crash
-
 	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,

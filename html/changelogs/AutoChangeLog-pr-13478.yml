@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Improved MG-27 aimmode penalty, ammo per mag, and damage falloff. Can now fit a railscope"
+  - balance: "HvH: MG-27 loadout has a barrel charger"

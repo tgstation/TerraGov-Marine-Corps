@@ -674,6 +674,7 @@
 
 /obj/effect/vendor_bundle/smartgunner_pistol
 	gear_to_spawn = list(
+		/obj/item/clothing/glasses/night/m56_goggles,
 		/obj/item/storage/holster/belt/pistol/smart_pistol,
 		/obj/item/weapon/gun/pistol/smart_pistol,
 		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,

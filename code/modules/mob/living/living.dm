@@ -487,16 +487,8 @@
  * range : how far the mob will be thrown, in tile
  * speed : how fast will it fly
  */
-/mob/living/proc/fly_at(atom/target, range, speed, hovering_time)
-	addtimer(CALLBACK(src,PROC_REF(end_flying), layer), hovering_time)
-	layer = FLY_LAYER
-	set_flying(TRUE)
+/mob/living/proc/fly_at(atom/target, range, speed)
 	throw_at(target, range, speed, null, 0, TRUE)
-
-///remove flying flags and reset the sprite layer
-/mob/living/proc/end_flying(init_layer)
-	set_flying(FALSE)
-	layer = init_layer
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
