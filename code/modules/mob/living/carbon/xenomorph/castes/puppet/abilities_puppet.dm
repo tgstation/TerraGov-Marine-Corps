@@ -18,6 +18,7 @@
 	target_human.apply_damage(damage = 25, damagetype = BRUTE, def_zone = BODY_ZONE_CHEST, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
 	HEAL_XENO_DAMAGE(owner_xeno, heal_amount, FALSE)
 	add_cooldown()
+
 /datum/action/xeno_action/activable/flay/can_use_ability(mob/living/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!ishuman(target))
