@@ -189,6 +189,7 @@
 	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_QDELETING, COMSIG_XENOMORPH_POSTATTACK_LIVING))
 
 /datum/action/xeno_action/activable/refurbish_husk/proc/postattack(mob/living/source, useless, damage)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.plasma_stored = min(owner_xeno.plasma_stored + round(damage / 0.9), owner_xeno.xeno_caste.plasma_max)
 

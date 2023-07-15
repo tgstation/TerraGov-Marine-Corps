@@ -25,4 +25,5 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/puppeteer/proc/postattack(mob/living/source, useless, damage)
+	SIGNAL_HANLDER
 	plasma_stored = min(plasma_stored + round(damage / 0.8), xeno_caste.plasma_max)
