@@ -18,8 +18,8 @@
 	allow_pass_flags = PASS_XENO
 	///pheromone list we arent allowed to receive
 	var/list/illegal_pheromones = list(AURA_XENO_RECOVERY, AURA_XENO_WARDING, AURA_XENO_FRENZY)
-	///our master
-	var/mob/living/carbon/xenomorph/master
+	///our masters weakref
+	var/datum/weakref/weak_master
 
 /mob/living/carbon/xenomorph/puppet/handle_special_state() //prevent us from using different run/walk sprites
 	icon_state = "[xeno_caste.caste_name] Running"
@@ -27,11 +27,14 @@
 
 /mob/living/carbon/xenomorph/puppet/Initialize(mapload, mob/living/carbon/xenomorph/puppeteer)
 	. = ..()
-	master = puppeteer
+	weak_master = WEAKREF(puppeteer)
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/puppet, puppeteer)
 
 /mob/living/carbon/xenomorph/puppet/Life()
 	. = ..()
+	var/atom/movable/master = weak_master.resolve()
+	if(!master)
+		return
 	if(get_dist(src, master) > WITHER_RANGE)
 		adjustBruteLoss(15)
 	else
@@ -39,6 +42,9 @@
 
 /mob/living/carbon/xenomorph/puppet/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
 	. = ..()
+	var/atom/movable/master = weak_master.resolve()
+	if(!master)
+		return
 	if(source != master) //puppeteer phero only
 		return FALSE
 
@@ -64,7 +70,7 @@
 /datum/ai_behavior/puppet/New(loc, parent_to_assign, escorted_atom)
 	. = ..()
 	master_ref = WEAKREF(escorted_atom)
-	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, PROC_REF(fucking_die))
+	RegisterSignal(escorted_atom, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(fucking_die))
 	RegisterSignal(escorted_atom, COMSIG_PUPPET_CHANGE_ALL_ORDER, PROC_REF(change_order))
 	RegisterSignal(mob_parent, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
 	change_order(null, PUPPET_RECALL)
