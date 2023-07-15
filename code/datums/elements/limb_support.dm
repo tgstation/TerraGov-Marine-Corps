@@ -12,6 +12,11 @@
 	RegisterSignal(target, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
 	RegisterSignals(target, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
 
+/datum/element/limb_support/Detach(datum/source, ...)
+	. = ..()
+	UnregisterSignal(source, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
+
+
 /datum/element/limb_support/proc/equipped(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
 	if(!ishuman(equipper))
