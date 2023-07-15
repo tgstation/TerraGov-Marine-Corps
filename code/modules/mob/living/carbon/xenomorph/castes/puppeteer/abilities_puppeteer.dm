@@ -271,7 +271,6 @@
 	if(!SEND_SIGNAL(victim, COMSIG_PUPPET_CHANGE_ORDER, PUPPET_SEEK_CLOSEST))
 		victim.balloon_alert(owner, "fail")
 		return fail_activate()
-	victim.balloon_alert(owner, "success")
 	RegisterSignal(victim, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(start_exploding))
 	RegisterSignal(victim, COMSIG_MOB_DEATH, PROC_REF(fucking_explode))
 	addtimer(CALLBACK(src, PROC_REF(fucking_explode), victim), 15 SECONDS)
