@@ -6,7 +6,6 @@
 	plasma_cost = 0
 	cooldown_timer = 35 SECONDS
 	target_flags = XABB_MOB_TARGET
-	var/heal_amount = 15
 
 /datum/action/xeno_action/activable/feed/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
@@ -16,7 +15,7 @@
 	playsound(target_human, "alien_claw_flesh", 25, TRUE)
 	target_human.emote("scream")
 	target_human.apply_damage(damage = 25, damagetype = BRUTE, def_zone = BODY_ZONE_CHEST, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
-	HEAL_XENO_DAMAGE(owner_xeno, heal_amount, FALSE)
+	HEAL_XENO_DAMAGE(owner_xeno, 15, FALSE)
 	add_cooldown()
 
 /datum/action/xeno_action/activable/flay/can_use_ability(mob/living/target, silent = FALSE, override_flags)

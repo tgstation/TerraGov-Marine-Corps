@@ -54,7 +54,6 @@
 		xeno_melee_damage_modifier = 1 + ((fury - 1) * 0.05)
 	return ..()
 
-//widow code again hooray
 /datum/ai_behavior/puppet
 	target_distance = 7
 	base_action = IDLE
@@ -70,7 +69,7 @@
 /datum/ai_behavior/puppet/New(loc, parent_to_assign, escorted_atom)
 	. = ..()
 	master_ref = WEAKREF(escorted_atom)
-	RegisterSignal(escorted_atom, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(fucking_die))
+	RegisterSignal(escorted_atom, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(die_on_master_death))
 	RegisterSignal(escorted_atom, COMSIG_PUPPET_CHANGE_ALL_ORDER, PROC_REF(change_order))
 	RegisterSignal(mob_parent, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
 	change_order(null, PUPPET_RECALL)
@@ -84,12 +83,12 @@
 	. = ..()
 	UnregisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE)
 
-/datum/ai_behavior/puppet/proc/fucking_die(mob/living/source)
+/datum/ai_behavior/puppet/proc/die_on_master_death(mob/living/source)
 	SIGNAL_HANDLER
 	if(!QDELETED(mob_parent))
-		mob_parent.death() //die
+		mob_parent.death()
 
-///Signal handler to try to attack our target (widow code my beloved (fuck tgmc AI))
+///Signal handler to try to attack our target
 ///Attack our current atom we are moving to, if targetted is specified attack that instead
 /datum/ai_behavior/puppet/proc/attack_target(datum/source, atom/targetted)
 	SIGNAL_HANDLER
@@ -103,7 +102,7 @@
 		if(victim.stat == DEAD)
 			late_initialize()
 			return
-		do_feed(victim) // trolled
+		do_feed(victim)
 		
 	mob_parent.face_atom(target)
 	mob_parent.UnarmedAttack(target, mob_parent)
@@ -189,7 +188,6 @@
 			change_action(MOVING_TO_NODE)
 			return TRUE
 
-//stripped down xeno AI (basicmobs when?)
 /datum/ai_behavior/puppet/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
 	if(obstacle_turf.flags_atom & AI_BLOCKED)
@@ -199,7 +197,7 @@
 			LAZYINCREMENT(mob_parent.do_actions, obstacle_turf)
 			addtimer(CALLBACK(src, PROC_REF(climb_window_frame), obstacle_turf), 2 SECONDS)
 			return COMSIG_OBSTACLE_DEALT_WITH
-		if(isobj(thing)) //WE BASH EVERYTHING OORAH
+		if(isobj(thing))
 			var/obj/obstacle = thing
 			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 				INVOKE_ASYNC(src, PROC_REF(attack_target), null, obstacle)
