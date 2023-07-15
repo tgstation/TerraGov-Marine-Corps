@@ -8802,6 +8802,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
+"jBh" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle5)
 "jBQ" = (
 /obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
@@ -13413,6 +13417,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
+"pHp" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "pIS" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -13840,6 +13848,10 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
+"qlC" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "qmg" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -16443,6 +16455,11 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle3)
+"tuY" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central4/garbledradio)
 "tvF" = (
 /obj/item/storage/box/beakers,
 /obj/structure/table,
@@ -19042,6 +19059,10 @@
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
+"wJM" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/ruin)
 "wJR" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/plating,
@@ -22822,7 +22843,7 @@ noU
 noU
 lDt
 noU
-sYe
+tuY
 noU
 lDt
 noU
@@ -23436,7 +23457,7 @@ sRc
 bgf
 pes
 lbt
-tnW
+wJM
 pes
 bZe
 wTp
@@ -25614,7 +25635,7 @@ ivV
 abc
 abc
 abc
-abc
+qlC
 abc
 abc
 aym
@@ -57435,7 +57456,7 @@ gKr
 gKr
 aah
 dUK
-aah
+pHp
 aah
 gKr
 gKr
@@ -58422,7 +58443,7 @@ wrP
 hmn
 fMv
 xGT
-wZK
+jBh
 kml
 rms
 wrP

@@ -5,7 +5,7 @@
 /obj/effect/xenomorph
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
-	icon = 'icons/Xeno/effects.dmi'
+	icon = 'icons/Xeno/Effects.dmi'
 	layer = FLY_LAYER
 
 /obj/effect/xenomorph/splatter
