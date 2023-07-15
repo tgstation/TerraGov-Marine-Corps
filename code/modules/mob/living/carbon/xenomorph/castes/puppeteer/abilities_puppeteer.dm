@@ -62,7 +62,6 @@
 	action_icon_state = "pincushion"
 	desc = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
 	cooldown_timer = 5 SECONDS
-	//target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PINCUSHION,
 	)
