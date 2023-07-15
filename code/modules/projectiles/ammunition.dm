@@ -561,7 +561,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	ammo_type = /datum/ammo/bullet/shotgun/flechette
 
 /obj/item/shotgunbox/clf_heavyrifle
-	name = "14.5mm API Ammo Box"
+	name = "big ammo box (14.5mm API)"
 	caliber = CALIBER_14X5
 	icon_state = "ammobox_145"
 	item_state = "ammobox_145"
