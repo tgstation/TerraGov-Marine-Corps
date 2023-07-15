@@ -46,8 +46,7 @@
 	var/fury = received_auras[AURA_XENO_FURY] || 0
 	if(fury)
 		xeno_melee_damage_modifier = 1 + ((fury - 1) * 0.05)
-
-	..()
+	return ..()
 
 //widow code again hooray
 /datum/ai_behavior/puppet

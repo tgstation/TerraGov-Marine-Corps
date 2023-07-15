@@ -551,7 +551,7 @@
 /datum/status_effect/dread/on_creation(mob/living/new_owner, set_duration)
 	owner = new_owner
 	duration = set_duration
-	. = ..()
+	return ..()
 
 /datum/status_effect/dread/tick()
 	. = ..()
