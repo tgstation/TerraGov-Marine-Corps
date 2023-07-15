@@ -206,3 +206,22 @@
   - imageadd: add three more orange colors
   tyeagg:
   - rscadd: big map table to cic
+2023-07-15:
+  Lumipharon:
+  - bugfix: fixed a storage bug with some misc suits
+  - balance: Improved MG-27 aimmode penalty, ammo per mag, and damage falloff. Can
+      now fit a railscope
+  - balance: 'HvH: MG-27 loadout has a barrel charger'
+  - qol: Removed description references to old firemodes for laser weapons
+  Overdrive659:
+  - rscadd: Added rocks to lava rivers
+  - rscdel: Removed infuriating lavaspaces
+  - balance: Marine LZs bulked
+  - balance: Moved diskys
+  chizzy376:
+  - rscadd: Added a new tadpole, Umbilical.
+  iLikeMemes:
+  - bugfix: fixed queen's description still mentioning that she lays eggs.
+  ivanmixo:
+  - bugfix: Crash vendor doesn't pull from shipside weapons vendor anymore
+  - bugfix: Fixed xeno jobs needing more points than intended
