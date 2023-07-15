@@ -32,7 +32,7 @@
 
 /mob/living/carbon/xenomorph/puppet/Life()
 	. = ..()
-	var/atom/movable/master = weak_master.resolve()
+	var/atom/movable/master = weak_master?.resolve()
 	if(!master)
 		return
 	if(get_dist(src, master) > WITHER_RANGE)
@@ -42,7 +42,7 @@
 
 /mob/living/carbon/xenomorph/puppet/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
 	. = ..()
-	var/atom/movable/master = weak_master.resolve()
+	var/atom/movable/master = weak_master?.resolve()
 	if(!master)
 		return
 	if(source != master) //puppeteer phero only
