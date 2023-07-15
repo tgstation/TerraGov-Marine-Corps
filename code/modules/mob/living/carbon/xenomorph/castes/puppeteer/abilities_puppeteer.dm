@@ -173,7 +173,9 @@
 
 	victim.unequip_everything()
 	victim.gib()
-	add_puppet(new /mob/living/carbon/xenomorph/puppet(victim_turf, owner))
+	var/mob/living/carbon/xenomorph/puppet = new /mob/living/carbon/xenomorph/puppet(victim_turf, owner)
+	puppet.voice = victim.voice
+	add_puppet(puppet)
 	add_cooldown()
 
 /// Adds a puppet to our list, this is basically just widow code
