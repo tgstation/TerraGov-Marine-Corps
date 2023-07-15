@@ -15,6 +15,9 @@
 
 /datum/action/xeno_action/activable/flay/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return
+	
 	if(!ishuman(target))
 		if(!silent)
 			to_chat(owner, span_xenowarning("We cant find any suitable flesh on this thing!"))
@@ -30,9 +33,6 @@
 	if(target_human.stat == DEAD)
 		to_chat(owner_xeno, span_xenonotice("Dead meat is bad meat!"))
 		return FALSE
-
-	if(!.)
-		return
 
 	if(owner_xeno.plasma_stored >= owner_xeno.xeno_caste.plasma_max)
 		if(!silent)
@@ -136,6 +136,8 @@
 
 /datum/action/xeno_action/activable/refurbish_husk/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/human/target_human = target
 	if(!ishuman(target))
@@ -161,8 +163,6 @@
 		return FALSE
 #endif
 
-	if(!.)
-		return
 	owner_xeno.face_atom(target_human)
 	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] begins carving out, doing all sorts of horrible things to [target_human]!"))
 	if(!do_after(owner_xeno, 8 SECONDS, FALSE, target_human, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
@@ -209,6 +209,9 @@
 
 /datum/action/xeno_action/activable/puppet/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return
+
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(isclosedturf(target))
 		if(!silent)
@@ -225,8 +228,6 @@
 			to_chat(owner_xeno, span_xenonotice("We need to be next to where we want to create a puppet."))
 		return FALSE
 
-	if(!.)
-		return
 	owner_xeno.face_atom(target)
 	//reverse gib here
 	owner_xeno.visible_message(span_warning("[owner_xeno] begins to vomit out biomass and skillfully sews various bits and pieces together!"))
@@ -359,6 +360,9 @@
 
 /datum/action/xeno_action/activable/living_construct/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return
+	
 	if(!isstructure(target) && !isitem(target))
 		if(!silent)
 			owner.balloon_alert(owner, "not an object or item!")
@@ -378,9 +382,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "not adjacent!")
 		return FALSE
-
-	if(!.)
-		return
+	
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(target)
 	if(!do_after(owner_xeno, 10 SECONDS, FALSE, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
