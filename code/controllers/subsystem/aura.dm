@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(aura)
 	///Whether we should skip the next tick. Set to false after skipping once. Won't pulse to targets or reduce duration.
 	var/suppressed = FALSE
 	///If theres anything in this list, only give our aura to specific caste types in this list
-	var/specific_castes = list()
+	var/list/specific_castes = list()
 
 /datum/aura_bearer/New(atom/aura_emitter, aura_names, aura_range, aura_strength, aura_duration, aura_faction, aura_hivenumber, aura_castes)
 	..()
