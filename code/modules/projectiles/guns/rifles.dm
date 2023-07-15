@@ -675,8 +675,8 @@
 //DP-27
 
 /obj/item/weapon/gun/rifle/dpm
-	name = "\improper Degtyaryov 'RP' Machine Gun"
-	desc = "A cheap and robust machine gun seen commonly in the fringes of the 'Bubble' it fires high caliber rounds to accomdate for a sluggish rate of fire, is generally found being called 'The Record Player' due to the resemblance. Fires 7.62x54mmR rounds."
+	name = "\improper Degtyaryov 'RP' machine gun"
+	desc = "A cheap and robust machine gun seen commonly in the fringes of the bubble. Fires high caliber rounds to accommodate for its sluggish rate of fire, it is generally found being called 'The Record Player' due to the resemblance. Fires 7.62x54mmR rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "dp27"
 	item_state = "dp27"
