@@ -1,5 +1,5 @@
 /datum/game_mode/combat_patrol
-	name = "Combat Patrol"
+	name = "Merc War"
 	config_tag = "Combat Patrol"
 	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	shutters_drop_time = 3 MINUTES
