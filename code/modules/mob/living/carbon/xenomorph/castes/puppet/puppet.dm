@@ -73,7 +73,7 @@
 	RegisterSignal(escorted_atom, COMSIG_PUPPET_CHANGE_ALL_ORDER, PROC_REF(change_order))
 	RegisterSignal(mob_parent, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
 	change_order(null, PUPPET_RECALL)
-	feed = locate() in mob_parent.actions
+	feed = mob_parent.actions_by_path[/datum/action/xeno_action/activable/feed]
 
 /datum/ai_behavior/puppet/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, PROC_REF(deal_with_obstacle))
