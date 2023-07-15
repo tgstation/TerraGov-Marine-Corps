@@ -1,6 +1,6 @@
-/datum/game_mode/combat_patrol
-	name = "Combat Patrol"
-	config_tag = "Combat Patrol"
+/datum/game_mode/combat_strike
+	name = "Combat Strike"
+	config_tag = "Combat Strike"
 	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
@@ -37,7 +37,7 @@
 	var/game_timer_delay = 5 MINUTES
 
 
-/datum/game_mode/combat_patrol/post_setup()
+/datum/game_mode/combat_strike/post_setup()
 	. = ..()
 	for(var/area/area_to_lit AS in GLOB.sorted_areas)
 		switch(area_to_lit.ceiling)
@@ -50,19 +50,19 @@
 			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
 
-/datum/game_mode/combat_patrol/scale_roles()
+/datum/game_mode/combat_strike/scale_roles()
 	. = ..()
 	if(!.)
 		return
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/som/squad/veteran)
 	scaled_job.job_points_needed = 5 //Every 5 non vets join, a new vet slot opens
 
-/datum/game_mode/combat_patrol/announce()
-	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")
-	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
+/datum/game_mode/combat_strike/announce()
+	to_chat(world, "<b>The current game mode is - Combat strike!</b>")
+	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat strikes frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
 
 //sets TGMC and SOM squads
-/datum/game_mode/combat_patrol/set_valid_squads()
+/datum/game_mode/combat_strike/set_valid_squads()
 	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	SSjob.active_squads[FACTION_SOM] = list()
 	for(var/key in SSjob.squads)
@@ -71,7 +71,7 @@
 			SSjob.active_squads[squad.faction] += squad
 	return TRUE
 
-/datum/game_mode/combat_patrol/get_joinable_factions(should_look_balance)
+/datum/game_mode/combat_strike/get_joinable_factions(should_look_balance)
 	if(should_look_balance)
 		if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) > length(GLOB.alive_human_list_faction[FACTION_SOM]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
 			return list(FACTION_SOM)
@@ -79,17 +79,17 @@
 			return list(FACTION_TERRAGOV)
 	return list(FACTION_TERRAGOV, FACTION_SOM)
 
-/datum/game_mode/combat_patrol/setup_blockers()
+/datum/game_mode/combat_strike/setup_blockers()
 	. = ..()
 	//Starts the round timer when the game starts proper
-	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, set_game_timer)), SSticker.round_start_time + shutters_drop_time + game_timer_delay) //game cannot end until at least 5 minutes after shutter drop
-	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, respawn_wave)), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
-	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
+	var/datum/game_mode/combat_strike/D = SSticker.mode
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_strike, set_game_timer)), SSticker.round_start_time + shutters_drop_time + game_timer_delay) //game cannot end until at least 5 minutes after shutter drop
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_strike, respawn_wave)), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_strike, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
 ///plays the intro sequence
-/datum/game_mode/combat_patrol/proc/intro_sequence()
+/datum/game_mode/combat_strike/proc/intro_sequence()
 	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	var/op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
@@ -99,36 +99,36 @@
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
 
 ///round timer
-/datum/game_mode/combat_patrol/proc/set_game_timer()
-	if(!iscombatpatrolgamemode(SSticker.mode))
+/datum/game_mode/combat_strike/proc/set_game_timer()
+	if(!iscombatstrikegamemode(SSticker.mode))
 		return
-	var/datum/game_mode/combat_patrol/D = SSticker.mode
+	var/datum/game_mode/combat_strike/D = SSticker.mode
 
 	if(D.game_timer)
 		return
 
-	D.game_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, set_game_end)), max_game_time, TIMER_STOPPABLE)
+	D.game_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_strike, set_game_end)), max_game_time, TIMER_STOPPABLE)
 
-/datum/game_mode/combat_patrol/game_end_countdown()
+/datum/game_mode/combat_strike/game_end_countdown()
 	if(!game_timer)
 		return
 	var/eta = timeleft(game_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 	else
-		return "Patrol finished"
+		return "strike finished"
 
-/datum/game_mode/combat_patrol/wave_countdown()
+/datum/game_mode/combat_strike/wave_countdown()
 	if(!wave_timer)
 		return
 	var/eta = timeleft(wave_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
-/datum/game_mode/combat_patrol/proc/set_game_end()
+/datum/game_mode/combat_strike/proc/set_game_end()
 	max_time_reached = TRUE
 
-/datum/game_mode/combat_patrol/process()
+/datum/game_mode/combat_strike/process()
 	if(round_finished)
 		return PROCESS_KILL
 
@@ -140,7 +140,7 @@
 #define BIOSCAN_DELTA(count, delta) count ? max(0, count + rand(-delta, delta)) : 0
 
 ///Annonce to everyone the number of xeno and marines on ship and ground
-/datum/game_mode/combat_patrol/proc/announce_bioscans_marine_som(show_locations = TRUE, delta = 2, announce_marines = TRUE, announce_som = TRUE)
+/datum/game_mode/combat_strike/proc/announce_bioscans_marine_som(show_locations = TRUE, delta = 2, announce_marines = TRUE, announce_som = TRUE)
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 	//pulls the number of marines and SOM
 	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
@@ -192,19 +192,19 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 #undef BIOSCAN_DELTA
 
 ///Allows all the dead to respawn together
-/datum/game_mode/combat_patrol/proc/respawn_wave()
-	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	D.wave_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, respawn_wave)), wave_timer_length, TIMER_STOPPABLE)
+/datum/game_mode/combat_strike/proc/respawn_wave()
+	var/datum/game_mode/combat_strike/D = SSticker.mode
+	D.wave_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_strike, respawn_wave)), wave_timer_length, TIMER_STOPPABLE)
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
 		GLOB.key_to_time_of_role_death[M.key] -= respawn_time
 		M.playsound_local(M, 'sound/ambience/votestart.ogg', 75, 1)
 		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /atom/movable/screen/text/screen_text/command_order)
-		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")
+		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh strike!")]</font><br>")
 
 ///checks how many marines and SOM are still alive
-/datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND), count_flags)
+/datum/game_mode/combat_strike/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND), count_flags)
 	var/list/som_alive = list()
 	var/list/som_dead = list()
 	var/list/tgmc_alive = list()
@@ -235,7 +235,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	return list(som_alive, tgmc_alive, som_dead, tgmc_dead)
 
 //End game checks
-/datum/game_mode/combat_patrol/check_finished()
+/datum/game_mode/combat_strike/check_finished()
 	if(round_finished)
 		return TRUE
 
@@ -255,41 +255,41 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
 	if(!num_tgmc)
 		if(!num_som)
-			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //everyone died at the same time, no one wins
-			round_finished = MODE_COMBAT_PATROL_DRAW
+			message_admins("Round finished: [MODE_COMBAT_strike_DRAW]") //everyone died at the same time, no one wins
+			round_finished = MODE_COMBAT_strike_DRAW
 			return TRUE
-		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]") //SOM wiped out ALL the marines, SOM major victory
-		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
+		message_admins("Round finished: [MODE_COMBAT_strike_SOM_MAJOR]") //SOM wiped out ALL the marines, SOM major victory
+		round_finished = MODE_COMBAT_strike_SOM_MAJOR
 		return TRUE
 
 	if(!num_som)
-		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]") //Marines wiped out ALL the SOM, marine major victory
-		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
+		message_admins("Round finished: [MODE_COMBAT_strike_MARINE_MAJOR]") //Marines wiped out ALL the SOM, marine major victory
+		round_finished = MODE_COMBAT_strike_MARINE_MAJOR
 		return TRUE
 
 	//minor victories for more kills or draw for equal kills
 	if(num_dead_marines > num_dead_som)
-		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MINOR]") //The SOM inflicted greater casualties on the marines, SOM minor victory
-		round_finished = MODE_COMBAT_PATROL_SOM_MINOR
+		message_admins("Round finished: [MODE_COMBAT_strike_SOM_MINOR]") //The SOM inflicted greater casualties on the marines, SOM minor victory
+		round_finished = MODE_COMBAT_strike_SOM_MINOR
 		return TRUE
 	if(num_dead_som > num_dead_marines)
-		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MINOR]") //The marines inflicted greater casualties on the SOM, marine minor victory
-		round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
+		message_admins("Round finished: [MODE_COMBAT_strike_MARINE_MINOR]") //The marines inflicted greater casualties on the SOM, marine minor victory
+		round_finished = MODE_COMBAT_strike_MARINE_MINOR
 		return TRUE
 
-	message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //equal number of kills, or any other edge cases
-	round_finished = MODE_COMBAT_PATROL_DRAW
+	message_admins("Round finished: [MODE_COMBAT_strike_DRAW]") //equal number of kills, or any other edge cases
+	round_finished = MODE_COMBAT_strike_DRAW
 	return TRUE
 
 
-/datum/game_mode/combat_patrol/declare_completion()
+/datum/game_mode/combat_strike/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
 
-/datum/game_mode/combat_patrol/announce_round_stats()
+/datum/game_mode/combat_strike/announce_round_stats()
 	//sets up some stats which are added if applicable
 	var/tgmc_survival_stat
 	var/som_survival_stat
@@ -312,8 +312,8 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 		som_accuracy_stat = ", for an accuracy of [(GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] / GLOB.round_statistics.total_projectiles_fired[FACTION_SOM]) * 100]%!."
 
 	var/list/dat = list({"[span_round_body("The end of round statistics are:")]<br>
-		<br>[GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]] TGMC personel deployed for the patrol, and [GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] ? GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] : "no"] TGMC personel were killed. [tgmc_survival_stat ? tgmc_survival_stat : ""]
-		<br>[GLOB.round_statistics.total_humans_created[FACTION_SOM]] SOM personel deployed for the patrol, and [GLOB.round_statistics.total_human_deaths[FACTION_SOM] ? GLOB.round_statistics.total_human_deaths[FACTION_SOM] : "no"] SOM personel were killed. [som_survival_stat ? som_survival_stat : ""]
+		<br>[GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]] TGMC personel deployed for the strike, and [GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] ? GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] : "no"] TGMC personel were killed. [tgmc_survival_stat ? tgmc_survival_stat : ""]
+		<br>[GLOB.round_statistics.total_humans_created[FACTION_SOM]] SOM personel deployed for the strike, and [GLOB.round_statistics.total_human_deaths[FACTION_SOM] ? GLOB.round_statistics.total_human_deaths[FACTION_SOM] : "no"] SOM personel were killed. [som_survival_stat ? som_survival_stat : ""]
 		<br>The TGMC fired [GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_SOM] ? GLOB.round_statistics.total_projectile_hits[FACTION_SOM] : "No"] projectiles managed to hit members of the SOM[tgmc_accuracy_stat ? tgmc_accuracy_stat : "."]
 		<br>The SOM fired [GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] ? GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] : "No"] projectiles managed to hit members of the TGMC[som_accuracy_stat ? som_accuracy_stat : "."]
 		"})
