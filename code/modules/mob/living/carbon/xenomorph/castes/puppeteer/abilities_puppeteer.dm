@@ -428,7 +428,7 @@
 
 /datum/action/xeno_action/puppeteer_orders
 	name = "Give Orders to Puppets"
-	action_icon_state = "1"
+	action_icon_state = "orders"
 	desc = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SENDORDERS,
