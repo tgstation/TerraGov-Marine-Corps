@@ -107,7 +107,7 @@
 	var/obj/effect/overlay/dread/effect = new
 	owner.vis_contents += effect
 	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
-		to_chat(human, span_userdanger("oh god what the fuck oh god oh god"))
+		to_chat(human, span_userdanger("An overwhelming sense of dread washes over you..."))
 		human.set_timed_status_effect(6 SECONDS, /datum/status_effect/dread)
 		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob/living/carbon/human, emote), "scream"), rand(1,2))
 	addtimer(CALLBACK(src, PROC_REF(clear_effect), effect), 3 SECONDS)
