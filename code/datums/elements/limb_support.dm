@@ -16,7 +16,6 @@
 	. = ..()
 	UnregisterSignal(source, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
 
-
 /datum/element/limb_support/proc/equipped(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
 	if(!ishuman(equipper))
@@ -24,11 +23,13 @@
 	RegisterSignal(equipper, COMSIG_HUMAN_LIMB_FRACTURED, PROC_REF(fuckibrokemyleg))
 	fuckibrokemyleg(equipper, null, FALSE) // manually called when equipped to stabilize limbs
 
+///stops stabilizing limbs when dropped
 /datum/element/limb_support/proc/dropped(datum/source, mob/equipper)
 	SIGNAL_HANDLER
 	fuckibrokemyleg(equipper, null, TRUE) // manually called when dropped to remove stabilization of limbs
 	UnregisterSignal(equipper, COMSIG_HUMAN_LIMB_FRACTURED)
 
+///stabilizes a limb when broken
 /datum/element/limb_support/proc/fuckibrokemyleg(datum/owner, datum/limb/fractured_limb, dropped = FALSE)
 	SIGNAL_HANDLER
 	if(!ishuman(owner))
