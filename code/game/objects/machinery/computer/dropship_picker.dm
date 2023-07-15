@@ -60,6 +60,7 @@
 		"_big" = 'icons/ui_icons/dropshippicker/_big.png',
 		"_food" = 'icons/ui_icons/dropshippicker/_food.png',
 		"_factorio" = 'icons/ui_icons/dropshippicker/_factorio.png',
+		"_umbilical" = 'icons/ui_icons/dropshippicker/_umbilical.png',
 	)
 
 /obj/machinery/computer/dropship_picker/ui_act(action, list/params, datum/tgui/ui)

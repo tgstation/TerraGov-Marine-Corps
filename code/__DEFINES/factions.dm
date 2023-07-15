@@ -17,7 +17,6 @@
 #define FACTION_HIVEBOT "Hivebot"
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
-#define FACTION_VALHALLA "Valhalla"
 #define FACTION_SPECFORCE "Special Forces"
 
 //Alignement are currently only used by req.

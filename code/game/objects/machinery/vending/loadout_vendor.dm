@@ -9,7 +9,7 @@
 	req_access = null
 	req_one_access = null
 	///The faction of this loadout vendor
-	var/faction = FACTION_NEUTRAL
+	var/faction = VENDOR_FACTION_NEUTRAL
 
 /obj/machinery/loadout_vendor/can_interact(mob/user)
 	. = ..()
@@ -37,6 +37,9 @@
 	user.client.prefs.loadout_manager.loadout_vendor = src
 	user.client.prefs.loadout_manager.ui_interact(user)
 
+/obj/machinery/loadout_vendor/crash
+	faction = VENDOR_FACTION_CRASH
+
 /obj/machinery/loadout_vendor/valhalla
 	resistance_flags = INDESTRUCTIBLE
-	faction = FACTION_VALHALLA
+	faction = VENDOR_FACTION_VALHALLA

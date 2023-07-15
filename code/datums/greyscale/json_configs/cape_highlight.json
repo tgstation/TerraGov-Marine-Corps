@@ -36,6 +36,18 @@
 			"icon_state": "normal_h"
 		}
 	],
+	"highlight_normal (alt)":[
+		{
+			"type": "hyperscale",
+			"icon_state": "normal_alt"
+		}
+	],
+	"highlight_normal (alt)_h":[
+		{
+			"type": "hyperscale",
+			"icon_state": "normal_alt_h"
+		}
+	],
 	"highlight_short":[
 		{
 			"type": "hyperscale",

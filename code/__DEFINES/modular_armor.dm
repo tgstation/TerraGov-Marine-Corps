@@ -48,6 +48,9 @@
 #define ARMOR_PALETTE_ORANGE "#492213#652c16#85391e#c16737#c8845e"
 #define ARMOR_PALETTE_BEIGE "#3F1F22#662726#913737#BC623C#E28F4F"
 #define ARMOR_PALETTE_EARTH "#301111#59342A#8E573D#BA855D#CEA486"
+#define ARMOR_PALETTE_HAZARD "#512b39#9d412e#dd782f#f8b053#fac783"
+#define ARMOR_PALETTE_BLAZE "#2b0517#7f190f#c75017#e99041#efb077"
+#define ARMOR_PALETTE_PERSIMMON "#2c041f#810d19#ec703e#ca2e14#f19975"
 
 //Yellow
 #define ARMOR_PALETTE_YELLOW "#5c5027#6f6633#837b41#9f9a5d#b5b188"
@@ -125,7 +128,7 @@
 
 
 #define ARMOR_PALETTES_LIST list(\
-		"Default" = list(\
+		"Default Armor" = list(\
 			"Drab" = ARMOR_PALETTE_DRAB,\
 			"Brown" = ARMOR_PALETTE_BROWN,\
 			"Wood" = ARMOR_PALETTE_WOOD,\
@@ -157,6 +160,9 @@
 			"Orange" = ARMOR_PALETTE_ORANGE,\
 			"Beige" = ARMOR_PALETTE_BEIGE,\
 			"Earth" = ARMOR_PALETTE_EARTH,\
+			"Hazard" = ARMOR_PALETTE_HAZARD,\
+			"Blaze" = ARMOR_PALETTE_BLAZE,\
+			"Persimmon" = ARMOR_PALETTE_PERSIMMON,\
 		),\
 		"Yellow" = list(\
 			"Gold" = ARMOR_PALETTE_YELLOW,\
@@ -199,7 +205,7 @@
 	)
 
 #define VISOR_PALETTES_LIST list(\
-		"Default" = list(\
+		"Default Visors" = list(\
 			"Gold" = VISOR_PALETTE_GOLD,\
 			"Silver" = VISOR_PALETTE_SILVER,\
 			"Black" = VISOR_PALETTE_BLACK,\
