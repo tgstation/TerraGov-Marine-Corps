@@ -58,7 +58,7 @@
 	scaled_job.job_points_needed = 5 //Every 5 non vets join, a new vet slot opens
 
 /datum/game_mode/combat_patrol/announce()
-	to_chat(world, "<b>The current game mode is - Combat patrol!</b>")
+	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")
 	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
 
 //sets TGMC and SOM squads
@@ -116,7 +116,7 @@
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 	else
-		return "patrol finished"
+		return "Patrol finished"
 
 /datum/game_mode/combat_patrol/wave_countdown()
 	if(!wave_timer)
