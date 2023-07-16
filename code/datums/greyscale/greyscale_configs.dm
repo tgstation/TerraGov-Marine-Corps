@@ -43,6 +43,10 @@
 /datum/greyscale_config/visors
 	icon_file = 'icons/mob/modular/visors.dmi'
 	json_config = 'code/datums/greyscale/json_configs/visors.json'
+	greyscale_flags = HYPERSCALE_ALLOW_GREYSCALE
+
+/datum/greyscale_config/visors/glyphs
+	json_config = 'code/datums/greyscale/json_configs/visor_glyphs.json'
 
 /datum/greyscale_config/visors/greyscale
 	json_config = 'code/datums/greyscale/json_configs/greyscale_visor.json'
@@ -51,40 +55,13 @@
 /datum/greyscale_config/cape
 	icon_file = 'icons/mob/modular/capes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/cape.json'
-	prefix = "full_"
 
-/datum/greyscale_config/cape/half
-	prefix = "half_"
-
-/datum/greyscale_config/cape/short
-	prefix = "short_"
-
-/datum/greyscale_config/cape/short/old
-	prefix = "short_old_"
-/datum/greyscale_config/cape/scarf
-	prefix = "scarf_"
-
-/datum/greyscale_config/cape/kama
-	prefix = "kama_"
 
 //Cape highlights
 /datum/greyscale_config/cape_highlight
 	icon_file = 'icons/mob/modular/capes_highlight.dmi'
 	json_config = 'code/datums/greyscale/json_configs/cape_highlight.json'
-	prefix = "full_"
-
-/datum/greyscale_config/cape_highlight/half
-	prefix = "half_"
-
-/datum/greyscale_config/cape_highlight/short
-	prefix = "short_"
-
-/datum/greyscale_config/cape_highlight/scarf
-	prefix = "scarf_"
-
-/datum/greyscale_config/cape_highlight/kama
-	prefix = "kama_"
-
+	greyscale_flags = HYPERSCALE_ALLOW_GREYSCALE
 
 /*
 	JAEGER - MK1
@@ -119,6 +96,9 @@
 
 /datum/greyscale_config/armor_mk1/skirmisher
 	icon_file = 'icons/mob/modular/mark_one/skirmisher.dmi'
+
+/datum/greyscale_config/armor_mk1/kabuto
+	icon_file = 'icons/mob/modular/mark_one/kabuto.dmi'
 
 //Mark 2
 
@@ -194,9 +174,15 @@
 	icon_file = 'icons/mob/modular/style_mob.dmi'
 	json_config = 'code/datums/greyscale/json_configs/stylehats.json'
 
+/datum/greyscale_config/style_hat/badge
+	json_config = 'code/datums/greyscale/json_configs/stylehats_greyscale.json'
+
 /datum/greyscale_config/duster
 	icon_file = 'icons/mob/modular/style_mob.dmi'
 	json_config = 'code/datums/greyscale/json_configs/duster.json'
+
+/datum/greyscale_config/duster/leather_jacket
+	json_config = 'code/datums/greyscale/json_configs/leather_jacket.json'
 
 /*
  * COLORABLE BADGES
@@ -304,3 +290,8 @@
 
 /datum/greyscale_config/mech_vanguard/visor
 	json_config = 'code/datums/greyscale/json_configs/mech_visor.json'
+
+//HAIR
+/datum/greyscale_config/broken_man
+	icon_file = 'icons/mob/human_face.dmi'
+	json_config = 'code/datums/greyscale/json_configs/broken_man.json'

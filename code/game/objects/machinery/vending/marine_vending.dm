@@ -229,7 +229,6 @@
 	)
 
 /obj/machinery/vending/weapon/crash
-
 	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
@@ -1064,6 +1063,11 @@
 			/obj/item/armor_module/module/style/light_armor = -1,
 			/obj/item/armor_module/module/style/medium_armor = -1,
 			/obj/item/armor_module/module/style/heavy_armor = -1,
+			/obj/item/clothing/head/modular/marine/kabuto = -1,
+			/obj/item/armor_module/armor/chest/marine/kabuto = -1,
+			/obj/item/armor_module/armor/legs/marine/kabuto = -1,
+			/obj/item/armor_module/armor/arms/marine/kabuto = -1,
+
 		),
 		"Jaeger Mk.I chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
@@ -1149,10 +1153,6 @@
 			/obj/item/clothing/shoes/cowboy = -1,
 			/obj/item/armor_module/armor/badge = -1,
 			/obj/item/armor_module/armor/cape = -1,
-			/obj/item/armor_module/armor/cape/half = -1,
-			/obj/item/armor_module/armor/cape/scarf = -1,
-			/obj/item/armor_module/armor/cape/short = -1,
-			/obj/item/armor_module/armor/cape/short/classic = -1,
 			/obj/item/armor_module/armor/cape/kama = -1,
 			/obj/item/armor_module/module/pt_belt = -1,
 		),

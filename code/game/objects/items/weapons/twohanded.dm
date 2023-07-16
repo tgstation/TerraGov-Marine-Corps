@@ -271,7 +271,7 @@
 	///Based on what direction the tip of the spear is pointed at in the sprite; maybe someone makes a spear that points northwest
 	var/current_angle = 45
 
-/obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying)
+/obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	spin = FALSE
 	//Find the angle the spear is to be thrown at, then rotate it based on that angle
 	var/rotation_value = Get_Angle(thrower, get_turf(target)) - current_angle

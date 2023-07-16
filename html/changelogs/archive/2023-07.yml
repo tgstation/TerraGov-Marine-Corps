@@ -148,3 +148,80 @@
   - bugfix: Underbarrel weapons no longer get delayed by the anti-juggle component
   Scarlet-Oduko:
   - bugfix: SG pistol no longer locks you out of your goggles
+2023-07-11:
+  Kapu1178:
+  - code_imp: Saved a large amount of tick time in sound.
+  hyper2snyper:
+  - rscadd: There are now 30 cape types. Thank you Orca.
+  - rscadd: Skull on the Eva helmets is colorable.
+  - rscadd: Color wheel added to some visors and cape highlights
+  wirpy:
+  - bugfix: broken man sprite
+  - imageadd: Broken man greyscale sprite + seperate uncolorable eye part
+  - rscadd: re-named old broken man sprite to ---> rough man
+  - config: broken man and general hair section added to greyscale config
+  - rscadd: greyscale json for broken man
+  - rscadd: greyscale functionality to hair & beards in update_icons.dm
+  - rscadd: broken man & rough man to sprite_accessories.dm
+  - rscadd: greyscale var to  sprite_accessories.dm
+2023-07-12:
+  Lumipharon:
+  - rscadd: Added a jump throw mechanic
+  MacBlaze1:
+  - balance: TA-50 mortar now has 400 effective health against marines, because it
+      has 50 laser, bullet, and energy armor plus other ones on 200 health, with the
+      howitzer and MLRS also having 2x increases against marines.
+  hyper2snyper:
+  - bugfix: Fixes the spam of None in the highlight variant selector on capes.
+  - bugfix: Fixes visor colors being inaccessible due to how string_list() works
+  - bugfix: Fixes some orientations on cape sprites.
+  ivanmixo:
+  - rscdel: Deleted the distress signal gamemode
+  novaepee:
+  - rscadd: Kabuto armor, a Japanese-Inspired Armor; find it in the style line tab!
+2023-07-13:
+  Arturlang:
+  - bugfix: The nuclear explosion will actually, properly, goddamn, kill you, instead
+      of just singing you slightly
+  novaepee:
+  - balance: move miner near Magmoor's west landing zone further north
+2023-07-14:
+  AusarAtkin:
+  - rscadd: Added Drop Pods to Reqtorio, and the refills for them to the supply console.
+  Barnet2:
+  - balance: Decreased sunder on TAT APCR and increaed pen, increased sunder slightly
+      on other rounds
+  - balance: TAT has an anchor channel time of 1 second, and cannot be rotated while
+      anchored, or fired while unanchored.
+  Lumipharon:
+  - bugfix: fixed jump throws not going over objects that they should
+  RipGrayson:
+  - rscadd: Added support for AI players to set emergency access on shipside doors
+  - imageadd: Added some graphics for emergency access on doors
+  Scarlet-Oduko:
+  - bugfix: no more infinite SG pistols, now you can get goggles with them
+  forestbbbbbbb:
+  - bugfix: Fix vali necro overlay not disappearing
+  novaepee:
+  - imageadd: add three more orange colors
+  tyeagg:
+  - rscadd: big map table to cic
+2023-07-15:
+  Lumipharon:
+  - bugfix: fixed a storage bug with some misc suits
+  - balance: Improved MG-27 aimmode penalty, ammo per mag, and damage falloff. Can
+      now fit a railscope
+  - balance: 'HvH: MG-27 loadout has a barrel charger'
+  - qol: Removed description references to old firemodes for laser weapons
+  Overdrive659:
+  - rscadd: Added rocks to lava rivers
+  - rscdel: Removed infuriating lavaspaces
+  - balance: Marine LZs bulked
+  - balance: Moved diskys
+  chizzy376:
+  - rscadd: Added a new tadpole, Umbilical.
+  iLikeMemes:
+  - bugfix: fixed queen's description still mentioning that she lays eggs.
+  ivanmixo:
+  - bugfix: Crash vendor doesn't pull from shipside weapons vendor anymore
+  - bugfix: Fixed xeno jobs needing more points than intended
