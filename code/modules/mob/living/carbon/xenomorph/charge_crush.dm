@@ -36,11 +36,14 @@
 	var/plasma_use_multiplier = 1
 	///If this charge should keep momentum on dir change and if it can charge diagonally
 	var/agile_charge = FALSE
+	/// Whether this ability should be activated when given.
+	var/should_start_on = TRUE
 
 
 /datum/action/xeno_action/ready_charge/give_action(mob/living/L)
 	. = ..()
-	action_activate()
+	if(should_start_on)
+		action_activate()
 
 
 /datum/action/xeno_action/ready_charge/Destroy()

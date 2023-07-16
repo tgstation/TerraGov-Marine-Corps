@@ -115,121 +115,46 @@
 			continue
 		landslide_action.enhanced_warnings += new warning_type(target_turf)
 
-/*
+/// Simulates a high jump animation, changing pass flags and status flags accordingly.
+/proc/behemoth_jump(mob/living/owner, layer = ABOVE_MOB_LAYER, duration = 1.5 SECONDS)
+	owner.layer = layer
+	owner.flags_pass |= HOVERING
+	owner.status_flags |= (INCORPOREAL|GODMODE)
+	animate(owner, pixel_y = owner.pixel_y + 40, time = duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW)
+	animate(pixel_y = initial(owner.pixel_y), time = duration / 2, easing = CIRCULAR_EASING|EASE_IN)
+	addtimer(CALLBACK(src, PROC_REF(behemoth_jump_landing), owner), duration)
+
+/// Ends the jump, resetting flags and handling visuals.
+/proc/behemoth_jump_landing(mob/living/owner)
+	owner.layer = initial(owner.layer)
+	owner.flags_pass &= ~HOVERING
+	owner.status_flags &= ~(INCORPOREAL|GODMODE)
+	var/landing_turf = get_turf(owner)
+	playsound(landing_turf, 'sound/effects/behemoth/seismic_fracture_landing.ogg', 10, TRUE)
+	new /obj/effect/temp_visual/behemoth/stomp(landing_turf)
+
+
 // ***************************************
 // *********** Roll
 // ***************************************
-#define BEHEMOTH_ROLL_WIND_UP 2.5 SECONDS
-#define BEHEMOTH_ROLL_MOVEMENT_DELAY 40 //4 seconds
+#define BEHEMOTH_ROLL_WIND_UP 2 SECONDS
 
-/datum/action/xeno_action/behemoth_roll
+/datum/action/xeno_action/ready_charge/behemoth_roll
 	name = "Roll"
-	ability_name = "Roll"
-	action_icon_state = "4"
-	desc = "Curl up into a ball, sacrificing some offensive capabilities in exchange for greater movement speed."
-	cooldown_timer = 25 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BEHEMOTH_ROLL,
-	)
-	var/currently_moving = FALSE
-	/// Whether this ability is active or not.
-	var/ability_active = FALSE
-	/// The direction in which we're rolling.
-	var/rolling_direction = null
-	/// Counter that determines how long you've been changing directions.
-	var/turning_counter = 0
-	/// How many steps we've taken.
-	var/steps_taken = 0
-	/// The maximum amount of steps needed to achieve maximum velocity.
-	var/max_steps = 6
-	/// The speed bonus we gain per step.
-	var/speed_per_step = -0.4
-	var/list/keybind_signals = list(COMSIG_KB_MOVEMENT_NORTH_DOWN, COMSIG_KB_MOVEMENT_SOUTH_DOWN, COMSIG_KB_MOVEMENT_WEST_DOWN, COMSIG_KB_MOVEMENT_EAST_DOWN)
+	desc = "Toggles Rolling on or off."
+	charge_type = CHARGE_BULL
+	speed_per_step = 0.15
+	steps_for_charge = 5
+	max_steps_buildup = 10
+	plasma_use_multiplier = 0
+	should_start_on = FALSE
 
-/datum/action/xeno_action/behemoth_roll/remove_action(mob/living/L)
-	if(ability_active)
-		action_activate(FALSE)
+/datum/action/xeno_action/ready_charge/behemoth_roll/action_activate()
+	if(charge_ability_on)
+		return ..()
+	if(!do_after(owner, BEHEMOTH_ROLL_WIND_UP, FALSE, owner, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
+		return
 	return ..()
-
-/*
-#define COMSIG_KB_MOVEMENT_NORTH_DOWN "keybinding_movement_north_down"
-#define COMSIG_KB_MOVEMENT_SOUTH_DOWN "keybinding_movement_south_down"
-#define COMSIG_KB_MOVEMENT_WEST_DOWN "keybinding_movement_west_down"
-#define COMSIG_KB_MOVEMENT_EAST_DOWN "keybinding_movement_east_down"
-*/
-
-/datum/action/xeno_action/behemoth_roll/action_activate(toggle)
-	if(!ability_active || toggle)
-		var/mob/living/carbon/xenomorph/xeno_owner = owner
-		if(!do_after(xeno_owner, BEHEMOTH_ROLL_WIND_UP, FALSE, xeno_owner, BUSY_ICON_DANGER,/* \
-			extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = xeno_owner.health))*/))
-			return
-		ability_active = TRUE
-		set_toggle(TRUE)
-		RegisterSignal(owner, COMSIG_KB_MOVEMENT_NORTH_DOWN, PROC_REF(movement_north))
-		RegisterSignal(owner, COMSIG_KB_MOVEMENT_SOUTH_DOWN, PROC_REF(movement_south))
-		RegisterSignal(owner, COMSIG_KB_MOVEMENT_WEST_DOWN, PROC_REF(movement_west))
-		RegisterSignal(owner, COMSIG_KB_MOVEMENT_EAST_DOWN, PROC_REF(movement_east))
-		add_cooldown(2 SECONDS)
-		return
-	message_admins("finish testing this bitch")
-	return
-/*
-	ability_active = FALSE
-	set_toggle(FALSE)
-	stop_momentum()
-	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED)
-	add_cooldown()
-*/
-
-/datum/action/xeno_action/activable/landslide/proc/movement_north(datum/source)
-	if(currently_moving)
-		return
-	do_movement(NORTH, BEHEMOTH_ROLL_MOVEMENT_DELAY, TRUE)
-
-/datum/action/xeno_action/activable/landslide/proc/movement_south(datum/source)
-	if(currently_moving)
-		return
-	do_movement(SOUTH, BEHEMOTH_ROLL_MOVEMENT_DELAY, TRUE)
-
-/datum/action/xeno_action/activable/landslide/proc/movement_west(datum/source)
-	if(currently_moving)
-		return
-	do_movement(WEST, BEHEMOTH_ROLL_MOVEMENT_DELAY, TRUE)
-
-/datum/action/xeno_action/activable/landslide/proc/movement_west(datum/source)
-	if(currently_moving)
-		return
-	do_movement(EAST, BEHEMOTH_ROLL_MOVEMENT_DELAY, TRUE)
-
-/datum/action/xeno_action/activable/landslide/proc/do_movement(direction, movement_delay, voluntary)
-	message_admins("do_movement([source_keybind], [direction])")
-	currently_moving = TRUE
-	if(owner.stat || !ability_active)
-		end_movement()
-		return
-	step(owner, direction, 1)
-	if(steps_taken < max_steps)
-		steps_taken++
-	addtimer(CALLBACK(src, PROC_REF(check_movement), direction, movement_delay), clamp(movement_delay - (steps_taken * 2.5), 0.1, BEHEMOTH_ROLL_MOVEMENT_DELAY))
-
-/datum/action/xeno_action/behemoth_roll/proc/check_movement(direction, movement_delay)
-	for(var/movement_keybind in movement_keybinds)
-		if(SEND_SIGNAL(owner, movement_keybind) & COMSIG_KB_ACTIVATED)
-			return do_movement(selected_direction(movement_keybind), movement_delay, TRUE)
-	do_movement(direction, movement_delay, FALSE)
-
-/datum/action/xeno_action/behemoth_roll/proc/selected_direction(keybind)
-	switch(keybind)
-		if(COMSIG_KB_MOVEMENT_NORTH_DOWN)
-			return NORTH
-		if(COMSIG_KB_MOVEMENT_SOUTH_DOWN)
-			return SOUTH
-		if(COMSIG_KB_MOVEMENT_WEST_DOWN)
-			return WEST
-		if(COMSIG_KB_MOVEMENT_EAST_DOWN)
-			return EAST
-*/
 
 
 // ***************************************
@@ -347,7 +272,7 @@
 /datum/action/xeno_action/activable/landslide
 	name = "Landslide"
 	ability_name = "Landslide"
-	action_icon_state = "headbutt"
+	action_icon_state = "landslide"
 	desc = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	plasma_cost = 3 // This is deducted per step taken during the ability.
 	cooldown_timer = 15 SECONDS
@@ -748,7 +673,7 @@
 /datum/action/xeno_action/activable/earth_riser
 	name = "Earth Riser"
 	ability_name = "Earth Riser"
-	action_icon_state = "unburrow"
+	action_icon_state = "earth_riser"
 	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. Alternate use destroys active pillars, starting with the oldest one."
 	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
@@ -769,6 +694,21 @@
 /datum/action/xeno_action/activable/earth_riser/remove_action(mob/living/carbon/xenomorph/X)
 	. = ..()
 	QDEL_LIST(active_pillars)
+
+// When the user's Rolling ability is active, Earth Riser changes to summon a pillar beneath the user while simulating a high jump.
+/datum/action/xeno_action/activable/earth_riser/keybind_activation()
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/datum/action/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/xeno_action/ready_charge/behemoth_roll]
+	if(!behemoth_roll_action.charge_ability_on)
+		return ..()
+	if(length(active_pillars) >= maximum_pillars)
+		xeno_owner.balloon_alert(xeno_owner, "Maximum amount of pillars reached")
+		return
+	if(!can_use_ability())
+		return
+	add_cooldown()
+	do_ability(get_turf(xeno_owner))
+	behemoth_jump(xeno_owner)
 
 /datum/action/xeno_action/activable/earth_riser/alternate_action_activate()
 	if(!length(active_pillars))
@@ -914,7 +854,7 @@
 /datum/action/xeno_action/activable/seismic_fracture
 	name = "Seismic Fracture"
 	ability_name = "Seismic Fracture"
-	action_icon_state = "4"
+	action_icon_state = "seismic_fracture"
 	desc = "Blast the earth around the selected location, inflicting heavy damage in a large radius."
 	plasma_cost = 35
 	cooldown_timer = 20 SECONDS
@@ -933,15 +873,20 @@
 	if(!line_of_sight(owner, target, SEISMIC_FRACTURE_RANGE))
 		owner.balloon_alert(owner, "Out of range")
 		return
-	var/owner_turf = get_turf(owner)
-	new /obj/effect/temp_visual/behemoth/stomp/east(owner_turf, owner.dir)
-	new /obj/effect/temp_visual/behemoth/crack(owner_turf, owner.dir)
-	do_stomp(owner, owner_turf)
+	var/target_turf = get_turf(target)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/datum/action/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/xeno_action/ready_charge/behemoth_roll]
+	if(behemoth_roll_action.charge_ability_on)
+		behemoth_jump(xeno_owner, duration = SEISMIC_FRACTURE_WIND_UP)
+		xeno_owner.throw_at(target_turf, SEISMIC_FRACTURE_RANGE * 2, 2)
+	var/owner_turf = get_turf(xeno_owner)
+	new /obj/effect/temp_visual/behemoth/stomp/east(owner_turf, xeno_owner.dir)
+	new /obj/effect/temp_visual/behemoth/crack(owner_turf, xeno_owner.dir)
+	do_stomp(xeno_owner, owner_turf)
 	var/datum/action/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/xeno_action/primal_wrath]
-	do_ability(get_turf(target), SEISMIC_FRACTURE_WIND_UP, primal_wrath_action?.ability_active? TRUE : FALSE)
+	do_ability(target_turf, SEISMIC_FRACTURE_WIND_UP, primal_wrath_action?.ability_active? TRUE : FALSE)
 
-/** Handles the warnings, calling the following procs, and any alterations caused by Primal Wrath.
+/** Handles the warnings, calling the following procs, as well as any alterations caused by Primal Wrath.
 * This has to be cut off from use_ability() to optimize code, due to an interaction with Earth Pillars.
 * Earth Pillars caught in the range of Seismic Fracture reflect the attack by calling this proc again.
 * * target_turf: The targeted turf.
@@ -1035,8 +980,7 @@
 					continue
 				affected_living.layer = ABOVE_MOB_LAYER
 				affected_living.status_flags |= (INCORPOREAL|GODMODE)
-				animate(affected_living, pixel_y = affected_living.pixel_y + 40, layer = ABOVE_MOB_LAYER, time = SEISMIC_FRACTURE_PARALYZE_DURATION / 2, \
-					easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW)
+				animate(affected_living, pixel_y = affected_living.pixel_y + 40, time = SEISMIC_FRACTURE_PARALYZE_DURATION / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW)
 				animate(pixel_y = initial(affected_living.pixel_y), time = SEISMIC_FRACTURE_PARALYZE_DURATION / 2, easing = CIRCULAR_EASING|EASE_IN)
 				addtimer(CALLBACK(src, PROC_REF(living_landing), affected_living), SEISMIC_FRACTURE_PARALYZE_DURATION)
 			else if(isobj(affected_atom))
@@ -1126,7 +1070,7 @@
 /datum/action/xeno_action/primal_wrath
 	name = "Primal Wrath"
 	ability_name = "Primal Wrath"
-	action_icon_state = "26"
+	action_icon_state = "primal_wrath"
 	desc = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
 	use_state_flags = XACT_USE_FORTIFIED
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
