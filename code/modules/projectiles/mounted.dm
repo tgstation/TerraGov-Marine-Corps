@@ -7,7 +7,7 @@
 	layer = TANK_BARREL_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-	flags_pass = PASSABLE
+	allow_pass_flags = PASSABLE
 	///Store user old pixel x
 	var/user_old_x = 0
 	///Store user old pixel y
@@ -52,7 +52,7 @@
 	if(!ishuman(user))
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.do_unique_action(internal_gun, user)
+	internal_gun.do_unique_action(user)
 
 /obj/machinery/deployable/mounted/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -121,6 +121,12 @@
 	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(human_user, span_warning("Your programming restricts operating heavy weaponry."))
 		return TRUE
+
+	density = FALSE
+	if(!user.Move(loc)) //Move instead of forcemove to ensure we can actually get to the object's turf
+		density = initial(density)
+		return
+
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)
 	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
@@ -146,12 +152,10 @@
 		action.give_action(operator)
 
 	gun.set_gun_user(operator)
-	operator.forceMove(loc)
 	operator.setDir(dir)
 	user_old_x = operator.pixel_x
 	user_old_y = operator.pixel_y
 	update_pixels(operator, TRUE)
-	density = FALSE
 	user_old_move_resist = operator.move_resist
 	operator.move_resist = MOVE_FORCE_STRONG
 
@@ -212,7 +216,6 @@
 	if(operator.get_active_held_item())
 		to_chat(operator, span_warning("You need a free hand to shoot the [src]."))
 		return FALSE
-
 	var/atom/target = object
 
 	if(!istype(target))
@@ -226,12 +229,19 @@
 	var/obj/item/weapon/gun/gun = internal_item
 	//we can only fire in a 90 degree cone
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
+		if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_ANCHORED_FIRING_ONLY) && !anchored)
+			to_chat(operator, "[src] cannot be fired without it being anchored.")
+			return FALSE
 		operator.setDir(dir)
 		gun.set_target(target)
 		update_icon_state()
 		return TRUE
 	if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_NO_ROTATE))
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
+		return FALSE
+
+	if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_NO_ROTATE_ANCHORED) && anchored)
+		to_chat(operator, "[src] cannot be rotated while anchored.")
 		return FALSE
 
 	var/list/leftright = LeftAndRightOfDir(dir)
@@ -306,15 +316,21 @@
 //Deployable guns that can be moved.
 /obj/machinery/deployable/mounted/moveable
 	anchored = FALSE
+	/// Sets how long a deployable takes to be anchored
+	var/anchor_time = 0 SECONDS
 
 /// Can be anchored and unanchored from the ground by Alt Right Click.
 /obj/machinery/deployable/mounted/moveable/AltRightClick(mob/living/user)
-	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
+	. = ..()
+	if(!Adjacent(user) || !ishuman(user) || user.lying_angle || user.incapacitated())
 		return
 
-	if(!anchored)
-		anchored = TRUE
-		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
-	else
-		anchored = FALSE
-		to_chat(user, span_warning("You unanchored the gun from the ground. It may be moved."))
+	if(anchor_time)
+		balloon_alert(user, "You begin [anchored ? "unanchoring" : "anchoring"] [src]")
+		if(!do_after(user, anchor_time, TRUE, src))
+			balloon_alert(user, "Interrupted!")
+			return
+
+	anchored = !anchored
+
+	balloon_alert(user, "You [anchored ? "anchor" : "unanchor"] [src]")

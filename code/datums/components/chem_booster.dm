@@ -111,14 +111,14 @@
 
 /datum/component/chem_booster/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
-	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
+	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
 
 /datum/component/chem_booster/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
-		COMSIG_PARENT_EXAMINE,
+		COMSIG_ATOM_EXAMINE,
 		COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_EQUIPPED_TO_SLOT))
@@ -183,6 +183,9 @@
 	if(resource_storage_current < resource_drain_amount)
 		to_chat(wearer, span_warning("Insufficient green blood to maintain operation."))
 		on_off()
+		var/datum/action/chem_booster/power/power_action = wearer.actions_by_path[/datum/action/chem_booster/power]
+		power_action.update_onoff_icon()
+		return
 	update_resource(-resource_drain_amount)
 
 	wearer.adjustToxLoss(-tox_heal*boost_amount)
@@ -363,7 +366,7 @@
 	connected_weapon = weapon_to_connect
 	ENABLE_BITFIELD(connected_weapon.flags_item, NODROP)
 	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource))
-	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
+	RegisterSignals(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
 	return TRUE
 
 ///Handles resource collection and is ativated when attacking with a weapon.
@@ -421,8 +424,8 @@
 		return
 
 	var/obj/item/held_item = wearer.get_held_item()
-	if((!istype(held_item, /obj/item/reagent_containers) && !meds_beaker.reagents.total_volume) || istype(held_item, /obj/item/reagent_containers/pill))
-		wearer.balloon_alert(wearer, "You must be holding a glass reagent container")
+	if((!istype(held_item, /obj/item/reagent_containers) && !meds_beaker.reagents.total_volume))
+		wearer.balloon_alert(wearer, "You must be holding a suitable reagent container")
 		return
 
 	if(!istype(held_item, /obj/item/reagent_containers) && meds_beaker.reagents.total_volume)
@@ -439,7 +442,7 @@
 		wearer.balloon_alert(wearer, "Both the held reagent container and the system's reagent storage are empty")
 		return
 
-	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume)
+	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume) //Pills should never be empty so we don't worry about loading into them
 		var/pick = tgui_input_list(wearer, "Unload internal reagent storage into held container:", "Vali system", list("Yes", "No"))
 		if(pick == "Yes")
 			if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
@@ -458,6 +461,8 @@
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)
 	wearer.balloon_alert(wearer, "Loaded [trans] units")
 	to_chat(wearer, get_meds_beaker_contents())
+	if(istype(held_beaker, /obj/item/reagent_containers/pill))
+		qdel(held_beaker)
 
 ///Shows the loaded reagents to the person examining the parent/wearer
 /datum/component/chem_booster/proc/get_meds_beaker_contents()
@@ -494,6 +499,10 @@
 	if(!.)
 		return
 
+	update_onoff_icon()
+
+///Update icon based on the suit
+/datum/action/chem_booster/power/proc/update_onoff_icon()
 	var/datum/component/chem_booster/target_component = target
 	if(target_component.boost_on)
 		action_icon_state = "cboost_on"

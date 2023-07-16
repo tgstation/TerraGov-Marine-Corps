@@ -124,9 +124,9 @@
 
 /obj/machinery/computer/crew/proc/scan()
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		if(!H || !istype(H)) continue
 		var/obj/item/clothing/under/C = H.w_uniform
-		if(!C || !istype(C)) continue
+		if(!istype(C))
+			continue
 		if(C.has_sensor && H.mind)
 			add_to_tracked(C)
 	return TRUE
@@ -136,13 +136,13 @@
 	if(tracked.Find(under))
 		return
 	tracked += under
-	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, PROC_REF(remove_from_tracked))
+	RegisterSignal(under, COMSIG_QDELETING, PROC_REF(remove_from_tracked))
 
 ///Remove an atom from the tracked list
 /obj/machinery/computer/crew/proc/remove_from_tracked(atom/under)
 	SIGNAL_HANDLER
 	tracked -= under
-	UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(under, COMSIG_QDELETING)
 
 #undef DISPLAY_ON_SHIP
 #undef DISPLAY_PLANETSIDE

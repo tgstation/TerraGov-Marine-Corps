@@ -597,9 +597,9 @@
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_napalm), get_turf(usr.loc)), 1 SECONDS)
 		if("Small Bomb")
-			explosion(usr.loc, 1, 2, 3, 3, small_animation = TRUE)
+			explosion(usr.loc, 1, 2, 3, 3)
 		if("Medium Bomb")
-			explosion(usr.loc, 2, 3, 4, 4, small_animation = TRUE)
+			explosion(usr.loc, 2, 3, 4, 4)
 		if("Big Bomb")
 			explosion(usr.loc, 3, 5, 7, 5)
 		if("Maxcap")
@@ -1083,3 +1083,34 @@
 	log_admin("[key_name(src)] set the round end sound to [S]")
 	message_admins("[key_name_admin(src)] set the round end sound to [S]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Round End Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+///Adjusts gravity, modifying the jump component for all mobs
+/datum/admins/proc/adjust_gravity()
+	set category = "Fun"
+	set name = "Adjust Gravity"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/choice = tgui_input_list(usr, "What would you like to set gravity to?", "Gravity adjustment", list("Standard gravity", "Low gravity", "John Woo", "Exceeding orbital velocity"))
+	switch(choice)
+		if("Standard gravity")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity return to normal."))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component()
+		if("Low gravity")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity pull gently at you."))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 32, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_DEFENSIVE_STRUCTURE)
+		if("John Woo")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity grow weak, and the urge to fly."))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
+		if("Exceeding orbital velocity")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity fade to nothing. Will you even come back down?"))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
+		else
+			return
+
+	log_admin("[key_name(usr)] set gravity to [choice].")

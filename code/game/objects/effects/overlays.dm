@@ -188,7 +188,7 @@
 /obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	if(named)
-		name = "[named] laser"
+		name = "\improper[named] at [get_area_name(src)]"
 	target_id = UNIQUEID //giving it a unique id.
 	squad = assigned_squad
 	if(squad)
@@ -240,12 +240,13 @@
 	if(ishuman(user))
 		. += span_danger("It's a laser to designate CAS targets, get away from it!")
 
-/obj/effect/overlay/temp/laser_target/OB
+/obj/effect/overlay/temp/laser_target/OB //This is a subtype of CAS so that CIC gets cameras on the lase
 	icon_state = "laser_target2"
 	lasertype = LASER_TYPE_OB
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
+	linked_cam = new(src, name)
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()

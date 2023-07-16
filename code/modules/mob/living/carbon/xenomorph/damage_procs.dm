@@ -25,25 +25,20 @@
 	var/bomb_armor_ratio = modify_by_armor(1, BOMB)
 
 	if(bomb_armor_ratio <= 0)
-		return //immune
-
-	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_armor_ratio)
-	var/bomb_sunder_multiplier = max(0, 1 - bomb_armor_ratio)
+		return
 
 	if((severity == EXPLODE_DEVASTATE) && (bomb_armor_ratio > XENO_EXPLOSION_GIB_THRESHOLD))
 		return gib() //Gibs unprotected benos
 
-	//Slowdown and stagger
-	var/ex_slowdown = (2 + (4 - severity)) * bomb_slow_multiplier
+	//debuffs
+	var/severity_strength = (4 - severity)
 
-	add_slowdown(max(0, ex_slowdown)) //Slowdown 2 for sentiel from nade
-	adjust_stagger(max(0, ex_slowdown - 2)) //Stagger 2 less than slowdown
-
-	//Sunder
-	adjust_sunder(max(0, 50 * (3 - severity) * bomb_sunder_multiplier))
+	add_slowdown(max(0, (severity_strength + 2) * bomb_armor_ratio)) //3 slowdown from a light explosion if you have no bomb armour
+	adjust_stagger(max(0, ((severity_strength + 1) * bomb_armor_ratio) - 1)) //enough armour makes you immune to the stagger
+	adjust_sunder(max(0, 10 * severity_strength * bomb_armor_ratio))
 
 	//Damage
-	var/ex_damage = 40 + rand(0, 20) + 50*(4 - severity)  //changed so overall damage stays similar
+	var/ex_damage = 40 + rand(0, 20) + (50 * severity_strength)
 	apply_damages(ex_damage * 0.5, ex_damage * 0.5, blocked = BOMB, updating_health = TRUE)
 
 

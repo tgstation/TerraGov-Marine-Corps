@@ -164,7 +164,7 @@
 		set_frequency(new_frequency)
 
 	else if(href_list["talk"])
-		broadcasting = text2num(href_list["talk"])
+		set_broadcasting(text2num(href_list["talk"]))
 
 	else if(href_list["listen"])
 		var/chan_name = href_list["ch_name"]
@@ -291,6 +291,13 @@
 		signal.broadcast()
 		return
 
+	var/area/A = get_area(src)
+	if(!isnull(A))
+		if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
+			return
+		if(A.ceiling >= CEILING_UNDERGROUND)
+			signal.data["compression"] += rand(20, 40)
+
 	// All non-independent radios make an attempt to use the subspace system first
 	signal.send_to_receivers()
 
@@ -338,6 +345,9 @@
 	if(!(RADIO_NO_Z_LEVEL_RESTRICTION in levels))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in levels))
+			return FALSE
+		var/area/A = get_area(src)
+		if(A?.ceiling >= CEILING_DEEP_UNDERGROUND)
 			return FALSE
 
 	// allow checks: are we listening on that frequency?

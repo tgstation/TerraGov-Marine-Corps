@@ -49,17 +49,6 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	"}
 	minimap_icon = "private"
 
-/datum/job/terragov/squad/standard/rebel
-	title = REBEL_SQUAD_MARINE
-	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_PREP_REBEL)
-	outfit = /datum/outfit/job/marine/standard/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
-
 /datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
@@ -82,8 +71,8 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a rank-and-file soldier of the TGMC, and that is your strength.
-What you lack alone, you gain standing shoulder to shoulder with the men and women of the corps. Ooh-rah!"})
+	to_chat(M, {"\nYou are a rank-and-file marine of the TGMC, and that is your strength.
+What you lack alone, you gain standing shoulder to shoulder with the men and women of the TerraGov Marine Corps. Ooh-rah!"})
 
 
 /datum/outfit/job/marine/standard
@@ -91,9 +80,6 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	jobtype = /datum/job/terragov/squad/standard
 
 	id = /obj/item/card/id/dogtag
-
-/datum/outfit/job/marine/standard/rebel
-	jobtype = /datum/job/terragov/squad/standard/rebel
 
 //Squad Engineer
 /datum/job/terragov/squad/engineer
@@ -125,18 +111,6 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	"}
 	minimap_icon = "engi"
 
-/datum/job/terragov/squad/engineer/rebel
-	title = REBEL_SQUAD_ENGINEER
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/marine/engineer/rebel
-	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
-	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
-
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
@@ -148,9 +122,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	jobtype = /datum/job/terragov/squad/engineer
 
 	id = /obj/item/card/id/dogtag/engineer
-
-/datum/outfit/job/marine/engineer/rebel
-	jobtype = /datum/job/terragov/squad/engineer/rebel
 
 /datum/job/terragov/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -165,8 +136,10 @@ Your squaddies will look to you when it comes to construction in the field of ba
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to INFINITY) // 100 hrs
+		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
 
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
@@ -198,18 +171,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	"}
 	minimap_icon = "medic"
 
-/datum/job/terragov/squad/corpsman/rebel
-	title = REBEL_SQUAD_CORPSMAN
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/marine/corpsman/rebel
-	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
-	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	jobworth = list(
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM,
-	)
-
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
@@ -220,9 +181,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	jobtype = /datum/job/terragov/squad/corpsman
 
 	id = /obj/item/card/id/dogtag/corpsman
-
-/datum/outfit/job/marine/corpsman/rebel
-	jobtype = /datum/job/terragov/squad/corpsman/rebel
 
 /datum/job/terragov/squad/corpsman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -237,8 +195,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to INFINITY) // 100 hrs
+		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
@@ -267,13 +227,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	"}
 	minimap_icon = "smartgunner"
 
-/datum/job/terragov/squad/smartgunner/rebel
-	title = REBEL_SQUAD_SMARTGUNNER
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/marine/smartgunner/rebel
-	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL)
-	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-
 /datum/job/terragov/squad/smartgunner/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are the smartgunner. Your job is to provide heavy weapons support."})
@@ -291,17 +244,16 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.wear_id.paygrade = "E3"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to INFINITY) // 100 hrs
+		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
 
 /datum/outfit/job/marine/smartgunner
 	name = SQUAD_SMARTGUNNER
 	jobtype = /datum/job/terragov/squad/smartgunner
 
 	id = /obj/item/card/id/dogtag/smartgun
-
-/datum/outfit/job/marine/smartgunner/rebel
-	jobtype = /datum/job/terragov/squad/smartgunner/rebel
 
 //Squad Specialist
 /datum/job/terragov/squad/specialist
@@ -370,31 +322,16 @@ You can serve a variety of roles, so choose carefully."})
 	"}
 	minimap_icon = "leader"
 
-/datum/job/terragov/squad/leader/rebel
-	title = REBEL_SQUAD_LEADER
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/marine/leader/rebel
-	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	jobworth = list(
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_HIGH,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
-
 /datum/job/terragov/squad/leader/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.
 You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."})
-
 
 /datum/outfit/job/marine/leader
 	name = SQUAD_LEADER
 	jobtype = /datum/job/terragov/squad/leader
 
 	id = /obj/item/card/id/dogtag/leader
-
-/datum/outfit/job/marine/leader/rebel
-	jobtype = /datum/job/terragov/squad/leader/rebel
 
 /datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
 	. = ..()
@@ -407,8 +344,10 @@ You are also in charge of communicating with command and letting them know about
 			new_human.wear_id.paygrade = "E5"
 		if(1501 to 7500) // 25 hrs
 			new_human.wear_id.paygrade = "E6"
-		if(7501 to INFINITY) // 125 hrs
+		if(7501 to 60000) // 125 hrs
 			new_human.wear_id.paygrade = "E7"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9E" //If you play way too much TGMC. 1000 hours.
 	if(!latejoin)
 		return
 	if(!new_human.assigned_squad)
@@ -437,16 +376,6 @@ You are also in charge of communicating with command and letting them know about
 	)
 	minimap_icon = "private"
 
-/datum/job/terragov/squad/vatgrown/rebel
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/marine/vatgrown/rebel
-	access = list(ACCESS_MARINE_PREP_REBEL)
-	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
-	)
-
 /datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/human/species/vatgrown
 
@@ -454,6 +383,3 @@ You are also in charge of communicating with command and letting them know about
 	name = SQUAD_VATGROWN
 	jobtype = /datum/job/terragov/squad/vatgrown
 	id = /obj/item/card/id/dogtag
-
-/datum/outfit/job/marine/vatgrown/rebel
-	jobtype = /datum/job/terragov/squad/vatgrown/rebel

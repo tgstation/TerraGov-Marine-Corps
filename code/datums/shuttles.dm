@@ -113,10 +113,6 @@
 	shuttle_id = SHUTTLE_NORMANDY
 	name = "Normandy"
 
-/datum/map_template/shuttle/dropship_three
-	shuttle_id = SHUTTLE_TRIUMPH
-	name = "Triumph"
-
 /datum/map_template/shuttle/cas
 	shuttle_id = SHUTTLE_CAS
 	name = "Condor Jet"
@@ -143,6 +139,11 @@
 	suffix = "_factorio"
 	description = "A Tadpole model for hauling, engineering and general maintenance. Patented by Nakamura Engineering, and is a rather reliable way to transport goods."
 	display_name = "Tadpole NK-Haul Model"
+
+/datum/map_template/shuttle/minidropship/umbilical
+	suffix = "_umbilical"
+	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
+	display_name = "Tadpole Umbilical Model"
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD

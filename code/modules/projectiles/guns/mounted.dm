@@ -351,7 +351,7 @@
 	icon_state = "t27"
 	item_state = "t27"
 	caliber = CALIBER_10x27_CASELESS // codex
-	max_shells = 100 //codex
+	max_shells = 150 //codex
 	force = 40
 	aim_slowdown = 1.2
 	wield_delay = 2 SECONDS
@@ -373,6 +373,7 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/unremovable/mmg,
 		/obj/item/attachable/stock/t27,
@@ -386,7 +387,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.1 SECONDS
+	aim_fire_delay = 0.05 SECONDS
 	aim_speed_modifier = 5
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
@@ -399,13 +400,13 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	deploy_time = 1 SECONDS
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.25
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
 
 
 /obj/item/weapon/gun/standard_mmg/machinegunner
-	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg)
+	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg, /obj/item/attachable/heavy_barrel)
 
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
@@ -433,7 +434,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
-	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_ROTATE_ANCHORED|DEPLOYED_ANCHORED_FIRING_ONLY
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -454,6 +455,7 @@
 	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
 	coverage = 75 //has a shield
+	anchor_time = 1 SECONDS
 
 /obj/item/storage/internal/ammo_rack
 	storage_slots = 10
@@ -487,11 +489,11 @@
 /obj/machinery/deployable/mounted/moveable/atgun/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(800)
+			take_damage(800, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(150, 200))
+			take_damage(rand(150, 200), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(10, 50))
+			take_damage(rand(10, 50), BRUTE, BOMB)
 
 //AGLS-37, or Automatic Grenade Launching System 37, a fully automatic mounted grenade launcher that fires fragmentation and HE shells, can't be turned.
 
@@ -515,17 +517,20 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/tl102,
+		/obj/item/attachable/scope/unremovable/standard_atgun,
 	)
 
 	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102,
+		/obj/item/attachable/scope/unremovable/standard_atgun,
 	)
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/standard_agls,
 		/obj/item/ammo_magazine/standard_agls/fragmentation,
 		/obj/item/ammo_magazine/standard_agls/incendiary,
+		/obj/item/ammo_magazine/standard_agls/flare,
+		/obj/item/ammo_magazine/standard_agls/cloak,
+		/obj/item/ammo_magazine/standard_agls/tanglefoot,
 	)
 
 	deploy_time = 6 SECONDS

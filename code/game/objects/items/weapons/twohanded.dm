@@ -212,6 +212,7 @@
 	. = ..()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 	AddComponent(/datum/component/stun_mitigation, SHIELD_TOGGLE, shield_cover = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60))
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/twohanded/fireaxe/som/wield(mob/user)
 	. = ..()
@@ -224,19 +225,6 @@
 	if(!.)
 		return
 	toggle_item_bump_attack(user, FALSE)
-
-/obj/item/weapon/twohanded/fireaxe/som/AltClick(mob/user)
-	if(!can_interact(user))
-		return ..()
-	if(!ishuman(user))
-		return ..()
-	if(!(user.l_hand == src || user.r_hand == src))
-		return ..()
-	flags_item ^= NODROP
-	if(flags_item & NODROP)
-		balloon_alert(user, "strap tightened")
-	else
-		balloon_alert(user, "strap loosened")
 
 /*
 * Double-Bladed Energy Swords - Cheridan
@@ -283,7 +271,7 @@
 	///Based on what direction the tip of the spear is pointed at in the sprite; maybe someone makes a spear that points northwest
 	var/current_angle = 45
 
-/obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying)
+/obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	spin = FALSE
 	//Find the angle the spear is to be thrown at, then rotate it based on that angle
 	var/rotation_value = Get_Angle(thrower, get_turf(target)) - current_angle
@@ -467,6 +455,7 @@
 /obj/item/weapon/twohanded/rocketsledge/Initialize(mapload)
 	. = ..()
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/twohanded/rocketsledge/equipped(mob/user, slot)
 	. = ..()
@@ -512,15 +501,6 @@
 		update_icon()
 
 	return ..()
-
-/obj/item/weapon/twohanded/rocketsledge/AltClick(mob/user)
-	if(!can_interact(user) || !ishuman(user) || !(user.l_hand == src || user.r_hand == src))
-		return ..()
-	TOGGLE_BITFIELD(flags_item, NODROP)
-	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, span_warning("You tighten the grip around [src]!"))
-		return
-	to_chat(user, span_notice("You loosen the grip around [src]!"))
 
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()

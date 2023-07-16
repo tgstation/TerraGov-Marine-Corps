@@ -9,7 +9,6 @@
 #define XENO_EMBRYO_HUD "xeno_embryo_hud" // xeno larval stage.
 #define HEALTH_HUD_XENO "xeno_health_hud" //health HUD for xenos
 #define SQUAD_HUD_TERRAGOV "squad_hud_terragov" //squad hud showing who's leader, corpsman, etc for each squad.
-#define SQUAD_HUD_REBEL "squad_hud_rebel" //squad hud showing who's leader, corpsman, etc for each squad.
 #define SQUAD_HUD_SOM "squad_hud_som" //squad hud showing who's leader, corpsman, etc for each squad.
 #define PLASMA_HUD "xeno_plasma_hud" //indicates the plasma level of xenos.
 #define WRATH_HUD "xeno_wrath_hud" // Indicates how much Wrath a xeno has.
@@ -47,10 +46,9 @@
 #define DATA_HUD_ORDER 11
 #define DATA_HUD_MEDICAL_PAIN 12
 #define DATA_HUD_XENO_TACTICAL 13
-#define DATA_HUD_SQUAD_REBEL 14
-#define DATA_HUD_SQUAD_SOM 15
-#define DATA_HUD_XENO_DEBUFF 16
-#define DATA_HUD_XENO_HEART 17
+#define DATA_HUD_SQUAD_SOM 14
+#define DATA_HUD_XENO_DEBUFF 15
+#define DATA_HUD_XENO_HEART 16
 
 
 // Notification action types

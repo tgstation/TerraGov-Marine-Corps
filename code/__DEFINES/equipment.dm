@@ -1,18 +1,30 @@
 //PASS FLAGS
-#define PASSTABLE (1<<0)
-#define PASSGLASS (1<<1)
-#define PASSGRILLE (1<<2)
-#define PASSBLOB (1<<3)
-#define PASSMOB (1<<4)
-#define PASSSMALLSTRUCT (1<<5)
-#define PASSFIRE (1<<6)
-#define PASSXENO (1<<7)
-#define PASSTHROW (1<<8) //you can throw past
-#define PASSPROJECTILE (1<<9) //projectiles can pass
-#define PASSAIR (1<<10) //non-airtight, gas/fire can pass
-#define PASSLASER (1<<11) //lasers and the like can pass unobstructed
-#define PASSABLE (PASSTHROW|PASSPROJECTILE|PASSAIR)
-#define HOVERING (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
+
+///Pass low objects like tables or windowframes
+#define PASS_LOW_STRUCTURE (1<<0)
+///lasers and the like can pass unobstructed
+#define PASS_GLASS (1<<1)
+///Pass grilles
+#define PASS_GRILLE (1<<2)
+///Pass mobs
+#define PASS_MOB (1<<3)
+///Pass defensive structures like barricades
+#define PASS_DEFENSIVE_STRUCTURE (1<<4)
+///Allows Mobs to pass fire without ignition
+#define PASS_FIRE (1<<5)
+///Pass xenos
+#define PASS_XENO (1<<6)
+///you can throw past
+#define PASS_THROW (1<<7)
+///projectiles can pass
+#define PASS_PROJECTILE (1<<8)
+///non-airtight, gas/fire can pass
+#define PASS_AIR (1<<9)
+///Mobs can walk freely between turfs with walkover flagged objects
+#define PASS_WALKOVER (1<<10)
+
+#define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
+#define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)
 
 //==========================================================================================
 
@@ -71,10 +83,12 @@
 #define IS_DEPLOYED (1<<12) //If this is on an item, said item is currently deployed
 #define DEPLOYED_NO_PICKUP  (1<<13) //Disables deployed item pickup
 #define DEPLOYED_NO_ROTATE  (1<<14) //Disables deployed item rotation abilities to rotate.
-#define DEPLOYED_WRENCH_DISASSEMBLE (1<<15) //If this is on an item, the item can only be disassembled using a wrench once deployed.
-#define FULLY_WIELDED (1<<16) //If the item is properly wielded. Used for guns
+#define DEPLOYED_NO_ROTATE_ANCHORED (1<<15) //Disables deployed item rotation if anchored.
+#define DEPLOYED_WRENCH_DISASSEMBLE (1<<16) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<17) //Disables firing deployable if it is not anchored.
+#define FULLY_WIELDED (1<<18) //If the item is properly wielded. Used for guns
 ///If a holster has underlay sprites
-#define HAS_UNDERLAY (1<<17)
+#define HAS_UNDERLAY (1<<19)
 
 //==========================================================================================
 

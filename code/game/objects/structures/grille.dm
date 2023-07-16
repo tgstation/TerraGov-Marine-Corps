@@ -8,6 +8,7 @@
 	anchored = TRUE
 	coverage = 10
 	flags_atom = CONDUCT
+	allow_pass_flags = PASS_AIR|PASS_PROJECTILE|PASS_GRILLE
 	layer = OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)
@@ -64,13 +65,6 @@
 	user.visible_message(span_warning("[user] kicks [src]."), \
 						span_warning("You kick [src]."), \
 						"You hear twisting metal.")
-
-/obj/structure/grille/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
-		return TRUE
-	else if(istype(mover, /obj/projectile))
-		return prob(90)
 
 /obj/structure/grille/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -137,7 +131,7 @@
 
 /obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
 	if(obj_integrity > integrity_failure && exposed_temperature > T0C + 1500)
-		take_damage(1, BURN, "fire")
+		take_damage(1, BURN, FIRE)
 	return ..()
 
 

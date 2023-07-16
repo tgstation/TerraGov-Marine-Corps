@@ -3,7 +3,7 @@
 		return FALSE
 	embedded_into = target
 	RegisterSignal(embedded_into, COMSIG_MOVABLE_MOVED, PROC_REF(embedded_on_carrier_move))
-	RegisterSignal(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(embedded_on_move))
+	RegisterSignals(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(embedded_on_move))
 	return TRUE
 
 
@@ -110,7 +110,7 @@
 		CRASH("[src] called embedded_on_carrier_move for [carrier] with mismatching embedded_object: [.]")
 
 
-/obj/item/proc/embedded_on_limb_destruction(/datum/limb/source)
+/obj/item/proc/embedded_on_limb_destruction(datum/limb/source)
 	SIGNAL_HANDLER
 	unembed_ourself()
 

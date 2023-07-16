@@ -2303,7 +2303,7 @@
 "qh" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/engineering/toolbox,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
@@ -2903,7 +2903,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "tF" = (
-/obj/machinery/floodlight/combat,
+/obj/machinery/floodlight,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "tG" = (
@@ -2989,10 +2989,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"uf" = (
-/obj/item/storage/box/loot/howitzer_pack,
-/turf/open/floor,
-/area/oscar_outpost/village/central)
 "uh" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/effect/ai_node,
@@ -3526,10 +3522,6 @@
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
-"xx" = (
-/obj/effect/landmark/sensor_tower,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/road)
 "xy" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship/open{
@@ -4227,10 +4219,10 @@
 /area/oscar_outpost/village/south)
 "Bb" = (
 /obj/structure/closet/crate,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Be" = (
@@ -7259,7 +7251,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "Oi" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "Ol" = (
@@ -7396,7 +7388,7 @@
 /area/oscar_outpost/village/central)
 "OK" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -9124,7 +9116,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/floodlight/combat,
+/obj/machinery/floodlight,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "Wg" = (
@@ -24735,7 +24727,7 @@ ZL
 DU
 DU
 DU
-xx
+DU
 DU
 DU
 DU
@@ -35841,7 +35833,7 @@ DU
 GY
 Uh
 ZG
-uf
+Pa
 ap
 YE
 Uh

@@ -23,16 +23,18 @@
 
 /**
  * Checks if this mob is holding a certain type of item in hands
- * returns TRUEif found FALSE if not
+ * returns the item if found
  * Args:
  * * typepath: typepath to check for
  */
 /mob/proc/is_holding_item_of_type(typepath)
-	if(istype(get_active_held_item(), typepath))
-		return TRUE
-	if(istype(get_inactive_held_item(), typepath))
-		return TRUE
-	return FALSE
+	var/obj/held_item = get_active_held_item()
+	if(istype(held_item, typepath))
+		return held_item
+	held_item = get_inactive_held_item()
+	if(istype(held_item, typepath))
+		return held_item
+	return
 
 /**
 	Puts the item into your l_hand if possible and calls all necessary triggers/updates.
@@ -319,7 +321,7 @@
 //Outdated but still in use apparently. This should at least be a human proc.
 //this is still in use please fix this mess
 /mob/proc/get_equipped_items()
-	var/list/items = new/list()
+	var/list/items = list()
 
 	if(hasvar(src,"back")) if(src:back) items += src:back
 	if(hasvar(src,"belt")) if(src:belt) items += src:belt

@@ -1,0 +1,50 @@
+{
+	"beret_badge": [
+		{
+			"type": "icon_state",
+			"icon_state": "beret_badge",
+			"color_ids": [1],
+			"blend_mode": "overlay"
+		}
+	],
+	"beret_badge_m": [
+		{
+			"type": "icon_state",
+			"icon_state": "beret_badge_m",
+			"color_ids": [1],
+			"blend_mode": "overlay"
+		}
+	],
+	"classic_beret_badge": [
+		{
+			"type": "icon_state",
+			"icon_state": "classic_beret_badge",
+			"color_ids": [1],
+			"blend_mode": "overlay"
+		}
+	],
+	"classic_beret_badge_m": [
+		{
+			"type": "icon_state",
+			"icon_state": "classic_beret_badge_m",
+			"color_ids": [1],
+			"blend_mode": "overlay"
+		}
+	],
+	"ushanka_badge": [
+		{
+			"type": "icon_state",
+			"icon_state": "ushanka_badge",
+			"color_ids": [1],
+			"blend_mode": "overlay"
+		}
+	],
+	"ushanka_badge_m": [
+		{
+			"type": "icon_state",
+			"icon_state": "ushanka_badge_m",
+			"color_ids": [1],
+			"blend_mode": "overlay"
+		}
+	]
+}

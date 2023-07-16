@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
 		A.acid_spray_act(owner)
-		if(((A.density && !(A.flags_pass & PASSPROJECTILE) && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
+		if(((A.density && !(A.allow_pass_flags & PASS_PROJECTILE) && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
 			is_blocked = TRUE
 	if(!is_blocked)
 		if(!skip_timer)
@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		recast = FALSE
 		add_cooldown()
 
-	X.reset_flags_pass()
+	X.reset_allow_pass_flags()
 	recast_available = FALSE
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_MOVED))
 
@@ -174,15 +174,15 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	//Swapping part
 	var/mob/living/carbon/human/target = M
-	var/owner_passmob = (owner.flags_pass & PASSMOB)
-	var/target_passmob = (target.flags_pass & PASSMOB)
-	owner.flags_pass |= PASSMOB
-	target.flags_pass |= PASSMOB
+	var/owner_passmob = (owner.pass_flags & PASS_MOB)
+	var/target_passmob = (target.pass_flags & PASS_MOB)
+	owner.pass_flags |= PASS_MOB
+	target.pass_flags |= PASS_MOB
 	target.forceMove(last_turf)
 	if(!owner_passmob)
-		owner.flags_pass &= ~PASSMOB
+		owner.pass_flags &= ~PASS_MOB
 	if(!target_passmob)
-		target.flags_pass &= ~PASSMOB
+		target.pass_flags &= ~PASS_MOB
 
 	target.ParalyzeNoChain(0.5 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
 
@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	span_danger("We dash towards \the [A], spraying acid down our path!") )
 	succeed_activate()
 
-	owner.flags_pass = HOVERING
+	owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	owner.throw_at(A, range, 2, owner)
 
 	return TRUE

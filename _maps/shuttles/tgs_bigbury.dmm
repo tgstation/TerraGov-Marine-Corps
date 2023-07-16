@@ -331,15 +331,15 @@
 "bq" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/tool/weldpack,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "br" = (
 /obj/structure/table/mainship,
 /obj/item/fuel_cell/full,
 /obj/item/fuel_cell/full,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/t_scanner,
 /obj/item/storage/backpack/marine/engineerpack,
 /obj/item/storage/belt/utility/full,
@@ -486,7 +486,7 @@
 /obj/structure/table/mainship,
 /obj/item/clipboard,
 /obj/item/tool/pen,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/pinpointer,
 /turf/open/floor/mainship/blue{
 	dir = 8
@@ -706,7 +706,7 @@
 /area/shuttle/canterbury)
 "te" = (
 /obj/structure/rack,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /obj/item/stack/sheet/metal/large_stack,
@@ -813,7 +813,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "zk" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
@@ -856,7 +856,7 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "Fl" = (
-/obj/machinery/loadout_vendor,
+/obj/machinery/loadout_vendor/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "FQ" = (
@@ -908,9 +908,9 @@
 /obj/item/facepaint/sniper,
 /obj/item/pizzabox/meat,
 /obj/item/binoculars,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/tool/shovel/etool,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/item/pinpointer,
