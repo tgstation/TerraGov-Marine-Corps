@@ -9,6 +9,7 @@
 	maptext_height = 480
 	maptext_width = 480
 
+/// A screen object that shows the time left on a timer
 /atom/movable/screen/text/screen_timer
 	screen_loc = "CENTER-7,CENTER-7"
 	var/maptext_style_left = "<span class='maptext' style=font-size:16pt;text-align:center; align='top'>"
@@ -33,7 +34,7 @@
 		if(!mobs)
 			return INITIALIZE_HINT_QDEL
 		mobs = list(mobs)
-	if(!timer || !length(mobs))
+	if(!timer)
 		stack_trace("Invalid timer for screen nuke timer!")
 		return INITIALIZE_HINT_QDEL
 	if(style_start)
@@ -45,8 +46,9 @@
 	maptext_x = offset_x
 	maptext_y = offset_y
 	update_maptext()
-	apply_to(mobs)
-	START_PROCESSING(SSprocessing, src)
+	if(length(mobs))
+		apply_to(mobs)
+		START_PROCESSING(SSprocessing, src)
 
 /atom/movable/screen/text/screen_timer/process()
 	if(!timeleft(timer_id))
@@ -54,27 +56,30 @@
 		return
 	update_maptext()
 
-/atom/movable/screen/text/screen_timer/proc/apply_to(mobs)
+/// Adds the object to the client.screen of all mobs in the list, and registers the needed signals
+/atom/movable/screen/text/screen_timer/proc/apply_to(list/mobs)
+	if(!length(timer_mobs) && length(mobs))
+		START_PROCESSING(SSprocessing, src)
 	for(var/mob/player in mobs)
 		if(player in timer_mobs)
 			continue
-		player.client?.screen += src
+		attach(player.client)
 		timer_mobs += player
-		RegisterSignal(player, COMSIG_MOB_LOGIN, PROC_REF(re_attach))
-		RegisterSignal(player, COMSIG_MOB_LOGOUT, PROC_REF(remove_from))
+		RegisterSignal(player, COMSIG_MOB_LOGIN, PROC_REF(attach))
+		RegisterSignal(player, COMSIG_MOB_LOGOUT, PROC_REF(de_attach))
 
-/atom/movable/screen/text/screen_timer/proc/remove_from(mobs)
-	if(!islist(mobs))''
-		if(!mobs)
-			return
-		mobs = list(mobs)
+/// Gets rid of the object from the client.screen of all mobs in the list, and unregisters the needed signals
+/atom/movable/screen/text/screen_timer/proc/remove_from(list/mobs)
 	for(var/mob/player in mobs)
 		if(player in timer_mobs)
 			timer_mobs -= player
-		player.client.screen -= src
+		de_attach(player.client)
 		UnregisterSignal(player, COMSIG_MOB_LOGIN)
 		UnregisterSignal(player, list(COMSIG_MOB_LOGOUT))
+	if(!length(timer_mobs))
+		STOP_PROCESSING(SSprocessing, src)
 
+/// Updates the maptext to show the current time left on the timer
 /atom/movable/screen/text/screen_timer/proc/update_maptext()
 	var/time_left = timeleft(timer_id)
 	var/time_formatted = time2text(time_left, "mm:ss")
@@ -83,13 +88,19 @@
 		result_text = "[maptext_style_left][result_text][time_formatted][maptext_style_right]"
 	maptext = result_text
 
-/atom/movable/screen/text/screen_timer/proc/re_attach(client/source)
+// 
+/atom/movable/screen/text/screen_timer/proc/attach(client/source, add_to_screen = TRUE)
 	SIGNAL_HANDLER
-	if(!source)
+	if(!source || (src in source.screen))
 		return
-	if(src in source.screen)
-		return
-	source.screen += src
+	if(add_to_screen)
+		source.screen += src
+	else
+		source.screen -= src
+
+/atom/movable/screen/text/screen_timer/proc/de_attach(client/source)
+	SIGNAL_HANDLER
+	attach(source, FALSE)
 
 /atom/movable/screen/text/screen_timer/proc/delete_self()
 	SIGNAL_HANDLER
@@ -100,14 +111,4 @@
 /atom/movable/screen/text/screen_timer/Destroy()
 	. = ..()
 	remove_from(timer_mobs)
-	for(var/datum/weakref/ref in timer_mobs)
-		var/mob/mob = ref.resolve()
-		if(!mob || !mob.client)
-			continue
-		
-		if(src in mob.client.screen)
-			mob.client.screen -= src
 	STOP_PROCESSING(SSprocessing, src)
-
-#undef MAX_TIMERS
-
