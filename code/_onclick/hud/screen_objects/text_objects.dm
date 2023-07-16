@@ -11,7 +11,7 @@
 
 /// A screen object that shows the time left on a timer
 /atom/movable/screen/text/screen_timer
-	screen_loc = "CENTER-7,CENTER-7"
+	screen_loc = "CENTER, TOP"
 	var/maptext_style_left = "<span class='maptext' style=font-size:16pt;text-align:center; align='top'>"
 	var/maptext_style_right = "</span>"
 	var/maptext_string
@@ -81,27 +81,32 @@
 
 /// Updates the maptext to show the current time left on the timer
 /atom/movable/screen/text/screen_timer/proc/update_maptext()
-	var/time_left = timeleft(timer_id)
-	var/time_formatted = time2text(time_left, "mm:ss")
-	var/result_text = replacetextEx(maptext_string, "${timer}", time_formatted)
-	if(!result_text)
-		result_text = "[maptext_style_left][result_text][time_formatted][maptext_style_right]"
+	var/time_formatted = time2text(timeleft(timer_id), "mm:ss")
+	var/timer_text = replacetextEx(maptext_string, "${timer}", time_formatted)
+	// If we don't find ${timer} in the string, just use the time formatted
+	var/timer_text_result = timer_text ? timer_text : time_formatted
+	var/result_text = "[maptext_style_left][timer_text_result][time_formatted][maptext_style_right]"
 	maptext = result_text
 
-// 
-/atom/movable/screen/text/screen_timer/proc/attach(client/source, add_to_screen = TRUE)
+/// Adds the object to the client.screen of the mob, or removes it if add_to_screen is FALSE
+/atom/movable/screen/text/screen_timer/proc/attach(mob/source, add_to_screen = TRUE)
 	SIGNAL_HANDLER
-	if(!source || (src in source.screen))
+	var/client/client = source.client
+	if(!source || !source.client || (src in client.screen))
 		return
+	if(!ismob(source))
+		CRASH("Invalid source passed to screen_timer/attach()!")
 	if(add_to_screen)
-		source.screen += src
+		client.screen += src
 	else
-		source.screen -= src
+		client.screen -= src
 
-/atom/movable/screen/text/screen_timer/proc/de_attach(client/source)
+/// Signal handler to run attach with specific args
+/atom/movable/screen/text/screen_timer/proc/de_attach(mob/source)
 	SIGNAL_HANDLER
 	attach(source, FALSE)
 
+/// Mainly a signal handler so we can run qdel()
 /atom/movable/screen/text/screen_timer/proc/delete_self()
 	SIGNAL_HANDLER
 	// I noticed in testing that even when qdel() is run, it still keeps running processing, even though it should have stopped processing due to running Destroy
