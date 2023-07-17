@@ -224,6 +224,6 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 /mob/living/simple_animal/hostile/mimic/copy/from_puppeteer/CheckObject(obj/O)
 	if(O.resistance_flags & INDESTRUCTIBLE)
 		return FALSE
-	if(O.max_integrity > 200) //no fuck you
+	if(O.max_integrity > 200)
 		return FALSE
 	return ..()
