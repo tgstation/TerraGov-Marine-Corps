@@ -915,12 +915,6 @@
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
 	hotkey_keys = list("Q")
 
-/datum/keybinding/xeno/psychic_crush
-	name = "Psychic Crush"
-	full_name = "Warlock: Psychic Crush"
-	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
-
 /datum/keybinding/xeno/flay
 	name = "Flay"
 	full_name = "Puppeteer: Flay"
