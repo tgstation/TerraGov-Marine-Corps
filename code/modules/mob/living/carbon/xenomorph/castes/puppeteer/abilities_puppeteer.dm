@@ -181,7 +181,7 @@
 /// Adds a puppet to our list, this is basically just widow code
 /datum/action/xeno_action/activable/refurbish_husk/proc/add_puppet(mob/living/carbon/xenomorph/puppet/new_puppet)
 	RegisterSignal(new_puppet, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(remove_puppet))
-	RegisterSignal(new_puppet, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack)) //harvesting claws
+	RegisterSignal(new_puppet, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack))
 	puppets += new_puppet
 
 /// Cleans up puppet from our list
