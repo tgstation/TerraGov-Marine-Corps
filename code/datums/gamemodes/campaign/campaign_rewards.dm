@@ -34,6 +34,10 @@
 	if(reward_flags & REWARD_PASSIVE_EFFECT)
 		passive_effect()
 
+/datum/campaign_reward/Destroy(force, ...)
+	faction = null
+	return ..()
+
 ///Triggers any active effects of this reward
 /datum/campaign_reward/proc/activated_effect() //this shit should be in come checker proc for sanity
 	SHOULD_CALL_PARENT(TRUE)
@@ -116,7 +120,7 @@
 	)
 
 
-////test use only
+////test use only//////////
 //CLF recruit
 /datum/job/som/mercenary/clf
 	title = "Colonial militant"
@@ -179,17 +183,20 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
 
+////test use only////////
+
 //Parent for all passive attrition modifiers
 /datum/campaign_reward/attrition_modifier
 	reward_flags = REWARD_PASSIVE_EFFECT
+	///Modifier to faction passive attrition gain
 	var/attrition_mod = 0
 
 /datum/campaign_reward/attrition_modifier/passive_effect()
 	faction.attrition_gain_multiplier += attrition_mod
 
 /datum/campaign_reward/attrition_modifier/Destroy(force, ...)
-	. = ..()
 	faction.attrition_gain_multiplier -= attrition_mod
+	return ..()
 
 /datum/campaign_reward/attrition_modifier/bonus_standard
 	name = "Improved supply lines"
