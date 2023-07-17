@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 	. = ..()
 	if(. && isstructure(O))
 		health = O.obj_integrity
-		maxHealth = O.max_integrity //special health stuff
+		maxHealth = O.max_integrity
 
 /mob/living/simple_animal/hostile/mimic/copy/from_puppeteer/CheckObject(obj/O)
 	if(O.resistance_flags & INDESTRUCTIBLE)
