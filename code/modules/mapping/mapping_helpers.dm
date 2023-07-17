@@ -208,6 +208,21 @@
 /obj/effect/mapping_helpers/broken_apc/highchance
 	breakchance = 75
 
+/obj/effect/mapping_helpers/airlock_autoname
+	name = "airlock autoname helper"
+	icon_state = "airlock_autoname_helper"
+
+/obj/effect/mapping_helpers/airlock_autoname/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/door = locate(/obj/machinery/door) in loc
+	if(!door)
+		stack_trace("### MAP WARNING, [src] failed to find a nameable door at [AREACOORD(src)]")
+		return
+	door.name = get_area_name(door)
+
 /obj/effect/mapping_helpers/airlock/unres
 	name = "airlock unresctricted side helper"
 	icon_state = "airlock_unres_helper"
