@@ -352,7 +352,7 @@
 /datum/action/xeno_action/activable/living_construct
 	name = "Living Construct"
 	action_icon_state = "living_construct"
-	desc = "Slap some muscles, some nerves, and some biomass on some random object and send it to attack organics! The creations are VERY stupid and will not follow orders."
+	desc = "Slap some muscles, some nerves, and some biomass on some random object and send it to attack organics! The creations are VERY stupid and clumsy, so they can get bumpslashed by accident."
 	plasma_cost = 250
 	cooldown_timer = 70 SECONDS
 	keybinding_signals = list(
@@ -403,6 +403,9 @@
 	plasma_cost = 50
 	desc = "Give blessings to your puppets."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BESTOWBLESSINGS,
+	)
 	var/duration = 25 SECONDS
 
 //very much modified phero code

@@ -914,3 +914,63 @@
 	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
 	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/psychic_crush
+	name = "Psychic Crush"
+	full_name = "Warlock: Psychic Crush"
+	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
+
+/datum/keybinding/xeno/flay
+	name = "Flay"
+	full_name = "Puppeteer: Flay"
+	description = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
+	keybind_signal = COMSIG_XENOABILITY_FLAY
+
+/datum/keybinding/xeno/pincushion
+	name = "Pincushion"
+	full_name = "Puppeteer: Pincushion"
+	description = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
+	keybind_signal = COMSIG_XENOABILITY_PINCUSHION
+
+/datum/keybinding/xeno/dread
+	name = "Dreadful Presence"
+	full_name = "Puppeteer: Dreadful Presence"
+	description = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
+	keybind_signal = COMSIG_XENOABILITY_DREADFULPRESENCE
+
+/datum/keybinding/xeno/refurbish_husk
+	name = "Refurbish Husk"
+	full_name = "Puppeteer: Refurbish Husk"
+	description = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
+	keybind_signal = COMSIG_XENOABILITY_REFURBISHHUSK
+
+/datum/keybinding/xeno/stitch_puppet
+	name = "Stitch Puppet"
+	full_name = "Puppeteer: Stitch Puppet"
+	description = "Uses 350 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
+	keybind_signal = COMSIG_XENOABILITY_PUPPET
+
+/datum/keybinding/xeno/organic_bomb
+	name = "Organic Bomb"
+	full_name = "Puppeteer: Organic Bomb"
+	description = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
+	keybind_signal = COMSIG_XENOABILITY_ORGANICBOMB
+
+/datum/keybinding/xeno/living_construct
+	name = "Living Construct"
+	full_name = "Puppeteer: Living Construct"
+	description = "Slap some muscles, some nerves, and some biomass on some random object and send it to attack organics! The creations are VERY stupid and clumsy, so they can get bumpslashed by accident."
+	keybind_signal = COMSIG_XENOABILITY_LIVINGCONSTRUCT
+
+/datum/keybinding/xeno/send_orders_puppet
+	name = "Give Orders to Puppets"
+	full_name = "Puppeteer: Give Orders to Puppets"
+	description = "Give orders to your puppets, altering their behaviour."
+	keybind_signal = COMSIG_XENOABILITY_SENDORDERS
+
+/datum/keybinding/xeno/bestow_blessing
+	name = "Bestow Blessings"
+	full_name = "Puppeteer: Bestow Blessings"
+	description = "Give blessings to your puppets."
+	keybind_signal = COMSIG_XENOABILITY_BESTOWBLESSINGS
