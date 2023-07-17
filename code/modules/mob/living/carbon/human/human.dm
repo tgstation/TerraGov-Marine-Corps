@@ -155,6 +155,12 @@
 			stagger_slow_amount = 3
 			ear_damage_amount = 10
 
+		if(EXPLODE_WEAK)
+			b_loss = 20
+			f_loss = 20
+			stagger_slow_amount = 1
+			ear_damage_amount = 5
+
 	if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 		adjust_ear_damage(ear_damage_amount * armor_modifier, ear_damage_amount * 4 * armor_modifier)
 	adjust_stagger(stagger_slow_amount * armor_modifier)

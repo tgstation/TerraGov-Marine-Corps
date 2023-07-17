@@ -27,6 +27,8 @@
 	var/hud_state_empty = "grenade_empty"
 	///Light impact range when exploding
 	var/light_impact_range = 4
+	///Weak impact range when exploding
+	var/weak_impact_range = 0
 
 
 /obj/item/explosive/grenade/Initialize(mapload)
@@ -87,7 +89,7 @@
 
 
 /obj/item/explosive/grenade/proc/prime()
-	explosion(loc, light_impact_range = src.light_impact_range)
+	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
 	qdel(src)
 
 /obj/item/explosive/grenade/flamer_fire_act(burnlevel)

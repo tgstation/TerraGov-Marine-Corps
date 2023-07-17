@@ -1493,7 +1493,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	projectile_greyscale_colors = COLOR_AMMO_HIGH_EXPLOSIVE
 
 /datum/ammo/tx54/he/drop_nade(turf/T)
-	explosion(T, 0, 0, 2, 2)
+	explosion(T, 0, 0, 2, 0, 2)
 
 /datum/ammo/tx54/he/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
@@ -1915,7 +1915,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	barricade_clear_distance = 2
 
 /datum/ammo/rocket/drop_nade(turf/T)
-	explosion(T, 0, 4, 6, 2)
+	explosion(T, 0, 4, 6, 0, 2)
 
 /datum/ammo/rocket/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
@@ -1944,7 +1944,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
 
 /datum/ammo/rocket/he/unguided/drop_nade(turf/T)
-	explosion(T, 0, 7, 0, 2)
+	explosion(T, 0, 7, 0, 0, 2)
 
 /datum/ammo/rocket/ap
 	name = "kinetic penetrator"
@@ -1968,7 +1968,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 300
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, 0, 4, 6, 7)
+	explosion(T, 0, 4, 6, 0, 7)
 
 /datum/ammo/rocket/mech
 	name = "large high-explosive rocket"
@@ -1977,7 +1977,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 
 /datum/ammo/rocket/mech/drop_nade(turf/T)
-	explosion(T, 0, 0, 5, 5)
+	explosion(T, 0, 0, 5, 0, 5)
 
 /datum/ammo/rocket/heavy_rr
 	name = "75mm round"
@@ -1995,7 +1995,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 1
 
 /datum/ammo/rocket/heavy_rr/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 4)
+	explosion(T, 0, 2, 3, 0, 4)
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
@@ -2080,7 +2080,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 50
 
 /datum/ammo/rocket/recoilless/drop_nade(turf/T)
-	explosion(T, 0, 3, 4, 2)
+	explosion(T, 0, 3, 4, 0, 2)
 
 /datum/ammo/rocket/recoilless/heat
 	name = "HEAT shell"
@@ -2105,7 +2105,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 25
 
 /datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
-	explosion(T, 0, 1, 8, 1)
+	explosion(T, 0, 1, 8, 0, 1)
 
 /datum/ammo/rocket/recoilless/chemical
 	name = "low velocity chemical shell"
@@ -2153,7 +2153,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 25
 
 /datum/ammo/rocket/recoilless/low_impact/drop_nade(turf/T)
-	explosion(T, 0, 1, 8, 2)
+	explosion(T, 0, 1, 8, 0, 2)
 
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
@@ -2174,7 +2174,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 20
 
 /datum/ammo/rocket/som/drop_nade(turf/T)
-	explosion(T, 0, 3, 6, 2)
+	explosion(T, 0, 3, 6, 0, 2)
 
 /datum/ammo/rocket/som/light
 	name = "low impact RPG"
@@ -2186,7 +2186,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 
 /datum/ammo/rocket/som/light/drop_nade(turf/T)
-	explosion(T, 0, 2, 7, 2)
+	explosion(T, 0, 2, 7, 0, 2)
 
 /datum/ammo/rocket/som/thermobaric
 	name = "thermobaric RPG"
@@ -2195,7 +2195,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 
 /datum/ammo/rocket/som/thermobaric/drop_nade(turf/T)
-	explosion(T, 0, 4, 5, 4, 4)
+	explosion(T, 0, 4, 5, 0, 4, 4)
 
 /datum/ammo/rocket/som/heat //Anti tank, or mech
 	name = "HEAT RPG"
@@ -2212,7 +2212,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		P.damage *= 3 //this is specifically designed to hurt mechs
 
 /datum/ammo/rocket/som/heat/drop_nade(turf/T)
-	explosion(T, 0, 1, 0, 1)
+	explosion(T, 0, 1, 0, 0, 1)
 
 /datum/ammo/rocket/som/rad
 	name = "irrad RPG"
@@ -2247,7 +2247,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		strength = victim.modify_by_armor(strength, BIO, 25)
 		victim.apply_radiation(strength, sound_level)
 
-	explosion(T, 0, 0, 3, 0)
+	explosion(T, 0, 0, 3)
 
 /datum/ammo/rocket/atgun_shell
 	name = "high explosive ballistic cap shell"
@@ -2263,7 +2263,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 1
 
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 2)
+	explosion(T, 0, 2, 3, 0, 2)
 
 /datum/ammo/rocket/atgun_shell/on_hit_turf(turf/T, obj/projectile/P) //no explosion every time it hits a turf
 	P.proj_max_range -= 10
@@ -2278,7 +2278,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 25
 
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
-	explosion(T, 0, 0, 0, 1)
+	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
@@ -2300,7 +2300,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 35
 
 /datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
-	explosion(T, 0, 3, 5, 0)
+	explosion(T, 0, 3, 5)
 
 /datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
@@ -2318,7 +2318,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bonus_projectile_quantity = 10
 
 /datum/ammo/rocket/atgun_shell/beehive/drop_nade(turf/T)
-	explosion(T, 0, 0, 0, 1)
+	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, stagger = 0, slowdown = 0.2, knockback = 1)
@@ -2389,13 +2389,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_VERY_SOFT_YELLOW
 
 /datum/ammo/mortar/drop_nade(turf/T)
-	explosion(T, 1, 2, 5, 3)
+	explosion(T, 1, 2, 5, 0, 3)
 
 /datum/ammo/mortar/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T)
 
 /datum/ammo/mortar/incend/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 7, throw_range = 0)
+	explosion(T, 0, 2, 3, 0, 7, throw_range = 0)
 	flame_radius(4, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2405,7 +2405,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/smoke/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	explosion(T, 0, 0, 1, 3, throw_range = 0)
+	explosion(T, 0, 0, 1, 0, 3, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
@@ -2422,10 +2422,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "howi"
 
 /datum/ammo/mortar/howi/drop_nade(turf/T)
-	explosion(T, 1, 6, 7, 12)
+	explosion(T, 1, 6, 7, 0, 12)
 
 /datum/ammo/mortar/howi/incend/drop_nade(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0)
+	explosion(T, 0, 3, 0, 0, 0, 3, throw_range = 0)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2438,7 +2438,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/smoke/howi/wp/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	explosion(T, 0, 0, 1, 0, throw_range = 0)
+	explosion(T, 0, 0, 1, 0, 0, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(6, T, 7)
 	smoke.start()
@@ -2450,7 +2450,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/smoke/howi/plasmaloss/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	explosion(T, 0, 0, 5, 0, throw_range = 0)
+	explosion(T, 0, 0, 5, 0, 0, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
@@ -2461,10 +2461,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 1.5
 
 /datum/ammo/mortar/rocket/drop_nade(turf/T)
-	explosion(T, 1, 2, 5, 3)
+	explosion(T, 1, 2, 5, 0, 3)
 
 /datum/ammo/mortar/rocket/incend/drop_nade(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0)
+	explosion(T, 0, 3, 0, 0, 3, throw_range = 0)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -2478,7 +2478,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/rocket/smoke/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	explosion(T, 0, 0, 1, 3, throw_range = 0)
+	explosion(T, 0, 0, 1, 0, 3, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
@@ -2487,7 +2487,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2.5
 
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 2)
+	explosion(T, 0, 0, 4, 0, 2)
 
 /datum/ammo/mortar/rocket/smoke/mlrs
 	shell_speed = 2.5
@@ -2495,7 +2495,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/rocket/smoke/mlrs/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	explosion(T, 0, 0, 2, 0, throw_range = 0)
+	explosion(T, 0, 0, 2, 0, 0, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(5, T, 6)
 	smoke.start()
