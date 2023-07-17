@@ -1,0 +1,4 @@
+author: "imsxz"
+delete-after: True
+changes:
+  - rscadd: "Ravager's Endure now has a screen effect when you have below critical HP in endure."
