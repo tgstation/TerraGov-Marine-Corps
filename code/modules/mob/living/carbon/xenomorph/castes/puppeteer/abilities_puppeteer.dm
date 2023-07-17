@@ -17,26 +17,27 @@
 	. = ..()
 	if(!.)
 		return
-	
-	if(!ishuman(target))
-		if(!silent)
-			to_chat(owner, span_xenowarning("We cant find any suitable flesh on this thing!"))
-		return FALSE
 
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/human/target_human = target
+	if(!ishuman(target))
+		if(!silent)
+			owner_xeno.balloon_alert(owner_xeno, "not suitable!")
+		return FALSE
+
 	if(!owner_xeno.Adjacent(target_human))
 		if(!silent)
-			to_chat(owner_xeno, span_xenonotice("We need to be next to our victim."))
+			owner_xeno.balloon_alert(owner_xeno, "not adjacent!")
 		return FALSE
 
 	if(target_human.stat == DEAD)
-		to_chat(owner_xeno, span_xenonotice("Dead meat is bad meat!"))
+		if(!silent)
+			owner_xeno.balloon_alert(owner_xeno, "dead!")
 		return FALSE
 
 	if(owner_xeno.plasma_stored >= owner_xeno.xeno_caste.plasma_max)
 		if(!silent)
-			to_chat(owner_xeno, span_xenowarning("No need, no space for all this meat..."))
+			owner_xeno.balloon_alert(owner_xeno, "already have enough flesh!")
 		return FALSE
 
 /datum/action/xeno_action/activable/flay/use_ability(mob/living/carbon/human/target_human)
@@ -141,10 +142,11 @@
 	var/mob/living/carbon/human/target_human = target
 	if(!ishuman(target))
 		if(!silent)
-			to_chat(owner, span_xenowarning("We dont know this things biology!"))
+			owner_xeno.balloon_alert(owner_xeno, "not suitable!")
 		return FALSE
 	if(length(puppets) >= owner_xeno.xeno_caste.max_puppets)
-		owner_xeno.balloon_alert(owner_xeno, "cant have more than [owner_xeno.xeno_caste.max_puppets]!")
+		if(!silent)
+			owner_xeno.balloon_alert(owner_xeno, "too many puppets! (max: [owner_xeno.xeno_caste.max_puppets])")
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_MAPSPAWNED))
 		if(!silent)
@@ -153,12 +155,12 @@
 
 	if(!owner_xeno.Adjacent(target_human))
 		if(!silent)
-			to_chat(owner_xeno, span_xenonotice("We need to be next to our victim."))
+			owner_xeno.balloon_alert(owner_xeno, "not adjacent!")
 		return FALSE
 
 #ifndef TESTING
 	if(!HAS_TRAIT(target_human, TRAIT_UNDEFIBBABLE) || target_human.stat != DEAD)
-		to_chat(owner_xeno, span_xenonotice("The body is not yet ready for stitching!"))
+		owner_xeno.balloon_alert(owner_xeno, "not dead and unrevivable!")
 		return FALSE
 #endif
 
@@ -222,12 +224,13 @@
 
 	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
 	if(length(huskaction.puppets) >= owner_xeno.xeno_caste.max_puppets)
-		owner_xeno.balloon_alert(owner_xeno, "cant have more than [owner_xeno.xeno_caste.max_puppets]!")
+		if(!silent)
+			owner_xeno.balloon_alert(owner_xeno, "too many puppets! (max: [owner_xeno.xeno_caste.max_puppets])")
 		return FALSE
 
 	if(!owner_xeno.Adjacent(target))
 		if(!silent)
-			to_chat(owner_xeno, span_xenonotice("We need to be next to where we want to create a puppet."))
+			owner_xeno.balloon_alert(owner_xeno, "not adjacent!")
 		return FALSE
 
 	owner_xeno.face_atom(target)
@@ -272,8 +275,8 @@
 		victim.balloon_alert(owner, "fail")
 		return fail_activate()
 	RegisterSignal(victim, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(start_exploding))
-	RegisterSignal(victim, COMSIG_MOB_DEATH, PROC_REF(fucking_explode))
-	addtimer(CALLBACK(src, PROC_REF(fucking_explode), victim), 15 SECONDS)
+	RegisterSignal(victim, COMSIG_MOB_DEATH, PROC_REF(detonate))
+	addtimer(CALLBACK(src, PROC_REF(detonate), victim), 15 SECONDS)
 	add_cooldown()
 
 /datum/action/xeno_action/activable/organic_bomb/proc/start_exploding(mob/living/puppet)
@@ -283,9 +286,9 @@
 /datum/action/xeno_action/activable/organic_bomb/proc/start_exploding_async(mob/living/puppet)
 	puppet.visible_message(span_danger("[puppet] bloats and slowly unfurls its stitched body!"))
 	if(do_after(puppet, 1.5 SECONDS, FALSE, puppet, BUSY_ICON_DANGER))
-		fucking_explode(puppet)
+		detonate(puppet)
 
-/datum/action/xeno_action/activable/organic_bomb/proc/fucking_explode(mob/living/puppet)
+/datum/action/xeno_action/activable/organic_bomb/proc/detonate(mob/living/puppet)
 	SIGNAL_HANDLER
 	UnregisterSignal(puppet, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_MOB_DEATH))
 	if(QDELETED(puppet))
