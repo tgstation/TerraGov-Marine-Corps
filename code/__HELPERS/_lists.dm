@@ -1,4 +1,3 @@
-
 #define LAZYINITLIST(L) if (!L) L = list()
 #define UNSETEMPTY(L) if (L && !length(L)) L = null
 #define LAZYREMOVE(L, I) if(L) { L -= I; if(!length(L)) { L = null; } }
