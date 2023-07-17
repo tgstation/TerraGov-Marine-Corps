@@ -146,9 +146,9 @@
 	if(length(puppets) >= owner_xeno.xeno_caste.max_puppets)
 		owner_xeno.balloon_alert(owner_xeno, "cant have more than [owner_xeno.xeno_caste.max_puppets]!")
 		return FALSE
-	if(HAS_TRAIT(target, TRAIT_PSY_DRAINED))
+	if(HAS_TRAIT(target, TRAIT_MAPSPAWNED))
 		if(!silent)
-			to_chat(owner, span_xenonotice("This one has been drained of all psychic energy, of no use to us."))
+			owner_xeno.balloon_alert(owner_xeno, "of no use!")
 		return FALSE
 
 	if(!owner_xeno.Adjacent(target_human))
@@ -432,7 +432,7 @@
 /datum/action/xeno_action/puppeteer_orders
 	name = "Give Orders to Puppets"
 	action_icon_state = "orders"
-	desc = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
+	desc = "Give orders to your puppets, altering their behaviour."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SENDORDERS,
 	)
