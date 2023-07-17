@@ -30,7 +30,7 @@
 
 	///Reference to upgrades available and purchased by this hive.
 	var/datum/hive_purchases/purchases = new
-	// The nuke HUD timer datum, shown on each xeno's screen
+	/// The nuke HUD timer datum, shown on each xeno's screen
 	var/atom/movable/screen/text/screen_timer/nuke_hud_timer
 
 // ***************************************
@@ -875,6 +875,7 @@ to_chat will check for valid clients itself already so no need to double check f
 // ***************************************
 /datum/hive_status/normal // subtype for easier typechecking and overrides
 	hive_flags = HIVE_CAN_HIJACK
+	/// Timer ID for the orphan hive timer
 	var/atom/movable/screen/text/screen_timer/orphan_hud_timer
 
 /datum/hive_status/normal/add_xeno(mob/living/carbon/xenomorph/X)
