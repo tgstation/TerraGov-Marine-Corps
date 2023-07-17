@@ -173,7 +173,7 @@
 
 	victim.unequip_everything()
 	victim.gib()
-	var/mob/living/carbon/xenomorph/puppet = new /mob/living/carbon/xenomorph/puppet(victim_turf, owner)
+	var/mob/living/carbon/xenomorph/puppet/puppet = new(victim_turf, owner)
 	puppet.voice = victim.voice
 	add_puppet(puppet)
 	add_cooldown()
@@ -217,7 +217,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(isclosedturf(target))
 		if(!silent)
-			target.balloon_alert(owner_xeno, "THATS A FUCKING WALL")
+			target.balloon_alert(owner_xeno, "dense area")
 		return FALSE
 
 	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
@@ -234,9 +234,7 @@
 	//reverse gib here
 	owner_xeno.visible_message(span_warning("[owner_xeno] begins to vomit out biomass and skillfully sews various bits and pieces together!"))
 	if(!do_after(owner_xeno, 8 SECONDS, FALSE, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
-		//cancel effects
 		return FALSE
-	//cancel effects
 	owner_xeno.visible_message(span_warning("[owner_xeno] forms a repulsive puppet!"))
 	succeed_activate()
 
@@ -326,14 +324,14 @@
 	owner.balloon_alert(owner, "channeling voice, move or activate to cancel!")
 	active_target = victim
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(relay_speech))
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(cancel)) //if we move, cancel
-	RegisterSignal(victim, COMSIG_QDELETING, PROC_REF(cancel)) // should prevent a harddel
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(cancel))
+	RegisterSignal(victim, COMSIG_QDELETING, PROC_REF(cancel))
 	talking = TRUE
 	add_cooldown()
 	
 /datum/action/xeno_action/activable/articulate/proc/relay_speech(mob/living/carbon/source, arguments)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(relay_speech_async), active_target, arguments[1]) // FUCK
+	INVOKE_ASYNC(src, PROC_REF(relay_speech_async), active_target, arguments[SPEECH_MESSAGE])
 
 /datum/action/xeno_action/activable/articulate/proc/relay_speech_async(mob/living/carbon/target, text)
 	target.say(text, language = /datum/language/common, forced = "puppeteer articulate ability")
@@ -394,6 +392,7 @@
 /datum/action/xeno_action/activable/living_construct/use_ability(atom/movable/victim)
 	new /mob/living/simple_animal/hostile/mimic/copy/from_puppeteer(get_turf(victim), victim, null, FALSE, FALSE, owner)
 	add_cooldown()
+
 // ***************************************
 // *********** Blessings
 // ***************************************
@@ -446,7 +445,7 @@
 		return
 	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ALL_ORDER, choice))
 		owner.balloon_alert(owner, "success")
-		switch(choice) //visible message stuff
+		switch(choice)
 			if(PUPPET_ATTACK)
 				owner.visible_message(span_warning("[owner] swiftly manipulates the psychic strings of the puppets, ordering them to attack!"))
 			if(PUPPET_RECALL)
