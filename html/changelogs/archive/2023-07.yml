@@ -225,3 +225,11 @@
   ivanmixo:
   - bugfix: Crash vendor doesn't pull from shipside weapons vendor anymore
   - bugfix: Fixed xeno jobs needing more points than intended
+2023-07-17:
+  Lumipharon:
+  - bugfix: fixed a bug with the valkyrie module
+  chizzy376:
+  - rscadd: Added new side shutters to Umbilical Tad.
+  imsxz:
+  - rscadd: Ravager's Endure now has a screen effect when you have below critical
+      HP in endure.
