@@ -18,6 +18,7 @@
 	attachments_allowed = list(
 		/obj/item/armor_module/armor/cape_highlight,
 		/obj/item/armor_module/armor/cape_highlight/kama,
+		/obj/item/armor_module/armor/cape_highlight/kama/kilt,
 	)
 	colorable_allowed = PRESET_COLORS_ALLOWED|ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "normal"
@@ -261,7 +262,6 @@
 	slot = ATTACHMENT_SLOT_KAMA
 	attachment_layer = KAMA_LAYER
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight/kama)
 	greyscale_config = /datum/greyscale_config/cape
 	icon_state_variants = list(
@@ -269,6 +269,18 @@
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
 				"kama",
+			),
+		),
+		"kilt" = list(
+			HOOD = FALSE,
+			HIGHLIGHT_VARIANTS = list(
+				"kilt",
+			),
+		),
+		"kilt (alt)" = list(
+			HOOD = FALSE,
+			HIGHLIGHT_VARIANTS = list(
+				"kilt",
 			),
 		),
 	)
@@ -317,3 +329,5 @@
 	current_variant = "kama"
 	icon_state_variants = list()
 
+/obj/item/armor_module/armor/cape_highlight/kama/kilt
+	current_variant = "kilt"

@@ -30,6 +30,8 @@
 #define CAPE_RAPIER_L "cape_rapier_l"
 #define CAPE_JACKET "cape_jacket"
 #define CAPE_KAMA "cape_kama"
+#define CAPE_KILT "cape_kilt"
+#define CAPE_KILT_ALT "cape_kilt_alt"
 #define SOM_BLACK "SOM_black"
 #define CAPE_HIGHLIGHT_NORMAL_ALT "normal_alt"
 
@@ -69,6 +71,8 @@ GLOBAL_LIST_INIT(loadout_variant_keys, list(
 	CAPE_RAPIER_L = "rapier (left)",
 	CAPE_JACKET = "jacket",
 	CAPE_KAMA = "kama",
+	CAPE_KILT = "kilt",
+	CAPE_KILT_ALT = "kilt (alt)",
 	CAPE_HIGHLIGHT_NONE = "none",
 	LEATHER_JACKET_WEBBING = "webbing",
 	SOM_BLACK = "black",
