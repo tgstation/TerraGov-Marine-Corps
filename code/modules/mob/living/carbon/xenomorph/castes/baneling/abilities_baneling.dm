@@ -22,7 +22,7 @@
 	X.death(FALSE)
 
 /// This proc defines, and sets up and then lastly starts the smoke, if ability is false we divide range by 4.
-/datum/action/xeno_action/baneling_explode/proc/handle_smoke(src, ability = FALSE)
+/datum/action/xeno_action/baneling_explode/proc/handle_smoke(ability = FALSE)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/owner_T = get_turf(X)
@@ -108,6 +108,12 @@
 /datum/action/xeno_action/spawn_pod/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	new /obj/structure/xeno/baneling_pod(get_turf(X.loc), X.hivenumber, X, src)
+	RegisterSignal(new /obj/structure/xeno/baneling_pod(get_turf(X.loc), X.hivenumber, X, src), COMSIG_QDELETING, PROC_REF(notify_owner))
 	succeed_activate()
+
+/datum/action/xeno_action/spawn_pod/proc/notify_owner()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/X = owner
+	X.balloon_alert(X, "YOUR POD IS DESTROYED")
+	to_chat(X, span_xenohighdanger("YOUR POD IS DESTROYED"))
 
