@@ -11,7 +11,7 @@
 
 /// A screen object that shows the time left on a timer
 /atom/movable/screen/text/screen_timer
-	screen_loc = "CENTER, TOP"
+	screen_loc = "CENTER-7,CENTER-7"
 	var/maptext_style_left = "<span class='maptext' style=font-size:16pt;text-align:center; align='top'>"
 	var/maptext_style_right = "</span>"
 	var/maptext_string
@@ -48,7 +48,7 @@
 	update_maptext()
 	if(length(mobs))
 		apply_to(mobs)
-		START_PROCESSING(SSprocessing, src)
+		// START_PROCESSING(SSprocessing, src)
 
 /atom/movable/screen/text/screen_timer/process()
 	if(!timeleft(timer_id))
@@ -58,22 +58,30 @@
 
 /// Adds the object to the client.screen of all mobs in the list, and registers the needed signals
 /atom/movable/screen/text/screen_timer/proc/apply_to(list/mobs)
+	if(!islist(mobs))
+		if(!mobs)
+			return
+		mobs = list(mobs)
 	if(!length(timer_mobs) && length(mobs))
 		START_PROCESSING(SSprocessing, src)
 	for(var/mob/player in mobs)
 		if(player in timer_mobs)
 			continue
-		attach(player.client)
+		attach(player)
 		timer_mobs += player
 		RegisterSignal(player, COMSIG_MOB_LOGIN, PROC_REF(attach))
 		RegisterSignal(player, COMSIG_MOB_LOGOUT, PROC_REF(de_attach))
 
 /// Gets rid of the object from the client.screen of all mobs in the list, and unregisters the needed signals
 /atom/movable/screen/text/screen_timer/proc/remove_from(list/mobs)
+	if(!islist(mobs))
+		if(!mobs)
+			return
+		mobs = list(mobs)
 	for(var/mob/player in mobs)
 		if(player in timer_mobs)
 			timer_mobs -= player
-		de_attach(player.client)
+		de_attach(player)
 		UnregisterSignal(player, COMSIG_MOB_LOGIN)
 		UnregisterSignal(player, list(COMSIG_MOB_LOGOUT))
 	if(!length(timer_mobs))
@@ -85,14 +93,17 @@
 	var/timer_text = replacetextEx(maptext_string, "${timer}", time_formatted)
 	// If we don't find ${timer} in the string, just use the time formatted
 	var/timer_text_result = timer_text ? timer_text : time_formatted
-	var/result_text = "[maptext_style_left][timer_text_result][time_formatted][maptext_style_right]"
+	var/result_text = "[maptext_style_left][timer_text_result][maptext_style_right]"
 	maptext = result_text
 
 /// Adds the object to the client.screen of the mob, or removes it if add_to_screen is FALSE
 /atom/movable/screen/text/screen_timer/proc/attach(mob/source, add_to_screen = TRUE)
 	SIGNAL_HANDLER
 	var/client/client = source.client
-	if(!source || !source.client || (src in client.screen))
+	if(!source || !source.client)
+		return
+	// this checks if the screen is already added or removed
+	if(add_to_screen == (src in client.screen))
 		return
 	if(!ismob(source))
 		CRASH("Invalid source passed to screen_timer/attach()!")
