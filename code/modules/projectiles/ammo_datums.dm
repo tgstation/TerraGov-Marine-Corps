@@ -3831,6 +3831,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BRUTE
 	bullet_color = COLOR_WHITE
 	sound_hit = 'sound/bullets/spear_armor1.ogg'
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 
 /*
 //================================================
