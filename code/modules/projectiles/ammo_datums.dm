@@ -1732,6 +1732,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_VERY_SOFT_YELLOW
 	///the smoke effect at the point of detonation
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread
+	///Total damage applied to victims by the exploding bomblet
+	var/explosion_damage = 20
+	///Amount of stagger and slowdown applied by the exploding bomblet
+	var/stagger_slow = 1
 
 ///handles the actual bomblet detonation
 /datum/ammo/micro_rail_cluster/proc/detonate(turf/T, obj/projectile/P)
@@ -1739,11 +1743,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(0, T, rand(1,2))
 	smoke.start()
-	for(var/mob/living/carbon/victim in get_hear(2, T))
-		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
-			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
-		victim.apply_damages(10, 10, 0, 0, 0, blocked = BOMB, updating_health = TRUE)
-		staggerstun(victim, P, stagger = 1, slowdown = 1)
+
+	var/list/turf/target_turfs = generate_true_cone(T, 2, 1, 359, 0, projectile = TRUE)
+	for(var/turf/target_turf AS in target_turfs)
+		for(var/target in target_turf)
+			if(isliving(target))
+				var/mob/living/living_target = target
+				living_target.visible_message(span_danger("[living_target] is hit by the bomblet blast!"),
+					isxeno(living_target) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
+				living_target.apply_damages(explosion_damage * 0.5, explosion_damage * 0.5, 0, 0, 0, blocked = BOMB, updating_health = TRUE)
+				staggerstun(living_target, P, stagger = stagger_slow, slowdown = stagger_slow)
+			else if(isobj(target))
+				var/obj/obj_victim = target
+				obj_victim.take_damage(explosion_damage, BRUTE, BOMB)
 
 /datum/ammo/micro_rail_cluster/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
 	///chance to detonate early, scales with distance and capped, to avoid lots of immediate detonations, and nothing reach max range respectively.
@@ -1765,7 +1777,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/smoke_burst
 	name = "micro smoke canister"
-	icon_state = "bullet" //PLACEHOLDER
+	icon_state = "bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	sound_hit 	 = "ballistic_hit"
 	sound_armor = "ballistic_armor"
