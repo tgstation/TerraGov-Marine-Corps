@@ -69,6 +69,8 @@
 			take_damage(rand(75, 125), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(25, 75), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(15, 35), BRUTE, BOMB)
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point

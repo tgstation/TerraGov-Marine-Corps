@@ -67,6 +67,11 @@
 				for(var/x in verbs)
 					verbs -= x
 				set_broken()
+		if(EXPLODE_WEAK)
+			if (prob(15))
+				for(var/x in verbs)
+					verbs -= x
+				set_broken()
 
 
 /obj/machinery/computer/bullet_act(obj/projectile/Proj)

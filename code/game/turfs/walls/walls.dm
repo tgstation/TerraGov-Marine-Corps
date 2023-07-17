@@ -304,6 +304,8 @@
 				dismantle_wall(TRUE, TRUE)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 250), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(0, 50), BRUTE, BOMB)
 
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)

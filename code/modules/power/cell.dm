@@ -216,6 +216,9 @@
 				return
 			if (prob(25))
 				corrupt()
+		if(EXPLODE_WEAK)
+			if (prob(25))
+				corrupt()
 
 
 /obj/item/cell/proc/get_electrocute_damage()

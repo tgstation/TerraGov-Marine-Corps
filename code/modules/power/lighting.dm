@@ -514,6 +514,9 @@
 		if(EXPLODE_LIGHT)
 			if (prob(50))
 				broken()
+		if(EXPLODE_WEAK)
+			if (prob(25))
+				broken()
 
 
 //timed process

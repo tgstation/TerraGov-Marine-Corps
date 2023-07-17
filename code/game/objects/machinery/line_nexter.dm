@@ -20,9 +20,6 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/machinery/line_nexter/ex_act(severity)
-	return
-
 /obj/machinery/line_nexter/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	if(iscarbon(mover) && (direction & dir))
 		return NONE
