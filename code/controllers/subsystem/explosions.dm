@@ -105,7 +105,7 @@ SUBSYSTEM_DEF(explosions)
 		flash_range = devastation_range
 
 	if(isnull(throw_range))
-		throw_range = max(devastation_range, heavy_impact_range, light_impact_range, weak_impact_range)
+		throw_range = max(devastation_range, heavy_impact_range, light_impact_range)
 
 	var/orig_max_distance = max(devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range)
 

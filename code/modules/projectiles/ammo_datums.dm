@@ -1493,7 +1493,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	projectile_greyscale_colors = COLOR_AMMO_HIGH_EXPLOSIVE
 
 /datum/ammo/tx54/he/drop_nade(turf/T)
-	explosion(T, 0, 0, 2, 0, 2)
+	explosion(T, 0, 0, 1, 3, 1)
 
 /datum/ammo/tx54/he/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
@@ -2247,7 +2247,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		strength = victim.modify_by_armor(strength, BIO, 25)
 		victim.apply_radiation(strength, sound_level)
 
-	explosion(T, 0, 0, 3)
+	explosion(T, weak_impact_range = 4)
 
 /datum/ammo/rocket/atgun_shell
 	name = "high explosive ballistic cap shell"
