@@ -3106,7 +3106,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		mech_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
-	if(!isxeno(M))
+	if(isxeno(M))
 		return
 	staggerstun(M, P, 9, stagger = 2, slowdown = 2, knockback = 1)
 
