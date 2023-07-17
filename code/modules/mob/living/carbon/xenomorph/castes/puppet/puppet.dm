@@ -1,4 +1,3 @@
-// THIS SHOULD NEVER BE IN PLAYER CONTROL (like actually having a client)
 /mob/living/carbon/xenomorph/puppet
 	caste_base_type = /mob/living/carbon/xenomorph/puppet
 	name = "Puppet"
