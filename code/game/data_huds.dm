@@ -300,7 +300,7 @@
 			if(!HAS_TRAIT(src, TRAIT_PSY_DRAINED))
 				infection_hud.icon_state = "psy_drain"
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
-				hud_list[HEART_STATUS_HUD].icon_state = "heart_dnr"
+				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
 				status_hud.icon_state = "huddead"
 				return TRUE
 			if(!client)
