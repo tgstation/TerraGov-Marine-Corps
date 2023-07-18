@@ -43,9 +43,3 @@
 		return
 	if(source != master) //puppeteer phero only
 		return FALSE
-
-/mob/living/carbon/xenomorph/puppet/finish_aura_cycle()
-	var/fury = received_auras[AURA_XENO_FURY] || 0
-	if(fury)
-		xeno_melee_damage_modifier = 1 + ((fury - 1) * 0.05)
-	return ..()

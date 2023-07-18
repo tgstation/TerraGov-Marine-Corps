@@ -407,31 +407,37 @@
 	action_icon_state = "emit_pheromones"
 	plasma_cost = 50
 	desc = "Give blessings to your puppets."
+	cooldown_timer = 75
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BESTOWBLESSINGS,
 	)
-	var/duration = 25 SECONDS
-
-//very much modified phero code
-/datum/action/xeno_action/puppet_blessings/proc/apply_pheros(phero_choice)
-	var/mob/living/carbon/xenomorph/X = owner
-
-	if(X.current_aura && X.current_aura.aura_types[1] == phero_choice)
-		X.balloon_alert(X, "Cant bless yet!")
-		return fail_activate()
-	QDEL_NULL(X.current_aura)
-	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, duration, X.faction, X.hivenumber, list(/datum/xeno_caste/puppet))
-	X.current_aura.affects_xenos = TRUE
-	X.balloon_alert(X, "[phero_choice]")
-	playsound(X.loc, "alien_drool", 25)
-	succeed_activate()
 
 /datum/action/xeno_action/puppet_blessings/action_activate()
+	var/mob/living/carbon/xenomorph/xeno = owner
+	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = xeno.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
+	if(length(huskaction.puppets) <= 0)
+		xeno.balloon_alert(xeno, "no puppets")
+		return fail_activate()
 	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_phero_images_list, radius = 35)
 	if(!choice)
 		return fail_activate()
-	apply_pheros(choice)
+	var/effect_path
+	switch(choice)
+		if(AURA_XENO_BLESSFRENZY)
+			effect_path = /datum/status_effect/blessing_frenzy
+		if(AURA_XENO_BLESSFURY)
+			effect_path = /datum/status_effect/blessing_fury
+		if(AURA_XENO_BLESSFRENZY)
+			effect_path = /datum/status_effect/blessing_warding
+	
+	for(var/mob/living/carbon/xenomorph/puppet/puppet in huskaction.puppets)
+		puppet.apply_status_effect(effect_path, xeno.xeno_caste.aura_strength)
+
+	xeno.balloon_alert(xeno, "[choice]")
+	playsound(get_turf(xeno), "alien_drool", 25)
+	succeed_activate()
+	add_cooldown()
 
 // ***************************************
 // *********** Orders

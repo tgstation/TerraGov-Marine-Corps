@@ -55,12 +55,12 @@ SUBSYSTEM_DEF(aura)
 		stage = 1
 
 ///Use this to start a new emitter with the specified stats. Returns the emitter in question, just qdel it to end early.
-/datum/controller/subsystem/aura/proc/add_emitter(atom/center, type, range, strength, duration, faction, hivenumber, specific_castes)
+/datum/controller/subsystem/aura/proc/add_emitter(atom/center, type, range, strength, duration, faction, hivenumber)
 	if(!istype(center))
 		return
 	if(!type || !range || !strength || !duration || !faction)
 		return
-	. = new /datum/aura_bearer(center, type, range, strength, duration, faction, hivenumber, specific_castes)
+	. = new /datum/aura_bearer(center, type, range, strength, duration, faction, hivenumber)
 	active_auras += .
 
 ///The thing that actually pushes out auras to nearby mobs.
@@ -91,8 +91,6 @@ SUBSYSTEM_DEF(aura)
 	var/hive_number = XENO_HIVE_NORMAL
 	///Whether we should skip the next tick. Set to false after skipping once. Won't pulse to targets or reduce duration.
 	var/suppressed = FALSE
-	///If theres anything in this list, only give our aura to specific caste types in this list
-	var/list/specific_castes = list()
 
 /datum/aura_bearer/New(atom/aura_emitter, aura_names, aura_range, aura_strength, aura_duration, aura_faction, aura_hivenumber, aura_castes)
 	..()
@@ -107,9 +105,6 @@ SUBSYSTEM_DEF(aura)
 		aura_types = list(aura_names)
 	else
 		aura_types = aura_names
-	
-	if(aura_castes)
-		specific_castes = aura_castes
 
 	for(var/aura_type in aura_types)
 		if(human_auras.Find(aura_type))
@@ -169,8 +164,6 @@ SUBSYSTEM_DEF(aura)
 		return
 	for(var/mob/living/carbon/xenomorph/potential_hearer AS in GLOB.hive_datums[hive_number].xenos_by_zlevel["[aura_center.z]"])
 		if(get_dist(aura_center, potential_hearer) > range)
-			continue
-		if(length(specific_castes) && !(potential_hearer.type in specific_castes))
 			continue
 		for(var/aura in aura_types)
 			if(!potential_hearer.can_receive_aura(aura, emitter, src))
