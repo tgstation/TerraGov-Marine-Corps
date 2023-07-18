@@ -25,7 +25,7 @@
 
 /atom/movable/screen/text/screen_timer/Initialize(
 		mapload,
-		mobs,
+		list/mobs,
 		timer,
 		text,
 		style_start,
@@ -68,13 +68,15 @@
 		mobs = list(mobs)
 	if(!length(timer_mobs) && length(mobs))
 		START_PROCESSING(SSprocessing, src)
-	for(var/mob/player in mobs)
+	for(var/player in mobs)
 		if(player in timer_mobs)
 			continue
+		if(istype(player, /datum/weakref))
+			var/datum/weakref/ref = player
+			player = ref.resolve()
 		attach(player)
-		timer_mobs += player
+		timer_mobs += WEAKREF(player)
 		RegisterSignal(player, COMSIG_MOB_LOGIN, PROC_REF(attach))
-		RegisterSignal(player, COMSIG_MOB_LOGOUT, PROC_REF(de_attach))
 
 /// Gets rid of the object from the client.screen of all mobs in the list, and unregisters the needed signals
 /atom/movable/screen/text/screen_timer/proc/remove_from(list/mobs)
@@ -82,12 +84,14 @@
 		if(!mobs)
 			return
 		mobs = list(mobs)
-	for(var/mob/player in mobs)
+	for(var/player in mobs)
 		if(player in timer_mobs)
 			timer_mobs -= player
+		if(istype(player, /datum/weakref))
+			var/datum/weakref/ref = player
+			player = ref.resolve()
 		de_attach(player)
 		UnregisterSignal(player, COMSIG_MOB_LOGIN)
-		UnregisterSignal(player, list(COMSIG_MOB_LOGOUT))
 	if(!length(timer_mobs))
 		STOP_PROCESSING(SSprocessing, src)
 
