@@ -24,9 +24,10 @@
 /mob/living/proc/finish_aura_cycle()
 	received_auras.Cut() //Living, of course, doesn't care about any
 
-///Can we receive this aura
+///Can we receive this aura? returns bool
 /mob/living/proc/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
-	. = TRUE //get fucked
+	SHOULD_CALL_PARENT(TRUE)
+	. = TRUE
 	if(faction != bearer.faction)
 		return FALSE
 
