@@ -199,8 +199,7 @@
 		return
 	if(apc.machine_stat && (BROKEN)) //there's a small chance of APCs being broken on round start, just return if it's already happened
 		return
-	else
-		apc.do_break()
+	apc.do_break()
 
 /obj/effect/mapping_helpers/broken_apc/lowchance
 	breakchance = 25
