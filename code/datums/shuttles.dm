@@ -140,6 +140,16 @@
 	description = "A Tadpole model for hauling, engineering and general maintenance. Patented by Nakamura Engineering, and is a rather reliable way to transport goods."
 	display_name = "Tadpole NK-Haul Model"
 
+/datum/map_template/shuttle/minidropship/mobile_bar
+    suffix = "_mobile_bar"
+    description = "A Tadpole modified to provide foods and services. God damit its him again I thought we got rid of him."
+    display_name = "Tadpole Mobile-Bar Model"
+
+/datum/map_template/shuttle/minidropship/combat_tad
+    suffix = "_combat_tad"
+    description = "A Tadpole modified to have three hardpoints instead of just one, the majority of the other standerd featured had to be scrapped to fit all three of them on."
+    display_name = "Tadpole Combat Model"
+
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
 	name = "Escape Pod"
