@@ -862,7 +862,8 @@
 	alert_type = null
 	/// The owner of this buff.
 	var/mob/living/carbon/xenomorph/buff_owner
-	var/initial_modifier
+	///the modifier we apply to the xenos melee damage modifier
+	var/modifier
 	///Aura strength of the puppeteer who gave this effect
 	var/strength = 1
 
@@ -875,12 +876,12 @@
 	buff_owner = owner
 	if(!isxeno(buff_owner))
 		return FALSE
-	initial_modifier = buff_owner.xeno_melee_damage_modifier
-	buff_owner.xeno_melee_damage_modifier = 1 + ((strength) * 0.05)
+	modifier = strength * 0.05
+	buff_owner.xeno_melee_damage_modifier += modifier
 	return TRUE
 
 /datum/status_effect/blessing_fury/on_remove()
-	buff_owner.xeno_melee_damage_modifier = initial_modifier
+	buff_owner.xeno_melee_damage_modifier -= modifier
 	return ..()
 
 /datum/status_effect/blessing_warding
