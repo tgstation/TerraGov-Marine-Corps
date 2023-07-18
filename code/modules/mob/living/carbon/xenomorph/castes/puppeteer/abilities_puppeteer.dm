@@ -48,11 +48,11 @@
 	playsound(target_human, "alien_claw_flesh", 25, TRUE)
 	target_human.emote("scream")
 	owner_xeno.emote("roar")
-	target_human.apply_damage(damage = 45, damagetype = BRUTE, def_zone = BODY_ZONE_CHEST, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
+	target_human.apply_damage(45, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE)
 	target_human.Paralyze(0.8 SECONDS)
 
 	owner_xeno.gain_plasma(owner_xeno.xeno_caste.flay_plasma_gain)
-	
+
 	add_cooldown()
 
 // ***************************************
@@ -300,7 +300,7 @@
 	var/turf/our_turf = get_turf(puppet)
 	playsound(our_turf, 'sound/bullets/acid_impact1.ogg', 50, 1)
 	puppet.gib()
-	
+
 	for(var/turf/acid_tile AS in RANGE_TURFS(1, our_turf))
 		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
@@ -334,7 +334,7 @@
 	RegisterSignal(victim, COMSIG_QDELETING, PROC_REF(cancel))
 	talking = TRUE
 	add_cooldown()
-	
+
 /datum/action/xeno_action/activable/articulate/proc/relay_speech(mob/living/carbon/source, arguments)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(relay_speech_async), active_target, arguments[SPEECH_MESSAGE])
@@ -367,7 +367,7 @@
 	. = ..()
 	if(!.)
 		return
-	
+
 	if(!isstructure(target) && !isitem(target))
 		if(!silent)
 			owner.balloon_alert(owner, "not an object or item!")
@@ -377,7 +377,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "too strong!")
 		return FALSE
-	
+
 	if(is_type_in_list(object_target, GLOB.protected_objects))
 		if(!silent)
 			owner.balloon_alert(owner, "not gonna work!")
@@ -387,7 +387,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "not adjacent!")
 		return FALSE
-	
+
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(target)
 	if(!do_after(owner_xeno, 10 SECONDS, FALSE, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
@@ -430,7 +430,7 @@
 			effect_path = /datum/status_effect/blessing_fury
 		if(AURA_XENO_BLESSFRENZY)
 			effect_path = /datum/status_effect/blessing_warding
-	
+
 	for(var/mob/living/carbon/xenomorph/puppet/puppet in huskaction.puppets)
 		puppet.apply_status_effect(effect_path, xeno.xeno_caste.aura_strength)
 
