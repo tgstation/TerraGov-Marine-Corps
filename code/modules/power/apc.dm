@@ -1018,7 +1018,7 @@
 			if(!cell || prob(85))
 				return
 
-		cell.ex_act(severity)
+	cell.ex_act(severity)
 
 
 /obj/machinery/power/apc/proc/set_broken()

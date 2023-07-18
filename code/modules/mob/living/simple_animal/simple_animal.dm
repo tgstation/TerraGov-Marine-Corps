@@ -237,7 +237,7 @@
 		if(EXPLODE_WEAK)
 			adjustBruteLoss(15)
 
-		UPDATEHEALTH(src)
+	UPDATEHEALTH(src)
 
 
 /mob/living/simple_animal/get_idcard(hand_first)
