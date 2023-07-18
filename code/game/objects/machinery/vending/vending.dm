@@ -225,8 +225,9 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			if(prob(50))
-				qdel(src)
+			take_damage(rand(150, 250), BRUTE, BOMB)
+		if(EXPLODE_LIGHT)
+			take_damage(rand(75, 125), BRUTE, BOMB)
 
 /**
  * Builds shared vendors inventory
@@ -286,10 +287,6 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(tipped_level)
-		to_chat(X, span_warning("There's no reason to bother with that old piece of trash."))
-		return FALSE
-
 	if(X.a_intent == INTENT_HARM)
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(prob(X.xeno_caste.melee_damage))
@@ -303,6 +300,10 @@
 			span_danger("We slash \the [src]!"), null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
+
+	if(tipped_level)
+		to_chat(X, span_warning("There's no reason to bother with that old piece of trash."))
+		return FALSE
 
 	X.visible_message(span_warning("\The [X] begins to lean against \the [src]."), \
 	span_warning("You begin to lean against \the [src]."), null, 5)
@@ -322,9 +323,10 @@
 /obj/machinery/vending/proc/tip_over()
 	var/matrix/A = matrix()
 	tipped_level = 2
-	density = FALSE
 	A.Turn(90)
 	transform = A
+	allow_pass_flags |= PASS_LOW_STRUCTURE
+	coverage = 50
 
 /obj/machinery/vending/proc/flip_back()
 	icon_state = initial(icon_state)
@@ -332,6 +334,8 @@
 	density = TRUE
 	var/matrix/A = matrix()
 	transform = A
+	allow_pass_flags &= ~PASS_LOW_STRUCTURE
+	coverage = initial(coverage)
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
