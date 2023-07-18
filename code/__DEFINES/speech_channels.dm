@@ -7,3 +7,4 @@
 #define MOOC_CHANNEL "MOOC"
 #define XOOC_CHANNEL "XOOC"
 #define ADMIN_CHANNEL "Admin"
+#define MENTOR_CHANNEL "Mentor"
