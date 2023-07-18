@@ -30,9 +30,7 @@
 	)
 	. = ..()
 
-	if(!islist(mobs))
-		if(!mobs)
-			return INITIALIZE_HINT_QDEL
+	if(!islist(mobs) && mobs)
 		mobs = list(mobs)
 	if(!timer)
 		stack_trace("Invalid timer for screen nuke timer!")
@@ -48,7 +46,6 @@
 	update_maptext()
 	if(length(mobs))
 		apply_to(mobs)
-		// START_PROCESSING(SSprocessing, src)
 
 /atom/movable/screen/text/screen_timer/process()
 	if(!timeleft(timer_id))
