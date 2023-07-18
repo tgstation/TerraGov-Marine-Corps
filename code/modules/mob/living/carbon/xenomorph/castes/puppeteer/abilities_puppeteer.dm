@@ -75,7 +75,7 @@
 	if(X.do_actions)
 		return FALSE
 	X.face_atom(victim)
-	if(!do_after(X, 0.3 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	if(!do_after(X, 0.3 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health)), ignore_turf_checks = TRUE))
 		return FALSE
 	succeed_activate()
 
