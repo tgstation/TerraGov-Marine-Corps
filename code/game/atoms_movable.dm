@@ -499,7 +499,6 @@
 		setDir(get_dir(src, target))
 		flags_atom |= DIRLOCK
 
-	var/atom/parrier	//If something parried the throw, this is set and prevents default throw ending in favor of triggering another throw back to its source.
 	throw_source = get_turf(src)	//store the origin turf
 
 	var/dist_x = abs(target.x - x)
