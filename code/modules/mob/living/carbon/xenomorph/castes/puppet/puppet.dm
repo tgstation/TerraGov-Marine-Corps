@@ -4,8 +4,8 @@
 	desc = "A reanimated body, crudely pieced together and held in place by an ominous energy tethered to some unknown force."
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Puppet Running"
-	health = 150
-	maxHealth = 150
+	health = 250
+	maxHealth = 250
 	plasma_stored = 0
 	pixel_x = 0
 	old_x = 0
