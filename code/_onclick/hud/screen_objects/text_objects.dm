@@ -12,10 +12,15 @@
 /// A screen object that shows the time left on a timer
 /atom/movable/screen/text/screen_timer
 	screen_loc = "CENTER-7,CENTER-7"
+	/// Left side of the HTML tag for maptext, style is also included
 	var/maptext_style_left = "<span class='maptext' style=font-size:16pt;text-align:center; align='top'>"
+	/// End tag of the HTML tag for maptext 
 	var/maptext_style_right = "</span>"
+	/// The actual displayed content of the maptext, use ${timer}, and it'll be replaced with the time left
 	var/maptext_string
+	/// Timer ID that we're tracking, the time left of this is displayed as maptext
 	var/timer_id
+	/// The list of mobs that we're attached to, and care about
 	var/list/timer_mobs = list()
 
 /atom/movable/screen/text/screen_timer/Initialize(
@@ -32,6 +37,8 @@
 
 	if(!islist(mobs) && mobs)
 		mobs = list(mobs)
+	// Copy the list just in case the arguments list is a list we don't want to modify
+	mobs = mobs.Copy()
 	if(!timer)
 		stack_trace("Invalid timer for screen nuke timer!")
 		return INITIALIZE_HINT_QDEL
