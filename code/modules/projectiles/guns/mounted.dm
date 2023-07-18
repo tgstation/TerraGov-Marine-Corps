@@ -192,7 +192,7 @@
 
 /obj/machinery/deployable/mounted/moveable/auto_cannon
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
-	coverage = 75 //has a shield
+	coverage = 85 //has a shield
 
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
@@ -454,7 +454,7 @@
 /obj/machinery/deployable/mounted/moveable/atgun
 	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
-	coverage = 75 //has a shield
+	coverage = 85 //has a shield
 	anchor_time = 1 SECONDS
 
 /obj/item/storage/internal/ammo_rack
