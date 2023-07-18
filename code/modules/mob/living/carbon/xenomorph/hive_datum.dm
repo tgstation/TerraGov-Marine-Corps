@@ -538,8 +538,9 @@
 	reference_hive.update_tier_limits() //Update our tier limits.
 
 /datum/hive_status/proc/setup_nuke_hud_timer(source, thing)
+	SIGNAL_HANDLER
 	var/obj/machinery/nuclearbomb/nuke = thing
-	if(!istype(thing, /obj/machinery/nuclearbomb) || !nuke.timer)
+	if(!nuke.timer)
 		CRASH("hive_status's setup_nuke_hud_timer called with invalid nuke object")
 	nuke_hud_timer = new(null, get_all_xenos() , nuke.timer, "Nuke ACTIVE: ${timer}")
 
