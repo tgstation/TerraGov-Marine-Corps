@@ -208,11 +208,10 @@
 	caliber = source.caliber
 	default_ammo = source.default_ammo
 
-//~Art interjecting here for explosion when using flamer procs.
 /obj/item/ammo_magazine/flamer_fire_act(burnlevel)
 	if(!current_rounds)
 		return
-	explosion(loc, 0, 0, 1, 0, 2, throw_range = FALSE) //blow it up.
+	explosion(loc, 0, 0, 0, 1, 1, throw_range = FALSE)
 	qdel(src)
 
 //Helper proc, to allow us to see a percentage of how full the magazine is.
