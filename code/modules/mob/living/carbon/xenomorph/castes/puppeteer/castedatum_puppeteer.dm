@@ -30,7 +30,7 @@
 	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
 	evolves_to = list(/mob/living/carbon/xenomorph/widow, /mob/living/carbon/xenomorph/warlock)
-	deevolves_to = /mob/living/carbon/xenomorph/defender
+	deevolves_to = list(/mob/living/carbon/xenomorph/defender)
 
 	// *** Flags *** //
 	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED

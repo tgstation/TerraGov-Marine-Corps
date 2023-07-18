@@ -16,7 +16,7 @@
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast)
 
-	deevolves_to = /mob/living/carbon/xenomorph/wraith
+	deevolves_to = list(/mob/living/carbon/xenomorph/wraith, /mob/living/carbon/xenomorph/puppeteer)
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 	caste_traits = null
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 25, FIRE = 25, ACID = 25)
