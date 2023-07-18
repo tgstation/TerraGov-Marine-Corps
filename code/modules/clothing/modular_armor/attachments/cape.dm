@@ -246,7 +246,7 @@
 		if(toggle_signal)
 			new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 		new_action.give_action(user)
-	highlight.current_variant = "none"
+	highlight.current_variant = length(icon_state_variants[current_variant][HIGHLIGHT_VARIANTS]) ? icon_state_variants[current_variant][HIGHLIGHT_VARIANTS][1] : "none"
 	highlight.icon_state_variants = icon_state_variants[current_variant][HIGHLIGHT_VARIANTS]
 	ENABLE_BITFIELD(highlight.colorable_allowed, PRESET_COLORS_ALLOWED)
 	update_icon()
