@@ -407,7 +407,7 @@
 	action_icon_state = "emit_pheromones"
 	plasma_cost = 50
 	desc = "Give blessings to your puppets."
-	cooldown_timer = 75
+	cooldown_timer = 75 SECONDS
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BESTOWBLESSINGS,
