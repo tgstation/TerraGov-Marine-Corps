@@ -338,9 +338,9 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "KR" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	locked = 1;
 	name = "\improper Eta Lab Cell"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Lv" = (

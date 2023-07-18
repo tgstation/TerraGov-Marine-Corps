@@ -164,7 +164,7 @@
 		set_frequency(new_frequency)
 
 	else if(href_list["talk"])
-		broadcasting = text2num(href_list["talk"])
+		set_broadcasting(text2num(href_list["talk"]))
 
 	else if(href_list["listen"])
 		var/chan_name = href_list["ch_name"]

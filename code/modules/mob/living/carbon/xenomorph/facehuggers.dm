@@ -83,15 +83,15 @@
 ///Registers the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/facehugger_register_source(mob/living/carbon/xenomorph/S)
 	if(source) //If we have an existing source, unregister
-		UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(source, COMSIG_QDELETING)
 
 	source = S //set and register new source
-	RegisterSignal(S, COMSIG_PARENT_QDELETING, PROC_REF(clear_hugger_source))
+	RegisterSignal(S, COMSIG_QDELETING, PROC_REF(clear_hugger_source))
 
 ///Clears the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/clear_hugger_source()
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(source, COMSIG_QDELETING)
 	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
@@ -353,7 +353,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
+/obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	. = ..()
 	update_icon()
 

@@ -26,16 +26,8 @@
 	return 0
 
 
-
 /obj/item/circuitboard/aicore
 	name = "Circuit board (AI Core)"
-
-
-/obj/item/circuitboard/airalarm
-	name = "air alarm electronics"
-	icon_state = "door_electronics"
-	desc = "Looks like a circuit. Probably is."
-
 
 
 /obj/item/circuitboard/firealarm

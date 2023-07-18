@@ -26,6 +26,9 @@
 #define CAT_SMR "SUITS AND ARMOR" // Synth's suits
 #define CAT_SHN "HATS" // Synth's non-protective hats
 
+#define VENDOR_FACTION_NEUTRAL "Neutral"
+#define VENDOR_FACTION_CRASH "Valhalla"
+#define VENDOR_FACTION_VALHALLA "Crash"
 
 GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MOD = 1,
@@ -174,6 +177,8 @@ GLOBAL_LIST_INIT(commander_gear_listed_products, list(
 //A way to give them everything at once that still works with loadouts would be nice, but barring that make sure that your point calculation is set up so they don't get more than what they're supposed to
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_ESS, "KLTD Smart Goggles", 0, "white"),
+	/obj/effect/vendor_bundle/smartgunner_pistol = list(CAT_ESS, "SP-13 smart pistol bundle", 0, "white"),
+	/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol = list(CAT_SGSUP, "SP-13 smart pistol ammo", 2, "black"),
 	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Smart Machine Gun", 29, "orange"), //If a smartgunner buys a SG-29, then they will have 16 points to purchase 4 SG-29 drums
 	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Ammo Drum", 4, "black"),
 	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_SGSUP, "SG-85 Smart Handheld Gatling Gun", 27, "orange"), //If a smartgunner buys a SG-85, then they should be able to buy only 1 powerpack and 2 ammo bins
@@ -219,7 +224,7 @@ GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
 
 ///All the vendor types which the automated loadout vendor can take items from.
 GLOBAL_LIST_INIT(loadout_linked_vendor, list(
-	FACTION_NEUTRAL = list(
+	VENDOR_FACTION_NEUTRAL = list(
 		/obj/machinery/vending/weapon,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
@@ -228,7 +233,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
-	FACTION_VALHALLA = list(
+	VENDOR_FACTION_VALHALLA = list(
 		/obj/machinery/vending/weapon/valhalla,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
@@ -238,6 +243,15 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/machinery/vending/medical/shipside,
+	),
+	VENDOR_FACTION_CRASH = list(
+		/obj/machinery/vending/weapon/crash,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed,
+		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/tool,
 	)
 ))
 
@@ -725,6 +739,6 @@ GLOBAL_LIST_INIT(bypass_storage_content_save, typecacheof(list(
 #define MAXIMUM_LOADOUT 50
 
 /// The current loadout version
-#define CURRENT_LOADOUT_VERSION 13
+#define CURRENT_LOADOUT_VERSION 14
 
-GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10, 11, 13))
+GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10, 11, 13, 14))

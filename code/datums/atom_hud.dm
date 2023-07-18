@@ -62,7 +62,7 @@ GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 	SIGNAL_HANDLER
 	if(!A)
 		return FALSE
-	UnregisterSignal(A, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(A, COMSIG_QDELETING)
 	for(var/u in hudusers)
 		var/mob/M = u
 		remove_from_single_hud(M, A)
@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 			queued_to_see[M] = TRUE
 	else
 		if(!next_time_allowed[M])
-			RegisterSignal(M, COMSIG_PARENT_QDELETING, PROC_REF(clean_mob_refs))
+			RegisterSignal(M, COMSIG_QDELETING, PROC_REF(clean_mob_refs))
 		next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN
 		for(var/atom/A in hudatoms)
 			add_to_single_hud(M, A)
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 		return FALSE
 	hudatoms |= A
 	if(!ismob(A))
-		RegisterSignal(A, COMSIG_PARENT_QDELETING, PROC_REF(remove_from_hud), A)
+		RegisterSignal(A, COMSIG_QDELETING, PROC_REF(remove_from_hud), A)
 	for(var/u in hudusers)
 		var/mob/M = u
 		if(!queued_to_see[M])

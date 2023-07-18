@@ -8,7 +8,7 @@
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE
+	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
@@ -34,7 +34,8 @@
 	. = ..()
 	update_icon()
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -55,7 +56,6 @@
 		if(-INFINITY to 25)
 			. += span_warning("It's crumbling apart, just a few more blows will tear it apart.")
 
-
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
 
@@ -64,16 +64,10 @@
 		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
-	if(mover?.throwing && is_wired && iscarbon(mover) && (get_dir(loc, target) & dir))
+	if(is_wired && density && ismob(mover) && (get_dir(loc, target) & dir))
 		return FALSE
 
-	. = ..()
-	if(.)
-		return
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
-		return TRUE
+	return ..()
 
 /obj/structure/barricade/attack_animal(mob/user)
 	return attack_alien(user)

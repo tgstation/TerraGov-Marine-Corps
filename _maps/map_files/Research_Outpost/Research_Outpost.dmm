@@ -538,7 +538,7 @@
 	},
 /area/outpost/yard/central)
 "cV" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)
 "cX" = (
@@ -2205,7 +2205,7 @@
 	},
 /area/outpost/yard/south)
 "ko" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2357,7 +2357,7 @@
 /area/outpost/medbay)
 "kU" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -2793,7 +2793,7 @@
 /area/outpost/lz2)
 "nc" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/rd_office)
 "nd" = (
@@ -3246,7 +3246,7 @@
 /area/outpost/cargo)
 "oW" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -3919,9 +3919,6 @@
 	dir = 6
 	},
 /area/outpost/dormitories)
-"rQ" = (
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/caves/west)
 "rR" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/blood/writing{
@@ -4447,9 +4444,6 @@
 	dir = 1
 	},
 /area/outpost/yard/south)
-"um" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/cargo)
 "un" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/red2,
@@ -5305,7 +5299,7 @@
 /area/outpost/hallway/central)
 "yg" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark2,
 /area/outpost/arrivals/securitylz2)
 "yh" = (
@@ -5791,16 +5785,11 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/central)
 "As" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/outpost/science/hydponics)
-"At" = (
-/turf/open/floor/tile/dark/purple2{
-	dir = 1
-	},
-/area/outpost/science)
 "Au" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2,
 /obj/structure/window/reinforced{
@@ -6716,7 +6705,7 @@
 /area/outpost/brig)
 "EL" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
@@ -7168,7 +7157,7 @@
 /area/outpost/science/rd_office)
 "GO" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
@@ -7515,7 +7504,7 @@
 /area/outpost/dormitories)
 "Iz" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -7536,7 +7525,7 @@
 /area/outpost/lz2)
 "IF" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/science/security)
 "IG" = (
@@ -7575,7 +7564,7 @@
 /area/outpost/yard/central)
 "IS" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/arrivals)
 "IT" = (
@@ -8050,7 +8039,6 @@
 	},
 /area/outpost/science/hydponics)
 "KW" = (
-/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -8143,11 +8131,9 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/obj/machinery/power/apc/drained,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -9085,7 +9071,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -9227,7 +9213,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/armoury)
 "Qp" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/dark,
 /area/outpost/science/hydponics)
 "Qq" = (
@@ -9425,7 +9411,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -10350,9 +10336,6 @@
 "Vm" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
-/area/outpost/cargo)
-"Vn" = (
-/turf/open/floor/plating/asteroidfloor,
 /area/outpost/cargo)
 "Vo" = (
 /turf/closed/wall,
@@ -14654,9 +14637,9 @@ yW
 yW
 yW
 yW
-rQ
-rQ
-rQ
+EB
+EB
+EB
 Nu
 zh
 zh
@@ -14783,11 +14766,11 @@ yW
 yW
 yW
 yW
-rQ
-rQ
-rQ
-rQ
-rQ
+EB
+EB
+EB
+EB
+EB
 Nu
 zh
 zh
@@ -14915,8 +14898,8 @@ yW
 nO
 AL
 dn
-rQ
-rQ
+EB
+EB
 Nu
 Hg
 jW
@@ -15047,8 +15030,8 @@ AL
 AL
 AL
 dn
-rQ
-rQ
+EB
+EB
 VV
 zh
 zh
@@ -15982,12 +15965,12 @@ hi
 hi
 oP
 IU
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+EB
+EB
+EB
+EB
+EB
+EB
 yW
 Ry
 yW
@@ -16117,9 +16100,9 @@ Xw
 Mp
 Wq
 wB
-rQ
-rQ
-rQ
+EB
+EB
+EB
 EB
 Xm
 Hc
@@ -18373,26 +18356,26 @@ yW
 yW
 kx
 kx
-um
-um
+LC
+LC
 gW
 WV
-Vn
+WV
 yJ
 tl
-um
-um
+LC
+LC
 kx
 kx
 kx
 kx
 kx
 LC
-um
-um
-um
-um
-um
+LC
+LC
+LC
+LC
+LC
 kx
 kx
 yW
@@ -18508,8 +18491,8 @@ QY
 QY
 QY
 gW
-Vn
-Vn
+WV
+WV
 bF
 tl
 QY
@@ -18519,7 +18502,7 @@ QY
 QY
 QY
 QY
-um
+LC
 GE
 GE
 QY
@@ -23486,7 +23469,7 @@ vE
 zx
 oD
 bL
-At
+FI
 pF
 ry
 ZF

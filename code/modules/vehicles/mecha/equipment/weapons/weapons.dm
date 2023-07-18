@@ -106,10 +106,10 @@
 	if(object == current_target || object == chassis)
 		return
 	if(current_target)
-		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(current_target, COMSIG_QDELETING)
 	current_target = object
 	if(current_target)
-		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_target))
+		RegisterSignal(current_target, COMSIG_QDELETING, PROC_REF(clean_target))
 
 ///Stops the Autofire component and resets the current cursor.
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/stop_fire(mob/living/source, atom/object, location, control, params)

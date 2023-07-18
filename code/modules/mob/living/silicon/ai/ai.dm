@@ -420,10 +420,10 @@
 ///Called for associating the AI with artillery
 /mob/living/silicon/ai/proc/associate_artillery(mortar)
 	if(linked_artillery)
-		UnregisterSignal(linked_artillery, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(linked_artillery, COMSIG_QDELETING)
 		linked_artillery.unset_targeter()
 	linked_artillery = mortar
-	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, PROC_REF(clean_artillery_refs))
+	RegisterSignal(linked_artillery, COMSIG_QDELETING, PROC_REF(clean_artillery_refs))
 	return TRUE
 
 ///Proc called when linked_mortar is deleted.
@@ -466,7 +466,7 @@
 /// Signal handler to clear vehicle and stop remote control
 /datum/action/control_vehicle/proc/clear_vehicle()
 	SIGNAL_HANDLER
-	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(vehicle, COMSIG_QDELETING)
 	vehicle.on_unlink()
 	vehicle = null
 	var/mob/living/silicon/ai/ai = owner
@@ -477,7 +477,7 @@
 
 /datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
 	vehicle = _vehicle
-	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, PROC_REF(clear_vehicle))
+	RegisterSignal(vehicle, COMSIG_QDELETING, PROC_REF(clear_vehicle))
 	vehicle.on_link()
 	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)
