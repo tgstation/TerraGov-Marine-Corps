@@ -1,4 +1,3 @@
-@use 'sass:color';
 @use 'sass:map';
 
 $background: #131313;
@@ -7,52 +6,27 @@ $lightMode: #ffffff;
 $lightBorder: #bbbbbb;
 $lightHover: #eaeaea;
 
-////////////////////////////////////////////////
-// Normal chat colors
-$say: #a4bad6;
-$radio: #158c15;
-$me: #5975da;
-$ooc: #004ed8;
-$looc: #3a9696;
-$xooc: #004ed8;
-$mooc: #004ed8;
-
-////////////////////////////////////////////////
-// Subchannel chat colors
-$ai: #d65d95;
-$binary: #1e90ff;
-$command: #3e67b2;
-$engi: #cc631e;
-$hive: #b23593;
-$medical: #158c78;
-$science: #993599;
-$cas: #dd3535;
-$requisitions: #b88646;
-$alpha: #bf2f2f;
-$bravo: #cc8814;
-$charlie: #b259b2;
-$delta: #3656d8;
-
 $_channel_map: (
-  'say': $say,
-  'radio': $radio,
-  'me': $me,
-  'ooc': $ooc,
-  'looc': $looc,
-  'xooc': $xooc,
-  'mooc': $mooc,
-  'ai': $ai,
-  'binary': $binary,
-  'command': $command,
-  'engi': $engi,
-  'hive': $hive,
-  'medical': $medical,
-  'firesupport': $cas,
-  'requisitions': $requisitions,
-  'alpha': $alpha,
-  'bravo': $bravo,
-  'charlie': $charlie,
-  'delta': $delta,
+  'Say': #a4bad6,
+  'Radio': #158c15,
+  'Me': #5975da,
+  'OOC': #004ed8,
+  'LOOC': #3a9696,
+  'XOOC': #004ed8,
+  'MOOC': #004ed8,
+  'Admin': #ffbbff,
+  'AI': #d65d95,
+  'io': #1e90ff,
+  'Cmd': #3e67b2,
+  'Engi': #cc631e,
+  'Hive': #b23593,
+  'Med': #158c78,
+  'CAS': #dd3535,
+  'Req': #b88646,
+  'alpha': #bf2f2f,
+  'bravo': #cc8814,
+  'charlie': #b259b2,
+  'delta': #3656d8,
 );
 
 $channel_keys: map.keys($_channel_map) !default;
