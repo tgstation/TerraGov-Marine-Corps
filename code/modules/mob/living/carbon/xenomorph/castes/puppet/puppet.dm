@@ -7,7 +7,6 @@
 	health = 250
 	maxHealth = 250
 	plasma_stored = 0
-	speed = -0.8
 	pixel_x = 0
 	old_x = 0
 	tier = XENO_TIER_MINION
