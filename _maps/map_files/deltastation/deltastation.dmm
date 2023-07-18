@@ -12587,13 +12587,6 @@
 "cET" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/misc/trash,
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 4;
-	lighting = 0;
-	name = "Worn-out APC";
-	pixel_x = -25
-	},
 /turf/open/floor/iron/dark/side,
 /area/deltastation/asteroidcaves/derelictsatellite)
 "cEU" = (
@@ -24317,11 +24310,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/science)
-"eSg" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/turf/open/floor/iron,
-/area/deltastation/engineering/storage/tech)
 "eSp" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ywflowers,
@@ -58496,8 +58484,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
-/obj/machinery/power/apc/drained,
 /turf/open/floor/iron,
 /area/deltastation/security/warden)
 "lSc" = (
@@ -62407,10 +62393,6 @@
 	},
 /area/deltastation/maintenance/port)
 "mIh" = (
-/obj/machinery/power/apc/drained{
-	dir = 8;
-	name = "Syndicate Listening Post APC"
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -68429,7 +68411,6 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/project)
 "nXv" = (
-/obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -105443,12 +105424,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
-"vpT" = (
-/obj/machinery/power/apc/drained{
-	start_charge = 0
-	},
-/turf/open/floor/plating,
-/area/deltastation/asteroidcaves/exteriorasteroids)
 "vpU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -119409,9 +119384,6 @@
 /area/deltastation/asteroidcaves/derelictwest)
 "yag" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/engineering/main)
@@ -130594,7 +130566,7 @@ wxm
 wxm
 agF
 vxC
-vpT
+kNb
 vdG
 vdG
 vdG
@@ -150330,7 +150302,7 @@ tuJ
 rHn
 rHn
 cQj
-eSg
+rHn
 rHn
 tuJ
 rZB
@@ -156393,10 +156365,10 @@ ayb
 eFr
 daj
 ayb
-wQz
-iqQ
+bJc
+bJc
 nXv
-iqQ
+bJc
 ksJ
 iqQ
 xzd

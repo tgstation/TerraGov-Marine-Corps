@@ -34,6 +34,7 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
+	always_unpowered = TRUE
 
 /area/orion_outpost/surface/landing_pad_external
 	name = "Landing Zone 1"
@@ -49,6 +50,7 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
+	always_unpowered = TRUE
 
 /area/orion_outpost/surface/landing_pad2_external
 	name = "Landing Zone 2"
@@ -212,6 +214,7 @@
 /area/orion_outpost/surface/building/crashedufo
 	name = "Crashed UFO"
 	icon_state = "blueold"
+	always_unpowered = TRUE
 
 /area/orion_outpost/surface/building/tadpolepad
 	name = "Tadpole Landing Pad"

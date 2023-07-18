@@ -41,6 +41,8 @@
 	on = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bz" = (
@@ -881,6 +883,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "Pg" = (
@@ -994,7 +997,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/office_complex)
+/area/bigredv2/outside/e)
 "Vp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,

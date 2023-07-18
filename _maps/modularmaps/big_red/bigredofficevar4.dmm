@@ -134,6 +134,11 @@
 /obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
+"eV" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/bigredv2/outside/office_complex)
 "fr" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/blood/drip,
@@ -204,6 +209,11 @@
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
+/area/bigredv2/outside/office_complex)
+"ht" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "hE" = (
 /obj/structure/table,
@@ -902,7 +912,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/office_complex)
+/area/bigredv2/outside/e)
 "Gm" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -1341,6 +1351,12 @@
 	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
+"Yf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/wood,
+/area/bigredv2/outside/office_complex)
 "Yq" = (
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
@@ -1360,6 +1376,13 @@
 /area/bigredv2/outside/office_complex)
 "YB" = (
 /turf/open/floor/tile/white,
+/area/bigredv2/outside/office_complex)
+"YQ" = (
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper Private Office"
+	},
+/obj/structure/cable,
+/turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Za" = (
 /obj/structure/table,
@@ -1634,7 +1657,7 @@ fu
 um
 sO
 gy
-sO
+ht
 fr
 Pz
 iQ
@@ -1659,7 +1682,7 @@ gw
 av
 Zu
 Zu
-Uw
+YQ
 Zu
 Zu
 Zu
@@ -1683,8 +1706,8 @@ GD
 Jy
 EH
 Zu
-RZ
-Rs
+Yf
+eV
 yD
 Rs
 Ok
