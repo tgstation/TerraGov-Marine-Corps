@@ -33,11 +33,8 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/owner_T = get_turf(X)
-	var/datum/effect_system/smoke_spread/smoke
-	for(var/smoke_toxin in baneling_smoke_list)
-		if(smoke_toxin == X.selected_reagent)
-			var/datum/effect_system/smoke_spread/xeno/smoke_type = baneling_smoke_list[smoke_toxin]
-			smoke = new smoke_type(owner_T)
+	var/datum/effect_system/smoke_spread/smoke_choice = baneling_smoke_list[X.selected_reagent]
+	var/datum/effect_system/smoke_spread/smoke = new smoke_choice(owner_T)
 	var/smoke_range = X.plasma_stored/60
 	/// Use up all plasma so that we dont smoke twice because we die.
 	X.use_plasma(X.plasma_stored)
