@@ -225,12 +225,22 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "kilt"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"kilt_no_color",
+			"blend_mode":"overlay"
 		}
 	],
 	"cape_kilt (alt)": [
 		{
 			"type": "hyperscale",
 			"icon_state": "kilt_alt"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"kilt_no_color",
+			"blend_mode":"overlay"
 		}
 	],
 	"cape_short (old)": [
