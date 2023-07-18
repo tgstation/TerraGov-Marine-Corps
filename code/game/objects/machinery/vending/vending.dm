@@ -60,7 +60,8 @@
 	icon_state = "generic"
 	anchored = TRUE
 	density = TRUE
-	coverage = 70
+	coverage = 80
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	layer = BELOW_OBJ_LAYER
 
 	use_power = IDLE_POWER_USE

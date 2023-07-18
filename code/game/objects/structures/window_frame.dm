@@ -9,9 +9,10 @@
 	density = TRUE
 	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
-	max_integrity = 150
-	climbable = 1 //Small enough to vault over, but you do need to vault over it
-	climb_delay = 15 //One second and a half, gotta vault fast
+	max_integrity = 200
+	climbable = TRUE
+	climb_delay = 1.5 SECONDS
+	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 100, FIRE = 50, ACID = 0)
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/framed/mainship/window_type = /obj/structure/window/framed/mainship
 	var/basestate = "window"
@@ -142,7 +143,7 @@
 	basestate = "col_rwindow_frame"
 	base_icon_state = "col_rwindow_frame"
 	reinforced = TRUE
-	max_integrity = 300
+	max_integrity = 400
 
 /obj/structure/window_frame/colony/reinforced/weakened
 	max_integrity = 150
@@ -167,7 +168,7 @@
 
 /obj/structure/window_frame/prison/reinforced
 	reinforced = TRUE
-	max_integrity = 300
+	max_integrity = 400
 
 /obj/structure/window_frame/prison/hull
 	climbable = FALSE
