@@ -135,10 +135,9 @@
 		return
 	if(airlock.locked)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
-	else
-		airlock.locked = TRUE
-		var/turf/current_turf = get_turf(airlock)
-		current_turf.flags_atom |= AI_BLOCKED
+	airlock.locked = TRUE
+	var/turf/current_turf = get_turf(airlock)
+	current_turf.flags_atom |= AI_BLOCKED
 
 /obj/effect/mapping_helpers/airlock/abandoned
 	name = "airlock abandoned helper"
@@ -155,10 +154,9 @@
 		return
 	if(airlock.abandoned)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
-	else
-		airlock.abandoned = TRUE
-		var/turf/current_turf = get_turf(airlock)
-		current_turf.flags_atom |= AI_BLOCKED
+	airlock.abandoned = TRUE
+	var/turf/current_turf = get_turf(airlock)
+	current_turf.flags_atom |= AI_BLOCKED
 
 /obj/effect/mapping_helpers/airlock/welded
 	name = "airlock welded helper"
@@ -175,10 +173,9 @@
 		return
 	if(airlock.welded)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already welded!")
-	else
-		airlock.welded = TRUE
-		var/turf/current_turf = get_turf(airlock)
-		current_turf.flags_atom |= AI_BLOCKED
+	airlock.welded = TRUE
+	var/turf/current_turf = get_turf(airlock)
+	current_turf.flags_atom |= AI_BLOCKED
 
 /obj/effect/mapping_helpers/broken_apc
 	name = "broken apc helper"
