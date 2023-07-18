@@ -18,7 +18,6 @@
 	attachments_allowed = list(
 		/obj/item/armor_module/armor/cape_highlight,
 		/obj/item/armor_module/armor/cape_highlight/kama,
-		/obj/item/armor_module/armor/cape_highlight/kama/kilt,
 	)
 	colorable_allowed = PRESET_COLORS_ALLOWED|ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "normal"
@@ -328,6 +327,3 @@
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	current_variant = "kama"
 	icon_state_variants = list()
-
-/obj/item/armor_module/armor/cape_highlight/kama/kilt
-	current_variant = "kilt"
