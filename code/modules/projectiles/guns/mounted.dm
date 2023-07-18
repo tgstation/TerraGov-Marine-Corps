@@ -230,7 +230,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 400
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
 //RR-15 mounted heavy recoilless rifle
@@ -273,7 +273,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 600
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
