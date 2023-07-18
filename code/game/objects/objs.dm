@@ -118,10 +118,14 @@
 	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
 		return TRUE
 
-	if((allow_pass_flags & PASS_WALKOVER) && ismob(mover) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH))
+	if(!ismob(mover))
+		return FALSE
+
+	if((allow_pass_flags & PASS_MOB))
 		return TRUE
 
-	return FALSE
+	if((allow_pass_flags & PASS_WALKOVER) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH))
+		return TRUE
 
 ///Handles extra checks for things trying to exit this objects turf
 /obj/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)

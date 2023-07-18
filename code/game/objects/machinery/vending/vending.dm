@@ -322,19 +322,20 @@
 
 /obj/machinery/vending/proc/tip_over()
 	var/matrix/A = matrix()
-	tipped_level = 2
 	A.Turn(90)
 	transform = A
-	allow_pass_flags |= PASS_LOW_STRUCTURE
+
+	tipped_level = 2
+	allow_pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = 50
 
 /obj/machinery/vending/proc/flip_back()
 	icon_state = initial(icon_state)
-	tipped_level = 0
-	density = TRUE
 	var/matrix/A = matrix()
 	transform = A
-	allow_pass_flags &= ~PASS_LOW_STRUCTURE
+
+	tipped_level = 0
+	allow_pass_flags &= ~(PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = initial(coverage)
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
