@@ -466,9 +466,16 @@
 /datum/keybinding/xeno/change_form
 	name = "change_form"
 	full_name = "Hivemind: Change Form"
-	description = ""
+	description = "Change form to/from incorporeal."
 	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM
 	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/change_form
+	name = "change_form"
+	full_name = "Hivemind: Open teleportation minimap"
+	description = "Opens up the minimap which, when you click somewhere, tries to teleport you to the selected location"
+	keybind_signal = COMISG_XENOMORPH_HIVEMIND_TELEPORT
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
