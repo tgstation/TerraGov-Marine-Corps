@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(monitor)
 	var/list/b17_in_use = list()
 
 /datum/controller/subsystem/monitor/Initialize()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), PROC_REF(set_groundside_calculation))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), PROC_REF(set_groundside_calculation))
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(set_shipside_calculation))
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 	return SS_INIT_SUCCESS

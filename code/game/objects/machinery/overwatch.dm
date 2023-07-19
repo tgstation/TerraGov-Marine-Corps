@@ -586,7 +586,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(operator, "[icon2html(src, operator)] [span_warning("No target detected!")]")
 		return
 	var/area/A = get_area(selected_target)
-	if(istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
 		to_chat(operator, "[icon2html(src, operator)] [span_warning("The target's signal is too weak.")]")
 		return
 	var/turf/T = get_turf(selected_target)

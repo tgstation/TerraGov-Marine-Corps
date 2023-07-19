@@ -57,12 +57,17 @@
 	///Starting attachments that are spawned with this.
 	var/list/starting_attachments = list()
 
+	///Allowed attachment types
+	var/list/attachments_allowed = list()
+
 	///The signal for this module if it can toggled
 	var/toggle_signal
 
 /obj/item/armor_module/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, starting_attachments = starting_attachments)
+	update_icon()
 
 /// Called before a module is attached.
 /obj/item/armor_module/proc/can_attach(obj/item/attaching_to, mob/user)
@@ -102,7 +107,7 @@
 ///Adds or removes actions based on whether the parent is in the correct slot.
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(prefered_slot && (slot != prefered_slot))
+	if(prefered_slot && (slot != prefered_slot) || !CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
 		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
 		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
 		old_action?.remove_action(user)
@@ -146,102 +151,35 @@
 	///If TRUE, this armor piece can be recolored when its parent is right clicked by facepaint.
 	var/secondary_color = FALSE
 
-	///optional assoc list of colors we can color this armor
-	var/list/colorable_colors = ARMOR_PALETTES_LIST
-	///Some defines to determin if the armor piece is allowed to be recolored.
-	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
-
-/obj/item/armor_module/armor/Initialize()
-	. = ..()
-	update_icon()
+	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_allowed = PRESET_COLORS_ALLOWED
 
 /obj/item/armor_module/armor/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	if(!secondary_color)
 		return
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, PROC_REF(handle_color))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(extra_examine))
+	RegisterSignal(parent, COMSIG_ITEM_SECONDARY_COLOR, PROC_REF(handle_color))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(extra_examine))
 
 /obj/item/armor_module/armor/on_detach(obj/item/detaching_from, mob/user)
-	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(parent, list(COMSIG_ATOM_EXAMINE, COMSIG_ITEM_SECONDARY_COLOR))
 	return ..()
 
-/obj/item/armor_module/armor/update_item_sprites()
-	var/new_color
-	switch(SSmapping.configs[GROUND_MAP].armor_style)
-		if(MAP_ARMOR_STYLE_JUNGLE)
-			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				new_color = ARMOR_PALETTE_DRAB
-		if(MAP_ARMOR_STYLE_ICE)
-			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				new_color = ARMOR_PALETTE_SNOW
-		if(MAP_ARMOR_STYLE_PRISON)
-			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				new_color = ARMOR_PALETTE_BLACK
-	set_greyscale_colors(new_color)
-	update_icon()
-
-/obj/item/armor_module/armor/attackby(obj/item/I, mob/user, params)
+/obj/item/armor_module/armor/color_item(obj/item/facepaint/paint, mob/user)
 	. = ..()
-	if(.)
-		return
-
-	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED))
-		return
-
-	if(!istype(I, /obj/item/facepaint))
-		return
-
-	var/obj/item/facepaint/paint = I
-	if(paint.uses < 1)
-		to_chat(user, span_warning("\the [paint] is out of color!"))
-		return
-
-	var/selection
-
-	switch(colorable_allowed)
-		if(COLOR_WHEEL_ONLY)
-			selection = "Color Wheel"
-		if(COLOR_WHEEL_ALLOWED)
-			selection = list("Color Wheel", "Preset Colors")
-			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
-		if(COLOR_WHEEL_NOT_ALLOWED)
-			selection = "Preset Colors"
-
-	if(!selection)
-		return
-
-	var/new_color
-	switch(selection)
-		if("Preset Colors")
-			var/color_selection
-			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
-			if(!color_selection)
-				return
-			if(islist(colorable_colors[color_selection]))
-				var/old_list = colorable_colors[color_selection]
-				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
-				if(!color_selection)
-					return
-				new_color = old_list[color_selection]
-			else
-				new_color = colorable_colors[color_selection]
-		if("Color Wheel")
-			new_color = input(user, "Pick a color", "Pick color") as null|color
-
-	if(!new_color || !do_after(user, 1 SECONDS, TRUE, parent ? parent : src, BUSY_ICON_GENERIC))
-		return
-
-	set_greyscale_colors(new_color)
-	paint.uses--
-	update_icon()
 	parent?.update_icon()
 
-///Colors the armor when the parent is right clicked with facepaint.
-/obj/item/armor_module/armor/proc/handle_color(datum/source, obj/I, mob/user)
+///Sends a list of available colored attachments to be colored when the parent is right clicked with paint.
+/obj/item/armor_module/armor/proc/handle_color(datum/source, mob/user, list/obj/item/secondaries)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, attackby), I, user)
-	return COMPONENT_NO_AFTERATTACK
+	secondaries += src
+	for(var/key in attachments_by_slot)
+		if(!attachments_by_slot[key] || !istype(attachments_by_slot[key], /obj/item/armor_module/armor))
+			continue
+		var/obj/item/armor_module/armor/armor_piece = attachments_by_slot[key]
+		if(!armor_piece.secondary_color)
+			continue
+		armor_piece.handle_color(source, user, secondaries)
 
 ///Relays the extra controls to the user when the parent is examined.
 /obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user, list/examine_list)

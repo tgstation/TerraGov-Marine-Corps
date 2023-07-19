@@ -41,21 +41,16 @@
 			"icon_state": "trooper"
 		}
 	],
+	"kabuto_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "kabuto"
+		}
+	],
 	"eva_visor": [
 		{
 			"type": "hyperscale",
 			"icon_state": "eva"
-		}
-	],
-	"eva_skull_visor": [
-		{
-			"type": "hyperscale",
-			"icon_state": "eva"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "skull",
-			"blend_mode": "overlay"
 		}
 	],
 	"assault_visor": [
@@ -98,17 +93,6 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "eva_old"
-		}
-	],
-	"eva_skull_visor_old": [
-		{
-			"type": "hyperscale",
-			"icon_state": "eva_old"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "skull_old",
-			"blend_mode": "overlay"
 		}
 	],
 	"infantry_visor_old": [

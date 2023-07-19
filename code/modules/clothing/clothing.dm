@@ -81,6 +81,15 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
+/obj/item/clothing/update_greyscale()
+	. = ..()
+	if(!greyscale_config)
+		return
+	for(var/key in item_icons)
+		if(key == slot_l_hand_str || key == slot_r_hand_str)
+			continue
+		item_icons[key] = icon
+
 /obj/item/clothing/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
 		var/image/bloodsies = mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
@@ -93,6 +102,14 @@
 		var/image/bloodsies = mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
 		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
+
+/obj/item/clothing/color_item(obj/item/facepaint/paint, mob/user)
+	.=..()
+	update_clothing_icon()
+
+/obj/item/clothing/alternate_color_item(obj/item/facepaint/paint, mob/user)
+	. = ..()
+	update_clothing_icon()
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -110,6 +127,7 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_ears()
+
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
@@ -209,10 +227,11 @@
 	attack_verb = list("challenged")
 
 
-/obj/item/clothing/gloves/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_gloves()
+/obj/item/clothing/gloves/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_gloves_str = icon)
 
 /obj/item/clothing/gloves/emp_act(severity)
 	if(cell)
@@ -267,6 +286,7 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
 
+
 ////////////////////////////////////////////////////////////////////////
 //Shoes
 /obj/item/clothing/shoes
@@ -290,6 +310,7 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_shoes()
+
 
 /obj/item/clothing/shoes/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])

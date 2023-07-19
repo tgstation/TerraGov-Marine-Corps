@@ -125,7 +125,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		if(!istype(J))
 			return ""
 
-		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+		paygrade = get_paygrades(J.paygrade, TRUE, gender)
+		return paygrade ? "[paygrade] " : ""
 	else if(istype(speaker, /atom/movable/virtualspeaker))
 		var/atom/movable/virtualspeaker/VT = speaker
 		if(!ishuman(VT.source))
@@ -139,7 +140,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		if(!istype(J))
 			return ""
 
-		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+		paygrade = get_paygrades(J.paygrade, TRUE, gender)
+		return paygrade ? "[paygrade] " : ""
 	else
 		return ""
 

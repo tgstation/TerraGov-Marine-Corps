@@ -94,7 +94,7 @@
 /area/bigredv2/outside/general_offices)
 "eL" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "fz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -214,7 +214,7 @@
 "kj" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "kv" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -275,7 +275,7 @@
 /area/bigredv2/outside/general_offices)
 "or" = (
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "oy" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
@@ -328,7 +328,7 @@
 /area/bigredv2/outside/general_offices)
 "qP" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -570,7 +570,7 @@
 "BO" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "BZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -733,7 +733,7 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "JP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -875,13 +875,13 @@
 /area/bigredv2/outside/general_offices)
 "Pb" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "Pc" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
@@ -904,7 +904,7 @@
 	},
 /area/bigredv2/outside/general_offices)
 "PE" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "PV" = (
@@ -916,7 +916,7 @@
 "Qr" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Rc" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/tool,
@@ -931,7 +931,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Rx" = (
 /obj/structure/closet/l3closet,
 /turf/open/floor/tile/vault{
@@ -977,7 +977,7 @@
 /area/bigredv2/outside/general_offices)
 "Uj" = (
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Um" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4

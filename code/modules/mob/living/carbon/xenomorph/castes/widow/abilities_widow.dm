@@ -156,7 +156,7 @@
 
 /// Adds spiderlings to spiderling list and registers them for death so we can remove them later
 /datum/action/xeno_action/create_spiderling/proc/add_spiderling(mob/living/carbon/xenomorph/spiderling/new_spiderling)
-	RegisterSignal(new_spiderling, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(remove_spiderling))
+	RegisterSignals(new_spiderling, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(remove_spiderling))
 	spiderlings += new_spiderling
 	new_spiderling.pixel_x = rand(-8, 8)
 	new_spiderling.pixel_y = rand(-8, 8)
@@ -165,7 +165,7 @@
 /datum/action/xeno_action/create_spiderling/proc/remove_spiderling(datum/source)
 	SIGNAL_HANDLER
 	spiderlings -= source
-	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
 
 // ***************************************
 // *********** Spiderling mark
@@ -352,7 +352,7 @@
 /datum/action/xeno_action/activable/web_hook/use_ability(atom/A)
 	var/atom/movable/web_hook/web_hook = new (get_turf(owner))
 	web_beam = owner.beam(web_hook,"beam_web",'icons/effects/beam.dmi')
-	RegisterSignal(web_hook, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(drag_widow), TRUE)
+	RegisterSignals(web_hook, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(drag_widow), TRUE)
 	web_hook.throw_at(A, WIDOW_WEB_HOOK_RANGE, 3, owner, FALSE)
 	succeed_activate()
 	add_cooldown()

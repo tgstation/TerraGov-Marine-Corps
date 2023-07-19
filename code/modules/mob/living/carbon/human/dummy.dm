@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 		if(species.name && species.name == new_species) //we're already that species.
 			return
 		// Clear out their species abilities.
-		species.remove_inherent_verbs(src)
+		species.remove_inherent_abilities(src)
 	var/datum/species/oldspecies = species
 	species = GLOB.all_species[new_species]
 	if(oldspecies)

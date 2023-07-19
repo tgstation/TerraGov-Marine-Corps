@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "SOM cluster grenades and warlock psyblast has more accurate code for what their AOE's will hit"
+  - bugfix: "Psylance no longer staggerslows xenos instead of humans"
+  - balance: "SOM cluster grenades hit objects again, instead of just mobs"

@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "You don't disappear on minimap anymore if you go inside an object like a locker or ventcrawl"

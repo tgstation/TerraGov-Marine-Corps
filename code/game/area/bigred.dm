@@ -33,6 +33,7 @@
 /area/bigredv2/outside/se
 	name = "Southeast Colony Grounds"
 	icon_state = "southeast"
+	always_unpowered = TRUE
 
 /area/bigredv2/outside/s
 	name = "Southern Colony Grounds"
@@ -49,6 +50,7 @@
 	outside = FALSE
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 /area/bigredv2/caves/rock
 	name = "Enclosed Area"
@@ -62,10 +64,14 @@
 	name = "Southern Caves"
 	icon_state = "south"
 
+/area/bigredv2/caves/south/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/bigredv2/caves/rustedpreparea
 	name = "Rusted Prep Area"
 	icon_state = "yellow"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	always_unpowered = FALSE
 
 /area/bigredv2/caves/undergroundrobotics
 	name = "Underground robotics lab"
@@ -82,25 +88,37 @@
 	name = "Eastern Caves"
 	icon_state = "east"
 
+/area/bigredv2/caves/east/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/bigredv2/caves/west
 	name = "Western Caves"
 	icon_state = "west"
+	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/caves/northeast
 	name = "Northeastern Caves"
 	icon_state = "northeast"
 
+/area/bigredv2/caves/northeast/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/bigredv2/caves/northwest
 	name = "Northwestern Caves"
 	icon_state = "northwest"
+	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/caves/southeast
 	name = "Southeastern Caves"
 	icon_state = "southeast"
 
+/area/bigredv2/caves/southeast/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/bigredv2/caves/southwest
 	name = "Southwestern Caves"
 	icon_state = "southwest"
+	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/outside/nanotrasen_lab/outside
 	name = "Nanotrasen Compound"
@@ -113,6 +131,9 @@
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+
+/area/bigredv2/outside/nanotrasen_lab/inside/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/outside/cargo
 	name = "Cargo"
@@ -218,6 +239,8 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
+/area/bigredv2/outside/space_port/two
+
 /area/bigredv2/outside/telecomm
 	name = "Telecommunications"
 	icon_state = "ass_line"
@@ -255,6 +278,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+	always_unpowered = FALSE
 
 /area/bigredv2/outside/general_offices
 	name = "General Offices"

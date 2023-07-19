@@ -753,7 +753,7 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 Checks if that loc and dir has a item on the wall
 */
 GLOBAL_LIST_INIT(wallitems, typecacheof(list(
-	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom,
+	/obj/machinery/power/apc, /obj/machinery/air_alarm, /obj/item/radio/intercom,
 	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/wallmounted/peppertank,
 	/obj/machinery/status_display, /obj/machinery/light_switch, /obj/structure/sign,
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/door_control,
@@ -1242,7 +1242,7 @@ will handle it, but:
  *	Variables:
  *	center - where the cone begins, or center of a circle drawn with this
  *	max_row_count - how many rows are checked
- *	starting_row - from how far should the turfs start getting included in the cone
+ *	starting_row - from how far should the turfs start getting included in the cone. -1 required to include center turf due to byond
  *	cone_width - big the angle of the cone is
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration solid walls
@@ -1261,10 +1261,10 @@ will handle it, but:
 
 	if(left_angle < 0)
 		left_angle += 360
-
+	center = get_turf(center)
 	var/list/cardinals = GLOB.alldirs
-	var/list/turfs_to_check = list(get_turf(center))
-	var/list/cone_turfs = list()
+	var/list/turfs_to_check = list(center)
+	var/list/cone_turfs = list(center)
 
 	for(var/row in 1 to max_row_count)
 		if(row > 2)
