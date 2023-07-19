@@ -26,4 +26,6 @@
 
 /mob/living/carbon/xenomorph/puppeteer/proc/postattack(mob/living/source, useless, damage)
 	SIGNAL_HANDLER
+	if(source.stat == DEAD)
+		return
 	plasma_stored = min(plasma_stored + round(damage / 0.8), xeno_caste.plasma_max)

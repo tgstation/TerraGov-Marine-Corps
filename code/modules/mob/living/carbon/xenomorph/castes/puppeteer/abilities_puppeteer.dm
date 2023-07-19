@@ -35,11 +35,6 @@
 			owner_xeno.balloon_alert(owner_xeno, "dead!")
 		return FALSE
 
-	if(owner_xeno.plasma_stored >= owner_xeno.xeno_caste.plasma_max)
-		if(!silent)
-			owner_xeno.balloon_alert(owner_xeno, "already have enough flesh!")
-		return FALSE
-
 /datum/action/xeno_action/activable/flay/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(target_human)
@@ -48,7 +43,7 @@
 	playsound(target_human, "alien_claw_flesh", 25, TRUE)
 	target_human.emote("scream")
 	owner_xeno.emote("roar")
-	target_human.apply_damage(45, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 20)
+	target_human.apply_damage(45, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 5)
 	target_human.Paralyze(0.8 SECONDS)
 
 	owner_xeno.gain_plasma(owner_xeno.xeno_caste.flay_plasma_gain)
@@ -180,7 +175,7 @@
 	add_puppet(puppet)
 	add_cooldown()
 
-/// Adds a puppet to our list, this is basically just widow code
+/// Adds a puppet to our list
 /datum/action/xeno_action/activable/refurbish_husk/proc/add_puppet(mob/living/carbon/xenomorph/puppet/new_puppet)
 	RegisterSignal(new_puppet, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(remove_puppet))
 	RegisterSignal(new_puppet, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack))
@@ -195,6 +190,8 @@
 /datum/action/xeno_action/activable/refurbish_husk/proc/postattack(mob/living/source, useless, damage)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(source.stat == DEAD)
+		return
 	owner_xeno.plasma_stored = min(owner_xeno.plasma_stored + round(damage / 0.9), owner_xeno.xeno_caste.plasma_max)
 
 // ***************************************
@@ -204,7 +201,7 @@
 	name = "Stitch Puppet"
 	action_icon_state = "stitch_puppet"
 	desc = "Uses 350 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
-	plasma_cost = 350
+	plasma_cost = 125
 	cooldown_timer = 25 SECONDS
 	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
