@@ -41,6 +41,8 @@
 	var/atom/target = targetted ? targetted : atom_to_walk_to
 	if(!mob_parent.Adjacent(target))
 		return
+	if(mob_parent.z != target.z)
+		return
 	if(isliving(target))
 		var/mob/living/victim = target
 		if(victim.stat == DEAD)
