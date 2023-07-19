@@ -21,7 +21,7 @@
 	/// Timer ID that we're tracking, the time left of this is displayed as maptext
 	var/timer_id
 	/// The list of mobs that we're attached to, and care about
-	var/list/timer_mobs = list()
+	var/list/timer_mobs
 
 /atom/movable/screen/text/screen_timer/Initialize(
 		mapload,
