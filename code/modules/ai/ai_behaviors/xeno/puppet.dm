@@ -140,6 +140,8 @@
 			LAZYINCREMENT(mob_parent.do_actions, obstacle_turf)
 			addtimer(CALLBACK(src, PROC_REF(climb_window_frame), obstacle_turf), 2 SECONDS)
 			return COMSIG_OBSTACLE_DEALT_WITH
+		if(istype(thing, /obj/alien))
+			return
 		if(isobj(thing))
 			var/obj/obstacle = thing
 			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
