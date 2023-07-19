@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "Added a teleport to location on map ability for hivemind"
