@@ -251,6 +251,11 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
+"xB" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
 "xM" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/virology)
@@ -268,6 +273,10 @@
 /area/bigredv2/outside/virology)
 "zJ" = (
 /obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
+"AD" = (
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Bn" = (
@@ -1663,9 +1672,9 @@ oO
 FE
 Zw
 iu
-Px
-Px
-Px
+xB
+AD
+AD
 hX
 Px
 Px

@@ -59,7 +59,7 @@
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
 
-	if(mover?.throwing && is_wired && iscarbon(mover) && (direction & dir))
+	if(mover?.throwing && density && is_wired && iscarbon(mover) && (direction & dir))
 		knownblockers += src
 		return COMPONENT_ATOM_BLOCK_EXIT
 
