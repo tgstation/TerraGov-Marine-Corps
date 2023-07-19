@@ -78,7 +78,7 @@
 		timer_mobs += WEAKREF(player)
 		RegisterSignal(player, COMSIG_MOB_LOGIN, PROC_REF(attach))
 
-/// Gets rid of the object from the client.screen of all mobs in the list, and unregisters the needed signals
+/// Removes the object from the client.screen of all mobs in the list, and unregisters the needed signals, while also stopping processing if there's no more mobs in the screen timers mob list
 /atom/movable/screen/text/screen_timer/proc/remove_from(list/mobs)
 	if(!islist(mobs))
 		if(!mobs)

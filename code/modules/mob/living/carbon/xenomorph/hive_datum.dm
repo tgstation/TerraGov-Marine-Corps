@@ -488,6 +488,7 @@
 	else
 		remove_from_lists(X)
 
+	nuke_hud_timer?.remove_from(X)
 	post_removal(X)
 	return TRUE
 
@@ -882,6 +883,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/add_xeno(mob/living/carbon/xenomorph/X)
 	. = ..()
 	orphan_hud_timer?.apply_to(X)
+
+/datum/hive_status/normal/remove_xeno(mob/living/carbon/xenomorph/X)
+	. = ..()
+	orphan_hud_timer?.remove_from(X)
 
 /datum/hive_status/normal/handle_ruler_timer()
 	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
