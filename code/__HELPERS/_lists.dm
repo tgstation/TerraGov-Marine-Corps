@@ -160,7 +160,7 @@
 	list_to_clear -= new_list
 	return length(list_to_clear) < start_len
 #else
-#define listclearnulls(list) (list ? list.RemoveAll(null) : 0)
+#define listclearnulls(list) list?.RemoveAll(null)
 #endif
 
 /*
