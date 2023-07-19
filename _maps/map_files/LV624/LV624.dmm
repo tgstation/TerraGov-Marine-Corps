@@ -7702,6 +7702,10 @@
 	dir = 2
 	},
 /area/lv624/lazarus/main_hall)
+"hax" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/ruin)
 "haS" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1
@@ -9814,6 +9818,10 @@
 "jsE" = (
 /turf/closed/wall,
 /area/lv624/lazarus/main_hall)
+"jsZ" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "jtk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -9974,12 +9982,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
-<<<<<<< HEAD
-"jBh" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle5)
-=======
 "jBg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -9994,7 +9996,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/internal_affairs)
->>>>>>> master
 "jBQ" = (
 /obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
@@ -10195,6 +10196,10 @@
 	dir = 1
 	},
 /area/lv624/lazarus/corporate_affairs)
+"jLs" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "jLv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/ground/grass,
@@ -15000,6 +15005,11 @@
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
+"pqT" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle8)
 "psp" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -15223,17 +15233,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
-<<<<<<< HEAD
-"pHp" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
-=======
 "pId" = (
 /obj/structure/extinguisher_cabinet,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/lv624/lazarus/atmos)
->>>>>>> master
 "pIS" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -15725,17 +15728,10 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
-<<<<<<< HEAD
-"qlC" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
-=======
 "qlc" = (
 /obj/item/mecha_parts/chassis/gygax,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
->>>>>>> master
 "qmg" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -17660,6 +17656,11 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"seL" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central4/garbledradio)
 "sgf" = (
 /obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
@@ -18752,11 +18753,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle3)
-"tuY" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central4/garbledradio)
 "tvF" = (
 /obj/item/storage/box/beakers,
 /obj/structure/table,
@@ -21855,10 +21851,6 @@
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
-"wJM" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/ruin)
 "wJR" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/plating,
@@ -25875,7 +25867,7 @@ noU
 noU
 lDt
 noU
-tuY
+seL
 noU
 lDt
 noU
@@ -26489,7 +26481,7 @@ sRc
 bgf
 pes
 lbt
-wJM
+hax
 pes
 bZe
 wTp
@@ -28490,7 +28482,7 @@ ivV
 abc
 abc
 abc
-abc
+jLs
 abc
 abc
 aym
@@ -28667,7 +28659,7 @@ ivV
 abc
 abc
 abc
-qlC
+abc
 abc
 abc
 aym
@@ -59333,7 +59325,7 @@ hBi
 nQQ
 jtS
 gma
-dzz
+pqT
 lfh
 tKa
 pDM
@@ -60488,7 +60480,7 @@ gKr
 gKr
 aah
 dUK
-pHp
+aah
 aah
 gKr
 gKr
@@ -61020,7 +61012,7 @@ gKr
 gKr
 aah
 aah
-aah
+jsZ
 aah
 aah
 aah
@@ -61475,7 +61467,7 @@ wrP
 hmn
 fMv
 xGT
-jBh
+wZK
 kml
 rms
 wrP
