@@ -74,7 +74,6 @@ const InputArea = (props, context) => {
   const { act, data } = useBackend<NumberInputData>(context);
   const { min_value, max_value, init_value, round_value } = data;
   const { input, onClick, onChange } = props;
-
   return (
     <Stack fill>
       <Stack.Item>

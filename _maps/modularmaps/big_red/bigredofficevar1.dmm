@@ -15,6 +15,7 @@
 /area/bigredv2/outside/office_complex)
 "aD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "aF" = (
@@ -342,6 +343,7 @@
 /area/bigredv2/outside/office_complex)
 "oU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/white/warningstripe,
 /area/bigredv2/outside/office_complex)
 "pp" = (
@@ -376,6 +378,7 @@
 	dir = 10
 	},
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "qu" = (
@@ -554,6 +557,7 @@
 /area/bigredv2/outside/office_complex)
 "yu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
@@ -707,6 +711,7 @@
 "Ep" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "EF" = (
@@ -755,6 +760,11 @@
 	dir = 4
 	},
 /turf/open/floor,
+/area/bigredv2/outside/office_complex)
+"HC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "HG" = (
 /obj/effect/decal/cleanable/dirt,
@@ -895,7 +905,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/office_complex)
+/area/bigredv2/outside/e)
 "Nq" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
@@ -987,6 +997,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Robotics"
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Rh" = (
@@ -1021,6 +1032,8 @@
 "SK" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
+/obj/structure/cable,
+/obj/machinery/power/apc,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "SY" = (
@@ -1117,6 +1130,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/folder/red,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Yt" = (
@@ -1416,7 +1430,7 @@ Pq
 Pq
 ov
 SK
-wy
+HC
 qa
 oU
 aD

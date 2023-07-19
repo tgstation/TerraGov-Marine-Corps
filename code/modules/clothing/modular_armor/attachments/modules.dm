@@ -55,7 +55,6 @@
 	parent.AddComponent(/datum/component/suit_autodoc, 4 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
 	parent.AddElement(/datum/element/limb_support, supported_limbs)
 
-
 /obj/item/armor_module/module/valkyrie_autodoc/on_detach(obj/item/detaching_from, mob/user)
 	qdel(parent.GetComponent(/datum/component/suit_autodoc))
 	parent.RemoveElement(/datum/element/limb_support, supported_limbs)

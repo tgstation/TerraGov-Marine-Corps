@@ -146,23 +146,22 @@
 			return TRUE
 	return FALSE
 
+/**
+ * Removes any null entries from the list
+ * Returns TRUE if the list had nulls, FALSE otherwise
+**/
 
-//Empties the list by setting the length to 0. Hopefully the elements get garbage collected
-/proc/clearlist(list/L)
-	if(!istype(L))
+#if DM_VERSION < 515
+/proc/listclearnulls(list/list_to_clear)
+	if(!list_to_clear)
 		return
-
-	L.len = 0
-
-
-//Removes any null entries from the list
-/proc/listclearnulls(list/L)
-	if(!istype(L))
-		return
-
-	while(null in L)
-		L -= null
-
+	var/start_len = length(list_to_clear)
+	var/list/new_list[start_len]
+	list_to_clear -= new_list
+	return length(list_to_clear) < start_len
+#else
+#define listclearnulls(list) list.RemoveAll(null)
+#endif
 
 /*
 * Returns list containing all the entries from first list that are not present in second.

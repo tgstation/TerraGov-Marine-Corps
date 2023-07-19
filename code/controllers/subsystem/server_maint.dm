@@ -70,6 +70,10 @@ SUBSYSTEM_DEF(server_maint)
 					log_world("Found a null in observers_by_zlevel!")
 				cleanup_ticker++
 			if(35)
+				if(listclearnulls(GLOB.dead_mob_list))
+					log_world("Found a null in GLOB.dead_mob_list!")
+				cleanup_ticker++
+			if(40)
 				cleanup_ticker = 0
 			else
 				cleanup_ticker++
