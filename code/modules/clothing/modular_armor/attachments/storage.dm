@@ -91,6 +91,33 @@
 		/obj/item/stack,
 	)
 
+/* Pockets */
+/obj/item/armor_module/storage/pocket
+	icon_state = ""
+	item_state = ""
+	storage = /obj/item/storage/internal/pocket
+
+/obj/item/storage/internal/pocket
+	max_storage_space = 6
+	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_NORMAL
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+	)
+
+/obj/item/storage/internal/pocket/insertion_message(obj/item/item, mob/user)
+	var/visidist = item.w_class >= 3 ? 3 : 1
+	//Grab the name of the object this pocket belongs to
+	user.visible_message(span_notice("[user] puts \a [item] into \the [master_item.name]."),\
+						span_notice("You put \the [item] into \the [master_item.name]."),\
+						null, visidist)
+
 /** General storage */
 /obj/item/armor_module/storage/general
 	name = "General Purpose Storage module"
@@ -112,12 +139,6 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 	)
-
-/obj/item/armor_module/storage/general/irremovable
-	desc = "General storage module. Limited capacity but can hold some larger items like pistols or magazines."
-	icon_state = ""
-	item_state = ""
-	flags_attach_features = ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/storage/general/som
 	name = "General Purpose Storage module"
