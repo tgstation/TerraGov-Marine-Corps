@@ -298,7 +298,7 @@
 	playsound(our_turf, 'sound/bullets/acid_impact1.ogg', 50, 1)
 	puppet.gib()
 
-	for(var/turf/acid_tile AS in RANGE_TURFS(1, our_turf))
+	for(var/turf/acid_tile AS in RANGE_TURFS(2, our_turf))
 		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
 			new /obj/effect/xenomorph/spray(acid_tile, 10 SECONDS, 16)
