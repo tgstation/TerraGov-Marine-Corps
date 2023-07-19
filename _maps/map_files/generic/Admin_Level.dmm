@@ -1708,8 +1708,10 @@
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "cnE" = (
-/obj/machinery/vending/engivend/nopower,
 /obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/vending/engivend/nopower{
+	resistance_flags = 1
+	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "cnL" = (
@@ -4981,7 +4983,9 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/chapel/main)
 "gCD" = (
-/obj/machinery/chem_master/nopower,
+/obj/machinery/chem_master/nopower{
+	resistance_flags = 1
+	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "gDc" = (
@@ -5166,7 +5170,8 @@
 	},
 /obj/structure/table,
 /obj/machinery/reagentgrinder/nopower{
-	pixel_y = 7
+	pixel_y = 7;
+	resistance_flags = 1
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
@@ -5968,7 +5973,6 @@
 /area/centcom/valhalla/comms)
 "hXM" = (
 /obj/effect/turf_decal/warning_stripes/box/empty,
-/obj/machinery/vending/engivend/nopower,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
 "hYu" = (
@@ -11939,7 +11943,9 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/port)
 "qlP" = (
-/obj/machinery/vending/tool/nopower,
+/obj/machinery/vending/tool/nopower{
+	resistance_flags = 1
+	},
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
@@ -15492,7 +15498,9 @@
 /turf/closed/wall,
 /area/centcom/valhalla/janitor)
 "uOI" = (
-/obj/machinery/chem_master/nopower,
+/obj/machinery/chem_master/nopower{
+	resistance_flags = 1
+	},
 /obj/structure/window/reinforced/extratoughened{
 	dir = 4
 	},
