@@ -147,7 +147,7 @@
 
 /datum/map_template/shuttle/minidropship/combat_tad
     suffix = "_combat_tad"
-    description = "A Tadpole modified to have three hardpoints instead of just one, the majority of the other standerd featured had to be scrapped to fit all three of them on."
+    description = "A Tadpole modified to have three hardpoints instead of just one, the majority of the other standerd featured had to be scrapped to fit all three of them on. Also comes equiped with 2 electric hardpoints"
     display_name = "Tadpole Combat Model"
 
 /datum/map_template/shuttle/escape_pod
@@ -166,7 +166,7 @@
 	shuttle_id = SHUTTLE_DISTRESS_UPP
 	name = "Distress UPP"
 
-/datum/map_template/shuttle/small_ert/ufo
+/datum/map_template/shuttle/small_ert/ufo 
 	shuttle_id = SHUTTLE_DISTRESS_UFO
 	name = "Small UFO"
 
