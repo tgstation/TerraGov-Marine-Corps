@@ -55,10 +55,11 @@
 		addtimer(CALLBACK(src, PROC_REF(spawn_baneling), xeno_ref), BANELING_CHARGE_RESPAWN_TIME)
 		addtimer(CALLBACK(src, PROC_REF(increase_charge), xeno_ref), BANELING_CHARGE_GAIN_TIME)
 		to_chat(xeno_ref.client, span_xenohighdanger("You will respawn in [BANELING_CHARGE_RESPAWN_TIME/10] seconds"))
-		return
+		return COMPONENT_CANCEL_DEATH
 	/// The respawn takes 4 times longer than consuming a charge would
 	to_chat(xeno_ref.client, "You will respawn in [(BANELING_CHARGE_RESPAWN_TIME*4)/10] SECONDS")
 	addtimer(CALLBACK(src, PROC_REF(spawn_baneling), xeno_ref), BANELING_CHARGE_RESPAWN_TIME*4)
+	return COMPONENT_CANCEL_DEATH
 
 /// Increase our current charge
 /obj/structure/xeno/baneling_pod/proc/increase_charge(datum/source)
