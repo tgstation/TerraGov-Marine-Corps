@@ -1,0 +1,4 @@
+author: "? code ???"
+delete-after: True
+changes:
+  - bugfix: "Fixed status effects sometimes getting stuck on living or dead mobs"
