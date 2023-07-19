@@ -100,7 +100,7 @@
 	var/time_formatted = time2text(timeleft(timer_id), "mm:ss")
 	var/timer_text = replacetextEx(maptext_string, "${timer}", time_formatted)
 	// If we don't find ${timer} in the string, just use the time formatted
-	var/result_text = "[maptext_style_left][time_formatted][maptext_style_right]"
+	var/result_text = "[maptext_style_left][timer_text][maptext_style_right]"
 	maptext = result_text
 
 /// Adds the object to the client.screen of the mob, or removes it if add_to_screen is FALSE
