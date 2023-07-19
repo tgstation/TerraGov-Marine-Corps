@@ -562,7 +562,7 @@
 	. = ..()
 	if(!.)
 		return
-	owner.add_movespeed_modifier(MOVESPEED_ID_XENO_DREAD, TRUE, 0, NONE, TRUE, 1)
+	owner.add_movespeed_modifier(MOVESPEED_ID_XENO_DREAD, TRUE, 0, NONE, TRUE, 0.7)
 
 /datum/status_effect/dread/on_remove()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_XENO_DREAD)
