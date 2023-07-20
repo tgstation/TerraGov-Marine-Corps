@@ -147,6 +147,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
+"GC" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/east/garbledradio)
+"Hg" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east/garbledradio)
 
 (1,1,1) = {"
 ao
@@ -783,7 +791,7 @@ aj
 aN
 aN
 at
-ab
+Hg
 ab
 ab
 ab
@@ -1846,7 +1854,7 @@ ab
 ab
 ab
 ab
-aa
+GC
 aN
 aN
 at

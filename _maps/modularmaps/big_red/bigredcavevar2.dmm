@@ -154,10 +154,18 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
+"xE" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east/garbledradio)
 "DC" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
+"JU" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 
 (1,1,1) = {"
 aA
@@ -794,7 +802,7 @@ ap
 ar
 ar
 aX
-ab
+xE
 ab
 ab
 ab
@@ -2119,7 +2127,7 @@ aX
 ar
 ar
 ar
-aN
+JU
 aV
 aN
 aN
