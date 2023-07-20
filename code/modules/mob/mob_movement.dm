@@ -1,8 +1,6 @@
 /mob/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSMOB))
-		return TRUE
-	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
+	if(mover.pass_flags & PASS_MOB)
 		return TRUE
 	return . || (!mover.density || !density || lying_angle) //Parent handles buckling - if someone's strapped to us it can pass.
 

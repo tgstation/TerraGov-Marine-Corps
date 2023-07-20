@@ -14,7 +14,7 @@
 	icon = 'icons/obj/objects.dmi'
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	buckle_lying = 90
-	flags_pass = PASSABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
@@ -120,9 +120,10 @@
 	return FALSE
 
 /obj/structure/bed/roller/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(mover == buckled_bodybag)
 		return TRUE
+
+	return ..()
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
@@ -151,8 +152,6 @@
 						if(B.linked_beacon.linked_bed_deployed == B)
 							M.linked_beacon.linked_bed = M
 							B.linked_beacon.linked_bed_deployed = null
-				H.visible_message(span_warning("[H] grabs [src] from the floor!"),
-				span_warning("You grab [src] from the floor!"))
 				qdel(src)
 
 /obj/structure/bed/ex_act(severity)
@@ -190,12 +189,6 @@
 		var/mob/M = G.grabbed_thing
 		to_chat(user, span_notice("You place [M] on [src]."))
 		M.forceMove(loc)
-		return TRUE
-
-
-/obj/structure/bed/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 
 /obj/structure/bed/alien
@@ -612,7 +605,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, span_warning("[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now."))
 		return
 	user.drop_held_item()
-	flags_item |= NO_VACUUM
 	anchored = TRUE
 	planted = TRUE
 	to_chat(user, span_warning("You plant and activate [src]."))
@@ -628,7 +620,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, span_warning("[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now."))
 		return
 	if(planted)
-		flags_item &= ~NO_VACUUM
 		anchored = FALSE
 		planted = FALSE
 		to_chat(user, span_warning("You retrieve and deactivate [src]."))

@@ -26,6 +26,8 @@
 	var/accessory = null
 
 	var/can_be_admin_equipped = TRUE // Set to FALSE if your outfit requires runtime parameters
+	///the species this outfit is designed for
+	var/species = SPECIES_HUMAN
 
 
 /datum/outfit/proc/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

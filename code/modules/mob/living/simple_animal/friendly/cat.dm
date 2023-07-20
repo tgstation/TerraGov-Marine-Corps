@@ -13,7 +13,8 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	flags_pass = PASSTABLE
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_MOB|PASS_LOW_STRUCTURE
 	mob_size = MOB_SIZE_SMALL
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
@@ -44,7 +45,8 @@
 	icon_living = "kitten"
 	icon_dead = "kitten_dead"
 	density = FALSE
-	flags_pass = PASSMOB
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_MOB|PASS_LOW_STRUCTURE
 	mob_size = MOB_SIZE_SMALL
 
 
@@ -150,7 +152,7 @@
 	return ..()
 
 
-/obj/item/clothing/head/cat/throw_at(atom/target, range, speed, thrower, spin)
+/obj/item/clothing/head/cat/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	qdel(src)
 
 

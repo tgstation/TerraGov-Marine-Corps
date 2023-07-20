@@ -130,12 +130,6 @@
 			var/item_category = L[1]
 			var/cost = L[3]
 
-			if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(idx, GLOB.hvh_restricted_items_list))
-				to_chat(usr, span_warning("This item is banned by the Space Geneva Convention."))
-				if(icon_deny)
-					flick(icon_deny, src)
-				return
-
 			if(use_points && (item_category in I.marine_points) && I.marine_points[item_category] < cost)
 				to_chat(usr, span_warning("Not enough points."))
 				if(icon_deny)
@@ -176,8 +170,7 @@
 			if(item_category == CAT_STD && !issynth(usr))
 				var/mob/living/carbon/human/H = usr
 				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
-					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
-					vended_items += new headset_type(loc, H.assigned_squad, vendor_role)
+					vended_items += new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 
@@ -216,12 +209,6 @@
 	. = ..()
 	listed_products = GLOB.marine_clothes_listed_products + GLOB.marine_gear_listed_products
 
-/obj/machinery/marine_selector/clothes/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 /obj/machinery/marine_selector/clothes/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_ALPHA)
@@ -248,14 +235,6 @@
 /obj/machinery/marine_selector/clothes/engi/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.engineer_clothes_listed_products
-
-/obj/machinery/marine_selector/clothes/engi/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/engi/rebel
-	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
-	vendor_role = /datum/job/terragov/squad/engineer/rebel
-	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/marine_selector/clothes/engi/alpha
 	squad_tag = "Alpha"
@@ -289,14 +268,6 @@
 	. = ..()
 	listed_products = GLOB.medic_clothes_listed_products
 
-/obj/machinery/marine_selector/clothes/medic/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/medic/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
-	vendor_role = /datum/job/terragov/squad/corpsman/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 /obj/machinery/marine_selector/clothes/medic/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ALPHA)
@@ -328,15 +299,6 @@
 	. = ..()
 	listed_products = GLOB.smartgunner_clothes_listed_products
 
-/obj/machinery/marine_selector/clothes/smartgun/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/smartgun/rebel
-	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
-	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
-
 /obj/machinery/marine_selector/clothes/smartgun/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_ALPHA)
@@ -367,15 +329,6 @@
 /obj/machinery/marine_selector/clothes/leader/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.leader_clothes_listed_products
-
-/obj/machinery/marine_selector/clothes/leader/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/leader/rebel
-	req_access = list(ACCESS_MARINE_LEADER_REBEL)
-	vendor_role = /datum/job/terragov/squad/leader/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 
 /obj/machinery/marine_selector/clothes/leader/alpha
 	squad_tag = "Alpha"
@@ -468,14 +421,6 @@
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/clothes/commander/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/marine_selector/clothes/commander/rebel
-	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
-	vendor_role = /datum/job/terragov/command/fieldcommander/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"
 	desc = "An automated synthetic equipment vendor hooked up to a modest storage unit."
@@ -512,9 +457,6 @@
 	. = ..()
 	listed_products = GLOB.medic_gear_listed_products
 
-/obj/machinery/marine_selector/gear/medic/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
-
 /obj/machinery/marine_selector/gear/medic/valhalla
 	vendor_role = /datum/job/fallen/marine/corpsman
 	resistance_flags = INDESTRUCTIBLE
@@ -532,9 +474,6 @@
 /obj/machinery/marine_selector/gear/engi/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.engineer_gear_listed_products
-
-/obj/machinery/marine_selector/gear/engi/rebel
-	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/engi/valhalla
 	vendor_role = /datum/job/fallen/marine/engineer
@@ -554,9 +493,6 @@
 	. = ..()
 	listed_products = GLOB.smartgunner_gear_listed_products
 
-/obj/machinery/marine_selector/gear/smartgun/rebel
-	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
-
 /obj/machinery/marine_selector/gear/smartgun/valhalla
 	vendor_role = /datum/job/fallen/marine/smartgunner
 	resistance_flags = INDESTRUCTIBLE
@@ -574,9 +510,6 @@
 /obj/machinery/marine_selector/gear/leader/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.leader_gear_listed_products
-
-/obj/machinery/marine_selector/gear/leader/rebel
-	req_access = list(ACCESS_MARINE_LEADER_REBEL)
 
 /obj/machinery/marine_selector/gear/leader/valhalla
 	vendor_role = /datum/job/fallen/marine/leader
@@ -596,9 +529,6 @@
 /obj/machinery/marine_selector/gear/commander/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.commander_gear_listed_products
-
-/obj/machinery/marine_selector/gear/commander/rebel
-	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
 
 ///Spawns a set of objects from specified typepaths. For vendors to spawn multiple items while only needing one path.
 /obj/effect/vendor_bundle
@@ -742,6 +672,15 @@
 		/obj/item/circuitboard/apc,
 	)
 
+/obj/effect/vendor_bundle/smartgunner_pistol
+	gear_to_spawn = list(
+		/obj/item/clothing/glasses/night/m56_goggles,
+		/obj/item/storage/holster/belt/pistol/smart_pistol,
+		/obj/item/weapon/gun/pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+	)
+
 /obj/effect/vendor_bundle/leader
 	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
@@ -836,6 +775,13 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/helljumper,
 		/obj/item/clothing/suit/modular/jaeger/helljumper,
+	)
+
+/obj/effect/vendor_bundle/jaeger_ranger
+	desc = "A set of medium Ranger pattern jaeger armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/marine/ranger,
+		/obj/item/clothing/suit/modular/jaeger/ranger,
 	)
 
 /obj/effect/vendor_bundle/jaeger_gungnir

@@ -2,7 +2,6 @@
 /obj/structure/table/holotable
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
-	icon_state = "table"
 	density = TRUE
 	anchored = TRUE
 
@@ -107,7 +106,6 @@
 		visible_message(span_notice("[user] dunks [I] into the [src]!"))
 
 /obj/structure/holohoop/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(50))
@@ -119,6 +117,6 @@
 			visible_message(span_notice(" Swish! \the [I] lands in \the [src]."), 3)
 		else
 			visible_message(span_warning(" \the [I] bounces off of \the [src]'s rim!"), 3)
-		return 0
+		return FALSE
 	else
 		return ..()

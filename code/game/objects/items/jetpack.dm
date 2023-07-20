@@ -60,7 +60,7 @@
 		UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 		action.set_toggle(FALSE)
 	else
-		RegisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT), PROC_REF(can_use_jetpack))
+		RegisterSignals(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT), PROC_REF(can_use_jetpack))
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
 		action.set_toggle(TRUE)
@@ -130,7 +130,7 @@
 		to_chat(human_user,span_warning("You cannot use the jetpack yet!"))
 		return
 	if(fuel_left < FUEL_USE)
-		to_chat(human_user,span_warning("The jetpack ran out of fuel!"))
+		balloon_alert(human_user, "No fuel")
 		return
 	INVOKE_ASYNC(src, PROC_REF(use_jetpack), A, human_user)
 
@@ -171,7 +171,7 @@
 		return ..()
 	var/obj/structure/reagent_dispensers/fueltank/FT = target
 	if(FT.reagents.total_volume == 0)
-		to_chat(user, span_warning("Out of fuel!"))
+		balloon_alert(user, "No fuel")
 		return
 
 	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
@@ -181,7 +181,7 @@
 	change_fuel_indicator()
 	update_icon()
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
-	to_chat(user, span_notice("You refill [src] with [target]."))
+	balloon_alert(user, "Refilled")
 
 /obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -189,7 +189,7 @@
 		return
 	var/obj/item/ammo_magazine/flamer_tank/FT = I
 	if(FT.current_rounds == 0)
-		to_chat(user, span_warning("Out of fuel!"))
+		balloon_alert(user, "No fuel")
 		return
 
 	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
@@ -198,5 +198,5 @@
 	fuel_indicator = FUEL_INDICATOR_FULL
 	change_fuel_indicator()
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	to_chat(user, span_notice("You refill [src] with [I]."))
+	balloon_alert(user, "Refilled")
 	update_icon()

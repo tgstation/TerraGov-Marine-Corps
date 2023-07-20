@@ -56,6 +56,7 @@
 	if(!can_use_action(TRUE))
 		return
 	human_owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
+	to_chat(owner, "<h2 class='alert'>You have received orders to...</h2><br>[span_alert(text)]<br><br>")
 	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
 	deadchat_broadcast(" has sent the command order \"[text]\"", human_owner, human_owner)

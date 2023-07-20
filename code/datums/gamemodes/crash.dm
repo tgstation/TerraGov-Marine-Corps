@@ -133,6 +133,8 @@
 	shuttle_landed = TRUE
 	shuttle.crashing = FALSE
 
+	generate_nuke_disk_spawners()
+
 /datum/game_mode/infestation/crash/check_finished(force_end)
 	if(round_finished)
 		return TRUE
@@ -146,24 +148,32 @@
 	if(num_humans && planet_nuked == INFESTATION_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
 		return FALSE
 
-	if(planet_nuked == INFESTATION_NUKE_NONE)
-		if(!num_humans)
-			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines
-			round_finished = MODE_INFESTATION_X_MAJOR
-			return TRUE
-		if(marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE))
-			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines evaced without a nuke
-			round_finished = MODE_INFESTATION_X_MINOR
+	switch(planet_nuked)
+
+		if(INFESTATION_NUKE_NONE)
+			if(!num_humans)
+				message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines
+				round_finished = MODE_INFESTATION_X_MAJOR
+				return TRUE
+			if(marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE))
+				message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines evaced without a nuke
+				round_finished = MODE_INFESTATION_X_MINOR
+				return TRUE
+
+		if(INFESTATION_NUKE_COMPLETED)
+			if(marines_evac == CRASH_EVAC_NONE)
+				message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines nuked the planet but didn't evac
+				round_finished = MODE_INFESTATION_M_MINOR
+				return TRUE
+			message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines nuked the planet and managed to evac
+			round_finished = MODE_INFESTATION_M_MAJOR
 			return TRUE
 
-	if(planet_nuked == INFESTATION_NUKE_COMPLETED)
-		if(marines_evac == CRASH_EVAC_NONE)
-			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines nuked the planet but didn't evac
-			round_finished = MODE_INFESTATION_M_MINOR
+		if(INFESTATION_NUKE_COMPLETED_SHIPSIDE, INFESTATION_NUKE_COMPLETED_OTHER)
+			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //marines nuked themselves somehow
+			round_finished = MODE_INFESTATION_X_MAJOR
 			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines nuked the planet and managed to evac
-		round_finished = MODE_INFESTATION_M_MAJOR
-		return TRUE
+
 	return FALSE
 
 

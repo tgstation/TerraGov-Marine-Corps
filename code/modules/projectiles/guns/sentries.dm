@@ -184,9 +184,6 @@
 	turret_flags = TURRET_HAS_CAMERA|TURRET_IMMOBILE
 	density = FALSE
 
-/obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
-	sentry_iff_signal = TGMC_REBEL_IFF
-
 /obj/item/weapon/gun/sentry/big_sentry/fob_sentry
 	max_integrity = INFINITY //Good luck killing it
 	fire_delay = 0.2 SECONDS
@@ -196,9 +193,6 @@
 	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
 	default_ammo_type = /obj/item/ammo_magazine/sentry/fob_sentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/fob_sentry)
-
-/obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel
-	sentry_iff_signal = TGMC_REBEL_IFF
 
 /obj/item/storage/box/minisentry
 	name = "\improper ST-580 point defense sentry crate"
@@ -220,7 +214,7 @@
 
 /obj/item/weapon/gun/sentry/mini
 	name = "\improper ST-580 point defense sentry"
-	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 100-round drum magazine."
+	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 300-round drum magazine."
 	icon_state = "minisentry"
 
 	max_shells = 300

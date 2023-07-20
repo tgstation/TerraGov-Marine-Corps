@@ -108,40 +108,42 @@
 
 /mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
-		return
+		return FALSE
 
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	to_chat(src, msg)
+	return TRUE
 
 
 /mob/living/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
-		return
+		return FALSE
 
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type == EMOTE_VISIBLE && eye_blind) //Vision related
 			if(!alt_msg)
-				return
+				return FALSE
 			else
 				msg = alt_msg
 				type = alt_type
 
 		if(type == EMOTE_AUDIBLE && isdeaf(src)) //Hearing related
 			if(!alt_msg)
-				return
+				return FALSE
 			else
 				msg = alt_msg
 				type = alt_type
 				if(type == EMOTE_VISIBLE && eye_blind)
-					return
+					return FALSE
 
 	if(stat == UNCONSCIOUS && type == EMOTE_AUDIBLE)
 		to_chat(src, "<i>... You can almost hear something ...</i>")
-		return
+		return FALSE
 	to_chat(src, msg, avoid_highlighting = avoid_highlight)
+	return TRUE
 
 /**
  * Show a message to all player mobs who sees this atom
@@ -287,11 +289,11 @@
 		if(warning)
 			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
-	if(W.time_to_equip && !ignore_delay)
-		if(!do_after(src, W.time_to_equip, TRUE, W, BUSY_ICON_FRIENDLY))
+	if(W.equip_delay_self && !ignore_delay)
+		if(!do_after(src, W.equip_delay_self, TRUE, W, BUSY_ICON_FRIENDLY))
 			to_chat(src, "You stop putting on \the [W]")
 			return FALSE
-		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+		equip_to_slot(W, slot) //This proc should not ever fail.
 		if(permanent)
 			W.flags_item |= NODROP
 			//This will unwield items -without- triggering lights.
@@ -299,7 +301,7 @@
 			W.unwield(src)
 		return TRUE
 	else
-		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+		equip_to_slot(W, slot) //This proc should not ever fail.
 		if(permanent)
 			W.flags_item |= NODROP
 		//This will unwield items -without- triggering lights.
@@ -311,12 +313,17 @@
 *This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 *In most cases you will want to use equip_to_slot_if_possible()
 */
-/mob/proc/equip_to_slot(obj/item/W as obj, slot)
+/mob/proc/equip_to_slot(obj/item/W as obj, slot, bitslot = FALSE)
 	return
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE, override_nodrop = FALSE)
 	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent, override_nodrop)
+
+/// Tries to equip an item to the slot provided, otherwise tries to put it in hands, if hands are full the item is deleted
+/mob/proc/equip_to_slot_or_hand(obj/item/W, slot, permanent = FALSE, override_nodrop = FALSE)
+	if(!equip_to_slot_if_possible(W, slot, TRUE, FALSE, FALSE, FALSE, permanent, override_nodrop))
+		put_in_any_hand_if_possible(W, TRUE, FALSE)
 
 ///Attempts to store an item in a valid location based on SLOT_EQUIP_ORDER
 /mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE)
@@ -365,20 +372,6 @@
 	put_in_hands(found)
 	return TRUE
 
-/mob/proc/show_inv(mob/user)
-	user.set_interaction(src)
-	var/dat = {"
-	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
-	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
-	<BR>"}
-	var/datum/browser/popup = new(user, "mob[REF(src)]", "<div align='center'>[src]</div>", 325, 500)
-	popup.set_content(dat)
-	popup.open()
-
-
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
@@ -413,29 +406,6 @@
 		if(isliving(src))
 			var/mob/living/L = src
 			L.language_menu()
-
-
-/**
- * Handle the result of a click drag onto this mob
- *
- * For mobs this just shows the inventory
- */
-/mob/MouseDrop_T(atom/dropping, atom/user)
-	. = ..()
-	if(.)
-		return
-	if(!ismob(dropping) || isxeno(user) || isxeno(dropping) || iszombie(user))
-		return
-	// If not dragged onto myself or dragging my own sprite onto myself
-	if(user != src || dropping == user)
-		return
-	var/mob/dragged = dropping
-	dragged.show_inv(user)
-
-
-/mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
-	return
-
 
 /mob/living/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM) || status_flags & INCORPOREAL)	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
@@ -862,11 +832,13 @@
 		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
 
 /mob/proc/set_stat(new_stat)
+	SHOULD_CALL_PARENT(TRUE)
 	if(new_stat == stat)
 		return
 	remove_all_indicators()
 	. = stat //old stat
 	stat = new_stat
+	SEND_SIGNAL(src, COMSIG_MOB_STAT_CHANGED, ., new_stat)
 
 ///clears the client mob in our client_mobs_in_contents list
 /mob/proc/clear_client_in_contents()

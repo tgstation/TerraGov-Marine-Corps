@@ -168,7 +168,7 @@
 /area/lv624/lazarus/internal_affairs)
 "no" = (
 /obj/structure/table/woodentable,
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "ns" = (
@@ -619,7 +619,7 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "YZ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/internal_affairs)
 

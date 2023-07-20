@@ -40,6 +40,13 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
+/datum/keybinding/xeno/recycle
+	name = "Recycle"
+	full_name = "Recycle xenomorph"
+	description = "Recycles a fellow dead xenomorph"
+	keybind_signal = COMSIG_XENOABILITY_RECYCLE
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/place_acid_well
 	name = "place_acid_well"
 	full_name = "Place acid well"
@@ -193,14 +200,14 @@
 /datum/keybinding/xeno/long_range_sight
 	name = "long_range_sight"
 	full_name = "Boiler: Long Range Sight"
-	description = ""
+	description = "Toggles the zoom in."
 	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
 	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"
 	full_name = "Boiler: Toggle Bombard Type"
-	description = ""
+	description = "Toggles the type of glob ."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
 /datum/keybinding/xeno/toggle_bomb_radial
@@ -213,14 +220,21 @@
 /datum/keybinding/xeno/create_bomb
 	name = "create_bomb"
 	full_name = "Boiler: Create Bombard Ammo"
-	description = ""
+	description = "Create new globs to fire."
 	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
 	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/root
+	name = "root"
+	full_name = "Boiler: Root in place"
+	description = "Begin rooting in place."
+	keybind_signal = COMSIG_XENOABILITY_ROOT
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/bombard
 	name = "bombard"
 	full_name = "Boiler: Bombard"
-	description = ""
+	description = "Fire globules."
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 	hotkey_keys = list("R")
 
@@ -452,9 +466,16 @@
 /datum/keybinding/xeno/change_form
 	name = "change_form"
 	full_name = "Hivemind: Change Form"
-	description = ""
+	description = "Change form to/from incorporeal."
 	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM
 	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/change_form
+	name = "change_form"
+	full_name = "Hivemind: Open teleportation minimap"
+	description = "Opens up the minimap which, when you click somewhere, tries to teleport you to the selected location"
+	keybind_signal = COMISG_XENOMORPH_HIVEMIND_TELEPORT
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"

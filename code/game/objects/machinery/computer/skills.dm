@@ -38,16 +38,16 @@
 
 	var/dat
 	if (temp)
-		dat = text("[]<BR><BR><A href='?src=\ref[];choice=Clear Screen'>Clear Screen</A>", temp, src)
+		dat = "[temp]<BR><BR><A href='?src=\ref[src];choice=Clear Screen'>Clear Screen</A>"
 	else
-		dat = text("Confirm Identity: <A href='?src=\ref[];choice=Confirm Identity'>[]</A><HR>", src, (scan ? text("[]", scan.name) : "----------"))
+		dat = "Confirm Identity: <A href='?src=\ref[src];choice=Confirm Identity'>[scan ? "[scan.name]" : "----------"]</A><HR>"
 		if (authenticated)
-			switch(screen)
+			switch(screen) //TODO: this is awful.
 				if(1)
 					dat += {"
 <p style='text-align:center;'>"}
-					dat += text("<A href='?src=\ref[];choice=Search Records'>Search Records</A><BR>", src)
-					dat += text("<A href='?src=\ref[];choice=New Record (General)'>New Record</A><BR>", src)
+					dat += "<A href='?src=\ref[src];choice=Search Records'>Search Records</A><BR>"
+					dat += "<A href='?src=\ref[src];choice=New Record (General)'>New Record</A><BR>"
 					dat += {"
 </p>
 <table style="text-align:center;" cellspacing="0" width="100%">
@@ -66,12 +66,12 @@
 						for(var/datum/data/record/R in sortRecord(GLOB.datacore.general, sortBy, order))
 							for(var/datum/data/record/E in GLOB.datacore.security)
 							var/background
-							dat += text("<tr style=[]><td><A href='?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
-							dat += text("<td>[]</td>", R.fields["id"])
-							dat += text("<td>[]</td>", R.fields["rank"])
-							dat += text("<td>[]</td>", R.fields["fingerprint"])
+							dat += "<tr style=[background]><td><A href='?src=\ref[src];choice=Browse Record;d_rec=\ref[R]'>[R.fields["name"]]</a></td>"
+							dat += "<td>[R.fields["id"]]</td>"
+							dat += "<td>[R.fields["rank"]]</td>"
+							dat += "<td>[R.fields["fingerprint"]]</td>"
 						dat += "</table><hr width='75%' />"
-					dat += text("<br><br><A href='?src=\ref[];choice=Log Out'>{Log Out}</A>",src)
+					dat += "<br><br><A href='?src=\ref[src];choice=Log Out'>{Log Out}</A>"
 				if(2)
 					dat += "<CENTER><B>Employment Record</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && GLOB.datacore.general.Find(active1)))
@@ -81,7 +81,7 @@
 						if(istype(active1.fields["photo_side"], /obj/item/photo))
 							var/obj/item/photo/P2 = active1.fields["photo_side"]
 							DIRECT_OUTPUT(user, browse_rsc(P2.picture.picture_image, "photo_side"))
-						dat += text("<table><tr><td>	\
+						dat += "<table><tr><td>	\
 						Name: <A href='?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
 						ID: <A href='?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n	\
 						Sex: <A href='?src=\ref[src];choice=Edit Field;field=sex'>[active1.fields["sex"]]</A><BR>\n	\
@@ -92,18 +92,18 @@
 						Mental Status: [active1.fields["m_stat"]]<BR><BR>\n	\
 						Employment/skills summary:<BR> [decode(active1.fields["notes"])]<BR></td>	\
 						<td align = center valign = top>Photo:<br><img src=photo_front height=80 width=80 border=4>	\
-						<img src=photo_side height=80 width=80 border=4></td></tr></table>")
+						<img src=photo_side height=80 width=80 border=4></td></tr></table>"
 					else
 						dat += "<B>General Record Lost!</B><BR>"
-					dat += text("<BR><BR>\n<A href='?src=\ref[];choice=Print Record'>Print Record</A><BR>\n<A href='?src=\ref[];choice=Return'>Back</A><BR>", src, src)
+					dat += "<BR><BR>\n<A href='?src=\ref[src];choice=Print Record'>Print Record</A><BR>\n<A href='?src=\ref[src];choice=Return'>Back</A><BR>"
 				if(3)
 					if(!length(Perp))
-						dat += text("ERROR.  String could not be located.<br><br><A href='?src=\ref[];choice=Return'>Back</A>", src)
+						dat += "ERROR.  String could not be located.<br><br><A href='?src=\ref[src];choice=Return'>Back</A>"
 					else
 						dat += {"
 <table style="text-align:center;" cellspacing="0" width="100%">
 <tr>					"}
-						dat += text("<th>Search Results for '[]':</th>", tempname)
+						dat += "<th>Search Results for '[tempname]':</th>"
 						dat += {"
 </tr>
 </table>
@@ -122,16 +122,16 @@
 								crimstat = E.fields["criminal"]
 							var/background
 							background = "'background-color:#00FF7F;'"
-							dat += text("<tr style=[]><td><A href='?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
-							dat += text("<td>[]</td>", R.fields["id"])
-							dat += text("<td>[]</td>", R.fields["rank"])
-							dat += text("<td>[]</td>", R.fields["fingerprint"])
-							dat += text("<td>[]</td></tr>", crimstat)
+							dat += "<tr style=[background]><td><A href='?src=\ref[src];choice=Browse Record;d_rec=\ref[R]'>[R.fields["name"]]</a></td>"
+							dat += "<td>[R.fields["id"]]</td>"
+							dat += "<td>[R.fields["rank"]]</td>"
+							dat += "<td>[R.fields["fingerprint"]]</td>"
+							dat += "<td>[crimstat]</td></tr>"
 						dat += "</table><hr width='75%' />"
-						dat += text("<br><A href='?src=\ref[];choice=Return'>Return to index.</A>", src)
+						dat += "<br><A href='?src=\ref[src];choice=Return'>Return to index.</A>"
 				else
 		else
-			dat += text("<A href='?src=\ref[];choice=Log In'>{Log In}</A>", src)
+			dat += "<A href='?src=\ref[src];choice=Log In'>{Log In}</A>"
 
 	var/datum/browser/popup = new(user, "secure_rec", "<div align='center'>Employment Records</div>", 600, 400)
 	popup.set_content(dat)
@@ -204,7 +204,7 @@ What a mess.*/
 			var/t1 = input("Search String: (Partial Name or ID or Fingerprints or Rank)", "Secure. records", null, null)  as text
 			if ((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || !in_range(src, usr)))
 				return
-			Perp = new/list()
+			Perp = list()
 			t1 = lowertext(t1)
 			var/list/components = splittext(t1, " ")
 			if(length(components) > 5)
@@ -213,7 +213,7 @@ What a mess.*/
 				var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["fingerprint"] + " " + R.fields["rank"]
 				for(var/i = 1, length(i<=components), i++)
 					if(findtext(temptext,components[i]))
-						var/prelist = new/list(2)
+						var/list/prelist[2]
 						prelist[1] = R
 						Perp += prelist
 			for(var/i = 1, length(i<=Perp), i+=2)

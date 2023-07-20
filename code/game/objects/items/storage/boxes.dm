@@ -367,7 +367,7 @@
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
-	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
+	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC marines to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m40"
 	w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 14
@@ -405,9 +405,8 @@
 	desc = "Meal Ready-to-Eat, meant to be consumed in the field, and has an expiration that is two decades past a marine's average combat life expectancy."
 	icon_state = "mealpack"
 	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list()
+	can_hold = list(/obj/item/reagent_containers/food/snacks/packaged_meal)
 	storage_slots = 4
-	max_w_class = 0
 	foldable = 0
 	var/isopened = 0
 	///the item left behind when this is used up
@@ -502,6 +501,10 @@
 /obj/item/storage/box/visual/Initialize(mapload, ...)
 	. = ..()
 	update_stats()
+
+/obj/item/storage/box/visual/Destroy()
+	contents_weight = null
+	return ..()
 
 /// Updates certain vars used primarily (but not exclusively) for the creation of the overlays.
 /obj/item/storage/box/visual/proc/update_stats()
@@ -1122,6 +1125,13 @@
 	spawn_type = /obj/item/explosive/grenade/sticky/trailblazer
 	closed_overlay = "grenade_box_overlay_M45"
 
+/obj/item/storage/box/visual/grenade/sticky
+	name = "\improper M40 adhesive charge grenade box"
+	desc = "A secure box holding 25 M40 adhesive charge grenades. Highly explosive and sticky."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/sticky
+	closed_overlay = "grenade_box_overlay_sticky"
+
 /obj/item/storage/box/visual/grenade/phosphorus
 	name = "\improper M40 HPDP grenade box"
 	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
@@ -1145,6 +1155,13 @@
 	spawn_type = /obj/item/explosive/grenade/smokebomb/cloak
 	closed_overlay = "grenade_box_overlay_cloak"
 
+/obj/item/storage/box/visual/grenade/smokebomb
+	name = "\improper M40 HSDP grenade box"
+	desc = "A secure box holding 25 M40 HSDP smoke grenades. Don't blindly shoot into the smoke."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/smokebomb
+	closed_overlay = "grenade_box_overlay_smokebomb"
+
 /obj/item/storage/box/visual/grenade/drain
 	name = "\improper M40-T grenade box"
 	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
@@ -1160,6 +1177,14 @@
 	spawn_number = 15
 	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
 	closed_overlay = "grenade_box_overlay_razorburn"
+
+/obj/item/storage/box/visual/grenade/razorburn_large
+	name = "razorburn canister box"
+	desc = "A secure box holding 10 razorburn canisters. Used for quick flank coverage."
+	storage_slots = 10
+	spawn_number = 10
+	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_large
+	closed_overlay = "grenade_box_overlay_razorburn_large"
 
 /obj/item/storage/box/visual/grenade/teargas
 	name = "\improper M66 teargas grenade box"

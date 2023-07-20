@@ -381,7 +381,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "lo" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -401,9 +401,13 @@
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
+"lF" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
 "lH" = (
 /obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
@@ -748,7 +752,7 @@
 /obj/structure/mirror/broken{
 	dir = 4
 	},
-/obj/item/tool/soap/deluxe,
+/obj/effect/spawner/random/misc/soap/deluxeweighted,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
@@ -935,7 +939,7 @@
 /area/bigredv2/outside/space_port)
 "Af" = (
 /obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "Aj" = (
@@ -1534,7 +1538,7 @@
 	},
 /area/bigredv2/outside/nw)
 "NV" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -1579,7 +1583,7 @@
 /area/bigredv2/outside/nw)
 "ON" = (
 /obj/structure/table,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "OP" = (
@@ -5157,7 +5161,7 @@ zE
 GD
 Cn
 WH
-WH
+lF
 WH
 GD
 Cz

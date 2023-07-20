@@ -6,6 +6,7 @@
 	flags_armor_protection = FEET
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
+	flags_inventory = NOQUICKEQUIP|NOSLIPPING
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
@@ -16,6 +17,7 @@
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/boot,
 		/obj/item/armor_module/storage/boot/full,
+		/obj/item/armor_module/storage/boot/som_knife,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/boot)
 
@@ -113,7 +115,7 @@
 	item_state = "som"
 
 /obj/item/clothing/shoes/marine/som/knife
-	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+	starting_attachments = list(/obj/item/armor_module/storage/boot/som_knife)
 
 /obj/item/clothing/shoes/sectoid
 	name = "psionic field"

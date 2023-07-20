@@ -783,8 +783,8 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "uh" = (
-/obj/machinery/door/airlock/glass_medical{
-	id_tag = "mbayexit";
+/obj/machinery/door/airlock/glass{
+	dir = 1;
 	name = "Medbay Reception"
 	},
 /turf/open/floor/tile/white,
@@ -798,7 +798,7 @@
 /area/bigredv2/outside/medical)
 "uA" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "uE" = (
@@ -876,7 +876,7 @@
 /area/bigredv2/outside/medical)
 "xf" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{

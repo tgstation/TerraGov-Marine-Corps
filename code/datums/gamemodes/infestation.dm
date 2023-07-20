@@ -297,7 +297,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
-	addtimer(VARSET_CALLBACK(src, planet_nuked, INFESTATION_NUKE_COMPLETED), nuketime)
 	addtimer(CALLBACK(src, PROC_REF(do_nuke_z_level), z_level), nuketime * 0.5)
 
 	Cinematic(CINEMATIC_CRASH_NUKE, world)
@@ -305,10 +304,19 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/infestation/proc/do_nuke_z_level(z_level)
 	if(!z_level)
 		return
+
+	if(SSmapping.level_trait(z_level, ZTRAIT_GROUND))
+		planet_nuked = INFESTATION_NUKE_COMPLETED
+	else if(SSmapping.level_trait(z_level, ZTRAIT_MARINE_MAIN_SHIP))
+		planet_nuked = INFESTATION_NUKE_COMPLETED_SHIPSIDE
+	else
+		planet_nuked = INFESTATION_NUKE_COMPLETED_OTHER
+
 	for(var/i in GLOB.alive_living_list)
 		var/mob/living/victim = i
 		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.
 		if(QDELETED(victim_turf) || victim_turf.z != z_level)
 			continue
-		victim.adjustFireLoss(victim.maxHealth*2)
+		victim.adjustFireLoss(victim.maxHealth * 4)
+		victim.death()
 		CHECK_TICK

@@ -2,9 +2,9 @@
 "ab" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	locked = 1;
 	name = "\improper Medical Clinic"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
@@ -209,7 +209,7 @@
 /area/bigredv2/outside/medical)
 "eg" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -979,7 +979,7 @@
 /area/bigredv2/outside/medical)
 "uY" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "ve" = (
@@ -2407,7 +2407,7 @@
 	},
 /area/bigredv2/outside/medical)
 "WH" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "WM" = (

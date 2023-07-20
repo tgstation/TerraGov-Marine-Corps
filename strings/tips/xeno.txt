@@ -63,3 +63,4 @@ Tileswapping marines via help intent can have interesting consequences.
 As a boiler, you'll begin to glow with the more globules you have stored.
 If you see a red dot, RUN!
 Allowing marines to push caves only to block off their exit is hillariously effective.
+As a xeno, a Tier 3 unit takes up both a Tier 3 and Tier 2 slot.

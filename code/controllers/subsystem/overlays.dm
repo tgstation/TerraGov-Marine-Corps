@@ -1,58 +1,30 @@
 SUBSYSTEM_DEF(overlays)
 	name = "Overlay"
-	flags = SS_TICKER
-	wait = 1
-	priority = FIRE_PRIORITY_OVERLAYS
-	init_order = INIT_ORDER_OVERLAY
-
-	var/list/queue
+	flags = SS_NO_FIRE|SS_NO_INIT
 	var/list/stats
 
 /datum/controller/subsystem/overlays/PreInit()
-	queue = list()
 	stats = list()
 
-/datum/controller/subsystem/overlays/Initialize()
-	initialized = TRUE
-	fire(mc_check = FALSE)
-	return ..()
-
-
-/datum/controller/subsystem/overlays/stat_entry()
-	..("Ov:[length(queue)]")
-
+/datum/controller/subsystem/overlays/Shutdown()
+	text2file(render_stats(stats), "[GLOB.log_directory]/overlay.log")
 
 /datum/controller/subsystem/overlays/Recover()
-	queue = SSoverlays.queue
+	stats = SSoverlays.stats
 
-
-/datum/controller/subsystem/overlays/fire(resumed = FALSE, mc_check = TRUE)
-	var/list/queue = src.queue
-	var/static/count = 0
-	if (count)
-		var/c = count
-		count = 0 //so if we runtime on the Cut, we don't try again.
-		queue.Cut(1,c+1)
-
-	for (var/thing in queue)
-		count++
-		if(thing)
-			STAT_START_STOPWATCH
-			var/atom/A = thing
-			COMPILE_OVERLAYS(A)
-			UNSETEMPTY(A.add_overlays)
-			UNSETEMPTY(A.remove_overlays)
-			STAT_STOP_STOPWATCH
-			STAT_LOG_ENTRY(stats, A.type)
-		if(mc_check)
-			if(MC_TICK_CHECK)
-				break
-		else
-			CHECK_TICK
-
-	if (count)
-		queue.Cut(1,count+1)
-		count = 0
+/// Converts an overlay list into text for debug printing
+/// Of note: overlays aren't actually mutable appearances, they're just appearances
+/// Don't have access to that type tho, so this is the best you're gonna get
+/proc/overlays2text(list/overlays)
+	var/list/unique_overlays = list()
+	// As anything because we're basically doing type coerrsion, rather then actually filtering for mutable apperances
+	for(var/mutable_appearance/overlay as anything in overlays)
+		var/key = "[overlay.icon]-[overlay.icon_state]-[overlay.dir]"
+		unique_overlays[key] += 1
+	var/list/output_text = list()
+	for(var/key in unique_overlays)
+		output_text += "([key]) = [unique_overlays[key]]"
+	return output_text.Join("\n")
 
 /proc/iconstate2appearance(icon, iconstate)
 	var/static/image/stringbro = new()
@@ -65,93 +37,57 @@ SUBSYSTEM_DEF(overlays)
 	iconbro.icon = icon
 	return iconbro.appearance
 
-/atom/proc/build_appearance_list(old_overlays)
-	var/static/image/appearance_bro = new()
-	var/list/new_overlays = list()
-	if (!islist(old_overlays))
-		old_overlays = list(old_overlays)
-	for (var/overlay in old_overlays)
+/atom/proc/build_appearance_list(list/build_overlays)
+	if (!islist(build_overlays))
+		build_overlays = list(build_overlays)
+	for (var/overlay in build_overlays)
 		if(!overlay)
+			build_overlays -= overlay
 			continue
 		if (istext(overlay))
-			new_overlays += iconstate2appearance(icon, overlay)
+/** TODO port improved CI here
+			// This is too expensive to run normally but running it during CI is a good test
+			if (PERFORM_ALL_TESTS(focus_only/invalid_overlays))
+				var/list/icon_states_available = icon_states(icon)
+				if(!(overlay in icon_states_available))
+					var/icon_file = "[icon]" || "Unknown Generated Icon"
+					stack_trace("Invalid overlay: Icon object '[icon_file]' [REF(icon)] used in '[src]' [type] is missing icon state [overlay].")
+					continue
+*/
+			var/index = build_overlays.Find(overlay)
+			build_overlays[index] = iconstate2appearance(icon, overlay)
 		else if(isicon(overlay))
-			new_overlays += icon2appearance(overlay)
-		else
-			if(isloc(overlay))
-				var/atom/A = overlay
-				if (A.flags_atom & OVERLAY_QUEUED)
-					COMPILE_OVERLAYS(A)
-			appearance_bro.appearance = overlay //this works for images and atoms too!
-			if(!ispath(overlay))
-				var/image/I = overlay
-				appearance_bro.dir = I.dir
-			new_overlays += appearance_bro.appearance
-	return new_overlays
+			var/index = build_overlays.Find(overlay)
+			build_overlays[index] = icon2appearance(overlay)
+	return build_overlays
 
-#define NOT_QUEUED_ALREADY (!(flags_atom & OVERLAY_QUEUED))
-#define QUEUE_FOR_COMPILE flags_atom |= OVERLAY_QUEUED; SSoverlays.queue += src;
-/atom/proc/cut_overlays(priority = FALSE)
-	LAZYINITLIST(priority_overlays)
-	LAZYINITLIST(remove_overlays)
-	remove_overlays = overlays.Copy()
-	add_overlays = null
 
-	if(priority)
-		priority_overlays.Cut()
+/atom/proc/cut_overlays()
+	STAT_START_STOPWATCH
+	overlays = null
+	POST_OVERLAY_CHANGE(src)
+	STAT_STOP_STOPWATCH
+	STAT_LOG_ENTRY(SSoverlays.stats, type)
 
-	//If not already queued for work and there are overlays to remove
-	if(NOT_QUEUED_ALREADY && length(remove_overlays))
-		QUEUE_FOR_COMPILE
-
-/atom/proc/cut_overlay(list/overlays, priority)
+/atom/proc/cut_overlay(list/remove_overlays)
 	if(!overlays)
 		return
-	overlays = build_appearance_list(overlays)
-	LAZYINITLIST(add_overlays)
-	LAZYINITLIST(priority_overlays)
-	LAZYINITLIST(remove_overlays)
-	var/a_len = length(add_overlays)
-	var/r_len = length(remove_overlays)
-	var/p_len = length(priority_overlays)
-	remove_overlays += overlays
-	add_overlays -= overlays
+	STAT_START_STOPWATCH
+	overlays -= build_appearance_list(remove_overlays)
+	POST_OVERLAY_CHANGE(src)
+	STAT_STOP_STOPWATCH
+	STAT_LOG_ENTRY(SSoverlays.stats, type)
 
-
-	if(priority)
-		var/list/cached_priority = priority_overlays
-		LAZYREMOVE(cached_priority, overlays)
-
-	var/fa_len = length(add_overlays)
-	var/fr_len = length(remove_overlays)
-	var/fp_len = length(priority_overlays)
-
-	//If not already queued and there is work to be done
-	if(NOT_QUEUED_ALREADY && (fa_len != a_len || fr_len != r_len || fp_len != p_len))
-		QUEUE_FOR_COMPILE
-	UNSETEMPTY(add_overlays)
-
-/atom/proc/add_overlay(list/overlays, priority = FALSE)
+/atom/proc/add_overlay(list/add_overlays)
 	if(!overlays)
 		return
 
-	overlays = build_appearance_list(overlays)
-
-	LAZYINITLIST(add_overlays) //always initialized after this point
-	LAZYINITLIST(priority_overlays)
-	var/a_len = length(add_overlays)
-	var/p_len = length(priority_overlays)
-
-	if(priority)
-		priority_overlays += overlays  //or in the image. Can we use [image] = image?
-		var/fp_len = length(priority_overlays)
-		if(NOT_QUEUED_ALREADY && fp_len != p_len)
-			QUEUE_FOR_COMPILE
-	else
-		add_overlays += overlays
-		var/fa_len = length(add_overlays)
-		if(NOT_QUEUED_ALREADY && fa_len != a_len)
-			QUEUE_FOR_COMPILE
+	STAT_START_STOPWATCH
+	overlays += build_appearance_list(add_overlays)
+	VALIDATE_OVERLAY_LIMIT(src)
+	POST_OVERLAY_CHANGE(src)
+	STAT_STOP_STOPWATCH
+	STAT_LOG_ENTRY(SSoverlays.stats, type)
 
 /atom/proc/copy_overlays(atom/other, cut_old)	//copys our_overlays from another atom
 	if(!other)
@@ -159,18 +95,23 @@ SUBSYSTEM_DEF(overlays)
 			cut_overlays()
 		return
 
+	STAT_START_STOPWATCH
 	var/list/cached_other = other.overlays.Copy()
-	if(cached_other)
-		if(cut_old || !LAZYLEN(overlays))
-			remove_overlays = overlays
-		add_overlays = cached_other
-		if(NOT_QUEUED_ALREADY)
-			QUEUE_FOR_COMPILE
-	else if(cut_old)
-		cut_overlays()
-
-#undef NOT_QUEUED_ALREADY
-#undef QUEUE_FOR_COMPILE
+	if(cut_old)
+		if(cached_other)
+			overlays = cached_other
+		else
+			overlays = null
+		VALIDATE_OVERLAY_LIMIT(src)
+		POST_OVERLAY_CHANGE(src)
+		STAT_STOP_STOPWATCH
+		STAT_LOG_ENTRY(SSoverlays.stats, type)
+	else if(cached_other)
+		overlays += cached_other
+		VALIDATE_OVERLAY_LIMIT(src)
+		POST_OVERLAY_CHANGE(src)
+		STAT_STOP_STOPWATCH
+		STAT_LOG_ENTRY(SSoverlays.stats, type)
 
 //TODO: Better solution for these?
 /image/proc/add_overlay(x)

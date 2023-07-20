@@ -34,7 +34,7 @@
 /area/bigredv2/outside/engineering)
 "bB" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor,
@@ -94,7 +94,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "ee" = (
 /obj/effect/decal/cleanable/dirt,
@@ -451,7 +451,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "uU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -618,7 +618,7 @@
 /area/bigredv2/outside/s)
 "Cr" = (
 /obj/structure/table,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -639,7 +639,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Di" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "DI" = (
@@ -704,7 +704,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Hk" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "Hz" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -846,7 +846,7 @@
 /area/bigredv2/outside/engineering)
 "Pk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Pu" = (
@@ -950,9 +950,6 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"TQ" = (
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "TY" = (
@@ -1554,7 +1551,7 @@ HK
 vi
 nZ
 EV
-TQ
+lU
 Yk
 lU
 lU

@@ -2,7 +2,7 @@
 
 /datum/reagents
 	/// The reagents being held
-	var/list/datum/reagent/reagent_list = new/list()
+	var/list/datum/reagent/reagent_list = list()
 	/// Current volume of all the reagents
 	var/total_volume = 0
 	/// Max volume of this holder
@@ -16,7 +16,7 @@
 	/// see [/datum/reagents/proc/metabolize] for usage
 	var/addiction_tick = 1
 	/// currently addicted reagents
-	var/list/datum/reagent/addiction_list = new/list()
+	var/list/datum/reagent/addiction_list = list()
 	/// various flags, see code\__DEFINES\reagents.dm
 	var/reagent_flags
 
@@ -246,7 +246,7 @@
 			if(preserve_data)
 				trans_data = current_reagent.data
 			R.add_reagent(current_reagent.type, amount, trans_data, src.chem_temp)
-			remove_reagent(current_reagent.type, amount, 1)
+			remove_reagent(current_reagent.type, amount)
 			break
 
 	src.update_total()
@@ -430,7 +430,7 @@
 				multiplier = min(multiplier, round(get_reagent_amount(B) / cached_required_reagents[B]))
 
 			for(var/B in cached_required_reagents)
-				remove_reagent(B, (multiplier * cached_required_reagents[B]), safety = 1)
+				remove_reagent(B, (multiplier * cached_required_reagents[B]))
 
 			for(var/P in selected_reaction.results)
 				multiplier = max(multiplier, 1) //This shouldn't happen...
@@ -619,7 +619,7 @@
 		var/amt = list_reagents[r_id]
 		add_reagent(r_id, amt, data)
 
-/datum/reagents/proc/remove_reagent(reagent, amount, safety)//Added a safety check for the trans_id_to
+/datum/reagents/proc/remove_reagent(reagent, amount)
 	if(isnull(amount))
 		amount = 0
 		CRASH("null amount passed to reagent code")
@@ -637,8 +637,6 @@
 			amount = clamp(amount, 0, R.volume) //P.S. Change it with the define when the other PR is merged.
 			R.volume -= amount
 			update_total()
-			if(!safety)//So it does not handle reactions when it need not to
-				handle_reactions()
 			if(my_atom)
 				my_atom.on_reagent_change(REM_REAGENT)
 			return TRUE
@@ -704,7 +702,7 @@
 		// We found a match, proceed to remove the reagent.	Keep looping, we might find other reagents of the same type.
 		if(matches)
 			// Have our other proc handle removement
-			has_removed_reagent = remove_reagent(R.type, amount, safety)
+			has_removed_reagent = remove_reagent(R.type, amount)
 
 	return has_removed_reagent
 

@@ -142,12 +142,12 @@
 
 
 /mob/living/carbon/human/getCloneLoss()
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	return ..()
 
 /mob/living/carbon/human/setCloneLoss(amount)
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	else
 		..()
@@ -155,7 +155,7 @@
 /mob/living/carbon/human/adjustCloneLoss(amount)
 	..()
 
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 		return
 
@@ -339,3 +339,29 @@ This function restores all limbs.
 	if(status_flags & (GODMODE))
 		return
 	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, penetration, src)
+
+/mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone)
+	if(!proj_def_zone)
+		return ..()
+
+	var/datum/limb/affected_limb
+
+	if(isorgan(proj_def_zone))
+		affected_limb = proj_def_zone
+	else
+		affected_limb = get_limb(proj_def_zone)
+
+	return affected_limb.soft_armor.getRating(armor_type)
+
+/mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
+	if(!proj_def_zone)
+		return ..()
+
+	var/datum/limb/affected_limb
+
+	if(isorgan(proj_def_zone))
+		affected_limb = proj_def_zone
+	else
+		affected_limb = get_limb(proj_def_zone)
+
+	return affected_limb.hard_armor.getRating(armor_type)

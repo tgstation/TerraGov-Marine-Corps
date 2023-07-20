@@ -51,7 +51,7 @@
 #define AMMO_IGNORE_RESIST (1<<10) //Unused.
 #define AMMO_BALLISTIC (1<<11) //Generates blood splatters on mob hit
 #define AMMO_SUNDERING (1<<12)
-#define SPECIAL_PROCESS (1<<13)
+#define AMMO_SPECIAL_PROCESS (1<<13)
 #define AMMO_SENTRY (1<<14) //Used to identify ammo from sentry guns and other automated sources
 #define AMMO_FLAME (1<<15) //Used to identify flamethrower projectiles and similar projectiles
 #define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
@@ -94,6 +94,7 @@
 #define AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS (1<<9)
 #define AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE (1<<10)
 #define AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE (1<<11) //The ammo stay in the magazine until the last moment
+#define AMMO_RECIEVER_AUTO_EJECT_LOCKED (1<<12) //Not allowed to turn automatic unloading off
 
 #define FLAMER_IS_LIT (1<<0)
 #define FLAMER_NO_LIT_OVERLAY (1<<1)
@@ -137,8 +138,6 @@
 //Define sniper laser multipliers
 
 #define SNIPER_LASER_DAMAGE_MULTIPLIER 1.5 //+50% damage vs the aimed target
-#define SNIPER_LASER_ARMOR_MULTIPLIER 1.5 //+50% penetration vs the aimed target
-#define SNIPER_LASER_SLOWDOWN_STACKS 3 // Slowdown applied on hit vs the aimed target.
 
 //Define lasrifle
 #define ENERGY_STANDARD_AMMO_COST 20

@@ -15,6 +15,10 @@
 	old_x = -16
 	bubble_icon = "alienroyal"
 
+/mob/living/carbon/xenomorph/ravager/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_LIGHT_STEP, XENO_TRAIT)
+
 // ***************************************
 // *********** Mob overrides
 // ***************************************

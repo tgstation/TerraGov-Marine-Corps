@@ -37,7 +37,7 @@
 /obj/item/defibrillator/Destroy()
 	QDEL_NULL(sparks)
 	if(dcell)
-		UnregisterSignal(dcell, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(dcell, COMSIG_QDELETING)
 		QDEL_NULL(dcell)
 	return ..()
 
@@ -113,10 +113,10 @@
 ///Wrapper to guarantee powercells are properly nulled and avoid hard deletes.
 /obj/item/defibrillator/proc/set_dcell(obj/item/cell/new_cell)
 	if(dcell)
-		UnregisterSignal(dcell, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(dcell, COMSIG_QDELETING)
 	dcell = new_cell
 	if(dcell)
-		RegisterSignal(dcell, COMSIG_PARENT_QDELETING, PROC_REF(on_cell_deletion))
+		RegisterSignal(dcell, COMSIG_QDELETING, PROC_REF(on_cell_deletion))
 
 
 ///Called by the deletion of the referenced powercell.
@@ -124,7 +124,6 @@
 	SIGNAL_HANDLER
 	stack_trace("Powercell deleted while powering the defib, this isn't supposed to happen normally.")
 	set_dcell(null)
-
 
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
@@ -139,7 +138,6 @@
 		if(ghost.client)
 			return ghost
 	return null
-
 
 /mob/living/carbon/human/proc/has_working_organs()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
@@ -198,8 +196,8 @@
 		return
 
 	var/mob/dead/observer/G = H.get_ghost()
-	if(istype(G))
-		notify_ghost(G, "<font size=3>Someone is trying to revive your body. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/gladosmarinerevive.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = H, action = NOTIFY_JUMP)
+	if(G)
+		G.reenter_corpse()
 	else if(!H.client)
 		//We couldn't find a suitable ghost, this means the person is not returning
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR."))

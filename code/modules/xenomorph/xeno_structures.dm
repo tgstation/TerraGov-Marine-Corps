@@ -15,40 +15,40 @@
 		hivenumber = _hivenumber
 	LAZYADDASSOC(GLOB.xeno_structures_by_hive, hivenumber, src)
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
-		GLOB.xeno_critical_structures += src
+		LAZYADDASSOC(GLOB.xeno_critical_structures_by_hive, hivenumber, src)
 
 /obj/structure/xeno/Destroy()
-	if(!locate(src) in GLOB.xeno_structures_by_hive[hivenumber]) //The rest of the proc is pointless to look through if its not in the lists
-		stack_trace("[src] not found in the list of xeno structures!") //We dont want to CRASH because that'd block deletion completely. Just trace it and continue.
+	if(!locate(src) in GLOB.xeno_structures_by_hive[hivenumber]+GLOB.xeno_critical_structures_by_hive[hivenumber]) //The rest of the proc is pointless to look through if its not in the lists
+		stack_trace("[src] not found in the list of (potentially critical) xeno structures!") //We dont want to CRASH because that'd block deletion completely. Just trace it and continue.
 		return ..()
 	GLOB.xeno_structures_by_hive[hivenumber] -= src
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
-		GLOB.xeno_critical_structures -= src
+		GLOB.xeno_critical_structures_by_hive[hivenumber] -= src
 	return ..()
 
 /obj/structure/xeno/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(210)
+			take_damage(210, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(140, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(70, BRUTE, BOMB)
 
 /obj/structure/xeno/attack_hand(mob/living/user)
 	balloon_alert(user, "You only scrape at it")
 	return TRUE
 
 /obj/structure/xeno/flamer_fire_act(burnlevel)
-	take_damage(burnlevel / 3, BURN, "fire")
+	take_damage(burnlevel / 3, BURN, FIRE)
 
 /obj/structure/xeno/fire_act()
-	take_damage(10, BURN, "fire")
+	take_damage(10, BURN, FIRE)
 
 /// Destroy the xeno structure when the weed it was on is destroyed
 /obj/structure/xeno/proc/weed_removed()
 	SIGNAL_HANDLER
-	obj_destruction(damage_flag = "melee")
+	obj_destruction(damage_flag = MELEE)
 
 /obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(!(HAS_TRAIT(X, TRAIT_VALHALLA_XENO) && X.a_intent == INTENT_HARM && (tgui_alert(X, "Are you sure you want to tear down [src]?", "Tear down [src]?", list("Yes","No"))) == "Yes"))
@@ -92,11 +92,11 @@
 /obj/structure/xeno/trap/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(400)
+			take_damage(400, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(200)
+			take_damage(200, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(100)
+			take_damage(100, BRUTE, BOMB)
 
 /obj/structure/xeno/trap/update_icon_state()
 	switch(trap_type)
@@ -173,7 +173,7 @@
 	if(iscarbon(AM))
 		var/mob/living/carbon/crosser = AM
 		crosser.visible_message(span_warning("[crosser] trips on [src]!"), span_danger("You trip on [src]!"))
-		crosser.Paralyze(4 SECONDS)
+		crosser.ParalyzeNoChain(4 SECONDS)
 	switch(trap_type)
 		if(TRAP_HUGGER)
 			if(!AM)
@@ -296,7 +296,7 @@ TUNNEL
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
 	hud_set_xeno_tunnel()
-	SSminimaps.add_marker(src, src.z, MINIMAP_FLAG_XENO, "xenotunnel")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel"))
 
 /obj/structure/xeno/tunnel/Destroy()
 	var/turf/drop_loc = get_turf(src)
@@ -338,11 +338,11 @@ TUNNEL
 /obj/structure/xeno/tunnel/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(210)
+			take_damage(210, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(140, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(70, BRUTE, BOMB)
 
 /obj/structure/xeno/tunnel/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
@@ -456,7 +456,7 @@ TUNNEL
 /obj/structure/xeno/acidwell/Initialize(mapload, _creator)
 	. = ..()
 	creator = _creator
-	RegisterSignal(creator, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator))
+	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))
 	update_icon()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -508,11 +508,11 @@ TUNNEL
 /obj/structure/xeno/acidwell/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(210)
+			take_damage(210, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(140, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(70, BRUTE, BOMB)
 
 /obj/structure/xeno/acidwell/flamer_fire_act(burnlevel) //Removes a charge of acid, but fire is extinguished
 	acid_well_fire_interaction()
@@ -523,7 +523,7 @@ TUNNEL
 ///Handles fire based interactions with the acid well. Depletes 1 charge if there are any to extinguish all fires in the turf while producing acid smoke.
 /obj/structure/xeno/acidwell/proc/acid_well_fire_interaction()
 	if(!charges)
-		take_damage(50, BURN, "fire")
+		take_damage(50, BURN, FIRE)
 		return
 
 	charges--
@@ -584,45 +584,53 @@ TUNNEL
 
 /obj/structure/xeno/acidwell/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
 	SIGNAL_HANDLER
-	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
 		return
 	if(iscarbon(A))
 		HasProximity(A)
 
 /obj/structure/xeno/acidwell/HasProximity(atom/movable/AM)
+	if(!charges)
+		return
 	if(!isliving(AM))
 		return
 	var/mob/living/stepper = AM
 	if(stepper.stat == DEAD)
 		return
-	if(!charges)
+
+	var/charges_used = 0
+
+	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
+		if(charges_used >= charges)
+			break
+		if(sticky_bomb.stuck_to == stepper)
+			sticky_bomb.clean_refs()
+			sticky_bomb.forceMove(loc)
+			charges_used ++
+
+	if(stepper.on_fire && (charges_used < charges))
+		stepper.ExtinguishMob()
+		charges_used ++
+
+	if(!isxeno(stepper))
+		stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
+		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
+		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
+		stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
+		span_danger("We are immersed in [src]'s acid!") , null, 5)
+		playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
+		new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
+		charges_used = charges //humans stepping on it empties it out
+
+	if(!charges_used)
 		return
 
 	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
-
-	if(isxeno(stepper))
-		if(!(stepper.on_fire))
-			return
-		acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
-		acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
-		acid_smoke.start()
-		stepper.ExtinguishMob()
-		charges--
-		update_icon()
-		return
-
-	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
-	stepper.ExtinguishMob()
-	stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
-	span_danger("We are immersed in [src]'s acid!") , null, 5)
-	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
-	new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
 	acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
-	charges = 0
+
+	charges -= charges_used
 	update_icon()
 
 /obj/structure/xeno/resin_jelly_pod
@@ -662,11 +670,11 @@ TUNNEL
 /obj/structure/xeno/resin_jelly_pod/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(210)
+			take_damage(210, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(140, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(70, BRUTE, BOMB)
 
 /obj/structure/xeno/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -750,10 +758,9 @@ TUNNEL
 	if(!locate(/obj/alien/weeds) in center_turf)
 		new /obj/alien/weeds/node(center_turf)
 	if(GLOB.hive_datums[hivenumber])
-		RegisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
+		RegisterSignals(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
 		if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1)
 			GLOB.hive_datums[hivenumber].give_larva_to_next_in_queue()
-		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
@@ -764,7 +771,6 @@ TUNNEL
 	if(GLOB.hive_datums[hivenumber])
 		UnregisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		GLOB.hive_datums[hivenumber].xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
-		INVOKE_NEXT_TICK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), GLOB.hive_datums[hivenumber]) // checks all silos next tick after this one is gone
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
@@ -857,7 +863,7 @@ TUNNEL
 ///Change minimap icon if silo is under attack or not
 /obj/structure/xeno/silo/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "silo[warning ? "_warn" : "_passive"]")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]"))
 
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
@@ -870,9 +876,9 @@ TUNNEL
 	max_integrity = 1500
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE |PORTAL_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
-	flags_pass = PASSAIR|PASSTHROW
+	allow_pass_flags = PASS_AIR|PASS_THROW
 	///What kind of spit it uses
 	var/datum/ammo/ammo = /datum/ammo/xeno/acid/heavy/turret
 	///Range of the turret
@@ -895,7 +901,7 @@ TUNNEL
 ///Change minimap icon if its firing or not firing
 /obj/structure/xeno/xeno_turret/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "xeno_turret[firing ? "_firing" : "_passive"]")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]"))
 
 /obj/structure/xeno/xeno_turret/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -934,18 +940,18 @@ TUNNEL
 /obj/structure/xeno/xeno_turret/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(1500)
+			take_damage(1500, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(750)
+			take_damage(750, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(300)
+			take_damage(300, BRUTE, BOMB)
 
 /obj/structure/xeno/xeno_turret/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, "fire")
+	take_damage(burnlevel * 2, BURN, FIRE)
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/fire_act()
-	take_damage(60, BURN, "fire")
+	take_damage(60, BURN, FIRE)
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/update_overlays()
@@ -999,7 +1005,7 @@ TUNNEL
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 
 	damage *= max(0, multiplier)
-	take_damage(damage)
+	take_damage(damage, BRUTE, MELEE)
 	playsound(src, "alien_resin_break", 25)
 
 ///Signal handler for hard del of hostile
@@ -1016,12 +1022,12 @@ TUNNEL
 /obj/structure/xeno/xeno_turret/proc/set_hostile(_hostile)
 	if(hostile != _hostile)
 		hostile = _hostile
-		RegisterSignal(hostile, COMSIG_PARENT_QDELETING, PROC_REF(unset_hostile))
+		RegisterSignal(hostile, COMSIG_QDELETING, PROC_REF(unset_hostile))
 
 ///Setter for last_hostile with hard del in mind
 /obj/structure/xeno/xeno_turret/proc/set_last_hostile(_last_hostile)
 	if(last_hostile)
-		UnregisterSignal(last_hostile, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(last_hostile, COMSIG_QDELETING)
 	last_hostile = _last_hostile
 
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
@@ -1045,17 +1051,17 @@ TUNNEL
 			continue
 		var/blocked = FALSE
 		for(var/turf/T AS in path)
-			if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_pass & PASSPROJECTILE))
+			if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE))
 				blocked = TRUE
 				break //LoF Broken; stop checking; we can't proceed further.
 
 			for(var/obj/machinery/MA in T)
-				if(MA.opacity || MA.density && !(MA.flags_pass & PASSPROJECTILE))
+				if(MA.opacity || MA.density && !(MA.allow_pass_flags & PASS_PROJECTILE))
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 
 			for(var/obj/structure/S in T)
-				if(S.opacity || S.density && !(S.flags_pass & PASSPROJECTILE))
+				if(S.opacity || S.density && !(S.allow_pass_flags & PASS_PROJECTILE))
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 		if(!blocked)
@@ -1148,11 +1154,11 @@ TUNNEL
 /obj/structure/xeno/evotower/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(700)
+			take_damage(700, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(500)
+			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(300)
+			take_damage(300, BRUTE, BOMB)
 
 /obj/structure/xeno/maturitytower
 	name = "Maturity tower"
@@ -1179,9 +1185,9 @@ TUNNEL
 /obj/structure/xeno/maturitytower/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_HEAVY, EXPLODE_DEVASTATE)
-			take_damage(500)
+			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(300)
+			take_damage(300, BRUTE, BOMB)
 
 /obj/structure/xeno/pherotower
 	name = "Pheromone tower"
@@ -1202,7 +1208,7 @@ TUNNEL
 
 /obj/structure/xeno/pherotower/Initialize(mapload, _hivenumber)
 	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "phero")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "phero"))
 	GLOB.hive_datums[hivenumber].pherotowers += src
 
 //Pheromone towers start off with recovery.
@@ -1213,9 +1219,9 @@ TUNNEL
 /obj/structure/xeno/pherotower/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_HEAVY, EXPLODE_DEVASTATE)
-			take_damage(500)
+			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(300)
+			take_damage(300, BRUTE, BOMB)
 
 /obj/structure/xeno/pherotower/Destroy()
 	GLOB.hive_datums[hivenumber].pherotowers -= src
@@ -1341,7 +1347,7 @@ TUNNEL
 ///Change minimap icon if spawner is under attack or not
 /obj/structure/xeno/spawner/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "spawner[warning ? "_warn" : "_passive"]")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "spawner[warning ? "_warn" : "_passive"]"))
 
 /obj/structure/xeno/spawner/proc/on_spawn(list/squad)
 	if(!isxeno(squad[length(squad)]))
@@ -1350,12 +1356,12 @@ TUNNEL
 	X.transfer_to_hive(hivenumber)
 	linked_minions = squad
 	if(hivenumber == XENO_HIVE_FALLEN) //snowflake so valhalla isnt filled with minions after you're done
-		RegisterSignal(src, COMSIG_PARENT_QDELETING, PROC_REF(kill_linked_minions))
+		RegisterSignal(src, COMSIG_QDELETING, PROC_REF(kill_linked_minions))
 
 /obj/structure/xeno/spawner/proc/kill_linked_minions()
 	for(var/mob/living/carbon/xenomorph/linked in linked_minions)
 		linked.death(TRUE)
-	UnregisterSignal(src, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(src, COMSIG_QDELETING)
 
 ///Those structures need time to grow and are supposed to be extremely weak healh-wise
 /obj/structure/xeno/plant

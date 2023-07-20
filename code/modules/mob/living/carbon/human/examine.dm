@@ -20,10 +20,16 @@
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
 		else if(stat || !client)
 			msg += "[span_xenowarning("It doesn't seem responsive.")]\n"
-		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-			msg += "Transvitox: 40% brute/burn injuries received are converted to toxin\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, incrementing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
-			msg += "Hemodile: 20% stamina damage received, when damaged, and slowed by 25% (inject neurotoxin for 50% slow)\n"
+			msg += "Hemodile: Slows down the target, doubling in power with each other xeno-based toxin present.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+			msg += "Transvitox: Converts burns to toxin over time, as well as causing incoming brute damage to deal additional toxin damage. Both effects intensifying with each xeno-based toxin presnt. Toxin damage is capped at 180.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
+			msg += "Ozelomelyn: Rapidly purges all medicine in the body, causes toxin damage capped at 40. Metabolizes very quickly.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
+			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
 		msg += "</span>"
 		return list(msg)
 

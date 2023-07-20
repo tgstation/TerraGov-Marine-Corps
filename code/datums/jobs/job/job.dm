@@ -283,8 +283,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	GLOB.round_statistics.total_humans_created[faction]++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created[faction]")
 
-
-
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
 
@@ -292,21 +290,15 @@ GLOBAL_PROTECT(exp_specialmap)
 	comm_title = job.comm_title
 	if(job.outfit)
 		var/id_type = job.outfit.id ? job.outfit.id : /obj/item/card/id
-		var/obj/item/card/id/id_card = new id_type
+		var/obj/item/card/id/id_card = new id_type(src)
 		if(wear_id)
 			if(!admin_action)
 				stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
 			QDEL_NULL(wear_id)
 		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
 		job.outfit.handle_id(src)
-		///if there is only one outfit, just equips it
-		if (!job.multiple_outfits)
-			job.outfit.equip(src)
-		///chooses an outfit from the list under the job
-		if (job.multiple_outfits)
-			var/datum/outfit/variant = pick(job.outfits)
-			variant = new variant
-			variant.equip(src)
+
+		equip_role_outfit(job)
 
 	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)
@@ -315,6 +307,23 @@ GLOBAL_PROTECT(exp_specialmap)
 		job.equip_spawning_squad(src, assigned_squad, player)
 
 	hud_set_job(faction)
+
+///finds and equips a valid outfit for a specified job and species
+/mob/living/carbon/human/proc/equip_role_outfit(datum/job/assigned_role)
+	if(!assigned_role.multiple_outfits)
+		assigned_role.outfit.equip(src)
+		return
+
+	var/list/valid_outfits = list()
+
+	for(var/datum/outfit/variant AS in assigned_role.outfits)
+		if(initial(variant.species) == src.species.species_type)
+			valid_outfits += variant
+
+	var/datum/outfit/chosen_variant = pick(valid_outfits)
+	chosen_variant = new chosen_variant
+	chosen_variant.equip(src)
+
 
 /datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
 	return

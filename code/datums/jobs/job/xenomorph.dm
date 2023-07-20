@@ -52,7 +52,7 @@
 
 /datum/job/xenomorph/after_spawn(mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
 	. = ..()
-	SSminimaps.add_marker(xeno, xeno.z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno.xeno_caste.minimap_icon)
+	SSminimaps.add_marker(xeno, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno.xeno_caste.minimap_icon))
 
 /datum/job/xenomorph/queen
 	title = ROLE_XENO_QUEEN
@@ -61,7 +61,7 @@
 	selection_color = "#8972AA"
 	display_order = JOB_DISPLAY_ORDER_XENO_QUEEN
 	exp_requirements = XP_REQ_EXPERIENCED
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_HIDE_CURRENT_POSITIONS
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_HIDE_CURRENT_POSITIONS|JOB_FLAG_LOUDER_TTS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	html_description = {"
 		<b>Difficulty</b>: Soul crushing<br /><br />

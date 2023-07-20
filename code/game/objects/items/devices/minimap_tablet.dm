@@ -340,7 +340,9 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	textbox.maptext = label_text
 
 	labelled_turfs += target
-	SSminimaps.add_marker(target, zlevel, minimap_flag, "label", 'icons/UI_icons/map_blips.dmi', list(textbox))
+	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, "label")
+	blip.overlays += textbox
+	SSminimaps.add_marker(target, minimap_flag, blip)
 	log_minimap_drawing("[key_name(source)] has added the label [label_text] at [c_x], [c_y]")
 
 /atom/movable/screen/minimap_tool/clear

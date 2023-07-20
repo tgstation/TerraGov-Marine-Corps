@@ -15,6 +15,7 @@
 	density = TRUE
 	active_power_usage = 3500 //The pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	var/mode = 1 //Item mode 0=off 1=charging 2=charged
 	var/flush = 0 //True if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null //The attached pipe trunk
@@ -52,11 +53,11 @@
 ///Set the trunk of the disposal
 /obj/machinery/disposal/proc/set_trunk(obj/future_trunk)
 	if(trunk)
-		UnregisterSignal(trunk, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(trunk, COMSIG_QDELETING)
 	trunk = null
 	if(future_trunk)
 		trunk = future_trunk
-		RegisterSignal(trunk, COMSIG_PARENT_QDELETING, PROC_REF(clean_trunk))
+		RegisterSignal(trunk, COMSIG_QDELETING, PROC_REF(clean_trunk))
 
 ///Signal handler to clean trunk to prevent harddel
 /obj/machinery/disposal/proc/clean_trunk()
@@ -145,6 +146,7 @@
 
 //Mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
+	. = ..()
 	// Check the user, if they can do all the things, are they close, alive?
 	if(isAI(user) || isxeno(user) || !isliving(user) || get_dist(user, target) > 1 || !in_range(user, src) || user.incapacitated(TRUE))
 		return
@@ -409,7 +411,6 @@
 		qdel(H)
 
 /obj/machinery/disposal/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover, /obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(75))
@@ -417,7 +418,7 @@
 			visible_message(span_notice("[I] lands into [src]."))
 		else
 			visible_message(span_warning("[I] bounces off of [src]'s rim!"))
-		return 0
+		return FALSE
 	else
 		return ..()
 
@@ -654,10 +655,8 @@
 		return
 	if(isfloorturf(T)) //intact floor, pop the tile
 		var/turf/open/floor/F = T
-		if(!F.is_plating())
-			if(!F.broken && !F.burnt)
-				new F.floor_tile.type(H)//Add to holder so it will be thrown with other stuff
-			F.make_plating()
+		if(F.has_tile())
+			F.remove_tile()
 
 	if(direction) //Direction is specified
 		if(isspaceturf(T)) //If ended in space, then range is unlimited
@@ -696,9 +695,9 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(5, 15))
+			take_damage(rand(5, 15), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(0, 15))
+			take_damage(rand(0, 15), BRUTE, BOMB)
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
 /obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)
@@ -1166,11 +1165,11 @@
 ///Set the linked atom
 /obj/structure/disposalpipe/trunk/proc/set_linked(obj/to_link)
 	if(linked)
-		UnregisterSignal(linked, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(linked, COMSIG_QDELETING)
 	linked = null
 	if(to_link)
 		linked = to_link
-		RegisterSignal(linked, COMSIG_PARENT_QDELETING, PROC_REF(clean_linked))
+		RegisterSignal(linked, COMSIG_QDELETING, PROC_REF(clean_linked))
 
 ///Signal handler to clean linked from harddeling
 /obj/structure/disposalpipe/trunk/proc/clean_linked()

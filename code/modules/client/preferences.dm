@@ -87,7 +87,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Clothing
 	var/underwear = 1
 	var/undershirt = 1
-	var/backpack = 2
+	var/backpack = BACK_SATCHEL
 
 	//Hair style
 	var/h_style = "Bald"
@@ -135,6 +135,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/mute_others_combat_messages = FALSE
 	///Whether to mute xeno health alerts from when other xenos are badly hurt.
 	var/mute_xeno_health_alert_messages = TRUE
+
+	///whether the user wants to hear tts
+	var/sound_tts = TRUE
+	///What tts voice should be used
+	var/tts_voice = "Male 01"
+	///whether to use animal crossing style blblblbl
+	var/sound_tts_blips = FALSE
+	///Volume to use for tts
+	var/volume_tts = 100
+
 
 	/// Chat on map
 	var/chat_on_map = TRUE

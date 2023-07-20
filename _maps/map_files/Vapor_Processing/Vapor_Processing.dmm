@@ -398,7 +398,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "by" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "bz" = (
@@ -698,7 +698,6 @@
 "dd" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
-/obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "de" = (
@@ -709,7 +708,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "df" = (
@@ -1058,7 +1056,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/medical/medbay2)
 "eS" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},
@@ -1082,7 +1080,7 @@
 /turf/open/floor/tile/white,
 /area/medical/medbay2)
 "eW" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /obj/structure/cable,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1127,7 +1125,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
 "fe" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
@@ -1170,7 +1168,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
 "fq" = (
 /obj/machinery/power/terminal,
@@ -1350,7 +1348,7 @@
 	},
 /area/lv624/lazarus/quart)
 "gT" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},
@@ -1468,7 +1466,7 @@
 /area/lv624/lazarus/medbay)
 "hD" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
@@ -1825,7 +1823,6 @@
 /area/lv624/lazarus/canteen)
 "jv" = (
 /obj/structure/table/flipped,
-/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -2242,7 +2239,7 @@
 /area/lv624/lazarus/canteen)
 "lo" = (
 /obj/structure/table/flipped,
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -2273,7 +2270,7 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "lx" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -2693,7 +2690,7 @@
 /turf/open/floor,
 /area/maintenance/substation)
 "oa" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep/bedrooms)
 "ob" = (
 /obj/structure/closet/emcloset,
@@ -2720,7 +2717,7 @@
 /area/maintenance/substation)
 "ol" = (
 /obj/structure/cable,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep/bedrooms)
 "ot" = (
 /obj/structure/cable,
@@ -2851,7 +2848,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
 "pp" = (
 /obj/structure/window/framed/colony,
@@ -2869,10 +2866,10 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
 "pu" = (
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
 "pv" = (
 /obj/structure/bed/chair/wood/wings{
@@ -2905,14 +2902,14 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
 "pA" = (
 /obj/structure/bed,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
 "pC" = (
 /turf/open/floor/wood,
@@ -2947,9 +2944,9 @@
 /area/lv624/lazarus/robotics)
 "pJ" = (
 /obj/structure/closet,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/machinery/light,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
 "pK" = (
 /turf/closed/wall,
@@ -2976,7 +2973,6 @@
 "pQ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
-/obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "pS" = (
@@ -3170,8 +3166,8 @@
 "qQ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/obj/machinery/computer/nuke_disk_generator/blue,
-/turf/open/floor/wood/broken,
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
 "qS" = (
 /obj/structure/window/reinforced{
@@ -3188,13 +3184,13 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "qU" = (
-/obj/machinery/power/apc/drained,
+/obj/structure/closet/secure_closet/miner,
 /obj/structure/cable,
-/obj/structure/bed/chair/office/light{
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},
-/turf/open/floor/plating,
-/area/vapor_processing/cargo_maint_s)
+/area/lv624/lazarus/quartstorage)
 "qV" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -3845,7 +3841,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep/bedrooms)
 "tO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3930,7 +3926,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep/bedrooms)
 "us" = (
 /obj/structure/closet/radiation,
@@ -3987,7 +3983,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/medical/medbay2)
@@ -4132,7 +4128,7 @@
 /turf/open/ground,
 /area/space)
 "xc" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "xq" = (
@@ -4213,7 +4209,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep/bedrooms)
 "yI" = (
 /obj/structure/table/flipped,
@@ -4422,7 +4418,7 @@
 /obj/structure/bed,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep/bedrooms)
 "BJ" = (
 /turf/closed/mineral/smooth,
@@ -4480,7 +4476,7 @@
 /area/lv624/ground/compound/n)
 "Ct" = (
 /obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep/bedrooms)
 "Cz" = (
 /obj/item/weapon/gun/pistol/holdout,
@@ -4500,7 +4496,7 @@
 "CO" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep/bedrooms)
 "CW" = (
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -4833,7 +4829,7 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/west1)
 "Iu" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
 "Ix" = (
@@ -4975,7 +4971,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/random/engineering/toolbox,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
 "KH" = (
 /turf/open/ground,
@@ -5221,15 +5217,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
-"Od" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/engineering/tech_supply,
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/vapor_processing/cargo3)
 "Oh" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -5923,7 +5910,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
@@ -6029,7 +6015,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
 "YT" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -8520,7 +8506,7 @@ kP
 kP
 kP
 lt
-qU
+lF
 lv
 lv
 lv
@@ -10537,7 +10523,7 @@ bm
 eq
 ep
 eL
-eT
+qU
 ff
 fs
 fs
@@ -11158,7 +11144,7 @@ fj
 fj
 ep
 rp
-Od
+yI
 im
 Xh
 rG

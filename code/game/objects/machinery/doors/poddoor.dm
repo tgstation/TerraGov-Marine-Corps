@@ -207,10 +207,6 @@
 	name = "\improper Combat Information Center Blast Door"
 	id = "cic_lockdown"
 
-/obj/machinery/door/poddoor/mainship/open/cic/rebel
-	name = "\improper Combat Information Center Blast Door"
-	id = "cic_lockdown_rebel"
-
 /obj/machinery/door/poddoor/mainship/hangar
 	name = "\improper Hangar Lockdown"
 	id = "hangar_lockdown"
@@ -249,7 +245,7 @@
 
 
 /obj/machinery/door/poddoor/timed_late/Initialize(mapload)
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), PROC_REF(open))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), PROC_REF(open))
 	return ..()
 
 

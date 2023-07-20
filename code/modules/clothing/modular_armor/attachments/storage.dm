@@ -29,17 +29,17 @@
 
 /obj/item/armor_module/storage/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	time_to_equip = parent.time_to_equip
-	time_to_unequip = parent.time_to_unequip
+	equip_delay_self = parent.equip_delay_self
+	strip_delay = parent.strip_delay
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(access_storage))
 	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(insert_item))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(insert_item))
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
-	time_to_equip = initial(time_to_equip)
-	time_to_unequip = initial(time_to_unequip)
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_PARENT_ATTACKBY))
+	equip_delay_self = initial(equip_delay_self)
+	strip_delay = initial(strip_delay)
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_ATOM_ATTACKBY))
 	storage.master_item = src
 	return ..()
 
@@ -121,7 +121,7 @@
 
 /obj/item/armor_module/storage/general/som
 	name = "General Purpose Storage module"
-	desc = "Designed for mounting on SOM combat armor. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, pistols or magazines."
+	desc = "Designed for mounting on SOM combat armor. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like pistols or magazines."
 	icon_state = "mod_general_bag_som"
 	item_state = "mod_general_bag_som_a"
 
@@ -328,6 +328,7 @@
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/stack/throwing_knife,
 		/obj/item/storage/box/MRE,
 	)
@@ -336,6 +337,9 @@
 	. = ..()
 	new /obj/item/weapon/combat_knife(storage)
 
+/obj/item/armor_module/storage/boot/som_knife/Initialize(mapload)
+	. = ..()
+	new /obj/item/attachable/bayonetknife/som(storage)
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."

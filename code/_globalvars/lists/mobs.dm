@@ -27,7 +27,6 @@ GLOBAL_LIST_EMPTY(dead_mob_list)			//all dead mobs, including clientless. Exclud
 GLOBAL_LIST_EMPTY(joined_player_list)		//all clients that have joined the game at round-start or as a latejoin.
 GLOBAL_LIST_EMPTY(mob_living_list)				//all instances of /mob/living and subtypes
 GLOBAL_LIST_EMPTY(alive_living_list)		//all alive /mob/living, including clientless.
-GLOBAL_LIST_EMPTY(carbon_list)				//all instances of /mob/living/carbon and subtypes, notably does not contain brains or simple animals
 GLOBAL_LIST_EMPTY(offered_mob_list)				//all /mobs offered by admins
 GLOBAL_LIST_EMPTY(ai_list)
 GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for each AI_* status define

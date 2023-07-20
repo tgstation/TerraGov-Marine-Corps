@@ -46,7 +46,7 @@
 	icon_state = "mag"
 	flags_magazine = NONE
 	caliber = CALIBER_10x27_CASELESS
-	max_rounds = 100
+	max_rounds = 150
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	reload_delay = 1 SECONDS
 
@@ -73,6 +73,25 @@
 	desc = "A box holding 30 40mm caseless White Phosphorous grenades for the AGLS-37 automatic grenade launcher."
 	icon_state = "ags_mag_incend"
 	default_ammo = /datum/ammo/ags_shrapnel/incendiary
+
+/obj/item/ammo_magazine/standard_agls/flare
+	name = "AGLS-37 Flare magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Flare grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_flare"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/flare
+
+/obj/item/ammo_magazine/standard_agls/cloak
+	name = "AGLS-37 Cloak magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Cloak grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_cloak"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/cloak
+
+/obj/item/ammo_magazine/standard_agls/tanglefoot
+	name = "AGLS-37 Tanglefoot magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Tanglefoot grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_pgas"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/tanglefoot
+
 
 /obj/item/ammo_magazine/standard_atgun
 	name = "AT-36 AP-HE shell (37mm Shell)"
@@ -129,20 +148,20 @@
 
 /obj/item/ammo_magazine/auto_cannon
 	name = "autocannon high-velocity magazine(20mm)"
-	desc = "A box of 80 high-velocity 20mm rounds for the ATR-22 mounted autocannon. Will pierce people and cover"
+	desc = "A box of 100 high-velocity 20mm rounds for the ATR-22 mounted autocannon. Will pierce people and cover."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-ac.dmi'
 	icon_state = "ac_mag"
 	item_state = "ac"
 	flags_magazine = NONE
 	caliber = CALIBER_20
-	max_rounds = 80
+	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/auto_cannon
 	reload_delay = 4 SECONDS
 
 /obj/item/ammo_magazine/auto_cannon/flak
 	name = "autocannon smart-detonating magazine(20mm)"
-	desc = "A box of 80 smart-detonating 20mm rounds for the ATR-22 mounted autocannon. Will pierce cover, but detonate on hitting a target"
+	desc = "A box of 80 smart-detonating 20mm rounds for the ATR-22 mounted autocannon. Will detonate upon hitting a target."
 	icon_state = "ac_mag_flak"
 	item_state = "ac_flak"
 	default_ammo = /datum/ammo/bullet/auto_cannon/flak

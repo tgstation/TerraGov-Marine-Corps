@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"al" = (
-/turf/open/floor/wood/broken/three,
-/area/bigredv2/outside/general_offices)
 "am" = (
 /obj/item/shard,
 /turf/open/floor/plating/dmg1,
@@ -23,7 +20,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
 "aV" = (
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "bd" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -34,7 +31,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "bq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -114,7 +111,7 @@
 /area/bigredv2/outside/hydroponics)
 "eA" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "eP" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -148,10 +145,15 @@
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
+"fg" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
 "fl" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "fM" = (
 /obj/machinery/vending/snack,
 /turf/open/floor,
@@ -159,6 +161,11 @@
 "gt" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"gy" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/general_offices)
 "gK" = (
 /turf/closed/wall,
@@ -173,7 +180,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "gW" = (
 /obj/item/shard,
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
@@ -183,7 +190,7 @@
 /obj/item/stack/sheet/metal,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "hH" = (
 /turf/open/shuttle/dropship/seven,
 /area/bigredv2/outside/general_offices)
@@ -238,7 +245,7 @@
 "kv" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/shuttle/dropship2/corners,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "kx" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -256,7 +263,6 @@
 /area/bigredv2/outside/hydroponics)
 "kU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Dormitories Tool Storage"
 	},
 /turf/open/floor,
@@ -269,7 +275,7 @@
 /area/bigredv2/outside/general_offices)
 "lt" = (
 /obj/effect/spawner/gibspawner/human,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "mc" = (
 /turf/closed/shuttle/dropship2/walltwo,
@@ -286,7 +292,7 @@
 "mz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "mN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/dmg3,
@@ -297,7 +303,7 @@
 /area/bigredv2/outside/general_offices)
 "nj" = (
 /obj/structure/bed,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "nr" = (
 /obj/effect/ai_node,
@@ -308,25 +314,22 @@
 /turf/closed/shuttle/dropship2/corners{
 	dir = 1
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "oC" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/shuttle/dropship2/singlewindow{
 	dir = 1
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "oH" = (
 /obj/item/stack/sheet/wood,
-/turf/open/floor/wood/broken/two,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "oI" = (
 /obj/effect/decal/cleanable/blood/six{
 	dir = 1
 	},
 /turf/open/shuttle/dropship/three,
-/area/bigredv2/outside/general_offices)
-"oU" = (
-/turf/closed/shuttle/ert/engines/left,
 /area/bigredv2/outside/general_offices)
 "ph" = (
 /obj/structure/girder,
@@ -431,7 +434,7 @@
 /area/bigredv2/outside/bar)
 "sV" = (
 /obj/structure/table,
-/turf/open/floor/wood/broken/five,
+/turf/open/floor/wood/variable/damaged/standard,
 /area/bigredv2/outside/general_offices)
 "tf" = (
 /turf/closed/shuttle/dropship2/cornersalt,
@@ -444,7 +447,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "uo" = (
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
@@ -460,13 +463,20 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
-"vD" = (
-/turf/closed/shuttle/ert/engines/right,
+"vo" = (
+/obj/item/stack/rods,
+/obj/structure/cable,
+/turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/general_offices)
 "vK" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
+"wh" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
 "wj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -501,7 +511,7 @@
 /area/bigredv2/outside/general_offices)
 "wL" = (
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "xf" = (
 /obj/structure/closet/l3closet,
 /turf/open/floor/plating/dmg1,
@@ -551,12 +561,11 @@
 /turf/open/floor/plating/scorched,
 /area/bigredv2/outside/general_offices)
 "Ap" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "AE" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
-	dir = 4;
 	name = "\improper Dormitories Lavatory"
 	},
 /turf/open/floor/freezer,
@@ -669,8 +678,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "FR" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 4
+/turf/closed/shuttle/ert/engines/left/three{
+	dir = 1
 	},
 /area/bigredv2/outside/general_offices)
 "FW" = (
@@ -716,8 +725,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "If" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 4
+/turf/closed/shuttle/ert/engines/right/three{
+	dir = 1
 	},
 /area/bigredv2/outside/general_offices)
 "Im" = (
@@ -734,9 +743,6 @@
 	},
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/hydroponics)
-"Jg" = (
-/turf/open/floor/wood/broken/six,
-/area/bigredv2/outside/general_offices)
 "JP" = (
 /turf/closed/shuttle/dropship2/edge{
 	dir = 1
@@ -767,7 +773,12 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/wood/broken/three,
+/turf/open/floor/wood/variable/damaged/standard,
+/area/bigredv2/outside/general_offices)
+"LV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/general_offices)
 "Mi" = (
 /turf/closed/shuttle/dropship2/corners{
@@ -834,7 +845,7 @@
 /obj/effect/spawner/gibspawner/human,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "QB" = (
 /turf/closed/wall,
 /area/bigredv2/outside/hydroponics)
@@ -992,7 +1003,7 @@
 /area/bigredv2/outside/general_offices)
 "Yu" = (
 /turf/open/floor/plating,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Za" = (
 /obj/item/stack/sheet/wood,
 /obj/effect/ai_node,
@@ -1272,7 +1283,7 @@ er
 Fu
 er
 Qv
-Jg
+aV
 LQ
 rc
 dV
@@ -1293,12 +1304,12 @@ BI
 mc
 Mi
 FR
+fg
 qs
-oU
 Hh
 DU
 jj
-al
+aV
 aV
 Zw
 dV
@@ -1449,12 +1460,12 @@ BI
 PM
 Xh
 If
+wh
 Hm
-vD
 Fu
 Hh
 gQ
-al
+aV
 lt
 Fu
 vK
@@ -1492,9 +1503,9 @@ Ap
 bl
 SC
 RJ
-DU
-er
-DG
+gy
+LV
+vo
 Hh
 Hh
 TF
@@ -1506,8 +1517,8 @@ er
 Fu
 Hh
 Qv
-Jg
-al
+aV
+aV
 RJ
 Fz
 Fz

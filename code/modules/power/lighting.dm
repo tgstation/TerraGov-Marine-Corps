@@ -590,6 +590,24 @@
 	base_state = "lbulb"
 	brightness = 5
 
+/obj/item/light_bulb/bulb/attack_turf(turf/T, mob/living/user)
+	var/turf/open/floor/light/light_tile = T
+	if(!istype(light_tile))
+		return
+	if(status != LIGHT_OK)
+		to_chat(user, span_notice("The replacement bulb is broken."))
+		return
+	var/obj/item/stack/tile/light/existing_bulb = light_tile.floor_tile
+	if(existing_bulb.state == LIGHT_TILE_OK)
+		to_chat(user, span_notice("The lightbulb seems fine, no need to replace it."))
+		return
+
+	user.drop_held_item(src)
+	qdel(src)
+	existing_bulb.state = 0
+	light_tile.update_icon()
+	to_chat(user, span_notice("You replace the light bulb."))
+
 /obj/item/light_bulb/bulb/fire
 	name = "fire bulb"
 	desc = "A replacement fire bulb."

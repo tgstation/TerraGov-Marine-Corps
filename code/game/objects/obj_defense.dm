@@ -73,11 +73,11 @@
 		return
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(INFINITY, BRUTE, "bomb", 0)
+			take_damage(INFINITY, BRUTE, BOMB, 0)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(100, 250), BRUTE, "bomb", 0)
+			take_damage(rand(100, 250), BRUTE, BOMB, 0)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(10, 90), BRUTE, "bomb", 0)
+			take_damage(rand(10, 90), BRUTE, BOMB, 0)
 
 
 /obj/hitby(atom/movable/AM)
@@ -89,7 +89,7 @@
 	else if(isobj(AM))
 		var/obj/item/I = AM
 		tforce = I.throwforce
-	take_damage(tforce, BRUTE, "melee", 1, get_dir(src, AM))
+	take_damage(tforce, BRUTE, MELEE, 1, get_dir(src, AM))
 
 
 /obj/bullet_act(obj/projectile/P)
@@ -100,7 +100,6 @@
 		return
 	playsound(loc, P.hitsound, 50, 1)
 	visible_message(span_warning("\the [src] is damaged by \the [P]!"), visible_message_flags = COMBAT_MESSAGE)
-	bullet_ping(P)
 	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, turn(P.dir, 180), P.ammo.penetration)
 
 

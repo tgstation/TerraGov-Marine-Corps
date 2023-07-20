@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/open/space/basic,
-/area/space)
 "ab" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -53,9 +50,6 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"al" = (
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "am" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -63,17 +57,6 @@
 "an" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"ao" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"ap" = (
-/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "aq" = (
@@ -89,54 +72,19 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"at" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
 "au" = (
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
-"av" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "aw" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
-"ax" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
-"ay" = (
-/turf/closed/wall/indestructible/mineral,
-/area/space)
 "az" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"aA" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
 "aB" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aC" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aD" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aE" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
-/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "aF" = (
 /obj/effect/landmark/weed_node,
@@ -162,35 +110,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"aK" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aL" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aM" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aN" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
-"aO" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aP" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "aQ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -198,48 +117,10 @@
 "aR" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
-"aS" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "aT" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"aU" = (
-/obj/effect/landmark/excavation_site_spawner,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aV" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aW" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
-"aX" = (
-/obj/effect/landmark/excavation_site_spawner,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aY" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"aZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
-"Ho" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 
 (1,1,1) = {"
 au
@@ -278,13 +159,13 @@ au
 au
 au
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (2,1,1) = {"
 aH
@@ -323,13 +204,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (3,1,1) = {"
 aH
@@ -368,13 +249,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (4,1,1) = {"
 aH
@@ -413,13 +294,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (5,1,1) = {"
 aH
@@ -458,13 +339,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (6,1,1) = {"
 aH
@@ -503,13 +384,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (7,1,1) = {"
 aH
@@ -527,11 +408,11 @@ aH
 aH
 aH
 aH
-at
-aO
+aj
+ag
 aB
 aB
-aC
+az
 aB
 ar
 aB
@@ -548,13 +429,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (8,1,1) = {"
 aH
@@ -562,7 +443,7 @@ aH
 aB
 aB
 aB
-aS
+aQ
 aB
 aB
 aB
@@ -576,14 +457,14 @@ aB
 aB
 aB
 aB
-aL
+aJ
 aB
 ar
 aB
 aB
-aS
+aQ
 aB
-aS
+aQ
 aB
 aR
 aH
@@ -593,13 +474,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (9,1,1) = {"
 aH
@@ -621,7 +502,7 @@ aB
 aB
 aB
 aB
-aC
+az
 aB
 ar
 aB
@@ -630,7 +511,7 @@ aB
 ak
 aB
 aB
-at
+aj
 aH
 aH
 aH
@@ -638,43 +519,43 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (10,1,1) = {"
 aB
 aB
-aP
+am
 aB
-aS
-aS
-aB
-aB
-aS
-aB
-aS
-aP
+aQ
+aQ
 aB
 aB
+aQ
 aB
-aP
+aQ
+am
 aB
 aB
 aB
-aC
+am
+aB
+aB
+aB
+az
 aB
 ar
 aB
 aB
-aS
-aP
+aQ
+am
 aB
-aS
+aQ
 aB
 aR
 aH
@@ -683,22 +564,22 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (11,1,1) = {"
-aS
+aQ
 aB
 aB
 aB
 aB
 aB
-aS
+aQ
 aB
 aB
 aB
@@ -710,8 +591,8 @@ aB
 aB
 aB
 aB
-aS
-aC
+aQ
+az
 aB
 aF
 aB
@@ -728,13 +609,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (12,1,1) = {"
 aB
@@ -756,7 +637,7 @@ aB
 aB
 aB
 aB
-aC
+az
 aB
 ar
 aB
@@ -773,13 +654,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (13,1,1) = {"
 aB
@@ -797,18 +678,18 @@ aB
 aB
 aB
 aB
-aS
+aQ
 aB
 aB
 aB
-aC
+az
 aB
 ar
 ar
 ar
 ar
-aM
-aM
+aI
+aI
 ar
 ar
 aF
@@ -818,13 +699,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (14,1,1) = {"
 aB
@@ -846,7 +727,7 @@ aB
 aB
 aB
 aB
-aC
+az
 aB
 aB
 aB
@@ -863,13 +744,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (15,1,1) = {"
 aH
@@ -891,7 +772,7 @@ aB
 aB
 aB
 aB
-aL
+aJ
 aB
 aB
 aB
@@ -902,19 +783,19 @@ aB
 aB
 aB
 aB
-aS
+aQ
 aH
 aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (16,1,1) = {"
 aH
@@ -932,20 +813,20 @@ aH
 aB
 aB
 aB
-aP
-aS
+am
+aQ
 aB
 aB
-aC
-aP
+az
+am
 aB
 aB
 aB
 aB
-aP
+am
 aB
 aB
-aS
+aQ
 aB
 aB
 aH
@@ -953,13 +834,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (17,1,1) = {"
 aH
@@ -981,30 +862,30 @@ aB
 aB
 aB
 aB
-aX
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aN
-aC
-aC
-aC
+an
+az
+az
+az
+az
+az
+az
+az
+aw
+az
+az
+az
 aT
 aT
 aT
 aT
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (18,1,1) = {"
 aH
@@ -1021,13 +902,13 @@ aH
 aH
 aB
 aB
-aS
+aQ
 aB
 aB
 aB
 aB
 aB
-aS
+aQ
 aB
 aB
 ai
@@ -1036,20 +917,20 @@ aB
 aB
 aB
 aB
-ao
+af
 aH
 aH
 aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (19,1,1) = {"
 aH
@@ -1073,10 +954,10 @@ aB
 aB
 aB
 aB
-aS
+aQ
 aB
 aR
-aS
+aQ
 aB
 aB
 aB
@@ -1088,13 +969,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (20,1,1) = {"
 aH
@@ -1133,13 +1014,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (21,1,1) = {"
 aH
@@ -1157,17 +1038,17 @@ aR
 aB
 aB
 aB
-aS
+aQ
 aB
 aB
 aB
-aS
+aQ
 aB
 aB
 aR
 aB
 aB
-aS
+aQ
 aB
 aH
 aH
@@ -1178,13 +1059,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (22,1,1) = {"
 aH
@@ -1199,17 +1080,17 @@ aH
 aB
 aB
 aB
-aP
+am
 aB
 aB
-aP
+am
 aR
 aH
 aR
 aB
 aB
 aB
-aZ
+aG
 aH
 aH
 aB
@@ -1223,13 +1104,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (23,1,1) = {"
 aH
@@ -1268,13 +1149,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (24,1,1) = {"
 aH
@@ -1282,7 +1163,7 @@ aH
 aH
 aH
 aH
-aS
+aQ
 aB
 aB
 aR
@@ -1290,7 +1171,7 @@ aB
 aB
 aR
 aB
-aS
+aQ
 aB
 aR
 aH
@@ -1313,13 +1194,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (25,1,1) = {"
 aH
@@ -1329,10 +1210,10 @@ aH
 aH
 aB
 aB
-aS
+aQ
 aB
 aB
-at
+aj
 aB
 aB
 aB
@@ -1358,27 +1239,27 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (26,1,1) = {"
 aH
 aH
 aH
 aH
-aP
+am
 aB
 aB
 aB
 aB
 aB
 aB
-aS
+aQ
 aR
 aB
 aB
@@ -1393,7 +1274,7 @@ aH
 aH
 aH
 aB
-aP
+am
 aB
 aH
 aH
@@ -1403,28 +1284,28 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (27,1,1) = {"
 aH
 aH
 aH
 aB
-aS
-aP
+aQ
+am
 aB
 aB
 aB
 aB
 aB
 aB
-aP
+am
 aB
 aB
 aH
@@ -1439,7 +1320,7 @@ aH
 aH
 aB
 aB
-aS
+aQ
 aB
 aH
 aH
@@ -1448,13 +1329,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (28,1,1) = {"
 aH
@@ -1469,7 +1350,7 @@ aB
 aB
 aB
 aB
-aS
+aQ
 aB
 aR
 aH
@@ -1493,13 +1374,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (29,1,1) = {"
 aH
@@ -1509,13 +1390,13 @@ aB
 aB
 aB
 aB
-aS
+aQ
 aB
 aB
 aB
 aB
 aB
-aS
+aQ
 aB
 aH
 aH
@@ -1529,7 +1410,7 @@ aH
 aH
 aH
 aB
-aS
+aQ
 aB
 aH
 aH
@@ -1538,28 +1419,28 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (30,1,1) = {"
 aH
 aH
 aB
-aS
+aQ
 aB
 aB
 aB
 aB
-aS
+aQ
 aR
 aH
 aR
-aP
+am
 aB
 aB
 aB
@@ -1574,7 +1455,7 @@ aH
 aH
 aH
 aB
-aS
+aQ
 aB
 aB
 aH
@@ -1583,13 +1464,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (31,1,1) = {"
 aH
@@ -1605,8 +1486,8 @@ aR
 aH
 aH
 aR
-aP
-aS
+am
+aQ
 aB
 aB
 aH
@@ -1618,7 +1499,7 @@ aH
 aH
 aH
 aH
-aA
+ah
 aB
 aB
 aB
@@ -1628,21 +1509,21 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (32,1,1) = {"
 aH
 aB
-aP
+am
 aB
 aB
-aP
+am
 aH
 aB
 aB
@@ -1651,10 +1532,10 @@ aH
 aH
 aH
 aB
-aP
+am
 aB
 aB
-aP
+am
 aB
 aH
 aH
@@ -1664,8 +1545,8 @@ aH
 aH
 aH
 aR
-aA
-aS
+ah
+aQ
 aB
 aH
 aH
@@ -1673,13 +1554,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (33,1,1) = {"
 aH
@@ -1698,9 +1579,9 @@ aH
 aB
 aB
 aB
-aS
+aQ
 aB
-aS
+aQ
 aB
 aR
 aH
@@ -1710,7 +1591,7 @@ aH
 aH
 aH
 aR
-aP
+am
 aB
 aB
 aH
@@ -1718,13 +1599,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (34,1,1) = {"
 aH
@@ -1763,13 +1644,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (35,1,1) = {"
 aH
@@ -1808,13 +1689,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (36,1,1) = {"
 aH
@@ -1835,7 +1716,7 @@ aB
 aB
 aB
 aB
-aS
+aQ
 aB
 aR
 aH
@@ -1846,20 +1727,20 @@ aH
 aH
 aH
 aB
-aS
+aQ
 aB
 aH
 aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (37,1,1) = {"
 aB
@@ -1879,11 +1760,11 @@ aH
 aH
 aH
 aB
-aU
+as
 aB
 aB
 aB
-aA
+ah
 aH
 aH
 aH
@@ -1898,13 +1779,13 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (38,1,1) = {"
 aB
@@ -1934,22 +1815,22 @@ aH
 aH
 aH
 aR
-at
+aj
 aB
-aS
+aQ
 aB
 aH
 aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (39,1,1) = {"
 aB
@@ -1988,17 +1869,17 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (40,1,1) = {"
 aB
-aS
+aQ
 aB
 aH
 aH
@@ -2016,8 +1897,8 @@ aH
 aH
 aH
 aH
-aS
-aS
+aQ
+aQ
 aB
 aR
 aR
@@ -2033,18 +1914,18 @@ aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}
 (41,1,1) = {"
-Ho
-Ho
-Ho
+ad
+ad
+ad
 aq
 aq
 aq
@@ -2071,18 +1952,18 @@ aH
 aH
 aH
 aB
-aS
+aQ
 aH
 aH
 aH
 aH
 aH
 au
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+au
+au
+au
+au
+au
+au
+au
 "}

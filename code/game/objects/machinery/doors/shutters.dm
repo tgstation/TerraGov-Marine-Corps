@@ -76,7 +76,7 @@
 
 
 /obj/machinery/door/poddoor/shutters/timed_late/Initialize(mapload)
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), PROC_REF(open))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), PROC_REF(open))
 	return ..()
 
 
@@ -193,10 +193,6 @@
 /obj/machinery/door/poddoor/shutters/mainship/req/ro
 	name = "\improper RO Line"
 	id = "ROlobby"
-
-/obj/machinery/door/poddoor/shutters/mainship/req/ro/rebel
-	id = "ROlobby_rebel"
-
 /obj/machinery/door/poddoor/shutters/mainship/req/ro1
 	name = "\improper RO Line 1"
 	id = "ROlobby1"
@@ -230,9 +226,6 @@
 	name = "\improper Armory Shutters"
 	id = "cic_armory"
 	icon_state = "shutter1"
-
-/obj/machinery/door/poddoor/shutters/mainship/cic/armory/rebel
-	id = "cic_armory_rebel"
 
 /obj/machinery/door/poddoor/shutters/mainship/engineering/armory
 	name = "\improper Engineering Armory Shutters"

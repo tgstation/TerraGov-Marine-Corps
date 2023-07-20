@@ -218,6 +218,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
+"qw" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
 "qN" = (
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
@@ -541,6 +545,11 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "JY" = (
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
+"JZ" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Le" = (
@@ -2025,9 +2034,9 @@ rB
 NJ
 NQ
 jK
-JY
-JY
-JY
+JZ
+qw
+qw
 zo
 zm
 JY

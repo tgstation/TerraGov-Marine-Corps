@@ -20,7 +20,7 @@
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/item/factory_part/LateInitialize(mapload)
+/obj/item/factory_part/LateInitialize()
 	advance_stage()
 
 ///once the part is processed this proc updates iconstate, result, completion etc
@@ -456,7 +456,10 @@ GLOBAL_LIST_INIT(module, list(
 /obj/item/factory_part/module_surt
 	name = "\improper Surt pyrotechnical insulation system"
 	desc = "An unfinished Surt pyrotechnical insulation system module."
-	result = /obj/item/armor_module/module/fire_proof
+	result = list(
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/fire_proof_helmet,
+	)
 
 /obj/item/factory_part/module_surt/Initialize(mapload)
 	. = ..()
@@ -539,3 +542,20 @@ GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 /obj/item/factory_part/thermobaric_wp/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.thermobaric_wp_recipe
+
+GLOBAL_LIST_INIT(drop_pod_recipe, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "barrelplate"),
+	))
+
+/obj/item/factory_part/drop_pod
+	name = "TGMC Zeus orbital drop pod assembly"
+	desc = "An incomplete Zeus orbital drop pod assembly"
+	result = /obj/structure/droppod
+
+/obj/item/factory_part/drop_pod/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.drop_pod_recipe
+

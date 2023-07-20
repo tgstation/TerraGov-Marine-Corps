@@ -32,7 +32,7 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 	icon_state_variants = list(
@@ -46,6 +46,12 @@
 	starting_attachments = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/som/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general/som,
 	)
 
 /obj/item/clothing/suit/modular/som/shield
@@ -128,7 +134,7 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/suit/modular/som/heavy/leader/valk
@@ -159,14 +165,15 @@
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
-
+	greyscale_config = null
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	icon_state_variants = list(
 		"black",
 	)
 	current_variant = "black"
+	visorless_offset_y = 0
 
 /obj/item/clothing/head/modular/som/engineer
 	name = "\improper SOM engineering helmet"
@@ -175,7 +182,7 @@
 	item_state = "som_helmet_engineer"
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/module/welding/som,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding/som)
@@ -186,9 +193,23 @@
 	icon_state = "som_helmet_bio"
 	item_state = "som_helmet_bio"
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 50, ACID = 70)
+	siemens_coefficient = 0.1
+	permeability_coefficient = 0
+	gas_transfer_coefficient = 0.1
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/head/modular/som/hades
+	name = "\improper Hades Helmet System"
+	desc = "A helmet paired with the 'Hades' armor module, designed for significantly improved protection from fire, without compromising normal durability."
+	icon_state = "som_helmet_light"
+	item_state = "som_helmet_light"
+	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 90, ACID = 50)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/head/modular/som/veteran
@@ -197,14 +218,14 @@
 	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 60, ACID = 55)
 
 /obj/item/clothing/head/modular/som/lorica
-	name = "Lorica Helmet System"
-	desc = "An bulky helmet paired with the 'Lorica' armor module, designed for outstanding protection at the cost of significant weight and reduced flexibility. Substantial additional armor improves protection against all damage."
+	name = "\improper Lorica Helmet System"
+	desc = "A bulky helmet paired with the 'Lorica' armor module, designed for outstanding protection at the cost of significant weight and reduced flexibility. Substantial additional armor improves protection against all damage."
 	icon_state = "som_helmet_lorica"
 	item_state = "som_helmet_lorica"
 	soft_armor = list(MELEE = 60, BULLET = 85, LASER = 80, ENERGY = 80, BOMB = 65, BIO = 55, FIRE = 70, ACID = 60)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/head/modular/som/leader
@@ -219,5 +240,5 @@
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)

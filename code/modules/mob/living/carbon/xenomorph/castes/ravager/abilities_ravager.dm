@@ -228,7 +228,8 @@
 	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
 	ADD_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT) //Can now endure slowdown
 
-	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(damage_taken)) //Warns us if our health is critically low
+	RegisterSignal(X, COMSIG_XENOMORPH_BRUTE_DAMAGE, PROC_REF(damage_taken)) //Warns us if our health is critically low
+	RegisterSignal(X, COMSIG_XENOMORPH_BURN_DAMAGE, PROC_REF(damage_taken))
 
 	succeed_activate()
 	add_cooldown()
@@ -245,10 +246,12 @@
 /datum/action/xeno_action/endure/proc/endure_deactivate()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	UnregisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	UnregisterSignal(X, COMSIG_XENOMORPH_BRUTE_DAMAGE)
+	UnregisterSignal(X, COMSIG_XENOMORPH_BURN_DAMAGE)
 
 	X.do_jitter_animation(1000)
 	X.endure = FALSE
+	X.clear_fullscreen("endure", 0.7 SECONDS)
 	X.remove_filter("ravager_endure_outline")
 	if(X.health < X.get_crit_threshold()) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
 		var/total_damage = X.getFireLoss() + X.getBruteLoss()
@@ -272,6 +275,10 @@
 	SIGNAL_HANDLER
 	if(X.health < 0)
 		to_chat(X, "<span class='xenohighdanger' style='color: red;'>We are critically wounded! We can only withstand [(RAVAGER_ENDURE_HP_LIMIT-X.health) * -1] more damage before we perish!</span>")
+		X.overlay_fullscreen("endure", /atom/movable/screen/fullscreen/bloodlust)
+	else
+		X.clear_fullscreen("endure", 0.7 SECONDS)
+
 
 
 /datum/action/xeno_action/endure/ai_should_start_consider()
@@ -362,14 +369,14 @@
 		RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
 
 	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius, X.loc))
-		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
+		affected_tiles.Shake(duration = 1 SECONDS) //SFX
 
 	for(var/mob/living/L AS in GLOB.mob_living_list) //Roar that applies cool SFX
 		if(L.stat == DEAD || !L.hud_used || (get_dist(L, X) > rage_power_radius)) //We don't care about the dead
 			continue
 
 		shake_camera(L, 1 SECONDS, 1)
-		L.Shake(4, 4, 1 SECONDS) //SFX
+		L.Shake(duration = 1 SECONDS) //SFX
 
 		if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
 
@@ -415,7 +422,7 @@
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Warns the user when his rage is about to end.
-/datum/action/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
+/datum/action/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	var/mob/living/rager = owner
 	var/brute_damage = rager.getBruteLoss()
@@ -536,7 +543,7 @@
 	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
 
 ///Adds the slashed mob to tracked damage mobs
-/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
+/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	if(target.stat == DEAD)
 		return

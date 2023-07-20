@@ -8,6 +8,7 @@
 	layer = TABLE_LAYER
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 1
 	active_power_usage = 5
@@ -21,6 +22,12 @@
 
 /obj/machinery/optable/Initialize(mapload)
 	. = ..()
+
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -124,14 +131,6 @@
 ///Wakes the buckled mob back up after they're released
 /obj/machinery/optable/proc/remove_knockout(mob/living/buckled_mob)
 	REMOVE_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT)
-
-/obj/machinery/optable/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return 1
-	else
-		return 0
-
 
 /obj/machinery/optable/MouseDrop_T(atom/A, mob/user)
 

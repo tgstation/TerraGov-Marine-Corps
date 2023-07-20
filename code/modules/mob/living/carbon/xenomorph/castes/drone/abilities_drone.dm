@@ -75,7 +75,7 @@
 	var/datum/action/xeno_action/enhancement/enhancement_action = X.actions_by_path[/datum/action/xeno_action/enhancement]
 	enhancement_action?.end_ability()
 	X.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
-	QDEL_NULL(existing_link)
+	existing_link = null
 	linked_target = null
 	add_cooldown()
 
@@ -176,5 +176,6 @@
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/xeno_action/enhancement/proc/end_ability()
 	if(existing_enhancement)
-		QDEL_NULL(existing_enhancement)
+		essence_link_action.linked_target.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
+		existing_enhancement = null
 		add_cooldown()

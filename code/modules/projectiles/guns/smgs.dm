@@ -185,8 +185,12 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/gyro,
 	)
 
@@ -199,6 +203,10 @@
 	scatter_unwielded = 10
 	aim_slowdown = 0.15
 	burst_amount = 3
+	akimbo_additional_delay = 0.4
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
+	damage_falloff_mult = 0.9
 
 /obj/item/weapon/gun/smg/m25/holstered
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
@@ -367,15 +375,20 @@
 		/obj/item/attachable/stock/ppsh,
 	)
 
-	fire_delay = 0.15 SECONDS
-	burst_amount = 6
+	fire_delay = 0.1 SECONDS
+	burst_amount = 1
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.8
-	scatter = 5
-	scatter_unwielded = 15
-	aim_slowdown = 0.3
-	wield_delay = 0.35 SECONDS
+	akimbo_additional_delay = 0.5
 
+	min_scatter = 2
+	min_scatter_unwielded = 3
+	max_scatter = 15
+	max_scatter_unwielded = 25
+	scatter_increase = 2
+	scatter_increase_unwielded = 8
+	scatter_decay = 0.5
+	scatter_decay_unwielded = 0.1
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
@@ -421,7 +434,13 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som, /obj/item/ammo_magazine/smg/som/ap, /obj/item/ammo_magazine/smg/som/incendiary, /obj/item/ammo_magazine/smg/som/extended)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/som,
+		/obj/item/ammo_magazine/smg/som/ap,
+		/obj/item/ammo_magazine/smg/som/incendiary,
+		/obj/item/ammo_magazine/smg/som/extended,
+		/obj/item/ammo_magazine/smg/som/rad,
+	)
 	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //full auto, fuller auto
 

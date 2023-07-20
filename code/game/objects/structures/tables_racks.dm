@@ -11,6 +11,7 @@
 	layer = TABLE_LAYER
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
 	smoothing_flags = SMOOTH_BITMASK
@@ -48,7 +49,7 @@
 		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
 		if(!table)
 			continue
-		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
+		INVOKE_NEXT_TICK(table, TYPE_PROC_REF(/atom, update_icon))
 
 /obj/structure/table/Destroy()
 	update_adjacent(loc) //so neighbouring tables get updated correctly
@@ -66,6 +67,7 @@
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -95,30 +97,6 @@
 			if(tabledirs & turn(dir,-90))
 				icon_state = icon_state+"+"
 		return TRUE
-
-/obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
-		return TRUE
-	if(flipped)
-		if(get_dir(loc, target) & dir)
-			return FALSE
-		else
-			return TRUE
-
-
-/obj/structure/table/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
 
 //Flipping tables, nothing more, nothing less
 /obj/structure/table/MouseDrop(over_object, src_location, over_location)
@@ -346,7 +324,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/obj/structure/table/flipped/LateInitialize(mapload)
+/obj/structure/table/flipped/LateInitialize()
 	. = ..()
 	if(!flipped)
 		flip(dir, TRUE)
@@ -367,6 +345,9 @@
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
 
+/obj/structure/table/woodentable/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 /obj/structure/table/fancywoodentable
 	name = "fancy wooden table"
 	desc = "An expensive fancy wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -376,6 +357,9 @@
 	table_prefix = "fwood"
 	parts = /obj/item/frame/table/fancywood
 
+/obj/structure/table/fancywoodentable/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 /obj/structure/table/rusticwoodentable
 	name = "rustic wooden table"
 	desc = "A rustic wooden surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -384,6 +368,9 @@
 	base_icon_state = "rustic_table"
 	table_prefix = "pwood"
 	parts = /obj/item/frame/table/rusticwood
+
+/obj/structure/table/rusticwoodentable/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
 
 /obj/structure/table/black
 	name = "black metal table"
@@ -434,7 +421,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/obj/structure/table/reinforced/flipped/LateInitialize(mapload)
+/obj/structure/table/reinforced/flipped/LateInitialize()
 	. = ..()
 	if(!flipped)
 		flip(dir, TRUE)
@@ -522,22 +509,16 @@
 	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	var/parts = /obj/item/frame/rack
 
 /obj/structure/rack/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
-/obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
-		return TRUE
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)

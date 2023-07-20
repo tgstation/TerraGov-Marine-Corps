@@ -941,7 +941,7 @@
 /area/bigredv2/outside/medical)
 "zE" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -1253,9 +1253,8 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "IS" = (
-/obj/machinery/door/airlock/glass_medical{
-	id_tag = "mbayexit";
-	name = "Medbay Reception"
+/obj/machinery/door/airlock/glass{
+	dir = 1
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -1608,7 +1607,7 @@
 /area/bigredv2/outside/medical)
 "Rn" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "Ru" = (

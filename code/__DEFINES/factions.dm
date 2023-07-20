@@ -1,6 +1,5 @@
 #define FACTION_NEUTRAL "Neutral"
 #define FACTION_TERRAGOV "TerraGov"
-#define FACTION_TERRAGOV_REBEL "TerraGov Rebel"
 #define FACTION_XENO "Xeno"
 #define FACTION_ZOMBIE "Zombie"
 #define FACTION_CLF "Colonial Liberation Force"
@@ -18,7 +17,6 @@
 #define FACTION_HIVEBOT "Hivebot"
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
-#define FACTION_VALHALLA "Valhalla"
 #define FACTION_SPECFORCE "Special Forces"
 
 //Alignement are currently only used by req.
@@ -52,30 +50,27 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 	FACTION_HIVEBOT = ALIGNEMENT_HOSTILE,
 	FACTION_HOSTILE = ALIGNEMENT_HOSTILE,
 	FACTION_PIRATE = ALIGNEMENT_HOSTILE,
-	FACTION_TERRAGOV_REBEL = ALIGNEMENT_HOSTILE,
 ))
 
 ///Iff signals for factions
 #define TGMC_LOYALIST_IFF (1<<0) //Friendly IFF Signal
 #define SOM_IFF (1<<1)
-#define TGMC_REBEL_IFF (1<<2)
-#define DEATHSQUAD_IFF (1<<3)
-#define ICC_IFF (1<<4)
-#define CLF_IFF (1<<5)
-#define IMP_IFF (1<<6)
-#define UNKN_MERCS_IFF (1<<7)
-#define SECTOIDS_IFF (1<<8)
-#define USL_IFF (1<<9)
-#define PIRATE_IFF (1<<10)
+#define DEATHSQUAD_IFF (1<<2)
+#define ICC_IFF (1<<3)
+#define CLF_IFF (1<<4)
+#define IMP_IFF (1<<5)
+#define UNKN_MERCS_IFF (1<<6)
+#define SECTOIDS_IFF (1<<7)
+#define USL_IFF (1<<8)
+#define PIRATE_IFF (1<<9)
 
 ///Iff for each faction that is able to use iff
 GLOBAL_LIST_INIT(faction_to_iff, list(
-	FACTION_NEUTRAL = TGMC_LOYALIST_IFF|TGMC_REBEL_IFF,
+	FACTION_NEUTRAL = TGMC_LOYALIST_IFF,
 	FACTION_TERRAGOV = TGMC_LOYALIST_IFF,
 	FACTION_SPECFORCE = TGMC_LOYALIST_IFF,
 	FACTION_NANOTRASEN = TGMC_LOYALIST_IFF,
 	FACTION_FREELANCERS = TGMC_LOYALIST_IFF,
-	FACTION_TERRAGOV_REBEL = TGMC_REBEL_IFF,
 	FACTION_CLF = CLF_IFF,
 	FACTION_DEATHSQUAD = DEATHSQUAD_IFF,
 	FACTION_IMP = IMP_IFF,
@@ -90,6 +85,10 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 ///List of correspond factions to data hud
 GLOBAL_LIST_INIT(faction_to_data_hud, list(
 	FACTION_TERRAGOV = DATA_HUD_SQUAD_TERRAGOV,
-	FACTION_TERRAGOV_REBEL = DATA_HUD_SQUAD_REBEL,
 	FACTION_SOM = DATA_HUD_SQUAD_SOM,
+))
+
+GLOBAL_LIST_INIT(faction_to_squad_hud, list(
+	FACTION_TERRAGOV = SQUAD_HUD_TERRAGOV,
+	FACTION_SOM = SQUAD_HUD_SOM,
 ))

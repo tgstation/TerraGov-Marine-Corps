@@ -192,7 +192,7 @@
 
 
 /mob/living/DirectAccess(atom/target)
-	return ..() + GetAllContents()
+	return GetAllContents() + loc
 
 
 /atom/proc/IsObscured()
@@ -201,14 +201,14 @@
 	var/turf/T = get_turf_pixel(src)
 	if(!T)
 		return FALSE
-	for(var/atom/movable/AM in T)
+	for(var/atom/movable/AM AS in T)
 		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density && AM.layer > layer)
 			return TRUE
 	return FALSE
 
 
 /turf/IsObscured()
-	for(var/atom/movable/AM in src)
+	for(var/atom/movable/AM AS in src)
 		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density)
 			return TRUE
 	return FALSE
@@ -232,7 +232,7 @@
 			return FALSE //here.Adjacent(there)
 		if(2 to INFINITY)
 			var/obj/dummy = new(get_turf(here))
-			dummy.flags_pass |= PASSTABLE
+			dummy.allow_pass_flags |= PASS_LOW_STRUCTURE
 			dummy.invisibility = INVISIBILITY_ABSTRACT
 			for(var/i in 1 to reach) //Limit it to that many tries
 				var/turf/T = get_step(dummy, get_dir(dummy, there))

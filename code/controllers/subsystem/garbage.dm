@@ -164,10 +164,11 @@ SUBSYSTEM_DEF(garbage)
 			continue
 
 		var/queued_at_time = L[GC_QUEUE_ITEM_QUEUE_TIME]
-		var/GCd_at_time = L[GC_QUEUE_ITEM_GCD_DESTROYED]
 		if(queued_at_time > cut_off_time)
 			break // Everything else is newer, skip them
 		count++
+		var/GCd_at_time = L[GC_QUEUE_ITEM_GCD_DESTROYED]
+
 		var/refID = L[GC_QUEUE_ITEM_REF]
 		var/datum/D
 		D = locate(refID)
@@ -330,12 +331,12 @@ SUBSYSTEM_DEF(garbage)
 	I.qdels++
 
 	if(isnull(D.gc_destroyed))
-		if (SEND_SIGNAL(D, COMSIG_PARENT_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
+		if (SEND_SIGNAL(D, COMSIG_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
 			return
 		D.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
-		SEND_SIGNAL(D, COMSIG_PARENT_QDELETING, force) // Let the (remaining) components know about the result of Destroy
+		SEND_SIGNAL(D, COMSIG_QDELETING, force) // Let the (remaining) components know about the result of Destroy
 		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
 		if(world.time != start_time)
 			I.slept_destroy++

@@ -2,11 +2,9 @@
 /obj/item/clothing/head/modular/marine/old
 	name = "Jaeger Mk.I Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
-	icon = 'icons/mob/modular/mark_one/helmets.dmi'
-	icon_state = "infantry"
-	item_state = "infantry"
+	icon_state = "helmet"
+	item_state = "helmet"
 	item_icons = list(
-		slot_head_str = 'icons/mob/modular/mark_one/helmets.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
@@ -23,60 +21,62 @@
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
-		/obj/item/armor_module/greyscale/visor/marine/old,
-		/obj/item/armor_module/greyscale/visor/marine/old/skirmisher,
-		/obj/item/armor_module/greyscale/visor/marine/old/scout,
-		/obj/item/armor_module/greyscale/visor/marine/old/eva,
-		/obj/item/armor_module/greyscale/visor/marine/old/eva/skull,
-		/obj/item/armor_module/greyscale/visor/marine/old/eod,
-		/obj/item/armor_module/greyscale/visor/marine/old/assault,
+		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/armor/visor/marine/old,
+		/obj/item/armor_module/armor/visor/marine/old/skirmisher,
+		/obj/item/armor_module/armor/visor/marine/old/scout,
+		/obj/item/armor_module/armor/visor/marine/old/eva,
+		/obj/item/armor_module/armor/visor/marine/old/eva/skull,
+		/obj/item/armor_module/armor/visor/marine/old/eod,
+		/obj/item/armor_module/armor/visor/marine/old/assault,
+		/obj/item/armor_module/module/fire_proof_helmet,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/old, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/infantry
+	greyscale_colors = ARMOR_PALETTE_DRAB
+	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_allowed = PRESET_COLORS_ALLOWED
+
+
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/old/open
 	name = "Jaeger Mk.I Pattern Infantry Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
-	icon_state = "infantryopen"
-	item_state = "infantryopen"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/infantry/old
+	visorless_offset_y = 0
 
 /obj/item/clothing/head/modular/marine/old/eva
 	name = "Jaeger Mk.I Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
-	icon_state = "eva"
-	item_state = "eva"
-	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/old/eva, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old/eva, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/eva
 
 /obj/item/clothing/head/modular/marine/old/eva/skull
 	name = "Jaeger Mk.I Pattern EVA 'Skull' Helmet"
-	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/old/eva/skull, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old/eva/skull, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/old/skirmisher
 	name = "Jaeger Mk.I Pattern Skirmisher Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
-	icon_state = "skirmisher"
-	item_state = "skirmisher"
-	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/old/skirmisher, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old/skirmisher, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/skirmisher
 
 /obj/item/clothing/head/modular/marine/old/scout
 	name = "Jaeger Mk.I Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
-	icon_state = "scout"
-	item_state = "scout"
-	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/old/scout, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old/scout, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/scout
 
 /obj/item/clothing/head/modular/marine/old/assault
 	name = "Jaeger Mk.I Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
-	icon_state = "assault"
-	item_state = "assault"
-	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/old/assault, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old/assault, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1
 
 /obj/item/clothing/head/modular/marine/old/eod
 	name = "Jaeger Mk.I Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
-	icon_state = "eod"
-	item_state = "eod"
-	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/old/eod, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old/eod, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/eod

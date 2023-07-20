@@ -145,8 +145,7 @@
 	new broken_state(loc)
 	new /obj/item/shard(loc)
 
-	if(occupant)
-		occupant = new occupant(loc) //needed for the hugger variant
+	release_occupant()
 
 	return ..()
 
@@ -155,13 +154,14 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			take_damage(100)
+			take_damage(100, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(50)
+			take_damage(50, BRUTE, BOMB)
 
-/obj/structure/xenoautopsy/tank/Destroy()
-	occupant = null
-	return ..()
+///Releases whatever is inside the tank
+/obj/structure/xenoautopsy/tank/proc/release_occupant()
+	if(occupant)
+		new occupant(loc)
 
 /obj/structure/xenoautopsy/tank/escaped
 	name = "broken cryo tank"
@@ -184,10 +184,8 @@
 	desc = "There is something spider-like inside..."
 	occupant = /obj/item/clothing/mask/facehugger
 
-/obj/structure/xenoautopsy/tank/hugger/deconstruct(disassembled = TRUE)
-	. = ..()
-
-	var/obj/item/clothing/mask/facehugger/hugger = occupant
+/obj/structure/xenoautopsy/tank/hugger/release_occupant()
+	var/obj/item/clothing/mask/facehugger/hugger = new occupant(loc)
 	hugger.go_active()
 
 /obj/structure/xenoautopsy/tank/larva
@@ -234,6 +232,28 @@
 /obj/structure/stairs/seamless/platform/alt
 	icon_state = "railstairs_seamless_vert"
 
+/obj/structure/stairs/seamless/platform/adobe //west and east
+	icon_state = "adobe_stairs"
+
+/obj/structure/stairs/seamless/platform/adobe/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/stairs/seamless/platform/adobe/update_overlays()
+	. = ..()
+	if(dir == WEST || dir == EAST)
+		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
+		. += new_overlay
+
+/obj/structure/stairs/seamless/platform/adobe/straight
+	icon_state = "adobe_stairs_straight"
+
+/obj/structure/stairs/seamless/platform/adobe_vert //north and west
+	icon_state = "adobe_stairs_vertical"
+
+/obj/structure/stairs/seamless/platform/adobe_vert/straight
+	icon_state = "adobe_stairs_vertical_straight"
 
 /obj/structure/stairs/corner
 	icon_state = "staircorners"
@@ -253,28 +273,35 @@
 	desc = "Completely impassable - or are they?"
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
-	density = FALSE
+	density = TRUE
 	anchored = TRUE
 	layer = MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 100
 
-/obj/structure/plasticflaps/CanAllowThrough(atom/A, turf/T)
-	. = ..()
-	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
+/obj/structure/plasticflaps/CanAllowThrough(atom/movable/mover, turf/T)
+	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
 		return prob(60)
 
-	var/obj/structure/bed/B = A
-	if(istype(A, /obj/structure/bed) && LAZYLEN(B.buckled_mobs))//if it's a bed/chair and someone is buckled, it will not pass
+	if(isliving(mover))
+		var/mob/living/M = mover
+		if(M.lying_angle)
+			return TRUE
+		if(M.mob_size <= MOB_SIZE_SMALL)
+			return TRUE
+		if(isxenorunner(M)) //alas, snowflake
+			return TRUE
 		return FALSE
 
-	if(istype(A, /obj/vehicle))	//no vehicles
-		return FALSE
-
-	if(isliving(A)) // You Shall Not Pass!
-		var/mob/living/M = A
-		if(!M.lying_angle && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass. //todo kill shitcode
+	if(isobj(mover))
+		if(LAZYLEN(mover.buckled_mobs))
 			return FALSE
+		if(isvehicle(mover))
+			return FALSE
+
+		return TRUE
+
+	return ..()
 
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)

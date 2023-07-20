@@ -7,6 +7,8 @@
 	///Species name
 	var/name
 	var/name_plural
+	///what kind of species it is considered
+	var/species_type = SPECIES_HUMAN
 
 	///Normal icon file
 	var/icobase = 'icons/mob/human_races/r_human.dmi'
@@ -84,7 +86,6 @@
 	var/list/inherent_traits = list()
 	var/species_flags = NONE       // Various specific features.
 
-	var/list/abilities = list()	// For species-derived or admin-given powers
 	var/list/preferences = list()
 	var/list/screams = list()
 	var/list/paincries = list()
@@ -105,6 +106,8 @@
 
 	/// inherent Species-specific verbs.
 	var/list/inherent_verbs
+	/// inherent species-specific actions
+	var/list/inherent_actions
 	var/list/has_organ = list(
 		"heart" = /datum/internal_organ/heart,
 		"lungs" = /datum/internal_organ/lungs,
@@ -228,7 +231,7 @@
 				. = "Jeri"
 		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
-/datum/species/proc/on_species_gain(mob/living/carbon/human/H, /datum/species/old_species)
+/datum/species/proc/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	SHOULD_CALL_PARENT(TRUE) //remember to call base procs kids
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = H.get_item_by_slot(slot_id)
@@ -243,20 +246,30 @@
 	for(var/oldtrait in inherent_traits)
 		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
 
-/datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
+/// Removes all species-specific verbs and actions
+/datum/species/proc/remove_inherent_abilities(mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			H.verbs -= verb_path
+	if(inherent_actions)
+		for(var/action_path in inherent_actions)
+			var/datum/action/old_species_action = H.actions_by_path[action_path]
+			qdel(old_species_action)
 	return
 
-/datum/species/proc/add_inherent_verbs(mob/living/carbon/human/H)
+/// Adds all species-specific verbs and actions
+/datum/species/proc/add_inherent_abilities(mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			H.verbs |= verb_path
+	if(inherent_actions)
+		for(var/action_path in inherent_actions)
+			var/datum/action/new_species_action = new action_path(H)
+			new_species_action.give_action(H)
 	return
 
 /datum/species/proc/handle_post_spawn(mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
-	add_inherent_verbs(H)
+	add_inherent_abilities(H)
 
 /datum/species/proc/handle_death(mob/living/carbon/human/H) //Handles any species-specific death events.
 
@@ -391,6 +404,7 @@
 /datum/species/robot
 	name = "Combat Robot"
 	name_plural = "Combat Robots"
+	species_type = SPECIES_COMBAT_ROBOT
 	icobase = 'icons/mob/human_races/r_robot.dmi'
 	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
 	brute_damage_icon_state = "robot_brute"
@@ -414,7 +428,7 @@
 	body_temperature = 350
 
 	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB)
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
+	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
 		SLOT_W_UNIFORM,
@@ -438,41 +452,34 @@
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
+	inherent_actions = list(/datum/action/repair_self)
+
 /datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
+	H.voice_filter = "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=1,rubberband=pitch=0.8"
 	H.health_threshold_crit = -100
-	var/datum/action/repair_self/repair_action = new()
-	repair_action.give_action(H)
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
+	H.voice_filter = initial(H.voice_filter)
 	H.health_threshold_crit = -50
-	var/datum/action/repair_self/repair_action = H.actions_by_path[/datum/action/repair_self]
-	repair_action.remove_action(H)
-	qdel(repair_action)
 
-
-/mob/living/carbon/human/species/robot/handle_regular_hud_updates()
-	. = ..()
-	if(health <= 0 && health > -50)
-		clear_fullscreen("robotlow")
-		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
-	else if(health <= -50)
-		clear_fullscreen("robothalf")
-		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
+/datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
+	if(H.health <= 0 && H.health > -50)
+		H.clear_fullscreen("robotlow")
+		H.overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
+	else if(H.health <= -50)
+		H.clear_fullscreen("robothalf")
+		H.overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
 	else
-		clear_fullscreen("robothalf")
-		clear_fullscreen("robotlow")
-
-/mob/living/carbon/human/species/robot/updatehealth()
-	. = ..()
-
-	if(health > -25)
+		H.clear_fullscreen("robothalf")
+		H.clear_fullscreen("robotlow")
+	if(H.health > -25) //Staggerslowed if below crit threshold.
 		return
-	adjust_stagger(1)
-	adjust_slowdown(1)
+	H.adjust_stagger(2, capped = 10)
+	H.adjust_slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self
@@ -558,7 +565,6 @@
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
-
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
@@ -574,16 +580,17 @@
 	return TRUE
 
 
-/datum/species/early_synthetic // Worse at medical, better at engineering.
+/datum/species/early_synthetic // Worse at medical, better at engineering. Tougher in general than later synthetics.
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
-	total_health = 125
-	brute_mod = 0.70
-	burn_mod = 0.70
+	slowdown = 1.15 //Slower than Late Synths.
+	total_health = 200 //Tough boys, very tough boys.
+	brute_mod = 0.6
+	burn_mod = 0.6
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -609,7 +616,6 @@
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
-
 
 /datum/species/early_synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -659,7 +665,7 @@
 
 /datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.flags_pass |= PASSTABLE
+	H.allow_pass_flags |= PASS_LOW_STRUCTURE
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))

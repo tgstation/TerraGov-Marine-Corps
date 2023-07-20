@@ -2,7 +2,7 @@
 	caste_name = "Queen"
 	display_name = "Queen"
 	caste_type_path = /mob/living/carbon/xenomorph/queen
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
+	caste_desc = "The biggest and baddest xeno. The Queen controls the hive."
 	job_type = /datum/job/xenomorph/queen
 
 	tier = XENO_TIER_FOUR
@@ -81,7 +81,7 @@
 	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/queen/mature
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
+	caste_desc = "The biggest and baddest xeno. The Queen controls the hive."
 
 	upgrade = XENO_UPGRADE_ONE
 
