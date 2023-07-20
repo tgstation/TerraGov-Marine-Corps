@@ -1,0 +1,4 @@
+author: "forestbbbbbbb"
+delete-after: True
+changes:
+  - rscadd: "msay is tgui. rebind your msay key"
