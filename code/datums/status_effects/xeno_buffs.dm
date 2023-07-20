@@ -827,86 +827,72 @@
 // ***************************************
 // *********** Blessings
 // ***************************************
-/datum/status_effect/blessing_frenzy
-	id = "blessing of frenzy"
-	duration = 25 SECONDS
+/datum/status_effect/blessing
+	duration = -1
 	tick_interval = -1
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
 	/// The owner of this buff.
 	var/mob/living/carbon/xenomorph/buff_owner
 	///Aura strength of the puppeteer who gave this effect
-	var/strength = 1
+	var/strength = 1	
 
-/datum/status_effect/blessing_frenzy/on_creation(mob/living/new_owner, aura_strength)
+/datum/status_effect/blessing/frenzy
+	id = "blessing of frenzy"
+
+/datum/status_effect/blessing/frenzy/on_creation(mob/living/new_owner, aura_strength)
 	owner = new_owner
 	strength = aura_strength
 	return ..()
 
-/datum/status_effect/blessing_frenzy/on_apply()
+/datum/status_effect/blessing/frenzy/on_apply()
 	buff_owner = owner
 	if(!isxeno(buff_owner))
 		return FALSE
 	buff_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, strength * -0.2)
 	return TRUE
 
-/datum/status_effect/blessing_frenzy/on_remove()
+/datum/status_effect/blessing/frenzy/on_remove()
 	buff_owner.remove_movespeed_modifier(type)
 	return ..()
 
-/datum/status_effect/blessing_fury
+/datum/status_effect/blessing/fury
 	id = "blessing of fury"
-	duration = 25 SECONDS
-	tick_interval = -1
-	status_type = STATUS_EFFECT_REFRESH
-	alert_type = null
-	/// The owner of this buff.
-	var/mob/living/carbon/xenomorph/buff_owner
 	///the modifier we apply to the xenos melee damage modifier
 	var/modifier
-	///Aura strength of the puppeteer who gave this effect
-	var/strength = 1
 
-/datum/status_effect/blessing_fury/on_creation(mob/living/new_owner, aura_strength)
+/datum/status_effect/blessing/fury/on_creation(mob/living/new_owner, aura_strength)
 	owner = new_owner
 	strength = aura_strength
 	return ..()
 
-/datum/status_effect/blessing_fury/on_apply()
+/datum/status_effect/blessing/fury/on_apply()
 	buff_owner = owner
 	if(!isxeno(buff_owner))
 		return FALSE
-	modifier = strength * 0.05
+	modifier = strength * 0.08
 	buff_owner.xeno_melee_damage_modifier += modifier
 	return TRUE
 
-/datum/status_effect/blessing_fury/on_remove()
+/datum/status_effect/blessing/fury/on_remove()
 	buff_owner.xeno_melee_damage_modifier -= modifier
 	return ..()
 
-/datum/status_effect/blessing_warding
+/datum/status_effect/blessing/warding
 	id = "blessing of warding"
-	duration = 25 SECONDS
-	tick_interval = -1
-	status_type = STATUS_EFFECT_REFRESH
-	alert_type = null
-	/// The owner of this buff.
-	var/mob/living/carbon/xenomorph/buff_owner
-	///Aura strength of the puppeteer who gave this effect
-	var/strength = 1
 
-/datum/status_effect/blessing_warding/on_creation(mob/living/new_owner, aura_strength)
+/datum/status_effect/blessing/warding/on_creation(mob/living/new_owner, aura_strength)
 	owner = new_owner
 	strength = aura_strength
 	return ..()
 
-/datum/status_effect/blessing_warding/on_apply()
+/datum/status_effect/blessing/warding/on_apply()
 	buff_owner = owner
 	if(!isxeno(buff_owner))
 		return FALSE
-	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(strength * 2.5)
+	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(strength * 2.7)
 	return TRUE
 
-/datum/status_effect/blessing_warding/on_remove()
-	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(-strength * 2.5)
+/datum/status_effect/blessing/warding/on_remove()
+	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(-strength * 2.7)
 	return ..()

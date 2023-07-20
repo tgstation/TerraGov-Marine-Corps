@@ -42,7 +42,7 @@
 		/datum/action/xeno_action/activable/organic_bomb,
 		/datum/action/xeno_action/puppeteer_orders,
 		/datum/action/xeno_action/activable/articulate,
-		/datum/action/xeno_action/puppet_blessings,
+		/datum/action/xeno_action/activable/puppet_blessings,
 	)
 
 /datum/xeno_caste/puppeteer/young
@@ -111,7 +111,7 @@
 		/datum/action/xeno_action/activable/living_construct,
 		/datum/action/xeno_action/puppeteer_orders,
 		/datum/action/xeno_action/activable/articulate,
-		/datum/action/xeno_action/puppet_blessings,
+		/datum/action/xeno_action/activable/puppet_blessings,
 	)
 
 	aura_strength = 3

@@ -20,10 +20,6 @@
 	GLOB.huds[DATA_HUD_XENO_HEART].add_hud_to(src)
 	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack))
 
-/mob/living/carbon/xenomorph/puppeter/handle_special_state() //prevent us from using different run/walk sprites
-	icon_state = "[xeno_caste.caste_name] Running"
-	return TRUE
-
 /mob/living/carbon/xenomorph/puppeteer/proc/postattack(mob/living/source, useless, damage)
 	SIGNAL_HANDLER
 	if(source.stat == DEAD)

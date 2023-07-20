@@ -13,6 +13,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -1
 	allow_pass_flags = PASS_XENO
+	pass_flags = PASS_XENO
 	voice_filter = @{"[0:a] asplit [out0][out2]; [out0] asetrate=%SAMPLE_RATE%*0.9,aresample=%SAMPLE_RATE%,atempo=1/0.9,aformat=channel_layouts=mono,volume=0.2 [p0]; [out2] asetrate=%SAMPLE_RATE%*1.1,aresample=%SAMPLE_RATE%,atempo=1/1.1,aformat=channel_layouts=mono,volume=0.2[p2]; [p0][0][p2] amix=inputs=3"}
 	///our masters weakref
 	var/datum/weakref/weak_master
@@ -43,3 +44,15 @@
 		return
 	if(source != master) //puppeteer phero only
 		return FALSE
+
+/mob/living/carbon/xenomorph/puppet/med_hud_set_status()
+	. = ..()
+	hud_set_blessings()
+
+/mob/living/carbon/xenomorph/puppet/proc/hud_set_blessings()
+	var/image/holder = hud_list[XENO_BLESSING_HUD]
+	if(!holder)
+		return
+	for(var/datum/status_effect/effect AS in status_effects)
+		if(istype(effect, /datum/status_effect/blessing))
+			holder.overlays += image('icons/mob/hud.dmi', icon_state = initial(effect.id))

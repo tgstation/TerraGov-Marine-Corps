@@ -43,7 +43,7 @@
 	playsound(target_human, "alien_claw_flesh", 25, TRUE)
 	target_human.emote("scream")
 	owner_xeno.emote("roar")
-	target_human.apply_damage(45, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 20)
+	target_human.apply_damage(45, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 15)
 	target_human.Paralyze(0.8 SECONDS)
 
 	owner_xeno.gain_plasma(owner_xeno.xeno_caste.flay_plasma_gain)
@@ -397,43 +397,49 @@
 	add_cooldown()
 
 // ***************************************
-// *********** Blessings
+// *********** Blessing
 // ***************************************
-/datum/action/xeno_action/puppet_blessings
-	name = "Bestow Blessings"
+/datum/action/xeno_action/activable/puppet_blessings
+	name = "Bestow Blessing"
 	action_icon_state = "emit_pheromones"
-	plasma_cost = 50
-	desc = "Give blessings to your puppets."
-	cooldown_timer = 75 SECONDS
+	plasma_cost = 200
+	desc = "Give a permanent upgrade to a puppet."
+	cooldown_timer = 30 SECONDS
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
+	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BESTOWBLESSINGS,
 	)
 
-/datum/action/xeno_action/puppet_blessings/action_activate()
-	var/mob/living/carbon/xenomorph/xeno = owner
-	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = xeno.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
-	if(length(huskaction.puppets) <= 0)
-		xeno.balloon_alert(xeno, "no puppets")
+/datum/action/xeno_action/activable/puppet_blessings/can_use_ability(mob/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
 		return fail_activate()
+	if(!istype(target, /mob/living/carbon/xenomorph/puppet))
+		owner.balloon_alert(owner, "not a puppet")
+		return fail_activate()
+	succeed_activate()
+
+/datum/action/xeno_action/activable/puppet_blessings/use_ability(mob/living/victim)
+	var/mob/living/carbon/xenomorph/xeno = owner
 	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_phero_images_list, radius = 35)
 	if(!choice)
 		return fail_activate()
 	var/effect_path
 	switch(choice)
 		if(AURA_XENO_BLESSFRENZY)
-			effect_path = /datum/status_effect/blessing_frenzy
+			effect_path = /datum/status_effect/blessing/frenzy
 		if(AURA_XENO_BLESSFURY)
-			effect_path = /datum/status_effect/blessing_fury
-		if(AURA_XENO_BLESSFRENZY)
-			effect_path = /datum/status_effect/blessing_warding
-
-	for(var/mob/living/carbon/xenomorph/puppet/puppet in huskaction.puppets)
-		puppet.apply_status_effect(effect_path, xeno.xeno_caste.aura_strength)
-
-	xeno.balloon_alert(xeno, "[choice]")
+			effect_path = /datum/status_effect/blessing/fury
+		if(AURA_XENO_BLESSWARDING)
+			effect_path = /datum/status_effect/blessing/warding
+	if(victim.has_status_effect(effect_path))
+		victim.balloon_alert(owner, "already has this blessing!")
+		return fail_activate()
+	victim.balloon_alert(owner, "[choice]")
+	victim.apply_status_effect(effect_path, xeno.xeno_caste.aura_strength)
+	victim.med_hud_set_status()
 	playsound(get_turf(xeno), "alien_drool", 25)
-	succeed_activate()
 	add_cooldown()
 
 // ***************************************
