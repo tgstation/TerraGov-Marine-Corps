@@ -471,6 +471,29 @@
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
 
+
+/**
+ * This proc decides whether a thrown object can pass a turf it is in and checks for throw impacts, aswell as possible parrying things.
+ * Normally returns nothing / null, except when parried in which case it returns whatever parried it.
+**/
+/atom/movable/proc/hit_check(speed, flying = FALSE)
+	if(!throwing)
+		return
+	for(var/atom/A in get_turf(src))
+		if(A == src)
+			continue
+		if(isliving(A))
+			var/mob/living/L = A
+			if(pass_flags & PASS_MOB || (!L.density || (L.pass_flags & PASS_THROW)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
+				continue
+			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
+				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
+				return A
+			throw_impact(A, speed)
+		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.allow_pass_flags & PASS_THROW) || iscarbon(src)) && !flying)
+			throw_impact(A, speed)
+
+
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
 	if(!target || !src)
@@ -499,6 +522,7 @@
 		setDir(get_dir(src, target))
 		flags_atom |= DIRLOCK
 
+	var/atom/parrier	//If something parried the throw, this is set and prevents default throw ending in favor of triggering another throw back to its source.
 	throw_source = get_turf(src)	//store the origin turf
 
 	var/dist_x = abs(target.x - x)
@@ -526,7 +550,10 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				Move(step)
+				var/hit_check_return = hit_check(speed, flying)
+				if(hit_check_return)
+					parrier = hit_check_return
 					break
 				error += dist_x
 				dist_since_sleep++
@@ -537,7 +564,10 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				Move(step)
+				var/hit_check_return = hit_check(speed, flying)
+				if(hit_check_return)
+					parrier = hit_check_return
 					break
 				error -= dist_y
 				dist_since_sleep++
@@ -552,7 +582,10 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				Move(step)
+				var/hit_check_return = hit_check(speed, flying)
+				if(hit_check_return)
+					parrier = hit_check_return
 					break
 				error += dist_y
 				dist_since_sleep++
@@ -563,7 +596,10 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				Move(step)
+				var/hit_check_return = hit_check(speed, flying)
+				if(hit_check_return)
+					parrier = hit_check_return
 					break
 				error -= dist_x
 				dist_since_sleep++
@@ -574,6 +610,9 @@
 	//done throwing, either because it hit something or it finished moving
 	if(!originally_dir_locked)
 		flags_atom &= ~DIRLOCK
+	if(parrier)
+		INVOKE_NEXT_TICK(src, PROC_REF(throw_at), (thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
+		return	//Do not trigger final turf impact nor throw end comsigs as it returns back to its source and should be treated as a single throw.
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
