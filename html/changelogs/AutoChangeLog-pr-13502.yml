@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - admin: "Deadchat now uses the OOC chat filter"
