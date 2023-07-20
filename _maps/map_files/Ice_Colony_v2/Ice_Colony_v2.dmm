@@ -1611,6 +1611,13 @@
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
+"amm" = (
+/obj/structure/mirror{
+	pixel_y = 25
+	},
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/excavationbarracks)
 "amp" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
@@ -4950,6 +4957,7 @@
 /area/ice_colony/surface/garage/two)
 "aEf" = (
 /obj/structure/cable,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
 "aEg" = (
@@ -13846,6 +13854,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bGl" = (
 /obj/structure/cable,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
 "bGm" = (
@@ -18576,6 +18585,10 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"cUB" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open/garbledradio)
 "cUW" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
@@ -18860,6 +18873,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
+"dpq" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves)
 "dpy" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -19126,6 +19143,9 @@
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
 	name = "Engi"
+	},
+/obj/structure/sign/safety/hazard{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -20060,6 +20080,7 @@
 	id = "SOM_11";
 	name = "SOM exit point 11"
 	},
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "ffZ" = (
@@ -20697,6 +20718,11 @@
 /obj/structure/largecrate/supply/supplies/coifs,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad)
+"gaf" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open/garbledradio)
 "gbf" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/medical/bloodpack,
@@ -22354,6 +22380,11 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west/garbledradio)
+"iEO" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/closed/mineral/smooth/bluefrostwall,
+/area/ice_colony/exterior/underground/caves/rock)
 "iET" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -23487,6 +23518,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
+"kfL" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/ice_w)
 "kgh" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating,
@@ -25037,6 +25072,10 @@
 "mfG" = (
 /turf/closed/wall,
 /area/ice_colony/surface/hydroponics/lobby)
+"mfV" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
 "mgS" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/powercell,
@@ -27925,6 +27964,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
+"qla" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/closed/mineral/smooth/bluefrostwall,
+/area/ice_colony/underground/maintenance/south)
 "qlb" = (
 /turf/closed/mineral/smooth/darkfrostwall,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -31411,6 +31456,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
+"uJz" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/structure/sign/safety/hazard{
+	dir = 4
+	},
+/turf/closed/mineral/smooth/darkfrostwall,
+/area/ice_colony/exterior/underground/caves/rock)
 "uJB" = (
 /obj/machinery/hydroponics,
 /turf/open/ground/grass,
@@ -32105,6 +32157,10 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves)
+"vBp" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "vBs" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 1
@@ -32933,6 +32989,12 @@
 "wIE" = (
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
+"wJb" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/ice_colony/underground/requesition/sec_storage)
 "wJi" = (
 /obj/structure/dispenser,
 /turf/open/floor/plating,
@@ -36321,7 +36383,7 @@ xJX
 xJX
 yeX
 xJX
-qbo
+cUB
 qbo
 omc
 qbo
@@ -36703,7 +36765,7 @@ uSg
 uSg
 uSg
 uSg
-oxN
+kfL
 oxN
 oxN
 wye
@@ -39345,7 +39407,7 @@ uZI
 dPf
 dPf
 dPf
-dPf
+wJb
 dPf
 oji
 qnN
@@ -45013,7 +45075,7 @@ uqz
 dmv
 dmv
 dmv
-duN
+iEO
 uSg
 xJX
 xJX
@@ -50637,7 +50699,7 @@ uPy
 bqx
 boJ
 rXg
-xQb
+qla
 wWA
 wWA
 iwO
@@ -54048,7 +54110,7 @@ xJX
 xJX
 xJX
 uSg
-duN
+iEO
 fIm
 fIm
 fIm
@@ -55151,7 +55213,7 @@ fox
 evo
 arE
 aWl
-arQ
+mfV
 arQ
 arF
 avn
@@ -57607,7 +57669,7 @@ uQB
 bwK
 jcV
 bwK
-bwK
+dpq
 uQB
 xVo
 bCg
@@ -59105,7 +59167,7 @@ uSg
 uSg
 uSg
 uSg
-duN
+iEO
 xYB
 bMs
 bMY
@@ -60108,7 +60170,7 @@ xJX
 xJX
 xJX
 bVC
-bVN
+amm
 bWh
 bVC
 bWJ
@@ -63576,7 +63638,7 @@ ePo
 ePo
 ePo
 ePo
-ePo
+vBp
 dSq
 aaa
 "}
@@ -64100,7 +64162,7 @@ xJX
 xJX
 xJX
 xJX
-ghx
+uJz
 duN
 dJU
 aOf
@@ -68255,7 +68317,7 @@ xJX
 uSg
 uSg
 uSg
-duN
+iEO
 duN
 xJX
 adj
@@ -70326,7 +70388,7 @@ qyK
 qbo
 qbo
 qbo
-omc
+gaf
 qyK
 tbJ
 uSg
@@ -70358,7 +70420,7 @@ ePo
 ePo
 ePo
 ePo
-ePo
+vBp
 xxV
 uQB
 dSq
@@ -75072,7 +75134,7 @@ duN
 aiX
 adj
 duN
-duN
+iEO
 uSg
 uSg
 xJX
