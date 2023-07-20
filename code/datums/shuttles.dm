@@ -141,15 +141,15 @@
 	display_name = "Tadpole NK-Haul Model"
 
 /datum/map_template/shuttle/minidropship/mobile_bar
-    suffix = "_mobile_bar"
-    description = "A Tadpole modified to provide drinks and disservices. God dammit it's him again, I thought we got rid of him."
-    display_name = "Tadpole Mobile-Bar Model"
+    suffix =	"_mobile_bar"
+    description =	"A Tadpole modified to provide drinks and disservices. God dammit it's him again, I thought we got rid of him."
+    display_name =	"Tadpole Mobile-Bar Model"
 
 /datum/map_template/shuttle/minidropship/combat_tad
-    suffix = "_combat_tad"
-    description = "A Tadpole model modified to have three weapon hardpoints instead of just one, the majority of the other standard features had to be scrapped to fit all three of them on. Also comes equipped with 2 electric hardpoints."
-    display_name = "Tadpole Combat Model"
- 
+    suffix =	"_combat_tad"
+    description =	"A Tadpole model modified to have three weapon hardpoints instead of just one, the majority of the other standard features had to be scrapped to fit all three of them on. Also comes equipped with 2 electric hardpoints."
+    display_name =	"Tadpole Combat Model"
+
 /datum/map_template/shuttle/minidropship/umbilical
 	suffix =	"_umbilical"
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
