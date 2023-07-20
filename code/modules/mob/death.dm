@@ -42,6 +42,7 @@
 			qdel(src)
 		return
 	set_stat(DEAD)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src)
 	log_combat(src, src, "[deathmessage]")
 
 	if(deathmessage && !silent && !gibbing)
