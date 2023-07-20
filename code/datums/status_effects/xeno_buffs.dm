@@ -829,21 +829,30 @@
 // ***************************************
 /datum/status_effect/blessing
 	duration = -1
-	tick_interval = -1
+	tick_interval = 5 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
 	/// The owner of this buff.
 	var/mob/living/carbon/xenomorph/buff_owner
 	///Aura strength of the puppeteer who gave this effect
 	var/strength = 1	
+	///weakref to the puppeteer to set strength
+	var/datum/weakref/puppeteer
+
+/datum/status_effect/blessing/tick()
+	var/mob/living/carbon/xenomorph/xeno = puppeteer?.resolve()
+	if(!xeno)
+		return
+	strength = xeno.xeno_caste.aura_strength
+
+/datum/status_effect/blessing/on_creation(mob/living/new_owner, mob/living/carbon/xenomorph/caster)
+	owner = new_owner
+	puppeteer = WEAKREF(caster)
+	strength = caster.xeno_caste.aura_strength
+	return ..()
 
 /datum/status_effect/blessing/frenzy
 	id = "blessing of frenzy"
-
-/datum/status_effect/blessing/frenzy/on_creation(mob/living/new_owner, aura_strength)
-	owner = new_owner
-	strength = aura_strength
-	return ..()
 
 /datum/status_effect/blessing/frenzy/on_apply()
 	buff_owner = owner
@@ -861,11 +870,6 @@
 	///the modifier we apply to the xenos melee damage modifier
 	var/modifier
 
-/datum/status_effect/blessing/fury/on_creation(mob/living/new_owner, aura_strength)
-	owner = new_owner
-	strength = aura_strength
-	return ..()
-
 /datum/status_effect/blessing/fury/on_apply()
 	buff_owner = owner
 	if(!isxeno(buff_owner))
@@ -880,11 +884,6 @@
 
 /datum/status_effect/blessing/warding
 	id = "blessing of warding"
-
-/datum/status_effect/blessing/warding/on_creation(mob/living/new_owner, aura_strength)
-	owner = new_owner
-	strength = aura_strength
-	return ..()
 
 /datum/status_effect/blessing/warding/on_apply()
 	buff_owner = owner

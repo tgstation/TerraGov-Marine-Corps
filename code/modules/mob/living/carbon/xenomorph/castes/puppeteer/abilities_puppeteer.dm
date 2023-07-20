@@ -438,7 +438,7 @@
 		victim.balloon_alert(owner, "already has this blessing!")
 		return fail_activate()
 	victim.balloon_alert(owner, "[choice]")
-	victim.apply_status_effect(effect_path, xeno.xeno_caste.aura_strength)
+	victim.apply_status_effect(effect_path, xeno)
 	victim.med_hud_set_status()
 	playsound(get_turf(xeno), "alien_drool", 25)
 	add_cooldown()
