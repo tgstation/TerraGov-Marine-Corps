@@ -63,6 +63,9 @@
 	///used for cooldown when AI pings the location of a xeno or xeno structure
 	COOLDOWN_DECLARE(last_pinged_marines)
 
+	///stores the last time the AI manually scanned the planet. we don't do cooldown_declare because we need the world time for our game panel
+	var/last_ai_bioscan
+
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
 	. = ..()
@@ -380,6 +383,11 @@
 			stat("Railgun status:", "Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds.")
 		else
 			stat("Railgun status:", "Railgun is ready to fire.")
+
+		if(last_ai_bioscan + COOLDOWN_AI_BIOSCAN > world.time)
+			stat("AI bioscan status:", "Instruments recalibrating, next scan in [(last_ai_bioscan  + COOLDOWN_AI_BIOSCAN - world.time)/10] seconds.") //about 10 minutes
+		else
+			stat("AI bioscan status:", "Instruments are ready to scan the planet.")
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()

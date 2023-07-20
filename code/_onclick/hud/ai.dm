@@ -46,6 +46,17 @@
 	var/mob/living/silicon/ai/AI = usr
 	AI.announcement_help()
 
+/atom/movable/screen/ai/bioscan
+	name = "Issue bioscan"
+	icon_state = "alerts"
+
+/atom/movable/screen/ai/bioscan/Click()
+	. = ..()
+	if(.)
+		return
+	var/mob/living/silicon/ai/AI = usr
+	AI.ai_bioscan(GLOB.current_orbit)
+
 /atom/movable/screen/ai/camera_list/Click()
 	. = ..()
 	if(.)
@@ -149,6 +160,11 @@
 //Add multicamera camera
 	using = new /atom/movable/screen/ai/add_multicam()
 	using.screen_loc = ui_ai_add_multicam
+	static_inventory += using
+
+//Bio scan
+	using = new /atom/movable/screen/ai/bioscan()
+	using.screen_loc = ui_ai_bioscan
 	static_inventory += using
 
 /atom/movable/screen/alert/ai_notify

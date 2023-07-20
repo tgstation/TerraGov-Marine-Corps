@@ -119,6 +119,61 @@
 	for(var/word in words) //play vox sounds to the rest of our zlevel
 		play_vox_word(word, src.z, null)
 
+// make sure you don't turn 0 into a false positive
+#define BIOSCAN_DELTA(count, delta) count ? max(0, count + rand(-delta, delta)) : 0
+
+///Annonce to everyone the number of xeno and marines on ship and ground
+/mob/living/silicon/ai/proc/ai_bioscan(delta = 1)
+
+	#ifndef TESTING
+	if((last_ai_bioscan + COOLDOWN_AI_BIOSCAN) > world.time)
+		to_chat(usr, "Bioscan instruments are still recalibrating from their last use.")
+		return
+	#endif
+	last_ai_bioscan = world.time
+
+	var/list/list/counts = list()
+	var/list/list/area/locations = list()
+
+	for(var/trait in GLOB.bioscan_locations)
+		counts[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
+		locations[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
+		for(var/i in SSmapping.levels_by_trait(trait))
+			var/list/parsed_xenos = GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]?.Copy()
+			for(var/mob/living/carbon/xenomorph/xeno in parsed_xenos)
+				if(xeno.xeno_caste.caste_flags & CASTE_NOT_IN_BIOSCAN)
+					parsed_xenos -= xeno
+			counts[trait][FACTION_XENO] += length(parsed_xenos)
+			counts[trait][FACTION_TERRAGOV] += length(GLOB.humans_by_zlevel["[i]"])
+			if(length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
+				locations[trait][FACTION_XENO] = get_area(pick(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
+			if(length(GLOB.humans_by_zlevel["[i]"]))
+				locations[trait][FACTION_TERRAGOV] = get_area(pick(GLOB.humans_by_zlevel["[i]"]))
+
+	var/numHostsPlanet = counts[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/numHostsShip = counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/numXenosPlanet = counts[ZTRAIT_GROUND][FACTION_XENO]
+	var/numXenosShip = counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
+	var/numXenosTransit = counts[ZTRAIT_RESERVED][FACTION_XENO]
+	var/hostLocationP = locations[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/hostLocationS = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/xenoLocationP = locations[ZTRAIT_GROUND][FACTION_XENO]
+
+	//Adjust the randomness there so everyone gets the same thing
+	var/numXenosPlanetr = BIOSCAN_DELTA(numXenosPlanet, delta)
+	var/numXenosSilo = BIOSCAN_DELTA(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]), 1) //to prevent craziness delta is always 1 for silo detection
+
+	var/name = "[usr.name] Bioscan Status"
+	var/input = {"Bioscan complete.
+
+Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship, [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere, [numXenosTransit || "no"] unknown lifeform signature[numXenosTransit > 1 ? "s":""] in transit, and [numXenosSilo ? "approximately [numXenosSilo]":"no"] silo[numXenosSilo > 1 ? "s":""] groundside."}
+
+	priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
+
+	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""], [numXenosTransit] in transit, Silos: [numXenosSilo].")
+
+#undef BIOSCAN_DELTA
+
 ///play vox words for mobs on our zlevel
 /proc/play_vox_word(word, z_level, mob/only_listener)
 
