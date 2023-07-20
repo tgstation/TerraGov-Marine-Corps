@@ -291,17 +291,18 @@
 /datum/action/xeno_action/activable/organic_bomb/proc/detonate(mob/living/puppet)
 	SIGNAL_HANDLER
 	UnregisterSignal(puppet, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_MOB_DEATH))
-	if(QDELETED(puppet))
-		return
-	puppet.visible_message(span_danger("[puppet] ruptures, releasing corrosive acid!"))
 	var/turf/our_turf = get_turf(puppet)
+	our_turf.visible_message(span_danger("[puppet] ruptures, releasing corrosive acid!"))
 	playsound(our_turf, 'sound/bullets/acid_impact1.ogg', 50, 1)
-	puppet.gib()
+	if(!QDELETED(puppet))
+		puppet.gib()
 
 	for(var/turf/acid_tile AS in RANGE_TURFS(2, our_turf))
+		if(!line_of_sight(our_turf,acid_tile) || isclosedturf(acid_tile))
+			continue
 		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
-			new /obj/effect/xenomorph/spray(acid_tile, 10 SECONDS, 16)
+			new /obj/effect/xenomorph/spray(acid_tile, 12 SECONDS, 16)
 // ***************************************
 // *********** Articulate
 // ***************************************
