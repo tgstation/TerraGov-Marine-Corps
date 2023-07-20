@@ -1,24 +1,103 @@
-"a" = (/obj/structure/barricade/plasteel{dir = 8},/obj/structure/barricade/plasteel,/turf/open/floor/mainship/mono,/area/shuttle/minidropship)
-"b" = (/obj/structure/barricade/plasteel{dir = 4},/turf/open/floor/mainship/mono,/area/shuttle/minidropship)
-"c" = (/obj/structure/dropship_piece/tadpole/cockpit/left{dir = 1},/obj/effect/attach_point/electronics/dropship1,/turf/open/floor/mainship/mono,/area/shuttle/minidropship)
-"h" = (/turf/closed/shuttle/dropship2/singlewindow/tadpole,/area/shuttle/minidropship)
-"m" = (/obj/structure/barricade/plasteel{dir = 8},/turf/open/floor/mainship/mono,/area/shuttle/minidropship)
-"o" = (/obj/structure/dropship_piece/tadpole/cockpit/right{dir = 1},/obj/effect/attach_point/electronics/dropship1,/turf/open/floor/mainship/mono,/area/shuttle/minidropship)
-"s" = (/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,/obj/machinery/camera/autoname/mainship,/turf/open/floor/mainship/mono,/area/shuttle/minidropship)
-"u" = (/turf/open/floor/plating/plating_catwalk,/area/shuttle/minidropship)
-"v" = (/obj/structure/barricade/plasteel{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/shuttle/minidropship)
-"y" = (/obj/structure/barricade/plasteel{dir = 8},/turf/open/floor/plating/plating_catwalk,/area/shuttle/minidropship)
-"A" = (/obj/structure/barricade/plasteel,/turf/open/floor/plating/plating_catwalk,/area/shuttle/minidropship)
-"W" = (/obj/structure/barricade/plasteel,/obj/structure/barricade/plasteel{dir = 4},/turf/open/floor/mainship/mono,/area/shuttle/minidropship)
-"X" = (/obj/effect/attach_point/crew_weapon/minidropship,/turf/open/floor/mainship/mono,/area/shuttle/minidropship)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/obj/structure/barricade/plasteel,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"b" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"c" = (
+/obj/structure/dropship_piece/tadpole/cockpit/left{
+	dir = 1
+	},
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"h" = (
+/turf/closed/shuttle/dropship2/singlewindow/tadpole,
+/area/shuttle/minidropship)
+"m" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"o" = (
+/obj/structure/dropship_piece/tadpole/cockpit/right{
+	dir = 1
+	},
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"s" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"u" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"v" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"y" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"A" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"W" = (
+/obj/structure/barricade/plasteel,
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"X" = (
+/obj/effect/attach_point/crew_weapon/minidropship,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
 
 (1,1,1) = {"
-cho
-msb
-yXv
-mub
-yXv
-mub
-yXv
-aAW
+c
+m
+y
+m
+y
+m
+y
+a
+"}
+(2,1,1) = {"
+h
+s
+X
+u
+X
+u
+X
+A
+"}
+(3,1,1) = {"
+o
+b
+v
+b
+v
+b
+v
+W
 "}
