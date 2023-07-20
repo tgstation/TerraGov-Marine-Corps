@@ -28,7 +28,7 @@
 	greyscale_config = /datum/greyscale_config/armor_mk1/scout
 
 /obj/item/armor_module/armor/chest/marine/skirmisher/trooper
-	name = "\improper Jaeger Pattern Trooper chestplates"
+	name = "\improper Jaeger Pattern Trooper test chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Trooper armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/trooper
 
