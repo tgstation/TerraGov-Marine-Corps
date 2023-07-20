@@ -4957,7 +4957,6 @@
 /area/ice_colony/surface/garage/two)
 "aEf" = (
 /obj/structure/cable,
-/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
 "aEg" = (
@@ -13854,7 +13853,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bGl" = (
 /obj/structure/cable,
-/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
 "bGm" = (
@@ -18588,7 +18586,7 @@
 "cUB" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/open/garbledradio)
+/area/ice_colony/exterior/surface/valley/northeast)
 "cUW" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
@@ -20719,10 +20717,9 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad)
 "gaf" = (
-/obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/open/garbledradio)
+/area/ice_colony/underground/maintenance/east)
 "gbf" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/medical/bloodpack,
@@ -23950,6 +23947,7 @@
 "kFo" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "kFu" = (
@@ -36383,7 +36381,7 @@ xJX
 xJX
 yeX
 xJX
-cUB
+qbo
 qbo
 omc
 qbo
@@ -45075,7 +45073,7 @@ uqz
 dmv
 dmv
 dmv
-iEO
+duN
 uSg
 xJX
 xJX
@@ -54110,7 +54108,7 @@ xJX
 xJX
 xJX
 uSg
-iEO
+duN
 fIm
 fIm
 fIm
@@ -59167,7 +59165,7 @@ uSg
 uSg
 uSg
 uSg
-iEO
+duN
 xYB
 bMs
 bMY
@@ -59379,7 +59377,7 @@ duN
 duN
 bFH
 evb
-bFH
+gaf
 ikJ
 bMs
 bMs
@@ -63638,7 +63636,7 @@ ePo
 ePo
 ePo
 ePo
-vBp
+ePo
 dSq
 aaa
 "}
@@ -68317,7 +68315,7 @@ xJX
 uSg
 uSg
 uSg
-iEO
+duN
 duN
 xJX
 adj
@@ -68954,7 +68952,7 @@ uSg
 uSg
 duN
 kvA
-adj
+cUB
 adj
 adj
 xJX
@@ -70388,7 +70386,7 @@ qyK
 qbo
 qbo
 qbo
-gaf
+omc
 qyK
 tbJ
 uSg
