@@ -48,7 +48,7 @@
 
 /atom/movable/screen/ai/bioscan
 	name = "Issue bioscan"
-	icon_state = "alerts"
+	icon_state = "bioscan"
 
 /atom/movable/screen/ai/bioscan/Click()
 	. = ..()
@@ -162,7 +162,7 @@
 	using.screen_loc = ui_ai_add_multicam
 	static_inventory += using
 
-//Bio scan
+//bioscan
 	using = new /atom/movable/screen/ai/bioscan()
 	using.screen_loc = ui_ai_bioscan
 	static_inventory += using
