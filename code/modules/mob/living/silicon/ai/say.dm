@@ -127,8 +127,8 @@
 ///Annonce to everyone the number of xeno and marines on ship and ground
 /mob/living/silicon/ai/proc/ai_bioscan(delta = 1)
 
-	to_chat(user, span_warning("Scanning for hostile lifeforms..."))
-	if(!do_after(user, AI_SCAN_DELAY , TRUE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+	to_chat(usr, span_warning("Scanning for hostile lifeforms..."))
+	if(!do_after(usr, AI_SCAN_DELAY , TRUE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
 		return
 
 	#ifndef TESTING
@@ -179,13 +179,13 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""], [numXenosTransit] in transit, Silos: [numXenosSilo].")
 
 	switch(GLOB.current_orbit)
-		if(LOW_ORBIT)
+		if(1)
 			to_chat(usr, "Signal analysis reveals excellent detail about hostile movements and numbers.")
 			return
-		if(STANDARD_ORBIT)
+		if(3)
 			to_chat(usr, "Minor corruption detected in our bioscan instruments, some information about hostile activity may be incorrect.")
 			return
-		if(HIGH_ORBIT)
+		if(5)
 			to_chat(usr, "Major corruption detected in our bioscan readings, information heavily corrupted.")
 
 #undef AI_SCAN_DELAY
