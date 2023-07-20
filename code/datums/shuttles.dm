@@ -147,7 +147,7 @@
 
 /datum/map_template/shuttle/minidropship/combat_tad
     suffix = "_combat_tad"
-    description = "A Tadpole modified to have three hardpoints instead of just one, the majority of the other standerd featured had to be scrapped to fit all three of them on. Also comes equiped with 2 electric hardpoints"
+    description = "A Tadpole model modified to have three weapon hardpoints instead of just one, the majority of the other standard features had to be scrapped to fit all three of them on. Also comes equipped with 2 electric hardpoints."
     display_name = "Tadpole Combat Model"
  
 /datum/map_template/shuttle/minidropship/umbilical
