@@ -47,7 +47,7 @@
 	AI.announcement_help()
 
 /atom/movable/screen/ai/bioscan
-	name = "Issue bioscan"
+	name = "Issue Manual Bioscan"
 	icon_state = "bioscan"
 
 /atom/movable/screen/ai/bioscan/Click()

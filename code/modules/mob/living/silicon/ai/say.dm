@@ -122,7 +122,7 @@
 // make sure you don't turn 0 into a false positive
 #define BIOSCAN_DELTA(count, delta) count ? max(0, count + rand(-delta, delta)) : 0
 
-#define AI_SCAN_DELAY 45 SECONDS
+#define AI_SCAN_DELAY 15 SECONDS
 
 ///Annonce to everyone the number of xeno and marines on ship and ground
 /mob/living/silicon/ai/proc/ai_bioscan(delta = 1)
