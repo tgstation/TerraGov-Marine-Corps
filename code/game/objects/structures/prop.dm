@@ -637,6 +637,15 @@
 	resistance_flags = RESIST_ALL
 	density = TRUE
 
+/obj/structure/prop/mainship/prop_tech/som
+	name = "SOM technician"
+	desc = "A hard working SOM technician maintaining the vehicles of the base, as well as the base itself. They seem to be very busy investigating something right now."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "SOM_technician"
+
+/obj/structure/prop/mainship/prop_tech/som/alt
+	icon_state = "SOM_technician_2"
+
 /obj/structure/prop/mainship/prop_sominf
 	name = "SOM Infantry"
 	desc = "Standard Sons of Mars infantry with a V-31 assault rifle on hand. While their face is obscured by the visor, it feels like you should keep going instead of loitering around."
@@ -645,6 +654,36 @@
 	resistance_flags = RESIST_ALL
 	density = TRUE
 
+/obj/structure/prop/mainship/prop_sominf/heavy
+	name = "SOM heavy infantry"
+	desc = "Heavy Sons of Mars infantry with a VX-32 charger on hand. While their face is obscured by the visor, it feels like you should keep going instead of loitering around."
+	icon_state = "SOM_heavy_armed"
+
+/obj/structure/prop/mainship/prop_sominf/heavy/unarmed
+	name = "SOM heavy infantry"
+	desc = "Heavy Sons of Mars infantry. Better leave them to whatever it is they're doing"
+	icon_state = "SOM_heavy"
+
+/obj/structure/prop/mainship/prop_sominf/lorica
+	name = "SOM heavy infantry"
+	desc = "Sons of Mars infantry in heavy duty Lorica armor, with a VX-32 charger on hand. They don't look like they're messing around."
+	icon_state = "lorica_armed"
+
+/obj/structure/prop/mainship/prop_sominf/lorica/unarmed
+	name = "SOM heavy infantry"
+	desc = "Sons of Mars infantry in heavy duty Lorica armor. They look pretty tough."
+	icon_state = "lorica"
+
+/obj/structure/prop/mainship/som_scientist
+	name = "SOM scientist"
+	desc = "A hard working SOM scientist type. They look like they're doing something important."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "SOM_scientist"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
+/obj/structure/prop/mainship/som_scientist/alt
+	icon_state = "SOM_scientist_2"
 
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
