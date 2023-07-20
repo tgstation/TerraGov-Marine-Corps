@@ -250,3 +250,20 @@
       a locker or ventcrawl
   novaepee:
   - rscadd: kilt; use facepaint on kama to choose kilt in the variety tab
+2023-07-20:
+  '? code ???':
+  - bugfix: Fixed status effects sometimes getting stuck on living or dead mobs
+  Lumipharon:
+  - bugfix: HvH - Fixed melee head stuns being far shorter than intended
+  - balance: Mounted guns have normalised bullet, laser and energy armor
+  - code_imp: Removed some dead code out of throw code
+  - balance: Mounted guns are dense when mounted again. Crushers rejoice
+  - bugfix: fixed some issues with xeno leaps
+  - bugfix: Throwing mobs through barbed plasteel cades when down will no longer hit
+      them 50 times
+  TiviPlus:
+  - admin: Deadchat now uses the OOC chat filter
+  chizzy376:
+  - rscadd: You can buy the rsr console at req for 200
+  ivanmixo:
+  - rscadd: Added a teleport to location on map ability for hivemind
