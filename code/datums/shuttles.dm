@@ -149,7 +149,7 @@
     suffix = "_combat_tad"
     description = "A Tadpole modified to have three hardpoints instead of just one, the majority of the other standerd featured had to be scrapped to fit all three of them on. Also comes equiped with 2 electric hardpoints"
     display_name = "Tadpole Combat Model"
- 
+
 /datum/map_template/shuttle/minidropship/umbilical
 	suffix = "_umbilical"
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
