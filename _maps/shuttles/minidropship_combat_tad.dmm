@@ -25,7 +25,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
-/area/space)
+/area/shuttle/minidropship)
 "k" = (
 /obj/structure/dropship_piece/tadpole/cockpit/left{
 	dir = 1
@@ -49,7 +49,7 @@
 "o" = (
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /turf/open/floor/mainship/mono,
-/area/space)
+/area/shuttle/minidropship)
 "s" = (
 /obj/machinery/light,
 /obj/structure/bed/chair/dropship/pilot{

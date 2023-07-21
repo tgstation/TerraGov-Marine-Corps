@@ -18,20 +18,17 @@
 	dir = 1
 	},
 /area/shuttle/minidropship)
+"e" = (
+/obj/structure/table/gamblingtable,
+/obj/machinery/chem_dispenser/beer{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/shuttle/minidropship)
 "f" = (
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
-"i" = (
-/obj/structure/table/gamblingtable,
-/obj/machinery/chem_dispenser/soda{
-	dir = 4
-	},
-/turf/open/floor/carpet/side{
-	dir = 8
-	},
-/area/shuttle/minidropship)
 "k" = (
-/obj/machinery/vending/boozeomat,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -62,8 +59,6 @@
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/obj/structure/table/gamblingtable,
-/obj/item/reagent_containers/food/drinks/shaker,
 /turf/open/floor/carpet/side{
 	dir = 8
 	},
@@ -80,18 +75,21 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "v" = (
+/obj/machinery/light,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/structure/table/fancywoodentable,
 /obj/structure/dropship_piece/tadpole/engine{
 	dir = 1;
-	pixel_x = -23;
-	pixel_y = -14
+	pixel_x = -23
 	},
-/turf/closed/wall/sulaco/hull,
+/turf/open/floor/mainship/white{
+	dir = 8
+	},
 /area/shuttle/minidropship)
 "w" = (
-/obj/structure/table/gamblingtable,
-/obj/machinery/chem_dispenser/beer{
-	dir = 4
-	},
 /turf/open/floor/carpet/side{
 	dir = 8
 	},
@@ -123,6 +121,7 @@
 /obj/item/clothing/under/liaison_suit/galaxy_red,
 /obj/item/clothing/under/liaison_suit/galaxy_blue,
 /obj/item/book/manual/barman_recipes,
+/obj/item/reagent_containers/food/drinks/shaker,
 /turf/open/floor/carpet/side{
 	dir = 5
 	},
@@ -171,13 +170,8 @@
 	dir = 2;
 	id = "minidropship_podlock"
 	},
-/obj/structure/barricade/plasteel,
-/obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
-	dir = 1
-	},
-/turf/open/floor/carpet/side{
-	dir = 10
-	},
+/obj/machinery/vending/boozeomat,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "H" = (
 /obj/structure/dropship_piece/tadpole/rearleft{
@@ -202,7 +196,11 @@
 /turf/open/floor/carpet/side,
 /area/shuttle/minidropship)
 "M" = (
-/turf/closed/wall/sulaco/hull,
+/obj/structure/table/gamblingtable,
+/obj/machinery/chem_dispenser/soda{
+	dir = 4
+	},
+/turf/open/floor/carpet,
 /area/shuttle/minidropship)
 "O" = (
 /obj/machinery/door/poddoor/mainship/open{
@@ -280,8 +278,8 @@ a
 Q
 b
 f
-M
-M
+o
+o
 v
 H
 "}
@@ -290,7 +288,7 @@ a
 W
 x
 r
-i
+w
 w
 k
 G
@@ -300,8 +298,8 @@ a
 u
 S
 T
-F
-F
+M
+e
 F
 K
 "}
