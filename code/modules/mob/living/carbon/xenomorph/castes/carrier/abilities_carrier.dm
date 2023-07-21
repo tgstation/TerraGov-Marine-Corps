@@ -140,6 +140,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		personal_statistics.traps_created++
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
 	new /obj/structure/xeno/trap(T, owner.get_xeno_hivenumber())

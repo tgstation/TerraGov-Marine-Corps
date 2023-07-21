@@ -541,5 +541,12 @@
 	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
+/obj/item/weapon/gun/standard_agls/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(gun_user.client && istype(in_chamber, /obj/item/ammo_magazine/standard_agls/incendiary))
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.client]
+		personal_statistics.war_crimes++
 
 

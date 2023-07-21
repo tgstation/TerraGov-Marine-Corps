@@ -113,3 +113,6 @@
 
 	show_popup_menus = TRUE // right click menu no longer shows up
 	control_freak = CONTROL_FREAK_MACROS
+
+	///Records of this client's stats during a round
+	var/datum/personal_statistics/personal_statistics

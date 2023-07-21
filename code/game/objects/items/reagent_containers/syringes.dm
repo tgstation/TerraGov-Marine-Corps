@@ -177,6 +177,7 @@
 							injected += R.name
 						var/contained = english_list(injected)
 						log_combat(user, M, "injected", src, "Reagents: [contained]")
+						record_reagent_consumption(min(10, reagents.total_volume), reagents.reagent_list, user, M)
 
 				reagents.reaction(target, INJECT)
 

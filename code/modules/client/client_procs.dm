@@ -141,6 +141,9 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	//On creation of a client, add an entry into the GLOB list of the client with their stats
+	GLOB.personal_statistics_list[src] = new /datum/personal_statistics
+
 	// Instantiate tgui panel
 	tgui_panel = new(src, "browseroutput")
 

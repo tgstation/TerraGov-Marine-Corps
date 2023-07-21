@@ -272,6 +272,9 @@
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		personal_statistics.heals++
 	GLOB.round_statistics.psychic_cures++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_cures")
 	owner.visible_message(span_xenowarning("A strange psychic aura is suddenly emitted from \the [owner]!"), \

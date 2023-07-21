@@ -457,6 +457,9 @@ TUNNEL
 	. = ..()
 	creator = _creator
 	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))
+	if(creator?.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[creator.client]
+		personal_statistics.traps_created++
 	update_icon()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

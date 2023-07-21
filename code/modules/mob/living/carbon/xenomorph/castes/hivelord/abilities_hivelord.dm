@@ -378,6 +378,9 @@
 	succeed_activate()
 	add_cooldown()
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		personal_statistics.heals++
 	GLOB.round_statistics.hivelord_healing_infusions++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_healing_infusions")
 

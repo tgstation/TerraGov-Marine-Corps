@@ -272,6 +272,14 @@
 	smoketype = /datum/effect_system/smoke_spread/satrapine
 	smokeradius = 6
 
+/obj/item/explosive/grenade/smokebomb/satrapine/activate(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		personal_statistics.war_crimes++
+
 /obj/item/explosive/grenade/smokebomb/cloak
 	name = "\improper M40-2 SCDP smoke grenade"
 	desc = "A sophisticated version of the M40 HSDP with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
@@ -330,6 +338,14 @@
 	flame_radius(4, get_turf(src))
 	flame_radius(1, get_turf(src), burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
 	qdel(src)
+
+/obj/item/explosive/grenade/phosphorus/activate(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		personal_statistics.war_crimes++
 
 /obj/item/explosive/grenade/phosphorus/upp
 	name = "\improper Type 8 WP grenade"

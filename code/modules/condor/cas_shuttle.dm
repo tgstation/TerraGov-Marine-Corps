@@ -247,6 +247,7 @@
 		to_chat(source, span_warning("[active_weapon] just fired, wait for it to cool down."))
 		return
 	active_weapon.open_fire(target, attackdir)
+	record_cas_activity(active_weapon)
 
 /obj/docking_port/mobile/marine_dropship/casplane/ui_data(mob/user)
 	. = list()

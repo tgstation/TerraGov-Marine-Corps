@@ -70,6 +70,8 @@
 	if(user)
 		log_explosion("[key_name(user)] primed [src] at [AREACOORD(user.loc)].")
 		log_combat(user, src, "primed")
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		personal_statistics.grenades_primed++
 
 	icon_state = initial(icon_state) + "_active"
 	active = TRUE
@@ -79,6 +81,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
 	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
+	return TRUE
 
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()

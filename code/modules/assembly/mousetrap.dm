@@ -72,7 +72,9 @@
 	armed = !armed
 	update_icon()
 	playsound(src, 'sound/weapons/handcuffs.ogg', 30, TRUE, -3)
-
+	if(user.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		personal_statistics.traps_created++
 
 /obj/item/assembly/mousetrap/proc/on_cross(atom/movable/AM)
 	SIGNAL_HANDLER

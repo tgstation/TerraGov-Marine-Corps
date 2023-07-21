@@ -691,6 +691,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		SSmonitor.stats.sadar_in_use -= src
 	return ..()
 
+/obj/item/weapon/gun/launcher/rocket/sadar/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(gun_user.client && istype(chamber_items[1], /obj/item/ammo_magazine/rocket/sadar/wp))
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.client]
+		personal_statistics.war_crimes++
+
 /obj/item/weapon/gun/launcher/rocket/sadar/valhalla
 	obj_flags = NONE
 
@@ -720,6 +728,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 0.8
 
 	placed_overlay_iconstate = "thermo"
+
+/obj/item/weapon/gun/launcher/rocket/m57a4/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(gun_user.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.client]
+		personal_statistics.war_crimes++
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
 	name = "\improper RL-57 quad thermobaric launcher"
@@ -875,6 +891,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -1
 	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
 
+/obj/item/weapon/gun/launcher/rocket/som/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(gun_user.client && istype(in_chamber, /obj/item/ammo_magazine/rocket/som/thermobaric || /obj/item/ammo_magazine/rocket/som/rad || /obj/item/ammo_magazine/rocket/som/incendiary))
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.client]
+		personal_statistics.war_crimes++
+
 /obj/item/weapon/gun/launcher/rocket/som/rad
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som/rad
 
@@ -908,6 +932,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 2
 	scatter = -1
 	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
+
+/obj/item/weapon/gun/launcher/rocket/icc/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(gun_user.client && istype(in_chamber, /obj/item/ammo_magazine/rocket/icc/thermobaric))
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.client]
+		personal_statistics.war_crimes++
 
 //-------------------------------------------------------
 //RG-220 Railgun

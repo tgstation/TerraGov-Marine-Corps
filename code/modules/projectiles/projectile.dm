@@ -282,6 +282,9 @@
 
 	if(ismob(firer) && !recursivity)
 		var/mob/mob_firer = firer
+		if(mob_firer.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[mob_firer.client]
+			personal_statistics.projectiles_fired++
 		GLOB.round_statistics.total_projectiles_fired[mob_firer.faction]++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired[mob_firer.faction]")
 		if(ammo.bonus_projectiles_amount)
@@ -884,6 +887,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
 		adjust_sunder(proj.sundering)
+
+	if(stat != DEAD && ismob(proj.firer))
+		record_projectile_damage(proj.firer, damage)	//Tally up whoever the shooter was
 
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
