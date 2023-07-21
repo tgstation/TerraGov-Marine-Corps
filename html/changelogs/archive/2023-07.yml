@@ -267,3 +267,12 @@
   - rscadd: You can buy the rsr console at req for 200
   ivanmixo:
   - rscadd: Added a teleport to location on map ability for hivemind
+2023-07-21:
+  RipGrayson:
+  - rscadd: Re-added tunnel landmarks for mapper use
+  - rscadd: Created a mapper landmark for resin jelly pods
+  - balance: Added preplaced tunnel landmarks to LV624
+  forestbbbbbbb:
+  - rscadd: msay is tgui. rebind your msay key
+  ivanmixo:
+  - bugfix: Fixed listclearnulls on 515

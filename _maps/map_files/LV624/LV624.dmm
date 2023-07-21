@@ -7702,6 +7702,10 @@
 	dir = 2
 	},
 /area/lv624/lazarus/main_hall)
+"hax" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/ruin)
 "haS" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1
@@ -9814,6 +9818,10 @@
 "jsE" = (
 /turf/closed/wall,
 /area/lv624/lazarus/main_hall)
+"jsZ" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "jtk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -10188,6 +10196,10 @@
 	dir = 1
 	},
 /area/lv624/lazarus/corporate_affairs)
+"jLs" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "jLv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/ground/grass,
@@ -14993,6 +15005,11 @@
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
+"pqT" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle8)
 "psp" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -17639,6 +17656,11 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"seL" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central4/garbledradio)
 "sgf" = (
 /obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
@@ -25845,7 +25867,7 @@ noU
 noU
 lDt
 noU
-sYe
+seL
 noU
 lDt
 noU
@@ -26459,7 +26481,7 @@ sRc
 bgf
 pes
 lbt
-tnW
+hax
 pes
 bZe
 wTp
@@ -28460,7 +28482,7 @@ ivV
 abc
 abc
 abc
-abc
+jLs
 abc
 abc
 aym
@@ -59303,7 +59325,7 @@ hBi
 nQQ
 jtS
 gma
-dzz
+pqT
 lfh
 tKa
 pDM
@@ -60990,7 +61012,7 @@ gKr
 gKr
 aah
 aah
-aah
+jsZ
 aah
 aah
 aah

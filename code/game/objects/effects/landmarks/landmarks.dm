@@ -156,6 +156,25 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/xeno_tunnel_spawn
+	name = "xeno tunnel spawn landmark"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "hole"
+
+/obj/effect/landmark/xeno_tunnel_spawn/Initialize(mapload)
+	GLOB.xeno_tunnel_spawn_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/resin_jelly_pod
+	name = "xeno jelly pod landmark"
+	icon = 'icons/Xeno/resinpod.dmi'
+	icon_state = "resinpod"
+
+/obj/effect/landmark/resin_jelly_pod/Initialize(mapload)
+	GLOB.xeno_tunnel_spawn_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
