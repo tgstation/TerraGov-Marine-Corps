@@ -1709,9 +1709,7 @@
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "cnE" = (
 /obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/vending/engivend/nopower{
-	resistance_flags = 1
-	},
+/obj/machinery/vending/engivend/nopower/valhalla,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "cnL" = (
