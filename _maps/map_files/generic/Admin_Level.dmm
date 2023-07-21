@@ -5166,7 +5166,7 @@
 	},
 /obj/structure/table,
 /obj/machinery/reagentgrinder/nopower/valhalla{
-	pixel_y = 7;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
@@ -5968,6 +5968,7 @@
 /area/centcom/valhalla/comms)
 "hXM" = (
 /obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/machinery/vending/engivend/nopower/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
 "hYu" = (
