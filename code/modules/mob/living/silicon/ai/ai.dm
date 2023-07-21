@@ -350,36 +350,34 @@
 	lighting_alpha = initial(lighting_alpha) // yes you really have to change both the eye and the ai vars
 
 
-/mob/living/silicon/ai/Stat()
+/mob/living/silicon/ai/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Game"))
+	if(stat != CONSCIOUS)
+		. += "System status: Nonfunctional"
+		return
 
-		if(stat != CONSCIOUS)
-			stat("System status:", "Nonfunctional")
-			return
+	. += "System integrity: [(health + 100) / 2]%"
+	. += "<BR>- Operation information - <BR>"
+	. += "Current orbit: [GLOB.current_orbit]"
 
-		stat("System integrity:", "[(health + 100) / 2]%")
-		stat("<BR>- Operation information - <BR>")
-		stat("Current orbit:", "[GLOB.current_orbit]")
+	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+		. += "<b>Orbital bombardment status:</b> <font color='red'>No ammo chambered in the cannon.</font><br>"
+	else
+		. += "Orbital bombardment warhead: [GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>"
 
-		if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
-			stat("<b>Orbital bombardment status:</b>", "<font color='red'>No ammo chambered in the cannon.</font><br>")
-		else
-			stat("Orbital bombardment warhead:", "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>")
+	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
 
-		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
+	. += "Current dropship points: [round(SSpoints.dropship_points)]"
 
-		stat("Current dropship points:", "[round(SSpoints.dropship_points)]")
+	. += "Current alert level: [GLOB.marine_main_ship.get_security_level()]"
 
-		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+	. += "Number of living marines: [SSticker.mode.count_humans_and_xenos()[1]]"
 
-		stat("Number of living marines:", "[SSticker.mode.count_humans_and_xenos()[1]]")
-
-		if(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
-			stat("Railgun status:", "Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds.")
-		else
-			stat("Railgun status:", "Railgun is ready to fire.")
+	if(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
+		. += "Railgun status: Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds."
+	else
+		. += "Railgun status: Railgun is ready to fire."
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()

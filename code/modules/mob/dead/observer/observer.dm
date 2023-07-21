@@ -270,6 +270,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.mind = mind
 	mind = null
 	ghost.key = key
+	ghost.client?.init_verbs()
 	ghost.mind?.current = ghost
 	ghost.faction = faction
 
@@ -318,51 +319,51 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	return FALSE
 
 
-/mob/dead/observer/Stat()
+/mob/dead/observer/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Status"))
-		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
-			for(var/i in GLOB.player_list)
-				if(isnewplayer(i))
-					var/mob/new_player/N = i
-					stat("[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]", N.ready ? "Playing" : "")
-				else if(isobserver(i))
-					var/mob/dead/observer/O = i
-					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
-		var/status_value = SSevacuation?.get_status_panel_eta()
-		if(status_value)
-			stat("Evacuation in:", status_value)
-		if(SSticker.mode)
-			var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
-			if(rulerless_countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", rulerless_countdown)
-		if(GLOB.respawn_allowed)
-			status_value = (GLOB.key_to_time_of_role_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
-			if(status_value <= 0)
-				stat("Respawn timer:", "<b>READY</b>")
-			else
-				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
-			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
-				if(larva_position)
-					stat("Position in larva candidate queue: ", "[larva_position]")
-				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-				if(stored_larva)
-					stat("Burrowed larva:", stored_larva)
-		//game end timer for patrol and sensor capture
-		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
-		if(patrol_end_countdown)
-			stat("<b>Round End timer:</b>", patrol_end_countdown)
-		//respawn wave timer
-		var/patrol_wave_countdown = SSticker.mode?.wave_countdown()
-		if(patrol_wave_countdown)
-			stat("<b>Respawn wave timer:</b>", patrol_wave_countdown)
-		var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
-		if(issensorcapturegamemode(SSticker.mode))
-			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
+	if(SSticker.current_state == GAME_STATE_PREGAME)
+		. += "Time To Start: [SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]"
+		. += "Players: [length(GLOB.player_list)]"
+		. += "Players Ready: [length(GLOB.ready_players)]"
+		for(var/i in GLOB.player_list)
+			if(isnewplayer(i))
+				var/mob/new_player/N = i
+				. += "[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key][N.ready ? " Playing" : ""]"
+			else if(isobserver(i))
+				var/mob/dead/observer/O = i
+				. += "[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key] Observing"
+	var/status_value = SSevacuation?.get_status_panel_eta()
+	if(status_value)
+		. += "Evacuation in: [status_value]"
+	if(SSticker.mode)
+		var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
+		if(rulerless_countdown)
+			. += "<b>Orphan hivemind collapse timer:</b> [rulerless_countdown]"
+	if(GLOB.respawn_allowed)
+		status_value = (GLOB.key_to_time_of_role_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
+		if(status_value <= 0)
+			. += "Respawn timer: <b>READY</b>"
+		else
+			. += "Respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
+		if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
+			if(larva_position)
+				. += "Position in larva candidate queue: [larva_position]"
+			var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+			var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+			if(stored_larva)
+				. += "Burrowed larva: [stored_larva]"
+	//game end timer for patrol and sensor capture
+	var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
+	if(patrol_end_countdown)
+		. += "<b>Round End timer:</b> [patrol_end_countdown]"
+	//respawn wave timer
+	var/patrol_wave_countdown = SSticker.mode?.wave_countdown()
+	if(patrol_wave_countdown)
+		. += "<b>Respawn wave timer:</b> [patrol_wave_countdown]"
+	var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
+	if(issensorcapturegamemode(SSticker.mode))
+		. += "<b>Activated Sensor Towers:</b> [sensor_mode.sensors_activated]"
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
@@ -387,6 +388,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	client.view_size.set_default(get_screen_size(client.prefs.widescreenpref))//Let's reset so people can't become allseeing gods
 	mind.transfer_to(old_mob, TRUE)
+	client.init_verbs()
 	return TRUE
 
 /mob/dead/observer/verb/toggle_HUDs()

@@ -696,3 +696,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	dellog += "</ol>"
 
 	usr << browse(dellog.Join(), "window=dellog")
+
+/client/proc/debugstatpanel()
+	set name = "Debug Stat Panel"
+	set category = "Debug"
+
+	src.stat_panel.send_message("create_debug")

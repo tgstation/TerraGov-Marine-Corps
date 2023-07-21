@@ -152,6 +152,8 @@
 	READ_FILE(S["sound_tts"], sound_tts)
 	READ_FILE(S["volume_tts"], volume_tts)
 	READ_FILE(S["sound_tts_blips"], sound_tts_blips)
+	READ_FILE(S["fast_mc_refresh"], fast_mc_refresh)
+	READ_FILE(S["split_admin_tabs"], split_admin_tabs)
 
 	READ_FILE(S["key_bindings"], key_bindings)
 	READ_FILE(S["custom_emotes"], custom_emotes)
@@ -228,6 +230,9 @@
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
+
+	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
+	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
 	return TRUE
 
 
@@ -294,6 +299,10 @@
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
 
+	// Admin
+	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
+	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
+
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["ooccolor"], ooccolor)
@@ -342,6 +351,10 @@
 	WRITE_FILE(S["tgui_input"], tgui_input)
 	WRITE_FILE(S["tgui_input_big_buttons"], tgui_input_big_buttons)
 	WRITE_FILE(S["tgui_input_buttons_swap"], tgui_input_buttons_swap)
+
+	// Admin options
+	WRITE_FILE(S["fast_mc_refresh"], fast_mc_refresh)
+	WRITE_FILE(S["split_admin_tabs"], split_admin_tabs)
 
 	return TRUE
 

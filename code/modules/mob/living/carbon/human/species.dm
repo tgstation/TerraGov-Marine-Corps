@@ -249,8 +249,7 @@
 /// Removes all species-specific verbs and actions
 /datum/species/proc/remove_inherent_abilities(mob/living/carbon/human/H)
 	if(inherent_verbs)
-		for(var/verb_path in inherent_verbs)
-			H.verbs -= verb_path
+		remove_verb(H, inherent_verbs)
 	if(inherent_actions)
 		for(var/action_path in inherent_actions)
 			var/datum/action/old_species_action = H.actions_by_path[action_path]
@@ -260,8 +259,7 @@
 /// Adds all species-specific verbs and actions
 /datum/species/proc/add_inherent_abilities(mob/living/carbon/human/H)
 	if(inherent_verbs)
-		for(var/verb_path in inherent_verbs)
-			H.verbs |= verb_path
+		add_verb(H, inherent_verbs)
 	if(inherent_actions)
 		for(var/action_path in inherent_actions)
 			var/datum/action/new_species_action = new action_path(H)

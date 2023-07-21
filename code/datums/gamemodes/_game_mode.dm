@@ -164,6 +164,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 			continue
 
 		qdel(player)
+		living.client.init_verbs()
 		living.notransform = TRUE
 		livings += living
 
@@ -269,7 +270,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
 	SIGNAL_HANDLER
-	source.verbs |= /mob/proc/eord_respawn
+	add_verb(source, /mob/proc/eord_respawn)
 
 /datum/game_mode/proc/end_of_round_deathmatch()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, PROC_REF(grant_eord_respawn)) // New mobs can now respawn into EORD
@@ -283,7 +284,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
-		M.verbs |= /mob/proc/eord_respawn
+		add_verb(M, /mob/proc/eord_respawn)
 		if(isnewplayer(M))
 			continue
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
@@ -574,6 +575,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	player.mind.transfer_to(player.new_character)
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
+	player.new_character.client?.init_verbs()
 	var/area/A = get_area(player.new_character)
 	deadchat_broadcast(span_game(" has woken at [span_name("[A?.name]")]."), span_game("[span_name("[player.new_character.real_name]")] ([job.title])"), follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
 	qdel(player)
