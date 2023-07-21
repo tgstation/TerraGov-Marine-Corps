@@ -252,7 +252,9 @@
 		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
 		if(!do_after(user, duration_time, FALSE, src, BUSY_ICON_BUILD))
 			return
-		if(attached_clamp.loaded || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+		//if we arent an actual powerloader (droid) we can assume we are just driven remotely so we just ignore driver checks
+		var/buckled_check = istype(attached_clamp.linked_powerloader) ? (!LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user) : FALSE
+		if(attached_clamp.loaded || buckled_check)
 			return
 		forceMove(attached_clamp.linked_powerloader)
 		attached_clamp.loaded = src

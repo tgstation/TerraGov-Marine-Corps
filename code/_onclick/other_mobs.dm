@@ -92,7 +92,7 @@
 		stack_trace("[attached_clamp] called attack_powerloader on [src] without a linked_powerloader.")
 		return TRUE
 
-	if(!Adjacent(user))
+	if(!Adjacent(attached_clamp.linked_powerloader))
 		return TRUE
 
 /*

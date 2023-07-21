@@ -149,7 +149,7 @@
 
 /obj/vehicle/unmanned/droid/ripley
 	name = "XN-27-C cargo droid"
-	desc = "A cargo droid, rigged with experimental technology to allow AI control. The claw is not standard and cannot grasp warheads."
+	desc = "A cargo droid, rigged with experimental technology to allow AI control. The claw, is however not capable of reloading shuttlecraft weapons."
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "ai_powerloader"
 	move_delay = 7
@@ -158,10 +158,15 @@
 	unmanned_flags = GIVE_NIGHT_VISION
 	turret_pattern = NO_PATTERN
 	soft_armor = list(MELEE = 60, BULLET = 20, LASER = 10, ENERGY = 20, BOMB = 80, BIO = 0, FIRE = 100, ACID = 100)
-	//what the ripley is currently carrying
-	var/atom/movable/cargo
+	///internal clamp so we can carry shit
+	var/obj/item/powerloader_clamp/clamp
 	///used to prevent spam grabbing and dropping by the AI
 	COOLDOWN_DECLARE(clamp_cooldown)
+
+/obj/vehicle/unmanned/droid/ripley/Initialize(mapload)
+	. = ..()
+	clamp = new(src)
+	clamp.linked_powerloader = src
 
 /obj/vehicle/unmanned/droid/ripley/on_remote_toggle(datum/source, is_on, mob/user)
 	. = ..()
@@ -171,38 +176,29 @@
 /obj/vehicle/unmanned/droid/ripley/proc/handle_cargo(mob/user, atom/target, params)
 	///used to hold whatever we're grabbing
 	var/obj/clamptarget = target
-	if(is_ground_level(z) && !isdropshiparea(get_area(src))) //AI powerloader is confined to shipside or the alamo
-		to_chat(user, "Connection too weak, return the droid shipside first.")
+	if(!clamp)
 		return
 	if(!COOLDOWN_CHECK(src, clamp_cooldown))
 		return
-	if(cargo && Adjacent(target) && istype(target, /obj/structure/closet))
-		var/obj/structure/closet/attackedcloset = clamptarget
-		attackedcloset.toggle()
-	else if(cargo)
-		to_chat(user, "You unload [cargo].")
-		cargo.forceMove(drop_location())
-		cargo = null
+	if(!Adjacent(clamptarget))
+		to_chat(user, "[icon2html(src, user)][span_notice("You need to be adjacent to your target!")]")
 		return
-	if(ismob(clamptarget) || isvehicle(clamptarget) ||  isturf(clamptarget) || istype(clamptarget, /obj/machinery/nuclearbomb))
+	if(clamp.loaded)
+		to_chat(user, "[icon2html(src, user)][span_notice("Drop your current cargo ([clamp.loaded]) first!")]")
 		return
-	if(!Adjacent(target) || clamptarget.anchored == TRUE)
+	if(is_ground_level(z) && !isdropshiparea(get_area(src))) //AI powerloader is confined to shipside or the alamo
+		to_chat(user, "[icon2html(src, user)][span_warning("Connection too weak, return the droid shipside first.")]")
 		return
 	if(locate(/mob) in clamptarget.contents) //keep the droid from loading people or mobs in its cargo
 		to_chat(user, "[icon2html(src, user)][span_notice("[target] contains a living organism, cannot load.")]")
 		return
-	if(!cargo)
-		balloon_alert_to_viewers("Loads [clamptarget]")
-		clamptarget.anchored = TRUE
-		cargo = clamptarget
-		clamptarget.forceMove(src)
-		clamptarget.anchored = initial(clamptarget.anchored)
-		to_chat(user, "[icon2html(src, user)][span_notice("[target] successfully loaded.")]") //AIs usually can't see balloon_alerts, send them a to_chat instead
+	target.attack_powerloader(user, clamp)
 	COOLDOWN_START(src, clamp_cooldown, 1 SECONDS)
 	playsound(src, 'sound/mecha/hydraulic.ogg', 50, FALSE, -6)
 
 /obj/vehicle/unmanned/droid/ripley/Destroy()
-	if(cargo)
-		cargo.forceMove(get_turf(src))
-		cargo = null
+	if(clamp?.loaded)
+		clamp.loaded.forceMove(get_turf(src))
+		clamp.loaded = null
+	QDEL_NULL(clamp)
 	. = ..()
