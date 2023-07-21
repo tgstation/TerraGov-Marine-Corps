@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - rscadd: "Harvester Knives are now in your local Valhalla and Crash vendors."
