@@ -1,0 +1,241 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/camera/autoname/mainship/dropship_two,
+/turf/open/floor/mainship/floor,
+/area/shuttle/minidropship)
+"c" = (
+/obj/effect/turf_decal/tile/transparent/dark_blue/half/contrasted,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/shuttle/minidropship)
+"d" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = -23
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"f" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/transparent/dark_blue/half/contrasted,
+/turf/open/floor/mainship/floor,
+/area/shuttle/minidropship)
+"g" = (
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"h" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = 23
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"l" = (
+/obj/machinery/mass_driver/indestructible{
+	dir = 1;
+	id = "cockpole"
+	},
+/turf/open/floor/engine,
+/area/shuttle/minidropship)
+"m" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"o" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
+/area/shuttle/minidropship)
+"s" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2;
+	id = "cockpole"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/shuttle/minidropship)
+"w" = (
+/obj/structure/dropship_piece/two/weapon/leftleft{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"x" = (
+/obj/effect/attach_point/crew_weapon/minidropship,
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"z" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/shuttle/minidropship)
+"C" = (
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
+	},
+/area/shuttle/minidropship)
+"D" = (
+/obj/machinery/vending/nanomed/tadpolemed{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"E" = (
+/turf/template_noop,
+/area/template_noop)
+"F" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"G" = (
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
+	dir = 1
+	},
+/obj/structure/barricade/plasteel,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"H" = (
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
+	},
+/area/shuttle/minidropship)
+"K" = (
+/obj/structure/dropship_piece/two/weapon/rightright{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"R" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"S" = (
+/obj/item/storage/box/visual/grenade/frag{
+	pixel_y = 5
+	},
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/pod/indestructible{
+	pixel_y = 28;
+	id = "cockpole"
+	},
+/turf/open/floor/mainship/floor,
+/area/shuttle/minidropship)
+"U" = (
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"X" = (
+/obj/machinery/door/window/right{
+	dir = 1;
+	pixel_y = 6
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"Y" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"Z" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+
+(1,1,1) = {"
+E
+E
+E
+E
+E
+E
+g
+z
+C
+"}
+(2,1,1) = {"
+E
+w
+d
+g
+R
+R
+g
+z
+C
+"}
+(3,1,1) = {"
+g
+g
+S
+c
+U
+D
+g
+g
+g
+"}
+(4,1,1) = {"
+s
+l
+X
+m
+x
+m
+Z
+m
+G
+"}
+(5,1,1) = {"
+g
+g
+a
+f
+U
+U
+g
+Y
+g
+"}
+(6,1,1) = {"
+E
+K
+h
+g
+F
+F
+g
+o
+H
+"}
+(7,1,1) = {"
+E
+E
+E
+E
+E
+E
+g
+o
+H
+"}

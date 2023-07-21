@@ -145,6 +145,11 @@
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
 	display_name = "Tadpole Umbilical Model"
 
+/datum/map_template/shuttle/minidropship/launcher
+	suffix = "_launcher"
+	description = "An orbital shuttle, capable of tactical insertion and shooting any payload from its front. Warranty void if used to shoot marines."
+	display_name = "Tadpole Launcher Model"
+
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
 	name = "Escape Pod"
