@@ -1079,7 +1079,7 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/milk,
 /obj/item/reagent_containers/glass/bottle/lemoline,
-/obj/machinery/reagentgrinder/nopower{
+/obj/machinery/reagentgrinder/nopower/valhalla{
 	pixel_y = 7
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -3395,7 +3395,7 @@
 /area/centcom/valhalla/library)
 "epz" = (
 /obj/structure/table,
-/obj/machinery/reagentgrinder/nopower{
+/obj/machinery/reagentgrinder/nopower/valhalla{
 	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace,
@@ -4917,7 +4917,7 @@
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "gzk" = (
-/obj/machinery/vending/tool/nopower,
+/obj/machinery/vending/tool/nopower/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/storage/primary)
 "gzl" = (
@@ -4983,9 +4983,7 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/chapel/main)
 "gCD" = (
-/obj/machinery/chem_master/nopower{
-	resistance_flags = 1
-	},
+/obj/machinery/chem_master/nopower/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "gDc" = (
@@ -5169,9 +5167,8 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/machinery/reagentgrinder/nopower{
+/obj/machinery/reagentgrinder/nopower/valhalla{
 	pixel_y = 7;
-	resistance_flags = 1
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
@@ -5797,7 +5794,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/machinery/chem_master/nopower,
+/obj/machinery/chem_master/nopower/valhalla,
 /turf/open/floor/tile/lightred,
 /area/centcom/valhalla/medical/chemistry)
 "hMr" = (
@@ -11943,9 +11940,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/port)
 "qlP" = (
-/obj/machinery/vending/tool/nopower{
-	resistance_flags = 1
-	},
+/obj/machinery/vending/tool/nopower/valhalla,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
@@ -14024,7 +14019,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/machinery/reagentgrinder/nopower{
+/obj/machinery/reagentgrinder/nopower/valhalla{
 	pixel_y = 5
 	},
 /turf/open/floor/tile/vault{
@@ -15118,7 +15113,7 @@
 	pixel_x = -28
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/chem_master/nopower,
+/obj/machinery/chem_master/nopower/valhalla,
 /turf/open/floor/tile/lightred,
 /area/centcom/valhalla/medical/medbay)
 "ujt" = (
@@ -15498,9 +15493,7 @@
 /turf/closed/wall,
 /area/centcom/valhalla/janitor)
 "uOI" = (
-/obj/machinery/chem_master/nopower{
-	resistance_flags = 1
-	},
+/obj/machinery/chem_master/nopower/valhalla,
 /obj/structure/window/reinforced/extratoughened{
 	dir = 4
 	},
@@ -15740,7 +15733,7 @@
 	dir = 10
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder/nopower{
+/obj/machinery/reagentgrinder/nopower/valhalla{
 	pixel_y = 7
 	},
 /turf/open/floor/tile/lightred,
@@ -17110,7 +17103,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
-/obj/machinery/vending/tool/nopower,
+/obj/machinery/vending/tool/nopower/valhalla,
 /turf/open/floor/engine,
 /area/centcom/valhalla/engine/engineering)
 "wAR" = (
@@ -18254,7 +18247,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/black,
-/obj/machinery/reagentgrinder/nopower{
+/obj/machinery/reagentgrinder/nopower/valhalla{
 	pixel_x = -1;
 	pixel_y = 6
 	},
