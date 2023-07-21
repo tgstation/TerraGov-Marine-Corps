@@ -1549,3 +1549,6 @@
 
 /obj/machinery/vending/tool/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/vending/tool/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE
