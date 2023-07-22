@@ -3486,10 +3486,6 @@
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
-"aGz" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/north)
 "aGF" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -8950,10 +8946,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
-"fQQ" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
 "fRt" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
@@ -9478,10 +9470,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
-"hkr" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/virology)
 "hkN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -19604,7 +19592,7 @@ aSu
 aSz
 aNc
 aNc
-hkr
+aNc
 dRR
 aXv
 aMz
@@ -36558,7 +36546,7 @@ wzM
 oxP
 raC
 bkt
-fQQ
+bkE
 mGp
 lUs
 xwD
@@ -42977,7 +42965,7 @@ jnj
 bKH
 qRX
 qRX
-aGz
+qRX
 qRX
 azQ
 qRX
