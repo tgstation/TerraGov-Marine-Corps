@@ -5333,14 +5333,6 @@
 /obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/engineering)
-"BC" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/wood,
-/area/orion_outpost/surface/building/administration)
 "BD" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -7966,10 +7958,6 @@
 	dir = 9
 	},
 /area/orion_outpost/surface/landing_pad)
-"OT" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/ground/outpostsw)
 "OV" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
@@ -12572,7 +12560,7 @@ xu
 pC
 pN
 Ni
-BC
+PG
 JH
 pN
 Ni
@@ -15672,7 +15660,7 @@ ve
 Ci
 wt
 wt
-OT
+ve
 ve
 ve
 ly
@@ -30532,7 +30520,7 @@ sx
 sx
 Fg
 Fg
-bF
+Fg
 Fg
 Fg
 Fg
@@ -31193,7 +31181,7 @@ sx
 sx
 Fg
 Fg
-Fg
+bF
 lP
 lP
 lP
