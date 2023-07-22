@@ -18847,10 +18847,6 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
-"mKI" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves)
 "mKJ" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/weaponry/ammo,
@@ -40350,7 +40346,7 @@ cmF
 wpv
 xXi
 cmF
-mKI
+cmF
 cmF
 cmF
 cmF
