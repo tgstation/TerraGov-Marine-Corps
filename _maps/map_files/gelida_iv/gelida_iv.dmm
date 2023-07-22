@@ -4320,13 +4320,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
-"cTo" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/prison/green/full{
-	dir = 4
-	},
-/area/gelida/indoors/b_block/hydro)
 "cTL" = (
 /obj/structure/inflatable/wall,
 /obj/effect/spawner/gibspawner/xeno,
@@ -8351,10 +8344,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
-"fAl" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves)
 "fAV" = (
 /obj/structure/barricade/metal,
 /turf/open/floor/prison/sterilewhite/full,
@@ -17056,10 +17045,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_forecon/landing_zone_4)
-"lBL" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/mainship/black/full,
-/area/gelida/powergen)
 "lBN" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -18847,10 +18832,6 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
-"mKI" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/gelida/caves/west_caves)
 "mKJ" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/weaponry/ammo,
@@ -19282,7 +19263,6 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "nab" = (
@@ -23049,10 +23029,6 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
-"pyu" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves)
 "pyF" = (
 /obj/effect/spawner/gibspawner/xeno,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -24808,7 +24784,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
 "qIJ" = (
@@ -26907,17 +26882,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
-"saB" = (
-/obj/item/clothing/mask/facehugger/dead{
-	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	name = "????";
-	stat = 2
-	},
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/prison/whitepurple/full{
-	dir = 4
-	},
-/area/gelida/indoors/a_block/dorms)
 "saC" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -29348,10 +29312,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/black/full,
 /area/gelida/outdoors/colony_streets/central_streets)
-"tJg" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/prison/sterilewhite/full,
-/area/gelida/indoors/a_block/medical)
 "tJs" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
@@ -40350,7 +40310,7 @@ cmF
 wpv
 xXi
 cmF
-mKI
+cmF
 cmF
 cmF
 cmF
@@ -47307,7 +47267,7 @@ wUn
 odg
 oNd
 odg
-saB
+hqy
 gyo
 yfp
 bNr
@@ -49444,7 +49404,7 @@ xIt
 xIt
 xIt
 vqi
-lBL
+cqM
 cqM
 fPM
 fPM
@@ -52685,7 +52645,7 @@ lNq
 fkH
 lNq
 lNq
-cTo
+oGN
 pSM
 iuJ
 iuJ
@@ -59891,7 +59851,7 @@ xIt
 xIt
 vqi
 xIt
-fAl
+uGF
 cYz
 gkC
 gkC
@@ -69526,7 +69486,7 @@ pYZ
 fBW
 orh
 mhj
-tJg
+mxg
 vCT
 ojR
 ojR
@@ -72528,7 +72488,7 @@ xIt
 xIt
 xIt
 jqf
-pyu
+jqf
 uLt
 lnR
 jqf
