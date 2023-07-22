@@ -85,17 +85,18 @@
 		if(istype(manager))
 			loadout_manager.loadouts_data = convert_loadouts_list(manager?.loadouts_data)
 
-	if(savefile_version <= 45) // merged sound_tts_blips and sound_tts
+	if(savefile_version < 45) // merged sound_tts_blips and sound_tts
 		var/used_blips = FALSE
 		READ_FILE(S["sound_tts_blips"], used_blips)
 		var/used_tts = TRUE
 		READ_FILE(S["sound_tts"], used_tts)
 		var/new_val = TTS_SOUND_ENABLED
-		if(!sound_tts)
+		if(!used_tts)
 			new_val = TTS_SOUND_OFF
 		else if(used_blips)
 			new_val = TTS_SOUND_BLIPS
 		WRITE_FILE(S["sound_tts"], new_val)
+		sound_tts = new_val
 
 
 	savefile_version = SAVEFILE_VERSION_MAX
@@ -216,7 +217,7 @@
 	clientfps = sanitize_integer(clientfps, 0, 240, initial(clientfps))
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
-	sound_tts = sanitize_integer(sound_tts, FALSE, TRUE, initial(sound_tts))
+	sound_tts = sanitize_inlist(sound_tts, GLOB.all_tts_options, initial(sound_tts))
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
 
 	key_bindings = sanitize_islist(key_bindings, list())
@@ -284,7 +285,7 @@
 	clientfps = sanitize_integer(clientfps, 0, 240, initial(clientfps))
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
-	sound_tts = sanitize_integer(sound_tts, FALSE, TRUE, initial(sound_tts))
+	sound_tts = sanitize_inlist(sound_tts, GLOB.all_tts_options, initial(sound_tts))
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
 
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))

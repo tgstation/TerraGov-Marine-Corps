@@ -587,7 +587,7 @@
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
 
 		if("sound_tts")
-			var/choice = tgui_input_list(ui.user, "What kind of TTS do you want?", "TTS choice", list(TTS_SOUND_OFF, TTS_SOUND_ENABLED, TTS_SOUND_BLIPS))
+			var/choice = tgui_input_list(ui.user, "What kind of TTS do you want?", "TTS choice", GLOB.all_tts_options)
 			if(!choice)
 				return
 			sound_tts = choice
