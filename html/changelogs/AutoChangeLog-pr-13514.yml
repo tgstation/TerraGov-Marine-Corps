@@ -1,7 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Improved the armor of windowframes"
-  - balance: "Barricades start with some bullet/laser/energy armor"
-  - balance: "Melee upgrades for metal barricades upgrade laser and energy armor like they already do for bullet"
-  - balance: "Vending machines have slightly higher coverage"

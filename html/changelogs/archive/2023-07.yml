@@ -276,3 +276,19 @@
   - rscadd: msay is tgui. rebind your msay key
   ivanmixo:
   - bugfix: Fixed listclearnulls on 515
+2023-07-22:
+  Barnet2:
+  - rscadd: Harvester Knives are now in your local Valhalla and Crash vendors.
+  Lumipharon:
+  - balance: Improved the armor of windowframes
+  - balance: Barricades start with some bullet/laser/energy armor
+  - balance: Melee upgrades for metal barricades upgrade laser and energy armor like
+      they already do for bullet
+  - balance: Vending machines have slightly higher coverage
+  - bugfix: fixed an issue with throwing past mobs
+  Xander3359:
+  - qol: Valhalla vendors are more robust.
+  forestbbbbbbb:
+  - bugfix: fixed "You grab the HE orbital warhead with the HE orbital warhead."
+  - bugfix: iguana is on minimap after being spawned
+  - bugfix: req lift can move only when idle
