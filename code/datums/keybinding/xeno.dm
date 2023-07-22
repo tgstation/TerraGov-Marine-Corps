@@ -951,11 +951,11 @@
 	description = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
 	keybind_signal = COMSIG_XENOABILITY_ORGANICBOMB
 
-/datum/keybinding/xeno/living_construct
-	name = "Living Construct"
-	full_name = "Puppeteer: Living Construct"
-	description = "Slap some muscles, some nerves, and some biomass on some random object and send it to attack organics! The creations are VERY stupid and clumsy, so they can get bumpslashed by accident."
-	keybind_signal = COMSIG_XENOABILITY_LIVINGCONSTRUCT
+/datum/keybinding/xeno/tendrils
+	name = "Tendrils"
+	full_name = "Puppeteer: Tendrils"
+	description = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
+	keybind_signal = COMSIG_XENOABILITY_TENDRILS
 
 /datum/keybinding/xeno/send_orders_puppet
 	name = "Give Orders to Puppets"

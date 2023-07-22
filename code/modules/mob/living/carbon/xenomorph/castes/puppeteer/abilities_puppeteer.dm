@@ -349,53 +349,65 @@
 	UnregisterSignal(owner, list(COMSIG_MOB_SAY, COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 // ***************************************
-// *********** Living Construct (Primordial)
+// *********** Tendrils (Primordial)
 // ***************************************
-/datum/action/xeno_action/activable/living_construct
-	name = "Living Construct"
+/datum/action/xeno_action/activable/tendril_patch
+	name = "Tendrils"
 	action_icon_state = "living_construct"
-	desc = "Slap some muscles, some nerves, and some biomass on some random object and send it to attack organics! The creations are VERY stupid and clumsy, so they can get bumpslashed by accident."
-	plasma_cost = 250
-	cooldown_timer = 70 SECONDS
+	desc = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
+	plasma_cost = 175
+	cooldown_timer = 40 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LIVINGCONSTRUCT,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENDRILS,
 	)
 
-/datum/action/xeno_action/activable/living_construct/can_use_ability(atom/target, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return
-
-	if(!isstructure(target) && !isitem(target))
-		if(!silent)
-			owner.balloon_alert(owner, "not an object or item!")
-		return fail_activate()
-	var/obj/object_target = target
-	if((object_target.resistance_flags & INDESTRUCTIBLE) || object_target.max_integrity > 200)
-		if(!silent)
-			owner.balloon_alert(owner, "too strong!")
+/datum/action/xeno_action/activable/tendril_patch/use_ability(atom/movable/victim)
+	var/turf/their_turf = get_turf(victim)
+	var/mob/living/living_owner = owner
+	living_owner.face_atom(victim)
+	living_owner.visible_message(span_warning("[living_owner] begins to form biomass and force it into the ground!"))
+	if(!do_after(living_owner, 3 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(living_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = living_owner.health))))
 		return FALSE
-
-	if(is_type_in_list(object_target, GLOB.protected_objects))
-		if(!silent)
-			owner.balloon_alert(owner, "not gonna work!")
-		return FALSE
-
-	if(!owner.Adjacent(target))
-		if(!silent)
-			owner.balloon_alert(owner, "not adjacent!")
-		return FALSE
-
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.face_atom(target)
-	if(!do_after(owner_xeno, 10 SECONDS, FALSE, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
-		return FALSE
-	succeed_activate()
-
-
-/datum/action/xeno_action/activable/living_construct/use_ability(atom/movable/victim)
-	new /mob/living/simple_animal/hostile/mimic/copy/from_puppeteer(get_turf(victim), victim, null, FALSE, FALSE, owner)
+	their_turf.visible_message(span_warning("[living_owner]'s tendrils burst out from the ground!"))
+	for(var/turf/tile AS in RANGE_TURFS(1, their_turf))
+		if(!locate(/obj/effect/tentacle) in tile.contents)
+			new /obj/effect/tentacle(tile)
 	add_cooldown()
+
+/obj/effect/tentacle
+	name = "tendril"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "tendril_1"
+	layer = BELOW_MOB_LAYER
+	plane = GAME_PLANE
+	anchored = TRUE
+
+/obj/effect/tentacle/Initialize(mapload)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(start_grabbing)), 0.4 SECONDS)
+
+/// change our icon state and start a 0.3 second timer to call grab()
+/obj/effect/tentacle/proc/start_grabbing()
+	icon_state = "tendril_2"
+	addtimer(CALLBACK(src, PROC_REF(grab)), 0.3 SECONDS, TIMER_STOPPABLE)
+
+/// brute damage and paralyze everyone on our tile
+/obj/effect/tentacle/proc/grab()
+	for (var/mob/living/victim in loc)
+		if (victim.stat == DEAD)
+			continue
+		if(isxeno(victim))
+			continue
+		balloon_alert(victim, "tangled!")
+		visible_message(span_danger("[src] tangles [victim]!"))
+		victim.adjustBruteLoss(10)
+		victim.Paralyze(2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(retract)), 0.3 SECONDS)
+
+/// change our icon to our retracting icon and delete in 0.3 seconds
+/obj/effect/tentacle/proc/retract()
+	icon_state = "tendril_3"
+	QDEL_IN(src, 0.4 SECONDS)
 
 // ***************************************
 // *********** Blessing

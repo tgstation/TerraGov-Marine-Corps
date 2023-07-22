@@ -108,7 +108,7 @@
 		/datum/action/xeno_action/activable/refurbish_husk,
 		/datum/action/xeno_action/activable/puppet,
 		/datum/action/xeno_action/activable/organic_bomb,
-		/datum/action/xeno_action/activable/living_construct,
+		/datum/action/xeno_action/activable/tendril_patch,
 		/datum/action/xeno_action/puppeteer_orders,
 		/datum/action/xeno_action/activable/articulate,
 		/datum/action/xeno_action/activable/puppet_blessings,
