@@ -49,8 +49,8 @@ GLOBAL_LIST_INIT(pencode_blocked_tags, list("*", "hr", "small", "/small", "list"
 
 	t = replacetext_char(t, "\[sign\]", "<font face=\"[PAPER_SIGN_FONT]\"><i>[user ? user.real_name : "Anonymous"]</i></font>")
 	t = replacetext_char(t, "\[field\]", "<span class=\"paper_field\"></span>")
-	t = replacetext_char(t, "\[logo\]", "<img src='tgmclogo.png' />")
-	t = replacetext_char(t, "\[ntlogo\]", "<img src='ntlogo.png' />")
+	t = replacetext_char(t, "\[logo\]", "<img src='[SSassets.transport.get_asset_url("tgmclogo.png")]' />")
+	t = replacetext_char(t, "\[ntlogo\]", "<img src='[SSassets.transport.get_asset_url("ntlogo.png")]' />")
 
 	t = replacetext_char(t, "\[mapname\]", "[SSmapping.configs[GROUND_MAP].map_name]")
 	t = replacetext_char(t, "\[shipname\]", "[SSmapping.configs[SHIP_MAP].map_name]")
