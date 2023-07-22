@@ -162,6 +162,11 @@
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/general_offices)
+"gy" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
 "gK" = (
 /turf/closed/wall,
 /area/bigredv2/outside/dorms)
@@ -458,6 +463,11 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
+"vo" = (
+/obj/item/stack/rods,
+/obj/structure/cable,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
 "vK" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -764,6 +774,11 @@
 	dir = 8
 	},
 /turf/open/floor/wood/variable/damaged/standard,
+/area/bigredv2/outside/general_offices)
+"LV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/general_offices)
 "Mi" = (
 /turf/closed/shuttle/dropship2/corners{
@@ -1488,9 +1503,9 @@ Ap
 bl
 SC
 RJ
-DU
-er
-DG
+gy
+LV
+vo
 Hh
 Hh
 TF

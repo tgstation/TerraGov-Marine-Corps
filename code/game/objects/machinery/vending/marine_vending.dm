@@ -229,7 +229,6 @@
 	)
 
 /obj/machinery/vending/weapon/crash
-
 	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
@@ -304,6 +303,7 @@
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
+			/obj/item/weapon/combat_knife/harvester = 12,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -499,6 +499,7 @@
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = -1,
 			/obj/item/weapon/shield/riot/marine/deployable = -1,
+			/obj/item/weapon/combat_knife/harvester = -1,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -1548,3 +1549,6 @@
 
 /obj/machinery/vending/tool/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/vending/tool/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE

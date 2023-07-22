@@ -28,11 +28,11 @@
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) && (C.prefs.toggles_chat & CHAT_PRAYER))
 			to_chat(C,
-				type = MESSAGE_TYPE_STAFFLOG,
+				type = MESSAGE_TYPE_PRAYER,
 				html = msg)
 		else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_PRAYER))
 			to_chat(C,
-				type = MESSAGE_TYPE_STAFFLOG,
+				type = MESSAGE_TYPE_PRAYER,
 				html = mentor_msg)
 
 	if(liaison)

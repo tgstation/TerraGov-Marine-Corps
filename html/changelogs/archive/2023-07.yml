@@ -179,3 +179,116 @@
   - rscdel: Deleted the distress signal gamemode
   novaepee:
   - rscadd: Kabuto armor, a Japanese-Inspired Armor; find it in the style line tab!
+2023-07-13:
+  Arturlang:
+  - bugfix: The nuclear explosion will actually, properly, goddamn, kill you, instead
+      of just singing you slightly
+  novaepee:
+  - balance: move miner near Magmoor's west landing zone further north
+2023-07-14:
+  AusarAtkin:
+  - rscadd: Added Drop Pods to Reqtorio, and the refills for them to the supply console.
+  Barnet2:
+  - balance: Decreased sunder on TAT APCR and increaed pen, increased sunder slightly
+      on other rounds
+  - balance: TAT has an anchor channel time of 1 second, and cannot be rotated while
+      anchored, or fired while unanchored.
+  Lumipharon:
+  - bugfix: fixed jump throws not going over objects that they should
+  RipGrayson:
+  - rscadd: Added support for AI players to set emergency access on shipside doors
+  - imageadd: Added some graphics for emergency access on doors
+  Scarlet-Oduko:
+  - bugfix: no more infinite SG pistols, now you can get goggles with them
+  forestbbbbbbb:
+  - bugfix: Fix vali necro overlay not disappearing
+  novaepee:
+  - imageadd: add three more orange colors
+  tyeagg:
+  - rscadd: big map table to cic
+2023-07-15:
+  Lumipharon:
+  - bugfix: fixed a storage bug with some misc suits
+  - balance: Improved MG-27 aimmode penalty, ammo per mag, and damage falloff. Can
+      now fit a railscope
+  - balance: 'HvH: MG-27 loadout has a barrel charger'
+  - qol: Removed description references to old firemodes for laser weapons
+  Overdrive659:
+  - rscadd: Added rocks to lava rivers
+  - rscdel: Removed infuriating lavaspaces
+  - balance: Marine LZs bulked
+  - balance: Moved diskys
+  chizzy376:
+  - rscadd: Added a new tadpole, Umbilical.
+  iLikeMemes:
+  - bugfix: fixed queen's description still mentioning that she lays eggs.
+  ivanmixo:
+  - bugfix: Crash vendor doesn't pull from shipside weapons vendor anymore
+  - bugfix: Fixed xeno jobs needing more points than intended
+2023-07-17:
+  Lumipharon:
+  - bugfix: fixed a bug with the valkyrie module
+  chizzy376:
+  - rscadd: Added new side shutters to Umbilical Tad.
+  imsxz:
+  - rscadd: Ravager's Endure now has a screen effect when you have below critical
+      HP in endure.
+2023-07-19:
+  Lumipharon:
+  - bugfix: SOM cluster grenades and warlock psyblast has more accurate code for what
+      their AOE's will hit
+  - bugfix: Psylance no longer staggerslows xenos instead of humans
+  - balance: SOM cluster grenades hit objects again, instead of just mobs
+  TiviPlus:
+  - admin: Adds TTS and IC bans
+  forestbbbbbbb:
+  - rscadd: updated tgui
+  ivanmixo:
+  - rscadd: Adds an APC sanity unit test
+  - bugfix: Fixed emotes breaking at random
+  - bugfix: You don't disappear on minimap anymore if you go inside an object like
+      a locker or ventcrawl
+  novaepee:
+  - rscadd: kilt; use facepaint on kama to choose kilt in the variety tab
+2023-07-20:
+  '? code ???':
+  - bugfix: Fixed status effects sometimes getting stuck on living or dead mobs
+  Lumipharon:
+  - bugfix: HvH - Fixed melee head stuns being far shorter than intended
+  - balance: Mounted guns have normalised bullet, laser and energy armor
+  - code_imp: Removed some dead code out of throw code
+  - balance: Mounted guns are dense when mounted again. Crushers rejoice
+  - bugfix: fixed some issues with xeno leaps
+  - bugfix: Throwing mobs through barbed plasteel cades when down will no longer hit
+      them 50 times
+  TiviPlus:
+  - admin: Deadchat now uses the OOC chat filter
+  chizzy376:
+  - rscadd: You can buy the rsr console at req for 200
+  ivanmixo:
+  - rscadd: Added a teleport to location on map ability for hivemind
+2023-07-21:
+  RipGrayson:
+  - rscadd: Re-added tunnel landmarks for mapper use
+  - rscadd: Created a mapper landmark for resin jelly pods
+  - balance: Added preplaced tunnel landmarks to LV624
+  forestbbbbbbb:
+  - rscadd: msay is tgui. rebind your msay key
+  ivanmixo:
+  - bugfix: Fixed listclearnulls on 515
+2023-07-22:
+  Barnet2:
+  - rscadd: Harvester Knives are now in your local Valhalla and Crash vendors.
+  Lumipharon:
+  - balance: Improved the armor of windowframes
+  - balance: Barricades start with some bullet/laser/energy armor
+  - balance: Melee upgrades for metal barricades upgrade laser and energy armor like
+      they already do for bullet
+  - balance: Vending machines have slightly higher coverage
+  - bugfix: fixed an issue with throwing past mobs
+  Xander3359:
+  - qol: Valhalla vendors are more robust.
+  forestbbbbbbb:
+  - bugfix: fixed "You grab the HE orbital warhead with the HE orbital warhead."
+  - bugfix: iguana is on minimap after being spawned
+  - bugfix: req lift can move only when idle

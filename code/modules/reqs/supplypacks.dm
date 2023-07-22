@@ -143,6 +143,12 @@ OPERATIONS
 	containertype = null
 	cost = 100
 
+/datum/supply_packs/operations/researchcomp
+	name = "Research console"
+	contains = list(/obj/machinery/researchcomp)
+	containertype = null
+	cost = 200
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -2141,3 +2147,8 @@ FACTORY
 	name = "RL-57 Thermobaric WP rocket array assembly refill"
 	contains = list(/obj/item/factory_refill/thermobaric_wp_refill)
 	cost = 500
+
+/datum/supply_packs/factory/drop_pod_refill
+	name = "Zeus orbital drop pod assembly refill"
+	contains = list(/obj/item/factory_refill/drop_pod_refill)
+	cost = 250

@@ -27,6 +27,8 @@
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/list/fillers
+	//used for determining emergency access
+	var/emergency = FALSE
 
 	//Multi-tile doors
 	dir = EAST
@@ -98,7 +100,7 @@
 		user = null
 
 	if(density)
-		if(allowed(user))
+		if(allowed(user) || emergency)
 			open()
 		else
 			flick("door_deny", src)

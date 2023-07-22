@@ -250,7 +250,9 @@
 	},
 /area/bigredv2/outside/nw)
 "qJ" = (
-/obj/effect/spawner/random/misc/structure/barrel/white,
+/obj/structure/xenoautopsy/tank/escaped,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "qY" = (
@@ -403,7 +405,7 @@
 /area/bigredv2/caves/northwest)
 "AC" = (
 /obj/machinery/light{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -422,7 +424,7 @@
 /area/bigredv2/caves/west)
 "Cq" = (
 /obj/machinery/light{
-	dir = 1;
+	dir = 1
 	},
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -485,9 +487,8 @@
 	},
 /area/bigredv2/outside/virology)
 "Gb" = (
-/obj/machinery/light{
-	dir = 1;
-	},
+/obj/item/shard,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Hq" = (
@@ -1441,7 +1442,7 @@ Uw
 ih
 zF
 zF
-qJ
+yq
 zF
 zF
 zF
@@ -1798,9 +1799,9 @@ kB
 ZM
 Km
 ih
-rR
-zz
-zF
+qJ
+Gb
+xa
 Nj
 zF
 QZ
@@ -1870,7 +1871,7 @@ TV
 Ls
 VW
 ih
-Gb
+IS
 zF
 zF
 Nj
@@ -1918,7 +1919,7 @@ ZT
 ax
 oF
 uV
-zF
+xa
 zF
 zF
 Mr

@@ -48,6 +48,13 @@
 	},
 /turf/open/floor/mainship/som/sw,
 /area/mainship/patrol_base/som)
+"aB" = (
+/obj/structure/prop/mainship/prop_so{
+	dir = 8;
+	pixel_x = 9
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "aE" = (
 /obj/structure/bed/bunkbed,
 /obj/machinery/light,
@@ -96,6 +103,12 @@
 "bD" = (
 /obj/machinery/light,
 /turf/open/floor/plating/ground/desertdam/asphalt,
+/area/mainship/patrol_base/som)
+"bH" = (
+/obj/structure/prop/mainship/prop_so/som{
+	dir = 8
+	},
+/turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "bI" = (
 /turf/open/floor/mainship/purple{
@@ -512,10 +525,6 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som)
-"hI" = (
-/obj/machinery/cic_maptable/som_maptable,
-/turf/open/floor/mainship/silver,
-/area/mainship/patrol_base/som)
 "hT" = (
 /obj/structure/somcas/five,
 /turf/open/floor/plating/ground/concrete,
@@ -727,9 +736,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "kT" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
+/obj/structure/prop/mainship/prop_so,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "la" = (
@@ -744,11 +751,6 @@
 	dir = 10
 	},
 /area/mainship/patrol_base/som)
-"lm" = (
-/obj/machinery/photocopier,
-/obj/machinery/light,
-/turf/open/floor/mainship/blue,
-/area/mainship/patrol_base)
 "ln" = (
 /obj/effect/turf_decal/warning_stripes/stripedsquare,
 /obj/machinery/light{
@@ -771,11 +773,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"lA" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/light,
-/turf/open/floor/mainship/silver,
-/area/mainship/patrol_base/som)
 "lH" = (
 /obj/machinery/telecomms/bus/preset_one/som,
 /turf/open/floor/mainship,
@@ -810,12 +807,6 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
-"lY" = (
-/obj/structure/prop/mainship/prop_so/som{
-	dir = 1
-	},
-/turf/open/floor/mainship/office,
-/area/mainship/patrol_base/som)
 "mg" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 1
@@ -827,6 +818,12 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
+/area/mainship/patrol_base/som)
+"mC" = (
+/obj/machinery/cic_maptable_big{
+	pixel_x = -3
+	},
+/turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "mH" = (
 /turf/open/floor/mainship/red{
@@ -1316,6 +1313,9 @@
 /obj/structure/prop/mainship/prop_so{
 	dir = 1
 	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "tp" = (
@@ -1404,6 +1404,7 @@
 /obj/machinery/computer/security/marinemainship{
 	pixel_y = 18
 	},
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/blue{
 	dir = 9
 	},
@@ -1810,6 +1811,12 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
+"Av" = (
+/obj/machinery/photocopier,
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/mainship/patrol_base)
 "AD" = (
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/mainship,
@@ -1938,6 +1945,12 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"CZ" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/mainship/patrol_base)
 "De" = (
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/mainship,
@@ -2619,6 +2632,14 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
+"Nr" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/patrol_base)
 "Ns" = (
 /obj/structure/largecrate,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -2887,6 +2908,12 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
+"Qp" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/patrol_base/som)
 "Qr" = (
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
@@ -2950,6 +2977,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
+"Ri" = (
+/obj/machinery/cic_maptable_big,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "Rr" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 4
@@ -4697,9 +4728,9 @@ Mv
 Mv
 If
 xq
-lY
-UL
-lA
+Mv
+pw
+oj
 If
 IH
 iu
@@ -4760,8 +4791,8 @@ Mv
 If
 Jf
 ef
-Mv
-hI
+mC
+IG
 FL
 JR
 JR
@@ -4884,7 +4915,7 @@ Mv
 Co
 CG
 Mv
-Mv
+bH
 oj
 If
 hc
@@ -4946,7 +4977,7 @@ Mv
 If
 Ff
 ef
-pw
+Qp
 IG
 FL
 JR
@@ -9265,9 +9296,9 @@ Sw
 Fw
 kA
 kA
-kA
 Fw
 up
+CZ
 Cd
 Cj
 Uw
@@ -9327,9 +9358,9 @@ Sw
 Fw
 kA
 kA
-kA
 PQ
-On
+Nr
+kA
 kA
 sA
 Uw
@@ -9389,10 +9420,10 @@ Sw
 Fw
 kA
 kA
-kA
 Fw
 oq
 ta
+kA
 eH
 GL
 Mn
@@ -9451,10 +9482,10 @@ Sw
 Fw
 kA
 kA
-kA
 Fw
 Zf
 kT
+Ri
 Qr
 Ki
 QD
@@ -9513,11 +9544,11 @@ Sw
 Fw
 kA
 kA
-kA
 Fw
 cO
 kA
-lm
+aB
+eH
 GL
 Mn
 yA
@@ -9575,9 +9606,9 @@ Sw
 Fw
 kA
 kA
-kA
 PQ
 On
+kA
 kA
 lX
 Uw
@@ -9637,9 +9668,9 @@ Sw
 Fw
 kA
 kA
-kA
 Fw
 Jc
+Av
 Ek
 ud
 Uw

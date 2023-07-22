@@ -6,6 +6,7 @@
 
 /datum/action/xeno_action/return_to_core/action_activate()
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
+	return ..()
 
 /datum/action/xeno_action/activable/secrete_resin/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
@@ -87,3 +88,48 @@
 	var/mob/living/carbon/xenomorph/hivemind/hivemind = source
 	hivemind.jump(selected_xeno)
 
+/datum/action/xeno_action/teleport
+	name = "Teleport"
+	action_icon_state = "resync"
+	desc = "Pick a location on the map and instantly manifest there if possible."
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMISG_XENOMORPH_HIVEMIND_TELEPORT,
+	)
+	use_state_flags = XACT_USE_CLOSEDTURF
+	///Is the map being shown to the player right now?
+	var/showing_map = FALSE
+
+/datum/action/xeno_action/teleport/action_activate()
+	var/atom/movable/screen/minimap/shown_map = SSminimaps.fetch_minimap_object(owner.z, MINIMAP_FLAG_XENO)
+
+	if(showing_map) // The map is open on their screen, close it
+		owner.client?.screen -= shown_map
+		shown_map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		showing_map = FALSE
+		return
+
+	owner.client?.screen += shown_map
+	showing_map = TRUE
+	var/list/polled_coords = shown_map.get_coords_from_click(owner)
+
+	if(!polled_coords)
+		owner.client?.screen -= shown_map
+		shown_map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		showing_map = FALSE
+		return
+
+	owner.client?.screen -= shown_map
+	showing_map = FALSE
+	var/turf/turf_to_teleport_to = locate(polled_coords[1], polled_coords[2], owner.z)
+	
+	if(!turf_to_teleport_to)
+		return
+
+	var/mob/living/carbon/xenomorph/hivemind/hivemind_owner = owner
+	if(!hivemind_owner.check_weeds(turf_to_teleport_to, TRUE))
+		owner.balloon_alert(owner, "No weeds in selected location")
+		return
+	if(!(hivemind_owner.status_flags & INCORPOREAL))
+		hivemind_owner.start_teleport(turf_to_teleport_to)
+		return
+	hivemind_owner.abstract_move(turf_to_teleport_to)
