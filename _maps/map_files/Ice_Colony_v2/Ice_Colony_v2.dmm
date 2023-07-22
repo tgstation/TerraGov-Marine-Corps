@@ -22378,10 +22378,11 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west/garbledradio)
 "iEO" = (
-/obj/effect/turf_underlay/icefloor,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/xeno_tunnel_spawn,
-/turf/closed/mineral/smooth/bluefrostwall,
-/area/ice_colony/exterior/underground/caves/rock)
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/south)
 "iET" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -23515,10 +23516,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
-"kfL" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/ice_w)
 "kgh" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating,
@@ -27962,12 +27959,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
-"qla" = (
-/obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/start/job/xenomorph,
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/closed/mineral/smooth/bluefrostwall,
-/area/ice_colony/underground/maintenance/south)
 "qlb" = (
 /turf/closed/mineral/smooth/darkfrostwall,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -31454,13 +31445,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
-"uJz" = (
-/obj/effect/turf_underlay/icefloor,
-/obj/structure/sign/safety/hazard{
-	dir = 4
-	},
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/ice_colony/exterior/underground/caves/rock)
 "uJB" = (
 /obj/machinery/hydroponics,
 /turf/open/ground/grass,
@@ -36763,7 +36747,7 @@ uSg
 uSg
 uSg
 uSg
-kfL
+oxN
 oxN
 oxN
 wye
@@ -49851,7 +49835,7 @@ boJ
 qij
 wWA
 wWA
-iwO
+iEO
 wWA
 wWA
 bOk
@@ -50697,7 +50681,7 @@ uPy
 bqx
 boJ
 rXg
-qla
+xQb
 wWA
 wWA
 iwO
@@ -64160,7 +64144,7 @@ xJX
 xJX
 xJX
 xJX
-uJz
+ghx
 duN
 dJU
 aOf
@@ -74919,7 +74903,7 @@ duN
 aiX
 aiX
 adj
-adj
+cUB
 duN
 uSg
 uSg
@@ -75132,7 +75116,7 @@ duN
 aiX
 adj
 duN
-iEO
+duN
 uSg
 uSg
 xJX
