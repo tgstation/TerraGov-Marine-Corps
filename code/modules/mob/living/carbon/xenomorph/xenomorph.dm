@@ -24,7 +24,7 @@
 		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
 
 	set_initial_hivenumber()
-	voice = random_tts_voice() // TODO when we get tagging make this pick female only
+	voice = "Woman (Journalist)" // TODO when we get tagging make this pick female only
 
 	switch(stat)
 		if(CONSCIOUS)
