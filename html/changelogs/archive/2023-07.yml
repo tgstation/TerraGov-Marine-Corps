@@ -292,3 +292,7 @@
   - bugfix: fixed "You grab the HE orbital warhead with the HE orbital warhead."
   - bugfix: iguana is on minimap after being spawned
   - bugfix: req lift can move only when idle
+2023-07-23:
+  forestbbbbbbb:
+  - bugfix: synth surgical pouch is in the correct vendor category
+  - bugfix: writing [logo] and [ntlogo] on paper works now

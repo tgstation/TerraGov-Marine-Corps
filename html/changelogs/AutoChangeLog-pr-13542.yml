@@ -1,4 +1,0 @@
-author: "forestbbbbbbb"
-delete-after: True
-changes:
-  - bugfix: "writing [logo] and [ntlogo] on paper works now"
