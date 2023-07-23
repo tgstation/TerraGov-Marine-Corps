@@ -22,7 +22,7 @@
 
 ///Links the patrol point to its associated exit point
 /obj/structure/patrol_point/proc/create_link()
-	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
+	for(var/obj/effect/landmark/patrol_point/exit_point as anything in GLOB.patrol_point_list)
 		if(exit_point.id == id)
 			linked_point = exit_point
 			RegisterSignal(linked_point, COMSIG_QDELETING, PROC_REF(delete_link))

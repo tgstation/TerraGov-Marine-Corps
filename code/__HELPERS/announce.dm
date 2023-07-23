@@ -53,7 +53,7 @@
 
 	var/sound/S = alert ? sound('sound/misc/notice1.ogg') : sound('sound/misc/notice2.ogg')
 	S.channel = CHANNEL_ANNOUNCEMENTS
-	for(var/mob/M AS in receivers)
+	for(var/mob/M as anything in receivers)
 		if(!isnewplayer(M) && !isdeaf(M))
 			to_chat(M, "<span class='big bold'><font color = red>[html_encode(title)]</font color><BR>[html_encode(message)]</span><BR>")
 			SEND_SOUND(M, S)

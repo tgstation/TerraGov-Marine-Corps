@@ -495,17 +495,17 @@
 	.["coin_records"] = list()
 	.["tabs"] = list()
 
-	for(var/datum/vending_product/R AS in product_records)
+	for(var/datum/vending_product/R as anything in product_records)
 		if(R.tab && !(R.tab in .["tabs"]))
 			.["tabs"] += R.tab
 		.["displayed_records"] += list(MAKE_VENDING_RECORD_DATA(R))
 
-	for(var/datum/vending_product/R AS in hidden_records)
+	for(var/datum/vending_product/R as anything in hidden_records)
 		if(R.tab && !(R.tab in .["tabs"]))
 			.["tabs"] += R.tab
 		.["hidden_records"] += list(MAKE_VENDING_RECORD_DATA(R))
 
-	for(var/datum/vending_product/R AS in coin_records)
+	for(var/datum/vending_product/R as anything in coin_records)
 		if(R.tab && !(R.tab in .["tabs"]))
 			.["tabs"] += R.tab
 		.["coin_records"] += list(MAKE_VENDING_RECORD_DATA(R))
@@ -514,7 +514,7 @@
 	. = list()
 	.["stock"] = list()
 
-	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
+	for(var/datum/vending_product/R as anything in product_records + hidden_records + coin_records)
 		.["stock"][R.product_name] = R.amount
 
 	if(currently_vending)
@@ -653,7 +653,7 @@
 		display_message_and_visuals(user, show_feedback, "Vendor is unresponsive!", VENDING_RESTOCK_IDLE)
 		return FALSE
 
-	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
+	for(var/datum/vending_product/R as anything in product_records + hidden_records + coin_records)
 		if(item_to_stock.type != R.product_path)
 			continue
 		record = R
@@ -818,7 +818,7 @@
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
-	for(var/datum/vending_product/R AS in product_records)
+	for(var/datum/vending_product/R as anything in product_records)
 		if (R.amount <= 0) //Try to use a record that actually has something to dump.
 			continue
 		var/dump_path = R.product_path
@@ -840,7 +840,7 @@
 	if(!target)
 		return FALSE
 
-	for(var/datum/vending_product/R AS in product_records)
+	for(var/datum/vending_product/R as anything in product_records)
 		if (R.amount <= 0) //Try to use a record that actually has something to dump.
 			continue
 		var/dump_path = R.product_path

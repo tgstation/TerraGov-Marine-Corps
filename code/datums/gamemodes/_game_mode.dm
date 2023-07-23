@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
 	if(length(GLOB.round_statistics.req_items_produced))
 		parts += "Requisitions produced: "
-		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
+		for(var/atom/movable/path as anything in GLOB.round_statistics.req_items_produced)
 			parts += "[GLOB.round_statistics.req_items_produced[path]] [initial(path.name)]"
 			if(path == GLOB.round_statistics.req_items_produced[length(GLOB.round_statistics.req_items_produced)]) //last element
 				parts += "."
@@ -638,7 +638,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(!length(preferred_squads))
 		to_chat(world, span_boldnotice("Error, no squads found."))
 		return FALSE
-	for(var/mob/new_player/player AS in GLOB.new_player_list)
+	for(var/mob/new_player/player as anything in GLOB.new_player_list)
 		if(!player.ready || !player.client?.prefs?.preferred_squad)
 			continue
 		var/squad_choice = player.client.prefs.preferred_squad
@@ -877,7 +877,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 ///Generates nuke disk consoles from a list of valid locations
 /datum/game_mode/proc/generate_nuke_disk_spawners()
-	for(var/obj/machinery/computer/nuke_disk_generator AS in GLOB.nuke_disk_generator_types)
+	for(var/obj/machinery/computer/nuke_disk_generator as anything in GLOB.nuke_disk_generator_types)
 		var/spawn_loc = pick(GLOB.nuke_disk_spawn_locs)
 		new nuke_disk_generator(get_turf(spawn_loc))
 		GLOB.nuke_disk_spawn_locs -= spawn_loc

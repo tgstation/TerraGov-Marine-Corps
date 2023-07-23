@@ -977,7 +977,7 @@
 	var/temp_list[] = productlist
 	var/obj/item/reagent_containers/blood/temp_path
 	var/blood_type
-	for(var/datum/vending_product/R AS in (product_records + coin_records))
+	for(var/datum/vending_product/R as anything in (product_records + coin_records))
 		if(R.product_path in temp_list)
 			temp_path = R.product_path
 			blood_type = initial(temp_path.blood_type)

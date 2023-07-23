@@ -1120,7 +1120,7 @@ will handle it, but:
 	var/list/mobs = sortmobs()
 	var/list/namecounts = list()
 	var/list/pois = list()
-	for(var/mob/M AS in mobs)
+	for(var/mob/M as anything in mobs)
 		if(skip_mindless && (!M.mind && !M.ckey))
 			continue
 		if(M.client?.holder)
@@ -1269,8 +1269,8 @@ will handle it, but:
 	for(var/row in 1 to max_row_count)
 		if(row > 2)
 			cardinals = GLOB.cardinals
-		for(var/turf/old_turf AS in turfs_to_check) //checks the inital turf, then afterwards checks every turf that is added to cone_turfs
-			for(var/direction AS in cardinals)
+		for(var/turf/old_turf as anything in turfs_to_check) //checks the inital turf, then afterwards checks every turf that is added to cone_turfs
+			for(var/direction as anything in cardinals)
 				var/turf/turf_to_check = get_step(old_turf, direction) //checks all turfs around X
 				if(cone_turfs.Find(turf_to_check))
 					continue
@@ -1284,7 +1284,7 @@ will handle it, but:
 				cone_turfs += turf_to_check
 				turfs_to_check += turf_to_check
 			turfs_to_check -= old_turf
-		for(var/turf/checked_turf AS in cone_turfs)
+		for(var/turf/checked_turf as anything in cone_turfs)
 			if(get_dist(center, checked_turf) < starting_row) //if its before the starting row, ignore it.
 				cone_turfs -= checked_turf
 	return	cone_turfs

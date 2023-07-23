@@ -97,7 +97,7 @@
 	if(target_turf.density)
 		owner.balloon_alert(owner, "Obstructed by [target_turf]")
 		return
-	for(var/atom/movable/affected AS in target_turf)
+	for(var/atom/movable/affected as anything in target_turf)
 		if(affected.density)
 			owner.balloon_alert(owner, "Obstructed by [affected]")
 			return
@@ -153,7 +153,7 @@
 			lower_left = locate(owner.x + 1, owner.y - 1, owner.z)
 			upper_right = locate(owner.x + 2, owner.y + 1, owner.z)
 
-	for(var/turf/affected_tile AS in block(lower_left, upper_right)) //everything in the 2x3 block is found.
+	for(var/turf/affected_tile as anything in block(lower_left, upper_right)) //everything in the 2x3 block is found.
 		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/atom/movable/affected in affected_tile)
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
@@ -225,7 +225,7 @@
 
 ///Unfeezes the projectiles on their original path
 /obj/effect/xeno/shield/proc/release_projectiles()
-	for(var/obj/projectile/proj AS in frozen_projectiles)
+	for(var/obj/projectile/proj as anything in frozen_projectiles)
 		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
 		proj.resume_move()
 
@@ -233,7 +233,7 @@
 /obj/effect/xeno/shield/proc/reflect_projectiles()
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
-	for(var/obj/projectile/proj AS in frozen_projectiles)
+	for(var/obj/projectile/proj as anything in frozen_projectiles)
 		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
 		proj.distance_travelled = 0 //we're effectively firing it fresh
 		var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
@@ -346,9 +346,9 @@
 	playsound(target, 'sound/effects/woosh_swoosh.ogg', 30 + (current_iterations * 10))
 
 	var/list/turfs_to_add = list()
-	for(var/turf/current_turf AS in target_turfs)
+	for(var/turf/current_turf as anything in target_turfs)
 		var/list/turfs_to_check = get_adjacent_open_turfs(current_turf)
-		for(var/turf/turf_to_check AS in turfs_to_check)
+		for(var/turf/turf_to_check as anything in turfs_to_check)
 			if((turf_to_check in target_turfs) || (turf_to_check in turfs_to_add))
 				continue
 			if(LinkBlocked(current_turf, turf_to_check, air_pass = TRUE))
@@ -382,7 +382,7 @@
 	flick("crush_hard", orb)
 	addtimer(CALLBACK(src, PROC_REF(remove_all_filters)), 1 SECONDS, TIMER_STOPPABLE)
 
-	for(var/turf/effected_turf AS in target_turfs)
+	for(var/turf/effected_turf as anything in target_turfs)
 		for(var/victim in effected_turf)
 			if(iscarbon(victim))
 				var/mob/living/carbon/carbon_victim = victim
@@ -424,10 +424,10 @@
 ///Apply a filter on all items in the list of turfs
 /datum/action/xeno_action/activable/psy_crush/proc/apply_filters(list/turfs)
 	LAZYINITLIST(filters_applied)
-	for(var/turf/targeted AS in turfs)
+	for(var/turf/targeted as anything in turfs)
 		targeted.add_filter("crushblur", 1, radial_blur_filter(0.3))
 		filters_applied += targeted
-		for(var/atom/movable/item AS in targeted.contents)
+		for(var/atom/movable/item as anything in targeted.contents)
 			item.add_filter("crushblur", 1, radial_blur_filter(0.3))
 			filters_applied += item
 	GLOB.round_statistics.psy_crushes++
@@ -435,7 +435,7 @@
 
 ///Remove all filters of items in filters_applied
 /datum/action/xeno_action/activable/psy_crush/proc/remove_all_filters()
-	for(var/atom/thing AS in filters_applied)
+	for(var/atom/thing as anything in filters_applied)
 		if(QDELETED(thing))
 			continue
 		thing.remove_filter("crushblur")

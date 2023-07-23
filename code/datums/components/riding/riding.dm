@@ -102,7 +102,7 @@
 	if(isnull(.)) //you can set it to null to not change it.
 		. = AM.layer
 	AM.layer = .
-	for(var/mob/M AS in AM.buckled_mobs) //ensure proper layering of piggyback and carry, sometimes weird offsets get applied
+	for(var/mob/M as anything in AM.buckled_mobs) //ensure proper layering of piggyback and carry, sometimes weird offsets get applied
 		M.layer = MOB_LAYER
 
 /datum/component/riding/proc/set_vehicle_dir_layer(dir, layer)
@@ -140,7 +140,7 @@
 	if(!LAZYLEN(AM.buckled_mobs))
 		return
 
-	for(var/mob/living/buckled_mob AS in AM.buckled_mobs)
+	for(var/mob/living/buckled_mob as anything in AM.buckled_mobs)
 		passindex++
 		var/list/offsets = get_offsets(passindex, buckled_mob.type)
 		buckled_mob.setDir(dir)

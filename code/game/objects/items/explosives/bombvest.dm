@@ -56,7 +56,7 @@
 		message_admins("[activator] has detonated an explosive vest with no warcry at [ADMIN_VERBOSEJMP(target)]")
 		log_game("[activator] has detonated an explosive vest with no warcry at [AREACOORD(target)]")
 
-	for(var/datum/limb/appendage AS in activator.limbs) //Oops we blew all our limbs off
+	for(var/datum/limb/appendage as anything in activator.limbs) //Oops we blew all our limbs off
 		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 			continue
 		appendage.droplimb()
@@ -100,11 +100,11 @@
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 		return FALSE
 	var/turf/target = get_turf(loc)
-	activator.say("I'M FIRING IT AS AN OB!!")
+	activator.say("I'M FIRING IT as anything AN OB!!")
 	message_admins("[activator] has detonated an Orbital Bombardment vest at [ADMIN_VERBOSEJMP(target)]")
 	log_game("[activator] has detonated an Orbital Bombardment vest at [AREACOORD(target)]")
 
-	for(var/datum/limb/appendage AS in activator.limbs) //Oops we blew all our limbs off
+	for(var/datum/limb/appendage as anything in activator.limbs) //Oops we blew all our limbs off
 		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 			continue
 		appendage.droplimb()

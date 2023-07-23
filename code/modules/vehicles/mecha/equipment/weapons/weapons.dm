@@ -240,11 +240,11 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
-	for(var/mob/occupant AS in chassis.occupants)
+	for(var/mob/occupant as anything in chassis.occupants)
 		occupant.hud_used.add_ammo_hud(src, hud_icons, projectiles)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/detach(atom/moveto)
-	for(var/mob/occupant AS in chassis.occupants)
+	for(var/mob/occupant as anything in chassis.occupants)
 		occupant.hud_used.remove_ammo_hud(src)
 	return ..()
 
@@ -277,7 +277,7 @@
 		projectiles = projectiles + projectiles_cache
 		projectiles_cache = 0
 	log_message("Rearmed [src].", LOG_MECHA)
-	for(var/mob/occupant AS in chassis.occupants)
+	for(var/mob/occupant as anything in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	return TRUE
 
@@ -289,7 +289,7 @@
 	if(!(. & AUTOFIRE_SUCCESS))
 		return
 	projectiles--
-	for(var/mob/occupant AS in chassis.occupants)
+	for(var/mob/occupant as anything in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	if(projectiles > 0)
 		return
@@ -386,7 +386,7 @@
 	O.throw_at(target, missile_range, missile_speed, source, FALSE)
 	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
 	chassis.use_power(energy_drain)
-	for(var/mob/occupant AS in chassis.occupants)
+	for(var/mob/occupant as anything in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	if(projectiles > 0)
 		return TRUE

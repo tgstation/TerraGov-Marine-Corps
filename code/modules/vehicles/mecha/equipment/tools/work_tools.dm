@@ -91,7 +91,7 @@
 				to_chat(source, span_notice("You longingly wish to tear [M]'s arms off."))
 				return
 			var/mob/living/carbon/human/marine_wit_no_arms = target
-			for(var/datum/limb/appendage AS in marine_wit_no_arms.limbs) //Ma arms fell off :(
+			for(var/datum/limb/appendage as anything in marine_wit_no_arms.limbs) //Ma arms fell off :(
 				if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 					continue
 				appendage.droplimb()

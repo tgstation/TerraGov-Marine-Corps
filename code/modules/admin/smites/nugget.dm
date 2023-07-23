@@ -10,7 +10,7 @@
 		return
 
 	var/timer = 2 SECONDS
-	for(var/datum/limb/limb_to_destroy AS in target.limbs)
+	for(var/datum/limb/limb_to_destroy as anything in target.limbs)
 		if (limb_to_destroy.body_part == HEAD || limb_to_destroy.body_part == GROIN)
 			continue
 		addtimer(CALLBACK(limb_to_destroy, TYPE_PROC_REF(/datum/limb, droplimb)), timer)

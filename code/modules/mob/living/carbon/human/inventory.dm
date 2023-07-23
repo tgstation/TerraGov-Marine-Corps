@@ -265,7 +265,7 @@
 		update_inv_r_hand()
 
 	//removes item's actions, may be readded once re-equipped to the new slot
-	for(var/datum/action/A AS in W.actions)
+	for(var/datum/action/A as anything in W.actions)
 		A.remove_action(src)
 
 	W.screen_loc = null

@@ -73,7 +73,7 @@
 		return
 	fuel_count--
 	if(fuel_count == LOW_FUEL_LEFT_MESSAGE)
-		for(var/mob/rider AS in buckled_mobs)
+		for(var/mob/rider as anything in buckled_mobs)
 			balloon_alert(rider, "[fuel_count/fuel_max*100]% fuel left")
 
 	if(COOLDOWN_CHECK(src, enginesound_cooldown))

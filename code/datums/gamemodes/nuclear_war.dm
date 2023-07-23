@@ -33,7 +33,7 @@
 
 	SSpoints.add_psy_points(XENO_HIVE_NORMAL, 2 * SILO_PRICE + 4 * XENO_TURRET_PRICE)
 
-	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+	for(var/obj/effect/landmark/corpsespawner/corpse as anything in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
 	for(var/mob/living/carbon/xenomorph/larva/xeno in GLOB.alive_xeno_list)

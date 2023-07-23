@@ -83,7 +83,7 @@ SUBSYSTEM_DEF(monitor)
 	if(current_state != STATE_BALANCED || !stalemate || length(GLOB.observer_list) <= 0.5 * total_living_players)
 		SSsilo.larva_spawn_rate_temporary_buff = 0
 		return
-	for(var/mob/dead/observer/observer AS in GLOB.observer_list)
+	for(var/mob/dead/observer/observer as anything in GLOB.observer_list)
 		GLOB.key_to_time_of_role_death[observer.key] -= 5 MINUTES //If we are in a constant stalemate, every 5 minutes we remove 5 minutes of respawn time to become a marine
 	message_admins("Stalemate detected, respawn buff system in action : 5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
 	log_game("5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
@@ -207,7 +207,7 @@ SUBSYSTEM_DEF(monitor)
  * Will multiply every base health, regen and melee damage stat on all xeno by GLOB.xeno_stat_multiplicator_buff
  */
 /datum/controller/subsystem/monitor/proc/apply_balance_changes()
-	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+	for(var/mob/living/carbon/xenomorph/xeno as anything in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		xeno.apply_health_stat_buff()
 	for(var/xeno_caste_typepath in GLOB.xeno_caste_datums)
 		for(var/upgrade in GLOB.xeno_caste_datums[xeno_caste_typepath])

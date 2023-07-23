@@ -232,7 +232,7 @@
 	if(!proximity || !isturf(target) || target.density)
 		return
 	var/turf/target_turf = target
-	for(var/atom/atom_to_check AS in target_turf)
+	for(var/atom/atom_to_check as anything in target_turf)
 		if(atom_to_check.density)
 			return
 	deploy_roller(user, target_turf)

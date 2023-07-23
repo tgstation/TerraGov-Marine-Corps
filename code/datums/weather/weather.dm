@@ -105,7 +105,7 @@
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)
 	SSweather.processing |= src
 	update_areas()
-	for(var/mob/impacted_mob AS in GLOB.player_list)
+	for(var/mob/impacted_mob as anything in GLOB.player_list)
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)
 		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
 			continue
@@ -129,7 +129,7 @@
 		return
 	stage = MAIN_STAGE
 	update_areas()
-	for(var/mob/impacted_mob AS in GLOB.player_list)
+	for(var/mob/impacted_mob as anything in GLOB.player_list)
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)
 		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
 			continue
@@ -153,7 +153,7 @@
 		return
 	stage = WIND_DOWN_STAGE
 	update_areas()
-	for(var/mob/impacted_mob AS in GLOB.player_list)
+	for(var/mob/impacted_mob as anything in GLOB.player_list)
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)
 		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
 			continue

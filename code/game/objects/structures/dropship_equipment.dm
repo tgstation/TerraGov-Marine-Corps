@@ -42,7 +42,7 @@
 	if(installed_equipment)
 		return
 	if(!density)
-		for(var/atom/thing_to_check AS in loc)
+		for(var/atom/thing_to_check as anything in loc)
 			if(thing_to_check.density)
 				balloon_alert(user, "Blocked by [thing_to_check]")
 				return

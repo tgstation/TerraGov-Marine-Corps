@@ -316,7 +316,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/list/valid_outfits = list()
 
-	for(var/datum/outfit/variant AS in assigned_role.outfits)
+	for(var/datum/outfit/variant as anything in assigned_role.outfits)
 		if(initial(variant.species) == src.species.species_type)
 			valid_outfits += variant
 

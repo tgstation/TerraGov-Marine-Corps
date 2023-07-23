@@ -85,7 +85,7 @@
 ///Creates the description of usable resources for starting research
 /obj/machinery/researchcomp/proc/construct_insertable_resources_desc()
 	allowed_resources_desc = "<br><b>Insertable material:</b><br>"
-	for(var/obj/resource AS in typesof(/obj/item/research_resource))
+	for(var/obj/resource as anything in typesof(/obj/item/research_resource))
 		allowed_resources_desc += " >[initial(resource.name)]<br>"
 
 /obj/machinery/researchcomp/attackby(obj/item/I, mob/user, params)
@@ -132,7 +132,7 @@
 		)
 
 		var/list/tier_rewards_typepaths = research_rewards[tier]
-		for(var/obj/typepath AS in tier_rewards_typepaths)
+		for(var/obj/typepath as anything in tier_rewards_typepaths)
 			reward_tier["rewards_list"] += initial(typepath.name)
 
 		.["init_resource"]["rewards"] += list(reward_tier)
@@ -203,7 +203,7 @@
 	generate_research_rewards_list(resource, potential_rewards, earned_rewards)
 
 	var/turf/drop_loc = get_turf(rewards_position)
-	for (var/obj/item AS in earned_rewards)
+	for (var/obj/item as anything in earned_rewards)
 		item.forceMove(drop_loc)
 
 ///Generates rewards using the resource's rarity modifiers and a list of potential rewards

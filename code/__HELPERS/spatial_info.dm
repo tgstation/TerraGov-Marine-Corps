@@ -295,7 +295,7 @@
 /proc/get_bbox_of_atoms(list/atoms)
 	var/list/list_x = list()
 	var/list/list_y = list()
-	for(var/atom/a AS in atoms)
+	for(var/atom/a as anything in atoms)
 		list_x += a.x
 		list_y += a.y
 	return list(

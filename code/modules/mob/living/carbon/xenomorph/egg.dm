@@ -36,7 +36,7 @@
 		return
 	if(maturity_stage != stage_ready_to_burst)
 		return
-	for(var/turf/turf_to_watch AS in filled_turfs(src, trigger_size, "circle", FALSE))
+	for(var/turf/turf_to_watch as anything in filled_turfs(src, trigger_size, "circle", FALSE))
 		RegisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED, PROC_REF(enemy_crossed))
 
 ///Bursts the egg. Return TRUE if it bursts successfully, FALSE if it fails for any reason.
@@ -48,7 +48,7 @@
 		advance_maturity(stage_ready_to_burst + 2)
 	else
 		advance_maturity(stage_ready_to_burst + 1)
-	for(var/turf/turf_to_watch AS in filled_turfs(src, trigger_size, "circle", FALSE))
+	for(var/turf/turf_to_watch as anything in filled_turfs(src, trigger_size, "circle", FALSE))
 		UnregisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED)
 	return TRUE
 

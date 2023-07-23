@@ -60,13 +60,13 @@
 	var/output = ""
 	if(length(loaded_reagents))
 		output += "It currently holds:<br>"
-		for(var/datum/reagent/reagent_type AS in loaded_reagents)
+		for(var/datum/reagent/reagent_type as anything in loaded_reagents)
 			output += "<span style='color:[initial(reagent_type.color)];font-weight:bold'>[initial(reagent_type.name)]</span> - [loaded_reagents[reagent_type]]\n"
 	else
 		output += "The internal storage is empty\n"
 
 	output += "<b>Compatible chemicals:</b>\n"
-	for(var/datum/reagent/reagent AS in loadable_reagents)
+	for(var/datum/reagent/reagent as anything in loadable_reagents)
 		output += "<span style='color:[initial(reagent.color)];font-weight:bold'>[initial(reagent.name)]</span>\n"
 
 	to_chat(user, output)
@@ -186,7 +186,7 @@
 			target.flamer_fire_act(10)
 			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
 			var/list/cone_turfs = generate_cone(target, 1, 0, 181, Get_Angle(user, target.loc))
-			for(var/turf/checked_turf AS in cone_turfs)
+			for(var/turf/checked_turf as anything in cone_turfs)
 				for(var/mob/living/victim in checked_turf)
 					victim.flamer_fire_act(10)
 					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
@@ -207,7 +207,7 @@
 
 /datum/component/harvester/proc/select_reagent(datum/source)
 	var/list/options = list()
-	for(var/datum/reagent/reagent_entry AS in loaded_reagents)
+	for(var/datum/reagent/reagent_entry as anything in loaded_reagents)
 		options += initial(reagent_entry.name)
 
 	var/selected_option = tgui_input_list(reagent_select_action.owner, "Selection", "Available reagents", options)
@@ -216,7 +216,7 @@
 		return
 
 	var/datum/reagent/selected_reagent = null
-	for(var/datum/reagent/reagent_entry AS in loaded_reagents)
+	for(var/datum/reagent/reagent_entry as anything in loaded_reagents)
 		if(initial(reagent_entry.name) == selected_option)
 			selected_reagent = reagent_entry
 

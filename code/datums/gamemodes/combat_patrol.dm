@@ -39,7 +39,7 @@
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
-	for(var/area/area_to_lit AS in GLOB.sorted_areas)
+	for(var/area/area_to_lit as anything in GLOB.sorted_areas)
 		switch(area_to_lit.ceiling)
 			if(CEILING_NONE to CEILING_GLASS)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 200)
@@ -92,7 +92,7 @@
 /datum/game_mode/combat_patrol/proc/intro_sequence()
 	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	var/op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+	for(var/mob/living/carbon/human/human as anything in GLOB.alive_human_list)
 		if(human.faction == FACTION_TERRAGOV)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
 		else

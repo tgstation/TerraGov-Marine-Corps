@@ -507,9 +507,9 @@
 
 	var/old_intent = source.a_intent
 	source.a_intent = INTENT_HARM
-	for(var/turf/target AS in targets)
+	for(var/turf/target as anything in targets)
 		chassis.do_attack_animation(target, ATTACK_EFFECT_LASERSWORD)
-		for(var/atom/movable/slashed AS in target)
+		for(var/atom/movable/slashed as anything in target)
 			slashed.attackby(src, source, list2params(modifiers))
 	source.a_intent = old_intent
 

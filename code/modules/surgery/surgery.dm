@@ -121,7 +121,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 		return TRUE
 
 	var/datum/limb/affected = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(M, user) : M.get_limb(user.zone_selected)
-	for(var/datum/surgery_step/surgery_step AS in GLOB.surgery_steps)
+	for(var/datum/surgery_step/surgery_step as anything in GLOB.surgery_steps)
 		//Check if tool is right or close enough, and the target mob valid, and if this step is possible
 		if(!surgery_step.tool_quality(tool) || !surgery_step.is_valid_target(M))
 			continue

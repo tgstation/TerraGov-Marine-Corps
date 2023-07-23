@@ -56,10 +56,10 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		return INITIALIZE_HINT_QDEL
 
 /obj/structure/droppod/Destroy()
-	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
+	for(var/atom/movable/ejectee as anything in buckled_mobs) // dump them out, just in case no mobs get deleted
 		ejectee.forceMove(loc)
 	//because we get put in the contents at some point, and don't want to get deleted if the pod gets shot out during that time
-	for(var/atom/movable/ejectee AS in contents)
+	for(var/atom/movable/ejectee as anything in contents)
 		ejectee.forceMove(loc)
 	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 
 /obj/structure/droppod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
-	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
+	for(var/atom/movable/ejectee as anything in buckled_mobs) // dump them out, just in case no mobs get deleted
 		ejectee.forceMove(loc)
 	return ..()
 
@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	. = ..()
 	if(!.)
 		return
-	for(var/datum/action/innate/action AS in interaction_actions)
+	for(var/datum/action/innate/action as anything in interaction_actions)
 		action.give_action(buckling_mob)
 	buckling_mob.pixel_y = 7
 
@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	. = ..()
 	if(!.)
 		return
-	for(var/datum/action/innate/action AS in interaction_actions)
+	for(var/datum/action/innate/action as anything in interaction_actions)
 		action.remove_action(buckled_mob)
 	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
 
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(user)
 			balloon_alert(user, "Area underground")
 		return FALSE
-	for(var/atom/movable/object AS in target.contents)
+	for(var/atom/movable/object as anything in target.contents)
 		if(object.density)
 			if(user)
 				balloon_alert(user, "Dense object detected")
@@ -182,13 +182,13 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(!checklanding(user))
 		return
 
-	for(var/mob/podder AS in buckled_mobs)
+	for(var/mob/podder as anything in buckled_mobs)
 		podder.forceMove(src)
 
 	var/turf/target = locate(target_x, target_y, 2)
 	log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
 	deadchat_broadcast(" has been launched", src, turf_target = target)
-	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
+	for(var/mob/living/silicon/ai/AI as anything in GLOB.ai_list)
 		to_chat(AI, span_notice("[user] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
 	reserved_area = SSmapping.RequestBlockReservation(3,3)
 
@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/proc/completedrop(mob/user)
 	drop_state = DROPPOD_LANDED
 	update_icon()
-	for(var/atom/movable/deployed AS in contents)
+	for(var/atom/movable/deployed as anything in contents)
 		deployed.forceMove(loc)
 
 
@@ -268,14 +268,14 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 	var/turf/target = locate(new_x, new_y, 2)
 	var/occupied_pods
-	for(var/obj/structure/droppod/pod AS in GLOB.droppod_list)
+	for(var/obj/structure/droppod/pod as anything in GLOB.droppod_list)
 		if(LAZYLEN(pod.buckled_mobs))
 			occupied_pods++
 	var/dispersion = max(LEADER_POD_DISPERSION, LEADER_POD_DISPERSION + ((occupied_pods - 10) / 5))
 	var/turf/topright = locate(new_x + dispersion, new_y + dispersion,2)
 	var/turf/bottomleft = locate(new_x - dispersion, new_y - dispersion,2)
 	var/list/block = block(bottomleft, topright) - locate()
-	for(var/turf/attemptdrop AS in block) // prune invalid turfs
+	for(var/turf/attemptdrop as anything in block) // prune invalid turfs
 		if(!checklanding(null, attemptdrop))
 			block -= attemptdrop
 	if(length(block) <= 10)
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		return
 
 	for(var/obj/structure/droppod/pod in GLOB.droppod_list)
-		for(var/mob/user AS in pod.buckled_mobs)
+		for(var/mob/user as anything in pod.buckled_mobs)
 			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>DROP UPDATED:</u></span><br>New target: [target.loc]", /atom/movable/screen/text/screen_text/command_order)
 		var/turf/newturf
 		if(length(block))
@@ -309,7 +309,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	for(var/obj/structure/droppod/pod in GLOB.droppod_list)
 		if(!LAZYLEN(pod.buckled_mobs))
 			continue
-		for(var/mob/dropper AS in pod.buckled_mobs)
+		for(var/mob/dropper as anything in pod.buckled_mobs)
 			dropper.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>DROP UPDATED:</u></span><br>COMMENCING MASS DEPLOYMENT", /atom/movable/screen/text/screen_text/command_order)
 		var/predroptime = rand(4 SECONDS, 5 SECONDS) //Randomize it a bit so its staggered
 		addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, launchpod), pod.buckled_mobs[1], TRUE), predroptime)

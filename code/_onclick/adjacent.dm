@@ -88,7 +88,7 @@
 //Multitile special cases.
 /obj/structure/Adjacent(atom/neighbor)
 	if(bound_width > 32 || bound_height > 32)
-		for(var/turf/myloc AS in locs)
+		for(var/turf/myloc as anything in locs)
 			if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 				return TRUE
 	else
@@ -103,7 +103,7 @@
 //Multitile special cases.
 /obj/vehicle/Adjacent(atom/neighbor)
 	if(bound_width > 32 || bound_height > 32)
-		for(var/turf/myloc AS in locs)
+		for(var/turf/myloc as anything in locs)
 			if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 				return TRUE
 	else
@@ -117,7 +117,7 @@
 
 
 /mob/living/silicon/decoy/Adjacent(atom/neighbor)
-	for(var/turf/myloc AS in locs)
+	for(var/turf/myloc as anything in locs)
 		if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 			return TRUE
 	return FALSE
@@ -125,7 +125,7 @@
 
 /obj/machinery/door/Adjacent(atom/neighbor)
 	if(bound_width > 32 || bound_height > 32)
-		for(var/turf/myloc AS in locs)
+		for(var/turf/myloc as anything in locs)
 			if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 				return TRUE
 	else

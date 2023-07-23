@@ -90,7 +90,7 @@
 	else
 		linked_kit.cell.charge -= TELEPORTING_COST
 	deployed_linked_teleporter.update_icon()
-	for(var/atom/movable/thing_to_teleport AS in teleporting)
+	for(var/atom/movable/thing_to_teleport as anything in teleporting)
 		thing_to_teleport.forceMove(get_turf(deployed_linked_teleporter))
 
 /obj/machinery/deployable/teleporter/crowbar_act(mob/living/user, obj/item/I)

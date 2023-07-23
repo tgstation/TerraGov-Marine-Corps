@@ -148,7 +148,7 @@
 /datum/component/riding/creature/human/proc/check_carrier_fall_over(mob/living/carbon/human/human_parent)
 	SIGNAL_HANDLER
 
-	for(var/mob/living/rider AS in human_parent.buckled_mobs)
+	for(var/mob/living/rider as anything in human_parent.buckled_mobs)
 		human_parent.unbuckle_mob(rider)
 		rider.Paralyze(1 SECONDS)
 		rider.Knockdown(4 SECONDS)
@@ -260,7 +260,7 @@
 /datum/component/riding/creature/crusher/proc/check_carrier_fall_over(mob/living/carbon/xenomorph/crusher/carrying_crusher)
 	SIGNAL_HANDLER
 
-	for(var/mob/living/rider AS in carrying_crusher.buckled_mobs)
+	for(var/mob/living/rider as anything in carrying_crusher.buckled_mobs)
 		carrying_crusher.unbuckle_mob(rider)
 		rider.Knockdown(1 SECONDS)
 		carrying_crusher.visible_message("<span class='danger'>[rider] topples off of [carrying_crusher] as they both fall to the ground!</span>", \
@@ -310,6 +310,6 @@
 /// If the widow gets knocked over, force the riding rounys off and see if someone got hurt
 /datum/component/riding/creature/widow/proc/check_widow_attack(mob/living/carbon/xenomorph/widow/carrying_widow)
 	SIGNAL_HANDLER
-	for(var/mob/living/rider AS in carrying_widow.buckled_mobs)
+	for(var/mob/living/rider as anything in carrying_widow.buckled_mobs)
 		carrying_widow.unbuckle_mob(rider)
 		REMOVE_TRAIT(rider, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)

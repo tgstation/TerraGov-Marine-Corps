@@ -9,7 +9,7 @@
 
 /turf/Destroy(force)
 	if(hybrid_lights_affecting)
-		for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
+		for(var/atom/movable/lighting_mask/mask as anything in hybrid_lights_affecting)
 			LAZYREMOVE(mask.affecting_turfs, src)
 		hybrid_lights_affecting.Cut()
 	return ..()
@@ -23,7 +23,7 @@
 	lighting_corner_NW?.vis_update()
 
 	//consider dynamic lights
-	for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
+	for(var/atom/movable/lighting_mask/mask as anything in hybrid_lights_affecting)
 		mask.queue_mask_update()
 
 // Used to get a scaled lumcount.
@@ -52,7 +52,7 @@
 	else
 		totallums = 1
 
-	for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
+	for(var/atom/movable/lighting_mask/mask as anything in hybrid_lights_affecting)
 		if(mask.blend_mode == BLEND_ADD)
 			totallums += LIGHT_POWER_ESTIMATION(mask.alpha, mask.radius, get_dist(src, get_turf(mask.attached_atom)))
 		else
@@ -84,7 +84,7 @@
 			reconsider_lights()
 		return
 	directional_opacity = NONE
-	for(var/atom/movable/opacity_source AS in opacity_sources)
+	for(var/atom/movable/opacity_source as anything in opacity_sources)
 		if(opacity_source.flags_atom & ON_BORDER)
 			directional_opacity |= opacity_source.dir
 		else //If fulltile and opaque, then the whole tile blocks view, no need to continue checking.

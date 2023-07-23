@@ -110,7 +110,7 @@
 		return FALSE
 	combo++
 	if(combo >= WARRIOR_COMBO_THRESHOLD)
-		for(var/datum/action/xeno_action/A AS in actions)
+		for(var/datum/action/xeno_action/A as anything in actions)
 			if(A.type in empowerable_actions)
 				A.add_empowered_frame()
 				A.update_button_icon()
@@ -119,7 +119,7 @@
 
 ///Removes all combo stacks from the warrior, removes the frame around the ability buttons.
 /mob/living/carbon/xenomorph/warrior/proc/clear_combo()
-	for(var/datum/action/xeno_action/A AS in actions)
+	for(var/datum/action/xeno_action/A as anything in actions)
 		if(A.type in empowerable_actions)
 			A.remove_empowered_frame()
 			A.update_button_icon()

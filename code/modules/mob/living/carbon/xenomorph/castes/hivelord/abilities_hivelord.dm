@@ -430,7 +430,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!plant_choice)
 		return
-	for(var/obj/structure/xeno/plant/current_plant AS in GLOB.plant_type_list)
+	for(var/obj/structure/xeno/plant/current_plant as anything in GLOB.plant_type_list)
 		if(initial(current_plant.name) == plant_choice)
 			X.selected_plant = current_plant
 			break

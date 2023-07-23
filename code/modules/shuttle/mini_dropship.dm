@@ -75,7 +75,7 @@
 			return
 		user = current_user
 
-	for(var/datum/action/action_from_shuttle_docker AS in actions)
+	for(var/datum/action/action_from_shuttle_docker as anything in actions)
 		action_from_shuttle_docker.remove_action(user)
 	actions.Cut()
 

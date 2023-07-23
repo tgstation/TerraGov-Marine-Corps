@@ -91,7 +91,7 @@
 	if(istype(item_to_copy, /obj/item/storage/internal))
 		bypass_vendor_check = TRUE
 	var/item_representation_type
-	for(var/atom/thing_in_content AS in item_to_copy.contents)
+	for(var/atom/thing_in_content as anything in item_to_copy.contents)
 		if(!isitem(thing_in_content))
 			continue
 		item_representation_type = item2representation_type(thing_in_content.type)
@@ -108,10 +108,10 @@
 		return
 	var/obj/item/storage/storage = .
 	var/list/obj/item/starting_items = list()
-	for(var/obj/item/I AS in storage.contents)
+	for(var/obj/item/I as anything in storage.contents)
 		starting_items[I.type] = starting_items[I.type] + get_item_stack_number(I)
 	storage.delete_contents()
-	for(var/datum/item_representation/item_representation AS in contents)
+	for(var/datum/item_representation/item_representation as anything in contents)
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
 			var/amount_to_remove = get_item_stack_representation_amount(item_representation)
 			if(starting_items[item_representation.item_type] < amount_to_remove)
@@ -206,5 +206,5 @@
 	if(!.)
 		return
 	var/obj/item/clothing/shoes/footwear = .
-	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
+	for(var/datum/item_representation/armor_module/armor_attachement as anything in attachments)
 		armor_attachement.install_on_armor(seller, footwear, user)

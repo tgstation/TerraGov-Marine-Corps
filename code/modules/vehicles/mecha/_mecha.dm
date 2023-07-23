@@ -247,7 +247,7 @@
 	GLOB.nightfall_toggleable_lights -= src
 
 	if(LAZYLEN(flat_equipment))
-		for(var/obj/item/mecha_parts/mecha_equipment/equip AS in flat_equipment)
+		for(var/obj/item/mecha_parts/mecha_equipment/equip as anything in flat_equipment)
 			equip.detach(loc)
 			qdel(equip)
 	radio = null
@@ -272,7 +272,7 @@
 	spark_system?.start()
 
 	var/mob/living/silicon/ai/unlucky_ais
-	for(var/mob/living/occupant AS in occupants)
+	for(var/mob/living/occupant as anything in occupants)
 		if(isAI(occupant))
 			unlucky_ais = occupant
 			occupant.gib() //No wreck, no AI to recover
@@ -330,7 +330,7 @@
 		else
 			mouse_pointer = 'icons/mecha/mecha_mouse.dmi'
 
-	for(var/mob/mob_occupant AS in occupants)
+	for(var/mob/mob_occupant as anything in occupants)
 		mob_occupant.client.mouse_pointer_icon = mouse_pointer // note this is update_mouse_pointer() on tg
 
 //override this proc if you need to split up mecha control between multiple people (see savannah_ivanov.dm)
@@ -361,7 +361,7 @@
 
 /obj/vehicle/sealed/mecha/proc/restore_equipment()
 	equipment_disabled = FALSE
-	for(var/mob/mob_occupant AS in occupants)
+	for(var/mob/mob_occupant as anything in occupants)
 		SEND_SOUND(mob_occupant, sound('sound/items/timer.ogg', volume=50))
 		to_chat(mob_occupant, span_notice("Equipment control unit has been rebooted successfully."))
 	set_mouse_pointer()
@@ -395,7 +395,7 @@
 			. += "It's falling apart."
 	if(LAZYLEN(flat_equipment))
 		. += "It's equipped with:"
-		for(var/obj/item/mecha_parts/mecha_equipment/ME AS in flat_equipment)
+		for(var/obj/item/mecha_parts/mecha_equipment/ME as anything in flat_equipment)
 			. += "[icon2html(ME, user)] \A [ME]."
 	if(enclosed)
 		return
@@ -417,7 +417,7 @@
 				cell.charge -= min(10 * delta_time, cell.charge)
 				cell.maxcharge -= min(10 * delta_time, cell.maxcharge)
 
-	for(var/mob/living/occupant AS in occupants)
+	for(var/mob/living/occupant as anything in occupants)
 		if(!enclosed && occupant?.incapacitated()) //no sides mean it's easy to just sorta fall out if you're incapacitated.
 			visible_message(span_warning("[occupant] tumbles out of the cockpit!"))
 			mob_exit(occupant) //bye bye

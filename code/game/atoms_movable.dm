@@ -349,11 +349,11 @@
 	if(pulledby)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, old_locs)
 	//Cycle through the light sources on this atom and tell them to update.
-	for(var/datum/dynamic_light_source/light AS in hybrid_light_sources)
+	for(var/datum/dynamic_light_source/light as anything in hybrid_light_sources)
 		light.source_atom.update_light()
 		if(!isturf(loc))
 			light.find_containing_atom()
-	for(var/datum/static_light_source/L AS in static_light_sources) // Cycle through the light sources on this atom and tell them to update.
+	for(var/datum/static_light_source/L as anything in static_light_sources) // Cycle through the light sources on this atom and tell them to update.
 		L.source_atom.static_update_light()
 
 	var/turf/old_turf = get_turf(old_loc)
@@ -435,7 +435,7 @@
 	if(LAZYLEN(gone.important_recursive_contents))
 		var/list/nested_locs = get_nested_locs(src) + src
 		for(var/channel in gone.important_recursive_contents)
-			for(var/atom/movable/location AS in nested_locs)
+			for(var/atom/movable/location as anything in nested_locs)
 				LAZYREMOVEASSOC(location.important_recursive_contents, channel, gone.important_recursive_contents[channel])
 
 /atom/movable/Entered(atom/movable/arrived, atom/old_loc)
@@ -443,7 +443,7 @@
 	if(LAZYLEN(arrived.important_recursive_contents))
 		var/list/nested_locs = get_nested_locs(src) + src
 		for(var/channel in arrived.important_recursive_contents)
-			for(var/atom/movable/location AS in nested_locs)
+			for(var/atom/movable/location as anything in nested_locs)
 				LAZYORASSOCLIST(location.important_recursive_contents, channel, arrived.important_recursive_contents[channel])
 
 //called when src is thrown into hit_atom
@@ -1097,7 +1097,7 @@
 /atom/movable/proc/become_hearing_sensitive(trait_source = TRAIT_GENERIC)
 	if(!HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE))
 		//RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE), PROC_REF(on_hearing_sensitive_trait_loss))
-		for(var/atom/movable/location AS in get_nested_locs(src) + src)
+		for(var/atom/movable/location as anything in get_nested_locs(src) + src)
 			LAZYADDASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)
 
 		var/turf/our_turf = get_turf(src)

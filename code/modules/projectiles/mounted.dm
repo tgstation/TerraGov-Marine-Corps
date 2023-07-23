@@ -149,7 +149,7 @@
 	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 
-	for(var/datum/action/action AS in gun.actions)
+	for(var/datum/action/action as anything in gun.actions)
 		action.give_action(operator)
 
 	gun.set_gun_user(operator)
@@ -287,7 +287,7 @@
 		gun.toggle_aim_mode(operator)
 	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
-	for(var/datum/action/action AS in gun.actions)
+	for(var/datum/action/action as anything in gun.actions)
 		action.remove_action(operator)
 
 	for(var/key in gun.attachments_by_slot)

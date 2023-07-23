@@ -34,7 +34,7 @@
 			available_recipes+= new type
 		acceptable_items = new
 		acceptable_reagents = new
-		for (var/datum/recipe/recipe AS in available_recipes)
+		for (var/datum/recipe/recipe as anything in available_recipes)
 			for (var/item in recipe.items)
 				acceptable_items |= item
 			for (var/reagent in recipe.reagents)

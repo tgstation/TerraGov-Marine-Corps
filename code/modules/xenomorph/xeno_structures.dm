@@ -188,13 +188,13 @@
 		if(TRAP_SMOKE_NEURO, TRAP_SMOKE_ACID)
 			smoke.start()
 		if(TRAP_ACID_WEAK)
-			for(var/turf/acided AS in RANGE_TURFS(1, src))
+			for(var/turf/acided as anything in RANGE_TURFS(1, src))
 				new /obj/effect/xenomorph/spray(acided, 7 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 		if(TRAP_ACID_NORMAL)
-			for(var/turf/acided AS in RANGE_TURFS(1, src))
+			for(var/turf/acided as anything in RANGE_TURFS(1, src))
 				new /obj/effect/xenomorph/spray(acided, 10 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 		if(TRAP_ACID_STRONG)
-			for(var/turf/acided AS in RANGE_TURFS(1, src))
+			for(var/turf/acided as anything in RANGE_TURFS(1, src))
 				new /obj/effect/xenomorph/spray(acided, 12 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 	xeno_message("A [trap_type] trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /atom/movable/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE)
 	set_trap_type(null)
@@ -300,7 +300,7 @@ TUNNEL
 
 /obj/structure/xeno/tunnel/Destroy()
 	var/turf/drop_loc = get_turf(src)
-	for(var/atom/movable/thing AS in contents) //Empty the tunnel of contents
+	for(var/atom/movable/thing as anything in contents) //Empty the tunnel of contents
 		thing.forceMove(drop_loc)
 
 	if(!QDELETED(creator))
@@ -1035,7 +1035,7 @@ TUNNEL
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
 	var/buffer_distance
 	var/list/turf/path = list()
-	for (var/atom/nearby_hostile AS in potential_hostiles)
+	for (var/atom/nearby_hostile as anything in potential_hostiles)
 		if(isliving(nearby_hostile))
 			var/mob/living/nearby_living_hostile = nearby_hostile
 			if(nearby_living_hostile.stat == DEAD)
@@ -1050,7 +1050,7 @@ TUNNEL
 		if(!length(path)) //Can't shoot if it's on the same turf
 			continue
 		var/blocked = FALSE
-		for(var/turf/T AS in path)
+		for(var/turf/T as anything in path)
 			if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE))
 				blocked = TRUE
 				break //LoF Broken; stop checking; we can't proceed further.
@@ -1071,22 +1071,22 @@ TUNNEL
 ///Return TRUE if a possible target is near
 /obj/structure/xeno/xeno_turret/proc/scan()
 	potential_hostiles.Cut()
-	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
+	for (var/mob/living/carbon/human/nearby_human as anything in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
 		if(nearby_human.stat == DEAD)
 			continue
 		if(nearby_human.get_xeno_hivenumber() == hivenumber)
 			continue
 		potential_hostiles += nearby_human
-	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
+	for (var/mob/living/carbon/xenomorph/nearby_xeno as anything in cheap_get_xenos_near(src, range))
 		if(GLOB.hive_datums[hivenumber] == nearby_xeno.hive)
 			continue
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
-	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
+	for(var/obj/vehicle/unmanned/vehicle as anything in GLOB.unmanned_vehicles)
 		if(vehicle.z == z && get_dist(vehicle, src) <= range)
 			potential_hostiles += vehicle
-	for(var/obj/vehicle/sealed/mecha/mech AS in GLOB.mechas_list)
+	for(var/obj/vehicle/sealed/mecha/mech as anything in GLOB.mechas_list)
 		if(mech.z == z && get_dist(mech, src) <= range)
 			potential_hostiles += mech
 
@@ -1558,14 +1558,14 @@ TUNNEL
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/plant/stealth_plant/Destroy()
-	for(var/obj/structure/xeno/xeno_struct AS in camouflaged_structures)
+	for(var/obj/structure/xeno/xeno_struct as anything in camouflaged_structures)
 		xeno_struct.alpha = initial(xeno_struct.alpha)
 	unveil()
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
 
 /obj/structure/xeno/plant/stealth_plant/process()
-	for(var/turf/tile AS in RANGE_TURFS(camouflage_range, loc))
+	for(var/turf/tile as anything in RANGE_TURFS(camouflage_range, loc))
 		for(var/obj/structure/xeno/xeno_struct in tile)
 			if(istype(xeno_struct, /obj/structure/xeno/plant) || !line_of_sight(src, xeno_struct)) //We don't hide plants
 				continue
@@ -1615,7 +1615,7 @@ TUNNEL
 
 ///Reveals all xenos hidden by veil()
 /obj/structure/xeno/plant/stealth_plant/proc/unveil()
-	for(var/mob/living/carbon/xenomorph/X AS in camouflaged_xenos)
+	for(var/mob/living/carbon/xenomorph/X as anything in camouflaged_xenos)
 		X.alpha = initial(X.alpha)
 		balloon_alert(X, "Effect wears off")
 		to_chat(X, span_xenowarning("The effect of [src] wears off!"))

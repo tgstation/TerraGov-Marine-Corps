@@ -49,7 +49,7 @@
 	SSlighting.mask_queue -= src
 	//Remove from affecting turfs
 	if(affecting_turfs)
-		for(var/turf/thing AS in affecting_turfs)
+		for(var/turf/thing as anything in affecting_turfs)
 			var/area/A = thing.loc
 			LAZYREMOVE(thing.hybrid_lights_affecting, src)
 			if(!A.base_lighting_alpha)
@@ -118,7 +118,7 @@
 
 	//Reset the list
 	if(islist(affecting_turfs))
-		for(var/turf/T AS in affecting_turfs)
+		for(var/turf/T as anything in affecting_turfs)
 			LAZYREMOVE(T?.hybrid_lights_affecting, src)
 			//The turf is no longer affected by any lights, make it non-luminous.
 			var/area/A = T.loc
@@ -130,7 +130,7 @@
 	LAZYCLEARLIST(shadows)
 
 	//Optimise grouping by storing as
-	// Key : x (AS A STRING BECAUSE BYOND DOESNT ALLOW FOR INT KEY DICTIONARIES)
+	// Key : x (as anything A STRING BECAUSE BYOND DOESNT ALLOW FOR INT KEY DICTIONARIES)
 	// Value: List(y values)
 	var/list/opaque_atoms_in_view = list()
 
@@ -313,7 +313,7 @@
 	//The output
 	. = list()
 	//Every line has 2 triangles innit
-	for(var/list/line AS in cornergroup)
+	for(var/list/line as anything in cornergroup)
 		//Get the corner vertices
 		var/vertex1 = line[1]
 		var/vertex2 = line[2]

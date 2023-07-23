@@ -285,7 +285,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!hugger_choice)
 		return
 	var/mob/living/carbon/xenomorph/caster = owner
-	for(var/obj/item/clothing/mask/facehugger/hugger_type AS in GLOB.hugger_type_list)
+	for(var/obj/item/clothing/mask/facehugger/hugger_type as anything in GLOB.hugger_type_list)
 		if(initial(hugger_type.name) == hugger_choice)
 			caster.selected_hugger_type = hugger_type
 			break
@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!T.check_alien_construction(owner, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(owner))
 		return FALSE
 
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
+	for(var/obj/structure/xeno/xeno_turret/turret as anything in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
 		if(get_dist(turret, owner) < 6)
 			if(!silent)
 				to_chat(owner, span_xenowarning("Another turret is too close!"))

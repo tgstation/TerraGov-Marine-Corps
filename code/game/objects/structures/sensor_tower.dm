@@ -104,7 +104,7 @@
 	toggle_game_timer()
 	update_icon()
 
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+	for(var/mob/living/carbon/human/human as anything in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 		if(human.faction == faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated, deactivate it!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
@@ -130,7 +130,7 @@
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
 	balloon_alert_to_viewers("[src] has finished activation!")
 
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+	for(var/mob/living/carbon/human/human as anything in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 		if(human.faction == faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated, stop further towers from being activated!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
@@ -144,7 +144,7 @@
 	toggle_game_timer()
 	update_icon()
 
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+	for(var/mob/living/carbon/human/human as anything in GLOB.alive_human_list)
 		if(human.faction == faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped, glory to Mars!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
 		else

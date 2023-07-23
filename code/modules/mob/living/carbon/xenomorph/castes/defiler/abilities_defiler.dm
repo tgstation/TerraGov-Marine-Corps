@@ -123,7 +123,7 @@
 	var/defile_power
 	var/neuro_applied
 
-	for(var/datum/reagent/current_reagent AS in living_target.reagents.reagent_list) //Cycle through all chems
+	for(var/datum/reagent/current_reagent as anything in living_target.reagents.reagent_list) //Cycle through all chems
 		defile_reagent_amount += living_target.reagents.get_reagent_amount(current_reagent.type)
 		living_target.reagents.remove_reagent(current_reagent.type,defile_reagent_amount) //Purge current chem
 		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier

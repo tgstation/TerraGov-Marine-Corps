@@ -71,7 +71,7 @@
 		return
 	if(!istype(I, /obj/item/storage/box/explosive_mines))
 		return
-	for(var/obj/item/explosive/mine/content AS in I)
+	for(var/obj/item/explosive/mine/content as anything in I)
 		if(stored_amount < max_amount)
 			stored_amount++
 			qdel(content)

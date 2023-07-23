@@ -31,7 +31,7 @@
 	if(!.)
 		return
 	var/obj/item/clothing/under/uniform = .
-	for(var/datum/item_representation/armor_module/uniform_attachement AS in attachments)
+	for(var/datum/item_representation/armor_module/uniform_attachement as anything in attachments)
 		uniform_attachement.install_on_armor(seller, uniform, user)
 	uniform.current_variant = (current_variant in uniform.adjustment_variants) ? current_variant : initial(uniform.current_variant)
 	uniform.update_icon()
@@ -52,7 +52,7 @@
 		"translateY" = NO_OFFSET,
 		"scale" = 1,
 		))
-	for(var/datum/item_representation/armor_module/attachment AS in attachments)
+	for(var/datum/item_representation/armor_module/attachment as anything in attachments)
 		if(!initial(attachment.item_type.icon_state))
 			continue
 		var/second_icon_state = initial(attachment.item_type.icon_state) + (attachment.variant ? "_[GLOB.loadout_variant_keys[attachment.variant]]" : "")

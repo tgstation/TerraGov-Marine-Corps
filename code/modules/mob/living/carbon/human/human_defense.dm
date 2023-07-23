@@ -472,7 +472,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			break
 		if(!affecting.brute_dam)
 			var/previous_limb = affecting
-			for(var/datum/limb/checked_limb AS in limbs)
+			for(var/datum/limb/checked_limb as anything in limbs)
 				if(!(checked_limb.limb_status & LIMB_ROBOT))
 					continue
 				if(!checked_limb.brute_dam)

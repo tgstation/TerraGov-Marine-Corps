@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 
 /datum/controller/subsystem/advanced_pathfinding/Initialize()
 	var/list/nodes = list()
-	for(var/obj/effect/ai_node/ai_node AS in GLOB.all_nodes)
+	for(var/obj/effect/ai_node/ai_node as anything in GLOB.all_nodes)
 		nodes += list(ai_node.serialize())
 	rustg_register_nodes_astar(json_encode(nodes))
 	return SS_INIT_SUCCESS
@@ -48,12 +48,12 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 #endif //TESTING
 
 /datum/controller/subsystem/advanced_pathfinding/fire()
-	for(var/datum/ai_behavior/ai_behavior AS in tile_pathfinding_to_do)
+	for(var/datum/ai_behavior/ai_behavior as anything in tile_pathfinding_to_do)
 		ai_behavior.look_for_tile_path()
 		tile_pathfinding_to_do -= ai_behavior
 		if (MC_TICK_CHECK)
 			return
-	for(var/datum/ai_behavior/ai_behavior AS in node_pathfinding_to_do)
+	for(var/datum/ai_behavior/ai_behavior as anything in node_pathfinding_to_do)
 		ai_behavior.look_for_node_path()
 		node_pathfinding_to_do -= ai_behavior
 		ai_behavior.registered_for_node_pathfinding = FALSE

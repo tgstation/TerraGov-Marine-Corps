@@ -32,9 +32,9 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			level = SEC_LEVEL_DELTA
 
 	if(level <= SEC_LEVEL_BLUE)
-		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
+		for(var/obj/effect/soundplayer/alarmplayer as anything in GLOB.ship_alarms)
 			alarmplayer.deltalarm.stop(alarmplayer)
-		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
+		for(var/obj/machinery/light/mainship/light as anything in GLOB.mainship_lights)
 			light.base_state = "tube"
 			var/area/A = get_area(light)
 			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
@@ -49,12 +49,12 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 				light.icon_state = "tube1"
 			light.update_light()
 	else
-		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
+		for(var/obj/effect/soundplayer/alarmplayer as anything in GLOB.ship_alarms)
 			if(level != SEC_LEVEL_DELTA)
 				alarmplayer.deltalarm.stop(alarmplayer)
 			else
 				alarmplayer.deltalarm.start(alarmplayer)
-		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
+		for(var/obj/machinery/light/mainship/light as anything in GLOB.mainship_lights)
 			light.base_state = "tubered"
 			var/area/A = get_area(light)
 			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs

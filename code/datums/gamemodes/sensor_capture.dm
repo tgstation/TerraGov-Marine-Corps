@@ -13,7 +13,7 @@
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
 	. = ..()
-	for(var/turf/T AS in GLOB.sensor_towers)
+	for(var/turf/T as anything in GLOB.sensor_towers)
 		new /obj/structure/sensor_tower(T)
 
 /datum/game_mode/combat_patrol/sensor_capture/announce()

@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(evacuation)
 	priority_announce("Emergency evacuation has been triggered. Please proceed to the escape pods. Evacuation in [EVACUATION_AUTOMATIC_DEPARTURE/600] minutes.", "Priority Alert", sound = 'sound/AI/evacuate.ogg')
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 	pod_list = SSshuttle.escape_pods.Copy()
-	for(var/obj/docking_port/mobile/escape_pod/pod AS in pod_list)
+	for(var/obj/docking_port/mobile/escape_pod/pod as anything in pod_list)
 		pod.prep_for_launch()
 	return TRUE
 
@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(evacuation)
 	evac_time = null
 	evac_status = EVACUATION_STATUS_STANDING_BY
 	priority_announce("Evacuation has been cancelled.", "Priority Alert", sound = 'sound/AI/evacuate_cancelled.ogg')
-	for(var/obj/docking_port/mobile/escape_pod/pod AS in pod_list)
+	for(var/obj/docking_port/mobile/escape_pod/pod as anything in pod_list)
 		pod.unprep_for_launch()
 	return TRUE
 
@@ -135,7 +135,7 @@ SUBSYSTEM_DEF(evacuation)
 	dest_status = NUKE_EXPLOSION_ACTIVE
 	dest_master.toggle()
 	GLOB.marine_main_ship.set_security_level(SEC_LEVEL_DELTA)
-	for(var/obj/machinery/floor_warn_light/self_destruct/light AS in alarm_lights)
+	for(var/obj/machinery/floor_warn_light/self_destruct/light as anything in alarm_lights)
 		light.enable()
 	return TRUE
 
@@ -161,7 +161,7 @@ SUBSYSTEM_DEF(evacuation)
 	priority_announce("The emergency destruct system has been deactivated.", "Priority Alert", sound = 'sound/AI/selfdestruct_deactivated.ogg')
 	if(evac_status == EVACUATION_STATUS_STANDING_BY)
 		GLOB.marine_main_ship.set_security_level(SEC_LEVEL_RED, TRUE)
-	for(var/obj/machinery/floor_warn_light/self_destruct/light AS in alarm_lights)
+	for(var/obj/machinery/floor_warn_light/self_destruct/light as anything in alarm_lights)
 		light.disable()
 	return TRUE
 

@@ -417,7 +417,7 @@
 		if(allowed(usr))
 			if(modify && istype(modify))
 				var/list/squad_choices = list()
-				for(var/datum/squad/squad AS in SSjob.active_squads[faction])
+				for(var/datum/squad/squad as anything in SSjob.active_squads[faction])
 					if(!squad.overwatch_officer)
 						squad_choices += squad.name
 
@@ -425,7 +425,7 @@
 				if(!squad_name || operator != usr)
 					return
 				var/datum/squad/selected
-				for(var/datum/squad/squad AS in SSjob.active_squads[faction])
+				for(var/datum/squad/squad as anything in SSjob.active_squads[faction])
 					if(squad.name == squad_name)
 						selected = squad
 						break

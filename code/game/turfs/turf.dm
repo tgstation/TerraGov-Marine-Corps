@@ -266,7 +266,7 @@
 	if(old_signal_procs)
 		LAZYOR(W._signal_procs, old_signal_procs)
 
-	for(var/datum/callback/callback AS in post_change_callbacks)
+	for(var/datum/callback/callback as anything in post_change_callbacks)
 		callback.InvokeAsync(W)
 
 	if(new_baseturfs)
@@ -296,7 +296,7 @@
 
 	//Since the old turf was removed from hybrid_lights_affecting, readd the new turf here
 	if(W.hybrid_lights_affecting)
-		for(var/atom/movable/lighting_mask/mask AS in W.hybrid_lights_affecting)
+		for(var/atom/movable/lighting_mask/mask as anything in W.hybrid_lights_affecting)
 			LAZYADD(mask.affecting_turfs, W)
 
 	if(W.directional_opacity != old_directional_opacity)

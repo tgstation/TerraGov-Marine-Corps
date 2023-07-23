@@ -16,7 +16,7 @@
 
 /obj/structure/closet/fireaxecabinet/attackby(obj/item/O, mob/user)  //Marker -Agouri
 	//..() //That's very useful, Erro
-	//how do we still have this shitcode AND THE STUPID FUCKING TILDE AS WELL 10 YEARS LATER
+	//how do we still have this shitcode AND THE STUPID FUCKING TILDE as anything WELL 10 YEARS LATER
 	var/hasaxe = 0       //gonna come in handy later~
 	if(fireaxe)
 		hasaxe = 1

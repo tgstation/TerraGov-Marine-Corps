@@ -254,7 +254,7 @@
 	var/list/wound_flavor_text = list() //List mapping each limb's display_name to its wound description
 	var/list/is_destroyed = list()
 	var/list/is_bleeding = list()
-	for(var/datum/limb/temp AS in limbs)
+	for(var/datum/limb/temp as anything in limbs)
 		if(temp.limb_status & LIMB_DESTROYED)
 			is_destroyed["[temp.display_name]"] = 1
 			wound_flavor_text["[temp.display_name]"] = "[span_warning("<b>[t_He] is missing [t_his] [temp.display_name].</b>")]\n"

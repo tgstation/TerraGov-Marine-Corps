@@ -26,7 +26,7 @@
 	if(!.)
 		return
 	var/obj/item/clothing/suit/armor_suit = .
-	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
+	for(var/datum/item_representation/armor_module/armor_attachement as anything in attachments)
 		armor_attachement.install_on_armor(seller, armor_suit, user)
 
 /datum/item_representation/armor_suit/get_tgui_data()
@@ -45,7 +45,7 @@
 				"translateY" = MODULAR_ARMOR_OFFSET_Y,
 				"scale" = MODULAR_ARMOR_SCALING,
 				))
-	for(var/datum/item_representation/armor_module/module AS in attachments)
+	for(var/datum/item_representation/armor_module/module as anything in attachments)
 		if(!initial(module.item_type.icon_state))
 			continue
 		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[GLOB.loadout_variant_keys[module.variant]]" : "")
@@ -120,7 +120,7 @@
 				"translateY" = MODULAR_ARMOR_OFFSET_Y,
 				"scale" = MODULAR_ARMOR_SCALING,
 				))
-	for(var/datum/item_representation/armor_module/module AS in attachments)
+	for(var/datum/item_representation/armor_module/module as anything in attachments)
 		if(!initial(module.item_type.icon_state))
 			continue
 		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[GLOB.loadout_variant_keys[module.variant]]" : "")
@@ -173,7 +173,7 @@
 	if(!.)
 		return
 	var/obj/item/armor_module/module = .
-	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
+	for(var/datum/item_representation/armor_module/armor_attachement as anything in attachments)
 		armor_attachement.install_on_armor(seller, module, user)
 
 ///Attach the instantiated item on an armor

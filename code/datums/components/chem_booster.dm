@@ -126,7 +126,7 @@
 ///Shows info on what stats each reagent boosts and how much units they require
 /datum/component/chem_booster/proc/setup_reagent_info()
 	reagent_info = "<b>Vali Reagent Information:</b><br>"
-	for(var/datum/reagent/entry AS in reagent_stats)
+	for(var/datum/reagent/entry as anything in reagent_stats)
 		reagent_info += "<span style= 'color:[initial(entry.color)]'><b>[reagent_stats[entry][NAME]]: </b></span>"
 		if(reagent_stats[entry][REQ])
 			reagent_info += "required [reagent_stats[entry][REQ]]u<br>"
@@ -160,7 +160,7 @@
 	if(!wearer)
 		return
 
-	for(var/datum/action/current_action AS in component_actions)
+	for(var/datum/action/current_action as anything in component_actions)
 		current_action.remove_action(wearer)
 
 	wearer.overlays -= resource_overlay
@@ -173,7 +173,7 @@
 		return
 	wearer = equipper
 
-	for(var/datum/action/current_action AS in component_actions)
+	for(var/datum/action/current_action as anything in component_actions)
 		current_action.give_action(wearer)
 
 	wearer.overlays += resource_overlay
@@ -257,7 +257,7 @@
 		vali_necro_timer = world.time - processing_start
 		var/necrotized_counter = FLOOR(min(vali_necro_timer, 20 SECONDS)/200 + (vali_necro_timer-20 SECONDS)/100, 1)
 		if(necrotized_counter >= 1)
-			for(var/datum/limb/limb_to_ruin AS in shuffle(wearer.limbs))
+			for(var/datum/limb/limb_to_ruin as anything in shuffle(wearer.limbs))
 				if(limb_to_ruin.limb_status & LIMB_NECROTIZED)
 					continue
 				limb_to_ruin.add_limb_flags(LIMB_NECROTIZED)
@@ -297,7 +297,7 @@
 		movement_boost = initial(movement_boost)
 		return
 
-	for(var/datum/reagent/R AS in wearer.reagents.reagent_list)
+	for(var/datum/reagent/R as anything in wearer.reagents.reagent_list)
 		if(!LAZYACCESS(reagent_stats, R.type))
 			continue
 		if(R.volume < reagent_stats[R.type][REQ])
@@ -469,7 +469,7 @@
 	if(!meds_beaker.reagents.total_volume)
 		return span_notice("The system's reagent storage is empty.")
 	. = span_notice("The system's reagent storage contains:\n")
-	for(var/datum/reagent/R AS in meds_beaker.reagents.reagent_list)
+	for(var/datum/reagent/R as anything in meds_beaker.reagents.reagent_list)
 		. += span_rose("[R.name] - [R.volume]u\n")
 
 /datum/action/chem_booster/configure

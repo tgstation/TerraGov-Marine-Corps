@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(mapping)
 				configs[i] = old_config
 
 	if(configs[GROUND_MAP])
-		for(var/datum/game_mode/M AS in config.votable_modes)
+		for(var/datum/game_mode/M as anything in config.votable_modes)
 			if(!(M.config_tag in configs[GROUND_MAP].gamemodes))
 				config.votable_modes -= M // remove invalid modes
 

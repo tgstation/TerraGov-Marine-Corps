@@ -214,7 +214,7 @@
 		heal_organ_damage(0.04)
 
 	// Do some reagent filtering/processing.
-	for(var/datum/reagent/potential_toxin AS in owner.reagents.reagent_list)
+	for(var/datum/reagent/potential_toxin as anything in owner.reagents.reagent_list)
 		//Liver helps clear out any toxins but with drawbacks if damaged
 		if(istype(potential_toxin, /datum/reagent/consumable/ethanol) || istype(potential_toxin, /datum/reagent/toxin))
 			if(organ_status != ORGAN_HEALTHY)

@@ -95,7 +95,7 @@
 	//Oh also since the matrix is really weird standard rotation matrices wont work here.
 	overlays.Cut()
 	//Disconnect from parent matrix, become a global position
-	for(var/mutable_appearance/shadow AS in shadows)	//Mutable appearances are children of icon
+	for(var/mutable_appearance/shadow as anything in shadows)	//Mutable appearances are children of icon
 		shadow.transform *= transform
 		shadow.transform /= rotated_matrix
 	//Apply our matrix

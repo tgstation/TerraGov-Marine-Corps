@@ -20,7 +20,7 @@
 		to_chat(usr, span_warning("You don't have anything in your left hand to give."))
 		return
 	var/mob/living/carbon/to_give_to
-	for(var/mob/living/carbon/human AS in cheap_get_humans_near(src, 1))
+	for(var/mob/living/carbon/human as anything in cheap_get_humans_near(src, 1))
 		if(human.stat == CONSCIOUS && human.client && src != human)
 			to_give_to = human
 			break

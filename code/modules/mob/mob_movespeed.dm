@@ -32,7 +32,7 @@ Key procs
 * [update_movespeed](mob.html#proc/update_movespeed)
 */
 
-//ANY ADD/REMOVE DONE IN UPDATE_MOVESPEED MUST HAVE THE UPDATE ARGUMENT SET AS FALSE!
+//ANY ADD/REMOVE DONE IN UPDATE_MOVESPEED MUST HAVE THE UPDATE ARGUMENT SET as anything FALSE!
 
 ///Add a move speed modifier to a mob
 /mob/proc/add_movespeed_modifier(id, update = TRUE, priority = 0, flags = NONE, override = FALSE, multiplicative_slowdown = 0, conflict = FALSE)

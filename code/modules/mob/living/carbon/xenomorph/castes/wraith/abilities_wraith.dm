@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 ///Check for whether the target turf has dense objects inside
 /datum/action/xeno_action/activable/blink/proc/check_blink_target_turf_density(turf/T, silent = FALSE)
-	for(var/atom/blocker AS in T)
+	for(var/atom/blocker as anything in T)
 		if(!blocker.CanPass(owner, T))
 			if(!silent)
 				to_chat(owner, span_xenowarning("We can't blink into a solid object!"))
@@ -303,7 +303,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	banishment_target.forceMove(return_turf)
 
 	var/list/all_contents = banishment_target.GetAllContents()
-	for(var/mob/living/living_contents AS in contained_living)
+	for(var/mob/living/living_contents as anything in contained_living)
 		if(QDELETED(living_contents))
 			continue
 		living_contents.remove_status_effect(/datum/status_effect/incapacitating/unconscious)
@@ -383,7 +383,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return TRUE
 	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
 		return TRUE
-	for(var/atom/blocker AS in T)
+	for(var/atom/blocker as anything in T)
 		if((blocker.flags_atom & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
 			continue
 		if(!blocker.CanPass(subject, T) && !ignore_can_pass) //If the subject atom can't pass and we care about that, we have a block
@@ -438,7 +438,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 ///Remove the bullet freeze effect on affected turfs
 /datum/action/xeno_action/timestop/proc/remove_bullet_freeze(list/turf/turfs_affected, turf/central_turfA)
-	for(var/turf/affected_turf AS in turfs_affected)
+	for(var/turf/affected_turf as anything in turfs_affected)
 		REMOVE_TRAIT(affected_turf, TRAIT_TURF_BULLET_MANIPULATION, REF(src))
 		if(HAS_TRAIT(affected_turf, TRAIT_TURF_BULLET_MANIPULATION))
 			continue
@@ -580,7 +580,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler to teleport the crossing atom when its move is done
 /obj/effect/wraith_portal/proc/do_teleport_atom(atom/movable/crosser)
 	SIGNAL_HANDLER
-	for(var/mob/rider AS in crosser.buckled_mobs)
+	for(var/mob/rider as anything in crosser.buckled_mobs)
 		if(ishuman(rider))
 			crosser.unbuckle_mob(rider)
 	crosser.Move(get_turf(linked_portal), crosser.dir)

@@ -161,7 +161,7 @@
 
 ///Recursive function to update attachment lists.
 /datum/loadout_manager/proc/update_attachments(list/datum/item_representation/armor_module/attachments, version)
-	for(var/datum/item_representation/armor_module/module AS in attachments)
+	for(var/datum/item_representation/armor_module/module as anything in attachments)
 		if(version < 13)
 			if(ispath(module.item_type, /obj/item/armor_module/greyscale))
 				module.item_type = text2path(splicetext("[module.item_type]", 24, 33, "armor"))
@@ -233,7 +233,7 @@
 				helmet.item_type = /obj/item/clothing/head/modular/m10x
 		if(loadout.version < 10)
 			helmet.colors = initial(helmet.item_type.greyscale_colors)
-			for(var/datum/item_representation/armor_module/module AS in helmet.attachments)
+			for(var/datum/item_representation/armor_module/module as anything in helmet.attachments)
 				if(!istype(module, /datum/item_representation/armor_module))
 					continue
 				module.colors = initial(module.item_type.greyscale_colors)
@@ -274,7 +274,7 @@
 			if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
 				armor.item_type = /obj/item/clothing/suit/modular/xenonauten
 		if(loadout.version < 10)
-			for(var/datum/item_representation/armor_module/module AS in armor.attachments)
+			for(var/datum/item_representation/armor_module/module as anything in armor.attachments)
 				if(!istype(module, /datum/item_representation/armor_module))
 					continue
 				module.colors = initial(module.item_type.greyscale_colors)

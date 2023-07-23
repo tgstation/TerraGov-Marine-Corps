@@ -204,7 +204,7 @@
 		return
 
 	var/list/turf/turfs_by_iteration = list()
-	for(var/turf/turf AS in turfs_to_ignite)
+	for(var/turf/turf as anything in turfs_to_ignite)
 		if(get_dist(turf, flame_source) == iteration)
 			//Checks if turf is resin wall
 			if(turf.density && istype(turf, /turf/closed/wall/resin))
@@ -232,7 +232,7 @@
 	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
 
-	for(var/turf/turf_to_ignite AS in turfs_to_burn)
+	for(var/turf/turf_to_ignite as anything in turfs_to_burn)
 		if(!rounds)
 			light_pilot(FALSE)
 			return FALSE

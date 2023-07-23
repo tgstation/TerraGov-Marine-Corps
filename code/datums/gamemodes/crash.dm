@@ -82,14 +82,14 @@
 		new /obj/structure/xeno/silo(i)
 		new /obj/structure/xeno/pherotower(i)
 
-	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+	for(var/obj/effect/landmark/corpsespawner/corpse as anything in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
 
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
 
-	for(var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable AS in GLOB.shuttle_controls_list)
+	for(var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable as anything in GLOB.shuttle_controls_list)
 		if(istype(computer_to_disable, /obj/machinery/computer/shuttle/shuttle_control/canterbury))
 			continue
 		computer_to_disable.machine_stat |= BROKEN
@@ -212,7 +212,7 @@
 /datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
 	. = 0
 
-	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
+	for(var/mob/living/carbon/human/H as anything in GLOB.human_mob_list)
 		if(!H.job)
 			continue
 		if(isspaceturf(H.loc))

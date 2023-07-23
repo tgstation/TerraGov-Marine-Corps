@@ -61,7 +61,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 		else
 			C.images -= obscured
 
-	for(var/mob/camera/aiEye/eye AS in moved_eyes)
+	for(var/mob/camera/aiEye/eye as anything in moved_eyes)
 		var/list/visibleChunks = list()
 		if(eye.loc)
 			// 0xf = 15
@@ -79,10 +79,10 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 		var/list/remove = eye.visibleCameraChunks - visibleChunks
 		var/list/add = visibleChunks - eye.visibleCameraChunks
 
-		for(var/datum/camerachunk/chunk AS in remove)
+		for(var/datum/camerachunk/chunk as anything in remove)
 			chunk.remove(eye, FALSE)
 
-		for(var/datum/camerachunk/chunk AS in add)
+		for(var/datum/camerachunk/chunk as anything in add)
 			chunk.add(eye)
 
 		if(!length(eye.visibleCameraChunks))

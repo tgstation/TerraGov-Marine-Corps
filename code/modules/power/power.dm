@@ -293,13 +293,13 @@
 /area/proc/get_apc_list()
 	RETURN_TYPE(/list)
 	. = list()
-	for(var/obj/machinery/power/apc/APC AS in GLOB.apcs_list)
+	for(var/obj/machinery/power/apc/APC as anything in GLOB.apcs_list)
 		if(APC.area == src)
 			. += APC
 
 /// Returns the first APC it finds in an area
 /area/proc/get_apc()
-	for(var/obj/machinery/power/apc/APC AS in GLOB.apcs_list)
+	for(var/obj/machinery/power/apc/APC as anything in GLOB.apcs_list)
 		if(APC.area == src)
 			return APC
 

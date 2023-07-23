@@ -26,7 +26,7 @@
 	if(!.)
 		return
 	var/obj/item/clothing/head/new_hat = .
-	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
+	for(var/datum/item_representation/armor_module/armor_attachement as anything in attachments)
 		armor_attachement.install_on_armor(seller, new_hat, user)
 	new_hat.update_icon()
 
@@ -46,7 +46,7 @@
 				"translateY" = "40%",
 				"scale" = 1.4,
 				))
-	for(var/datum/item_representation/armor_module/module AS in attachments)
+	for(var/datum/item_representation/armor_module/module as anything in attachments)
 		if(!initial(module.item_type.icon_state))
 			continue
 		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[GLOB.loadout_variant_keys[module.variant]]" : "")
@@ -121,7 +121,7 @@
 				"translateY" = "40%",
 				"scale" = 1.4,
 				))
-	for(var/datum/item_representation/armor_module/module AS in attachments)
+	for(var/datum/item_representation/armor_module/module as anything in attachments)
 		if(!initial(module.item_type.icon_state))
 			continue
 		var/second_icon_state = initial(module.item_type.icon_state) + (module.variant ? "_[GLOB.loadout_variant_keys[module.variant]]" : "")

@@ -67,7 +67,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	unequipper.client.screen -= drawing_tools
 	unequipper.client.mouse_pointer_icon = null
 	UnregisterSignal(src, COMSIG_ITEM_UNEQUIPPED)
-	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
+	for(var/atom/movable/screen/minimap_tool/tool as anything in drawing_tools)
 		tool.UnregisterSignal(unequipper, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP))
 
 
@@ -285,7 +285,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 ///Clears all labels and logs who did it
 /atom/movable/screen/minimap_tool/label/proc/clear_labels(mob/user)
 	log_minimap_drawing("[key_name(usr)] has cleared current labels")
-	for(var/turf/label AS in labelled_turfs)
+	for(var/turf/label as anything in labelled_turfs)
 		SSminimaps.remove_marker(label)
 
 /atom/movable/screen/minimap_tool/label/on_mousedown(mob/source, atom/object, location, control, params)
@@ -309,7 +309,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	if(modifiers[BUTTON] == RIGHT_CLICK)
 		var/curr_dist
 		var/turf/nearest
-		for(var/turf/label AS in labelled_turfs)
+		for(var/turf/label as anything in labelled_turfs)
 			var/dist = get_dist_euclide(label, target)
 			if(dist > LABEL_REMOVE_RANGE)
 				continue

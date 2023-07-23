@@ -287,7 +287,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()
 	SSminimaps.remove_marker(wearer)
-	for(var/datum/action/action AS in wearer.actions)
+	for(var/datum/action/action as anything in wearer.actions)
 		if(istype(action, /datum/action/minimap))
 			action.remove_action(wearer)
 

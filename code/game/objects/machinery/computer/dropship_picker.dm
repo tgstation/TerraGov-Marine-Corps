@@ -32,7 +32,7 @@
 /obj/machinery/computer/dropship_picker/ui_static_data(mob/user)
 	. = list()
 	var/list/shuttles = list()
-	for (var/datum/map_template/shuttle/minidropship/shuttle_template AS in SSmapping.minidropship_templates)
+	for (var/datum/map_template/shuttle/minidropship/shuttle_template as anything in SSmapping.minidropship_templates)
 		shuttles += list(list(
 			"name" = shuttle_template.display_name,
 			"description" = shuttle_template.description,

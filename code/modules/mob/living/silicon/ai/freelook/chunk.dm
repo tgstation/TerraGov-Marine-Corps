@@ -58,7 +58,7 @@
 /datum/camerachunk/proc/update()
 	var/list/newVisibleTurfs = list()
 
-	for(var/obj/machinery/camera/current_camera AS in cameras)
+	for(var/obj/machinery/camera/current_camera as anything in cameras)
 		if(!current_camera || !current_camera.can_use())
 			continue
 
@@ -80,10 +80,10 @@
 	obscuredTurfs = turfs - newVisibleTurfs
 
 	var/static/list/vis_contents_opaque = GLOB.cameranet.vis_contents_opaque //ba dum tsss
-	for(var/turf/added_turf AS in visAdded)
+	for(var/turf/added_turf as anything in visAdded)
 		added_turf.vis_contents -= vis_contents_opaque
 
-	for(var/turf/removed_turf AS in visRemoved)
+	for(var/turf/removed_turf as anything in visRemoved)
 		if(obscuredTurfs[removed_turf] && !istype(removed_turf, /turf/open/ai_visible))
 			removed_turf.vis_contents += vis_contents_opaque
 
@@ -106,10 +106,10 @@
 		if(sillycone.builtInCamera?.can_use())
 			cameras += sillycone.builtInCamera
 
-	for(var/turf/t AS in block(locate(max(x, 1), max(y, 1), z), locate(min(x + CHUNK_SIZE - 1, world.maxx), min(y + CHUNK_SIZE - 1, world.maxy), z)))
+	for(var/turf/t as anything in block(locate(max(x, 1), max(y, 1), z), locate(min(x + CHUNK_SIZE - 1, world.maxx), min(y + CHUNK_SIZE - 1, world.maxy), z)))
 		turfs[t] = t
 
-	for(var/obj/machinery/camera/camera AS in cameras)
+	for(var/obj/machinery/camera/camera as anything in cameras)
 		if(!camera)
 			continue
 
@@ -123,7 +123,7 @@
 	obscuredTurfs = turfs - visibleTurfs
 
 	var/list/vis_contents_opaque = GLOB.cameranet.vis_contents_opaque
-	for(var/turf/obscured_turf AS in obscuredTurfs)
+	for(var/turf/obscured_turf as anything in obscuredTurfs)
 		obscured_turf.vis_contents += vis_contents_opaque
 
 #undef UPDATE_BUFFER_TIME

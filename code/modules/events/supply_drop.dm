@@ -36,7 +36,7 @@
 ///Alerts the hostile faction(s)
 /datum/round_event/supply_drop/proc/alert_hostiles(turf/target_turf, supplying_faction)
 	var/list/humans_to_alert = GLOB.alive_human_list
-	for(var/mob/living/carbon/human/alerted_human AS in humans_to_alert)
+	for(var/mob/living/carbon/human/alerted_human as anything in humans_to_alert)
 		if(alerted_human.faction == supplying_faction)
 			humans_to_alert -= alerted_human
 

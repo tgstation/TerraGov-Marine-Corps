@@ -28,7 +28,7 @@
 	. = ..()
 
 /obj/docking_port/mobile/escape_pod/proc/count_escaped_humans()
-	for(var/turf/T AS in return_turfs())
+	for(var/turf/T as anything in return_turfs())
 		for(var/mob/living/carbon/human/marine in T.GetAllContents())
 			if(marine.stat == DEAD)
 				continue

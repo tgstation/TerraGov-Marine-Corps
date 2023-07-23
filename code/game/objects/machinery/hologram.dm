@@ -54,7 +54,7 @@
 	if(outgoing_call)
 		outgoing_call.ConnectionFailure(src)
 
-	for(var/datum/holocall/holocall_to_disconnect AS in holo_calls)
+	for(var/datum/holocall/holocall_to_disconnect as anything in holo_calls)
 		holocall_to_disconnect.ConnectionFailure(src)
 
 	for (var/I in masters)
@@ -100,7 +100,7 @@
 		if(on_network)
 			var/one_answered_call = FALSE
 			var/one_unanswered_call = FALSE
-			for(var/datum/holocall/HC AS in holo_calls)
+			for(var/datum/holocall/HC as anything in holo_calls)
 				if(HC.connected_holopad != src)
 					dat += "<a href='?src=[REF(src)];connectcall=[REF(HC)]'>Answer call from [get_area(HC.calling_holopad)]</a><br>"
 					one_unanswered_call = TRUE
@@ -110,7 +110,7 @@
 			if(one_answered_call && one_unanswered_call)
 				dat += "=====================================================<br>"
 			//we loop twice for formatting
-			for(var/datum/holocall/HC AS in holo_calls)
+			for(var/datum/holocall/HC as anything in holo_calls)
 				if(HC.connected_holopad == src)
 					dat += "<a href='?src=[REF(src)];disconnectcall=[REF(HC)]'>Disconnect call from [HC.user]</a><br>"
 
@@ -166,7 +166,7 @@
 
 ///Disconnects all current holocalls from the holopad
 /obj/machinery/holopad/proc/hangup_all_calls()
-	for(var/datum/holocall/holocall_to_disconnect AS in holo_calls)
+	for(var/datum/holocall/holocall_to_disconnect as anything in holo_calls)
 		holocall_to_disconnect.Disconnect(src)
 
 /obj/machinery/holopad/Topic(href, href_list)
@@ -183,7 +183,7 @@
 			temp = "You requested an AI's presence.<BR>"
 			temp += "<A href='?src=[REF(src)];mainmenu=1'>Main Menu</A>"
 			var/area/area = get_area(src)
-			for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
+			for(var/mob/living/silicon/ai/AI as anything in GLOB.ai_list)
 				if(!AI.client)
 					continue
 				to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>."))
@@ -340,7 +340,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			if(masters[master] && speaker != master)
 				master.relay_speech(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
 
-	for(var/datum/holocall/holocall_to_update AS in holo_calls)
+	for(var/datum/holocall/holocall_to_update as anything in holo_calls)
 		if(holocall_to_update.connected_holopad == src && speaker != holocall_to_update.hologram)
 			holocall_to_update.user.Hear(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
 

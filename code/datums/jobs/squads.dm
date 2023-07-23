@@ -184,7 +184,7 @@
 		if(headset.sl_direction && new_squaddie != squad_leader)
 			SSdirection.start_tracking(tracking_id, new_squaddie)
 
-	for(var/datum/data/record/sheet AS in GLOB.datacore.general)
+	for(var/datum/data/record/sheet as anything in GLOB.datacore.general)
 		if(sheet.fields["name"] == new_squaddie.real_name)
 			sheet.fields["squad"] = name
 			break
@@ -233,7 +233,7 @@
 		headset.remove_minimap()
 		headset.set_frequency(initial(headset.frequency))
 
-	for(var/datum/data/record/sheet AS in GLOB.datacore.general)
+	for(var/datum/data/record/sheet as anything in GLOB.datacore.general)
 		if(sheet.fields["name"] == leaving_squaddie.real_name)
 			sheet.fields["squad"] = null
 			break
@@ -330,7 +330,7 @@
 	if(sender)
 		header = "CIC SQUAD MESSAGE FROM [sender.real_name]:"
 
-	for(var/mob/living/marine AS in marines_list)
+	for(var/mob/living/marine as anything in marines_list)
 		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
 
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
@@ -381,7 +381,7 @@
 		to_chat(player, span_warning("That squad is full!"))
 		return FALSE
 	//If our preferred squad is not available, we try every other squad
-	for(var/datum/squad/squad AS in shuffle(available_squads))
+	for(var/datum/squad/squad as anything in shuffle(available_squads))
 		if(!squad.check_entry(job))
 			continue
 		if(squad.assign_initial(player, job, latejoin))

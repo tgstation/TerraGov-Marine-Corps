@@ -45,7 +45,7 @@
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 	health_hud.add_hud_to(H)
 	H.job = new /datum/job/zombie //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
-	for(var/datum/action/action AS in H.actions)
+	for(var/datum/action/action as anything in H.actions)
 		action.remove_action(H)
 	var/datum/action/rally_zombie/rally_zombie = new
 	rally_zombie.give_action(H)
@@ -58,13 +58,13 @@
 	health_hud.remove_hud_from(H)
 	qdel(H.r_hand)
 	qdel(H.l_hand)
-	for(var/datum/action/action AS in H.actions)
+	for(var/datum/action/action as anything in H.actions)
 		action.remove_action(H)
 
 /datum/species/zombie/handle_unique_behavior(mob/living/carbon/human/H)
 	if(prob(10))
 		playsound(get_turf(H), pick(sounds), 50)
-	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
+	for(var/datum/limb/limb as anything in H.limbs) //Regrow some limbs
 		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
 			limb.remove_limb_flags(LIMB_DESTROYED)
 			if(istype(limb, /datum/limb/hand/l_hand))
@@ -90,7 +90,7 @@
 
 /datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
 	. = ..()
-	for(var/datum/limb/limb AS in organless_human.limbs)
+	for(var/datum/limb/limb as anything in organless_human.limbs)
 		if(!istype(limb, /datum/limb/head))
 			continue
 		limb.vital = FALSE

@@ -134,7 +134,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 ///Play sound for all online mobs on a given Z-level. Good for ambient sounds.
 /proc/playsound_z(z, soundin, _volume)
 	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
-	for(var/mob/M AS in GLOB.player_list)
+	for(var/mob/M as anything in GLOB.player_list)
 		if(isnewplayer(M))
 			continue
 		if (M.z == z)
@@ -143,20 +143,20 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 ///Play a sound for all cliented humans and ghosts by zlevel
 /proc/playsound_z_humans(z, soundin, _volume)
 	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
-	for(var/mob/living/carbon/human/H AS in GLOB.humans_by_zlevel["[z]"])
+	for(var/mob/living/carbon/human/H as anything in GLOB.humans_by_zlevel["[z]"])
 		if(H.client)
 			SEND_SOUND(H, soundin)
-	for(var/mob/dead/observer/O AS in GLOB.observers_by_zlevel["[z]"])
+	for(var/mob/dead/observer/O as anything in GLOB.observers_by_zlevel["[z]"])
 		if(O.client)
 			SEND_SOUND(O, soundin)
 
 ///Play a sound for all cliented xenos and ghosts by hive on a zlevel
 /proc/playsound_z_xenos(z, soundin, _volume, hive_type = XENO_HIVE_NORMAL)
 	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
-	for(var/mob/living/carbon/xenomorph/X AS in GLOB.hive_datums[hive_type].xenos_by_zlevel["[z]"])
+	for(var/mob/living/carbon/xenomorph/X as anything in GLOB.hive_datums[hive_type].xenos_by_zlevel["[z]"])
 		if(X.client)
 			SEND_SOUND(X, soundin)
-	for(var/mob/dead/observer/O AS in GLOB.observers_by_zlevel["[z]"])
+	for(var/mob/dead/observer/O as anything in GLOB.observers_by_zlevel["[z]"])
 		if(O.client)
 			SEND_SOUND(O, soundin)
 

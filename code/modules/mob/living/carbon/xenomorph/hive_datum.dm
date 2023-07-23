@@ -103,29 +103,29 @@
 
 	.["hive_structures"] = list()
 	// Silos
-	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
+	for(var/obj/structure/xeno/silo/resin_silo as anything in GLOB.xeno_resin_silos_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(resin_silo))
 	// Acid, sticky, and hugger turrets.
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[hivenumber])
+	for(var/obj/structure/xeno/xeno_turret/turret as anything in GLOB.xeno_resin_turrets_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(turret))
 	// Maturity towers
-	for(var/obj/structure/xeno/maturitytower/tower AS in GLOB.hive_datums[hivenumber].maturitytowers)
+	for(var/obj/structure/xeno/maturitytower/tower as anything in GLOB.hive_datums[hivenumber].maturitytowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Evolution towers (if they're ever built)
-	for(var/obj/structure/xeno/evotower/tower AS in GLOB.hive_datums[hivenumber].evotowers)
+	for(var/obj/structure/xeno/evotower/tower as anything in GLOB.hive_datums[hivenumber].evotowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Pheromone towers
-	for(var/obj/structure/xeno/pherotower/tower AS in GLOB.hive_datums[hivenumber].pherotowers)
+	for(var/obj/structure/xeno/pherotower/tower as anything in GLOB.hive_datums[hivenumber].pherotowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Hivemind cores
-	for(var/obj/structure/xeno/hivemindcore/core AS in GLOB.hive_datums[hivenumber].hivemindcores)
+	for(var/obj/structure/xeno/hivemindcore/core as anything in GLOB.hive_datums[hivenumber].hivemindcores)
 		.["hive_structures"] += list(get_structure_packet(core))
 	// Spawners
-	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawners_by_hive[hivenumber])
+	for(var/obj/structure/xeno/spawner/spawner as anything in GLOB.xeno_spawners_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(spawner))
 
 	.["xeno_info"] = list()
-	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
+	for(var/mob/living/carbon/xenomorph/xeno as anything in get_all_xenos())
 		if(initial(xeno.tier) == XENO_TIER_MINION)
 			continue // Skipping minions
 		var/datum/xeno_caste/caste = xeno.xeno_caste
@@ -343,7 +343,7 @@
 /datum/hive_status/proc/get_watchable_xenos(mob/living/carbon/xenomorph/self)
 	var/list/xenos = list()
 	for(var/typepath in xenos_by_typepath)
-		for(var/mob/living/carbon/xenomorph/X AS in xenos_by_typepath[typepath])
+		for(var/mob/living/carbon/xenomorph/X as anything in xenos_by_typepath[typepath])
 			if(X == self || is_centcom_level(X.z))
 				continue
 			xenos += X
@@ -368,13 +368,13 @@
 ///fetches number of bonus evo points given to the hive
 /datum/hive_status/proc/get_evolution_boost()
 	. = 0
-	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
+	for(var/obj/structure/xeno/evotower/tower as anything in evotowers)
 		. += tower.boost_amount
 
 ///fetches number of bonus upgrade points given to the hive
 /datum/hive_status/proc/get_upgrade_boost()
 	. = 0
-	for(var/obj/structure/xeno/maturitytower/tower AS in maturitytowers)
+	for(var/obj/structure/xeno/maturitytower/tower as anything in maturitytowers)
 		. += tower.boost_amount
 
 // ***************************************
@@ -591,7 +591,7 @@
 		X.remove_rally_hive_ability()
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
-	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
+	for(var/mob/living/carbon/xenomorph/leader as anything in xeno_leader_list)
 		leader.handle_xeno_leader_pheromones(living_xeno_queen)
 
 // ***************************************
@@ -823,7 +823,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(filter_list) //Filter out Xenos in the filter list if applicable
 		final_list -= filter_list
 
-	for(var/mob/living/carbon/xenomorph/X AS in final_list)
+	for(var/mob/living/carbon/xenomorph/X as anything in final_list)
 
 		if(X.stat) // dead/crit cant hear
 			continue
@@ -852,7 +852,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 ///Used for setting the trackers of all xenos in the hive, like when a nuke activates
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
-	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
+	for(var/mob/living/carbon/xenomorph/X as anything in get_all_xenos())
 		X.set_tracked(target)
 		to_chat(X, span_notice(" Now tracking [target.name]"))
 
@@ -1008,7 +1008,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, PROC_REF(on_hijack_depart))
 
-	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structures_by_hive[XENO_HIVE_NORMAL])
+	for(var/obj/structure/xeno/structure as anything in GLOB.xeno_structures_by_hive[XENO_HIVE_NORMAL])
 		if(!is_ground_level(structure.z) || structure.xeno_structure_flags & DEPART_DESTRUCTION_IMMUNE)
 			continue
 		qdel(structure)
@@ -1028,7 +1028,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/difference = round(players[2] - (players[1] * 0.5)) // no of xenos - half the no of players
 
 	var/left_behind = 0
-	for(var/mob/living/carbon/xenomorph/boarder AS in get_all_xenos())
+	for(var/mob/living/carbon/xenomorph/boarder as anything in get_all_xenos())
 		if(isdropshiparea(get_area(boarder)))
 			continue
 		if(!is_ground_level(boarder.z))

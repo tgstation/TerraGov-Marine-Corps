@@ -6,7 +6,7 @@
 	for(var/alert in alerts)
 		clear_alert(alert, TRUE)
 	if(length(observers))
-		for(var/mob/dead/observes AS in observers)
+		for(var/mob/dead/observes as anything in observers)
 			observes.reset_perspective(null)
 	clear_client_in_contents() //Gotta do this here as well as Logout, since client will be null by the time it gets there, cause of that ghostize
 	ghostize()

@@ -151,7 +151,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(ignore_current_node || !current_node) //We don't have a current node, let's find the closest in our LOS
 		var/closest_distance = MAX_NODE_RANGE //squared because we are using the cheap get dist
 		var/avoid_node = current_node
-		for(var/obj/effect/ai_node/ai_node AS in GLOB.all_nodes)
+		for(var/obj/effect/ai_node/ai_node as anything in GLOB.all_nodes)
 			if(!ai_node)
 				continue
 			if(ai_node == avoid_node)

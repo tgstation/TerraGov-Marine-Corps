@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(!owner)
 		CRASH("Antag datum with no owner.")
 
-	for(var/datum/action/A AS in usr.actions) //remove all objective buttons
+	for(var/datum/action/A as anything in usr.actions) //remove all objective buttons
 		if(istype(A, /datum/action/objectives))
 			A.remove_action(usr)
 

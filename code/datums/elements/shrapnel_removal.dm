@@ -42,7 +42,7 @@
 		return
 	remove_shrapnel(user, target, targetlimb, skill)
 	//iterates over the rest of the patient's limbs, attempting to remove shrapnel
-	for(targetlimb AS in target.limbs)
+	for(targetlimb as anything in target.limbs)
 		while(has_shrapnel(targetlimb))
 			if(!do_after(user, do_after_time, TRUE, target, BUSY_ICON_MEDICAL))
 				to_chat(user, span_notice("You stop searching for shrapnel in [target]"))
@@ -58,7 +58,7 @@
 	return FALSE
 
 /datum/element/shrapnel_removal/proc/remove_shrapnel(mob/living/user, mob/living/target, datum/limb/targetlimb, skill)
-	for(var/obj/item/I AS in targetlimb.implants)
+	for(var/obj/item/I as anything in targetlimb.implants)
 		if(is_type_in_list(I, GLOB.known_implants))
 			continue
 		I.unembed_ourself(FALSE)

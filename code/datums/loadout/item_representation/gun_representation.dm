@@ -27,7 +27,7 @@
 	. = ..()
 	if(!.)
 		return
-	for(var/datum/item_representation/gun_attachement AS in attachments)
+	for(var/datum/item_representation/gun_attachement as anything in attachments)
 		if(istype(gun_attachement, /datum/item_representation/gun))
 			var/datum/item_representation/gun/gun = gun_attachement
 			gun.install_on_gun(seller, ., user)

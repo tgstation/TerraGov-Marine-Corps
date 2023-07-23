@@ -60,7 +60,7 @@
 	GLOB.all_nodes[unique_id + 1] = null
 	rustg_remove_node_astart(unique_id)
 	//Remove our reference to self from nearby adjacent node's adjacent nodes
-	for(var/direction AS in adjacent_nodes)
+	for(var/direction as anything in adjacent_nodes)
 		var/obj/effect/ai_node/node = adjacent_nodes[direction]
 		node.make_adjacents()
 	adjacent_nodes.Cut()
@@ -101,7 +101,7 @@
 ///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away
 /obj/effect/ai_node/proc/make_adjacents(bypass_diagonal_check = FALSE)
 	adjacent_nodes = list()
-	for(var/obj/effect/ai_node/node AS in GLOB.all_nodes)
+	for(var/obj/effect/ai_node/node as anything in GLOB.all_nodes)
 		if(!node || node == src || node.z != z || get_dist(src, node) > MAX_NODE_RANGE || (!bypass_diagonal_check && !Adjacent(node) && ISDIAGONALDIR(get_dir(src, node))))
 			continue
 		if(get_dist(src, adjacent_nodes["[get_dir(src, node)]"]) < get_dist(src, node))

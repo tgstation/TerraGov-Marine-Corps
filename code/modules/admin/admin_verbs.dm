@@ -1209,7 +1209,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/obj/vehicle/multitile/root/cm_armored/CA AS in GLOB.tank_list)
+	for(var/obj/vehicle/multitile/root/cm_armored/CA as anything in GLOB.tank_list)
 		CA.remove_all_players()
 
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")

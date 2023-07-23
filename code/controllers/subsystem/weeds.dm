@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(weeds)
 		currentrun = pending.Copy()
 		creating = list()
 
-	for(var/turf/T AS in currentrun)
+	for(var/turf/T as anything in currentrun)
 		if(MC_TICK_CHECK)
 			return
 
@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(weeds)
 
 
 	// We create weeds outside of the loop to not influence new weeds within the loop
-	for(var/turf/T AS in creating)
+	for(var/turf/T as anything in creating)
 		if(MC_TICK_CHECK)
 			return
 		// Adds a bit of jitter to the spawning weeds.
@@ -68,7 +68,7 @@ SUBSYSTEM_DEF(weeds)
 		stack_trace("SSweed.add_node called with a null obj")
 		return FALSE
 
-	for(var/turf/T AS in node.node_turfs)
+	for(var/turf/T as anything in node.node_turfs)
 		if(pending[T] && (get_dist_euclide_square(node, T) >= get_dist_euclide_square(get_step(pending[T], 0), T)))
 			continue
 		pending[T] = node

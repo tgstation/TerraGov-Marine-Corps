@@ -72,7 +72,7 @@
 
 ///Change the turf type of all tiles that are belonging to the turf reservation
 /datum/turf_reservation/proc/set_turf_type(new_turf_type)
-	for(var/turf/T AS in reserved_turfs)
+	for(var/turf/T as anything in reserved_turfs)
 		if(istype(T, turf_type))
 			T.ChangeTurf(new_turf_type, new_turf_type)
 	turf_type = new_turf_type

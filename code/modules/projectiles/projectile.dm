@@ -1033,7 +1033,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					else
 						border_escaped_through = pick(NORTH, WEST)
 			turf_crossed_by = get_step(last_processed_turf, border_escaped_through)
-			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled)
+			for(var/atom/movable/thing_to_uncross as anything in uncross_scheduled)
 				if(QDELETED(thing_to_uncross))
 					continue
 				if(!PROJECTILE_HIT_CHECK(thing_to_uncross, src, REVERSE_DIR(border_escaped_through), TRUE, hit_atoms))
@@ -1061,7 +1061,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					return
 				forceMove(turf_crossed_by)
 				return PROJECTILE_FROZEN
-			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled) //We are leaving turf_crossed_by now.
+			for(var/atom/movable/thing_to_uncross as anything in uncross_scheduled) //We are leaving turf_crossed_by now.
 				if(QDELETED(thing_to_uncross))
 					continue
 				if(!PROJECTILE_HIT_CHECK(thing_to_uncross, src, REVERSE_DIR(movement_dir), TRUE, hit_atoms))
@@ -1078,7 +1078,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
 				ammo.on_leave_turf(turf_crossed_by, firer, src)
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
-			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled)
+			for(var/atom/movable/thing_to_uncross as anything in uncross_scheduled)
 				if(QDELETED(thing_to_uncross))
 					continue
 				if(!PROJECTILE_HIT_CHECK(thing_to_uncross, src, REVERSE_DIR(movement_dir), TRUE, hit_atoms))

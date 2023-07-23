@@ -177,7 +177,7 @@
 			.["squads"] = SELECTABLE_SQUADS
 			.["squads_som"] = SELECTABLE_SQUADS_SOM
 			.["jobs"] = list()
-			for(var/datum/job/job AS in SSjob.joinable_occupations)
+			for(var/datum/job/job as anything in SSjob.joinable_occupations)
 				var/rank = job.title
 				.["jobs"][rank] = list(
 					"color" = job.selection_color,

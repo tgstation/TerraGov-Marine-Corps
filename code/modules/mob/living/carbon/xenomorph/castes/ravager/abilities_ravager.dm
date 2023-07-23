@@ -116,7 +116,7 @@
 	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
 	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
-	for(var/atom/movable/ravaged AS in atoms_to_ravage)
+	for(var/atom/movable/ravaged as anything in atoms_to_ravage)
 		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE))
 			continue
 		if(!ishuman(ravaged))
@@ -368,10 +368,10 @@
 			ravage.clear_cooldown() //Reset ravage cooldown
 		RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
 
-	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius, X.loc))
+	for(var/turf/affected_tiles as anything in RANGE_TURFS(rage_power_radius, X.loc))
 		affected_tiles.Shake(duration = 1 SECONDS) //SFX
 
-	for(var/mob/living/L AS in GLOB.mob_living_list) //Roar that applies cool SFX
+	for(var/mob/living/L as anything in GLOB.mob_living_list) //Roar that applies cool SFX
 		if(L.stat == DEAD || !L.hud_used || (get_dist(L, X) > rage_power_radius)) //We don't care about the dead
 			continue
 

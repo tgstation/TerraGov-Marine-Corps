@@ -83,7 +83,7 @@
 
 /obj/effect/sliding_puzzle/Destroy()
 	if(LAZYLEN(elements))
-		for(var/obj/structure/puzzle_element/E AS in elements)
+		for(var/obj/structure/puzzle_element/E as anything in elements)
 			E.source = null
 		elements.Cut()
 	return ..()
@@ -94,7 +94,7 @@
 	finished = TRUE
 	for(var/mob/M in range(7,src))
 		shake_camera(M, COLLAPSE_DURATION , 1)
-	for(var/obj/structure/puzzle_element/E AS in elements)
+	for(var/obj/structure/puzzle_element/E as anything in elements)
 		E.collapse()
 
 	dispense_reward()
@@ -104,7 +104,7 @@
 
 /obj/effect/sliding_puzzle/proc/is_solvable()
 	var/list/current_ordering = list()
-	for(var/obj/structure/puzzle_element/E AS in elements_in_order())
+	for(var/obj/structure/puzzle_element/E as anything in elements_in_order())
 		current_ordering += E.id
 
 	var/swap_tally = 0

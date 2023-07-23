@@ -95,7 +95,7 @@
 
 /obj/item/attachable/motiondetector/update_icon()
 	. = ..()
-	for(var/datum/action/action AS in master_gun?.actions)
+	for(var/datum/action/action as anything in master_gun?.actions)
 		action.update_button_icon()
 
 /obj/item/attachable/motiondetector/update_icon_state()
@@ -130,13 +130,13 @@
 		clean_operator()
 		return
 	hostile_detected = FALSE
-	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(operator, range))
+	for (var/mob/living/carbon/human/nearby_human as anything in cheap_get_humans_near(operator, range))
 		if(nearby_human == operator)
 			continue
 		if(nearby_human.last_move_time + move_sensitivity < world.time)
 			continue
 		prepare_blip(nearby_human, nearby_human.wear_id?.iff_signal & operator.wear_id.iff_signal ? MOTION_DETECTOR_FRIENDLY : MOTION_DETECTOR_HOSTILE)
-	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(operator, range))
+	for (var/mob/living/carbon/xenomorph/nearby_xeno as anything in cheap_get_xenos_near(operator, range))
 		if(nearby_xeno.last_move_time + move_sensitivity < world.time )
 			continue
 		prepare_blip(nearby_xeno, MOTION_DETECTOR_HOSTILE)
@@ -148,7 +148,7 @@
 /obj/item/attachable/motiondetector/proc/clean_blips()
 	if(!operator)//We already cleaned
 		return
-	for(var/obj/effect/blip/blip AS in blips_list)
+	for(var/obj/effect/blip/blip as anything in blips_list)
 		blip.remove_blip(operator)
 	blips_list.Cut()
 

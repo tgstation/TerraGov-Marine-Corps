@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(speech_controller)
 	var/list/says_to_process = queued_says_to_execute.Copy()
 	queued_says_to_execute.Cut()//we should be going through the entire list every single iteration
 
-	for(var/list/say_to_process AS in says_to_process)
+	for(var/list/say_to_process as anything in says_to_process)
 
 		var/mob/mob_to_speak = say_to_process[MOB_INDEX]//index 1 is the mob, 2 is the message, 3 is the message category
 		var/message = say_to_process[MESSAGE_INDEX_SPEECH]

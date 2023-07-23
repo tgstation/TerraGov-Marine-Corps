@@ -1747,7 +1747,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke.start()
 
 	var/list/turf/target_turfs = generate_true_cone(T, explosion_range, -1, 359, 0, air_pass = TRUE)
-	for(var/turf/target_turf AS in target_turfs)
+	for(var/turf/target_turf as anything in target_turfs)
 		for(var/target in target_turf)
 			if(isliving(target))
 				var/mob/living/living_target = target
@@ -3051,8 +3051,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		aoe_damage = xeno_firer.xeno_caste.blast_strength
 
 	var/list/turf/target_turfs = generate_true_cone(T, aoe_range, -1, 359, 0, air_pass = TRUE)
-	for(var/turf/target_turf AS in target_turfs)
-		for(var/atom/movable/target AS in target_turf)
+	for(var/turf/target_turf as anything in target_turfs)
+		for(var/atom/movable/target as anything in target_turf)
 			if(isliving(target))
 				var/mob/living/living_victim = target
 				if(living_victim.stat == DEAD)

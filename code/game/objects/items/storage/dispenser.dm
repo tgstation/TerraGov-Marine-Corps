@@ -29,13 +29,13 @@
 		affecting_list[human] = beam(human, "blood_light", maxdistance = 3)
 		RegisterSignal(affecting_list[human], COMSIG_QDELETING, PROC_REF(on_beam_qdel))
 		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
-	for(var/turf/turfs AS in RANGE_TURFS(2, src))
+	for(var/turf/turfs as anything in RANGE_TURFS(2, src))
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(entered_tiles))
 	active = TRUE
 	START_PROCESSING(SSobj, src)
 
 /obj/machinery/deployable/dispenser/process()
-	for(var/mob/living/carbon/human/affecting AS in affecting_list)
+	for(var/mob/living/carbon/human/affecting as anything in affecting_list)
 		if(!line_of_sight(src, affecting, 2))
 			qdel(affecting_list[affecting])
 			affecting_list -= affecting
@@ -90,9 +90,9 @@
 		return
 	active = FALSE
 	balloon_alert_to_viewers("Undeploying...")
-	for(var/turf/turfs AS in RANGE_TURFS(2, src))
+	for(var/turf/turfs as anything in RANGE_TURFS(2, src))
 		UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
-	for(var/mob/living/carbon/human/affecting AS in affecting_list)
+	for(var/mob/living/carbon/human/affecting as anything in affecting_list)
 		qdel(affecting_list[affecting])
 		UnregisterSignal(affecting, COMSIG_QDELETING)
 	affecting_list = null

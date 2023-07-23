@@ -86,7 +86,7 @@
 			CRASH("An unknown layer type was specified in greyscale configuration json: [data["layer_type"]]")
 		return new layer_type(icon_file, data, prefix)
 	var/list/output = list()
-	for(var/list/group AS in data)
+	for(var/list/group as anything in data)
 		output += ReadLayerGroup(group)
 	if(length(output)) // Adding lists to lists unwraps the top level so here we are
 		output = list(output)
@@ -107,7 +107,7 @@
 			all_layers += current
 
 	var/list/color_groups = list()
-	for(var/datum/greyscale_layer/layer AS in all_layers)
+	for(var/datum/greyscale_layer/layer as anything in all_layers)
 		for(var/id in layer.color_ids)
 			color_groups["[id]"] = TRUE
 
@@ -134,7 +134,7 @@
 /// Internal recursive proc to handle nested layer groups
 /datum/greyscale_config/proc/GenerateLayerGroup(list/colors, list/group, list/render_steps)
 	var/icon/new_icon
-	for(var/datum/greyscale_layer/layer AS in group)
+	for(var/datum/greyscale_layer/layer as anything in group)
 		var/icon/layer_icon
 		if(length(colors) < expected_colors)
 			CRASH("[DebugName()] expected [expected_colors] color arguments but only received [length(colors)]")

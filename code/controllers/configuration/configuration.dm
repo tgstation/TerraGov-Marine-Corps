@@ -309,7 +309,7 @@
 
 		switch(command)
 			if("mode")
-				for(var/datum/game_mode/mode AS in modes)
+				for(var/datum/game_mode/mode as anything in modes)
 					if(mode.config_tag == data)
 						currentmode = mode
 						break
@@ -329,7 +329,7 @@
 				log_config("Unknown command in map vote config: '[command]'")
 
 	votable_modes = list()
-	for(var/datum/game_mode/mode AS in modes)
+	for(var/datum/game_mode/mode as anything in modes)
 		if(mode.votable)
 			votable_modes += mode
 

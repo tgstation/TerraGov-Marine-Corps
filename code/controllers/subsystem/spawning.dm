@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(spawning)
 
 ///Admin proc to unregister and reregister AI node spawners for example for varedits on WO
 /datum/controller/subsystem/spawning/proc/reset_ai()
-	for(var/obj/effect/ai_node/spawner/spawner AS in spawnerdata)
+	for(var/obj/effect/ai_node/spawner/spawner as anything in spawnerdata)
 		unregisterspawner(spawner)
 		registerspawner(spawner, spawner.spawndelay, spawner.spawntypes, spawner.maxamount, spawner.spawnamount, spawner.use_postspawn ? CALLBACK(spawner, TYPE_PROC_REF(/obj/effect/ai_node/spawner, postspawn)) : null)
 

@@ -447,7 +447,7 @@
 		if(!hasPower() || wires.is_cut(WIRE_BOLTS))
 			return
 	if(safe)
-		for(var/turf/turf AS in locs)
+		for(var/turf/turf as anything in locs)
 			if(locate(/mob/living) in turf)
 				addtimer(CALLBACK(src, PROC_REF(close)), 6 SECONDS)
 				return

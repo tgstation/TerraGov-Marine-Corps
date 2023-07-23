@@ -18,7 +18,7 @@
 /obj/item/storage/bag
 	allow_quick_gather = 1
 	allow_quick_empty = 1
-	display_contents_with_number = 0 // UNStABLE AS FuCK, turn on when it stops crashing clients
+	display_contents_with_number = 0 // UNStABLE as anything FuCK, turn on when it stops crashing clients
 	use_to_pickup = 1
 	flags_equip_slot = ITEM_SLOT_BELT
 

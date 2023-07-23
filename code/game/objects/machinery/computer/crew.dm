@@ -45,7 +45,7 @@
 	crewmembers_planetside.Cut()
 	crewmembers_in_transit.Cut()
 
-	for(var/obj/item/clothing/under/C AS in tracked)
+	for(var/obj/item/clothing/under/C as anything in tracked)
 		var/turf/pos = get_turf(C)
 
 		if(C && pos)

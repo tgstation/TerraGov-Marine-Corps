@@ -24,7 +24,7 @@
 	if(!current_mob.client)
 		return
 	var/client/binder_client = current_mob.client
-	for(var/datum/action/user_action AS in current_mob.actions)
+	for(var/datum/action/user_action as anything in current_mob.actions)
 		if(!length(user_action.keybinding_signals))
 			continue
 		if(!binder_client)
@@ -42,7 +42,7 @@
 	if(!current_mob.client)
 		return
 	var/calling_client = current_mob.client
-	for(var/datum/action/user_action AS in current_mob.actions)
+	for(var/datum/action/user_action as anything in current_mob.actions)
 		if(length(user_action.keybinding_signals) == 0)
 			continue
 		for(var/type in user_action.keybinding_signals)

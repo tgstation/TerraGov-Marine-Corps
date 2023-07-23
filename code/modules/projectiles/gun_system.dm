@@ -498,11 +498,11 @@
 /obj/item/weapon/gun/update_icon(mob/user)
 	. = ..()
 
-	for(var/datum/action/action AS in actions)
+	for(var/datum/action/action as anything in actions)
 		action.update_button_icon()
 
 	if(master_gun)
-		for(var/datum/action/action AS in master_gun.actions)
+		for(var/datum/action/action as anything in master_gun.actions)
 			action.update_button_icon()
 
 	update_item_state()

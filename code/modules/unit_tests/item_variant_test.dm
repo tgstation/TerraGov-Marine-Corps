@@ -1,5 +1,5 @@
 /datum/unit_test/item_variant_test/Run()
-	for(var/obj/item/item_type AS in subtypesof(/obj/item))
+	for(var/obj/item/item_type as anything in subtypesof(/obj/item))
 		if(!initial(item_type.current_variant) && !length(initial(item_type.icon_state_variants)))
 			continue
 		var/obj/item/item_to_test = allocate(item_type)

@@ -53,7 +53,7 @@
 /proc/get_alien_candidate()
 	var/mob/dead/observer/picked
 
-	for(var/mob/dead/observer/O AS in GLOB.observer_list)
+	for(var/mob/dead/observer/O as anything in GLOB.observer_list)
 		//Players without preferences or jobbaned players cannot be drafted.
 		if(!O.key || !O.mind || !O.client?.prefs || !(O.client.prefs.be_special & (BE_ALIEN|BE_ALIEN_UNREVIVABLE)) || is_banned_from(O.ckey, ROLE_XENOMORPH))
 			continue
@@ -90,19 +90,19 @@
 	remove_from?.images -= image
 
 /proc/remove_images_from_clients(image/I, list/show_to)
-	for(var/client/C AS in show_to)
+	for(var/client/C as anything in show_to)
 		C.images -= I
 
 
 /proc/flick_overlay(image/I, list/show_to, duration)
-	for(var/client/C AS in show_to)
+	for(var/client/C as anything in show_to)
 		C.images += I
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_images_from_clients), I, show_to), duration, TIMER_CLIENT_TIME)
 
 ///wrapper for flick_overlay(), flicks to everyone who can see the target atom
 /proc/flick_overlay_view(image/image_to_show, atom/target, duration)
 	var/list/viewing = list()
-	for(var/mob/viewer AS in viewers(target))
+	for(var/mob/viewer as anything in viewers(target))
 		if(viewer.client)
 			viewing += viewer.client
 	flick_overlay(image_to_show, viewing, duration)

@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/toggle_bomb/proc/select_glob_radial()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	var/list/available_globs = list()
-	for(var/datum/ammo/xeno/boiler_gas/glob_type AS in X.xeno_caste.spit_types)
+	for(var/datum/ammo/xeno/boiler_gas/glob_type as anything in X.xeno_caste.spit_types)
 		var/glob_image = GLOB.boiler_glob_image_list[initial(glob_type.icon_key)]
 		if(!glob_image)
 			continue

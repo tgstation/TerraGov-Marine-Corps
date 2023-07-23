@@ -28,7 +28,7 @@
 	stage++
 	if(length(recipe) < stage)
 		if(islist(result))
-			for(var/production AS in result)
+			for(var/production as anything in result)
 				GLOB.round_statistics.req_items_produced[production]++
 				new production(loc)
 		else

@@ -526,7 +526,7 @@
 		. += "It is empty!"
 		return
 	. += "It contains:"
-	for(var/obj/item/I AS in contents_weight)
+	for(var/obj/item/I as anything in contents_weight)
 		if(contents_weight[I] < overlay_w_class)
 			. += "A bit of: [initial(I.name)]."
 		else if(contents_weight[I] < 3 * overlay_w_class)
@@ -577,7 +577,7 @@
 
 	//Fill assoc list of every item type in the crate and have it's value be the total weight it takes up.
 	contents_weight = list()
-	for(var/obj/item/I AS in contents)
+	for(var/obj/item/I as anything in contents)
 		if(!contents_weight[I.type])
 			contents_weight[I.type] = 0
 			variety++

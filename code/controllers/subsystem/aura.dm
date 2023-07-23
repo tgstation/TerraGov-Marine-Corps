@@ -146,7 +146,7 @@ SUBSYSTEM_DEF(aura)
 	var/turf/aura_center = get_turf(emitter)
 	if(!istype(aura_center))
 		return
-	for(var/mob/living/carbon/human/potential_hearer AS in GLOB.humans_by_zlevel["[aura_center.z]"])
+	for(var/mob/living/carbon/human/potential_hearer as anything in GLOB.humans_by_zlevel["[aura_center.z]"])
 		if(get_dist(aura_center, potential_hearer) > range)
 			continue
 		if(potential_hearer.faction != faction)
@@ -159,7 +159,7 @@ SUBSYSTEM_DEF(aura)
 	var/turf/aura_center = get_turf(emitter)
 	if(!istype(aura_center))
 		return
-	for(var/mob/living/carbon/xenomorph/potential_hearer AS in GLOB.hive_datums[hive_number].xenos_by_zlevel["[aura_center.z]"])
+	for(var/mob/living/carbon/xenomorph/potential_hearer as anything in GLOB.hive_datums[hive_number].xenos_by_zlevel["[aura_center.z]"])
 		if(get_dist(aura_center, potential_hearer) > range)
 			continue
 		if(potential_hearer.faction != faction)

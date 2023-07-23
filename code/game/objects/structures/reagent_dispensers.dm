@@ -208,7 +208,7 @@
 
 	amount = min(amount, reagents.total_volume)
 
-	for(var/datum/reagent/leaked_reagent AS in reagents.reagent_list)
+	for(var/datum/reagent/leaked_reagent as anything in reagents.reagent_list)
 		if(leaked_reagent.volume < amount)
 			continue
 		leaked_reagent.reaction_turf(loc, amount)

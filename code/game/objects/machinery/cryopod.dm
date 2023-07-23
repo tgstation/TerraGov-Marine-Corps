@@ -21,7 +21,7 @@
 	dat +="<table style='text-align:justify'><tr>"
 	dat += "<tr></table>"
 	dat += "<center><a href='byond://?src=\ref[src];allitems=TRUE'>Dispense All</a></center><br/>"
-	for(var/obj/item/I AS in GLOB.cryoed_item_list)
+	for(var/obj/item/I as anything in GLOB.cryoed_item_list)
 		if(QDELETED(I))
 			GLOB.cryoed_item_list -= I
 			continue
@@ -51,7 +51,7 @@
 
 		visible_message(span_notice("[src] beeps happily as it disgorges the desired objects."))
 
-		for(var/obj/item/I AS in GLOB.cryoed_item_list)
+		for(var/obj/item/I as anything in GLOB.cryoed_item_list)
 			dispense_item(I, usr, FALSE)
 
 	updateUsrDialog()
@@ -173,7 +173,7 @@
 	GLOB.cryoed_item_list += src
 
 /obj/item/storage/store_in_cryo()
-	for(var/obj/item/I AS in src)
+	for(var/obj/item/I as anything in src)
 		I.store_in_cryo()
 	return ..()
 

@@ -168,7 +168,7 @@ REAGENT SCANNER
 	)
 	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
-	for(var/datum/reagent/reagent AS in patient.reagents.reagent_list)
+	for(var/datum/reagent/reagent as anything in patient.reagents.reagent_list)
 		if(!reagent.scannable)
 			data["has_unknown_chemicals"] = TRUE
 			continue
@@ -189,7 +189,7 @@ REAGENT SCANNER
 		var/internal_bleeding
 
 		var/unknown_implants = 0
-		for(var/datum/limb/limb AS in human_patient.limbs)
+		for(var/datum/limb/limb as anything in human_patient.limbs)
 			var/infected = FALSE
 			var/necrotized = FALSE
 
@@ -249,7 +249,7 @@ REAGENT SCANNER
 		data["pulse"] = "[human_patient.get_pulse(GETPULSE_TOOL)] bpm"
 		data["implants"] = unknown_implants
 		var/damaged_organs = list()
-		for(var/datum/internal_organ/organ AS in human_patient.internal_organs)
+		for(var/datum/internal_organ/organ as anything in human_patient.internal_organs)
 			if(organ.organ_status == ORGAN_HEALTHY)
 				continue
 			var/current_organ = list(

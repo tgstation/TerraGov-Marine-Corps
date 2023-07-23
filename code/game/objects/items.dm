@@ -409,7 +409,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
 
-	for(var/datum/action/A AS in actions)
+	for(var/datum/action/A as anything in actions)
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
 
@@ -431,7 +431,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/equipped_from_slot = flags_equip_slot & slotdefine2slotbit(slot)
 
-	for(var/datum/action/A AS in actions)
+	for(var/datum/action/A as anything in actions)
 		A.remove_action(unequipper)
 
 	if(!equipped_from_slot)
@@ -992,7 +992,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 
 /obj/item/proc/update_action_button_icons()
-	for(var/datum/action/A AS in actions)
+	for(var/datum/action/A as anything in actions)
 		A.update_button_icon()
 
 

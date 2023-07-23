@@ -30,7 +30,7 @@
 
 /datum/weather/acid_rain/telegraph()
 	. = ..()
-	for(var/mob/impacted_mob AS in GLOB.player_list)
+	for(var/mob/impacted_mob as anything in GLOB.player_list)
 		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
 			continue
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)

@@ -108,7 +108,7 @@
 
 /obj/machinery/griddle/process(delta_time)
 	..()
-	for(var/obj/item/griddled_item AS in griddled_objects)
+	for(var/obj/item/griddled_item as anything in griddled_objects)
 		if(SEND_SIGNAL(griddled_item, COMSIG_ITEM_GRILLED, src, delta_time) & COMPONENT_HANDLED_GRILLING)
 			continue
 		griddled_item.fire_act(1000) //Hot hot hot!

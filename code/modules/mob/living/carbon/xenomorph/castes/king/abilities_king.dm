@@ -25,7 +25,7 @@
 	playsound(owner, 'sound/magic/nightfall.ogg', 50, 1)
 	succeed_activate()
 	add_cooldown()
-	for(var/atom/light AS in GLOB.nightfall_toggleable_lights)
+	for(var/atom/light as anything in GLOB.nightfall_toggleable_lights)
 		if(isnull(light.loc) || (owner.loc.z != light.loc.z) || (get_dist(owner, light) >= range))
 			continue
 		light.turn_light(null, FALSE, duration, TRUE, TRUE, TRUE)
@@ -112,7 +112,7 @@
 
 ///ends all combat-relazted effects
 /datum/action/xeno_action/petrify/proc/end_effects(list/humans)
-	for(var/mob/living/carbon/human/human AS in humans)
+	for(var/mob/living/carbon/human/human as anything in humans)
 		human.notransform = FALSE
 		human.status_flags &= ~GODMODE
 		REMOVE_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
@@ -218,7 +218,7 @@
 
 	finish_charging()
 	playsound(owner, 'sound/voice/xenos_roaring.ogg', 90, sound_range = 30)
-	for(var/mob/living/carbon/human/human_victim AS in GLOB.humans_by_zlevel["[owner.z]"])
+	for(var/mob/living/carbon/human/human_victim as anything in GLOB.humans_by_zlevel["[owner.z]"])
 		if(get_dist(human_victim, owner) > 9)
 			continue
 		shake_camera(human_victim, 2 SECONDS, 1)
@@ -237,7 +237,7 @@
 		victims_hit.Cut()
 		return
 
-	for(var/turf/turf AS in turfs_to_attack)
+	for(var/turf/turf as anything in turfs_to_attack)
 		if(get_dist(turf, source) == iteration || get_dist(turf, source) == iteration - 1)
 			attack_turf(turf, LERP(1, 0.3, iteration / SHATTERING_ROAR_RANGE))
 
@@ -392,7 +392,7 @@
 		stop_beaming()
 		return
 	succeed_activate()
-	for(var/turf/target AS in targets)
+	for(var/turf/target as anything in targets)
 		for(var/victim in target)
 			if(ishuman(victim))
 				var/mob/living/carbon/human/human_victim = victim
@@ -490,20 +490,20 @@
 	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
 	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = X.hivenumber)
 	var/list/allxenos = X.hive.get_all_xenos()
-	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+	for(var/mob/living/carbon/xenomorph/sister as anything in allxenos)
 		if(sister.z != owner.z)
 			continue
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
 	if(!do_after(X, 10 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
 		add_cooldown(5 SECONDS)
-		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+		for(var/mob/living/carbon/xenomorph/sister as anything in allxenos)
 			sister.remove_filter("summonoutline")
 		return fail_activate()
 
 	allxenos = X.hive.get_all_xenos() //refresh the list to account for any changes during the channel
 	var/sisters_teleported = 0
-	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+	for(var/mob/living/carbon/xenomorph/sister as anything in allxenos)
 		sister.remove_filter("summonoutline")
 		if(sister.z == owner.z)
 			sister.forceMove(get_turf(X))

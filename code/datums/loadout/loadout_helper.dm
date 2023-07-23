@@ -10,7 +10,7 @@
 /proc/buy_item_in_vendor(obj/item/item_to_buy_type, datum/loadout_seller/seller, mob/living/user)
 	//If we can find it for in a shared vendor, we buy it
 	for(var/type in (GLOB.loadout_linked_vendor[seller.faction] + GLOB.loadout_linked_vendor[user.job.title]))
-		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
+		for(var/datum/vending_product/item_datum as anything in GLOB.vending_records[type])
 			if(item_datum.product_path == item_to_buy_type && item_datum.amount != 0)
 				item_datum.amount--
 				return TRUE
@@ -108,7 +108,7 @@
 
 /// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor
 /proc/is_handful_buyable(ammo_type)
-	for(var/datum/vending_product/item_datum AS in GLOB.vending_records[/obj/machinery/vending/weapon])
+	for(var/datum/vending_product/item_datum as anything in GLOB.vending_records[/obj/machinery/vending/weapon])
 		var/product_path = item_datum.product_path
 		if(!ispath(product_path, /obj/item/ammo_magazine))
 			continue

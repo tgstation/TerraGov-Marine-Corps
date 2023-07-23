@@ -126,5 +126,5 @@
 	user.client.screen -= map
 	user.client.screen -= drawing_tools
 	user.client.mouse_pointer_icon = null
-	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
+	for(var/atom/movable/screen/minimap_tool/tool as anything in drawing_tools)
 		tool.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP))

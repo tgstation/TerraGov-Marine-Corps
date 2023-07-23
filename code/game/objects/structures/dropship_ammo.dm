@@ -126,7 +126,7 @@
 	var/list/turfs_impacted = list(epicenter)
 	var/list/outline_turfs_impacted = list()
 
-	for(var/turf/affected_turf AS in turfs_in_range)
+	for(var/turf/affected_turf as anything in turfs_in_range)
 
 		var/dist = turfs_in_range[epicenter]
 		var/turf/expansion_wave_loc = epicenter
@@ -254,7 +254,7 @@
 		strafelist -= strafed
 		strafed.ex_act(EXPLODE_LIGHT)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
-		for(var/atom/movable/AM AS in strafed)
+		for(var/atom/movable/AM as anything in strafed)
 			AM.ex_act(EXPLODE_LIGHT)
 
 	if(length(strafelist))

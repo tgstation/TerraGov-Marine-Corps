@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 ///generates the static list data containig all printable mech equipment modules for greyscale
 /proc/generate_greyscale_weapons_data()
 	. = list("weapons" = list(), "ammo" = list(), "armor" = list(), "utility" = list(), "power" = list())
-	for(var/obj/item/mecha_parts/mecha_equipment/weapon/type AS in subtypesof(/obj/item/mecha_parts/mecha_equipment))
+	for(var/obj/item/mecha_parts/mecha_equipment/weapon/type as anything in subtypesof(/obj/item/mecha_parts/mecha_equipment))
 		if(!(initial(type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
 			continue
 		if(initial(type.mech_flags) == ALL)
@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				))
 			else
 				stack_trace("equipment_slot not set for [type]")
-	for(var/obj/item/mecha_ammo/vendable/ammo AS in subtypesof(/obj/item/mecha_ammo/vendable))
+	for(var/obj/item/mecha_ammo/vendable/ammo as anything in subtypesof(/obj/item/mecha_ammo/vendable))
 		.["ammo"] += list(list(
 			"type" = ammo,
 			"name" = initial(ammo.name),

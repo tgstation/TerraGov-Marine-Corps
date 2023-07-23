@@ -28,7 +28,7 @@
 
 /obj/machinery/computer/supplydrop_console/LateInitialize()
 	. = ..()
-	for(var/obj/structure/supply_drop/_supply_pad AS in GLOB.supply_pad_list)
+	for(var/obj/structure/supply_drop/_supply_pad as anything in GLOB.supply_pad_list)
 		if(_supply_pad.faction == faction)
 			supply_pad = _supply_pad
 			return

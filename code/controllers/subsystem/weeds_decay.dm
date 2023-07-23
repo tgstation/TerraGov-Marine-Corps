@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(weeds_decay)
 	return ..("Decay Nodes: [length(decaying_list)]")
 
 /datum/controller/subsystem/weeds_decay/fire(resumed = FALSE)
-	for(var/obj/alien/weeds/weed AS in decaying_list)
+	for(var/obj/alien/weeds/weed as anything in decaying_list)
 		if(MC_TICK_CHECK)
 			return
 

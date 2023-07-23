@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 	// Initializes static ui data used by all hive status UI
 	var/list/per_tier_counter = list()
-	for(var/caste_type_path AS in GLOB.xeno_caste_datums)
+	for(var/caste_type_path as anything in GLOB.xeno_caste_datums)
 		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
 		var/type_path = initial(caste.caste_type_path)
 

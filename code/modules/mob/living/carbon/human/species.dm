@@ -172,7 +172,7 @@
 		organless_human.internal_organs_by_name[organ] = new organ_type(organless_human)
 
 	if(species_flags & ROBOTIC_LIMBS)
-		for(var/datum/limb/robotic_limb AS in organless_human.limbs)
+		for(var/datum/limb/robotic_limb as anything in organless_human.limbs)
 			if(robotic_limb.limb_status & LIMB_DESTROYED)
 				continue
 			robotic_limb.add_limb_flags(LIMB_ROBOT)

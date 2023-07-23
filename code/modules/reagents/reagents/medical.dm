@@ -804,7 +804,7 @@
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/body = L
-	for(var/datum/limb/possible_limb AS in body.limbs)
+	for(var/datum/limb/possible_limb as anything in body.limbs)
 		for(var/datum/wound/internal_bleeding/possible_IB in possible_limb.wounds)
 			target_IB = possible_IB
 			RegisterSignal(target_IB, COMSIG_QDELETING, PROC_REF(clear_wound))
@@ -1186,7 +1186,7 @@
 	var/mob/living/carbon/human/host = L
 	host.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY //oof ow ouch
 	if(host.bodytemperature < 170)
-		for(var/datum/limb/limb_to_fix AS in host.limbs)
+		for(var/datum/limb/limb_to_fix as anything in host.limbs)
 			if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
 				if(!(prob(20) || limb_to_fix.brute_dam > limb_to_fix.min_broken_damage))
 					continue //Once every 10s average while active, but guaranteed if the limb'll just break again so we get maximum crunchtube.
@@ -1198,7 +1198,7 @@
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/host = L
-	for(var/datum/limb/limb_to_unfix AS in host.limbs)
+	for(var/datum/limb/limb_to_unfix as anything in host.limbs)
 		if(limb_to_unfix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED | LIMB_DESTROYED | LIMB_AMPUTATED))
 			continue
 		limb_to_unfix.fracture()

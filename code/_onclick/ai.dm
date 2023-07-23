@@ -347,14 +347,14 @@
 			break
 		///used to check if we have valid targets
 		var/list/mob/living/carbon/xenomorph/possible_xenos = list()
-		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(laser, AI_RAILGUN_AUTOTARGET_RANGE))
+		for(var/mob/living/carbon/xenomorph/target_xeno as anything in cheap_get_xenos_near(laser, AI_RAILGUN_AUTOTARGET_RANGE))
 			if(target_xeno.stat != DEAD)
 				possible_xenos += target_xeno
 		//used to calculate nearby human mobs for avoidance purposes
 		var/mob/living/carbon/human/possible_humans = list()
 		//used for calculating zombies
 		var/mob/living/carbon/human/possible_zombies = list()
-		for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(laser, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
+		for(var/mob/living/carbon/human/nearby_human as anything in cheap_get_humans_near(laser, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
 			if(iszombie(nearby_human)) //count zombies separately
 				possible_zombies += nearby_human
 			else if(nearby_human.stat != DEAD)
@@ -371,7 +371,7 @@
 			var/turf/targetturf = get_turf(laser)
 			while(possible_humans)
 				possible_humans = list()
-				for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(targetturf, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
+				for(var/mob/living/carbon/human/nearby_human as anything in cheap_get_humans_near(targetturf, AI_RAILGUN_HUMAN_EXCLUSION_RANGE))
 					if(nearby_human.stat != DEAD)
 						possible_humans += nearby_human
 				if(length(possible_humans))

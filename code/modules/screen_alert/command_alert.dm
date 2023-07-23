@@ -61,9 +61,9 @@
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
 	deadchat_broadcast(" has sent the command order \"[text]\"", human_owner, human_owner)
 	if(human_owner.assigned_squad)
-		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list)
+		for(var/mob/living/carbon/human/marine as anything in human_owner.assigned_squad.marines_list)
 			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 		return
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+	for(var/mob/living/carbon/human/human as anything in GLOB.alive_human_list)
 		if(human.faction == human_owner.faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)

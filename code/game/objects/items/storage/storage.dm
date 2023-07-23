@@ -507,7 +507,7 @@
 	if(!handle_access_delay(item, user))
 		return FALSE
 
-	for(var/mob/M AS in can_see_content())
+	for(var/mob/M as anything in can_see_content())
 		if(!M.client)
 			continue
 		M.client.screen -= item
@@ -587,7 +587,7 @@
 		else if(open(user))
 			return
 	. = ..()
-	for(var/mob/M AS in content_watchers)
+	for(var/mob/M as anything in content_watchers)
 		close(M)
 
 
@@ -631,7 +631,7 @@
 
 ///Delete everything that's inside the storage
 /obj/item/storage/proc/delete_contents()
-	for(var/obj/item/I AS in contents)
+	for(var/obj/item/I as anything in contents)
 		I.on_exit_storage(src)
 		qdel(I)
 

@@ -25,7 +25,7 @@
 /datum/ai_behavior/xeno/proc/refresh_abilities()
 	SIGNAL_HANDLER
 	ability_list = list()
-	for(var/datum/action/action AS in mob_parent.actions)
+	for(var/datum/action/action as anything in mob_parent.actions)
 		if(action.ai_should_start_consider())
 			ability_list += action
 

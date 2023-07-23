@@ -108,14 +108,14 @@
 
 /obj/item/mecha_ammo/vendable/rifle
 	name = "box of rifle bullets"
-	desc = "A box of large rocket-assisted rifle bullets. it has \"DO NOT USE AS FIRECRACKERS\" written on the side."
+	desc = "A box of large rocket-assisted rifle bullets. it has \"DO NOT USE as anything FIRECRACKERS\" written on the side."
 	icon_state = "assaultrifle_ammo"
 	rounds = 250
 	ammo_type = MECHA_AMMO_RIFLE
 
 /obj/item/mecha_ammo/vendable/burstrifle
 	name = "box of burstrifle bullets"
-	desc = "A box of large rocket-assisted burstrifle bullets. it has \"DO NOT USE AS FIRECRACKERS\" written on the side."
+	desc = "A box of large rocket-assisted burstrifle bullets. it has \"DO NOT USE as anything FIRECRACKERS\" written on the side."
 	icon_state = "burstrifle_ammo"
 	rounds = 250
 	ammo_type = MECHA_AMMO_BURSTRIFLE

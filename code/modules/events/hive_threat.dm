@@ -45,7 +45,7 @@
 
 ///Actually applies the buff to the hive
 /datum/round_event/hive_threat/proc/bless_hive(mob/living/carbon/xenomorph/drainer)
-	for(var/mob/living/carbon/xenomorph/receiving_xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+	for(var/mob/living/carbon/xenomorph/receiving_xeno as anything in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		receiving_xeno.add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, -0.2)
 		receiving_xeno.gain_plasma(receiving_xeno.xeno_caste.plasma_max)
 		receiving_xeno.salve_healing()

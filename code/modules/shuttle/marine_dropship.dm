@@ -9,13 +9,13 @@
 	height = 21
 
 /obj/docking_port/stationary/marine_dropship/on_crash()
-	for(var/obj/machinery/power/apc/A AS in GLOB.apcs_list) //break APCs
+	for(var/obj/machinery/power/apc/A as anything in GLOB.apcs_list) //break APCs
 		if(!is_mainship_level(A.z))
 			continue
 		if(prob(A.crash_break_probability))
 			A.overload_lighting()
 			A.set_broken()
-		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
+		for(var/obj/effect/soundplayer/alarmplayer as anything in GLOB.ship_alarms)
 			alarmplayer.deltalarm.stop(alarmplayer)	//quiet the delta klaxon alarms
 		CHECK_TICK
 
@@ -167,7 +167,7 @@
 	if(first_landing)
 		first_landing = FALSE
 		var/op_name = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		for(var/mob/living/carbon/human/human as anything in GLOB.alive_human_list)
 			if(human.faction != FACTION_TERRAGOV)
 				return
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "36th Marine LRPRR Platoon<br>" + "[human.job.title], [human]", /atom/movable/screen/text/screen_text/picture)
@@ -216,11 +216,11 @@
 
 ///This proc locks and unlocks the AI control over the dropship doors.
 /obj/docking_port/mobile/marine_dropship/proc/silicon_lock_airlocks(should_lock = TRUE)
-	for(var/obj/machinery/door/airlock/dropship_hatch/D AS in left_airlocks)
+	for(var/obj/machinery/door/airlock/dropship_hatch/D as anything in left_airlocks)
 		D.aiControlDisabled = should_lock
-	for(var/obj/machinery/door/airlock/dropship_hatch/D AS in right_airlocks)
+	for(var/obj/machinery/door/airlock/dropship_hatch/D as anything in right_airlocks)
 		D.aiControlDisabled = should_lock
-	for(var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D AS in rear_airlocks)
+	for(var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D as anything in rear_airlocks)
 		D.aiControlDisabled = should_lock
 
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
@@ -383,17 +383,17 @@
 			D = M
 	if(is_ground_level(D.z))
 		var/locked_sides = 0
-		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.left_airlocks)
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH as anything in D.left_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
 			break
-		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.right_airlocks)
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH as anything in D.right_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
 			break
-		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.rear_airlocks)
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH as anything in D.rear_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
@@ -1310,7 +1310,7 @@
 				visible_message(span_notice("Destination updated, recalculating route."))
 			else
 				visible_message(span_notice("Shuttle departing. Please stand away from the doors."))
-				for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
+				for(var/mob/living/silicon/ai/AI as anything in GLOB.ai_list)
 					if(!AI.client)
 						continue
 					to_chat(AI, span_info("[src] was commanded remotely to take off."))
@@ -1332,7 +1332,7 @@
 	data["linked_shuttle_name"] = M.name
 	data["shuttle_status"] = M.getStatusText()
 	for(var/option in options)
-		for(var/obj/docking_port/stationary/S AS in SSshuttle.stationary)
+		for(var/obj/docking_port/stationary/S as anything in SSshuttle.stationary)
 			if(option != S.id)
 				continue
 			var/list/dataset = list()
@@ -1357,7 +1357,7 @@
 		shuttleName = M.name
 	else
 		M = null
-		for(M AS in SSshuttle.mobile)
+		for(M as anything in SSshuttle.mobile)
 			if(!(M.control_flags & compatible_control_flags)) //Need at least one matching control flag
 				continue
 			newId = M.id

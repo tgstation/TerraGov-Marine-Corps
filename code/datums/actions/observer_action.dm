@@ -58,7 +58,7 @@
 		return
 
 	var/list/mob/living/free_ssd_mobs = list()
-	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
+	for(var/mob/living/ssd_mob as anything in GLOB.ssd_living_mobs)
 		if(is_centcom_level(ssd_mob.z) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
 			continue
 		free_ssd_mobs += ssd_mob

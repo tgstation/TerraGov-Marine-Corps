@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(faxes)
 					html = span_notice("<b><font color='#1F66A0'>FAX: </font>[key_name(sender)]:</b> Addressed to: [department][SM?.department ? " | From: [SM.department]" : ""] | Titled: [title] <b>(<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(F)]]'>REPLY</a>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(F)]'>VIEW</a>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxmark=[REF(F)]]'>MARK</a>)</b>"))
 				C << 'sound/effects/sos-morse-code.ogg'
 
-	for(var/obj/machinery/faxmachine/FM AS in GLOB.faxmachines)
+	for(var/obj/machinery/faxmachine/FM as anything in GLOB.faxmachines)
 		if(FM == SM)
 			continue
 		if(FM.department != department)

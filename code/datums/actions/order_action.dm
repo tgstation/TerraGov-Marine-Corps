@@ -57,17 +57,17 @@
 	SEND_SIGNAL(owner, COMSIG_ORDER_SENT)
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_all_icons_orders)), ORDER_COOLDOWN)
 	if(squad)
-		for(var/mob/living/carbon/human/marine AS in squad.marines_list)
+		for(var/mob/living/carbon/human/marine as anything in squad.marines_list)
 			marine.receive_order(target, arrow_type, verb_name, faction)
 		return TRUE
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+	for(var/mob/living/carbon/human/human as anything in GLOB.alive_human_list)
 		if(human.faction == faction)
 			human.receive_order(target, arrow_type, verb_name, faction)
 	return TRUE
 
 ///Update all icons of orders action of the mob
 /mob/proc/update_all_icons_orders()
-	for(var/datum/action/action AS in actions)
+	for(var/datum/action/action as anything in actions)
 		if(istype(action, /datum/action/innate/order))
 			action.update_button_icon()
 

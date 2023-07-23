@@ -489,7 +489,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		dat += "----------------------<br>"
 		switch(state)
 			if(OW_MAIN)
-				for(var/datum/squad/S AS in watchable_squads)
+				for(var/datum/squad/S as anything in watchable_squads)
 					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
 					if(S.squad_leader)
 						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
@@ -549,7 +549,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		dat += "----------------------<br>"
 		switch(state)
 			if(OW_MAIN)
-				for(var/datum/squad/S AS in watchable_squads)
+				for(var/datum/squad/S as anything in watchable_squads)
 					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
 					if(S.squad_leader)
 						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
@@ -569,7 +569,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	popup.open()
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_to_squads(txt)
-	for(var/datum/squad/squad AS in watchable_squads)
+	for(var/datum/squad/squad as anything in watchable_squads)
 		squad.message_squad(txt)
 
 ///Checks and warnings before OB starts to fire
@@ -599,7 +599,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	busy = TRUE //All set, let's do this.
 	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name	//For the AI and Admin logs.
 
-	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
+	for(var/mob/living/silicon/ai/AI as anything in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered from overwatch consoles. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(T)]"))
 		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
 
@@ -818,7 +818,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/proc/squad_select(datum/source, atom/A)
 	var/list/squad_options = list()
 
-	for(var/datum/squad/squad AS in watchable_squads)
+	for(var/datum/squad/squad as anything in watchable_squads)
 		var/image/squad_icon = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_squad_box")
 		squad_icon.color = squad.color
 		squad_options += list(squad.name = squad_icon)
@@ -1027,7 +1027,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_by_id(id)
-	for(var/datum/squad/squad AS in watchable_squads)
+	for(var/datum/squad/squad as anything in watchable_squads)
 		if(squad.id == id)
 			return squad
 	return FALSE

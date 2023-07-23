@@ -573,7 +573,7 @@
 			owner_xeno.gain_plasma(plasma_gain_on_hit)
 
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
-		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(owner_xeno, 4))
+		for(var/mob/living/carbon/xenomorph/target_xeno as anything in cheap_get_xenos_near(owner_xeno, 4))
 			if(target_xeno == owner_xeno)
 				continue
 			var/heal_amount = healing_on_hit

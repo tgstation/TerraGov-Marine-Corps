@@ -499,7 +499,7 @@
 
 	var/slowdown_multiplier = 0.5 //Because hemodile is obviously in blood already
 
-	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+	for(var/datum/reagent/current_reagent as anything in L.reagents.reagent_list) //Cycle through all chems
 		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
 			slowdown_multiplier *= 2 //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
 
@@ -545,7 +545,7 @@
 
 	var/tox_cap_multiplier = 0.5 //Because transvitox is obviously in blood already
 
-	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+	for(var/datum/reagent/current_reagent as anything in L.reagents.reagent_list) //Cycle through all chems
 		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
 			tox_cap_multiplier *= 2 //Each other Defiler toxin doubles the multiplier
 
@@ -568,7 +568,7 @@
 
 	var/tox_cap_multiplier = 0.5 //Because transvitox is obviously in blood already
 
-	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+	for(var/datum/reagent/current_reagent as anything in L.reagents.reagent_list) //Cycle through all chems
 		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
 			tox_cap_multiplier *= 2 //Each other Defiler toxin doubles the multiplier
 

@@ -330,7 +330,7 @@
 		playsound(loc, hitsound, 25, TRUE)
 
 /**
- * /mob/living attacked_by_alternate //TODO!! MAKE THIS UNIQUE FROM NORMAL ATTACKED_BY AS A FEATURE
+ * /mob/living attacked_by_alternate //TODO!! MAKE THIS UNIQUE FROM NORMAL ATTACKED_BY as anything A FEATURE
  *
  * Called when a mob is attacked by an item
  * while the user clicked on them with left click

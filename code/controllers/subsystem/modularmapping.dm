@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(modularmapping)
 	var/list/obj/effect/spawner/modularmap/markers = list()
 
 /datum/controller/subsystem/modularmapping/Initialize()
-	for(var/obj/effect/spawner/modularmap/map AS in markers)
+	for(var/obj/effect/spawner/modularmap/map as anything in markers)
 		map.load_modularmap()
 	markers = null
 	repopulate_sorted_areas() //adds all the modular map areas to the list

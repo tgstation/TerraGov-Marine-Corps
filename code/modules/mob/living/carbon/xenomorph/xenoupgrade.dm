@@ -16,7 +16,7 @@
 
 	for(var/allowed_action_path in xeno_caste.actions)
 		var/found = FALSE
-		for(var/datum/action/xeno_action/action_already_added AS in actions_already_added)
+		for(var/datum/action/xeno_action/action_already_added as anything in actions_already_added)
 			if(action_already_added.type == allowed_action_path)
 				xeno_abilities.Add(action_already_added)
 				actions_already_added.Remove(action_already_added)
@@ -28,7 +28,7 @@
 		if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
 			action.give_action(src)
 
-	for(var/datum/action/xeno_action/action_already_added AS in actions_already_added)
+	for(var/datum/action/xeno_action/action_already_added as anything in actions_already_added)
 		action_already_added.remove_action(src)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)

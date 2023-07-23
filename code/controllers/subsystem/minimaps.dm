@@ -118,7 +118,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/fire(resumed)
 	var/static/iteration = 0
 	var/depthcount = 0
-	for(var/datum/minimap_updator/updator AS in update_targets_unsorted)
+	for(var/datum/minimap_updator/updator as anything in update_targets_unsorted)
 		if(depthcount < iteration) //under high load update in chunks
 			depthcount++
 			continue
@@ -221,7 +221,7 @@ SUBSYSTEM_DEF(minimaps)
 	for(var/flag in bitfield2list(hud_flags))
 		minimaps_by_z["[target_turf.z]"].images_assoc["[flag]"][target] = blip
 		minimaps_by_z["[target_turf.z]"].images_raw["[flag]"] += blip
-		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
+		for(var/datum/minimap_updator/updator as anything in update_targets["[flag]"])
 			if(target_turf.z == updator.ztarget)
 				updator.raw_blips += blip
 	if(ismovableatom(target))
@@ -237,7 +237,7 @@ SUBSYSTEM_DEF(minimaps)
 	var/turf/target_turf = get_turf(target)
 	for(var/flag in bitfield2list(hud_flags))
 		minimaps_by_z["[target_turf.z]"].images_raw["[flag]"] -= blip
-		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
+		for(var/datum/minimap_updator/updator as anything in update_targets["[flag]"])
 			if(updator.ztarget == target_turf.z)
 				updator.raw_blips -= blip
 	blip.UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
@@ -257,7 +257,7 @@ SUBSYSTEM_DEF(minimaps)
 		if(!blip)
 			blip = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
 		// todo maybe make update_targets also sort by zlevel?
-		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
+		for(var/datum/minimap_updator/updator as anything in update_targets["[flag]"])
 			if(updator.ztarget == oldz)
 				updator.raw_blips -= blip
 			else if(updator.ztarget == newz)

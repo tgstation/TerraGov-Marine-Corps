@@ -517,7 +517,7 @@
 	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
 	log_game("[key_name(owner)] has broadcasted the hud message [text] at [AREACOORD(owner)]")
 	deadchat_broadcast(" has sent the command order \"[text]\"", owner, owner)
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+	for(var/mob/living/carbon/human/human as anything in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 

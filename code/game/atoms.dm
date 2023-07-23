@@ -617,7 +617,7 @@ Proc for attack log creation, because really why not
 
 /obj/item/update_filters()
 	. = ..()
-	for(var/datum/action/A AS in actions)
+	for(var/datum/action/A as anything in actions)
 		A.update_button_icon()
 
 ///returns a filter in the managed filters list by name
@@ -807,7 +807,7 @@ Proc for attack log creation, because really why not
 	// Don't call `..()` here, otherwise `Uncross()` gets called.
 	// See the doc comment on `Uncross()` to learn why this is bad.
 	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, leaving, direction, knownblockers) & COMPONENT_ATOM_BLOCK_EXIT)
-		for(var/atom/movable/thing AS in knownblockers)
+		for(var/atom/movable/thing as anything in knownblockers)
 			var/signalreturn = SEND_SIGNAL(leaving, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing)
 			if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
 				return FALSE
@@ -999,7 +999,7 @@ Proc for attack log creation, because really why not
 	if (!source)
 		output += src
 	processed += src
-	for (var/atom/atom_orbiter AS in orbiters?.orbiters)
+	for (var/atom/atom_orbiter as anything in orbiters?.orbiters)
 		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
 	return output
 

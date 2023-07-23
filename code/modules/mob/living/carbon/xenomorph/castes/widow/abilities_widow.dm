@@ -85,7 +85,7 @@
 		if(!check_path(src, victim, projectile = TRUE))
 			continue
 		leash_victims += victim
-	for(var/mob/living/carbon/human/snared_victim AS in leash_victims)
+	for(var/mob/living/carbon/human/snared_victim as anything in leash_victims)
 		ADD_TRAIT(snared_victim, TRAIT_LEASHED, src)
 		beams += beam(snared_victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
 		RegisterSignal(snared_victim, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
@@ -95,7 +95,7 @@
 
 /// To remove beams after the leash_ball is destroyed and also unregister all victims
 /obj/structure/xeno/aoe_leash/Destroy()
-	for(var/mob/living/carbon/human/victim AS in leash_victims)
+	for(var/mob/living/carbon/human/victim as anything in leash_victims)
 		UnregisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE)
 		REMOVE_TRAIT(victim, TRAIT_LEASHED, src)
 	leash_victims = null
@@ -219,7 +219,7 @@
 	/// We need the list of spiderlings so that we can burrow them
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
-	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action?.spiderlings)
+	for(var/mob/living/carbon/xenomorph/spiderling/spiderling as anything in create_spiderling_action?.spiderlings)
 		/// Here we trigger the burrow proc, the registering happens there
 		var/datum/action/xeno_action/burrow/spiderling_burrow = spiderling.actions_by_path[/datum/action/xeno_action/burrow]
 		spiderling_burrow.xeno_burrow()
@@ -306,7 +306,7 @@
 /datum/action/xeno_action/attach_spiderlings/proc/grab_spiderlings(list/mob/living/carbon/xenomorph/spiderling/remaining_list, number_of_attempts_left)
 	if(number_of_attempts_left <= 0)
 		return
-	for(var/mob/living/carbon/xenomorph/spiderling/remaining_spiderling AS in remaining_list)
+	for(var/mob/living/carbon/xenomorph/spiderling/remaining_spiderling as anything in remaining_list)
 		if(!owner.Adjacent(remaining_spiderling))
 			continue
 		remaining_list -= remaining_spiderling

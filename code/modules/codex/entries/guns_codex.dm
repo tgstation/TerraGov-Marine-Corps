@@ -118,7 +118,7 @@
 	var/list/fire_modes = list()
 	fire_modes += "<br><U>Fire modes</U>:<br>"
 
-	for(var/num AS in mode_list)
+	for(var/num as anything in mode_list)
 		var/datum/lasrifle/base/mode = mode_list[num]
 		fire_modes += "<U>[num]</U>: [initial(mode.description)]"
 

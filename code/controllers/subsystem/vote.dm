@@ -251,7 +251,7 @@ SUBSYSTEM_DEF(vote)
 				choices.Add("Restart Round", "Continue Playing")
 			if("gamemode")
 				multiple_vote = TRUE
-				for(var/datum/game_mode/mode AS in config.votable_modes)
+				for(var/datum/game_mode/mode as anything in config.votable_modes)
 					var/players = length(GLOB.clients)
 					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
 						continue

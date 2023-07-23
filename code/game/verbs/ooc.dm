@@ -106,7 +106,7 @@
 		if(CONFIG_GET(flag/allow_admin_ooccolor) && check_rights(R_COLOR, FALSE))
 			display_colour = prefs.ooccolor
 
-	for(var/client/C AS in GLOB.clients)
+	for(var/client/C as anything in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
 
@@ -205,7 +205,7 @@
 	mob.log_talk(msg, LOG_XOOC)
 
 	// Send chat message to non-admins
-	for(var/client/C AS in GLOB.clients)
+	for(var/client/C as anything in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
 		if(!(C.mob in GLOB.xeno_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
@@ -220,7 +220,7 @@
 		to_chat(C, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
-	for(var/client/C AS in GLOB.admins)
+	for(var/client/C as anything in GLOB.admins)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
 		if(!check_other_rights(C, R_ADMIN, FALSE)) // Check if the client is still an admin.
@@ -315,7 +315,7 @@
 	mob.log_talk(msg, LOG_MOOC)
 
 	// Send chat message to non-admins
-	for(var/client/C AS in GLOB.clients)
+	for(var/client/C as anything in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
 		if(!(C.mob in GLOB.human_mob_list) && !(C.mob in GLOB.observer_list) && !(C.mob in GLOB.ai_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
@@ -331,7 +331,7 @@
 		to_chat(C, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
-	for(var/client/C AS in GLOB.admins)
+	for(var/client/C as anything in GLOB.admins)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
 		if(!check_other_rights(C, R_ADMIN, FALSE)) // Check if the client is still an admin.
@@ -433,7 +433,7 @@
 		for(var/mob/M in range(mob))
 			to_chat(M, message)
 
-	for(var/client/C AS in GLOB.admins)
+	for(var/client/C as anything in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)
 			continue
 		if(C.prefs.toggles_chat & CHAT_LOOC)

@@ -260,7 +260,7 @@ SUBSYSTEM_DEF(timer)
 	// Add all timed events from the secondary queue as well
 	alltimers += second_queue
 
-	for (var/datum/timedevent/event AS in alltimers)
+	for (var/datum/timedevent/event as anything in alltimers)
 		event.bucket_joined = FALSE
 		event.bucket_pos = -1
 		event.prev = null

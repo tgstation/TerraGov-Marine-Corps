@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	var/mob/living/carbon/xenomorph/X = user
 
 	.["upgrades"] = list()
-	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
+	for(var/datum/hive_upgrade/upgrade as anything in buyable_upgrades)
 		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
 		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon))
 	.["psypoints"] = SSpoints.xeno_points_by_hive[X.hive.hivenumber]
@@ -268,7 +268,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!T.check_alien_construction(buyer, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
 		return FALSE
 
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
+	for(var/obj/structure/xeno/xeno_turret/turret as anything in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
 		if(get_dist(turret, buyer) < 6)
 			if(!silent)
 				to_chat(buyer, span_xenowarning("Another turret is too close!"))

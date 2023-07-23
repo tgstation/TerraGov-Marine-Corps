@@ -365,11 +365,11 @@
 /obj/machinery/deployable/mounted/sentry/proc/scan()
 	var/obj/item/weapon/gun/gun = internal_item
 	potential_targets.Cut()
-	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
+	for (var/mob/living/carbon/human/nearby_human as anything in cheap_get_humans_near(src, range))
 		if(nearby_human.stat == DEAD || CHECK_BITFIELD(nearby_human.status_flags, INCORPOREAL)  || (CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal))
 			continue
 		potential_targets += nearby_human
-	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
+	for (var/mob/living/carbon/xenomorph/nearby_xeno as anything in cheap_get_xenos_near(src, range))
 		if(nearby_xeno.stat == DEAD || HAS_TRAIT(nearby_xeno, TRAIT_TURRET_HIDDEN) || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL)) //So wraiths wont be shot at when in phase shift
 			continue
 		potential_targets += nearby_xeno
@@ -422,7 +422,7 @@
 	path -= get_turf(src)
 	if(!length(path))
 		return FALSE
-	for(var/turf/T AS in path)
+	for(var/turf/T as anything in path)
 		var/obj/effect/particle_effect/smoke/smoke = locate() in T
 		if(smoke?.opacity)
 			return FALSE
@@ -445,7 +445,7 @@
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
 	var/buffer_distance
 	var/obj/item/weapon/gun/gun = internal_item
-	for (var/mob/living/nearby_target AS in potential_targets)
+	for (var/mob/living/nearby_target as anything in potential_targets)
 		if(!(get_dir(src, nearby_target) & dir) && !CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
 			continue
 

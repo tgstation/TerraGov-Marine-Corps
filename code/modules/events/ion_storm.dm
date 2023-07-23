@@ -14,7 +14,7 @@
 	announce_when = 0
 
 /datum/round_event/ion_storm/start()
-	for(var/obj/machinery/telecomms/C AS in GLOB.telecomms_list)
+	for(var/obj/machinery/telecomms/C as anything in GLOB.telecomms_list)
 		if(C.machine_stat & (NOPOWER|BROKEN|DISABLED))
 			continue
 		C.machine_stat |= NOPOWER|BROKEN|DISABLED
@@ -34,7 +34,7 @@
 
 ///Restores comms back to normal
 /datum/round_event/ion_storm/proc/fix_comms()
-	for(var/obj/machinery/telecomms/C AS in GLOB.telecomms_list)
+	for(var/obj/machinery/telecomms/C as anything in GLOB.telecomms_list)
 		var/area/A = get_area(C)
 		if(A.power_environ == FALSE)
 			C.machine_stat = NOPOWER //remove the broken flags from before, so marines can still use the machines after they fix the area power

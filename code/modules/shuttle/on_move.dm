@@ -21,7 +21,7 @@ All ShuttleMove procs go here
 		return
 
 //	var/shuttle_dir = shuttle.dir
-	for(var/atom/thing AS in contents)
+	for(var/atom/thing as anything in contents)
 		SEND_SIGNAL(thing, COMSIG_MOVABLE_SHUTTLE_CRUSH, shuttle)
 		if(ismob(thing))
 			if(isliving(thing))

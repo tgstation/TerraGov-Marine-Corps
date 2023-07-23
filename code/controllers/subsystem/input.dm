@@ -36,5 +36,5 @@ SUBSYSTEM_DEF(input)
 		user.set_macros()
 
 /datum/controller/subsystem/input/fire()
-	for(var/mob/user AS in GLOB.player_list)
+	for(var/mob/user as anything in GLOB.player_list)
 		user.focus?.keyLoop(user.client)

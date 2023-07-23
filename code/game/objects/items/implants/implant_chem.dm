@@ -8,7 +8,7 @@
 
 /obj/item/implant/chem/get_data()
 	var/list/chems = list()
-	for(var/datum/reagent/R AS in reagents.reagent_list)
+	for(var/datum/reagent/R as anything in reagents.reagent_list)
 		chems += "[R.volume] units of [R.name]<BR>"
 	return {"
 	<b>Implant Specifications:</b><BR>

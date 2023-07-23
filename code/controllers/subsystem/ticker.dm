@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(ticker)
 	load_mode()
 
 	login_music = choose_lobby_song()
-	for(var/client/player AS in GLOB.clients)
+	for(var/client/player as anything in GLOB.clients)
 		player.play_title_music()
 
 	return SS_INIT_SUCCESS
@@ -124,7 +124,7 @@ SUBSYSTEM_DEF(ticker)
 				addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, automatic_vote)), 2 SECONDS)
 				addtimer(CALLBACK(src, PROC_REF(Reboot)), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
-				for(var/client/C AS in GLOB.clients)
+				for(var/client/C as anything in GLOB.clients)
 					C.mob?.update_sight() // To reveal ghosts
 
 
@@ -271,7 +271,7 @@ SUBSYSTEM_DEF(ticker)
 	set waitfor = FALSE
 	round_end_sound_sent = FALSE
 	round_end_sound = fcopy_rsc(the_sound)
-	for(var/client/cli AS in GLOB.clients)
+	for(var/client/cli as anything in GLOB.clients)
 		cli.Export("##action=load_rsc", round_end_sound)
 	round_end_sound_sent = TRUE
 
@@ -386,7 +386,7 @@ SUBSYSTEM_DEF(ticker)
 		round_end_sound = choose_round_end_song()
 	///The reference to the end of round sound that we have chosen.
 	var/sound/end_of_round_sound_ref = sound(round_end_sound)
-	for(var/mob/M AS in GLOB.player_list)
+	for(var/mob/M as anything in GLOB.player_list)
 		if(M.client.prefs?.toggles_sound & SOUND_NOENDOFROUND)
 			continue
 		SEND_SOUND(M.client, end_of_round_sound_ref)

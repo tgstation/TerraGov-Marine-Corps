@@ -189,7 +189,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	apply_modifiers(detaching_item, user, FALSE)
 
-	for(var/datum/action/action_to_update AS in master_gun.actions)
+	for(var/datum/action/action_to_update as anything in master_gun.actions)
 		if(action_to_update.target != src)
 			continue
 		qdel(action_to_update)
@@ -1263,7 +1263,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!folded)
 		activate()
 
-	for(var/datum/action/action_to_update AS in master_gun.actions)
+	for(var/datum/action/action_to_update as anything in master_gun.actions)
 		if(action_to_update.target != src)
 			continue
 		qdel(action_to_update)
@@ -1509,7 +1509,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, PROC_REF(handle_firing))
 		master_gun.RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, TYPE_PROC_REF(/obj/item/weapon/gun, change_target))
 		. = TRUE
-	for(var/datum/action/item_action/toggle/action_to_update AS in actions)
+	for(var/datum/action/item_action/toggle/action_to_update as anything in actions)
 		action_to_update.set_toggle(.)
 		action_to_update.update_button_icon()
 
@@ -1531,7 +1531,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	SIGNAL_HANDLER
 	if(!istype(detaching_item, /obj/item/clothing/suit/modular))
 		return
-	for(var/datum/action/action_to_delete AS in actions)
+	for(var/datum/action/action_to_delete as anything in actions)
 		if(action_to_delete.target != src)
 			continue
 		QDEL_NULL(action_to_delete)
@@ -1728,7 +1728,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/weapon/gun/proc/on_detach(obj/item/attached_to, mob/user)
 	if(!istype(attached_to, /obj/item/weapon/gun))
 		return
-	for(var/datum/action/action_to_delete AS in master_gun.actions)
+	for(var/datum/action/action_to_delete as anything in master_gun.actions)
 		if(action_to_delete.target != src)
 			continue
 		QDEL_NULL(action_to_delete)
@@ -1756,7 +1756,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		set_gun_user(null)
 		set_gun_user(master_gun.gun_user)
 		to_chat(user, span_notice("You start using [src]."))
-	for(var/datum/action/item_action/toggle/action AS in master_gun.actions)
+	for(var/datum/action/item_action/toggle/action as anything in master_gun.actions)
 		if(action.target != src )
 			continue
 		action.set_toggle(master_gun.active_attachable == src)

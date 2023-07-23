@@ -94,7 +94,7 @@
 	if(weed_choice == AUTOMATIC_WEEDING)
 		toggle_auto_weeding()
 	else
-		for(var/obj/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
+		for(var/obj/alien/weeds/node/weed_type_possible as anything in GLOB.weed_type_list)
 			if(initial(weed_type_possible.name) == weed_choice)
 				weed_type = weed_type_possible
 				break

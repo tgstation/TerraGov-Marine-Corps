@@ -33,7 +33,7 @@
 	calling_holopad = calling_pad
 	dialed_holopads = list()
 
-	for(var/obj/machinery/holopad/connected_holopad AS in callees)
+	for(var/obj/machinery/holopad/connected_holopad as anything in callees)
 		if(!QDELETED(connected_holopad) && connected_holopad.is_operational())
 			dialed_holopads += connected_holopad
 			connected_holopad.say("Incoming call.")
@@ -62,7 +62,7 @@
 		hologram.HC = null
 		QDEL_NULL(hologram)
 
-	for(var/obj/machinery/holopad/dialed_holopad AS in dialed_holopads)
+	for(var/obj/machinery/holopad/dialed_holopad as anything in dialed_holopads)
 		dialed_holopad.set_holocall(src, FALSE)
 	dialed_holopads.Cut()
 
@@ -152,7 +152,7 @@
 
 //Checks the validity of a holocall and qdels itself if it's not. Returns TRUE if valid, FALSE otherwise
 /datum/holocall/proc/Check()
-	for(var/obj/machinery/holopad/dialed_holopad AS in dialed_holopads)
+	for(var/obj/machinery/holopad/dialed_holopad as anything in dialed_holopads)
 		if(!dialed_holopad.is_operational())
 			ConnectionFailure(dialed_holopad)
 

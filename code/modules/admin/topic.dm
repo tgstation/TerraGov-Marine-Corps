@@ -911,7 +911,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!dep)
 			return
 
-		var/department = input("Which department do you want to reply AS?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
+		var/department = input("Which department do you want to reply as anything?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
 		if(!department)
 			return
 
@@ -1025,7 +1025,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/dat = "<b>What mode do you wish to play?</b><br>"
-		for(var/datum/game_mode/mode AS in config.modes)
+		for(var/datum/game_mode/mode as anything in config.modes)
 			dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[mode.name]</a><br>"
 		dat += "<br>"
 		dat += "Now: [GLOB.master_mode]<br>"

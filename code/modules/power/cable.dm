@@ -521,7 +521,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 			return TRUE
 		if(!affecting.burn_dam)
 			var/previous_limb = affecting
-			for(var/datum/limb/checked_limb AS in H.limbs)
+			for(var/datum/limb/checked_limb as anything in H.limbs)
 				if(!(checked_limb.limb_status & LIMB_ROBOT))
 					continue
 				if(!checked_limb.burn_dam)

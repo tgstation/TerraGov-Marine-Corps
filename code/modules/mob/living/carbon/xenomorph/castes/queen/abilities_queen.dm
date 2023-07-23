@@ -51,7 +51,7 @@
 
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
 	var/sound/king_sound = sound('sound/voice/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
-	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
+	for(var/mob/living/carbon/xenomorph/X as anything in Q.hive.get_all_xenos())
 		switch(Q.caste_base_type)
 			if(/mob/living/carbon/xenomorph/queen)
 				SEND_SOUND(X, queen_sound)
