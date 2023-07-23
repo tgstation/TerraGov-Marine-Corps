@@ -1496,7 +1496,7 @@
 			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
 			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun/mbx900/tracking = -1,
-		)
+		),
 		"Sons of Mars" = list(
 			/obj/item/weapon/gun/rifle/som = -1,
 			/obj/item/ammo_magazine/rifle/som = -1,
@@ -1512,7 +1512,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin = -1,
 			/obj/item/cell/lasgun/volkite = -1,
 			/obj/item/cell/lasgun/volkite/powerpack = -1,
-		)
+		),
 		"ICC" = list(
 			/obj/item/weapon/gun/rifle/icc_battlecarbine = -1,
 			/obj/item/ammo_magazine/rifle/icc_battlecarbine = -1,
@@ -1530,7 +1530,7 @@
 			/obj/item/weapon/gun/rifle/icc_coilgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_coilgun = -1,
 			/obj/item/weapon/gun/shotgun/pump/trenchgun = -1,
-		)
+		),
 		"PMC" = list(
 			/obj/item/weapon/gun/rifle/sniper/elite = -1,
 			/obj/item/ammo_magazine/sniper/elite = -1,
@@ -1540,7 +1540,7 @@
 			/obj/item/ammo_magazine/smg/m25/ap = -1,
 			/obj/item/weapon/gun/rifle/m412/elite = -1,
 			/obj/item/ammo_magazine/rifle/ap = -1,
-		)
+		),
 		"Misc" = list(
 			/obj/item/weapon/gun/shotgun/double = -1,
 			/obj/item/weapon/gun/shotgun/double/sawn = -1,
