@@ -153,6 +153,20 @@ NOTIFY_NEW_PLAYER_AGE 0
 ## Notify admins when a new byond account connects for the first x days after its creation. (-1 for never)
 NOTIFY_NEW_ACCOUNT_AGE 7
 
+##Note: all EXP tracking/restriction require database to be enabled.
+
+## Unhash this to track player playtime in the database.
+#USE_EXP_TRACKING
+
+## Allows admins to bypass job playtime requirements.
+#USE_EXP_RESTRICTIONS_ADMIN_BYPASS
+
+## Use XP restrictions for command roles
+#USE_EXP_RESTRICTIONS_COMMAND
+
+## Use playtime in hours restrictions for command
+#USE_EXP_RESTRICTIONS_COMMAND_HOURS
+
 ##Note: all population caps can be used with each other if desired.
 
 ## Uncomment for 'soft' population caps, players will be warned while joining if the living crew exceeds the listed number.
