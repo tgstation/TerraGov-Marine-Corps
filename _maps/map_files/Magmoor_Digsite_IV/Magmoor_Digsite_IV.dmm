@@ -4389,6 +4389,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
 /area/magmoor/civilian/clean)
+"deR" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/northeast)
 "dff" = (
 /turf/closed/wall,
 /area/magmoor/hydroponics/north)
@@ -4683,6 +4687,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/cult,
 /area/magmoor/cave/northwest)
+"dpf" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 8
+	},
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/wood,
+/area/magmoor/civilian/dorms)
 "dpk" = (
 /obj/structure/stairs{
 	dir = 1
@@ -8874,6 +8885,11 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
+"gns" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/cult,
+/area/magmoor/cave/north)
 "gnI" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -11901,6 +11917,10 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
+"iGu" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/west)
 "iGy" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/mainship/cargo,
@@ -15386,6 +15406,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/power)
 "leY" = (
@@ -17293,6 +17314,10 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/cargo/storage/south)
+"mEN" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northwest)
 "mEV" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
@@ -18730,6 +18755,10 @@
 	dir = 10
 	},
 /area/magmoor/research/rnd/lobby)
+"nLt" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/cult,
+/area/magmoor/cave/northwest)
 "nLF" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
@@ -21148,6 +21177,7 @@
 /obj/machinery/air_alarm{
 	dir = 1
 	},
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -28859,6 +28889,10 @@
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
+"uZj" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/cult,
+/area/magmoor/cave/northeast)
 "uZx" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
@@ -32836,6 +32870,10 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
+"xPI" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northeast)
 "xPN" = (
 /obj/structure/cable,
 /obj/machinery/navbeacon,
@@ -35940,7 +35978,7 @@ aZd
 aZd
 aZd
 aZd
-aZd
+iGu
 rxl
 aZd
 aZd
@@ -36359,7 +36397,7 @@ lfn
 efw
 efw
 efw
-efw
+mEN
 sUk
 sUk
 efw
@@ -37462,7 +37500,7 @@ mXv
 mXv
 mXv
 mXv
-mXv
+nLt
 mXv
 mXv
 wVz
@@ -53994,7 +54032,7 @@ aPs
 lxN
 lxN
 tsL
-aPs
+gns
 aPs
 aPs
 hpH
@@ -56941,7 +56979,7 @@ fRu
 rTX
 gRT
 ryq
-mEV
+dpf
 gRT
 ddm
 xgl
@@ -72226,7 +72264,7 @@ lwH
 lwH
 lwH
 lwH
-lwH
+xPI
 rxl
 mFF
 rxl
@@ -72656,7 +72694,7 @@ lwH
 ttt
 vTR
 vTR
-vTR
+uZj
 vTR
 vTR
 vTR
@@ -72735,7 +72773,7 @@ fJO
 qyP
 fJO
 fJO
-fJO
+deR
 rxl
 mFF
 rxl
