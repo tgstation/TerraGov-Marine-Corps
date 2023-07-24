@@ -296,3 +296,9 @@
   forestbbbbbbb:
   - bugfix: synth surgical pouch is in the correct vendor category
   - bugfix: writing [logo] and [ntlogo] on paper works now
+2023-07-24:
+  novaepee:
+  - rscadd: xenomorphs tunnel landmarks in Orion to help with xenomorphs create manuever
+      around maps
+  - rscadd: xenomorphs tunnel landmarks in Magmoor to help with xenomorphs create
+      manuever around maps
