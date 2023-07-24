@@ -20,8 +20,9 @@
 	GLOB.huds[DATA_HUD_XENO_HEART].add_hud_to(src)
 	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack))
 
-/mob/living/carbon/xenomorph/puppeteer/proc/postattack(mob/living/source, useless, damage)
+/mob/living/carbon/xenomorph/puppeteer/proc/postattack(mob/living/source, mob/living/target, damage)
 	SIGNAL_HANDLER
-	if(source.stat == DEAD)
+	if(target.stat == DEAD)
 		return
 	plasma_stored = min(plasma_stored + round(damage / 0.8), xeno_caste.plasma_max)
+	SEND_SIGNAL(src, COMSIG_PUPPET_CHANGE_ALL_ORDER, PUPPET_ATTACK, target) //we are on harm intent so it probably means we want to kill the target
