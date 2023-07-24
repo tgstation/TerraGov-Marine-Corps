@@ -296,3 +296,11 @@
   forestbbbbbbb:
   - bugfix: synth surgical pouch is in the correct vendor category
   - bugfix: writing [logo] and [ntlogo] on paper works now
+2023-07-24:
+  Lumipharon:
+  - bugfix: fixed defender and rav charge stopping after one hit
+  novaepee:
+  - rscadd: xenomorphs tunnel landmarks in Orion to help with xenomorphs create manuever
+      around maps
+  - rscadd: xenomorphs tunnel landmarks in Magmoor to help with xenomorphs create
+      manuever around maps
