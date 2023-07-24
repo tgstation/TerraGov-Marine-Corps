@@ -1153,6 +1153,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/grass,
 /area/mainship/living/port_garden)
 "dr" = (
@@ -4419,6 +4420,7 @@
 /area/mainship/hull/port_hull)
 "na" = (
 /obj/machinery/holopad,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/airoom)
 "nb" = (
@@ -4524,6 +4526,7 @@
 "nt" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/sulaco/hydro)
 "nu" = (
