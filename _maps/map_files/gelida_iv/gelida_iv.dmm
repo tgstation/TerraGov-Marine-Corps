@@ -8351,10 +8351,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
-"fAl" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves)
 "fAV" = (
 /obj/structure/barricade/metal,
 /turf/open/floor/prison/sterilewhite/full,
@@ -17056,10 +17052,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_forecon/landing_zone_4)
-"lBL" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/mainship/black/full,
-/area/gelida/powergen)
 "lBN" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -49440,7 +49432,7 @@ xIt
 xIt
 xIt
 vqi
-lBL
+cqM
 cqM
 fPM
 fPM
@@ -59887,7 +59879,7 @@ xIt
 xIt
 vqi
 xIt
-fAl
+uGF
 cYz
 gkC
 gkC
