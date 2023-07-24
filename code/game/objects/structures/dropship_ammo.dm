@@ -205,12 +205,12 @@
 	icon_state = "30mm_crate"
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	equipment_type = /obj/structure/dropship_equipment/weapon/heavygun
-	travelling_time =  6 SECONDS
-	ammo_count = 200
-	max_ammo_count = 200
+	travelling_time =  4 SECONDS
+	ammo_count = 260
+	max_ammo_count = 260
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 20
-	point_cost = 75
+	point_cost = 50
 	///Radius of the square that the bullets will strafe
 	var/bullet_spread_range = 2
 	///Width of the square we are attacking, so you can make rectangular attacks later
