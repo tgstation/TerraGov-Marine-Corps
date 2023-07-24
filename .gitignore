@@ -52,3 +52,10 @@ dmdoc/*
 tools/UnstandardnessTestForDM/UnstandardnessTestForDM/obj/x86/Debug/.NETFramework,Version=v4.0,Profile=Client.AssemblyAttributes.cs
 
 tools/hyperscale_converter/output/*
+config/admin_ranks.txt
+config/admins.txt
+config/in_character_filter.txt
+config/motd.txt
+config/policy.json
+config/resources.txt
+config/shipmaps.txt
