@@ -498,7 +498,7 @@
 
 ///Output a message when an item is inserted into a storage object
 /obj/item/storage/proc/insertion_message(obj/item/item, mob/user)
-	var/visidist = item.w_class >= 3 ? 3 : 1
+	var/visidist = item.w_class >= WEIGHT_CLASS_NORMAL ? 3 : 1
 	user.visible_message(span_notice("[user] puts \a [item] into \the [name]."),\
 						span_notice("You put \the [item] into \the [name]."),\
 						null, visidist)
