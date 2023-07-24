@@ -1,0 +1,4 @@
+author: "forestbbbbbbb"
+delete-after: True
+changes:
+  - bugfix: "Fix scopes not changing direction on lasguns"
