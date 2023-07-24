@@ -6016,6 +6016,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
 	},
+/obj/effect/spawner/random/misc/gnome/fithyfithy,
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "aFh" = (
@@ -13797,6 +13798,11 @@
 /obj/item/book/manual/medical_diagnostics_manual,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/cmo)
+"gUR" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/spawner/random/misc/gnome/fithyfithy,
+/turf/open/floor/mainship/ai,
+/area/sulaco/command/ai)
 "gVp" = (
 /obj/machinery/gibber,
 /turf/open/floor/prison/sterilewhite,
@@ -23882,6 +23888,10 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/engine)
+"tBY" = (
+/obj/effect/spawner/random/misc/gnome/fithyfithy,
+/turf/open/floor/grass,
+/area/mainship/living/starboard_garden)
 "tCl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -53759,7 +53769,7 @@ eMk
 aAI
 lae
 akN
-sPn
+gUR
 hWu
 teI
 wnN
@@ -57217,7 +57227,7 @@ sZZ
 gJO
 uyz
 iWb
-sMe
+tBY
 dMC
 mDu
 qDO
