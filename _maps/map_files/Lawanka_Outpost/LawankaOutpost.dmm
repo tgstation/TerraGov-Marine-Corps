@@ -1240,6 +1240,9 @@
 /area/lawankaoutpost/colony/operations_storage)
 "bbZ" = (
 /obj/structure/sink,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -5012,6 +5015,9 @@
 /area/lawankaoutpost/colony/mining)
 "eqx" = (
 /obj/effect/landmark/weed_node,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -11037,6 +11043,9 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
@@ -13222,6 +13231,9 @@
 "lqv" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/cable,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/marshalls)
 "lqA" = (
@@ -14540,6 +14552,9 @@
 /area/lawankaoutpost/colony/cargo)
 "myl" = (
 /obj/structure/xenoautopsy/tank/escaped,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -15847,6 +15862,15 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/biologics)
+"nAl" = (
+/obj/machinery/recharge_station,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/lawankaoutpost/caves/nanotrasen_lab)
 "nAr" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Basketball Court"
@@ -15862,6 +15886,15 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/recdorms)
+"nBi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
+	},
+/area/lawankaoutpost/caves/nanotrasen_lab)
 "nBj" = (
 /obj/effect/turf_decal/tracks/wheels/bloody,
 /obj/effect/landmark/weed_node,
@@ -16821,6 +16854,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
+"onU" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "oox" = (
 /obj/machinery/light{
 	dir = 4
@@ -17005,6 +17046,12 @@
 	dir = 4
 	},
 /area/lawankaoutpost/colony/southdorms)
+"owx" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor,
+/area/lawankaoutpost/colony/mining)
 "oxa" = (
 /obj/structure/window/reinforced,
 /obj/structure/flora/ausbushes/grassybush,
@@ -17549,6 +17596,13 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/cargo)
+"oTF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor,
+/area/lawankaoutpost/colony/mining)
 "oTJ" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -19032,6 +19086,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/south)
 "qfg" = (
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -19393,6 +19450,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzonetwo)
 "quI" = (
@@ -21017,6 +21075,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzonetwo)
 "rMX" = (
@@ -23525,6 +23584,9 @@
 	dir = 6
 	},
 /obj/effect/landmark/weed_node,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
@@ -24149,6 +24211,7 @@
 /area/lawankaoutpost/colony/mining)
 "uvZ" = (
 /obj/structure/prop/mainship/research/tankcompressor,
+/obj/machinery/light,
 /turf/open/floor/tile/dark/blue2,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "uwd" = (
@@ -24217,6 +24280,9 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -24475,6 +24541,13 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/central)
+"uJx" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/turf/open/floor/tile/red/whitered,
+/area/lawankaoutpost/colony/operations_hall)
 "uJA" = (
 /obj/effect/spawner/random/misc/structure/crate,
 /obj/effect/decal/cleanable/dirt,
@@ -24698,6 +24771,13 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/north)
+"uSI" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "uTl" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic Scanner Room";
@@ -25311,6 +25391,14 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/chapel)
+"vwN" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 4
+	},
+/area/lawankaoutpost/colony/medbay)
 "vwO" = (
 /obj/effect/spawner/random/clothing/general,
 /turf/open/floor/tile/green/whitegreencorner{
@@ -40103,7 +40191,7 @@ isK
 isK
 iUK
 fVT
-xAs
+nAl
 qIt
 qIt
 xfF
@@ -40545,7 +40633,7 @@ soK
 kvq
 cQm
 kXQ
-sEz
+nBi
 dMm
 kXQ
 qIt
@@ -48825,7 +48913,7 @@ xQt
 xQt
 mHu
 nry
-yiO
+vwN
 yiO
 qyO
 iFe
@@ -54225,7 +54313,7 @@ eZQ
 cSf
 jbz
 gbZ
-iQO
+oTF
 bGF
 vbg
 aym
@@ -55961,7 +56049,7 @@ sVx
 pAJ
 jbz
 gUA
-eAy
+owx
 fYv
 gim
 oVD
@@ -59506,7 +59594,7 @@ tle
 fpw
 qUw
 gKu
-qUw
+uJx
 pMi
 pMi
 pMi
@@ -71747,9 +71835,9 @@ nJW
 wEk
 wEk
 xHR
-nuL
+uSI
 rMU
-pNG
+onU
 gtw
 wEk
 uaC
