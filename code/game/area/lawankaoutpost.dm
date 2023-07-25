@@ -100,83 +100,103 @@
 /area/lawankaoutpost/colony/biologics
 	name = "Biological Research Facility"
 	icon_state = "xeno_lab"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/lawankaoutpost/colony/biologics_storage
 	name = "Biological Storage"
 	icon_state = "xeno_f_lab"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/lawankaoutpost/colony/cargo
 	name = "Cargo"
 	icon_state = "quart"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/lawankaoutpost/colony/mining
 	name = "Mineral Processing"
 	icon_state = "mining"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/lawankaoutpost/colony/medbay
 	name = "Medbay"
 	icon_state = "medbay"
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/lawankaoutpost/colony/robotics
 	name = "Robotics"
 	icon_state = "ass_line"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/lawankaoutpost/colony/atmos
 	name = "Atmospherics"
 	icon_state = "atmos"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lawankaoutpost/colony/northdorms
 	name = "Northern Dormitories"
 	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lawankaoutpost/colony/recdorms
 	name = "Dormitories Recreation"
 	icon_state = "showroom"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lawankaoutpost/colony/bar
 	name = "Bar"
 	icon_state = "bar"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lawankaoutpost/colony/operations_administration
 	name = "Operations Administration"
 	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lawankaoutpost/colony/operations_hall
 	name = "Operations Main Hallway"
 	icon_state = "hallC1"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lawankaoutpost/colony/operations_kitchen
 	name = "Operations Kitchen"
 	icon_state = "kitchen"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lawankaoutpost/colony/operations_meeting
 	name = "Operations Meeting Rooms"
 	icon_state = "conference"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lawankaoutpost/colony/operations_storage
 	name = "Operations Tool Storage"
 	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lawankaoutpost/colony/southdorms
 	name = "Southern Dormitories"
 	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lawankaoutpost/colony/engineering
 	name = "Engineering"
 	icon_state = "engine"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lawankaoutpost/colony/chapel
 	name = "Chapel"
 	icon_state = "chapel"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lawankaoutpost/colony/marshalls
 	name = "Marshall Offices"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/lawankaoutpost/colony/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lawankaoutpost/colony/cabin
 	name = "South Cabin"
@@ -186,8 +206,10 @@
 	name = "Landing Zone One"
 	icon_state = "landingzone1"
 	flags_area = NO_DROPPOD
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/lawankaoutpost/colony/landingzonetwo
 	name = "Landing Zone Two"
 	icon_state = "landingzone2"
 	flags_area = NO_DROPPOD
+	minimap_color = MINIMAP_AREA_LZ

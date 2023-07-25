@@ -67,6 +67,6 @@ map desparity
 	maxplayers 30
 endmap
 
-map LawankaOutpost
+map lawanka
 minplayers 30
 endmap
