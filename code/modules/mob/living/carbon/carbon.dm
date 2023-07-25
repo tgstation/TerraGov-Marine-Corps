@@ -234,12 +234,14 @@
 	set name = "Sleep"
 	set category = "IC"
 
+	if(species.species_flags & ROBOTIC_LIMBS)
+		to_chat(src, span_warning("Your artificial body does not require sleep."))
+		return
 	if(IsSleeping())
 		to_chat(src, span_warning("You are already sleeping"))
 		return
 	if(tgui_alert(src, "You sure you want to sleep for a while?", "Sleep", list("Yes","No")) == "Yes")
 		SetSleeping(40 SECONDS) //Short nap
-
 
 /mob/living/carbon/Bump(atom/movable/AM)
 	if(now_pushing)
