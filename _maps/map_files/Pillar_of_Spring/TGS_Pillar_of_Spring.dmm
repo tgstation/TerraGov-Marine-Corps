@@ -10997,6 +10997,12 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
+"ohq" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/mainship/living/grunt_rnr)
 "ohw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -11078,6 +11084,9 @@
 "onk" = (
 /obj/machinery/light/mainship{
 	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
@@ -11186,9 +11195,12 @@
 	},
 /area/mainship/hallways/hangar)
 "osh" = (
+/obj/structure/closet/walllocker/hydrant/extinguisher,
 /obj/machinery/camera/autoname/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/turf/open/floor/mainship/sterile/purple/side{
+	dir = 1
+	},
+/area/mainship/medical/chemistry)
 "osF" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -15592,9 +15604,6 @@
 "tRq" = (
 /mob/living/simple_animal/catslug/newt,
 /obj/structure/cable,
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
@@ -15790,6 +15799,19 @@
 	dir = 10
 	},
 /area/mainship/squads/general)
+"udk" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/grunt_rnr)
 "udA" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -18242,6 +18264,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"xiT" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/grunt_rnr)
 "xiV" = (
 /obj/machinery/door/airlock/mainship/command/FCDRquarters,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -45021,7 +45049,7 @@ pfi
 wcT
 lkD
 qJz
-jsE
+xiT
 jsE
 acv
 ogX
@@ -45285,7 +45313,7 @@ pMf
 dBm
 nHm
 bLz
-vzF
+udk
 leu
 vxx
 iDm
@@ -45762,7 +45790,7 @@ cfp
 dpY
 dpY
 eiU
-dpY
+xIb
 dpY
 wpF
 wBE
@@ -46517,7 +46545,7 @@ ufq
 ufq
 lsS
 tyN
-nkm
+dpY
 dpY
 meJ
 hFZ
@@ -47340,8 +47368,8 @@ uob
 tur
 iWQ
 aSq
-bLz
-osh
+ohq
+jsE
 bCH
 jsE
 leu
@@ -48059,7 +48087,7 @@ pHB
 ufq
 wEZ
 jLS
-dpY
+nkm
 nWE
 oHU
 plN
@@ -48355,7 +48383,7 @@ jzx
 lAT
 nwX
 dLo
-euc
+osh
 uWK
 wNn
 sFM
