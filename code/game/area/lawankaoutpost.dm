@@ -53,7 +53,7 @@
 	name = "Colony Grounds"
 	icon_state = "green"
 	ceiling = CEILING_NONE
-	minimap_color = MINIMAP_AREA_COLONY
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lawankaoutpost/outside/northwest
 	name = "Northwestern Colony"
@@ -135,12 +135,12 @@
 /area/lawankaoutpost/colony/northdorms
 	name = "Northern Dormitories"
 	icon_state = "Sleep"
-	minimap_color = MINIMAP_AREA_LIVING
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/lawankaoutpost/colony/recdorms
 	name = "Dormitories Recreation"
 	icon_state = "showroom"
-	minimap_color = MINIMAP_AREA_LIVING
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/lawankaoutpost/colony/bar
 	name = "Bar"
@@ -176,7 +176,7 @@
 /area/lawankaoutpost/colony/southdorms
 	name = "Southern Dormitories"
 	icon_state = "Sleep"
-	minimap_color = MINIMAP_AREA_LIVING
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/lawankaoutpost/colony/engineering
 	name = "Engineering"
@@ -196,7 +196,7 @@
 /area/lawankaoutpost/colony/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"
-	minimap_color = MINIMAP_AREA_LIVING_CAVE
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lawankaoutpost/colony/cabin
 	name = "South Cabin"
