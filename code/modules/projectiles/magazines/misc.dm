@@ -106,6 +106,21 @@
 	current_rounds = 100
 	max_rounds = 100
 
+/obj/item/ammo_magazine/packet/standardautoshotgun
+	name = "box of 16 Gauge shotgun slugs"
+	desc = "A box containing 16 Gauge slugs, they look like they'd fit in the SH-15."
+	icon_state = "box_16gslug"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
+	caliber = CALIBER_16G
+	current_rounds = 60
+	max_rounds = 60
+
+/obj/item/ammo_magazine/packet/standardautoshotgun/flechette
+	name = "box of 16 Gauge shotgun flechette shells"
+	desc = "A box containing 16 Gauge flechette shells, they look like they'd fit in the SH-15."
+	icon_state = "box_16gflech"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
+
 // pistol packets
 
 /obj/item/ammo_magazine/packet/p9mm
