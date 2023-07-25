@@ -970,6 +970,9 @@
 
 	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
+	if((gun_firemode == GUN_FIREMODE_AUTOBURST || gun_firemode == GUN_FIREMODE_BURSTFIRE) && shots_fired >= burst_amount)
+		shots_fired = 0
+
 	shots_fired++
 
 	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
