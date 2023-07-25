@@ -11914,7 +11914,9 @@
 	dir = 5
 	},
 /obj/machinery/robotic_cradle,
-/turf/open/floor/mainship/sterile,
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
 /area/mainship/medical/lower_medical)
 "pmY" = (
 /obj/structure/table/mainship/nometal,
