@@ -38,7 +38,8 @@
 	if(!islist(mobs) && mobs)
 		mobs = list(mobs)
 	// Copy the list just in case the arguments list is a list we don't want to modify
-	mobs = mobs.Copy()
+	if(length(mobs))
+		mobs = mobs.Copy()
 	if(!timer)
 		stack_trace("Invalid timer for screen nuke timer!")
 		return INITIALIZE_HINT_QDEL
