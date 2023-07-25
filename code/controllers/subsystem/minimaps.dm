@@ -214,8 +214,8 @@ SUBSYSTEM_DEF(minimaps)
 
 	var/turf/target_turf = get_turf(target)
 
-	blip.pixel_x = MINIMAP_PIXEL_FROM_WORLD(target_turf.x) + minimaps_by_z["[target.z]"].x_offset
-	blip.pixel_y = MINIMAP_PIXEL_FROM_WORLD(target_turf.y) + minimaps_by_z["[target.z]"].y_offset
+	blip.pixel_x = MINIMAP_PIXEL_FROM_WORLD(target_turf.x) + minimaps_by_z["[target_turf.z]"].x_offset
+	blip.pixel_y = MINIMAP_PIXEL_FROM_WORLD(target_turf.y) + minimaps_by_z["[target_turf.z]"].y_offset
 
 	images_by_source[target] = blip
 	for(var/flag in bitfield2list(hud_flags))

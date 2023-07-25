@@ -6,7 +6,7 @@
 	icon_state = "roomba"
 	density = FALSE
 	anchored = FALSE
-	voice_filter = "aderivative"
+	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	///Keeps track of how many items have been sucked for fluff
 	var/counter = 0
 	///The mine we have attached to this roomba

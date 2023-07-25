@@ -1369,9 +1369,6 @@
 /obj/structure/ship_ammo/rocket/banshee,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
-"anD" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/command/self_destruct)
 "anQ" = (
 /obj/structure/ship_ammo/heavygun,
 /obj/machinery/camera/autoname/mainship,
@@ -2993,9 +2990,6 @@
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
-"bfX" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/engineering/engine_core)
 "bfY" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -75451,7 +75445,7 @@ abq
 abK
 aap
 phq
-bfX
+brQ
 mmZ
 vHF
 gyd
@@ -75469,7 +75463,7 @@ qfe
 kLV
 vHF
 xZM
-bfX
+brQ
 jFy
 aVs
 acF
@@ -75708,7 +75702,7 @@ abq
 abL
 aap
 phq
-bfX
+brQ
 xON
 vHF
 bvd
@@ -75726,7 +75720,7 @@ qMa
 bvd
 vHF
 xON
-bfX
+brQ
 jFy
 aVs
 acH
@@ -75963,9 +75957,9 @@ abe
 abk
 laL
 abM
-aai
+aap
 phq
-bfX
+brQ
 wIK
 vHF
 bvd
@@ -75983,7 +75977,7 @@ qMa
 bvd
 vHF
 xVy
-bfX
+brQ
 kbS
 aVs
 acI
@@ -76220,9 +76214,9 @@ aai
 aai
 lxe
 abN
-aai
+aap
 nTz
-bfX
+brQ
 xON
 vHF
 bvd
@@ -76240,9 +76234,9 @@ qMa
 bvd
 vHF
 xON
-bfX
+brQ
 xCV
-aVk
+aVs
 acJ
 acS
 aVk
@@ -76479,7 +76473,7 @@ bfU
 abO
 aai
 rYp
-bfX
+brQ
 syT
 vHF
 gyd
@@ -76497,7 +76491,7 @@ qMa
 kLV
 vHF
 syT
-bfX
+brQ
 sMK
 aVk
 acT
@@ -76736,7 +76730,7 @@ acU
 abP
 aai
 nTz
-bfX
+brQ
 xON
 vHF
 bvd
@@ -76754,7 +76748,7 @@ qMa
 bvd
 vHF
 xON
-bfX
+brQ
 xCV
 aVk
 acU
@@ -76993,7 +76987,7 @@ aaa
 aaa
 aai
 phq
-bfX
+brQ
 wIK
 vHF
 bvd
@@ -77011,7 +77005,7 @@ qMa
 bvd
 vHF
 xVy
-bfX
+brQ
 jFy
 aVk
 aaa
@@ -77250,7 +77244,7 @@ aaa
 aaa
 aai
 phq
-bfX
+brQ
 xON
 vHF
 bvd
@@ -77268,7 +77262,7 @@ qMa
 bvd
 vHF
 xON
-bfX
+brQ
 jFy
 aVk
 aaa
@@ -77507,7 +77501,7 @@ aaa
 aaa
 aai
 phq
-bfX
+brQ
 syT
 vHF
 gyd
@@ -77525,7 +77519,7 @@ qMa
 kLV
 vHF
 syT
-bfX
+brQ
 jFy
 aVk
 aaa
@@ -77764,7 +77758,7 @@ aaa
 aaa
 aai
 nTz
-bfX
+brQ
 xON
 vXG
 oka
@@ -77782,7 +77776,7 @@ qMa
 oka
 vXG
 xON
-bfX
+brQ
 xCV
 aVk
 aaa
@@ -78021,10 +78015,10 @@ aaa
 aaa
 aai
 rYp
-bfX
-bfX
-bfX
-anD
+brQ
+brQ
+brQ
+asv
 qMa
 iHs
 asv
@@ -78036,10 +78030,10 @@ asv
 asv
 iHs
 qMa
-anD
-bfX
-bfX
-bfX
+asv
+brQ
+brQ
+brQ
 sMK
 aVk
 aaa
@@ -78281,7 +78275,7 @@ qpI
 xDQ
 xDQ
 iRr
-anD
+asv
 szd
 nNd
 hVi
@@ -78293,7 +78287,7 @@ asv
 hVi
 nNd
 awa
-anD
+asv
 cye
 pBp
 pBp
@@ -78538,7 +78532,7 @@ aai
 aai
 aai
 nTz
-anD
+asv
 nAX
 nNd
 bwO
@@ -78550,7 +78544,7 @@ axr
 bwO
 nNd
 awa
-anD
+asv
 xCV
 aVk
 aVk
@@ -78795,7 +78789,7 @@ aaa
 aaa
 aai
 rYp
-anD
+asv
 tpP
 nNd
 nNd
@@ -78807,7 +78801,7 @@ axs
 nNd
 nNd
 qOk
-anD
+asv
 sMK
 aVk
 aaa
@@ -79052,7 +79046,7 @@ aaa
 aaa
 aai
 nTz
-anD
+asv
 aqJ
 aBe
 scY
@@ -79064,7 +79058,7 @@ axr
 ebn
 xlz
 awa
-anD
+asv
 xCV
 aVk
 aaa
@@ -79309,19 +79303,19 @@ aaa
 aaa
 aai
 oyL
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
 pmD
 aVk
 aaa

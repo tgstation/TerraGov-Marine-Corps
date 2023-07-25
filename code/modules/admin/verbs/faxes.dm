@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(faxes)
 	var/fax_html = {"
 		<font face="Verdana" color="black" size="1">
 			<center>
-				<img src='tgmclogo.png' />
+				<img src='[SSassets.transport.get_asset_url("tgmclogo.png")]' />
 			</center>
 			<center>
 				Secure Communication SC-CLTMGC-01b

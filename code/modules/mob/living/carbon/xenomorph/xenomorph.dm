@@ -10,7 +10,6 @@
 		move_resist = MOVE_FORCE_EXTREMELY_STRONG
 		move_force = MOVE_FORCE_EXTREMELY_STRONG
 	. = ..()
-
 	set_datum()
 	time_of_birth = world.time
 	add_inherent_verbs()
@@ -25,6 +24,7 @@
 		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
 
 	set_initial_hivenumber()
+	voice = "Woman (Journalist)" // TODO when we get tagging make this pick female only
 
 	switch(stat)
 		if(CONSCIOUS)

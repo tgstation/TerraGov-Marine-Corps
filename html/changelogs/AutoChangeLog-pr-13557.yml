@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed readying up bypassing exp requirements"
+  - config: "Added the missing exp flags to the default config"
