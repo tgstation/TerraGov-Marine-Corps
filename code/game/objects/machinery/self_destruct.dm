@@ -10,7 +10,9 @@
 	var/marine_only_activate = TRUE
 	///When the self destruct sequence was initiated
 	var/started_at = 0
-	
+	/// Timer mainly used for hud timers
+	var/timer
+
 
 /obj/machinery/self_destruct/Initialize(mapload)
 	. = ..()
@@ -64,7 +66,7 @@
 	data["dest_status"] = active_state
 	if(active_state == SELF_DESTRUCT_MACHINE_ARMED)
 		data["detonation_pcent"] = min(round(((world.time - started_at)  / (SELF_DESTRUCT_ROD_STARTUP_TIME)), 0.01), 1)  // percentage of time left to detonation
-		data["detonation_time"] = DisplayTimeText(max(0, (SELF_DESTRUCT_ROD_STARTUP_TIME) - (world.time - started_at)), 1) //amount of time left to detonation
+		data["detonation_time"] = DisplayTimeText(timeleft(timer), 1) //amount of time left to detonation
 	else
 		data["detonation_pcent"] = 0
 		data["detonation_time"] = "Inactive"
@@ -85,6 +87,8 @@
 			I.activate_time = world.time
 			started_at = world.time
 			SSevacuation.initiate_self_destruct()
+			timer = addtimer(CALLBACK(src, PROC_REF(timer_end)), SELF_DESTRUCT_ROD_STARTUP_TIME, TIMER_STOPPABLE)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 			. = TRUE
 
 		if("dest_trigger")
@@ -101,6 +105,8 @@
 			if(SSevacuation.cancel_self_destruct())
 				SStgui.close_user_uis(usr, src, "main")
 
+/obj/machinery/self_destruct/console/proc/timer_end()
+	timer = null
 
 /obj/machinery/self_destruct/rod
 	name = "self destruct control rod"
