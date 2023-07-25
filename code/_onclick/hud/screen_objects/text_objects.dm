@@ -21,7 +21,7 @@
 	/// Timer ID that we're tracking, the time left of this is displayed as maptext
 	var/timer_id
 	/// The list of mobs that we're attached to, and care about
-	var/list/timer_mobs
+	var/list/timer_mobs = list()
 
 /atom/movable/screen/text/screen_timer/Initialize(
 		mapload,
@@ -76,8 +76,8 @@
 			var/datum/weakref/ref = player
 			player = ref.resolve()
 		attach(player)
-		timer_mobs += WEAKREF(player)
 		RegisterSignal(player, COMSIG_MOB_LOGIN, PROC_REF(attach))
+		timer_mobs += WEAKREF(player)
 
 /// Removes the object from the client.screen of all mobs in the list, and unregisters the needed signals, while also stopping processing if there's no more mobs in the screen timers mob list
 /atom/movable/screen/text/screen_timer/proc/remove_from(list/mobs)
@@ -86,13 +86,13 @@
 			return
 		mobs = list(mobs)
 	for(var/player in mobs)
+		UnregisterSignal(player, COMSIG_MOB_LOGIN)
 		if(player in timer_mobs)
 			timer_mobs -= player
 		if(istype(player, /datum/weakref))
 			var/datum/weakref/ref = player
 			player = ref.resolve()
 		de_attach(player)
-		UnregisterSignal(player, COMSIG_MOB_LOGIN)
 	if(!length(timer_mobs))
 		STOP_PROCESSING(SSprocessing, src)
 
@@ -107,9 +107,9 @@
 /// Adds the object to the client.screen of the mob, or removes it if add_to_screen is FALSE
 /atom/movable/screen/text/screen_timer/proc/attach(mob/source, add_to_screen = TRUE)
 	SIGNAL_HANDLER
-	var/client/client = source.client
-	if(!source || !source.client)
+	if(!source?.client)
 		return
+	var/client/client = source.client
 	// this checks if the screen is already added or removed
 	if(add_to_screen == (src in client.screen))
 		return
