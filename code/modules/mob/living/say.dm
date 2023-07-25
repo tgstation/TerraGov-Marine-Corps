@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 			listened += listening_movable
 	//Note, TG has a found_client var they use, piggybacking on unrelated say popups and runechat code
 	//we dont do that since it'd probably be much more expensive to loop over listeners instead of just doing
-	if(voice && !(client?.prefs.muted & MUTE_TTS))
+	if(voice && !(client?.prefs.muted & MUTE_TTS) && !is_banned_from(ckey, "TTS"))
 		var/tts_message_to_use = tts_message
 		if(!tts_message_to_use)
 			tts_message_to_use = message_raw
@@ -406,6 +406,9 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, span_danger("You cannot speak in IC (muted)."))
 			return FALSE
+		if(is_banned_from(ckey, "IC"))
+			to_chat(src, span_warning("You are banned from IC chat."))
+			return
 		if(!ignore_spam && client.handle_spam_prevention(message, MUTE_IC))
 			return FALSE
 

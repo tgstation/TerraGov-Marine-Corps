@@ -168,7 +168,7 @@
 	if(loc_weeds_type || check_weeds(get_turf(src)))
 		return
 	return_to_core()
-	to_chat(src, "<span class='xenonotice'>We had no weeds nearby, we got moved to our core.")
+	to_chat(src, span_xenonotice("We had no weeds nearby, we got moved to our core."))
 	return
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
@@ -179,7 +179,7 @@
 ///Start the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/start_teleport(turf/T)
 	if(!isopenturf(T))
-		to_chat(src, span_notice("You cannot teleport into a wall"))
+		balloon_alert(src, "Can't teleport into a wall")
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	flick("Hivemind_materialisation_fast_reverse", src)
@@ -189,7 +189,7 @@
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
 	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
-		to_chat(src, span_warning("The weeds on our destination were destroyed"))
+		balloon_alert(src, "No weeds in destination")
 	else
 		forceMove(T)
 

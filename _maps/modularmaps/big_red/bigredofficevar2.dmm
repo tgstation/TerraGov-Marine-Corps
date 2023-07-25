@@ -19,15 +19,15 @@
 /area/bigredv2/outside/office_complex)
 "aT" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
+/obj/machinery/power/apc/drained,
 /turf/open/floor,
-/area/bigredv2/outside/office_complex)
+/area/bigredv2/outside/e)
 "aU" = (
 /obj/machinery/light{
 	dir = 4

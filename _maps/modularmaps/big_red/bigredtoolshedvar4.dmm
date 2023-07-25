@@ -53,6 +53,12 @@
 	dir = 9
 	},
 /area/bigredv2/outside/c)
+"k" = (
+/obj/structure/rack,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
 "m" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/misc/trash,
@@ -305,7 +311,7 @@ E
 U
 O
 y
-H
+k
 h
 e
 H

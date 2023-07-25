@@ -60,12 +60,12 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dmg2,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "aw" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "aA" = (
 /obj/structure/table,
 /obj/effect/spawner/random/medical/beaker,
@@ -74,12 +74,12 @@
 "aC" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "aD" = (
 /obj/structure/xenoautopsy,
 /obj/structure/table/reinforced,
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "aF" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -197,7 +197,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dmg2,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "bn" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963";
@@ -240,7 +240,7 @@
 "bD" = (
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "bE" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -299,12 +299,12 @@
 /area/lv624/lazarus/research/caves)
 "bT" = (
 /turf/closed/wall/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "bU" = (
 /obj/structure/xenoautopsy/tank/larva,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "bW" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -313,7 +313,7 @@
 "bX" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "bZ" = (
 /obj/structure/fence,
 /turf/open/ground/grass/weedable,
@@ -351,12 +351,12 @@
 "cf" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "cg" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "ch" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -373,7 +373,7 @@
 "cl" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "cm" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -432,7 +432,7 @@
 "cy" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "cA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -478,7 +478,7 @@
 /area/lv624/lazarus/spaceport)
 "cV" = (
 /turf/open/floor/plating/dmg1,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "cW" = (
 /obj/structure/window/framed/wood,
 /turf/open/floor/plating,
@@ -524,7 +524,7 @@
 /obj/machinery/light,
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "dm" = (
 /obj/structure/flora/grass/tallgrass{
 	color = "#798963"
@@ -567,7 +567,7 @@
 /obj/item/alien_embryo,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "dv" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/blue/taupeblue{
@@ -615,11 +615,11 @@
 "dH" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "dJ" = (
 /obj/item/pinpointer,
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "dK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -632,7 +632,7 @@
 "dM" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "dN" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access,
 /obj/structure/flora/jungle/vines,
@@ -655,7 +655,7 @@
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "dS" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -669,7 +669,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "dX" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
@@ -714,7 +714,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "ei" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -799,7 +799,7 @@
 /area/lv624/ground/caves/west1)
 "eF" = (
 /turf/open/floor/plating,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "eG" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -1028,7 +1028,7 @@
 "fC" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "fE" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -1125,7 +1125,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dmg1,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "gg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -1893,7 +1893,7 @@
 "jM" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "jO" = (
 /turf/open/floor,
 /area/lv624/lazarus/security)
@@ -2349,7 +2349,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "mo" = (
 /turf/open/floor/podhatch{
 	dir = 9
@@ -2468,7 +2468,7 @@
 /area/lv624/lazarus/captain)
 "mU" = (
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "mV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3606,7 +3606,7 @@
 	name = "TGMC exit point 23"
 	},
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "sM" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/dark,
@@ -3674,7 +3674,7 @@
 "td" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "te" = (
 /obj/machinery/chem_master,
 /turf/open/floor/tile/dark/blue2/corner,
@@ -3802,7 +3802,7 @@
 /area/lv624/ground/jungle5)
 "tK" = (
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "tM" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/engine/cult,
@@ -3877,7 +3877,7 @@
 "uc" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "ud" = (
 /turf/open/floor/wood,
 /area/lv624/lazarus/spaceport)
@@ -4099,7 +4099,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "vj" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/green/whitegreencorner{
@@ -4175,7 +4175,7 @@
 	name = "TGMC exit point 21"
 	},
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "vE" = (
 /obj/machinery/light{
 	dir = 1
@@ -4431,7 +4431,7 @@
 	name = "TGMC exit point 24"
 	},
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "xc" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 18;
@@ -4539,7 +4539,7 @@
 "xJ" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/plating/dmg1,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "xK" = (
 /obj/structure/flora/ausbushes/reedbush,
 /obj/effect/turf_decal/riverdecal,
@@ -4716,7 +4716,6 @@
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research/caves)
 "yA" = (
-/obj/structure/cable,
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = 3;
@@ -4771,9 +4770,6 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "yI" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
@@ -5187,14 +5183,6 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
-"Ax" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "Ay" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/closed/mineral/smooth/indestructible,
@@ -5523,7 +5511,7 @@
 "Cf" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "Cg" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 4;
@@ -5877,7 +5865,7 @@
 /area/lv624/lazarus/research/caves)
 "DX" = (
 /turf/open/floor/plating/dmg2,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "Ea" = (
 /obj/item/shard/shrapnel{
 	name = "metal fragments"
@@ -6014,14 +6002,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
-"EK" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
-/area/lv624/ground/caves/west1)
 "EL" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -6470,7 +6450,7 @@
 "GW" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "GX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -7165,14 +7145,6 @@
 "Kj" = (
 /turf/open/floor/plating,
 /area/lv624/lazarus/overgrown)
-"Kk" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors)
 "Km" = (
 /turf/open/floor/tile/blue/taupeblue,
 /area/lv624/lazarus/medbay)
@@ -8012,7 +7984,7 @@
 "Oh" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "Ol" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -8907,7 +8879,7 @@
 "SF" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship)
+/area/lv624/lazarus/crashed_ship/desparity)
 "SG" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12284,7 +12256,7 @@ sR
 XM
 zg
 zg
-EK
+zg
 sR
 lD
 vt
@@ -15160,7 +15132,7 @@ tz
 jU
 BL
 yA
-Zn
+Pg
 zx
 wh
 "}
@@ -16087,7 +16059,7 @@ JH
 JH
 JH
 JH
-Ax
+JH
 JH
 qt
 lG
@@ -20726,7 +20698,7 @@ WX
 WX
 WX
 Rp
-Kk
+Vs
 Vs
 Yd
 Yd

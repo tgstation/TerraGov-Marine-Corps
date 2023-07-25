@@ -147,6 +147,9 @@
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "You cannot send IC messages (muted).")
 			return
+		if(is_banned_from(ckey, "IC"))
+			to_chat(src, span_warning("You are banned from IC chat."))
+			return
 
 		if(client.handle_spam_prevention(message, MUTE_IC))
 			return

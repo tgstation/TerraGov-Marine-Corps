@@ -21,6 +21,12 @@
 		T.ChangeTurf(/turf/closed/wall/resin, T.type)
 	for(var/i in GLOB.xeno_resin_door_turfs)
 		new /obj/structure/mineral_door/resin(i)
+	for(var/i in GLOB.xeno_tunnel_spawn_turfs)
+		var/obj/structure/xeno/tunnel/new_tunnel = new /obj/structure/xeno/tunnel(i, XENO_HIVE_NORMAL)
+		new_tunnel.name = "[get_area_name(new_tunnel)] tunnel"
+		new_tunnel.tunnel_desc = "["An old tunnel dug by a former member of the hive prior to our awakening at [get_area_name(new_tunnel)]"] (X: [new_tunnel.x], Y: [new_tunnel.y])"
+	for(var/i in GLOB.xeno_jelly_pod_turfs)
+		new /obj/structure/xeno/resin_jelly_pod(i, XENO_HIVE_NORMAL)
 
 /datum/game_mode/infestation/scale_roles()
 	. = ..()

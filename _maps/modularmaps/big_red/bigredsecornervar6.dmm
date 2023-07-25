@@ -496,10 +496,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast/garbledradio)
-"EP" = (
-/obj/machinery/power/apc/weak,
-/turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/secomplex)
 "EW" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -4123,7 +4119,7 @@ oB
 oB
 lH
 le
-EP
+Gn
 IY
 IY
 sM

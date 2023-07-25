@@ -466,9 +466,16 @@
 /datum/keybinding/xeno/change_form
 	name = "change_form"
 	full_name = "Hivemind: Change Form"
-	description = ""
+	description = "Change form to/from incorporeal."
 	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM
 	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/change_form
+	name = "change_form"
+	full_name = "Hivemind: Open teleportation minimap"
+	description = "Opens up the minimap which, when you click somewhere, tries to teleport you to the selected location"
+	keybind_signal = COMISG_XENOMORPH_HIVEMIND_TELEPORT
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
@@ -593,6 +600,12 @@
 	full_name = "Queen: Hive Message"
 	description = "Instantly displays a bolded announcement to all xenos in the hive."
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
+
+/datum/keybinding/xeno/queen_bulwark
+	name = "queen_bulwark"
+	full_name = "Queen: Bulwark"
+	description = "Forms an area around you that reduces damage taken by friendly xenomorphs."
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_BULWARK
 
 /datum/keybinding/xeno/deevolve
 	name = "deevolve"
