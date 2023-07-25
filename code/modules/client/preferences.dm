@@ -137,11 +137,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/mute_xeno_health_alert_messages = TRUE
 
 	///whether the user wants to hear tts
-	var/sound_tts = TRUE
+	var/sound_tts = TTS_SOUND_ENABLED
 	///What tts voice should be used
 	var/tts_voice = "Male 01"
-	///whether to use animal crossing style blblblbl
-	var/sound_tts_blips = FALSE
+	///how much to pitch the tts voice up and down
+	var/tts_pitch = 0
 	///Volume to use for tts
 	var/volume_tts = 100
 
