@@ -215,9 +215,6 @@ SUBSYSTEM_DEF(job)
 			// If the player wants that job on this level, then try give it to him.
 			if(player.client.prefs.job_preferences[job.title] != level)
 				continue
-			// If the job isn't filled
-			if((job.total_positions != -1 && job.current_positions >= job.total_positions))
-				continue
 			if(job.faction == faction_rejected)
 				continue
 			JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
