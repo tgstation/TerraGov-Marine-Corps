@@ -49,6 +49,8 @@
 	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, XACT_USE_BUSY)))
 		return
 
+	hivelord.record_recycle_points(recycled_xeno)
+
 	recycled_xeno.gib()
 
 	playsound(hivelord, 'sound/effects/alien_recycler.ogg', 40)

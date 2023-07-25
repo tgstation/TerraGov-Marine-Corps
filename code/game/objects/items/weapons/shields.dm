@@ -71,7 +71,7 @@
 		if(!metal_sheets.use(1))
 			return
 
-		repair_damage(max_integrity * 0.2)
+		repair_damage(max_integrity * 0.2, user)
 		visible_message(span_notice("[user] restores the structural integrity of [src]."))
 
 	else if(istype(I, /obj/item/weapon) && world.time >= cooldown)

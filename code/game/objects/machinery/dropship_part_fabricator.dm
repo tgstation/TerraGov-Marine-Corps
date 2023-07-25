@@ -61,7 +61,7 @@
 
 
 /// Starts the printing process, does point calculations
-/obj/machinery/dropship_part_fabricator/proc/build_dropship_part(part_type)
+/obj/machinery/dropship_part_fabricator/proc/build_dropship_part(part_type, mob/user)
 	var/cost = get_cost(part_type)
 
 	if((machine_stat & NOPOWER) || !cost)
@@ -77,6 +77,10 @@
 	SSpoints.dropship_points -= cost
 	busy = TRUE
 	update_icon()
+
+	if(user.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		personal_statistics.cas_points_used += cost
 
 	addtimer(CALLBACK(src, PROC_REF(do_build_dropship_part), part_type), 10 SECONDS)
 
@@ -124,6 +128,7 @@
 
 	if(href_list["choice"])
 		if(href_list["choice"] == "clear")
+			record_cas_point_refunds(usr)
 			queue = list()
 			balloon_alert_to_viewers("Entire queue cleared")
 			return
@@ -141,5 +146,5 @@
 			queue.Add(build_type)
 			return
 
-		build_dropship_part(build_type)
+		build_dropship_part(build_type, usr)
 		return

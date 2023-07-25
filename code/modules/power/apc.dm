@@ -332,6 +332,9 @@
 		wires.cut_all()
 		update_icon()
 		visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
+		if(X.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.client]
+			personal_statistics.apcs_slashed++
 	else
 		beenhit += 1
 
