@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 
 	//Downtime
 	var/time_resting = 0
-	var/time_sleeping = 0
+	var/time_unconscious = 0
 	var/time_in_stasis = 0
 	var/time_in_cryo = 0
 
@@ -138,13 +138,13 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	//Downtime
 	var/list/downtime_stats = list()
 	if(time_resting)
-		downtime_stats += "You were lying down for [time_resting] minute[time_resting MINUTES != 1 MINUTES ? "s" : ""]."
-	if(time_sleeping)
-		downtime_stats += "Slept for [time_sleeping] minute[time_sleeping MINUTES != 1 MINUTES ? "s" : ""]."
+		downtime_stats += "You were lying down for [DisplayTimeText(time_resting)]."
+	if(time_unconscious)
+		downtime_stats += "Slept for [DisplayTimeText(time_unconscious)]."
 	if(time_in_stasis)
-		downtime_stats += "Spent [time_in_stasis] minute[time_in_stasis MINUTES != 1 MINUTES ? "s" : ""] in stasis."
+		downtime_stats += "Spent [DisplayTimeText(time_in_stasis)] in stasis."
 	if(time_in_cryo)
-		downtime_stats += "Spent [time_in_cryo] minute[time_in_cryo MINUTES != 1 MINUTES ? "s" : ""] in cryo."
+		downtime_stats += "Spent [DisplayTimeText(time_in_cryo)] in cryo."
 
 	if(LAZYLEN(downtime_stats))
 		stats += "<hr>"
@@ -412,3 +412,43 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
 	personal_statistics.miner_repairs_performed++
 	return TRUE
+
+///Record how much time a mob was lying down for
+/mob/living/proc/record_time_lying_down()
+	if(!last_rested)
+		return FALSE
+	if(!client)	//Reset their time if they have no client
+		last_rested = 0
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	personal_statistics.time_resting += world.time - last_rested
+
+///Record how long a mob was knocked out or sleeping
+/mob/living/proc/record_time_unconscious()
+	if(!last_unconscious)
+		return FALSE
+	if(!client)
+		last_unconscious = 0
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	personal_statistics.time_unconscious += world.time - last_unconscious
+
+///Record how long a mob was in a stasis bag
+/mob/living/proc/record_time_in_stasis()
+	if(!time_entered_stasis)
+		return FALSE
+	if(!client)
+		time_entered_stasis = 0
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	personal_statistics.time_in_stasis += world.time - time_entered_stasis
+
+///Record how long a mob was in a cryo tube
+/mob/living/proc/record_time_in_cryo()
+	if(!time_entered_cryo)
+		return FALSE
+	if(!client)
+		time_entered_cryo = 0
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	personal_statistics.time_in_cryo += world.time - time_entered_cryo

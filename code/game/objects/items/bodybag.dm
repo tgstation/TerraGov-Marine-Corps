@@ -300,6 +300,7 @@
 	if(bodybag_occupant)
 		REMOVE_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
 		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED))
+		bodybag_occupant.record_time_in_stasis()
 	return ..()
 
 
@@ -314,7 +315,7 @@
 	if(bodybag_occupant)
 		ADD_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
 		RegisterSignals(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
-
+		bodybag_occupant.time_entered_stasis = world.time
 
 /obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	SIGNAL_HANDLER
