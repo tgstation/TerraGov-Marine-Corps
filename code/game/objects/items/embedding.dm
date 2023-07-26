@@ -82,6 +82,8 @@
 		stack_trace("limb_embed called for NODROP|DELONDROP [embedding]")
 		embedding.unembed_ourself()
 		return FALSE
+	if(embedding.w_class >= WEIGHT_CLASS_NORMAL)
+		return FALSE
 	if(limb_status & LIMB_DESTROYED)
 		return FALSE
 	if(!silent)
@@ -202,7 +204,7 @@
 	else
 		visible_message(span_warning("<b>[user] rips [selection] out of [src]'s body.</b>"),span_warning("<b>[user] rips [selection] out of your body.</b>"), null, 5)
 
-	handle_yank_out_damage()
+	handle_yank_out_damage(selection, user)
 
 	selection.unembed_ourself()
 
