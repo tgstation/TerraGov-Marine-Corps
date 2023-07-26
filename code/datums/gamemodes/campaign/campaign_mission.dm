@@ -165,6 +165,7 @@
 	mission_state = MISSION_STATE_FINISHED
 	apply_outcome() //figure out where best to put this
 	play_outro()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 	mode.end_current_mission()
 
 ///Intro when the mission is selected

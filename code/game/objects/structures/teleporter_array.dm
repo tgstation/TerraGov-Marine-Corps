@@ -1,3 +1,7 @@
+#define TELEPORTER_ARRAY_INOPERABLE "teleporter_array_inoperable"
+#define TELEPORTER_ARRAY_READY "teleporter_array_ready"
+#define TELEPORTER_ARRAY_IN_USE "teleporter_array_in_use"
+
 /obj/structure/teleporter_array
 	name = "TELEPORTER"
 	desc = "PLACEHOLDER."
@@ -7,11 +11,17 @@
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = RESIST_ALL
+
+	var/teleporter_status = TELEPORTER_ARRAY_READY
+	///The faction this belongs to
+	var/faction = FACTION_SOM
+	///How many times this can be used
+	var/charges = 1
 	///The target turf for teleportation
 	var/turf/target_turf
 	///The Z-level that the teleporter can teleport to
 	var/targetted_zlevel = 2
-	///The range of the ability
+	///The radius of the teleport
 	var/range = 2
 	///teleport windup
 	var/windup = 10 SECONDS
@@ -25,12 +35,14 @@
 	interaction_actions = list()
 	interaction_actions += new /datum/action/innate/set_teleport_target(src)
 	interaction_actions += new /datum/action/innate/activate_teleporter(src)
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED), PROC_REF(change_targeted_z))
+	GLOB.teleporter_arrays += src
 
 /obj/structure/teleporter_array/Destroy()
 	target_turf = null
 	controller = null
 	QDEL_LIST(interaction_actions)
+	GLOB.teleporter_arrays -= src
 	return ..()
 
 //user stuff is probably placeholder for now
@@ -57,36 +69,50 @@
 ///Updates the z-level this teleporter teleports to
 /obj/structure/teleporter_array/proc/change_targeted_z(datum/source, new_z)
 	SIGNAL_HANDLER
-	if(!isnum(new_z))
-		return
 	remove_user()
 	targetted_zlevel = new_z
 	target_turf = null
 
 //starts the teleportation process
 /obj/structure/teleporter_array/proc/activate()
+	if(teleporter_status == TELEPORTER_ARRAY_INOPERABLE)
+		to_chat(controller, span_warning("The Bluespace drive that powers the Teleporter Array has been destroyed! The Array is no longer functional."))
+		return
+	if(teleporter_status == TELEPORTER_ARRAY_IN_USE)
+		to_chat(controller, span_warning("The Teleporter Array is already running!"))
+		return
+	if(!charges)
+		to_chat(controller, span_warning("The Teleporter Array is not currently available for our use."))
+		return
 	if(!target_turf)
-		target_turf = get_ranged_target_turf(src, SOUTH, 7) //testing tool
+		to_chat(controller, span_warning("The Teleporter Array Has no destination set."))
+		return
+
+	visible_message(span_danger("Teleporter Array activated. Destination: [target_turf.loc]."))
 	var/list/turf/turfs_affected = list()
 	var/turf/central_turf = get_turf(src)
 	for(var/turf/affected_turf in RANGE_TURFS(range, central_turf))
 		turfs_affected += affected_turf
 		affected_turf.add_filter("wraith_magic", 2, drop_shadow_filter(color = "#031025aa", size = -10))
-	//succeed_activate()
-	//add_cooldown()
+
+	teleporter_status = TELEPORTER_ARRAY_IN_USE
 	addtimer(CALLBACK(src, PROC_REF(do_startup)), windup - 1.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(do_teleport), turfs_affected), windup)
 	playsound(src, 'sound/magic/lightning_chargeup.ogg', 75) //tele charge sound
-	visible_message(span_danger("You feel a vibration build in the air as the teleporter array comes to life."))
+	charges --
 
 ///Visual indicators for the teleporter about to fire
 /obj/structure/teleporter_array/proc/do_startup()
 	new /obj/effect/temp_visual/teleporter_array(get_turf(src))
+	visible_message(span_danger("You feel a vibration build in the air as the teleporter array comes to life."))
 
 ///does the actual teleport
 /obj/structure/teleporter_array/proc/do_teleport(list/turf/turfs_affected)
+	teleporter_status = TELEPORTER_ARRAY_READY
+
 	if(!target_turf)
 		return
+
 	var/list/destination_mobs = cheap_get_living_near(target_turf, 7)
 	for(var/mob/living/victim AS in destination_mobs)
 		victim.adjust_stagger(2)
@@ -124,7 +150,6 @@
 	. = ..()
 	var/obj/structure/teleporter_array/teleporter = target
 	teleporter.activate()
-	teleporter.visible_message(span_danger("Teleporter array activated. Destination: [teleporter.target_turf.loc]."))
 
 /datum/action/innate/set_teleport_target
 	name = "Set teleportation target"
@@ -141,6 +166,9 @@
 /datum/action/innate/set_teleport_target/Activate()
 	. = ..()
 	var/obj/structure/teleporter_array/teleporter = target
+	if(!teleporter.targetted_zlevel)
+		to_chat(owner, span_danger("No active combat zone detected."))
+		return
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(teleporter.targetted_zlevel, GLOB.faction_to_minimap_flag[owner.faction])
 	owner.client.screen += map
 	choosing = TRUE

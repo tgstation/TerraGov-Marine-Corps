@@ -275,7 +275,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	plane = GRAVITY_PULSE_PLANE
 	duration = 15
 
-/obj/effect/temp_visual/blink_drive/Initialize(mapload)
+/obj/effect/temp_visual/teleporter_array/Initialize(mapload)
 	. = ..()
 	var/image/I = image(icon, src, icon_state, 10, pixel_x = -144, pixel_y = -144)
 	overlays += I //we use an overlay so the icon and light source are both in the correct location
