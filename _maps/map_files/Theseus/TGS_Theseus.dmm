@@ -9319,17 +9319,6 @@
 /obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
-"eMT" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/cic)
 "eNZ" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship{
@@ -10069,6 +10058,7 @@
 	pixel_y = 3
 	},
 /obj/item/storage/firstaid/adv,
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "fZA" = (
@@ -36898,7 +36888,7 @@ aap
 acg
 inF
 cKR
-eMT
+seI
 fZc
 hjX
 inF
