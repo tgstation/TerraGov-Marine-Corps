@@ -20060,7 +20060,7 @@
 /turf/open/floor/mainship/purple/full,
 /area/mainship/hallways/hangar)
 "xjo" = (
-/obj/structure/dropship_equipment/mg_holder,
+/obj/structure/dropship_equipment/weapon_holder/machinegun,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xjw" = (

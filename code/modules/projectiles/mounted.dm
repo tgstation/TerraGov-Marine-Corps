@@ -126,6 +126,7 @@
 	if(!user.Move(loc)) //Move instead of forcemove to ensure we can actually get to the object's turf
 		density = initial(density)
 		return
+	density = initial(density)
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)

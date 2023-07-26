@@ -2283,7 +2283,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bEy" = (
-/obj/structure/dropship_equipment/mg_holder,
+/obj/structure/dropship_equipment/weapon_holder/machinegun,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bOe" = (

@@ -14208,7 +14208,7 @@
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "PB" = (
-/obj/structure/dropship_equipment/mg_holder,
+/obj/structure/dropship_equipment/weapon_holder/machinegun,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "PC" = (

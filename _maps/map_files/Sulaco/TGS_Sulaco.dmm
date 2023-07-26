@@ -18721,7 +18721,7 @@
 /area/sulaco/maintenance/lower_maint2)
 "mRR" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/mg_holder,
+/obj/structure/dropship_equipment/weapon_holder/machinegun,
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},

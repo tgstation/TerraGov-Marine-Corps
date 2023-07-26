@@ -24083,7 +24083,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/structure/dropship_equipment/mg_holder,
+/obj/structure/dropship_equipment/weapon_holder/machinegun,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "spd" = (

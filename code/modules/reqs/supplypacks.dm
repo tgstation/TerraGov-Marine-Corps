@@ -1753,23 +1753,34 @@ VEHICLES
 
 /datum/supply_packs/vehicles/mounted_hsg
 	name = "Mounted HSG"
-	contains = list(/obj/structure/dropship_equipment/mg_holder)
+	contains = list(/obj/structure/dropship_equipment/weapon_holder/machinegun)
 	cost = 500
+
+/datum/supply_packs/vehicles/minigun_nest
+	name = "Mounted Minigun"
+	contains = list(/obj/structure/dropship_equipment/weapon_holder/minigun)
+	cost = 750
 
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Mounted Heavy Laser"
-	contains = list(/obj/structure/dropship_equipment/heavylaser_holder)
+	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavylaser)
 	cost = 900
 
 /datum/supply_packs/vehicles/mounted_rr
 	name = "Mounted Heavy Recoilless Rifle"
-	contains = list(/obj/structure/dropship_equipment/heavy_rr_holder)
+	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavy_rr)
 	cost = 1800
 
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Mounted HSG ammo"
 	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
 	cost = 100
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/minigun_ammo
+	name = "Mounted Minigun ammo"
+	contains = list(/obj/item/ammo_magazine/heavy_minigun)
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/hl_ammo
