@@ -619,7 +619,7 @@
 ///Standard stagger regen called by life.dm
 /mob/living/proc/handle_stagger()
 	if(stagger)
-		adjust_stagger(-1)
+		adjust_stagger(stagger_recovery_rate)
 	return stagger
 
 ///Where the magic happens. Actually applies stagger stacks.
@@ -681,12 +681,12 @@
 /mob/living/proc/add_slowdown(amount, capped = 0)
 	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
 		return
-	adjust_slowdown(amount * STANDARD_SLOWDOWN_REGEN)
+	adjust_slowdown(amount * slowdown_recovery_rate)
 
 ///Standard slowdown regen called by life.dm
 /mob/living/proc/handle_slowdown()
 	if(slowdown)
-		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
+		adjust_slowdown(slowdown_recovery_rate)
 	return slowdown
 
 /mob/living/carbon/xenomorph/add_slowdown(amount)

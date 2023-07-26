@@ -282,6 +282,8 @@
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
+	stagger_recovery_rate = -3
+	slowdown_recovery_rate = -0.6
 
 	var/hivenumber = XENO_HIVE_NORMAL
 

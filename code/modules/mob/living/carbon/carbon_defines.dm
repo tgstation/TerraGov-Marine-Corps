@@ -1,6 +1,7 @@
 /mob/living/carbon
 	gender = MALE
 	buckle_flags = CAN_BE_BUCKLED|BUCKLE_PREVENTS_PULL
+	stagger_recovery_rate = -2
 	///Contains icon generation and language information, set during New().
 	var/datum/species/species
 	///The amount of life ticks that have processed on this mob.
