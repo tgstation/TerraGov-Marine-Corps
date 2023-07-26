@@ -1962,6 +1962,15 @@
 	. = ..()
 	icon_state = "camera1"
 
+/obj/structure/prop/computer
+	icon = 'icons/obj/machines/computer.dmi'
+
+/obj/structure/prop/computer/tadpole
+	name = "Tadpole navigation computer"
+	desc = "Used to designate a precise transit location for the Tadpole."
+	icon_state = "shuttlecomputer"
+	resistance_flags = RESIST_ALL
+
 /obj/structure/prop/computer/broken
 	name = "broken computer"
 	desc = "A busted PC, the internals look fried, there's no fixing this one."
