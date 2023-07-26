@@ -320,3 +320,22 @@
   - balance: Theseus' SD walls are not Outer Hull anymore
   yyzsong:
   - qol: Valhalla seasonal vendor is now separated into tabs!
+2023-07-26:
+  Lumipharon:
+  - bugfix: Fixed autoburst not correctly resetting shots fired between bursts
+  - bugfix: Robots (and synths) no longer sleep
+  Mrrpip:
+  - rscadd: 16G ammo boxes have arrived, now you'll get to use more shotgun in your
+      autoshotgun!
+  - imageadd: The SH-15 slug mag is now green.
+  TiviPlus:
+  - rscadd: Added Bulwark ability to queen
+  - rscadd: Xenos have tts now
+  - rscadd: You can set your TTS voice pitch now
+  - rscadd: Robot and vending/roomba vocies have been updated
+  - code_imp: misc tts backend improvements
+  ivanmixo:
+  - bugfix: Fixed readying up bypassing exp requirements
+  - config: Added the missing exp flags to the default config
+  lbnesquik:
+  - bugfix: fixed some areas strangely lacking camera coverage on POS.
