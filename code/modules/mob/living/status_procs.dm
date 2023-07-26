@@ -613,41 +613,50 @@
 ////////////////////////////// STAGGER ////////////////////////////////////
 
 ///Returns number of stagger stacks if any
-/mob/living/proc/IsStaggered() //If we're staggered
-	return stagger
+/mob/living/proc/IsStaggered()
+	return has_status_effect(STATUS_EFFECT_STAGGER)
 
-///Standard stagger regen called by life.dm
-/mob/living/proc/handle_stagger()
-	if(stagger)
-		adjust_stagger(-1)
-	return stagger
+///Used to set stagger to a set amount, commonly to remove stagger
+/mob/living/proc/set_stagger(amount, ignore_canstun = FALSE)
+	var/datum/status_effect/incapacitating/stagger/current_stagger = IsStaggered()
+	if(amount <= 0 && current_stagger)
+		qdel(current_stagger)
+		return
+
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STAGGER, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if((!(status_flags & CANSTUN) || HAS_TRAIT(src, TRAIT_STAGGERIMMUNE)) && !ignore_canstun)
+		return
+
+	if(absorb_stun(amount, ignore_canstun))
+		return
+	if(current_stagger)
+		current_stagger.duration = world.time + amount
+	else
+		current_stagger = apply_status_effect(STATUS_EFFECT_STAGGER, amount)
+
+	return current_stagger
 
 ///Where the magic happens. Actually applies stagger stacks.
-/mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE, capped = 0)
-	if(amount == 0)
+/mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE, capped = 0) //Adds to remaining duration
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STAGGER, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if((!(status_flags & CANSTUN) || HAS_TRAIT(src, TRAIT_STAGGERIMMUNE)) && !ignore_canstun)
 		return
 
-	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+	var/datum/status_effect/incapacitating/stagger/current_stagger = IsStaggered()
+	if(absorb_stun(amount, ignore_canstun))
 		return
+	if(current_stagger)
+		current_stagger.duration += amount
+	else
+		current_stagger = apply_status_effect(STATUS_EFFECT_STAGGER, amount)
 
-	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN) //Stun immunity also provides immunity to its lesser cousin stagger
-		return
-
-	if(capped)
-		stagger = clamp(stagger + amount, 0, capped)
-		return stagger
-
-	set_stagger(max(stagger + amount,0))
-	return stagger
-
-///Used to set stagger to a set number
-/mob/living/proc/set_stagger(amount)
-	if(stagger == amount)
-		return
-	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
-		return
-	stagger = max(amount, 0)
-	SEND_SIGNAL(src, COMSIG_LIVING_STAGGER_CHANGED, stagger)
+	return current_stagger
 
 ////////////////////////////// SLOW ////////////////////////////////////
 

@@ -16,6 +16,21 @@
 		duration = set_duration
 	return ..()
 
+//STAGGERED
+/datum/status_effect/incapacitating/stagger
+	id = "paralyzed"
+
+/datum/status_effect/incapacitating/stagger/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_STAGGERED, TRAIT_STATUS_EFFECT(id))
+	SEND_SIGNAL(owner, COMSIG_LIVING_STAGGER_APPLIED, duration)
+
+/datum/status_effect/incapacitating/stagger/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_STAGGERED, TRAIT_STATUS_EFFECT(id))
+	SEND_SIGNAL(owner, COMSIG_LIVING_STAGGER_REMOVED, duration)
+
 //STUN
 /datum/status_effect/incapacitating/stun
 	id = "stun"

@@ -38,7 +38,7 @@
 		to_chat(src, span_xenowarning("We're too tired to savage right now."))
 		return
 
-	if(stagger)
+	if(IsStaggered())
 		to_chat(src, span_xenodanger("We're too disoriented from the shock to savage!"))
 		return
 

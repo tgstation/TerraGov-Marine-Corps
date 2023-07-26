@@ -451,7 +451,8 @@
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
-		COMSIG_LIVING_STAGGER_CHANGED,))
+		COMSIG_LIVING_STAGGER_APPLIED,
+		COMSIG_LIVING_STAGGER_REMOVED,))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user.hud_used.remove_ammo_hud(src)
@@ -469,7 +470,8 @@
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
-		COMSIG_LIVING_STAGGER_CHANGED), PROC_REF(setup_bullet_accuracy))
+		COMSIG_LIVING_STAGGER_APPLIED,
+		COMSIG_LIVING_STAGGER_REMOVED), PROC_REF(setup_bullet_accuracy))
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(flags_gun_features & GUN_AMMO_COUNTER)
 		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
@@ -1748,7 +1750,7 @@
 			gun_accuracy_mod += living_user.ranged_accuracy_mod
 			gun_scatter += living_user.ranged_scatter_mod
 
-			if(living_user.stagger)
+			if(living_user.IsStaggered())
 				gun_scatter += 5
 
 		if(ishuman(gun_user))

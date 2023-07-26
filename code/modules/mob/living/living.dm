@@ -18,7 +18,6 @@
 
 	handle_drugged()
 	handle_slowdown()
-	handle_stagger()
 
 ///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
 /mob/living/proc/finish_aura_cycle()

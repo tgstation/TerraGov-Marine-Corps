@@ -486,7 +486,8 @@
 #define COMSIG_LIVING_STATUS_SLOWDOWN "living_slowdown"			//from base of mob/living/set_slowdown() (amount, update)
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
 
-#define COMSIG_LIVING_STAGGER_CHANGED "living_stagger_changed"
+#define COMSIG_LIVING_STAGGER_APPLIED "living_stagger_applied"
+#define COMSIG_LIVING_STAGGER_REMOVED "living_stagger_removed"
 
 ///from end of fully_heal(): (admin_revive)
 #define COMSIG_LIVING_POST_FULLY_HEAL "living_post_fully_heal"

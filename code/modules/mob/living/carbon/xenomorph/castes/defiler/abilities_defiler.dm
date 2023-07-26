@@ -207,7 +207,7 @@
 	add_cooldown()
 	succeed_activate()
 
-	if(X.stagger) //If we got staggered, return
+	if(X.IsStaggered()) //If we got staggered, return
 		to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
 		return fail_activate()
 
@@ -239,7 +239,7 @@
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
 				emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(defiler_owner)
 
-	if(defiler_owner.stagger) //If we got staggered, return
+	if(defiler_owner.IsStaggered()) //If we got staggered, return
 		to_chat(defiler_owner, span_xenowarning("We try to emit toxins but are staggered!"))
 		toggle_particles(FALSE)
 		return
