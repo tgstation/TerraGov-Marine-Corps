@@ -320,3 +320,12 @@
   - balance: Theseus' SD walls are not Outer Hull anymore
   yyzsong:
   - qol: Valhalla seasonal vendor is now separated into tabs!
+2023-07-26:
+  Lumipharon:
+  - bugfix: Robots (and synths) no longer sleep
+  Mrrpip:
+  - rscadd: 16G ammo boxes have arrived, now you'll get to use more shotgun in your
+      autoshotgun!
+  - imageadd: The SH-15 slug mag is now green.
+  TiviPlus:
+  - rscadd: Added Bulwark ability to queen
