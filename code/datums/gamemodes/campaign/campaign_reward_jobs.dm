@@ -38,7 +38,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist
-	shoes = /obj/item/clothing/shoes/marine/militia/full
+	shoes = /obj/item/clothing/shoes/marine/clf/full
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/strawhat
@@ -207,7 +207,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	ears = /obj/item/radio/headset/distress/dutch
 	head = /obj/item/clothing/head/tgmcberet/bloodred
 	w_uniform = /obj/item/clothing/under/colonist
-	shoes = /obj/item/clothing/shoes/marine/militia/full
+	shoes = /obj/item/clothing/shoes/marine/clf/full
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
 	gloves = /obj/item/clothing/gloves/black
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -311,7 +311,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist/webbing
-	shoes = /obj/item/clothing/shoes/black
+	shoes = /obj/item/clothing/shoes/marine/clf/full
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/militia
