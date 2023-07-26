@@ -149,8 +149,8 @@
 ///Mission start proper
 /datum/campaign_mission/proc/start_mission()
 	SHOULD_CALL_PARENT(TRUE)
-	START_PROCESSING(SSslowprocess, src) //this may be excessive
 	send_global_signal(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE)
+	START_PROCESSING(SSslowprocess, src) //this may be excessive
 	play_start_intro()
 
 	if(max_game_time)
@@ -161,11 +161,11 @@
 ///Mission end wrap up
 /datum/campaign_mission/proc/end_mission()
 	SHOULD_CALL_PARENT(TRUE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 	STOP_PROCESSING(SSslowprocess, src)
 	mission_state = MISSION_STATE_FINISHED
 	apply_outcome() //figure out where best to put this
 	play_outro()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 	mode.end_current_mission()
 
 ///Intro when the mission is selected
