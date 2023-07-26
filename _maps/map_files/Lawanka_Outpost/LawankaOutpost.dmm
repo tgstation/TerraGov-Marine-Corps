@@ -539,6 +539,7 @@
 /area/lawankaoutpost/caves/northwest)
 "axz" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 6
 	},
@@ -764,6 +765,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/northwest/garbledradio)
+"aFz" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/lawankaoutpost/colony/biologics_storage)
 "aGa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -1012,6 +1020,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
 /area/lawankaoutpost/colony/operations_kitchen)
+"aRE" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/outside/north)
 "aSo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -1233,6 +1246,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 10
 	},
@@ -1276,6 +1290,14 @@
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 1
 	},
+/area/lawankaoutpost/colony/biologics)
+"bct" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
 /area/lawankaoutpost/colony/biologics)
 "bcv" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -4145,6 +4167,12 @@
 	dir = 4
 	},
 /area/lawankaoutpost/caves/nanotrasen_lab)
+"dCL" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/lawankaoutpost/colony/biologics_storage)
 "dDc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -4854,9 +4882,6 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/central)
 "ehP" = (
-/obj/machinery/power/apc/drained{
-	crash_break_probability = 100
-	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -5251,6 +5276,9 @@
 /area/lawankaoutpost/colony/hydroponics)
 "ezD" = (
 /obj/effect/landmark/corpsespawner/scientist/burst,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/biologics_storage)
 "ezE" = (
@@ -6002,6 +6030,12 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/west)
+"fhN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/lawankaoutpost/colony/biologics_storage)
 "fif" = (
 /obj/item/ammo_casing/bullet,
 /obj/effect/landmark/weed_node,
@@ -6744,6 +6778,14 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/central)
+"fIX" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lawankaoutpost/colony/biologics_storage)
 "fJa" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/greentaupe{
@@ -6922,6 +6964,12 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/engineering)
+"fPS" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lawankaoutpost/colony/biologics_storage)
 "fQo" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/effect/landmark/weed_node,
@@ -8008,6 +8056,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -11555,6 +11604,13 @@
 "jRb" = (
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/colony/hydroponics)
+"jRm" = (
+/obj/machinery/door/airlock/multi_tile/research{
+	name = "\improper Biological Research Facility"
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/lawankaoutpost/colony/biologics)
 "jRH" = (
 /obj/structure/table,
 /obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
@@ -16042,13 +16098,9 @@
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzoneone)
 "nGg" = (
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
-	},
-/area/lawankaoutpost/colony/atmos)
+/obj/structure/cable,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/outside/north)
 "nGs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/scientist,
@@ -20120,6 +20172,7 @@
 /area/lawankaoutpost/colony/marshalls)
 "qYO" = (
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
 	},
@@ -20385,6 +20438,17 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
+"riH" = (
+/obj/machinery/door/airlock/multi_tile/research{
+	name = "\improper Biological Research Facility";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/lawankaoutpost/colony/biologics)
 "riL" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark2,
@@ -24201,6 +24265,13 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/northwest)
+"usE" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
+	},
+/area/lawankaoutpost/colony/biologics)
 "usL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24251,6 +24322,7 @@
 /area/lawankaoutpost/outside/south)
 "uva" = (
 /obj/item/stack/sheet/metal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/biologics_storage)
 "uvE" = (
@@ -25536,6 +25608,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -26086,6 +26159,10 @@
 	dir = 1
 	},
 /area/lawankaoutpost/caves/nanotrasen_lab)
+"vWW" = (
+/obj/structure/cable,
+/turf/open/floor,
+/area/lawankaoutpost/colony/biologics)
 "vXb" = (
 /obj/machinery/light{
 	dir = 1
@@ -26441,6 +26518,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/engineering)
+"whK" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lawankaoutpost/colony/biologics_storage)
 "whX" = (
 /obj/machinery/vending/cola,
 /turf/open/floor,
@@ -58043,8 +58124,8 @@ ezD
 lvL
 mcj
 mcj
-mcj
-wwj
+fhN
+fIX
 jTQ
 sVx
 jGj
@@ -58261,7 +58342,7 @@ djJ
 cwe
 veS
 amA
-mcj
+whK
 jTQ
 gNZ
 gNZ
@@ -58478,16 +58559,16 @@ mcj
 wwj
 oMX
 mcj
-mcj
+whK
 jTQ
 gNZ
-oTk
-oTk
-oTk
-oTk
-oTk
-rvH
-xOL
+nGg
+nGg
+nGg
+nGg
+nGg
+jRm
+vWW
 qYO
 bav
 xOL
@@ -58695,10 +58776,10 @@ amA
 veS
 amA
 veS
-mcj
+whK
 jTQ
 hkA
-oTk
+nGg
 oTk
 qpe
 oTk
@@ -58912,10 +58993,10 @@ mcj
 wwj
 oNy
 lvL
-wwj
+fPS
 uva
-oTk
-vEg
+nGg
+aRE
 oTk
 gNZ
 gNZ
@@ -58923,7 +59004,7 @@ gNZ
 qsS
 tyo
 qBj
-fKv
+bct
 vDv
 qsS
 ngy
@@ -59140,7 +59221,7 @@ sVx
 qsS
 qsS
 xOL
-gqU
+riH
 qsS
 qsS
 sVx
@@ -59575,8 +59656,8 @@ qsS
 myO
 kcB
 gJW
-wTM
-wTM
+usE
+usE
 kXU
 ivF
 qsS
@@ -59775,11 +59856,11 @@ xGW
 xGW
 xGW
 jTQ
+dCL
 mcj
 mcj
 mcj
-mcj
-wwj
+aFz
 mcj
 jTQ
 sVx
@@ -61354,7 +61435,7 @@ sVS
 gRA
 kqg
 rUT
-nGg
+bYx
 gRA
 bia
 tKJ

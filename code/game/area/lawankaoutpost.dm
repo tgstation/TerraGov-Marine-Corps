@@ -7,6 +7,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 /area/lawankaoutpost/caves/rock
 	name = "Enclosed Area"
@@ -29,6 +30,7 @@
 /area/lawankaoutpost/caves/nukestorage
 	name = "Nuclear Storage"
 	icon_state = "nuke_storage"
+	always_unpowered = FALSE
 
 /area/lawankaoutpost/caves/southwest
 	name = "Southwestern Caves"
@@ -48,12 +50,14 @@
 	name = "ETA Research Lab"
 	icon_state = "research"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+	always_unpowered = FALSE
 
 /area/lawankaoutpost/outside
 	name = "Colony Grounds"
 	icon_state = "green"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_JUNGLE
+	always_unpowered = TRUE
 
 /area/lawankaoutpost/outside/northwest
 	name = "Northwestern Colony"
