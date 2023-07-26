@@ -358,13 +358,14 @@
 		return
 
 	. += "System integrity: [(health + 100) / 2]%"
-	. += "<BR>- Operation information - <BR>"
+	. += ""
+	. += "- Operation information -"
 	. += "Current orbit: [GLOB.current_orbit]"
 
 	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
-		. += "<b>Orbital bombardment status:</b> <font color='red'>No ammo chambered in the cannon.</font><br>"
+		. += "Orbital bombardment status: No ammo chambered in the cannon."
 	else
-		. += "Orbital bombardment warhead: [GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>"
+		. += "Orbital bombardment warhead: [GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected"
 
 	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
 

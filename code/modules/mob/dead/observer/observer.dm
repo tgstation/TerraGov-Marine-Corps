@@ -339,11 +339,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(SSticker.mode)
 		var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
 		if(rulerless_countdown)
-			. += "<b>Orphan hivemind collapse timer:</b> [rulerless_countdown]"
+			. += "Orphan hivemind collapse timer: [rulerless_countdown]"
 	if(GLOB.respawn_allowed)
 		status_value = (GLOB.key_to_time_of_role_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
 		if(status_value <= 0)
-			. += "Respawn timer: <b>READY</b>"
+			. += "Respawn timer: READY"
 		else
 			. += "Respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
 		if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
@@ -356,14 +356,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	//game end timer for patrol and sensor capture
 	var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
 	if(patrol_end_countdown)
-		. += "<b>Round End timer:</b> [patrol_end_countdown]"
+		. += "Round End timer: [patrol_end_countdown]"
 	//respawn wave timer
 	var/patrol_wave_countdown = SSticker.mode?.wave_countdown()
 	if(patrol_wave_countdown)
-		. += "<b>Respawn wave timer:</b> [patrol_wave_countdown]"
+		. += "Respawn wave timer: [patrol_wave_countdown]"
 	var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
 	if(issensorcapturegamemode(SSticker.mode))
-		. += "<b>Activated Sensor Towers:</b> [sensor_mode.sensors_activated]"
+		. += "Activated Sensor Towers: [sensor_mode.sensors_activated]"
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"

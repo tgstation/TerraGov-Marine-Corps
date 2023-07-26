@@ -165,7 +165,7 @@
 	if(hivenumber == XENO_HIVE_NORMAL)
 		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 		if(hivemind_countdown)
-			. += "<b>Orphan hivemind collapse timer:</b> [hivemind_countdown]"
+			. += "Orphan hivemind collapse timer: [hivemind_countdown]"
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
