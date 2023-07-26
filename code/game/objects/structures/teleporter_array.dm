@@ -1,8 +1,8 @@
 /obj/structure/teleporter_array
 	name = "TELEPORTER"
 	desc = "PLACEHOLDER."
-	icon = 'icons/obj/structures/sensor.dmi'
-	icon_state = "sensor" //placeholder
+	icon = 'icons/Marine/teleporter.dmi'
+	icon_state = "teleporter"
 	obj_flags = NONE
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
