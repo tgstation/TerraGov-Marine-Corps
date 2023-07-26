@@ -1,7 +1,3 @@
-#define TELEPORTER_ARRAY_INOPERABLE "teleporter_array_inoperable"
-#define TELEPORTER_ARRAY_READY "teleporter_array_ready"
-#define TELEPORTER_ARRAY_IN_USE "teleporter_array_in_use"
-
 /obj/structure/teleporter_array
 	name = "TELEPORTER"
 	desc = "PLACEHOLDER."
@@ -107,11 +103,16 @@
 	visible_message(span_danger("You feel a vibration build in the air as the teleporter array comes to life."))
 
 ///does the actual teleport
-/obj/structure/teleporter_array/proc/do_teleport(list/turf/turfs_affected)
+/obj/structure/teleporter_array/proc/do_teleport(list/turfs_affected)
+	if(teleporter_status == TELEPORTER_ARRAY_INOPERABLE)
+		return cleanup(turfs_affected)
+
 	teleporter_status = TELEPORTER_ARRAY_READY
 
 	if(!target_turf)
-		return
+		return cleanup(turfs_affected)
+
+	cleanup(turfs_affected)
 
 	var/list/destination_mobs = cheap_get_living_near(target_turf, 7)
 	for(var/mob/living/victim AS in destination_mobs)
@@ -125,7 +126,6 @@
 
 	var/list/exit_turfs = RANGE_TURFS(range, target_turf)
 	for(var/turf/affected_turf AS in turfs_affected)
-		affected_turf.remove_filter("wraith_magic")
 		for(var/atom/movable/AM AS in affected_turf)
 			if(AM.anchored)
 				continue
@@ -140,6 +140,10 @@
 				victim.gib()
 		exit_turfs -= exit_turfs[1]
 
+///cleans up teleport effects
+/obj/structure/teleporter_array/proc/cleanup(list/turfs_affected)
+	for(var/turf/affected_turf AS in turfs_affected)
+		affected_turf.remove_filter("wraith_magic")
 
 /datum/action/innate/activate_teleporter
 	name = "Activate teleporter array"

@@ -210,6 +210,18 @@
 	detailed_desc = "Damage to our supply lines have increased the difficulty and time required to move men and materiel, resulting in a lower deployment of combat forces."
 	attrition_mod = -0.2
 
+/datum/campaign_reward/teleporter_disabled
+	name = "Teleporter Array disabled"
+	desc = "Teleporter Array has been permenantly disabled"
+	detailed_desc = "The Bluespace drive powering all Teleporter Arrays in the conflict zone has been destroyed, rending all Teleporter Arrays inoperable. You'll have to deploy the old fashion way from here on out."
+
+/datum/campaign_reward/teleporter_disabled/immediate_effect()
+	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
+		if(teleporter.faction != faction.faction)
+			continue
+		teleporter.teleporter_status = TELEPORTER_ARRAY_INOPERABLE
+		to_chat(faction.faction_leader, span_warning("The Teleporter Array has been rendered inoperable."))
+		return
 
 /datum/campaign_reward/teleporter_charges
 	name = "Delegated Teleporter Array access"
@@ -227,4 +239,4 @@
 			continue
 		teleporter.charges ++
 		to_chat(faction.faction_leader, span_warning("An additional activation of the Teleporter Array is now ready for use."))
-		return //you didn't add multiple teleporters, right?
+		return
