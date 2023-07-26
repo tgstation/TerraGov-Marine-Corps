@@ -151,6 +151,9 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 25, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = 15, ACID = 100)
 
+	// *** Ranged Attack *** //
+	charge_type = CHARGE_TYPE_MEDIUM
+
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -159,4 +162,5 @@
 		/datum/action/xeno_action/spawn_pod,
 		/datum/action/xeno_action/select_reagent/baneling,
 		/datum/action/xeno_action/baneling_explode,
+		/datum/action/xeno_action/activable/dash_explosion,
 	)
