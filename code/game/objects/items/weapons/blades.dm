@@ -223,7 +223,7 @@
 	item_state = "vali_knife"
 	force = 25
 	throwforce = 15
-	codex_info = {"<b>Reagent info:</b><BR>
+	var/codex_info = {"<b>Reagent info:</b><BR>
 	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
 	Kelotane - set your target and any adjacent mobs aflame<BR>
 	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
