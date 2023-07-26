@@ -272,6 +272,10 @@
 		var/msg = "My [org.display_name] is [status]. [treat]"
 		final_msg += status=="OK" ? span_notice(msg) : span_warning (msg)
 
+	for(var/datum/limb/org AS in limbs)
+		if(org.limb_status & LIMB_BLEEDING)
+			final_msg += "[span_warning("You are bleeding from your <b>[org.display_name]</b>!")]"
+
 	switch(staminaloss)
 		if(1 to 30)
 			final_msg += span_info("You feel fatigued.")
