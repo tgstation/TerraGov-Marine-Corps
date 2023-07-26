@@ -62,6 +62,7 @@
 	desc = "The R-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	icon_state = "tp44"
 	item_state = "tp44"
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r44.ogg'
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
@@ -299,7 +300,7 @@
 	windup_delay = 0.5 SECONDS
 	aim_slowdown = 0.1
 	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
-	fire_sound = 'sound/weapons/guns/fire/t76.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r76.ogg'
 	fire_delay = 0.75 SECONDS
 	akimbo_additional_delay = 0.6
 	accuracy_mult_unwielded = 0.85
