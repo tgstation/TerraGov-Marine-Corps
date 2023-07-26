@@ -62,6 +62,12 @@
 	QDEL_NULL(tadmap)
 	return ..()
 
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/update_icon_state()
+	if(damaged)
+		icon_state = "shuttlecomputerb"
+	else
+		icon_state = "shuttlecomputer"
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/CreateEye()
 	. = ..()
 	tadmap.override_locator(eyeobj)
@@ -192,6 +198,7 @@
 	damaged = TRUE
 	open_prompt = FALSE
 	clean_ui_user()
+	update_icon()
 
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE && last_valid_ground_port)
 		visible_message("Autopilot detects loss of helm control. INITIATING EMERGENCY LANDING!")
