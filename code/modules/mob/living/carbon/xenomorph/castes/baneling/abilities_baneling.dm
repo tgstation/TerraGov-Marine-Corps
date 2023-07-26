@@ -126,7 +126,7 @@
 	///How far can we charge
 	var/range = 6
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION,
 	)
 
 /datum/action/xeno_action/activable/dash_explosion/use_ability(atom/A)

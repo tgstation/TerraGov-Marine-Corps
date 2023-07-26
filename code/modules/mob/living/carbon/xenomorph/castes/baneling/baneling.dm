@@ -74,4 +74,4 @@
 /obj/structure/xeno/baneling_pod/proc/spawn_baneling(datum/source)
 	var/mob/living/carbon/xenomorph/xeno_ref = source
 	xeno_ref.forceMove(get_turf(loc))
-	xeno_ref.revive()
+	xeno_ref.heal_overall_damage(xeno_ref.maxHealth, xeno_ref.maxHealth, updating_health = TRUE)
