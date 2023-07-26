@@ -115,75 +115,14 @@
 		bonus_job.add_job_positions(bonus_job_list[job_type])
 
 /datum/campaign_reward/bonus_job/colonists
+	name = "Colonial militia support"
+	desc = "A colonial militia squad to augment our forces"
+	detailed_desc = "A local colonial militia sympathetic to our cause has offered a squad to support our troops. Although equipped with lesser arms and armor than our own troops, the free reinforcements are a valuable resource."
 	bonus_job_list = list(
-		/datum/job/som/mercenary/clf = 3,
+		/datum/job/som/mercenary/militia/leader = 1,
+		/datum/job/som/mercenary/militia/medic = 2,
+		/datum/job/som/mercenary/militia/standard = 7,
 	)
-
-
-////test use only//////////
-//CLF recruit
-/datum/job/som/mercenary/clf
-	title = "Colonial militant"
-	paygrade = "CLF1"
-	comm_title = "CLF"
-	skills_type = /datum/skills/fo
-	outfit = /datum/outfit/job/som/mercenary/clf
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	html_description = {"
-		<b>Difficulty</b>:Very Hard<br /><br />
-		<b>You answer to the</b> commanding officer<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
-		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you will need for the mission, keep good relations between command and the marines. Assist your commander if available.
-	"}
-	minimap_icon = "som_fieldcommander"
-	job_cost = 0
-
-/datum/job/som/mercenary/clf/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"blah blah blah"}) //update
-
-/datum/outfit/job/som/mercenary/clf
-	name = "CLF Standard"
-	jobtype = /datum/job/som/mercenary/clf
-
-	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/dutch
-	w_uniform = /obj/item/clothing/under/colonist
-	shoes = /obj/item/clothing/shoes/marine/clf/full
-	wear_suit = /obj/item/clothing/suit/storage/faction/militia
-	belt = /obj/item/storage/belt/knifepouch
-	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
-	gloves = /obj/item/clothing/gloves/black
-	head = /obj/item/clothing/head/strawhat
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pill_bottle/zoom
-	back = /obj/item/storage/backpack/lightpack
-
-
-/datum/outfit/job/som/mercenary/clf/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
-
-////test use only////////
 
 //Parent for all passive attrition modifiers
 /datum/campaign_reward/attrition_modifier
