@@ -217,12 +217,18 @@
 	f_style = "Shaved"
 	if(ishumanbasic(src))
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
-	if(gender == MALE)
-		underwear = GLOB.underwear_m.Find("None")
-		undershirt = GLOB.undershirt_m.Find("None")
-	else
-		underwear = GLOB.underwear_f.Find("None")
-		undershirt = GLOB.undershirt_f.Find("None")
+	switch(gender)
+		if(MALE)
+			underwear = GLOB.underwear_m.Find("None")
+			undershirt = GLOB.undershirt_m.Find("None")
+		if(FEMALE)
+			underwear = GLOB.underwear_f.Find("None")
+			undershirt = GLOB.undershirt_f.Find("None")
+		else
+			underwear = GLOB.underwear_n.Find("None")
+			undershirt = GLOB.undershirt_n.Find("None")
+
+
 	regenerate_icons()
 
 
