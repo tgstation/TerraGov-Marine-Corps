@@ -149,7 +149,7 @@
 		/obj/item/toy/plush/gnome,
 	)
 
-/obj/effect/spawner/random/misc/gnome/fithyfithy
+/obj/effect/spawner/random/misc/gnome/fiftyfifty
 	spawn_loot_chance = 50
 
 /obj/effect/spawner/random/misc/plant

@@ -6016,7 +6016,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
 	},
-/obj/effect/spawner/random/misc/gnome/fithyfithy,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "aFh" = (
@@ -6886,6 +6886,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "aKU" = (
@@ -13800,7 +13801,7 @@
 /area/sulaco/medbay/cmo)
 "gUR" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/spawner/random/misc/gnome/fithyfithy,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
 "gVp" = (
@@ -23889,7 +23890,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/engine)
 "tBY" = (
-/obj/effect/spawner/random/misc/gnome/fithyfithy,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "tCl" = (

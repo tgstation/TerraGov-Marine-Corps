@@ -1627,6 +1627,7 @@
 /area/mainship/medical/medical_science)
 "avy" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
 "avz" = (
@@ -17771,6 +17772,7 @@
 "sXw" = (
 /obj/machinery/computer/orbital_cannon_console,
 /obj/structure/bed/chair/ob_chair,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_point_defense)
 "sYp" = (
@@ -18481,11 +18483,6 @@
 /obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"umn" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/mainship/ai,
-/area/mainship/command/airoom)
 "umS" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -20614,6 +20611,7 @@
 /obj/machinery/door/window/secure/bridge/aidoor{
 	dir = 8
 	},
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
 "ycL" = (
@@ -69546,7 +69544,7 @@ vXq
 tBH
 vXq
 vXq
-umn
+rhS
 tNX
 qEl
 vtE

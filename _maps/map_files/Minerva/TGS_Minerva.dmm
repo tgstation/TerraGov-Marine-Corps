@@ -4420,7 +4420,6 @@
 /area/mainship/hull/port_hull)
 "na" = (
 /obj/machinery/holopad,
-/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/airoom)
 "nb" = (
@@ -16982,6 +16981,7 @@
 /obj/structure/window/reinforced/extratoughened{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "XZ" = (

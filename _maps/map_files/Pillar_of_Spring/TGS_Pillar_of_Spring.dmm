@@ -2854,6 +2854,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "dzT" = (
@@ -3106,7 +3107,7 @@
 "dRR" = (
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
 /obj/structure/benchpress,
-/obj/effect/spawner/random/misc/gnome/fithyfithy,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "dSL" = (
@@ -5408,7 +5409,7 @@
 /obj/structure/bed/stool{
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/misc/gnome/fithyfithy,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "gZv" = (
@@ -14204,7 +14205,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "shm" = (
-/obj/effect/spawner/random/misc/gnome/fithyfithy,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "shx" = (
@@ -15175,6 +15176,7 @@
 /obj/structure/window/reinforced/extratoughened{
 	dir = 8
 	},
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "tuS" = (
@@ -16393,6 +16395,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/item/clothing/mask/gas/icc,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "uPl" = (
