@@ -266,6 +266,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			new /obj/effect/forcefield/fog(T)
 			stoplag()
 
+///respawns the player, overrides verb respawn behavior as required
+/datum/game_mode/proc/player_respawn(mob/respawnee)
+	respawnee.respawn()
 
 /datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
 	SIGNAL_HANDLER

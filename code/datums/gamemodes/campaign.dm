@@ -55,6 +55,9 @@
 	. = ..()
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + shutters_drop_time) //starts intro sequence 10 seconds before shutter drop
 
+/datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
+	attempt_attrition_respawn(respawnee)
+
 /datum/game_mode/hvh/campaign/intro_sequence() //update this, new fluff message etc etc, make it faction generic
 	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	var/op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
@@ -144,13 +147,12 @@
 
 ///respawns the player if attrition points are available
 /datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)
-	if(!(candidate.faction in factions))
-		return FALSE
-
 	if(!candidate?.client)
-		return FALSE
+		return
 
-	//start of copy paste proc
+	if(!(candidate.faction in factions))
+		return candidate.respawn()
+
 	var/list/dat = list("<div class='notice'>Mission Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the mission.</div><br>"

@@ -103,13 +103,6 @@
 	name = "Respawn"
 	action_icon_state = "respawn"
 
-/datum/action/observer_action/campaign_respawn/give_action(mob/M)
-	if(!istype(SSticker.mode, /datum/game_mode/hvh/campaign))
-		return
-	return ..()
-
 /datum/action/observer_action/campaign_respawn/action_activate()
-	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
-	if(!istype(mode))
-		return
-	mode.attempt_attrition_respawn(owner)
+	var/datum/game_mode/mode = SSticker.mode
+	mode.player_respawn(owner)
