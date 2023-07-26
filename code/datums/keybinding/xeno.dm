@@ -597,6 +597,12 @@
 	description = "Instantly displays a bolded announcement to all xenos in the hive."
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
 
+/datum/keybinding/xeno/queen_bulwark
+	name = "queen_bulwark"
+	full_name = "Queen: Bulwark"
+	description = "Forms an area around you that reduces damage taken by friendly xenomorphs."
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_BULWARK
+
 /datum/keybinding/xeno/deevolve
 	name = "deevolve"
 	full_name = "Queen: Devolve Xeno"
