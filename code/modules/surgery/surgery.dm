@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 			multipler -= 0.10
 		else if(locate(/obj/structure/table/, M.loc))
 			multipler -= 0.20
-		if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
+		if(M.stat == CONSCIOUS && !CHECK_BITFIELD(M.species.species_flags, NO_PAIN))//If not on anesthetics or not unconsious, and able to feel pain
 			multipler -= 0.5
 			switch(M.reagent_pain_modifier)
 				if(PAIN_REDUCTION_HEAVY to PAIN_REDUCTION_MEDIUM)
@@ -179,11 +179,11 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 
 		else if((tool in user.contents) && user.Adjacent(M)) //Or
 			if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
-					if(!(H.species.species_flags & NO_PAIN))
-						M.emote("pain")
-				to_chat(user, span_danger("[M] moved during the surgery! Use anesthetics!"))
+				if(!CHECK_BITFIELD(M.species.species_flags, NO_PAIN))
+					M.emote("pain")
+					to_chat(user, span_danger("[M] moved during the surgery! Use anesthetics!"))
+				else
+					to_chat(user, span_danger("[M] moved during the surgery!"))
 			surgery_step.fail_step(user, M, user.zone_selected, tool, affected) //Malpractice
 		else //This failing silently was a pain.
 			to_chat(user, span_warning("You must remain close to your patient to conduct surgery."))

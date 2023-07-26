@@ -60,6 +60,7 @@
 	icon_state="cave"
 	ceiling = CEILING_NONE
 	outside = FALSE
+	always_unpowered = TRUE
 
 /area/outpost/caves/central
 	name = "Central Caves"
@@ -119,6 +120,7 @@
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_COLONY
+	always_unpowered = TRUE
 
 /area/outpost/yard/central
 	name = "Central Yard"

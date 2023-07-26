@@ -2,7 +2,7 @@
 	caste_name = "Queen"
 	display_name = "Queen"
 	caste_type_path = /mob/living/carbon/xenomorph/queen
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
+	caste_desc = "The biggest and baddest xeno. The Queen controls the hive."
 	job_type = /datum/job/xenomorph/queen
 
 	tier = XENO_TIER_FOUR
@@ -59,6 +59,7 @@
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
+		/datum/action/xeno_action/bulwark,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/queen_give_heal,
@@ -81,7 +82,7 @@
 	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/queen/mature
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
+	caste_desc = "The biggest and baddest xeno. The Queen controls the hive."
 
 	upgrade = XENO_UPGRADE_ONE
 
@@ -216,6 +217,7 @@
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
+		/datum/action/xeno_action/bulwark,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/queen_give_heal,

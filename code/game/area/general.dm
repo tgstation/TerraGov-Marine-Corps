@@ -34,7 +34,7 @@
 //All shuttles show now be under shuttle since we have smooth-wall code.
 
 /area/shuttle //DO NOT TURN THE dynamic_lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
-	requires_power = 0
+	requires_power = FALSE
 	outside = FALSE
 	flags_area = OB_CAS_IMMUNE
 	minimap_color = MINIMAP_AREA_LZ
@@ -724,11 +724,10 @@
 	icon_state = "Holodeck"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-
+	always_unpowered = TRUE
 
 /area/holodeck/alphadeck
 	name = "Abandoned Holodeck Alpha"
-
 
 /area/holodeck/source_plating
 	name = "Abandoned Holodeck - Off"

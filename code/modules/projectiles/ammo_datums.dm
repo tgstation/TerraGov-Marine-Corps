@@ -1732,6 +1732,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_VERY_SOFT_YELLOW
 	///the smoke effect at the point of detonation
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread
+	///Total damage applied to victims by the exploding bomblet
+	var/explosion_damage = 20
+	///Amount of stagger and slowdown applied by the exploding bomblet
+	var/stagger_slow = 1
+	///range of bomblet explosion
+	var/explosion_range = 2
 
 ///handles the actual bomblet detonation
 /datum/ammo/micro_rail_cluster/proc/detonate(turf/T, obj/projectile/P)
@@ -1739,11 +1745,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(0, T, rand(1,2))
 	smoke.start()
-	for(var/mob/living/carbon/victim in get_hear(2, T))
-		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
-			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
-		victim.apply_damages(10, 10, 0, 0, 0, blocked = BOMB, updating_health = TRUE)
-		staggerstun(victim, P, stagger = 1, slowdown = 1)
+
+	var/list/turf/target_turfs = generate_true_cone(T, explosion_range, -1, 359, 0, air_pass = TRUE)
+	for(var/turf/target_turf AS in target_turfs)
+		for(var/target in target_turf)
+			if(isliving(target))
+				var/mob/living/living_target = target
+				living_target.visible_message(span_danger("[living_target] is hit by the bomblet blast!"),
+					isxeno(living_target) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
+				living_target.apply_damages(explosion_damage * 0.5, explosion_damage * 0.5, 0, 0, 0, blocked = BOMB, updating_health = TRUE)
+				staggerstun(living_target, P, stagger = stagger_slow, slowdown = stagger_slow)
+			else if(isobj(target))
+				var/obj/obj_victim = target
+				obj_victim.take_damage(explosion_damage, BRUTE, BOMB)
 
 /datum/ammo/micro_rail_cluster/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
 	///chance to detonate early, scales with distance and capped, to avoid lots of immediate detonations, and nothing reach max range respectively.
@@ -1765,7 +1779,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/smoke_burst
 	name = "micro smoke canister"
-	icon_state = "bullet" //PLACEHOLDER
+	icon_state = "bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	sound_hit 	 = "ballistic_hit"
 	sound_armor = "ballistic_armor"
@@ -3035,25 +3049,29 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isxeno(P.firer))
 		var/mob/living/carbon/xenomorph/xeno_firer = P.firer
 		aoe_damage = xeno_firer.xeno_caste.blast_strength
-	for(var/atom/movable/victim in get_hear(aoe_range, T))
-		if(isliving(victim))
-			var/mob/living/living_victim = victim
-			if(living_victim.stat == DEAD)
+
+	var/list/turf/target_turfs = generate_true_cone(T, aoe_range, -1, 359, 0, air_pass = TRUE)
+	for(var/turf/target_turf AS in target_turfs)
+		for(var/atom/movable/target AS in target_turf)
+			if(isliving(target))
+				var/mob/living/living_victim = target
+				if(living_victim.stat == DEAD)
+					continue
+				if(!isxeno(living_victim))
+					living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration)
+					staggerstun(living_victim, P, 10, slowdown = 1)
+			else if(isobj(target))
+				var/obj/obj_victim = target
+				if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
+					continue
+				obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
+			if(target.anchored)
 				continue
-			if(!isxeno(living_victim))
-				living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration)
-				staggerstun(living_victim, P, 10, slowdown = 1)
-		else if(isobj(victim))
-			var/obj/obj_victim = victim
-			if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
-				continue
-			obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
-		if(victim.anchored)
-			continue
-		var/throw_dir = get_dir(T, victim)
-		if(T == get_turf(victim))
-			throw_dir = get_dir(P.starting_turf, T)
-		victim.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 3, 1, spin = TRUE)
+			var/throw_dir = get_dir(T, target)
+			if(T == get_turf(target))
+				throw_dir = get_dir(P.starting_turf, T)
+			target.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 3, 1, spin = TRUE)
+
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/M, obj/projectile/P)
@@ -3088,7 +3106,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		mech_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
-	if(!isxeno(M))
+	if(isxeno(M))
 		return
 	staggerstun(M, P, 9, stagger = 2, slowdown = 2, knockback = 1)
 

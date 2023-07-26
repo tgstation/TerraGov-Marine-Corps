@@ -32,6 +32,7 @@ export const MESSAGE_TYPE_ADMINPM = 'adminpm';
 export const MESSAGE_TYPE_COMBAT = 'combat';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
 export const MESSAGE_TYPE_MENTORCHAT = 'mentorchat';
+export const MESSAGE_TYPE_PRAYER = 'prayer';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
 export const MESSAGE_TYPE_STAFFLOG = 'stafflog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
@@ -119,6 +120,12 @@ export const MESSAGE_TYPES = [
     name: 'Mentor Chat',
     description: 'MSAY messages',
     selector: '.msay, .adminmsay, .headminmsay',
+    admin: true,
+  },
+  {
+    type: MESSAGE_TYPE_PRAYER,
+    name: 'Prayers',
+    description: 'Prayers from players',
     admin: true,
   },
   {

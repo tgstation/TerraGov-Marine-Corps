@@ -1,0 +1,6 @@
+author: "XSlayer300"
+delete-after: True
+changes:
+  - soundadd: "Completely OVERHAULED every weapon firing sound, once again! Sounds use CC-BY-NC-SA 3.0."
+  - rscadd: "Added more weapons to the EORD weapon pool."
+  - spellcheck: "Changed some descriptions and renamed the 88 mod 4 to the MK88 mod 4."

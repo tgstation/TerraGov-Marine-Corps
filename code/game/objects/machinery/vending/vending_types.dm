@@ -565,6 +565,9 @@
 /obj/machinery/vending/engivend/nopower
 	use_power = NO_POWER_USE
 
+/obj/machinery/vending/engivend/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE
+
 //This one's from bay12
 /obj/machinery/vending/robotics
 	name = "Robotech Deluxe"

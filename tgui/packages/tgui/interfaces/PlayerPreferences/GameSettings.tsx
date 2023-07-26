@@ -57,23 +57,14 @@ export const GameSettings = (props, context) => {
                 leftLabel={'Muted'}
                 rightLabel={'Enabled'}
               />
-              <ToggleFieldPreference
+              <SelectFieldPreference
                 label="Play Text-to-Speech"
                 value="sound_tts"
                 action="sound_tts"
-                leftLabel={'Enabled'}
-                rightLabel={'Disabled'}
               />
               <TextFieldPreference
                 label="Text to speech volume"
                 value="volume_tts"
-              />
-              <ToggleFieldPreference
-                label="Use Blips instead of text to speech"
-                value="sound_tts_blips"
-                action="sound_tts_blips"
-                leftLabel={'Enabled'}
-                rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
                 label="Fullscreen mode"
