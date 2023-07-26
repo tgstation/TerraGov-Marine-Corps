@@ -99,7 +99,7 @@ SUBSYSTEM_DEF(statpanels)
 	target.stat_panel.send_message("update_mc", list("mc_data" = mc_data, "coord_entry" = coord_entry))
 
 /datum/controller/subsystem/statpanels/proc/set_tickets_tab(client/target)
-	var/list/ahelp_tickets = GLOB.ahelp_tickets.stat_entry()
+	var/list/ahelp_tickets = GLOB.ahelp_tickets.stat_entry(target)
 	target.stat_panel.send_message("update_tickets", ahelp_tickets)
 
 /datum/controller/subsystem/statpanels/proc/set_SDQL2_tab(client/target)

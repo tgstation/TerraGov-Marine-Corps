@@ -108,7 +108,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 //Tickets statpanel
-/datum/admin_help_tickets/proc/stat_entry()
+/datum/admin_help_tickets/proc/stat_entry(client/target)
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
 	var/list/L = list()
@@ -140,33 +140,33 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		else if(AH.tier == TICKET_ADMIN)
 			num_admins_resolved++
 
-	if(check_rights(R_ADMINTICKET, FALSE))
+	if(check_rights_for(target, R_ADMINTICKET))
 		L[++L.len] = list("Active Tickets:", "[astatclick.update("[num_mentors_active + num_admins_active]")]", null, REF(astatclick))
-	else if(check_rights(R_MENTOR, FALSE))
+	else if(check_rights_for(target, R_MENTOR))
 		L[++L.len] = list("Active Tickets:", "[astatclick.update("[num_mentors_active]")]", null, REF(astatclick))
 
 	for(var/I in active_tickets)
 		var/datum/admin_help/AH = I
 		var/obj/effect/statclick/updated = AH.statclick.update()
-		if(AH.tier == TICKET_MENTOR && check_rights(R_ADMINTICKET|R_MENTOR, FALSE))
+		if(AH.tier == TICKET_MENTOR && check_rights_for(target, R_ADMINTICKET|R_MENTOR))
 			if(AH.initiator)
 				L[++L.len] = list("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Mentor. [AH.initiator_key_name]:", "[updated.name]", REF(AH))
 			else
 				L[++L.len] = list("\[D\] #[AH.id]. Mentor. [AH.initiator_key_name]:", "[updated.name]", REF(AH))
-		else if(AH.tier == TICKET_ADMIN && check_rights(R_ADMINTICKET, FALSE))
+		else if(AH.tier == TICKET_ADMIN && check_rights_for(target, R_ADMINTICKET))
 			if(AH.initiator)
 				L[++L.len] = list("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Admin. [AH.initiator_key_name]:", "[updated.name]", REF(AH))
 			else
 				L[++L.len] = list("\[D\] #[AH.id]. Admin. [AH.initiator_key_name]:", "[updated.name]", REF(AH))
 
-	if(check_rights(R_ADMINTICKET, FALSE))
+	if(check_rights_for(target, R_ADMINTICKET))
 		L[++L.len] = list("Closed Tickets:", "[cstatclick.update("[num_mentors_closed + num_admins_closed]")]", null, REF(cstatclick))
-	else if(check_rights(R_MENTOR, FALSE))
+	else if(check_rights_for(target, R_MENTOR))
 		L[++L.len] = list("Closed Tickets:", "[cstatclick.update("[num_mentors_closed]")]", null, REF(cstatclick))
 
-	if(check_rights(R_ADMINTICKET, FALSE))
+	if(check_rights_for(target, R_ADMINTICKET))
 		L[++L.len] = list("Resolved Tickets:", "[rstatclick.update("[num_mentors_resolved + num_admins_resolved]")]", null, REF(rstatclick))
-	else if(check_rights(R_MENTOR, FALSE))
+	else if(check_rights_for(target, R_MENTOR))
 		L[++L.len] = list("Resolved Tickets:", "[rstatclick.update("[num_mentors_resolved]")]", null, REF(rstatclick))
 
 	return L
