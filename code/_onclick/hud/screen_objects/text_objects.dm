@@ -28,10 +28,10 @@
 		list/mobs,
 		timer,
 		text,
+		offset_x = 150,
+		offset_y = -70,
 		style_start,
 		style_end,
-		offset_x = 12,
-		offset_y = -70
 	)
 	. = ..()
 
