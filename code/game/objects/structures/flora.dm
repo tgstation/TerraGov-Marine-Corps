@@ -221,7 +221,7 @@
 	icon_state = "tallgrass_corner"
 
 /obj/structure/flora/grass/tallgrass/hideable
-    layer = BUSH_LAYER
+	layer = BUSH_LAYER
 
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner
 	icon_state = "tallgrass_corner"
