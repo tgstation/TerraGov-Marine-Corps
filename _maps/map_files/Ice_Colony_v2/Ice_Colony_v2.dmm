@@ -1611,6 +1611,13 @@
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
+"amm" = (
+/obj/structure/mirror{
+	pixel_y = 25
+	},
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/excavationbarracks)
 "amp" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
@@ -18576,6 +18583,10 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"cUB" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/valley/northeast)
 "cUW" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
@@ -18860,6 +18871,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
+"dpq" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves)
 "dpy" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -19126,6 +19141,9 @@
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
 	name = "Engi"
+	},
+/obj/structure/sign/safety/hazard{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -20060,6 +20078,7 @@
 	id = "SOM_11";
 	name = "SOM exit point 11"
 	},
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "ffZ" = (
@@ -20697,6 +20716,10 @@
 /obj/structure/largecrate/supply/supplies/coifs,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad)
+"gaf" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/east)
 "gbf" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/medical/bloodpack,
@@ -22354,6 +22377,12 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west/garbledradio)
+"iEO" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/south)
 "iET" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -23915,6 +23944,7 @@
 "kFo" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "kFu" = (
@@ -25037,6 +25067,10 @@
 "mfG" = (
 /turf/closed/wall,
 /area/ice_colony/surface/hydroponics/lobby)
+"mfV" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
 "mgS" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/powercell,
@@ -32105,6 +32139,10 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves)
+"vBp" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "vBs" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 1
@@ -32933,6 +32971,12 @@
 "wIE" = (
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
+"wJb" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/ice_colony/underground/requesition/sec_storage)
 "wJi" = (
 /obj/structure/dispenser,
 /turf/open/floor/plating,
@@ -39345,7 +39389,7 @@ uZI
 dPf
 dPf
 dPf
-dPf
+wJb
 dPf
 oji
 qnN
@@ -49791,7 +49835,7 @@ boJ
 qij
 wWA
 wWA
-iwO
+iEO
 wWA
 wWA
 bOk
@@ -55151,7 +55195,7 @@ fox
 evo
 arE
 aWl
-arQ
+mfV
 arQ
 arF
 avn
@@ -57607,7 +57651,7 @@ uQB
 bwK
 jcV
 bwK
-bwK
+dpq
 uQB
 xVo
 bCg
@@ -59317,7 +59361,7 @@ duN
 duN
 bFH
 evb
-bFH
+gaf
 ikJ
 bMs
 bMs
@@ -60108,7 +60152,7 @@ xJX
 xJX
 xJX
 bVC
-bVN
+amm
 bWh
 bVC
 bWJ
@@ -68892,7 +68936,7 @@ uSg
 uSg
 duN
 kvA
-adj
+cUB
 adj
 adj
 xJX
@@ -70358,7 +70402,7 @@ ePo
 ePo
 ePo
 ePo
-ePo
+vBp
 xxV
 uQB
 dSq
@@ -75268,7 +75312,7 @@ aaa
 xJX
 xJX
 uSg
-adj
+cUB
 adj
 duN
 uSg

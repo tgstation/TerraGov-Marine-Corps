@@ -304,3 +304,19 @@
       around maps
   - rscadd: xenomorphs tunnel landmarks in Magmoor to help with xenomorphs create
       manuever around maps
+2023-07-25:
+  Mrrpip:
+  - rscdel: Removes the damage malus from the bipod.
+  forestbbbbbbb:
+  - bugfix: Fix scopes not changing direction on lasguns
+  novaepee:
+  - rscdel: no more backpack strap in mob sprite
+  - rscadd: xenomorphs tunnel landmarks in Ice Colony to help with xenomorphs create
+      manuever around maps
+  - rscadd: xenomorphs tunnel landmarks in Gelida to help with xenomorphs create manuever
+      around maps
+  - rscadd: xenomorphs tunnel landmarks in Big Red to help with xenomorphs create
+      manuever around maps
+  - balance: Theseus' SD walls are not Outer Hull anymore
+  yyzsong:
+  - qol: Valhalla seasonal vendor is now separated into tabs!

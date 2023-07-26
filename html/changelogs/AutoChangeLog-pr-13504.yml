@@ -1,0 +1,7 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "Xenos have tts now"
+  - rscadd: "You can set your TTS voice pitch now"
+  - rscadd: "Robot and vending/roomba vocies have been updated"
+  - code_imp: "misc tts backend improvements"

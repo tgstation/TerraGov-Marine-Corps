@@ -813,7 +813,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, PROC_REF(zoom_item_turnoff))
 	else
 		RegisterSignals(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
-	if(!(master_gun.flags_gun_features & IS_DEPLOYED))
+	if(!CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		RegisterSignal(user, COMSIG_MOB_FACE_DIR, PROC_REF(change_zoom_offset))
 	RegisterSignals(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
 	master_gun.accuracy_mult += scoped_accuracy_mod
@@ -1370,7 +1370,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "bipod"
 	slot = ATTACHMENT_SLOT_UNDER
 	size_mod = 2
-	melee_mod = -10
 	deploy_time = 1 SECONDS
 	accuracy_mod = 0.3
 	recoil_mod = -2
