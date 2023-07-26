@@ -49,13 +49,16 @@ SUBSYSTEM_DEF(statpanels)
 		if(!target.holder)
 			target.stat_panel.send_message("remove_admin_tabs")
 		else
-			target.stat_panel.send_message("update_split_admin_tabs", target?.prefs.split_admin_tabs)
+			target.stat_panel.send_message("update_split_admin_tabs", target.prefs.split_admin_tabs)
 
-			if(!("MC" in target.panel_tabs) || !("Tickets" in target.panel_tabs))
+			if(!("Tickets" in target.panel_tabs))
 				target.stat_panel.send_message("add_admin_tabs", target.holder.href_token)
 
-			if(target.stat_tab == "MC" && ((num_fires % mc_wait == 0) || target?.prefs.fast_mc_refresh))
-				set_MC_tab(target)
+			if(check_rights_for(target, R_DEBUG))
+				if(!("MC" in target.panel_tabs))
+					target.stat_panel.send_message("add_mc_tab")
+				if(target.stat_tab == "MC" && ((num_fires % mc_wait == 0) || target.prefs.fast_mc_refresh))
+					set_MC_tab(target)
 
 			if(target.stat_tab == "Tickets" && num_fires % default_wait == 0)
 				set_tickets_tab(target)
@@ -215,7 +218,7 @@ SUBSYSTEM_DEF(statpanels)
 	if(!target.holder)
 		return FALSE
 
-	if(target.stat_tab == "MC")
+	if(target.stat_tab == "MC" && check_rights_for(target, R_DEBUG))
 		set_MC_tab(target)
 		return TRUE
 
