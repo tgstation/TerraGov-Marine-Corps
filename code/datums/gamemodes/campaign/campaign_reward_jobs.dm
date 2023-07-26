@@ -19,10 +19,10 @@ What you lack in equipment and military training you make up in bravery and conv
 
 /datum/job/som/mercenary/militia/standard
 	minimap_icon = "private"
-	outfit = /datum/outfit/job/som/militia/militia/uzi
+	outfit = /datum/outfit/job/som/militia/standard/uzi
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/som/militia/militia/uzi,
+		/datum/outfit/job/som/militia/standard/uzi,
 		/datum/outfit/job/som/militia/standard/skorpion,
 		/datum/outfit/job/som/militia/standard/mpi_km,
 		/datum/outfit/job/som/militia/standard/shotgun,
