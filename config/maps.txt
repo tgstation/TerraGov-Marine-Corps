@@ -68,5 +68,5 @@ map desparity
 endmap
 
 map lawanka
-minplayers 30
+minplayers 60
 endmap
