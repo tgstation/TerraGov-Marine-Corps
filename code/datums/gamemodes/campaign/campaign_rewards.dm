@@ -114,7 +114,48 @@
 		var/datum/job/bonus_job = SSjob.type_occupations[job_type]
 		bonus_job.add_job_positions(bonus_job_list[job_type])
 
-/datum/campaign_reward/bonus_job/colonists
+/datum/campaign_reward/bonus_job/colonial_militia
+	name = "Colonial militia support"
+	desc = "A colonial militia squad to augment our forces"
+	detailed_desc = "A local colonial militia sympathetic to our cause has offered a squad to support our troops. Although equipped with lesser arms and armor than our own troops, the free reinforcements are a valuable resource."
+	bonus_job_list = list(
+		/datum/job/som/mercenary/militia/leader = 1,
+		/datum/job/som/mercenary/militia/medic = 2,
+		/datum/job/som/mercenary/militia/standard = 7,
+	)
+
+//TODO: create new jobs
+/datum/campaign_reward/bonus_job/freelancer
+	name = "Freelancer team"
+	desc = "A squad of freelance guns for hire to support our forces"
+	detailed_desc = "A contract has been bought for a squad of freelancers to augment our forces. With comparable equipment and training, they can help turn the tables when our forces are stretched thin."
+	bonus_job_list = list(
+		/datum/job/som/mercenary/militia/leader = 1,
+		/datum/job/som/mercenary/militia/medic = 2,
+		/datum/job/som/mercenary/militia/standard = 7,
+	)
+
+/datum/campaign_reward/bonus_job/icc
+	name = "ICC strike team"
+	desc = "A squad of ICC soldiers to support our forces"
+	detailed_desc = "The ICC have authorised a small, local detachment of their troops to aid us in our conflict. They are well armed and armored, and could prove a valuable advantage in a fight."
+	bonus_job_list = list(
+		/datum/job/som/mercenary/militia/leader = 1,
+		/datum/job/som/mercenary/militia/medic = 2,
+		/datum/job/som/mercenary/militia/standard = 7,
+	)
+
+/datum/campaign_reward/bonus_job/pmc
+	name = "PMC security detail"
+	desc = "An elite PMC team to assist in a joint operation"
+	detailed_desc = "NanoTrasen have authorised a small team of their PMC contractors to assist us in combat. With superior arms and armor, they a powerful tactical asset."
+	bonus_job_list = list(
+		/datum/job/som/mercenary/militia/leader = 1,
+		/datum/job/som/mercenary/militia/medic = 2,
+		/datum/job/som/mercenary/militia/standard = 7,
+	)
+
+/datum/campaign_reward/bonus_job/colonial_militia
 	name = "Colonial militia support"
 	desc = "A colonial militia squad to augment our forces"
 	detailed_desc = "A local colonial militia sympathetic to our cause has offered a squad to support our troops. Although equipped with lesser arms and armor than our own troops, the free reinforcements are a valuable resource."
