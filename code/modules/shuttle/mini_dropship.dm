@@ -42,8 +42,6 @@
 	var/origin_port_id = SHUTTLE_TADPOLE
 	/// The user of the ui
 	var/mob/living/ui_user
-	/// If this computer was damaged by a xeno
-	var/damaged = FALSE
 	/// How long before you can launch tadpole after a landing
 	var/launching_delay = 10 SECONDS
 	///Minimap for use while in landing cam mode
@@ -61,12 +59,6 @@
 	QDEL_NULL(land_action)
 	QDEL_NULL(tadmap)
 	return ..()
-
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/update_icon_state()
-	if(damaged)
-		icon_state = "shuttlecomputerb"
-	else
-		icon_state = "shuttlecomputer"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/CreateEye()
 	. = ..()
@@ -174,7 +166,7 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()
-	if(damaged)
+	if(machine_stat & BROKEN)
 		return
 	if(X.status_flags & INCORPOREAL)
 		return
@@ -195,10 +187,9 @@
 	var/datum/effect_system/spark_spread/s2 = new /datum/effect_system/spark_spread
 	s2.set_up(3, 1, src)
 	s2.start()
-	damaged = TRUE
+	set_broken()
 	open_prompt = FALSE
 	clean_ui_user()
-	update_icon()
 
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE && last_valid_ground_port)
 		visible_message("Autopilot detects loss of helm control. INITIATING EMERGENCY LANDING!")
@@ -213,7 +204,7 @@
 		visible_message("Autopilot detects loss of helm control. Halting take off!")
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/can_interact(mob/user)
-	if(damaged)
+	if(machine_stat & BROKEN)
 		to_chat(user, span_warning("The [src] blinks and lets out a crackling noise. Its broken!"))
 		return
 	return ..()
