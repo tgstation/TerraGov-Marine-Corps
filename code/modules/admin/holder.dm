@@ -411,7 +411,6 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/play_cinematic,
 	/datum/admins/proc/set_tip,
 	/datum/admins/proc/ghost_interact,
-	/client/proc/toggle_buildmode,
 	/client/proc/force_event,
 	/client/proc/toggle_events,
 	/client/proc/run_weather,

@@ -872,16 +872,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
 
 
-/client/proc/toggle_buildmode()
-	set category = "Admin.Fun"
-	set name = "Toggle Build Mode"
-
-	if(!check_rights(R_FUN))
-		return
-
-	togglebuildmode(usr)
-
-
 /datum/admins/proc/imaginary_friend()
 	set category = "Admin.Fun"
 	set name = "Imaginary Friend"
