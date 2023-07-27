@@ -52,7 +52,7 @@
 
 	SSdirection.set_leader(hivenumber, null)
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(setup_nuke_hud_timer))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_NUKE_START, COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED), PROC_REF(setup_nuke_hud_timer))
 // ***************************************
 // *********** UI for Hive Status
 // ***************************************

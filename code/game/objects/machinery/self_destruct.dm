@@ -87,8 +87,9 @@
 			I.activate_time = world.time
 			started_at = world.time
 			SSevacuation.initiate_self_destruct()
-			timer = addtimer(CALLBACK(src, PROC_REF(timer_end)), SELF_DESTRUCT_ROD_STARTUP_TIME, TIMER_STOPPABLE)
-			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
+			timer = addtimer(VARSET_CALLBACK(src, timer, null), SELF_DESTRUCT_ROD_STARTUP_TIME, TIMER_DELETE_ME|TIMER_STOPPABLE)
+
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED, src)
 			. = TRUE
 
 		if("dest_trigger")
@@ -105,8 +106,6 @@
 			if(SSevacuation.cancel_self_destruct())
 				SStgui.close_user_uis(usr, src, "main")
 
-/obj/machinery/self_destruct/console/proc/timer_end()
-	timer = null
 
 /obj/machinery/self_destruct/rod
 	name = "self destruct control rod"
