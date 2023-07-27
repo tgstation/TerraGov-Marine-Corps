@@ -1153,6 +1153,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/grass,
 /area/mainship/living/port_garden)
 "dr" = (
@@ -2489,6 +2490,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"hc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/port_hull)
 "hd" = (
 /obj/machinery/vending/tool,
 /obj/machinery/camera/autoname/mainship{
@@ -4524,6 +4535,7 @@
 "nt" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/sulaco/hydro)
 "nu" = (
@@ -7502,6 +7514,16 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
+/area/mainship/hull/starboard_hull)
+"wg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "wh" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -20194,7 +20216,7 @@ XE
 XE
 XE
 fD
-Le
+hc
 gQ
 hx
 ip
@@ -24594,7 +24616,7 @@ ZK
 ZK
 YB
 VD
-yg
+wg
 Zm
 cb
 cI
