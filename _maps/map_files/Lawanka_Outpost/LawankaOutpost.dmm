@@ -27011,10 +27011,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/wood/variable,
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"wwU" = (
-/turf/closed/wall,
-/turf/open/ground/grass/weedable,
-/area/lawankaoutpost/outside/southeast)
 "wwW" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 1
@@ -67609,7 +67605,7 @@ jNK
 oxo
 oxo
 oxo
-wwU
+jNK
 vjm
 vjm
 gWW
