@@ -446,7 +446,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 ///Stamina exhaustion
 
 #define LIVING_STAMINA_EXHAUSTION_COOLDOWN 10 SECONDS //Amount of time between 0 stamina exhaustion events
-#define STAMINA_EXHAUSTION_DEBUFF_STACKS 6 //Amount of slow and stagger stacks applied on stamina exhaustion events
+#define STAMINA_EXHAUSTION_DEBUFF_STACKS 6 SECONDS //Amount of slow and stagger stacks applied on stamina exhaustion events
 
 
 //Shock defines
@@ -713,7 +713,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER 0.5
 #define WRAITH_BANISH_VERY_SHORT_MULTIPLIER 0.3
 
-#define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+#define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 SECONDS //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 #define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 
 //Warrior defines

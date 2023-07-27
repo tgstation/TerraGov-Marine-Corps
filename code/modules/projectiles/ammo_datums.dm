@@ -3294,7 +3294,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	damage = 40
-	stagger_stacks = 1.1
+	stagger_stacks = 1.1 SECONDS
 	slowdown_stacks = 1.5
 	smoke_strength = 0.5
 	smoke_range = 0

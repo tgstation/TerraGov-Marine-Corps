@@ -48,7 +48,7 @@
 				affecting = H.get_limb("chest") //Gotta have a torso?!
 			H.apply_damage(damage, BRUTE, affecting, MELEE)
 			H.apply_damage(damage, STAMINA, updating_health = TRUE)
-			H.Paralyze(5) //trip and go
+			H.Paralyze(0.5 SECONDS) //trip and go
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -451,7 +451,7 @@
 			affecting = slapped.get_limb("chest")
 		slapped.apply_damage(damage, BRUTE, affecting, MELEE)
 		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
-		slapped.Paralyze(3)
+		slapped.Paralyze(0.3 SECONDS)
 		shake_camera(slapped, 2, 1)
 
 		to_chat(slapped, span_xenowarning("We are struck by \the [X]'s flying tail!"))

@@ -59,7 +59,7 @@
 	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
 	target_turf = get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), 4, 70, H)
-	H.Paralyze(40)
+	H.Paralyze(4 SECONDS)
 
 /mob/living/carbon/xenomorph/defender/Initialize(mapload)
 	. = ..()

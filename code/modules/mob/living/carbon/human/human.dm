@@ -157,7 +157,7 @@
 
 	if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 		adjust_ear_damage(ear_damage_amount * armor_modifier, ear_damage_amount * 4 * armor_modifier)
-	adjust_stagger(stagger_slow_amount * armor_modifier)
+	adjust_stagger(stagger_slow_amount SECONDS * armor_modifier)
 	add_slowdown(stagger_slow_amount * armor_modifier)
 
 	#ifdef DEBUG_HUMAN_ARMOR

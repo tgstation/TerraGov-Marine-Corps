@@ -89,7 +89,7 @@
 			else
 				to_chat(h_user, "Small electrical arc sparks and burns your hand as you touch the [src]!")
 				h_user.adjustFireLoss(rand(5,10))
-				h_user.Unconscious(40)
+				h_user.Unconscious(4 SECONDS)
 			charge = 0
 
 		if (16 to 35)

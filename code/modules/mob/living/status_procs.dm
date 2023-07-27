@@ -9,7 +9,8 @@
 		return S.duration - world.time
 	return 0
 
-/mob/living/proc/Stun(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+///Applies a stun from current world time instead of directly adding it to an existing stun
+/mob/living/proc/Stun(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)

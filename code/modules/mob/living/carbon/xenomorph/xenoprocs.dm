@@ -429,7 +429,7 @@
 /mob/living/carbon/human/apply_acid_spray_damage(damage)
 	take_overall_damage(damage, BURN, ACID, updating_health = TRUE)
 	emote("scream")
-	Paralyze(20)
+	Paralyze(2 SECONDS)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	ExtinguishMob()
