@@ -18,7 +18,7 @@
 	///list of evo towers
 	var/list/obj/structure/xeno/evotower/evotowers = list()
 	///list of upgrade towers
-	var/list/obj/structure/xeno/maturitytower/maturitytowers = list()
+	var/list/obj/structure/xeno/psychictower/psychictowers = list()
 	///list of phero towers
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
 	///list of hivemind cores
@@ -108,8 +108,8 @@
 	// Acid, sticky, and hugger turrets.
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(turret))
-	// Maturity towers
-	for(var/obj/structure/xeno/maturitytower/tower AS in GLOB.hive_datums[hivenumber].maturitytowers)
+	// Psychic relays
+	for(var/obj/structure/xeno/psychictower/tower AS in GLOB.hive_datums[hivenumber].psychictowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Evolution towers (if they're ever built)
 	for(var/obj/structure/xeno/evotower/tower AS in GLOB.hive_datums[hivenumber].evotowers)
@@ -369,12 +369,6 @@
 /datum/hive_status/proc/get_evolution_boost()
 	. = 0
 	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
-		. += tower.boost_amount
-
-///fetches number of bonus upgrade points given to the hive
-/datum/hive_status/proc/get_upgrade_boost()
-	. = 0
-	for(var/obj/structure/xeno/maturitytower/tower AS in maturitytowers)
 		. += tower.boost_amount
 
 // ***************************************
@@ -1133,8 +1127,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
 	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
 
-	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + length(evotowers) + 1, 1))
-	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(evotowers) * 2 + 1 - threes)
+	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + length(psychictowers) + 1, 1))
+	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(psychictowers) * 2 + 1 - threes)
 
 // ***************************************
 // *********** Corrupted Xenos

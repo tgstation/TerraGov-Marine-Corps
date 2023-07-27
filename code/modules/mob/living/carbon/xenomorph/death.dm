@@ -45,22 +45,22 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
 
 	switch (upgrade)
-		if(XENO_UPGRADE_TWO)
+		if(XENO_UPGRADE_ZERO)
 			switch(tier)
 				if(XENO_TIER_TWO)
-					SSmonitor.stats.elder_T2--
+					SSmonitor.stats.normal_T2--
 				if(XENO_TIER_THREE)
-					SSmonitor.stats.elder_T3--
+					SSmonitor.stats.normal_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.elder_T4--
-		if(XENO_UPGRADE_THREE, XENO_UPGRADE_FOUR)
+					SSmonitor.stats.normal_T4--
+		if(XENO_UPGRADE_ONE)
 			switch(tier)
 				if(XENO_TIER_TWO)
-					SSmonitor.stats.ancient_T2--
+					SSmonitor.stats.primo_T2--
 				if(XENO_TIER_THREE)
-					SSmonitor.stats.ancient_T3--
+					SSmonitor.stats.primo_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.ancient_T4--
+					SSmonitor.stats.primo_T4--
 
 	if(GetComponent(/datum/component/ai_controller))
 		gib()

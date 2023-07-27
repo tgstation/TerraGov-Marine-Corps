@@ -95,7 +95,7 @@
 	if(!empowerable) //gives combo but doesn't combo but doesn't consume it.
 		give_combo()
 		return FALSE
-	if(upgrade != XENO_UPGRADE_FOUR)
+	if(upgrade != XENO_UPGRADE_ONE)
 		return FALSE
 	if(combo >= WARRIOR_COMBO_THRESHOLD) //Fully stacked, clear all the stacks and return TRUE.
 		emote("roar")
@@ -106,7 +106,7 @@
 
 ///Primordial warriors empowered ability trigger when they get 3 combo stacks, handles visuals aswell.
 /mob/living/carbon/xenomorph/warrior/proc/give_combo()
-	if(upgrade != XENO_UPGRADE_FOUR)
+	if(upgrade != XENO_UPGRADE_ONE)
 		return FALSE
 	combo++
 	if(combo >= WARRIOR_COMBO_THRESHOLD)

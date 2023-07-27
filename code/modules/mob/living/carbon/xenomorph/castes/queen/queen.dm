@@ -37,7 +37,7 @@
 // *********** Life overrides
 // ***************************************
 /mob/living/carbon/xenomorph/queen/handle_decay()
-	if(prob(20+abs(3*upgrade_as_number())))
+	if(prob(30))
 		use_plasma(min(rand(1,2), plasma_stored))
 
 
@@ -83,14 +83,8 @@
 /mob/living/carbon/xenomorph/queen/generate_name()
 	switch(upgrade)
 		if(XENO_UPGRADE_ZERO)
-			name = "[hive.prefix]Queen ([nicknumber])"			 //Young
+			name = "[hive.prefix]Empress ([nicknumber])"			 //Normal
 		if(XENO_UPGRADE_ONE)
-			name = "[hive.prefix]Elder Queen ([nicknumber])"	 //Mature
-		if(XENO_UPGRADE_TWO)
-			name = "[hive.prefix]Elder Empress ([nicknumber])"	 //Elder
-		if(XENO_UPGRADE_THREE)
-			name = "[hive.prefix]Ancient Empress ([nicknumber])" //Ancient
-		if(XENO_UPGRADE_FOUR)
 			name = "[hive.prefix]Primordial Empress ([nicknumber])"
 
 	real_name = name

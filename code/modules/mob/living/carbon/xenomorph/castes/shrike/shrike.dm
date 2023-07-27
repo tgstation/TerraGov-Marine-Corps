@@ -27,6 +27,6 @@
 // *********** Life overrides
 // ***************************************
 /mob/living/carbon/xenomorph/shrike/handle_decay()
-	if(prob(20+abs(3*upgrade_as_number())))
+	if(prob(30))
 		use_plasma(min(rand(1,2), plasma_stored))
 
