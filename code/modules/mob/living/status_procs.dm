@@ -681,7 +681,7 @@
 /mob/living/proc/add_slowdown(amount, capped = 0)
 	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
 		return
-	adjust_slowdown(amount * slowdown_recovery_rate)
+	adjust_slowdown(amount * -slowdown_recovery_rate)
 
 ///Standard slowdown regen called by life.dm
 /mob/living/proc/handle_slowdown()
