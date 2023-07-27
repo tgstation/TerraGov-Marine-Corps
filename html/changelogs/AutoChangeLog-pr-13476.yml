@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - rscadd: "Added some holopads to the tadpole shuttles"
-  - rscadd: "Added some extra map helpers for extra mapper clarity"
