@@ -362,6 +362,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_VORTEX,
 	)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	///The particle type this ability uses
+	var/channel_particle = /particles/warlock_charge
 
 /datum/action/xeno_action/activable/psychic_vortex/on_cooldown_finish()
 	to_chat(owner, span_notice("Our mind is ready to unleash another chaotic vortex of energy."))
@@ -370,6 +374,11 @@
 /datum/action/xeno_action/activable/psychic_vortex/use_ability(atom/target)
 	succeed_activate()
 	add_cooldown()
+
+	particle_holder = new(owner, channel_particle)
+	particle_holder.pixel_x = 15
+	particle_holder.pixel_y = 0
+
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
@@ -379,6 +388,7 @@
 		vortex_push()
 	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
 		vortex_pull()
+	QDEL_NULL(particle_holder)
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
 	return fail_activate()
 
@@ -388,12 +398,13 @@
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
 	for(var/atom/victim AS in range(VORTEX_RANGE, owner.loc))
 		if(isturf(victim))
-			victim.Shake(2, 2, 0.5 SECONDS)
 			continue
 		if(!ismovableatom(victim))
 			continue
 		var/atom/movable/movable_victim = victim
 		if(movable_victim.anchored)
+			continue
+		if(isxeno(movable_victim))
 			continue
 		if(ishuman(movable_victim))
 			var/mob/living/carbon/human/H = movable_victim
@@ -406,7 +417,6 @@
 			var/turf/targetturf = get_turf(owner)
 			targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
 			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
-		movable_victim.Shake(2, 2, 5)
 		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
 ///randomly throws movable atoms in the radius of the vortex abilites range, different each use.
@@ -429,5 +439,6 @@
 ///removes immobile trait if the ability is canceled by a stun or similar
 /datum/action/xeno_action/activable/psychic_vortex/fail_activate()
 	. = ..()
+	QDEL_NULL(particle_holder)
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
 
