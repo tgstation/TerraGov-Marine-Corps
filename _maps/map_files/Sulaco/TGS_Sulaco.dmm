@@ -24169,7 +24169,9 @@
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
+	id_tag = "mbayexit"
+	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
