@@ -84,7 +84,7 @@
 
 /datum/admins/proc/hive_status()
 	set category = "Admin.Fun"
-	set name = "Hive Status"
+	set name = "Check Hive Status"
 	set desc = "Check the status of the hive."
 
 	if(!check_rights(R_FUN))
