@@ -1164,4 +1164,5 @@
 
 ///Checks the gravity the atom is subjected to
 /atom/movable/proc/get_gravity()
-	return SSmapping.gravity_by_z_level["[z]"]
+	var/turf/src_turf = get_turf(src)
+	return SSmapping.gravity_by_z_level["[src_turf.z]"]
