@@ -1,0 +1,4 @@
+author: "XElectricX"
+delete-after: True
+changes:
+  - code_imp: "Suit pockets no longer appear as if they are just bolted-on storage modules. Are now their own independent object."
