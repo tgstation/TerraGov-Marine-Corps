@@ -82,10 +82,9 @@
 Apply status effect to mob
 
 Arguments
-	effect {int} how much of an effect to apply
-	effecttype {enum} which affect to apply
-	blocked {int} an amount of the effect that is blocked
-	updating_health {boolean} if we should update health [/mob/living/updatehealth]
+	*effect: duration or amount of effect
+	*effecttype which affect to apply
+	*updating_health if we should update health [/mob/living/updatehealth]
 */
 /mob/living/proc/apply_effect(effect = 0, effecttype = STUN, updating_health = FALSE)
 	if(status_flags & GODMODE)
@@ -100,6 +99,8 @@ Arguments
 			Paralyze(effect)
 		if(PARALYZE)
 			Unconscious(effect)
+		if(STAGGER)
+			Stagger(effect)
 		if(AGONY)
 			adjustStaminaLoss(effect)
 		if(STUTTER)
@@ -113,22 +114,24 @@ Arguments
 		updatehealth()
 	return TRUE
 
-
-/mob/living/proc/apply_effects(stun = 0, weaken = 0, paralyze = 0, stutter = 0, eyeblur = 0, drowsy = 0, agony = 0, updating_health = FALSE)
+///Applies multiple negative effects to a mob
+/mob/living/proc/apply_effects(stun = 0, weaken = 0, paralyze = 0, stagger = 0,stutter = 0, eyeblur = 0, drowsy = 0, agony = 0, updating_health = FALSE)
 	if(stun)
-		apply_effect(stun, STUN, blocked)
+		apply_effect(stun, STUN)
 	if(weaken)
-		apply_effect(weaken, WEAKEN, blocked)
+		apply_effect(weaken, WEAKEN)
 	if(paralyze)
-		apply_effect(paralyze, PARALYZE, blocked)
+		apply_effect(paralyze, PARALYZE)
+	if(stagger)
+		apply_effect(stagger, STAGGER)
 	if(stutter)
-		apply_effect(stutter, STUTTER, blocked)
+		apply_effect(stutter, STUTTER)
 	if(eyeblur)
-		apply_effect(eyeblur, EYE_BLUR, blocked)
+		apply_effect(eyeblur, EYE_BLUR)
 	if(drowsy)
-		apply_effect(drowsy, DROWSY, blocked)
+		apply_effect(drowsy, DROWSY)
 	if(agony)
-		apply_effect(agony, AGONY, blocked)
+		apply_effect(agony, AGONY)
 	if(updating_health)
 		updatehealth()
 	return TRUE

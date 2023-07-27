@@ -106,6 +106,7 @@
 #define STUN "stun"
 #define WEAKEN "weaken"
 #define PARALYZE "paralize"
+#define STAGGER "stagger"
 #define AGONY "agony" // Added in PAIN!
 #define STUTTER "stutter"
 #define EYE_BLUR "eye_blur"
