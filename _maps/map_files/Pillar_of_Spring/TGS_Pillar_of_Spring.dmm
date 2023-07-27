@@ -4316,6 +4316,7 @@
 /obj/effect/decal/cleanable/cobweb{
 	dir = 8
 	},
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "fyc" = (
@@ -15009,6 +15010,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
+"tgl" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "thc" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -15176,7 +15182,6 @@
 /obj/structure/window/reinforced/extratoughened{
 	dir = 8
 	},
-/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "tuS" = (
@@ -50630,7 +50635,7 @@ mBZ
 mBZ
 hRh
 dWf
-wPV
+tgl
 wVZ
 dpY
 uKp

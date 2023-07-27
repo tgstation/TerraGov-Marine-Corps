@@ -17165,6 +17165,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_umbilical)
+"rTn" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/port_hull)
 "rTw" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -18483,6 +18489,12 @@
 /obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"umn" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/starboard_hull)
 "umS" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -20611,7 +20623,6 @@
 /obj/machinery/door/window/secure/bridge/aidoor{
 	dir = 8
 	},
-/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
 "ycL" = (
@@ -60280,7 +60291,7 @@ aaa
 aaa
 aaa
 aai
-aal
+umn
 pgn
 nNR
 aZM
@@ -60332,7 +60343,7 @@ szj
 cvB
 jjk
 ccQ
-jAD
+rTn
 aVk
 aaa
 aaa

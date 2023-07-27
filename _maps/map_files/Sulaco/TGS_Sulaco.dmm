@@ -13800,10 +13800,9 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/cmo)
 "gUR" = (
-/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/spawner/random/misc/gnome/fiftyfifty,
-/turf/open/floor/mainship/ai,
-/area/sulaco/command/ai)
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint3)
 "gVp" = (
 /obj/machinery/gibber,
 /turf/open/floor/prison/sterilewhite,
@@ -19525,6 +19524,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "okh" = (
@@ -45418,7 +45418,7 @@ toM
 vIO
 cOs
 cDU
-qzH
+gUR
 xKi
 mDu
 qDO
@@ -53770,7 +53770,7 @@ eMk
 aAI
 lae
 akN
-gUR
+sPn
 hWu
 teI
 wnN
