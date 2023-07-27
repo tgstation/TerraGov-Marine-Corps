@@ -438,3 +438,59 @@ What you lack in equipment and military training you make up in bravery and conv
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
+
+//Freelancers
+/datum/job/freelancer/standard/campaign_bonus
+	faction = FACTION_TERRAGOV
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+
+/datum/job/freelancer/medic/campaign_bonus
+	faction = FACTION_TERRAGOV
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+
+/datum/job/freelancer/grenadier/campaign_bonus
+	faction = FACTION_TERRAGOV
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	outfits = list(
+		/datum/outfit/job/freelancer/grenadier,
+		/datum/outfit/job/freelancer/grenadier/one,
+	)
+
+/datum/job/freelancer/leader/campaign_bonus
+	faction = FACTION_TERRAGOV
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	outfits = list(
+		/datum/outfit/job/freelancer/leader,
+		/datum/outfit/job/freelancer/leader/one,
+	)
+
+//PMC
+/datum/job/pmc/standard/campaign_bonus
+	faction = FACTION_TERRAGOV
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+
+/datum/job/pmc/gunner/campaign_bonus
+	faction = FACTION_TERRAGOV
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+
+/datum/job/pmc/leader/campaign_bonus
+	faction = FACTION_TERRAGOV
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+
+//ICC
+/datum/job/icc/standard/campaign_bonus
+	faction = FACTION_SOM
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+
+/datum/job/icc/guard/campaign_bonus
+	faction = FACTION_SOM
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+
+/datum/job/icc/medic/campaign_bonus
+	faction = FACTION_SOM
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	multiple_outfits = FALSE
+
+/datum/job/icc/leader/campaign_bonus
+	faction = FACTION_SOM
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
