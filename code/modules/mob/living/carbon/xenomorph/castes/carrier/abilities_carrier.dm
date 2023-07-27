@@ -407,7 +407,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
 	span_xenowarning("You feel like something inside you is tearing out!"))
 
-	victim.apply_effects(1, 0.5)
+	victim.apply_effects(2 SECONDS, 1 SECONDS)
 	victim.adjust_stagger(debuff)
 	victim.adjust_slowdown(debuff)
 	victim.apply_damage(stamina_dmg, STAMINA)

@@ -581,7 +581,7 @@
 	target.throw_at(owner, TENTACLE_ABILITY_RANGE, 1, owner, FALSE)
 	if(isliving(target))
 		var/mob/living/loser = target
-		loser.apply_effects(weaken = 0.1)
+		loser.apply_effect(0.2 SECONDS, WEAKEN)
 		loser.adjust_stagger(5)
 
 ///signal handler to delete tetacle after we are done draggging owner along

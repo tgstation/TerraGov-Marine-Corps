@@ -118,7 +118,7 @@
 			var/list/hit_report = list()
 			if(damage >= 5 && prob(50))
 				visible_message(span_danger("[H] has weakened [src]!"), null, null, 5)
-				apply_effect(modify_by_armor(3, MELEE, def_zone = target_zone), WEAKEN)
+				apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 				hit_report += "(KO)"
 
 			damage += attack.damage
@@ -165,7 +165,7 @@
 			var/randn = rand(1, 100) + skills.getRating(SKILL_CQC) * 5 - H.skills.getRating(SKILL_CQC) * 5
 
 			if (randn <= 25)
-				apply_effect(modify_by_armor(3, MELEE, def_zone = target_zone), WEAKEN)
+				apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[H] has pushed [src]!"), null, null, 5)
 				log_combat(user, src, "pushed")

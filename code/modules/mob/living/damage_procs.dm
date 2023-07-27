@@ -87,35 +87,34 @@ Arguments
 	blocked {int} an amount of the effect that is blocked
 	updating_health {boolean} if we should update health [/mob/living/updatehealth]
 */
-/mob/living/proc/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
+/mob/living/proc/apply_effect(effect = 0, effecttype = STUN, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return FALSE
-	if(!effect || (blocked >= 2))
+	if(effect <= 0)
 		return FALSE
+
 	switch(effecttype)
 		if(STUN)
-			Stun(effect/(blocked+1) * 20) // TODO: replace these * 20 with proper amounts in apply_effect() calls
+			Stun(effect)
 		if(WEAKEN)
-			Paralyze(effect/(blocked+1) * 20)
+			Paralyze(effect)
 		if(PARALYZE)
-			Unconscious(effect/(blocked+1) * 20)
+			Unconscious(effect)
 		if(AGONY)
-			adjustStaminaLoss(effect/(blocked+1))
+			adjustStaminaLoss(effect)
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter
-				set_timed_status_effect(effect/(blocked+1), /datum/status_effect/speech/stutter, only_if_higher = TRUE)
+				set_timed_status_effect(effect, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 		if(EYE_BLUR)
-			blur_eyes(effect/(blocked+1))
+			blur_eyes(effect)
 		if(DROWSY)
-			adjustDrowsyness(effect / (blocked + 1))
+			adjustDrowsyness(effect)
 	if(updating_health)
 		updatehealth()
 	return TRUE
 
 
-/mob/living/proc/apply_effects(stun = 0, weaken = 0, paralyze = 0, stutter = 0, eyeblur = 0, drowsy = 0, agony = 0, blocked = 0, updating_health = FALSE)
-	if(blocked >= 2)
-		return FALSE
+/mob/living/proc/apply_effects(stun = 0, weaken = 0, paralyze = 0, stutter = 0, eyeblur = 0, drowsy = 0, agony = 0, updating_health = FALSE)
 	if(stun)
 		apply_effect(stun, STUN, blocked)
 	if(weaken)

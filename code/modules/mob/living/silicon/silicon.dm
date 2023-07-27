@@ -91,7 +91,7 @@
 	return
 
 
-/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
+/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, updating_health = FALSE)
 	return FALSE
 
 

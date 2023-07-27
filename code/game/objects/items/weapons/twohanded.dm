@@ -505,15 +505,15 @@
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
 	if (knockback)
-		stun = 1
-		weaken = 2
+		stun = 2 SECONDS
+		weaken = 4 SECONDS
 		knockback = 0
 		balloon_alert(user, "Selected mode: CRUSH.")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
 		return
 
-	stun = 1
-	weaken = 1
+	stun = 2 SECONDS
+	weaken = 2 SECONDS
 	knockback = 1
 	balloon_alert(user, "Selected mode: KNOCKBACK.")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -555,7 +555,7 @@
 		if(xeno_victim.crest_defense) //Crest defense protects us from the stun.
 			stun = 0
 		else
-			stun = 1
+			stun = 2 SECONDS
 
 	if(!M.IsStun() && !M.IsParalyzed() && !isxenoqueen(M)) //Prevent chain stunning. Queen is protected.
 		M.apply_effects(stun,weaken)
