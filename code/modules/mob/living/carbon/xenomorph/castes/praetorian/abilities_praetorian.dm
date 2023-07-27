@@ -195,11 +195,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 ///Called whenever the owner hits an object during the dash
 /datum/action/xeno_action/activable/acid_dash/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
-	if(!(istype(target, /obj/structure/table) || istype(target, /obj/structure/barricade) || istype(target, /obj/structure/razorwire)))
-		target.hitby(owner, speed)
+	if(istype(target, /obj/structure/table))
+		var/obj/structure/S = target
+		owner.visible_message(span_danger("[owner] plows straight through [S]!"), null, null, 5)
+		S.deconstruct(FALSE)
 		return
 
-	owner.visible_message(span_danger("[owner] effortlessly jumps over the [target]!"), null, null, 5) //Flavour only
+	target.hitby(owner, speed)
+	dash_complete()
 
 ///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage
 /datum/action/xeno_action/activable/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)
