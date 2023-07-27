@@ -450,7 +450,7 @@
 
 #define BULWARK_LOOP_TIME 1 SECONDS
 #define BULWARK_RADIUS 4
-#define BULWARK_ARMOR_MULTIPLIER 0.25
+#define BULWARK_ARMOR_MULTIPLIER 0.40
 
 /datum/action/xeno_action/bulwark
 	name = "Royal Bulwark"
