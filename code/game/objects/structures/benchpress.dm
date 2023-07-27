@@ -128,6 +128,9 @@
 		addtimer(CALLBACK(src, PROC_REF(undo_buff), WEAKREF(user)), 15 MINUTES)
 	var/finishmessage = pick("You feel stronger!","You feel like you're the boss of this gym!","You feel robust!","The challenge is real!")
 	to_chat(user, finishmessage)
+	if(user.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		personal_statistics.weights_lifted++
 
 ///proc to undo the cqc buff granted by the bench
 /obj/structure/benchpress/proc/undo_buff(datum/weakref/user_ref)

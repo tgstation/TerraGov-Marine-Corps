@@ -69,6 +69,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/drained = 0
 	var/cocooned = 0
 	var/recycle_points_denied = 0
+	var/impregnations = 0
 
 	//Close air support
 	var/cas_cannon_shots = 0
@@ -186,6 +187,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Cocooned [cocooned] host[cocooned > 1 ? "s" : ""]."
 	if(recycle_points_denied)
 		support_stats += "Recycled [recycle_points_denied] sister[recycle_points_denied > 1 ? "s" : ""] to continue serving the hive even in death."
+	if(impregnations)
+		support_stats += "Impregnated [impregnations] host[impregnations > 1 ? "s" : ""]."
 
 	if(LAZYLEN(support_stats))
 		stats += "<hr>"
@@ -404,6 +407,7 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 		personal_statistics.recycle_points_denied += 500
 	else
 		personal_statistics.recycle_points_denied += cost
+	return TRUE
 
 ///Separate record keeping proc to reduce copy pasta
 /obj/machinery/miner/proc/record_miner_repair(mob/user)
@@ -422,6 +426,7 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
 	personal_statistics.time_resting += world.time - last_rested
+	return TRUE
 
 ///Record how long a mob was knocked out or sleeping
 /mob/living/proc/record_time_unconscious()
@@ -432,6 +437,7 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
 	personal_statistics.time_unconscious += world.time - last_unconscious
+	return TRUE
 
 ///Record how long a mob was in a stasis bag
 /mob/living/proc/record_time_in_stasis()
@@ -442,6 +448,7 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
 	personal_statistics.time_in_stasis += world.time - time_entered_stasis
+	return TRUE
 
 ///Record how long a mob was in a cryo tube
 /mob/living/proc/record_time_in_cryo()
@@ -452,3 +459,28 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
 	personal_statistics.time_in_cryo += world.time - time_entered_cryo
+	return TRUE
+
+///Tally up to a client's generator_repairs_performed stat when a step is completed in a generator's repairs
+/obj/machinery/power/proc/record_generator_repairs(mob/user)
+	if(!user.client)
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	personal_statistics.generator_repairs_performed++
+	return TRUE
+
+///Tally up when a client damages/destroys/corrupts a generator
+/obj/machinery/power/proc/record_generator_sabotages(mob/user)
+	if(!user.client)
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	personal_statistics.generator_sabotages_performed++
+	return TRUE
+
+///Tally up when a client successfully completes a step
+/datum/surgery_step/proc/record_surgical_operation(mob/user)
+	if(!user.client)
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	personal_statistics.surgical_actions_performed++
+	return TRUE
