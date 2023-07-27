@@ -480,6 +480,12 @@
 	if(!target || !src)
 		return FALSE
 
+	var/gravity = get_gravity()
+	if(gravity < 1)
+		range = round(range * (2 - gravity))
+	else if(gravity > 1)
+		range = ROUND_UP(range * (2 - gravity))
+
 	if(!targetted_throw)
 		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))
 
@@ -1155,3 +1161,7 @@
 
 	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
 		LAZYREMOVEASSOC(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, former_client.mob)
+
+///Checks the gravity the atom is subjected to
+/atom/movable/proc/get_gravity()
+	return SSmapping.gravity_by_z_level["[z]"]

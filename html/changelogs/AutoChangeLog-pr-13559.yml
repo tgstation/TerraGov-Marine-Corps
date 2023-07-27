@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Fixed autoburst not correctly resetting shots fired between bursts"
