@@ -1,0 +1,5 @@
+author: "Meowosers"
+delete-after: True
+changes:
+  - rscadd: "Valhalla now has two Autoclosets for Squad Marines."
+  - code_imp: "Valhalla Squad Marines are now defined as /fallen/marine/standard in the selection list."
