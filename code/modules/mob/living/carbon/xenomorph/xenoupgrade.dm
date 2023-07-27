@@ -48,7 +48,7 @@
 
 	switch(upgrade)
 		//PURCHASED UPGRADE
-		if(XENO_UPGRADE_ONE)
+		if(XENO_UPGRADE_PRIMO)
 			if(!silent)
 				to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
 
@@ -65,33 +65,24 @@
 
 //-----RUNNER START-----//
 
-/mob/living/carbon/xenomorph/runner/normal
-	upgrade = XENO_UPGRADE_ZERO
-
 /mob/living/carbon/xenomorph/runner/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
 //-----RUNNER END-----//
 //================//
 //-----BULL START-----//
 
-/mob/living/carbon/xenomorph/bull/normal
-	upgrade = XENO_UPGRADE_ZERO
-
 /mob/living/carbon/xenomorph/bull/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
 //-----BULL END-----//
 //================//
 //-----DRONE START-----//
 
-/mob/living/carbon/xenomorph/drone/normal
-	upgrade = XENO_UPGRADE_ZERO
-
 /mob/living/carbon/xenomorph/drone/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
 //-----DRONE END-----//
@@ -100,38 +91,38 @@
 //----------------------------------------------//
 // ERT DRONE START
 
-/mob/living/carbon/xenomorph/drone/normal/Corrupted
+/mob/living/carbon/xenomorph/drone/ /Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/drone/normal/Alpha
+/mob/living/carbon/xenomorph/drone/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/drone/normal/Beta
+/mob/living/carbon/xenomorph/drone/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/drone/normal/Zeta
+/mob/living/carbon/xenomorph/drone/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 // ERT DRONE START END
 //---------------------------------------------//
 //-----CARRIER START-----//
 
-/mob/living/carbon/xenomorph/carrier/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/carrier
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/carrier/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
 //-----CARRIER END-----//
 //================//
 //----HIVELORD START----//
 
-/mob/living/carbon/xenomorph/hivelord/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/hivelord
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/hivelord/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
 //----HIVELORD END----//
@@ -140,235 +131,235 @@
 //================//
 //----PRAETORIAN START----//
 
-/mob/living/carbon/xenomorph/praetorian/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/praetorian
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/praetorian/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //----PRAETORIAN END----//
 //================//
 //----RAVAGER START----//
 
-/mob/living/carbon/xenomorph/ravager/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/ravager
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/ravager/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //----RAVAGER END----//
 //================//
 //RAVAGER ERT START
 
-/mob/living/carbon/xenomorph/ravager/normal/Corrupted
+/mob/living/carbon/xenomorph/ravager/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/ravager/normal/Alpha
+/mob/living/carbon/xenomorph/ravager/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/ravager/normal/Beta
+/mob/living/carbon/xenomorph/ravager/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/ravager/normal/Zeta
+/mob/living/carbon/xenomorph/ravager/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 //RAVAGER ERT END
 //================//
 //----SENTINEL START----//
 
-/mob/living/carbon/xenomorph/sentinel/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/sentinel
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/sentinel/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
 //----SENTINEL END----//
 //================//
 //-----SPITTER START-----//
 
-/mob/living/carbon/xenomorph/spitter/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/spitter
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/spitter/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
 //-----SPITTER END-----//
 //================//
 //SENTINEL ERT START
 
-/mob/living/carbon/xenomorph/spitter/normal/Corrupted
+/mob/living/carbon/xenomorph/spitter/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/spitter/normal/Alpha
+/mob/living/carbon/xenomorph/spitter/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/spitter/normal/Beta
+/mob/living/carbon/xenomorph/spitter/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/spitter/normal/Zeta
+/mob/living/carbon/xenomorph/spitter/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 //SENTINEL ERT END
 //================//
 //----HUNTER START----//
 
-/mob/living/carbon/xenomorph/hunter/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/hunter
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/hunter/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
 //----HUNTER END----//
 //================//
 //HUNTER ERT START
 
-/mob/living/carbon/xenomorph/hunter/normal/Corrupted
+/mob/living/carbon/xenomorph/hunter/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/hunter/normal/Alpha
+/mob/living/carbon/xenomorph/hunter/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/hunter/normal/Beta
+/mob/living/carbon/xenomorph/hunter/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/hunter/normal/Zeta
+/mob/living/carbon/xenomorph/hunter/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 //HUNTER ERT END
 //================//
 //----QUEEN START----//
 
-/mob/living/carbon/xenomorph/queen/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/queen
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/queen/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //----QUEEN END----//
 //============//
 //---KING START---//
 
-/mob/living/carbon/xenomorph/king/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/king
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/king/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //----KING END----//
 //============//
 //---CRUSHER START---//
 
-/mob/living/carbon/xenomorph/crusher/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/crusher
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/crusher/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //---CRUSHER END---//
 //============//
 //---GORGER START---//
 
-/mob/living/carbon/xenomorph/gorger/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/gorger
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/gorger/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //---GORGER END---//
 //============//
 //---BOILER START---//
 
-/mob/living/carbon/xenomorph/boiler/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/boiler
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/boiler/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //---BOILER END---//
 //============//
 //---DEFENDER START---//
 
-/mob/living/carbon/xenomorph/defender/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/defender
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/defender/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
 //---DEFENDER END---//
 //============//
 //----WARRIOR START----//
 
-/mob/living/carbon/xenomorph/warrior/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/warrior
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/warrior/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
 //----WARRIOR END----//
 //============//
 //----DEFILER START----//
 
-/mob/living/carbon/xenomorph/defiler/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/defiler
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/defiler/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //----DEFILER END----//
 //============//
 //----SHRIKE START----//
 
-/mob/living/carbon/xenomorph/shrike/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/shrike
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/shrike/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //----SHRIKE END----//
 //============//
 //----WRAITH START----//
 
-/mob/living/carbon/xenomorph/wraith/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/wraith
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/wraith/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
 //----WRAITH END----//
 //============//
 //----WIDOW START----//
 
-/mob/living/carbon/xenomorph/widow/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/widow
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/widow/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //----WIDOW END----//
 //============//
 //----WARLOCK START----//
 
-/mob/living/carbon/xenomorph/warlock/normal
-	upgrade = XENO_UPGRADE_ZERO
+/mob/living/carbon/xenomorph/warlock
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/warlock/primordial
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 
 //----WARLOCK END----//
 //============//

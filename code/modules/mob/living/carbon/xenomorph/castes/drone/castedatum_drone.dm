@@ -71,13 +71,13 @@
 	)
 
 /datum/xeno_caste/drone/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/drone/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "The perfect worker."
 	primordial_message = "We shall build wonders with our claws. Glory to the hive."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

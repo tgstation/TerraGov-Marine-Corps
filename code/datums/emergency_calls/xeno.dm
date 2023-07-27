@@ -26,25 +26,25 @@
 	var/turf/spawn_loc = .
 
 	if(!leader)
-		. = new /mob/living/carbon/xenomorph/ravager/normal(spawn_loc)
+		. = new /mob/living/carbon/xenomorph/ravager(spawn_loc)
 		leader = .
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/drone/normal(spawn_loc)
+		. = new /mob/living/carbon/xenomorph/drone(spawn_loc)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/spitter/normal(spawn_loc)
+		. = new /mob/living/carbon/xenomorph/spitter(spawn_loc)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
-	. = new /mob/living/carbon/xenomorph/hunter/normal(spawn_loc)
+	. = new /mob/living/carbon/xenomorph/hunter(spawn_loc)
 	M.transfer_to(., TRUE)
 	print_backstory(.)
 

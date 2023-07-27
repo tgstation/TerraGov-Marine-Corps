@@ -70,12 +70,12 @@
 	)
 
 /datum/xeno_caste/carrier/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/carrier/primodial
 	upgrade_name = "Primordial"
 	caste_desc = "It's literally crawling with 11 huggers."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "Not one tall will be left uninfected."
 
 	actions = list(

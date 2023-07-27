@@ -35,7 +35,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_range = 5
@@ -65,12 +65,12 @@
 	)
 
 /datum/xeno_caste/praetorian/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/praetorian/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "An aberrant creature extremely proficient with acid, keep your distance if you don't wish to be burned."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "The strongest of acids flows through our veins, let's reduce them to dust."
 
 // *** Ranged Attack *** //

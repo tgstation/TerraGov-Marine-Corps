@@ -26,25 +26,25 @@
 	var/turf/spawn_loc = .
 
 	if(!leader)
-		. = new /mob/living/carbon/xenomorph/ravager/normal/Alpha(spawn_loc, TRUE) //TRUE for the can_spawn_in_centcom, so they don't get sent to a different hive.
+		. = new /mob/living/carbon/xenomorph/ravager/Alpha(spawn_loc, TRUE) //TRUE for the can_spawn_in_centcom, so they don't get sent to a different hive.
 		leader = .
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/drone/normal/Alpha(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/drone/Alpha(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/spitter/normal/Alpha(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/spitter/Alpha(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
-	. = new /mob/living/carbon/xenomorph/hunter/normal/Alpha(spawn_loc, TRUE)
+	. = new /mob/living/carbon/xenomorph/hunter/Alpha(spawn_loc, TRUE)
 	M.transfer_to(., TRUE)
 	print_backstory(.)
 

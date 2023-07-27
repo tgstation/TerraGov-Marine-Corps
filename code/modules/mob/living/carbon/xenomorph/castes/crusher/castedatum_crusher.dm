@@ -62,13 +62,13 @@
 	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
 
 /datum/xeno_caste/crusher/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/crusher/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "Behemoth of the hive. Nothing will remain in its way"
 	ancient_message = "We are an unstoppable force. Crush. Kill. Destroy."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

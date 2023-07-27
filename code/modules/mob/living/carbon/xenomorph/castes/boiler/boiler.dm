@@ -12,7 +12,7 @@
 	old_x = -16
 	mob_size = MOB_SIZE_BIG
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
 	var/datum/effect_system/smoke_spread/xeno/smoke

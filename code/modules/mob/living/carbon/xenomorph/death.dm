@@ -45,7 +45,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
 
 	switch (upgrade)
-		if(XENO_UPGRADE_ZERO)
+		if(XENO_UPGRADE_NORMAL)
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.normal_T2--
@@ -53,7 +53,7 @@
 					SSmonitor.stats.normal_T3--
 				if(XENO_TIER_FOUR)
 					SSmonitor.stats.normal_T4--
-		if(XENO_UPGRADE_ONE)
+		if(XENO_UPGRADE_PRIMO)
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.primo_T2--

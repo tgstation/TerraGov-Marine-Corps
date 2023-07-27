@@ -166,7 +166,7 @@
 
 		new_xeno.update_leader_icon(TRUE)
 
-	if(upgrade == XENO_UPGRADE_ONE)
+	if(upgrade == XENO_UPGRADE_PRIMO)
 		switch(tier)
 			if(XENO_TIER_TWO)
 				SSmonitor.stats.primo_T2--

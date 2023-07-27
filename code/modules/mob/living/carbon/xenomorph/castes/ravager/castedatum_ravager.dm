@@ -65,13 +65,13 @@
 	xenomorph.RemoveElement(/datum/element/plasma_on_attacked, 0.5)
 
 /datum/xeno_caste/ravager/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/ravager/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "Red like the blood of those that try to stop its rampage."
 	primordial_message = "Our frenzy is eternal. Rip and tear, until it is done."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Abilities *** //
 	actions = list(

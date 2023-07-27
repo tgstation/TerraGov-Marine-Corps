@@ -9,7 +9,7 @@
 	maxHealth = 200
 	plasma_stored = 150
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	buckle_flags = CAN_BUCKLE
 	pixel_x = -16
 	old_x = -16

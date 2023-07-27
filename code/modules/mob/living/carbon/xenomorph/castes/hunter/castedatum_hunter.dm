@@ -70,11 +70,11 @@
 	silent_vent_crawl = TRUE
 
 /datum/xeno_caste/hunter/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/hunter/primordial
 	upgrade_name = "Primordial"
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	caste_desc = "A silent but deadly killing machine. It looks frighteningly powerful."
 	ancient_message = "We are the ultimate predator. Let the hunt begin."
 

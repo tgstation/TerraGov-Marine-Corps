@@ -159,28 +159,28 @@
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)
 			return -1
-		if(XENO_UPGRADE_ZERO)
+		if(XENO_UPGRADE_NORMAL)
 			return 0
-		if(XENO_UPGRADE_ONE)
-			return 4
+		if(XENO_UPGRADE_PRIMO)
+			return 1
 
 /mob/living/carbon/xenomorph/proc/upgrade_next()
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)
 			return XENO_UPGRADE_INVALID
-		if(XENO_UPGRADE_ZERO)
-			return XENO_UPGRADE_ONE
-		if(XENO_UPGRADE_ONE)
-			return XENO_UPGRADE_ONE
+		if(XENO_UPGRADE_NORMAL)
+			return XENO_UPGRADE_PRIMO
+		if(XENO_UPGRADE_PRIMO)
+			return XENO_UPGRADE_PRIMO
 
 /mob/living/carbon/xenomorph/proc/upgrade_prev()
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)
 			return XENO_UPGRADE_INVALID
-		if(XENO_UPGRADE_ZERO)
-			return XENO_UPGRADE_ZERO
-		if(XENO_UPGRADE_ONE)
-			return XENO_UPGRADE_ZERO
+		if(XENO_UPGRADE_NORMAL)
+			return XENO_UPGRADE_NORMAL
+		if(XENO_UPGRADE_PRIMO)
+			return XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/proc/setup_job()
 	var/datum/job/xenomorph/xeno_job = SSjob.type_occupations[xeno_caste.job_type]

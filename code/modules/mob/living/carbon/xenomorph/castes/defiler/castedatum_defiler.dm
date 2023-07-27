@@ -69,13 +69,13 @@
 	aura_strength = 2.6 //It's .1 better than a carrier.
 
 /datum/xeno_caste/defiler/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/defiler/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "An unspeakable hulking horror dripping and exuding the most vile of substances."
 	primordial_message = "Death follows everywhere we go. We are the plague."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

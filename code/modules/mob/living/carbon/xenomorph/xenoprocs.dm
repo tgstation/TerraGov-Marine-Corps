@@ -92,9 +92,9 @@
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	if(HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return FALSE
-	if(upgrade == XENO_UPGRADE_ZERO)
+	if(upgrade == XENO_UPGRADE_NORMAL)
 		return hive.purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
-	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_ONE)
+	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_PRIMO)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
@@ -380,11 +380,6 @@
 				ammo = A
 				break
 	SEND_SIGNAL(src, COMSIG_XENO_AUTOFIREDELAY_MODIFIED, xeno_caste.spit_delay + ammo?.added_spit_delay)
-
-/mob/living/carbon/xenomorph/proc/handle_decay()
-	if(prob(17+(3*tier))) // higher level xenos decay faster, higher plasma storage.
-		use_plasma(min(rand(1,2), plasma_stored))
-
 
 
 // this mess will be fixed by obj damage refactor

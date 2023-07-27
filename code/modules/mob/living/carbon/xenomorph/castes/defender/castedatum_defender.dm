@@ -2,7 +2,7 @@
 	caste_name = "Defender"
 	display_name = "Defender"
 	upgrade_name = ""
-	caste_desc = "An alien with an armored crest."
+	caste_desc = "An alien with an armored crest. It looks very tough."
 
 	caste_type_path = /mob/living/carbon/xenomorph/defender
 
@@ -63,12 +63,12 @@
 	)
 
 /datum/xeno_caste/defender/ancient
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/defender/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "Alien with an incredibly tough and armored head crest able to endure even the strongest hits."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "We are the aegis of the hive. Let nothing pierce our guard."
 
 	actions = list(

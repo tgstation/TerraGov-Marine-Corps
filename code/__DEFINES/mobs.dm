@@ -165,12 +165,12 @@ GLOBAL_LIST_INIT(tier_as_number, list(XENO_TIER_MINION = -1, XENO_TIER_ZERO = 0,
 
 #define XENO_UPGRADE_BASETYPE "basetype"
 #define XENO_UPGRADE_INVALID "invalid" // not applicable, the old -1
-#define XENO_UPGRADE_ZERO "zero"	// god forgive me again
-#define XENO_UPGRADE_ONE "one"
+#define XENO_UPGRADE_NORMAL "zero"	// god forgive me again
+#define XENO_UPGRADE_PRIMO "one"
 
 #define XENO_UPGRADE_MANIFESTATION "manifestation" //just for the hivemind
 
-GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO,  XENO_UPGRADE_ONE, XENO_UPGRADE_MANIFESTATION))
+GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_NORMAL, XENO_UPGRADE_PRIMO, XENO_UPGRADE_MANIFESTATION))
 
 //=================================================
 
@@ -471,7 +471,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define KING_SUMMON_TIMER_DURATION 5 MINUTES
 
-#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0.45,Xenomorph.upgrade_as_number()) * 0.6 )) //Primo damage increase
+#define SPIT_UPGRADE_BONUS(Xenomorph) ((Xenomorph.upgrade_as_number() ?  0.6 : 0.45 )) //Primo damage increase
 
 #define PLASMA_TRANSFER_AMOUNT 100
 

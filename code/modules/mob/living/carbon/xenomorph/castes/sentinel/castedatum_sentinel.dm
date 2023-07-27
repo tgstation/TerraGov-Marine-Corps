@@ -36,7 +36,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.0 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/toxic_spit/upgrade3)
+	spit_types = list(/datum/ammo/xeno/acid/toxic_spit)
 
 	// *** Sentinel Abilities ***
 	additional_stacks = 3
@@ -56,13 +56,13 @@
 	)
 
 /datum/xeno_caste/sentinel/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/sentinel/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "A doctors worst nightmare. It's stinger drips with poison."
 	ancient_message = "All will succumb to our toxins. Leave noone standing."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

@@ -65,12 +65,12 @@
 
 
 /datum/xeno_caste/king/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/king/primordial
 	caste_desc = "An avatar of death. Running won't help you now."
 	primordial_message = "Death cannot create, but you definitely know how to destroy."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

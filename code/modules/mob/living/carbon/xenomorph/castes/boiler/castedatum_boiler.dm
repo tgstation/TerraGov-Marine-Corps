@@ -71,12 +71,12 @@
 	)
 
 /datum/xeno_caste/boiler/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/boiler/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "A horrendously effective alien siege engine."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "We have refined the art of bombardement to perfection. End them before they can utter a desperate plea."
 
 	// *** Ranged Attack *** //

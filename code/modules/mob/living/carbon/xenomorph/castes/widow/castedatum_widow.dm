@@ -67,13 +67,13 @@
 	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/widow)
 
 /datum/xeno_caste/widow/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/widow/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "At times, life is just like a web. You fall, and a spider called accident, at the center, takes you to hell."
 	primordial_message = "We weave the threads of fate that our victims life hangs from."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Abilities *** ///
 	actions = list(

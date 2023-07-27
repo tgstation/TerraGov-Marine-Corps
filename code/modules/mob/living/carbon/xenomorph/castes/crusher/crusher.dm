@@ -9,7 +9,7 @@
 	maxHealth = 300
 	plasma_stored = 200
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	drag_delay = 6 //pulling a big dead xeno is hard
 	mob_size = MOB_SIZE_BIG
 	buckle_flags = CAN_BUCKLE

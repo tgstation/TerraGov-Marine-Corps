@@ -63,12 +63,12 @@
 	)
 
 /datum/xeno_caste/spitter/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/spitter/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "Master of ranged combat, this xeno knows no equal."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "Our suppression is unmatched! Let nothing show its head!"
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD
 

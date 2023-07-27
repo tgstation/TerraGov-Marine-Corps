@@ -27,25 +27,25 @@
 	var/turf/spawn_loc = .
 
 	if(!leader)
-		. = new /mob/living/carbon/xenomorph/ravager/normal/Corrupted(spawn_loc, TRUE) //TRUE for the can_spawn_in_centcom, so they don't get sent to a different hive.
+		. = new /mob/living/carbon/xenomorph/ravager/Corrupted(spawn_loc, TRUE) //TRUE for the can_spawn_in_centcom, so they don't get sent to a different hive.
 		leader = .
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/drone/normal/Corrupted(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/drone/Corrupted(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/spitter/normal/Corrupted(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/spitter/Corrupted(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
-	. = new /mob/living/carbon/xenomorph/hunter/normal/Corrupted(spawn_loc, TRUE)
+	. = new /mob/living/carbon/xenomorph/hunter/Corrupted(spawn_loc, TRUE)
 	M.transfer_to(., TRUE)
 	print_backstory(.)
 

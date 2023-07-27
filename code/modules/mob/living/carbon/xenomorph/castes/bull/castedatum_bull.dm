@@ -50,10 +50,10 @@
 	)
 
 /datum/xeno_caste/bull/normal
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/bull/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "Bloodthirsty horned devil of the hive. Stay away from its path."
 	primordial_message = "We are the spearhead of the hive. Run them all down."
-	upgrade = XENO_UPGRADE_ONE
+	upgrade = XENO_UPGRADE_PRIMO
