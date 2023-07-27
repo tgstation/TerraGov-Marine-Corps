@@ -471,7 +471,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define KING_SUMMON_TIMER_DURATION 5 MINUTES
 
-#define SPIT_UPGRADE_BONUS(Xenomorph) ((Xenomorph.upgrade_as_number() ?  0.6 : 0.45 )) //Primo damage increase
+#define SPIT_UPGRADE_BONUS(Xenomorph) (Xenomorph.upgrade_as_number() ?  0.6 : 0.45 ) //Primo damage increase
 
 #define PLASMA_TRANSFER_AMOUNT 100
 
