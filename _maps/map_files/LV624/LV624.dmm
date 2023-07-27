@@ -4700,7 +4700,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/sw)
 "dyc" = (
-/obj/effect/landmark/fob_sentry,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "dys" = (
@@ -11829,7 +11828,6 @@
 /area/lv624/lazarus/sleep_male)
 "lFx" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "lGM" = (
@@ -16031,7 +16029,6 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "qDY" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},

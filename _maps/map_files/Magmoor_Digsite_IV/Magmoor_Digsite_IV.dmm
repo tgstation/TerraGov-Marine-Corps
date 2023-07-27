@@ -10123,7 +10123,6 @@
 	},
 /area/magmoor/cargo/processing/south)
 "hps" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -24454,7 +24453,6 @@
 /turf/open/lavaland/basalt/dirt/autosmoothing,
 /area/magmoor/compound)
 "rSq" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/southeast)
 "rSA" = (
