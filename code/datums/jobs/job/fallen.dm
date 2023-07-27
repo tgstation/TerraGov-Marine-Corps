@@ -34,6 +34,8 @@
 	title = SQUAD_MARINE
 	outfit = /datum/outfit/job/marine/standard
 
+/datum/job/fallen/marine/standard
+
 /datum/job/fallen/marine/engineer
 	title = SQUAD_ENGINEER
 	skills_type = /datum/skills/combat_engineer

@@ -351,6 +351,11 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/clothes/valhalla
+	vendor_role = /datum/job/fallen/marine/standard
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/clothes/commander
 	name = "GHMME Automated Commander Closet"
 	req_access = list(ACCESS_MARINE_COMMANDER)
