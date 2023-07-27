@@ -169,9 +169,6 @@
 		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 		if(hivemind_countdown)
 			stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
-		var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
-		if(siloless_countdown)
-			stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
@@ -269,8 +266,8 @@
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom
-		if(!O.density)
-			return FALSE//Not a dense object? Doesn't matter then, pass over it.
+		if(O.CanPass(src, O.loc))
+			return FALSE
 		if(!O.anchored)
 			step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
 		SEND_SIGNAL(src, COMSIG_XENO_OBJ_THROW_HIT, O, speed)
@@ -543,12 +540,12 @@
 ///Set the var tracked to to_track
 /mob/living/carbon/xenomorph/proc/set_tracked(atom/to_track)
 	if(tracked)
-		UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(tracked, COMSIG_QDELETING)
 		if (tracked == to_track)
 			clean_tracked()
 			return
 	tracked = to_track
-	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, PROC_REF(clean_tracked))
+	RegisterSignal(tracked, COMSIG_QDELETING, PROC_REF(clean_tracked))
 
 ///Signal handler to null tracked
 /mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)

@@ -84,7 +84,7 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
-		RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_owner))
+		RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(clean_owner))
 	soft_armor = getArmor()
 	hard_armor = getArmor()
 	return ..()

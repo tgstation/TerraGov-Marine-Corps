@@ -78,16 +78,24 @@
 	name = "\improper Jaeger Pattern Ranger visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Ranger class of helmet."
 	icon_state = "ranger_visor"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/armor_module/armor/visor/marine/traditional
 	name = "\improper Jaeger Pattern Traditional Ranger visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Traditional Ranger class of helmet."
 	icon_state = "traditional_visor"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/armor_module/armor/visor/marine/trooper
 	name = "\improper Jaeger Pattern Trooper visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Trooper class of helmet."
 	icon_state = "trooper_visor"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
+
+/obj/item/armor_module/armor/visor/marine/kabuto
+	name = "\improper Style Pattern Kabuto visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Kabuto class of helmet."
+	icon_state = "kabuto_visor"
 
 /obj/item/armor_module/armor/visor/marine/eva
 	name = "\improper Jaeger Pattern EVA visor"
@@ -96,7 +104,10 @@
 
 /obj/item/armor_module/armor/visor/marine/eva/skull
 	name = "\improper Jaeger Pattern EVA Skull visor"
-	icon_state = "eva_skull_visor"
+	icon_state = "eva_visor"
+	attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
+	attachments_allowed = list(/obj/item/armor_module/armor/visor_glyph)
+	starting_attachments = list(/obj/item/armor_module/armor/visor_glyph)
 
 /obj/item/armor_module/armor/visor/marine/assault
 	name = "\improper Jaeger Pattern Assault visor"
@@ -107,13 +118,14 @@
 	name = "\improper Jaeger Pattern EOD visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EOD class of helmet."
 	icon_state = "eod_visor"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/armor_module/armor/visor/marine/gungnir
 	name = "\improper Jaeger Pattern Gungnir visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Gungnir class of helmet."
 	icon_state = "gugnir"
 	greyscale_config = /datum/greyscale_config/visors/greyscale
-	colorable_allowed = COLOR_WHEEL_ONLY
+	colorable_allowed = COLOR_WHEEL_ALLOWED
 	greyscale_colors = LIGHT_COLOR_GREEN
 
 //Robots
@@ -121,6 +133,7 @@
 	name = "\improper XN-1 upper armor plating visor"
 	desc = "The visor attachment of the XN-1 upper armor plating."
 	icon_state = "r_medium"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/armor_module/armor/visor/marine/robot/light
 	name = "\improper XN-1-L upper armor plating visor"
@@ -155,6 +168,7 @@
 	name = "\improper Jaeger Pattern Scout visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Scout class of helmet."
 	icon_state = "scout_visor_old"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/armor_module/armor/visor/marine/old/eva
 	name = "\improper Jaeger Pattern EVA visor"
@@ -163,14 +177,19 @@
 
 /obj/item/armor_module/armor/visor/marine/old/eva/skull
 	name = "\improper Jaeger Pattern EVA Skull visor"
-	icon_state = "eva_skull_visor_old"
+	icon_state = "eva_visor_old"
+	attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
+	attachments_allowed = list(/obj/item/armor_module/armor/visor_glyph/old)
+	starting_attachments = list(/obj/item/armor_module/armor/visor_glyph/old)
 
 /obj/item/armor_module/armor/visor/marine/old/assault
 	name = "\improper Jaeger Pattern Assault visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Assault class of helmet."
 	icon_state = "assault_visor_old"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/armor_module/armor/visor/marine/old/eod
-	name = "\improper Jaeger Pattern EOD visor"
+	name = "\improper Pattern EOD visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EOD class of helmet."
 	icon_state = "eod_visor_old"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED

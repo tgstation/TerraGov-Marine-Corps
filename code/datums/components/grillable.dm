@@ -27,7 +27,7 @@
 	src.use_large_steam_sprite = use_large_steam_sprite
 
 	RegisterSignal(parent, COMSIG_ITEM_GRILLED, PROC_REF(OnGrill))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(OnExamine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(OnExamine))
 
 // Inherit the new values passed to the component
 /datum/component/grillable/InheritComponent(datum/component/grillable/new_comp, original, cook_result, required_cook_time, positive_result, use_large_steam_sprite)

@@ -158,7 +158,7 @@
 
 /area/mainship/hallways/boxingring
 	name = "Boxing Ring"
-	icon_state = "Holodeck"
+	icon_state = "livingspace"
 
 /area/mainship/hallways/repair_bay
 	name = "Vehicle Repair Bay"
@@ -269,6 +269,7 @@
 	name = "Lounge"
 	icon_state = "gruntrnr"
 
+/area/mainship/living/grunt_rnr/two
 
 /area/mainship/living/officer_rnr
 	name = "Officer's Lounge"
@@ -427,6 +428,7 @@
 	name = "Evacuation"
 	icon_state = "departures"
 	minimap_color = MINIMAP_AREA_ESCAPE
+	requires_power = FALSE
 
 /area/mainship/living/evacuation/two //some ships have entirely separate evac areas
 

@@ -46,7 +46,7 @@
 	icon_state = "mag"
 	flags_magazine = NONE
 	caliber = CALIBER_10x27_CASELESS
-	max_rounds = 100
+	max_rounds = 150
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	reload_delay = 1 SECONDS
 

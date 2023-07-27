@@ -37,7 +37,7 @@
 /area/bigredv2/outside/engineering)
 "cD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor,
@@ -179,7 +179,7 @@
 /area/bigredv2/outside/engineering)
 "jo" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "jG" = (
@@ -189,7 +189,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "kp" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "kq" = (
@@ -311,7 +311,7 @@
 /area/bigredv2/outside/engineering)
 "tt" = (
 /obj/structure/table,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)

@@ -194,8 +194,8 @@
 		qdel(O)
 	else if(istype(O,/obj/effect/plantsegment))
 		if(prob(50)) qdel(O) //Kills kudzu too.
-	else if(istype(O,/obj/machinery/portable_atmospherics/hydroponics))
-		var/obj/machinery/portable_atmospherics/hydroponics/tray = O
+	else if(istype(O,/obj/machinery/hydroponics))
+		var/obj/machinery/hydroponics/tray = O
 
 		if(tray.seed)
 			tray.health -= rand(30,50)

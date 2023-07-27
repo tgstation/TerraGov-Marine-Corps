@@ -290,8 +290,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 
 	if(species.species_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear_[underwear]_[gender]"), ICON_OVERLAY)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_[undershirt]_[gender]"), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear_[underwear]"), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_[undershirt]"), ICON_OVERLAY)
 
 	icon = stand_icon
 
@@ -321,7 +321,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(facial_hair_style?.species_allowed && (species.name in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
-				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
+				if(facial_hair_style.greyscale_config)
+					facial_s = SSgreyscale.GetColoredIconByType(facial_hair_style.greyscale_config, rgb(r_facial, g_facial, b_facial) )
+				else
+					facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 

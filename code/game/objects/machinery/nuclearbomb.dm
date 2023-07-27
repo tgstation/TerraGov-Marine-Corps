@@ -142,6 +142,9 @@
 	if(!extended)
 		return FALSE
 
+	if(machine_stat & BROKEN)
+		return FALSE
+
 	return TRUE
 
 /obj/machinery/nuclearbomb/attack_hand(mob/living/user)

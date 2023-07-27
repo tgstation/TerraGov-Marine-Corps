@@ -35,7 +35,7 @@
 	greyscale_config = /datum/greyscale_config/armor_mk1/infantry
 	greyscale_colors = ARMOR_PALETTE_DRAB
 	colorable_colors = ARMOR_PALETTES_LIST
-	colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
+	colorable_allowed = PRESET_COLORS_ALLOWED
 
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old, /obj/item/armor_module/storage/helmet)

@@ -84,6 +84,10 @@
 "K" = (
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
+"L" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "M" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/weed_node,
@@ -466,7 +470,7 @@ l
 l
 l
 l
-l
+L
 d
 Q
 Q

@@ -187,8 +187,8 @@
 	. = ..()
 	if(.)
 		return
-	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON), PROC_REF(examinate))
-	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), TYPE_PROC_REF(/datum/keybinding, intercept_mouse_special))
+	RegisterSignals(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON), PROC_REF(examinate))
+	RegisterSignals(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), TYPE_PROC_REF(/datum/keybinding, intercept_mouse_special))
 	return TRUE
 
 

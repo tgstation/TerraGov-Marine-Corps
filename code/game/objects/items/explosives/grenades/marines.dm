@@ -94,7 +94,7 @@
 	forceMove(hit_atom)
 	saved_overlay = stuck_overlay
 	stuck_to = hit_atom
-	RegisterSignal(stuck_to, COMSIG_PARENT_QDELETING, PROC_REF(clean_refs))
+	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
@@ -108,7 +108,7 @@
 /obj/item/explosive/grenade/sticky/proc/clean_refs()
 	stuck_to.cut_overlay(saved_overlay)
 	SIGNAL_HANDLER
-	UnregisterSignal(stuck_to, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(stuck_to, COMSIG_QDELETING)
 	stuck_to = null
 	saved_overlay = null
 

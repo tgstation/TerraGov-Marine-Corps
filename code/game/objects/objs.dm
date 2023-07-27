@@ -109,16 +109,23 @@
 	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
 
-	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
-		return TRUE
-
 	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
 		return TRUE
 
 	if(mover?.throwing && (allow_pass_flags & PASS_THROW))
 		return TRUE
 
-	return FALSE
+	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
+		return TRUE
+
+	if(!ismob(mover))
+		return FALSE
+
+	if((allow_pass_flags & PASS_MOB))
+		return TRUE
+
+	if((allow_pass_flags & PASS_WALKOVER) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH))
+		return TRUE
 
 ///Handles extra checks for things trying to exit this objects turf
 /obj/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
@@ -139,6 +146,12 @@
 		return NONE
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
+
+///Signal handler to check if you can move from one low object to another
+/obj/proc/can_climb_over(datum/source)
+	SIGNAL_HANDLER
+	if(!(flags_atom & ON_BORDER) && density)
+		return TRUE
 
 /obj/proc/updateUsrDialog()
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))

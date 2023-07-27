@@ -27,7 +27,7 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "aE" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
@@ -196,7 +196,7 @@
 /area/bigredv2/outside/telecomm)
 "ev" = (
 /obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "eC" = (
@@ -220,7 +220,7 @@
 /obj/structure/mirror/broken{
 	dir = 4
 	},
-/obj/item/tool/soap/deluxe,
+/obj/effect/spawner/random/misc/soap/deluxeweighted,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "fj" = (
@@ -488,7 +488,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "ks" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -624,9 +624,9 @@
 "nj" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 1;
-	locked = 1;
 	name = "\improper Marshal Office Prison"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "no" = (
@@ -795,7 +795,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "so" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "sx" = (
@@ -1108,9 +1108,9 @@
 "AQ" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	locked = 1;
 	name = "\improper Marshal Office Prison"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "AS" = (
@@ -1689,7 +1689,7 @@
 /area/bigredv2/outside/marshal_office)
 "Oe" = (
 /obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "Ol" = (
@@ -1720,7 +1720,7 @@
 /area/bigredv2/outside/telecomm)
 "OQ" = (
 /obj/structure/window/reinforced,
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "OX" = (
@@ -1755,9 +1755,9 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	locked = 1;
 	name = "\improper Marshal Office Prison"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "PK" = (
@@ -1863,7 +1863,7 @@
 /area/bigredv2/outside/marshal_office)
 "Sc" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "Se" = (
@@ -1943,7 +1943,7 @@
 /area/bigredv2/outside/marshal_office)
 "UF" = (
 /obj/structure/table,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "UJ" = (
@@ -2097,7 +2097,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "Zb" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},

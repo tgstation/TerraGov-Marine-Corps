@@ -8,10 +8,11 @@
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
 	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	max_integrity = 150
-	climbable = 1 //Small enough to vault over, but you do need to vault over it
-	climb_delay = 15 //One second and a half, gotta vault fast
+	climbable = TRUE
+	climb_delay = 1.5 SECONDS
+	soft_armor = list(MELEE = 0, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 50, BIO = 100, FIRE = 50, ACID = 0)
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/framed/mainship/window_type = /obj/structure/window/framed/mainship
 	var/basestate = "window"
@@ -27,15 +28,6 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 	)
 
-/obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(.)
-		return
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable)
-		return TRUE
-
 /obj/structure/window_frame/Initialize(mapload, from_window_shatter)
 	. = ..()
 	var/weed_found
@@ -47,6 +39,10 @@
 		qdel(weed_found)
 		new /obj/alien/weeds/weedwall/window/frame(loc) //after smoothing to get the correct junction value
 
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/window_frame/proc/update_nearby_icons()
 	QUEUE_SMOOTH_NEIGHBORS(src)

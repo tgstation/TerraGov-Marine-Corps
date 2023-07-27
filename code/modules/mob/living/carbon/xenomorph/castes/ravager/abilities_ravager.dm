@@ -228,7 +228,8 @@
 	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
 	ADD_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT) //Can now endure slowdown
 
-	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(damage_taken)) //Warns us if our health is critically low
+	RegisterSignal(X, COMSIG_XENOMORPH_BRUTE_DAMAGE, PROC_REF(damage_taken)) //Warns us if our health is critically low
+	RegisterSignal(X, COMSIG_XENOMORPH_BURN_DAMAGE, PROC_REF(damage_taken))
 
 	succeed_activate()
 	add_cooldown()
@@ -245,10 +246,12 @@
 /datum/action/xeno_action/endure/proc/endure_deactivate()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	UnregisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	UnregisterSignal(X, COMSIG_XENOMORPH_BRUTE_DAMAGE)
+	UnregisterSignal(X, COMSIG_XENOMORPH_BURN_DAMAGE)
 
 	X.do_jitter_animation(1000)
 	X.endure = FALSE
+	X.clear_fullscreen("endure", 0.7 SECONDS)
 	X.remove_filter("ravager_endure_outline")
 	if(X.health < X.get_crit_threshold()) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
 		var/total_damage = X.getFireLoss() + X.getBruteLoss()
@@ -272,6 +275,10 @@
 	SIGNAL_HANDLER
 	if(X.health < 0)
 		to_chat(X, "<span class='xenohighdanger' style='color: red;'>We are critically wounded! We can only withstand [(RAVAGER_ENDURE_HP_LIMIT-X.health) * -1] more damage before we perish!</span>")
+		X.overlay_fullscreen("endure", /atom/movable/screen/fullscreen/bloodlust)
+	else
+		X.clear_fullscreen("endure", 0.7 SECONDS)
+
 
 
 /datum/action/xeno_action/endure/ai_should_start_consider()

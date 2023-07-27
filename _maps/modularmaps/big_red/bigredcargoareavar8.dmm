@@ -550,6 +550,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
+"Je" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
 "Js" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -673,6 +678,12 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
+"Pa" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Pp" = (
@@ -1805,9 +1816,9 @@ yS
 sz
 EM
 kH
-Bu
-sS
-sS
+Pa
+Je
+Je
 TR
 sY
 sY

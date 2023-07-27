@@ -358,9 +358,13 @@
 //////////////////
 /client/Del()
 	if(!gc_destroyed)
+		gc_destroyed = world.time
+		if (!QDELING(src))
+			stack_trace("Client does not purport to be QDELING, this is going to cause bugs in other places!")
+
 		// Yes this is the same as what's found in qdel(). Yes it does need to be here
 		// Get off my back
-		SEND_SIGNAL(src, COMSIG_PARENT_QDELETING, TRUE)
+		SEND_SIGNAL(src, COMSIG_QDELETING, TRUE)
 		Destroy()
 	return ..()
 
@@ -801,7 +805,7 @@
  *
  * Handles adding macros for the keys that need it
  * And adding movement keys to the clients movement_keys list
- * At the time of writing this, communication(OOC, Say, IC) require macros
+ * At the time of writing this, communication(OOC, Say, IC, ASAY, MSAY) require macros
  * Arguments:
  * * direct_prefs - the preference we're going to get keybinds from
  */
@@ -842,7 +846,18 @@
 				if(XOOC_CHANNEL)
 					var/xooc = tgui_say_create_open_command(XOOC_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[xooc]")
-
+				if(ADMIN_CHANNEL)
+					if(holder)
+						var/asay = tgui_say_create_open_command(ADMIN_CHANNEL)
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[asay]")
+					else
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
+				if(MENTOR_CHANNEL)
+					if(holder)
+						var/msay = tgui_say_create_open_command(MENTOR_CHANNEL)
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[msay]")
+					else
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
 
 /client/proc/change_view(new_size)
 	if(isnull(new_size))

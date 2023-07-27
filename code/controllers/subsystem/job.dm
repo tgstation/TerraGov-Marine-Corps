@@ -90,6 +90,8 @@ SUBSYSTEM_DEF(job)
 		JobDebug("AR job doesn't exist! Player: [player], Job: [job]")
 		return FALSE
 	JobDebug("Running AR, Player: [player], Job: [job.title], LJ: [latejoin]")
+	if(!player.IsJobAvailable(job))
+		return FALSE
 	if(is_banned_from(player.ckey, job.title))
 		JobDebug("AR isbanned failed, Player: [player], Job:[job.title]")
 		return FALSE
@@ -212,9 +214,6 @@ SUBSYSTEM_DEF(job)
 		for(var/datum/job/job AS in occupations_to_assign)
 			// If the player wants that job on this level, then try give it to him.
 			if(player.client.prefs.job_preferences[job.title] != level)
-				continue
-			// If the job isn't filled
-			if((job.total_positions != -1 && job.current_positions >= job.total_positions))
 				continue
 			if(job.faction == faction_rejected)
 				continue
