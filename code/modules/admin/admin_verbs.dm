@@ -17,7 +17,6 @@
 		return
 
 	var/mob/dead/observer/ghost = M.ghostize(TRUE, TRUE)
-	owner.init_verbs()
 
 	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)

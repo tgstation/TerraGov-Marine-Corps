@@ -388,7 +388,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	client.view_size.set_default(get_screen_size(client.prefs.widescreenpref))//Let's reset so people can't become allseeing gods
 	mind.transfer_to(old_mob, TRUE)
-	client.init_verbs()
 	return TRUE
 
 /mob/dead/observer/verb/toggle_HUDs()
