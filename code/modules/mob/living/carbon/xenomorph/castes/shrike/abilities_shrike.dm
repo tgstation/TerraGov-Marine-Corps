@@ -390,7 +390,7 @@
 		vortex_pull()
 	QDEL_NULL(particle_holder)
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
-	return fail_activate()
+	return
 
 
 ///checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability. While causing shake to anything in range with effects applied to humans affected.
@@ -435,10 +435,4 @@
 			var/turf/targetturf = get_turf(owner)
 			targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
 			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
-
-///removes immobile trait if the ability is canceled by a stun or similar
-/datum/action/xeno_action/activable/psychic_vortex/fail_activate()
-	. = ..()
-	QDEL_NULL(particle_holder)
-	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
 
