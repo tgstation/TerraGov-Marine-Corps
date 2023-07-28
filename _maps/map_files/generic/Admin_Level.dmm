@@ -7761,6 +7761,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/box/arrow,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/fcdr,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "kkv" = (
@@ -11713,6 +11717,22 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engine_monitoring)
+"pGN" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 8;
+	pixel_y = -11;
+	pixel_x = 8
+	},
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/mech,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig)
 "pIc" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/yellow{
@@ -13452,6 +13472,7 @@
 /obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
 	},
+/obj/effect/turf_decal/warning_stripes/synth,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "rVI" = (
@@ -26296,7 +26317,7 @@ lhK
 mdt
 mQt
 jXM
-ivu
+pGN
 luM
 moJ
 mZo
