@@ -27,11 +27,6 @@
 	///campaign stats organised by faction
 	var/list/datum/faction_stats/stat_list = list()
 
-/datum/game_mode/hvh/campaign/New()
-	. = ..()
-	for(var/faction in factions)
-		stat_list[faction] = new /datum/faction_stats(faction)
-
 /datum/game_mode/hvh/campaign/announce()
 	to_chat(world, "<b>The current game mode is - Campaign!</b>")
 	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
@@ -39,6 +34,8 @@
 
 /datum/game_mode/hvh/campaign/pre_setup()
 	. = ..()
+	for(var/faction in factions)
+		stat_list[faction] = new /datum/faction_stats(faction)
 
 /datum/game_mode/hvh/campaign/post_setup()
 	. = ..()
