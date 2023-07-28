@@ -171,6 +171,7 @@
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 #define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
 #define TRAIT_VALHALLA_XENO "valhalla_xeno"
+#define TRAIT_BULWARKED_TURF "bulwarked_turf" // turf is affected by bulwark ability
 
 //important_recursive_contents traits
 /*

@@ -487,16 +487,8 @@
  * range : how far the mob will be thrown, in tile
  * speed : how fast will it fly
  */
-/mob/living/proc/fly_at(atom/target, range, speed, hovering_time)
-	addtimer(CALLBACK(src,PROC_REF(end_flying), layer), hovering_time)
-	layer = FLY_LAYER
-	set_flying(TRUE)
+/mob/living/proc/fly_at(atom/target, range, speed)
 	throw_at(target, range, speed, null, 0, TRUE)
-
-///remove flying flags and reset the sprite layer
-/mob/living/proc/end_flying(init_layer)
-	set_flying(FALSE)
-	layer = init_layer
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
@@ -827,6 +819,10 @@ below 100 is not dizzy
 /mob/living/can_interact_with(datum/D)
 	return D == src || D.Adjacent(src)
 
+/mob/living/onTransitZ(old_z, new_z)
+	. = ..()
+	set_jump_component()
+
 /**
  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
  *
@@ -971,4 +967,18 @@ below 100 is not dizzy
 
 ///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
 /mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
+	var/gravity = get_gravity()
+	if(gravity < 1) //low grav
+		duration *= 2.5 - gravity
+		cooldown *= 2 - gravity
+		cost *= gravity * 0.5
+		height *= 2 - gravity
+		if(gravity <= 0.75)
+			flags_pass |= PASS_DEFENSIVE_STRUCTURE
+	else if(gravity > 1) //high grav
+		duration *= gravity * 0.5
+		cooldown *= gravity
+		cost *= gravity
+		height *= gravity * 0.5
+
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)

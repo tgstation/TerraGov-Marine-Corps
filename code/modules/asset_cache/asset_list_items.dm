@@ -170,3 +170,9 @@
 		"square" = 'icons/ui_icons/particle_editor/square_gen.png',
 		"cube" = 'icons/ui_icons/particle_editor/cube_gen.png',
 	)
+
+/datum/asset/simple/paper
+	assets = list(
+		"ntlogo.png" = 'html/images/ntlogo.png',
+		"tgmclogo.png" = 'html/images/tgmclogo.png',
+	)

@@ -456,7 +456,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 						shopping_cart[P.type] = number_to_buy
 			. = TRUE
 		if("send")
-			if(supply_shuttle.mode == SHUTTLE_IDLE && is_mainship_level(supply_shuttle.z))
+			if(supply_shuttle.mode != SHUTTLE_IDLE)
+				return
+			if(is_mainship_level(supply_shuttle.z))
 				if (!supply_shuttle.check_blacklist())
 					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)

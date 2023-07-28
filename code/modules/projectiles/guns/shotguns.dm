@@ -78,7 +78,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t39"
 	item_state = "t39"
-	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh39.ogg'
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
@@ -144,7 +144,7 @@
 	item_state = "dshotgun"
 	max_chamber_items = 2 //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh34.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
@@ -195,7 +195,7 @@
 	item_state = "ts34"
 	max_chamber_items = 2 //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh34.ogg'
 	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
@@ -204,7 +204,6 @@
 		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope,
@@ -215,11 +214,11 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 13, "stock_y" = 16)
 
-	fire_delay = 5
+	fire_delay = 0.65 SECONDS
 	burst_amount = 1
 	scatter = 3
 	scatter_unwielded = 10
-	recoil = 2
+	recoil = 1
 	recoil_unwielded = 4
 
 
@@ -377,7 +376,8 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "mosin"
 	item_state = "mosin"
-	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mosin.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mosin_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_762X54 //codex
@@ -449,7 +449,7 @@
 	ammo_datum_type = /datum/ammo/bullet/sniper/martini
 	default_ammo_type = /datum/ammo/bullet/sniper/martini
 	gun_skill_category = SKILL_RIFLES
-	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_martinihenry.ogg'
 	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
 	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
@@ -573,7 +573,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "leicrepeater"
 	item_state = "leicrepeater"
-	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_repeater.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_4570 //codex
@@ -664,7 +664,7 @@
 	item_state = "t35"
 	cock_animation = "t35_pump"
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh35.ogg'
 	max_chamber_items = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,

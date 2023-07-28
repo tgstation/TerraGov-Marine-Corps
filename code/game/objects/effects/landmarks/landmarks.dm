@@ -156,6 +156,25 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/xeno_tunnel_spawn
+	name = "xeno tunnel spawn landmark"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "hole"
+
+/obj/effect/landmark/xeno_tunnel_spawn/Initialize(mapload)
+	GLOB.xeno_tunnel_spawn_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/resin_jelly_pod
+	name = "xeno jelly pod landmark"
+	icon = 'icons/Xeno/resinpod.dmi'
+	icon_state = "resinpod"
+
+/obj/effect/landmark/resin_jelly_pod/Initialize(mapload)
+	GLOB.xeno_tunnel_spawn_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
@@ -224,6 +243,7 @@
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla,
+		/obj/item/weapon/gun/rifle/pepperball,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
@@ -239,11 +259,15 @@
 		/obj/item/weapon/gun/pistol/highpower,
 		/obj/item/weapon/gun/pistol/vp70,
 		/obj/item/weapon/gun/pistol/vp78,
+		/obj/item/weapon/gun/pistol/som,
+		/obj/item/weapon/gun/pistol/icc_dpistol,
 		/obj/item/weapon/gun/revolver/standard_revolver,
 		/obj/item/weapon/gun/revolver/single_action/m44,
 		/obj/item/weapon/gun/revolver/upp,
 		/obj/item/weapon/gun/revolver/small,
 		/obj/item/weapon/gun/revolver/cmb,
+		/obj/item/weapon/gun/revolver/judge,
+		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/katana/replica,
 		/obj/item/weapon/combat_knife,
@@ -266,9 +290,11 @@
 		/obj/item/weapon/gun/shotgun/pump/lever,
 		/obj/item/weapon/gun/pistol/g22/tranq,
 		/obj/item/weapon/gun/pistol/m1911/custom,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/weapon/gun/revolver/mateba/notmarine,
 		/obj/item/weapon/gun/revolver/mateba/custom,
+		/obj/item/weapon/gun/revolver/standard_magnum,
 		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/weapon/gun/smg/standard_smg,
 		/obj/item/weapon/gun/smg/m25,
@@ -276,6 +302,9 @@
 		/obj/item/weapon/gun/smg/skorpion,
 		/obj/item/weapon/gun/smg/ppsh,
 		/obj/item/weapon/gun/smg/uzi,
+		/obj/item/weapon/gun/smg/icc_machinepistol/medic,
+		/obj/item/weapon/gun/smg/icc_pdw/standard,
+		/obj/item/weapon/gun/smg/som/veteran,
 		/obj/item/weapon/claymore,
 		/obj/item/weapon/claymore/mercsword,
 		/obj/item/weapon/claymore/mercsword/captain,
@@ -284,6 +313,10 @@
 		/obj/item/weapon/twohanded/fireaxe,
 		/obj/item/weapon/twohanded/spear,
 		/obj/item/weapon/twohanded/glaive,
+		/obj/item/weapon/gun/rifle/garand,
+		/obj/item/weapon/gun/shotgun/pump/lever/repeater,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/weapon/gun/shotgun/double/martini,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn
@@ -297,6 +330,7 @@
 		/obj/item/weapon/gun/rifle/m412,
 		/obj/item/weapon/gun/rifle/m41a,
 		/obj/item/weapon/gun/rifle/mpi_km,
+		/obj/item/weapon/gun/rifle/mpi_km/black,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine,
@@ -311,16 +345,35 @@
 		/obj/item/weapon/gun/shotgun/pump/t35,
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine,
+		/obj/item/weapon/gun/shotgun/som/pointman,
+		/obj/item/weapon/gun/shotgun/som/support,
+		/obj/item/weapon/gun/shotgun/pump/trenchgun,
 		/obj/item/weapon/gun/flamer/big_flamer,
 		/obj/item/weapon/gun/pistol/auto9,
 		/obj/item/weapon/gun/rifle/chambered,
 		/obj/item/weapon/gun/rifle/tx11,
+		/obj/item/weapon/gun/rifle/standard_skirmishrifle,
+		/obj/item/weapon/gun/rifle/mkh,
+		/obj/item/weapon/gun/rifle/som,
+		/obj/item/weapon/gun/rifle/som_carbine,
+		/obj/item/weapon/gun/rifle/som_mg,
+		/obj/item/weapon/gun/rifle/icc_sharpshooter,
+		/obj/item/weapon/gun/rifle/icc_battlecarbine,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard,
+		/obj/item/weapon/gun/standard_mmg,
+		/obj/item/weapon/gun/launcher/rocket/oneuse,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn
 	name = "Tier 4 Weapon Spawn"
 	icon_state = "weapon4"
 	weapon_list = list(
+		/obj/item/weapon/gun/rifle/lmg_d,
 		/obj/item/weapon/gun/rifle/type71/commando,
 		/obj/item/weapon/gun/rifle/m412/elite,
 		/obj/item/weapon/gun/rifle/sniper/elite,
@@ -328,6 +381,7 @@
 		/obj/item/weapon/gun/rifle/sniper/elite/xmas,
 		/obj/item/weapon/gun/rifle/sniper/antimaterial,
 		/obj/item/weapon/gun/rifle/railgun,
+		/obj/item/weapon/gun/rifle/icc_coilgun,
 		/obj/item/weapon/gun/rifle/sniper/svd,
 		/obj/item/weapon/gun/grenade_launcher/single_shot,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
@@ -338,9 +392,19 @@
 		/obj/item/weapon/gun/shotgun/pump/cmb,
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/double/sawn,
+		/obj/item/weapon/gun/shotgun/zx76,
 		/obj/item/weapon/gun/flamer/big_flamer/marinestandard,
+		/obj/item/weapon/gun/flamer/som,
 		/obj/item/weapon/gun/rifle/standard_autosniper,
 		/obj/item/weapon/energy/axe,
+		/obj/item/weapon/gun/rifle/tx54,
+		/obj/item/weapon/gun/rifle/tx55,
+		/obj/item/weapon/gun/rifle/som/veteran,
+		/obj/item/weapon/gun/rifle/icc_confrontationrifle/leader,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/xray,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin,
+		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn
@@ -349,9 +413,13 @@
 	weapon_list = list(
 		/obj/item/weapon/gun/launcher/rocket,
 		/obj/item/weapon/gun/launcher/rocket/m57a4,
+		/obj/item/weapon/gun/launcher/rocket/m57a4/t57,
+		/obj/item/weapon/gun/launcher/rocket/som,
+		/obj/item/weapon/gun/launcher/rocket/icc,
 		/obj/item/weapon/gun/minigun,
 		/obj/item/weapon/gun/grenade_launcher/multinade_launcher,
 		/obj/item/weapon/gun/energy/lasgun/pulse,
+		/obj/item/weapon/gun/tl102/death, // memes
 	)
 
 /obj/effect/landmark/weapon_spawn/tier6_weapon_spawn

@@ -18,10 +18,10 @@
 		/obj/item/tank/emergency_oxygen,
 	)
 	attachments_allowed = list(
-		/obj/item/armor_module/storage/medical/irremovable,
+		/obj/item/armor_module/storage/pocket/medical,
 		/obj/item/armor_module/armor/badge,
 	)
-	starting_attachments = list(/obj/item/armor_module/storage/medical/irremovable)
+	starting_attachments = list(/obj/item/armor_module/storage/pocket/medical)
 	///If the coat is buttoned or not
 	var/open = FALSE
 

@@ -698,7 +698,6 @@
 "dd" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
-/obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "de" = (
@@ -709,7 +708,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "df" = (
@@ -1825,7 +1823,6 @@
 /area/lv624/lazarus/canteen)
 "jv" = (
 /obj/structure/table/flipped,
-/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -2976,7 +2973,6 @@
 "pQ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
-/obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "pS" = (
@@ -3188,13 +3184,13 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "qU" = (
-/obj/machinery/power/apc/drained,
+/obj/structure/closet/secure_closet/miner,
 /obj/structure/cable,
-/obj/structure/bed/chair/office/light{
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},
-/turf/open/floor/plating,
-/area/vapor_processing/cargo_maint_s)
+/area/lv624/lazarus/quartstorage)
 "qV" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -5221,15 +5217,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
-"Od" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/engineering/tech_supply,
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/vapor_processing/cargo3)
 "Oh" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -5923,7 +5910,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
@@ -8520,7 +8506,7 @@ kP
 kP
 kP
 lt
-qU
+lF
 lv
 lv
 lv
@@ -10537,7 +10523,7 @@ bm
 eq
 ep
 eL
-eT
+qU
 ff
 fs
 fs
@@ -11158,7 +11144,7 @@ fj
 fj
 ep
 rp
-Od
+yI
 im
 Xh
 rG

@@ -483,6 +483,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	max_shells = 100 //codex
 	caliber = CALIBER_PEPPERBALL
+	fire_sound = "gun_fb12" // idk why i called it "fb-12", ah too late now
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
 	force = 30 // two shots weeds as it has no bayonet
@@ -590,6 +591,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	gun_skill_category = SKILL_FIREARMS
+	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
