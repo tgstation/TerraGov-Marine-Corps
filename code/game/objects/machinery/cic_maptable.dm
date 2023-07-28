@@ -105,6 +105,7 @@
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+
 	var/list/atom/movable/screen/actions = list()
 	for(var/path in drawing_tools)
 		actions += new path(null, targetted_zlevel, minimap_flag)
@@ -150,6 +151,11 @@
 	if(!isnum(new_z))
 		return
 	targetted_zlevel = new_z
+	map = null
+
+	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
+		tool.zlevel = new_z
+		tool.set_zlevel(new_z, tool.minimap_flag)
 
 /obj/machinery/cic_maptable_big/som
 	minimap_flag = MINIMAP_FLAG_MARINE_SOM
