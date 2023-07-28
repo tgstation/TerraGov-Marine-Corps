@@ -120,3 +120,11 @@
 /obj/effect/landmark/start/job/som/squadleader
 	icon_state = "SL"
 	job = /datum/job/som/squad/leader
+
+/obj/effect/landmark/start/job/som/fieldcommander
+	icon_state = "SL" //placeholder
+	job = /datum/job/som/command/fieldcommander
+
+/obj/effect/landmark/start/job/som/general
+	icon_state = "SL" //placeholder
+	job = /datum/job/som/command/general

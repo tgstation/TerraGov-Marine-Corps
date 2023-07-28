@@ -9,8 +9,8 @@
 		/datum/job/som/squad/veteran = VETERAN_POINTS_REGULAR,
 	)
 
-//Captain
-/datum/job/som/command/captain
+//General
+/datum/job/som/command/general
 	title = SOM_GENERAL
 	req_admin_notify = TRUE
 	paygrade = "SOM_O7"
@@ -22,7 +22,7 @@
 	//access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
-	outfit = /datum/outfit/job/command/captain
+	outfit = /datum/outfit/job/som/command/general
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP|JOB_FLAG_LOUDER_TTS
@@ -33,9 +33,9 @@
 		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Lead the SOM forces and complete your mission. Support the marines and communicate with your command staff, execute orders.
 	"}
-	minimap_icon = "captain"
+	minimap_icon = "captain" //placeholder
 
-/datum/job/som/command/captain/radio_help_message(mob/M)
+/datum/job/som/command/general/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"As the captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
 While you may support Nanotrasen, you report to the SOM High Command, not the corporate office.
@@ -46,13 +46,13 @@ If you require any help, use <b>mentorhelp</b> to ask mentors about what you're 
 Godspeed, captain! And remember, you are not above the law."})
 
 
-/datum/outfit/job/command/captain
+/datum/outfit/job/som/command/general
 	name = SOM_GENERAL
-	jobtype = /datum/job/som/command/captain
+	jobtype = /datum/job/som/command/general
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
-	ears = /obj/item/radio/headset/mainship/mcom
+	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
@@ -60,7 +60,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership
 
-/datum/job/som/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
+/datum/job/som/command/general/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
 	if(!ishuman(new_mob))
 		return
@@ -137,7 +137,7 @@ Make the SOM proud!"}) //update
 
 	id = /obj/item/card/id/dogtag/fc
 	belt = /obj/item/storage/holster/blade/officer/full
-	ears = /obj/item/radio/headset/mainship/mcom
+	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten
 	shoes = /obj/item/clothing/shoes/marine/full
