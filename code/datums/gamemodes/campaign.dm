@@ -5,9 +5,8 @@
 	config_tag = "Campaign"
 	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS //any changes needed? MODE_LATE_OPENING_SHUTTER_TIMER handled by missions
 	shutters_drop_time = 2 MINUTES //will need changing
-	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE) //need changing to these lists
-	blacklist_ship_maps = null
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
+	whitelist_ship_maps = list(MAP_ITERON)
+	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
 	bioscan_interval = 3 MINUTES
 	valid_job_types = list(
 		/datum/job/terragov/command/fieldcommander = 1,

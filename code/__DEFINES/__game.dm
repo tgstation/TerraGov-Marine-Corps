@@ -22,6 +22,9 @@
 #define MAP_MINERVA "Minerva"
 #define MAP_COMBAT_PATROL_BASE "Combat Patrol Base"
 
+#define MAP_FORT_PHOBOS "Fort Phobos"
+#define MAP_ITERON "Iteron"
+
 
 #define SEE_INVISIBLE_MINIMUM 5
 
