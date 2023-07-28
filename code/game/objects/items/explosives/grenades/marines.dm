@@ -146,6 +146,122 @@
 	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
 	return ..()
 
+/obj/item/explosive/grenade/sticky/drainer
+	name = "\improper M45 Drainer grenade"
+	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. This one creates plasma draining smoke! It is set to detonate in 5 seconds."
+	icon_state = "grenade_sticky_drain"
+	item_state = "grenade_sticky_drain"
+	det_time = 5 SECONDS
+	light_impact_range = 1
+	/// smoke type created when the grenade is primed
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/plasmaloss
+	///radius this smoke grenade will encompass
+	var/smokeradius = 1
+	///The duration of the smoke
+	var/smoke_duration = 8
+
+/obj/item/explosive/grenade/sticky/drainer/prime()
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 35)
+	smoke.set_up(smokeradius, loc, smoke_duration)
+	smoke.start()
+	if(stuck_to)
+		clean_refs()
+	qdel(src)
+
+/obj/item/explosive/grenade/sticky/drainer/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(.)
+		return
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
+
+///causes fire tiles underneath target when stuck_to
+/obj/item/explosive/grenade/sticky/drainer/proc/make_smoke(datum/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	smoke.set_up(smokeradius, loc, smoke_duration)
+	smoke.start()
+
+/obj/item/explosive/grenade/sticky/drainer/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
+	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
+	return ..()
+
+/obj/item/explosive/grenade/sticky/cloaker
+	name = "\improper M45 Drainer grenade"
+	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. This one creates plasma draining smoke! It is set to detonate in 5 seconds."
+	icon_state = "grenade_sticky_cloak"
+	item_state = "grenade_sticky_cloak"
+	det_time = 5 SECONDS
+	light_impact_range = 1
+	/// smoke type created when the grenade is primed
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
+	///radius this smoke grenade will encompass
+	var/smokeradius = 1
+	///The duration of the smoke
+	var/smoke_duration = 8
+
+/obj/item/explosive/grenade/sticky/cloaker/prime()
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 35)
+	smoke.set_up(smokeradius, loc, smoke_duration)
+	smoke.start()
+	if(stuck_to)
+		clean_refs()
+	qdel(src)
+
+/obj/item/explosive/grenade/sticky/cloaker/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(.)
+		return
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
+
+///causes fire tiles underneath target when stuck_to
+/obj/item/explosive/grenade/sticky/cloaker/proc/make_smoke(datum/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	smoke.set_up(smokeradius, loc, smoke_duration)
+	smoke.start()
+
+/obj/item/explosive/grenade/sticky/cloaker/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
+	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
+	return ..()
+
+/obj/item/explosive/grenade/sticky/inferno
+	name = "\improper M45 Trailblazer grenade"
+	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. It is set to detonate in 5 seconds."
+	icon_state = "grenade_sticky_phos"
+	item_state = "grenade_sticky_phos"
+	det_time = 5 SECONDS
+	light_impact_range = 1
+
+/obj/item/explosive/grenade/sticky/inferno/prime()
+	flame_radius(0.5, get_turf(src))
+	playsound(loc, "incendiary_explosion", 35)
+	if(stuck_to)
+		clean_refs()
+	qdel(src)
+
+/obj/item/explosive/grenade/sticky/inferno/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(.)
+		return
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
+	var/turf/T = get_turf(src)
+	T.ignite(25, 25)
+
+///causes fire tiles underneath target when stuck_to
+/obj/item/explosive/grenade/sticky/inferno/proc/make_smoke(datum/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	var/turf/T = get_turf(src)
+	T.ignite(25, 25)
+
+/obj/item/explosive/grenade/sticky/inferno/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
+	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
+	return ..()
+
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
 	desc = "The M40 HIDP is a small, but deceptively strong incendiary grenade. It is set to detonate in 4 seconds."
