@@ -1,0 +1,4 @@
+author: "forestbbbbbbb"
+delete-after: True
+changes:
+  - bugfix: "fixed pinpointer not turning itself off after target is destroyed"
