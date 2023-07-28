@@ -1,4 +1,0 @@
-author: "MacBlaze1"
-delete-after: True
-changes:
-  - bugfix: "fixed sentries targeting mobs when they cant actually see and shoot them"

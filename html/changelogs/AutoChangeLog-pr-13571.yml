@@ -1,5 +1,0 @@
-author: "coldironwarrior"
-delete-after: True
-changes:
-  - bugfix: "added the missing robotic cradle to the canterbury and bigbury for robots to heal cloneloss on the crash gamemode"
-  - bugfix: "changed a tile out in the PoS medbay to fix the tile design"

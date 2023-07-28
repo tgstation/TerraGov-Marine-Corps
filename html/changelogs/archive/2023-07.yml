@@ -361,3 +361,35 @@
   - bugfix: fixed robot surgery
   lbnesquik:
   - bugfix: fixed plural/neuter not having underwear
+2023-07-28:
+  567Turtle:
+  - rscadd: New vali codex information
+  Barnet2:
+  - balance: Reduces the Double Barrel's firerate, removes gyro as an attachment,
+      reduce base recoil.
+  Lumipharon:
+  - qol: The tad console is now visually different when broken
+  MacBlaze1:
+  - bugfix: fixed sentries targeting mobs when they cant actually see and shoot them
+  Meowosers:
+  - rscadd: Valhalla now has two Autoclosets for Squad Marines.
+  - code_imp: Valhalla Squad Marines are now defined as /fallen/marine/standard in
+      the selection list.
+  TiviPlus:
+  - code_imp: Minimap blips for squad jobs are now greyscale
+  XElectricX:
+  - code_imp: Suit pockets no longer appear as if they are just bolted-on storage
+      modules. Are now their own independent object.
+  coldironwarrior:
+  - bugfix: added the missing robotic cradle to the canterbury and bigbury for robots
+      to heal cloneloss on the crash gamemode
+  - bugfix: changed a tile out in the PoS medbay to fix the tile design
+  forestbbbbbbb:
+  - bugfix: fixed floor tile welding
+  - bugfix: fixed pinpointer not turning itself off after target is destroyed
+  ivanmixo:
+  - bugfix: Client is marked as QDELING properly now
+  - bugfix: Fixed robotic cradle bugs
+  novaepee, doomvoyager:
+  - rscadd: gnome; find him around around botany, the memorial, or at AI. He doesn't
+      always appear.
