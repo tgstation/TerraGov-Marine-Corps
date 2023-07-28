@@ -235,11 +235,11 @@
 				status += "mutilated"
 
 		if((org.limb_status & LIMB_BLEEDING) && (brutedamage > 0 && burndamage > 0))   
-			status += "[", bleeding"]"
+			status += ", bleeding"
 		else if((org.limb_status & LIMB_BLEEDING) && (brutedamage > 0 || burndamage > 0))   
-			status += "[" and <b>bleeding"]"
+			status += " and bleeding"
 		else if(org.limb_status & LIMB_BLEEDING)
-			status += "["bleeding"]"
+			status += "bleeding"
 			
 
 
