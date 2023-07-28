@@ -91,8 +91,8 @@
 		/atom/movable/screen/minimap_tool/label,
 		/atom/movable/screen/minimap_tool/clear,
 	)
-	/// the Zlevel that this tablet will be allowed to edit
-	var/editing_z = 2
+	/// the Zlevel that this table views
+	var/targetted_zlevel = 2
 	/// The minimap flag we will be allowing to edit
 	var/minimap_flag = MINIMAP_FLAG_MARINE
 	///minimap obj ref that we will display to users
@@ -100,13 +100,14 @@
 
 /obj/machinery/cic_maptable_big/Initialize(mapload)
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	var/list/atom/movable/screen/actions = list()
 	for(var/path in drawing_tools)
-		actions += new path(null, editing_z, minimap_flag)
+		actions += new path(null, targetted_zlevel, minimap_flag)
 	drawing_tools = actions
 
 /obj/machinery/cic_maptable_big/Destroy()
@@ -130,7 +131,7 @@
 		to_chat(user, span_boldwarning("You have been banned from a command role. You may not use [src] until the ban has been lifted."))
 		return
 	if(!map)
-		map = SSminimaps.fetch_minimap_object(editing_z, minimap_flag)
+		map = SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
 	user.client.screen += map
 	user.client.screen += drawing_tools
 
@@ -142,3 +143,13 @@
 	user.client.mouse_pointer_icon = null
 	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
 		tool.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP))
+
+///Updates the z-level this maptable views
+/obj/machinery/cic_maptable_big/proc/change_targeted_z(datum/source, new_z)
+	SIGNAL_HANDLER
+	if(!isnum(new_z))
+		return
+	targetted_zlevel = new_z
+
+/obj/machinery/cic_maptable_big/som
+	minimap_flag = MINIMAP_FLAG_MARINE_SOM
