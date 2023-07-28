@@ -76,3 +76,6 @@
 /obj/machinery/telecomms/relay/preset/telecomms/onboard
 	icon_state = ""
 	invisibility = INVISIBILITY_MAXIMUM
+
+/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense
+	density = FALSE 

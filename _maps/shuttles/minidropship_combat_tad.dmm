@@ -14,6 +14,9 @@
 /area/shuttle/minidropship)
 "c" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "f" = (
@@ -31,7 +34,10 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "k" = (
-/obj/structure/dropship_piece/tadpole/cockpit/left{
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/obj/structure/barricade/plasteel{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -43,25 +49,21 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "n" = (
-/obj/structure/dropship_piece/tadpole/cockpit/right{
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/obj/structure/barricade/plasteel{
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
-"o" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "s" = (
 /obj/machinery/light,
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "u" = (
 /obj/machinery/light,
-/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "v" = (
@@ -81,7 +83,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "P" = (
-/turf/closed/shuttle/dropship2/singlewindow/tadpole,
+/obj/structure/barricade/plasteel{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "W" = (
 /obj/structure/barricade/plasteel,
@@ -106,7 +111,7 @@
 
 (1,1,1) = {"
 k
-o
+y
 f
 y
 m
@@ -117,9 +122,9 @@ a
 "}
 (2,1,1) = {"
 P
-h
-s
 X
+s
+h
 c
 X
 u
@@ -128,7 +133,7 @@ A
 "}
 (3,1,1) = {"
 n
-o
+v
 Y
 v
 b
