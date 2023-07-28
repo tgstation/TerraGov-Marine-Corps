@@ -42,9 +42,9 @@
 
 /datum/game_mode/hvh/campaign/post_setup()
 	. = ..()
-	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //normal ground map is still loaded, will need to see if we can even stop that...
+	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //som 'ship' map is now ground, but this ensures we clean up exit points if this changes in the future
 		qdel(exit_point)
- 	load_new_mission(current_mission, factions[1]) //we store the initial mission in current_mission. This might work better in post_setup, needs testing
+	load_new_mission(current_mission, factions[1])
 
 	for(var/i in stat_list)
 		var/datum/faction_stats/selected_faction = stat_list[i]
