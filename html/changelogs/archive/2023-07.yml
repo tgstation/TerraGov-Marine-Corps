@@ -322,6 +322,7 @@
   - qol: Valhalla seasonal vendor is now separated into tabs!
 2023-07-26:
   Lumipharon:
+  - bugfix: Fixed autoburst not correctly resetting shots fired between bursts
   - bugfix: Robots (and synths) no longer sleep
   Mrrpip:
   - rscadd: 16G ammo boxes have arrived, now you'll get to use more shotgun in your
@@ -329,3 +330,66 @@
   - imageadd: The SH-15 slug mag is now green.
   TiviPlus:
   - rscadd: Added Bulwark ability to queen
+  - rscadd: Xenos have tts now
+  - rscadd: You can set your TTS voice pitch now
+  - rscadd: Robot and vending/roomba vocies have been updated
+  - code_imp: misc tts backend improvements
+  ivanmixo:
+  - bugfix: Fixed readying up bypassing exp requirements
+  - config: Added the missing exp flags to the default config
+  lbnesquik:
+  - bugfix: fixed some areas strangely lacking camera coverage on POS.
+2023-07-27:
+  Lumipharon:
+  - bugfix: fixed humans recovering from stagger twice as fast as they should
+  - bugfix: fixed xenos recovering from stagger three times as fast as they should,
+      and recovering from slowdown twice as fast as they should
+  - bugfix: You can no longer throw past certain dense parts of the alamo
+  - rscadd: Added variable gravity as a z-level based function to effect various things
+      such as running, jumping and throwing
+  RipGrayson:
+  - rscadd: Added some holopads to the tadpole shuttles
+  - rscadd: Added some extra map helpers for extra mapper clarity
+  XSlayer300:
+  - soundadd: Completely OVERHAULED every weapon firing sound, once again! Sounds
+      use CC-BY-NC-SA 3.0.
+  - rscadd: Added more weapons to the EORD weapon pool.
+  - spellcheck: Changed some descriptions and renamed the 88 mod 4 to the MK88 mod
+      4.
+  forestbbbbbbb:
+  - bugfix: fixed the medbay exit button on sulaco
+  - bugfix: fixed robot surgery
+  lbnesquik:
+  - bugfix: fixed plural/neuter not having underwear
+2023-07-28:
+  567Turtle:
+  - rscadd: New vali codex information
+  Barnet2:
+  - balance: Reduces the Double Barrel's firerate, removes gyro as an attachment,
+      reduce base recoil.
+  Lumipharon:
+  - qol: The tad console is now visually different when broken
+  MacBlaze1:
+  - bugfix: fixed sentries targeting mobs when they cant actually see and shoot them
+  Meowosers:
+  - rscadd: Valhalla now has two Autoclosets for Squad Marines.
+  - code_imp: Valhalla Squad Marines are now defined as /fallen/marine/standard in
+      the selection list.
+  TiviPlus:
+  - code_imp: Minimap blips for squad jobs are now greyscale
+  XElectricX:
+  - code_imp: Suit pockets no longer appear as if they are just bolted-on storage
+      modules. Are now their own independent object.
+  coldironwarrior:
+  - bugfix: added the missing robotic cradle to the canterbury and bigbury for robots
+      to heal cloneloss on the crash gamemode
+  - bugfix: changed a tile out in the PoS medbay to fix the tile design
+  forestbbbbbbb:
+  - bugfix: fixed floor tile welding
+  - bugfix: fixed pinpointer not turning itself off after target is destroyed
+  ivanmixo:
+  - bugfix: Client is marked as QDELING properly now
+  - bugfix: Fixed robotic cradle bugs
+  novaepee, doomvoyager:
+  - rscadd: gnome; find him around around botany, the memorial, or at AI. He doesn't
+      always appear.

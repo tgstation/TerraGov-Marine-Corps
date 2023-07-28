@@ -437,7 +437,7 @@ directive is properly returned.
 
 /atom/proc/hitby(atom/movable/AM)
 	if(density)
-		AM.set_throwing(FALSE)
+		AM.stop_throw()
 
 
 /atom/proc/GenerateTag()
