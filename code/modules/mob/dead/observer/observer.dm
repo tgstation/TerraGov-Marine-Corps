@@ -101,8 +101,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 	grant_all_languages()
-	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(observer_z_changed))
-	LAZYADD(GLOB.observers_by_zlevel["[z]"], src)
 
 	return ..()
 
@@ -118,16 +116,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	QDEL_NULL(orbit_menu)
 	GLOB.observer_list -= src //"wait isnt this done in logout?" Yes it is but because this is clients thats unreliable so we do it again here
-
-	LAZYREMOVE(GLOB.observers_by_zlevel["[z]"], src)
-	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
+	SSmobs.dead_players_by_zlevel[z] -= src
 
 	return ..()
 
 /mob/dead/observer/proc/observer_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
-	LAZYREMOVE(GLOB.observers_by_zlevel["[old_z]"], src)
-	LAZYADD(GLOB.observers_by_zlevel["[new_z]"], src)
+	SSmobs.dead_players_by_zlevel[old_z] -= src
+	SSmobs.dead_players_by_zlevel[new_z] += src
 
 /mob/dead/observer/update_icon(new_form)
 	if(client) //We update our preferences in case they changed right before update_icon was called.
