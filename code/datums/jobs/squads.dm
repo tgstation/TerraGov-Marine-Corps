@@ -138,7 +138,16 @@
 
 /datum/squad/New()
 	. = ..()
-	tracking_id = SSdirection.init_squad(name, squad_leader)
+	tracking_id = SSdirection.init_scquad(name, squad_leader)
+
+	for(var/state in GLOB.playable_squad_icons)
+		var/icon/top = icon('icons/UI_icons/map_blips.dmi', state, frame = 1)
+		top.Blend(color, ICON_MULTIPLY)
+		var/icon/bottom = icon('icons/UI_icons/map_blips.dmi', "squad_underlay", frame = 1)
+		top.Blend(bottom, ICON_UNDERLAY)
+
+		var/icon_state = lowertext(name) + "_" + state
+		GLOB.minimap_icons[icon_state] = icon2base64(top)
 
 
 /datum/squad/proc/get_all_members()
