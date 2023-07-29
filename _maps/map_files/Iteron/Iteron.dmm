@@ -490,10 +490,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/barracks)
 "hP" = (
-/obj/machinery/door/poddoor/timed_late/containment,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/campaign,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -2024,7 +2024,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/barracks)
 "EY" = (
-/obj/machinery/door/poddoor/timed_late/containment,
+/obj/machinery/door/poddoor/campaign,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "EZ" = (
@@ -2195,8 +2195,8 @@
 	},
 /area/mainship/patrol_base)
 "Ha" = (
-/obj/machinery/door/poddoor/timed_late/containment,
 /obj/machinery/light,
+/obj/machinery/door/poddoor/campaign,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base/hanger)
 "Hb" = (
@@ -2305,13 +2305,13 @@
 /turf/open/floor/freezer,
 /area/mainship/patrol_base)
 "IE" = (
-/obj/machinery/door/poddoor/timed_late/containment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/campaign,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
 "IF" = (

@@ -125,7 +125,7 @@
 /datum/game_mode/hvh/campaign/proc/end_current_mission()
 	if(check_finished()) //check if the game should end
 		return
-	send_global_signal(COMSIG_GLOB_CLOSE_TIMED_SHUTTERS)
+	send_global_signal(COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS)
 
 	for(var/faction in factions)
 		stat_list[faction].total_attrition_points += round(length(GLOB.clients) * 0.5 * stat_list[faction].attrition_gain_multiplier)

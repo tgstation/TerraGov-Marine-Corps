@@ -5,8 +5,11 @@
 	var/map_name
 	///path of map for this mission
 	var/map_file
-	///how long until shutters open after this mission is selected
-	var/shutter_delay = 2 MINUTES
+	///Optional elay for each faction to be able to deploy
+	var/list/shutter_open_delay = list(
+		"starting_faction" = 0,
+		"hostile_faction" = 0,
+	)
 	///faction that chose the mission
 	var/starting_faction
 	///faction that did not choose the mission
@@ -109,7 +112,7 @@
 	play_selection_intro()
 	load_map()
 
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), shutter_delay)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), 2 MINUTES)
 
 /datum/campaign_mission/Destroy(force, ...)
 	STOP_PROCESSING(SSslowprocess, src)
@@ -149,7 +152,16 @@
 ///Mission start proper
 /datum/campaign_mission/proc/start_mission()
 	SHOULD_CALL_PARENT(TRUE)
-	send_global_signal(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE)
+	if(!shutter_open_delay["starting_faction"])
+		SEND_GLOBAL_SIGNAL(GLOB.faction_to_campaign_door_signal[starting_faction])
+	else
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_global_signal), GLOB.faction_to_campaign_door_signal[starting_faction]), shutter_open_delay["starting_faction"])
+
+	if(!shutter_open_delay["hostile_faction"])
+		SEND_GLOBAL_SIGNAL(GLOB.faction_to_campaign_door_signal[hostile_faction])
+	else
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_global_signal), GLOB.faction_to_campaign_door_signal[hostile_faction]), shutter_open_delay["hostile_faction"])
+
 	START_PROCESSING(SSslowprocess, src) //this may be excessive
 	play_start_intro()
 

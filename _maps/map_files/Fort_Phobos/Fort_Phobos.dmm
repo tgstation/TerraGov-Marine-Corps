@@ -98,6 +98,10 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/shuttle/dropship/floor,
 /area/mainship/patrol_base/som)
+"bv" = (
+/obj/machinery/door/poddoor/campaign/som,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "bA" = (
 /turf/open/floor/mainship/white/corner{
 	dir = 8
@@ -118,6 +122,13 @@
 	dir = 9
 	},
 /area/mainship/patrol_base/som/hanger)
+"bP" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/campaign/som,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "bZ" = (
 /obj/structure/table/black,
 /obj/machinery/computer/security/som_mainship,
@@ -1855,6 +1866,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/hanger)
+"EW" = (
+/obj/structure/platform_decoration{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/campaign/som,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "Fy" = (
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/open/shuttle/dropship/floor,
@@ -2852,6 +2870,13 @@
 	},
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
+"Wo" = (
+/obj/structure/platform_decoration{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/campaign/som,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "WA" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/concrete,
@@ -7419,12 +7444,12 @@ DK
 DK
 ZD
 RO
-aV
-Aw
-Aw
-Aw
-aL
-uG
+Wo
+bv
+bv
+bv
+bP
+EW
 vz
 cd
 cd
