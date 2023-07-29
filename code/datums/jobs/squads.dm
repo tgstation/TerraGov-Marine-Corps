@@ -138,7 +138,7 @@
 
 /datum/squad/New()
 	. = ..()
-	tracking_id = SSdirection.init_scquad(name, squad_leader)
+	tracking_id = SSdirection.init_squad(name, squad_leader)
 
 	for(var/state in GLOB.playable_squad_icons)
 		var/icon/top = icon('icons/UI_icons/map_blips.dmi', state, frame = 1)
