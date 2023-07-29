@@ -63,11 +63,11 @@ SUBSYSTEM_DEF(server_maint)
 				cleanup_ticker++
 			if(30)
 				var/found = FALSE
-				for(var/level in GLOB.observers_by_zlevel)
-					if(listclearnulls(GLOB.observers_by_zlevel["[level]"]))
+				for(var/zlevel in SSmobs.dead_players_by_zlevel)
+					if(listclearnulls(zlevel))
 						found = TRUE
 				if(found)
-					log_world("Found a null in observers_by_zlevel!")
+					log_world("Found a null in dead_players_by_zlevel!")
 				cleanup_ticker++
 			if(35)
 				if(listclearnulls(GLOB.dead_mob_list))

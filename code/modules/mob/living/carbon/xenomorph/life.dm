@@ -34,11 +34,6 @@
 	update_action_button_icons()
 	update_icons(FALSE)
 
-/mob/living/carbon/xenomorph/handle_status_effects()
-	. = ..()
-	handle_stagger() // 1 each time
-	handle_slowdown() // 0.4 each time
-
 /mob/living/carbon/xenomorph/handle_fire()
 	. = ..()
 	if(.)

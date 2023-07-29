@@ -1627,6 +1627,7 @@
 /area/mainship/medical/medical_science)
 "avy" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
 "avz" = (
@@ -9319,17 +9320,6 @@
 /obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
-"eMT" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/cic)
 "eNZ" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship{
@@ -9637,6 +9627,11 @@
 	dir = 4
 	},
 /area/mainship/squads/req)
+"fqo" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/gnome,
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "fqH" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
@@ -10069,6 +10064,7 @@
 	pixel_y = 3
 	},
 /obj/item/storage/firstaid/adv,
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "fZA" = (
@@ -13046,6 +13042,13 @@
 	dir = 1
 	},
 /area/mainship/medical/lower_medical)
+"ljo" = (
+/obj/structure/bed/stool{
+	pixel_y = 8
+	},
+/obj/effect/spawner/random/misc/gnome,
+/turf/open/floor/grass,
+/area/mainship/living/starboard_garden)
 "lkq" = (
 /obj/machinery/shower{
 	dir = 8
@@ -17152,6 +17155,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_umbilical)
+"rTn" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/port_hull)
 "rTw" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -17759,6 +17768,7 @@
 "sXw" = (
 /obj/machinery/computer/orbital_cannon_console,
 /obj/structure/bed/chair/ob_chair,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_point_defense)
 "sYp" = (
@@ -18469,6 +18479,12 @@
 /obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"umn" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/starboard_hull)
 "umS" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -36898,7 +36914,7 @@ aap
 acg
 inF
 cKR
-eMT
+seI
 fZc
 hjX
 inF
@@ -51057,7 +51073,7 @@ rpv
 aca
 jkR
 aeB
-pPG
+ljo
 acf
 cbT
 iwt
@@ -60265,7 +60281,7 @@ aaa
 aaa
 aaa
 aai
-aal
+umn
 pgn
 nNR
 aZM
@@ -60317,7 +60333,7 @@ szj
 cvB
 jjk
 ccQ
-jAD
+rTn
 aVk
 aaa
 aaa
@@ -75968,7 +75984,7 @@ aui
 avX
 axn
 axn
-auo
+fqo
 axn
 axn
 avX

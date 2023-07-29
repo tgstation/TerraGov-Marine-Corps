@@ -161,7 +161,6 @@
 		if(81 to INFINITY)
 			reagent_shock_modifier += PAIN_REDUCTION_HEAVY
 
-	handle_stagger()
 	handle_disabilities()
 
 /mob/living/carbon/proc/handle_impaired_vision()

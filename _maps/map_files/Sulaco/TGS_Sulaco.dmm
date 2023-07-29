@@ -6016,6 +6016,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "aFh" = (
@@ -6885,6 +6886,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "aKU" = (
@@ -13797,6 +13799,10 @@
 /obj/item/book/manual/medical_diagnostics_manual,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/cmo)
+"gUR" = (
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint3)
 "gVp" = (
 /obj/machinery/gibber,
 /turf/open/floor/prison/sterilewhite,
@@ -19518,6 +19524,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "okh" = (
@@ -23882,6 +23889,10 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/engine)
+"tBY" = (
+/obj/effect/spawner/random/misc/gnome,
+/turf/open/floor/grass,
+/area/mainship/living/starboard_garden)
 "tCl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -24169,7 +24180,9 @@
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
+	id_tag = "mbayexit"
+	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
@@ -45407,7 +45420,7 @@ toM
 vIO
 cOs
 cDU
-qzH
+gUR
 xKi
 mDu
 qDO
@@ -57217,7 +57230,7 @@ sZZ
 gJO
 uyz
 iWb
-sMe
+tBY
 dMC
 mDu
 qDO

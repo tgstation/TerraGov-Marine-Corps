@@ -355,7 +355,8 @@
 	force = 40
 	aim_slowdown = 1.2
 	wield_delay = 2 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/t27.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mg27.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mg27_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -373,7 +374,6 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/bayonetknife/som,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/unremovable/mmg,
 		/obj/item/attachable/stock/t27,

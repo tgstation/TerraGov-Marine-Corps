@@ -69,7 +69,7 @@
 
 /obj/item/pinpointer/proc/activate(mob/living/user)
 	set_target(user)
-	if(!target)
+	if(QDELETED(target))
 		return
 	active = TRUE
 	START_PROCESSING(SSobj, src)
@@ -85,10 +85,10 @@
 
 
 /obj/item/pinpointer/process()
-	if(!target)
-		icon_state = "pinonnull"
+	if(QDELETED(target))
 		active = FALSE
-		return
+		icon_state = "pinonnull"
+		return PROCESS_KILL
 
 	setDir(get_dir(src, target))
 	switch(get_dist(src, target))
