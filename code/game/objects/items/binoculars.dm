@@ -141,7 +141,6 @@
 		return
 	if(length(linked_mortars) == 1) 
 		to_chat(user, span_notice("There is only one linked piece, you can't switch to another."))
-		return
 	selected_mortar += 1
 	check_mortar_index()
 	var/obj/mortar = linked_mortars[selected_mortar]
