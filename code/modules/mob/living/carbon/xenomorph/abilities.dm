@@ -288,7 +288,7 @@
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xowner = owner
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && SSresinshaping.quickbuilds)
 		preshutter_build_resin(A)
 	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
