@@ -4,7 +4,6 @@
 	name = "Enclosed Area"
 	icon_state = "transparent"
 	always_unpowered = TRUE
-// 1st quadrant
 
 /area/slumbridge/northeastcaves
 	name = "\improper Northeast Caves"
@@ -102,8 +101,6 @@
 /area/slumbridge/zeta/entrance
 	name = "Research Lab Entrance"
 	icon_state = "engine"
-
-// 2nd quadrant
 
 /area/slumbridge/engi
 	name = "Engineering"
@@ -203,8 +200,6 @@
 	flags_area = NO_DROPPOD
 	requires_power = FALSE
 
-// 3rd quadrant
-
 /area/slumbridge/southwestcaves
 	name = "\improper Southwest Caves"
 	icon_state = "southwest2"
@@ -275,8 +270,6 @@
 /area/slumbridge/colony/orestorage
 	name = "Colony Storage"
 	icon_state = "storage"
-
-// 4th quadrant
 
 /area/slumbridge/southeastcaves
 	name = "\improper Southeast Caves"
