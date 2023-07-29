@@ -76,7 +76,7 @@
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_PRIMO
 	caste_desc = "A silent but deadly killing machine. It looks frighteningly powerful."
-	ancient_message = "We are the ultimate predator. Let the hunt begin."
+	primordial_message = "We are the ultimate predator. Let the hunt begin."
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

@@ -67,7 +67,7 @@
 /datum/xeno_caste/crusher/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "Behemoth of the hive. Nothing will remain in its way"
-	ancient_message = "We are an unstoppable force. Crush. Kill. Destroy."
+	primordial_message = "We are an unstoppable force. Crush. Kill. Destroy."
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(

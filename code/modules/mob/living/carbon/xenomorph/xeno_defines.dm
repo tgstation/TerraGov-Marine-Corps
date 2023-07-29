@@ -7,7 +7,6 @@
 
 	var/caste_type_path = null
 
-	var/ancient_message = ""
 	///primordial message that is shown when a caste becomes primordial
 	var/primordial_message = ""
 

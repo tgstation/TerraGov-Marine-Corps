@@ -61,7 +61,7 @@
 /datum/xeno_caste/sentinel/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "A doctors worst nightmare. It's stinger drips with poison."
-	ancient_message = "All will succumb to our toxins. Leave noone standing."
+	primordial_message = "All will succumb to our toxins. Leave noone standing."
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
