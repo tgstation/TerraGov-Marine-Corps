@@ -114,6 +114,7 @@
 	var/datum/action/innate/order/rally_order/send_rally_order = new
 	var/datum/action/control_vehicle/control = new
 	var/datum/action/innate/squad_message/squad_message = new
+	var/datum/action/artillery_map/set_target = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
 	send_defend_order.target = src
@@ -124,6 +125,7 @@
 	send_rally_order.give_action(src)
 	control.give_action(src)
 	squad_message.give_action(src)
+	set_target.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src
@@ -432,6 +434,48 @@
 	linked_artillery.unset_targeter()
 	linked_artillery = null
 	to_chat(src, span_notice("NOTICE: Connection closed with linked mortar."))
+
+//For mortar purposes. I completely stole it from the droppod.dm code. That include some comments.
+/datum/action/artillery_map
+	name = "Set artillery target"
+	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon_state = "mech_zoom_on"
+	var/displaying = FALSE
+
+/datum/action/artillery_map/action_activate()
+	. = ..()
+	var/mob/living/silicon/ai/ai = owner
+	if(!ai.linked_artillery)
+		to_chat(ai, span_notice("NOTICE: No linked artillery piece detected. Returning."))
+		return
+
+	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+	if(displaying)
+		ai.client?.screen -= map
+		displaying = FALSE
+		return
+	displaying = TRUE
+	
+	ai.client.screen += map
+	// choosing = TRUE
+	var/list/polled_coords = map.get_coords_from_click(ai)
+	if(!polled_coords)
+		ai.client?.screen -= map
+		displaying = FALSE
+		return
+	var/turf/TC = locate(polled_coords[1],polled_coords[2],2)
+	ai.linked_artillery.recieve_target(TC, ai)
+	ai.client?.screen -= map
+	displaying = FALSE
+
+/datum/action/artillery_map/remove_action(mob/M)
+	displaying = FALSE
+	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+	owner.client?.screen -= map
+
+	map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		// choosing = FALSE
+	return ..()
 
 /datum/action/control_vehicle
 	name = "Select vehicle to control"
