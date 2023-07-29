@@ -1069,7 +1069,7 @@
 /area/mainship/patrol_base/command)
 "rp" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/leader,
+/obj/structure/droppod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
 "rq" = (
@@ -2085,6 +2085,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
+"FK" = (
+/obj/structure/drop_pod_launcher/leader,
+/obj/structure/droppod/leader,
+/turf/open/floor/prison/cleanmarked,
+/area/mainship/patrol_base/hanger)
 "FL" = (
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/computer/security/marinemainship{
@@ -15495,7 +15500,7 @@ zB
 SY
 SY
 SY
-rp
+FK
 Un
 jq
 Xm
@@ -15509,7 +15514,7 @@ Yf
 Xm
 pG
 du
-rp
+FK
 SY
 SY
 SY
@@ -15699,7 +15704,7 @@ zB
 SY
 SY
 SY
-SY
+FK
 um
 jq
 Xm
@@ -15713,7 +15718,7 @@ Yf
 Xm
 pG
 lu
-SY
+FK
 SY
 SY
 SY

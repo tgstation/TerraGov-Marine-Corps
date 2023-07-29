@@ -216,3 +216,19 @@
 		teleporter.charges ++
 		to_chat(faction.faction_leader, span_warning("An additional activation of the Teleporter Array is now ready for use."))
 		return
+
+/datum/campaign_reward/droppod_refresh
+	name = "Rearm drop pod bays"
+	desc = "replace all used drop pods"
+	detailed_desc = "Replace all drop pods that have been previously deployed with refurbished units or ones from fleet storage, ready for immediate use."
+	uses = 1
+
+/datum/campaign_reward/droppod_refresh/activated_effect()
+	. = ..()
+	if(!.)
+		return
+
+	for(var/obj/structure/drop_pod_launcher/launcher AS in GLOB.droppod_bays)
+		launcher.refresh_pod()
+	to_chat(faction.faction_leader, span_warning("All drop pods have been restocked."))
+	return

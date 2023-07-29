@@ -33,6 +33,8 @@ GLOBAL_LIST_EMPTY(main_overwatch_consoles)			//list of all main overwatch consol
 GLOBAL_LIST_EMPTY(campaign_destroy_objectives)
 ///List of all teleporter arrays
 GLOBAL_LIST_EMPTY(teleporter_arrays)
+///List of all droppod bays
+GLOBAL_LIST_EMPTY(droppod_bays)
 
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions
 GLOBAL_LIST_EMPTY(chemical_reagents_list)				///list of all /datum/reagent datums instances indexed by reagent typepath. Used by chemistry stuff

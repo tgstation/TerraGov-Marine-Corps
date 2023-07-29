@@ -385,6 +385,16 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	icon_state = "launch_bay"
 	density = FALSE
 	resistance_flags = INDESTRUCTIBLE
+	///The type of pod this bay takes by default. Used for automated reloading
+	var/pod_type = /obj/structure/droppod
+
+/obj/structure/drop_pod_launcher/Initialize(mapload)
+	. = ..()
+	GLOB.droppod_bays += src
+
+/obj/structure/drop_pod_launcher/Destroy()
+	GLOB.droppod_bays -= src
+	return ..()
 
 /obj/structure/drop_pod_launcher/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(!istype(attached_clamp.loaded, /obj/structure/droppod))
@@ -395,6 +405,15 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	attached_clamp.loaded = null
 	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	attached_clamp.update_icon()
+
+///Loads a new pod onto the bay if one is not already there
+/obj/structure/drop_pod_launcher/proc/refresh_pod()
+	if(locate(/obj/structure/droppod) in get_turf(src))
+		return
+	new pod_type(get_turf(src))
+
+/obj/structure/drop_pod_launcher/leader
+	pod_type = /obj/structure/droppod/leader
 
 #undef DROPPOD_READY
 #undef DROPPOD_ACTIVE
