@@ -48,7 +48,7 @@
 	icon_state = "plating"
 	name = "airless plating"
 
-turf/open/floor/plating/fake_space
+/turf/open/floor/plating/fake_space
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
 	light_power = 0.25
