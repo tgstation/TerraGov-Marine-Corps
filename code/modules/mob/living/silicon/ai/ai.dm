@@ -464,6 +464,10 @@
 		displaying = FALSE
 		return
 	var/turf/TC = locate(polled_coords[1],polled_coords[2],2)
+	var/area/A = get_area(TC)
+	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+		to_chat(ai, span_warning("You cannot hit the target. It is probably underground."))
+		return
 	ai.linked_artillery.recieve_target(TC, ai)
 	ai.client?.screen -= map
 	displaying = FALSE
