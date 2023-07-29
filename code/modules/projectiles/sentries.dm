@@ -419,9 +419,20 @@
 ///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(mob/living/target)
 	var/list/turf/path = getline(src, target)
+	var/turf/starting_turf = get_turf(src)
+	var/turf/target_turf = path[length(path)-1]
 	path -= get_turf(src)
 	if(!length(path))
 		return FALSE
+
+	var/old_turf_dir_to_us = get_dir(starting_turf, target_turf)
+	if(ISDIAGONALDIR(old_turf_dir_to_us))
+		for(var/i in 0 to 2)
+			var/between_turf = get_step(target_turf, turn(old_turf_dir_to_us, i == 1 ? 45 : -45))
+			if(can_see_through(starting_turf, between_turf))
+				break
+			if(i==2)
+				return FALSE
 	for(var/turf/T AS in path)
 		var/obj/effect/particle_effect/smoke/smoke = locate() in T
 		if(smoke?.opacity)

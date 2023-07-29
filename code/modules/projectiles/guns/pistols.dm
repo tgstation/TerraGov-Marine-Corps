@@ -50,7 +50,7 @@
 	item_state = "tp14"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
@@ -171,7 +171,7 @@
 	item_state = "tp23"
 	caliber = CALIBER_45ACP //codex
 	max_shells = 14 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p23.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
@@ -428,7 +428,7 @@
 	fire_animation = "tp17_fire"
 	caliber = CALIBER_380ACP //codex
 	max_shells = 8 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp17.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p17.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pocketpistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pocketpistol)
 	w_class = WEIGHT_CLASS_TINY
@@ -484,13 +484,13 @@
 //VP70
 
 /obj/item/weapon/gun/pistol/vp70
-	name = "\improper 88 Mod 4 combat pistol"
+	name = "\improper MK88 Mod 4 combat pistol"
 	desc = "An uncommon automatic handgun used for self defense, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
 	icon_state = "88m4"
 	item_state = "88m4"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 18 //codex
-	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_88mod4.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'

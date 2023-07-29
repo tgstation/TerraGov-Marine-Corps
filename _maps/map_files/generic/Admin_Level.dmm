@@ -6400,6 +6400,9 @@
 	dir = 8
 	},
 /obj/machinery/vending/uniform_supply/valhalla,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "iFb" = (
@@ -6769,6 +6772,9 @@
 /obj/machinery/vending/armor_supply/valhalla,
 /obj/structure/window/reinforced{
 	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
@@ -7663,6 +7669,9 @@
 	dir = 4
 	},
 /obj/machinery/vending/uniform_supply/valhalla,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "kkv" = (
@@ -7683,6 +7692,9 @@
 /obj/machinery/vending/weapon/valhalla,
 /obj/structure/window/reinforced{
 	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
@@ -8146,6 +8158,10 @@
 /obj/machinery/newscaster,
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/crew_quarters/captain)
+"kQN" = (
+/obj/machinery/marine_selector/clothes/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "kQR" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/gray,
@@ -23838,7 +23854,7 @@ cnE
 llp
 tSq
 tWP
-khV
+kQN
 vLH
 lTP
 mHX
@@ -24252,7 +24268,7 @@ tvG
 llp
 ndm
 bZV
-khV
+kQN
 dyS
 uGs
 mLF

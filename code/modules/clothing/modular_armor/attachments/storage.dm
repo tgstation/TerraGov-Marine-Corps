@@ -91,6 +91,57 @@
 		/obj/item/stack,
 	)
 
+/* Pockets */
+/obj/item/armor_module/storage/pocket
+	icon_state = ""
+	item_state = ""
+	flags_attach_features = ATTACH_APPLY_ON_MOB
+	storage = /obj/item/storage/internal/pocket
+
+/obj/item/storage/internal/pocket
+	max_storage_space = 6
+	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_NORMAL
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+	)
+
+/obj/item/storage/internal/pocket/insertion_message(obj/item/item, mob/user)
+	var/visidist = item.w_class >= WEIGHT_CLASS_NORMAL ? 3 : 1
+	//Grab the name of the object this pocket belongs to
+	user.visible_message(span_notice("[user] puts \a [item] into \the [master_item.name]."),\
+						span_notice("You put \the [item] into \the [master_item.name]."),\
+						null, visidist)
+
+/obj/item/armor_module/storage/pocket/medical
+	storage = /obj/item/storage/internal/pocket/medical
+
+/obj/item/storage/internal/pocket/medical
+	max_storage_space = 30
+	storage_slots = 5
+	max_w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/stack/medical,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/pill,
+		/obj/item/storage/pill_bottle,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/tweezers,
+		/obj/item/whistle,
+	)
+
 /** General storage */
 /obj/item/armor_module/storage/general
 	name = "General Purpose Storage module"
@@ -112,12 +163,6 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 	)
-
-/obj/item/armor_module/storage/general/irremovable
-	desc = "General storage module. Limited capacity but can hold some larger items like pistols or magazines."
-	icon_state = ""
-	item_state = ""
-	flags_attach_features = ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/storage/general/som
 	name = "General Purpose Storage module"
@@ -228,12 +273,6 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
 	storage = /obj/item/storage/internal/modular/medical
-
-/obj/item/armor_module/storage/medical/irremovable
-	desc = "Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
-	icon_state = ""
-	item_state = ""
-	flags_attach_features = ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/storage/medical/freelancer/Initialize(mapload)
 	. = ..()

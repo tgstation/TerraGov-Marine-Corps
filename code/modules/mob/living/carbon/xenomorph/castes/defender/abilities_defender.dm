@@ -113,13 +113,12 @@
 
 /datum/action/xeno_action/activable/forward_charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
+	if(istype(target, /obj/structure/table))
 		var/obj/structure/S = target
-		X.visible_message(span_danger("[X] plows straight through [S]!"), null, null, 5)
+		owner.visible_message(span_danger("[owner] plows straight through [S]!"), null, null, 5)
 		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 		return // stay registered
-	target.hitby(X, speed) //This resets throwing.
+	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
 /datum/action/xeno_action/activable/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)

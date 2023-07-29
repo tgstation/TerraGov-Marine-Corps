@@ -448,6 +448,13 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	Read_Memory()
 	if(SStts.tts_enabled)
 		voice = pick(SStts.available_speakers)
+		if(SStts.pitch_enabled)
+			if(findtext(voice, "Woman")) // todo will be replaced by tagging
+				pitch = 12 // up-pitch by one octave
+			else
+				pitch = 24 // up-pitch by 2 octaves
+		else
+			voice_filter = "rubberband=pitch=1.5" // Use the filter to pitch up if we can't naturally pitch up.
 	return ..()
 
 
