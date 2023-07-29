@@ -29,6 +29,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/target_x = 1
 	///Y target coordinate
 	var/target_y = 1
+	///The Z-level that the pod launches to
+	var/target_z = 2
 	///Current drop pod status: shipside = ready, active = mid-drop, landed = planetside
 	var/drop_state = DROPPOD_READY
 	///Whether launch is allowed. for things like disabling during hijack phase
@@ -47,8 +49,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	interaction_actions = list()
 	interaction_actions += new /datum/action/innate/set_drop_target(src)
 	interaction_actions += new /datum/action/innate/launch_droppod(src)
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_launching))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_DROPSHIP_HIJACKED, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED), PROC_REF(disable_launching))
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(allow_drop))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
 	GLOB.droppod_list += src
 	update_icon()
 	if((!locate(/obj/structure/drop_pod_launcher) in get_turf(src)) && mapload)
@@ -72,16 +75,17 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		ejectee.forceMove(loc)
 	return ..()
 
-///Disables launching upon dropship hijack
+///Disables launching
 /obj/structure/droppod/proc/disable_launching()
 	SIGNAL_HANDLER
 	launch_allowed = FALSE
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
 
-///Allow this droppod to ignore dropdelay
+///Allow this droppod to ignore dropdelay or otherwise reenable its use
 /obj/structure/droppod/proc/allow_drop()
 	SIGNAL_HANDLER
 	operation_started = TRUE
+	launch_allowed = TRUE
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
 
 /obj/structure/droppod/update_icon_state()
@@ -127,9 +131,19 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(.)
 			balloon_alert(notified_user, "Coordinates updated")
 
+///Updates the z-level this pod drops to
+/obj/structure/droppod/proc/change_targeted_z(datum/source, new_z)
+	SIGNAL_HANDLER
+	for(var/mob/dropper AS in buckled_mobs)
+		unbuckle_mob(dropper)
+	target_z = new_z
+	target_x = 1
+	target_y = 1
+	allow_drop()
+
 ///returns boolean if the currently set target/optionally passed turf are valid to drop to
 /obj/structure/droppod/proc/checklanding(mob/user, optional_turf)
-	var/turf/target = optional_turf ? optional_turf : locate(target_x, target_y, 2)
+	var/turf/target = optional_turf ? optional_turf : locate(target_x, target_y, target_z)
 	if(target.density)
 		if(user)
 			balloon_alert(user, "Dense area")
@@ -185,7 +199,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	for(var/mob/podder AS in buckled_mobs)
 		podder.forceMove(src)
 
-	var/turf/target = locate(target_x, target_y, 2)
+	var/turf/target = locate(target_x, target_y, target_z)
 	log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
 	deadchat_broadcast(" has been launched", src, turf_target = target)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
@@ -202,14 +216,14 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /// Moves the droppod into its target turf, which it updates if needed
 /obj/structure/droppod/proc/finish_drop(mob/user)
-	var/turf/targetturf = locate(target_x, target_y, 2)
+	var/turf/targetturf = locate(target_x, target_y, target_z)
 	for(var/a in targetturf.contents)
 		var/atom/target = a
 		if(target.density)	//if theres something dense in the turf try to recalculate a new turf
 			to_chat(user, span_warning("[icon2html(src, user)] WARNING! TARGET ZONE OCCUPIED! EVADING!"))
 			balloon_alert(user, "EVADING")
-			var/turf/T0 = locate(target_x + 2,target_y + 2,2)
-			var/turf/T1 = locate(target_x - 2,target_y - 2,2)
+			var/turf/T0 = locate(target_x + 2,target_y + 2, target_z)
+			var/turf/T1 = locate(target_x - 2,target_y - 2, target_z)
 			var/list/block = block(T0,T1) - targetturf
 			for(var/t in block)//Randomly selects a free turf in a 5x5 block around the target
 				var/turf/attemptdrop = t
@@ -218,7 +232,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 					break
 			if(targetturf.density)//We tried and failed, revert to the old one, which has a new dense obj but is at least not dense
 				to_chat(user, span_warning("[icon2html(src, user)] RECALCULATION FAILED!"))
-				targetturf = locate(target_x, target_y,2)
+				targetturf = locate(target_x, target_y, target_z)
 			break
 
 	forceMove(targetturf)
@@ -339,8 +353,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /datum/action/innate/set_drop_target/Activate()
 	. = ..()
-	//yes this is hardcoded bite me
-	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+	var/obj/structure/droppod/pod = target
+	if(!pod.target_z)
+		to_chat(owner, span_danger("No active combat zone detected."))
+		return
+	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
 	owner.client.screen += map
 	choosing = TRUE
 	var/list/polled_coords = map.get_coords_from_click(owner)
@@ -350,12 +367,12 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		return
 	owner.client?.screen -= map
 	choosing = FALSE
-	var/obj/structure/droppod/pod = target
 	pod.set_target(polled_coords[1], polled_coords[2])
 
 /datum/action/innate/set_drop_target/remove_action(mob/M)
 	if(choosing)
-		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+		var/obj/structure/droppod/pod = target
+		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
 		owner.client?.screen -= map
 		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 		choosing = FALSE
