@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - admin: " Gives PO the same timelock as Captain"
