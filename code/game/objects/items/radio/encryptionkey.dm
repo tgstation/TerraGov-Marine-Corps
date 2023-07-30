@@ -37,12 +37,6 @@
 /obj/item/encryptionkey/mcom/ai //AI only.
 	channels = list(RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
 
-
-/obj/item/encryptionkey/squadlead
-	name = "\improper Squad Leader encryption key"
-	icon_state = "hop_cypherkey"
-	channels = list(RADIO_CHANNEL_COMMAND = TRUE,RADIO_CHANNEL_CAS = TRUE)
-
 /obj/item/encryptionkey/alpha
 	name = "\improper Alpha Squad radio encryption key"
 	icon_state = "eng_cypherkey"
@@ -130,8 +124,6 @@
 /obj/item/encryptionkey/mcom/som
 	channels = list(RADIO_CHANNEL_SOM = TRUE, RADIO_CHANNEL_COMMAND_SOM = TRUE, RADIO_CHANNEL_ZULU = TRUE, RADIO_CHANNEL_YANKEE = TRUE, RADIO_CHANNEL_XRAY = TRUE, RADIO_CHANNEL_WHISKEY = TRUE, RADIO_CHANNEL_ENGINEERING_SOM = TRUE, RADIO_CHANNEL_MEDICAL_SOM = TRUE)
 
-/obj/item/encryptionkey/squadlead/som
-	channels = list(RADIO_CHANNEL_COMMAND_SOM = TRUE)
 
 /obj/item/encryptionkey/zulu
 	name = "\improper Zulu Squad radio encryption key"
