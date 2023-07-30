@@ -329,8 +329,12 @@ You are in charge of logistics and the overwatch system. You are also in line to
 			new_human.wear_id.paygrade = "CWO"
 		if(3001 to 6000) // 50 hrs
 			new_human.wear_id.paygrade = "O1"
-		if(6001 to INFINITY) // 100 hrs
+		if(6001 to 9000) // 100 hrs
 			new_human.wear_id.paygrade = "O2"
+		if(9001 to 12000) // 150 hrs
+			new_human.wear_id.paygrade = "O3"
+		if(12001 to INFINITY) // 200 hrs
+			new_human.wear_id.paygrade = "MO4"
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
