@@ -18,7 +18,7 @@
 
 //STAGGERED
 /datum/status_effect/incapacitating/stagger
-	id = "paralyzed"
+	id = "stagger"
 
 /datum/status_effect/incapacitating/stagger/on_apply()
 	. = ..()
