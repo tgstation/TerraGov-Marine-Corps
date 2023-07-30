@@ -9404,14 +9404,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"mAi" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/item/bedsheet/green,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/security/brig)
 "mCH" = (
 /turf/open/floor/plating,
 /area/centcom/valhalla/engine/engine_monitoring)
@@ -26306,7 +26298,7 @@ geA
 ade
 hDu
 ioO
-mAi
+ivu
 jwi
 pLH
 lhK
