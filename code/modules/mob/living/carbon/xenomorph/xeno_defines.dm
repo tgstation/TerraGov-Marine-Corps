@@ -219,8 +219,6 @@
 	// *** Behemoth Abilities ***
 	/// The maximum amount of Wrath that we can have stored at a time.
 	var/wrath_max = 0
-	/// The icon state of the Wrath bar.
-	var/wrath_icon_state = "wrath"
 
 	///the 'abilities' available to a caste.
 	var/list/actions
@@ -283,7 +281,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, WRATH_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD)
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
@@ -429,5 +427,8 @@
 
 	///Are we the roony version of this xeno
 	var/is_a_rouny = FALSE
+
+	/// The type of footstep this xeno has.
+	var/footstep_type = FOOTSTEP_XENO_MEDIUM
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

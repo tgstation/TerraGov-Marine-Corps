@@ -416,7 +416,7 @@
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
-	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, WRATH_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_FIRE_HUD)
+	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_FIRE_HUD)
 
 /datum/atom_hud/xeno_heart
 	hud_icons = list(HEART_STATUS_HUD)
@@ -464,16 +464,16 @@
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
 	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
 		return
-	var/image/plasma_holder = hud_list[PLASMA_HUD]
-	var/image/wrath_holder = hud_list[WRATH_HUD]
+	var/image/holder = hud_list[PLASMA_HUD]
+	if(!holder)
+		return
+	holder.overlays.Cut()
 	if(stat == DEAD)
-		plasma_holder?.icon_state = xeno_caste.plasma_icon_state? "[xeno_caste.plasma_icon_state]0" : null
-		wrath_holder?.icon_state = xeno_caste.wrath_icon_state? "[xeno_caste.wrath_icon_state]0" : null
-	else
-		var/plasma_amount = xeno_caste.plasma_max? round(plasma_stored * 100 / xeno_caste.plasma_max, 10) : 0
-		plasma_holder?.icon_state = xeno_caste.plasma_icon_state? "[xeno_caste.plasma_icon_state][plasma_amount]" : null
-		var/wrath_amount = xeno_caste.wrath_max? round(wrath_stored * 100 / xeno_caste.wrath_max, 10) : 0
-		wrath_holder?.icon_state = xeno_caste.wrath_icon_state? "[xeno_caste.wrath_icon_state][wrath_amount]" : null
+		return
+	var/plasma_amount = xeno_caste.plasma_max? round(plasma_stored * 100 / xeno_caste.plasma_max, 10) : 0
+	holder.overlays += xeno_caste.plasma_icon_state? "[xeno_caste.plasma_icon_state][plasma_amount]" : null
+	var/wrath_amount = xeno_caste.wrath_max? round(wrath_stored * 100 / xeno_caste.wrath_max, 10) : 0
+	holder.overlays += "wrath[wrath_amount]"
 
 
 /mob/living/carbon/xenomorph/proc/hud_set_pheromone()

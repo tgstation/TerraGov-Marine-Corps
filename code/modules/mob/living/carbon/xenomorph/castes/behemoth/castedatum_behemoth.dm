@@ -10,10 +10,10 @@
 	wound_type = "behemoth"
 
 	// *** Melee Attacks *** //
-	melee_damage = 22
+	melee_damage = 20
 
 	// *** Speed *** //
-	speed = 0
+	speed = -0.2
 	weeds_speed_mod = -0.2
 
 	// *** Plasma *** //
@@ -72,10 +72,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 22
+	melee_damage = 20
 
 	// *** Speed *** //
-	speed = 0
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -97,10 +97,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 21
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 225
@@ -123,10 +123,10 @@
 	ancient_message = "Let the land quake in fear as it is torn asunder."
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 21
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 250
@@ -153,7 +153,7 @@
 	melee_damage = 21
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 250
