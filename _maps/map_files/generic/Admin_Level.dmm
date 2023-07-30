@@ -9501,10 +9501,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/crew_quarters/heads/hop)
-"mGi" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/space/basic,
-/area/centcom/valhalla/security/brig/interiorcavern)
 "mGD" = (
 /obj/effect/turf_decal/tile/black{
 	dir = 1
@@ -24933,8 +24929,8 @@ llp
 wqU
 jtL
 hTv
-mGi
-mGi
+nCB
+nCB
 hTv
 pcb
 ojb
