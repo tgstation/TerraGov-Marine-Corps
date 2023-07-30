@@ -3774,11 +3774,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/operations_hall)
-"dhs" = (
-/obj/structure/table,
-/obj/structure/table,
-/turf/open/floor/tile/white,
-/area/lawankaoutpost/colony/operations_meeting)
 "dhy" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/ground/grass/weedable,
@@ -7469,7 +7464,6 @@
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/engineering)
 "giX" = (
-/obj/structure/table,
 /obj/structure/table,
 /obj/item/trash/plate,
 /obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice,
@@ -12282,15 +12276,14 @@
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/colony/operations_storage)
 "kyf" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	locked = 1;
-	name = "\improper Medical Clinic Psychology";
-	dir = 1
-	},
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	name = "\improper Medical Clinic Psychology";
+	dir = 1
+	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
 "kyg" = (
@@ -55819,7 +55812,7 @@ ooU
 fsg
 uvE
 xpb
-dhs
+mgW
 vUE
 qIw
 qfs
