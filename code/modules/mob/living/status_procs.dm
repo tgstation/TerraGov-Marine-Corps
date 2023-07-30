@@ -31,8 +31,9 @@
 ///Used to set stun to a set amount, commonly to remove it
 /mob/living/proc/SetStun(amount, ignore_canstun = FALSE)
 	var/datum/status_effect/incapacitating/stun/current_stun = IsStun()
-	if(amount <= 0 && current_stun)
-		qdel(current_stun)
+	if(amount <= 0)
+		if(current_stun)
+			qdel(current_stun)
 		return
 	if(status_flags & GODMODE)
 		return
@@ -109,8 +110,9 @@
 ///Used to set knockdown to a set amount, commonly to remove it
 /mob/living/proc/SetKnockdown(amount, ignore_canstun = FALSE)
 	var/datum/status_effect/incapacitating/knockdown/current_knockdown = IsKnockdown()
-	if(amount <= 0 && current_knockdown)
-		qdel(current_knockdown)
+	if(amount <= 0)
+		if(current_knockdown)
+			qdel(current_knockdown)
 		return
 	if(status_flags & GODMODE)
 		return
@@ -187,8 +189,9 @@
 ///Used to set immobilize to a set amount, commonly to remove it
 /mob/living/proc/SetImmobilized(amount, ignore_canstun = FALSE)
 	var/datum/status_effect/incapacitating/immobilized/current_immobilized = IsImmobilized()
-	if(amount <= 0 && current_immobilized)
-		qdel(current_immobilized)
+	if(amount <= 0)
+		if(current_immobilized)
+			qdel(current_immobilized)
 		return
 	if(status_flags & GODMODE)
 		return
@@ -273,8 +276,9 @@
 ///Used to set paralyzed to a set amount, commonly to remove it
 /mob/living/proc/SetParalyzed(amount, ignore_canstun = FALSE)
 	var/datum/status_effect/incapacitating/paralyzed/current_paralyzed = IsParalyzed()
-	if(amount <= 0 && current_paralyzed)
-		qdel(current_paralyzed)
+	if(amount <= 0)
+		if(current_paralyzed)
+			qdel(current_paralyzed)
 		return
 	if(status_flags & GODMODE)
 		return
@@ -343,8 +347,9 @@
 ///Used to set sleeping to a set amount, commonly to remove it
 /mob/living/proc/SetSleeping(amount, ignore_canstun = FALSE)
 	var/datum/status_effect/incapacitating/sleeping/current_sleeping = IsSleeping()
-	if(amount <= 0 && current_sleeping)
-		qdel(current_sleeping)
+	if(amount <= 0)
+		if(current_sleeping)
+			qdel(current_sleeping)
 		return
 	if(status_flags & GODMODE)
 		return
@@ -434,8 +439,9 @@
 ///Used to set unconscious to a set amount, commonly to remove it
 /mob/living/proc/SetUnconscious(amount, ignore_canstun = FALSE)
 	var/datum/status_effect/incapacitating/unconscious/current_unconscious = IsUnconscious()
-	if(amount <= 0 && current_unconscious)
-		qdel(current_unconscious)
+	if(amount <= 0)
+		if(current_unconscious)
+			qdel(current_unconscious)
 		return
 	if(status_flags & GODMODE)
 		return
@@ -504,8 +510,9 @@
 ///Used to set confused to a set amount, commonly to remove it
 /mob/living/proc/SetConfused(amount, ignore_canstun = FALSE)
 	var/datum/status_effect/incapacitating/confused/current_confused = IsConfused()
-	if(amount <= 0 && current_confused)
-		qdel(current_confused)
+	if(amount <= 0)
+		if(current_confused)
+			qdel(current_confused)
 		return
 	if(status_flags & GODMODE)
 		return
@@ -730,8 +737,9 @@
 ///Used to set stagger to a set amount, commonly to remove it
 /mob/living/proc/set_stagger(amount, ignore_canstun = FALSE)
 	var/datum/status_effect/incapacitating/stagger/current_stagger = IsStaggered()
-	if(amount <= 0 && current_stagger)
-		qdel(current_stagger)
+	if(amount <= 0)
+		if(current_stagger)
+			qdel(current_stagger)
 		return
 	if(status_flags & GODMODE)
 		return
