@@ -748,7 +748,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An unremovable set of long range ironsights for an HMG-08 machinegun."
 	icon_state = "sniperscope_invisible"
 	zoom_viewsize = 0
-	zoom_tile_offset = 3
+	zoom_tile_offset = 5
 
 /obj/item/attachable/scope/unremovable/mmg
 	name = "MG-27 rail scope"
@@ -766,20 +766,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
 	icon_state = "sniperscope_invisible"
 	scope_delay = 2 SECONDS
-	zoom_tile_offset = 7
+	zoom_tile_offset = 8
 
 /obj/item/attachable/scope/unremovable/tl102
 	name = "HSG-102 smart sight"
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
 	icon_state = "sniperscope_invisible"
 	zoom_viewsize = 0
-	zoom_tile_offset = 3
+	zoom_tile_offset = 5
 	deployed_scope_rezoom = TRUE
 
 //all mounted guns with a nest use this
 /obj/item/attachable/scope/unremovable/tl102/nest
 	scope_delay = 2 SECONDS
-	zoom_tile_offset = 7
+	zoom_tile_offset = 8
 	zoom_viewsize = 2
 	deployed_scope_rezoom = FALSE
 
