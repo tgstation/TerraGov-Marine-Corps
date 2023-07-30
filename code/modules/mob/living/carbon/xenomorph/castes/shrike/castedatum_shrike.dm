@@ -25,7 +25,7 @@
 
 	// *** Evolution *** //
 	// The only evolution path does not require threshold
-	// evolution_threshold = 180
+	// evolution_threshold = 225
 	maximum_active_caste = 1
 	upgrade_threshold = TIER_TWO_THRESHOLD
 

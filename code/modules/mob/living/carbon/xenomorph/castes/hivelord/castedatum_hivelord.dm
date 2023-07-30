@@ -25,7 +25,7 @@
 
 
 	// *** Evolution *** //
-	evolution_threshold = 180
+	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
