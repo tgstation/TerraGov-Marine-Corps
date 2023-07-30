@@ -99,6 +99,8 @@
 	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
 /mob/living/Destroy()
+	for(var/datum/status_effect/effect AS in status_effects)
+		qdel(effect)
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
 		if(embedded.embedding.embedded_flags & EMBEDDED_DEL_ON_HOLDER_DEL)
