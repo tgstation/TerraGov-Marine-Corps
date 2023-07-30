@@ -25,11 +25,11 @@
 	if(!.)
 		return
 	ADD_TRAIT(owner, TRAIT_STAGGERED, TRAIT_STATUS_EFFECT(id))
-	SEND_SIGNAL(owner, COMSIG_LIVING_STAGGER_APPLIED, duration)
+	owner.adjust_mob_scatter(5)
 
 /datum/status_effect/incapacitating/stagger/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_STAGGERED, TRAIT_STATUS_EFFECT(id))
-	SEND_SIGNAL(owner, COMSIG_LIVING_STAGGER_REMOVED, duration)
+	owner.adjust_mob_scatter(-5)
 
 //STUN
 /datum/status_effect/incapacitating/stun
