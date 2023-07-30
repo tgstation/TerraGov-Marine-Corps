@@ -113,6 +113,9 @@ SUBSYSTEM_DEF(statpanels)
 	target.stat_panel.send_message("update_sdql2", sdql2A)
 
 /datum/controller/subsystem/statpanels/proc/set_turf_examine_tab(client/target, mob/target_mob)
+	if(!target.obj_window)
+		target_mob.set_listed_turf(null)
+		return
 	var/list/overrides = list()
 	for(var/image/target_image as anything in target.images)
 		if(!target_image.loc || target_image.loc.loc != target_mob.listed_turf || !target_image.override)
