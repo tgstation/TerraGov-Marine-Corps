@@ -71,7 +71,7 @@
 	var/list/object_overlays = list()
 
 
-/atom/movable/screen/inventory/Click()
+/atom/movable/screen/inventory/Click(location, control, params)
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
 	if(world.time <= usr.next_move)
@@ -83,9 +83,15 @@
 	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return TRUE
 
+	//If there is an item in the slot you are clicking on, this will relay the click to the item within the slot
+	var/atom/item_in_slot = usr.get_item_by_slot(slot_id)
+	if(item_in_slot)
+		return item_in_slot.Click()
+
 	if(!istype(src, /atom/movable/screen/inventory/hand) && usr.attack_ui(slot_id)) // until we get a proper hands refactor
 		usr.update_inv_l_hand()
 		usr.update_inv_r_hand()
+		return TRUE
 
 /atom/movable/screen/inventory/hand
 	name = "l_hand"
@@ -98,15 +104,11 @@
 	if(active)
 		add_overlay("hand_active")
 
-/atom/movable/screen/inventory/hand/Click()
-	if(world.time <= usr.next_move)
-		return TRUE
-	if(usr.incapacitated() || !iscarbon(usr))
-		return TRUE
-	if (istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
-		return TRUE
-	var/mob/living/carbon/C = usr
-	C.activate_hand(hand_tag)
+/atom/movable/screen/inventory/hand/Click(location, control, params)
+	. = ..()
+	if(.)
+		var/mob/living/carbon/C = usr
+		C.activate_hand(hand_tag)
 
 /atom/movable/screen/inventory/hand/right
 	name = "r_hand"
