@@ -44,7 +44,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "ai" = (
-/obj/structure/dropship_piece/tadpole/cockpit/right{
+/obj/structure/dropship_piece/two/cockpit/right{
 	dir = 1
 	},
 /turf/template_noop,
@@ -65,6 +65,10 @@
 /area/shuttle/dropship/alamo)
 "am" = (
 /obj/machinery/computer/dropship_weapons/dropship1,
+/obj/item/phone{
+	pixel_x = -11;
+	pixel_y = 14
+	},
 /turf/closed/shuttle/dropship2/panel{
 	opacity = 0;
 	dir = 4
