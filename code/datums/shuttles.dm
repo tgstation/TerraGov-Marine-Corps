@@ -130,11 +130,6 @@
 	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
 	display_name = "Tadpole Carrier Model"
 
-/datum/map_template/shuttle/minidropship/food
-	suffix = "_food"
-	description = "A Tadpole modified to provide foods and services. Who the hell let this on the military catalogue? Bounty on that guy."
-	display_name = "Tadpole Food-truck Model"
-
 /datum/map_template/shuttle/minidropship/factorio
 	suffix = "_factorio"
 	description = "A Tadpole model for hauling, engineering and general maintenance. Patented by Nakamura Engineering, and is a rather reliable way to transport goods."

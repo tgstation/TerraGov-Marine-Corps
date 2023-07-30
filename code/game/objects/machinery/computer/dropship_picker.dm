@@ -58,7 +58,6 @@
 	assets = list(
 		"_standard" = 'icons/ui_icons/dropshippicker/_standard.png',
 		"_big" = 'icons/ui_icons/dropshippicker/_big.png',
-		"_food" = 'icons/ui_icons/dropshippicker/_food.png',
 		"_factorio" = 'icons/ui_icons/dropshippicker/_factorio.png',
 		"_umbilical" = 'icons/ui_icons/dropshippicker/_umbilical.png',
 	)
@@ -67,7 +66,7 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	if(dropship_selected)
 		return FALSE
 
