@@ -525,7 +525,7 @@
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	if(stacks >= 20)
 		debuff_owner.adjust_slowdown(1)
-		debuff_owner.adjust_stagger(1)
+		debuff_owner.adjust_stagger(1 SECONDS)
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/intoxicated/proc/call_resist_debuff()
