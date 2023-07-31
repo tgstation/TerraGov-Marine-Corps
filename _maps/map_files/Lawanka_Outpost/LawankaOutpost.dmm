@@ -28361,10 +28361,6 @@
 /obj/effect/spawner/random/misc/structure/girder,
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/engineering)
-"xEg" = (
-/obj/structure/table/mainship/nometal,
-/turf/closed/wall/r_wall,
-/area/lawankaoutpost/caves/nanotrasen_lab)
 "xEh" = (
 /obj/structure/table,
 /obj/item/explosive/grenade/smokebomb/cloak,
@@ -47484,7 +47480,7 @@ nKY
 wUp
 fVT
 fVT
-xEg
+fVT
 fVT
 fVT
 fVT
