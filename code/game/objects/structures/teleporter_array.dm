@@ -113,10 +113,10 @@
 	if(!target_turf)
 		return
 
-	var/list/destination_mobs = cheap_get_living_near(target_turf, 7)
+	var/list/destination_mobs = cheap_get_living_near(target_turf, 9)
 	for(var/mob/living/victim AS in destination_mobs)
-		victim.adjust_stagger(2)
-		victim.add_slowdown(2)
+		victim.adjust_stagger(3 SECONDS)
+		victim.add_slowdown(3)
 		to_chat(victim, span_warning("You feel nauseous as reality warps around you!"))
 
 	playsound(target_turf, 'sound/magic/lightningbolt.ogg', 75, 0)
