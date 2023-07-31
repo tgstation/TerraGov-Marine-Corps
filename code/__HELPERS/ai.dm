@@ -5,6 +5,8 @@
 /proc/cheap_get_humans_near(atom/movable/source, distance)
 	. = list()
 	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
 	for(var/mob/living/carbon/human/nearby_human AS in GLOB.humans_by_zlevel["[source_turf.z]"])
 		if(isnull(nearby_human))
 			continue
@@ -16,6 +18,8 @@
 /proc/cheap_get_xenos_near(atom/movable/source, distance)
 	. = list()
 	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
 	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in GLOB.alive_xeno_list)
 		if(isnull(nearby_xeno))
 			continue
