@@ -509,7 +509,7 @@
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness-5, 0)
 	L.AdjustConfused(-10 SECONDS)
-	L.adjust_blurriness(-0.5 SECONDS)
+	L.adjust_blurriness(-5)
 	L.AdjustUnconscious(-4 SECONDS)
 	L.AdjustStun(-4 SECONDS)
 	L.AdjustParalyzed(-2 SECONDS)
