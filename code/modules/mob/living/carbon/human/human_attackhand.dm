@@ -234,6 +234,15 @@
 			if(100 to INFINITY)
 				status += "mutilated"
 
+		if((org.limb_status & LIMB_BLEEDING) && (brutedamage > 0 && burndamage > 0))   
+			status += ", bleeding"
+		else if((org.limb_status & LIMB_BLEEDING) && (brutedamage > 0 || burndamage > 0))   
+			status += " and bleeding"
+		else if(org.limb_status & LIMB_BLEEDING)
+			status += "bleeding"
+			
+
+
 		if(brutedamage > 0 && burndamage > 0)
 			status += " and "
 
@@ -271,6 +280,7 @@
 			treat += "(Salved)"
 		var/msg = "My [org.display_name] is [status]. [treat]"
 		final_msg += status=="OK" ? span_notice(msg) : span_warning (msg)
+
 
 	switch(staminaloss)
 		if(1 to 30)

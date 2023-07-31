@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added variable gravity as a z-level based function to effect various things such as running, jumping and throwing"

@@ -266,10 +266,8 @@
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom
-		if(O.CanPass(src, O.loc))
-			return FALSE
-		if(!O.anchored)
-			step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
+		if(!O.anchored && !isxeno(src))
+			step(O, dir)
 		SEND_SIGNAL(src, COMSIG_XENO_OBJ_THROW_HIT, O, speed)
 		return TRUE
 

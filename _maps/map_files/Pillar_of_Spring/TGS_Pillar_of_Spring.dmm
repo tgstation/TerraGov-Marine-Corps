@@ -2854,6 +2854,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "dzT" = (
@@ -3106,6 +3107,7 @@
 "dRR" = (
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
 /obj/structure/benchpress,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "dSL" = (
@@ -4314,6 +4316,7 @@
 /obj/effect/decal/cleanable/cobweb{
 	dir = 8
 	},
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "fyc" = (
@@ -5403,6 +5406,13 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
+"gZg" = (
+/obj/structure/bed/stool{
+	pixel_y = 8
+	},
+/obj/effect/spawner/random/misc/gnome,
+/turf/open/floor/grass,
+/area/mainship/living/starboard_garden)
 "gZv" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -11914,7 +11924,9 @@
 	dir = 5
 	},
 /obj/machinery/robotic_cradle,
-/turf/open/floor/mainship/sterile,
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
 /area/mainship/medical/lower_medical)
 "pmY" = (
 /obj/structure/table/mainship/nometal,
@@ -14207,6 +14219,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
+"shm" = (
+/obj/effect/spawner/random/misc/gnome,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "shx" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -15008,6 +15024,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
+"tgl" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "thc" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -16403,6 +16424,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/item/clothing/mask/gas/icc,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "uPl" = (
@@ -41455,7 +41477,7 @@ gmc
 kEP
 rKn
 dus
-fRw
+shm
 qeW
 qeW
 qeW
@@ -49423,7 +49445,7 @@ fyR
 qfG
 mqD
 jHd
-mrK
+gZg
 gbM
 hUf
 lPc
@@ -50643,7 +50665,7 @@ mBZ
 mBZ
 hRh
 dWf
-wPV
+tgl
 wVZ
 dpY
 uKp

@@ -527,6 +527,16 @@
 	item_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
 
+/obj/item/toy/plush/gnome
+	name = "gnome"
+	desc = "A mythological creature that guarded Terra's garden. You wonder why it is here."
+	icon_state = "gnome"
+	item_state = "gnome"
+	attack_verb = list("kickes", "punches", "pounces")
+
+/obj/item/toy/plush/gnome/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, 'sound/items/gnome.ogg', 50)
 
 /obj/item/toy/beach_ball/basketball
 	name = "basketball"

@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed humans recovering from stagger twice as fast as they should"
-  - bugfix: "fixed xenos recovering from stagger three times as fast as they should, and recovering from slowdown twice as fast as they should"
