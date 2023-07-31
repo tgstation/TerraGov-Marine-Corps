@@ -171,7 +171,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(applied_damage) && stat == CONSCIOUS)
+				if(prob(applied_damage - 5) && stat == CONSCIOUS)
 					apply_effect(modify_by_armor(10 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
