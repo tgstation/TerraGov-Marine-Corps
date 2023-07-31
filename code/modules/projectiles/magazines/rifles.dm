@@ -284,7 +284,7 @@
 /obj/item/ammo_magazine/rifle/standard_smarttargetrifle
 	name = "\improper SG-62 magazine (10x27mm HV)"
 	desc = "A magazine filled with 10x27mm specialized smart rounds."
-	caliber = CALIBER_10x26_CASELESS
+	caliber = CALIBER_10x27_CASELESS
 	icon_state = "sg62"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smarttargetrifle
