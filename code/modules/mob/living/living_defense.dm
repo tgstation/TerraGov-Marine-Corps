@@ -1,30 +1,3 @@
-//Handles the effects of "stun" weapons
-/**
-	stun_effect_act(stun_amount, agony_amount, def_zone)
-
-	Handle the effects of a "stun" weapon
-
-	Arguments
-		stun_amount {int} applied as Stun and Paralyze
-		def_zone {enum} which body part to target
-*/
-/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone)
-	if(status_flags & GODMODE)
-		return FALSE
-
-	flash_pain()
-
-	if(stun_amount)
-		Stun(stun_amount * 20) // TODO: replace these amounts in stun_effect_stun() calls
-		Paralyze(stun_amount * 20)
-		apply_effect(STUTTER, stun_amount)
-		apply_effect(EYE_BLUR, stun_amount)
-
-	if(agony_amount)
-		apply_effect(STUTTER, agony_amount/10)
-		apply_effect(EYE_BLUR, agony_amount/10)
-
-
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
 	return 0 //only carbon liveforms have this proc
 
@@ -216,7 +189,7 @@
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	Paralyze(30)
+	Paralyze(3 SECONDS)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
 		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
@@ -298,8 +271,8 @@
 
 	adjustCloneLoss(rad_strength)
 	adjustStaminaLoss(rad_strength * 7)
-	adjust_stagger(rad_strength / 2)
-	add_slowdown(rad_strength / 2)
+	adjust_stagger(rad_strength SECONDS * 0.5)
+	add_slowdown(rad_strength * 0.5)
 	blur_eyes(rad_strength) //adds a visual indicator that you've just been irradiated
 	adjust_radiation(rad_strength * 20) //Radiation status effect, duration is in deciseconds
 	to_chat(src, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))

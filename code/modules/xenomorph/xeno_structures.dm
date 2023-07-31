@@ -1478,7 +1478,7 @@ TUNNEL
 		to_chat(user, span_warning("[src] bursts, releasing a strong gust of pressurised gas!"))
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.adjust_stagger(3)
+			H.adjust_stagger(3 SECONDS)
 			H.apply_damage(30, BRUTE, "chest", BOMB)
 		qdel(src)
 		return TRUE

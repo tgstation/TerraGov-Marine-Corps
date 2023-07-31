@@ -100,7 +100,7 @@
 			span_warning("You slump to the ground, you're too exhausted to keep going..."))
 
 	ParalyzeNoChain(1 SECONDS) //Short stun
-	adjust_stagger(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	adjust_stagger(STAMINA_EXHAUSTION_STAGGER_DURATION)
 	add_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	adjust_blurriness(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN) //set the cooldown.
@@ -287,6 +287,7 @@
 	set_blurriness(0, TRUE)
 	set_ear_damage(0, 0)
 	heal_overall_damage(getBruteLoss(), getFireLoss(), robo_repair = TRUE)
+	set_slowdown(0)
 
 	// fix all of our organs
 	restore_all_organs()
@@ -367,9 +368,7 @@
 
 /mob/living/carbon/xenomorph/revive(admin_revive = FALSE)
 	plasma_stored = xeno_caste.plasma_max
-	set_stagger(0)
 	sunder = 0
-	set_slowdown(0)
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)
 	return ..()

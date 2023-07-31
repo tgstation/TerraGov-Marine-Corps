@@ -16,6 +16,21 @@
 		duration = set_duration
 	return ..()
 
+//STAGGERED
+/datum/status_effect/incapacitating/stagger
+	id = "stagger"
+
+/datum/status_effect/incapacitating/stagger/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_STAGGERED, TRAIT_STATUS_EFFECT(id))
+	owner.adjust_mob_scatter(5)
+
+/datum/status_effect/incapacitating/stagger/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_STAGGERED, TRAIT_STATUS_EFFECT(id))
+	owner.adjust_mob_scatter(-5)
+
 //STUN
 /datum/status_effect/incapacitating/stun
 	id = "stun"

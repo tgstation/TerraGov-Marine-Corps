@@ -94,7 +94,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/L, metabolism)
 	L.dizzy(-4)
 	L.adjustDrowsyness(-2)
-	L.AdjustSleeping(-60)
+	L.AdjustSleeping(-6 SECONDS)
 	L.jitter(5)
 	return ..()
 
@@ -288,7 +288,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				if(istype(E))
 					if(H.species.species_flags ~! NO_PAIN)
 						to_chat(H, span_danger("You clutch for a moment as you feel a scorching pain covering your abdomen!"))
-						H.Stun(60)
+						H.Stun(6 SECONDS)
 					E.take_damage(20)
 	return ..()
 
@@ -428,7 +428,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 90 //THE FIST OF THE LAW IS STRONG AND HARD
 
 /datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/L, metabolism)
-	L.Stun(40)
+	L.Stun(4 SECONDS)
 	return ..()
 
 /datum/reagent/consumable/ethanol/irish_cream
@@ -732,7 +732,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			L.dizzy(5)
 			L.adjust_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter)
 			if(prob(20))
-				L.AdjustConfused(60)
+				L.AdjustConfused(6 SECONDS)
 		if(101 to INFINITY)
 			L.dizzy(6)
 			L.adjust_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter)

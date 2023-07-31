@@ -69,7 +69,7 @@
 		var/mob/M = target
 		var/mob/living/L = user
 		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating(SKILL_CQC) >= SKILL_CQC_MP)
-			L.Paralyze(60)
+			L.Paralyze(6 SECONDS)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			M.visible_message(span_danger("[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!"), \
 				span_warning("You knock [L] to the ground before they could inject you!"), null, 5)
