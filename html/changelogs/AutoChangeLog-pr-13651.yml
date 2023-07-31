@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Synth skills should work properly in valhalla now"
