@@ -2,7 +2,7 @@
 	name = "Nuclear War"
 	config_tag = "Nuclear War"
 	silo_scaling = 2
-	flags_round_type = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD
+	flags_round_type = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD
 	flags_xeno_abilities = ABILITY_NUCLEARWAR
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
@@ -27,6 +27,12 @@
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1
 	)
+	///How long between two larva check
+	var/larva_check_interval = 2 MINUTES
+	///Last time larva balance was checked
+	var/last_larva_check
+	///larvas cooling down after a xeno died
+	var/cooling_larvas = 0
 
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	. = ..()
@@ -46,6 +52,9 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
+
+	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	RegisterSignal(xeno_hive, COMSIG_HIVE_XENO_DEATH, PROC_REF(on_xeno_death))
 
 /datum/game_mode/infestation/nuclear_war/scale_roles(initial_players_assigned)
 	. = ..()
@@ -127,3 +136,37 @@
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	return FALSE
+
+/datum/game_mode/infestation/nuclear_war/process()
+	. = ..()
+
+	if(world.time > last_larva_check + larva_check_interval)
+		balance_scales()
+		last_larva_check = world.time
+
+/datum/game_mode/infestation/nuclear_war/proc/balance_scales()
+	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	if(stored_larva)
+		return //No need for respawns
+	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
+	if(!num_xenos)
+		xeno_job.add_job_positions(1)
+		return
+	var/list/possible_silos = list()
+	SEND_SIGNAL(xeno_hive, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, list(), possible_silos)
+	var/silo_bonus = length(possible_silos) <= 1 ? 0 : (length(possible_silos) * 3)
+	var/larva_surplus = (get_total_joblarvaworth() + silo_bonus - (num_xenos * xeno_job.job_points_needed) - cooling_larvas) / xeno_job.job_points_needed
+	if(larva_surplus < 1)
+		return //Things are balanced, no burrowed needed
+	xeno_job.add_job_positions(FLOOR(larva_surplus, 1))
+	xeno_hive.update_tier_limits()
+
+/datum/game_mode/infestation/nuclear_war/proc/on_xeno_death()
+	SIGNAL_HANDLER
+	cooling_larvas++
+	addtimer(CALLBACK(src, PROC_REF(larva_cooled), 5 MINUTES))
+
+/datum/game_mode/infestation/nuclear_war/proc/larva_cooled()
+	cooling_larvas--
