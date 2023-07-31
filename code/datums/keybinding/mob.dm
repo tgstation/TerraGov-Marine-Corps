@@ -336,6 +336,7 @@
 	full_name = "Toggle self harm"
 	description = "Toggle being able to hit yourself"
 	keybind_signal = COMSIG_KB_SELFHARM
+	hotkey_keys = list("0")
 
 /datum/keybinding/mob/toggle_self_harm/down(client/user)
 	. = ..()

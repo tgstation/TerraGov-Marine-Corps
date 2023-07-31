@@ -130,7 +130,7 @@
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				log_combat(user, M, "bashed", "", "against \the [src]")
 				if(prob(50))
-					M.Paralyze(20)
+					M.Paralyze(2 SECONDS)
 				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(25, BRUTE, MELEE)

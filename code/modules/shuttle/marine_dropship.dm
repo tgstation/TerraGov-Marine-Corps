@@ -29,7 +29,7 @@
 		else
 			to_chat(M, span_warning("The floor jolts under your feet!"))
 			shake_camera(M, 10, 1)
-			M.Paralyze(60)
+			M.Paralyze(6 SECONDS)
 		CHECK_TICK
 
 	for(var/i in GLOB.ai_list)

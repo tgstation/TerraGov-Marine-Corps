@@ -235,11 +235,12 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	if(eavesdropping_modes[message_mode])
 		eavesdrop_range = EAVESDROP_EXTRA_RANGE
 	var/list/listening = get_hearers_in_view(message_range+eavesdrop_range, source)
-	for(var/mob/player_mob AS in SSmobs.dead_players_by_zlevel[z])
-		if(!client) //client is so that ghosts don't have to listen to mice
+	var/turf/src_turf = get_turf(src)
+	for(var/mob/player_mob AS in SSmobs.dead_players_by_zlevel[src_turf.z])
+		if(!client || isnull(player_mob)) //client is so that ghosts don't have to listen to mice
 			continue
 		if(get_dist(player_mob, src) > 7) //they're out of range of normal hearing
-			if(!(player_mob.client.prefs.toggles_chat & CHAT_GHOSTEARS))
+			if(!(player_mob?.client?.prefs.toggles_chat & CHAT_GHOSTEARS))
 				continue
 		listening |= player_mob
 

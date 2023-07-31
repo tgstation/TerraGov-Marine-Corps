@@ -77,7 +77,7 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	adjust_stagger(3)
+	adjust_stagger(3 SECONDS)
 	add_slowdown(3)
 
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
@@ -110,12 +110,12 @@
 		shaker.visible_message("<span class='notice'>[shaker] shakes [src] trying to get [p_them()] up!",
 			"<span class='notice'>You shake [src] trying to get [p_them()] up!", null, 4)
 
-		AdjustUnconscious(-60)
-		AdjustStun(-60)
+		AdjustUnconscious(-6 SECONDS)
+		AdjustStun(-6 SECONDS)
 		if(IsParalyzed())
 			if(staminaloss)
 				adjustStaminaLoss(-20, FALSE)
-		AdjustParalyzed(-60)
+		AdjustParalyzed(-6 SECONDS)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return

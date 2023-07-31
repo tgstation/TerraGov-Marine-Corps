@@ -12,7 +12,7 @@
 	playsound(get_turf(lightning_source), 'sound/effects/lightningbolt.ogg', 50, TRUE, 10)
 	if(ishuman(target)) //knockdown and make humans jitter after being struck by lightning
 		var/mob/living/carbon/human/human_target = target
-		human_target.Knockdown(100)
+		human_target.Knockdown(10 SECONDS)
 		human_target.jitter(150)
 	to_chat(target, span_userdanger("The gods have punished you for your sins!"), confidential = TRUE)
 

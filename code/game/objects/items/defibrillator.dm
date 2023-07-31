@@ -297,7 +297,7 @@
 	H.reload_fullscreens()
 	H.flash_act()
 	H.apply_effect(10, EYE_BLUR)
-	H.apply_effect(10, PARALYZE)
+	H.apply_effect(20 SECONDS, PARALYZE)
 	H.handle_regular_hud_updates()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	H.dead_ticks = 0 //We reset the DNR time
