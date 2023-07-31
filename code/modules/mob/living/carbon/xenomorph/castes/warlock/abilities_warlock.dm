@@ -228,6 +228,7 @@
 	for(var/obj/projectile/proj AS in frozen_projectiles)
 		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
 		proj.resume_move()
+	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles))
 
 ///Reflects projectiles based on their relative incoming angle
 /obj/effect/xeno/shield/proc/reflect_projectiles()
@@ -243,6 +244,14 @@
 			new_angle -= 360
 		proj.firer = src
 		proj.fire_at(shooter = src, source = src, angle = new_angle, recursivity = TRUE)
+
+		//Record those sick rocket shots
+		//Is not part of record_projectiles_frozen() because it is probably bad to be running that for every bullet!
+		if(istype(proj.ammo, /datum/ammo/rocket) && owner.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+			personal_statistics.rockets_reflected++
+
+	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles), TRUE)
 	frozen_projectiles.Cut()
 
 

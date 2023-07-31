@@ -346,6 +346,7 @@
 	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
 	GLOB.round_statistics.xeno_acid_wells++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_acid_wells")
+	owner.record_traps_created()
 
 /datum/action/xeno_action/activable/gravity_grenade
 	name = "Throw gravity grenade"

@@ -1,13 +1,30 @@
-
-//the datum that stores specific statistics from the current round.
-
 /*
-To add new statistics, include "var/the_thing_to_count = 0" in the list below indented accordingly.
+This file is where all variables and functions related to personal lists are defined
+I've done my best to make it as organized for future additions and changes, but yes it is a lot
 
-Then, in the file where the thing you want to count happens, include "round_statistics.the_thing_to_count++"
+The personal_statistics_list serves as a large directory for clients and their version of /datum/personal_statistics
+In /datum/personal_statistics is where all the data is stored, manipulated by various procs throughout the code
 
-to use said count anywhere else include round_statistics.the_thing_to_count in your code.
-add [] around this to use it in text.
+The most basic way to add to something is like this:
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	personal_statistics.stat_you_want_changed++
+
+It searches for the client in the global list (you may need to do mob.client) and then grabs their /datum/personal_statistics
+Then it accesses the desired statistic in personal_statistics!
+
+In the event where you are not using a client directly (for example: mob.client) you should always do an:
+	if(mob.client)
+		//continue with code
+
+This is to prevent any possible errors with client-less mobs
+
+To then display the statistic at the end of the round, you have to add it to the compose_report() proc like so:
+	if(stat_you_want_changed)
+		stats += "[stat_you_want_changed] things happened."
+
+This is added to the list of stats that are put together for displaying to the player when the round ends
+
+Hopefully this mini-tutorial helps you if you want to add more things to be tracked!
 */
 
 GLOBAL_LIST_EMPTY(personal_statistics_list)
@@ -24,9 +41,12 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	//We are watching
 	var/friendly_fire_damage = 0
 
+	var/projectiles_caught = 0
+	var/projectiles_reflected = 0
+	var/rockets_reflected = 0
+
 	var/grenades_primed = 0
 	var/traps_created = 0
-	var/huggers_created = 0
 
 	var/limbs_lost = 0
 	var/delimbs = 0
@@ -69,6 +89,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/drained = 0
 	var/cocooned = 0
 	var/recycle_points_denied = 0
+	var/huggers_created = 0
 	var/impregnations = 0
 
 	//Close air support
@@ -109,12 +130,21 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		stats += melee_damage ? "[melee_damage] melee damage dealt!" : "You dealt no melee damage."
 		stats += ""
 	stats += friendly_fire_damage ? "You caused [friendly_fire_damage] damage to allies...<br>" : "You avoided committing acts of friendly fire!<br>"
+
+	if(projectiles_caught)
+		stats += "[projectiles_caught] projectile[projectiles_caught > 1 ? "s" : ""] caught by psychic shield."
+		stats += "[projectiles_reflected] projectile[projectiles_reflected != 1 ? "s were" : " was"] reflected."
+		if(rockets_reflected)
+			stats += "[rockets_reflected] rocket[rockets_reflected != 1 ? "s were" : " was"] reflected!"
+		stats += ""
+
 	if(grenades_primed)
 		stats += "[grenades_primed] grenade[grenades_primed > 1 ? "s" : ""] thrown."
 	if(traps_created)
 		stats += "[traps_created] trap[traps_created > 1 ? "s" : ""]/mine[traps_created > 1 ? "s" : ""]/hazard[traps_created > 1 ? "s" : ""] placed."
 	if(grenades_primed || traps_created)
 		stats += ""
+
 	stats += "Lost [limbs_lost] limb[limbs_lost != 1 ? "s" : ""]."
 	if(delimbs)
 		stats += "You severed [delimbs] limb[delimbs > 1 ? "s" : ""]!"
@@ -187,6 +217,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Cocooned [cocooned] host[cocooned > 1 ? "s" : ""]."
 	if(recycle_points_denied)
 		support_stats += "Recycled [recycle_points_denied] sister[recycle_points_denied > 1 ? "s" : ""] to continue serving the hive even in death."
+	if(huggers_created)
+		support_stats += "Gave birth to [huggers_created] hugger[huggers_created > 1 ? "s" : ""]."
 	if(impregnations)
 		support_stats += "Impregnated [impregnations] host[impregnations > 1 ? "s" : ""]."
 
@@ -264,6 +296,10 @@ The alternative is scattering them everywhere under their respective objects whi
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[shooter.client]
 	personal_statistics.projectiles_hit++
 	personal_statistics.projectile_damage += damage
+	if(faction && isliving(shooter))	//See if any friendly fire was made
+		var/mob/living/L = shooter
+		if(faction == L.faction)
+			personal_statistics.friendly_fire_damage += damage	//FF multiplier already included by the way
 	return TRUE
 
 ///Record what reagents and how much of them were transferred to a mob into their client's /datum/personal_statistics
@@ -483,4 +519,47 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
 	personal_statistics.surgical_actions_performed++
+	return TRUE
+
+///Record when a bone break or internal bleeding is inflicted
+/datum/species/proc/record_internal_injury(mob/living/carbon/human/victim, mob/attacker, old_status, new_status)
+	if(old_status == new_status || (!victim.client && !attacker?.client))
+		return FALSE
+
+	//If neither of these flags was enabled after being damaged, then no internal injury occurred
+	if(!(CHECK_BITFIELD(old_status, LIMB_BROKEN|LIMB_BLEEDING) ^ CHECK_BITFIELD(new_status, LIMB_BROKEN|LIMB_BLEEDING)))
+		return FALSE
+
+	if(victim.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[victim.client]
+		personal_statistics.internal_injuries++
+	if(attacker?.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[attacker.client]
+		personal_statistics.internal_injuries_inflicted++
+	return TRUE
+
+///Short proc that tallies up traps_created; reduce copy pasta
+/mob/proc/record_traps_created()
+	if(!client)
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	personal_statistics.traps_created++
+	return TRUE
+
+///Tally up bullets caught/reflected
+/obj/effect/xeno/shield/proc/record_projectiles_frozen(mob/user, amount, reflected = FALSE)
+	if(!user.client)
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	personal_statistics.projectiles_caught += amount
+	if(reflected)
+		personal_statistics.projectiles_reflected += amount
+	return TRUE
+
+///Tally when a structure is constructed
+/mob/proc/record_structures_built()
+	if(!client)
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	personal_statistics.structures_built++
 	return TRUE
