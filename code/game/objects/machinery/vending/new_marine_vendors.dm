@@ -704,7 +704,6 @@
 		/obj/item/whistle,
 		/obj/item/compass,
 		/obj/item/binoculars/tactical,
-		/obj/item/pinpointer,
 		/obj/item/clothing/glasses/hud/health,
 	)
 

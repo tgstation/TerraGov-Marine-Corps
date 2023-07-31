@@ -183,7 +183,6 @@
 /area/lv624/lazarus/internal_affairs)
 "os" = (
 /obj/structure/table/woodentable,
-/obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "qp" = (

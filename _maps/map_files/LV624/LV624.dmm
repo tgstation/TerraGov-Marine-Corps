@@ -5351,7 +5351,6 @@
 /area/lv624/lazarus/research)
 "egX" = (
 /obj/structure/table/woodentable,
-/obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "ehT" = (
@@ -5720,7 +5719,6 @@
 /area/lv624/lazarus/quartstorage)
 "eJN" = (
 /obj/structure/table/woodentable,
-/obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "eKa" = (

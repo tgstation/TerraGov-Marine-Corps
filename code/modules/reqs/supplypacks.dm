@@ -71,12 +71,6 @@ OPERATIONS
 	cost = 300
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/operations/pinpointer
-	name = "Xeno structure tracker crate"
-	contains = list(/obj/item/pinpointer)
-	cost = 200
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/operations/deployable_camera
 	name = "3 Deployable Cameras"
 	contains = list(

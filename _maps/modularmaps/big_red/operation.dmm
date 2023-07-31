@@ -1300,7 +1300,6 @@
 /area/bigredv2/outside/admin_building)
 "TY" = (
 /obj/structure/table/woodentable,
-/obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "Ub" = (

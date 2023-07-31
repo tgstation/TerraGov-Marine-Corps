@@ -115263,7 +115263,6 @@
 /area/deltastation/asteroidcaves/derelictnortheast)
 "xmf" = (
 /obj/structure/table/woodentable,
-/obj/item/pinpointer,
 /obj/item/radio/intercom{
 	dir = 4
 	},
