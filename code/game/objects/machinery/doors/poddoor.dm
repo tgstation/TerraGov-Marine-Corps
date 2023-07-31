@@ -119,6 +119,13 @@
 	opacity = FALSE
 	id = "pirate_cargo"
 
+/obj/machinery/door/poddoor/two_tile_hor/teleporter
+	name = "teleporter chamber blast door"
+	icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	id = "tele_array"
+
 /obj/machinery/door/poddoor/two_tile_hor/secure
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	openspeed = 17

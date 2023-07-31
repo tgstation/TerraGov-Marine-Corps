@@ -79,6 +79,8 @@
 #define COMSIG_GLOB_CAMPAIGN_MISSION_ENDED "!campaign_mission_ended"
 ///Sent when a campaign objective has been destroyed
 #define COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED "!campaign_objective_destroyed"
+///Enables droppod use during campaign
+#define COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS "!campaign_enable_droppods"
 
 //////////////////////////////////////////////////////////////////
 
