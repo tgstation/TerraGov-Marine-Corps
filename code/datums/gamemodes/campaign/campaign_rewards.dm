@@ -203,7 +203,7 @@
 	name = "Delegated Teleporter Array access"
 	desc = "+2 uses of the Teleporter Array"
 	detailed_desc = "Central command have allocated the battalion with two additional uses of the Teleporter Array. Its extremely costly to run and demand is high across the conflict zone, so make them count."
-	uses = 2
+	uses = 3
 
 /datum/campaign_reward/teleporter_charges/activated_effect()
 	. = ..()
@@ -215,6 +215,27 @@
 			continue
 		teleporter.charges ++
 		to_chat(faction.faction_leader, span_warning("An additional activation of the Teleporter Array is now ready for use."))
+		return
+
+/datum/campaign_reward/teleporter_enabled
+	name = "Enable Teleporter Array"
+	desc = "Enables the use of the Teleporter Array for the current or next mission"
+	detailed_desc = "Established a link between our Teleporter Array and its master Bluespace drive, allowing its operation during the current or next mission."
+	uses = 2
+
+/datum/campaign_reward/teleporter_enabled/activated_effect()
+	. = ..()
+	if(!.)
+		return
+
+	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
+		if(teleporter.faction != faction.faction)
+			continue
+		if(teleporter.teleporter_status == TELEPORTER_ARRAY_INOPERABLE)
+			to_chat(faction.faction_leader, span_warning("The Teleporter Array has been permanently disabled due to the destruction of the linked Bluespace drive."))
+			return
+		teleporter.teleporter_status = TELEPORTER_ARRAY_READY
+		to_chat(faction.faction_leader, span_warning("Teleporter Array powered up. Link to Bluespace drive confirmed. Ready for teleportation."))
 		return
 
 /datum/campaign_reward/droppod_refresh

@@ -68,6 +68,7 @@
 	remove_user()
 	targetted_zlevel = new_z
 	target_turf = null
+	teleporter_status = TELEPORTER_ARRAY_INACTIVE
 
 //starts the teleportation process
 /obj/structure/teleporter_array/proc/activate()
@@ -77,7 +78,7 @@
 	if(teleporter_status == TELEPORTER_ARRAY_IN_USE)
 		to_chat(controller, span_warning("The Teleporter Array is already running!"))
 		return
-	if(!charges)
+	if(!charges || teleporter_status == TELEPORTER_ARRAY_INACTIVE)
 		to_chat(controller, span_warning("The Teleporter Array is not currently available for our use."))
 		return
 	if(!target_turf)
@@ -104,15 +105,13 @@
 
 ///does the actual teleport
 /obj/structure/teleporter_array/proc/do_teleport(list/turfs_affected)
-	if(teleporter_status == TELEPORTER_ARRAY_INOPERABLE)
+	if(teleporter_status == TELEPORTER_ARRAY_INOPERABLE || teleporter_status == TELEPORTER_ARRAY_INACTIVE)
 		return cleanup(turfs_affected)
 
 	teleporter_status = TELEPORTER_ARRAY_READY
-
-	if(!target_turf)
-		return cleanup(turfs_affected)
-
 	cleanup(turfs_affected)
+	if(!target_turf)
+		return
 
 	var/list/destination_mobs = cheap_get_living_near(target_turf, 7)
 	for(var/mob/living/victim AS in destination_mobs)
