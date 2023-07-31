@@ -232,3 +232,17 @@
 		launcher.refresh_pod()
 	to_chat(faction.faction_leader, span_warning("All drop pods have been restocked."))
 	return
+
+/datum/campaign_reward/droppod_enabled
+	name = "Enable drop pods"
+	desc = "Enables the use of drop pods for the current or next mission"
+	detailed_desc = "Repositions the ship to allow for orbital drop pod insertion during the current or next mission."
+	uses = 3
+
+/datum/campaign_reward/droppod_enabled/activated_effect()
+	. = ..()
+	if(!.)
+		return
+
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS)
+	to_chat(faction.faction_leader, span_warning("Ship repositioned, drop pods are now ready for use."))

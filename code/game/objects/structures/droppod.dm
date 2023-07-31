@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	interaction_actions += new /datum/action/innate/set_drop_target(src)
 	interaction_actions += new /datum/action/innate/launch_droppod(src)
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_DROPSHIP_HIJACKED, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED), PROC_REF(disable_launching))
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(allow_drop))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED, COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS), PROC_REF(allow_drop))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
 	GLOB.droppod_list += src
 	update_icon()
@@ -139,7 +139,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	target_z = new_z
 	target_x = 1
 	target_y = 1
-	allow_drop()
 
 ///returns boolean if the currently set target/optionally passed turf are valid to drop to
 /obj/structure/droppod/proc/checklanding(mob/user, optional_turf)
