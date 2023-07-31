@@ -155,6 +155,15 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden crate", /obj/structure/largecrate/packed, 5, time = 2 SECONDS, on_floor = TRUE) \
 	))
 
+GLOBAL_LIST_INIT(wood_radial_images, list(
+	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
+	"barricade" = image('icons/Marine/barricades.dmi', icon_state = "wooden"),
+	"chair" = image('icons/obj/objects.dmi', icon_state = "wooden_chair"),
+	"tile" = image('icons/obj/stack_objects.dmi', icon_state = "tile-wood"),
+	"crate" = image('icons/obj/structures/crates.dmi', icon_state = "secure_crate")
+	))
+
+
 /obj/item/stack/sheet/wood
 	name = "wooden plank"
 	desc = "One can only guess that this is a bunch of wood."
@@ -179,6 +188,31 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 /obj/item/stack/sheet/wood/Initialize(mapload, amount)
 	. = ..()
 	recipes = GLOB.wood_recipes
+
+/obj/item/stack/sheet/wood/select_radial(mob/user)
+	if(user.get_active_held_item() != src)
+		return
+	if(!can_interact(user))
+		return TRUE
+
+	add_fingerprint(usr, "topic")
+
+	var/choice = show_radial_menu(user, src, GLOB.wood_radial_images, require_near = TRUE)
+
+	switch (choice)
+		if("recipes")
+			return TRUE
+		if("barricade")
+			create_object(user, new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE), 1)
+		if("chair")
+			create_object(user, new/datum/stack_recipe("wooden chair", /obj/structure/bed/chair/wood/normal, 1, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), 1)
+		if("tile")
+			create_object(user, new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), 1)
+		if("crate")
+			create_object(user, new/datum/stack_recipe("wooden crate", /obj/structure/largecrate/packed, 5, time = 2 SECONDS, on_floor = TRUE), 1)
+
+	return FALSE
+
 
 /*
 * Cloth
