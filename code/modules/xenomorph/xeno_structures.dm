@@ -735,7 +735,7 @@ TUNNEL
 	if(!istype(center_turf))
 		center_turf = loc
 
-	if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN)
+	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS)
 		for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(resin_silo_proxy_alert))
 
