@@ -1134,7 +1134,7 @@
 	gamemode_flags = ABILITY_NUCLEARWAR
 	plasma_cost = 100
 	///How much larva points it gives (8 points for one larva in distress)
-	var/larva_point_reward = 1
+	var/larva_point_reward = 0 // tivi todo remove this and the flag properly if everything goes well
 
 /datum/action/xeno_action/activable/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
