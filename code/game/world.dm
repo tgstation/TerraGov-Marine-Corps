@@ -65,6 +65,12 @@ GLOBAL_VAR(restart_counter)
 		return
 #endif
 
+#ifdef USE_EXTOOLS
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
+	if(fexists(extools))
+		LIBCALL(extools, "maptick_initialize")()
+#endif
+
 	Profile(PROFILE_RESTART)
 	Profile(PROFILE_RESTART, type = "sendmaps")
 
@@ -165,6 +171,8 @@ GLOBAL_VAR(restart_counter)
 
 	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
+
+	_initialize_log_files() //TODO port log holder datum, this is a bandaid until that's done
 
 	if(GLOB.round_id)
 		log_game("Round ID: [GLOB.round_id]")
