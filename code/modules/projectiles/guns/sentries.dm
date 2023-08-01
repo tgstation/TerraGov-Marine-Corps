@@ -54,6 +54,11 @@
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)
 
+/obj/item/storage/box/sentry/update_icon()
+	icon_state = initial(icon_state)
+	if(!length(contents))
+		icon_state += "_e"
+
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper ST-571 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a M30 autocannon and a 500-round drum magazine."
