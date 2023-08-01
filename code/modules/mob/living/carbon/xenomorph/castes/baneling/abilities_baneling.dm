@@ -54,9 +54,9 @@
 	name = "Choose Explosion Reagent"
 	action_icon_state = "select_reagent0"
 	desc = "Select which reagent will be released when you explode"
-	plasma_cost = 200
+	plasma_cost = 0
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT,
 	)
 
@@ -156,7 +156,7 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
 	UnregisterSignal(X, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_POST_THROW))
-	var/datum/action/xeno_action/baneling_explode/explode_action = owner.actions_by_path[/datum/action/xeno_action/baneling_explode]
+	var/datum/action/xeno_action/baneling_explode/explode_action = X.actions_by_path[/datum/action/xeno_action/baneling_explode]
 	explode_action.handle_smoke(ability = TRUE)
 	X.death(FALSE)
 

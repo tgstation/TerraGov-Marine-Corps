@@ -41,7 +41,7 @@
 	RegisterSignal(xeno, COMSIG_MOB_DEATH, PROC_REF(handle_baneling_death))
 	RegisterSignal(xeno, COMSIG_QDELETING, PROC_REF(qdel_pod))
 	RegisterSignal(ability_ref, COMSIG_ACTION_TRIGGER, PROC_REF(qdel_pod))
-	addtimer(CALLBACK(src, PROC_REF(increase_charge)), BANELING_CHARGE_GAIN_TIME)
+	addtimer(CALLBACK(src, PROC_REF(increase_charge), xeno), BANELING_CHARGE_GAIN_TIME)
 
 /obj/structure/xeno/baneling_pod/proc/qdel_pod(datum/source)
 	SIGNAL_HANDLER
@@ -53,8 +53,8 @@
 		return ..()
 	for(var/mob/living/carbon/xenomorph/xeno in contents)
 		if(xeno.stat != DEAD)
+			REMOVE_TRAIT(xeno, TRAIT_STASIS, BANELING_STASIS_TRAIT)
 			xeno.forceMove(get_turf(loc))
-			xeno.death(FALSE)
 	return ..()
 
 /// Teleports baneling inside of itself, checks for charge and then respawns baneling
@@ -64,15 +64,16 @@
 		return
 	var/mob/living/carbon/xenomorph/xeno_ref = source
 	xeno_ref.forceMove(src)
+	ADD_TRAIT(xeno_ref, TRAIT_STASIS, BANELING_STASIS_TRAIT)
 	if(xeno_ref.stored_charge >= 1)
 		xeno_ref.stored_charge--
 		addtimer(CALLBACK(src, PROC_REF(spawn_baneling), xeno_ref), BANELING_CHARGE_RESPAWN_TIME)
 		addtimer(CALLBACK(src, PROC_REF(increase_charge), xeno_ref), BANELING_CHARGE_GAIN_TIME)
 		to_chat(xeno_ref.client, span_xenohighdanger("You will respawn in [BANELING_CHARGE_RESPAWN_TIME/10] seconds"))
-		return COMPONENT_CANCEL_DEATH
-	/// The respawn takes 4 times longer than consuming a charge would
-	to_chat(xeno_ref.client, "You will respawn in [(BANELING_CHARGE_RESPAWN_TIME*4)/10] SECONDS")
-	addtimer(CALLBACK(src, PROC_REF(spawn_baneling), xeno_ref), BANELING_CHARGE_RESPAWN_TIME*4)
+	else
+		/// The respawn takes 4 times longer than consuming a charge would
+		to_chat(xeno_ref.client, "You will respawn in [(BANELING_CHARGE_RESPAWN_TIME*4)/10] SECONDS")
+		addtimer(CALLBACK(src, PROC_REF(spawn_baneling), xeno_ref), BANELING_CHARGE_RESPAWN_TIME*4)
 	return COMPONENT_CANCEL_DEATH
 
 /// Increase our current charge
@@ -87,5 +88,6 @@
 /// Rejuvinates and respawns the baneling
 /obj/structure/xeno/baneling_pod/proc/spawn_baneling(datum/source)
 	var/mob/living/carbon/xenomorph/xeno_ref = source
+	REMOVE_TRAIT(xeno_ref, TRAIT_STASIS, BANELING_STASIS_TRAIT)
 	xeno_ref.forceMove(get_turf(loc))
 	xeno_ref.heal_overall_damage(xeno_ref.maxHealth, xeno_ref.maxHealth, updating_health = TRUE)
