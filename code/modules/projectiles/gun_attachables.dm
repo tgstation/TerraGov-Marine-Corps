@@ -455,7 +455,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = -2
 	scatter_unwielded_mod = -3
 	recoil_unwielded_mod = -2
-	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "comp_big", /obj/item/weapon/gun/smg/som = "comp_big", /obj/item/weapon/gun/shotgun/som = "comp_big", /obj/item/weapon/gun/shotgun/pump/t35 = "comp_big")
+	variants_by_parent_type = list(
+		/obj/item/weapon/gun/rifle/som = "comp_big",
+		/obj/item/weapon/gun/smg/som = "comp_big",
+		/obj/item/weapon/gun/shotgun/som = "comp_big",
+		/obj/item/weapon/gun/shotgun/pump/t35 = "comp_big",
+		/obj/item/weapon/gun/revolver/standard_magnum = "t76comp"
+	)
 
 
 /obj/item/attachable/sniperbarrel
@@ -722,6 +728,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "Mosin nagant rail scope"
 	icon_state = "mosinscope"
 	desc = "A Mosin specific mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+
+/obj/item/attachable/scope/standard_magnum
+	name = "R-76 rail scope"
+	desc = "A custom rail mounted zoom sight scope designed specifically for the R-76 Magnum. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	icon = 'icons/Marine/attachments_64.dmi'
+	icon_state = "t76scope"
 
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
