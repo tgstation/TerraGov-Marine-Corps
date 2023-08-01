@@ -34,7 +34,7 @@
 	if((severity == EXPLODE_DEVASTATE) && (bomb_armor_ratio > XENO_EXPLOSION_GIB_THRESHOLD))
 		return gib() //Gibs unprotected benos
 
-		switch(severity)
+	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			ex_damage = rand(190, 210)
 			stagger_amount = 4 * bomb_armor_ratio - 1
