@@ -1,0 +1,4 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - rscdel: "removed loose pinpointers on the crash ships"

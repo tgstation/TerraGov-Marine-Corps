@@ -4,34 +4,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 //#define DEBUG_HUMAN_EXPLOSIONS
 
-/mob/living/carbon/human/stun_effect_act(stun_amount, agony_amount, def_zone)
-	var/datum/limb/affected = get_limb(check_zone(def_zone))
-	var/siemens_coeff = get_siemens_coefficient_organ(affected)
-	stun_amount *= siemens_coeff
-	agony_amount *= siemens_coeff
-
-	switch (def_zone)
-		if("head")
-			agony_amount *= 1.50
-		if("l_hand", "r_hand")
-			var/c_hand
-			if (def_zone == "l_hand")
-				c_hand = l_hand
-			else
-				c_hand = r_hand
-
-			if(c_hand && (stun_amount || agony_amount > 10))
-
-				dropItemToGround(c_hand)
-				if (affected.limb_status & LIMB_ROBOT)
-					emote("me", 1, "drops what they were holding, [p_their()] [affected.display_name] malfunctioning!")
-				else
-					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-					emote("me", 1, "[(species?.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in [p_their()] [affected.display_name]!")
-
-	return ..()
-
-
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(datum/limb/def_zone)
 	if (!def_zone)
@@ -200,7 +172,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(applied_damage) && stat == CONSCIOUS)
-					apply_effect(modify_by_armor(10, MELEE, def_zone = target_zone), WEAKEN)
+					apply_effect(modify_by_armor(20 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
 					hit_report += "(KO)"
@@ -218,7 +190,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 			if("chest")//Easier to score a stun but lasts less time
 				if(prob((applied_damage + 5)) && !incapacitated())
-					apply_effect(modify_by_armor(6, MELEE, def_zone = target_zone), WEAKEN)
+					apply_effect(modify_by_armor(12 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
 					visible_message(span_danger("[src] has been knocked down!"),
 									span_danger("You have been knocked down!"), null, 5)
 					hit_report += "(KO)"
@@ -397,7 +369,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	Stun(stun_duration)
 	Paralyze(stun_duration)
 	//15 Next to queen , 3 at max distance.
-	adjust_stagger(LERP(7, 3, dist_pct) * reduction)
+	adjust_stagger(LERP(7, 3, dist_pct) * reduction SECONDS)
 	//Max 140 under Queen, 130 beside Queen, 70 at the edge. Reduction of 10 per tile distance from Queen.
 	apply_damage(LERP(140, 70, dist_pct) * reduction, STAMINA, updating_health = TRUE)
 	if(!ear_deaf)

@@ -220,6 +220,12 @@
 	name = "tall grass"
 	icon_state = "tallgrass_corner"
 
+/obj/structure/flora/grass/tallgrass/hideable
+	layer = BUSH_LAYER
+
+/obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner
+	icon_state = "tallgrass_corner"
+
 //bushes
 /obj/structure/flora/bush
 	name = "bush"
