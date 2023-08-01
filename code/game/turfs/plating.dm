@@ -50,8 +50,7 @@
 
 /turf/open/floor/plating/fake_space
 	icon = 'icons/turf/space.dmi'
-	name = "\proper space"
-	light_power = 0.25
+	name = "\propershielded space"
 	icon_state = "0"
 	plane = PLANE_SPACE
 
