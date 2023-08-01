@@ -33,6 +33,7 @@
 /area/bigredv2/outside/se
 	name = "Southeast Colony Grounds"
 	icon_state = "southeast"
+	always_unpowered = TRUE
 
 /area/bigredv2/outside/s
 	name = "Southern Colony Grounds"
@@ -49,6 +50,7 @@
 	outside = FALSE
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 /area/bigredv2/caves/rock
 	name = "Enclosed Area"
@@ -64,10 +66,12 @@
 
 /area/bigredv2/caves/south/garbledradio
 	ceiling = CEILING_UNDERGROUND
+
 /area/bigredv2/caves/rustedpreparea
 	name = "Rusted Prep Area"
 	icon_state = "yellow"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	always_unpowered = FALSE
 
 /area/bigredv2/caves/undergroundrobotics
 	name = "Underground robotics lab"
@@ -235,6 +239,8 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
+/area/bigredv2/outside/space_port/two
+
 /area/bigredv2/outside/telecomm
 	name = "Telecommunications"
 	icon_state = "ass_line"
@@ -272,6 +278,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+	always_unpowered = FALSE
 
 /area/bigredv2/outside/general_offices
 	name = "General Offices"

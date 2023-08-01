@@ -1,0 +1,4 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - bugfix: "Fixed a runtime where shovel tools would read NULL.max_amount."

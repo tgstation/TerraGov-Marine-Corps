@@ -143,6 +143,12 @@ OPERATIONS
 	containertype = null
 	cost = 100
 
+/datum/supply_packs/operations/researchcomp
+	name = "Research console"
+	contains = list(/obj/machinery/researchcomp)
+	containertype = null
+	cost = 200
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/

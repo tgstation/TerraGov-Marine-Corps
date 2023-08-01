@@ -29,7 +29,7 @@
 		else
 			to_chat(M, span_warning("The floor jolts under your feet!"))
 			shake_camera(M, 10, 1)
-			M.Paralyze(60)
+			M.Paralyze(6 SECONDS)
 		CHECK_TICK
 
 	for(var/i in GLOB.ai_list)
@@ -823,6 +823,7 @@
 	density = TRUE
 	resistance_flags = RESIST_ALL
 	opacity = TRUE
+	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 
 /obj/structure/dropship_piece/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -917,7 +918,6 @@
 /obj/structure/dropship_piece/one/engine/rightbottom
 	icon_state = "brown_engine_rb"
 
-
 /obj/structure/dropship_piece/one/rearwing/lefttop
 	icon_state = "brown_rearwing_lt"
 
@@ -933,18 +933,22 @@
 /obj/structure/dropship_piece/one/rearwing/leftlbottom
 	icon_state = "brown_rearwing_llb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/rightrbottom
 	icon_state = "brown_rearwing_rrb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/leftllbottom
 	icon_state = "brown_rearwing_lllb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/rightrrbottom
 	icon_state = "brown_rearwing_rrrb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 
 

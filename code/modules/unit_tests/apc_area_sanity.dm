@@ -1,0 +1,17 @@
+/datum/unit_test/area_apc_sanity
+
+/datum/unit_test/area_apc_sanity/Run()
+	var/list/relevant_z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND) + SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
+	for(var/relevant_z_level in relevant_z_levels)
+		for(var/area/tested_area in SSmapping.areas_in_z["[relevant_z_level]"])
+			var/list/cached_apc_list = tested_area.get_apc_list()
+			if(!length(cached_apc_list) && tested_area.requires_power && !tested_area.always_unpowered)
+				Fail("[tested_area.type] doesn't have an APC while it needs one.")
+			if(length(cached_apc_list) && (!tested_area.requires_power || tested_area.always_unpowered))
+				Fail("[tested_area] has APC(s) while not needing power.")
+				for(var/obj/machinery/power/apc/found_apc in cached_apc_list)
+					Fail("Unneeded APC at [found_apc.x], [found_apc.y], [found_apc.z]")
+			if(length(cached_apc_list) > 1)
+				Fail("[tested_area] has multiple APCs.")
+				for(var/obj/machinery/power/apc/found_apc in cached_apc_list)
+					Fail("Duplicate APC at [found_apc.x], [found_apc.y], [found_apc.z]")

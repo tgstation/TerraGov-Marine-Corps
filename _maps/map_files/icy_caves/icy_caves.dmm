@@ -470,9 +470,11 @@
 /turf/open/floor/mainship/tcomms,
 /area/icy_caves/caves/northwestmonorail)
 "cp" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/icy_caves/caves)
+/obj/structure/table,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northwestmonorail/breakroom)
 "cq" = (
 /obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/dark,
@@ -494,10 +496,9 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail)
 "ct" = (
-/obj/effect/ai_node,
 /obj/structure/cable,
-/turf/open/floor/prison/bright_clean/two,
-/area/icy_caves/caves/northwestmonorail)
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northwestmonorail/medbay)
 "cv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
@@ -1086,11 +1087,9 @@
 	},
 /area/icy_caves/outpost/security)
 "fD" = (
-/obj/machinery/power/apc/drained,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "fE" = (
@@ -1207,7 +1206,6 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood/xtracks,
-/obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "gQ" = (
@@ -1466,6 +1464,10 @@
 /obj/item/reagent_containers/food/snacks/pastries/applecakeslice,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
+"iw" = (
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/icy_caves/outpost/dorms)
 "ix" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -2419,9 +2421,10 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "nG" = (
+/obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/turf/open/floor/prison/bright_clean/two,
-/area/icy_caves/caves/northwestmonorail)
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "nH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -2662,9 +2665,8 @@
 /area/icy_caves/outpost/outside)
 "pc" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
+/area/icy_caves/outpost/outside)
 "pd" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -2781,6 +2783,10 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
+"pD" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/dorms)
 "pE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -2829,11 +2835,9 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "pR" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "pT" = (
-/obj/effect/landmark/fob_sentry,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
@@ -3054,6 +3058,14 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"qT" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "\improper Dormitories Bedroom"
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/icy_caves/outpost/dorms)
 "qU" = (
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 4
@@ -3661,6 +3673,7 @@
 /area/icy_caves/caves/cavesbrig)
 "tx" = (
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "tA" = (
@@ -4147,6 +4160,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
+"vG" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/dorms)
 "vH" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/prison/red{
@@ -4336,7 +4354,6 @@
 /area/icy_caves/caves/alienstuff)
 "wG" = (
 /obj/effect/spawner/gibspawner/human,
-/obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "wH" = (
@@ -5191,6 +5208,8 @@
 /area/icy_caves/caves/northwestmonorail/morgue)
 "AR" = (
 /obj/structure/table/reinforced,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -6059,6 +6078,7 @@
 /area/icy_caves/outpost/outside/center)
 "Fq" = (
 /obj/effect/spawner/gibspawner/human,
+/obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "Fr" = (
@@ -6609,6 +6629,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "HW" = (
@@ -6697,6 +6718,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"Ir" = (
+/obj/machinery/light,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/dorms)
 "Is" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -7646,6 +7672,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "MZ" = (
@@ -7726,7 +7753,6 @@
 "Ns" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "Nt" = (
@@ -7947,8 +7973,10 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/colonist,
 /obj/item/clothing/head/fedora,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
-/area/icy_caves/outpost/dorms)
+/area/icy_caves/outpost/outside/center)
 "Ov" = (
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/smg/m25,
@@ -8633,7 +8661,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
@@ -9365,6 +9392,7 @@
 "VZ" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/xtracks,
+/obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "Wa" = (
@@ -9558,6 +9586,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/morgue)
 "WY" = (
@@ -11005,8 +11035,8 @@ ZP
 ls
 AR
 VZ
-AJ
-AJ
+ct
+ct
 Fq
 tx
 AJ
@@ -12068,22 +12098,22 @@ BB
 BB
 nw
 Sf
-nG
+yi
 wG
-ct
-nG
-Cl
-pc
-Cl
-Gx
-Cl
-pc
-Cl
-Cl
-Cl
-Cl
-Cl
-Cl
+kR
+yi
+qI
+dL
+qI
+XB
+qI
+dL
+qI
+qI
+qI
+qI
+qI
+qI
 ms
 Cl
 Py
@@ -13106,8 +13136,8 @@ pX
 oI
 oU
 xI
-SI
-SI
+nG
+pc
 WI
 WI
 WI
@@ -13182,7 +13212,7 @@ XV
 ZP
 gr
 WX
-TD
+Wr
 Rr
 Mv
 ns
@@ -13263,7 +13293,7 @@ oI
 oK
 xI
 SI
-SI
+pc
 XO
 WI
 WI
@@ -13419,7 +13449,7 @@ oI
 oI
 nO
 SI
-SI
+pc
 XO
 XO
 WI
@@ -13575,7 +13605,7 @@ pB
 xI
 xI
 Za
-SI
+pc
 XO
 XO
 WI
@@ -13731,7 +13761,7 @@ XO
 WI
 WI
 XO
-SI
+pc
 XO
 XO
 XO
@@ -13887,7 +13917,7 @@ XO
 XO
 XO
 XO
-SI
+pc
 Za
 XO
 XO
@@ -14043,7 +14073,7 @@ Za
 Za
 Za
 Za
-SI
+pc
 Za
 Za
 Za
@@ -15039,7 +15069,7 @@ DA
 qI
 XB
 XV
-Yf
+ZP
 XV
 hB
 qI
@@ -15195,7 +15225,7 @@ qI
 qI
 XB
 XV
-Yf
+ZP
 XV
 UR
 dL
@@ -15351,7 +15381,7 @@ cv
 cv
 cx
 oi
-cp
+Mr
 oi
 XV
 qI
@@ -15507,7 +15537,7 @@ IU
 Wc
 BF
 sP
-Yf
+ZP
 cK
 XV
 qI
@@ -16280,7 +16310,7 @@ ZP
 ZP
 ZP
 cJ
-eD
+cp
 oM
 PZ
 He
@@ -19998,9 +20028,9 @@ bf
 bf
 Ke
 Fc
-tg
-tg
-tX
+pD
+pD
+vG
 tg
 tg
 tg
@@ -20156,7 +20186,7 @@ tg
 IR
 tg
 tg
-tg
+pD
 tg
 tg
 tg
@@ -20312,7 +20342,7 @@ Lb
 tg
 tg
 tg
-PO
+Ir
 Hf
 Hf
 Hf
@@ -20468,7 +20498,7 @@ Vo
 HW
 tg
 tg
-tg
+pD
 Hf
 RP
 wZ
@@ -20624,9 +20654,9 @@ Vo
 Dg
 hK
 tg
-tg
-Zq
-wZ
+pD
+qT
+iw
 wZ
 LC
 ND

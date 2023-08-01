@@ -1,0 +1,5 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - code_imp: "There is now a generic component that lets you display timers to a user on any mob."
+  - rscadd: "Both the xeno hive collapsae and nuke will display a timer for xenos on the middle of the screen"

@@ -7,7 +7,7 @@ GLOBAL_DATUM_INIT(dropship_state, /datum/ui_state/dropship_state, new)
 
 /datum/ui_state/dropship_state/can_use_topic(src_object, mob/user)
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/shuttle_computer = src_object
-	if(shuttle_computer.damaged)
+	if(shuttle_computer.machine_stat & BROKEN)
 		return UI_CLOSE
 	return user.dropship_can_use_topic(src_object)
 

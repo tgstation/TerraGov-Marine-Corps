@@ -1,0 +1,5 @@
+author: "maikilangiolo"
+delete-after: True
+changes:
+  - balance: "mounted gun miniscope has actual miniscope zoom now"
+  - balance: "increased mounted gun rail scope zoom by 1"

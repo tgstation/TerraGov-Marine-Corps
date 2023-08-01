@@ -1,9 +1,14 @@
 /mob/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(mover.pass_flags & PASS_MOB)
 		return TRUE
-	return . || (!mover.density || !density || lying_angle) //Parent handles buckling - if someone's strapped to us it can pass.
-
+	if(..())
+		return TRUE
+	if(lying_angle)
+		return TRUE
+	if(mover.throwing && !(allow_pass_flags & PASS_THROW))
+		return FALSE
+	if(!mover.density)
+		return TRUE
 
 /client/verb/swap_hand()
 	set hidden = 1

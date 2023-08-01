@@ -118,7 +118,7 @@
 	succeed_activate()
 	add_cooldown()
 	if(ishuman(victim))
-		victim.apply_effects(1, 0.1) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
+		victim.apply_effects(2 SECONDS, 0.2 SECONDS) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
 		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
@@ -191,7 +191,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD) //unless they are dead, then the blast mysteriously ignores them.
 					continue
-				H.apply_effects(1, 1) 	// Stun
+				H.apply_effects(2 SECONDS, 2 SECONDS) 	// Stun
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc //first we get the target's location
 			for(var/x in 1 to 6)
@@ -344,44 +344,95 @@
 	GLOB.round_statistics.xeno_acid_wells++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_acid_wells")
 
-/datum/action/xeno_action/activable/gravity_grenade
-	name = "Throw gravity grenade"
-	action_icon_state = "gas mine"
-	desc = "Throw a gravity grenades thats sucks everyone and everything in a radius inward."
-	plasma_cost = 500
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAV_NADE,
-	)
-	cooldown_timer = 1 MINUTES
 
-/datum/action/xeno_action/activable/gravity_grenade/use_ability(atom/A)
-	var/turf/T = get_turf(owner)
+// ***************************************
+// *********** Psychic Vortex
+// ***************************************
+#define VORTEX_RANGE 4
+#define VORTEX_INITIAL_CHARGE 2 SECONDS
+#define VORTEX_POST_INITIAL_CHARGE 0.5 SECONDS
+/datum/action/xeno_action/activable/psychic_vortex
+	name = "Pyschic vortex"
+	action_icon_state = "vortex"
+	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
+	ability_name = "Psychic vortex"
+	plasma_cost = 600
+	cooldown_timer = 2 MINUTES
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_VORTEX,
+	)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	///The particle type this ability uses
+	var/channel_particle = /particles/warlock_charge
+
+/datum/action/xeno_action/activable/psychic_vortex/on_cooldown_finish()
+	to_chat(owner, span_notice("Our mind is ready to unleash another chaotic vortex of energy."))
+	return ..()
+
+/datum/action/xeno_action/activable/psychic_vortex/use_ability(atom/target)
 	succeed_activate()
 	add_cooldown()
-	var/obj/item/explosive/grenade/gravity/nade = new(T)
-	nade.throw_at(A, 5, 1, owner, TRUE)
-	nade.activate(owner)
 
-	owner.visible_message(span_warning("[owner] vomits up a roaring fleshy lump and throws it at [A]!"), span_warning("We vomit up a roaring fleshy lump and throws it at [A]!"))
+	particle_holder = new(owner, channel_particle)
+	particle_holder.pixel_x = 15
+	particle_holder.pixel_y = 0
+
+	if(target) // Keybind use doesn't have a target
+		owner.face_atom(target)
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
+	if(do_after(owner, VORTEX_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
+		vortex_pull()
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
+		vortex_push()
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
+		vortex_pull()
+	QDEL_NULL(particle_holder)
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
+	return
 
 
-/obj/item/explosive/grenade/gravity
-	name = "gravity grenade"
-	desc = "A fleshy mass that seems way too heavy for its size. It seems to be vibrating."
-	arm_sound = 'sound/voice/predalien_roar.ogg'
-	greyscale_colors = "#3aaacc"
-	greyscale_config = /datum/greyscale_config/xenogrenade
-	det_time = 20
-
-/obj/item/explosive/grenade/gravity/prime()
-	new /obj/effect/overlay/temp/emp_pulse(loc)
-	playsound(loc, 'sound/effects/EMPulse.ogg', 50)
-	for(var/atom/movable/victim in view(3, loc))//yes this throws EVERYONE
-		if(victim.anchored)
+///checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability. While causing shake to anything in range with effects applied to humans affected.
+/datum/action/xeno_action/activable/psychic_vortex/proc/vortex_pull()
+	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
+	for(var/atom/victim AS in range(VORTEX_RANGE, owner.loc))
+		if(isturf(victim))
 			continue
-		if(isliving(victim))
-			var/mob/living/livingtarget = victim
-			if(livingtarget.stat == DEAD)
+		if(!ismovableatom(victim))
+			continue
+		var/atom/movable/movable_victim = victim
+		if(movable_victim.anchored)
+			continue
+		if(isxeno(movable_victim))
+			continue
+		if(ishuman(movable_victim))
+			var/mob/living/carbon/human/H = movable_victim
+			if(H.stat == DEAD)
 				continue
-		victim.throw_at(src, 5, 1, null, TRUE)
-	qdel(src)
+			H.apply_effects(1,1)
+			H.adjust_stagger(2)
+			shake_camera(H, 2, 1)
+		else if(isitem(movable_victim))
+			var/turf/targetturf = get_turf(owner)
+			targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
+			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
+		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
+
+///randomly throws movable atoms in the radius of the vortex abilites range, different each use.
+/datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
+	for(var/atom/victim in range(VORTEX_RANGE, owner.loc))
+		if(!ismovableatom(victim))
+			continue
+		var/atom/movable/movable_victim = victim
+		if(movable_victim.anchored || isxeno(movable_victim))
+			continue
+		if(ishuman(movable_victim))
+			var/mob/living/carbon/human/H = movable_victim
+			if(H.stat == DEAD)
+				continue
+		if(movable_victim)
+			var/turf/targetturf = get_turf(owner)
+			targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
+			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
+
