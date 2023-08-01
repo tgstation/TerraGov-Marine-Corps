@@ -13,6 +13,21 @@
 	pixel_x = -16
 	old_x = -16
 
+// ***************************************
+// *********** Icon
+// ***************************************
+/mob/living/carbon/xenomorph/baneling/handle_special_state()
+	. = ..()
+	if(m_intent == MOVE_INTENT_RUN)
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/xenomorph/baneling/handle_special_wound_states(severity)
+	. = ..()
+	if(m_intent == MOVE_INTENT_RUN)
+		return "baneling_wounded_running_[severity]"
+
 /obj/structure/xeno/baneling_pod
 	name = "Baneling Pod"
 	desc = "A baneling pod, storing fresh banelings "
