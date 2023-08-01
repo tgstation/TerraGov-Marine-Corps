@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - bugfix: "Crafting for anything other than plasteel/metal works again"
