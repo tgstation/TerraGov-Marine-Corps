@@ -32,6 +32,8 @@
 /datum/action/xeno_action/baneling_explode/proc/handle_smoke(datum/source, ability = FALSE)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
+	if(X.plasma_stored <= 60)
+		return
 	var/turf/owner_T = get_turf(X)
 	var/smoke_choice = baneling_smoke_list[X.selected_reagent]
 	var/datum/effect_system/smoke_spread/smoke = new smoke_choice(owner_T)
@@ -108,6 +110,7 @@
 	RegisterSignal(new /obj/structure/xeno/baneling_pod(get_turf(X.loc), X.hivenumber, X, src), COMSIG_QDELETING, PROC_REF(notify_owner))
 	succeed_activate()
 
+/// Proc to notify the owner of the pod that it has been destroyed
 /datum/action/xeno_action/spawn_pod/proc/notify_owner()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
@@ -138,6 +141,7 @@
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	X.throw_at(A, range, 70, X)
 
+/// Whenever we hit something living, if its a human we knock them down for 2 seconds and keep throwing ourselves. If we hit xeno, we get blocked and explode on them
 /datum/action/xeno_action/activable/dash_explosion/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
 	if(isxeno(M))
@@ -147,6 +151,7 @@
 		victim.Knockdown(2 SECONDS)
 	return COMPONENT_KEEP_THROWING
 
+/// In here we finish the charge and unregister signals, then we emit smoke and then we kill ourselves
 /datum/action/xeno_action/activable/dash_explosion/proc/charge_complete()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
