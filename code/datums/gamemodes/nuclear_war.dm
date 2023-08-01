@@ -146,14 +146,18 @@
 
 /datum/game_mode/infestation/nuclear_war/proc/balance_scales()
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/list/possible_silos = list()
+	SEND_SIGNAL(xeno_hive, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, list(), possible_silos)
+	if(!length(possible_silos)) // no silo no larva kiddo
+		return
+
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
 	if(!num_xenos)
 		xeno_job.add_job_positions(1)
 		return
-	var/list/possible_silos = list()
-	SEND_SIGNAL(xeno_hive, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, list(), possible_silos)
+
 	var/silo_bonus = length(possible_silos) <= 1 ? 0 : (length(possible_silos) * 3)
 	var/total_slots = get_total_joblarvaworth() / xeno_job.job_points_needed
 	var/larva_surplus = total_slots + silo_bonus - num_xenos - cooling_larvas
