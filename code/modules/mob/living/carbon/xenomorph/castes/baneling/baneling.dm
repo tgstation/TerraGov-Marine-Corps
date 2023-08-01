@@ -35,12 +35,10 @@
 /obj/structure/xeno/baneling_pod/obj_destruction()
 	if(length(contents) <= 0)
 		return ..()
-	var/mob/living/carbon/xenomorph/xeno_ref
 	for(var/mob/living/carbon/xenomorph/xeno in contents)
-		xeno_ref = xeno
-	if(xeno_ref.stat & DEAD)
-		xeno_ref.forceMove(get_turf(loc))
-		xeno_ref.death(FALSE)
+		if(xeno_ref.stat != DEAD)
+				xeno_ref.forceMove(get_turf(loc))
+				xeno_ref.death(FALSE)
 	return ..()
 
 /// Teleports baneling inside of itself, checks for charge and then respawns baneling
