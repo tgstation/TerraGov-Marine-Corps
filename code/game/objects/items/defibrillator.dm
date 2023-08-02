@@ -150,6 +150,7 @@
 /obj/item/defibrillator/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
 	defibrillate(H,user)
 
+///Split proc that actually does the defibrillation. Separated to be used more easily by medical gloves
 /obj/item/defibrillator/proc/defibrillate(mob/living/carbon/human/H, mob/living/carbon/human/user)
 	if(user.do_actions) //Currently deffibing
 		return
