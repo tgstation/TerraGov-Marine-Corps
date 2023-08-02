@@ -36,9 +36,7 @@
 
 
 /obj/item/implant/Destroy(force)
-	unimplant()
 	QDEL_NULL(activation_action)
-	part?.implants -= src
 	return ..()
 
 /obj/item/implant/ui_action_click(mob/user, datum/action/item_action/action)
