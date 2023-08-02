@@ -13,6 +13,12 @@
 	pixel_x = -16
 	old_x = -16
 
+/mob/living/carbon/xenomorph/baneling/UnarmedAttack(atom/A, has_proximity, modifiers)
+	/// We dont wanna be able to slash while balling
+	if(m_intent == MOVE_INTENT_RUN)
+		return
+	return ..()
+
 // ***************************************
 // *********** Icon
 // ***************************************
@@ -33,12 +39,13 @@
 	desc = "A baneling pod, storing fresh banelings "
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Baneling Pod"
+	max_integrity = 100
 	density = FALSE
 	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
 
 /obj/structure/xeno/baneling_pod/Initialize(mapload, _hivenumber, xeno, ability_ref)
 	. = ..()
-	RegisterSignal(xeno, COMSIG_MOB_DEATH, PROC_REF(handle_baneling_death))
+	RegisterSignal(xeno, COMSIG_MOB_PRE_DEATH, PROC_REF(handle_baneling_death))
 	RegisterSignal(xeno, COMSIG_QDELETING, PROC_REF(qdel_pod))
 	RegisterSignal(ability_ref, COMSIG_ACTION_TRIGGER, PROC_REF(qdel_pod))
 	addtimer(CALLBACK(src, PROC_REF(increase_charge), xeno), BANELING_CHARGE_GAIN_TIME)
@@ -72,7 +79,7 @@
 		to_chat(xeno_ref.client, span_xenohighdanger("You will respawn in [BANELING_CHARGE_RESPAWN_TIME/10] seconds"))
 	else
 		/// The respawn takes 4 times longer than consuming a charge would
-		to_chat(xeno_ref.client, "You will respawn in [(BANELING_CHARGE_RESPAWN_TIME*4)/10] SECONDS")
+		to_chat(xeno_ref.client, span_xenohighdanger("You will respawn in [(BANELING_CHARGE_RESPAWN_TIME*4)/10] SECONDS"))
 		addtimer(CALLBACK(src, PROC_REF(spawn_baneling), xeno_ref), BANELING_CHARGE_RESPAWN_TIME*4)
 	return COMPONENT_CANCEL_DEATH
 
@@ -90,4 +97,6 @@
 	var/mob/living/carbon/xenomorph/xeno_ref = source
 	REMOVE_TRAIT(xeno_ref, TRAIT_STASIS, BANELING_STASIS_TRAIT)
 	xeno_ref.forceMove(get_turf(loc))
-	xeno_ref.heal_overall_damage(xeno_ref.maxHealth, xeno_ref.maxHealth, updating_health = TRUE)
+	xeno_ref.heal_overall_damage(xeno_ref.xeno_caste.max_health, xeno_ref.xeno_caste.max_health, updating_health = TRUE)
+	xeno_ref.gain_plasma(xeno_ref.xeno_caste.plasma_max)
+	xeno_ref.ExtinguishMob()

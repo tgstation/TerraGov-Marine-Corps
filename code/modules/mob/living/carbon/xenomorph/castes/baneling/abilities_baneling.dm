@@ -20,7 +20,7 @@
 /datum/action/xeno_action/baneling_explode/give_action(mob/living/L)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = L
-	RegisterSignal(X, COMSIG_MOB_DEATH, PROC_REF(handle_smoke))
+	RegisterSignal(X, COMSIG_MOB_PRE_DEATH, PROC_REF(handle_smoke))
 
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
