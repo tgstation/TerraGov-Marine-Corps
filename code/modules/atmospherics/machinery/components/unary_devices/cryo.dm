@@ -1,7 +1,8 @@
 #define CRYOMOBS 'icons/obj/cryo_mobs.dmi'
 
 /obj/machinery/atmospherics/components/unary/cryo_cell
-	name = "cryo cell"
+	name = "ExoDyne Pharmaceutics cryogentic restoration cell"
+	desc = "ExoDyne Pharmaceutics developed cryogentic research to treat trauma cases within the Golden Hour. Since then, Nanotrasen purchased multiple restoration cells for colonial expansion to increase colonial self-sufficiency while the TerraGov Navy acquired some cells for injuried enlisted to decrease medical budget. That's TRICARE prime for you."
 	icon = 'icons/obj/machines/cryogenics2.dmi'
 	icon_state = "cell-off"
 	density = TRUE
