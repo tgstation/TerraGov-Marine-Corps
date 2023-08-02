@@ -338,12 +338,13 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one is designed to carry supplies."
 	buckle_flags = null
 	icon_state = "supplypod"
+	///The currently stored object
 	var/obj/stored_object
 
 /obj/structure/droppod/supply_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(attached_clamp.loaded)
-		if(!istype(attached_clamp.loaded, /obj/structure/closet))
-			return
+		//if(!istype(attached_clamp.loaded, /obj/structure/closet))
+		//	return
 		var/obj/structure/closet/clamped_closet = attached_clamp.loaded
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
@@ -357,8 +358,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		attached_clamp.update_icon()
 		to_chat(user, span_notice("You load [clamped_closet] into [src]."))
 	else if(stored_object)
-		if(!istype(stored_object, /obj/structure/closet))
-			return //can't take that out
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 			return
@@ -374,6 +373,16 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		update_icon()
 	else
 		return ..()
+
+/obj/structure/droppod/turret_pod
+	name = "\improper TGMC Zeus sentry drop pod"
+	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one carries a self deploying sentry system."
+	buckle_flags = null
+	icon_state = "supplypod"
+
+/obj/structure/droppod/turret_pod/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/sentry/pod_sentry(src)
 
 /obj/structure/droppod/mech_pod
 	name = "\improper TGMC Zeus mech drop pod"

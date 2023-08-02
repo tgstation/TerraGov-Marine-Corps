@@ -450,6 +450,11 @@
 /obj/machinery/autodoc,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
+"gQ" = (
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod/turret_pod,
+/turf/open/floor/prison/cleanmarked,
+/area/mainship/patrol_base/hanger)
 "gX" = (
 /turf/open/floor/mainship/black{
 	dir = 5
@@ -1320,7 +1325,7 @@
 /area/mainship/patrol_base/hanger)
 "ur" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod,
+/obj/structure/droppod/turret_pod,
 /turf/open/space/basic,
 /area/mainship/patrol_base/hanger)
 "us" = (
@@ -15832,7 +15837,7 @@ zB
 SY
 SY
 SY
-rp
+gQ
 um
 jq
 Xm
