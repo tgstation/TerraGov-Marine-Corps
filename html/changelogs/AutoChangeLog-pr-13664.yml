@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - bugfix: "Fixes duplicate and misses APC's on Magmoor as per the sanity test."
