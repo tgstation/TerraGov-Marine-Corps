@@ -296,10 +296,6 @@
 "akq" = (
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
-"akF" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central4/garbledradio)
 "akI" = (
 /turf/closed/wall,
 /area/lv624/ground/sand8)
@@ -727,10 +723,6 @@
 /area/lv624/ground/sand2)
 "avu" = (
 /obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central3/garbledradio)
-"avz" = (
-/obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3/garbledradio)
 "avJ" = (
@@ -3265,11 +3257,6 @@
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage/dome)
-"bQd" = (
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 1
-	},
-/area/lv624/lazarus/corporate_affairs)
 "bQu" = (
 /obj/structure/bed/stool,
 /turf/open/floor/tile/bar,
@@ -3494,10 +3481,6 @@
 "ceV" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/garbledradio)
-"cfH" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1/garbledradio)
 "cgd" = (
 /obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor/tile/blue/whiteblue{
@@ -4699,9 +4682,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/sw)
-"dyc" = (
-/turf/closed/gm/dense,
-/area/lv624/ground/caves/rock)
 "dys" = (
 /turf/open/floor/plating/warning{
 	dir = 2
@@ -11826,10 +11806,6 @@
 	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
-"lFx" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "lGM" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/ai_node,
@@ -26920,7 +26896,7 @@ lXk
 noU
 xnp
 noU
-akF
+noU
 xCC
 xCC
 sYe
@@ -38474,7 +38450,7 @@ mOs
 mOs
 mOs
 mOs
-dyc
+mOs
 mOs
 avd
 ncS
@@ -39368,7 +39344,7 @@ avd
 xWM
 xVL
 cIl
-lFx
+oDS
 cIl
 cIl
 vfk
@@ -40089,7 +40065,7 @@ aRg
 mgb
 vCm
 dTK
-bQd
+qDY
 sjX
 pJt
 xVF
@@ -40793,7 +40769,7 @@ ggT
 rAx
 xYX
 gbp
-bQd
+qDY
 hyS
 lwx
 tJT
@@ -42467,7 +42443,7 @@ pBV
 pBV
 pBV
 pBV
-avz
+pBV
 pBV
 pBV
 pBV
@@ -47948,7 +47924,7 @@ evp
 gKr
 pBV
 pBV
-avz
+pBV
 qFt
 pBV
 qFt
@@ -50948,7 +50924,7 @@ gKr
 gKr
 gKr
 nwU
-cfH
+fdU
 ahg
 ahg
 ahg
@@ -56079,7 +56055,7 @@ aaH
 gsr
 snv
 snv
-aZd
+snv
 snv
 snv
 snv
@@ -60159,7 +60135,7 @@ lTT
 snv
 snv
 snv
-aZd
+snv
 snv
 snv
 wsX
