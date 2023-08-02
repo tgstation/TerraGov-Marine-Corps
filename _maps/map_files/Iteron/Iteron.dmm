@@ -2855,6 +2855,11 @@
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base/barracks)
+"Qh" = (
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod/mech_pod,
+/turf/open/floor/prison/cleanmarked,
+/area/mainship/patrol_base/hanger)
 "Qq" = (
 /obj/structure/droppod,
 /obj/structure/drop_pod_launcher,
@@ -3096,6 +3101,11 @@
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
+"Uf" = (
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod/object_pod,
+/turf/open/floor/prison/cleanmarked,
+/area/mainship/patrol_base/hanger)
 "Ug" = (
 /turf/closed/shuttle/dropship2/glassone{
 	dir = 1
@@ -15393,7 +15403,7 @@ zB
 SY
 SY
 SY
-SY
+Qh
 Un
 jq
 Xm
@@ -15801,7 +15811,7 @@ zB
 SY
 SY
 SY
-SY
+Uf
 um
 jq
 Xm

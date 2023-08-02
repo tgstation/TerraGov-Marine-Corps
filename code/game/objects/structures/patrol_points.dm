@@ -43,7 +43,7 @@
 	activate_point(user)
 
 /obj/structure/patrol_point/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)
-	SHOULD_CALL_PARENT(FALSE) //there's probably a better way to trigger off a mech click...
+	SHOULD_CALL_PARENT(FALSE)
 	if(!Adjacent(user))
 		return
 	activate_point(user, mecha_attacker)
