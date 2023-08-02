@@ -166,14 +166,15 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "aJ" = (
-/obj/item/radio/intercom/dropship,
+/obj/structure/sign/flag/platoon{
+	dir = 1
+	},
 /turf/open/shuttle/dropship/six,
 /area/shuttle/dropship/alamo)
 "aK" = (
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "aM" = (
-/obj/item/radio/intercom/dropship,
 /turf/open/shuttle/dropship/seven,
 /area/shuttle/dropship/alamo)
 "aN" = (
@@ -229,7 +230,7 @@
 /area/shuttle/dropship/alamo)
 "aX" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /obj/structure/dropship_piece/one/wing/left/bottom,
 /turf/template_noop,
@@ -247,7 +248,7 @@
 /area/shuttle/dropship/alamo)
 "bb" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 4;
+	dir = 4
 	},
 /obj/structure/dropship_piece/one/wing/right/bottom,
 /turf/template_noop,
@@ -531,6 +532,20 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
+"re" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/item/radio/intercom/dropship,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"sX" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/item/radio/intercom/dropship,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
 "vw" = (
 /obj/structure/dropship_piece/one/engine/leftbottom,
 /turf/template_noop,
@@ -543,6 +558,12 @@
 	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"Az" = (
+/obj/structure/sign/flag/platoon{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "Dp" = (
 /turf/open/shuttle/dropship/ten,
@@ -620,7 +641,7 @@ ao
 ao
 aq
 aE
-aI
+sX
 bD
 aI
 al
@@ -712,7 +733,7 @@ ah
 am
 au
 aD
-aK
+Az
 bl
 aI
 be
@@ -758,7 +779,7 @@ ao
 ao
 aw
 aE
-aN
+re
 aU
 aN
 al

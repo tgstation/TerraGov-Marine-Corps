@@ -85,6 +85,11 @@
 	. = ..()
 	icon = 'icons/obj/flag.dmi'
 
+/obj/structure/sign/flag/platoon
+	name = "Long Range Patrol Rapid Response Platoon Flag"
+	desc = "The flag of the Long Range Patrol Rapid Response Platoon. You feel a strong sense of pride for your platoon."
+	icon_state = "flag2"
+
 /obj/structure/sign/double/map
 	name = "station map"
 	desc = "A framed picture of the station."
