@@ -18312,6 +18312,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
+/obj/structure/sign/flag,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "xjt" = (

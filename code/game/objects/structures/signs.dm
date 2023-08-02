@@ -75,6 +75,11 @@
 		to_chat(user, "You fasten \the [S] with your [I].")
 		qdel(src)
 
+/obj/structure/sign/flag
+	name = "TerraGov Flag"
+	desc = "The flag of the Terran Goverment. You have a strong sense of patriotism."
+	icon = 'icons/obj/flag.dmi'
+	icon_state = "flag"
 
 /obj/structure/sign/double/map
 	name = "station map"
