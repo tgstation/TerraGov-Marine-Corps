@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - bugfix: "Fixes a runtime regarding cards that was causing them to become invisible, playing cards work once more!"

@@ -1,7 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Stagger will now have an accurate duration instead of relying on life ticks"
-  - code_imp: "all staggerstuns now consistantly use SECONDS defines"
-  - refactor: "refactored stagger code"
-  - balance: "Reduced the stagger or some guns and effects due to stagger working correctly"

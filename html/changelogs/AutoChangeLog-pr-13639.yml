@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - bugfix: "The main overwatch console now sends messages properly"

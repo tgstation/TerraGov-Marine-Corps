@@ -1118,6 +1118,13 @@
 	spawn_type = /obj/item/explosive/grenade/incendiary
 	closed_overlay = "grenade_box_overlay_hidp"
 
+/obj/item/storage/box/visual/grenade/cloaker
+	name = "\improper M45 Cloaker grenade box"
+	desc = "A secure box holding 25 M45 Cloaker greandes. Warning: causes cancer!!!"
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/sticky/cloaker
+	closed_overlay = "grenade_box_overlay_cloaker"
+
 /obj/item/storage/box/visual/grenade/trailblazer
 	name = "\improper M45 Trailblazer grenade box"
 	desc = "A secure box holding 25 M45 Trailblazer grenades. Warning: highly flammable!!!"
