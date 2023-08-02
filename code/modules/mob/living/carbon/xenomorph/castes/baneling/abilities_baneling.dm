@@ -122,7 +122,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/dash_explosion
 	name = "Dash Explosion"
-	action_icon_state = ""
+	action_icon_state = "dash_explosion"
 	desc = "Wind up and charge in a direction, detonating yourself on impact"
 	ability_name = "dash explosion"
 	plasma_cost = 0
