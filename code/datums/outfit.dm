@@ -105,7 +105,7 @@
 
 	if(implants && implants.len)
 		for(var/implant_type in implants)
-			var/obj/item/implant/implanter = new implant_type()
+			var/obj/item/implant/implanter = new implant_type(H)
 			implanter.implant(H)
 
 	H.update_body()
