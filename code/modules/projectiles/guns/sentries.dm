@@ -54,7 +54,7 @@
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)
 
-/obj/item/storage/box/sentry/update_icon()
+/obj/item/storage/box/sentry/update_icon_state()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
