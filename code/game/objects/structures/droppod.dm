@@ -417,7 +417,22 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		return
 	mecha_attacker.forceMove(src)
 	stored_object = mecha_attacker
+	for(var/datum/action/innate/action AS in interaction_actions)
+		action.give_action(user)
 	update_icon()
+
+/obj/structure/droppod/nonmob/mech_pod/change_targeted_z(datum/source, new_z)
+	. = ..()
+	for(var/atom/movable/ejectee AS in contents)
+		ejectee.forceMove(loc)
+
+/obj/structure/droppod/nonmob/mech_pod/completedrop(mob/user)
+	if(stored_object)
+		var/obj/vehicle/sealed/mecha/stored_mech = stored_object
+		for(var/mob/occupant AS in stored_mech.occupants)
+			for(var/datum/action/innate/action AS in interaction_actions)
+				action.remove_action(occupant)
+	return ..()
 
 /datum/action/innate/launch_droppod
 	name = "Begin Launch"
