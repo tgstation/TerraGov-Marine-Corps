@@ -333,15 +333,14 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		var/predroptime = rand(4 SECONDS, 5 SECONDS) //Randomize it a bit so its staggered
 		addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, launchpod), LAZYLEN(pod.buckled_mobs) ? pod.buckled_mobs[1] : null, TRUE), predroptime)
 
-/obj/structure/droppod/object_pod
+/obj/structure/droppod/supply_pod
 	name = "\improper TGMC Zeus supply drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one is designed to carry supplies."
 	buckle_flags = null
 	icon_state = "supplypod"
-	//icon_state = "leaderpod"
 	var/obj/stored_object
 
-/obj/structure/droppod/object_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+/obj/structure/droppod/supply_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(attached_clamp.loaded)
 		if(!istype(attached_clamp.loaded, /obj/structure/closet))
 			return

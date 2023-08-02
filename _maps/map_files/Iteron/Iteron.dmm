@@ -785,6 +785,14 @@
 /obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/prep)
+"ln" = (
+/obj/structure/drop_pod_launcher,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/droppod/mech_pod,
+/turf/open/floor/prison/cleanmarked,
+/area/mainship/patrol_base/hanger)
 "lu" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
@@ -1310,6 +1318,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
+"ur" = (
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
+/turf/open/space/basic,
+/area/mainship/patrol_base/hanger)
 "us" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1444,6 +1457,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/command)
+"wc" = (
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod/supply_pod,
+/turf/open/floor/prison/cleanmarked,
+/area/mainship/patrol_base/hanger)
 "wm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -3101,11 +3119,6 @@
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
-"Uf" = (
-/obj/structure/drop_pod_launcher,
-/obj/structure/droppod/object_pod,
-/turf/open/floor/prison/cleanmarked,
-/area/mainship/patrol_base/hanger)
 "Ug" = (
 /turf/closed/shuttle/dropship2/glassone{
 	dir = 1
@@ -3425,6 +3438,14 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/hanger)
+"YD" = (
+/obj/structure/drop_pod_launcher,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/structure/droppod/mech_pod,
+/turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
 "YG" = (
 /turf/open/floor/mainship/terragov/west{
@@ -14890,12 +14911,12 @@ ef
 ef
 ef
 zB
-SY
-SY
-SY
-QJ
-SY
-SY
+wc
+wc
+wc
+YD
+Qh
+Qh
 pG
 zB
 Xt
@@ -15403,7 +15424,7 @@ zB
 SY
 SY
 SY
-Qh
+ur
 Un
 jq
 Xm
@@ -15811,7 +15832,7 @@ zB
 SY
 SY
 SY
-Uf
+rp
 um
 jq
 Xm
@@ -16318,12 +16339,12 @@ ef
 ef
 ef
 zB
-SY
-SY
-SY
-Qq
-SY
-SY
+wc
+wc
+wc
+ln
+Qh
+Qh
 pG
 zB
 gX
