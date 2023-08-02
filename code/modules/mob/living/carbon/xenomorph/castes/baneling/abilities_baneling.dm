@@ -144,8 +144,6 @@
 /// Whenever we hit something living, if its a human we knock them down for 2 seconds and keep throwing ourselves. If we hit xeno, we get blocked and explode on them
 /datum/action/xeno_action/activable/dash_explosion/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
-	if(isxeno(M))
-		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/victim = M
 		victim.Knockdown(2 SECONDS)
