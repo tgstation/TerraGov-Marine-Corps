@@ -452,7 +452,7 @@
 /area/mainship/patrol_base)
 "gQ" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/turret_pod,
+/obj/structure/droppod/nonmob/turret_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
 "gX" = (
@@ -795,7 +795,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/structure/droppod/mech_pod,
+/obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
 "lu" = (
@@ -1325,7 +1325,7 @@
 /area/mainship/patrol_base/hanger)
 "ur" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/turret_pod,
+/obj/structure/droppod/nonmob/turret_pod,
 /turf/open/space/basic,
 /area/mainship/patrol_base/hanger)
 "us" = (
@@ -1464,7 +1464,7 @@
 /area/mainship/patrol_base/command)
 "wc" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/supply_pod,
+/obj/structure/droppod/nonmob/supply_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
 "wm" = (
@@ -2880,7 +2880,7 @@
 /area/mainship/patrol_base/barracks)
 "Qh" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/mech_pod,
+/obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
 "Qq" = (
@@ -3449,7 +3449,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/structure/droppod/mech_pod,
+/obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
 "YG" = (

@@ -89,7 +89,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
 
 /obj/structure/droppod/update_icon_state()
-	. = ..()
 	if(drop_state == DROPPOD_ACTIVE)
 		icon_state = initial(icon_state)
 		return
@@ -257,9 +256,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 ///completes landing a little delayed for a dramatic effect
 /obj/structure/droppod/proc/completedrop(mob/user)
 	drop_state = DROPPOD_LANDED
-	update_icon()
 	for(var/atom/movable/deployed AS in contents)
 		deployed.forceMove(loc)
+	update_icon()
 
 
 /obj/structure/droppod/leader
@@ -333,18 +332,34 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		var/predroptime = rand(4 SECONDS, 5 SECONDS) //Randomize it a bit so its staggered
 		addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, launchpod), LAZYLEN(pod.buckled_mobs) ? pod.buckled_mobs[1] : null, TRUE), predroptime)
 
-/obj/structure/droppod/supply_pod
+//parent for pods designed to carry something other than a mob
+/obj/structure/droppod/nonmob
+	buckle_flags = null
+	///The currently stored object
+	var/obj/stored_object
+
+/obj/structure/droppod/nonmob/Destroy()
+	stored_object = null
+	return ..()
+
+/obj/structure/droppod/nonmob/update_icon_state()
+	if((drop_state == DROPPOD_ACTIVE) || stored_object)
+		icon_state = initial(icon_state)
+		return
+	icon_state = initial(icon_state) + "_open"
+
+/obj/structure/droppod/nonmob/completedrop(mob/user)
+	stored_object = null
+	return ..()
+
+/obj/structure/droppod/nonmob/supply_pod
 	name = "\improper TGMC Zeus supply drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one is designed to carry supplies."
 	buckle_flags = null
 	icon_state = "supplypod"
-	///The currently stored object
-	var/obj/stored_object
 
-/obj/structure/droppod/supply_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+/obj/structure/droppod/nonmob/supply_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(attached_clamp.loaded)
-		//if(!istype(attached_clamp.loaded, /obj/structure/closet))
-		//	return
 		var/obj/structure/closet/clamped_closet = attached_clamp.loaded
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
@@ -374,25 +389,26 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	else
 		return ..()
 
-/obj/structure/droppod/turret_pod
+/obj/structure/droppod/nonmob/turret_pod
 	name = "\improper TGMC Zeus sentry drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one carries a self deploying sentry system."
-	buckle_flags = null
 	icon_state = "supplypod"
 
-/obj/structure/droppod/turret_pod/Initialize(mapload)
+/obj/structure/droppod/nonmob/turret_pod/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/sentry/pod_sentry(src)
+	if(LAZYLEN(contents))
+		stored_object = contents[1]
+		update_icon()
 
-/obj/structure/droppod/mech_pod
+/obj/structure/droppod/nonmob/mech_pod
 	name = "\improper TGMC Zeus mech drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This is a larger model designed specifically to carry mechs."
-	buckle_flags = null
 	icon = 'icons/obj/structures/big_droppod.dmi'
 	icon_state = "mechpod"
 	pixel_x = -9
 
-/obj/structure/droppod/mech_pod/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)
+/obj/structure/droppod/nonmob/mech_pod/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)
 	SHOULD_CALL_PARENT(FALSE)
 	if(mecha_attacker.loc == src)
 		mecha_attacker.forceMove(loc)
@@ -400,6 +416,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(!Adjacent(user))
 		return
 	mecha_attacker.forceMove(src)
+	stored_object = mecha_attacker
+	update_icon()
 
 /datum/action/innate/launch_droppod
 	name = "Begin Launch"
