@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "HvH melee stuns halved in duration. Head stuns chance slightly reduced"
+  - balance: "Stuns from smashing into things on office chairs halved"
