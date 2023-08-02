@@ -1507,6 +1507,7 @@
 			/obj/item/ammo_magazine/smg/som = -1,
 			/obj/item/weapon/gun/shotgun/som = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = -1,
+			/obj/item/cell/lasgun/volkite/small = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin = -1,
