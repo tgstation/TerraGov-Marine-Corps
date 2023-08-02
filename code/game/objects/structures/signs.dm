@@ -81,6 +81,10 @@
 	icon = 'icons/obj/flag.dmi'
 	icon_state = "flag"
 
+/obj/structure/sign/flag/Initialize(mapload)
+	. = ..()
+	icon = 'icons/obj/flag.dmi'
+
 /obj/structure/sign/double/map
 	name = "station map"
 	desc = "A framed picture of the station."
