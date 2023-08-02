@@ -103,7 +103,7 @@
 			H.internal = H.get_item_by_slot(internals_slot)
 			H.update_action_buttons()
 
-	if(implants)
+	if(implants.len)
 		for(var/implant_type in implants)
 			var/obj/item/implant/implanter = new implant_type()
 			implanter.implant(H)
