@@ -43,3 +43,14 @@
   maikilangiolo:
   - balance: mounted gun miniscope has actual miniscope zoom now
   - balance: increased mounted gun rail scope zoom by 1
+2023-08-02:
+  Barnet2:
+  - bugfix: Fixes duplicate and misses APC's on Magmoor as per the sanity test.
+  Scarlet-Oduko:
+  - rscadd: Adds a new sticky grenade, the cloaker, cloak gas equivalent of trailblazer
+  coldironwarrior:
+  - rscdel: removed loose pinpointers on the crash ships
+  novaepee:
+  - rscadd: vents and scrubber in PoS operation room.
+  - rscadd: cryo console near PoS Alamo.
+  - rscadd: where jaeger vendor will be for PoS. Keep your eyes out for the future!
