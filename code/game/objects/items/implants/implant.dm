@@ -70,7 +70,7 @@
 	forceMove(target)
 	implant_owner = target
 	implanted = TRUE
-	var/limb_targeting = user?.zone_selected || BODY_ZONE_CHEST
+	var/limb_targeting = (user ? user.zone_selected : BODY_ZONE_CHEST)
 	var/datum/limb/affected = target.get_limb(limb_targeting)
 	if(!affected)
 		CRASH("[src] implanted into [target] [user ? "by [user]" : ""] but had no limb, despite being set to implant in [limb_targeting].")
