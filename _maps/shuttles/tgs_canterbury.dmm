@@ -382,9 +382,7 @@
 /obj/machinery/cell_charger,
 /obj/item/radio,
 /obj/item/tool/crowbar,
-/obj/item/pinpointer,
 /obj/structure/table/reinforced,
-/obj/item/pinpointer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bu" = (

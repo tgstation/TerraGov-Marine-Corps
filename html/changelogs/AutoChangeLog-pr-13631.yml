@@ -1,7 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - qol: "- Replaces 'mortar' by 'artillery piece' or 'artillery' while inspecting binoculars"
-  - qol: "- Makes inspecting rangefinders inform you about alt-click"
-  - qol: "- Makes inspecting binoculars inform you better about which gun is linked"
-  - qol: "- Add a small warning if trying to switch linked gun while only having 1 linked gun"

@@ -146,6 +146,47 @@
 	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
 	return ..()
 
+/obj/item/explosive/grenade/sticky/cloaker
+	name = "\improper M45 Cloaker grenade"
+	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. This one creates cloaking smoke! It is set to detonate in 5 seconds."
+	icon_state = "grenade_sticky_cloak"
+	item_state = "grenade_sticky_cloak"
+	det_time = 5 SECONDS
+	light_impact_range = 1
+	/// smoke type created when the grenade is primed
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
+	///radius this smoke grenade will encompass
+	var/smokeradius = 1
+	///The duration of the smoke
+	var/smoke_duration = 8
+
+/obj/item/explosive/grenade/sticky/cloaker/prime()
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 35)
+	smoke.set_up(smokeradius, loc, smoke_duration)
+	smoke.start()
+	if(stuck_to)
+		clean_refs()
+	qdel(src)
+
+/obj/item/explosive/grenade/sticky/cloaker/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(.)
+		return
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
+
+///causes fire tiles underneath target when stuck_to
+/obj/item/explosive/grenade/sticky/cloaker/proc/make_smoke(datum/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	smoke.set_up(smokeradius, loc, smoke_duration)
+	smoke.start()
+
+/obj/item/explosive/grenade/sticky/cloaker/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
+	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
+	return ..()
+
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
 	desc = "The M40 HIDP is a small, but deceptively strong incendiary grenade. It is set to detonate in 4 seconds."
