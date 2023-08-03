@@ -224,6 +224,8 @@
 	uses = 2
 
 /datum/campaign_reward/teleporter_enabled/activated_effect()
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/datum/campaign_mission/current_mission = mode.current_mission
 	if(!current_mission || (current_mission.mission_state == MISSION_STATE_FINISHED))
 		to_chat(faction.faction_leader, span_warning("Unavailable until next mission confirmed."))
 		return
