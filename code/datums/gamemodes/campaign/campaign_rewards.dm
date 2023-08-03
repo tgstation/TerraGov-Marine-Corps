@@ -76,13 +76,23 @@
 
 /datum/campaign_reward/equipment/power_armor
 	name = "B18 consignment"
-	desc = "Two sets of B18 power armor."
-	detailed_desc = "Your battalion has been assigned two sets of B18 power armor, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
-	uses = 2
+	desc = "Three sets of B18 power armor."
+	detailed_desc = "Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
+	uses = 3
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/helmet/marine/specialist,
 		/obj/item/clothing/gloves/marine/specialist,
 		/obj/item/clothing/suit/storage/marine/specialist,
+	)
+
+/datum/campaign_reward/equipment/gorgon_armor
+	name = "Gorgon consignment"
+	desc = "Five sets of Gorgon power armor."
+	detailed_desc = "Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
+	uses = 5
+	equipment_to_spawn = list(
+		/obj/item/clothing/head/modular/som/leader,
+		/obj/item/clothing/suit/modular/som/heavy/leader/valk,
 	)
 
 /datum/campaign_reward/equipment/mech_heavy
