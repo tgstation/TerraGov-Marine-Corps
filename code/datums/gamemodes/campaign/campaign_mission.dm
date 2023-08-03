@@ -10,6 +10,8 @@
 		"starting_faction" = 0,
 		"hostile_faction" = 0,
 	)
+	///Any mission behavior flags
+	var/mission_flags = null
 	///faction that chose the mission
 	var/starting_faction
 	///faction that did not choose the mission

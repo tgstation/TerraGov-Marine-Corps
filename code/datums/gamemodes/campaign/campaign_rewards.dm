@@ -265,5 +265,57 @@
 	if(!.)
 		return
 
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	if(istype(mode))
+		CRASH("campaign reward activated outside of campaign gamemode")
+
+	var/datum/campaign_mission/current_mission = mode.current_mission
+	if(current_mission && (current_mission.mission_flags & MISSION_DISALLOW_DROPPODS))
+		to_chat(faction.faction_leader, span_warning("External factors prevent the ship from repositioning at this time. Drop pods unavailable."))
+		return
+
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS)
 	to_chat(faction.faction_leader, span_warning("Ship repositioned, drop pods are now ready for use."))
+
+/datum/campaign_reward/droppod_disable
+	name = "Disable drop pods"
+	desc = "Prevents the enemy from using drop pods in the current or next mission"
+	detailed_desc = "Ground to Space weapon systems are activated to prevent TGMC close orbit support ships from positioning themselves for drop pod orbital assaults during the current or next mission."
+	uses = 2
+	///whether this ability will automatically trigger when the next mission is loaded
+	var/active_next_round = FALSE
+
+/datum/campaign_reward/droppod_disable/activated_effect()
+	. = ..()
+	if(!.)
+		return
+
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	if(istype(mode))
+		CRASH("campaign reward activated outside of campaign gamemode")
+
+	var/datum/campaign_mission/current_mission = mode.current_mission
+
+	if(current_mission && (current_mission.mission_state != MISSION_STATE_FINISHED) && !(current_mission.mission_flags & MISSION_DISALLOW_DROPPODS))
+		disable_droppods()
+		return
+
+	if(!active_next_round)
+		RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(disable_droppods))
+		to_chat(faction.faction_leader, span_warning("Orbital deterrence systems standing by, automatic activation at start of new mission confirmed."))
+		active_next_round = TRUE
+
+///Disables drop pods during the current mission unless they are already disallowed for whatever reason
+/datum/campaign_reward/droppod_disable/proc/disable_droppods()
+	SIGNAL_HANDLER
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/datum/campaign_mission/current_mission = mode.current_mission
+	if(current_mission.mission_flags & MISSION_DISALLOW_DROPPODS)
+		to_chat(faction.faction_leader, span_warning("Enemy drop pods unable to deploy during this mission due to external factors."))
+		to_chat(faction.faction_leader, span_warning("Orbital deterrence systems standing by, automatic activation at start of new mission confirmed."))
+		return
+
+	current_mission.mission_flags |= MISSION_DISALLOW_DROPPODS
+	to_chat(faction.faction_leader, span_warning("Orbital deterrence systems activated. Enemy drop pods disabled for this mission."))
+	active_next_round = FALSE
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED)

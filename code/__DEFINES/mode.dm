@@ -160,3 +160,5 @@
 #define MISSION_OUTCOME_DRAW "draw"
 #define MISSION_OUTCOME_MINOR_LOSS "minor loss"
 #define MISSION_OUTCOME_MAJOR_LOSS "major loss"
+
+#define MISSION_DISALLOW_DROPPODS (1<<0)
