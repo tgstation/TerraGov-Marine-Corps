@@ -360,7 +360,7 @@
 /obj/item/defibrillator/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.a_intent != INTENT_HELP)
 		return
-	else if(istype(user) && istype(target))
+	if(istype(user) && istype(target))
 		defibrillate(target, user)
 
 /obj/item/defibrillator/gloves/update_icon_state()
