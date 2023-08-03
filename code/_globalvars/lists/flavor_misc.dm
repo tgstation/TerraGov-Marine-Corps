@@ -88,14 +88,6 @@ GLOBAL_LIST_INIT(backpacklist, list("Nothing", "Backpack", "Satchel"))
 
 GLOBAL_LIST_INIT(genders, list(MALE, FEMALE, NEUTER))
 
-GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
-
-/proc/init_minimap_icons()
-	. = list()
-	for(var/icon_state in GLOB.playable_icons)
-		.[icon_state] = icon2base64(icon('icons/UI_icons/map_blips.dmi', icon_state, frame = 1))
-
-
 GLOBAL_LIST_INIT(playable_icons, list(
 	"boiler",
 	"bull",
@@ -145,3 +137,10 @@ GLOBAL_LIST_INIT(playable_squad_icons, list(
 	"medic",
 	"smartgunner",
 ))
+
+GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
+
+/proc/init_minimap_icons()
+	. = list()
+	for(var/icon_state in GLOB.playable_icons)
+		.[icon_state] = icon2base64(icon('icons/UI_icons/map_blips.dmi', icon_state, frame = 1))
