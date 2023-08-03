@@ -53,9 +53,11 @@
 /datum/campaign_reward/proc/immediate_effect()
 	return
 ///Triggers any passive effects of this reward
-/datum/campaign_reward/proc/passive_effect()
+/datum/campaign_reward/proc/passive_effect() //functionally identical to immediate effect, but specifically intended to be removable, and displayed differently in the UI
 	return
 
+/datum/campaign_reward/proc/remove_passive_effect()
+	return
 
 //Parent for all 'spawn stuff' rewards
 /datum/campaign_reward/equipment
@@ -182,15 +184,21 @@
 
 //Parent for all passive attrition modifiers
 /datum/campaign_reward/attrition_modifier
-	reward_flags = REWARD_IMMEDIATE_EFFECT
+	reward_flags = REWARD_PASSIVE_EFFECT
 	///Modifier to faction passive attrition gain
 	var/attrition_mod = 0
 
-/datum/campaign_reward/attrition_modifier/immediate_effect()
+/datum/campaign_reward/attrition_modifier/passive_effect()
+	. = ..()
 	faction.attrition_gain_multiplier += attrition_mod
 
-/datum/campaign_reward/attrition_modifier/Destroy(force, ...)
+/datum/campaign_reward/attrition_modifier/remove_passive_effect()
 	faction.attrition_gain_multiplier -= attrition_mod
+	reward_flags |= REWARD_CONSUMED
+
+/datum/campaign_reward/attrition_modifier/Destroy(force, ...)
+	if(!(reward_flags & REWARD_CONSUMED))
+		remove_passive_effect()
 	return ..()
 
 /datum/campaign_reward/attrition_modifier/bonus_standard
