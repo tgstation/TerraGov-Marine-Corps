@@ -312,7 +312,7 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.a_intent != INTENT_HELP)
 		return
-	else if(istype(user) && istype(target))
+	if(istype(user) && istype(target))
 		analyze_vitals(target, user)
 
 ///Used for right click and showing the patient their scan
