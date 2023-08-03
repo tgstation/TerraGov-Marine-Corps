@@ -427,7 +427,7 @@
 	if(dragged && button_clicked != dragged)
 		return
 
-	if(object && object == middragatom && LAZYACCESS(button_clicked, "left"))
+	if(object && object == middragatom && button_clicked == "left")
 		ab = max(0, 5 SECONDS - (world.time - middragtime) * 0.1)
 
 	var/mcl = CONFIG_GET(number/minute_click_limit)
