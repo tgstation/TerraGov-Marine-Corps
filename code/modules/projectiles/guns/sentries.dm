@@ -57,7 +57,7 @@
 /obj/item/storage/box/sentry/update_icon_state()
 	icon_state = initial(icon_state)
 	if(!length(contents))
-		icon_state += "_e"
+		icon_state = "empty_case"
 
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper ST-571 sentry gun"
@@ -203,7 +203,7 @@
 	name = "\improper ST-580 point defense sentry crate"
 	desc = "A large case containing all you need to set up an ST-580 point defense sentry."
 	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "sentry_case"
+	icon_state = "sentry_mini_case"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 6
 	can_hold = list(
@@ -216,6 +216,11 @@
 	new /obj/item/weapon/gun/sentry/mini(src)
 	new /obj/item/ammo_magazine/minisentry(src)
 	new /obj/item/ammo_magazine/minisentry(src)
+
+/obj/item/storage/box/minisentry/update_icon_state()
+	icon_state = initial(icon_state)
+	if(!length(contents))
+		icon_state = "empty_case"
 
 /obj/item/weapon/gun/sentry/mini
 	name = "\improper ST-580 point defense sentry"
