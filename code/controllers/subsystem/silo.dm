@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(silo)
 	//We normalize the larval output for one silo, so the value for silo = 1 is independant of SILO_OUTPUT_PONDERATION
 	current_larva_spawn_rate /=  (1 + SILO_OUTPUT_PONDERATION)
 	//We are processing wether we hijacked or not (hijacking gives a bonus)
-	current_larva_spawn_rate *= SSmonitor.gamestate == SHIPSIDE ? 3 : 1
+	current_larva_spawn_rate *= SSmonitor.gamestate == SHIPSIDE ? 2 : 1
 	current_larva_spawn_rate *= SSticker.mode.silo_scaling
 	current_larva_spawn_rate += larva_spawn_rate_temporary_buff
 	GLOB.round_statistics.larva_from_silo += current_larva_spawn_rate / xeno_job.job_points_needed
