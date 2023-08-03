@@ -197,7 +197,7 @@
 	user.forceMove(loc)
 	if(isliving(user))
 		var/mob/living/L = user
-		L.Stun(40)
+		L.Stun(4 SECONDS)
 	if(!user.lying_angle)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
 		"<span class='warning'>You climb out of [src] and get your bearings!")
@@ -284,7 +284,7 @@
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
 			if(isliving(M))
 				var/mob/living/L = M
-				L.Stun(40)
+				L.Stun(4 SECONDS)
 	update()
 
 //Pipe affected by explosion

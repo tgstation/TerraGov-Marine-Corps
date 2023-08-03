@@ -70,9 +70,10 @@
 		/datum/outfit/job/command/fieldcommander,
 		/datum/outfit/job/command/fieldcommander/robot,
 	)
+
 /datum/job/fallen/marine/synthetic
 	title = SYNTHETIC
-	skills_type = /datum/outfit/job/civilian/synthetic
+	skills_type = /datum/skills/synthetic
 	outfit = /datum/outfit/job/civilian/synthetic
 
 /datum/job/fallen/marine/synthetic/get_special_name(client/preference_source)

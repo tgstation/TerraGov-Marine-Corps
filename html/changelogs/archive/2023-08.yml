@@ -1,0 +1,56 @@
+2023-08-01:
+  Arturlang:
+  - code_imp: There is now a generic component that lets you display timers to a user
+      on any mob.
+  - rscadd: Both the xeno hive collapsae and nuke will display a timer for xenos on
+      the middle of the screen
+  Barnet2:
+  - qol: Adds default keybind for toggling self harms, turns self harm off by default.
+  - rscadd: Added a new groundmap, Lawanka Outpost.
+  Lewdcifer:
+  - bugfix: Fixed a runtime related to AssignRole().
+  - bugfix: Fixed a runtime where shovel tools would read NULL.max_amount.
+  Lumipharon:
+  - bugfix: Stagger will now have an accurate duration instead of relying on life
+      ticks
+  - code_imp: all staggerstuns now consistantly use SECONDS defines
+  - refactor: refactored stagger code
+  - balance: Reduced the stagger or some guns and effects due to stagger working correctly
+  TiviPlus:
+  - bugfix: Orbit menu supports greyscale squad icons properly
+  breadhunt:
+  - bugfix: Crafting for anything other than plasteel/metal works again
+  - bugfix: The main overwatch console now sends messages properly
+  - bugfix: Fixes a runtime regarding cards that was causing them to become invisible,
+      playing cards work once more!
+  coldironwarrior:
+  - spellcheck: fixed rownin armor description; extra space on one of the blood vendor
+      slogans
+  ivanmixo:
+  - bugfix: Fixed say runtime, you should be able to talk from within objects again
+  - code_imp: Status effects get deleted along with their owners
+  - bugfix: Fixed tracker runtime 2
+  - bugfix: Synth skills should work properly in valhalla now
+  - bugfix: Gravity fixed for real this time
+  lbnesquik:
+  - qol: '- Replaces ''mortar'' by ''artillery piece'' or ''artillery'' while inspecting
+      binoculars'
+  - qol: '- Makes inspecting rangefinders inform you about alt-click'
+  - qol: '- Makes inspecting binoculars inform you better about which gun is linked'
+  - qol: '- Add a small warning if trying to switch linked gun while only having 1
+      linked gun'
+  - qol: Remove the tunnel menu forcing you out of tunnels via timeout.
+  maikilangiolo:
+  - balance: mounted gun miniscope has actual miniscope zoom now
+  - balance: increased mounted gun rail scope zoom by 1
+2023-08-02:
+  Barnet2:
+  - bugfix: Fixes duplicate and misses APC's on Magmoor as per the sanity test.
+  Scarlet-Oduko:
+  - rscadd: Adds a new sticky grenade, the cloaker, cloak gas equivalent of trailblazer
+  coldironwarrior:
+  - rscdel: removed loose pinpointers on the crash ships
+  novaepee:
+  - rscadd: vents and scrubber in PoS operation room.
+  - rscadd: cryo console near PoS Alamo.
+  - rscadd: where jaeger vendor will be for PoS. Keep your eyes out for the future!

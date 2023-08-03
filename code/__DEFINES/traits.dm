@@ -132,6 +132,7 @@
 #define TRAIT_POSSESSING "possessing" // Prevents mob from being taken by ghosts
 #define TRAIT_BURROWED "burrowed" // Burrows the xeno
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
+#define TRAIT_STAGGERED "staggered" //damage or ability debuffs
 #define TRAIT_INCAPACITATED "incapacitated"
 #define TRAIT_FLOORED "floored" //User is forced to the ground on a prone position.
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.

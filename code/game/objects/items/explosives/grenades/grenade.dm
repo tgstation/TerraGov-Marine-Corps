@@ -145,8 +145,8 @@
 	var/effective_strength = max(victim.modify_by_armor(strength, BIO), strength * 0.25)
 	victim.adjustCloneLoss(effective_strength)
 	victim.adjustStaminaLoss(effective_strength * 7)
-	victim.adjust_stagger(effective_strength / 2)
-	victim.add_slowdown(effective_strength / 2)
+	victim.adjust_stagger(effective_strength  SECONDS * 0.5)
+	victim.add_slowdown(effective_strength * 0.5)
 	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
 	victim.adjust_radiation(effective_strength * 20) //Radiation status effect, duration is in deciseconds
 	balloon_alert(victim, "weakened by radiation")

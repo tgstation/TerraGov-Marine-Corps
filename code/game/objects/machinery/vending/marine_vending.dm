@@ -117,6 +117,7 @@
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/smokebomb = 25,
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
+			/obj/item/explosive/grenade/sticky/cloaker = 10,
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
@@ -966,7 +967,7 @@
 	icon_state = "bloodvendor"
 	icon_vend = "bloodvendor-vend"
 	icon_deny = "bloodvendor-deny"
-	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O negative is the universal donor, use it!; Prevent hypovolemic shock starting today!"
+	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O negative is the universal donor, use it!;Prevent hypovolemic shock starting today!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,

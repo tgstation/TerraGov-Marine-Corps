@@ -105,7 +105,7 @@
 		var/oldloc = loc
 		if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc)
 			return
-		M.Paralyze(40)
+		M.Paralyze(4 SECONDS)
 		user.visible_message(span_warning("[user] pulls [M] onto [src]."),
 		span_notice("You pull [M] onto [src]."))
 		M.forceMove(loc)

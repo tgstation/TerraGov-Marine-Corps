@@ -244,7 +244,7 @@
 		log_combat(user, M, "attacked", src)
 
 		if(prob(15))
-			M.Paralyze(60)
+			M.Paralyze(6 SECONDS)
 			M.take_limb_damage(3)
 		else
 			M.take_limb_damage(5)
@@ -281,7 +281,7 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin'
 			visible_message(span_danger("[user] slams [M] with the tray!"))
 		if(prob(10))
-			M.Stun(rand(20,60))
+			M.Stun(rand(2 SECONDS, 6 SECONDS))
 			M.take_limb_damage(3)
 			return
 		else
@@ -303,13 +303,13 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
 			visible_message(span_danger("[user] slams [M] in the face with the tray!"))
 		if(prob(30))
-			M.Stun(rand(40,80))
+			M.Stun(rand(4 SECONDS, 8 SECONDS))
 			M.take_limb_damage(4)
 			return
 		else
 			M.take_limb_damage(8)
 			if(prob(30))
-				M.Paralyze(40)
+				M.Paralyze(4 SECONDS)
 				return
 			return
 
