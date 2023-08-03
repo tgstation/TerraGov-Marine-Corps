@@ -1,0 +1,4 @@
+author: "@Xander3359 @KillerOrcaCora"
+delete-after: True
+changes:
+  - bugfix: "Fixes cape sprites for Rapier (Left) and Rapier (Right)"
