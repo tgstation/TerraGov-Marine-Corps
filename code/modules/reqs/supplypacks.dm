@@ -159,7 +159,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/sentry
 	name = "ST-571 Base Defense Sentry"
-	contains = list(/obj/item/storage/box/sentry)
+	contains = list(/obj/item/storage/box/crate/sentry)
 	cost = 400
 
 /datum/supply_packs/weapons/sentry_ammo
@@ -169,7 +169,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/minisentry
 	name = "ST-580 Portable Sentry"
-	contains = list(/obj/item/storage/box/minisentry)
+	contains = list(/obj/item/storage/box/crate/minisentry)
 	cost = 400
 
 /datum/supply_packs/weapons/minisentry_ammo
