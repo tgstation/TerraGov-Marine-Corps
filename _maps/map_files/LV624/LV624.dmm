@@ -8919,11 +8919,6 @@
 "iqt" = (
 /turf/closed/wall,
 /area/lv624/lazarus/toilet)
-"iqI" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/lv624/ground/compound/c)
 "iqY" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -12312,12 +12307,6 @@
 "mhk" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6/garbledradio)
-"mhV" = (
-/obj/structure/table,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/lv624/ground/compound/c)
 "mib" = (
 /obj/docking_port/stationary/crashmode,
 /obj/structure/catwalk,
@@ -18122,7 +18111,7 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
-/area/lv624/ground/compound/c)
+/area/lv624/lazarus/research)
 "sOK" = (
 /obj/machinery/door_control{
 	dir = 4;
@@ -44822,7 +44811,7 @@ svN
 egy
 tUO
 tvF
-mhV
+bba
 tZD
 xKv
 ygp
@@ -44999,7 +44988,7 @@ qfS
 joM
 boL
 joM
-iqI
+joM
 pQq
 xhp
 iBl
