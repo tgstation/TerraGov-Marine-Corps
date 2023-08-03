@@ -54,3 +54,14 @@
   - rscadd: vents and scrubber in PoS operation room.
   - rscadd: cryo console near PoS Alamo.
   - rscadd: where jaeger vendor will be for PoS. Keep your eyes out for the future!
+2023-08-03:
+  Barnet2:
+  - balance: Removed SVD from the Cold War seasonals.
+  Lumipharon:
+  - balance: HvH melee stuns halved in duration. Head stuns chance slightly reduced
+  - balance: Stuns from smashing into things on office chairs halved
+  - bugfix: fixed a couple of things having lower stagger than intended.
+  - bugfix: fixed a couple of minor throw bugs
+  - bugfix: Hiveminds can no longer jump
+  Sanuki357:
+  - imageadd: added sprite for an empty sentry box to make them distinguishable visually
