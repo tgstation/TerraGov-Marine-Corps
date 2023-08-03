@@ -113,7 +113,6 @@
 /datum/campaign_reward/bonus_job
 	///list of bonus jobs to grant for this reward
 	var/list/datum/job/bonus_job_list = list()
-	//todo: add functionality to have jobs available only for a single mission
 
 /datum/campaign_reward/bonus_job/activated_effect()
 	. = ..()
@@ -123,6 +122,16 @@
 	for(var/job_type in bonus_job_list)
 		var/datum/job/bonus_job = SSjob.type_occupations[job_type]
 		bonus_job.add_job_positions(bonus_job_list[job_type])
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(remove_jobs), override = TRUE) //you could use this multiple times per mission
+
+///Removes the job slots once the mission is over
+/datum/campaign_reward/bonus_job/proc/remove_jobs()
+	SIGNAL_HANDLER
+	for(var/job_type in bonus_job_list)
+		var/datum/job/bonus_job = SSjob.type_occupations[job_type]
+		bonus_job.set_job_positions(0)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 
 /datum/campaign_reward/bonus_job/colonial_militia
 	name = "Colonial militia support"
