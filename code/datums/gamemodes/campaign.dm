@@ -3,7 +3,7 @@
 /datum/game_mode/hvh/campaign
 	name = "Campaign"
 	config_tag = "Campaign"
-	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS //any changes needed? MODE_LATE_OPENING_SHUTTER_TIMER handled by missions
+	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY //any changes needed? MODE_LATE_OPENING_SHUTTER_TIMER handled by missions
 	shutters_drop_time = 2 MINUTES //will need changing
 	whitelist_ship_maps = list(MAP_ITERON)
 	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
@@ -153,13 +153,12 @@
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the mission.</div><br>"
 	var/forced_faction
-	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
-		if(candidate.faction in SSticker.mode.get_joinable_factions(FALSE))
-			forced_faction = candidate.faction
-		else
-			forced_faction = tgui_input_list(candidate, "What faction do you want to join", "Faction choice", SSticker.mode.get_joinable_factions(TRUE))
-			if(!forced_faction)
-				return
+	if(candidate.faction in SSticker.mode.get_joinable_factions(FALSE))
+		forced_faction = candidate.faction
+	else
+		forced_faction = tgui_input_list(candidate, "What faction do you want to join", "Faction choice", SSticker.mode.get_joinable_factions(TRUE))
+		if(!forced_faction)
+			return
 	dat += "<div class='latejoin-container' style='width: 100%'>"
 	for(var/cat in SSjob.active_joinable_occupations_by_category)
 		var/list/category = SSjob.active_joinable_occupations_by_category[cat]

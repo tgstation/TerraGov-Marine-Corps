@@ -39,7 +39,7 @@
 	return ..()
 
 ///Triggers any active effects of this reward
-/datum/campaign_reward/proc/activated_effect() //this shit should be in come checker proc for sanity
+/datum/campaign_reward/proc/activated_effect() //this shit should probably be in some checker proc for sanity
 	SHOULD_CALL_PARENT(TRUE)
 	if((reward_flags & REWARD_CONSUMED) || uses <= 0)
 		return FALSE
@@ -51,10 +51,10 @@
 
 ///Triggers any immediate effects of this reward
 /datum/campaign_reward/proc/immediate_effect()
-
+	return
 ///Triggers any passive effects of this reward
 /datum/campaign_reward/proc/passive_effect()
-
+	return
 
 
 //Parent for all 'spawn stuff' rewards
@@ -182,11 +182,11 @@
 
 //Parent for all passive attrition modifiers
 /datum/campaign_reward/attrition_modifier
-	reward_flags = REWARD_PASSIVE_EFFECT
+	reward_flags = REWARD_IMMEDIATE_EFFECT
 	///Modifier to faction passive attrition gain
 	var/attrition_mod = 0
 
-/datum/campaign_reward/attrition_modifier/passive_effect()
+/datum/campaign_reward/attrition_modifier/immediate_effect()
 	faction.attrition_gain_multiplier += attrition_mod
 
 /datum/campaign_reward/attrition_modifier/Destroy(force, ...)
@@ -209,13 +209,14 @@
 	name = "Teleporter Array disabled"
 	desc = "Teleporter Array has been permenantly disabled"
 	detailed_desc = "The Bluespace drive powering all Teleporter Arrays in the conflict zone has been destroyed, rending all Teleporter Arrays inoperable. You'll have to deploy the old fashion way from here on out."
+	reward_flags = REWARD_IMMEDIATE_EFFECT
 
 /datum/campaign_reward/teleporter_disabled/immediate_effect()
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
 		if(teleporter.faction != faction.faction)
 			continue
 		teleporter.teleporter_status = TELEPORTER_ARRAY_INOPERABLE
-		to_chat(faction.faction_leader, span_warning("The Teleporter Array has been rendered inoperable."))
+		to_chat(faction.faction_leader, span_warning("Error: The Teleporter Array has been rendered permanently inoperable."))
 		return
 
 /datum/campaign_reward/teleporter_charges
