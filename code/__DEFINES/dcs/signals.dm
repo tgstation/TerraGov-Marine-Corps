@@ -83,6 +83,8 @@
 #define COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED "!campaign_objective_destroyed"
 ///Enables droppod use during campaign
 #define COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS "!campaign_enable_droppods"
+///Disables droppod use during campaign
+#define COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS "!campaign_disable_droppods"
 
 //////////////////////////////////////////////////////////////////
 
