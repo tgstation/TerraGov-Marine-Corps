@@ -103,6 +103,5 @@
 	var/mob/living/carbon/xenomorph/xeno_ref = source
 	REMOVE_TRAIT(xeno_ref, TRAIT_STASIS, BANELING_STASIS_TRAIT)
 	xeno_ref.forceMove(get_turf(loc))
-	xeno_ref.heal_overall_damage(xeno_ref.xeno_caste.max_health, xeno_ref.xeno_caste.max_health, updating_health = TRUE)
-	xeno_ref.gain_plasma(xeno_ref.xeno_caste.plasma_max)
+	xeno_ref.revive(FALSE)
 	xeno_ref.ExtinguishMob()
