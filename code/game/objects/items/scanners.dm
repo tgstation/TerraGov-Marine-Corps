@@ -156,7 +156,7 @@ REAGENT SCANNER
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
 
-		"hugged" = (locate(/obj/item/alien_embryo) in patient)
+		"hugged" = !!(patient.status_flags & XENO_HOST)
 	)
 	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
