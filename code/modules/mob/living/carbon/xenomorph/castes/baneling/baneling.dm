@@ -45,7 +45,7 @@
 
 /obj/structure/xeno/baneling_pod/Initialize(mapload, _hivenumber, xeno, ability_ref)
 	. = ..()
-	RegisterSignal(xeno, COMSIG_MOB_PRE_DEATH, PROC_REF(handle_baneling_death))
+	RegisterSignal(xeno, COMSIG_MOB_PRE_DEATH, PROC_REF(pre_handle_death))
 	RegisterSignal(xeno, COMSIG_QDELETING, PROC_REF(qdel_pod))
 	RegisterSignal(ability_ref, COMSIG_ACTION_TRIGGER, PROC_REF(qdel_pod))
 	addtimer(CALLBACK(src, PROC_REF(increase_charge), xeno), BANELING_CHARGE_GAIN_TIME)
@@ -64,9 +64,15 @@
 			xeno.forceMove(get_turf(loc))
 	return ..()
 
+/// We timer the calling of handle_baneling_death inside of here so the player can see the result of their bombing.area
+/obj/structure/xeno/baneling_pod/proc/pre_handle_death(datum/source)
+	SIGNAL_HANDLER
+	if(isnull(source))
+		return
+	addtimer(CALLBACK(src, PROC_REF(handle_baneling_death), source), BANELING_WATCH_DURATION)
+
 /// Teleports baneling inside of itself, checks for charge and then respawns baneling
 /obj/structure/xeno/baneling_pod/proc/handle_baneling_death(datum/source)
-	SIGNAL_HANDLER
 	if(isnull(source))
 		return
 	var/mob/living/carbon/xenomorph/xeno_ref = source
