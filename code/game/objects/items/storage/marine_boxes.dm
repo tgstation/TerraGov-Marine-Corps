@@ -39,7 +39,6 @@
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 3
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-	//foldable = null
 
 /obj/item/storage/box/crate/heavy_armor/Initialize(mapload, ...)
 	. = ..()
@@ -55,7 +54,6 @@
 	storage_slots = 2
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-	//foldable = null
 
 /obj/item/storage/box/crate/grenade_system/Initialize(mapload, ...)
 	. = ..()
@@ -70,7 +68,6 @@
 	storage_slots = 6
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-	//foldable = null
 
 /obj/item/storage/box/crate/rocket_system/Initialize(mapload, ...)
 	. = ..()
@@ -89,7 +86,6 @@
 	storage_slots = 6
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-	//foldable = null
 
 /obj/item/storage/box/crate/heavy_grenadier/Initialize(mapload, ...)
 	. = ..()
@@ -109,7 +105,6 @@
 	storage_slots = 16
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-	//foldable = null
 
 /obj/item/storage/box/crate/heavy_gunner/Initialize(mapload, ...)
 	. = ..()
