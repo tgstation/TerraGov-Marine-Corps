@@ -32,7 +32,23 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
 /turf/open/floor/carpet/side{
+	dir = 8
+	},
+/area/shuttle/minidropship)
+"m" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/structure/table/fancywoodentable,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/mainship/white{
 	dir = 8
 	},
 /area/shuttle/minidropship)
@@ -49,6 +65,9 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/fancywoodentable,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
@@ -85,11 +104,17 @@
 	dir = 1;
 	pixel_x = -23
 	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
 /area/shuttle/minidropship)
 "w" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
 /turf/open/floor/carpet/side{
 	dir = 8
 	},
@@ -139,6 +164,9 @@
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/fancywoodentable,
 /obj/item/reagent_containers/glass/rag,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
@@ -180,8 +208,19 @@
 /turf/template_noop,
 /area/shuttle/minidropship)
 "I" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
 /turf/open/floor/carpet/side{
 	dir = 4
+	},
+/area/shuttle/minidropship)
+"J" = (
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/turf/open/floor/carpet/side{
+	dir = 8
 	},
 /area/shuttle/minidropship)
 "K" = (
@@ -213,6 +252,14 @@
 	},
 /turf/open/floor/carpet/side{
 	dir = 6
+	},
+/area/shuttle/minidropship)
+"P" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/carpet/side{
+	dir = 4
 	},
 /area/shuttle/minidropship)
 "Q" = (
@@ -247,6 +294,9 @@
 	pixel_y = 5
 	},
 /obj/structure/table/fancywoodentable,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
@@ -289,7 +339,7 @@ W
 x
 r
 w
-w
+J
 k
 G
 "}
@@ -309,8 +359,8 @@ W
 z
 E
 I
-I
-I
+P
+P
 O
 "}
 (6,1,1) = {"
@@ -319,7 +369,7 @@ c
 D
 f
 U
-o
+m
 C
 n
 "}
