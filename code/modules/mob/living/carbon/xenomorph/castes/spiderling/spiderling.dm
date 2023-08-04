@@ -66,10 +66,11 @@
 		go_to_obj_target(source, A)
 		return
 
-/// Sets escorted atom to our pre-defined default escorted atom, which by default is this spiderling's widow
+/// Sets escorted atom to our pre-defined default escorted atom, which by default is this spiderling's widow, and commands the spiderling to follow it
 /datum/ai_behavior/spiderling/proc/only_set_escorted_atom(source, atom/A)
 	SIGNAL_HANDLER
 	escorted_atom = default_escorted_atom.resolve()
+	change_action(ESCORTING_ATOM, escorted_atom)
 
 /// Signal handler to check if we can attack the obj's that our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_obj_target(source, obj/target)
