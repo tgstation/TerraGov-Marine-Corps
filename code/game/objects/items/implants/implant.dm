@@ -36,7 +36,9 @@
 
 
 /obj/item/implant/Destroy(force)
+	unimplant()
 	QDEL_NULL(activation_action)
+	part?.implants -= src
 	return ..()
 
 /obj/item/implant/ui_action_click(mob/user, datum/action/item_action/action)
@@ -87,6 +89,8 @@
 /obj/item/implant/proc/unimplant()
 	SHOULD_CALL_PARENT(TRUE)
 	forceMove(get_turf(implant_owner))
+	if(!implanted)
+		return FALSE
 	activation_action?.remove_action(implant_owner)
 	if(flags_implant & ACTIVATE_ON_HEAR)
 		UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
