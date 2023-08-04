@@ -117,6 +117,7 @@
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/smokebomb = 25,
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
+			/obj/item/explosive/grenade/sticky/cloaker = 10,
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
@@ -194,6 +195,8 @@
 			/obj/item/ammo_magazine/packet/p10x27mm = -1,
 			/obj/item/ammo_magazine/packet/p492x34mm = -1,
 			/obj/item/ammo_magazine/packet/p86x70mm = -1,
+			/obj/item/ammo_magazine/packet/standardautoshotgun = -1,
+			/obj/item/ammo_magazine/packet/standardautoshotgun/flechette = -1,
 			/obj/item/ammo_magazine/packet/p4570 = -1,
 			/obj/item/storage/box/visual/magazine = -1,
 			/obj/item/storage/box/visual/grenade = -1,
@@ -303,6 +306,7 @@
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
+			/obj/item/weapon/combat_knife/harvester = 12,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -389,6 +393,8 @@
 			/obj/item/ammo_magazine/packet/p10x27mm = -1,
 			/obj/item/ammo_magazine/packet/p492x34mm = -1,
 			/obj/item/ammo_magazine/packet/p86x70mm = -1,
+			/obj/item/ammo_magazine/packet/standardautoshotgun = -1,
+			/obj/item/ammo_magazine/packet/standardautoshotgun/flechette = -1,
 			/obj/item/ammo_magazine/packet/p4570 = -1,
 			/obj/item/storage/box/visual/magazine = -1,
 			/obj/item/storage/box/visual/grenade = -1,
@@ -498,6 +504,7 @@
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = -1,
 			/obj/item/weapon/shield/riot/marine/deployable = -1,
+			/obj/item/weapon/combat_knife/harvester = -1,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -603,6 +610,8 @@
 			/obj/item/ammo_magazine/packet/p10x27mm = -1,
 			/obj/item/ammo_magazine/packet/p492x34mm = -1,
 			/obj/item/ammo_magazine/packet/p86x70mm = -1,
+			/obj/item/ammo_magazine/packet/standardautoshotgun = -1,
+			/obj/item/ammo_magazine/packet/standardautoshotgun/flechette = -1,
 			/obj/item/ammo_magazine/packet/p4570 = -1,
 			/obj/item/storage/box/visual/magazine = -1,
 			/obj/item/storage/box/visual/grenade = -1,
@@ -958,7 +967,7 @@
 	icon_state = "bloodvendor"
 	icon_vend = "bloodvendor-vend"
 	icon_deny = "bloodvendor-deny"
-	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O negative is the universal donor, use it!; Prevent hypovolemic shock starting today!"
+	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O negative is the universal donor, use it!;Prevent hypovolemic shock starting today!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,
@@ -1433,43 +1442,54 @@
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
-		"Weapon" = list(
+		"Seasonal" = list(
 			/obj/item/weapon/gun/revolver/small = -1,
 			/obj/item/ammo_magazine/revolver/small = -1,
 			/obj/item/weapon/gun/revolver/single_action/m44 = -1,
 			/obj/item/ammo_magazine/revolver = -1,
-			/obj/item/weapon/gun/pistol/g22 = -1,
-			/obj/item/ammo_magazine/pistol/g22 = -1,
-			/obj/item/weapon/gun/pistol/heavy = -1,
-			/obj/item/ammo_magazine/pistol/heavy = -1,
-			/obj/item/weapon/gun/pistol/vp78 = -1,
-			/obj/item/ammo_magazine/pistol/vp78 = -1,
-			/obj/item/weapon/gun/pistol/highpower = -1,
-			/obj/item/ammo_magazine/pistol/highpower = -1,
 			/obj/item/weapon/gun/revolver/judge = -1,
 			/obj/item/ammo_magazine/revolver/judge = -1,
 			/obj/item/ammo_magazine/revolver/judge/buckshot = -1,
 			/obj/item/weapon/gun/revolver/upp = -1,
 			/obj/item/ammo_magazine/revolver/upp = -1,
+			/obj/item/weapon/gun/pistol/g22 = -1,
+			/obj/item/ammo_magazine/pistol/g22 = -1,
+			/obj/item/weapon/gun/pistol/vp78 = -1,
+			/obj/item/ammo_magazine/pistol/vp78 = -1,
+			/obj/item/weapon/gun/pistol/heavy = -1,
+			/obj/item/ammo_magazine/pistol/heavy = -1,
+			/obj/item/weapon/gun/pistol/highpower = -1,
+			/obj/item/ammo_magazine/pistol/highpower = -1,
 			/obj/item/weapon/gun/smg/uzi = -1,
 			/obj/item/ammo_magazine/smg/uzi = -1,
-			/obj/item/weapon/gun/revolver/cmb = -1,
-			/obj/item/ammo_magazine/revolver/cmb = -1,
 			/obj/item/weapon/gun/smg/m25 = -1,
 			/obj/item/ammo_magazine/smg/m25 = -1,
 			/obj/item/weapon/gun/smg/mp7 = -1,
 			/obj/item/ammo_magazine/smg/mp7 = -1,
+			/obj/item/weapon/gun/smg/skorpion = -1,
+			/obj/item/ammo_magazine/smg/skorpion = -1,
+			/obj/item/weapon/gun/revolver/cmb = -1,
+			/obj/item/ammo_magazine/revolver/cmb = -1,
 			/obj/item/weapon/gun/rifle/mkh = -1,
 			/obj/item/ammo_magazine/rifle/mkh = -1,
 			/obj/item/weapon/gun/smg/ppsh = -1,
 			/obj/item/ammo_magazine/smg/ppsh = -1,
 			/obj/item/ammo_magazine/smg/ppsh/extended = -1,
+			/obj/item/weapon/gun/rifle/garand = -1,
+			/obj/item/ammo_magazine/rifle/garand = -1,
+			/obj/item/weapon/gun/pistol/m1911 = -1,
+			/obj/item/ammo_magazine/pistol/m1911 = -1,
 			/obj/item/weapon/gun/shotgun/combat = -1,
+			/obj/item/weapon/gun/shotgun/pump = -1,
 			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 			/obj/item/weapon/gun/rifle/mpi_km = -1,
 			/obj/item/ammo_magazine/rifle/mpi_km/plum = -1,
+			/obj/item/ammo_magazine/packet/pwarsaw = -1,
 			/obj/item/weapon/gun/rifle/m16 = -1,
 			/obj/item/ammo_magazine/rifle/m16 = -1,
+			/obj/item/ammo_magazine/packet/pnato = -1,
+			/obj/item/weapon/gun/rifle/sniper/svd = -1,
+			/obj/item/ammo_magazine/sniper/svd = -1,
 			/obj/item/weapon/gun/rifle/m412 = -1,
 			/obj/item/ammo_magazine/rifle = -1,
 			/obj/item/weapon/gun/rifle/m41a = -1,
@@ -1478,10 +1498,13 @@
 			/obj/item/ammo_magazine/rifle/type71 = -1,
 			/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
 			/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
-			/obj/item/weapon/gun/shotgun/double = -1,
-			/obj/item/weapon/gun/shotgun/double/sawn = -1,
-			/obj/item/weapon/gun/rifle/sniper/svd = -1,
-			/obj/item/ammo_magazine/sniper/svd = -1,
+			/obj/item/weapon/gun/shotgun/pump/lever = -1,
+			/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900/tracking = -1,
+		),
+		"Sons of Mars" = list(
 			/obj/item/weapon/gun/rifle/som = -1,
 			/obj/item/ammo_magazine/rifle/som = -1,
 			/obj/item/ammo_magazine/handful/micro_grenade = -1,
@@ -1491,11 +1514,14 @@
 			/obj/item/ammo_magazine/smg/som = -1,
 			/obj/item/weapon/gun/shotgun/som = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = -1,
+			/obj/item/cell/lasgun/volkite/small = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin = -1,
 			/obj/item/cell/lasgun/volkite = -1,
 			/obj/item/cell/lasgun/volkite/powerpack = -1,
+		),
+		"ICC" = list(
 			/obj/item/weapon/gun/rifle/icc_battlecarbine = -1,
 			/obj/item/ammo_magazine/rifle/icc_battlecarbine = -1,
 			/obj/item/weapon/gun/rifle/icc_confrontationrifle = -1,
@@ -1503,15 +1529,17 @@
 			/obj/item/weapon/gun/rifle/icc_sharpshooter = -1,
 			/obj/item/ammo_magazine/rifle/icc_sharpshooter = -1,
 			/obj/item/weapon/gun/smg/icc_pdw = -1,
+			/obj/item/ammo_magazine/smg/icc_pdw = -1,
 			/obj/item/weapon/gun/smg/icc_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/icc_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/icc_machinepistol/hp = -1,
-			/obj/item/ammo_magazine/smg/icc_pdw = -1,
 			/obj/item/weapon/gun/pistol/icc_dpistol = -1,
 			/obj/item/ammo_magazine/pistol/icc_dpistol = -1,
 			/obj/item/weapon/gun/rifle/icc_coilgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_coilgun = -1,
 			/obj/item/weapon/gun/shotgun/pump/trenchgun = -1,
+		),
+		"PMC" = list(
 			/obj/item/weapon/gun/rifle/sniper/elite = -1,
 			/obj/item/ammo_magazine/sniper/elite = -1,
 			/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc = -1,
@@ -1520,12 +1548,10 @@
 			/obj/item/ammo_magazine/smg/m25/ap = -1,
 			/obj/item/weapon/gun/rifle/m412/elite = -1,
 			/obj/item/ammo_magazine/rifle/ap = -1,
-			/obj/item/weapon/gun/rifle/garand = -1,
-			/obj/item/ammo_magazine/rifle/garand = -1,
-			/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
-			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
-			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
-			/obj/item/ammo_magazine/shotgun/tracker = -1,
+		),
+		"Misc" = list(
+			/obj/item/weapon/gun/shotgun/double = -1,
+			/obj/item/weapon/gun/shotgun/double/sawn = -1,
 		)
 	)
 
@@ -1547,3 +1573,6 @@
 
 /obj/machinery/vending/tool/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/vending/tool/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE

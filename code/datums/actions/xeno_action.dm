@@ -75,7 +75,7 @@
 			X.balloon_alert(X, "Cannot while buckled")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_STAGGERED) && X.stagger)
+	if(!(flags_to_check & XACT_USE_STAGGERED) && X.IsStaggered())
 		if(!silent)
 			X.balloon_alert(X, "Cannot while staggered")
 		return FALSE

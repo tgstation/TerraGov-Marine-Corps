@@ -207,7 +207,7 @@
 	add_cooldown()
 	succeed_activate()
 
-	if(X.stagger) //If we got staggered, return
+	if(X.IsStaggered()) //If we got staggered, return
 		to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
 		return fail_activate()
 
@@ -239,7 +239,7 @@
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
 				emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(defiler_owner)
 
-	if(defiler_owner.stagger) //If we got staggered, return
+	if(defiler_owner.IsStaggered()) //If we got staggered, return
 		to_chat(defiler_owner, span_xenowarning("We try to emit toxins but are staggered!"))
 		toggle_particles(FALSE)
 		return
@@ -581,8 +581,8 @@
 	target.throw_at(owner, TENTACLE_ABILITY_RANGE, 1, owner, FALSE)
 	if(isliving(target))
 		var/mob/living/loser = target
-		loser.apply_effects(weaken = 0.1)
-		loser.adjust_stagger(5)
+		loser.apply_effect(0.2 SECONDS, WEAKEN)
+		loser.adjust_stagger(5 SECONDS)
 
 ///signal handler to delete tetacle after we are done draggging owner along
 /datum/action/xeno_action/activable/tentacle/proc/delete_beam(datum/source, atom/impacted)

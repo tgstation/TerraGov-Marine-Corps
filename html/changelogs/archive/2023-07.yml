@@ -225,3 +225,191 @@
   ivanmixo:
   - bugfix: Crash vendor doesn't pull from shipside weapons vendor anymore
   - bugfix: Fixed xeno jobs needing more points than intended
+2023-07-17:
+  Lumipharon:
+  - bugfix: fixed a bug with the valkyrie module
+  chizzy376:
+  - rscadd: Added new side shutters to Umbilical Tad.
+  imsxz:
+  - rscadd: Ravager's Endure now has a screen effect when you have below critical
+      HP in endure.
+2023-07-19:
+  Lumipharon:
+  - bugfix: SOM cluster grenades and warlock psyblast has more accurate code for what
+      their AOE's will hit
+  - bugfix: Psylance no longer staggerslows xenos instead of humans
+  - balance: SOM cluster grenades hit objects again, instead of just mobs
+  TiviPlus:
+  - admin: Adds TTS and IC bans
+  forestbbbbbbb:
+  - rscadd: updated tgui
+  ivanmixo:
+  - rscadd: Adds an APC sanity unit test
+  - bugfix: Fixed emotes breaking at random
+  - bugfix: You don't disappear on minimap anymore if you go inside an object like
+      a locker or ventcrawl
+  novaepee:
+  - rscadd: kilt; use facepaint on kama to choose kilt in the variety tab
+2023-07-20:
+  '? code ???':
+  - bugfix: Fixed status effects sometimes getting stuck on living or dead mobs
+  Lumipharon:
+  - bugfix: HvH - Fixed melee head stuns being far shorter than intended
+  - balance: Mounted guns have normalised bullet, laser and energy armor
+  - code_imp: Removed some dead code out of throw code
+  - balance: Mounted guns are dense when mounted again. Crushers rejoice
+  - bugfix: fixed some issues with xeno leaps
+  - bugfix: Throwing mobs through barbed plasteel cades when down will no longer hit
+      them 50 times
+  TiviPlus:
+  - admin: Deadchat now uses the OOC chat filter
+  chizzy376:
+  - rscadd: You can buy the rsr console at req for 200
+  ivanmixo:
+  - rscadd: Added a teleport to location on map ability for hivemind
+2023-07-21:
+  RipGrayson:
+  - rscadd: Re-added tunnel landmarks for mapper use
+  - rscadd: Created a mapper landmark for resin jelly pods
+  - balance: Added preplaced tunnel landmarks to LV624
+  forestbbbbbbb:
+  - rscadd: msay is tgui. rebind your msay key
+  ivanmixo:
+  - bugfix: Fixed listclearnulls on 515
+2023-07-22:
+  Barnet2:
+  - rscadd: Harvester Knives are now in your local Valhalla and Crash vendors.
+  Lumipharon:
+  - balance: Improved the armor of windowframes
+  - balance: Barricades start with some bullet/laser/energy armor
+  - balance: Melee upgrades for metal barricades upgrade laser and energy armor like
+      they already do for bullet
+  - balance: Vending machines have slightly higher coverage
+  - bugfix: fixed an issue with throwing past mobs
+  Xander3359:
+  - qol: Valhalla vendors are more robust.
+  forestbbbbbbb:
+  - bugfix: fixed "You grab the HE orbital warhead with the HE orbital warhead."
+  - bugfix: iguana is on minimap after being spawned
+  - bugfix: req lift can move only when idle
+2023-07-23:
+  forestbbbbbbb:
+  - bugfix: synth surgical pouch is in the correct vendor category
+  - bugfix: writing [logo] and [ntlogo] on paper works now
+2023-07-24:
+  Lumipharon:
+  - bugfix: fixed defender and rav charge stopping after one hit
+  novaepee:
+  - rscadd: xenomorphs tunnel landmarks in Orion to help with xenomorphs create manuever
+      around maps
+  - rscadd: xenomorphs tunnel landmarks in Magmoor to help with xenomorphs create
+      manuever around maps
+2023-07-25:
+  Mrrpip:
+  - rscdel: Removes the damage malus from the bipod.
+  forestbbbbbbb:
+  - bugfix: Fix scopes not changing direction on lasguns
+  novaepee:
+  - rscdel: no more backpack strap in mob sprite
+  - rscadd: xenomorphs tunnel landmarks in Ice Colony to help with xenomorphs create
+      manuever around maps
+  - rscadd: xenomorphs tunnel landmarks in Gelida to help with xenomorphs create manuever
+      around maps
+  - rscadd: xenomorphs tunnel landmarks in Big Red to help with xenomorphs create
+      manuever around maps
+  - balance: Theseus' SD walls are not Outer Hull anymore
+  yyzsong:
+  - qol: Valhalla seasonal vendor is now separated into tabs!
+2023-07-26:
+  Lumipharon:
+  - bugfix: Fixed autoburst not correctly resetting shots fired between bursts
+  - bugfix: Robots (and synths) no longer sleep
+  Mrrpip:
+  - rscadd: 16G ammo boxes have arrived, now you'll get to use more shotgun in your
+      autoshotgun!
+  - imageadd: The SH-15 slug mag is now green.
+  TiviPlus:
+  - rscadd: Added Bulwark ability to queen
+  - rscadd: Xenos have tts now
+  - rscadd: You can set your TTS voice pitch now
+  - rscadd: Robot and vending/roomba vocies have been updated
+  - code_imp: misc tts backend improvements
+  ivanmixo:
+  - bugfix: Fixed readying up bypassing exp requirements
+  - config: Added the missing exp flags to the default config
+  lbnesquik:
+  - bugfix: fixed some areas strangely lacking camera coverage on POS.
+2023-07-27:
+  Lumipharon:
+  - bugfix: fixed humans recovering from stagger twice as fast as they should
+  - bugfix: fixed xenos recovering from stagger three times as fast as they should,
+      and recovering from slowdown twice as fast as they should
+  - bugfix: You can no longer throw past certain dense parts of the alamo
+  - rscadd: Added variable gravity as a z-level based function to effect various things
+      such as running, jumping and throwing
+  RipGrayson:
+  - rscadd: Added some holopads to the tadpole shuttles
+  - rscadd: Added some extra map helpers for extra mapper clarity
+  XSlayer300:
+  - soundadd: Completely OVERHAULED every weapon firing sound, once again! Sounds
+      use CC-BY-NC-SA 3.0.
+  - rscadd: Added more weapons to the EORD weapon pool.
+  - spellcheck: Changed some descriptions and renamed the 88 mod 4 to the MK88 mod
+      4.
+  forestbbbbbbb:
+  - bugfix: fixed the medbay exit button on sulaco
+  - bugfix: fixed robot surgery
+  lbnesquik:
+  - bugfix: fixed plural/neuter not having underwear
+2023-07-28:
+  567Turtle:
+  - rscadd: New vali codex information
+  Barnet2:
+  - balance: Reduces the Double Barrel's firerate, removes gyro as an attachment,
+      reduce base recoil.
+  Lumipharon:
+  - qol: The tad console is now visually different when broken
+  MacBlaze1:
+  - bugfix: fixed sentries targeting mobs when they cant actually see and shoot them
+  Meowosers:
+  - rscadd: Valhalla now has two Autoclosets for Squad Marines.
+  - code_imp: Valhalla Squad Marines are now defined as /fallen/marine/standard in
+      the selection list.
+  TiviPlus:
+  - code_imp: Minimap blips for squad jobs are now greyscale
+  XElectricX:
+  - code_imp: Suit pockets no longer appear as if they are just bolted-on storage
+      modules. Are now their own independent object.
+  coldironwarrior:
+  - bugfix: added the missing robotic cradle to the canterbury and bigbury for robots
+      to heal cloneloss on the crash gamemode
+  - bugfix: changed a tile out in the PoS medbay to fix the tile design
+  forestbbbbbbb:
+  - bugfix: fixed floor tile welding
+  - bugfix: fixed pinpointer not turning itself off after target is destroyed
+  ivanmixo:
+  - bugfix: Client is marked as QDELING properly now
+  - bugfix: Fixed robotic cradle bugs
+  novaepee, doomvoyager:
+  - rscadd: gnome; find him around around botany, the memorial, or at AI. He doesn't
+      always appear.
+2023-07-29:
+  Lumipharon:
+  - bugfix: fixed another issue with xeno throws getting stuck on things
+  - balance: MG27 and MG60 can no longer use rail scopes
+  TiviPlus:
+  - bugfix: fixed  TTS for ghosts going across zlevels
+  forestbbbbbbb:
+  - bugfix: cic crash doesn't expose space on theseus
+  ivanmixo:
+  - bugfix: Fixed gravity giving infinite stamina
+  - rscdel: fob sentry landmark is gone
+  lbnesquik:
+  - qol: made bleeding show up on help intent self inspect
+  "novaepee and Pq\xFCax":
+  - rscadd: title art of an epic battle between mech vs queen
+  'sprites: Gregormack':
+  - imageadd: new karambit sprites
+2023-07-31:
+  Barnet2:
+  - admin: ' Gives PO the same timelock as Captain'

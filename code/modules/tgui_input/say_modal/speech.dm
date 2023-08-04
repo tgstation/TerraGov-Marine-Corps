@@ -53,6 +53,12 @@
 		if(XOOC_CHANNEL)
 			client.xooc(entry)
 			return TRUE
+		if(ADMIN_CHANNEL)
+			client.asay(entry)
+			return TRUE
+		if(MENTOR_CHANNEL)
+			client.msay(entry)
+			return TRUE
 	return FALSE
 
 /**

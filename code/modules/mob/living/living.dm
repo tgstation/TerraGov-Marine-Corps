@@ -18,7 +18,6 @@
 
 	handle_drugged()
 	handle_slowdown()
-	handle_stagger()
 
 ///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
 /mob/living/proc/finish_aura_cycle()
@@ -99,6 +98,8 @@
 	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
 /mob/living/Destroy()
+	for(var/datum/status_effect/effect AS in status_effects)
+		qdel(effect)
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
 		if(embedded.embedding.embedded_flags & EMBEDDED_DEL_ON_HOLDER_DEL)
@@ -810,6 +811,10 @@ below 100 is not dizzy
 /mob/living/can_interact_with(datum/D)
 	return D == src || D.Adjacent(src)
 
+/mob/living/onTransitZ(old_z, new_z)
+	. = ..()
+	set_jump_component()
+
 /**
  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
  *
@@ -954,4 +959,18 @@ below 100 is not dizzy
 
 ///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
 /mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
+	var/gravity = get_gravity()
+	if(gravity < 1) //low grav
+		duration *= 2.5 - gravity
+		cooldown *= 2 - gravity
+		cost *= gravity * 0.5
+		height *= 2 - gravity
+		if(gravity <= 0.75)
+			flags_pass |= PASS_DEFENSIVE_STRUCTURE
+	else if(gravity > 1) //high grav
+		duration *= gravity * 0.5
+		cooldown *= gravity
+		cost *= gravity
+		height *= gravity * 0.5
+
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)

@@ -143,6 +143,12 @@ OPERATIONS
 	containertype = null
 	cost = 100
 
+/datum/supply_packs/operations/researchcomp
+	name = "Research console"
+	contains = list(/obj/machinery/researchcomp)
+	containertype = null
+	cost = 200
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -762,6 +768,12 @@ EXPLOSIVES
 	name = "M45 Trailblazer grenade box crate"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/trailblazer)
+	cost = 500
+
+/datum/supply_packs/explosives/explosives_cloaker
+	name = "M45 Cloaker grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/cloaker)
 	cost = 500
 
 /datum/supply_packs/explosives/explosives_cloak

@@ -12,19 +12,6 @@
 	)
 	use_state_flags = XACT_USE_LYING
 
-//Parameters used when displaying hive message to all xenos
-/atom/movable/screen/text/screen_text/queen_order
-	maptext_height = 128 //Default 64 doubled in height
-	maptext_width = 456 //Default 480 shifted right by 12
-	maptext_x = 12 //Half of 24
-	maptext_y = -64 //Shifting expanded map text downwards to display below buttons.
-	screen_loc = "LEFT,TOP-3"
-
-	letters_per_update = 2
-	fade_out_delay = 5 SECONDS
-	style_open = "<span class='maptext' style=font-size:16pt;text-align:center valign='top'>"
-	style_close = "</span>"
-
 /datum/action/xeno_action/hive_message/action_activate()
 	var/mob/living/carbon/xenomorph/queen/Q = owner
 
@@ -448,3 +435,85 @@
 	if (get_dist(owner, receiver) > 7)
 		// Out of screen transfer.
 		owner.balloon_alert(owner, "Transferred plasma")
+
+
+#define BULWARK_LOOP_TIME 1 SECONDS
+#define BULWARK_RADIUS 4
+#define BULWARK_ARMOR_MULTIPLIER 0.25
+
+/datum/action/xeno_action/bulwark
+	name = "Royal Bulwark"
+	action_icon_state = "bulwark"
+	desc = "Creates a field of defensive energy, filling chinks in the armor of nearby sisters, making them more resilient."
+	plasma_cost = 100
+	cooldown_timer = 20 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_BULWARK,
+	)
+	/// assoc list xeno = armor_diff
+	var/list/armor_mod_keys = list()
+
+/datum/action/xeno_action/bulwark/action_activate()
+	var/list/turf/affected_turfs = RANGE_TURFS(BULWARK_RADIUS, owner)
+	add_cooldown()
+
+	for(var/turf/target AS in affected_turfs)
+		//yes I realize this adds and removes it every move but its simple
+		//also we use this and not aura because we want speedy updates on entering
+		RegisterSignal(target, COMSIG_ATOM_EXITED, PROC_REF(remove_buff))
+		RegisterSignal(target, COMSIG_ATOM_ENTERED, PROC_REF(apply_buff))
+		ADD_TRAIT(target, TRAIT_BULWARKED_TURF, XENO_TRAIT)
+		for(var/mob/living/carbon/xenomorph/xeno in target)
+			apply_buff(null, xeno)
+
+	var/obj/effect/abstract/particle_holder/aoe_particles = new(owner.loc, /particles/bulwark_aoe)
+	aoe_particles.particles.position = generator(GEN_SQUARE, 0, 16 + (BULWARK_RADIUS-1)*32, LINEAR_RAND)
+	while(do_after(owner, BULWARK_LOOP_TIME, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, TYPE_PROC_REF(/datum/action, can_use_action), FALSE, XACT_IGNORE_COOLDOWN|XACT_USE_BUSY)))
+		succeed_activate()
+
+	aoe_particles.particles.spawning = 0
+	QDEL_IN(aoe_particles, 4 SECONDS)
+
+	for(var/turf/target AS in affected_turfs)
+		UnregisterSignal(target, list(COMSIG_ATOM_EXITED, COMSIG_ATOM_ENTERED))
+		REMOVE_TRAIT(target, TRAIT_BULWARKED_TURF, XENO_TRAIT)
+		for(var/mob/living/carbon/xenomorph/xeno AS in armor_mod_keys)
+			remove_buff(null, xeno)
+	affected_turfs = null
+
+///adds buff to xenos
+/datum/action/xeno_action/bulwark/proc/apply_buff(datum/source, mob/living/carbon/xenomorph/xeno, direction)
+	SIGNAL_HANDLER
+	if(!isxeno(xeno) || armor_mod_keys[xeno] || !owner.issamexenohive(xeno))
+		return
+	var/datum/armor/basearmor = getArmor(arglist(xeno.xeno_caste.soft_armor))
+	var/datum/armor/armordiff = basearmor.scaleAllRatings(BULWARK_ARMOR_MULTIPLIER)
+	xeno.soft_armor = xeno.soft_armor.attachArmor(armordiff)
+	armor_mod_keys[xeno] = armordiff
+
+///removes the buff from xenos
+/datum/action/xeno_action/bulwark/proc/remove_buff(datum/source, mob/living/carbon/xenomorph/xeno, direction)
+	SIGNAL_HANDLER
+	if(direction) // triggered by moving signal, check if next turf is in bulwark
+		var/turf/next = get_step(source, direction)
+		if(HAS_TRAIT(next, TRAIT_BULWARKED_TURF))
+			return
+	if(armor_mod_keys[xeno])
+		xeno.soft_armor = xeno.soft_armor.detachArmor(armor_mod_keys[xeno])
+		armor_mod_keys -= xeno
+
+/particles/bulwark_aoe
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = list("cross" = 1, "x" = 1, "rectangle" = 1, "up_arrow" = 1, "down_arrow" = 1, "square" = 1)
+	width = 500
+	height = 500
+	count = 2000
+	spawning = 50
+	gravity = list(0, 0.1)
+	color = LIGHT_COLOR_PURPLE
+	lifespan = 13
+	fade = 5
+	fadein = 5
+	scale = 0.8
+	friction = generator(GEN_NUM, 0.1, 0.15)
+	spin = generator(GEN_NUM, -20, 20)

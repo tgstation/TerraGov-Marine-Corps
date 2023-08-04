@@ -125,7 +125,7 @@
 
 	if(iscarbon(affected))
 		var/mob/living/carbon/C = affected
-		if(C.stagger)
+		if(C.IsStaggered())
 			mitigation_prob *= 0.4
 
 	if(!prob(mitigation_prob))

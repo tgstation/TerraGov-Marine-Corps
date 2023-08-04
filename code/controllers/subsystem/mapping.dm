@@ -36,6 +36,9 @@ SUBSYSTEM_DEF(mapping)
 	///The number of connected clients for the previous round
 	var/last_round_player_count
 
+	///shows the gravity value for each z level
+	var/list/gravity_by_z_level = list()
+
 //dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
 	if(!configs)
@@ -71,6 +74,7 @@ SUBSYSTEM_DEF(mapping)
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
 	initialize_reserved_level(transit.z_value)
+	calculate_default_z_level_gravities()
 	return SS_INIT_SUCCESS
 
 //Loads the number of players we had last round, for use in modular mapping
@@ -282,7 +286,7 @@ SUBSYSTEM_DEF(mapping)
 
 		shuttle_templates[S.shuttle_id] = S
 		map_templates[S.shuttle_id] = S
-	
+
 	for(var/drop_path in typesof(/datum/map_template/shuttle/minidropship))
 		var/datum/map_template/shuttle/drop = new drop_path()
 		minidropship_templates += drop
@@ -379,3 +383,20 @@ SUBSYSTEM_DEF(mapping)
 	for(var/B in areas)
 		var/area/A = B
 		A.reg_in_areas_in_z()
+
+///Generates baseline gravity levels for all z-levels based off traits
+/datum/controller/subsystem/mapping/proc/calculate_default_z_level_gravities()
+	for(var/z_level in 1 to length(z_list))
+		calculate_z_level_gravity(z_level)
+
+///Calculates the gravity for a z-level
+/datum/controller/subsystem/mapping/proc/calculate_z_level_gravity(z_level_number)
+	if(!isnum(z_level_number) || z_level_number < 1)
+		return FALSE
+
+	var/max_gravity = 1 //we default to standard grav
+
+	max_gravity = level_trait(z_level_number, ZTRAIT_GRAVITY) ? level_trait(z_level_number, ZTRAIT_GRAVITY) : 1
+
+	gravity_by_z_level["[z_level_number]"] = max_gravity
+	return max_gravity
