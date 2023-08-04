@@ -10,7 +10,7 @@
 	implanted_guy.put_in_active_hand(implanter_to_inject)
 
 	TEST_ASSERT(implanter_to_inject.attack(implanted_guy, implanted_guy), "[implanted_guy] failed to inject himself with [implanter_to_inject]")
-	TEST_ASSERT(!imp, "[implanter_to_inject] still has an implant in its implanter, despite being injected into [implanted_guy]")
+	TEST_ASSERT(!implanter_to_inject.imp, "[implanter_to_inject] still has an implant in its implanter, despite being injected into [implanted_guy]")
 
 	qdel(implanted_guy)
-	TEST_ASSERT(QDELETED(implant_in_planter), "[implanter_in_planter] has been injected into [implanted_guy], who has been deleted, but the implant still exists.")
+	TEST_ASSERT(QDELETED(implant_in_planter), "[implant_in_planter] has been injected into [implanted_guy], who has been deleted, but the implant still exists.")
