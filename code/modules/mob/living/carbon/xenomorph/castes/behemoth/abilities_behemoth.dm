@@ -139,6 +139,7 @@
 	if(charge_ability_on)
 		charge_off()
 		xeno_owner.update_icons()
+		add_cooldown(15 SECONDS)
 		return
 	if(!do_after(owner, BEHEMOTH_ROLL_WIND_UP, FALSE, owner, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
 		return
@@ -155,10 +156,6 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.fortify = TRUE
-	START_PROCESSING(SSprocessing, src)
-
-/datum/action/xeno_action/ready_charge/behemoth_roll/process()
-	message_admins("so real")
 
 /datum/action/xeno_action/ready_charge/behemoth_roll/do_stop_crushing()
 	. = ..()
@@ -294,7 +291,6 @@
 	plasma_cost = 3 // This is deducted per step taken during the ability.
 	cooldown_timer = 15 SECONDS
 	target_flags = XABB_TURF_TARGET
-	use_state_flags = XACT_USE_FORTIFIED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LANDSLIDE,
 	)
@@ -692,7 +688,6 @@
 	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. Alternate use destroys active pillars, starting with the oldest one."
 	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
-	use_state_flags = XACT_USE_FORTIFIED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EARTH_RISER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_EARTH_RISER_ALTERNATE,
@@ -841,7 +836,6 @@
 	plasma_cost = 35
 	cooldown_timer = 20 SECONDS
 	target_flags = XABB_TURF_TARGET
-	use_state_flags = XACT_USE_FORTIFIED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SEISMIC_FRACTURE,
 	)
@@ -1056,7 +1050,6 @@
 	ability_name = "Primal Wrath"
 	action_icon_state = "primal_wrath"
 	desc = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
-	use_state_flags = XACT_USE_FORTIFIED
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PRIMAL_WRATH,
