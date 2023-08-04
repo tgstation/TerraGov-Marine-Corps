@@ -1103,6 +1103,8 @@
 
 /datum/action/xeno_action/primal_wrath/action_activate()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(ability_active || currently_roaring)
+		return
 	if(xeno_owner.wrath_stored < xeno_owner.xeno_caste.wrath_max - (xeno_owner.xeno_caste.wrath_max * 0.2))
 		xeno_owner.balloon_alert(xeno_owner, "Not enough Wrath")
 		return
