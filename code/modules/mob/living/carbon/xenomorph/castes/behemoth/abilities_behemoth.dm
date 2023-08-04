@@ -156,6 +156,8 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.fortify = TRUE
+	for(var/mob/living/rider AS in xeno_owner.buckled_mobs)
+		xeno_owner.unbuckle_mob(rider)
 
 /datum/action/xeno_action/ready_charge/behemoth_roll/do_stop_crushing()
 	. = ..()
@@ -320,6 +322,8 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.face_atom(target)
 	xeno_owner.set_canmove(FALSE)
+	xeno_owner.fortify = TRUE
+	use_state_flags |= XACT_USE_FORTIFIED
 	playsound(owner, 'sound/effects/behemoth/landslide_roar.ogg', 40, TRUE)
 	var/which_step = pick(0, 1)
 	new /obj/effect/temp_visual/behemoth/landslide/dust(owner_turf, direction, which_step)
@@ -418,6 +422,8 @@
 	ability_active = FALSE
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.set_canmove(TRUE)
+	xeno_owner.fortify = FALSE
+	use_state_flags &= ~XACT_USE_FORTIFIED
 	if(cooldown_id)
 		clear_cooldown()
 	add_cooldown()

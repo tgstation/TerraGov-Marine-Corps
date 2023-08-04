@@ -57,7 +57,7 @@
 	return NONE
 
 /mob/living/carbon/xenomorph/behemoth/proc/carry_xeno(mob/living/carbon/target, forced = FALSE)
-	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB) || fortify)
 		if(forced)
 			to_chat(target, span_xenowarning("You cannot mount [src]"))
 			return
@@ -69,7 +69,7 @@
 		visible_message(span_warning("[forced ? "[target] fails to mount on [src]" : "[src] fails to carry [target]!"]"))
 		return
 	//Second check to make sure they're still valid to be carried
-	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB) || fortify)
 		return
 	buckle_mob(target, TRUE, TRUE, 90, 0, 1)
 
