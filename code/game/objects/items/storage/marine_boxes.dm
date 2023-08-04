@@ -5,33 +5,8 @@
 	icon_state = "case"
 	foldable = /obj/item/stack/sheet/wood
 
-// Copied from C:\Dev\SS13\TerraGov-Marine-Corps\code\game\objects\items\storage\storage.dm
-/obj/item/storage/box/crate/attack_self(mob/user)
-	//Clicking on itself will empty it, if it has the verb to do that.
-	if(allow_quick_empty)
-		quick_empty()
-		return
-
-	//Otherwise we'll try to fold it.
-	if ( length(contents) )
-		return
-
-	if ( !ispath(foldable) )
-		return
-
-	// Close any open UI windows first
-	for(var/mob/M in content_watchers)
-		close(M)
-
-	// Now make the plank
-	to_chat(user, span_notice("You broken [src] into a plank."))
-	new foldable(get_turf(src))
-	qdel(src)
-
 /obj/item/storage/box/crate/update_icon_state()
-	icon_state = initial(icon_state)
-	if(!length(contents))
-		icon_state = "empty_case"
+	icon_state = length(contents) ? initial(icon_state) : "empty_case"
 /obj/item/storage/box/crate/heavy_armor
 	name = "\improper B-Series defensive armor crate"
 	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
