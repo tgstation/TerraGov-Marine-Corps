@@ -951,3 +951,4 @@
 
 // widow spiderling mark signals
 #define COMSIG_SPIDERLING_MARK "spiderling_mark"
+#define COMSIG_SPIDERLING_RETURN "spiderling_return"

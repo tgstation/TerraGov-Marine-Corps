@@ -44,6 +44,7 @@
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, PROC_REF(apply_spiderling_jelly))
 	RegisterSignals(escorted_atom, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), PROC_REF(toggle_rest))
 	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_MARK, PROC_REF(decide_mark))
+	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_RETURN, PROC_REF(only_set_escorted_atom))
 
 /// Decides what to do when widow uses spiderling mark ability
 /datum/ai_behavior/spiderling/proc/decide_mark(source, atom/A)
