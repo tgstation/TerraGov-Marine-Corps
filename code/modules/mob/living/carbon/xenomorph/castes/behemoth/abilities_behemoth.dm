@@ -338,10 +338,12 @@
 	var/charge_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * LANDSLIDE_DAMAGE_MULTIPLIER
 	addtimer(CALLBACK(src, PROC_REF(do_charge), owner_turf, direction, charge_damage, which_step), LANDSLIDE_WIND_UP)
 
-/** Gets a list of the turfs affected by this ability, based on direction and range.
-* * origin_turf: The origin turf from which to start checking.
-* * direction: The direction to check in.
-* * range: The range in tiles to limit our checks to. */
+/**
+ * Gets a list of the turfs affected by this ability, based on direction and range.
+ * * origin_turf: The origin turf from which to start checking.
+ * * direction: The direction to check in.
+ * * range: The range in tiles to limit our checks to.
+*/
 /datum/action/xeno_action/activable/landslide/proc/get_affected_turfs(turf/origin_turf, direction, range)
 	if(!origin_turf || !direction || !range)
 		return
@@ -362,12 +364,14 @@
 		turfs_list += turf_to_check
 	return turfs_list
 
-/** Moves the user in the specified direction. This simulates movement by using step() and repeatedly calling itself.
-* Will repeatedly check a 3x1 rectangle in front of the user, applying its effects to valid targets and stopping early if the path is blocked.
-* * owner_turf: The turf where the owner is.
-* * direction: The direction to move in.
-* * damage: The damage we will deal to valid targets.
-* * which_step: Used to determine the initial positioning of visual effects. */
+/**
+ * Moves the user in the specified direction. This simulates movement by using step() and repeatedly calling itself.
+ * Will repeatedly check a 3x1 rectangle in front of the user, applying its effects to valid targets and stopping early if the path is blocked.
+ * * owner_turf: The turf where the owner is.
+ * * direction: The direction to move in.
+ * * damage: The damage we will deal to valid targets.
+ * * which_step: Used to determine the initial positioning of visual effects.
+*/
 /datum/action/xeno_action/activable/landslide/proc/do_charge(turf/owner_turf, direction, damage, which_step)
 	if(!ability_active || !direction)
 		return
@@ -410,8 +414,10 @@
 	new /obj/effect/temp_visual/behemoth/landslide/dust/charge(owner_turf, direction)
 	addtimer(CALLBACK(src, PROC_REF(do_charge), get_turf(xeno_owner), direction, damage, which_step), LANDSLIDE_STEP_DELAY)
 
-/** Ends the charge.
-* * reason: If specified, determines the reason why the charge ended, and does the respective balloon alert. Leave empty for no reason. */
+/**
+ * Ends the charge.
+ * * reason: If specified, determines the reason why the charge ended, and does the respective balloon alert. Leave empty for no reason.
+*/
 /datum/action/xeno_action/activable/landslide/proc/end_charge(reason)
 	ability_active = FALSE
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -431,9 +437,11 @@
 		if(LANDSLIDE_ENDED_NO_SELECTION) // During the target selection phase for the Primal Wrath version of this ability, no selection was made.
 			xeno_owner.balloon_alert(xeno_owner, "No selection made, cancelled")
 
-/** Applies several effects to a living target.
-* * living_target: The targeted living mob.
-* * damage: The damage inflicted by related effects. */
+/**
+ * Applies several effects to a living target.
+ * * living_target: The targeted living mob.
+ * * damage: The damage inflicted by related effects.
+*/
 /datum/action/xeno_action/activable/landslide/proc/hit_living(mob/living/living_target, damage)
 	if(!living_target || !damage)
 		return
@@ -445,10 +453,12 @@
 	shake_camera(living_target, max(1, LANDSLIDE_KNOCKDOWN_DURATION), 1)
 	living_target.apply_damage(damage, BRUTE, blocked = MELEE)
 
-/** Applies several effects to an object. Effects differ based on the object's type, with unique interactions for mechas and Earth Pillars.
-* * object_target: The targeted object.
-* * damage: The damage inflicted by related effects.
-* * ending: If TRUE, applies different effects to the target. */
+/**
+ * Applies several effects to an object. Effects differ based on the object's type, with unique interactions for mechas and Earth Pillars.
+ * * object_target: The targeted object.
+ * * damage: The damage inflicted by related effects.
+ * * ending: If TRUE, applies different effects to the target.
+*/
 /datum/action/xeno_action/activable/landslide/proc/hit_object(obj/object_target, damage, ending)
 	if(!object_target || !damage)
 		return
@@ -476,9 +486,11 @@
 	object_target.take_damage(damage * LANDSLIDE_DAMAGE_OBJECT_MODIFIER, MELEE)
 	return
 
-/** Applies several effects to a target turf, and its contents if applicable. Effects differ based on the turf type and its contents, with unique interactions for walls and objects.
-* * turf_target: The targeted turf.
-* * damage: The damage inflicted by related effects. */
+/**
+ * Applies several effects to a target turf, and its contents if applicable. Effects differ based on the turf type and its contents, with unique interactions for walls and objects.
+ * * turf_target: The targeted turf.
+ * * damage: The damage inflicted by related effects.
+*/
 /datum/action/xeno_action/activable/landslide/proc/ending_hit(obj/turf_target, damage)
 	if(!turf_target || !damage)
 		return
@@ -500,8 +512,10 @@
 				continue
 			hit_object(affected_object, damage, TRUE)
 
-/** Runs any checks associated to the Enhanced version of this ability, ending it early if conditions are met.
-* * times_called: Counter for the amount of times this proc has been called. This is used to determine the amount of time spent during the selection phase, cancelling the ability after some time. */
+/**
+ * Runs any checks associated to the Enhanced version of this ability, ending it early if conditions are met.
+ * * times_called: Counter for the amount of times this proc has been called. This is used to determine the amount of time spent during the selection phase, cancelling the ability after some time.
+*/
 /datum/action/xeno_action/activable/landslide/proc/enhanced_check_charge(times_called)
 	times_called++
 	if(!ability_active || length(enhanced_turfs) > LANDSLIDE_ENHANCED_POSSIBLE_SELECTIONS)
@@ -514,10 +528,12 @@
 		return
 	addtimer(CALLBACK(src, PROC_REF(enhanced_check_charge), times_called), LANDSLIDE_ENHANCED_WAIT_DELAY)
 
-/** Prepares selections made during the selection phase of this ability. Selected turfs are processed and adapted to the ability for their later usage.
-* If the maximum amount of selections has been reached, this proc will end the selection phase and execute the charge.
-* * source: References the source of this proc. Usually the owner.
-* * selected_atom: The atom that was selected by the user. This is later converted into a turf. */
+/**
+ * Prepares selections made during the selection phase of this ability. Selected turfs are processed and adapted to the ability for their later usage.
+ * If the maximum amount of selections has been reached, this proc will end the selection phase and execute the charge.
+ * * source: References the source of this proc. Usually the owner.
+ * * selected_atom: The atom that was selected by the user. This is later converted into a turf.
+*/
 /datum/action/xeno_action/activable/landslide/proc/enhanced_prepare_charge(datum/source, atom/selected_atom)
 	SIGNAL_HANDLER
 	if(!selected_atom)
@@ -562,14 +578,16 @@
 	animate(pixel_y = initial(xeno_owner.pixel_y), time = animation_time / 2, flags = CIRCULAR_EASING|EASE_IN)
 	playsound(xeno_owner, 'sound/effects/behemoth/landslide_enhanced_charge.ogg', 15, TRUE)
 
-/** Moves the user between the selections previously made. This simulates movement by using step() and repeatedly calling itself.
-* Will repeatedly check a 3x1 rectangle in front of the user, applying its effects to valid targets and stopping early if the path is blocked.
-* * direction: The direction to move in.
-* * damage: The damage we will deal to valid targets.
-* * speed: The speed at which we move. This is reduced when we're nearing our destination, to simulate a slow-down effect.
-* * steps_to_take: The amount of steps needed to reach our destination. This is used to determine when to move on to the next selection.
-* * which_charge: Which charge, or which selection, are we currently executing.
-* * steps_taken: The amount of steps we have taken. This is used to determine when to move on to the next selection. */
+/**
+ * Moves the user between the selections previously made. This simulates movement by using step() and repeatedly calling itself.
+ * Will repeatedly check a 3x1 rectangle in front of the user, applying its effects to valid targets and stopping early if the path is blocked.
+ * * direction: The direction to move in.
+ * * damage: The damage we will deal to valid targets.
+ * * speed: The speed at which we move. This is reduced when we're nearing our destination, to simulate a slow-down effect.
+ * * steps_to_take: The amount of steps needed to reach our destination. This is used to determine when to move on to the next selection.
+ * * which_charge: Which charge, or which selection, are we currently executing.
+ * * steps_taken: The amount of steps we have taken. This is used to determine when to move on to the next selection.
+*/
 /datum/action/xeno_action/activable/landslide/proc/enhanced_do_charge(direction, damage, speed, steps_to_take, which_charge = 1)
 	if(!ability_active || !direction)
 		return
@@ -617,10 +635,12 @@
 		new /obj/effect/temp_visual/behemoth/landslide/dust/charge(owner_turf, direction)
 	addtimer(CALLBACK(src, PROC_REF(enhanced_do_charge), direction, damage, speed, steps_to_take, which_charge), speed)
 
-/** Handles everything necessary before beginning the next charge.
-* * direction: The direction we will move in.
-* * damage: The damage we will deal in related effects.
-* * which_charge: Which charge, or which selection, we will execute. */
+/**
+ * Handles everything necessary before beginning the next charge.
+ * * direction: The direction we will move in.
+ * * damage: The damage we will deal in related effects.
+ * * which_charge: Which charge, or which selection, we will execute.
+*/
 /datum/action/xeno_action/activable/landslide/proc/enhanced_next_charge(direction, which_charge, damage)
 	if(!direction || !which_charge)
 		return
@@ -730,8 +750,10 @@
 		step_away(affected_living, target_turf, 1, 2)
 	active_pillars += new /obj/structure/earth_pillar(target_turf, xeno_owner)
 
-/** Changes the maximum amount of Earth Pillars that can be had.
-* If the user has more Earth Pillars active than the new maximum, it will destroy them, from oldest to newest, until meeting the new amount. */
+/**
+ * Changes the maximum amount of Earth Pillars that can be had.
+ * If the user has more Earth Pillars active than the new maximum, it will destroy them, from oldest to newest, until meeting the new amount.
+*/
 /datum/action/xeno_action/activable/earth_riser/proc/change_maximum_pillars(amount)
 	if(!amount)
 		return
@@ -842,13 +864,15 @@
 	var/datum/action/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/xeno_action/primal_wrath]
 	do_ability(target_turf, SEISMIC_FRACTURE_WIND_UP, primal_wrath_action?.ability_active? TRUE : FALSE)
 
-/** Handles the warnings, calling the following procs, as well as any alterations caused by Primal Wrath.
-* This has to be cut off from use_ability() to optimize code, due to an interaction with Earth Pillars.
-* Earth Pillars caught in the range of Seismic Fracture reflect the attack by calling this proc again.
-* * target_turf: The targeted turf.
-* * wind_up: The wind-up duration before the ability happens.
-* * enhanced: Whether this is enhanced by Primal Wrath or not.
-* * earth_riser: If this proc was called by an Earth Pillar, its attack radius is reduced. */
+/**
+ * Handles the warnings, calling the following procs, as well as any alterations caused by Primal Wrath.
+ * This has to be cut off from use_ability() to optimize code, due to an interaction with Earth Pillars.
+ * Earth Pillars caught in the range of Seismic Fracture reflect the attack by calling this proc again.
+ * * target_turf: The targeted turf.
+ * * wind_up: The wind-up duration before the ability happens.
+ * * enhanced: Whether this is enhanced by Primal Wrath or not.
+ * * earth_riser: If this proc was called by an Earth Pillar, its attack radius is reduced.
+*/
 /datum/action/xeno_action/activable/seismic_fracture/proc/do_ability(turf/target_turf, wind_up, enhanced, earth_pillar)
 	if(!target_turf)
 		return
@@ -882,13 +906,15 @@
 		target_turf, extra_turfs, turfs_to_attack, enhanced, SEISMIC_FRACTURE_ATTACK_RADIUS_ENHANCED, SEISMIC_FRACTURE_ATTACK_RADIUS_ENHANCED - SEISMIC_FRACTURE_ATTACK_RADIUS), \
 		wind_up + SEISMIC_FRACTURE_ENHANCED_DELAY)
 
-/** Handles the additional attacks caused by Primal Wrath. These are done iteratively rather than instantly, with a delay inbetween.
-* * origin_turf: The starting turf.
-* * extra_turfs: Any additional turfs that should be handled.
-* * excepted_turfs: Turfs that should be excepted from this proc.
-* * enhanced: Whether this is enhanced by Primal Wrath or not.
-* * range: The range to cover.
-* * iteration: The current iteration. */
+/**
+ * Handles the additional attacks caused by Primal Wrath. These are done iteratively rather than instantly, with a delay inbetween.
+ * * origin_turf: The starting turf.
+ * * extra_turfs: Any additional turfs that should be handled.
+ * * excepted_turfs: Turfs that should be excepted from this proc.
+ * * enhanced: Whether this is enhanced by Primal Wrath or not.
+ * * range: The range to cover.
+ * * iteration: The current iteration.
+*/
 /datum/action/xeno_action/activable/seismic_fracture/proc/do_attack_extra(turf/origin_turf, list/turf/extra_turfs, list/turf/excepted_turfs, enhanced, range, iteration)
 	if(!origin_turf || !range || !iteration || iteration > range)
 		return
@@ -908,10 +934,12 @@
 	iteration++
 	addtimer(CALLBACK(src, PROC_REF(do_attack_extra), origin_turf, extra_turfs, excepted_turfs, enhanced, range, iteration), SEISMIC_FRACTURE_ENHANCED_DELAY)
 
-/** Checks for any atoms caught in the attack's range, and applies several effects based on the atom's type.
-* * turfs_to_attack: The turfs affected by this proc.
-* * enhanced: Whether this is enhanced or not.
-* * instant: Whether this is done instantly or not. */
+/**
+ * Checks for any atoms caught in the attack's range, and applies several effects based on the atom's type.
+ * * turfs_to_attack: The turfs affected by this proc.
+ * * enhanced: Whether this is enhanced or not.
+ * * instant: Whether this is done instantly or not.
+*/
 /datum/action/xeno_action/activable/seismic_fracture/proc/do_attack(list/turf/turfs_to_attack, enhanced, instant)
 	if(!length(turfs_to_attack))
 		return
@@ -1092,8 +1120,10 @@
 	succeed_activate()
 	add_cooldown()
 
-/** Distorts the view of every valid living mob in range.
-* * origin_turf: The source location of this ability. */
+/**
+ * Distorts the view of every valid living mob in range.
+ * * origin_turf: The source location of this ability.
+*/
 /datum/action/xeno_action/primal_wrath/proc/do_ability()
 	if(!currently_roaring)
 		return
@@ -1122,9 +1152,11 @@
 	xeno_owner.fortify = FALSE
 	xeno_owner.set_canmove(TRUE)
 
-/** Checks if the affected target should no longer be affected by the ability.
-* * affected_living: The affected living mob.
-* * xeno_source: The source of the effects. */
+/**
+ * Checks if the affected target should no longer be affected by the ability.
+ * * affected_living: The affected living mob.
+ * * xeno_source: The source of the effects.
+*/
 /datum/action/xeno_action/primal_wrath/proc/ability_check(mob/living/affected_living, mob/living/carbon/xenomorph/xeno_source)
 	if(!affected_living || !xeno_source)
 		return
@@ -1153,11 +1185,13 @@
 	xeno_owner.wrath_stored = max(0, xeno_owner.wrath_stored - action_cost)
 	return SUCCEED_ACTIVATE_CANCEL
 
-/** When taking damage, resets decay and returns an amount of Wrath proportional to the damage.
-* If damage taken would kill the user, it is instead reduced, and
-* * source: The source of this proc.
-* * amount: The RAW amount of damage taken.
-* * amount_mod: If provided, this list includes modifiers applied to the damage. This, for example, can be useful for reducing the damage. */
+/**
+ * When taking damage, resets decay and returns an amount of Wrath proportional to the damage.
+ * If damage taken would kill the user, it is instead reduced, and
+ * * source: The source of this proc.
+ * * amount: The RAW amount of damage taken.
+ * * amount_mod: If provided, this list includes modifiers applied to the damage. This, for example, can be useful for reducing the damage.
+*/
 /datum/action/xeno_action/primal_wrath/proc/taking_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
 	if(amount <= 0 || owner.stat || owner.lying_angle)
@@ -1175,9 +1209,10 @@
 	decay_amount = initial(decay_amount)
 	xeno_owner.wrath_stored += amount * PRIMAL_WRATH_GAIN_MULTIPLIER
 
-/** Toggles the buff, which increases the owner's damage based on a multiplier, and gives them a particle effect.
-* * toggle: Whether to toggle it on or off.
-* * multiplier: The multiplier applied to the owner's damage.
+/**
+ * Toggles the buff, which increases the owner's damage based on a multiplier, and gives them a particle effect.
+ * * toggle: Whether to toggle it on or off.
+ * * multiplier: The multiplier applied to the owner's damage.
 */
 /datum/action/xeno_action/primal_wrath/proc/toggle_buff(toggle)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -1353,7 +1388,7 @@
 				playsound(src, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
 				new /obj/effect/temp_visual/behemoth/landslide/hit(current_turf)
 				new /obj/effect/temp_visual/behemoth/earth_pillar/broken(current_turf)
-				Destroy()
+				qdel(src)
 				return TRUE
 			attacks_to_destroy--
 			xeno_user.do_attack_animation(src)
@@ -1385,7 +1420,7 @@
 /obj/structure/earth_pillar/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			Destroy()
+			qdel(src)
 		if(EXPLODE_HEAVY)
 			take_damage(max_integrity / 2)
 		if(EXPLODE_LIGHT)
