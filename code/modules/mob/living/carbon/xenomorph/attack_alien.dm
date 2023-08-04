@@ -191,7 +191,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if (X.fortify)
+	if (X.fortify || X.behemoth_charging)
 		return FALSE
 
 	switch(X.a_intent)

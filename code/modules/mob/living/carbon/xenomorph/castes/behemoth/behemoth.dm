@@ -5,9 +5,9 @@
 	icon = 'icons/Xeno/3x3_Xenos.dmi'
 	icon_state = "Behemoth Walking"
 	bubble_icon = "alienleft"
-	health = 625
-	maxHealth = 625
-	plasma_stored = 175
+	health = 725
+	maxHealth = 725
+	plasma_stored = 140
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	drag_delay = 6

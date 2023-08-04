@@ -414,6 +414,8 @@
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
 	// *** Behemoth vars *** //
+	/// Whether we are currently charging or not.
+	var/behemoth_charging = FALSE
 	/// The amount of Wrath currently stored.
 	var/wrath_stored = 0
 

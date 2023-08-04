@@ -10,18 +10,18 @@
 	wound_type = "behemoth"
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 22
 
 	// *** Speed *** //
 	speed = -0.2
 	weeds_speed_mod = -0.2
 
 	// *** Plasma *** //
-	plasma_max = 175
-	plasma_gain = 17
+	plasma_max = 140
+	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 625
+	max_health = 825
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -33,8 +33,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	sunder_recover = 1.0
-	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 100, BIO = 35, FIRE = 35, ACID = 35)
+	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 35, BIO = 35, FIRE = 35, ACID = 35)
 	hard_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	// *** Minimap Icon *** //
@@ -72,23 +71,23 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 22
 
 	// *** Speed *** //
 	speed = -0.2
 
 	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 20
+	plasma_max = 160
+	plasma_gain = 16
 
 	// *** Health *** //
-	max_health = 650
+	max_health = 850
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 110, BIO = 40, FIRE = 40, ACID = 40)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
@@ -97,23 +96,23 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 24
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 225
-	plasma_gain = 22
+	plasma_max = 180
+	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 675
+	max_health = 875
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 120, BIO = 45, FIRE = 45, ACID = 45)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
 	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
@@ -123,24 +122,24 @@
 	ancient_message = "Let the land quake in fear as it is torn asunder."
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 24
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 250
-	plasma_gain = 25
+	plasma_max = 200
+	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 700
+	max_health = 900
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 130, BIO = 50, FIRE = 50, ACID = 50)
-	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
 /datum/xeno_caste/behemoth/primordial
@@ -150,22 +149,21 @@
 	wrath_max = 700
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 24
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 250
-	plasma_gain = 25
+	plasma_max = 200
+	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 700
+	max_health = 900
 
 	// *** Defense *** //
-	sunder_recover = 1.0
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 130, BIO = 50, FIRE = 50, ACID = 50)
-	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	// *** Abilities *** ///
 	actions = list(
