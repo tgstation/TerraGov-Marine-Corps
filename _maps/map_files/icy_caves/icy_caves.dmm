@@ -2835,11 +2835,9 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "pR" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "pT" = (
-/obj/effect/landmark/fob_sentry,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
@@ -7755,7 +7753,6 @@
 "Ns" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "Nt" = (

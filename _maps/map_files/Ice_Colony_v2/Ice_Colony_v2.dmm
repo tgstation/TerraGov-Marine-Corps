@@ -19474,7 +19474,6 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball/garbledradio)
 "eeV" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/taxiway)
 "efk" = (
@@ -21869,7 +21868,6 @@
 /area/ice_colony/surface/hangar/alpha)
 "hKV" = (
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/fob_sentry,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/rock)
 "hMm" = (
@@ -28451,7 +28449,6 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "qYn" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
@@ -34116,7 +34113,6 @@
 	},
 /area/ice_colony/surface/research)
 "xXd" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "xXm" = (

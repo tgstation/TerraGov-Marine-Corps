@@ -552,9 +552,9 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			Paralyze(CHARGE_SPEED(charge_datum) * 20)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 25)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2.5 SECONDS)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)

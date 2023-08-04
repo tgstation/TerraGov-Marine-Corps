@@ -393,3 +393,23 @@
   novaepee, doomvoyager:
   - rscadd: gnome; find him around around botany, the memorial, or at AI. He doesn't
       always appear.
+2023-07-29:
+  Lumipharon:
+  - bugfix: fixed another issue with xeno throws getting stuck on things
+  - balance: MG27 and MG60 can no longer use rail scopes
+  TiviPlus:
+  - bugfix: fixed  TTS for ghosts going across zlevels
+  forestbbbbbbb:
+  - bugfix: cic crash doesn't expose space on theseus
+  ivanmixo:
+  - bugfix: Fixed gravity giving infinite stamina
+  - rscdel: fob sentry landmark is gone
+  lbnesquik:
+  - qol: made bleeding show up on help intent self inspect
+  "novaepee and Pq\xFCax":
+  - rscadd: title art of an epic battle between mech vs queen
+  'sprites: Gregormack':
+  - imageadd: new karambit sprites
+2023-07-31:
+  Barnet2:
+  - admin: ' Gives PO the same timelock as Captain'

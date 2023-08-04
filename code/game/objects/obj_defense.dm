@@ -80,7 +80,7 @@
 			take_damage(rand(10, 90), BRUTE, BOMB, 0)
 
 
-/obj/hitby(atom/movable/AM)
+/obj/hitby(atom/movable/AM, speed = 5)
 	. = ..()
 	visible_message(span_warning("[src] was hit by [AM]."), visible_message_flags = COMBAT_MESSAGE)
 	var/tforce = 0

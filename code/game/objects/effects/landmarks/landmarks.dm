@@ -430,16 +430,6 @@
 						/obj/item/weapon/chainsword,
 						)
 
-/obj/effect/landmark/fob_sentry
-	name = "Fob sentry"
-	icon = 'icons/Marine/sentry.dmi'
-	icon_state = "sentry"
-
-/obj/effect/landmark/fob_sentry/Initialize(mapload)
-	. = ..()
-	GLOB.fob_sentries_loc += loc
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/sensor_tower
 	name = "Sensor tower"
 	icon = 'icons/obj/structures/sensor.dmi'

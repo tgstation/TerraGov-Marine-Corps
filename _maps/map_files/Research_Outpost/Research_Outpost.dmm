@@ -1530,7 +1530,6 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/north_west)
 "ho" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "hq" = (
@@ -4134,7 +4133,6 @@
 	},
 /area/outpost/caves/south)
 "sN" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/east)
 "sO" = (
@@ -8698,7 +8696,6 @@
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
 "NW" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "NX" = (

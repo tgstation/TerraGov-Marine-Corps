@@ -23,6 +23,8 @@
 #define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
 #define COMSIG_GLOB_DISK_GENERATED "!disk_produced"
 
+#define COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED "!ship_self_destruct_activated"
+
 /// from /obj/machinery/setAnchored(): (machine, anchoredstate)
 #define COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE "!machinery_anchored_change"
 
@@ -486,8 +488,6 @@
 #define COMSIG_LIVING_STATUS_SLOWDOWN "living_slowdown"			//from base of mob/living/set_slowdown() (amount, update)
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
 
-#define COMSIG_LIVING_STAGGER_CHANGED "living_stagger_changed"
-
 ///from end of fully_heal(): (admin_revive)
 #define COMSIG_LIVING_POST_FULLY_HEAL "living_post_fully_heal"
 
@@ -785,7 +785,7 @@
 #define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT "xenoability_unrelenting_force_select"
-#define COMSIG_XENOABILITY_GRAV_NADE "xenoability_grav_nade"
+#define COMSIG_XENOABILITY_PSYCHIC_VORTEX "xenoability_psychic_vortex"
 
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"
