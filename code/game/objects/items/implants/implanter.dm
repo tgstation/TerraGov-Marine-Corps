@@ -48,7 +48,7 @@
 		log_game(user, target, "implanted", src)
 		imp = null
 		update_icon()
-		return
+		return TRUE
 	to_chat(user, span_notice(" You fail to implant [target]."))
 
 /obj/item/implanter/neurostim
