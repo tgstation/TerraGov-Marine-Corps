@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Health scanner doesn't tell you you're pregnant if you hold an alien embryo in your hand anymore"

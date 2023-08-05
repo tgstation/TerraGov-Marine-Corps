@@ -70,3 +70,13 @@
   - bugfix: Fixes cape sprites for Rapier (Left) and Rapier (Right)
   yyzsong:
   - rscadd: Valhalla vendor now has volkite small cells (Serpenta ammo)
+2023-08-05:
+  Xander3359:
+  - rscadd: Navy Blue color preset
+  forestbbbbbbb:
+  - bugfix: fixed clickdrag aimbot
+  ivanmixo:
+  - code_imp: Brought our asset system up to date
+  - bugfix: Landing on cocoons actually gibs the person inside it now
+  - bugfix: Health scanner doesn't tell you you're pregnant if you hold an alien embryo
+      in your hand anymore
