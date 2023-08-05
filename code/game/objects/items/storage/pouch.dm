@@ -10,6 +10,8 @@
 	allow_drawing_method = TRUE
 	var/fill_type
 	var/fill_number = 0
+	//Defines how many versions of the
+	var/sprite_slots = null
 
 /obj/item/storage/pouch/Initialize(mapload)
 	. = ..()
@@ -35,6 +37,23 @@
 	..()
 	return user.equip_to_appropriate_slot(src)
 
+/obj/item/storage/pouch/update_icon_state()
+	if(!sprite_slots) //If there is no empty variation for a pouch, don't bother
+		return
+
+	var/total_weight = 0
+	for(var/i = 1; i <= length(contents); i++)
+		total_weight += contents[i].w_class
+
+	if(!storage_slots)
+		total_weight = ROUND_UP(total_weight / max_storage_space * sprite_slots)
+	else
+		total_weight = ROUND_UP(length(contents) / storage_slots * sprite_slots)
+
+	if(sprite_slots > total_weight)
+		icon_state = initial(icon_state) + "_" + num2text(total_weight)
+	else
+		icon_state = initial(icon_state)
 
 
 /obj/item/storage/pouch/general
@@ -48,6 +67,7 @@
 	name = "medium general pouch"
 	storage_slots = 2
 	icon_state = "medium_drop"
+	sprite_slots = 2
 	draw_mode = 0
 
 /obj/item/storage/pouch/general/large
@@ -55,6 +75,7 @@
 	storage_slots = null
 	max_storage_space = 6
 	icon_state = "large_drop"
+	sprite_slots = 3
 	draw_mode = 0
 
 /obj/item/storage/pouch/general/large/command/Initialize(mapload)
@@ -98,6 +119,7 @@
 	name = "survival pouch"
 	desc = "It can contain flashlights, a pill, a crowbar, metal sheets, and some bandages."
 	icon_state = "survival"
+	sprite_slots = 1
 	storage_slots = 6
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
@@ -214,6 +236,7 @@
 	name = "magazine pouch"
 	desc = "It can contain ammo magazines."
 	icon_state = "medium_ammo_mag"
+	sprite_slots = 2
 	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 2
 	draw_mode = 0
@@ -236,6 +259,7 @@
 	name = "magazine pouch"
 	desc = "This pouch can contain three ammo magazines."
 	icon_state = "large_ammo_mag"
+	sprite_slots = 3
 	storage_slots = 3
 
 /obj/item/storage/pouch/magazine/large/tx8full
