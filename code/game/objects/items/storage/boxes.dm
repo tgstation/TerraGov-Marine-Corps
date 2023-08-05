@@ -449,13 +449,6 @@
 	icon_state = "som_mealpack"
 	trash_item = /obj/item/trash/mre/som
 
-/obj/item/stack/rods/attack_self(mob/user)
-	var/list/mags = /obj/item/ammo_magazine
-	mags = typesof(mags)
-	for(var/I in mags)
-		new I(get_turf(src))
-
-
 /**
  * # fillable box
  *
