@@ -4278,8 +4278,8 @@
 "vI" = (
 /obj/structure/closet/crate/secure/ammo,
 /obj/item/big_ammo_box/ap,
-/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full,
-/obj/item/storage/box/visual/magazine/compact/tx15/slug/full,
+/obj/item/storage/box/visual/magazine/compact/sh15/flechette/full,
+/obj/item/storage/box/visual/magazine/compact/sh15/slug/full,
 /obj/item/storage/box/visual/magazine/compact/standard_smg/full,
 /obj/item/storage/box/visual/magazine/compact/standard_smg/full,
 /obj/item/storage/box/visual/magazine/compact/standard_revolver/full,
