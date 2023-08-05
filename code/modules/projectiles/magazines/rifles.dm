@@ -210,12 +210,12 @@
 	name = "\improper MG-60 GPMG box magazine (10x26mm)"
 	desc = "A belt box for the MG-60 general purpose machinegun."
 	icon_state = "t60"
+	icon_state_mini = "mag_gpmg"
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 200
 	reload_delay = 3 SECONDS
-	icon_state_mini = "mag_gpmg"
 
 //-------------------------------------------------------
 //PR-412L1 HEAVY PULSE RIFLE
@@ -224,11 +224,11 @@
 	name = "\improper PR-412L1 box magazine (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the PR-412L1 heavy pulse rifle."
 	icon_state = "m412l1"
+	icon_state_mini = "mag_box"
 	caliber = CALIBER_10X24_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 200
-	icon_state_mini = "mag_gpmg"
 
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE
@@ -238,9 +238,9 @@
 	desc = "A 7.62x39mm magazine that fits in the Type 71 rifle."
 	caliber = CALIBER_762X39
 	icon_state = "type_71"
+	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	max_rounds = 42
-	icon_state_mini = "mag_rifle_big"
 
 //TX-16 AUTOMATIC SHOTGUN
 
@@ -249,9 +249,9 @@
 	desc = "A magazine of 16 gauge flechette rounds, for the SH-15."
 	caliber = CALIBER_16G
 	icon_state = "tx15_flechette"
+	icon_state_mini = "mag_tx15_flechette"
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
 	max_rounds = 12
-	icon_state_mini = "mag_tx15_flechette"
 	bonus_overlay = "tx15_flech"
 
 /obj/item/ammo_magazine/rifle/tx15_slug
@@ -259,9 +259,9 @@
 	desc = "A magazine of 16 gauge slugs, for the SH-15."
 	caliber = CALIBER_16G
 	icon_state = "tx15_slug"
+	icon_state_mini = "mag_tx15_slug"
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
 	max_rounds = 12
-	icon_state_mini = "mag_tx15_slug"
 	bonus_overlay = "tx15_slug"
 
 //-------------------------------------------------------
@@ -272,11 +272,11 @@
 	desc = "A wide drum magazine carefully filled to capacity with 10x26mm specialized smart rounds."
 	caliber = CALIBER_10x26_CASELESS
 	icon_state = "sg29"
+	icon_state_mini = "mag_sg29"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
 	max_rounds = 250
 	reload_delay = 2.5 SECONDS
-	icon_state_mini = "mag_sg29"
 
 //-------------------------------------------------------
 //Sectoid Rifle
@@ -286,9 +286,9 @@
 	desc = "A magazine filled with powerful plasma rounds. The ammo inside doesn't look like anything you've seen before."
 	caliber = CALIBER_ALIEN
 	icon_state = "alien_rifle"
+	icon_state_mini = "mag_rifle_purple"
 	default_ammo = /datum/ammo/energy/plasma
 	max_rounds = 20
-	icon_state_mini = "mag_rifle_purple"
 
 //-------------------------------------------------------
 //Marine magazine sniper, or the SR-127.
@@ -297,17 +297,17 @@
 	desc = "A box magazine filled with 8.6x70mm rifle rounds for the SR-127."
 	caliber = CALIBER_86X70
 	icon_state = "tl127"
+	icon_state_mini = "mag_sniper"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
 	max_rounds = 10
-	icon_state_mini = "mag_sniper"
 	bonus_overlay = "tl127_mag"
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/flak
 	name = "SR-127 bolt action rifle flak magazine"
 	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the SR-127."
 	icon_state = "tl127_flak"
-	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
 	icon_state_mini = "mag_sniper_blue"
+	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
 	bonus_overlay = "tl127_flak"
 
 //-------------------------------------------------------
@@ -317,9 +317,9 @@
 	desc = "A box magazine filled with low pressure 8.6x70mm rifle rounds for the SR-81."
 	caliber = CALIBER_86X70
 	icon_state = "t81"
+	icon_state_mini = "mag_sniper"
 	default_ammo = /datum/ammo/bullet/sniper/auto
 	max_rounds = 20
-	icon_state_mini = "mag_sniper"
 
 //-------------------------------------------------------
 //G-11, AR-11
@@ -328,9 +328,9 @@
 	desc = "A magazine filled with 4.92×34mm rifle rounds for the AR-11."
 	caliber = CALIBER_492X34_CASELESS
 	icon_state = "tx11"
+	icon_state_mini = "mag_tx11"
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 70
-	icon_state_mini = "mag_tx11"
 
 //-------------------------------------------------------
 //AR-21
@@ -339,9 +339,9 @@
 	desc = "A magazine filled with 10x25mm rifle rounds for the AR-21."
 	caliber = CALIBER_10X25_CASELESS
 	icon_state = "t21"
+	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 30
-	icon_state_mini = "mag_rifle"
 
 //ALF-51B
 
@@ -349,12 +349,12 @@
 	name = "\improper ALF-51B box magazine (10x25mm)"
 	desc = "A box magazine for the ALF-51B machinecarbine."
 	icon_state = "t60"
+	icon_state_mini = "mag_t42"
 	caliber = CALIBER_10X25_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/som_machinegun
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 80
 	reload_delay = 1 SECONDS
-	icon_state_mini = "mag_t42"
 
 //-------------------------------------------------------
 //MKH98
@@ -364,9 +364,9 @@
 	desc = "A magazine filled with 7.62X39 rifle rounds for the MKH."
 	caliber = CALIBER_762X39
 	icon_state = "mkh98"
+	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 30
-	icon_state_mini = "mag_rifle"
 
 //-------------------------------------------------------
 //GL-54
@@ -375,10 +375,10 @@
 	desc = "A 20mm magazine loaded with airburst grenades. For use with the GL-54 or AR-55."
 	caliber = CALIBER_20MM
 	icon_state = "tx54_airburst"
+	icon_state_mini = "mag_sniper"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/tx54
 	max_rounds = 8
-	icon_state_mini = "mag_sniper"
 	greyscale_config = /datum/greyscale_config/ammo
 	greyscale_colors = COLOR_AMMO_AIRBURST
 
@@ -431,9 +431,9 @@
 	desc = "A enbloc clip filled with .30 caliber rifle rounds for the C1 Garand."
 	caliber = CALIBER_3006
 	icon_state = "garand"
+	icon_state_mini = "mag_sniper"
 	default_ammo = /datum/ammo/bullet/rifle/garand
 	max_rounds = 8
-	icon_state_mini = "mag_sniper"
 
 //-------------------------------------------------------
 //V-31 SOM rifle
@@ -443,27 +443,27 @@
 	desc = "A 10mm rifle magazine designed for the V-31."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "v31"
+	icon_state_mini = "mag_thin_cyan"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
-	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/som/ap
 	name = "\improper V-31 AP magazine (10x24mm)"
 	desc = "A 10mm rifle magazine designed for the V-31, loaded with armor piercing rounds."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "v31_ap"
+	icon_state_mini = "mag_thin_green"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 50
-	icon_state_mini = "mag_rifle_big_green"
 
 /obj/item/ammo_magazine/rifle/som/incendiary
 	name = "\improper V-31 incendiary magazine (10x24mm)"
 	desc = "A 10mm rifle magazine designed for the V-31, loaded with incendiary rounds."
 	icon_state = "v31_incend"
+	icon_state_mini = "mag_thin_red"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
-	icon_state_mini = "mag_rifle_big_red"
 
 //-------------------------------------------------------
 //V-41 Machine Gun
@@ -472,12 +472,12 @@
 	name = "\improper V-41 box magazine (10x26mm)"
 	desc = "A drum magazine for the V-41 machinegun."
 	icon_state = "v41"
+	icon_state_mini = "mag_drum_big_long"
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/som_machinegun
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 200
 	reload_delay = 3 SECONDS
-	icon_state_mini = "mag_gpmg"
 
 //-------------------------------------------------------
 //L-11 Sharpshooter Rifle
@@ -487,10 +487,10 @@
 	desc = "A 10mm DMR magazine."
 	caliber = CALIBER_10x27_CASELESS
 	icon_state = "l11"
+	icon_state_mini = "mag_rifle"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	max_rounds = 20
-	icon_state_mini = "mag_dmr"
 
 //-------------------------------------------------------
 //L-15 Battlecarbine
@@ -499,9 +499,9 @@
 	desc = "A magazine filled with 10x25mm rifle rounds for the L-15."
 	caliber = CALIBER_10X25_CASELESS
 	icon_state = "l15"
+	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 30
-	icon_state_mini = "mag_rifle"
 
 //-------------------------------------------------------
 //ML-12 Confrontation Rifle
@@ -510,6 +510,6 @@
 	desc = "A magazine filled with 10x28mm armor-piercing rifle rounds for the ML-12."
 	caliber = CALIBER_10X28_CASELESS
 	icon_state = "ml12"
+	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle
 	max_rounds = 25
-	icon_state_mini = "mag_rifle"

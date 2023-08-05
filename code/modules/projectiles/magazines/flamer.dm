@@ -12,7 +12,7 @@
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
 	flags_magazine = NONE
-	icon_state_mini = "tank"
+	icon_state_mini = "tank_light"
 
 	default_ammo = /datum/ammo/flamethrower
 
