@@ -449,6 +449,13 @@
 	icon_state = "som_mealpack"
 	trash_item = /obj/item/trash/mre/som
 
+/obj/item/stack/rods/attack_self(mob/user)
+	var/list/mags = /obj/item/ammo_magazine
+	mags = typesof(mags)
+	for(var/I in mags)
+		new I(get_turf(src))
+
+
 /**
  * # fillable box
  *
@@ -661,6 +668,7 @@
 		/obj/item/ammo_magazine/standard_mmg,
 		/obj/item/ammo_magazine/heavymachinegun,
 		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/ammo_magazine/som_mg,
 		/obj/item/cell/lasgun,
 	)
 	cant_hold = list(

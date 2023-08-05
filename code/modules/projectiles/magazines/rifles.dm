@@ -75,7 +75,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	max_rounds = 20
-	icon_state_mini = "mag_dmr"
+	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
 //T64 BR
@@ -98,7 +98,7 @@
 	desc = "A semi-rectangular box of rounds for the PR-11 Pulse Rifle."
 	icon_state = "m41a"
 	max_rounds = 95
-	icon_state_mini = "mag_rifle_big"
+	icon_state_mini = "mag_rifle_big_light"
 
 
 //-------------------------------------------------------
@@ -112,7 +112,7 @@
 	bonus_overlay = "ak_40"
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	max_rounds = 40
-	icon_state_mini = "mag_rifle_big"
+	icon_state_mini = "mag_rifle_brown"
 	scatter_mod = 2
 	aim_speed_mod = 0.1
 	wield_delay_mod = 0.1 SECONDS
@@ -120,17 +120,20 @@
 /obj/item/ammo_magazine/rifle/mpi_km/plum
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an old plum finish."
 	icon_state = "ak_40_plum"
+	icon_state_mini = "mag_rifle_darkpurple"
 	bonus_overlay = "ak_40_plum"
 
 /obj/item/ammo_magazine/rifle/mpi_km/black
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an modern black polymer finish."
 	icon_state = "ak_40_black"
+	icon_state_mini = "mag_rifle"
 	bonus_overlay = "ak_40_black"
 
 /obj/item/ammo_magazine/rifle/mpi_km/carbine
 	name = "\improper V-34 magazine (7.62x39mm)"
 	desc = "A 30 round 7.62x39mm magazine for the Kalashnikov series of firearms."
 	icon_state = "ak_30"
+	icon_state_mini = "mag_rifle_brown"
 	bonus_overlay = "ak_30"
 	max_rounds = 30
 	scatter_mod = 0
@@ -140,17 +143,20 @@
 /obj/item/ammo_magazine/rifle/mpi_km/carbine/plum
 	desc = "A 30 round 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an old plum finish."
 	icon_state = "ak_30_plum"
+	icon_state_mini = "mag_rifle_darkpurple"
 	bonus_overlay = "ak_30_plum"
 
 /obj/item/ammo_magazine/rifle/mpi_km/carbine/black
 	desc = "A 30 round 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an modern black polymer finish."
 	icon_state = "ak_30_black"
+	icon_state_mini = "mag_rifle"
 	bonus_overlay = "ak_30_black"
 
 /obj/item/ammo_magazine/rifle/mpi_km/extended
 	name = "\improper MPi-KM extended magazine (7.62x39mm)"
 	desc = "A 60 round 7.62x39mm Kalashnikov magazine. this one is notably heavy."
 	icon_state = "ak47_ext"
+	icon_state_mini = "mag_rifle"
 	bonus_overlay = "ak47_ex"
 	max_rounds = 60
 	aim_speed_mod = 0.2
@@ -164,6 +170,7 @@
 	caliber = CALIBER_762X39
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	icon_state = "rpd"
+	icon_state_mini = "mag_drum_big"
 	bonus_overlay = "rpd_100"
 	max_rounds = 100
 
@@ -187,6 +194,7 @@
 	desc = "A 5.56x45mm magazine for the FAMAS assault rifle."
 	caliber = CALIBER_556X45
 	icon_state = "famas"
+	icon_state_mini = "mag_rifle_greyglue"
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 24
 
@@ -201,7 +209,7 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 120
-	icon_state_mini = "mag_t42"
+	icon_state_mini = "mag_drum"
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
@@ -299,7 +307,7 @@
 	icon_state = "tl127"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
 	max_rounds = 10
-	icon_state_mini = "mag_sniper"
+	icon_state_mini = "mag_rifle_big"
 	bonus_overlay = "tl127_mag"
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/flak
@@ -307,7 +315,7 @@
 	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the SR-127."
 	icon_state = "tl127_flak"
 	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
-	icon_state_mini = "mag_sniper_blue"
+	icon_state_mini = "mag_rifle_big_blue"
 	bonus_overlay = "tl127_flak"
 
 //-------------------------------------------------------
@@ -319,7 +327,7 @@
 	icon_state = "t81"
 	default_ammo = /datum/ammo/bullet/sniper/auto
 	max_rounds = 20
-	icon_state_mini = "mag_sniper"
+	icon_state_mini = "mag_rifle_greyblue"
 
 //-------------------------------------------------------
 //G-11, AR-11
@@ -354,7 +362,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 80
 	reload_delay = 1 SECONDS
-	icon_state_mini = "mag_t42"
+	icon_state_mini = "mag_gpmg"
 
 //-------------------------------------------------------
 //MKH98
@@ -366,7 +374,7 @@
 	icon_state = "mkh98"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 30
-	icon_state_mini = "mag_rifle"
+	icon_state_mini = "mag_rifle_greyblue"
 
 //-------------------------------------------------------
 //GL-54
@@ -378,7 +386,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/tx54
 	max_rounds = 8
-	icon_state_mini = "mag_sniper"
+	icon_state_mini = "mag_sniper_blue"
 	greyscale_config = /datum/greyscale_config/ammo
 	greyscale_colors = COLOR_AMMO_AIRBURST
 
@@ -387,6 +395,7 @@
 	desc = "A 20mm magazine loaded with HE grenades. For use with the GL-54 or AR-55."
 	default_ammo = /datum/ammo/tx54/he
 	icon_state = "tx54_airburst"
+	icon_state_mini = "mag_sniper_red"
 	greyscale_colors = COLOR_AMMO_HIGH_EXPLOSIVE
 
 /obj/item/ammo_magazine/rifle/tx54/incendiary
@@ -394,6 +403,7 @@
 	desc = "A 20mm magazine loaded with incendiary grenades. For use with the GL-54 or AR-55."
 	default_ammo = /datum/ammo/tx54/incendiary
 	icon_state = "tx54_airburst"
+	icon_state_mini = "mag_sniper_orange"
 	greyscale_colors = COLOR_AMMO_INCENDIARY
 
 /obj/item/ammo_magazine/rifle/tx54/smoke
@@ -401,6 +411,7 @@
 	desc = "A 20mm magazine loaded with tactical smoke grenades. For use with the GL-54 or AR-55."
 	default_ammo = /datum/ammo/tx54/smoke
 	icon_state = "tx54_airburst"
+	icon_state_mini = "mag_sniper_green"
 	greyscale_colors = COLOR_AMMO_TACTICAL_SMOKE
 
 /obj/item/ammo_magazine/rifle/tx54/smoke/dense
@@ -408,6 +419,7 @@
 	desc = "A 20mm magazine loaded with smoke grenades. For use with the GL-54 or AR-55."
 	default_ammo = /datum/ammo/tx54/smoke/dense
 	icon_state = "tx54_airburst"
+	icon_state_mini = "mag_sniper_cyan"
 	greyscale_colors = COLOR_AMMO_SMOKE
 
 /obj/item/ammo_magazine/rifle/tx54/smoke/tangle
@@ -415,6 +427,7 @@
 	desc = "A 20mm magazine loaded with tanglefoot grenades. For use with the GL-54 or AR-55."
 	default_ammo = /datum/ammo/tx54/smoke/tangle
 	icon_state = "tx54_airburst"
+	icon_state_mini = "mag_sniper_purple"
 	greyscale_colors = COLOR_AMMO_TANGLEFOOT
 
 /obj/item/ammo_magazine/rifle/tx54/razor
@@ -422,6 +435,7 @@
 	desc = "A 20mm magazine loaded with razorburn grenades. For use with the GL-54 or AR-55."
 	default_ammo = /datum/ammo/tx54/razor
 	icon_state = "tx54_airburst"
+	icon_state_mini = "mag_sniper_yellow"
 	greyscale_colors = COLOR_AMMO_RAZORBURN
 
 //-------------------------------------------------------
@@ -433,7 +447,7 @@
 	icon_state = "garand"
 	default_ammo = /datum/ammo/bullet/rifle/garand
 	max_rounds = 8
-	icon_state_mini = "mag_sniper"
+	icon_state_mini = "clips"
 
 //-------------------------------------------------------
 //V-31 SOM rifle
@@ -446,7 +460,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
-	icon_state_mini = "mag_rifle_big"
+	icon_state_mini = "mag_thin_cyan"
 
 /obj/item/ammo_magazine/rifle/som/ap
 	name = "\improper V-31 AP magazine (10x24mm)"
@@ -456,14 +470,14 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 50
-	icon_state_mini = "mag_rifle_big_green"
+	icon_state_mini = "mag_thin_green"
 
 /obj/item/ammo_magazine/rifle/som/incendiary
 	name = "\improper V-31 incendiary magazine (10x24mm)"
 	desc = "A 10mm rifle magazine designed for the V-31, loaded with incendiary rounds."
 	icon_state = "v31_incend"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
-	icon_state_mini = "mag_rifle_big_red"
+	icon_state_mini = "mag_thin_red"
 
 //-------------------------------------------------------
 //V-41 Machine Gun
