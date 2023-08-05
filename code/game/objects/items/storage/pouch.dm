@@ -10,7 +10,7 @@
 	allow_drawing_method = TRUE
 	var/fill_type
 	var/fill_number = 0
-	//Defines how many versions of the
+	///Defines how many versions of the empty sprite there are
 	var/sprite_slots = null
 
 /obj/item/storage/pouch/Initialize(mapload)
@@ -38,7 +38,7 @@
 	return user.equip_to_appropriate_slot(src)
 
 /obj/item/storage/pouch/update_icon_state()
-	if(!sprite_slots) //If there is no empty variation for a pouch, don't bother
+	if(!sprite_slots)
 		return
 
 	var/total_weight = 0
