@@ -117,6 +117,7 @@
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/smokebomb = 25,
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
+			/obj/item/explosive/grenade/sticky/cloaker = 10,
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
@@ -136,7 +137,7 @@
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
-			/obj/item/storage/box/sentry = 4,
+			/obj/item/storage/box/crate/sentry = 4,
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
@@ -552,7 +553,7 @@
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = -1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = -1,
 			/obj/structure/largecrate/supply/weapons/standard_atgun = -1,
-			/obj/item/storage/box/sentry = -1,
+			/obj/item/storage/box/crate/sentry = -1,
 			/obj/item/storage/box/tl102 = -1,
 			/obj/item/weapon/gun/heavymachinegun = -1,
 			/obj/item/ammo_magazine/heavymachinegun = -1,
@@ -966,7 +967,7 @@
 	icon_state = "bloodvendor"
 	icon_vend = "bloodvendor-vend"
 	icon_deny = "bloodvendor-deny"
-	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O negative is the universal donor, use it!; Prevent hypovolemic shock starting today!"
+	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O negative is the universal donor, use it!;Prevent hypovolemic shock starting today!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,
@@ -1513,6 +1514,7 @@
 			/obj/item/ammo_magazine/smg/som = -1,
 			/obj/item/weapon/gun/shotgun/som = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = -1,
+			/obj/item/cell/lasgun/volkite/small = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin = -1,

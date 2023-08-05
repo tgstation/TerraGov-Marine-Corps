@@ -34,7 +34,7 @@
 	var/severity_strength = (4 - severity)
 
 	add_slowdown(max(0, (severity_strength + 2) * bomb_armor_ratio)) //3 slowdown from a light explosion if you have no bomb armour
-	adjust_stagger(max(0, ((severity_strength + 1) * bomb_armor_ratio) - 1)) //enough armour makes you immune to the stagger
+	adjust_stagger(max(0, ((severity_strength + 1) SECONDS * bomb_armor_ratio) - 1 SECONDS)) //enough armour makes you immune to the stagger
 	adjust_sunder(max(0, 10 * severity_strength * bomb_armor_ratio))
 
 	//Damage

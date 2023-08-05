@@ -374,7 +374,7 @@
 			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
 			update_icon()
 			if(!issamexenohive(M)) //If the target is not friendly, stagger and slow it, and activate faster.
-				M.adjust_stagger(3) //Apply stagger and slowdown so the carrier doesn't have to suicide when going for direct hugger hits.
+				M.adjust_stagger(3 SECONDS) //Apply stagger and slowdown so the carrier doesn't have to suicide when going for direct hugger hits.
 				M.add_slowdown(3)
 				pre_leap(impact_time) //Go into the universal leap set up proc
 				return
@@ -757,7 +757,7 @@
 		if(isxeno(target)) //Xenos aren't affected by sticky resin
 			continue
 
-		target.adjust_stagger(3)
+		target.adjust_stagger(3 SECONDS)
 		target.add_slowdown(15)
 		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
 

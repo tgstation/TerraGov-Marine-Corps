@@ -427,7 +427,7 @@
 /mob/living/carbon/human/apply_acid_spray_damage(damage)
 	take_overall_damage(damage, BURN, ACID, updating_health = TRUE)
 	emote("scream")
-	Paralyze(20)
+	Paralyze(2 SECONDS)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	ExtinguishMob()
@@ -472,7 +472,7 @@
 	playsound(C, "alien_drool", 15, TRUE)
 	do
 		face_atom(C)
-		if(stagger)
+		if(IsStaggered())
 			return FALSE
 		do_attack_animation(C)
 		C.reagents.add_reagent(toxin, transfer_amount)
