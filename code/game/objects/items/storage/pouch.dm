@@ -18,6 +18,7 @@
 	if(fill_number && fill_type)
 		for(var/i in 1 to fill_number)
 			new fill_type(src)
+	update_icon_state()
 
 /obj/item/storage/pouch/examine(mob/user)
 	. = ..()
