@@ -73,7 +73,7 @@
 	max_rounds = 75
 	current_rounds = 75
 	reload_delay = 3 SECONDS
-	icon_state_mini = "tank_orange"
+	icon_state_mini = "tank_red"
 
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"

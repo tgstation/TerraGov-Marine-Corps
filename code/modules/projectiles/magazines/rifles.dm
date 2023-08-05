@@ -9,33 +9,33 @@
 	desc = "A 10mm assault rifle magazine."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "m412"
+	icon_state_mini = "mag_rifle"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 40
-	icon_state_mini = "mag_rifle"
 
 /obj/item/ammo_magazine/rifle/extended
 	name = "\improper PR-412 extended magazine (10x24mm)"
 	desc = "A 10mm assault extended rifle magazine."
 	icon_state = "m412_ext"
-	max_rounds = 60
 	icon_state_mini = "mag_rifle_big_yellow"
+	max_rounds = 60
 	bonus_overlay = "m412_ex"
 
 /obj/item/ammo_magazine/rifle/incendiary
 	name = "\improper PR-412 incendiary magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	icon_state = "m412_incendiary"
-	default_ammo = /datum/ammo/bullet/rifle/incendiary
 	icon_state_mini = "mag_rifle_big_red"
+	default_ammo = /datum/ammo/bullet/rifle/incendiary
 	bonus_overlay = "m412_incend"
 
 /obj/item/ammo_magazine/rifle/ap
 	name = "\improper PR-412 AP magazine (10x24mm)"
 	desc = "A 10mm armor piercing magazine."
 	icon_state = "m412_ap"
-	default_ammo = /datum/ammo/bullet/rifle/ap
 	icon_state_mini = "mag_rifle_big_green"
+	default_ammo = /datum/ammo/bullet/rifle/ap
 	bonus_overlay = "m412_ap"
 
 //-------------------------------------------------------
@@ -46,10 +46,10 @@
 	desc = "A 10mm carbine magazine."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "t18"
+	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 36
-	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
 //T12 Assault Rifle
@@ -59,10 +59,10 @@
 	desc = "A 10mm assault rifle magazine."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "t12"
+	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
-	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
 //T37 DMR
@@ -72,10 +72,10 @@
 	desc = "A 10mm DMR magazine."
 	caliber = CALIBER_10x27_CASELESS
 	icon_state = "t37"
+	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	max_rounds = 20
-	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
 //T64 BR
@@ -85,10 +85,10 @@
 	desc = "A 10mm battle rifle magazine."
 	caliber = CALIBER_10x265_CASELESS
 	icon_state = "t64"
+	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_br
 	max_rounds = 36
-	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
@@ -97,8 +97,8 @@
 	name = "\improper PR-11 magazine (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the PR-11 Pulse Rifle."
 	icon_state = "m41a"
-	max_rounds = 95
 	icon_state_mini = "mag_rifle_big_light"
+	max_rounds = 95
 
 
 //-------------------------------------------------------
@@ -109,10 +109,10 @@
 	desc = "A 40 round 7.62x39mm magazine for the Kalashnikov series of firearms."
 	caliber = CALIBER_762X39
 	icon_state = "ak_40"
+	icon_state_mini = "mag_rifle_brown"
 	bonus_overlay = "ak_40"
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	max_rounds = 40
-	icon_state_mini = "mag_rifle_brown"
 	scatter_mod = 2
 	aim_speed_mod = 0.1
 	wield_delay_mod = 0.1 SECONDS
@@ -182,9 +182,9 @@
 	desc = "A 5.56x45mm magazine for the M16 assault rifle platform."
 	caliber = CALIBER_556X45
 	icon_state = "m16" //PLACEHOLDER
+	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
-	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
 //FAMAS RIFLE
@@ -194,7 +194,7 @@
 	desc = "A 5.56x45mm magazine for the FAMAS assault rifle."
 	caliber = CALIBER_556X45
 	icon_state = "famas"
-	icon_state_mini = "mag_rifle_greyglue"
+	icon_state_mini = "mag_rifle_greyblue"
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 24
 
@@ -205,11 +205,11 @@
 	name = "\improper MG-42 drum magazine (10x24mm)"
 	desc = "A drum magazine for the MG-42 light machine gun."
 	icon_state = "t42"
+	icon_state_mini = "mag_drum"
 	caliber = CALIBER_10X24_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 120
-	icon_state_mini = "mag_drum"
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun

@@ -255,6 +255,7 @@
 /obj/item/ammo_magazine/handful/micro_grenade
 	name = "handful of airburst micro grenades (10g)"
 	icon_state = "micro_grenade_airburst"
+	icon_state_mini = "40mm_cyan"
 	current_rounds = 3
 	max_rounds = 3
 	default_ammo = /datum/ammo/bullet/micro_rail/airburst
@@ -263,16 +264,19 @@
 /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath
 	name = "handful of dragon's breath micro grenades (10g)"
 	icon_state = "micro_grenade_incendiary"
+	icon_state_mini = "40mm_orange"
 	default_ammo = /datum/ammo/bullet/micro_rail/dragonbreath
 
 /obj/item/ammo_magazine/handful/micro_grenade/cluster
 	name = "handful of clustermunition micro grenades (10g)"
 	icon_state = "micro_grenade_cluster"
+	icon_state_mini = "40mm_red"
 	default_ammo = /datum/ammo/bullet/micro_rail/cluster
 
 /obj/item/ammo_magazine/handful/micro_grenade/smoke_burst
 	name = "handful of smoke burst micro grenades (10g)"
 	icon_state = "micro_grenade_smoke"
+	icon_state_mini = "40mm_blue"
 	default_ammo = /datum/ammo/bullet/micro_rail/smoke_burst
 
 //----------------------------------------------------------------//
