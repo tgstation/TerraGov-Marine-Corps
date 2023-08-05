@@ -410,7 +410,8 @@
 /obj/item/storage/pouch/grenade
 	name = "grenade pouch"
 	desc = "It can contain grenades."
-	icon_state = "explosive"
+	icon_state = "grenade"
+	sprite_slots = 6
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/explosive/grenade,
