@@ -427,5 +427,5 @@
 	default_ammo = /datum/ammo/bullet/coilgun
 	max_rounds = 5
 	reload_delay = 10
-	icon_state_mini = "mag_railgun"
+	icon_state_mini = "mag_dmr"
 
