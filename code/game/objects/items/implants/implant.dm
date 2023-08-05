@@ -88,16 +88,16 @@
 
 /obj/item/implant/proc/unimplant()
 	SHOULD_CALL_PARENT(TRUE)
-	forceMove(get_turf(implant_owner))
 	if(!implanted)
 		return FALSE
 	activation_action?.remove_action(implant_owner)
 	if(flags_implant & ACTIVATE_ON_HEAR)
 		UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
-	implant_owner = null
 	implanted = FALSE
 	part.implants -= src
 	part = null
+	forceMove(get_turf(implant_owner))
+	implant_owner = null
 
 ///Returns info about a implant concerning its usage and such
 /obj/item/implant/proc/get_data()
