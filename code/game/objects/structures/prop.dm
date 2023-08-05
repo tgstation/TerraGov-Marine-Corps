@@ -2045,5 +2045,17 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "error"
 
+/obj/structure/prop/som_fighter
+	name = "\improper Harbinger"
+	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "SOM_fighter"
+	pixel_x = -33
+	pixel_y = -10
+
+/obj/structure/prop/som_fighter/empty
+	icon_state = "SOM_fighter_empty"
+	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, this one seems to be unarmed currently."
+
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK
