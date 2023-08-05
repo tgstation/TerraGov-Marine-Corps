@@ -273,7 +273,7 @@
 		return FALSE
 
 	if(owner.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.heals++
 	GLOB.round_statistics.psychic_cures++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_cures")

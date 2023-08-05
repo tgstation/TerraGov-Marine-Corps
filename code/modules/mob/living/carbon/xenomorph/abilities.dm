@@ -80,7 +80,7 @@
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	if(owner.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.weeds_planted++
 	add_cooldown()
 	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
@@ -1217,7 +1217,7 @@
 	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
 
 	if(owner.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.drained++
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
@@ -1312,7 +1312,7 @@
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
 	if(owner.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.cocooned++
 
 /////////////////////////////////

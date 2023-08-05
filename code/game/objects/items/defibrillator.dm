@@ -303,7 +303,7 @@
 	H.dead_ticks = 0 //We reset the DNR time
 	REMOVE_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(user.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.revives++
 	GLOB.round_statistics.total_human_revives[H.faction]++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives[H.faction]")

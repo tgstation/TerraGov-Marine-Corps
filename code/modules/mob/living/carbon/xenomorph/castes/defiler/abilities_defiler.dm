@@ -212,7 +212,7 @@
 		return fail_activate()
 
 	if(owner.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.war_crimes++
 	GLOB.round_statistics.defiler_neurogas_uses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_neurogas_uses")
@@ -341,7 +341,7 @@
 	qdel(alien_egg)
 
 	if(owner.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.war_crimes++
 	GLOB.round_statistics.defiler_inject_egg_neurogas++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_inject_egg_neurogas")

@@ -55,7 +55,7 @@
 				A.shock(usr, charge_percent)
 				var/mob/user = usr
 				if(user.client)
-					var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+					var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 					personal_statistics.apcs_repaired++
 			else
 				A.shorted = TRUE

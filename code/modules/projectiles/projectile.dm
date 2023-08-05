@@ -283,7 +283,7 @@
 	if(ismob(firer) && !recursivity)
 		var/mob/mob_firer = firer
 		if(mob_firer.client)
-			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[mob_firer.client]
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[mob_firer.ckey]
 			personal_statistics.projectiles_fired++
 		GLOB.round_statistics.total_projectiles_fired[mob_firer.faction]++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired[mob_firer.faction]")

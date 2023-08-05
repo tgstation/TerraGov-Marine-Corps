@@ -744,8 +744,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		else
 			parts += "<div class='panel redborder'>"
 			parts += span_redtext("You did not survive the events on [SSmapping.configs[GROUND_MAP].map_name]...")
-		if(GLOB.personal_statistics_list[C])
-			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[C]
+		if(GLOB.personal_statistics_list[C.ckey])
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[C.ckey]
 			parts += personal_statistics.compose_report()
 	else
 		parts += "<div class='panel stationborder'>"

@@ -330,7 +330,7 @@
 		miner_integrity -= 25
 		set_miner_status()
 		if(miner_status == MINER_DESTROYED && X.client)
-			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.client]
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
 			personal_statistics.miner_sabotages_performed++
 
 /obj/machinery/miner/proc/set_miner_status()

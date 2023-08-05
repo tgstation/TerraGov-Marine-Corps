@@ -840,7 +840,7 @@
 	stat = new_stat
 	if(. == DEAD && client)
 		//This would go on on_revive() but that is a mob/living proc
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 		personal_statistics.times_revived++
 	SEND_SIGNAL(src, COMSIG_MOB_STAT_CHANGED, ., new_stat)
 

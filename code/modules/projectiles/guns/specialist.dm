@@ -696,7 +696,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(!.)
 		return FALSE
 	if(gun_user.client && istype(chamber_items[1], /obj/item/ammo_magazine/rocket/sadar/wp))
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.ckey]
 		personal_statistics.war_crimes++
 
 /obj/item/weapon/gun/launcher/rocket/sadar/valhalla
@@ -734,7 +734,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(!.)
 		return FALSE
 	if(gun_user.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.ckey]
 		personal_statistics.war_crimes++
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
@@ -896,7 +896,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(!.)
 		return FALSE
 	if(gun_user.client && istype(in_chamber, /obj/item/ammo_magazine/rocket/som/thermobaric || /obj/item/ammo_magazine/rocket/som/rad || /obj/item/ammo_magazine/rocket/som/incendiary))
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.ckey]
 		personal_statistics.war_crimes++
 
 /obj/item/weapon/gun/launcher/rocket/som/rad
@@ -938,7 +938,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(!.)
 		return FALSE
 	if(gun_user.client && istype(in_chamber, /obj/item/ammo_magazine/rocket/icc/thermobaric))
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.ckey]
 		personal_statistics.war_crimes++
 
 //-------------------------------------------------------

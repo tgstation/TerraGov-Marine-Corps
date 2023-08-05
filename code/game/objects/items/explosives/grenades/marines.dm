@@ -277,7 +277,7 @@
 	if(!.)
 		return FALSE
 	if(user.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.war_crimes++
 
 /obj/item/explosive/grenade/smokebomb/cloak
@@ -344,7 +344,7 @@
 	if(!.)
 		return FALSE
 	if(user.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.war_crimes++
 
 /obj/item/explosive/grenade/phosphorus/upp

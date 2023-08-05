@@ -46,7 +46,7 @@
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbing)
 	log_combat(src, src, "[deathmessage]")
 	if(client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 		personal_statistics.deaths++
 
 	if(deathmessage && !silent && !gibbing)

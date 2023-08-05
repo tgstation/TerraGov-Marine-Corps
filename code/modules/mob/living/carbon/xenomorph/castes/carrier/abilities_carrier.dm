@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	succeed_activate()
 	add_cooldown()
 	if(owner.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.huggers_created++
 
 // ***************************************

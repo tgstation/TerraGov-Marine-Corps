@@ -248,7 +248,7 @@
 		//Record those sick rocket shots
 		//Is not part of record_projectiles_frozen() because it is probably bad to be running that for every bullet!
 		if(istype(proj.ammo, /datum/ammo/rocket) && owner.client)
-			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 			personal_statistics.rockets_reflected++
 
 	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles), TRUE)

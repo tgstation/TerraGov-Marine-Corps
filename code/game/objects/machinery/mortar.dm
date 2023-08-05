@@ -399,7 +399,7 @@
 		shells_fired++
 		QDEL_NULL(in_chamber)
 	if(user.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.artillery_fired += shells_fired
 		if(war_crimes_counter)
 			personal_statistics.war_crimes += war_crimes_counter

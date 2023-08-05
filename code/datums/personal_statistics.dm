@@ -2,21 +2,21 @@
 This file is where all variables and functions related to personal lists are defined
 I've done my best to make it as organized for future additions and changes, but yes it is a lot
 
-The personal_statistics_list serves as a large directory for clients and their version of /datum/personal_statistics
+The personal_statistics_list serves as a large directory for ckeys and their version of /datum/personal_statistics
 In /datum/personal_statistics is where all the data is stored, manipulated by various procs throughout the code
 
 The most basic way to add to something is like this:
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.stat_you_want_changed++
 
-It searches for the client in the global list (you may need to do mob.client) and then grabs their /datum/personal_statistics
+It searches for the ckey in the global list (you may need to do mob.ckey) and then grabs their /datum/personal_statistics
 Then it accesses the desired statistic in personal_statistics!
 
-In the event where you are not using a client directly (for example: mob.client) you should always do an:
-	if(mob.client)
+In the event where you are not using a ckey directly (for example: mob.ckey) you should always do an:
+	if(mob.ckey)
 		//continue with code
 
-This is to prevent any possible errors with client-less mobs
+This is to prevent any possible errors with ckey-less mobs
 
 To then display the statistic at the end of the round, you have to add it to the compose_report() proc like so:
 	if(stat_you_want_changed)
@@ -97,12 +97,23 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/cas_laser_shots = 0
 	var/cas_minirockets_fired = 0
 	var/cas_rockets_fired = 0
+	///This list exists to prevent a long chain of istype() checks every time a CAS weapon is fired
+	var/list/cas_weapon_stats = list()
 	var/cas_points_used = 0
 
 	//Funny things to keep track of
 	var/weights_lifted = 0
 	var/sippies = 0
 	var/war_crimes = 0
+
+/datum/personal_statistics/New()
+	//Add to the CAS weapons list the types and their corresponding counter
+	cas_weapon_stats = list(
+		/obj/structure/dropship_equipment/weapon/heavygun = cas_cannon_shots,
+		/obj/structure/dropship_equipment/weapon/laser_beam_gun = cas_laser_shots,
+		/obj/structure/dropship_equipment/weapon/minirocket_pod = cas_minirockets_fired,
+		/obj/structure/dropship_equipment/weapon/rocket_pod = cas_rockets_fired
+		)
 
 ///Return a list of the data of the most used chemical
 /datum/personal_statistics/proc/get_most_ingested_chemical()
@@ -114,7 +125,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 				winner[2] = chemicals_ingested[chem]
 	return winner
 
-///Assemble a list of statistics associated with the client this datum belongs to
+///Assemble a list of statistics associated with the ckey this datum belongs to
 /datum/personal_statistics/proc/compose_report()
 	var/list/stats = list()
 	stats += "<br><hr><u>Your personal round statistics:</u><br>"
@@ -268,9 +279,9 @@ The alternative is scattering them everywhere under their respective objects whi
 
 ///Tally to personal_statistics that a melee attack took place, and record the damage dealt
 /mob/living/proc/record_melee_damage(mob/living/user, damage)
-	if(!user.client)
+	if(!user.ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.melee_hits++
 	personal_statistics.melee_damage += damage
 	return TRUE
@@ -281,19 +292,19 @@ The alternative is scattering them everywhere under their respective objects whi
 		return FALSE
 	var/datum/personal_statistics/personal_statistics
 	//Tally to the victim that they lost a limb; tally to the attacker that they delimbed someone
-	if(client)
-		personal_statistics = GLOB.personal_statistics_list[client]
+	if(ckey)
+		personal_statistics = GLOB.personal_statistics_list[ckey]
 		personal_statistics.limbs_lost++
-	personal_statistics = GLOB.personal_statistics_list[user.client]
+	personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.delimbs++
 	return TRUE
 
 ///Tally to personal_statistics that a successful shot was made and record the damage dealt
 /mob/living/proc/record_projectile_damage(mob/shooter, damage)
-	//Check if a client exists; the check for victim aliveness is handled before the proc call
-	if(!shooter.client)
+	//Check if a ckey exists; the check for victim aliveness is handled before the proc call
+	if(!shooter.ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[shooter.client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[shooter.ckey]
 	personal_statistics.projectiles_hit++
 	personal_statistics.projectile_damage += damage
 	if(faction && isliving(shooter))	//See if any friendly fire was made
@@ -302,35 +313,35 @@ The alternative is scattering them everywhere under their respective objects whi
 			personal_statistics.friendly_fire_damage += damage	//FF multiplier already included by the way
 	return TRUE
 
-///Record what reagents and how much of them were transferred to a mob into their client's /datum/personal_statistics
+///Record what reagents and how much of them were transferred to a mob into their ckey's /datum/personal_statistics
 /obj/item/reagent_containers/proc/record_reagent_consumption(total, list/reagents_list, mob/user, mob/receiver)
 	if(!total || !LAZYLEN(reagents_list))
 		return FALSE
 
 	//Delcare some booleans for making this proc less of a mess
 	var/is_healing
-	var/client_exists
-	var/receiver_exists
+	var/ckey_exists
+	var/receiver_ckey_exists
 
 	var/datum/personal_statistics/personal_statistics_user
 	var/datum/personal_statistics/personal_statistics_receiver
-	if(user.client)
-		client_exists = TRUE
-		personal_statistics_user = GLOB.personal_statistics_list[user.client]
+	if(user.ckey)
+		ckey_exists = TRUE
+		personal_statistics_user = GLOB.personal_statistics_list[user.ckey]
 	if(user == receiver)
 		receiver = null
-	else if(receiver?.client)
-		receiver_exists = TRUE
-		personal_statistics_receiver = GLOB.personal_statistics_list[receiver.client]
+	else if(receiver?.ckey)
+		receiver_ckey_exists = TRUE
+		personal_statistics_receiver = GLOB.personal_statistics_list[receiver.ckey]
 
 	//Just give up, how did this even happen?
-	if(!client_exists && !receiver_exists)
+	if(!ckey_exists && !receiver_ckey_exists)
 		return FALSE
 
 	for(var/chem in reagents_list)
 		//If there is a receiving mob, let's try to record they ingested something
 		if(receiver)
-			if(receiver_exists)	//Only record if they have a client
+			if(receiver_ckey_exists)	//Only record if they have a ckey
 				personal_statistics_receiver.chemicals_ingested[chem] += reagents_list[chem]
 		//If there is no receiver, that means the user is the one that needs their chems stat updated
 		else
@@ -338,7 +349,7 @@ The alternative is scattering them everywhere under their respective objects whi
 
 		//Determine if a healing chem was involved; only needs to be done once
 		if(!is_healing && istype(chem, /datum/reagent/medicine))
-			if(client_exists)
+			if(ckey_exists)
 				//If a receiving mob exists, we tally up to the user mob's stats that it performed a heal
 				if(receiver)
 					personal_statistics_user.heals++
@@ -349,10 +360,10 @@ The alternative is scattering them everywhere under their respective objects whi
 
 ///Determine if a self or non-self heal occurred, and tally up the user mob's respective stat
 /obj/item/stack/medical/proc/record_healing(mob/living/user, mob/living/receiver)
-	if(!user.client)
+	if(!user.ckey)
 		return FALSE
 
-	var/datum/personal_statistics/personal_statistics_user = GLOB.personal_statistics_list[user.client]
+	var/datum/personal_statistics/personal_statistics_user = GLOB.personal_statistics_list[user.ckey]
 	if(user == receiver)
 		receiver = null
 
@@ -365,11 +376,11 @@ The alternative is scattering them everywhere under their respective objects whi
 
 ///Record what was drank and if it was medicinal
 /obj/machinery/deployable/reagent_tank/proc/record_sippies(total, list/reagents_list, mob/user)
-	if(!total || !LAZYLEN(reagents_list) || !user.client)
+	if(!total || !LAZYLEN(reagents_list) || !user.ckey)
 		return FALSE
 
 	var/is_healing
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	for(var/chem in reagents_list)
 		//Add the chem and amount consumed to the list
 		personal_statistics.chemicals_ingested[chem] += reagents_list[chem]
@@ -382,33 +393,25 @@ The alternative is scattering them everywhere under their respective objects whi
 
 ///Tally up the corresponding weapon used by the pilot into their /datum/personal_statistics
 /obj/docking_port/mobile/marine_dropship/casplane/proc/record_cas_activity(obj/structure/dropship_equipment/weapon/weapon)
-	if(!chair.occupant.client)
+	if(!chair.occupant.ckey)
 		return FALSE
 
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[chair.occupant.client]
-	//Determine the type path of the weapon used and then tally accordingly
-	switch(weapon.type)
-		if(/obj/structure/dropship_equipment/weapon/heavygun)
-			personal_statistics.cas_cannon_shots++
-		if(/obj/structure/dropship_equipment/weapon/laser_beam_gun)
-			personal_statistics.cas_laser_shots++
-		if(/obj/structure/dropship_equipment/weapon/minirocket_pod)
-			personal_statistics.cas_minirockets_fired++
-		if(/obj/structure/dropship_equipment/weapon/rocket_pod)
-			personal_statistics.cas_rockets_fired++
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[chair.occupant.ckey]
+	//Increment variable based on weapon type in cas_weapon_stats
+	personal_statistics.cas_weapon_stats[weapon.type]++
 	return TRUE
 
 /***
-Refund the point costs of the parts in list/queue to a client's cas_points_used
+Refund the point costs of the parts in list/queue to a player's cas_points_used
 
 Note: this is probably the simplest solution with how the fabricator works.
 It may result in wonky stats if the person who ordered the parts was not the one to clear it,
 but rarely is a non-pilot the one to use it, let alone clear the queue.
 ***/
 /obj/machinery/dropship_part_fabricator/proc/record_cas_point_refunds(mob/user)
-	if(!user.client)
+	if(!user.ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	for(var/item in queue)
 		//Why is the ammo not a child of this????
 		if(istype(item, /obj/structure/dropship_equipment))
@@ -421,9 +424,9 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 
 ///Tally how many req-points worth of xenomorphs have been recycled
 /mob/living/carbon/xenomorph/proc/record_recycle_points(mob/living/carbon/xenomorph/trash)
-	if(!client)
+	if(!ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	var/cost
 	//supply_export() should really have a separate proc for returning the worth of a mob
 	switch(trash.tier)
@@ -447,9 +450,9 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 
 ///Separate record keeping proc to reduce copy pasta
 /obj/machinery/miner/proc/record_miner_repair(mob/user)
-	if(!user.client)
+	if(!user.ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.miner_repairs_performed++
 	return TRUE
 
@@ -457,10 +460,10 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 /mob/living/proc/record_time_lying_down()
 	if(!last_rested)
 		return FALSE
-	if(!client)	//Reset their time if they have no client
+	if(!ckey)	//Reset their time if they have no ckey
 		last_rested = 0
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.time_resting += world.time - last_rested
 	return TRUE
 
@@ -468,10 +471,10 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 /mob/living/proc/record_time_unconscious()
 	if(!last_unconscious)
 		return FALSE
-	if(!client)
+	if(!ckey)
 		last_unconscious = 0
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.time_unconscious += world.time - last_unconscious
 	return TRUE
 
@@ -479,10 +482,10 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 /mob/living/proc/record_time_in_stasis()
 	if(!time_entered_stasis)
 		return FALSE
-	if(!client)
+	if(!ckey)
 		time_entered_stasis = 0
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.time_in_stasis += world.time - time_entered_stasis
 	return TRUE
 
@@ -490,67 +493,67 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 /mob/living/proc/record_time_in_cryo()
 	if(!time_entered_cryo)
 		return FALSE
-	if(!client)
+	if(!ckey)
 		time_entered_cryo = 0
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.time_in_cryo += world.time - time_entered_cryo
 	return TRUE
 
-///Tally up to a client's generator_repairs_performed stat when a step is completed in a generator's repairs
+///Tally up to a player's generator_repairs_performed stat when a step is completed in a generator's repairs
 /obj/machinery/power/proc/record_generator_repairs(mob/user)
-	if(!user.client)
+	if(!user.ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.generator_repairs_performed++
 	return TRUE
 
-///Tally up when a client damages/destroys/corrupts a generator
+///Tally up when a player damages/destroys/corrupts a generator
 /obj/machinery/power/proc/record_generator_sabotages(mob/user)
-	if(!user.client)
+	if(!user.ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.generator_sabotages_performed++
 	return TRUE
 
-///Tally up when a client successfully completes a step
+///Tally up when a player successfully completes a step
 /datum/surgery_step/proc/record_surgical_operation(mob/user)
-	if(!user.client)
+	if(!user.ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.surgical_actions_performed++
 	return TRUE
 
 ///Record when a bone break or internal bleeding is inflicted
 /datum/species/proc/record_internal_injury(mob/living/carbon/human/victim, mob/attacker, old_status, new_status)
-	if(old_status == new_status || (!victim.client && !attacker?.client))
+	if(old_status == new_status || (!victim.ckey && !attacker?.ckey))
 		return FALSE
 
 	//If neither of these flags was enabled after being damaged, then no internal injury occurred
 	if(!(CHECK_BITFIELD(old_status, LIMB_BROKEN|LIMB_BLEEDING) ^ CHECK_BITFIELD(new_status, LIMB_BROKEN|LIMB_BLEEDING)))
 		return FALSE
 
-	if(victim.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[victim.client]
+	if(victim.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[victim.ckey]
 		personal_statistics.internal_injuries++
-	if(attacker?.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[attacker.client]
+	if(attacker?.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[attacker.ckey]
 		personal_statistics.internal_injuries_inflicted++
 	return TRUE
 
 ///Short proc that tallies up traps_created; reduce copy pasta
 /mob/proc/record_traps_created()
-	if(!client)
+	if(!ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.traps_created++
 	return TRUE
 
 ///Tally up bullets caught/reflected
 /obj/effect/xeno/shield/proc/record_projectiles_frozen(mob/user, amount, reflected = FALSE)
-	if(!user.client)
+	if(!user.ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 	personal_statistics.projectiles_caught += amount
 	if(reflected)
 		personal_statistics.projectiles_reflected += amount
@@ -558,8 +561,8 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 
 ///Tally when a structure is constructed
 /mob/proc/record_structures_built()
-	if(!client)
+	if(!ckey)
 		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[client]
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.structures_built++
 	return TRUE

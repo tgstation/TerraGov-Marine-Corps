@@ -110,7 +110,7 @@
 	succeed_activate()
 	add_cooldown()
 	if(owner.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.heals++
 
 /// Heals the target and gives them a regenerative buff, if applicable.

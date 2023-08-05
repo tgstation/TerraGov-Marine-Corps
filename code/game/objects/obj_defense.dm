@@ -29,7 +29,7 @@
 /obj/proc/repair_damage(repair_amount, mob/user)
 	repair_amount = min(repair_amount, max_integrity - obj_integrity)
 	if(user?.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.integrity_repaired += repair_amount
 		personal_statistics.times_repaired++
 	obj_integrity += repair_amount

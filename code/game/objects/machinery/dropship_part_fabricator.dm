@@ -79,7 +79,7 @@
 	update_icon()
 
 	if(user.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.client]
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.cas_points_used += cost
 
 	addtimer(CALLBACK(src, PROC_REF(do_build_dropship_part), part_type), 10 SECONDS)
