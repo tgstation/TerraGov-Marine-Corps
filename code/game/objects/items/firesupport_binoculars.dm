@@ -216,7 +216,7 @@
 /obj/item/binoculars/fire_support/proc/gun_run(turf/T, attackdir = NORTH)
 	QDEL_NULL(laser)
 	var/list/turf_list = list()
-	for(var/turf/spread_turf in RANGE_TURFS(3, T))
+	for(var/turf/spread_turf in RANGE_TURFS(6, T))
 		turf_list += spread_turf
 	for(var/i = 1 to 5)
 		var/turf/impact_turf = pick(turf_list)
@@ -236,7 +236,7 @@
 	var/list/strafelist = list(beginning)
 	strafelist += get_step(beginning, turn(NORTH, 90))
 	strafelist += get_step(beginning, turn(NORTH, -90)) //Build this list 3 turfs at a time for strafe_turfs
-	for(var/b=0 to 2*2)
+	for(var/b=0 to 6)
 		beginning = get_step(beginning, NORTH)
 		strafelist += beginning
 		strafelist += get_step(beginning, turn(NORTH, 90))
@@ -266,7 +266,7 @@
 	QDEL_NULL(laser)
 	new /obj/effect/temp_visual/dropship_flyby(T)
 	var/list/turf_list = list()
-	for(var/turf/spread_turf in RANGE_TURFS(5, T))
+	for(var/turf/spread_turf in RANGE_TURFS(9, T))
 		turf_list += spread_turf
 	for(var/i = 1 to 15)
 		var/turf/impact_turf = pick(turf_list)
@@ -274,14 +274,14 @@
 	rockets_timer = addtimer(CALLBACK(src, PROC_REF(rocket_clear_timer)), rockets_cooldown)
 
 /obj/item/binoculars/fire_support/proc/rocket_run_fire(turf/T)
-	explosion(T, 0, 2, 5, 3)
+	explosion(T, 0, 2, 5, 2)
 
 /obj/item/binoculars/fire_support/proc/rocket_clear_timer()
 	rockets_timer = null
 
 /obj/item/binoculars/fire_support/proc/cruise_missile(turf/T)
 	QDEL_NULL(laser)
-	explosion(T, 5, 5, 6)
+	explosion(T, 4, 5, 6)
 	cruise_timer = addtimer(CALLBACK(src, PROC_REF(cruise_clear_timer)), cruise_cooldown)
 
 /obj/item/binoculars/fire_support/proc/cruise_clear_timer()
