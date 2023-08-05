@@ -42,8 +42,8 @@
 		return
 
 	var/total_weight = 0
-	for(var/i = 1; i <= length(contents); i++)
-		total_weight += contents[i].w_class
+	for(var/obj/item/i in contents)
+		total_weight += i.w_class
 
 	if(!storage_slots)
 		total_weight = ROUND_UP(total_weight / max_storage_space * sprite_slots)
