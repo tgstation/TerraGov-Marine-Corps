@@ -127,6 +127,9 @@
 	dir = 4
 	},
 /obj/structure/reagent_dispensers/beerkeg,
+/obj/structure/barricade/metal{
+	dir = 1
+	},
 /turf/open/floor/carpet/side{
 	dir = 9
 	},
@@ -147,6 +150,9 @@
 /obj/item/clothing/under/liaison_suit/galaxy_blue,
 /obj/item/book/manual/barman_recipes,
 /obj/item/reagent_containers/food/drinks/shaker,
+/obj/structure/barricade/metal{
+	dir = 1
+	},
 /turf/open/floor/carpet/side{
 	dir = 5
 	},
@@ -274,6 +280,9 @@
 "S" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /obj/machinery/camera/autoname/mainship,
+/obj/structure/barricade/metal{
+	dir = 1
+	},
 /turf/open/floor/carpet/side{
 	dir = 1
 	},

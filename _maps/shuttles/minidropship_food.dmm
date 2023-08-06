@@ -8,6 +8,9 @@
 "c" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /obj/machinery/camera/autoname/mainship,
+/obj/structure/barricade/metal{
+	dir = 1
+	},
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "d" = (
@@ -56,14 +59,6 @@
 	dir = 8
 	},
 /area/shuttle/minidropship)
-"m" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
-/turf/open/floor/iron/white/textured_half{
-	dir = 8
-	},
-/area/shuttle/minidropship)
 "n" = (
 /obj/structure/dropship_piece/tadpole/engine{
 	dir = 1;
@@ -88,7 +83,7 @@
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "q" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/plasteel{
 	dir = 4
 	},
 /turf/open/floor/iron/white/textured_corner{
@@ -110,6 +105,9 @@
 	},
 /obj/machinery/vending/nanomed/tadpolemed{
 	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
 	},
 /turf/open/floor/iron/white/textured_corner,
 /area/shuttle/minidropship)
@@ -174,7 +172,7 @@
 /turf/open/floor/iron/white/textured,
 /area/shuttle/minidropship)
 "E" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/plasteel{
 	dir = 8
 	},
 /turf/open/floor/iron/white/textured_corner{
@@ -214,6 +212,9 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8
 	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
 /turf/open/floor/iron/white/textured_corner{
 	dir = 8
 	},
@@ -250,14 +251,6 @@
 	},
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/template_noop,
-/area/shuttle/minidropship)
-"S" = (
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
-/turf/open/floor/iron/white/textured_half{
-	dir = 8
-	},
 /area/shuttle/minidropship)
 "U" = (
 /obj/structure/barricade/metal{
@@ -350,7 +343,7 @@ J
 x
 v
 P
-m
+U
 U
 E
 s
@@ -372,7 +365,7 @@ J
 x
 L
 d
-S
+g
 g
 q
 y
