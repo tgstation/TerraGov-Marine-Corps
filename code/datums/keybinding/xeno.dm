@@ -886,7 +886,7 @@
 	name = "Cannibalise Spiderling"
 	full_name = "Widow: Cannibalise Spiderling"
 	description = "Eat your own young and store their biomass for later."
-	keybind_signal = COSMIG_XENOABILITY_CANNIBALISE_SPIDERLING
+	keybind_signal = COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING
 
 /datum/keybinding/xeno/web_hook
 	name = "Web Hook"
