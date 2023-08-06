@@ -206,6 +206,7 @@
 	name = "sidearm pouch"
 	desc = "It can contain a pistol or revolver. Useful for emergencies."
 	icon_state = "pistol"
+	sprite_slots = 1
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
@@ -284,6 +285,7 @@
 	desc = "It can contain pistol and revolver ammo magazines."
 	max_w_class = WEIGHT_CLASS_SMALL
 	icon_state = "pistol_mag"
+	sprite_slots = 3
 	storage_slots = 3
 
 	can_hold = list(
@@ -298,6 +300,7 @@
 	desc = "This pouch can contain six pistol and revolver ammo magazines."
 	storage_slots = 6
 	icon_state = "large_pistol_mag"
+	sprite_slots = 5
 
 /obj/item/storage/pouch/magazine/pistol/large/full
 	fill_type = /obj/item/ammo_magazine/pistol
@@ -365,6 +368,7 @@
 	name = "explosive pouch"
 	desc = "It can contain grenades, plastiques, mine boxes, and other explosives."
 	icon_state = "large_explosive"
+	sprite_slots = 1
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
