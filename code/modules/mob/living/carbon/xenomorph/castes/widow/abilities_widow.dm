@@ -188,7 +188,7 @@
 	if(length(create_spiderling_action.spiderlings) <= 0)
 		owner.balloon_alert(owner, "No spiderlings")
 		return fail_activate()
-	if(!isturf(A) && !istype(/obj/alien/weeds))
+	if(!isturf(A) && !istype(A, /obj/alien/weeds))
 		owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
 		succeed_activate()
 	else
