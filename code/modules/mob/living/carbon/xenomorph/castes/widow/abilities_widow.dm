@@ -155,18 +155,22 @@
 	add_cooldown()
 
 /datum/action/xeno_action/create_spiderling/alternate_action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
+		X.balloon_alert(X, "Max Spiderlings")
 	if(!cannibalise_charges > 0)
-		owner.balloon_alert(owner, "No charges remaining!")
+		X.balloon_alert(X, "No charges remaining!")
+		return
+	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return
 	cannibalise_charges -= 1
-	owner.balloon_alert(owner, "[cannibalise_charges]/3 charges remaining")
-	add_spiderling(owner)
+	X.balloon_alert(X, "[cannibalise_charges]/3 charges remaining")
+	add_spiderling(X)
 
 /// Adds spiderlings to spiderling list and registers them for death so we can remove them later
 /datum/action/xeno_action/create_spiderling/proc/add_spiderling()
 	/// This creates and stores the spiderling so we can reassign the owner for spider swarm and cap how many spiderlings you can have at once
 	var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new(owner.loc, owner, owner)
-	add_spiderling(new_spiderling)
 	RegisterSignals(new_spiderling, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(remove_spiderling))
 	spiderlings += new_spiderling
 	new_spiderling.pixel_x = rand(-8, 8)
@@ -333,7 +337,7 @@
 	ability_name = "Cannibalise Spiderling"
 	desc = "Consume one of your children, storing their biomass for future use. Birth Spiderling automatically uses this biomass, removing its cooldown. Up to three charges of Cannibalise may be stored at once."
 	action_icon_state = "cannibalise_spiderling"
-	plasma_cost = 100
+	plasma_cost = 150
 	cooldown_timer = 2 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING,
@@ -352,13 +356,12 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/cannibalise/use_ability(atom/A)
-	owner.emote("roar")
 	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
 		return fail_activate()
 
+	owner.emote("roar")
 	var/mob/living/carbon/xenomorph/spiderling/to_cannibalise = A
 	to_cannibalise.death()
-
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	if(create_spiderling_action.cannibalise_charges < 3)
 		create_spiderling_action.cannibalise_charges += 1
