@@ -564,7 +564,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/roller/medevac/update_overlays()
 	. = ..()
-	var/display_timer_cooldown = CEILING((timer_cooldown) * 0.1)
+	var/display_timer_cooldown = CEILING((timer_cooldown) * 0.1, 1)
 	if(isturf(loc) || !display_timer_cooldown)
 		return
 	var/mutable_appearance/desc = mutable_appearance('icons/misc/12x12.dmi')
@@ -671,7 +671,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(LAZYLEN(linked_beds + linked_beds_deployed) > 1)
 		var/list/medevac_assoc = list()
 		for(var/obj/D in destinations)
-			medevac_assoc["X:[D.x], Y:[D.y] - \[[get_area(D)]\]"] = D
+			var/turf/T = get_turf(D)
+			medevac_assoc["X:[T.x], Y:[T.y] - \[[get_area(D)]\]"] = D
 		destinations = list()
 		for(var/d in medevac_assoc)
 			destinations += d
