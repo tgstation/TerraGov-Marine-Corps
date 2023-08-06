@@ -10,15 +10,13 @@
 	allow_drawing_method = TRUE
 	var/fill_type
 	var/fill_number = 0
-	///Defines how many versions of the empty sprite there are
-	var/sprite_slots = null
 
 /obj/item/storage/pouch/Initialize(mapload)
 	. = ..()
 	if(fill_number && fill_type)
 		for(var/i in 1 to fill_number)
 			new fill_type(src)
-	update_icon_state()
+	update_icon()
 
 /obj/item/storage/pouch/examine(mob/user)
 	. = ..()
@@ -37,25 +35,6 @@
 /obj/item/storage/pouch/vendor_equip(mob/user)
 	..()
 	return user.equip_to_appropriate_slot(src)
-
-/obj/item/storage/pouch/update_icon_state()
-	if(!sprite_slots)
-		return
-
-	var/total_weight = 0
-	for(var/obj/item/i in contents)
-		total_weight += i.w_class
-
-	if(!storage_slots)
-		total_weight = ROUND_UP(total_weight / max_storage_space * sprite_slots)
-	else
-		total_weight = ROUND_UP(length(contents) / storage_slots * sprite_slots)
-
-	if(sprite_slots > total_weight)
-		icon_state = initial(icon_state) + "_" + num2text(total_weight)
-	else
-		icon_state = initial(icon_state)
-
 
 /obj/item/storage/pouch/general
 	name = "light general pouch"
