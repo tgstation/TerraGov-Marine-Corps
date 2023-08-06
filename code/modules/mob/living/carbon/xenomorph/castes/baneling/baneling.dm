@@ -99,4 +99,3 @@
 	REMOVE_TRAIT(xeno_ref, TRAIT_STASIS, BANELING_STASIS_TRAIT)
 	xeno_ref.forceMove(get_turf(loc))
 	xeno_ref.revive(FALSE)
-	xeno_ref.ExtinguishMob()
