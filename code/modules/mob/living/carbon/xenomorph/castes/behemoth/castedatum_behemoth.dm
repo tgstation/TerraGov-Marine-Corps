@@ -33,8 +33,8 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
-	hard_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "crusher"
@@ -87,7 +87,7 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
@@ -112,7 +112,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
@@ -138,8 +138,8 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
-	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
 /datum/xeno_caste/behemoth/primordial
@@ -162,8 +162,8 @@
 	max_health = 900
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
-	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	// *** Abilities *** ///
 	actions = list(
