@@ -42,7 +42,7 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 31, BULLET = 31, LASER = 31, ENERGY = 31, BOMB = 0, BIO = 15, FIRE = 31, ACID = 15)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 15, FIRE = 30, ACID = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2 //Drone's aura is the weakest.
