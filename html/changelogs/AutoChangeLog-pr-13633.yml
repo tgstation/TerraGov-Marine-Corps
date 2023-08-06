@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - bugfix: "fixed medical gloves triggering on all intents"
+  - bugfix: "fixed medical scanner gloves not having the right click behavior when worn"
