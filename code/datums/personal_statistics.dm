@@ -427,25 +427,7 @@ but rarely is a non-pilot the one to use it, let alone clear the queue.
 	if(!ckey)
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
-	var/cost
-	//supply_export() should really have a separate proc for returning the worth of a mob
-	switch(trash.tier)
-		if(XENO_TIER_MINION)
-			cost = 50
-		if(XENO_TIER_ZERO)
-			cost = 150
-		if(XENO_TIER_ONE)
-			cost = 300
-		if(XENO_TIER_TWO)
-			cost = 400
-		if(XENO_TIER_THREE)
-			cost = 500
-		if(XENO_TIER_FOUR)
-			cost = 1000
-	if(istype(trash, /mob/living/carbon/xenomorph/shrike))
-		personal_statistics.recycle_points_denied += 500
-	else
-		personal_statistics.recycle_points_denied += cost
+	personal_statistics.recycle_points_denied += trash.get_export_value()
 	return TRUE
 
 ///Separate record keeping proc to reduce copy pasta
