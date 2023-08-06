@@ -880,6 +880,9 @@
 	else
 		total_weight = ROUND_UP(length(contents) / storage_slots * sprite_slots)
 
+	if(!total_weight)
+		icon_state = initial(icon_state) + "_e"
+		return
 	if(sprite_slots > total_weight)
 		icon_state = initial(icon_state) + "_" + num2text(total_weight)
 	else
