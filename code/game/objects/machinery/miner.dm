@@ -305,6 +305,8 @@
 		span_notice("We can't slash through [src]'s reinforced plating!"))
 		return
 	while(miner_status != MINER_DESTROYED)
+		if(X.do_actions)
+			return balloon_alert(X, "busy")
 		if(!do_after(X, 3 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 			return
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
