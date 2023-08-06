@@ -307,7 +307,7 @@
 	if(number_of_attempts_left <= 0)
 		return
 	for(var/mob/living/carbon/xenomorph/spiderling/remaining_spiderling AS in remaining_list)
-		SEND_SIGNAL(remaining_spiderling, COMSIG_SPIDERLING_RETURN) //So spiderlings move towards the buckle
+		SEND_SIGNAL(owner, COMSIG_SPIDERLING_RETURN) //So spiderlings move towards the buckle
 		if(!owner.Adjacent(remaining_spiderling))
 			continue
 		remaining_list -= remaining_spiderling
