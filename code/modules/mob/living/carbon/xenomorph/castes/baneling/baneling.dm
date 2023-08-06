@@ -72,7 +72,7 @@
 	var/mob/living/carbon/xenomorph/xeno_ref = source
 	xeno_ref.forceMove(src)
 	ADD_TRAIT(xeno_ref, TRAIT_STASIS, BANELING_STASIS_TRAIT)
-	if(xeno_ref.stored_charge >= 2)
+	if(xeno_ref.stored_charge >= BANELING_CHARGE_MAX)
 		addtimer(CALLBACK(src, PROC_REF(increase_charge), xeno_ref), BANELING_CHARGE_GAIN_TIME)
 	if(xeno_ref.stored_charge >= 1)
 		xeno_ref.stored_charge--
