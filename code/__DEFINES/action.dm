@@ -26,6 +26,11 @@
 #define VREF_MUTABLE_RAV_LEECH "VREF_RAV_LEECH"
 // a reference for the  build counter of a xeno
 #define VREF_MUTABLE_BUILDING_COUNTER "VREF_BUILD_COUNTER"
+// extra reference for the amount of landslide charges we have
+#define VREF_MUTABLE_LANDSLIDE "VREF_LANDSLIDE"
+// extra reference for the amount of earth pillars we have
+#define VREF_MUTABLE_EARTH_PILLAR "VREF_EARTH_PILLAR"
+
 
 /// Actions that toggle on click/trigger
 #define ACTION_TOGGLE "toggle"

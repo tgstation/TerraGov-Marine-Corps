@@ -932,7 +932,7 @@
 	name = "Roll"
 	full_name = "Behemoth: Roll"
 	description = "Curl up into a ball, sacrificing some offensive capabilities in exchange for greater movement speed."
-	keybind_signal = COMSIG_XENOABILITY_LANDSLIDE
+	keybind_signal = COMSIG_XENOABILITY_BEHEMOTH_ROLL
 
 /datum/keybinding/xeno/landslide
 	name = "Landslide"

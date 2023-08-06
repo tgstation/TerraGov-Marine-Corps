@@ -4,14 +4,14 @@
 
 /obj/effect/temp_visual/behemoth/stomp
 	icon_state = "behemoth_stomp"
-	duration = 0.4 SECONDS
+	duration = 0.5 SECONDS
 	layer = ABOVE_LYING_MOB_LAYER
 
 /obj/effect/temp_visual/behemoth/stomp/Initialize(mapload)
 	. = ..()
 	var/matrix/current_matrix = matrix()
 	transform = current_matrix.Scale(0.6, 0.6)
-	current_matrix.Scale(2.0, 2.0)
+	current_matrix.Scale(2.2, 2.2)
 	animate(src, alpha = 0, transform = current_matrix, time = duration - 0.1 SECONDS, easing = CIRCULAR_EASING|EASE_OUT)
 
 /obj/effect/temp_visual/behemoth/stomp/west/Initialize(mapload, direction)
@@ -61,7 +61,7 @@
 	icon = 'icons/xeno/Effects.dmi'
 	icon_state = "generic_warning"
 	layer = BELOW_MOB_LAYER
-	color = COLOR_YELLOW
+	color = COLOR_ORANGE
 
 /obj/effect/temp_visual/behemoth/warning/Initialize(mapload, warning_duration)
 	. = ..()
@@ -71,67 +71,63 @@
 	animate(alpha = 0, time = 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_OUT)
 
 /obj/effect/temp_visual/behemoth/warning/enhanced
-	color = COLOR_RED
-
-/obj/effect/temp_visual/behemoth/warning/enhanced/numeric/Initialize(mapload, warning_duration, number)
-	. = ..()
-	icon_state = "warning_[number]"
+	color = COLOR_VIVID_RED
 
 
 // ***************************************
 // *********** Global Procs
 // ***************************************
-#define BEHEMOTH_STOMP_KNOCKDOWN_DURATION 0.8 SECONDS
+#define BEHEMOTH_STOMP_KNOCKDOWN_DURATION 0.5 SECONDS
 
 /// Stomps anyone on the same tile as the user, damaging them and knocking them down.
-/proc/do_stomp(owner, turf/target_turf)
-	if(!owner || !target_turf)
+/proc/do_stomp(owner)
+	if(!owner)
 		return
+	var/target_turf = get_turf(owner)
 	playsound(target_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 30, TRUE)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	for(var/mob/living/affected_living in target_turf)
+	for(var/mob/living/affected_living in orange(1, target_turf))
 		if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD || CHECK_BITFIELD(affected_living.status_flags, INCORPOREAL|GODMODE))
 			continue
-		affected_living.emote("scream")
-		shake_camera(affected_living, max(1, BEHEMOTH_STOMP_KNOCKDOWN_DURATION), 1)
+		affected_living.emote("pain")
+		shake_camera(affected_living, BEHEMOTH_STOMP_KNOCKDOWN_DURATION, 0.8)
 		affected_living.Knockdown(BEHEMOTH_STOMP_KNOCKDOWN_DURATION)
-		affected_living.apply_damage(xeno_owner.xeno_caste.melee_damage, BRUTE, blocked = MELEE)
 
 /// Warns nearby players, in any way or form, of the incoming ability and the range it will affect.
-/proc/do_warning(owner, list/turf/target_turfs, duration, enhanced, action)
+/proc/do_warning(owner, list/turf/target_turfs, duration)
 	if(!owner || !length(target_turfs) || !duration)
-		CRASH("do_warning([owner], [length(target_turfs)], [duration], [enhanced], [action]) called with improper arguments")
-	var/warning_type = enhanced ? /obj/effect/temp_visual/behemoth/warning/enhanced : /obj/effect/temp_visual/behemoth/warning
+		CRASH("do_warning([owner], [length(target_turfs)], [duration]) called with improper arguments")
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/action/xeno_action/activable/landslide/landslide_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/landslide]
+	var/datum/action/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/xeno_action/primal_wrath]
+	var/warning_type = primal_wrath_action?.ability_active? /obj/effect/temp_visual/behemoth/warning/enhanced : /obj/effect/temp_visual/behemoth/warning
 	for(var/turf/target_turf AS in target_turfs)
+		new warning_type(target_turf, duration)
 		playsound(target_turf, 'sound/effects/behemoth/behemoth_rumble.ogg', 15, TRUE)
 		for(var/mob/living/target_living in target_turf)
 			if(xeno_owner.issamexenohive(target_living) || target_living.stat == DEAD || CHECK_BITFIELD(target_living.status_flags, INCORPOREAL|GODMODE))
 				continue
 			shake_camera(target_living, max(1, duration), 0.5)
-		if(!enhanced || action != landslide_action)
-			new warning_type(target_turf, duration)
-			continue
-		landslide_action.enhanced_warnings += new warning_type(target_turf)
 
 
 // ***************************************
 // *********** Roll
 // ***************************************
-#define BEHEMOTH_ROLL_WIND_UP 1.2 SECONDS
+#define BEHEMOTH_ROLL_WIND_UP 1.8 SECONDS
 
 /datum/action/xeno_action/ready_charge/behemoth_roll
 	name = "Roll"
 	desc = "Toggles Rolling on or off."
 	charge_type = CHARGE_BEHEMOTH
-	speed_per_step = 0.35
+	speed_per_step = 0.4
 	steps_for_charge = 4
 	max_steps_buildup = 4
 	crush_living_damage = 0
 	plasma_use_multiplier = 0
 	agile_charge = TRUE
 	should_start_on = FALSE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BEHEMOTH_ROLL,
+	)
 
 /datum/action/xeno_action/ready_charge/behemoth_roll/action_activate()
 	if(charge_ability_on)
@@ -147,7 +143,7 @@
 	xeno_owner.behemoth_charging = FALSE
 	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	xeno_owner.update_icons()
-	add_cooldown(20 SECONDS)
+	add_cooldown(15 SECONDS)
 
 /datum/action/xeno_action/ready_charge/behemoth_roll/charge_on(verbose = TRUE)
 	. = ..()
@@ -158,41 +154,24 @@
 	for(var/mob/living/rider AS in xeno_owner.buckled_mobs)
 		xeno_owner.unbuckle_mob(rider)
 
-/datum/action/xeno_action/ready_charge/behemoth_roll/do_stop_crushing()
-	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/action/xeno_action/activable/landslide/landslide_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/landslide]
-	if(!landslide_action?.ability_active)
-		return
-	landslide_action.ability_active = FALSE
-	speed_per_step = initial(speed_per_step)
-	charge_type = initial(charge_type)
-	crush_living_damage = initial(crush_living_damage)
-	agile_charge = initial(agile_charge)
-
 
 // ***************************************
 // *********** Landslide
 // ***************************************
-#define LANDSLIDE_WIND_UP 1 SECONDS
+#define LANDSLIDE_WIND_UP 0.8 SECONDS
+#define LANDSLIDE_ENHANCED_WIND_UP 0.5 SECONDS
 #define LANDSLIDE_RANGE 7
-#define LANDSLIDE_STEP_DELAY 1.5 //in deciseconds
+#define LANDSLIDE_STEP_DELAY 1.6 //in deciseconds
+#define LANDSLIDE_ENHANCED_STEP_DELAY 0.5 //in deciseconds
 #define LANDSLIDE_ENDING_COLLISION_DELAY 0.3 SECONDS
 #define LANDSLIDE_KNOCKDOWN_DURATION 1.2 SECONDS
-#define LANDSLIDE_DAMAGE_MULTIPLIER 1.3
+#define LANDSLIDE_DAMAGE_MULTIPLIER 1.2
 #define LANDSLIDE_DAMAGE_MECHA_MODIFIER 20
 #define LANDSLIDE_DAMAGE_OBJECT_MODIFIER 5
 #define LANDSLIDE_DAMAGE_TURF_MODIFIER 30
 
 #define LANDSLIDE_ENDED_CANCELLED (1<<0)
 #define LANDSLIDE_ENDED_NO_PLASMA (1<<1)
-#define LANDSLIDE_ENDED_NO_SELECTION (1<<2)
-
-#define LANDSLIDE_ENHANCED_WAIT_TIME 10 SECONDS
-#define LANDSLIDE_ENHANCED_WAIT_DELAY 2 SECONDS
-#define LANDSLIDE_ENHANCED_POSSIBLE_SELECTIONS 3
-#define LANDSLIDE_ENHANCED_STEP_DELAY 0.5 //in deciseconds
-#define LANDSLIDE_ENHANCED_CHARGE_DELAY 0.4 SECONDS
 
 /obj/effect/temp_visual/behemoth/crack/landslide/Initialize(mapload, direction, which_step)
 	. = ..()
@@ -296,20 +275,53 @@
 	)
 	/// Whether this ability is currently active or not.
 	var/ability_active = FALSE
-	/// List containing the selected turfs for the Enhanced version of this ability.
-	var/list/turf/enhanced_turfs = list()
-	/// List containing the warnings in the selected turfs for the Enhanced version of this ability.
-	var/list/turf/enhanced_warnings = list()
+	/// The amount of charges we currently have.
+	var/current_charges = 1
+	/// The maximum amount of charges we can have.
+	var/maximum_charges = 1
+
+/datum/action/xeno_action/activable/landslide/give_action(mob/living/L)
+	. = ..()
+	var/mutable_appearance/counter_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	counter_maptext.pixel_x = 16
+	counter_maptext.pixel_y = -4
+	counter_maptext.maptext = MAPTEXT("[current_charges]/[maximum_charges]")
+	visual_references[VREF_MUTABLE_LANDSLIDE] = counter_maptext
+
+/datum/action/xeno_action/activable/landslide/remove_action(mob/living/carbon/xenomorph/X)
+	. = ..()
+	button.cut_overlay(visual_references[VREF_MUTABLE_LANDSLIDE])
+	visual_references[VREF_MUTABLE_LANDSLIDE] = null
+
+/datum/action/xeno_action/activable/landslide/update_button_icon()
+	button.cut_overlay(visual_references[VREF_MUTABLE_LANDSLIDE])
+	var/mutable_appearance/number = visual_references[VREF_MUTABLE_LANDSLIDE]
+	number.maptext = MAPTEXT("[current_charges]/[maximum_charges]")
+	visual_references[VREF_MUTABLE_LANDSLIDE] = number
+	button.add_overlay(visual_references[VREF_MUTABLE_LANDSLIDE])
+	return ..()
+
+/datum/action/xeno_action/activable/landslide/can_use_action(silent, override_flags, selecting)
+	if(ability_active)
+		return FALSE
+	return ..()
+
+/datum/action/xeno_action/activable/landslide/action_cooldown_check()
+	if(cooldown_id && current_charges > 0)
+		return TRUE
+	return ..()
 
 /datum/action/xeno_action/activable/landslide/on_cooldown_finish()
-	owner.balloon_alert(owner, "[ability_name] ready")
+	current_charges = min(maximum_charges, current_charges + 1)
+	update_button_icon()
+	owner.balloon_alert(owner, "[ability_name] ready ([current_charges]/[maximum_charges])")
+	if(current_charges < maximum_charges)
+		cooldown_id = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_timer, TIMER_STOPPABLE)
+		return
 	return ..()
 
 /datum/action/xeno_action/activable/landslide/use_ability(atom/target)
 	if(!target)
-		return
-	if(ability_active)
-		end_charge(LANDSLIDE_ENDED_CANCELLED)
 		return
 	var/turf/owner_turf = get_turf(owner)
 	var/direction = get_cardinal_dir(owner, target)
@@ -321,6 +333,8 @@
 	if(behemoth_roll_action?.charge_ability_on)
 		behemoth_roll_action.charge_off()
 	ability_active = TRUE
+	current_charges--
+	update_button_icon()
 	xeno_owner.face_atom(target)
 	xeno_owner.set_canmove(FALSE)
 	xeno_owner.behemoth_charging = TRUE
@@ -328,16 +342,28 @@
 	playsound(xeno_owner, 'sound/effects/behemoth/landslide_roar.ogg', 40, TRUE)
 	var/which_step = pick(0, 1)
 	new /obj/effect/temp_visual/behemoth/landslide/dust(owner_turf, direction, which_step)
-	var/datum/action/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/xeno_action/primal_wrath]
-	if(primal_wrath_action?.ability_active)
-		add_cooldown(LANDSLIDE_WIND_UP)
-		enhanced_turfs += owner_turf
-		enhanced_check_charge()
-		RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(enhanced_prepare_charge))
-		return
 	do_warning(xeno_owner, get_affected_turfs(owner_turf, direction, LANDSLIDE_RANGE), LANDSLIDE_WIND_UP + 0.5 SECONDS)
 	var/charge_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * LANDSLIDE_DAMAGE_MULTIPLIER
+	var/datum/action/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/xeno_action/primal_wrath]
+	if(primal_wrath_action?.ability_active)
+		var/animation_time = LANDSLIDE_RANGE * LANDSLIDE_ENHANCED_STEP_DELAY
+		addtimer(CALLBACK(src, PROC_REF(enhanced_do_charge), direction, charge_damage, LANDSLIDE_ENHANCED_STEP_DELAY, LANDSLIDE_RANGE), LANDSLIDE_ENHANCED_WIND_UP)
+		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), xeno_owner, 'sound/effects/behemoth/landslide_enhanced_charge.ogg', 30, TRUE), LANDSLIDE_ENHANCED_WIND_UP)
+		animate(xeno_owner, time = LANDSLIDE_ENHANCED_WIND_UP, flags = ANIMATION_END_NOW)
+		animate(pixel_y = xeno_owner.pixel_y + (LANDSLIDE_RANGE / 2), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_OUT)
+		animate(pixel_y = initial(xeno_owner.pixel_y), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_IN)
+		return
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "Use [ability_name] again to cancel"), LANDSLIDE_WIND_UP)
+	addtimer(CALLBACK(src, PROC_REF(RegisterSignal), owner, COMSIG_MOB_CLICK_RIGHT, PROC_REF(cancel_charge)), LANDSLIDE_WIND_UP)
 	addtimer(CALLBACK(src, PROC_REF(do_charge), owner_turf, direction, charge_damage, which_step), LANDSLIDE_WIND_UP)
+
+/// Cancels the ability.
+/datum/action/xeno_action/activable/landslide/proc/cancel_charge(datum/source)
+	SIGNAL_HANDLER
+	if(!ability_active)
+		UnregisterSignal(owner, COMSIG_MOB_CLICK_RIGHT)
+		return
+	end_charge(LANDSLIDE_ENDED_CANCELLED)
 
 /**
  * Gets a list of the turfs affected by this ability, based on direction and range.
@@ -387,7 +413,8 @@
 	var/turf/direct_turf = get_step(owner, direction)
 	if(iswallturf(direct_turf))
 		var/turf/closed/wall/affected_wall = direct_turf
-		if(!istype(affected_wall, /turf/closed/wall/resin) && affected_wall.wall_integrity <= damage * LANDSLIDE_DAMAGE_TURF_MODIFIER && affected_wall.resistance_flags != INDESTRUCTIBLE)
+		if(!istype(affected_wall, /turf/closed/wall/resin) && affected_wall.wall_integrity <= damage * LANDSLIDE_DAMAGE_TURF_MODIFIER && \
+			affected_wall.resistance_flags != INDESTRUCTIBLE)
 			playsound(direct_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
 			affected_wall.dismantle_wall()
 	var/list/turf/target_turfs = list(direct_turf)
@@ -399,7 +426,7 @@
 				var/mob/living/affected_living = affected_atom
 				if(affected_living.stat == DEAD)
 					continue
-				if(xeno_owner.issamexenohive(affected_living))
+				if(xeno_owner.issamexenohive(affected_living) && affected_living.stat == CONSCIOUS)
 					step_away(affected_living, xeno_owner, 2, 1)
 					continue
 				hit_living(affected_living, damage)
@@ -419,29 +446,78 @@
 	addtimer(CALLBACK(src, PROC_REF(do_charge), get_turf(xeno_owner), direction, damage, which_step), LANDSLIDE_STEP_DELAY)
 
 /**
+ * Moves the user in the specified direction. This simulates movement by using step() and repeatedly calling itself.
+ * Will repeatedly check a 3x1 rectangle in front of the user, applying its effects to valid targets and stopping early if the path is blocked.
+ * * direction: The direction to move in.
+ * * damage: The damage we will deal to valid targets.
+ * * speed: The speed at which we move. This is reduced when we're nearing our destination, to simulate a slow-down effect.
+ * * steps_to_take: The amount of steps needed to reach our destination. This is used to determine when to end the charge,
+*/
+/datum/action/xeno_action/activable/landslide/proc/enhanced_do_charge(direction, damage, speed, steps_to_take)
+	if(!ability_active || !direction)
+		return
+	if(owner.stat)
+		end_charge()
+		return
+	var/owner_turf = get_turf(owner)
+	var/direct_turf = get_step(owner, direction)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(steps_to_take <= 0 || xeno_owner.wrath_stored < plasma_cost)
+		if(LinkBlocked(owner_turf, direct_turf))
+			shake_camera(xeno_owner, 1, 0.5)
+			ending_hit(direct_turf, damage)
+		new /obj/effect/temp_visual/behemoth/crack/landslide(get_turf(owner), direction, pick(1, 2))
+		end_charge()
+		return
+	succeed_activate()
+	if(iswallturf(direct_turf))
+		var/turf/closed/wall/affected_wall = direct_turf
+		if(affected_wall.wall_integrity <= damage * LANDSLIDE_DAMAGE_TURF_MODIFIER && affected_wall.resistance_flags != INDESTRUCTIBLE)
+			playsound(direct_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
+			affected_wall.dismantle_wall()
+	var/list/turf/target_turfs = list(direct_turf)
+	target_turfs += get_step(xeno_owner, turn(direction, 45))
+	target_turfs += get_step(xeno_owner, turn(direction, -45))
+	for(var/turf/target_turf AS in target_turfs)
+		for(var/atom/movable/affected_atom AS in target_turf)
+			if(isliving(affected_atom))
+				var/mob/living/affected_living = affected_atom
+				if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD)
+					continue
+				hit_living(affected_living, damage)
+			if(!affected_atom.density)
+				continue
+			if(isobj(affected_atom))
+				if(isearthpillar(affected_atom))
+					var/obj/structure/earth_pillar/affected_pillar = affected_atom
+					affected_pillar.MouseDrop(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7))
+					continue
+				var/obj/affected_object = affected_atom
+				hit_object(affected_object, damage)
+	steps_to_take--
+	step(xeno_owner, direction, 1)
+	if(steps_to_take <= 2)
+		speed += 0.5
+		new /obj/effect/temp_visual/behemoth/landslide/dust/charge(owner_turf, direction)
+	addtimer(CALLBACK(src, PROC_REF(enhanced_do_charge), direction, damage, speed, steps_to_take), speed)
+
+/**
  * Ends the charge.
  * * reason: If specified, determines the reason why the charge ended, and does the respective balloon alert. Leave empty for no reason.
 */
 /datum/action/xeno_action/activable/landslide/proc/end_charge(reason)
 	ability_active = FALSE
+	UnregisterSignal(owner, COMSIG_MOB_CLICK_RIGHT)
+	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.set_canmove(TRUE)
 	xeno_owner.behemoth_charging = FALSE
-	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
-	if(cooldown_id)
-		clear_cooldown()
 	add_cooldown()
-	if(length(enhanced_turfs))
-		enhanced_turfs = list()
-	if(length(enhanced_warnings))
-		enhanced_warnings = list()
 	switch(reason)
 		if(LANDSLIDE_ENDED_CANCELLED) // The user manually cancelled the ability at some point during its use.
 			xeno_owner.balloon_alert(xeno_owner, "Cancelled")
 		if(LANDSLIDE_ENDED_NO_PLASMA) // During the charge, the user did not have enough plasma to maintain the ability.
 			xeno_owner.balloon_alert(xeno_owner, "Insufficient plasma")
-		if(LANDSLIDE_ENDED_NO_SELECTION) // During the target selection phase for the Primal Wrath version of this ability, no selection was made.
-			xeno_owner.balloon_alert(xeno_owner, "No selection made, cancelled")
 
 /**
  * Applies several effects to a living target.
@@ -456,7 +532,7 @@
 		new /obj/effect/temp_visual/behemoth/landslide/hit(get_turf(living_target))
 		playsound(living_target, 'sound/effects/behemoth/landslide_hit_mob.ogg', 30, TRUE)
 	living_target.emote("scream")
-	shake_camera(living_target, max(1, LANDSLIDE_KNOCKDOWN_DURATION), 1)
+	shake_camera(living_target, LANDSLIDE_KNOCKDOWN_DURATION, 0.8)
 	living_target.apply_damage(damage, BRUTE, blocked = MELEE)
 
 /**
@@ -483,6 +559,7 @@
 	new /obj/effect/temp_visual/behemoth/landslide/hit(object_turf)
 	if(isearthpillar(object_target))
 		var/obj/structure/earth_pillar/pillar_target = object_target
+		pillar_target.density = FALSE
 		pillar_target.MouseDrop(get_ranged_target_turf(owner, owner.dir, 7))
 		return
 	if(ismecha(object_target))
@@ -519,160 +596,22 @@
 			hit_object(affected_object, damage, TRUE)
 
 /**
- * Runs any checks associated to the Enhanced version of this ability, ending it early if conditions are met.
- * * times_called: Counter for the amount of times this proc has been called. This is used to determine the amount of time spent during the selection phase, cancelling the ability after some time.
+ * Changes the maximum amount of charges the ability can have.
+ * This will also adjust the current amount of charges to account for the new difference, be it positive or negative.
+ * * amount: The new amount of maximum charges.
 */
-/datum/action/xeno_action/activable/landslide/proc/enhanced_check_charge(times_called)
-	times_called++
-	if(!ability_active || length(enhanced_turfs) > LANDSLIDE_ENHANCED_POSSIBLE_SELECTIONS)
+/datum/action/xeno_action/activable/landslide/proc/change_maximum_charges(amount)
+	if(!amount)
 		return
-	if(owner.stat)
-		end_charge()
-		return
-	if(times_called >= LANDSLIDE_ENHANCED_WAIT_TIME / LANDSLIDE_ENHANCED_WAIT_DELAY)
-		end_charge(LANDSLIDE_ENDED_NO_SELECTION)
-		return
-	addtimer(CALLBACK(src, PROC_REF(enhanced_check_charge), times_called), LANDSLIDE_ENHANCED_WAIT_DELAY)
-
-/**
- * Prepares selections made during the selection phase of this ability. Selected turfs are processed and adapted to the ability for their later usage.
- * If the maximum amount of selections has been reached, this proc will end the selection phase and execute the charge.
- * * source: References the source of this proc. Usually the owner.
- * * selected_atom: The atom that was selected by the user. This is later converted into a turf.
-*/
-/datum/action/xeno_action/activable/landslide/proc/enhanced_prepare_charge(datum/source, atom/selected_atom)
-	SIGNAL_HANDLER
-	if(!selected_atom)
-		return
-	if(!isturf(selected_atom))
-		selected_atom = get_turf(selected_atom)
-	var/turf/origin_turf = enhanced_turfs[length(enhanced_turfs)]
-	var/turf/corrected_turf = get_ranged_target_turf(origin_turf, get_dir(origin_turf, selected_atom), min(LANDSLIDE_RANGE, get_dist(origin_turf, selected_atom)))
-	var/list/turf/possible_turfs = get_line(origin_turf, corrected_turf)
-	for(var/turf/possible_turf AS in possible_turfs)
-		if(LinkBlocked(origin_turf, possible_turf) || !line_of_sight(origin_turf, possible_turf))
-			possible_turfs -= possible_turf
-	corrected_turf = possible_turfs[length(possible_turfs)]
-	if(corrected_turf == get_turf(owner) || (corrected_turf in enhanced_turfs))
-		owner.balloon_alert(owner, "Same target")
-		return
-	enhanced_warnings += new /obj/effect/temp_visual/behemoth/warning/enhanced/numeric(corrected_turf, LANDSLIDE_ENHANCED_WAIT_TIME, length(enhanced_turfs))
-	do_warning(owner, get_affected_turfs(origin_turf, get_dir(origin_turf, corrected_turf), get_dist(origin_turf, corrected_turf), TRUE, src), LANDSLIDE_ENHANCED_WAIT_TIME, TRUE, src)
-	enhanced_turfs += corrected_turf
-	if(length(enhanced_turfs) < LANDSLIDE_ENHANCED_POSSIBLE_SELECTIONS + 1)
-		return
-	var/numeric_counter = 0
-	var/warning_duration = 2.5 SECONDS
-	for(var/obj/effect/temp_visual/behemoth/warning/enhanced/enhanced_warning AS in enhanced_warnings)
-		if(istype(enhanced_warning, /obj/effect/temp_visual/behemoth/warning/enhanced/numeric) && numeric_counter < 3)
-			numeric_counter++
-			new /obj/effect/temp_visual/behemoth/warning/enhanced/numeric(get_turf(enhanced_warning), warning_duration, numeric_counter)
-			continue
-		new /obj/effect/temp_visual/behemoth/warning/enhanced(get_turf(enhanced_warning), warning_duration)
-	QDEL_LIST(enhanced_warnings)
-	UnregisterSignal(owner, COMSIG_MOB_CLICKON)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/charge_direction = get_dir(enhanced_turfs[1], enhanced_turfs[2])
-	new /obj/effect/temp_visual/behemoth/crack/landslide(get_turf(owner), charge_direction, pick(1, 2))
-	var/charge_distance = get_dist(enhanced_turfs[1], enhanced_turfs[2])
-	if(ISDIAGONALDIR(charge_direction) && charge_distance >= LANDSLIDE_RANGE)
-		charge_distance--
-	INVOKE_ASYNC(src, PROC_REF(enhanced_do_charge), \
-		charge_direction, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, LANDSLIDE_ENHANCED_STEP_DELAY, charge_distance)
-	var/animation_time = charge_distance * LANDSLIDE_ENHANCED_STEP_DELAY
-	animate(xeno_owner, pixel_y = xeno_owner.pixel_y + (charge_distance / 2), time = animation_time / 2, flags = ANIMATION_END_NOW, easing = CIRCULAR_EASING|EASE_OUT)
-	animate(pixel_y = initial(xeno_owner.pixel_y), time = animation_time / 2, flags = CIRCULAR_EASING|EASE_IN)
-	playsound(xeno_owner, 'sound/effects/behemoth/landslide_enhanced_charge.ogg', 15, TRUE)
-
-/**
- * Moves the user between the selections previously made. This simulates movement by using step() and repeatedly calling itself.
- * Will repeatedly check a 3x1 rectangle in front of the user, applying its effects to valid targets and stopping early if the path is blocked.
- * * direction: The direction to move in.
- * * damage: The damage we will deal to valid targets.
- * * speed: The speed at which we move. This is reduced when we're nearing our destination, to simulate a slow-down effect.
- * * steps_to_take: The amount of steps needed to reach our destination. This is used to determine when to move on to the next selection.
- * * which_charge: Which charge, or which selection, are we currently executing.
- * * steps_taken: The amount of steps we have taken. This is used to determine when to move on to the next selection.
-*/
-/datum/action/xeno_action/activable/landslide/proc/enhanced_do_charge(direction, damage, speed, steps_to_take, which_charge = 1)
-	if(!ability_active || !direction)
-		return
-	if(owner.stat)
-		end_charge()
-		return
-	var/owner_turf = get_turf(owner)
-	var/direct_turf = get_step(owner, direction)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(steps_to_take <= 0 || xeno_owner.wrath_stored < plasma_cost)
-		if(LinkBlocked(owner_turf, direct_turf))
-			shake_camera(xeno_owner, 1, 0.5)
-			ending_hit(direct_turf, damage)
-		enhanced_next_charge(direction, which_charge, damage)
-		return
-	succeed_activate()
-	if(iswallturf(direct_turf))
-		var/turf/closed/wall/affected_wall = direct_turf
-		if(affected_wall.wall_integrity <= damage * LANDSLIDE_DAMAGE_TURF_MODIFIER && affected_wall.resistance_flags != INDESTRUCTIBLE)
-			playsound(direct_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
-			affected_wall.dismantle_wall()
-	var/list/turf/target_turfs = list(direct_turf)
-	target_turfs += get_step(xeno_owner, turn(direction, 45))
-	target_turfs += get_step(xeno_owner, turn(direction, -45))
-	for(var/turf/target_turf AS in target_turfs)
-		for(var/atom/movable/affected_atom AS in target_turf)
-			if(isliving(affected_atom))
-				var/mob/living/affected_living = affected_atom
-				if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD)
-					continue
-				hit_living(affected_living, direct_turf, damage, TRUE)
-			if(!(affected_atom in direct_turf) || !affected_atom.density)
-				continue
-			if(isobj(affected_atom))
-				if(isearthpillar(affected_atom))
-					var/obj/structure/earth_pillar/affected_pillar = affected_atom
-					affected_pillar.MouseDrop(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7))
-					continue
-				var/obj/affected_object = affected_atom
-				hit_object(affected_object, damage)
-	steps_to_take--
-	step(xeno_owner, direction, 1)
-	if(steps_to_take <= 2)
-		speed += 0.5
-		new /obj/effect/temp_visual/behemoth/landslide/dust/charge(owner_turf, direction)
-	addtimer(CALLBACK(src, PROC_REF(enhanced_do_charge), direction, damage, speed, steps_to_take, which_charge), speed)
-
-/**
- * Handles everything necessary before beginning the next charge.
- * * direction: The direction we will move in.
- * * damage: The damage we will deal in related effects.
- * * which_charge: Which charge, or which selection, we will execute.
-*/
-/datum/action/xeno_action/activable/landslide/proc/enhanced_next_charge(direction, which_charge, damage)
-	if(!direction || !which_charge)
-		return
-	which_charge++
-	if(which_charge >= length(enhanced_turfs))
-		end_charge()
-		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(xeno_owner.wrath_stored < plasma_cost)
-		end_charge(LANDSLIDE_ENDED_NO_PLASMA)
-		return
-	direction = get_dir(enhanced_turfs[which_charge], enhanced_turfs[which_charge + 1])
-	new /obj/effect/temp_visual/behemoth/crack/landslide(get_turf(owner), direction, pick(1, 2))
-	var/steps_to_take = get_dist(enhanced_turfs[which_charge], enhanced_turfs[which_charge + 1])
-	var/animation_time = steps_to_take * LANDSLIDE_ENHANCED_STEP_DELAY
-	addtimer(CALLBACK(src, PROC_REF(enhanced_do_charge), direction, damage, LANDSLIDE_ENHANCED_STEP_DELAY, steps_to_take, which_charge), LANDSLIDE_ENHANCED_CHARGE_DELAY)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), xeno_owner, 'sound/effects/behemoth/landslide_enhanced_charge.ogg', 15, TRUE), LANDSLIDE_ENHANCED_CHARGE_DELAY)
-	animate(xeno_owner, time = LANDSLIDE_ENHANCED_CHARGE_DELAY, flags = ANIMATION_END_NOW)
-	animate(pixel_y = xeno_owner.pixel_y + (steps_to_take / 2), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_OUT)
-	animate(pixel_y = initial(xeno_owner.pixel_y), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_IN)
+	maximum_charges = amount
+	current_charges = maximum_charges
+	clear_cooldown()
 
 
 // ***************************************
 // *********** Earth Riser
 // ***************************************
-#define EARTH_RISER_WIND_UP 1.5 SECONDS
+#define EARTH_RISER_WIND_UP 1.4 SECONDS
 #define EARTH_RISER_RANGE 3
 
 /obj/effect/temp_visual/behemoth/crack/earth_riser/Initialize(mapload, direction)
@@ -697,7 +636,7 @@
 	action_icon_state = "earth_riser"
 	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. Alternate use destroys active pillars, starting with the oldest one."
 	plasma_cost = 40
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EARTH_RISER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_EARTH_RISER_ALTERNATE,
@@ -708,22 +647,42 @@
 	var/list/obj/structure/earth_pillar/active_pillars = list()
 
 /datum/action/xeno_action/activable/earth_riser/on_cooldown_finish()
-	owner.balloon_alert(owner, "[ability_name] ready")
+	owner.balloon_alert(owner, "[ability_name] ready ([length(active_pillars)]/[maximum_pillars])")
 	return ..()
+
+/datum/action/xeno_action/activable/earth_riser/give_action(mob/living/L)
+	. = ..()
+	var/mutable_appearance/counter_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	counter_maptext.pixel_x = 16
+	counter_maptext.pixel_y = -4
+	counter_maptext.maptext = MAPTEXT("[length(active_pillars)]/[maximum_pillars]")
+	visual_references[VREF_MUTABLE_EARTH_PILLAR] = counter_maptext
 
 /datum/action/xeno_action/activable/earth_riser/remove_action(mob/living/carbon/xenomorph/X)
 	. = ..()
+	button.cut_overlay(visual_references[VREF_MUTABLE_EARTH_PILLAR])
+	visual_references[VREF_MUTABLE_EARTH_PILLAR] = null
 	QDEL_LIST(active_pillars)
+
+/datum/action/xeno_action/activable/earth_riser/update_button_icon()
+	button.cut_overlay(visual_references[VREF_MUTABLE_EARTH_PILLAR])
+	var/mutable_appearance/number = visual_references[VREF_MUTABLE_EARTH_PILLAR]
+	number.maptext = MAPTEXT("[length(active_pillars)]/[maximum_pillars]")
+	visual_references[VREF_MUTABLE_EARTH_PILLAR] = number
+	button.add_overlay(visual_references[VREF_MUTABLE_EARTH_PILLAR])
+	return ..()
 
 /datum/action/xeno_action/activable/earth_riser/alternate_action_activate()
 	if(!length(active_pillars))
 		var/mob/living/carbon/xenomorph/xeno_owner = owner
 		xeno_owner.balloon_alert(xeno_owner, "No active pillars")
 		return
+	add_cooldown(2 SECONDS)
 	var/obj/structure/earth_pillar/oldest_pillar = popleft(active_pillars)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/broken(oldest_pillar.loc)
 	playsound(oldest_pillar.loc, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
 	qdel(oldest_pillar)
+	update_button_icon()
 
 /datum/action/xeno_action/activable/earth_riser/use_ability(atom/target)
 	. = ..()
@@ -739,12 +698,12 @@
 	var/datum/action/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/xeno_action/ready_charge/behemoth_roll]
 	if(behemoth_roll_action?.charge_ability_on)
 		behemoth_roll_action.charge_off()
-	do_stomp(xeno_owner, owner_turf)
+	do_stomp(xeno_owner)
 	new /obj/effect/temp_visual/behemoth/stomp/west(owner_turf, owner.dir)
 	new /obj/effect/temp_visual/behemoth/crack(owner_turf, owner.dir)
 	do_warning(xeno_owner, list(target_turf), EARTH_RISER_WIND_UP)
 	addtimer(CALLBACK(src, PROC_REF(do_ability), target_turf), EARTH_RISER_WIND_UP)
-	add_cooldown(EARTH_RISER_WIND_UP)
+	add_cooldown(EARTH_RISER_WIND_UP + 0.1 SECONDS)
 	succeed_activate()
 
 /// Checks if there's any living mobs in the target turf, displaces them if so, then creates a new Earth Pillar and adds it to the list of active pillars.
@@ -758,6 +717,7 @@
 		shake_camera(affected_living, 1, 0.5)
 		step_away(affected_living, target_turf, 1, 2)
 	active_pillars += new /obj/structure/earth_pillar(target_turf, xeno_owner)
+	update_button_icon()
 
 /**
  * Changes the maximum amount of Earth Pillars that can be had.
@@ -774,6 +734,7 @@
 		new /obj/effect/temp_visual/behemoth/earth_pillar/broken(oldest_pillar.loc)
 		playsound(oldest_pillar.loc, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
 		qdel(oldest_pillar)
+	update_button_icon()
 
 
 // ***************************************
@@ -786,7 +747,7 @@
 #define SEISMIC_FRACTURE_ATTACK_RADIUS_EARTH_PILLAR 2
 #define SEISMIC_FRACTURE_ENHANCED_DELAY 1.2 SECONDS
 #define SEISMIC_FRACTURE_PARALYZE_DURATION 1.2 SECONDS
-#define SEISMIC_FRACTURE_DAMAGE_MULTIPLIER 1.3
+#define SEISMIC_FRACTURE_DAMAGE_MULTIPLIER 1.2
 #define SEISMIC_FRACTURE_DAMAGE_MECHA_MODIFIER 10
 #define SEISMIC_FRACTURE_DAMAGE_OBJECT_MODIFIER 1.5
 
@@ -872,7 +833,7 @@
 	var/owner_turf = get_turf(xeno_owner)
 	new /obj/effect/temp_visual/behemoth/stomp/east(owner_turf, owner.dir)
 	new /obj/effect/temp_visual/behemoth/crack(owner_turf, owner.dir)
-	do_stomp(xeno_owner, owner_turf)
+	do_stomp(xeno_owner)
 	var/datum/action/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/xeno_action/primal_wrath]
 	do_ability(target_turf, SEISMIC_FRACTURE_WIND_UP, primal_wrath_action?.ability_active? TRUE : FALSE)
 
@@ -898,7 +859,7 @@
 		return
 	add_cooldown()
 	succeed_activate()
-	do_warning(owner, turfs_to_attack, wind_up, enhanced)
+	do_warning(owner, turfs_to_attack, wind_up)
 	addtimer(CALLBACK(src, PROC_REF(do_attack), turfs_to_attack, enhanced), wind_up)
 	if(!enhanced)
 		return
@@ -910,7 +871,7 @@
 			extra_turfs_to_warn -= extra_turf_to_warn
 	if(length(extra_turfs_to_warn) && length(turfs_to_attack))
 		extra_turfs_to_warn -= turfs_to_attack
-	do_warning(owner, extra_turfs_to_warn, wind_up + SEISMIC_FRACTURE_ENHANCED_DELAY, enhanced)
+	do_warning(owner, extra_turfs_to_warn, wind_up + SEISMIC_FRACTURE_ENHANCED_DELAY)
 	var/list/turf/extra_turfs = filled_turfs(target_turf, SEISMIC_FRACTURE_ATTACK_RADIUS + 1, bypass_window = TRUE, projectile = TRUE)
 	if(length(extra_turfs) && length(turfs_to_attack))
 		extra_turfs -= turfs_to_attack
@@ -968,13 +929,13 @@
 				if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD || CHECK_BITFIELD(affected_living.status_flags, INCORPOREAL|GODMODE))
 					continue
 				affected_living.emote("scream")
-				shake_camera(affected_living, max(1, SEISMIC_FRACTURE_PARALYZE_DURATION), 1)
+				shake_camera(affected_living, SEISMIC_FRACTURE_PARALYZE_DURATION, 0.8)
 				affected_living.Paralyze(SEISMIC_FRACTURE_PARALYZE_DURATION)
 				affected_living.apply_damage(attack_damage, BRUTE, blocked = MELEE)
 				if(instant)
 					continue
 				affected_living.layer = ABOVE_MOB_LAYER
-				affected_living.status_flags |= (INCORPOREAL|GODMODE)
+				//affected_living.status_flags |= (INCORPOREAL|GODMODE)
 				animate(affected_living, pixel_y = affected_living.pixel_y + 40, time = SEISMIC_FRACTURE_PARALYZE_DURATION / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW)
 				animate(pixel_y = initial(affected_living.pixel_y), time = SEISMIC_FRACTURE_PARALYZE_DURATION / 2, easing = CIRCULAR_EASING|EASE_IN)
 				addtimer(CALLBACK(src, PROC_REF(living_landing), affected_living), SEISMIC_FRACTURE_PARALYZE_DURATION)
@@ -1010,8 +971,9 @@
 /datum/action/xeno_action/activable/seismic_fracture/proc/living_landing(mob/living/affected_living)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	affected_living.layer = initial(affected_living.layer)
-	affected_living.status_flags &= ~(INCORPOREAL|GODMODE)
-	affected_living.apply_damage(xeno_owner.xeno_caste.melee_damage / 3, BRUTE, blocked = MELEE)
+	//affected_living.status_flags &= ~(INCORPOREAL|GODMODE)
+	var/landing_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) / 2
+	affected_living.apply_damage(landing_damage, BRUTE, blocked = MELEE)
 	var/landing_turf = get_turf(affected_living)
 	playsound(landing_turf, 'sound/effects/behemoth/seismic_fracture_landing.ogg', 10, TRUE)
 	new /obj/effect/temp_visual/behemoth/stomp(landing_turf)
@@ -1020,9 +982,9 @@
 // ***************************************
 // *********** Primal Wrath
 // ***************************************
-#define PRIMAL_WRATH_ACTIVATION_DURATION 3.6 SECONDS // Timed with the sound played.
+#define PRIMAL_WRATH_ACTIVATION_DURATION 3 SECONDS // Timed with the sound played.
 #define PRIMAL_WRATH_RANGE 12
-#define PRIMAL_WRATH_DAMAGE_MULTIPLIER 1.3
+#define PRIMAL_WRATH_DAMAGE_MULTIPLIER 1.2
 #define PRIMAL_WRATH_SPEED_BONUS -0.25
 #define PRIMAL_WRATH_DECAY_MULTIPLIER 1.2
 #define PRIMAL_WRATH_ACTIVE_DECAY_DIVISION 40
@@ -1068,6 +1030,7 @@
 	ability_name = "Primal Wrath"
 	action_icon_state = "primal_wrath"
 	desc = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
+	cooldown_timer = 1 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PRIMAL_WRATH,
@@ -1197,13 +1160,10 @@
 /// Changes the cost of all actions to use Wrath instead of plasma.
 /datum/action/xeno_action/primal_wrath/proc/change_cost(datum/source, datum/action/xeno_action/source_action, action_cost)
 	SIGNAL_HANDLER
-	if(!ability_active)
+	if(!ability_active || source_action == src)
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
-	if(source_action == src || source_action == earth_riser_action)
-		return
-	xeno_owner.wrath_stored = max(0, xeno_owner.wrath_stored - action_cost)
+	xeno_owner.wrath_stored = max(0, xeno_owner.wrath_stored - (action_cost / 2))
 	return SUCCEED_ACTIVATE_CANCEL
 
 /**
@@ -1236,20 +1196,22 @@
  * * multiplier: The multiplier applied to the owner's damage.
 */
 /datum/action/xeno_action/primal_wrath/proc/toggle_buff(toggle)
+	ability_active = !ability_active
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/datum/action/xeno_action/activable/landslide/landslide_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/landslide]
 	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
 	if(!toggle)
-		ability_active = FALSE
 		set_toggle(FALSE)
 		QDEL_NULL(particle_holder)
 		decay_time = initial(decay_time)
 		xeno_owner.xeno_melee_damage_modifier = initial(xeno_owner.xeno_melee_damage_modifier)
 		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_BEHEMOTH_PRIMAL_WRATH)
+		landslide_action?.change_maximum_charges(1)
 		earth_riser_action?.change_maximum_pillars(1)
 		owner.balloon_alert(owner, "Primal Wrath ended")
-		UnregisterSignal(xeno_owner, list(COMSIG_XENO_ACTION_SUCCEED_ACTIVATE, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+		UnregisterSignal(xeno_owner, COMSIG_XENO_ACTION_SUCCEED_ACTIVATE)
+		RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taking_damage))
 		return
-	ability_active = TRUE
 	set_toggle(TRUE)
 	decay_time = 4 SECONDS
 	decay_amount = initial(decay_amount)
@@ -1258,9 +1220,14 @@
 	particle_holder.pixel_y = -20
 	xeno_owner.xeno_melee_damage_modifier = PRIMAL_WRATH_DAMAGE_MULTIPLIER
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_BEHEMOTH_PRIMAL_WRATH, TRUE, 0, NONE, TRUE, PRIMAL_WRATH_SPEED_BONUS)
+	landslide_action?.change_maximum_charges(3)
+	landslide_action?.clear_cooldown()
 	earth_riser_action?.change_maximum_pillars(3)
+	earth_riser_action?.clear_cooldown()
+	var/datum/action/xeno_action/activable/seismic_fracture/seismic_fracture_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/seismic_fracture]
+	seismic_fracture_action?.clear_cooldown()
 	RegisterSignal(xeno_owner, COMSIG_XENO_ACTION_SUCCEED_ACTIVATE, PROC_REF(change_cost))
-	RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taking_damage))
+	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 
 /// Stops processing, and unregisters related signals.
 /datum/action/xeno_action/primal_wrath/proc/stop_ability(datum/source)
@@ -1275,11 +1242,6 @@
 // ***************************************
 // *********** Earth Pillar (also see: Earth Riser)
 // ***************************************
-#define EARTH_PILLAR_KNOCKDOWN_DURATION 0.5 SECONDS
-#define EARTH_PILLAR_DAMAGE_MECHA_MODIFIER 5
-#define EARTH_PILLAR_DAMAGE_OBJECT_MODIFIER 2
-#define EARTH_PILLAR_DAMAGE_TURF_MODIFIER 5
-
 /particles/earth_pillar
 	icon = 'icons/effects/particles/generic_particles.dmi'
 	icon_state = "behemoth_smoke"
@@ -1463,6 +1425,8 @@
 
 // Earth Riser is capable of interacting with existing Earth Pillars to fire a projectile.
 // See the Earth Riser ability for specifics.
+#define EARTH_PILLAR_DAMAGE_MODIFIER 0.5
+
 /datum/ammo/xeno/earth_pillar
 	name = "rock"
 	icon_state = "earth_pillar"
@@ -1489,12 +1453,11 @@
 	if(xeno_firer.issamexenohive(hit_living) || hit_living.stat == DEAD)
 		return
 	step_away(hit_living, proj, 1, 1)
-	shake_camera(hit_living, max(1, EARTH_PILLAR_KNOCKDOWN_DURATION), 1)
+	shake_camera(hit_living, 1, 0.8)
+	var/mob_damage = (xeno_firer.xeno_caste.melee_damage * xeno_firer.xeno_melee_damage_modifier) * EARTH_PILLAR_DAMAGE_MODIFIER
+	hit_living.apply_damage(mob_damage, BRUTE, blocked = MELEE)
 	var/datum/action/xeno_action/activable/seismic_fracture/seismic_fracture_action = xeno_firer.actions_by_path[/datum/action/xeno_action/activable/seismic_fracture]
-	if(!seismic_fracture_action)
-		hit_living.apply_damage(xeno_firer.xeno_caste.melee_damage, BRUTE, blocked = MELEE)
-		return
-	seismic_fracture_action.do_ability(mob_turf, earth_pillar = TRUE)
+	seismic_fracture_action?.do_ability(mob_turf, earth_pillar = TRUE)
 
 /datum/ammo/xeno/earth_pillar/on_hit_obj(obj/hit_object, obj/projectile/proj)
 	var/object_turf = get_turf(hit_object)
@@ -1504,10 +1467,7 @@
 		return
 	var/mob/living/carbon/xenomorph/xeno_firer = proj.firer
 	var/datum/action/xeno_action/activable/seismic_fracture/seismic_fracture_action = xeno_firer.actions_by_path[/datum/action/xeno_action/activable/seismic_fracture]
-	if(!seismic_fracture_action)
-		hit_object.take_damage(xeno_firer.xeno_caste.melee_damage, MELEE)
-		return
-	seismic_fracture_action.do_ability(object_turf, earth_pillar = TRUE)
+	seismic_fracture_action?.do_ability(object_turf, earth_pillar = TRUE)
 
 /datum/ammo/xeno/earth_pillar/on_hit_turf(turf/hit_turf, obj/projectile/proj)
 	playsound(hit_turf, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
