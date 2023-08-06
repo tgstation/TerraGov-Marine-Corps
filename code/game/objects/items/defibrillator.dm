@@ -148,6 +148,10 @@
 	return TRUE
 
 /obj/item/defibrillator/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
+	defibrillate(H,user)
+
+///Split proc that actually does the defibrillation. Separated to be used more easily by medical gloves
+/obj/item/defibrillator/proc/defibrillate(mob/living/carbon/human/H, mob/living/carbon/human/user)
 	if(user.do_actions) //Currently deffibing
 		return
 
@@ -340,8 +344,10 @@
 
 //when you are wearing these gloves, this will call the normal attack code to begin defibing the target
 /obj/item/defibrillator/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(user.a_intent != INTENT_HELP)
+		return
 	if(istype(user) && istype(target))
-		attack(target,user)
+		defibrillate(target, user)
 
 /obj/item/defibrillator/gloves/update_icon_state()
 	return
