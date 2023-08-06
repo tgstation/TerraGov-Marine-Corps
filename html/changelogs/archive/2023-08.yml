@@ -54,3 +54,36 @@
   - rscadd: vents and scrubber in PoS operation room.
   - rscadd: cryo console near PoS Alamo.
   - rscadd: where jaeger vendor will be for PoS. Keep your eyes out for the future!
+2023-08-03:
+  Barnet2:
+  - balance: Removed SVD from the Cold War seasonals.
+  Lumipharon:
+  - balance: HvH melee stuns halved in duration. Head stuns chance slightly reduced
+  - balance: Stuns from smashing into things on office chairs halved
+  - bugfix: fixed a couple of things having lower stagger than intended.
+  - bugfix: fixed a couple of minor throw bugs
+  - bugfix: Hiveminds can no longer jump
+  Sanuki357:
+  - imageadd: added sprite for an empty sentry box to make them distinguishable visually
+2023-08-04:
+  '@Xander3359 @KillerOrcaCora':
+  - bugfix: Fixes cape sprites for Rapier (Left) and Rapier (Right)
+  yyzsong:
+  - rscadd: Valhalla vendor now has volkite small cells (Serpenta ammo)
+2023-08-05:
+  Xander3359:
+  - rscadd: Navy Blue color preset
+  forestbbbbbbb:
+  - bugfix: fixed clickdrag aimbot
+  ivanmixo:
+  - code_imp: Brought our asset system up to date
+  - bugfix: Landing on cocoons actually gibs the person inside it now
+  - bugfix: Health scanner doesn't tell you you're pregnant if you hold an alien embryo
+      in your hand anymore
+2023-08-06:
+  Sanuki357:
+  - imageadd: added sprite for the crate of ST-580 point defense sentry which was
+      using the same sprite as the ST-571 sentry gun
+  - imageadd: all the wooden crates (the one you can hold on like the sentry one)
+      now has the sprite when they are empty
+  - code_imp: all the wooden crates now dispenses a wooden plank when folded

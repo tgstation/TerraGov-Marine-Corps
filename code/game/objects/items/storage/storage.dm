@@ -768,7 +768,7 @@
 		close(M)
 
 	// Now make the cardboard
-	to_chat(user, span_notice("You fold [src] flat."))
+	to_chat(user, span_notice("You break down the [src]."))
 	new foldable(get_turf(src))
 	qdel(src)
 //BubbleWrap END

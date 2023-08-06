@@ -1,0 +1,5 @@
+author: "forestbbbbbbb"
+delete-after: True
+changes:
+  - bugfix: "Fix observers being unable to examine"
+  - bugfix: "Fix observers being unable to open armor storage"
