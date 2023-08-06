@@ -609,7 +609,7 @@
 
 /obj/item/storage/pouch/field_pouch
 	name = "field utility pouch"
-	storage_slots = 5
+	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "utility"
 	draw_mode = 1
@@ -623,6 +623,20 @@
 		/obj/item/whistle,
 		/obj/item/binoculars,
 		/obj/item/beacon/supply_beacon,
+		/obj/item/compass,
+		/obj/item/deployable_camera,
+		/obj/item/hud_tablet,
+		/obj/item/minimap_tablet,
+		/obj/item/supplytablet,
+		/obj/item/megaphone,
+		/obj/item/storage/box/m94,
+		/obj/item/explosive/grenade/flare,
+		/obj/item/storage/box/m94/cas,
+		/obj/item/explosive/grenade/flare/cas,
+		/obj/item/tool/hand_labeler,
+		/obj/item/toy/deck,
+		/obj/item/paper,
+		/obj/item/clipboard,
 	)
 
 /obj/item/storage/pouch/field_pouch/full/Initialize(mapload)
