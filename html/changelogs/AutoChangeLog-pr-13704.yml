@@ -1,0 +1,5 @@
+author: "Sanuki357"
+delete-after: True
+changes:
+  - balance: "The field utility pouch now can hold compass, \"Huginn\" ROC-58 Observer, the map tablets, ASRS tablet, megaphone, hand labeller, and deck of cards, as well as papers and clipboard."
+  - rscdel: "Removed the document pouch from the vending machine."
