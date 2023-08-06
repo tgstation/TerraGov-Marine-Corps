@@ -129,7 +129,7 @@
 /datum/action/xeno_action/create_spiderling
 	name = "Birth Spiderling"
 	ability_name = "birth_spiderling"
-	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time."
+	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time. If any charges of Cannibalise are stored, cooldown is reduced to 1 second."
 	action_icon_state = "spawn_spiderling"
 	plasma_cost = 100
 	cooldown_timer = 15 SECONDS
@@ -138,6 +138,8 @@
 	)
 	/// List of all our spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
+	/// Current amount of cannibalise charges
+	var/cannibalise_charges = 0
 
 /// The action to create spiderlings
 /datum/action/xeno_action/create_spiderling/action_activate()
@@ -152,6 +154,10 @@
 	var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new(owner.loc, owner, owner)
 	add_spiderling(new_spiderling)
 	succeed_activate()
+	if(cannibalise_charges > 0)
+		cannibalise_charges -= 1
+		owner.balloon_alert(owner, "[cannibalise_charges]/3 charges remaining")
+		return
 	add_cooldown()
 
 /// Adds spiderlings to spiderling list and registers them for death so we can remove them later
@@ -313,6 +319,48 @@
 		owner.buckle_mob(remaining_spiderling, TRUE, TRUE, 90, 1,0)
 		ADD_TRAIT(remaining_spiderling, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(grab_spiderlings), remaining_list, number_of_attempts_left - 1), 1)
+
+// ***************************************
+// *********** Cannibalise
+// ***************************************
+/datum/action/xeno_action/activable/cannibalise
+	name = "Cannibalise Spiderling"
+	ability_name = "Cannibalise Spiderling"
+	desc = "Consume one of your children, storing their biomass for future use. Birth Spiderling automatically uses this biomass, almost removing its cooldown entirely. Up to three spiderlings worth of biomass may be stored at once."
+	action_icon_state = "cannibalise_spiderling"
+	plasma_cost = 50
+	cooldown_timer = 2 SECONDS
+	icons/mob/actions
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COSMIG_XENOABILITY_CANNIBALISE_SPIDERLING,
+	)
+
+/datum/action/xeno_action/activable/cannibalise/can_use_ability(atom/A)
+	. = ..()
+	if(!.)
+		return
+	if(!owner.do_actions)
+		return FALSE
+	if(!owner.Adjacent(target))
+		owner.balloon_alert(owner, "Not adjacent")
+		return FALSE
+	if(!istype(A, /mob/living/carbon/xenomorph/spiderling/))
+		owner.balloon_alert(owner, "We can't cannibalise this")
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/activable/cannibalise/use_ability(atom/A)
+	owner.emote("roar")
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+		return fail_activate()
+	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
+	var/mob/living/carbon/xenomorph/spiderling/to_cannibalise
+	to_cannibalise.death()
+	create_spiderling_action.cannibalise_charges += 1
+	owner.balloon_alert(owner, "[create_spiderling_action.cannibalise_charges]/3 charges")
+	playsound(owner.loc,'sound/items/eatfood.ogg', 15, 1)
+	succeed_activate()
+	add_cooldown()
 
 // ***************************************
 // *********** Web Hook
