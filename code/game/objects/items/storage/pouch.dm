@@ -337,6 +337,7 @@
 	name = "drum magazine pouch"
 	desc = "It can contain one drum magazine."
 	icon_state = "large_ammo_drum"
+	sprite_slots = 1
 	storage_slots = 1
 	can_hold = list(
 		/obj/item/ammo_magazine/standard_smartmachinegun,
@@ -346,8 +347,8 @@
 /obj/item/storage/pouch/explosive
 	name = "explosive pouch"
 	desc = "It can contain grenades, plastiques, mine boxes, and other explosives."
-	icon_state = "large_explosive"
-	sprite_slots = 1
+	icon_state = "explosive"
+	sprite_slots = 2
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
@@ -440,6 +441,7 @@
 	name = "medkit pouch"
 	desc = "A standard use medkit pouch that can contain all kinds of medical supplies and equipment."
 	icon_state = "medkit"
+	sprite_slots = 1
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 7
@@ -486,6 +488,7 @@
 	name = "medical injector pouch"
 	desc = "A specialized medical pouch that can only hold auto-injectors."
 	icon_state = "firstaid_injector"
+	sprite_slots = 5
 	storage_slots = 8
 	max_storage_space = 14
 	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
@@ -575,6 +578,7 @@
 	name = "surgery tools pouch"
 	desc = "An eye catching white medical pouch capable of holding all your surgical tools."
 	icon_state = "surgery"
+	sprite_slots = 1
 	storage_slots = 12
 	max_storage_space = 24
 	can_hold = list(
@@ -621,6 +625,7 @@
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "utility"
+	sprite_slots = 4
 	draw_mode = 1
 	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
 	can_hold = list(
@@ -646,6 +651,7 @@
 	name = "electronics pouch"
 	desc = "It is designed to hold most electronics, power cells and circuitboards."
 	icon_state = "electronics"
+	sprite_slots = 1
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/circuitboard,
@@ -665,6 +671,7 @@
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "construction"
+	sprite_slots = 1
 	can_hold = list(
 		/obj/item/stack/barbed_wire,
 		/obj/item/stack/sheet,
@@ -707,6 +714,7 @@
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "tools"
+	sprite_slots = 1
 	can_hold = list(
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/wirecutters,
@@ -759,6 +767,7 @@
 	name = "shotgun shell pouch"
 	desc = "A pouch specialized for holding shotgun ammo."
 	icon_state = "shotshells"
+	sprite_slots = 4
 	storage_slots = 4
 	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)
