@@ -51,8 +51,6 @@
 	SIGNAL_HANDLER
 	if(!A)
 		only_set_escorted_atom()
-		UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
-		atom_to_walk_to = null
 		return
 	if(atom_to_walk_to == A)
 		return
