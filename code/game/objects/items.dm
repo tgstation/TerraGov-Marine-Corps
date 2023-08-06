@@ -206,9 +206,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	. += "[gender == PLURAL ? "They are" : "It is"] a [weight_class_to_text(w_class)] item."
 
 /obj/item/attack_ghost(mob/dead/observer/user)
-	if(!can_interact(user))
+	. = ..()
+	if(. || !can_interact(user))
 		return
-
 	return interact(user)
 
 
