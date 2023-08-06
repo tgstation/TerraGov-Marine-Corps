@@ -112,7 +112,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		/obj/structure/dropship_equipment/weapon/heavygun = cas_cannon_shots,
 		/obj/structure/dropship_equipment/weapon/laser_beam_gun = cas_laser_shots,
 		/obj/structure/dropship_equipment/weapon/minirocket_pod = cas_minirockets_fired,
-		/obj/structure/dropship_equipment/weapon/rocket_pod = cas_rockets_fired
+		/obj/structure/dropship_equipment/weapon/rocket_pod = cas_rockets_fired,
 		)
 
 ///Return a list of the data of the most used chemical
