@@ -80,3 +80,10 @@
   - bugfix: Landing on cocoons actually gibs the person inside it now
   - bugfix: Health scanner doesn't tell you you're pregnant if you hold an alien embryo
       in your hand anymore
+2023-08-06:
+  Sanuki357:
+  - imageadd: added sprite for the crate of ST-580 point defense sentry which was
+      using the same sprite as the ST-571 sentry gun
+  - imageadd: all the wooden crates (the one you can hold on like the sentry one)
+      now has the sprite when they are empty
+  - code_imp: all the wooden crates now dispenses a wooden plank when folded
