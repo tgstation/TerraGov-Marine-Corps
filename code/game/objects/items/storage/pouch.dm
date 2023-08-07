@@ -124,6 +124,7 @@
 	name = "first-aid pouch"
 	desc = "Standard marine first-aid pouch. It can contain most common medical supplies."
 	icon_state = "firstaid"
+	sprite_slots = 3
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/reagent_containers/hypospray,
@@ -564,6 +565,7 @@
 	name = "medical lolipop pouch"
 	desc = "A small medical pouch with three seperate pockets to sort your medical lollipops."
 	icon_state = "medlolly"
+	sprite_slots = 3
 	storage_slots = 3
 
 	can_hold = list(/obj/item/storage/box/combat_lolipop,)
