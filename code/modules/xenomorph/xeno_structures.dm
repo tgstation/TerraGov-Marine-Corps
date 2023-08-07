@@ -1140,7 +1140,7 @@ TUNNEL
 	max_integrity = 600
 	xeno_structure_flags = CRITICAL_STRUCTURE
 	///boost amt to be added per tower per cycle
-	var/boost_amount = 0.25
+	var/boost_amount = 0.2
 
 /obj/structure/xeno/evotower/Initialize(mapload, _hivenumber)
 	. = ..()
