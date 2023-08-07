@@ -1,171 +1,22 @@
-#define MODE_GUN "gun"
-#define MODE_ROCKETS "rockets"
-#define MODE_CRS_MSL "cruise"
-
-GLOBAL_LIST_INIT(fire_support_types, list(
-	MODE_GUN = new /datum/fire_support/gau,
-	MODE_ROCKETS = new /datum/fire_support/rockets,
-	MODE_CRS_MSL = new /datum/fire_support/cruise_missile,
-	))
-
-/datum/fire_support
-	///Fire support name
-	var/name = "misc firesupport"
-	///icon_state for radial menu
-	var/icon_state
-	///define name of the firesupport, used for assoc
-	var/fire_support_type
-	///How frequently this canbe used
-	var/cooldown_duration = 60 SECONDS
-	///Holder for the cooldown timer
-	var/cooldown_timer
-	///Number of uses available. Negative for no limit
-	var/uses = -1
-	///How far the fire support can land from the target turf
-	var/scatter_range = 6
-	///How many impacts per use
-	var/impact_quantity = 1
-	///Chat message when initiating fire support
-	var/initiate_chat_message = "TARGET ACQUIRED. FIRE SUPPORT INBOUND."
-	///screentext message when initiating fire support
-	var/initiate_screen_message = "fire support inbound."
-	///Screentext message title
-	var/initiate_title = "Garuda-2"
-	///Portrait used for screentext message
-	var/atom/movable/screen/text/screen_text/picture/portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/pilot
-	///Initiating sound effect
-	var/initiate_sound = 'sound/effects/dropship_sonic_boom.ogg'
-	///Delay between initiation and impact
-	var/delay_to_impact = 4 SECONDS
-	///visual when impact starts
-	var/obj/effect/temp_visual/start_visual = /obj/effect/temp_visual/dropship_flyby
-	///sound when impact starts
-	var/start_sound = 'sound/effects/casplane_flyby.ogg'
-
-///Initiates fire support proc chain
-/datum/fire_support/proc/initiate_fire_support(turf/target_turf, mob/user)
-	if(!uses)
-		to_chat(user, span_notice("FIRE SUPPORT UNAVAILABLE"))
-		return
-	uses --
-	addtimer(CALLBACK(src, PROC_REF(start_fire_support), target_turf), delay_to_impact)
-
-	if(initiate_sound)
-		playsound(target_turf, initiate_sound, 100)
-	if(initiate_chat_message)
-		to_chat(user, span_notice(initiate_chat_message))
-	if(portrait_type && initiate_screen_message && initiate_title)
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[initiate_title]</u></span><br>" + initiate_screen_message, portrait_type)
-
-///Actually begins the fire support attack
-/datum/fire_support/proc/start_fire_support(turf/target_turf, attackdir = NORTH)
-	cooldown_timer = addtimer(VARSET_CALLBACK(src, cooldown_timer, null), cooldown_duration)
-	select_target(target_turf)
-
-	if(start_visual)
-		new start_visual(target_turf)
-	if(start_sound)
-		playsound(target_turf, start_sound, 100)
-
-///Selects the final target turf(s) and calls impact procs
-/datum/fire_support/proc/select_target(turf/target_turf)
-	var/list/turf_list = list()
-	for(var/turf/spread_turf in RANGE_TURFS(scatter_range, target_turf))
-		turf_list += spread_turf
-	for(var/i = 1 to impact_quantity)
-		var/turf/impact_turf = pick(turf_list)
-		addtimer(CALLBACK(src, PROC_REF(do_impact), impact_turf), 0.15 SECONDS * i)
-
-///The actual impact of the fire support
-/datum/fire_support/proc/do_impact(turf/target_turf)
-	return
-
-/datum/fire_support/gau
-	name = "gun run"
-	fire_support_type = MODE_GUN
-	fire_support_flags
-	impact_quantity = 5
-	icon_state = "gau"
-	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
-	initiate_screen_message = "Target received, gun run inbound."
-
-/datum/fire_support/gau/do_impact(turf/target_turf)
-	var/revdir = REVERSE_DIR(NORTH)
-	for(var/i=0 to 2)
-		target_turf = get_step(target_turf, revdir)
-	var/list/strafelist = list(target_turf)
-	strafelist += get_step(target_turf, turn(NORTH, 90))
-	strafelist += get_step(target_turf, turn(NORTH, -90)) //Build this list 3 turfs at a time for strafe_turfs
-	for(var/b=0 to 6)
-		target_turf = get_step(target_turf, NORTH)
-		strafelist += target_turf
-		strafelist += get_step(target_turf, turn(NORTH, 90))
-		strafelist += get_step(target_turf, turn(NORTH, -90))
-
-	if(!length(strafelist))
-		return
-
-	strafe_turfs(strafelist)
-
-///Takes the top 3 turfs and miniguns them, then repeats until none left
-/datum/fire_support/gau/proc/strafe_turfs(list/strafelist)
-	var/turf/strafed
-	playsound(strafelist[1], 'sound/weapons/gauimpact.ogg', 40, 1, 20, falloff = 3)
-	for(var/i=1 to 3)
-		strafed = strafelist[1]
-		strafelist -= strafed
-		strafed.ex_act(EXPLODE_HEAVY)
-		new /obj/effect/temp_visual/heavyimpact(strafed)
-		for(var/atom/movable/AM AS in strafed)
-			AM.ex_act(EXPLODE_HEAVY)
-
-	if(length(strafelist))
-		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)
-
-/datum/fire_support/rockets
-	name = "rocket barrage"
-	fire_support_type = MODE_ROCKETS
-	fire_support_flags
-	scatter_range = 9
-	impact_quantity = 15
-	icon_state = "rockets"
-	initiate_chat_message = "TARGET ACQUIRED ROCKET RUN INBOUND."
-	initiate_screen_message = "Rockets hot, incoming!"
-
-/datum/fire_support/rockets/do_impact(turf/target_turf)
-	explosion(target_turf, 0, 2, 5, 2)
-
-/datum/fire_support/cruise_missile
-	name = "cruise missile strike"
-	fire_support_type = MODE_CRS_MSL
-	fire_support_flags
-	scatter_range = 1
-	icon_state = "cruise"
-	initiate_chat_message = "TARGET ACQUIRED CRUISE MISSILE INBOUND."
-	initiate_screen_message = "Cruise missile programmed, one out."
-	initiate_sound = 'sound/weapons/rocket_incoming.ogg'
-	start_visual = null
-	start_sound = null
-
-/datum/fire_support/cruise_missile/select_target(turf/target_turf)
-	explosion(target_turf, 4, 5, 6)
-
 /obj/item/binoculars/fire_support
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
+	w_class = WEIGHT_CLASS_SMALL
+	///Faction locks this item if specified
+	var/faction = null
+	///lase effect
 	var/obj/effect/overlay/temp/laser_target/laser
 	var/target_acquisition_delay = 5 SECONDS
 	///Last stored turf targetted by rangefinders
 	var/turf/targetturf
 	///Current mode for support request
-	var/mode = MODE_GUN
-
+	var/mode = FIRESUPPORT_TYPE_GUN
+	///firemodes available for these binos
 	var/list/datum/fire_support/mode_list = list(
-		MODE_GUN,
-		MODE_ROCKETS,
-		MODE_CRS_MSL,
+		FIRESUPPORT_TYPE_GUN,
+		FIRESUPPORT_TYPE_ROCKETS,
+		FIRESUPPORT_TYPE_CRUISE_MISSILE,
 	)
-	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/binoculars/fire_support/Initialize()
 	. = ..()
@@ -177,20 +28,6 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	. = ..()
 	select_radial(user)
 	return TRUE
-
-/obj/item/binoculars/fire_support/proc/select_radial(mob/user)
-	if(user.get_active_held_item() != src)
-		return
-	if(!can_interact(user))
-		return TRUE
-
-	var/list/radial_options = list()
-	for(var/fire_support_type in mode_list)
-		radial_options[fire_support_type] = image(icon = 'icons/mob/radial.dmi', icon_state = mode_list[fire_support_type].icon_state)
-
-	mode = show_radial_menu(user, src, radial_options, null, 48, null, TRUE, TRUE)
-	user.balloon_alert(user, "[mode_list[mode].name] mode")
-	update_icon()
 
 /obj/item/binoculars/fire_support/examine(mob/user)
 	. = ..()
@@ -246,13 +83,31 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	else
 		. += "binoculars_laser"
 
+///Selects a firemode
+/obj/item/binoculars/fire_support/proc/select_radial(mob/user)
+	if(user.get_active_held_item() != src)
+		return
+	if(!can_interact(user))
+		return TRUE
+
+	var/list/radial_options = list()
+	for(var/fire_support_type in mode_list)
+		radial_options[fire_support_type] = image(icon = 'icons/mob/radial.dmi', icon_state = mode_list[fire_support_type].icon_state)
+
+	mode = show_radial_menu(user, src, radial_options, null, 48, null, TRUE, TRUE)
+	user.balloon_alert(user, "[mode_list[mode].name] mode")
+	update_icon()
+
+///lases a target and calls fire support on it
 /obj/item/binoculars/fire_support/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
 
+	if(faction && user.faction != faction)
+		balloon_alert_to_viewers("Security locks engaged")
+		return
 	if(laser)
 		to_chat(user, span_warning("You're already targeting something."))
 		return
-
 	if(!mode)
 		balloon_alert_to_viewers("Select a mode!")
 		return
@@ -260,7 +115,7 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 		balloon_alert_to_viewers("[mode_list[mode].name] expended")
 		return
 	if(mode_list[mode].cooldown_timer)
-		balloon_alert_to_viewers("On cooldown.")
+		balloon_alert_to_viewers("On cooldown")
 		return
 
 	var/turf/TU = get_turf(A)
@@ -302,12 +157,9 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	QDEL_NULL(laser)
 	mode_list[mode].initiate_fire_support(TU, user)
 
+///Acquires coords of a target turf
 /obj/item/binoculars/fire_support/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
 	var/turf/TU = get_turf(A)
 	targetturf = TU
 	to_chat(user, span_notice("COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
-
-#undef MODE_GUN
-#undef MODE_ROCKETS
-#undef MODE_CRS_MSL
