@@ -1,7 +1,137 @@
 #define MODE_GUN "gun"
 #define MODE_ROCKETS "rockets"
 #define MODE_CRS_MSL "cruise"
-//#define MODE_SUPPLY "supply"
+
+GLOBAL_LIST_INIT(fire_support_types, list(
+	MODE_GUN = new /datum/fire_support/gau,
+	MODE_ROCKETS = new /datum/fire_support/rockets,
+	MODE_CRS_MSL = new /datum/fire_support/cruise_missile,
+	))
+
+/datum/fire_support
+	var/name = "misc firesupport"
+	var/icon_state
+	var/fire_support_type
+	var/fire_support_flags
+	var/cooldown_duration = 60 SECONDS
+	var/cooldown_timer
+	var/uses = -1
+	var/scatter_range = 6
+	var/impact_quantity = 1
+
+	var/initiate_chat_message = "TARGET ACQUIRED. FIRE SUPPORT INBOUND."
+	var/initiate_screen_message = "fire support inbound."
+	var/initiate_title = "Garuda-2"
+	var/initiate_sound = 'sound/effects/dropship_sonic_boom.ogg'
+	var/delay_to_impact = 4 SECONDS
+	var/atom/movable/screen/text/screen_text/picture/portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/pilot
+
+	var/obj/effect/temp_visual/start_visual = /obj/effect/temp_visual/dropship_flyby
+	var/start_sound = 'sound/effects/casplane_flyby.ogg'
+
+/datum/fire_support/proc/initiate_fire_support(turf/target_turf, mob/user)
+	if(!uses)
+		to_chat(user, span_notice("FIRE SUPPORT UNAVAILABLE"))
+		return
+	uses --
+	addtimer(CALLBACK(src, PROC_REF(start_fire_support), target_turf), delay_to_impact)
+
+	if(initiate_sound)
+		playsound(target_turf, initiate_sound, 100)
+	if(initiate_chat_message)
+		to_chat(user, span_notice(initiate_chat_message))
+	if(portrait_type && initiate_screen_message && initiate_title)
+		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[initiate_title]</u></span><br>" + initiate_screen_message, portrait_type)
+
+/datum/fire_support/proc/start_fire_support(turf/target_turf, attackdir = NORTH)
+	cooldown_timer = addtimer(VARSET_CALLBACK(src, cooldown_timer, null), cooldown_duration)
+	select_target(target_turf)
+
+	if(start_visual)
+		new start_visual(target_turf)
+	if(start_sound)
+		playsound(target_turf, start_sound, 100)
+
+/datum/fire_support/proc/select_target(turf/target_turf)
+	var/list/turf_list = list()
+	for(var/turf/spread_turf in RANGE_TURFS(scatter_range, target_turf))
+		turf_list += spread_turf
+	for(var/i = 1 to impact_quantity)
+		var/turf/impact_turf = pick(turf_list)
+		addtimer(CALLBACK(src, PROC_REF(do_impact), impact_turf), 0.15 SECONDS * i)
+
+/datum/fire_support/proc/do_impact(turf/target_turf)
+	return
+
+/datum/fire_support/gau
+	name = "gun run"
+	fire_support_type = MODE_GUN
+	fire_support_flags
+	impact_quantity = 5
+	icon_state = "gau"
+	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
+	initiate_screen_message = "Target received, gun run inbound."
+
+/datum/fire_support/gau/do_impact(turf/target_turf)
+	var/revdir = REVERSE_DIR(NORTH)
+	for(var/i=0 to 2)
+		target_turf = get_step(target_turf, revdir)
+	var/list/strafelist = list(target_turf)
+	strafelist += get_step(target_turf, turn(NORTH, 90))
+	strafelist += get_step(target_turf, turn(NORTH, -90)) //Build this list 3 turfs at a time for strafe_turfs
+	for(var/b=0 to 6)
+		target_turf = get_step(target_turf, NORTH)
+		strafelist += target_turf
+		strafelist += get_step(target_turf, turn(NORTH, 90))
+		strafelist += get_step(target_turf, turn(NORTH, -90))
+
+	if(!length(strafelist))
+		return
+
+	strafe_turfs(strafelist)
+
+///Takes the top 3 turfs and miniguns them, then repeats until none left
+/datum/fire_support/gau/proc/strafe_turfs(list/strafelist)
+	var/turf/strafed
+	playsound(strafelist[1], 'sound/weapons/gauimpact.ogg', 40, 1, 20, falloff = 3)
+	for(var/i=1 to 3)
+		strafed = strafelist[1]
+		strafelist -= strafed
+		strafed.ex_act(EXPLODE_HEAVY)
+		new /obj/effect/temp_visual/heavyimpact(strafed)
+		for(var/atom/movable/AM AS in strafed)
+			AM.ex_act(EXPLODE_HEAVY)
+
+	if(length(strafelist))
+		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)
+
+/datum/fire_support/rockets
+	name = "rocket barrage"
+	fire_support_type = MODE_ROCKETS
+	fire_support_flags
+	scatter_range = 9
+	impact_quantity = 15
+	icon_state = "rockets"
+	initiate_chat_message = "TARGET ACQUIRED ROCKET RUN INBOUND."
+	initiate_screen_message = "Rockets hot, incoming!"
+
+/datum/fire_support/rockets/do_impact(turf/target_turf)
+	explosion(target_turf, 0, 2, 5, 2)
+
+/datum/fire_support/cruise_missile
+	name = "cruise missile strike"
+	fire_support_type = MODE_CRS_MSL
+	fire_support_flags
+	scatter_range = 1
+	icon_state = "cruise"
+	initiate_chat_message = "TARGET ACQUIRED CRUISE MISSILE INBOUND."
+	initiate_screen_message = "Cruise missile programmed, one out."
+	initiate_sound = 'sound/weapons/rocket_incoming.ogg'
+	start_visual = null
+	start_sound = null
+
+/datum/fire_support/cruise_missile/select_target(turf/target_turf)
+	explosion(target_turf, 4, 5, 6)
 
 /obj/item/binoculars/fire_support
 	name = "tactical binoculars"
@@ -10,31 +140,21 @@
 	var/target_acquisition_delay = 5 SECONDS
 	///Last stored turf targetted by rangefinders
 	var/turf/targetturf
-	///Cooldown for gun run
-	var/gun_cooldown = 3 MINUTES
-	///Cooldown for rocket run
-	var/rockets_cooldown = 3 MINUTES
-	///Cooldown for cruise missile strike
-	var/cruise_cooldown = 3 MINUTES
-	///Cooldown for supply drop
-	//var/supply_cooldown = 2 MINUTES
-	///Timer for gun run
-	var/static/gun_timer
-	///Timer for for rocket run
-	var/static/rockets_timer
-	///Timer for cruise missile strike
-	var/static/cruise_timer
-	///Timer for supply drop
-	//var/static/supply_timer
 	///Current mode for support request
 	var/mode = MODE_GUN
-	///Delay to impact post targeting
-	var/delay_to_impact = 4 SECONDS
+
+	var/list/datum/fire_support/mode_list = list(
+		MODE_GUN,
+		MODE_ROCKETS,
+		MODE_CRS_MSL,
+	)
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/binoculars/fire_support/Initialize()
 	. = ..()
 	update_icon()
+	for(var/fire_support_type in mode_list)
+		mode_list[fire_support_type] = GLOB.fire_support_types[fire_support_type]
 
 /obj/item/binoculars/fire_support/unique_action(mob/user)
 	. = ..()
@@ -47,36 +167,17 @@
 	if(!can_interact(user))
 		return TRUE
 
-	var/list/radial_options = list(
-		MODE_GUN = image(icon = 'icons/mob/radial.dmi', icon_state = "gau"),
-		MODE_ROCKETS = image(icon = 'icons/mob/radial.dmi', icon_state = "rockets"),
-		MODE_CRS_MSL = image(icon = 'icons/mob/radial.dmi', icon_state = "cruise"),
-	//	MODE_SUPPLY = image(icon = 'icons/mob/radial.dmi', icon_state = "supply"),
-		)
+	var/list/radial_options = list()
+	for(var/fire_support_type in mode_list)
+		radial_options[fire_support_type] = image(icon = 'icons/mob/radial.dmi', icon_state = mode_list[fire_support_type].icon_state)
 
 	mode = show_radial_menu(user, src, radial_options, null, 48, null, TRUE, TRUE)
-	switch(mode)
-		if(MODE_GUN)
-			user.balloon_alert(user, "Gun run mode")
-		if(MODE_ROCKETS)
-			user.balloon_alert(user, "Rocket run mode")
-		if(MODE_CRS_MSL)
-			user.balloon_alert(user, "Cruise missile mode")
-	//	if(MODE_SUPPLY)
-	//		user.balloon_alert(user, "Supply drop mode")
+	user.balloon_alert(user, "[mode_list[mode].name] mode")
 	update_icon()
 
 /obj/item/binoculars/fire_support/examine(mob/user)
 	. = ..()
-	switch(mode)
-		if(MODE_GUN)
-			. += span_notice("They are currently set to gun run marking mode.")
-		if(MODE_ROCKETS)
-			. += span_notice("They are currently set to rocket targeting mode.")
-		if(MODE_CRS_MSL)
-			. += span_notice("They are currently set to cruise missile targeting mode.")
-	//	if(MODE_SUPPLY)
-	//		. += span_notice("They are currently set to supply drop mode.")
+	. += span_notice("They are currently set to [mode_list[mode].name] targeting mode.")
 
 /obj/item/binoculars/fire_support/Destroy()
 	if(laser)
@@ -138,18 +239,12 @@
 	if(!mode)
 		balloon_alert_to_viewers("Select a mode!")
 		return
-	else if(mode == MODE_GUN && gun_timer)
+	if(!mode_list[mode].uses)
+		balloon_alert_to_viewers("[mode_list[mode].name] expended")
+		return
+	if(mode_list[mode].cooldown_timer)
 		balloon_alert_to_viewers("On cooldown.")
 		return
-	else if(mode == MODE_ROCKETS && rockets_timer)
-		balloon_alert_to_viewers("On cooldown.")
-		return
-	else if(mode == MODE_CRS_MSL && cruise_timer)
-		balloon_alert_to_viewers("On cooldown.")
-		return
-	//else if(mode == MODE_SUPPLY && supply_timer)
-	//	balloon_alert_to_viewers("On cooldown.")
-	//	return
 
 	var/turf/TU = get_turf(A)
 	var/distance = get_dist(TU, get_turf(user))
@@ -179,122 +274,16 @@
 	if(!mode)
 		balloon_alert_to_viewers("Select a mode!")
 		return
-	else if(mode == MODE_GUN && gun_timer)
+	if(!mode_list[mode].uses)
+		balloon_alert_to_viewers("[mode_list[mode].name] expended")
+		return
+	if(mode_list[mode].cooldown_timer)
 		balloon_alert_to_viewers("On cooldown.")
 		return
-	else if(mode == MODE_ROCKETS && rockets_timer)
-		balloon_alert_to_viewers("On cooldown.")
-		return
-	else if(mode == MODE_CRS_MSL && cruise_timer)
-		balloon_alert_to_viewers("On cooldown.")
-		return
-	//else if(mode == MODE_SUPPLY && supply_timer)
-	//	balloon_alert_to_viewers("On cooldown.")
-	//	return
+
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
-	switch(mode)
-		if(MODE_GUN)
-			to_chat(user, span_notice("TARGET ACQUIRED GUN RUN INBOUND."))
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Garuda-2</u></span><br>" + "Target received, gun run inbound.", /atom/movable/screen/text/screen_text/picture/potrait/pilot)
-			playsound(TU, 'sound/effects/dropship_sonic_boom.ogg', 100)
-			addtimer(CALLBACK(src, PROC_REF(gun_run), TU), delay_to_impact)
-		if(MODE_ROCKETS)
-			to_chat(user, span_notice("TARGET ACQUIRED ROCKET RUN INBOUND."))
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Garuda-2</u></span><br>" + "Rockets hot, incoming!", /atom/movable/screen/text/screen_text/picture/potrait/pilot)
-			playsound(TU, 'sound/effects/dropship_sonic_boom.ogg', 100)
-			addtimer(CALLBACK(src, PROC_REF(rocket_run), TU), delay_to_impact)
-		if(MODE_CRS_MSL)
-			to_chat(user, span_notice("TARGET ACQUIRED CRUISE MISSILE INBOUND."))
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt-Manley</u></span><br>" + "Cruise missile programmed, 1 out.", /atom/movable/screen/text/screen_text/picture/potrait)
-			playsound(TU, 'sound/weapons/rocket_incoming.ogg', 65)
-			addtimer(CALLBACK(src, PROC_REF(cruise_missile), TU), delay_to_impact)
-		//if(MODE_SUPPLY)
-		//	to_chat(user, span_notice("TARGET ACQUIRED SUPPLY CRATE INBOUND."))
-		//	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt-Manley</u></span><br>" + "Supply crate sent.", /atom/movable/screen/text/screen_text/picture/potrait)
-		//	playsound(TU, 'sound/effects/dropship_sonic_boom.ogg', 75)
-		//	addtimer(CALLBACK(src, PROC_REF(supply), TU), delay_to_impact)
-
-/obj/item/binoculars/fire_support/proc/gun_run(turf/T, attackdir = NORTH)
 	QDEL_NULL(laser)
-	var/list/turf_list = list()
-	for(var/turf/spread_turf in RANGE_TURFS(6, T))
-		turf_list += spread_turf
-	for(var/i = 1 to 5)
-		var/turf/impact_turf = pick(turf_list)
-		addtimer(CALLBACK(src, PROC_REF(gun_run_fire), impact_turf), 0.15 SECONDS * i)
-	new /obj/effect/temp_visual/dropship_flyby(T)
-	playsound(T, 'sound/effects/casplane_flyby.ogg', 100)
-	gun_timer = addtimer(CALLBACK(src, PROC_REF(gun_clear_timer)), gun_cooldown)
-
-/obj/item/binoculars/fire_support/proc/gun_run_fire(turf/T)
-	strafe_turfs(get_turfs_to_impact(T))
-
-/obj/item/binoculars/fire_support/proc/get_turfs_to_impact(turf/impact)
-	var/turf/beginning = impact
-	var/revdir = REVERSE_DIR(NORTH)
-	for(var/i=0 to 2)
-		beginning = get_step(beginning, revdir)
-	var/list/strafelist = list(beginning)
-	strafelist += get_step(beginning, turn(NORTH, 90))
-	strafelist += get_step(beginning, turn(NORTH, -90)) //Build this list 3 turfs at a time for strafe_turfs
-	for(var/b=0 to 6)
-		beginning = get_step(beginning, NORTH)
-		strafelist += beginning
-		strafelist += get_step(beginning, turn(NORTH, 90))
-		strafelist += get_step(beginning, turn(NORTH, -90))
-
-	return strafelist
-
-///Takes the top 3 turfs and miniguns them, then repeats until none left
-/obj/item/binoculars/fire_support/proc/strafe_turfs(list/strafelist)
-	var/turf/strafed
-	playsound(strafelist[1], 'sound/weapons/gauimpact.ogg', 40, 1, 20, falloff = 3)
-	for(var/i=1 to 3)
-		strafed = strafelist[1]
-		strafelist -= strafed
-		strafed.ex_act(EXPLODE_HEAVY)
-		new /obj/effect/temp_visual/heavyimpact(strafed)
-		for(var/atom/movable/AM AS in strafed)
-			AM.ex_act(EXPLODE_HEAVY)
-
-	if(length(strafelist))
-		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 2)
-
-/obj/item/binoculars/fire_support/proc/gun_clear_timer()
-	gun_timer = null
-
-/obj/item/binoculars/fire_support/proc/rocket_run(turf/T)
-	QDEL_NULL(laser)
-	new /obj/effect/temp_visual/dropship_flyby(T)
-	var/list/turf_list = list()
-	for(var/turf/spread_turf in RANGE_TURFS(9, T))
-		turf_list += spread_turf
-	for(var/i = 1 to 15)
-		var/turf/impact_turf = pick(turf_list)
-		addtimer(CALLBACK(src, PROC_REF(rocket_run_fire), impact_turf), 0.15 SECONDS * i)
-	rockets_timer = addtimer(CALLBACK(src, PROC_REF(rocket_clear_timer)), rockets_cooldown)
-
-/obj/item/binoculars/fire_support/proc/rocket_run_fire(turf/T)
-	explosion(T, 0, 2, 5, 2)
-
-/obj/item/binoculars/fire_support/proc/rocket_clear_timer()
-	rockets_timer = null
-
-/obj/item/binoculars/fire_support/proc/cruise_missile(turf/T)
-	QDEL_NULL(laser)
-	explosion(T, 4, 5, 6)
-	cruise_timer = addtimer(CALLBACK(src, PROC_REF(cruise_clear_timer)), cruise_cooldown)
-
-/obj/item/binoculars/fire_support/proc/cruise_clear_timer()
-	cruise_timer = null
-
-//obj/item/binoculars/fire_support/proc/supply(turf/T)
-//	QDEL_NULL(laser)
-//	new /obj/structure/largecrate/supply/ammo/psy(T)
-//	supply_timer = addtimer(CALLBACK(src, PROC_REF(supply_clear_timer)), supply_cooldown)
-
-//obj/item/binoculars/fire_support/proc/supply_clear_timer()
-//	supply_timer = null
+	mode_list[mode].initiate_fire_support(TU, user)
 
 /obj/item/binoculars/fire_support/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
 	var/turf/TU = get_turf(A)
@@ -305,4 +294,3 @@
 #undef MODE_GUN
 #undef MODE_ROCKETS
 #undef MODE_CRS_MSL
-//#undef MODE_SUPPLY
