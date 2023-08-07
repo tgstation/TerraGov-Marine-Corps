@@ -57,6 +57,7 @@
 	if(anes_tank)
 		user.put_in_active_hand(anes_tank)
 		to_chat(user, span_notice("You remove \the [anes_tank] from \the [src]."))
+		playsound(loc, 'sound/effects/air_release.ogg', 25, 1)
 		anes_tank = null
 
 
