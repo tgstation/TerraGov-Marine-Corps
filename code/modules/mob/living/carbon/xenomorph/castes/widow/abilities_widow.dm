@@ -159,7 +159,6 @@
 	add_cooldown()
 
 /datum/action/xeno_action/create_spiderling/alternate_action_activate()
-	SIGNAL_HANDLER
 	if(!cannibalise_charges > 0)
 		owner.balloon_alert(owner, "No charges remaining!")
 		return
