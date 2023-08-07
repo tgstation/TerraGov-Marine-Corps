@@ -141,40 +141,44 @@
 	/// Current amount of cannibalise charges
 	var/cannibalise_charges = 0
 
-/// The action to create spiderlings
-/datum/action/xeno_action/create_spiderling/action_activate()
+/datum/action/xeno_action/create_spiderling/can_use_action(silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
 		X.balloon_alert(X, "Max Spiderlings")
+		return FALSE
+
+/// The action to create spiderlings
+/datum/action/xeno_action/create_spiderling/action_activate()
+	. = ..()
+	if(!add_spiderling())
 		return fail_activate()
-	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
-		return fail_activate()
-	add_spiderling()
 	succeed_activate()
 	add_cooldown()
 
 /datum/action/xeno_action/create_spiderling/alternate_action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
-		X.balloon_alert(X, "Max Spiderlings")
+	SIGNAL_HANDLER
 	if(!cannibalise_charges > 0)
-		X.balloon_alert(X, "No charges remaining!")
+		owner.balloon_alert(owner, "No charges remaining!")
 		return
-	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
-		return
+	INVOKE_ASYNC(src, PROC_REF(add_spiderling))
 	cannibalise_charges -= 1
-	X.balloon_alert(X, "[cannibalise_charges]/3 charges remaining")
-	add_spiderling()
+	owner.balloon_alert(owner, "[cannibalise_charges]/3 charges remaining")
+	return COMSIG_KB_ACTIVATED
 
 /// Adds spiderlings to spiderling list and registers them for death so we can remove them later
 /datum/action/xeno_action/create_spiderling/proc/add_spiderling()
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+		return FALSE
 	/// This creates and stores the spiderling so we can reassign the owner for spider swarm and cap how many spiderlings you can have at once
 	var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new(owner.loc, owner, owner)
 	RegisterSignals(new_spiderling, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(remove_spiderling))
 	spiderlings += new_spiderling
 	new_spiderling.pixel_x = rand(-8, 8)
 	new_spiderling.pixel_y = rand(-8, 8)
+	return TRUE
 
 /// Removes spiderling from spiderling list and unregisters death signal
 /datum/action/xeno_action/create_spiderling/proc/remove_spiderling(datum/source)
