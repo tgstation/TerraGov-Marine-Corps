@@ -165,3 +165,13 @@
 	targetturf = TU
 	to_chat(user, span_notice("COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+
+
+/obj/item/binoculars/fire_support/campaign
+	faction = FACTION_TERRAGOV
+	mode = null
+	mode_list = list(
+		FIRESUPPORT_TYPE_GUN_CAMPAIGN,
+		FIRESUPPORT_TYPE_ROCKETS_CAMPAIGN,
+		FIRESUPPORT_TYPE_CRUISE_MISSILE_CAMPAIGN,
+	)

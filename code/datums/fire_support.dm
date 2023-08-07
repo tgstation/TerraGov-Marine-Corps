@@ -73,7 +73,6 @@
 /datum/fire_support/gau
 	name = "gun run"
 	fire_support_type = FIRESUPPORT_TYPE_GUN
-	fire_support_flags
 	impact_quantity = 5
 	icon_state = "gau"
 	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
@@ -112,10 +111,13 @@
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)
 
+/datum/fire_support/gau/campaign
+	fire_support_type = FIRESUPPORT_TYPE_GUN_CAMPAIGN
+	uses = 4
+
 /datum/fire_support/rockets
 	name = "rocket barrage"
 	fire_support_type = FIRESUPPORT_TYPE_ROCKETS
-	fire_support_flags
 	scatter_range = 9
 	impact_quantity = 15
 	icon_state = "rockets"
@@ -125,10 +127,13 @@
 /datum/fire_support/rockets/do_impact(turf/target_turf)
 	explosion(target_turf, 0, 2, 5, 2)
 
+/datum/fire_support/rockets/campaign
+	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_CAMPAIGN
+	uses = 2
+
 /datum/fire_support/cruise_missile
 	name = "cruise missile strike"
 	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE
-	fire_support_flags
 	scatter_range = 1
 	icon_state = "cruise"
 	initiate_chat_message = "TARGET ACQUIRED CRUISE MISSILE INBOUND."
@@ -139,3 +144,7 @@
 
 /datum/fire_support/cruise_missile/select_target(turf/target_turf)
 	explosion(target_turf, 4, 5, 6)
+
+/datum/fire_support/cruise_missile/campaign
+	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_CAMPAIGN
+	uses = 1
