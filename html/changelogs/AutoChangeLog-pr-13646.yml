@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Motion sensor should keep working when inside a locker now"
-  - code_imp: "cheap_get_human/xenos_near shouldn't return nulls anymore"

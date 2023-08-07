@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - rscdel: "Removed some Platinum Miners on LV."
-  - bugfix: "Fixes LV research lab area not being entirely roofed."
