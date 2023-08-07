@@ -6,7 +6,7 @@
 	///define name of the firesupport, used for assoc
 	var/fire_support_type
 	///How frequently this canbe used
-	var/cooldown_duration = 60 SECONDS
+	var/cooldown_duration = 2 MINUTES
 	///Holder for the cooldown timer
 	var/cooldown_timer
 	///Number of uses available. Negative for no limit
@@ -20,15 +20,15 @@
 	///screentext message when initiating fire support
 	var/initiate_screen_message = "fire support inbound."
 	///Screentext message title
-	var/initiate_title = "Garuda-2"
+	var/initiate_title = "Garuda-1"
 	///Portrait used for screentext message
-	var/atom/movable/screen/text/screen_text/picture/portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/pilot
+	var/portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/pilot
 	///Initiating sound effect
 	var/initiate_sound = 'sound/effects/dropship_sonic_boom.ogg'
 	///Delay between initiation and impact
 	var/delay_to_impact = 4 SECONDS
 	///visual when impact starts
-	var/obj/effect/temp_visual/start_visual = /obj/effect/temp_visual/dropship_flyby
+	var/start_visual = /obj/effect/temp_visual/dropship_flyby
 	///sound when impact starts
 	var/start_sound = 'sound/effects/casplane_flyby.ogg'
 
