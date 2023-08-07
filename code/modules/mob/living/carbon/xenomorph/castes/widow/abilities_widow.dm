@@ -153,8 +153,9 @@
 /// The action to create spiderlings
 /datum/action/xeno_action/create_spiderling/action_activate()
 	. = ..()
-	if(!add_spiderling())
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
 		return fail_activate()
+	add_spiderling()
 	succeed_activate()
 	add_cooldown()
 
@@ -162,15 +163,19 @@
 	if(!cannibalise_charges > 0)
 		owner.balloon_alert(owner, "No charges remaining!")
 		return
-	INVOKE_ASYNC(src, PROC_REF(add_spiderling))
+	INVOKE_ASYNC(src, PROC_REF(use_cannibalise))
+	return COMSIG_KB_ACTIVATED
+
+/// Birth a spiderling and use up a charge of cannibalise
+/datum/action/xeno_action/create_spiderling/proc/use_cannibalise()
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+		return FALSE
+	add_spiderling()
 	cannibalise_charges -= 1
 	owner.balloon_alert(owner, "[cannibalise_charges]/3 charges remaining")
-	return COMSIG_KB_ACTIVATED
 
 /// Adds spiderlings to spiderling list and registers them for death so we can remove them later
 /datum/action/xeno_action/create_spiderling/proc/add_spiderling()
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
-		return FALSE
 	/// This creates and stores the spiderling so we can reassign the owner for spider swarm and cap how many spiderlings you can have at once
 	var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new(owner.loc, owner, owner)
 	RegisterSignals(new_spiderling, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(remove_spiderling))
