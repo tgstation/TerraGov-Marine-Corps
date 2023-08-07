@@ -12,6 +12,10 @@
 /area/shuttle/canterbury)
 "ad" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
+/obj/machinery/door/poddoor/mainship{
+	dir = 1;
+	id = "bow_engine_podlock"
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ae" = (
@@ -86,7 +90,8 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ax" = (
-/obj/machinery/robotic_cradle,
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/start/job/crash/medicalofficer,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ay" = (
@@ -318,10 +323,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 1
-	},
-/obj/effect/landmark/start/job/crash/medicalofficer,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bp" = (
@@ -873,6 +874,16 @@
 /obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
+"Gr" = (
+/obj/machinery/door_control{
+	id = "bow_engine_podlock";
+	name = "outer door-control";
+	pixel_y = 32
+	},
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/shuttle/canterbury/cic)
 "GE" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -972,6 +983,14 @@
 /obj/effect/landmark/start/job/crash/squadleader,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"RO" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/machinery/door/poddoor/mainship{
+	id = "bow_engine_podlock";
+	name = "\improper Umbillical Airlock"
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury/cic)
 "RT" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -1230,8 +1249,8 @@ Uo
 Uo
 Uo
 al
-ad
-ad
+RO
+RO
 al
 UE
 ac
@@ -1593,7 +1612,7 @@ Uo
 Uo
 al
 al
-Uw
+Gr
 bT
 al
 Rd
@@ -1626,8 +1645,8 @@ Uo
 Uo
 Uo
 al
-ad
-ad
+RO
+RO
 al
 UP
 ac
