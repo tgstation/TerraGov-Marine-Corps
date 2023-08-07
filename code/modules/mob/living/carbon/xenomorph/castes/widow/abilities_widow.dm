@@ -150,7 +150,7 @@
 		return fail_activate()
 	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
-	add_spiderling(owner)
+	add_spiderling()
 	succeed_activate()
 	add_cooldown()
 
@@ -165,7 +165,7 @@
 		return
 	cannibalise_charges -= 1
 	X.balloon_alert(X, "[cannibalise_charges]/3 charges remaining")
-	add_spiderling(X)
+	add_spiderling()
 
 /// Adds spiderlings to spiderling list and registers them for death so we can remove them later
 /datum/action/xeno_action/create_spiderling/proc/add_spiderling()
@@ -350,13 +350,13 @@
 	if(!owner.Adjacent(A))
 		owner.balloon_alert(owner, "Not adjacent")
 		return FALSE
-	if(!istype(A, /mob/living/carbon/xenomorph/spiderling/))
+	if(!istype(A, /mob/living/carbon/xenomorph/spiderling))
 		owner.balloon_alert(owner, "We can't cannibalise this")
 		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/activable/cannibalise/use_ability(atom/A)
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+	if(!do_after(owner, 0.5 SECONDS, TRUE, A, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	owner.emote("roar")
@@ -368,7 +368,7 @@
 		owner.balloon_alert(owner, "[create_spiderling_action.cannibalise_charges]/3 charges")
 	else
 		owner.balloon_alert(owner, "We are already full, no charges gained! 3/3 charges")
-	playsound(owner.loc,'sound/items/eatfood.ogg', 15, 1)
+	playsound(owner.loc, 'sound/items/eatfood.ogg', 15, TRUE)
 	succeed_activate()
 	add_cooldown()
 
