@@ -36,6 +36,8 @@
 /obj/item/binoculars/fire_support/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
+	mode_list = null
+	targetturf = null
 	return ..()
 
 
