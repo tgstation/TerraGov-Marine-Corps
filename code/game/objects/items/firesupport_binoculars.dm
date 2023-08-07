@@ -9,26 +9,40 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	))
 
 /datum/fire_support
+	///Fire support name
 	var/name = "misc firesupport"
+	///icon_state for radial menu
 	var/icon_state
+	///define name of the firesupport, used for assoc
 	var/fire_support_type
-	var/fire_support_flags
+	///How frequently this canbe used
 	var/cooldown_duration = 60 SECONDS
+	///Holder for the cooldown timer
 	var/cooldown_timer
+	///Number of uses available. Negative for no limit
 	var/uses = -1
+	///How far the fire support can land from the target turf
 	var/scatter_range = 6
+	///How many impacts per use
 	var/impact_quantity = 1
-
+	///Chat message when initiating fire support
 	var/initiate_chat_message = "TARGET ACQUIRED. FIRE SUPPORT INBOUND."
+	///screentext message when initiating fire support
 	var/initiate_screen_message = "fire support inbound."
+	///Screentext message title
 	var/initiate_title = "Garuda-2"
-	var/initiate_sound = 'sound/effects/dropship_sonic_boom.ogg'
-	var/delay_to_impact = 4 SECONDS
+	///Portrait used for screentext message
 	var/atom/movable/screen/text/screen_text/picture/portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/pilot
-
+	///Initiating sound effect
+	var/initiate_sound = 'sound/effects/dropship_sonic_boom.ogg'
+	///Delay between initiation and impact
+	var/delay_to_impact = 4 SECONDS
+	///visual when impact starts
 	var/obj/effect/temp_visual/start_visual = /obj/effect/temp_visual/dropship_flyby
+	///sound when impact starts
 	var/start_sound = 'sound/effects/casplane_flyby.ogg'
 
+///Initiates fire support proc chain
 /datum/fire_support/proc/initiate_fire_support(turf/target_turf, mob/user)
 	if(!uses)
 		to_chat(user, span_notice("FIRE SUPPORT UNAVAILABLE"))
@@ -43,6 +57,7 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	if(portrait_type && initiate_screen_message && initiate_title)
 		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[initiate_title]</u></span><br>" + initiate_screen_message, portrait_type)
 
+///Actually begins the fire support attack
 /datum/fire_support/proc/start_fire_support(turf/target_turf, attackdir = NORTH)
 	cooldown_timer = addtimer(VARSET_CALLBACK(src, cooldown_timer, null), cooldown_duration)
 	select_target(target_turf)
@@ -52,6 +67,7 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	if(start_sound)
 		playsound(target_turf, start_sound, 100)
 
+///Selects the final target turf(s) and calls impact procs
 /datum/fire_support/proc/select_target(turf/target_turf)
 	var/list/turf_list = list()
 	for(var/turf/spread_turf in RANGE_TURFS(scatter_range, target_turf))
@@ -60,6 +76,7 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 		var/turf/impact_turf = pick(turf_list)
 		addtimer(CALLBACK(src, PROC_REF(do_impact), impact_turf), 0.15 SECONDS * i)
 
+///The actual impact of the fire support
 /datum/fire_support/proc/do_impact(turf/target_turf)
 	return
 
