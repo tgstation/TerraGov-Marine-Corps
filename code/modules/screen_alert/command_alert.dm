@@ -26,17 +26,11 @@
 /datum/action/innate/message_squad/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
 
-/datum/action/innate/message_squad/can_use_action(silent = FALSE)
+/datum/action/innate/message_squad/can_use_action()
 	. = ..()
 	if(!.)
 		return
-	if(owner.stat)
-		if(!silent)
-			owner.balloon_alert(owner, "You can't send orders right now")
-		return FALSE
-	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
-		if(!silent)
-			owner.balloon_alert(owner, "Your last order was too recent")
+	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
 		return FALSE
 
 /datum/action/innate/message_squad/action_activate()
@@ -53,7 +47,7 @@
 		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
 		log_filter("IC", text, filter_result)
 		return
-	if(!can_use_action(TRUE))
+	if(!can_use_action())
 		return
 	human_owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
 	to_chat(owner, "<h2 class='alert'>You have received orders to...</h2><br>[span_alert(text)]<br><br>")

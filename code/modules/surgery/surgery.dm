@@ -1,6 +1,15 @@
 /* SURGERY STEPS */
 
-GLOBAL_LIST_EMPTY(surgery_steps)
+GLOBAL_LIST_INIT(surgery_steps, init_surgery())
+
+/// Surgery Steps - Initialize all /datum/surgery_step into a list
+/proc/init_surgery()
+	var/list/surgeries = list()
+	for(var/surgery_step_type in subtypesof(/datum/surgery_step))
+		var/datum/surgery_step/step = new surgery_step_type
+		surgeries += step
+
+	return sort_surgeries(surgeries)
 
 /datum/surgery_step
 	var/priority = 0 //Steps with higher priority will be attempted first. Accepts decimals
@@ -153,7 +162,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 			multipler -= 0.10
 		else if(locate(/obj/structure/table/, M.loc))
 			multipler -= 0.20
-		if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
+		if(M.stat == CONSCIOUS && !CHECK_BITFIELD(M.species.species_flags, NO_PAIN))//If not on anesthetics or not unconsious, and able to feel pain
 			multipler -= 0.5
 			switch(M.reagent_pain_modifier)
 				if(PAIN_REDUCTION_HEAVY to PAIN_REDUCTION_MEDIUM)
@@ -179,11 +188,11 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 
 		else if((tool in user.contents) && user.Adjacent(M)) //Or
 			if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
-					if(!(H.species.species_flags & NO_PAIN))
-						M.emote("pain")
-				to_chat(user, span_danger("[M] moved during the surgery! Use anesthetics!"))
+				if(!CHECK_BITFIELD(M.species.species_flags, NO_PAIN))
+					M.emote("pain")
+					to_chat(user, span_danger("[M] moved during the surgery! Use anesthetics!"))
+				else
+					to_chat(user, span_danger("[M] moved during the surgery!"))
 			surgery_step.fail_step(user, M, user.zone_selected, tool, affected) //Malpractice
 		else //This failing silently was a pain.
 			to_chat(user, span_warning("You must remain close to your patient to conduct surgery."))
@@ -192,8 +201,8 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 
 
 //Comb Sort. This works apparently, so we're keeping it that way
-/proc/sort_surgeries()
-	var/gap = length(GLOB.surgery_steps)
+/proc/sort_surgeries(list/surgery_list)
+	var/gap = length(surgery_list)
 	var/swapped = 1
 	while(gap > 1 || swapped)
 		swapped = 0
@@ -201,16 +210,16 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= length(GLOB.surgery_steps); i++)
-			var/datum/surgery_step/l = GLOB.surgery_steps[i]		//Fucking hate
-			var/datum/surgery_step/r = GLOB.surgery_steps[gap+i]	//how lists work here
+		for(var/i = 1; gap + i <= length(surgery_list); i++)
+			var/datum/surgery_step/l = surgery_list[i]		//Fucking hate
+			var/datum/surgery_step/r = surgery_list[gap+i]	//how lists work here
 			if(l.priority < r.priority)
-				GLOB.surgery_steps.Swap(i, gap + i)
+				surgery_list.Swap(i, gap + i)
 				swapped = 1
 
+	return surgery_list
 
-
-/datum/surgery_status/
+/datum/surgery_status
 	var/eyes	=	0
 	var/face	=	0
 	var/head_reattach = 0

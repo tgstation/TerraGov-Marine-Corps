@@ -159,7 +159,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/sentry
 	name = "ST-571 Base Defense Sentry"
-	contains = list(/obj/item/storage/box/sentry)
+	contains = list(/obj/item/storage/box/crate/sentry)
 	cost = 400
 
 /datum/supply_packs/weapons/sentry_ammo
@@ -169,7 +169,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/minisentry
 	name = "ST-580 Portable Sentry"
-	contains = list(/obj/item/storage/box/minisentry)
+	contains = list(/obj/item/storage/box/crate/minisentry)
 	cost = 400
 
 /datum/supply_packs/weapons/minisentry_ammo
@@ -768,6 +768,12 @@ EXPLOSIVES
 	name = "M45 Trailblazer grenade box crate"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/trailblazer)
+	cost = 500
+
+/datum/supply_packs/explosives/explosives_cloaker
+	name = "M45 Cloaker grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/cloaker)
 	cost = 500
 
 /datum/supply_packs/explosives/explosives_cloak

@@ -16,6 +16,21 @@
 		duration = set_duration
 	return ..()
 
+//STAGGERED
+/datum/status_effect/incapacitating/stagger
+	id = "stagger"
+
+/datum/status_effect/incapacitating/stagger/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_STAGGERED, TRAIT_STATUS_EFFECT(id))
+	owner.adjust_mob_scatter(5)
+
+/datum/status_effect/incapacitating/stagger/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_STAGGERED, TRAIT_STATUS_EFFECT(id))
+	owner.adjust_mob_scatter(-5)
+
 //STUN
 /datum/status_effect/incapacitating/stun
 	id = "stun"
@@ -510,7 +525,7 @@
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	if(stacks >= 20)
 		debuff_owner.adjust_slowdown(1)
-		debuff_owner.adjust_stagger(1)
+		debuff_owner.adjust_stagger(1 SECONDS)
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/intoxicated/proc/call_resist_debuff()

@@ -4320,6 +4320,13 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
+"cTo" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/gelida/indoors/b_block/hydro)
 "cTL" = (
 /obj/structure/inflatable/wall,
 /obj/effect/spawner/gibspawner/xeno,
@@ -19263,6 +19270,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "nab" = (
@@ -23029,6 +23037,10 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"pyu" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/east_caves)
 "pyF" = (
 /obj/effect/spawner/gibspawner/xeno,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -24784,6 +24796,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
 "qIJ" = (
@@ -26882,6 +26895,17 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
+"saB" = (
+/obj/item/clothing/mask/facehugger/dead{
+	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
+	name = "????";
+	stat = 2
+	},
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/whitepurple/full{
+	dir = 4
+	},
+/area/gelida/indoors/a_block/dorms)
 "saC" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -29312,6 +29336,10 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/black/full,
 /area/gelida/outdoors/colony_streets/central_streets)
+"tJg" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/sterilewhite/full,
+/area/gelida/indoors/a_block/medical)
 "tJs" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
@@ -47267,7 +47295,7 @@ wUn
 odg
 oNd
 odg
-hqy
+saB
 gyo
 yfp
 bNr
@@ -52645,7 +52673,7 @@ lNq
 fkH
 lNq
 lNq
-oGN
+cTo
 pSM
 iuJ
 iuJ
@@ -69486,7 +69514,7 @@ pYZ
 fBW
 orh
 mhj
-mxg
+tJg
 vCT
 ojR
 ojR
@@ -72488,7 +72516,7 @@ xIt
 xIt
 xIt
 jqf
-jqf
+pyu
 uLt
 lnR
 jqf

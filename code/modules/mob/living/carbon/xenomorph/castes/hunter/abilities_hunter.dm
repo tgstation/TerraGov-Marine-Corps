@@ -160,7 +160,7 @@
 	if(M.stat || isxeno(M))
 		return
 	if(can_sneak_attack)
-		M.adjust_stagger(3)
+		M.adjust_stagger(3 SECONDS)
 		M.add_slowdown(1)
 		to_chat(owner, span_xenodanger("Pouncing from the shadows, we stagger our victim."))
 
@@ -180,7 +180,7 @@
 
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
-	target.adjust_stagger(staggerslow_stacks)
+	target.adjust_stagger(staggerslow_stacks SECONDS)
 	target.add_slowdown(staggerslow_stacks)
 	target.ParalyzeNoChain(1 SECONDS)
 

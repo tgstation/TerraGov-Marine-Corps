@@ -374,7 +374,7 @@
 
 /// Proc for special actions and radial menus on subtypes. Returning FALSE cancels the recipe menu for a stack.
 /obj/item/stack/proc/select_radial(mob/user)
-	return
+	return TRUE
 
 /*
 * Recipe datum

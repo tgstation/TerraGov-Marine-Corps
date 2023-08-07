@@ -296,10 +296,6 @@
 "akq" = (
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
-"akF" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central4/garbledradio)
 "akI" = (
 /turf/closed/wall,
 /area/lv624/ground/sand8)
@@ -727,10 +723,6 @@
 /area/lv624/ground/sand2)
 "avu" = (
 /obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central3/garbledradio)
-"avz" = (
-/obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3/garbledradio)
 "avJ" = (
@@ -3265,11 +3257,6 @@
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage/dome)
-"bQd" = (
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 1
-	},
-/area/lv624/lazarus/corporate_affairs)
 "bQu" = (
 /obj/structure/bed/stool,
 /turf/open/floor/tile/bar,
@@ -3494,10 +3481,6 @@
 "ceV" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/garbledradio)
-"cfH" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1/garbledradio)
 "cgd" = (
 /obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor/tile/blue/whiteblue{
@@ -4699,10 +4682,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/sw)
-"dyc" = (
-/obj/effect/landmark/fob_sentry,
-/turf/closed/gm/dense,
-/area/lv624/ground/caves/rock)
 "dys" = (
 /turf/open/floor/plating/warning{
 	dir = 2
@@ -7702,6 +7681,10 @@
 	dir = 2
 	},
 /area/lv624/lazarus/main_hall)
+"hax" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/ruin)
 "haS" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1
@@ -8936,11 +8919,6 @@
 "iqt" = (
 /turf/closed/wall,
 /area/lv624/lazarus/toilet)
-"iqI" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/lv624/ground/compound/c)
 "iqY" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -9814,6 +9792,10 @@
 "jsE" = (
 /turf/closed/wall,
 /area/lv624/lazarus/main_hall)
+"jsZ" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "jtk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -10188,6 +10170,10 @@
 	dir = 1
 	},
 /area/lv624/lazarus/corporate_affairs)
+"jLs" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "jLv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/ground/grass,
@@ -11815,11 +11801,6 @@
 	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
-"lFx" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/fob_sentry,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "lGM" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/ai_node,
@@ -12326,12 +12307,6 @@
 "mhk" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6/garbledradio)
-"mhV" = (
-/obj/structure/table,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/lv624/ground/compound/c)
 "mib" = (
 /obj/docking_port/stationary/crashmode,
 /obj/structure/catwalk,
@@ -14993,6 +14968,11 @@
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
+"pqT" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle8)
 "psp" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -16014,7 +15994,6 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "qDY" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -17639,6 +17618,11 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"seL" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central4/garbledradio)
 "sgf" = (
 /obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
@@ -18127,7 +18111,7 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
-/area/lv624/ground/compound/c)
+/area/lv624/lazarus/research)
 "sOK" = (
 /obj/machinery/door_control{
 	dir = 4;
@@ -25845,7 +25829,7 @@ noU
 noU
 lDt
 noU
-sYe
+seL
 noU
 lDt
 noU
@@ -26459,7 +26443,7 @@ sRc
 bgf
 pes
 lbt
-tnW
+hax
 pes
 bZe
 wTp
@@ -26901,7 +26885,7 @@ lXk
 noU
 xnp
 noU
-akF
+noU
 xCC
 xCC
 sYe
@@ -28460,7 +28444,7 @@ ivV
 abc
 abc
 abc
-abc
+jLs
 abc
 abc
 aym
@@ -38455,7 +38439,7 @@ mOs
 mOs
 mOs
 mOs
-dyc
+mOs
 mOs
 avd
 ncS
@@ -39349,7 +39333,7 @@ avd
 xWM
 xVL
 cIl
-lFx
+oDS
 cIl
 cIl
 vfk
@@ -40070,7 +40054,7 @@ aRg
 mgb
 vCm
 dTK
-bQd
+qDY
 sjX
 pJt
 xVF
@@ -40774,7 +40758,7 @@ ggT
 rAx
 xYX
 gbp
-bQd
+qDY
 hyS
 lwx
 tJT
@@ -42448,7 +42432,7 @@ pBV
 pBV
 pBV
 pBV
-avz
+pBV
 pBV
 pBV
 pBV
@@ -44827,7 +44811,7 @@ svN
 egy
 tUO
 tvF
-mhV
+bba
 tZD
 xKv
 ygp
@@ -45004,7 +44988,7 @@ qfS
 joM
 boL
 joM
-iqI
+joM
 pQq
 xhp
 iBl
@@ -47929,7 +47913,7 @@ evp
 gKr
 pBV
 pBV
-avz
+pBV
 qFt
 pBV
 qFt
@@ -50929,7 +50913,7 @@ gKr
 gKr
 gKr
 nwU
-cfH
+fdU
 ahg
 ahg
 ahg
@@ -56060,7 +56044,7 @@ aaH
 gsr
 snv
 snv
-aZd
+snv
 snv
 snv
 snv
@@ -59303,7 +59287,7 @@ hBi
 nQQ
 jtS
 gma
-dzz
+pqT
 lfh
 tKa
 pDM
@@ -60140,7 +60124,7 @@ lTT
 snv
 snv
 snv
-aZd
+snv
 snv
 snv
 wsX
@@ -60990,7 +60974,7 @@ gKr
 gKr
 aah
 aah
-aah
+jsZ
 aah
 aah
 aah

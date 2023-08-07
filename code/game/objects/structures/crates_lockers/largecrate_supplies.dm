@@ -134,7 +134,7 @@
 /obj/structure/largecrate/supply/weapons/sentries
 	name = "\improper ST-571 sentry chest (x2)"
 	desc = "A supply crate containing two boxed ST-571 sentries."
-	supplies = list(/obj/item/storage/box/sentry = 2)
+	supplies = list(/obj/item/storage/box/crate/sentry = 2)
 
 /obj/structure/largecrate/supply/weapons/standard_hmg
 	name = "\improper HSG-102 mounted heavy smartgun chest (x2)"
