@@ -1,5 +1,13 @@
 //Preferences stuff
-GLOBAL_LIST_EMPTY(ethnicities_list)
+GLOBAL_LIST_INIT(ethnicities_list, init_ethnicities())
+
+/// Ethnicity - Initialise all /datum/ethnicity into a list indexed by ethnicity name
+/proc/init_ethnicities()
+	. = list()
+	for(var/path in subtypesof(/datum/ethnicity))
+		var/datum/ethnicity/E = new path()
+		.[E.name] = E
+
 	//Hairstyles
 GLOBAL_LIST_EMPTY(hair_styles_list)			//stores /datum/sprite_accessory/hair indexed by name
 GLOBAL_LIST_EMPTY(hair_gradients_list)			//stores /datum/sprite_accessory/hair_gradient indexed by name
@@ -76,7 +84,6 @@ GLOBAL_LIST_INIT(backpacklist, list("Nothing", "Backpack", "Satchel"))
 
 GLOBAL_LIST_INIT(genders, list(MALE, FEMALE, NEUTER))
 
-GLOBAL_LIST_EMPTY(minimap_icons)
 GLOBAL_LIST_INIT(playable_icons, list(
 	"boiler",
 	"bull",
@@ -126,3 +133,10 @@ GLOBAL_LIST_INIT(playable_squad_icons, list(
 	"medic",
 	"smartgunner",
 ))
+
+GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
+
+/proc/init_minimap_icons()
+	. = list()
+	for(var/icon_state in GLOB.playable_icons)
+		.[icon_state] = icon2base64(icon('icons/UI_icons/map_blips.dmi', icon_state, frame = 1))
