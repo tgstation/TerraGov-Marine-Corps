@@ -1825,6 +1825,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/ags_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
 	return
 
+/datum/ammo/bullet/ags_spread/incendiary/on_hit_mob(mob/M, obj/projectile/P)
+	drop_flame(get_turf(M))
+
+/datum/ammo/bullet/ags_spread/incendiary/on_hit_obj(obj/O, obj/projectile/P)
+	drop_flame(get_turf(O))
+
+/datum/ammo/bullet/ags_spread/incendiary/on_hit_turf(turf/T, obj/projectile/P)
+	drop_flame(get_turf(T))
+
+/datum/ammo/bullet/ags_spread/incendiary/do_at_max_range(turf/T, obj/projectile/P)
+	drop_flame(get_turf(T))
+
 /datum/ammo/bullet/ags_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))
 		return
