@@ -84,9 +84,10 @@
 	return
 
 /datum/fire_support/gau
-	name = "gun run"
+	name = "Gun run"
 	fire_support_type = FIRESUPPORT_TYPE_GUN
 	impact_quantity = 5
+	uses = 4
 	icon_state = "gau"
 	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
 	initiate_screen_message = "Target received, gun run inbound."
@@ -124,15 +125,16 @@
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)
 
-/datum/fire_support/gau/campaign
-	fire_support_type = FIRESUPPORT_TYPE_GUN_CAMPAIGN
-	uses = 4
+/datum/fire_support/gau/unlimited
+	fire_support_type = FIRESUPPORT_TYPE_GUN_UNLIMITED
+	uses = -1
 
 /datum/fire_support/rockets
-	name = "rocket barrage"
+	name = "Rocket barrage"
 	fire_support_type = FIRESUPPORT_TYPE_ROCKETS
 	scatter_range = 9
 	impact_quantity = 15
+	uses = 2
 	icon_state = "rockets"
 	initiate_chat_message = "TARGET ACQUIRED ROCKET RUN INBOUND."
 	initiate_screen_message = "Rockets hot, incoming!"
@@ -141,8 +143,8 @@
 	explosion(target_turf, 0, 2, 5, 2)
 
 /datum/fire_support/rockets/som_incendiary
-	name = "incendiary rocket barrage"
-	fire_support_type = FIRESUPPORT_TYPE_SOM_INCEND_ROCKETS_CAMPAIGN
+	name = "Incendiary rocket barrage"
+	fire_support_type = FIRESUPPORT_TYPE_SOM_INCEND_ROCKETS
 	scatter_range = 9
 	impact_quantity = 12
 	icon_state = "rockets"
@@ -154,16 +156,17 @@
 	uses = 2
 
 /datum/fire_support/rockets/som_incendiary/do_impact(turf/target_turf)
-	explosion(target_turf, light_impact_range = 3, flame_range = 4)
+	explosion(target_turf, light_impact_range = 3, flame_range = 4, throw_range = 2)
 
-/datum/fire_support/rockets/campaign
-	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_CAMPAIGN
-	uses = 2
+/datum/fire_support/rockets/unlimited
+	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_UNLIMITED
+	uses = -1
 
 /datum/fire_support/cruise_missile
-	name = "cruise missile strike"
+	name = "Cruise missile strike"
 	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE
 	scatter_range = 1
+	uses = 1
 	icon_state = "cruise"
 	initiate_chat_message = "TARGET ACQUIRED CRUISE MISSILE INBOUND."
 	initiate_screen_message = "Cruise missile programmed, one out."
@@ -174,14 +177,13 @@
 /datum/fire_support/cruise_missile/select_target(turf/target_turf)
 	explosion(target_turf, 4, 5, 6)
 
-/datum/fire_support/cruise_missile/campaign
-	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_CAMPAIGN
-	uses = 0
-
+/datum/fire_support/cruise_missile/unlimited
+	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED
+	uses = -1
 
 /datum/fire_support/volkite
-	name = "gun run"
-	fire_support_type = FIRESUPPORT_TYPE_VOLKITE_CAMPAIGN
+	name = "Volkite gun run"
+	fire_support_type = FIRESUPPORT_TYPE_VOLKITE
 	impact_quantity = 3
 	icon_state = "gau"
 	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
@@ -216,6 +218,68 @@
 	playsound(strafelist[1], 'sound/weapons/guns/fire/volkite_4.ogg', 60, FALSE, 25, falloff = 3)
 	strafed = strafelist[1]
 	strafelist -= strafed
-	explosion(strafed, light_impact_range = 2, flame_range = 3)
+	explosion(strafed, light_impact_range = 2, flame_range = 3, throw_range = 0)
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)
+
+/datum/fire_support/mortar
+	name = "Mortar barrage"
+	fire_support_type = FIRESUPPORT_TYPE_HE_MORTAR
+	scatter_range = 8
+	impact_quantity = 3
+	cooldown_duration = 20 SECONDS
+	uses = 6
+	icon_state = "he_mortar"
+	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
+	initiate_screen_message = "Coordinates confirmed, high explosive inbound!"
+	initiate_title = "Rhino-1"
+	initiate_sound = null
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait
+	start_visual = 'sound/weapons/guns/misc/mortar_travel.ogg'
+	start_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg'
+
+/datum/fire_support/mortar/do_impact(turf/target_turf)
+	explosion(target_turf, 0, 3, 4, 2)
+
+/datum/fire_support/mortar/incendiary
+	name = "Incendiary mortar barrage"
+	fire_support_type = FIRESUPPORT_TYPE_INCENDIARY_MORTAR
+	uses = 3
+	icon_state = "incendiary_mortar"
+	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
+	initiate_screen_message = "Coordinates confirmed, incendiary inbound!"
+
+/datum/fire_support/mortar/incendiary/do_impact(turf/target_turf)
+	explosion(target_turf, light_impact_range = 3, flame_range = 5, throw_range = 0)
+	playsound(target_turf, 'sound/weapons/guns/fire/flamethrower2.ogg', 35)
+
+/datum/fire_support/mortar/smoke
+	name = "Smoke mortar barrage"
+	fire_support_type = FIRESUPPORT_TYPE_SMOKE_MORTAR
+	uses = 2
+	icon_state = "smoke_mortar"
+	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
+	initiate_screen_message = "Coordinates confirmed, smoke inbound!"
+	///smoke type created when the grenade is primed
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
+	///radius this smoke grenade will encompass
+	var/smokeradius = 6
+	///The duration of the smoke
+	var/smoke_duration = 11
+
+/datum/fire_support/mortar/smoke/do_impact(turf/target_turf)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(target_turf, "explosion_small", 50)
+	playsound(target_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
+	smoke.set_up(smokeradius, target_turf, smoke_duration)
+	smoke.start()
+
+/datum/fire_support/mortar/smoke/acid
+	name = "Acid smoke mortar barrage"
+	fire_support_type = FIRESUPPORT_TYPE_ACID_SMOKE_MORTAR
+	uses = 2
+	icon_state = "acid_smoke_mortar"
+	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
+	initiate_screen_message = "Coordinates confirmed, acid smoke inbound!"
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	smokeradius = 5
