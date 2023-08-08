@@ -35,7 +35,7 @@
 		. += span_warning("It is currently disabled, and can be fixed with a welder.")
 
 	if(machine_stat & BROKEN)
-		. += span_warning("It is broken and needs to be rebuilt.")
+		. += span_warning("It is broken.")
 
 /obj/machinery/computer/process()
 	if(machine_stat & (NOPOWER|BROKEN|DISABLED))
