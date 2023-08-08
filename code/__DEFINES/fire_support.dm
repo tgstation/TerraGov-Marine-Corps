@@ -1,3 +1,5 @@
+#define FIRESUPPORT_AVAILABLE (1<<0)
+
 #define FIRESUPPORT_TYPE_GUN "gun"
 #define FIRESUPPORT_TYPE_ROCKETS "rockets"
 #define FIRESUPPORT_TYPE_CRUISE_MISSILE "cruise_missile"

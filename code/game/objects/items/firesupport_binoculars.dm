@@ -94,6 +94,8 @@
 
 	var/list/radial_options = list()
 	for(var/fire_support_type in mode_list)
+		if(!mode_list[fire_support_type].uses || !(mode_list[fire_support_type].fire_support_flags & FIRESUPPORT_AVAILABLE))
+			continue
 		radial_options[fire_support_type] = image(icon = 'icons/mob/radial.dmi', icon_state = mode_list[fire_support_type].icon_state)
 
 	mode = show_radial_menu(user, src, radial_options, null, 48, null, TRUE, TRUE)
@@ -103,7 +105,9 @@
 ///lases a target and calls fire support on it
 /obj/item/binoculars/fire_support/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
-
+	if(is_mainship_level(user.z))
+		user.balloon_alert(user, "Can't use here")
+		return
 	if(faction && user.faction != faction)
 		balloon_alert_to_viewers("Security locks engaged")
 		return
@@ -112,6 +116,9 @@
 		return
 	if(!mode)
 		balloon_alert_to_viewers("Select a mode!")
+		return
+	if(!(mode_list[mode].fire_support_flags & FIRESUPPORT_AVAILABLE))
+		balloon_alert_to_viewers("[mode_list[mode].name] unavailable")
 		return
 	if(!mode_list[mode].uses)
 		balloon_alert_to_viewers("[mode_list[mode].name] expended")
@@ -147,6 +154,9 @@
 		return
 	if(!mode)
 		balloon_alert_to_viewers("Select a mode!")
+		return
+	if(!(mode_list[mode].fire_support_flags & FIRESUPPORT_AVAILABLE))
+		balloon_alert_to_viewers("[mode_list[mode].name] unavailable")
 		return
 	if(!mode_list[mode].uses)
 		balloon_alert_to_viewers("[mode_list[mode].name] expended")

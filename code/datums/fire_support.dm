@@ -11,6 +11,8 @@
 	var/cooldown_timer
 	///Number of uses available. Negative for no limit
 	var/uses = -1
+	///Special behavior flags
+	var/fire_support_flags = FIRESUPPORT_AVAILABLE
 	///How far the fire support can land from the target turf
 	var/scatter_range = 6
 	///How many impacts per use
@@ -32,9 +34,20 @@
 	///sound when impact starts
 	var/start_sound = 'sound/effects/casplane_flyby.ogg'
 
+///Enables the firesupport option
+/datum/fire_support/proc/enable_firesupport(additional_uses)
+	uses += additional_uses
+	fire_support_flags |= FIRESUPPORT_AVAILABLE
+
+///Disables the firesupport entirely
+/datum/fire_support/proc/disable(clear_uses = TRUE)
+	if(clear_uses)
+		uses = 0
+	fire_support_flags &= ~FIRESUPPORT_AVAILABLE
+
 ///Initiates fire support proc chain
 /datum/fire_support/proc/initiate_fire_support(turf/target_turf, mob/user)
-	if(!uses)
+	if(!uses || !(fire_support_flags & FIRESUPPORT_AVAILABLE))
 		to_chat(user, span_notice("FIRE SUPPORT UNAVAILABLE"))
 		return
 	uses --
@@ -147,4 +160,4 @@
 
 /datum/fire_support/cruise_missile/campaign
 	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_CAMPAIGN
-	uses = 1
+	uses = 0

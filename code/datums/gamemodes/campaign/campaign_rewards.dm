@@ -341,3 +341,43 @@
 	current_mission.mission_flags |= MISSION_DISALLOW_DROPPODS
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS)
 	to_chat(faction.faction_leader, span_warning("Orbital deterrence systems activated. Enemy drop pods disabled for this mission."))
+
+/datum/campaign_reward/cas_support
+	name = "cas support"
+	desc = "Prevents the enemy from using drop pods in the current or next mission"
+	detailed_desc = "Ground to Space weapon systems are activated to prevent TGMC close orbit support ships from positioning themselves for drop pod orbital assaults during the current or next mission."
+	uses = 1
+	var/list/fire_support_types = list(
+		FIRESUPPORT_TYPE_GUN_CAMPAIGN = 4,
+		FIRESUPPORT_TYPE_ROCKETS_CAMPAIGN = 2,
+		FIRESUPPORT_TYPE_CRUISE_MISSILE_CAMPAIGN = 1,
+	)
+
+/datum/campaign_reward/cas_support/activated_effect()
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/datum/campaign_mission/current_mission = mode.current_mission
+
+	if(!current_mission || (current_mission.mission_state == MISSION_STATE_FINISHED))
+		to_chat(faction.faction_leader, span_warning("Unavailable until next mission confirmed."))
+		return
+
+	if(current_mission.mission_flags & MISSION_DISALLOW_FIRESUPPORT)
+		to_chat(faction.faction_leader, span_warning("Fire support unavailable during this mission."))
+		return
+
+	. = ..()
+	if(!.)
+		return
+
+	for(var/firesupport_type in fire_support_types)
+		var/datum/fire_support/fire_support_option = GLOB.fire_support_types[firesupport_type]
+		fire_support_option.enable_firesupport(fire_support_types[firesupport_type])
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(disable_firesupport), override = TRUE) //you could use this multiple times per mission
+
+/datum/campaign_reward/cas_support/proc/disable_firesupport()
+	SIGNAL_HANDLER
+	for(var/firesupport_type in fire_support_types)
+		var/datum/fire_support/fire_support_option = GLOB.fire_support_types[firesupport_type]
+		fire_support_option.disable()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
