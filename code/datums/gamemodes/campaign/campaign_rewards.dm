@@ -11,6 +11,8 @@
 #define REWARD_IMMEDIATE_EFFECT (1<<2)
 ///This reward has a passive effect
 #define REWARD_PASSIVE_EFFECT (1<<3)
+///Can't activate unless mission is starting or started
+#define REWARD_ACTIVE_MISSION_ONLY (1<<4)
 
 /datum/campaign_reward
 	///Name of this reward
@@ -43,6 +45,13 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if((reward_flags & REWARD_CONSUMED) || uses <= 0)
 		return FALSE
+
+	if(reward_flags & REWARD_ACTIVE_MISSION_ONLY)
+		var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+		var/datum/campaign_mission/current_mission = mode.current_mission
+		if(!current_mission || (current_mission.mission_state == MISSION_STATE_FINISHED))
+			to_chat(faction.faction_leader, span_warning("Unavailable until next mission confirmed."))
+			return
 
 	uses --
 	if(uses <= 0)
@@ -250,14 +259,9 @@
 	desc = "Enables the use of the Teleporter Array for the current or next mission"
 	detailed_desc = "Established a link between our Teleporter Array and its master Bluespace drive, allowing its operation during the current or next mission."
 	uses = 2
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 
 /datum/campaign_reward/teleporter_enabled/activated_effect()
-	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
-	var/datum/campaign_mission/current_mission = mode.current_mission
-	if(!current_mission || (current_mission.mission_state == MISSION_STATE_FINISHED))
-		to_chat(faction.faction_leader, span_warning("Unavailable until next mission confirmed."))
-		return
-
 	var/obj/structure/teleporter_array/friendly_teleporter
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
 		if(teleporter.faction != faction.faction)
@@ -296,15 +300,11 @@
 	desc = "Enables the use of drop pods for the current or next mission"
 	detailed_desc = "Repositions the ship to allow for orbital drop pod insertion during the current or next mission."
 	uses = 3
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 
 /datum/campaign_reward/droppod_enabled/activated_effect()
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
-
-	if(!current_mission || (current_mission.mission_state == MISSION_STATE_FINISHED))
-		to_chat(faction.faction_leader, span_warning("Unavailable until next mission confirmed."))
-		return
-
 	if(current_mission.mission_flags & MISSION_DISALLOW_DROPPODS)
 		to_chat(faction.faction_leader, span_warning("External factors prevent the ship from repositioning at this time. Drop pods unavailable."))
 		return
@@ -321,15 +321,11 @@
 	desc = "Prevents the enemy from using drop pods in the current or next mission"
 	detailed_desc = "Ground to Space weapon systems are activated to prevent TGMC close orbit support ships from positioning themselves for drop pod orbital assaults during the current or next mission."
 	uses = 2
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 
 /datum/campaign_reward/droppod_disable/activated_effect()
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
-
-	if(!current_mission || (current_mission.mission_state == MISSION_STATE_FINISHED))
-		to_chat(faction.faction_leader, span_warning("Unavailable until next mission confirmed."))
-		return
-
 	if(current_mission.mission_flags & MISSION_DISALLOW_DROPPODS)
 		to_chat(faction.faction_leader, span_warning("Enemy drop pods already unable to deploy during this mission."))
 		return
@@ -347,6 +343,7 @@
 	desc = "Close Air Support is deployed to support this mission."
 	detailed_desc = "A limited number of Close Air Support attack runs are available via tactical binoculars, excellent for disrupting dug in enemy positions."
 	uses = 1
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 	var/list/fire_support_types = list(
 		FIRESUPPORT_TYPE_GUN_CAMPAIGN = 4,
 		FIRESUPPORT_TYPE_ROCKETS_CAMPAIGN = 2,
@@ -356,11 +353,6 @@
 /datum/campaign_reward/cas_support/activated_effect()
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
-
-	if(!current_mission || (current_mission.mission_state == MISSION_STATE_FINISHED))
-		to_chat(faction.faction_leader, span_warning("Unavailable until next mission confirmed."))
-		return
-
 	if(current_mission.mission_flags & MISSION_DISALLOW_FIRESUPPORT)
 		to_chat(faction.faction_leader, span_warning("Fire support unavailable during this mission."))
 		return
@@ -375,6 +367,7 @@
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(disable_firesupport), override = TRUE) //you could use this multiple times per mission
 
+///Turns off the fire support and resets its uses
 /datum/campaign_reward/cas_support/proc/disable_firesupport()
 	SIGNAL_HANDLER
 	for(var/firesupport_type in fire_support_types)
