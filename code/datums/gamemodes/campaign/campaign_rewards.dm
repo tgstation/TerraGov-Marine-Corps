@@ -341,7 +341,7 @@
 /datum/campaign_reward/cas_support
 	name = "CAS mission"
 	desc = "Close Air Support is deployed to support this mission."
-	detailed_desc = "A limited number of Close Air Support attack runs are available via tactical binoculars, excellent for disrupting dug in enemy positions."
+	detailed_desc = "A limited number of Close Air Support attack runs are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	uses = 1
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 	var/list/fire_support_types = list(
