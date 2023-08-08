@@ -10,7 +10,7 @@
 	///Last stored turf targetted by rangefinders
 	var/turf/targetturf
 	///Current mode for support request
-	var/mode = FIRESUPPORT_TYPE_GUN
+	var/datum/fire_support/mode = null
 	///firemodes available for these binos
 	var/list/datum/fire_support/mode_list = list(
 		FIRESUPPORT_TYPE_GUN,
@@ -31,11 +31,12 @@
 
 /obj/item/binoculars/fire_support/examine(mob/user)
 	. = ..()
-	. += span_notice("They are currently set to [mode_list[mode].name] targeting mode.")
+	. += span_notice("They are currently set to [mode.name] targeting mode.")
 
 /obj/item/binoculars/fire_support/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
+	mode = null
 	mode_list = null
 	targetturf = null
 	return ..()
@@ -102,7 +103,7 @@
 	for(var/option in mode_list)
 		if(mode_list[option].name != mode_selected)
 			continue
-		mode = option
+		mode = mode_list[option]
 		user.balloon_alert(user, "[mode_selected] mode")
 	update_icon()
 
@@ -121,13 +122,13 @@
 	if(!mode)
 		balloon_alert_to_viewers("Select a mode!")
 		return
-	if(!(mode_list[mode].fire_support_flags & FIRESUPPORT_AVAILABLE))
-		balloon_alert_to_viewers("[mode_list[mode].name] unavailable")
+	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
+		balloon_alert_to_viewers("[mode.name] unavailable")
 		return
-	if(!mode_list[mode].uses)
-		balloon_alert_to_viewers("[mode_list[mode].name] expended")
+	if(!mode.uses)
+		balloon_alert_to_viewers("[mode.name] expended")
 		return
-	if(mode_list[mode].cooldown_timer)
+	if(mode.cooldown_timer)
 		balloon_alert_to_viewers("On cooldown")
 		return
 
@@ -159,19 +160,19 @@
 	if(!mode)
 		balloon_alert_to_viewers("Select a mode!")
 		return
-	if(!(mode_list[mode].fire_support_flags & FIRESUPPORT_AVAILABLE))
-		balloon_alert_to_viewers("[mode_list[mode].name] unavailable")
+	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
+		balloon_alert_to_viewers("[mode.name] unavailable")
 		return
-	if(!mode_list[mode].uses)
-		balloon_alert_to_viewers("[mode_list[mode].name] expended")
+	if(!mode.uses)
+		balloon_alert_to_viewers("[mode.name] expended")
 		return
-	if(mode_list[mode].cooldown_timer)
+	if(mode.cooldown_timer)
 		balloon_alert_to_viewers("On cooldown.")
 		return
 
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	QDEL_NULL(laser)
-	mode_list[mode].initiate_fire_support(TU, user)
+	mode.initiate_fire_support(TU, user)
 
 ///Acquires coords of a target turf
 /obj/item/binoculars/fire_support/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
@@ -183,7 +184,6 @@
 
 /obj/item/binoculars/fire_support/campaign
 	faction = FACTION_TERRAGOV
-	mode = null
 	mode_list = list(
 		FIRESUPPORT_TYPE_GUN_CAMPAIGN,
 		FIRESUPPORT_TYPE_ROCKETS_CAMPAIGN,
@@ -192,7 +192,6 @@
 
 /obj/item/binoculars/fire_support/campaign/som
 	faction = FACTION_SOM
-	mode = null
 	mode_list = list(
 		FIRESUPPORT_TYPE_VOLKITE_CAMPAIGN,
 		FIRESUPPORT_TYPE_SOM_INCEND_ROCKETS_CAMPAIGN,

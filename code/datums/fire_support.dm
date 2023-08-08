@@ -153,7 +153,7 @@
 	start_visual = /obj/effect/temp_visual/dropship_flyby/som
 	uses = 2
 
-/datum/fire_support/rockets/do_impact(turf/target_turf)
+/datum/fire_support/rockets/som_incendiary/do_impact(turf/target_turf)
 	explosion(target_turf, light_impact_range = 3, flame_range = 4)
 
 /datum/fire_support/rockets/campaign

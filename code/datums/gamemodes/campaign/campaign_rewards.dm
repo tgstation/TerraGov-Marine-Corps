@@ -383,7 +383,7 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 
 /datum/campaign_reward/cas_support/som
-	/fire_support_types = list(
+	fire_support_types = list(
 		FIRESUPPORT_TYPE_VOLKITE_CAMPAIGN = 4,
 		FIRESUPPORT_TYPE_SOM_INCEND_ROCKETS_CAMPAIGN = 2,
 	)
