@@ -126,3 +126,6 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 /obj/effect/temp_visual/dropship_flyby/Initialize()
 	. = ..()
 	animate(src, pixel_z = 960, time = 3 SECONDS)
+
+/obj/effect/temp_visual/dropship_flyby/som
+	icon_state = "harbinger_shadow"

@@ -96,10 +96,14 @@
 	for(var/fire_support_type in mode_list)
 		if(!mode_list[fire_support_type].uses || !(mode_list[fire_support_type].fire_support_flags & FIRESUPPORT_AVAILABLE))
 			continue
-		radial_options[fire_support_type] = image(icon = 'icons/mob/radial.dmi', icon_state = mode_list[fire_support_type].icon_state)
+		radial_options[mode_list[fire_support_type].name] = image(icon = 'icons/mob/radial.dmi', icon_state = mode_list[fire_support_type].icon_state)
 
-	mode = show_radial_menu(user, src, radial_options, null, 48, null, TRUE, TRUE)
-	user.balloon_alert(user, "[mode_list[mode].name] mode")
+	var/mode_selected = show_radial_menu(user, src, radial_options, null, 48, null, TRUE, TRUE)
+	for(var/option in mode_list)
+		if(mode_list[option].name != mode_selected)
+			continue
+		mode = option
+		user.balloon_alert(user, "[mode_selected] mode")
 	update_icon()
 
 ///lases a target and calls fire support on it
@@ -184,4 +188,12 @@
 		FIRESUPPORT_TYPE_GUN_CAMPAIGN,
 		FIRESUPPORT_TYPE_ROCKETS_CAMPAIGN,
 		FIRESUPPORT_TYPE_CRUISE_MISSILE_CAMPAIGN,
+	)
+
+/obj/item/binoculars/fire_support/campaign/som
+	faction = FACTION_SOM
+	mode = null
+	mode_list = list(
+		FIRESUPPORT_TYPE_VOLKITE_CAMPAIGN,
+		FIRESUPPORT_TYPE_SOM_INCEND_ROCKETS_CAMPAIGN,
 	)

@@ -343,9 +343,9 @@
 	to_chat(faction.faction_leader, span_warning("Orbital deterrence systems activated. Enemy drop pods disabled for this mission."))
 
 /datum/campaign_reward/cas_support
-	name = "cas support"
-	desc = "Prevents the enemy from using drop pods in the current or next mission"
-	detailed_desc = "Ground to Space weapon systems are activated to prevent TGMC close orbit support ships from positioning themselves for drop pod orbital assaults during the current or next mission."
+	name = "CAS mission"
+	desc = "Close Air Support is deployed to support this mission."
+	detailed_desc = "A limited number of Close Air Support attack runs are available via tactical binoculars, excellent for disrupting dug in enemy positions."
 	uses = 1
 	var/list/fire_support_types = list(
 		FIRESUPPORT_TYPE_GUN_CAMPAIGN = 4,
@@ -381,3 +381,9 @@
 		var/datum/fire_support/fire_support_option = GLOB.fire_support_types[firesupport_type]
 		fire_support_option.disable()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
+
+/datum/campaign_reward/cas_support/som
+	/fire_support_types = list(
+		FIRESUPPORT_TYPE_VOLKITE_CAMPAIGN = 4,
+		FIRESUPPORT_TYPE_SOM_INCEND_ROCKETS_CAMPAIGN = 2,
+	)

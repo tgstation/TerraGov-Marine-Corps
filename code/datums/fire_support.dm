@@ -140,6 +140,22 @@
 /datum/fire_support/rockets/do_impact(turf/target_turf)
 	explosion(target_turf, 0, 2, 5, 2)
 
+/datum/fire_support/rockets/som_incendiary
+	name = "incendiary rocket barrage"
+	fire_support_type = FIRESUPPORT_TYPE_SOM_INCEND_ROCKETS_CAMPAIGN
+	scatter_range = 9
+	impact_quantity = 12
+	icon_state = "rockets"
+	initiate_chat_message = "TARGET ACQUIRED ROCKET RUN INBOUND."
+	initiate_screen_message = "Rockets hot, incoming!"
+	initiate_title = "Avenger-4"
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
+	start_visual = /obj/effect/temp_visual/dropship_flyby/som
+	uses = 2
+
+/datum/fire_support/rockets/do_impact(turf/target_turf)
+	explosion(target_turf, light_impact_range = 3, flame_range = 4)
+
 /datum/fire_support/rockets/campaign
 	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_CAMPAIGN
 	uses = 2
@@ -161,3 +177,45 @@
 /datum/fire_support/cruise_missile/campaign
 	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_CAMPAIGN
 	uses = 0
+
+
+/datum/fire_support/volkite
+	name = "gun run"
+	fire_support_type = FIRESUPPORT_TYPE_VOLKITE_CAMPAIGN
+	impact_quantity = 3
+	icon_state = "gau"
+	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
+	initiate_screen_message = "Target received, gun run inbound."
+	initiate_title = "Avenger-4"
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
+	start_visual = /obj/effect/temp_visual/dropship_flyby/som
+	uses = 3
+
+/datum/fire_support/volkite/do_impact(turf/target_turf)
+	var/revdir = REVERSE_DIR(NORTH)
+	for(var/i=0 to 2)
+		target_turf = get_step(target_turf, revdir) //picks a turf 2 tiles south of target turf
+
+	var/list/strafelist = list()
+
+	strafelist += get_step(target_turf, turn(NORTH, -90)) //we get the turfs on either side
+	//strafelist += get_step(target_turf, turn(NORTH, -90))
+
+	for(var/b=0 to 6)
+		target_turf = get_ranged_target_turf(target_turf, NORTH, 2)
+		strafelist += get_step(target_turf, turn(NORTH, b % 2 ? 90 : -90))
+
+	if(!length(strafelist))
+		return
+
+	strafe_turfs(strafelist)
+
+///Takes the top 3 turfs and miniguns them, then repeats until none left
+/datum/fire_support/volkite/proc/strafe_turfs(list/strafelist)
+	var/turf/strafed
+	playsound(strafelist[1], 'sound/weapons/guns/fire/volkite_4.ogg', 60, FALSE, 25, falloff = 3)
+	strafed = strafelist[1]
+	strafelist -= strafed
+	explosion(strafed, light_impact_range = 2, flame_range = 3)
+	if(length(strafelist))
+		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)
