@@ -84,6 +84,7 @@ GLOBAL_LIST_EMPTY(minimap_icons)
 GLOBAL_LIST_INIT(playable_icons, list(
 	"boiler",
 	"bull",
+	"baneling",
 	"captain",
 	"carrier",
 	"cl",
