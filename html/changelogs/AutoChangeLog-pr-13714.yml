@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Miner slash time reduced to 1.5 seconds per cycle"
