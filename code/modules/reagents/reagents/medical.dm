@@ -842,7 +842,7 @@
 	L.blood_volume += 2.4
 	L.adjustToxLoss(effect_str)
 	L.adjustStaminaLoss(6*effect_str)
-	if(L.blood_volume < BLOOD_VOLUME_OKAY)
+	if(L.blood_volume < BLOOD_VOLUME_SAFE)
 		L.blood_volume += 2.4
 	if(L.blood_volume < BLOOD_VOLUME_BAD)
 		L.blood_volume = (BLOOD_VOLUME_BAD+1)
@@ -1298,12 +1298,12 @@
 		if(76)
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
 		if(77 to INFINITY)
-			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
+			if(volume < 30)
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
 				L.blood_volume -= 2
 
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
-				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
+				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.16) //Roughly 30 seconds to go from 30u to 35u
 
 			if (volume > 5 && L.getBruteLoss(organic_only = TRUE))
 				L.heal_limb_damage(2*effect_str, 0)
