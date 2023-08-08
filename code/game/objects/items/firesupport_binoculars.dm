@@ -167,7 +167,7 @@
 		balloon_alert_to_viewers("[mode.name] expended")
 		return
 	if(mode.cooldown_timer)
-		balloon_alert_to_viewers("On cooldown.")
+		balloon_alert_to_viewers("On cooldown")
 		return
 
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
