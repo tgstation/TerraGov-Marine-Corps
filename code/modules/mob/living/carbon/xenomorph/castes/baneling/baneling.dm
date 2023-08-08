@@ -42,6 +42,7 @@
 	max_integrity = 100
 	density = FALSE
 	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
+	xeno_structure_flags = CRITICAL_STRUCTURE
 
 /obj/structure/xeno/baneling_pod/Initialize(mapload, _hivenumber, xeno, ability_ref)
 	. = ..()
