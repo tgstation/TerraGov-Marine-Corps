@@ -1,0 +1,4 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - bugfix: "fixed the XH-L upper plating sprite being misaligned with its visor"

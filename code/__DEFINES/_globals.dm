@@ -20,11 +20,11 @@
 #define GLOBAL_PROTECT(X)
 #endif
 
-//Standard BYOND global, do not use
-#define GLOBAL_REAL_VAR(X) var/global/##X
+/// Standard BYOND global, seriously do not use without an earthshakingly good reason
+#define GLOBAL_REAL_VAR(X) var/global/##X;
 
-//Standard typed BYOND global, do not use
-#define GLOBAL_REAL(X, Typepath) var/global##Typepath/##X
+/// Standard typed BYOND global, seriously do not use without an earthshakingly good reason
+#define GLOBAL_REAL(X, Typepath) var/global##Typepath/##X;
 
 //Defines a global var on the controller, do not use
 #define GLOBAL_RAW(X) /datum/controller/global_vars/var/global##X

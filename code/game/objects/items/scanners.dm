@@ -164,7 +164,7 @@ REAGENT SCANNER
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
 
-		"hugged" = (locate(/obj/item/alien_embryo) in patient)
+		"hugged" = !!(patient.status_flags & XENO_HOST)
 	)
 	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
@@ -297,17 +297,43 @@ REAGENT SCANNER
 	. = ..()
 	if(user.gloves == src)
 		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE, PROC_REF(on_unarmed_attack_alternate))
+
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 
 /obj/item/healthanalyzer/gloves/unequipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK) //Unregisters in the case of getting delimbed
+	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE) //Unregisters in the case of getting delimbed
+
 
 //when you are wearing these gloves, this will call the normal attack code to health scan the target
 /obj/item/healthanalyzer/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(user.a_intent != INTENT_HELP)
+		return
 	if(istype(user) && istype(target))
-		attack(target,user)
+		analyze_vitals(target, user)
+
+///Used for right click and showing the patient their scan
+/obj/item/healthanalyzer/gloves/proc/on_unarmed_attack_alternate(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(user.a_intent != INTENT_HELP)
+		return
+	if(istype(user) && istype(target))
+		analyze_vitals(target, user, TRUE)
+
+/obj/item/healthanalyzer/gloves/attack(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	if(user.a_intent != INTENT_HELP)
+		return
+	analyze_vitals(M, user)
+
+/obj/item/healthanalyzer/gloves/attack_alternate(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	if(user.a_intent != INTENT_HELP)
+		return
+	analyze_vitals(M, user, TRUE)
+
 
 /obj/item/tool/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."

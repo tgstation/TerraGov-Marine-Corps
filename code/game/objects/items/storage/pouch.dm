@@ -613,7 +613,7 @@
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "utility"
 	draw_mode = 1
-	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
+	desc = "It can contain a motion detector, signaller, beacons, map tablets, radios, papers and other handy battlefield communication, navigation, and detection devices."
 	can_hold = list(
 		/obj/item/attachable/motiondetector,
 		/obj/item/radio,
@@ -623,6 +623,16 @@
 		/obj/item/whistle,
 		/obj/item/binoculars,
 		/obj/item/beacon/supply_beacon,
+		/obj/item/compass,
+		/obj/item/deployable_camera,
+		/obj/item/hud_tablet,
+		/obj/item/minimap_tablet,
+		/obj/item/supplytablet,
+		/obj/item/megaphone,
+		/obj/item/tool/hand_labeler,
+		/obj/item/toy/deck,
+		/obj/item/paper,
+		/obj/item/clipboard,
 	)
 
 /obj/item/storage/pouch/field_pouch/full/Initialize(mapload)
