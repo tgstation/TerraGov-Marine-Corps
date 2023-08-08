@@ -95,7 +95,7 @@
 
 /obj/machinery/deployable/teleporter/attack_ghost(mob/dead/observer/user)
 	var/obj/item/teleporter_kit/kit = internal_item
-	if(!kit || !kit.linked_teleporter)
+	if(!istype(kit) || !kit.linked_teleporter)
 		return
 	user.forceMove(get_turf(kit.linked_teleporter))
 

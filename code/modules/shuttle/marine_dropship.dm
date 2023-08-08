@@ -1278,8 +1278,7 @@
 		ui.open()
 
 /obj/machinery/computer/shuttle/shuttle_control/ui_state(mob/user)
-	var/datum/ui_state/include_observer_state/observer_state = GLOB.include_observer_state
-	return new observer_state(GLOB.access_state)
+	return new GLOB.include_observer_state(GLOB.access_state)
 
 /obj/machinery/computer/shuttle/shuttle_control/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()

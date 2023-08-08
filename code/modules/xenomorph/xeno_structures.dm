@@ -376,7 +376,7 @@ TUNNEL
 	. = ..()
 
 	var/list/obj/destinations = GLOB.xeno_tunnels_by_hive[hivenumber]
-	var/obj/structure/xeno/tunnel/T
+	var/obj/structure/xeno/tunnel/targettunnel
 	if(LAZYLEN(destinations) > 2)
 		var/list/tunnel_assoc = list()
 		for(var/obj/D in destinations)
@@ -387,17 +387,17 @@ TUNNEL
 		var/input = tgui_input_list(user ,"Choose a tunnel to teleport to:" ,"Ghost Tunnel teleport" ,destinations ,null, 0)
 		if(!input)
 			return
-		T = tunnel_assoc[input]
+		targettunnel = tunnel_assoc[input]
 		if(!input)
 			return
 	else
 		//There are only 2 tunnels. Pick the other one.
 		for(var/P in destinations)
 			if(P != src)
-				T = P
-	if(!T || QDELETED(T) || !T.loc)
+				targettunnel = P
+	if(!targettunnel || QDELETED(targettunnel) || !targettunnel.loc)
 		return
-	user.forceMove(get_turf(T))
+	user.forceMove(get_turf(targettunnel))
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
