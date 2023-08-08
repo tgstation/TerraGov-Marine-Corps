@@ -111,3 +111,9 @@
   - bugfix: fixed medical gloves triggering on all intents
   - bugfix: fixed medical scanner gloves not having the right click behavior when
       worn
+2023-08-08:
+  forestbbbbbbb:
+  - bugfix: Remove nutrition icon from robot hud
+  lbnesquik:
+  - rscadd: Allows cable coils for ghetto suturing
+  - rscadd: added sounds some to the sink and the surgery table
