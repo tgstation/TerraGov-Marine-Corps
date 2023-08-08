@@ -374,7 +374,7 @@
 	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius / 2, X.loc))
 		affected_tiles.Shake(duration = 1 SECONDS) //SFX
 
-	for(var/mob/living/affected_mob in cheap_get_humans_near(X, rage_power_radius)) //Roar that applies cool SFX
+	for(var/mob/living/affected_mob in cheap_get_humans_near(X, rage_power_radius) + cheap_get_xenos_near(X, rage_power_radius)) //Roar that applies cool SFX
 		if(affected_mob.stat) //We don't care about the dead/unconsious
 			continue
 
