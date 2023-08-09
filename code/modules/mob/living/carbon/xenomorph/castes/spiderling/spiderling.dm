@@ -32,19 +32,12 @@
 	QDEL_IN(src, TIME_TO_DISSOLVE)
 	return ..()
 
-//If we're covering our widow, any friendly nabs, grabs/etc should be transferred to them
-/mob/living/carbon/xenomorph/spiderling/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+//If we're covering our widow, any clicks should be transferred to them
+/atom/Click(location, control, params)
 	if(!get_dist(src, spidermother))
-		spidermother.attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+		spidermother.Click(location, control, params)
 		return
 	return ..()
-
-/mob/living/carbon/xenomorph/spiderling/CtrlClick(mob/user)
-	if(!get_dist(src, spidermother))
-		spidermother.CtrlClick(user)
-		return
-	return ..()
-
 
 // ***************************************
 // *********** Spiderling AI Section
