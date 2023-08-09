@@ -589,7 +589,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
 	damage = 15
-	penetration = 30
+	penetration = 25
 	sundering = 3
 
 /datum/ammo/bullet/smg/acp
@@ -656,6 +656,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 10
 	sundering = 1.25
+
+/datum/ammo/bullet/rifle/heavy/ap
+	name = "heavy rifle bullet"
+	damage = 25
+	penetration = 25
+	sundering = 3.5
 
 /datum/ammo/bullet/rifle/repeater
 	name = "heavy impact rifle bullet"
@@ -761,6 +767,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 15
 	damage = 32.5
 	sundering = 1.25
+
+/datum/ammo/bullet/rifle/standard_br/ap
+	name = "light marksman armor piercing bullet"
+	penetration = 25
+	damage = 27.5
+	sundering = 3.25
 
 /datum/ammo/bullet/rifle/mech
 	name = "super-heavy rifle bullet"

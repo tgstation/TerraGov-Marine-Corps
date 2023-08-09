@@ -38,7 +38,7 @@
 	max_shells = 36 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_carbine)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_carbine, /obj/item/ammo_magazine/rifle/standard_carbine/ap)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t18stock,
 		/obj/item/attachable/reddot,
@@ -119,7 +119,7 @@
 	max_shells = 50 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle, /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t12stock,
 		/obj/item/attachable/reddot,
@@ -285,7 +285,7 @@
 	force = 20
 	max_shells = 36 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_br
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_br)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_br, /obj/item/weapon/gun/rifle/standard_br)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t64stock,
 		/obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle,
@@ -1478,7 +1478,7 @@
 	max_shells = 30 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_skirmishrifle, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_skirmishrifle, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/ap)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,

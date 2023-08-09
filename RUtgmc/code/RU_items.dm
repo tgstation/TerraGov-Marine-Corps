@@ -1000,6 +1000,37 @@ SUBSYSTEM_DEF(ru_items)
 	contains = list(/obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended,/obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended)
 	cost = 350
 	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/weapons/t21_ap
+	name = "AR-21 armor piercing magazines pack"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_skirmishrifle/ap, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/ap, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/ap, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/ap, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/ap)
+	cost = 265 //150 rounds
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/weapons/t18_ap
+	name = "AR-18 armor piercing magazines pack"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_carbine/ap, /obj/item/ammo_magazine/rifle/standard_carbine/ap, /obj/item/ammo_magazine/rifle/standard_carbine/ap, /obj/item/ammo_magazine/rifle/standard_carbine/ap, /obj/item/ammo_magazine/rifle/standard_carbine/ap)
+	cost = 300 //180 rounds
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/weapons/t12_ap
+	name = "AR-12 armor piercing magazines pack"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle/ap, /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap, /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap, /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap, /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap)
+	cost = 400 //250 rounds
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/weapons/br64_ap
+	name = "BR-64 armor piercing magazines pack"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_br/ap, /obj/item/ammo_magazine/rifle/standard_br/ap, /obj/item/ammo_magazine/rifle/standard_br/ap, /obj/item/ammo_magazine/rifle/standard_br/ap, /obj/item/ammo_magazine/rifle/standard_br/ap)
+	cost = 300 //180 rounds
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/weapons/smg25_ap
+	name = "SMG-25 armor piercing magazines pack"
+	contains = list(/obj/item/ammo_magazine/smg/m25/ap, /obj/item/ammo_magazine/smg/m25/ap, /obj/item/ammo_magazine/smg/m25/ap, /obj/item/ammo_magazine/smg/m25/ap, /obj/item/ammo_magazine/smg/m25/ap)
+	cost = 450 //300 rounds
+	containertype = /obj/structure/closet/crate/ammo
+
 // finka nkvd
 /obj/item/weapon/combat_knife/nkvd
 	name = "\improper Finka NKVD"
