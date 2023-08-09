@@ -435,7 +435,7 @@ directive is properly returned.
 	return
 
 
-/atom/proc/hitby(atom/movable/AM)
+/atom/proc/hitby(atom/movable/AM, speed = 5)
 	if(density)
 		AM.stop_throw()
 

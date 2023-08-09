@@ -21,6 +21,7 @@
 		#include "map_files\gelida_iv\gelida_iv.dmm"
 		#include "map_files\deltastation\deltastation.dmm"
 		#include "map_files\desparity\desparity.dmm"
+		#include "map_files\Lawanka_Outpost\LawankaOutpost.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

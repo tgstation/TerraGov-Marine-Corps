@@ -21983,7 +21983,7 @@
 /area/sulaco/hangar/cas)
 "rpY" = (
 /obj/structure/rack,
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "rqF" = (

@@ -1279,6 +1279,10 @@
 	accuracy_mult_unwielded = 0.8
 	movement_acc_penalty_mult = 3
 
+/obj/item/weapon/gun/rifle/sectoid_rifle/Initialize(mapload, spawn_empty)
+	. = ..()
+	AddComponent(/datum/component/reequip, list(SLOT_BACK)) //Sectoids have alien powers that make them not lose their gun
+
 //only sectoids can fire it
 /obj/item/weapon/gun/rifle/sectoid_rifle/able_to_fire(mob/user)
 	. = ..()

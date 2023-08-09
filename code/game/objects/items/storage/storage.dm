@@ -35,6 +35,8 @@
 	var/max_storage_space = 14
 	///The number of storage slots in this container.
 	var/storage_slots = 7
+	///Defines how many versions of the sprites that gets progressively emptier as they get closer to "_0" in .dmi.
+	var/sprite_slots = null
 	var/atom/movable/screen/storage/boxes = null
 	///storage UI
 	var/atom/movable/screen/storage/storage_start = null
@@ -768,7 +770,7 @@
 		close(M)
 
 	// Now make the cardboard
-	to_chat(user, span_notice("You fold [src] flat."))
+	to_chat(user, span_notice("You break down the [src]."))
 	new foldable(get_turf(src))
 	qdel(src)
 //BubbleWrap END
@@ -863,3 +865,25 @@
 	drawn_item.attack_hand(user)
 
 /obj/item/storage/proc/PopulateContents()
+
+/obj/item/storage/update_icon_state()
+	if(!sprite_slots)
+		icon_state = initial(icon_state)
+		return
+
+	var/total_weight = 0
+
+	if(!storage_slots)
+		for(var/obj/item/i in contents)
+			total_weight += i.w_class
+		total_weight = ROUND_UP(total_weight / max_storage_space * sprite_slots)
+	else
+		total_weight = ROUND_UP(length(contents) / storage_slots * sprite_slots)
+
+	if(!total_weight)
+		icon_state = initial(icon_state) + "_e"
+		return
+	if(sprite_slots > total_weight)
+		icon_state = initial(icon_state) + "_" + num2text(total_weight)
+	else
+		icon_state = initial(icon_state)

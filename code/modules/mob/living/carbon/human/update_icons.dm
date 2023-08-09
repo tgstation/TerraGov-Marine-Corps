@@ -290,8 +290,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 
 	if(species.species_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear_[underwear]"), ICON_OVERLAY)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_[undershirt]"), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear_[underwear]_[gender]"), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_[undershirt]_[gender]"), ICON_OVERLAY)
 
 	icon = stand_icon
 

@@ -1164,5 +1164,9 @@
 
 ///Checks the gravity the atom is subjected to
 /atom/movable/proc/get_gravity()
+	if(z)
+		return SSmapping.gravity_by_z_level["[z]"]
 	var/turf/src_turf = get_turf(src)
-	return SSmapping.gravity_by_z_level["[src_turf.z]"]
+	if(src_turf?.z)
+		return SSmapping.gravity_by_z_level["[src_turf.z]"]
+	return 1 //if both fail we're in nullspace, just return a 1 as a fallback

@@ -58,7 +58,7 @@
 				if(prob(10) && stat == UNCONSCIOUS)
 					adjustToxLoss(1)
 				if(prob(15))
-					Unconscious(rand(20,60))
+					Unconscious(rand(2 SECONDS,6 SECONDS))
 					var/word = pick("dizzy","woozy","faint")
 					to_chat(src, span_warning("You feel extremely [word]"))
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)

@@ -158,7 +158,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	if(!can_change_orbit(current_orbit, direction))
 		return
 
-	message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship [direction == "UP" ? "UPWARD" : "DOWNWARD"] in orbit")	
+	message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship [direction == "UP" ? "UPWARD" : "DOWNWARD"] in orbit")
 	var/message = "Prepare for orbital change in 10 seconds.\nMoving [direction] the gravity well.\nSecure all belongings and prepare for engine ignition."
 	priority_announce(message, title = "Orbit Change")
 	addtimer(CALLBACK(src, PROC_REF(do_change_orbit), current_orbit, direction), 10 SECONDS)
@@ -226,5 +226,5 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		else
 			to_chat(M, span_warning("The floor jolts under your feet!"))
 			shake_camera(M, 10, 1)
-			M.Knockdown(3)
+			M.Knockdown(0.3 SECONDS)
 		CHECK_TICK

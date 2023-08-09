@@ -159,7 +159,7 @@
 	new /obj/effect/temp_visual/blink_drive(get_turf(teleporter))
 
 	for(var/mob/living/living_target in range(1, teleporter))
-		living_target.adjust_stagger(1)
+		living_target.adjust_stagger(1 SECONDS)
 		living_target.add_slowdown(1)
 		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
