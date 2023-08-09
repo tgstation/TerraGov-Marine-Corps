@@ -89,13 +89,14 @@
 #define INIT_ORDER_JOBS 12
 #define INIT_ORDER_TICKER 11
 #define INIT_ORDER_MAPPING 10
-#define INIT_ORDER_SPATIAL_GRID 9
-#define INIT_ORDER_PERSISTENCE 8 //before assets because some assets take data from SSPersistence, such as vendor items
-#define INIT_ORDER_TTS 7
-#define INIT_ORDER_ATOMS 6
-#define INIT_ORDER_MODULARMAPPING 5
-#define INIT_ORDER_MACHINES 4
-#define INIT_ORDER_AI_NODES 3
+#define INIT_ORDER_EARLY_ASSETS 9
+#define INIT_ORDER_SPATIAL_GRID 8
+#define INIT_ORDER_PERSISTENCE 7 //before assets because some assets take data from SSPersistence, such as vendor items
+#define INIT_ORDER_TTS 6
+#define INIT_ORDER_ATOMS 5
+#define INIT_ORDER_MODULARMAPPING 4
+#define INIT_ORDER_MACHINES 3
+#define INIT_ORDER_AI_NODES 2
 #define INIT_ORDER_TIMER 1
 #define INIT_ORDER_DEFAULT 0
 #define INIT_ORDER_AIR -1
@@ -138,6 +139,7 @@
 #define FIRE_PRIORITY_SILO 91
 #define FIRE_PRIORITY_PATHFINDING 95
 #define FIRE_PRIORITY_MOBS 100
+#define FIRE_PRIORITY_ASSETS 105
 #define FIRE_PRIORITY_TGUI 110
 #define FIRE_PRIORITY_TICKER 200
 #define FIRE_PRIORITY_CHAT 400

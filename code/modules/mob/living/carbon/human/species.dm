@@ -410,6 +410,7 @@
 	brute_damage_icon_state = "robot_brute"
 	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
+	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/robot
 	namepool = /datum/namepool/robotic
 
@@ -531,6 +532,7 @@
 	name = "Synthetic"
 	name_plural = "Synthetics"
 
+	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 2
@@ -584,6 +586,7 @@
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
+	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
@@ -889,17 +892,16 @@
 
 /datum/hud_data
 	var/icon              // If set, overrides ui_style.
-	var/has_a_intent = 1  // Set to draw intent box.
-	var/has_m_intent = 1  // Set to draw move intent box.
-	var/has_warnings = 1  // Set to draw environment warnings.
-	var/has_pressure = 1  // Draw the pressure indicator.
-	var/has_nutrition = 1 // Draw the nutrition indicator.
-	var/has_bodytemp = 1  // Draw the bodytemp indicator.
-	var/has_hands = 1     // Set to draw shand.
-	var/has_drop = 1      // Set to draw drop button.
-	var/has_throw = 1     // Set to draw throw button.
-	var/has_resist = 1    // Set to draw resist button.
-	var/has_internals = 1 // Set to draw the internals toggle button.
+	var/has_a_intent = TRUE  // Set to draw intent box.
+	var/has_m_intent = TRUE  // Set to draw move intent box.
+	var/has_warnings = TRUE  // Set to draw environment warnings.
+	var/has_pressure = TRUE  // Draw the pressure indicator.
+	var/has_nutrition = TRUE // Draw the nutrition indicator.
+	var/has_bodytemp = TRUE  // Draw the bodytemp indicator.
+	var/has_hands = TRUE     // Set to draw shand.
+	var/has_drop = TRUE      // Set to draw drop button.
+	var/has_throw = TRUE     // Set to draw throw button.
+	var/has_resist = TRUE    // Set to draw resist button.
 	var/list/equip_slots = list() // Checked by mob_can_equip().
 
 	// Contains information on the position and tag for all inventory slots
@@ -950,6 +952,9 @@
 		equip_slots |= SLOT_IN_R_POUCH
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
+
+/datum/hud_data/robotic
+	has_nutrition = FALSE
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim)

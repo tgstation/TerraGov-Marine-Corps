@@ -88,6 +88,9 @@
 	LoadPolicy()
 	LoadChatFilter()
 
+	if(CONFIG_GET(flag/usewhitelist))
+		load_whitelist()
+
 	if(Master)
 		Master.OnConfigLoad()
 
