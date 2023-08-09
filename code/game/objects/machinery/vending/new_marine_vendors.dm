@@ -93,11 +93,13 @@
 	. = list()
 
 	var/obj/item/card/id/I = user.get_idcard()
-	var/buy_choices = I?.marine_buy_choices
+	var/list/buy_choices = I?.marine_buy_choices
 	var/obj/item/card/id/dogtag/full/ptscheck = new /obj/item/card/id/dogtag/full
 
 	.["cats"] = list()
 	for(var/cat in GLOB.marine_selector_cats)
+		if(!length(buy_choices))
+			break
 		.["cats"][cat] = list(
 			"remaining" = buy_choices[cat],
 			"total" = GLOB.marine_selector_cats[cat],
