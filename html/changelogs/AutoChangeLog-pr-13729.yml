@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed adjust_fire_stacks trying to affect qdeleted mobs"
