@@ -193,11 +193,12 @@
 		succeed_activate()
 	else
 		for(var/item in A) //Autoaim at humans if weeds or turfs are clicked
-			if(ishuman(item))
-				A = item
-				owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
-				succeed_activate()
-				break
+			if(!ishuman(item))
+				continue
+			A = item
+			owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
+			succeed_activate()
+			break
 		if(!ishuman(A)) //If no human found, return to widow
 			A = null
 			owner.balloon_alert(owner, "Nothing to attack, returning")

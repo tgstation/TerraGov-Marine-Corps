@@ -52,7 +52,7 @@
 /datum/ai_behavior/spiderling
 	target_distance = 1
 	base_action = ESCORTING_ATOM
-	//The atom that will be used in only_set_escorted_atom proc, by default this atom is the spiderling's widow
+	//The atom that will be used in revert_to_default_escort proc, by default this atom is the spiderling's widow
 	var/datum/weakref/default_escorted_atom
 	//Whether we are currently guarding a crit widow or not
 	var/guarding_status = SPIDERLING_NOT_GUARDING
@@ -69,13 +69,13 @@
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, PROC_REF(apply_spiderling_jelly))
 	RegisterSignals(escorted_atom, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), PROC_REF(toggle_rest))
 	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_MARK, PROC_REF(decide_mark))
-	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_RETURN, PROC_REF(only_set_escorted_atom))
+	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_RETURN, PROC_REF(revert_to_default_escort))
 
 /// Decides what to do when widow uses spiderling mark ability
 /datum/ai_behavior/spiderling/proc/decide_mark(source, atom/A)
 	SIGNAL_HANDLER
 	if(!A)
-		only_set_escorted_atom()
+		revert_to_default_escort()
 		return
 	if(atom_to_walk_to == A)
 		return
@@ -85,12 +85,12 @@
 		return
 	if(isobj(A))
 		var/obj/obj_target = A
-		RegisterSignal(obj_target, COMSIG_QDELETING, PROC_REF(only_set_escorted_atom))
+		RegisterSignal(obj_target, COMSIG_QDELETING, PROC_REF(revert_to_default_escort))
 		go_to_obj_target(source, A)
 		return
 
 /// Sets escorted atom to our pre-defined default escorted atom, which by default is this spiderling's widow, and commands the spiderling to follow it
-/datum/ai_behavior/spiderling/proc/only_set_escorted_atom(source, atom/A)
+/datum/ai_behavior/spiderling/proc/revert_to_default_escort(source)
 	SIGNAL_HANDLER
 	escorted_atom = default_escorted_atom.resolve()
 	change_action(ESCORTING_ATOM, escorted_atom)
@@ -161,7 +161,7 @@
 /// Spiderling's mother woke up from crit; reset stuff back to normal
 /datum/ai_behavior/spiderling/proc/attempt_unguard()
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(only_set_escorted_atom))
+	INVOKE_ASYNC(src, PROC_REF(revert_to_default_escort))
 	guarding_status = SPIDERLING_NOT_GUARDING
 
 /datum/ai_behavior/spiderling/ai_do_move()
@@ -182,7 +182,7 @@
 	if(prob(50))
 		X.emote("roar")
 	distance_to_maintain = 0
-	only_set_escorted_atom()
+	revert_to_default_escort()
 	atom_to_walk_to = escorted_atom
 	guarding_status = SPIDERLING_ATTEMPTING_GUARD
 
@@ -224,9 +224,9 @@
 	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
 	var/mob/living/carbon/xenomorph/widow/spiderling_mother = spiderling_parent.spidermother
 	if(HAS_TRAIT(spiderling_mother, TRAIT_FLOORED))
-		spiderling_parent.set_resting(FALSE)
-	else
 		spiderling_parent.set_resting(TRUE)
+	else
+		spiderling_parent.set_resting(FALSE)
 
 /// Signal handler to apply resin jelly to the spiderling whenever widow gets it
 /datum/ai_behavior/spiderling/proc/apply_spiderling_jelly()
