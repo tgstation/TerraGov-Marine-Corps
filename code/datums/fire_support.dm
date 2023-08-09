@@ -119,8 +119,6 @@
 		strafelist -= strafed
 		strafed.ex_act(EXPLODE_HEAVY)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
-		for(var/atom/movable/AM AS in strafed)
-			AM.ex_act(EXPLODE_HEAVY)
 
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)
