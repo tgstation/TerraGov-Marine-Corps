@@ -255,8 +255,6 @@
 		strafed.ex_act(EXPLODE_LIGHT)
 		new /obj/effect/particle_effect/expl_particles(strafed)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
-		for(var/atom/movable/AM AS in strafed)
-			AM.ex_act(EXPLODE_LIGHT)
 
 	if(length_char(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 2)
