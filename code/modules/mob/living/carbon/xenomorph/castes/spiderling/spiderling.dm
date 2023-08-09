@@ -1,6 +1,8 @@
-#define SPIDERLING_GUARDING "spiderling_guarding"
 #define SPIDERLING_ATTEMPTING_GUARD "spiderling_attempting_guard"
 #define SPIDERLING_NOT_GUARDING "spiderling_not_guarding"
+#define SPIDERLING_GUARDING "spiderling_guarding"
+#define SPIDERLING_ENRAGED "spiderling_enraged"
+#define SPIDERLING_NORMAL "spiderling_normal"
 
 /mob/living/carbon/xenomorph/spiderling
 	caste_base_type = /mob/living/carbon/xenomorph/spiderling
@@ -21,11 +23,21 @@
 	density = FALSE
 	// The widow that this spiderling belongs to
 	var/mob/living/carbon/xenomorph/spidermother
+	// What sprite state this - normal, enraged, guarding? Used for update_icons()
+	var/spiderling_state = SPIDERLING_NORMAL
 
 /mob/living/carbon/xenomorph/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/mother)
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/spiderling, mother)
 	spidermother = mother
+
+/mob/living/carbon/xenomorph/spiderling/update_icons(state_change = TRUE)
+	. = ..()
+	if(state_change)
+		if(spiderling_state == SPIDERLING_ENRAGED)
+			icon_state = "[icon_state] Enraged"
+		if(spiderling_state == SPIDERLING_GUARDING)
+			icon_state = "[icon_state] Guarding"
 
 /mob/living/carbon/xenomorph/spiderling/on_death()
 	///We QDEL them as cleanup and preventing them from being sold
@@ -157,13 +169,16 @@
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(revert_to_default_escort))
 	guarding_status = SPIDERLING_NOT_GUARDING
+	var/mob/living/carbon/xenomorph/spiderling/X = mob_parent
+	X.spiderling_state = SPIDERLING_NORMAL
+	X.update_icons()
 
 /datum/ai_behavior/spiderling/ai_do_move()
 	if(guarding_status == SPIDERLING_ATTEMPTING_GUARD)
 		if(get_dist(mob_parent, atom_to_walk_to) <= 1)
 			var/mob/living/carbon/xenomorph/spiderling/X = mob_parent
 			if(prob(50))
-				X.emote("hiss") //NEED TO DO MORE. Update status, buckle, clickthrough, etc.
+				X.emote("hiss")
 			guarding_status = SPIDERLING_GUARDING
 			var/mob/living/carbon/xenomorph/widow/to_guard = escorted_atom
 			to_guard.buckle_mob(X, TRUE, TRUE)
@@ -175,6 +190,9 @@
 	var/mob/living/carbon/xenomorph/spiderling/X = mob_parent
 	if(prob(50))
 		X.emote("roar")
+	if(X.spiderling_state != SPIDERLING_ENRAGED)
+		X.spiderling_state = SPIDERLING_GUARDING
+		X.update_icons()
 	distance_to_maintain = 0
 	revert_to_default_escort()
 	atom_to_walk_to = escorted_atom
@@ -193,6 +211,8 @@
 		kill_parent()
 		return
 	x.emote("roar")
+	x.spiderling_state = SPIDERLING_ENRAGED
+	x.update_icons()
 	change_action(MOVING_TO_ATOM, pick(possible_victims))
 	addtimer(CALLBACK(src, PROC_REF(kill_parent)), 10 SECONDS)
 
@@ -201,6 +221,8 @@
 	var/mob/living/carbon/xenomorph/spiderling/x = mob_parent
 	change_action(MOVING_TO_ATOM, victim)
 	x.emote("roar")
+	x.spiderling_state = SPIDERLING_ENRAGED
+	x.update_icons()
 	addtimer(CALLBACK(src, PROC_REF(kill_parent)), 15 SECONDS)
 
 ///This kills the spiderling
