@@ -85,7 +85,7 @@
 
 /obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
 	. = ..()
-	if(!active || stuck_to || isturf(hit_atom))
+	if(!active || stuck_to || isturf(hit_atom) || isxenohivemind(hit_atom))
 		return
 	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
 	stuck_overlay.pixel_x = rand(-5, 5)
