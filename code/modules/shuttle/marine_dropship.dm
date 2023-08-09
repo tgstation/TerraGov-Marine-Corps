@@ -1270,7 +1270,7 @@
 
 
 /obj/machinery/computer/shuttle/shuttle_control/ui_interact(mob/user, datum/tgui/ui)
-	if(!isobserver(user) && !(SSshuttle.getShuttle(shuttleId)))
+	if(!(SSshuttle.getShuttle(shuttleId)))
 		RelinkShuttleId()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -1288,23 +1288,16 @@
 	if(action != "selectDestination")
 		return FALSE
 
-	if(!params["destination"])
-		return TRUE
-
-	if(isobserver(usr))
-		var/obj/docking_port/port = SSshuttle.getDock(params["destination"])
-		if(port)
-			usr.forceMove(get_turf(port))
-			return TRUE
-
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	#ifndef TESTING
 	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, span_warning("The engines are still refueling."))
 		return TRUE
 	#endif
-
 	if(!M.can_move_topic(usr))
+		return TRUE
+
+	if(!params["destination"])
 		return TRUE
 
 	if(!(params["destination"] in valid_destinations()))
