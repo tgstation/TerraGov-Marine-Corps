@@ -868,14 +868,14 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		"Pill Packet" = list(
-			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
-			/obj/item/storage/pill_bottle/packet/kelotane = -1,
-			/obj/item/storage/pill_bottle/packet/tramadol = -1,
-			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/packet/dylovene = -1,
-			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
-			/obj/item/storage/pill_bottle/packet/isotonic = -1,
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/bicaridine = -1,
+			/obj/item/storage/pill_bottle/kelotane = -1,
+			/obj/item/storage/pill_bottle/tramadol = -1,
+			/obj/item/storage/pill_bottle/tricordrazine = -1,
+			/obj/item/storage/pill_bottle/dylovene = -1,
+			/obj/item/storage/pill_bottle/paracetamol = -1,
+			/obj/item/storage/pill_bottle/isotonic = -1,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
@@ -886,7 +886,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/combat = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30,
 			/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/alkysine = 20,
@@ -913,14 +912,14 @@
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
-		"Pill Packet" = list(
-			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
-			/obj/item/storage/pill_bottle/packet/kelotane = -1,
-			/obj/item/storage/pill_bottle/packet/tramadol = -1,
-			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/packet/dylovene = -1,
-			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
-			/obj/item/storage/pill_bottle/packet/isotonic = -1,
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/bicaridine = -1,
+			/obj/item/storage/pill_bottle/kelotane = -1,
+			/obj/item/storage/pill_bottle/tramadol = -1,
+			/obj/item/storage/pill_bottle/tricordrazine = -1,
+			/obj/item/storage/pill_bottle/dylovene = -1,
+			/obj/item/storage/pill_bottle/paracetamol = -1,
+			/obj/item/storage/pill_bottle/isotonic = -1,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,

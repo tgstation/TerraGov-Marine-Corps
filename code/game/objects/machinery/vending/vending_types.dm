@@ -160,13 +160,6 @@
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	products = list(
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/bicaridine = 15,
-			/obj/item/storage/pill_bottle/kelotane = 15,
-			/obj/item/storage/pill_bottle/tramadol = 15,
-			/obj/item/storage/pill_bottle/tricordrazine = 15,
-			/obj/item/storage/pill_bottle/dylovene = 15,
-			/obj/item/storage/pill_bottle/inaprovaline = 15,
-			/obj/item/storage/pill_bottle/isotonic = 15,
 			/obj/item/storage/pill_bottle/paracetamol = 6,
 			/obj/item/storage/pill_bottle/dexalin = 6,
 			/obj/item/storage/pill_bottle/spaceacillin = 6,
@@ -194,7 +187,6 @@
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = 6,
 			/obj/item/reagent_containers/glass/bottle/dexalin = 6,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = 6,
-			/obj/item/reagent_containers/glass/bottle/oxycodone = 6,
 			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 6,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 6,
 		),
@@ -379,7 +371,6 @@
 			/obj/item/reagent_containers/glass/bottle/kelotane = 1,
 			/obj/item/reagent_containers/glass/bottle/dexalin = 1,
 			/obj/item/reagent_containers/glass/bottle/tramadol = 1,
-			/obj/item/reagent_containers/glass/bottle/oxycodone = 1,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 1,
 		),
 		"Heal Pack" = list(
