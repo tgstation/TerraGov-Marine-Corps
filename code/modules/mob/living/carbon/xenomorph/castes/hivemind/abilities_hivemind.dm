@@ -1,3 +1,15 @@
+
+//List of Hivemind resin structure images
+GLOBAL_LIST_INIT(hivemind_resin_images_list, list(
+		RESIN_WALL = image('icons/mob/actions.dmi', icon_state = RESIN_WALL),
+		STICKY_RESIN = image('icons/mob/actions.dmi', icon_state = STICKY_RESIN),
+		RESIN_DOOR = image('icons/mob/actions.dmi', icon_state = RESIN_DOOR),
+		ALIEN_NEST = image('icons/mob/actions.dmi', icon_state = ALIEN_NEST),
+		GROWTH_WALL = image('icons/mob/actions.dmi', icon_state = GROWTH_WALL),
+		GROWTH_DOOR = image('icons/mob/actions.dmi', icon_state = GROWTH_DOOR)
+		))
+
+
 /datum/action/xeno_action/return_to_core
 	name = "Return to Core"
 	action_icon_state = "lay_hivemind"
@@ -36,11 +48,11 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
 		return ..()
-	var/i = buildable_structures.Find(X.selected_resin)
-	if(length(buildable_structures) == i)
-		X.selected_resin = buildable_structures[1]
-	else
-		X.selected_resin = buildable_structures[i+1]
+	var/resin_choice = show_radial_menu(owner, owner, GLOB.hivemind_resin_images_list, radius = 48)
+	if(!resin_choice)
+		return
+	var/i = GLOB.hivemind_resin_images_list.Find(resin_choice)
+	X.selected_resin = buildable_structures[i]
 	var/atom/A = X.selected_resin
 	X.balloon_alert(X, initial(A.name))
 	update_button_icon()
