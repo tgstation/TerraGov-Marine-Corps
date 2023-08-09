@@ -5,6 +5,7 @@
 	else if(isgrabitem(dropping))
 		var/obj/item/grab/grab_item = dropping
 		if(isliving(grab_item.grabbed_thing))
+		
 			. = grab_item.grabbed_thing
 	if(. && user_buckle_mob(., user))
 		return TRUE

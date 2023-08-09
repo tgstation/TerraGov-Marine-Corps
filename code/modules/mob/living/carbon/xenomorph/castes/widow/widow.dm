@@ -28,3 +28,15 @@
 	M.layer = initial(M.layer)
 	M.pixel_x = rand(-8, 8)
 	M.pixel_y = rand(-8, 8)
+
+/mob/living/carbon/xenomorph/widow/set_stat(new_stat)
+	. = ..()
+	if(new_stat == UNCONSCIOUS)
+		SEND_SIGNAL(src, COMSIG_SPIDERLING_GUARD)
+	if(new_stat == CONSCIOUS)
+		unbuckle_all_mobs(TRUE)
+		SEND_SIGNAL(src, COMSIG_SPIDERLING_UNGUARD)
+
+/mob/living/carbon/xenomorph/widow/death(gibbing, deathmessage, silent)
+	unbuckle_all_mobs(TRUE) //RELEASE THE HORDE
+	return ..()

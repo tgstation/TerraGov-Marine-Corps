@@ -1,3 +1,7 @@
+#define SPIDERLING_GUARDING "spiderling_guarding"
+#define SPIDERLING_ATTEMPTING_GUARD "spiderling_attempting_guard"
+#define SPIDERLING_NOT_GUARDING "spiderling_not_guarding"
+
 /mob/living/carbon/xenomorph/spiderling
 	caste_base_type = /mob/living/carbon/xenomorph/spiderling
 	name = "Spiderling"
@@ -15,15 +19,32 @@
 	allow_pass_flags = PASS_XENO
 	pass_flags = PASS_XENO|PASS_LOW_STRUCTURE
 	density = FALSE
+	// The widow that this spiderling belongs to
+	var/mob/living/carbon/xenomorph/spidermother
 
-/mob/living/carbon/xenomorph/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/spidermother)
+/mob/living/carbon/xenomorph/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/mother)
 	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/spiderling, spidermother)
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/spiderling, mother)
+	spidermother = mother
 
 /mob/living/carbon/xenomorph/spiderling/on_death()
 	///We QDEL them as cleanup and preventing them from being sold
 	QDEL_IN(src, TIME_TO_DISSOLVE)
 	return ..()
+
+//If we're covering our widow, any friendly nabs, grabs/etc should be transferred to them
+/mob/living/carbon/xenomorph/spiderling/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!get_dist(src, spidermother))
+		spidermother.attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+		return
+	return ..()
+
+/mob/living/carbon/xenomorph/spiderling/CtrlClick(mob/user)
+	if(!get_dist(src, spidermother))
+		spidermother.CtrlClick(user)
+		return
+	return ..()
+
 
 // ***************************************
 // *********** Spiderling AI Section
@@ -33,12 +54,16 @@
 	base_action = ESCORTING_ATOM
 	//The atom that will be used in only_set_escorted_atom proc, by default this atom is the spiderling's widow
 	var/datum/weakref/default_escorted_atom
+	//Whether we are currently guarding a crit widow or not
+	var/guarding_status = SPIDERLING_NOT_GUARDING
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
 	default_escorted_atom = WEAKREF(escorted_atom)
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(go_to_target))
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(go_to_obj_target))
+	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_GUARD, PROC_REF(attempt_guard))
+	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_UNGUARD, PROC_REF(attempt_unguard))
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, PROC_REF(spiderling_rage))
 	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, PROC_REF(parent_resist))
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, PROC_REF(apply_spiderling_jelly))
@@ -126,8 +151,44 @@
 			UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
 	return ..()
 
+/// If the spiderling's mother goes into crit, the spiderlings will stop what they are doing and attempt to shield her
+/datum/ai_behavior/spiderling/proc/attempt_guard()
+	SIGNAL_HANDLER
+	if(guarding_status == SPIDERLING_NOT_GUARDING) //Nothing to cleanup
+		INVOKE_ASYNC(src, PROC_REF(guard_owner))
+		return
+
+/// Spiderling's mother woke up from crit; reset stuff back to normal
+/datum/ai_behavior/spiderling/proc/attempt_unguard()
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(only_set_escorted_atom))
+	guarding_status = SPIDERLING_NOT_GUARDING
+
+/datum/ai_behavior/spiderling/ai_do_move()
+	if(guarding_status == SPIDERLING_ATTEMPTING_GUARD)
+		if(get_dist(mob_parent, atom_to_walk_to) <= 1)
+			var/mob/living/carbon/xenomorph/spiderling/X = mob_parent
+			if(prob(50))
+				X.emote("hiss") //NEED TO DO MORE. Update status, buckle, clickthrough, etc.
+			guarding_status = SPIDERLING_GUARDING
+			var/mob/living/carbon/xenomorph/widow/to_guard = escorted_atom
+			to_guard.buckle_mob(X, TRUE, TRUE)
+			X.dir = SOUTH
+	return ..()
+
+/// Moves spiderlings to the widow
+/datum/ai_behavior/spiderling/proc/guard_owner()
+	var/mob/living/carbon/xenomorph/spiderling/X = mob_parent
+	if(prob(50))
+		X.emote("roar")
+	distance_to_maintain = 0
+	only_set_escorted_atom()
+	atom_to_walk_to = escorted_atom
+	guarding_status = SPIDERLING_ATTEMPTING_GUARD
+
 /// This happens when the spiderlings mother dies, they move faster and will attack any nearby marines
 /datum/ai_behavior/spiderling/proc/spiderling_rage()
+	escorted_atom = null
 	var/mob/living/carbon/xenomorph/spiderling/x = mob_parent
 	var/list/mob/living/carbon/human/possible_victims = list()
 	for(var/mob/living/carbon/human/victim in cheap_get_humans_near(x, SPIDERLING_RAGE_RANGE))
