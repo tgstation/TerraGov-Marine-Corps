@@ -418,6 +418,15 @@
 	greyscale_colors = "#FD5964#ffffff"
 	description_overlay = "Me"
 
+/obj/item/storage/pill_bottle/oxycodone
+	name = "oxycodone pill bottle"
+	desc = "Contains pills that act as a high grade painkiller."
+	icon_state = "pill_canistercomplete"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/oxycodone
+	greyscale_config = /datum/greyscale_config/pillbottleround
+	greyscale_colors = "#8a8686#ffffff"
+	description_overlay = "Ox"
+
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
 	desc = "Contains pills that heal oxygen damage. They can suppress bloodloss symptoms as well."
