@@ -190,7 +190,6 @@
 		return fail_activate()
 	if(!isturf(A) && !istype(A, /obj/alien/weeds))
 		owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
-		succeed_activate()
 	else
 		for(var/item in A) //Autoaim at humans if weeds or turfs are clicked
 			if(!ishuman(item))
@@ -199,11 +198,11 @@
 			owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
 			succeed_activate()
 			break
-		if(!ishuman(A)) //If no human found, return to widow
-			A = null
-			owner.balloon_alert(owner, "Nothing to attack, returning")
-			fail_activate()
+		if(!ishuman(A)) //If no human found, cancel ability
+			owner.balloon_alert(owner, "Nothing to attack, cancelled")
+			return fail_activate()
 
+	succeed_activate()
 	SEND_SIGNAL(owner, COMSIG_SPIDERLING_MARK, A)
 	add_cooldown()
 
