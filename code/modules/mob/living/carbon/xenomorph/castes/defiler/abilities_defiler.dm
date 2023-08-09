@@ -290,7 +290,7 @@
 	action_icon_state = "inject_egg"
 	desc = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
 	ability_name = "inject neurogas"
-	plasma_cost = 100
+	plasma_cost = 80
 	cooldown_timer = 5 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
@@ -333,14 +333,19 @@
 	switch(X.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium
+			newegg.icon_state = "gas_egg_n2"
 		if(/datum/reagent/toxin/xeno_ozelomelyn)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/ozelomelyn
+			newegg.icon_state = "gas_egg_o2"
 		if(/datum/reagent/toxin/xeno_hemodile)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/hemodile
+			newegg.icon_state = "gas_egg_h2"
 		if(/datum/reagent/toxin/xeno_transvitox)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/transvitox
+			newegg.icon_state = "gas_egg_t2"
 		if(/datum/effect_system/smoke_spread/xeno/acid/light)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/acid/light
+			newegg.icon_state = "gas_egg_a2"
 	qdel(alien_egg)
 
 	GLOB.round_statistics.defiler_inject_egg_neurogas++

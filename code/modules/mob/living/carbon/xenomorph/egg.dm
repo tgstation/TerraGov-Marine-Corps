@@ -232,9 +232,9 @@
 	return TRUE
 
 /obj/alien/egg/gas
-	desc = "It looks like a weird egg"
-	name = "hugger egg"
-	icon_state = "egg_hugger"
+	desc = "It looks like a suspiciously weird egg"
+	name = "gas egg"
+	icon_state = "gas_egg"
 	integrity_failure = 75 //Highly responsive to poking
 	maturity_time = 15 SECONDS
 	maturity_stage = 2
@@ -252,11 +252,11 @@
 	var/spread = EGG_GAS_DEFAULT_SPREAD
 	if(via_damage) // More violent destruction, more gas.
 		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
-		flick("egg exploding", src)
+		flick("egg exploding gas", src)
 		spread = EGG_GAS_KILL_SPREAD
 	else
 		playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
-		flick("egg opening", src)
+		flick("egg emiting gas", src)
 	spread += gas_size_bonus
 
 	var/datum/effect_system/smoke_spread/xeno/NS = new gas_type(src)
