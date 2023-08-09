@@ -175,6 +175,8 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
+	if(QDELETED(src))
+		return
 	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
 		return
 	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
