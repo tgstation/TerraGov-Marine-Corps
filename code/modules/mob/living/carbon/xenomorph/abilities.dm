@@ -303,6 +303,10 @@
 	switch(X.selected_resin)
 		if(/obj/alien/resin/sticky)
 			build_resin_modifier = 0.5
+		if(/obj/alien/resin/resin_growth)
+			return 0
+		if(/obj/alien/resin/resin_growth/door)
+			return 0
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
@@ -442,6 +446,10 @@
 	switch(X.selected_resin)
 		if(/obj/alien/resin/sticky)
 			plasma_cost = initial(plasma_cost) / 3
+		if(/obj/alien/resin/resin_growth)
+			plasma_cost = initial(plasma_cost) / 4 // 25
+		if(/obj/alien/resin/resin_growth/door)
+			plasma_cost = initial(plasma_cost) / 4 // 25
 	if(new_resin)
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
 		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)

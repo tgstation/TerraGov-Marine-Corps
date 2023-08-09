@@ -22,6 +22,29 @@
 	succeed_activate()
 	add_cooldown()
 
+/datum/action/xeno_action/activable/secrete_resin/hivemind
+	buildable_structures = list(
+		/turf/closed/wall/resin/regenerating,
+		/obj/alien/resin/sticky,
+		/obj/structure/mineral_door/resin,
+		/obj/structure/bed/nest,
+		/obj/alien/resin/resin_growth,
+		/obj/alien/resin/resin_growth/door,
+		)
+
+/datum/action/xeno_action/activable/secrete_resin/hivemind/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability != src)
+		return ..()
+	var/i = buildable_structures.Find(X.selected_resin)
+	if(length(buildable_structures) == i)
+		X.selected_resin = buildable_structures[1]
+	else
+		X.selected_resin = buildable_structures[i+1]
+	var/atom/A = X.selected_resin
+	X.balloon_alert(X, initial(A.name))
+	update_button_icon()
+
 /datum/action/xeno_action/activable/secrete_resin/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
