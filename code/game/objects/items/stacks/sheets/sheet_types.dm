@@ -258,17 +258,16 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	new/datum/stack_recipe_list("smg boxes",list( \
 		new/datum/stack_recipe("SMG-90 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smg), \
 		new/datum/stack_recipe("MP-19 mag box", /obj/item/storage/box/visual/magazine/compact/standard_machinepistol), \
-		new/datum/stack_recipe("PPSh drum mag box", /obj/item/storage/box/visual/magazine/compact/ppsh), \
 		new/datum/stack_recipe("Pepperball canister box", /obj/item/storage/box/visual/magazine/compact/pepperball), \
 		)), \
 	new/datum/stack_recipe_list("rifle boxes",list( \
 		new/datum/stack_recipe("AR-12 mag box", /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle), \
 		new/datum/stack_recipe("AR-18 mag box", /obj/item/storage/box/visual/magazine/compact/standard_carbine), \
 		new/datum/stack_recipe("AR-21 mag box", /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle), \
-		new/datum/stack_recipe("AR-11 mag box", /obj/item/storage/box/visual/magazine/compact/tx11), \
+		new/datum/stack_recipe("AR-11 mag box", /obj/item/storage/box/visual/magazine/compact/ar11), \
 		new/datum/stack_recipe("Martini Henry packet box", /obj/item/storage/box/visual/magazine/compact/martini), \
 		new/datum/stack_recipe("TE cell box", /obj/item/storage/box/visual/magazine/compact/lasrifle/marine), \
-		new/datum/stack_recipe("SH-15 mag box", /obj/item/storage/box/visual/magazine/compact/tx15), \
+		new/datum/stack_recipe("SH-15 mag box", /obj/item/storage/box/visual/magazine/compact/sh15), \
 		)), \
 	new/datum/stack_recipe_list("marksmen rifle boxes",list( \
 		new/datum/stack_recipe("DMR-37 mag box", /obj/item/storage/box/visual/magazine/compact/standard_dmr), \
