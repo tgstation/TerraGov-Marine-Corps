@@ -45,6 +45,9 @@
 		/obj/item/weapon/karambit,
 		/obj/item/weapon/karambit/fade,
 		/obj/item/weapon/karambit/case_hardened,
+		/obj/item/storage/briefcase/standard_magnum/gold,
+		/obj/item/storage/briefcase/standard_magnum/silver,
+		/obj/item/storage/briefcase/standard_magnum/nickle,
 	)
 	rare_list = list(
 		/obj/vehicle/unmanned,
