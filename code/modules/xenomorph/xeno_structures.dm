@@ -271,7 +271,7 @@ TUNNEL
 /obj/structure/xeno/tunnel
 	name = "tunnel"
 	desc = "A tunnel entrance. Looks like it was dug by some kind of clawed beast."
-	icon = 'icons/Xeno/effects.dmi'
+	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "hole"
 
 	density = FALSE
@@ -415,7 +415,7 @@ TUNNEL
 		balloon_alert(M, "Tunnel ended unexpectedly")
 		return
 	M.forceMove(targettunnel)
-	var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"))
+	var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"), 0)
 	if(M.loc != targettunnel) //double check that we're still in the tunnel in the event it gets destroyed while we still have the interface open
 		return
 	if(double_check == "Pick another tunnel")
@@ -761,7 +761,6 @@ TUNNEL
 		RegisterSignals(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
 		if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1)
 			GLOB.hive_datums[hivenumber].give_larva_to_next_in_queue()
-		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
@@ -772,7 +771,6 @@ TUNNEL
 	if(GLOB.hive_datums[hivenumber])
 		UnregisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		GLOB.hive_datums[hivenumber].xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
-		INVOKE_NEXT_TICK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), GLOB.hive_datums[hivenumber]) // checks all silos next tick after this one is gone
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
@@ -1480,7 +1478,7 @@ TUNNEL
 		to_chat(user, span_warning("[src] bursts, releasing a strong gust of pressurised gas!"))
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.adjust_stagger(3)
+			H.adjust_stagger(3 SECONDS)
 			H.apply_damage(30, BRUTE, "chest", BOMB)
 		qdel(src)
 		return TRUE

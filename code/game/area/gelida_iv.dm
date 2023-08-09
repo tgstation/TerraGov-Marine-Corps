@@ -16,6 +16,7 @@
 	icon_state = "cliff_blocked" //because this is a PARENT TYPE and you should not be using it and should also be changing the icon!!!
 	ceiling = CEILING_NONE
 	outside = TRUE
+	always_unpowered = TRUE
 
 /area/gelida/oob
 	name = "gelida - Out Of Bounds"
@@ -337,6 +338,7 @@
 	name = "West Colony - Rockies"
 	icon_state = "away2"
 	ceiling = CEILING_UNDERGROUND
+	always_unpowered = TRUE
 
 /area/gelida/outdoors/p_n_rockies
 	name = "North Processor - Rockies"
@@ -360,6 +362,7 @@
 	outside = FALSE
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 //ATMOS
 /area/gelida/atmos
@@ -435,6 +438,7 @@
 	outside = FALSE
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 /area/gelida/caves/west_caves
 	name = "Western Caves"

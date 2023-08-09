@@ -367,11 +367,16 @@
 	icon_state = "quartstorage"
 	minimap_color = MINIMAP_AREA_REQ
 
+/area/lv624/lazarus/quartstorage/dome
+
+/area/lv624/lazarus/quartstorage/two
+
 /area/lv624/lazarus/quartstorage/outdoors
 	name = "\improper Cargo Bay Area"
 	icon_state = "purple"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_COLONY
+	always_unpowered = TRUE
 
 /area/lv624/lazarus/engineering
 	name = "\improper Engineering"
@@ -432,15 +437,16 @@
 	icon_state = "construction"
 	ceiling = CEILING_NONE
 	outside = TRUE
-	always_unpowered = TRUE
 
 /area/lv624/lazarus/sandtemple
 	name = "\improper Mysterious Temple"
 	icon_state = "sandtemple"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	always_unpowered = TRUE
 
 /area/lv624/lazarus/sandtemple/garbledradio
 	ceiling = CEILING_UNDERGROUND
+	always_unpowered = FALSE
 
 /area/lv624/lazarus/sandtemple/sideroom //needed to allow nuke generator within temple to function
 	name = "\improper Mysterious Temple"
@@ -460,6 +466,9 @@
 	always_unpowered = TRUE
 	minimap_color = MINIMAP_AREA_SHIP
 
+/area/lv624/lazarus/crashed_ship/desparity
+	always_unpowered = FALSE
+
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"
 	icon_state = "tcomsatcham"
@@ -469,6 +478,7 @@
 	name = "\improper Shuttle Console"
 	icon_state = "tcomsatcham"
 	flags_area = NO_DROPPOD
+	requires_power = FALSE
 
 /area/lv624/lazarus/spaceport
 	name = "\improper Eastern Space Port"

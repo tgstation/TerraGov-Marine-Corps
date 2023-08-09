@@ -98,7 +98,7 @@
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(2*effect_str)
 	if(current_cycle > 10)
-		L.Sleeping(40)
+		L.Sleeping(4 SECONDS)
 	return ..()
 
 /datum/reagent/toxin/minttoxin

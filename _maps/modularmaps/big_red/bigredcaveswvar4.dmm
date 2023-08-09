@@ -121,6 +121,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
+"hG" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/southwest)
 
 (1,1,1) = {"
 au
@@ -373,7 +377,7 @@ aH
 aB
 aR
 aR
-aR
+hG
 aR
 ae
 aH

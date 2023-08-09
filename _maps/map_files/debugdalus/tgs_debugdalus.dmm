@@ -488,7 +488,6 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/engineering_workshop)
 "aci" = (
-/obj/machinery/power/apc/mainship,
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
@@ -627,7 +626,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acX" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /obj/structure/rack,
 /obj/item/stack/sheet/glass{
 	amount = 50;
@@ -1569,7 +1568,6 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
-/obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
@@ -1700,7 +1698,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ahV" = (
@@ -2198,10 +2195,6 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
-/obj/machinery/power/apc/mainship{
-	dir = 1
-	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ajX" = (

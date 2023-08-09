@@ -169,9 +169,6 @@
 		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 		if(hivemind_countdown)
 			stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
-		var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
-		if(siloless_countdown)
-			stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
@@ -269,10 +266,8 @@
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom
-		if(!O.density)
-			return FALSE//Not a dense object? Doesn't matter then, pass over it.
-		if(!O.anchored)
-			step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
+		if(!O.anchored && !isxeno(src))
+			step(O, dir)
 		SEND_SIGNAL(src, COMSIG_XENO_OBJ_THROW_HIT, O, speed)
 		return TRUE
 
@@ -432,7 +427,7 @@
 /mob/living/carbon/human/apply_acid_spray_damage(damage)
 	take_overall_damage(damage, BURN, ACID, updating_health = TRUE)
 	emote("scream")
-	Paralyze(20)
+	Paralyze(2 SECONDS)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	ExtinguishMob()
@@ -477,7 +472,7 @@
 	playsound(C, "alien_drool", 15, TRUE)
 	do
 		face_atom(C)
-		if(stagger)
+		if(IsStaggered())
 			return FALSE
 		do_attack_animation(C)
 		C.reagents.add_reagent(toxin, transfer_amount)

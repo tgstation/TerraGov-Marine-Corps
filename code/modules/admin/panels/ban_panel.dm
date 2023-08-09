@@ -318,7 +318,7 @@
 				break_counter++
 			output += "</div></div>"
 		//departments/groups that don't have command staff would throw a javascript error since there's no corresponding reference for toggle_head()
-		var/list/headless_job_lists = list("Abstract" = list("Appearance", "Emote", "OOC", "LOOC", "Deadchat"))
+		var/list/headless_job_lists = list("Abstract" = list("Appearance", "IC", "TTS", "Emote", "OOC", "LOOC", "Deadchat"))
 		for(var/department in headless_job_lists)
 			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
 			var/break_counter = 0

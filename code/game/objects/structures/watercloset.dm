@@ -350,6 +350,8 @@
 		return
 
 	to_chat(usr, span_notice("You start washing your hands."))
+	playsound(loc, 'sound/effects/sink_long.ogg', 25, 1)
+	
 
 	busy = 1
 	sleep(4 SECONDS)

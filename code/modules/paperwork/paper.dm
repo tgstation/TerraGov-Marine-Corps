@@ -62,6 +62,8 @@
 /obj/item/paper/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user)) //You need to be next to the paper in order to read it.
+		var/datum/asset/paper_asset = get_asset_datum(/datum/asset/simple/paper)
+		paper_asset.send(user)
 		if(!(isobserver(user) || ishuman(user) || issilicon(user)))
 			// Show scrambled paper if they aren't a ghost, human, or silicone.
 			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
