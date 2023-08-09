@@ -42,7 +42,7 @@
 			. = 500
 		if(XENO_TIER_FOUR)
 			. = 1000
-	return .
+	return
 
 //I hate it but it's how it was so I'm not touching it further than this
 /mob/living/carbon/xenomorph/shrike/get_export_value()
