@@ -675,7 +675,7 @@
 	L.apply_damage(15*effect_str, TOX)
 
 /datum/reagent/medicine/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(15*effect_str, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
+	L.apply_damage(15*effect_str, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
