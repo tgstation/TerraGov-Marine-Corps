@@ -285,7 +285,7 @@
 	force = 20
 	max_shells = 36 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_br
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_br, /obj/item/weapon/gun/rifle/standard_br/ap)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_br, /obj/item/ammo_magazine/rifle/standard_br/ap)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t64stock,
 		/obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle,
