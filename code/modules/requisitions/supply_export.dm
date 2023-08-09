@@ -10,7 +10,7 @@
 /mob/living/carbon/human/supply_export(faction_selling)
 	if(!can_sell_human_body(src, faction_selling))
 		return new /datum/export_report(0, name, faction_selling)
-	. = ..()
+	return ..()
 
 ///Getter to obtain the req point value of whatever this is
 /atom/movable/proc/get_export_value()
