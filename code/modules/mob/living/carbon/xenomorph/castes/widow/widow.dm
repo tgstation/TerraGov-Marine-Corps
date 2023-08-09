@@ -29,6 +29,11 @@
 	M.pixel_x = rand(-8, 8)
 	M.pixel_y = rand(-8, 8)
 
+/mob/living/carbon/xenomorph/widow/(mob/living/buckled_mob, mob/user, silent)
+	if(ishuman(user))
+		return
+	return ..()
+
 /mob/living/carbon/xenomorph/widow/set_stat(new_stat)
 	. = ..()
 	if(new_stat == UNCONSCIOUS)
