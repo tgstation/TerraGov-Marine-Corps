@@ -26,7 +26,7 @@
 			. = 800
 		if(JOB_CAT_COMMAND)
 			. = 1000
-	return .
+	return
 
 /mob/living/carbon/xenomorph/get_export_value()
 	switch(tier)
