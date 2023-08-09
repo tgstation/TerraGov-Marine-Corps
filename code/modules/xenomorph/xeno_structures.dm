@@ -6,6 +6,7 @@
 	var/xeno_structure_flags
 	///Which hive(number) do we belong to?
 	var/hivenumber = XENO_HIVE_NORMAL
+	var/decay_time = 1 SECONDS
 
 /obj/structure/xeno/Initialize(location, hivenumber)
 	. = ..()
@@ -45,6 +46,9 @@
 /// Destroy the xeno structure when the weed it was on is destroyed
 /obj/structure/xeno/proc/weed_removed()
 	SIGNAL_HANDLER
+	addtimer(CALLBACK(src, PROC_REF(structure_decay)), decay_time)
+
+/obj/structure/xeno/proc/structure_decay()
 	obj_destruction(damage_flag = "melee")
 
 /obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
