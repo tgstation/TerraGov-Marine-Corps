@@ -59,12 +59,12 @@
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
 
-	if(mover?.throwing && density && is_wired && iscarbon(mover) && (direction & dir))
+	if(mover?.throwing && !CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && density && is_wired && iscarbon(mover) && (direction & dir))
 		knownblockers += src
 		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
-	if(is_wired && density && ismob(mover) && (get_dir(loc, target) & dir))
+	if(!CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && is_wired && density && ismob(mover) && (get_dir(loc, target) & dir))
 		return FALSE
 
 	return ..()
