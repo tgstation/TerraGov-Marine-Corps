@@ -33,10 +33,11 @@
 	return ..()
 
 //If we're covering our widow, any clicks should be transferred to them
-/atom/Click(location, control, params)
+/mob/living/carbon/xenomorph/spiderling/Click(location, control, params)
 	if(!get_dist(src, spidermother))
-		spidermother.Click(location, control, params)
-		return
+		if(isxeno(usr))
+			spidermother.Click(location, control, params)
+			return
 	return ..()
 
 // ***************************************
