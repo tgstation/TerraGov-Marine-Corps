@@ -222,7 +222,8 @@
 /// rest and unrest when widow does
 /datum/ai_behavior/spiderling/proc/toggle_rest()
 	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
-	if(HAS_TRAIT(spiderling_parent, TRAIT_FLOORED))
+	var/mob/living/carbon/xenomorph/widow/spiderling_mother = mob_parent.spidermother
+	if(HAS_TRAIT(spiderling_mother, TRAIT_FLOORED))
 		spiderling_parent.set_resting(FALSE)
 	else
 		spiderling_parent.set_resting(TRUE)
