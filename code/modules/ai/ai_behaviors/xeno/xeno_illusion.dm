@@ -20,6 +20,7 @@
 				attack_target(src, victim)
 				set_escorted_atom(src, victim)
 				return
+
 /datum/ai_behavior/xeno/illusion/attack_target(datum/soure, atom/attacked)
 	if(!attacked)
 		attacked = atom_to_walk_to
