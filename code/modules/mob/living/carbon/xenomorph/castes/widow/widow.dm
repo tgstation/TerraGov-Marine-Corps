@@ -29,7 +29,12 @@
 	M.pixel_x = rand(-8, 8)
 	M.pixel_y = rand(-8, 8)
 
-/mob/living/carbon/xenomorph/widow/(mob/living/buckled_mob, mob/user, silent)
+
+//Prevents humans unbuckling spiderlings
+/mob/living/carbon/xenomorph/widow/attack_hand(mob/living/user)
+	return
+
+/mob/living/carbon/xenomorph/widow/user_unbuckle_mob(mob/living/buckled_mob, mob/user, silent)
 	if(ishuman(user))
 		return
 	return ..()
@@ -37,6 +42,7 @@
 /mob/living/carbon/xenomorph/widow/set_stat(new_stat)
 	. = ..()
 	if(new_stat == UNCONSCIOUS)
+		unbuckle_all_mobs(TRUE) //If we have spiderlings on us, get them off and ready for guard
 		SEND_SIGNAL(src, COMSIG_SPIDERLING_GUARD)
 	if(new_stat == CONSCIOUS)
 		unbuckle_all_mobs(TRUE)
