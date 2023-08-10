@@ -1304,6 +1304,22 @@
 		return
 	togglebuildmode(mob)
 
+/client/proc/toggle_admin_tads()
+	set category = "Fun"
+	set name = "Toggle Tadpole Restrictions"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(SSticker.mode.enable_fun_tads)
+		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions off.")
+		log_admin("[key_name(usr)] toggled Tadpole restrictions off.")
+		SSticker.mode.enable_fun_tads = FALSE
+	else
+		SSticker.mode.enable_fun_tads = TRUE
+		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions on.")
+		log_admin("[key_name(usr)] toggled Tadpole restrictions on.")
+
 //returns TRUE to let the dragdrop code know we are trapping this event
 //returns FALSE if we don't plan to trap the event
 /datum/admins/proc/cmd_ghost_drag(mob/dead/observer/frommob, mob/tomob)
