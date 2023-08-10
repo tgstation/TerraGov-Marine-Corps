@@ -1505,6 +1505,10 @@
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
+"ann" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
 "ano" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint/free_access{
@@ -4644,6 +4648,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
+"aRa" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/n)
 "aRg" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -7820,6 +7828,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/caves/lambda_lab)
+"cFO" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/north)
 "cGI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
@@ -9810,6 +9822,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/n)
+"iwH" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
 "ixv" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -12871,6 +12887,11 @@
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
+"rqc" = (
+/obj/item/stack/sheet/metal,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "rrc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14351,6 +14372,11 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
+"vEz" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "vIk" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -15067,6 +15093,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
+"xEK" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/west)
 "xET" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -16120,7 +16150,7 @@ gCQ
 sNF
 sNF
 hsh
-sNF
+xEK
 sNF
 sNF
 sNF
@@ -18467,7 +18497,7 @@ axl
 axl
 axl
 axl
-axl
+ann
 axl
 axl
 aaa
@@ -27242,7 +27272,7 @@ uII
 doA
 qqG
 qqG
-xhy
+vEz
 qqG
 qqG
 qqG
@@ -38399,7 +38429,7 @@ hXy
 hXy
 hXy
 gCQ
-qRX
+cFO
 quE
 qRX
 tHL
@@ -40384,7 +40414,7 @@ gzM
 gzM
 gzM
 gzM
-gzM
+aRa
 gzM
 gzM
 gzM
@@ -44233,7 +44263,7 @@ sQi
 sQi
 sQi
 sQi
-sQi
+iwH
 gCQ
 hXy
 hXy
@@ -56690,7 +56720,7 @@ vop
 xaJ
 hjp
 xaJ
-hFi
+rqc
 xaJ
 gCQ
 gCQ

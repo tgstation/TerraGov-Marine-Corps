@@ -3715,6 +3715,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
+"kM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/starboard_hull)
 "kN" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/black{
@@ -5333,6 +5343,15 @@
 	},
 /turf/open/floor/mainship/silver,
 /area/mainship/medical/medical_science)
+"pA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/light/mainship/small{
+	dir = 4
+	},
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/port_hull)
 "pB" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/mono,
@@ -5803,6 +5822,16 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"rc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/mainship/black,
+/area/mainship/engineering/port_atmos)
 "rd" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -11200,6 +11229,17 @@
 "GG" = (
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
+"GH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/port_hull)
 "GI" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -15896,6 +15936,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"UE" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/starboard_hull)
 "UF" = (
 /obj/machinery/self_destruct/rod,
 /turf/open/floor/mainship/tcomms,
@@ -18848,7 +18894,7 @@ oV
 bs
 bD
 bD
-bs
+pA
 bD
 bD
 bs
@@ -19969,7 +20015,7 @@ Wc
 Ns
 Ns
 LX
-KY
+GH
 fD
 XE
 hr
@@ -23342,7 +23388,7 @@ YB
 XE
 XE
 Hr
-yg
+kM
 Hr
 VC
 VC
@@ -27224,7 +27270,7 @@ Yz
 XH
 Tm
 lc
-rP
+rc
 XH
 XE
 XE
@@ -28442,7 +28488,7 @@ gM
 Ni
 Wh
 Ni
-Ni
+UE
 Ni
 Wh
 Ni
@@ -30347,7 +30393,7 @@ Wh
 wh
 Nm
 Ni
-Ni
+UE
 Wh
 Ni
 Ni

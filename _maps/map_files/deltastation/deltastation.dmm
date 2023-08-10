@@ -7603,6 +7603,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/deltastation/maintenance/port/fore)
+"bzX" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/southlz)
 "bAb" = (
 /obj/structure/punching_bag,
 /turf/open/floor/plating,
@@ -45015,6 +45019,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/deltastation/construction/mining/aux_base)
+"jdn" = (
+/obj/effect/spawner/random/misc/structure/directional_window/west,
+/obj/structure/lattice,
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "jdp" = (
 /obj/effect/spawner/random/machinery/status_display,
 /turf/closed/wall,
@@ -65027,6 +65037,10 @@
 	},
 /turf/open/floor/carpet,
 /area/deltastation/service/chapel/office)
+"nmh" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/securitycaves)
 "nmm" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line,
@@ -65613,6 +65627,10 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/security/lockers)
+"ntf" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/westerncaves)
 "nti" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -83750,6 +83768,10 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/library/lounge)
+"qYY" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/northcaves)
 "qZa" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/spawner/random/misc/greytide,
@@ -91672,6 +91694,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/engineering/storage)
+"sDN" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/northeastcaves)
 "sDO" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/structure/sign/double/barsign{
@@ -104835,6 +104861,11 @@
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
+"vjV" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/westerncaves/garbledradio)
 "vjZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
@@ -116825,6 +116856,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/exteriorasteroids)
+"xBr" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/northcaves)
 "xBv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -124339,7 +124375,7 @@ xXG
 xXG
 xXG
 fIn
-qJV
+vjV
 fIn
 xXG
 xXG
@@ -131529,7 +131565,7 @@ xXG
 xXG
 mKt
 xXG
-aSs
+jdn
 lsO
 hox
 aSs
@@ -134342,7 +134378,7 @@ wxm
 bCp
 bCp
 bCp
-bCp
+ntf
 bCp
 wxm
 wxm
@@ -150242,7 +150278,7 @@ kTy
 psq
 kTy
 kyZ
-kTy
+qYY
 kyZ
 kTy
 psq
@@ -153491,7 +153527,7 @@ hSn
 hSn
 hSn
 hSn
-hSn
+bzX
 hSn
 vNR
 vNR
@@ -164070,7 +164106,7 @@ vNR
 kTy
 kTy
 kTy
-psq
+xBr
 kTy
 kTy
 kTy
@@ -170811,7 +170847,7 @@ sdT
 rHg
 rHg
 rHg
-rHg
+nmh
 rHg
 sdT
 wxm
@@ -171966,7 +172002,7 @@ vNR
 hSn
 hSn
 hSn
-hSn
+bzX
 vNR
 vNR
 vNR
@@ -173367,7 +173403,7 @@ wxm
 nhQ
 nkc
 nhQ
-nhQ
+sDN
 nkc
 wxm
 wxm

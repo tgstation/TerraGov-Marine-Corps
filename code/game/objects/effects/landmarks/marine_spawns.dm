@@ -120,3 +120,6 @@
 /obj/effect/landmark/start/job/som/squadleader
 	icon_state = "SL"
 	job = /datum/job/som/squad/leader
+
+/obj/effect/landmark/yautja_teleport
+	icon_state = "pred_spawn"

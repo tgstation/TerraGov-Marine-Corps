@@ -8623,6 +8623,12 @@
 /obj/effect/turf_decal/warning_stripes/leader,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/alpha)
+"dAH" = (
+/obj/structure/cable,
+/obj/machinery/light/mainship/small,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/port_hull)
 "dBR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -10692,6 +10698,12 @@
 	dir = 8
 	},
 /area/mainship/medical/medical_science)
+"gZv" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/port_hull)
 "haf" = (
 /turf/open/floor/mainship/green/full,
 /area/mainship/squads/req)
@@ -12662,6 +12674,11 @@
 "kCg" = (
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/firing_range)
+"kCp" = (
+/obj/structure/cable,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/starboard_hull)
 "kCI" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -13398,6 +13415,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/effect/landmark/yautja_teleport,
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
 "lIO" = (
@@ -14559,6 +14577,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
+"nEl" = (
+/obj/structure/cable,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/port_hull)
 "nEw" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/frame/fire_alarm,
@@ -19323,6 +19346,7 @@
 /area/mainship/hallways/hangar)
 "vND" = (
 /obj/machinery/light/mainship/small,
+/obj/effect/landmark/yautja_teleport,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
 "vOn" = (
@@ -44395,7 +44419,7 @@ lzj
 cZJ
 stM
 lzj
-fZA
+nEl
 aVk
 aaa
 aaa
@@ -46150,7 +46174,7 @@ aaa
 aaa
 aaa
 aai
-tDH
+kCp
 abR
 dcq
 xKj
@@ -57454,7 +57478,7 @@ aaa
 aaa
 aaa
 aai
-tDH
+kCp
 aXM
 cik
 aXJ
@@ -63931,7 +63955,7 @@ cej
 cdQ
 cek
 cbn
-sao
+dAH
 aVk
 aaa
 aaa
@@ -73426,7 +73450,7 @@ bgW
 brQ
 tKz
 tih
-tih
+gZv
 btF
 btF
 tih

@@ -5174,6 +5174,10 @@
 /obj/structure/catwalk,
 /turf/open/liquid/water/river,
 /area/lv624/ground/river2)
+"dYK" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle5)
 "dYR" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
@@ -9118,6 +9122,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
+"iCU" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle3)
 "iCV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -9372,6 +9380,11 @@
 /obj/structure/bookcase,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
+"iRL" = (
+/obj/structure/flora/jungle/vines,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "iRM" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -11682,6 +11695,10 @@
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
+"lzU" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/lv624/ground/jungle10)
 "lzW" = (
 /obj/machinery/floodlight/colony{
 	dir = 1
@@ -12547,6 +12564,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1/garbledradio)
+"msE" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle1)
 "msI" = (
 /obj/machinery/light/small,
 /turf/open/floor/tile/blue/whiteblue{
@@ -25151,7 +25172,7 @@ tZS
 tZS
 xoT
 xoT
-xoT
+lzU
 gTJ
 wnj
 bYr
@@ -35118,7 +35139,7 @@ xFL
 pyH
 bch
 bch
-bch
+iCU
 bch
 mQx
 mOs
@@ -41076,7 +41097,7 @@ mOs
 mOs
 mOs
 utn
-qQz
+iRL
 utn
 mOs
 mOs
@@ -57418,7 +57439,7 @@ gCL
 bdh
 bdh
 bdh
-bdh
+msE
 gCL
 mOs
 mOs
@@ -61245,7 +61266,7 @@ mOs
 mOs
 cmI
 cmI
-wrP
+dYK
 wrP
 fmL
 xij

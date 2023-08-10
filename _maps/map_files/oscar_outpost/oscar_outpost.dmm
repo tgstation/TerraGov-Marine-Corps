@@ -5370,8 +5370,8 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
 "Gl" = (
-/obj/item/storage/box/minisentry,
-/obj/item/storage/box/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
 /obj/structure/rack,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
@@ -6186,6 +6186,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"Jj" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/underground)
 "Jk" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1;
@@ -8681,7 +8685,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "TI" = (
-/obj/item/storage/box/loot/mortar_pack,
+/obj/item/storage/box/crate/loot/mortar_pack,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/village/fairgrounds)
 "TJ" = (
@@ -40155,7 +40159,7 @@ co
 rz
 rz
 rz
-rz
+Jj
 WZ
 WZ
 WZ

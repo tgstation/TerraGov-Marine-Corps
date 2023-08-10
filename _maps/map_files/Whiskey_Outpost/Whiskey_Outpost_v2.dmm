@@ -4297,7 +4297,7 @@
 /obj/item/storage/box/visual/magazine/compact/standard_br/full,
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full,
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol/full,
-/obj/item/storage/box/visual/magazine/compact/mosin/full,
+/obj/item/storage/box/visual/magazine/compact/mosin,
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full,
 /obj/item/storage/box/visual/magazine/compact/lasrifle/full,
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle/full,
@@ -5957,6 +5957,10 @@
 	},
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
+"Hl" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
 "Hm" = (
 /obj/effect/turf_decal/grassdecal{
 	dir = 8
@@ -10491,7 +10495,7 @@ dx
 dx
 NW
 NW
-um
+Hl
 um
 um
 um

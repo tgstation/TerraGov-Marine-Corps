@@ -1055,6 +1055,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/medical/medbay2)
+"eR" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/grass,
+/area/vapor_processing/south_compound)
 "eS" = (
 /obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -4746,6 +4750,10 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"GH" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/ground/grass/grass2,
+/area/vapor_processing/east_compound)
 "GI" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground,
@@ -4973,6 +4981,10 @@
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/wood/variable/damaged/standard,
 /area/crew_quarters/sleep_male)
+"KG" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/se)
 "KH" = (
 /turf/open/ground,
 /area/lv624/lazarus/quartstorage)
@@ -10579,7 +10591,7 @@ le
 le
 lf
 le
-le
+eR
 PG
 "}
 (45,1,1) = {"
@@ -14962,7 +14974,7 @@ ll
 ll
 ll
 ll
-ll
+KG
 ll
 ll
 PG
@@ -15028,7 +15040,7 @@ eN
 eU
 eU
 eN
-eM
+GH
 eM
 eU
 lm

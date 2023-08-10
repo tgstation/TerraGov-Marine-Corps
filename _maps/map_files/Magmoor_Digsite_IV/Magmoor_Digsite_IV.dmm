@@ -1500,6 +1500,10 @@
 	dir = 8
 	},
 /area/magmoor/civilian/clean)
+"bbk" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/east)
 "bbm" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -1884,6 +1888,10 @@
 	},
 /turf/open/floor/mainship,
 /area/magmoor/civilian/arrival)
+"bnW" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/north)
 "bnY" = (
 /obj/machinery/computer/pandemic,
 /turf/open/floor/mainship/sterile/purple,
@@ -4706,6 +4714,15 @@
 	dir = 8
 	},
 /area/magmoor/command/lobby/east)
+"dqj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/magmoor/compound/east)
 "dqr" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -6803,6 +6820,10 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/magmoor/engi/atmos)
+"eKx" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/west)
 "eKG" = (
 /obj/structure/bed/chair{
 	dir = 1;
@@ -19603,6 +19624,10 @@
 /obj/machinery/science/analyser,
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research/rnd)
+"ouV" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/southwest)
 "ovw" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -20363,6 +20388,10 @@
 	dir = 4
 	},
 /area/magmoor/civilian/arrival/east)
+"oSn" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/northeast)
 "oSU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -32505,6 +32534,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
+"xCP" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/southeast)
 "xDq" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -35230,7 +35263,7 @@ aZd
 jHZ
 aZd
 aZd
-aZd
+eKx
 aZd
 aZd
 aZd
@@ -39286,7 +39319,7 @@ dwS
 dwS
 dwS
 dwS
-dwS
+ouV
 dwS
 dwS
 dwS
@@ -43315,7 +43348,7 @@ dzJ
 kcd
 kcd
 kcd
-kcd
+bnW
 kcd
 kcd
 kcd
@@ -64156,7 +64189,7 @@ ays
 vqD
 vqD
 vqD
-vqD
+dqj
 ays
 vqD
 vqD
@@ -66193,7 +66226,7 @@ ymj
 ymj
 rxl
 cDl
-fJO
+oSn
 fJO
 fJO
 cDl
@@ -70026,7 +70059,7 @@ jRL
 jRL
 jRL
 jRL
-jRL
+xCP
 rxl
 rxl
 rxl
@@ -78141,7 +78174,7 @@ rxl
 rxl
 rxl
 pet
-pet
+bbk
 pet
 kbo
 pet

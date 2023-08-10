@@ -14575,15 +14575,11 @@
 	},
 /area/prison/cellblock/lowsec/ne)
 "aTW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/prison/red{
+	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/prison/maintenance/residential/nw)
+/area/prison/cellblock/highsec/south/south)
 "aTX" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -19283,11 +19279,11 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/vip)
 "bhY" = (
-/obj/effect/turf_decal/woodsiding{
-	dir = 4
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/prison/yellow{
+	dir = 1
 	},
-/turf/open/ground/grass,
-/area/prison/residential/central)
+/area/prison/cellblock/mediumsec/south)
 "bia" = (
 /obj/machinery/floodlight,
 /turf/open/floor/prison/cleanmarked,
@@ -25345,16 +25341,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/quarters/security)
-"bBJ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/prison/maintenance/residential/sw)
 "bBK" = (
 /obj/machinery/air_alarm,
 /turf/open/floor/prison/darkbrown{
@@ -54978,7 +54964,7 @@ aSN
 wOX
 aSN
 hNa
-aTW
+vfC
 sNc
 cTQ
 gbA
@@ -55235,7 +55221,7 @@ qAw
 wOX
 aSN
 aSN
-aTW
+vfC
 sNc
 bga
 bga
@@ -55270,7 +55256,7 @@ aZP
 bga
 bga
 cOd
-bBJ
+sBO
 bxf
 ufB
 ufB
@@ -55527,7 +55513,7 @@ aYQ
 aXv
 aWo
 bwv
-bBJ
+sBO
 bxf
 tuK
 vvI
@@ -55749,7 +55735,7 @@ iqK
 aRT
 lAs
 flq
-aTW
+vfC
 aRT
 aWp
 iYA
@@ -56263,7 +56249,7 @@ iqK
 aRT
 rfz
 aSN
-aTW
+vfC
 aRT
 aWr
 aWr
@@ -56298,7 +56284,7 @@ aWr
 aWr
 aWr
 bwv
-bBJ
+sBO
 bxf
 tuK
 bwv
@@ -56555,7 +56541,7 @@ aWr
 bzq
 bAU
 bwv
-bBJ
+sBO
 qxc
 bwv
 bwv
@@ -56777,7 +56763,7 @@ uZP
 aRT
 jNs
 aSN
-aTW
+vfC
 aRT
 aWt
 aWI
@@ -56812,7 +56798,7 @@ bkU
 aWI
 btX
 bwv
-bBJ
+sBO
 iJd
 bwv
 nOz
@@ -59874,16 +59860,16 @@ aWr
 eQl
 bgj
 aVQ
-bhY
-bhY
+ubI
+ubI
 bge
 bmY
 bmY
 bkn
 bmY
 aVQ
-bhY
-bhY
+ubI
+ubI
 bge
 bgj
 aWI
@@ -68415,7 +68401,7 @@ bZQ
 bZQ
 pzC
 reE
-cri
+aTW
 ceH
 aab
 aab
@@ -82820,7 +82806,7 @@ cjX
 cbN
 cwY
 cuY
-cxz
+bhY
 cvA
 crX
 cyq

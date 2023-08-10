@@ -11334,6 +11334,10 @@
 	},
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"dJg" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "dJm" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -14442,6 +14446,10 @@
 	},
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
+"hHZ" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/upperdeck_AIcore_maint)
 "hID" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /obj/effect/decal/cleanable/dirt,
@@ -15618,6 +15626,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},
+/obj/effect/landmark/yautja_teleport,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "jeg" = (
@@ -25178,6 +25187,10 @@
 "vov" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/mechpilotquarters)
+"voE" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/upperdeck_north_maint)
 "vpx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 9
@@ -25746,6 +25759,10 @@
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/engineering/atmos)
+"wag" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint3)
 "waW" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 8
@@ -26490,6 +26507,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/effect/landmark/yautja_teleport,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "xca" = (
@@ -44906,7 +44924,7 @@ oBn
 vIO
 hCn
 cDU
-qzH
+wag
 xKi
 mDu
 qDO
@@ -51718,7 +51736,7 @@ aCg
 dGX
 fqv
 aCg
-aCg
+hHZ
 fqv
 aCg
 aCg
@@ -69681,7 +69699,7 @@ aaa
 nzi
 mDu
 aYZ
-aaW
+voE
 aYM
 nGG
 bde
@@ -71616,7 +71634,7 @@ aWh
 eRD
 mPZ
 aWh
-aWh
+dJg
 aWh
 eRD
 mPZ

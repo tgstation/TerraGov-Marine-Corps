@@ -1819,6 +1819,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
+"biB" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/gelida/outdoors/colony_streets/south_east_street)
 "biR" = (
 /obj/structure/table/mainship,
 /obj/item/newspaper,
@@ -5707,6 +5711,10 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
+"dPa" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/gelida/outdoors/colony_streets/north_west_street)
 "dPl" = (
 /obj/structure/stairs/cornerdark/seamless{
 	dir = 4
@@ -12871,6 +12879,10 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
+"iHA" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves/garbledradio)
 "iHW" = (
 /obj/structure/stairs/cornerdark/seamless{
 	dir = 8
@@ -28074,6 +28086,10 @@
 	},
 /turf/closed/wall,
 /area/gelida/landing_zone_2)
+"sNV" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/gelida/outdoors/colony_streets/central_streets)
 "sOb" = (
 /turf/closed/wall,
 /area/gelida/indoors/c_block/cargo)
@@ -30273,6 +30289,10 @@
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
+"uve" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/gelida/outdoors/colony_streets/north_east_street)
 "uvE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -34727,6 +34747,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitegreen,
 /area/gelida/indoors/a_block/medical)
+"xIf" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/gelida/outdoors/colony_streets/south_street)
 "xIg" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
@@ -39946,7 +39970,7 @@ uew
 uew
 iiB
 uew
-eue
+dPa
 tzc
 uew
 uew
@@ -45999,7 +46023,7 @@ yfp
 yfp
 yfp
 hoS
-gVv
+sNV
 eVG
 gHP
 aeE
@@ -53628,7 +53652,7 @@ ndb
 ndb
 dvV
 dvV
-dvV
+xIf
 ndb
 ndb
 ndb
@@ -53773,7 +53797,7 @@ uSj
 vaN
 vaN
 vaN
-gVv
+sNV
 aeE
 gHP
 gHP
@@ -55685,7 +55709,7 @@ cYz
 cYz
 ubb
 cYz
-cYz
+iHA
 cYz
 xIt
 xIt
@@ -71341,7 +71365,7 @@ eWY
 eWY
 eWY
 eWY
-oMs
+biB
 oMs
 oMs
 uGS
@@ -73921,7 +73945,7 @@ ndb
 ndb
 ndb
 jIg
-jIg
+uve
 tyz
 tyz
 ndb

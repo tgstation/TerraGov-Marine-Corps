@@ -1318,6 +1318,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"tm" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "tp" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
@@ -1826,6 +1830,12 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"AF" = (
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
 /area/mainship/patrol_base)
 "AG" = (
 /obj/structure/largecrate/random/case/double,
@@ -3804,7 +3814,7 @@ BT
 FZ
 Qa
 XG
-Fk
+tm
 fz
 If
 If
@@ -5685,7 +5695,7 @@ Ta
 Fk
 Fk
 Fk
-Fk
+tm
 Fk
 Fk
 Fk
@@ -10730,7 +10740,7 @@ PP
 tU
 NW
 jr
-Ho
+AF
 Fw
 Sw
 Sw

@@ -4159,6 +4159,11 @@
 	dir = 9
 	},
 /area/mainship/command/cic)
+"fhe" = (
+/obj/structure/cable,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "fiq" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -13107,6 +13112,14 @@
 	dir = 10
 	},
 /area/mainship/living/commandbunks)
+"qBi" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/landmark/yautja_teleport,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "qBm" = (
 /obj/machinery/door/window{
 	dir = 8
@@ -42902,7 +42915,7 @@ trv
 lmF
 lmF
 lmF
-lmF
+qBi
 dbv
 lmF
 lmF
@@ -47487,7 +47500,7 @@ mBZ
 mBZ
 hRh
 esN
-wPV
+fhe
 ufq
 bTS
 bTS
@@ -52740,7 +52753,7 @@ idy
 gdj
 uvM
 dcY
-wPV
+fhe
 esN
 nWT
 nWT
@@ -55722,7 +55735,7 @@ wPV
 wPV
 uSh
 wPV
-wPV
+fhe
 wPV
 wPV
 wPV
@@ -60664,7 +60677,7 @@ sYv
 qFT
 mDY
 wPV
-wPV
+fhe
 qFT
 sYv
 xbv
