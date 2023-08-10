@@ -1,6 +1,7 @@
 /obj/item/binoculars/fire_support
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
+	icon_state = "range_finders"
 	w_class = WEIGHT_CLASS_SMALL
 	///Faction locks this item if specified
 	var/faction = null
