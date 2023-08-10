@@ -1,8 +1,8 @@
 /obj/item/stack/spiketrap //A deployable spike trap, causes damage to anyone who steps over it
 	name = "Spike trap assembly"
 	desc = "An assortment of piercing spikes."
-	icon = 'icons/Marine/marine-items.dmi'
-	icon_state = "barbed_wire"
+	icon = 'icons/Marine/traps.dmi'
+	icon_state = "spiketrap"
 	flags_item = NOBLUDGEON
 	singular_name = "pile"
 	w_class = WEIGHT_CLASS_SMALL
@@ -11,34 +11,32 @@
 	max_amount = 20
 	merge_type = /obj/item/stack/spiketrap
 	///The item this deploys into
-	var/deployable_item = /obj/item/spiketrap
+	var/deployable_item = /obj/structure/spiketrap
 	///Time to deploy
 	var/deploy_time = 1 SECONDS
 	///Time to undeploy
 	var/undeploy_time = 1 SECONDS
-	///Whether it is wired
-	var/is_wired = FALSE
 
 /obj/item/stack/spiketrap/Initialize(mapload, new_amount)
 	. = ..()
 	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
-/obj/item/spiketrap ///The actual deployed trap
+/obj/structure/spiketrap ///The actual deployed trap
 	name = "Spike trap assembly"
 	desc = "An assortment of piercing spikes."
 	icon = 'icons/Marine/traps.dmi'
-	icon_state = "barbed_wire"
+	icon_state = "spiketrap"
 	///How much damage the spikes do when you step on them
 	var/spike_damage = 10
 
-/obj/item/spiketrap/Initialize(mapload)
+/obj/structure/spiketrap/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/item/spiketrap/proc/on_cross(datum/source, atom/movable/victim, oldloc, oldlocs)
+/obj/structure/spiketrap/proc/on_cross(datum/source, atom/movable/victim, oldloc, oldlocs)
 	if(!isliving(victim))
 		return
 	if(CHECK_MULTIPLE_BITFIELDS(victim.pass_flags, HOVERING))
@@ -48,7 +46,8 @@
 		return
 	activate_trap(victim)
 
-/obj/item/spiketrap/proc/activate_trap(mob/living/victim)
+/obj/structure/spiketrap/proc/activate_trap(mob/living/victim)
+	victim.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 3) //Moving through spikes slows you down
 	if(isxeno(victim))
 		victim.apply_damage(spike_damage * 3, BRUTE, updating_health = TRUE)
 
