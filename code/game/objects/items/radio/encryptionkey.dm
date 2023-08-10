@@ -37,6 +37,11 @@
 /obj/item/encryptionkey/mcom/ai //AI only.
 	channels = list(RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
 
+/obj/item/encryptionkey/squadlead
+	name = "\improper Squad Leader encryption key"
+	icon_state = "hop_cypherkey"
+	channels = list(RADIO_CHANNEL_COMMAND = TRUE,RADIO_CHANNEL_CAS = TRUE)
+
 /obj/item/encryptionkey/alpha
 	name = "\improper Alpha Squad radio encryption key"
 	icon_state = "eng_cypherkey"

@@ -440,7 +440,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		frequency = squad.radio_freq
 		if(ispath(rank, /datum/job/terragov/squad/leader))
 			dat += " leader"
-			keyslot2 = /obj/item/encryptionkey/mcom
+			keyslot2 = /obj/item/encryptionkey/squadlead
 			use_command = TRUE
 			command = TRUE
 		else if(ispath(rank, /datum/job/terragov/squad/engineer))
@@ -465,7 +465,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/alpha/lead
 	name = "marine alpha leader radio headset"
-	keyslot2 = /obj/item/encryptionkey/mcom
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
@@ -493,7 +493,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/bravo/lead
 	name = "marine bravo leader radio headset"
-	keyslot2 = /obj/item/encryptionkey/mcom
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
@@ -521,7 +521,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/charlie/lead
 	name = "marine charlie leader radio headset"
-	keyslot2 = /obj/item/encryptionkey/mcom
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
@@ -550,7 +550,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/delta/lead
 	name = "marine delta leader radio headset"
-	keyslot2 = /obj/item/encryptionkey/mcom
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
@@ -650,7 +650,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = squad.radio_freq
 	if(ispath(rank, /datum/job/som/squad/leader))
 		dat += " leader"
-		keyslot2 = /obj/item/encryptionkey/mcom/som
+		keyslot2 = /obj/item/encryptionkey/squadlead/som
 		use_command = TRUE
 		command = TRUE
 	else if(ispath(rank, /datum/job/som/squad/engineer))
@@ -675,7 +675,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/som/zulu/lead
 	name = "SOM zulu leader radio headset"
-	keyslot2 = /obj/item/encryptionkey/mcom/som
+	keyslot2 = /obj/item/encryptionkey/squadlead/som
 	use_command = TRUE
 	command = TRUE
 
@@ -699,7 +699,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/som/yankee/lead
 	name = "SOM yankee leader radio headset"
-	keyslot2 = /obj/item/encryptionkey/mcom/som
+	keyslot2 = /obj/item/encryptionkey/squadlead/som
 	use_command = TRUE
 	command = TRUE
 
@@ -723,7 +723,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/som/xray/lead
 	name = "SOM xray leader radio headset"
-	keyslot2 = /obj/item/encryptionkey/mcom/som
+	keyslot2 = /obj/item/encryptionkey/squadlead/som
 	use_command = TRUE
 	command = TRUE
 
@@ -747,7 +747,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/som/whiskey/lead
 	name = "SOM whiskey leader radio headset"
-	keyslot2 = /obj/item/encryptionkey/mcom/som
+	keyslot2 = /obj/item/encryptionkey/squadlead/som
 	use_command = TRUE
 	command = TRUE
 
