@@ -23,12 +23,13 @@
 	. = ..()
 	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
-
-/obj/item/spiketrap
+/obj/item/spiketrap ///The actual deployed trap
 	name = "Spike trap assembly"
 	desc = "An assortment of piercing spikes."
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/Marine/traps.dmi'
 	icon_state = "barbed_wire"
+	///How much damage the spikes do when you step on them
+	var/spike_damage = 10
 
 /obj/item/spiketrap/Initialize(mapload)
 	. = ..()
@@ -43,14 +44,19 @@
 	if(CHECK_MULTIPLE_BITFIELDS(victim.pass_flags, HOVERING))
 		return
 	var/mob/living/draggedmob = victim
-	if(draggedmob.lying_angle) ///so dragged corpses don't trigger mines.
+	if(draggedmob.lying_angle) //so dragged corpses don't die from being dragged through a spike field.
 		return
 	activate_trap(victim)
 
 /obj/item/spiketrap/proc/activate_trap(mob/living/victim)
+	if(isxeno(victim))
+		victim.apply_damage(spike_damage * 3, BRUTE, updating_health = TRUE)
+
 	var/mob/living/carbon/human/target = victim
-	if(target.get_limb(LEGS))
-		target.take_limb_damage(10)
+	if(target.get_limb(BODY_ZONE_PRECISE_L_FOOT) || target.get_limb(BODY_ZONE_PRECISE_R_FOOT))
+		for(var/limb_to_hit in list(BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT))
+			target.apply_damage(spike_damage, BRUTE, limb_to_hit, updating_health = TRUE)
+
 
 /*
 	if(!armed || triggered)
