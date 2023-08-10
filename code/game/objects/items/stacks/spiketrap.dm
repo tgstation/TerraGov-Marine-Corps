@@ -36,6 +36,7 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
+///When a mob passes over the turf where the trap is deployed
 /obj/structure/spiketrap/proc/on_cross(datum/source, atom/movable/victim, oldloc, oldlocs)
 	if(!isliving(victim))
 		return
@@ -44,10 +45,12 @@
 	var/mob/living/draggedmob = victim
 	if(draggedmob.lying_angle) //so dragged corpses don't die from being dragged through a spike field.
 		return
-	activate_trap(victim)
+	apply_damage(victim)
 
-/obj/structure/spiketrap/proc/activate_trap(mob/living/victim)
+///Actually taking slowdown and damage from the trap
+/obj/structure/spiketrap/proc/apply_damage(mob/living/victim)
 	victim.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 3) //Moving through spikes slows you down
+	playsound(loc, )
 	if(isxeno(victim))
 		victim.apply_damage(spike_damage * 3, BRUTE, updating_health = TRUE)
 
