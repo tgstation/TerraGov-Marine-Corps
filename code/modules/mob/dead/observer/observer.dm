@@ -842,6 +842,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(observetarget?.observers)
 		observetarget.observers -= src
 		UNSETEMPTY(observetarget.observers)
+	if(observetarget)
+		UnregisterSignal(observetarget, COMSIG_QDELETING)
 	observetarget = null
 
 /mob/dead/observer/verb/dnr()
