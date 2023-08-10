@@ -92,9 +92,10 @@
 /area/sulaco/engineering/engine)
 "aaq" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/mass_spectrometer,
-/obj/item/reagent_scanner,
-/obj/item/tool/hand_labeler,
+/obj/machinery/reagentgrinder,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/reagent_containers/dropper,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -146,13 +147,11 @@
 	},
 /area/sulaco/medbay/west)
 "aav" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/reagentgrinder,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/glass/beaker/large,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -200,9 +199,12 @@
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay)
 "aaM" = (
-/obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/secure/medical{
+	dir = 8
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/chemistry)
 "aaN" = (
@@ -15380,9 +15382,6 @@
 	},
 /area/sulaco/hallway/central_hall)
 "iOv" = (
-/obj/structure/bed/chair/nometal{
-	dir = 4
-	},
 /obj/machinery/air_alarm,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
@@ -16778,7 +16777,6 @@
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "kzw" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/cable,
@@ -16789,6 +16787,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
