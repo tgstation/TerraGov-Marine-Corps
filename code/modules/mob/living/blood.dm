@@ -65,18 +65,18 @@
 				death()
 
 
-		// Without enough blood you slowly go hungry.
+		// Blood regens using food, more food = more blood.
 		if(blood_volume < BLOOD_VOLUME_SAFE)
 			switch(nutrition)
-				if(300 to INFINITY)
+				if(450 to INFINITY)
 					adjust_nutrition(-10)
-					blood_volume += 1 // regenerate blood quickly
-				if(200 to 300)
-					adjust_nutrition(-3)
-					blood_volume += 0.5 // regenerate blood slowly
-				if(0 to 200)
+					blood_volume += 1 // regenerate blood quickly.
+				if(250 to 450)
+					adjust_nutrition(-5)
+					blood_volume += 0.5 // regenerate blood slowly.
+				if(0 to 250)
 					adjust_nutrition(-1)
-					blood_volume += 0.1 // Regenerate blood VERY slowly
+					blood_volume += 0.1 // Regenerate blood VERY slowly.
 
 		//Bleeding out
 		var/blood_max = 0
