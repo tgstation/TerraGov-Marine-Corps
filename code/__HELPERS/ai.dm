@@ -37,7 +37,7 @@
 	var/shorter_distance = distance + 1
 	if(target_flags & TARGET_HUMAN)
 		for(var/mob/living/nearby_human AS in cheap_get_humans_near(source, distance))
-			if(nearby_human.stat == DEAD || nearby_human.faction == attacker_faction || nearby_human.alpha <= SCOUT_CLOAK_RUN_ALPHA)
+			if(nearby_human.stat == DEAD || nearby_human.faction == attacker_faction || nearby_human.alpha <= SCOUT_CLOAK_RUN_ALPHA || isnestedhost(nearby_human))
 				continue
 			if(get_dist(source, nearby_human) < shorter_distance)
 				nearest_target = nearby_human
