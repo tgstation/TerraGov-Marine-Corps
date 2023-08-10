@@ -42,9 +42,27 @@
 
 #define BIOSCAN_LOCATION(show_locations, location) (show_locations && location ? ", including one in [hostLocationP]":"")
 
+#define AI_SCAN_DELAY 15 SECONDS
+
 ///Annonce to everyone the number of xeno and marines on ship and ground
-/datum/game_mode/infestation/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
-	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
+/datum/game_mode/infestation/announce_bioscans(show_locations = TRUE, delta = 2, ai_operator = FALSE, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
+
+	if(ai_operator)
+		var/mob/living/silicon/ai/bioscanning_ai = usr
+		#ifndef TESTING
+
+		if((bioscanning_ai.last_ai_bioscan + COOLDOWN_AI_BIOSCAN) > world.time)
+			to_chat(bioscanning_ai, "Bioscan instruments are still recalibrating from their last use.")
+			return
+		to_chat(bioscanning_ai, span_warning("Scanning for hostile lifeforms..."))
+		if(!do_after(usr, AI_SCAN_DELAY , TRUE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+			return
+
+		#endif
+		bioscanning_ai.last_ai_bioscan = world.time
+
+	else
+		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 	var/list/list/counts = list()
 	var/list/list/area/locations = list()
 
@@ -79,6 +97,7 @@
 	var/numXenosPlanetr = BIOSCAN_DELTA(numXenosPlanet, delta)
 	var/numHostsTransitr = BIOSCAN_DELTA(numHostsTransit, delta)
 	var/numXenosTransitr = BIOSCAN_DELTA(numXenosTransit, delta)
+	var/numXenosSilo = BIOSCAN_DELTA(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]), 1) //to prevent craziness delta is always 1 for silo detection
 
 	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
@@ -89,9 +108,25 @@
 			to_chat(M, span_xenoannounce("To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[BIOSCAN_LOCATION(show_locations, hostLocationS)], [numHostsPlanet || "none"] scattered elsewhere[BIOSCAN_LOCATION(show_locations, hostLocationP)] and [numHostsTransitr ? "approximately [numHostsTransitr]":"no"] host[numHostsTransitr > 1 ? "s":""] on the metal bird in transit."))
 
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
-	var/input = {"Bioscan complete.
+	var/input = {"Bioscan complete. Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[BIOSCAN_LOCATION(show_locations, xenoLocationS)], [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[BIOSCAN_LOCATION(show_locations, xenoLocationP)] and [numXenosTransit || "no"] unknown lifeform signature[numXenosTransit > 1 ? "s":""] in transit."}
+	var/ai_input = {"Bioscan complete. Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship, [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere, [numXenosTransit || "no"] unknown lifeform signature[numXenosTransit > 1 ? "s":""] in transit, and [numXenosSilo ? "approximately [numXenosSilo]":"no"] silo[numXenosSilo > 1 ? "s":""] detected."}
+	var/ai_name = "[usr] Bioscan Status"
 
-Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[BIOSCAN_LOCATION(show_locations, xenoLocationS)], [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[BIOSCAN_LOCATION(show_locations, xenoLocationP)] and [numXenosTransit || "no"] unknown lifeform signature[numXenosTransit > 1 ? "s":""] in transit."}
+	if(ai_operator)
+		priority_announce(ai_input, ai_name, sound = 'sound/AI/bioscan.ogg')
+
+		log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""], [numXenosTransit] in transit, Silos: [numXenosSilo].")
+
+		switch(GLOB.current_orbit)
+			if(1)
+				to_chat(usr, span_warning("Signal analysis reveals excellent detail about hostile movements and numbers."))
+				return
+			if(3)
+				to_chat(usr, span_warning("Minor corruption detected in our bioscan instruments, some information about hostile activity may be incorrect."))
+				return
+			if(5)
+				to_chat(usr, span_warning("Major corruption detected in our bioscan readings, information heavily corrupted."))
+		return
 
 	if(announce_humans)
 		priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
@@ -117,6 +152,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 #undef BIOSCAN_DELTA
 #undef BIOSCAN_LOCATION
+#undef AI_SCAN_DELAY
 
 /datum/game_mode/infestation/check_finished()
 	if(round_finished)

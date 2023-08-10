@@ -54,8 +54,7 @@
 	. = ..()
 	if(.)
 		return
-	var/mob/living/silicon/ai/AI = usr
-	AI.ai_bioscan(GLOB.current_orbit)
+	SSticker.mode.announce_bioscans(FALSE, GLOB.current_orbit, TRUE, FALSE, FALSE)
 
 /atom/movable/screen/ai/camera_list/Click()
 	. = ..()

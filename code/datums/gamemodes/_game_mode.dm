@@ -248,7 +248,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 ))
 
 ///Annonce to everyone the number of xeno and marines on ship and ground
-/datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
+/datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, ai_operator = FALSE, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
 	return
 
 /datum/game_mode/proc/setup_blockers()
