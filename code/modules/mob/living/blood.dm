@@ -66,7 +66,7 @@
 
 
 		// Blood regens using food, more food = more blood.
-		if(blood_volume < BLOOD_VOLUME_SAFE)
+		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			switch(nutrition)
 				if(450 to INFINITY)
 					adjust_nutrition(-10)
