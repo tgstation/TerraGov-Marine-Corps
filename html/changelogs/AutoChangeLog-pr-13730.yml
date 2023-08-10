@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixed ghosts causing runtimes by having the specialized vendor UI open"

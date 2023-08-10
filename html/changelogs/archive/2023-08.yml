@@ -128,3 +128,34 @@
   - bugfix: fixed the XH-L upper plating sprite being misaligned with its visor
   forestbbbbbbb:
   - bugfix: CMO and minions have icons in orbit menu
+2023-08-10:
+  Lumipharon:
+  - bugfix: Objects such as tables or windowframes no longer stop smoke
+  Redory:
+  - imageadd: added mini_icons for (hopefully) all mags.
+  - imageadd: redid the compact magazine labels with correct weapon naming conventions.
+  - imagedel: deleted one or two outdated mini_icons.
+  Sanuki357:
+  - imageadd: New progressive sprites for empty belts and pouches which responses
+      to how empty they are
+  - imageadd: Changed the grenade pouch sprite
+  'Sprites: Ocelot':
+  - rscadd: R-76 magnum is now available in gold, silver and nickle flavours via black
+      market lootboxes in req
+  'Sprites: Orca':
+  - imageadd: Updated warlock shield sprites
+  Xander3359:
+  - spellcheck: change broken computer warning to be a bit less misleading.
+  - qol: Switching hands unwields.
+  ivanmixo:
+  - bugfix: Fixed a small emote runtime
+  - bugfix: Fixed ghost observing armor not unregistering signals
+  - bugfix: Toned down super rage shake radius to help with potential clientside lag
+  - bugfix: Fixed some auto observe runtimes
+  - bugfix: Fixed ghosts causing runtimes by having the specialized vendor UI open
+  - bugfix: Fixed warrior punch trying to blind inanimate objects
+  - bugfix: Fixed a hive threat runtime
+  - bugfix: Fixed adjust_fire_stacks trying to affect qdeleted mobs
+  - bugfix: Fixed crit OD peri+ runtime
+  - bugfix: Fixed cas gau exploding contents of turfs twice
+  - bugfix: Fixed multiple bodybag/tarp runtimes
