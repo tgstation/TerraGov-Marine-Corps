@@ -50,13 +50,14 @@
 /mob/proc/clear_fullscreens()
 	for(var/category in fullscreens)
 		clear_fullscreen(category)
+	overlay_fullscreen("empty", /atom/movable/screen/fullscreen/empty)
 
 
 /mob/proc/hide_fullscreens()
 	if(client)
 		for(var/category in fullscreens)
 			client.screen -= fullscreens[category]
-
+		client.screen += fullscreens["empty"]
 
 /mob/proc/reload_fullscreens()
 	if(client)
@@ -68,6 +69,7 @@
 				client.screen |= screen
 			else
 				client.screen -= screen
+		client.screen += fullscreens["empty"]
 
 
 /atom/movable/screen/fullscreen
@@ -91,6 +93,9 @@
 		var/list/actualview = getviewsize(client_view)
 		fs_view = client_view
 		transform = matrix(actualview[1]/FULLSCREEN_OVERLAY_RESOLUTION_X, 0, 0, 0, actualview[2]/FULLSCREEN_OVERLAY_RESOLUTION_Y, 0)
+
+/atom/movable/screen/fullscreen/empty
+	icon_state = "empty" //always active, gets BYOND to keep the fullscreen icons loaded
 
 /atom/movable/screen/fullscreen/black
 	icon_state = "black" //just a black square, you can change this if you get better ideas
