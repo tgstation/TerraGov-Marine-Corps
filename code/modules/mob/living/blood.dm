@@ -12,12 +12,6 @@
 		return
 
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
-
-
-
-		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL)
-			blood_volume += 0.1 // regenerate blood VERY slowly
 		if(blood_volume > BLOOD_VOLUME_MAXIMUM) //Warning: contents under pressure.
 			var/spare_blood = blood_volume - ((BLOOD_VOLUME_MAXIMUM + BLOOD_VOLUME_NORMAL) / 2) //Knock you to the midpoint between max and normal to not spam.
 			if(drip(spare_blood))
@@ -76,8 +70,13 @@
 			switch(nutrition)
 				if(300 to INFINITY)
 					adjust_nutrition(-10)
+					blood_volume += 1 // regenerate blood quickly
 				if(200 to 300)
 					adjust_nutrition(-3)
+					blood_volume += 0.5 // regenerate blood slowly
+				if(0 to 200)
+					adjust_nutrition(-1)
+					blood_volume += 0.1 // Regenerate blood VERY slowly
 
 		//Bleeding out
 		var/blood_max = 0
