@@ -1,0 +1,4 @@
+author: "Zar000"
+delete-after: True
+changes:
+  - bugfix: "hunter mirage now works as intended"
