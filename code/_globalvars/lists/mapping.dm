@@ -14,6 +14,10 @@ GLOBAL_LIST_EMPTY(latejoin_cryo)
 
 GLOBAL_LIST_EMPTY(landmarks_list)				//list of all landmarks created
 GLOBAL_LIST_EMPTY(start_landmarks_list)			//list of all spawn points created
+
+GLOBAL_LIST_EMPTY(start_squad_landmarks_list)	//list of all round roundstart spawn points created
+GLOBAL_LIST_EMPTY(latejoin_squad_landmarks_list)	//list of all round latejoin spawn points created
+
 GLOBAL_LIST_EMPTY(corpse_landmarks_list)		//list of all corpse spawner
 GLOBAL_LIST_EMPTY(valhalla_button_spawn_landmark) //list of the landmarks used to spawn mobs for the valhalla buttons
 

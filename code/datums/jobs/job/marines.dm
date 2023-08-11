@@ -18,6 +18,10 @@
 	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[human_spawn.assigned_squad.color]>[lowertext(human_spawn.assigned_squad.name)] squad</font></b>.
 Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
 
+/datum/job/terragov/squad/proc/spawn_by_squads(squad)
+	if(!(title in GLOB.start_squad_landmarks_list[squad]))
+		return pick(GLOB.start_squad_landmarks_list[squad][SQUAD_MARINE])
+	return pick(GLOB.start_squad_landmarks_list[squad][title])
 
 //Squad Marine
 /datum/job/terragov/squad/standard
