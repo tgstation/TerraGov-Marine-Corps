@@ -338,7 +338,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS)
 	to_chat(faction.faction_leader, span_warning("Orbital deterrence systems activated. Enemy drop pods disabled for this mission."))
 
-/datum/campaign_reward/cas_support
+/datum/campaign_reward/fire_support
 	name = "CAS mission"
 	desc = "Close Air Support is deployed to support this mission."
 	detailed_desc = "A limited number of Close Air Support attack runs are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
@@ -350,7 +350,7 @@
 		FIRESUPPORT_TYPE_CRUISE_MISSILE_CAMPAIGN = 1,
 	)
 
-/datum/campaign_reward/cas_support/activated_effect()
+/datum/campaign_reward/fire_support/activated_effect()
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
 	if(current_mission.mission_flags & MISSION_DISALLOW_FIRESUPPORT)
@@ -368,16 +368,32 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(disable_firesupport), override = TRUE) //you could use this multiple times per mission
 
 ///Turns off the fire support and resets its uses
-/datum/campaign_reward/cas_support/proc/disable_firesupport()
+/datum/campaign_reward/fire_support/proc/disable_firesupport()
 	SIGNAL_HANDLER
 	for(var/firesupport_type in fire_support_types)
 		var/datum/fire_support/fire_support_option = GLOB.fire_support_types[firesupport_type]
 		fire_support_option.disable()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 
-/datum/campaign_reward/cas_support/som
+/datum/campaign_reward/fire_support/som_cas
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_VOLKITE_CAMPAIGN = 3,
 		FIRESUPPORT_TYPE_INCEND_ROCKETS_CAMPAIGN = 2,
 		FIRESUPPORT_TYPE_RAD_MISSILE = 2
+	)
+
+/datum/campaign_reward/fire_support/mortar
+	fire_support_types = list(
+		FIRESUPPORT_TYPE_HE_MORTAR = 6,
+		FIRESUPPORT_TYPE_INCENDIARY_MORTAR = 3,
+		FIRESUPPORT_TYPE_SMOKE_MORTAR = 2,
+		FIRESUPPORT_TYPE_ACID_SMOKE_MORTAR = 2,
+	)
+
+/datum/campaign_reward/fire_support/som_mortar
+	fire_support_types = list(
+		FIRESUPPORT_TYPE_HE_MORTAR_SOM = 6,
+		FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM = 3,
+		FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM = 2,
+		FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR = 2,
 	)

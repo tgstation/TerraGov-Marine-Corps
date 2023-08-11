@@ -26,7 +26,7 @@
 	add_reward(/datum/campaign_reward/bonus_job/colonial_militia) //testuse
 	add_reward(/datum/campaign_reward/teleporter_charges) //testuse
 	add_reward(/datum/campaign_reward/droppod_refresh) //testuse
-	add_reward(/datum/campaign_reward/cas_support) //testuse
+	add_reward(/datum/campaign_reward/fire_support) //testuse
 
 ///Returns the faction's leader, selecting one if none is available
 /datum/faction_stats/proc/get_selector()

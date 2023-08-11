@@ -1,7 +1,7 @@
 ///Can this firesupport type be used
 #define FIRESUPPORT_AVAILABLE (1<<0)
 
-///Firemodes for Campaign gamemode
+//Firemodes for Campaign gamemode
 ///GAU gun run
 #define FIRESUPPORT_TYPE_GUN "gun"
 ///Rocket barrage
@@ -14,7 +14,7 @@
 #define FIRESUPPORT_TYPE_INCEND_ROCKETS "incend_rockets"
 ///Radioactive missile
 #define FIRESUPPORT_TYPE_RAD_MISSILE "rad_missile"
-///Mortar barrage
+///HE Mortar barrage
 #define FIRESUPPORT_TYPE_HE_MORTAR "he_mortar"
 ///Incendiary mortar barrage
 #define FIRESUPPORT_TYPE_INCENDIARY_MORTAR "incendiary_mortar"
@@ -22,6 +22,14 @@
 #define FIRESUPPORT_TYPE_SMOKE_MORTAR "smoke_mortar"
 ///Acid smoke mortar barrage
 #define FIRESUPPORT_TYPE_ACID_SMOKE_MORTAR "acid_smoke_mortar"
+///SOM HE Mortar barrage
+#define FIRESUPPORT_TYPE_HE_MORTAR_SOM "he_mortar_som"
+///SOM Incendiary mortar barrage
+#define FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM "incendiary_mortar_som"
+///SOM Smoke mortar barrage
+#define FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM "smoke_mortar_som"
+///Satrapine smoke mortar barrage
+#define FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR "satrapine_smoke_mortar"
 
 //Noncampaign mode types
 ///Unlimited GAU for regular gamemodes
@@ -46,4 +54,8 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	FIRESUPPORT_TYPE_INCENDIARY_MORTAR = new /datum/fire_support/mortar/incendiary,
 	FIRESUPPORT_TYPE_SMOKE_MORTAR = new /datum/fire_support/mortar/smoke,
 	FIRESUPPORT_TYPE_ACID_SMOKE_MORTAR = new /datum/fire_support/mortar/smoke/acid,
+	FIRESUPPORT_TYPE_HE_MORTAR_SOM = new /datum/fire_support/mortar,
+	FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM = new /datum/fire_support/mortar/incendiary,
+	FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM = new /datum/fire_support/mortar/smoke,
+	FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR = new /datum/fire_support/mortar/smoke/acid,
 	))

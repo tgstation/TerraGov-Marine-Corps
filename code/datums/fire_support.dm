@@ -231,13 +231,18 @@
 	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
 	initiate_screen_message = "Coordinates confirmed, high explosive inbound!"
 	initiate_title = "Rhino-1"
-	initiate_sound = null
+	initiate_sound = 'sound/weapons/guns/misc/mortar_travel.ogg'
 	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait
-	start_visual = 'sound/weapons/guns/misc/mortar_travel.ogg'
+	start_visual = null
 	start_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg'
 
 /datum/fire_support/mortar/do_impact(turf/target_turf)
 	explosion(target_turf, 0, 3, 4, 2)
+
+/datum/fire_support/mortar/som
+	fire_support_type = FIRESUPPORT_TYPE_HE_MORTAR_SOM
+	initiate_title = "Guardian-1"
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
 
 /datum/fire_support/mortar/incendiary
 	name = "Incendiary mortar barrage"
@@ -250,6 +255,11 @@
 /datum/fire_support/mortar/incendiary/do_impact(turf/target_turf)
 	explosion(target_turf, light_impact_range = 3, flame_range = 5, throw_range = 0)
 	playsound(target_turf, 'sound/weapons/guns/fire/flamethrower2.ogg', 35)
+
+/datum/fire_support/mortar/incendiary/som
+	fire_support_type = FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM
+	initiate_title = "Guardian-1"
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
 
 /datum/fire_support/mortar/smoke
 	name = "Smoke mortar barrage"
@@ -272,6 +282,11 @@
 	smoke.set_up(smokeradius, target_turf, smoke_duration)
 	smoke.start()
 
+/datum/fire_support/mortar/smoke/som
+	fire_support_type = FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM
+	initiate_title = "Guardian-1"
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
+
 /datum/fire_support/mortar/smoke/acid
 	name = "Acid smoke mortar barrage"
 	fire_support_type = FIRESUPPORT_TYPE_ACID_SMOKE_MORTAR
@@ -280,6 +295,16 @@
 	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
 	initiate_screen_message = "Coordinates confirmed, acid smoke inbound!"
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	smokeradius = 5
+
+/datum/fire_support/mortar/smoke/satrapine
+	name = "Satrapine mortar barrage"
+	fire_support_type = FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR
+	uses = 2
+	icon_state = "satrapine_mortar"
+	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
+	initiate_screen_message = "Coordinates confirmed, satrapine inbound!"
+	smoketype = /datum/effect_system/smoke_spread/satrapine
 	smokeradius = 5
 
 /datum/fire_support/rad_missile
@@ -302,7 +327,6 @@
 	var/mid_range = 6
 	///Range for the minimal rad effects
 	var/outer_range = 9
-
 
 /datum/fire_support/rad_missile/do_impact(turf/target_turf)
 	playsound(target_turf, 'sound/effects/portal_opening.ogg', 100, FALSE)
