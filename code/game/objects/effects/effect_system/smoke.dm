@@ -308,7 +308,7 @@
 	if(!.)
 		return
 	if(S.smoke_traits & SMOKE_PLASMALOSS)
-		lifetime -= 2
+		lifetime -= 4
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
