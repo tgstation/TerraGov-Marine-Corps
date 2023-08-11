@@ -351,6 +351,8 @@
 			take_damage(200, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(25, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(15, BRUTE, BOMB)
 
 
 /obj/structure/girder/displaced

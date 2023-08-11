@@ -154,6 +154,8 @@
 			take_damage(rand(33, 66), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 33), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(10, BRUTE, BOMB)
 	update_icon()
 
 /obj/structure/barricade/setDir(newdir)
@@ -685,6 +687,8 @@
 			take_damage(rand(150, 350), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 100), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 50), BRUTE, BOMB)
 
 	update_icon()
 
@@ -950,6 +954,8 @@
 			take_damage(rand(200, 400), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 150), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 75), BRUTE, BOMB)
 
 	update_icon()
 
