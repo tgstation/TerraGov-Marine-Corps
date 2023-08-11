@@ -201,11 +201,7 @@
 		return
 	var/datum/squad/S = user.assigned_squad
 
-	var/laz_name = ""
-	laz_name += user.get_paygrade()
-	laz_name += user.name
-	if(S)
-		laz_name += " ([S.name])"
+	var/laz_name = "[user.get_paygrade()] [user.name][S ? " ([S.name])" : null]"
 
 
 	var/area/targ_area = get_area(A)
