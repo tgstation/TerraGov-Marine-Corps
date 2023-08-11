@@ -1,0 +1,4 @@
+author: "Sanuki357"
+delete-after: True
+changes:
+  - bugfix: "Fixed SOM and ICC pouches going invisible when they are empty"
