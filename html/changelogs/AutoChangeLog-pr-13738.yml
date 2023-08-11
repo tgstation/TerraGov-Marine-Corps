@@ -1,4 +1,0 @@
-author: "forestbbbbbbb"
-delete-after: True
-changes:
-  - bugfix: "Fix jetpack not working over wired cades"
