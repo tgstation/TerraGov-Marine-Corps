@@ -664,7 +664,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(length(SSjob.active_squads[FACTION_TERRAGOV]))
 		scale_squad_jobs()
 	for(var/job_type in job_points_needed_by_job_type)
-		if(!istype(job_type, /datum/job))
+		if(!(job_type in subtypesof(/datum/job)))
 			stack_trace("Invalid job type in job_points_needed_by_job_type. Current mode : [name], Invalid type: [job_type]")
 			continue
 		var/datum/job/scaled_job = SSjob.GetJobType(job_type)
