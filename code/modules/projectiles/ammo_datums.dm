@@ -1132,19 +1132,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "crude heavy sniper bullet"
 	hud_state = "sniper_crude"
 	handful_amount = 5
-	flags_ammo_behavior = AMMO_BALLISTIC
-	damage = 120
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	damage = 105
 	penetration = 20
-	accurate_range_min = 0
-	///shatter effection duration when hitting mobs
-	var/shatter_duration = 10 SECONDS
+	sundering = 12.5
+	accurate_range_min = 3
+	max_range = 28
 
 /datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/proj)
-	if(!isliving(M))
-		return
-
-	var/mob/living/living_victim = M
-	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+	proj.proj_max_range -= 8
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
