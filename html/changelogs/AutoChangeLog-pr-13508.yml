@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added a new explosion tier of weak, below light explosions"
+  - balance: "Rad rockets, AGS, sticky and 20mm grenades all utilise weak explosions to some extent"
+  - balance: "Humans can be gibbed by devestating explosions if they lack bomb armor, just like xenos"
