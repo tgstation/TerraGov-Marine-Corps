@@ -9,9 +9,11 @@
 ///Cruise missile strike
 #define FIRESUPPORT_TYPE_CRUISE_MISSILE "cruise_missile"
 ///Volkite gun run
-#define FIRESUPPORT_TYPE_VOLKITE "volkite_campaign"
+#define FIRESUPPORT_TYPE_VOLKITE "volkite_gun"
 ///SOM Incendiary rocket barrage
-#define FIRESUPPORT_TYPE_SOM_INCEND_ROCKETS "som_incend_rockets_campaign"
+#define FIRESUPPORT_TYPE_INCEND_ROCKETS "incend_rockets"
+///Radioactive missile
+#define FIRESUPPORT_TYPE_RAD_MISSILE "rad_missile"
 ///Mortar barrage
 #define FIRESUPPORT_TYPE_HE_MORTAR "he_mortar"
 ///Incendiary mortar barrage
@@ -38,7 +40,8 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	FIRESUPPORT_TYPE_ROCKETS = new /datum/fire_support/rockets,
 	FIRESUPPORT_TYPE_CRUISE_MISSILE = new /datum/fire_support/cruise_missile,
 	FIRESUPPORT_TYPE_VOLKITE = new /datum/fire_support/volkite,
-	FIRESUPPORT_TYPE_SOM_INCEND_ROCKETS = new /datum/fire_support/rockets/som_incendiary,
+	FIRESUPPORT_TYPE_INCEND_ROCKETS = new /datum/fire_support/incendiary_rockets,
+	FIRESUPPORT_TYPE_RAD_MISSILE = new /datum/fire_support/rad_missile,
 	FIRESUPPORT_TYPE_HE_MORTAR = new /datum/fire_support/mortar,
 	FIRESUPPORT_TYPE_INCENDIARY_MORTAR = new /datum/fire_support/mortar/incendiary,
 	FIRESUPPORT_TYPE_SMOKE_MORTAR = new /datum/fire_support/mortar/smoke,

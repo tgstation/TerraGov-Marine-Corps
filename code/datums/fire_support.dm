@@ -140,12 +140,16 @@
 /datum/fire_support/rockets/do_impact(turf/target_turf)
 	explosion(target_turf, 0, 2, 5, 2)
 
-/datum/fire_support/rockets/som_incendiary
+/datum/fire_support/rockets/unlimited
+	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_UNLIMITED
+	uses = -1
+
+/datum/fire_support/incendiary_rockets
 	name = "Incendiary rocket barrage"
-	fire_support_type = FIRESUPPORT_TYPE_SOM_INCEND_ROCKETS
+	fire_support_type = FIRESUPPORT_TYPE_INCEND_ROCKETS
 	scatter_range = 9
 	impact_quantity = 12
-	icon_state = "rockets"
+	icon_state = "incendiary_rockets"
 	initiate_chat_message = "TARGET ACQUIRED ROCKET RUN INBOUND."
 	initiate_screen_message = "Rockets hot, incoming!"
 	initiate_title = "Avenger-4"
@@ -153,12 +157,8 @@
 	start_visual = /obj/effect/temp_visual/dropship_flyby/som
 	uses = 2
 
-/datum/fire_support/rockets/som_incendiary/do_impact(turf/target_turf)
+/datum/fire_support/incendiary_rockets/do_impact(turf/target_turf)
 	explosion(target_turf, light_impact_range = 3, flame_range = 4, throw_range = 2)
-
-/datum/fire_support/rockets/unlimited
-	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_UNLIMITED
-	uses = -1
 
 /datum/fire_support/cruise_missile
 	name = "Cruise missile strike"
@@ -183,7 +183,7 @@
 	name = "Volkite gun run"
 	fire_support_type = FIRESUPPORT_TYPE_VOLKITE
 	impact_quantity = 3
-	icon_state = "gau"
+	icon_state = "volkite"
 	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
 	initiate_screen_message = "Target received, gun run inbound."
 	initiate_title = "Avenger-4"
@@ -281,3 +281,45 @@
 	initiate_screen_message = "Coordinates confirmed, acid smoke inbound!"
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid
 	smokeradius = 5
+
+/datum/fire_support/rad_missile
+	name = "Radioactive missile"
+	fire_support_type = FIRESUPPORT_TYPE_RAD_MISSILE
+	scatter_range = 4
+	impact_quantity = 1
+	icon_state = "rad_missile"
+	initiate_chat_message = "TARGET ACQUIRED RAD MISSILE INBOUND."
+	initiate_screen_message = "Target locked, rads inbound!"
+	initiate_title = "Avenger-4"
+	portrait_type = /atom/movable/screen/text/screen_text/picture/potrait/som_over
+	start_visual = /obj/effect/temp_visual/dropship_flyby/som
+	uses = 2
+	///Base strength of the rad effects
+	var/rad_strength = 30
+	///Range for the maximum rad effects
+	var/inner_range = 3
+	///Range for the moderate rad effects
+	var/mid_range = 6
+	///Range for the minimal rad effects
+	var/outer_range = 9
+
+
+/datum/fire_support/rad_missile/do_impact(turf/target_turf)
+	playsound(target_turf, 'sound/effects/portal_opening.ogg', 100, FALSE)
+	for(var/mob/living/victim in hearers(outer_range, target_turf))
+		var/strength
+		var/sound_level
+		if(get_dist(victim, target_turf) <= inner_range)
+			strength = rad_strength
+			sound_level = 4
+		else if(get_dist(victim, target_turf) <= mid_range)
+			strength = rad_strength * 0.7
+			sound_level = 3
+		else
+			strength = rad_strength * 0.3
+			sound_level = 2
+
+		strength = victim.modify_by_armor(strength, BIO, 25)
+		victim.apply_radiation(strength, sound_level)
+
+	explosion(target_turf, light_impact_range = 3)
