@@ -98,13 +98,13 @@
 			spaceman.remove_status_effect(debuff_type)
 
 
-/turf/open/space/basic/sea //used on prison for flavor
+/turf/open/space/sea //used on prison for flavor
 	icon = 'icons/misc/beach.dmi'
 	name = "sea"
 	icon_state = "seadeep"
 	plane = FLOOR_PLANE
 
-/turf/open/space/basic/sea/Initialize(mapload, ...)
+/turf/open/space/sea/Initialize(mapload, ...)
 	. = ..()
 	icon_state = "seadeep"
 
