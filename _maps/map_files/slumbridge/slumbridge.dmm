@@ -515,7 +515,7 @@
 /area/slumbridge/zeta/north)
 "awx" = (
 /obj/structure/window/framed/wood,
-/turf/open/space/light,
+/turf/open/space/basic/light,
 /area/slumbridge/outside4)
 "axh" = (
 /obj/structure/flora/pottedplant/twentythree,
@@ -13518,7 +13518,7 @@
 /area/slumbridge/zeta/south)
 "kzW" = (
 /obj/effect/turf_decal/riverdecal,
-/turf/open/space/light,
+/turf/open/space/basic/light,
 /area/space/light)
 "kAv" = (
 /obj/machinery/light,
@@ -26988,7 +26988,7 @@
 /obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
-/turf/open/space/light,
+/turf/open/space/basic/light,
 /area/space/light)
 "uPy" = (
 /obj/effect/decal/cleanable/dirt,
@@ -27036,7 +27036,7 @@
 /turf/open/floor/tile/white,
 /area/slumbridge/houses/recreational)
 "uSb" = (
-/turf/open/space/light,
+/turf/open/space/basic/light,
 /area/space/light)
 "uSk" = (
 /obj/effect/ai_node,
@@ -30135,7 +30135,7 @@
 /area/slumbridge/sombase/hangar)
 "xdi" = (
 /obj/effect/turf_decal/riverdecal/edge,
-/turf/open/space/light,
+/turf/open/space/basic/light,
 /area/space/light)
 "xds" = (
 /obj/effect/decal/cleanable/dirt,
