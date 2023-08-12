@@ -229,6 +229,7 @@
 
 //Converts a rights bitfield into a string
 /proc/rights2text(rights, seperator = "")
+	. += "[seperator]EDIT"
 	if(rights & R_ASAY)
 		. += "[seperator]+ASAY"
 	if(rights & R_ADMINTICKET)
