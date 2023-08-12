@@ -97,7 +97,6 @@
 	var/numXenosPlanetr = BIOSCAN_DELTA(numXenosPlanet, delta)
 	var/numHostsTransitr = BIOSCAN_DELTA(numHostsTransit, delta)
 	var/numXenosTransitr = BIOSCAN_DELTA(numXenosTransit, delta)
-	var/numXenosSilo = BIOSCAN_DELTA(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]), 1) //to prevent craziness delta is always 1 for silo detection
 
 	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
