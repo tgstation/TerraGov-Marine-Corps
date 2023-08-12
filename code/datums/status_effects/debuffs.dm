@@ -416,6 +416,12 @@
 /datum/status_effect/spacefreeze/tick()
 	owner.adjustFireLoss(40)
 
+/datum/status_effect/spacefreeze/light
+	id = "spacefreeze_light"
+
+/datum/status_effect/spacefreeze/light/tick()
+	owner.adjustFireLoss(10)
+
 ///irradiated mob
 /datum/status_effect/incapacitating/irradiated
 	id = "irradiated"
