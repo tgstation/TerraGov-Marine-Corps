@@ -44,10 +44,12 @@
 	. = ..()
 	update_icon()
 
-
 /obj/machinery/computer/communications/Topic(href, href_list)
 	. = ..()
 	if(.)
+		return
+
+	if(!is_mainship_level(z))
 		return
 
 	switch(href_list["operation"])
