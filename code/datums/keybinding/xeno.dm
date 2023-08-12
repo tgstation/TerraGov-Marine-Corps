@@ -897,7 +897,7 @@
 /datum/keybinding/xeno/dash_explosion
 	name = "Dash Explosion"
 	full_name = "Baneling: Dash Explode"
-	description = " Aim in a direction, charge up and dash, knocking down any marines hit and detonate yourself. "
+	description = "Aim in a direction, charge up and dash, knocking down any humans hit and detonate yourself. "
 	keybind_signal = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION
 
 /datum/keybinding/xeno/spawn_pod
