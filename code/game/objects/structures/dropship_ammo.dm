@@ -210,7 +210,7 @@
 	max_ammo_count = 200
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 20
-	point_cost = 75
+	point_cost = 50
 	///Radius of the square that the bullets will strafe
 	var/bullet_spread_range = 2
 	///Width of the square we are attacking, so you can make rectangular attacks later
@@ -264,7 +264,7 @@
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	travelling_time = 3 SECONDS
-	point_cost = 150
+	point_cost = 115
 
 
 //railgun
