@@ -2,7 +2,7 @@
 	caste_name = "Baneling"
 	display_name = "Baneling"
 	upgrade_name = ""
-	caste_desc = "An alien bloated with chemicals and ready to explode."
+	caste_desc = "Gross, cute, bloated and ready to explode!"
 	caste_type_path = /mob/living/carbon/xenomorph/baneling
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
