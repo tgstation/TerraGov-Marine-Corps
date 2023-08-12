@@ -35,7 +35,7 @@
 		return "baneling_wounded_running_[severity]"
 
 /obj/structure/xeno/baneling_pod
-	name = "Baneling Pod"
+	name = "Baneling pod"
 	desc = "A baneling pod, storing fresh banelings "
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Baneling Pod"
