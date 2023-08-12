@@ -472,7 +472,6 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_time = 0.5 SECONDS
 
-
 	fire_delay = 1.5 SECONDS
 
 	scatter = -25
