@@ -915,7 +915,7 @@
 /datum/keybinding/xeno/select_reagent/baneling
 	name = "Select Reagent"
 	full_name = "Baneling: Select Reagent"
-	description = " Choose a reagent that will be spread upon death. Costs plasma to change. "
+	description = "Choose a reagent that will be spread upon death. Costs plasma to change."
 	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
 
 /datum/keybinding/xeno/vent/down(client/user)
