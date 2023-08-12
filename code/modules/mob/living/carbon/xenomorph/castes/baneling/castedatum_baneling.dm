@@ -131,7 +131,7 @@
 
 /datum/xeno_caste/baneling/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "A reckless ball of pure hatred and death"
+	caste_desc = "A reckless ball with VERY low temper, it is out for blood at any moment!"
 	primordial_message = "Nothing can escape our toxic cloud!"
 	upgrade = XENO_UPGRADE_FOUR
 
