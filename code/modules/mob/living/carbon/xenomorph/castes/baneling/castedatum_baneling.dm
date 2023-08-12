@@ -106,7 +106,7 @@
 
 /datum/xeno_caste/baneling/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "Don't get near it! It looks like it is going to explode and pack a punch!"
+	caste_desc = "It looks like it's going to explode in any moment!"
 	ancient_message = "We are the biological explosive ordnance ready to explode at marine. Show them what you are made out of!"
 	upgrade = XENO_UPGRADE_THREE
 
