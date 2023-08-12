@@ -5,6 +5,9 @@
 	icon_state = "transparent"
 	always_unpowered = TRUE
 
+/area/slumbridge/rock/nearlz
+	icon_state = "blue"
+
 /area/slumbridge/northeastcaves
 	name = "\improper Northeast Caves"
 	icon_state = "northeast2"
