@@ -1,5 +1,0 @@
-author: "Sanuki357"
-delete-after: True
-changes:
-  - imageadd: "New progressive sprites for empty belts and pouches which responses to how empty they are"
-  - imageadd: "Changed the grenade pouch sprite"

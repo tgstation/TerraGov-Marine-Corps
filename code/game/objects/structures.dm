@@ -26,6 +26,8 @@
 				return
 		if(EXPLODE_LIGHT)
 			return
+		if(EXPLODE_WEAK)
+			return
 
 /obj/structure/Initialize(mapload)
 	. = ..()

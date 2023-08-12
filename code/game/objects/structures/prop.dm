@@ -51,6 +51,9 @@
 		if(EXPLODE_LIGHT)
 			if (prob(25))
 				set_broken()
+		if(EXPLODE_WEAK)
+			if (prob(15))
+				set_broken()
 
 
 /obj/machinery/prop/mainship/computer/proc/set_broken()

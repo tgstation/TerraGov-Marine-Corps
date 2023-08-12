@@ -128,3 +128,57 @@
   - bugfix: fixed the XH-L upper plating sprite being misaligned with its visor
   forestbbbbbbb:
   - bugfix: CMO and minions have icons in orbit menu
+2023-08-10:
+  Lumipharon:
+  - bugfix: Objects such as tables or windowframes no longer stop smoke
+  Redory:
+  - imageadd: added mini_icons for (hopefully) all mags.
+  - imageadd: redid the compact magazine labels with correct weapon naming conventions.
+  - imagedel: deleted one or two outdated mini_icons.
+  Sanuki357:
+  - imageadd: New progressive sprites for empty belts and pouches which responses
+      to how empty they are
+  - imageadd: Changed the grenade pouch sprite
+  'Sprites: Ocelot':
+  - rscadd: R-76 magnum is now available in gold, silver and nickle flavours via black
+      market lootboxes in req
+  'Sprites: Orca':
+  - imageadd: Updated warlock shield sprites
+  Xander3359:
+  - spellcheck: change broken computer warning to be a bit less misleading.
+  - qol: Switching hands unwields.
+  ivanmixo:
+  - bugfix: Fixed a small emote runtime
+  - bugfix: Fixed ghost observing armor not unregistering signals
+  - bugfix: Toned down super rage shake radius to help with potential clientside lag
+  - bugfix: Fixed some auto observe runtimes
+  - bugfix: Fixed ghosts causing runtimes by having the specialized vendor UI open
+  - bugfix: Fixed warrior punch trying to blind inanimate objects
+  - bugfix: Fixed a hive threat runtime
+  - bugfix: Fixed adjust_fire_stacks trying to affect qdeleted mobs
+  - bugfix: Fixed crit OD peri+ runtime
+  - bugfix: Fixed cas gau exploding contents of turfs twice
+  - bugfix: Fixed multiple bodybag/tarp runtimes
+2023-08-11:
+  Pariah919:
+  - rscadd: Added new SG gun, the SG-62 target rifle. It is a rifle with a unbarreled
+      spotting rifle that applies bullets with status effects or just normal bullets
+      that deal a lot of damage, it has an irremoveable suppressor as well.
+  forestbbbbbbb:
+  - bugfix: Fix jetpack not working over wired cades
+  ivanmixo:
+  - bugfix: Engineer and corpsman slots actually scale properly now
+2023-08-12:
+  Lumipharon:
+  - rscadd: Added a new explosion tier of weak, below light explosions
+  - balance: Rad rockets, AGS, sticky and 20mm grenades all utilise weak explosions
+      to some extent
+  - balance: Humans can be gibbed by devestating explosions if they lack bomb armor,
+      just like xenos
+  - bugfix: fixed a bug with praetorian acid dash
+  Sanuki357:
+  - bugfix: Fixed SOM and ICC pouches going invisible when they are empty
+  Zar000:
+  - bugfix: hunter mirage now works as intended
+  forestbbbbbbb:
+  - bugfix: Fix double leading space in paygrades

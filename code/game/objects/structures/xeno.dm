@@ -45,6 +45,8 @@
 			take_damage((rand(140, 300)), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage((rand(50, 100)), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 50), BRUTE, BOMB)
 
 /obj/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -214,6 +216,8 @@
 			qdel()
 		if(EXPLODE_LIGHT)
 			take_damage((rand(50, 60)), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(30, BRUTE, BOMB)
 
 /turf/closed/wall/resin/fire_act()
 	take_damage(50, BURN, FIRE)
