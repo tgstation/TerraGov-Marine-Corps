@@ -81,7 +81,7 @@
 
 /datum/xeno_caste/baneling/elder
 	upgrade_name = "Elder"
-	caste_desc = "An alien bloated with chemicals and ready to explode. It looks pretty big."
+	caste_desc = "A bloated, rolling cute thing. It looks a pretty big."
 
 	upgrade = XENO_UPGRADE_TWO
 
