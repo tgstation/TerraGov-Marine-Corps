@@ -36,7 +36,7 @@
 
 /obj/structure/xeno/baneling_pod
 	name = "Baneling pod"
-	desc = "A baneling pod, storing fresh banelings "
+	desc = "A resin structure filled with an oozing slimy pod that swells constantly. It is filled to the brim with small, crawling figures, merging what seems to be other pods inside."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Baneling Pod"
 	max_integrity = 100
