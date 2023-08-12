@@ -909,7 +909,7 @@
 /datum/keybinding/xeno/baneling_explode
 	name = "Explode"
 	full_name = "Baneling: Explode"
-	description = " Detonate yourself, spreading your currently selected reagent. Size depends on current stored plasma, more plasma is more reagent."
+	description = "Detonate yourself, spreading your currently selected reagent. Size depends on current stored plasma, more plasma is more reagent."
 	keybind_signal = COMSIG_XENOABILITY_BANELING_EXPLODE
 
 /datum/keybinding/xeno/select_reagent/baneling
