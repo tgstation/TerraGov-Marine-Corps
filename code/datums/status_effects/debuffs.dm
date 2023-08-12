@@ -420,6 +420,8 @@
 	id = "spacefreeze_light"
 
 /datum/status_effect/spacefreeze/light/tick()
+	if(owner.stat == DEAD)
+		return
 	owner.adjustFireLoss(10)
 
 ///irradiated mob
