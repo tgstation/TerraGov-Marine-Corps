@@ -4311,6 +4311,11 @@
 /obj/machinery/computer/station_alert,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
+"ftK" = (
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/smartfridge/chemistry,
+/turf/open/floor/plating/platebotc,
+/area/mainship/medical/chemistry)
 "ftT" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/tile/chapel{
@@ -6142,6 +6147,15 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
+"hTV" = (
+/obj/machinery/line_nexter{
+	dir = 2
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_hallway)
 "hUf" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
@@ -11268,6 +11282,10 @@
 	dir = 8
 	},
 /area/mainship/squads/req)
+"opd" = (
+/obj/structure/barricade/metal,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_hallway)
 "ope" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
@@ -12766,20 +12784,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "qfF" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/storage/box/syringes{
-	pixel_x = -7
-	},
-/obj/item/storage/box/pillbottles{
-	pixel_x = 7;
-	pixel_y = 7
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = -7;
-	pixel_y = 7
-	},
-/obj/item/mass_spectrometer,
-/obj/item/mass_spectrometer,
+/obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/chemistry)
 "qfG" = (
@@ -17118,7 +17123,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "vwL" = (
-/obj/machinery/smartfridge/chemistry,
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/secure/medical{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/poddoor/shutters/opened/medbay{
+	dir = 2
+	},
 /turf/open/floor/plating/platebotc,
 /area/mainship/medical/chemistry)
 "vxx" = (
@@ -48826,7 +48838,7 @@ fZP
 uVk
 xXt
 tkS
-hGT
+ftK
 hUf
 nTx
 jwA
@@ -49084,7 +49096,7 @@ xqW
 nIF
 qfF
 vwL
-hUf
+hTV
 cNy
 hUf
 ylp
@@ -49341,7 +49353,7 @@ pJs
 xXt
 tkS
 hGT
-hUf
+opd
 rPu
 hUf
 mqD
@@ -49598,7 +49610,7 @@ uWK
 wNn
 sFM
 hGT
-hUf
+opd
 nTx
 uDl
 fyR
