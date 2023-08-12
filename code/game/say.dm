@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 		var/paygrade = H.get_paygrade()
 		if(paygrade)
-			return "[paygrade]"	//Attempt to read off the id before defaulting to job
+			return "[paygrade] "	//Attempt to read off the id before defaulting to job
 
 		var/datum/job/J = H.job
 		if(!istype(J))
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		var/mob/living/carbon/human/H = VT.source
 		var/paygrade = H.get_paygrade()
 		if(paygrade)
-			return "[paygrade]"	//Attempt to read off the id before defaulting to job
+			return "[paygrade] "	//Attempt to read off the id before defaulting to job
 
 		var/datum/job/J = H.job
 		if(!istype(J))
