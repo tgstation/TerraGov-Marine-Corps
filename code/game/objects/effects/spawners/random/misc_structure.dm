@@ -170,8 +170,8 @@
 	icon_state = "random_m42c"
 	spawn_loot_chance = 1
 	loot = list(
-		/obj/item/storage/box/m42c_system = 9,
-		/obj/item/storage/box/m42c_system_Jungle = 1,
+		/obj/item/storage/box/crate/m42c_system = 9,
+		/obj/item/storage/box/crate/m42c_system_Jungle = 1,
 	)
 
 /obj/effect/spawner/random/misc/structure/m42c/oscaroutpost

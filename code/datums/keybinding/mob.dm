@@ -200,9 +200,6 @@
 /datum/keybinding/mob/examine/proc/examinate(datum/source, atom/A, params)
 	SIGNAL_HANDLER
 	var/mob/user = source
-	if(!user.client || !(user.client.eye == user || user.client.eye == user.loc))
-		UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))
-		return
 	user.examinate(A)
 	return COMSIG_MOB_CLICK_HANDLED
 

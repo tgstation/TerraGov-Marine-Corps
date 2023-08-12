@@ -134,7 +134,7 @@
 /obj/structure/largecrate/supply/weapons/sentries
 	name = "\improper ST-571 sentry chest (x2)"
 	desc = "A supply crate containing two boxed ST-571 sentries."
-	supplies = list(/obj/item/storage/box/sentry = 2)
+	supplies = list(/obj/item/storage/box/crate/sentry = 2)
 
 /obj/structure/largecrate/supply/weapons/standard_hmg
 	name = "\improper HSG-102 mounted heavy smartgun chest (x2)"
@@ -198,6 +198,7 @@
 		/obj/item/shotgunbox = 1,
 		/obj/item/shotgunbox/buckshot = 1,
 		/obj/item/shotgunbox/flechette = 1,
+		/obj/item/shotgunbox/tracker = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = 1,
@@ -209,16 +210,16 @@
 		/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,
-		/obj/item/storage/box/visual/magazine/compact/martini/full = 1,
-		/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/ar11/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
-		/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full = 1,
-		/obj/item/storage/box/visual/magazine/compact/tx15/slug/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/sh15/flechette/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/sh15/slug/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_br/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/chamberedrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_mmg/full = 1,
 	)
 
 

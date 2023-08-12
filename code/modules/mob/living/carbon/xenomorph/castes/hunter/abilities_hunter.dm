@@ -457,15 +457,10 @@
 
 /// Spawns a set of illusions around the hunter
 /datum/action/xeno_action/mirage/proc/spawn_illusions()
-	switch(owner.a_intent)
-		if(INTENT_HARM) //Escort us and attack nearby enemy
-			var/mob/illusion/xeno/center_illusion = new (owner.loc, owner, owner, illusion_life_time)
-			for(var/i in 1 to (illusion_count - 1))
-				illusions += new /mob/illusion/xeno(owner.loc, owner, center_illusion, illusion_life_time)
-			illusions += center_illusion
-		if(INTENT_HELP, INTENT_GRAB, INTENT_DISARM) //Disperse
-			for(var/i in 1 to illusion_count)
-				illusions += new /mob/illusion/xeno(owner.loc, owner, null, illusion_life_time)
+	var/mob/illusion/xeno/center_illusion = new (owner.loc, owner, owner, illusion_life_time)
+	for(var/i in 1 to (illusion_count - 1))
+		illusions += new /mob/illusion/xeno(owner.loc, owner, center_illusion, illusion_life_time)
+	illusions += center_illusion
 	addtimer(CALLBACK(src, PROC_REF(clean_illusions)), illusion_life_time)
 
 /// Clean up the illusions list

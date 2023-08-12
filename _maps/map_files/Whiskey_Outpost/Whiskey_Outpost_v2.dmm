@@ -439,11 +439,11 @@
 /turf/open/floor/prison/plate,
 /area/whiskey_outpost)
 "bH" = (
-/obj/item/storage/box/sentry{
+/obj/item/storage/box/crate/sentry{
 	pixel_x = 9;
 	pixel_y = 11
 	},
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /obj/effect/turf_decal/grassdecal,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
@@ -965,7 +965,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "eB" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/west)
 "eC" = (
@@ -1168,8 +1168,8 @@
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/north)
 "fE" = (
-/obj/item/storage/box/minisentry,
-/obj/item/storage/box/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
 /obj/structure/rack,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
@@ -2698,7 +2698,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "nh" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "nj" = (
@@ -4278,8 +4278,8 @@
 "vI" = (
 /obj/structure/closet/crate/secure/ammo,
 /obj/item/big_ammo_box/ap,
-/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full,
-/obj/item/storage/box/visual/magazine/compact/tx15/slug/full,
+/obj/item/storage/box/visual/magazine/compact/sh15/flechette/full,
+/obj/item/storage/box/visual/magazine/compact/sh15/slug/full,
 /obj/item/storage/box/visual/magazine/compact/standard_smg/full,
 /obj/item/storage/box/visual/magazine/compact/standard_smg/full,
 /obj/item/storage/box/visual/magazine/compact/standard_revolver/full,
@@ -4485,7 +4485,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "wL" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
@@ -4512,7 +4512,7 @@
 	},
 /area/whiskey_outpost/outside/south)
 "wT" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "xd" = (
@@ -6605,7 +6605,7 @@
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/west)
 "Mu" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/east)
 "My" = (
@@ -7853,7 +7853,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "Xs" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost)
 "Xt" = (
@@ -7979,7 +7979,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "YA" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "YC" = (

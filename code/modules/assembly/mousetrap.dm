@@ -104,7 +104,7 @@
 	return FALSE
 
 
-/obj/item/assembly/mousetrap/hitby(atom/movable/AM)
+/obj/item/assembly/mousetrap/hitby(atom/movable/AM, speed = 5)
 	if(!armed)
 		return ..()
 	visible_message(span_warning("[src] is triggered by [AM]."))

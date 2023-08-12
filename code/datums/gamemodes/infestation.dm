@@ -1,5 +1,10 @@
 /datum/game_mode/infestation
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
+	job_points_needed_by_job_type = list(
+		/datum/job/terragov/squad/smartgunner = 20,
+		/datum/job/terragov/squad/corpsman = 10,
+		/datum/job/terragov/squad/engineer = 10,
+	)
 	/// If we are shipside or groundside
 	var/round_stage = INFESTATION_MARINE_DEPLOYMENT
 	/// Timer used to calculate how long till the hive collapse due to no ruler
@@ -27,13 +32,6 @@
 		new_tunnel.tunnel_desc = "["An old tunnel dug by a former member of the hive prior to our awakening at [get_area_name(new_tunnel)]"] (X: [new_tunnel.x], Y: [new_tunnel.y])"
 	for(var/i in GLOB.xeno_jelly_pod_turfs)
 		new /obj/structure/xeno/resin_jelly_pod(i, XENO_HIVE_NORMAL)
-
-/datum/game_mode/infestation/scale_roles()
-	. = ..()
-	if(!.)
-		return
-	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/smartgunner)
-	scaled_job.job_points_needed = 20 //For every 10 marine late joins, 1 extra SG
 
 /datum/game_mode/infestation/process()
 	if(round_finished)

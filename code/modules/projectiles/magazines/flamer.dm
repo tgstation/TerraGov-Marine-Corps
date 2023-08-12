@@ -12,7 +12,7 @@
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
 	flags_magazine = NONE
-	icon_state_mini = "tank"
+	icon_state_mini = "tank_light"
 
 	default_ammo = /datum/ammo/flamethrower
 
@@ -73,7 +73,7 @@
 	max_rounds = 75
 	current_rounds = 75
 	reload_delay = 3 SECONDS
-	icon_state_mini = "tank_orange"
+	icon_state_mini = "tank_red"
 
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"
