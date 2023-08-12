@@ -4551,9 +4551,6 @@
 	},
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/hydroponics/aux)
-"dqC" = (
-/turf/closed/mineral/smooth,
-/area/lv624/ground/caves/west1)
 "dqR" = (
 /obj/structure/catwalk,
 /obj/structure/flora/jungle/vines,
@@ -9438,9 +9435,6 @@
 	},
 /turf/open/floor/wood/broken,
 /area/lv624/ground/jungle8)
-"iTi" = (
-/turf/closed/wall/cult,
-/area/lv624/ground/caves/west1)
 "iTu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -15071,9 +15065,6 @@
 /obj/item/roller,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage/dome)
-"pwj" = (
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/rock)
 "pwD" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark,
@@ -29508,7 +29499,7 @@ gKr
 aym
 azs
 aym
-dqC
+gKr
 abc
 abc
 abc
@@ -29685,12 +29676,12 @@ abc
 bzf
 eoT
 abc
-dqC
+gKr
 aym
 azs
 aAN
 azs
-iTi
+aym
 abc
 abc
 abc
@@ -29867,13 +29858,13 @@ kLK
 abc
 abc
 abc
-iTi
+aym
 azs
 azs
 azs
 azs
 azs
-iTi
+aym
 eoT
 bZr
 abc
@@ -30418,8 +30409,8 @@ aym
 azs
 azs
 azs
-iTi
-dqC
+aym
+gKr
 abc
 abc
 abc
@@ -30601,7 +30592,7 @@ aym
 azs
 aym
 evp
-pwj
+abc
 abc
 kLK
 abc
