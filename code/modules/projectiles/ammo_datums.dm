@@ -1220,7 +1220,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 12
 	damage = 10
 	penetration = 25
-	sundering = 1
+	sundering = 1.75
 	damage_falloff = 0.1
 
 /datum/ammo/bullet/smarttargetrifle
