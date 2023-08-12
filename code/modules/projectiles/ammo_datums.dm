@@ -1136,6 +1136,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 105
 	penetration = 20
 	sundering = 12.5
+	shrapnel_chance = 50
 	accurate_range_min = 3
 	max_range = 28
 
