@@ -168,3 +168,17 @@
   - bugfix: Fix jetpack not working over wired cades
   ivanmixo:
   - bugfix: Engineer and corpsman slots actually scale properly now
+2023-08-12:
+  Lumipharon:
+  - rscadd: Added a new explosion tier of weak, below light explosions
+  - balance: Rad rockets, AGS, sticky and 20mm grenades all utilise weak explosions
+      to some extent
+  - balance: Humans can be gibbed by devestating explosions if they lack bomb armor,
+      just like xenos
+  - bugfix: fixed a bug with praetorian acid dash
+  Sanuki357:
+  - bugfix: Fixed SOM and ICC pouches going invisible when they are empty
+  Zar000:
+  - bugfix: hunter mirage now works as intended
+  forestbbbbbbb:
+  - bugfix: Fix double leading space in paygrades
