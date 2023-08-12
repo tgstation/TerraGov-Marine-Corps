@@ -138,6 +138,8 @@
 	minimap_color = MINIMAP_AREA_COLONY
 	always_unpowered = TRUE
 
+/area/slumbridge/outside2/nearlz
+
 /area/slumbridge/hydrotreatment
 	name = "\improper Water Treatment Plant"
 	icon_state = "decontamination"
@@ -217,6 +219,8 @@
 	always_unpowered = TRUE
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = ICE_COLONY_TEMPERATURE
+
+/area/slumbridge/outside3/nearlz
 
 /area/slumbridge/landingzonetwo
 	name = "Landing Zone Two"
