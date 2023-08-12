@@ -252,7 +252,7 @@
 	for(var/i=1 to attack_width)
 		strafed = strafelist[1]
 		strafelist -= strafed
-		strafed.ex_act(EXPLODE_LIGHT)
+		strafed.ex_act(EXPLODE_MEDIUM)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
 
 	if(length(strafelist))
