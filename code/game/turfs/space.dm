@@ -98,16 +98,16 @@
 			spaceman.remove_status_effect(debuff_type)
 
 
-/turf/open/space/sea //used on prison for flavor
+/turf/open/space/basic/sea //used on prison for flavor
 	icon = 'icons/misc/beach.dmi'
 	name = "sea"
 	icon_state = "seadeep"
 	plane = FLOOR_PLANE
 
-/turf/open/space/sea/Initialize(mapload, ...)
+/turf/open/space/basic/sea/Initialize(mapload, ...)
 	. = ..()
 	icon_state = "seadeep"
 
 //Same as regular space, but it applies a debuff type that doesn't hurt as much
-/turf/open/space/light
+/turf/open/space/basic/light
 	debuff_type = /datum/status_effect/spacefreeze/light
