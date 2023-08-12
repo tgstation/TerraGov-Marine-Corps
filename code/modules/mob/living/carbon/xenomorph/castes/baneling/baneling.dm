@@ -81,7 +81,7 @@
 		to_chat(xeno_ref.client, span_xenohighdanger("You will respawn in [BANELING_CHARGE_RESPAWN_TIME/10] seconds"))
 	else
 		/// The respawn takes 4 times longer than consuming a charge would
-		to_chat(xeno_ref.client, span_xenohighdanger("You will respawn in [(BANELING_CHARGE_RESPAWN_TIME*4)/10] seconds"))
+		to_chat(xeno_ref.client, span_xenohighdanger("We have perished and detonated. We will reform in [(BANELING_CHARGE_RESPAWN_TIME*4)/10] seconds in our pod..."))
 		addtimer(CALLBACK(src, PROC_REF(spawn_baneling), xeno_ref), BANELING_CHARGE_RESPAWN_TIME*4)
 	return COMPONENT_CANCEL_DEATH
 
