@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/baneling
 	caste_base_type = /mob/living/carbon/xenomorph/baneling
 	name = "Baneling"
-	desc = "A green alien that store chemicals and can run pretty fast . . ."
+	desc = "An oozy, squishy alien that can roll in agile speeds, storing various dangerous chemicals in its sac..."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Baneling Walking"
 	bubble_icon = "alienleft"
