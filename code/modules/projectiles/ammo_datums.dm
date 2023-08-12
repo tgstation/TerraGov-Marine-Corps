@@ -726,6 +726,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 20
 	sundering = 10
+	bullet_color = COLOR_SOFT_RED
 
 /datum/ammo/bullet/rifle/tx8/incendiary
 	name = "high velocity incendiary bullet"
@@ -734,6 +735,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 25
 	penetration = 20
 	sundering = 2.5
+	bullet_color = LIGHT_COLOR_FIRE
 
 /datum/ammo/bullet/rifle/tx8/impact
 	name = "high velocity impact bullet"
