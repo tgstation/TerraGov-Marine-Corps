@@ -1142,6 +1142,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/proj)
 	proj.proj_max_range -= 8
+	if(ishuman(M))
+		staggerstun(M, proj, weaken = 3 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 28)
+
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
