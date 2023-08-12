@@ -5093,6 +5093,9 @@
 /area/mainship/command/corporateliaison)
 "oM" = (
 /obj/machinery/light/mainship,
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/purple/corner{
 	dir = 4
 	},
@@ -11327,6 +11330,15 @@
 "Hd" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lounge)
+"He" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "Hf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12881,6 +12893,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/briefing)
+"LJ" = (
+/obj/structure/barricade/metal,
+/obj/machinery/line_nexter{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "LK" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -15920,6 +15939,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
+"UI" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "UJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -16650,6 +16675,13 @@
 	dir = 8
 	},
 /area/mainship/command/airoom)
+"WQ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/secure/medical{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/chemistry)
 "WR" = (
 /obj/machinery/door/airlock/mainship/generic/glass{
 	dir = 1
@@ -23778,7 +23810,7 @@ Jt
 lV
 HQ
 Is
-Is
+WQ
 HQ
 pU
 iy
@@ -23874,9 +23906,9 @@ dt
 VC
 VC
 NA
-dt
-VC
-VC
+He
+UI
+LJ
 QB
 VC
 iy
