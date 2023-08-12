@@ -53,7 +53,7 @@
 /datum/action/xeno_action/select_reagent/baneling
 	name = "Choose Explosion Reagent"
 	action_icon_state = "select_reagent0"
-	desc = "Select which reagent will be released when you explode"
+	desc = "Select which reagent will be released when you explode."
 	plasma_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT,
