@@ -330,11 +330,12 @@
 
 /obj/item/explosive/grenade/smokebomb/drain
 	name = "\improper M40-T smoke grenade"
-	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
+	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma from xenomorphs with minimal lab proven side-effects. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
 	icon_state = "grenade_pgas"
 	item_state = "grenade_pgas"
 	hud_state = "grenade_drain"
-	det_time = 6 SECONDS
+	det_time = 2 SECONDS
+	smoke_duration = 8
 	icon_state_mini = "grenade_blue"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
@@ -344,6 +345,7 @@
 	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
 	icon_state = "ags_pgas"
 	det_time = 3 SECONDS
+	smoke_duration = 11
 	smokeradius = 4
 
 /obj/item/explosive/grenade/phosphorus
