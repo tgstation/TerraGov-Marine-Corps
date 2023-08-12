@@ -903,7 +903,7 @@
 /datum/keybinding/xeno/spawn_pod
 	name = "Spawn Pod"
 	full_name = "Baneling: Spawn Pod"
-	description = " Spawn a pod on your current position, when you die from any source you will respawn on this pod. Activate again to change its location. "
+	description = "Spawn a pod on your current position, when you die from any source you will respawn on this pod. Activate again to change its location. "
 	keybind_signal = COMSIG_XENOABILITY_BANELING_SPAWN_POD
 
 /datum/keybinding/xeno/baneling_explode
