@@ -93,6 +93,20 @@
 	center_of_mass = list("x"=16, "y"=3)
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 100)
 
+/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey
+	name = "\improper Nanotrasen 'Space-Aged' 60-Year Old Whiskey"
+	desc = "This exquisite brand of whiskey has been aged in the hull of a colony ship since 2378. It's worth more than what you make in several months- and bold enough to state this fact on the bottle."
+	icon_state = "specialwhiskeybottle"
+	center_of_mass = list("x"=16, "y"=3)
+	list_reagents = list(/datum/reagent/consumable/ethanol/specialwhiskey = 100)
+
+/obj/item/reagent_containers/food/drinks/bottle/experimentalliquor
+	name = "\improper NT-06"
+	desc = "A black bottle with nothing but a note and a warning label on it. 'Drink this and you will die,' '600 proof,' and other such discouraging words are written upon it."
+	icon_state = "experimentalliquorbottle"
+	center_of_mass = list("x"=17, "y"=5)
+	list_reagents = list(/datum/reagent/consumable/ethanol/experimentalliquor = 100)
+
 /obj/item/reagent_containers/food/drinks/bottle/sake
 	name = "\improper Harakiri traditional styled sake"
 	desc = "Sweet as can be, and burns like fire going down."

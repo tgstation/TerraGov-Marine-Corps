@@ -112,6 +112,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 80
 	taste_description = "exquisite amber"
 
+/datum/reagent/consumable/ethanol/experimentalliquor
+	name = "Experimental Liquor"
+	description = "An experimental liquor made deep within a laboratory. A portent of bad times. Somehow, more potent than pure ethanol..."
+	color = "#000000" // rgb: 0, 0, 0
+	boozepwr = 300
+	taste_description = "imminent death"
+
 /datum/reagent/consumable/ethanol/sake
 	name = "Sake"
 	description = "A potent rice-wine."
