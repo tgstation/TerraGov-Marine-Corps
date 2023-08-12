@@ -138,7 +138,7 @@
 	initiate_screen_message = "Rockets hot, incoming!"
 
 /datum/fire_support/rockets/do_impact(turf/target_turf)
-	explosion(target_turf, 0, 2, 5, 2)
+	explosion(target_turf, 0, 2, 4, 6, 2)
 
 /datum/fire_support/rockets/unlimited
 	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_UNLIMITED
@@ -158,7 +158,7 @@
 	uses = 2
 
 /datum/fire_support/incendiary_rockets/do_impact(turf/target_turf)
-	explosion(target_turf, light_impact_range = 3, flame_range = 4, throw_range = 2)
+	explosion(target_turf, weak_impact_range = 4, flame_range = 4, throw_range = 2)
 
 /datum/fire_support/cruise_missile
 	name = "Cruise missile strike"
@@ -237,7 +237,7 @@
 	start_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg'
 
 /datum/fire_support/mortar/do_impact(turf/target_turf)
-	explosion(target_turf, 0, 3, 4, 2)
+	explosion(target_turf, 0, 2, 3, 5, 2)
 
 /datum/fire_support/mortar/som
 	fire_support_type = FIRESUPPORT_TYPE_HE_MORTAR_SOM
@@ -253,7 +253,7 @@
 	initiate_screen_message = "Coordinates confirmed, incendiary inbound!"
 
 /datum/fire_support/mortar/incendiary/do_impact(turf/target_turf)
-	explosion(target_turf, light_impact_range = 3, flame_range = 5, throw_range = 0)
+	explosion(target_turf, weak_impact_range = 4, flame_range = 5, throw_range = 0)
 	playsound(target_turf, 'sound/weapons/guns/fire/flamethrower2.ogg', 35)
 
 /datum/fire_support/mortar/incendiary/som
@@ -346,4 +346,4 @@
 		strength = victim.modify_by_armor(strength, BIO, 25)
 		victim.apply_radiation(strength, sound_level)
 
-	explosion(target_turf, light_impact_range = 3)
+	explosion(target_turf, weak_impact_range = 4)

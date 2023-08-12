@@ -17,6 +17,9 @@
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/standard = -1,
 	)
+	job_points_needed_by_job_type = list(
+		/datum/job/som/squad/veteran = 5, //Every 5 non vets join, a new vet slot opens
+	)
 	/// Time between two bioscan
 	var/bioscan_interval = 3 MINUTES
 
