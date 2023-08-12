@@ -59,7 +59,7 @@
 
 /datum/xeno_caste/baneling/mature
 	upgrade_name = "Mature"
-	caste_desc = "An alien bloated with chemicals and ready to explode. It looks a bit denser."
+	caste_desc = "A bloated, rolling cute thing. It looks a little more denser and dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
 
