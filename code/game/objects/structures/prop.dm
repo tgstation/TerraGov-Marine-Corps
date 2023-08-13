@@ -113,7 +113,7 @@
 	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/mainship/holobarrier/passthrough
-	name = "\improper Pressure-sealed holobarrier"
+	name = "\improper pressure-sealed holobarrier"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
 	density = FALSE
