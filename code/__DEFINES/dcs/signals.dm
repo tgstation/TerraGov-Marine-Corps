@@ -32,6 +32,7 @@
 #define COMSIG_GLOB_MOB_LOGIN "!mob_login"
 #define COMSIG_GLOB_MOB_LOGOUT "!mob_logout"
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
+#define COMSIG_GLOB_MOB_GET_STATUS_TAB_ITEMS "!mob_get_status_tab_items"
 
 #define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
 #define COMSIG_GLOB_AI_MINION_RALLY "!ai_minion_rally"

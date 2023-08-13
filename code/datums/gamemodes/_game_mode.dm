@@ -88,6 +88,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 /datum/game_mode/proc/pre_setup()
 	setup_blockers()
 	GLOB.balance.Initialize()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_GET_STATUS_TAB_ITEMS, PROC_REF(get_status_tab_items))
 
 	GLOB.landmarks_round_start = shuffle(GLOB.landmarks_round_start)
 	var/obj/effect/landmark/L
@@ -884,3 +885,31 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		new nuke_disk_generator(get_turf(spawn_loc))
 		GLOB.nuke_disk_spawn_locs -= spawn_loc
 		qdel(spawn_loc)
+
+///Add gamemode related items to statpanel
+/datum/game_mode/proc/get_status_tab_items(datum/dcs, mob/source, list/items)
+	if(isobserver(source))
+		var/mob/dead/observer/observer_source = source
+		var/rulerless_countdown = get_hivemind_collapse_countdown()
+		if(rulerless_countdown)
+			items += "Orphan hivemind collapse timer: [rulerless_countdown]"
+		if(flags_round_type & MODE_INFESTATION)
+			if(observer_source.larva_position)
+				items += "Position in larva candidate queue: [observer_source.larva_position]"
+			var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+			var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+			if(stored_larva)
+				items += "Burrowed larva: [stored_larva]"
+
+		var/patrol_end_countdown = game_end_countdown()
+		if(patrol_end_countdown)
+			items += "Round End timer: [patrol_end_countdown]"
+		var/patrol_wave_countdown = wave_countdown()
+		if(patrol_wave_countdown)
+			items += "Respawn wave timer: [patrol_wave_countdown]"
+	else if(isxeno(source))
+		var/mob/living/carbon/xenomorph/xeno_source = source
+		if(xeno_source.hivenumber == XENO_HIVE_NORMAL)
+			var/rulerless_countdown = get_hivemind_collapse_countdown()
+			if(rulerless_countdown)
+				items += "Orphan hivemind collapse timer: [rulerless_countdown]"

@@ -162,11 +162,6 @@
 				msg_holder = "Very strong"
 		. += "[AURA_XENO_RECOVERY] pheromone strength: [msg_holder]"
 
-	if(hivenumber == XENO_HIVE_NORMAL)
-		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
-		if(hivemind_countdown)
-			. += "Orphan hivemind collapse timer: [hivemind_countdown]"
-
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
 	if(incapacitated() || lying_angle)
