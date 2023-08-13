@@ -23,7 +23,7 @@ Barometer
 Barricader
 Bartender
 Beeper
-Begger
+Beggar
 Behaver
 Believer
 Bender
@@ -104,6 +104,7 @@ Decider
 Decoder
 Deconstructor
 Defibrillator
+Defier
 Definer
 Defragmentor
 Defuser
@@ -116,7 +117,6 @@ Detector
 Detonator
 Dewormer
 Diffuser
-Difuser
 Director
 Discoverer
 Disintegrator
