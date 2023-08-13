@@ -713,6 +713,7 @@
 #include "code\game\objects\items\implants\implant_cloak.dm"
 #include "code\game\objects\items\implants\implant_items.dm"
 #include "code\game\objects\items\implants\implant_neurostim.dm"
+#include "code\game\objects\items\implants\implant_suicidedust.dm"
 #include "code\game\objects\items\implants\implantcase.dm"
 #include "code\game\objects\items\implants\implantchair.dm"
 #include "code\game\objects\items\implants\implanter.dm"
