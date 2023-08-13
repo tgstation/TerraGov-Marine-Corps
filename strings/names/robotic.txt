@@ -201,6 +201,7 @@ Interpolator
 Invader
 Ionizer
 Irradiator
+Juicer
 Kicker
 Lamplighter
 Launcher
