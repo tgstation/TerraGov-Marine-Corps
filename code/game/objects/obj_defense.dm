@@ -78,6 +78,8 @@
 			take_damage(rand(100, 250), BRUTE, BOMB, 0)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 90), BRUTE, BOMB, 0)
+		if(EXPLODE_WEAK)
+			take_damage(rand(5, 45), BRUTE, BOMB, 0)
 
 
 /obj/hitby(atom/movable/AM, speed = 5)

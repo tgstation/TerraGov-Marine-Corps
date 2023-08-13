@@ -70,3 +70,7 @@
 /obj/item/implanter/blade
 	name = "blade implant implanter"
 	imp = /obj/item/implant/deployitem/blade
+
+/obj/item/implanter/suicide_dust
+	name = "Self-Gibbing implant"
+	imp = /obj/item/implant/suicide_dust

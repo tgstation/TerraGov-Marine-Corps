@@ -101,6 +101,11 @@
 				SSexplosions.lowMovAtom += flat_equipment
 			if(trackers)
 				SSexplosions.lowMovAtom += trackers
+		if(EXPLODE_WEAK)
+			if(flat_equipment)
+				SSexplosions.weakMovAtom += flat_equipment
+			if(trackers)
+				SSexplosions.weakMovAtom += trackers
 
 /obj/vehicle/sealed/mecha/handle_atom_del(atom/A)
 	if(A in occupants) //todo does not work and in wrong file

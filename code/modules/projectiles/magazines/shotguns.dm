@@ -70,7 +70,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	caliber = CALIBER_762X54
 	max_rounds = 4
 	w_class = WEIGHT_CLASS_SMALL
-	icon_state_mini = "bullets"
+	icon_state_mini = "clips"
 
 /obj/item/ammo_magazine/rifle/martini
 	name = "box of .557/440 rifle rounds"

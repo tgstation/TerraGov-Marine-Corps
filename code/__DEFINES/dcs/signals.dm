@@ -28,7 +28,7 @@
 /// from /obj/machinery/setAnchored(): (machine, anchoredstate)
 #define COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE "!machinery_anchored_change"
 
-/// called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
+/// called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
 #define COMSIG_GLOB_EXPLOSION "!explosion"
 
 #define COMSIG_GLOB_MOB_LOGIN "!mob_login"
@@ -507,6 +507,7 @@
 
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"	//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
+#define COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE "human_melee_unarmed_attack_alternate"	//same as above, but right click
 #define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"					//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)
 #define COMSIG_HUMAN_LIMB_FRACTURED "human_limb_fractured"				//from [datum/limb/proc/fracture]: (mob/living/carbon/human/wearer, datum/limb/limb)
 ///from [/mob/living/carbon/human/proc/apply_overlay]: (cache_index, list/overlays_to_apply)

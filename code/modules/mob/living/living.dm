@@ -892,9 +892,6 @@ below 100 is not dizzy
 	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
 		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
 		if(offhand && (offhand.flags_item & WIELDED))
-			to_chat(src, span_warning("Your other hand is too busy holding \the [offhand.name]"))
-			return
-		else
 			wielded_item.unwield(src) //Get rid of it.
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)

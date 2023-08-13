@@ -302,6 +302,10 @@
 	icon_state = "spear"
 	item_state = "spear"
 
+/obj/item/weapon/twohanded/spear/tactical/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
 /obj/item/weapon/twohanded/spear/tactical/harvester
 	name = "\improper HP-S Harvester spear"
 	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' spear. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."

@@ -1462,11 +1462,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/engineering)
-"bjk" = (
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/lawankaoutpost/colony/engineering)
 "bjm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -7439,6 +7434,7 @@
 /area/lawankaoutpost/outside/central)
 "ghU" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/engineering)
 "gia" = (
@@ -11982,7 +11978,6 @@
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "kkV" = (
-/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -24330,10 +24325,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/west)
 "upP" = (
-/obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/engineering)
 "upX" = (
@@ -48890,7 +48885,7 @@ whJ
 vgu
 gnU
 upP
-lIK
+gnU
 gnU
 gor
 xGW
@@ -49106,7 +49101,7 @@ qDL
 skU
 nva
 ghU
-bjk
+aQx
 ehC
 hYG
 gor
