@@ -1,0 +1,6 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - rscadd: "Added the ability for admins to toggle gimmick tads"
+  - balance: "The food tad is now classified as a gimmick tad"
+  - balance: "Gimmick tads now require admin intervention before they can be selected"
