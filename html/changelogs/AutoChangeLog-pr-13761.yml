@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - bugfix: "Fixed jobs listing an unused gamemode in their description as the gamemode they are in."
