@@ -267,7 +267,6 @@ Privateer
 Processor
 Professor
 Prognosticator
-Professor
 Punctuator
 Pusher
 Pushover
@@ -377,6 +376,7 @@ Treasurer
 Troubleshooter
 Truthseeker
 Truthteller
+Unbuckler
 Understander
 User
 Vaporizer
