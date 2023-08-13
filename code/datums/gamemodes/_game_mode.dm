@@ -60,6 +60,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
 	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
+	///if fun tads are enabled by default
+	var/enable_fun_tads = FALSE
 
 
 /datum/game_mode/New()
