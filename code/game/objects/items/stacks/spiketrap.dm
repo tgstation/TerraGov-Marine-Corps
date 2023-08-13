@@ -50,7 +50,6 @@
 ///Actually taking slowdown and damage from the trap
 /obj/structure/spiketrap/proc/apply_damage(mob/living/victim)
 	victim.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 3) //Moving through spikes slows you down
-	playsound(loc, )
 	if(isxeno(victim))
 		victim.apply_damage(spike_damage * 3, BRUTE, updating_health = TRUE)
 
@@ -59,6 +58,7 @@
 		for(var/limb_to_hit in list(BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT))
 			target.apply_damage(spike_damage, BRUTE, limb_to_hit, updating_health = TRUE)
 
+	playsound(src, 'sound/weapons/bladeslice.ogg', 50)
 
 /*
 	if(!armed || triggered)
