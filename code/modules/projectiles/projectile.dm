@@ -282,9 +282,7 @@
 
 	if(ismob(firer) && !recursivity)
 		var/mob/mob_firer = firer
-		if(mob_firer.client)
-			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[mob_firer.ckey]
-			personal_statistics.projectiles_fired++
+		record_projectile_fire(mob_firer)
 		GLOB.round_statistics.total_projectiles_fired[mob_firer.faction]++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired[mob_firer.faction]")
 		if(ammo.bonus_projectiles_amount)
@@ -948,9 +946,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		dir_angle = angle
 
-	//If we have the the right kind of ammo, we can fire several projectiles at once.
-	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
-		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+	if(!recursivity)	//Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
+		record_projectile_fire(shooter)
+
+		//If we have the the right kind of ammo, we can fire several projectiles at once.
+		if(ammo.bonus_projectiles_amount)
+			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
 
 	if(shooter.Adjacent(target) && ismob(target))
 		var/mob/mob_to_hit = target

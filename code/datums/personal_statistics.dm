@@ -97,8 +97,6 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/cas_laser_shots = 0
 	var/cas_minirockets_fired = 0
 	var/cas_rockets_fired = 0
-	///This list exists to prevent a long chain of istype() checks every time a CAS weapon is fired
-	var/list/cas_weapon_stats = list()
 	var/cas_points_used = 0
 
 	//Funny things to keep track of
@@ -106,16 +104,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/sippies = 0
 	var/war_crimes = 0
 
-/datum/personal_statistics/New()
-	//Add to the CAS weapons list the types and their corresponding counter
-	cas_weapon_stats = list(
-		/obj/structure/dropship_equipment/weapon/heavygun = cas_cannon_shots,
-		/obj/structure/dropship_equipment/weapon/laser_beam_gun = cas_laser_shots,
-		/obj/structure/dropship_equipment/weapon/minirocket_pod = cas_minirockets_fired,
-		/obj/structure/dropship_equipment/weapon/rocket_pod = cas_rockets_fired,
-	)
-
-///Return a list of the data of the most used chemical
+///Calculated from the chemicals_ingested list, returns a string: "[chemical name], [amount] units"
 /datum/personal_statistics/proc/get_most_ingested_chemical()
 	var/list/winner = list("none", 0)
 	if(LAZYLEN(chemicals_ingested))
@@ -123,7 +112,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 			if(winner[2] < chemicals_ingested[chem])
 				winner[1] = chem
 				winner[2] = chemicals_ingested[chem]
-	return winner
+	return "[winner[1]], [winner[2]] units"
 
 ///Assemble a list of statistics associated with the ckey this datum belongs to
 /datum/personal_statistics/proc/compose_report()
@@ -131,34 +120,34 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	stats += "<br><hr><u>Your personal round statistics:</u><br>"
 	//Combat
 	if(projectiles_fired)
-		stats += "Fired [projectiles_fired] projectile[projectiles_fired > 1 ? "s" : ""]."
-		stats += "[projectiles_hit] projectile[projectiles_hit != 1 ? "s" : ""] hit their target[projectiles_hit > 1 ? "s" : ""]."
+		stats += "Fired [projectiles_fired] projectile\s."
+		stats += "[projectiles_hit] projectile\s hit their target\s."
 		stats += projectiles_hit ? "Your accuracy score is [PERCENT(projectiles_hit / projectiles_fired)]%!" : "You missed every shot!"
 		stats += projectile_damage ? "[projectile_damage] projectile damage dealt!" : "You dealt no projectile damage."
 		stats += ""
 	if(melee_hits)
-		stats += "Landed [melee_hits] melee attack[melee_hits > 1 ? "s" : ""]."
+		stats += "Landed [melee_hits] melee attack\s."
 		stats += melee_damage ? "[melee_damage] melee damage dealt!" : "You dealt no melee damage."
 		stats += ""
 	stats += friendly_fire_damage ? "You caused [friendly_fire_damage] damage to allies...<br>" : "You avoided committing acts of friendly fire!<br>"
 
 	if(projectiles_caught)
-		stats += "[projectiles_caught] projectile[projectiles_caught > 1 ? "s" : ""] caught by psychic shield."
-		stats += "[projectiles_reflected] projectile[projectiles_reflected != 1 ? "s were" : " was"] reflected."
+		stats += "[projectiles_caught] projectile\s caught by psychic shield."
+		stats += "[projectiles_reflected] projectile\s [projectiles_reflected != 1 ? "were" : "was"] reflected."
 		if(rockets_reflected)
-			stats += "[rockets_reflected] rocket[rockets_reflected != 1 ? "s were" : " was"] reflected!"
+			stats += "[rockets_reflected] rocket\s [rockets_reflected != 1 ? "were" : "was"] reflected!"
 		stats += ""
 
 	if(grenades_primed)
-		stats += "[grenades_primed] grenade[grenades_primed > 1 ? "s" : ""] thrown."
+		stats += "[grenades_primed] grenade\s thrown."
 	if(traps_created)
-		stats += "[traps_created] trap[traps_created > 1 ? "s" : ""]/mine[traps_created > 1 ? "s" : ""]/hazard[traps_created > 1 ? "s" : ""] placed."
+		stats += "[traps_created] trap\s/mine\s/hazard\s placed."
 	if(grenades_primed || traps_created)
 		stats += ""
 
 	stats += "Lost [limbs_lost] limb[limbs_lost != 1 ? "s" : ""]."
 	if(delimbs)
-		stats += "You severed [delimbs] limb[delimbs > 1 ? "s" : ""]!"
+		stats += "You severed [delimbs] limb\s!"
 	stats += internal_injuries ? "You suffered [internal_injuries] internal injur[internal_injuries != 1 ? "ies" : "y"]." : "You avoided any internal injuries."
 	if(internal_injuries_inflicted)
 		stats += "Inflicted [internal_injuries_inflicted] internal injur[internal_injuries_inflicted > 1 ? "ies" : "y"] on [internal_injuries_inflicted > 1 ? "others" : "somebody"]."
@@ -166,16 +155,16 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	//Medical
 	stats += "<hr>"
 	if(self_heals)
-		stats += "You healed yourself [self_heals] time[self_heals > 1 ? "s" : ""]."
+		stats += "You healed yourself [self_heals] time\s."
 	if(heals)
-		stats += "Healed others [heals] time[heals > 1 ? "s" : ""]."
+		stats += "Healed others [heals] time\s."
 	if(surgical_actions_performed)
-		stats += "Performed [surgical_actions_performed] surgical operation[surgical_actions_performed > 1 ? "s" : ""]."
+		stats += "Performed [surgical_actions_performed] surgical operation\s."
 	if(revives)
-		stats += "Performed [revives] revive[revives > 1 ? "s" : ""]."
+		stats += "Performed [revives] revive\s."
 	if(times_revived)
-		stats += "You were revived [times_revived] time[times_revived > 1 ? "s" : ""]."
-	stats += deaths ? "You died [deaths] time[deaths > 1 ? "s" : ""]." : "You survived the whole round."
+		stats += "You were revived [times_revived] time\s."
+	stats += deaths ? "You died [deaths] time\s." : "You survived the whole round."
 
 	//Downtime
 	var/list/downtime_stats = list()
@@ -195,43 +184,43 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	//Support & logistics
 	var/list/support_stats = list()
 	if(weeds_planted)
-		support_stats += "Planted [weeds_planted] weed node[weeds_planted > 1 ? "s" : ""]."
+		support_stats += "Planted [weeds_planted] weed node\s."
 	if(structures_built)
-		support_stats += "Built [structures_built] structure[structures_built > 1 ? "s" : ""]."
+		support_stats += "Built [structures_built] structure\s."
 	if(times_repaired)
-		support_stats += "Performed [times_repaired] repair[times_repaired > 1 ? "s" : ""]."
+		support_stats += "Performed [times_repaired] repair\s."
 	if(integrity_repaired)
-		support_stats += "Repaired [integrity_repaired] point[integrity_repaired > 1 ? "s" : ""] of integrity."
+		support_stats += "Repaired [integrity_repaired] point\s of integrity."
 	if(generator_repairs_performed)
-		support_stats += "Performed [generator_repairs_performed] generator repair[generator_repairs_performed > 1 ? "s" : ""]."
+		support_stats += "Performed [generator_repairs_performed] generator repair\s."
 	if(miner_repairs_performed)
-		support_stats += "Performed [miner_repairs_performed] miner repair[miner_repairs_performed > 1 ? "s" : ""]."
+		support_stats += "Performed [miner_repairs_performed] miner repair\s."
 	if(apcs_repaired)
-		support_stats += "Repaired [apcs_repaired] APC[apcs_repaired > 1 ? "s" : ""]."
+		support_stats += "Repaired [apcs_repaired] APC\s."
 
 	if(generator_sabotages_performed)
-		support_stats += "Sabotaged [generator_sabotages_performed] generator[generator_sabotages_performed > 1 ? "s" : ""]."
+		support_stats += "Sabotaged [generator_sabotages_performed] generator\s."
 	if(miner_sabotages_performed)
-		support_stats += "Sabotaged [miner_sabotages_performed] miner[miner_sabotages_performed > 1 ? "s" : ""]."
+		support_stats += "Sabotaged [miner_sabotages_performed] miner\s."
 	if(apcs_slashed)
-		support_stats += "Slashed [apcs_slashed] APC[apcs_slashed > 1 ? "s" : ""]."
+		support_stats += "Slashed [apcs_slashed] APC\s."
 
 	if(artillery_fired)
-		support_stats += "<br>Fired [artillery_fired] artillery shell[artillery_fired > 1 ? "s" : ""]."
+		support_stats += "<br>Fired [artillery_fired] artillery shell\s."
 
 	if(req_points_used)
-		support_stats += "<br>Used [req_points_used] requisition point[req_points_used > 1 ? "s" : ""]."
+		support_stats += "<br>Used [req_points_used] requisition point\s."
 
 	if(drained)
-		support_stats += "Drained [drained] host[drained > 1 ? "s" : ""]."
+		support_stats += "Drained [drained] host\s."
 	if(cocooned)
-		support_stats += "Cocooned [cocooned] host[cocooned > 1 ? "s" : ""]."
+		support_stats += "Cocooned [cocooned] host\s."
 	if(recycle_points_denied)
-		support_stats += "Recycled [recycle_points_denied] sister[recycle_points_denied > 1 ? "s" : ""] to continue serving the hive even in death."
+		support_stats += "Recycled [recycle_points_denied] sister\s to continue serving the hive even in death."
 	if(huggers_created)
-		support_stats += "Gave birth to [huggers_created] hugger[huggers_created > 1 ? "s" : ""]."
+		support_stats += "Gave birth to [huggers_created] hugger\s."
 	if(impregnations)
-		support_stats += "Impregnated [impregnations] host[impregnations > 1 ? "s" : ""]."
+		support_stats += "Impregnated [impregnations] host\s."
 
 	if(LAZYLEN(support_stats))
 		stats += "<hr>"
@@ -240,15 +229,15 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	//Close air support
 	var/list/cas_stats = list()
 	if(cas_cannon_shots)
-		support_stats += "Shot [cas_cannon_shots] GAU-21 cannon voll[cas_cannon_shots > 1 ? "ies" : "ey"]."
+		cas_stats += "Shot [cas_cannon_shots] GAU-21 cannon voll[cas_cannon_shots > 1 ? "ies" : "ey"]."
 	if(cas_laser_shots)
-		support_stats += "You scorched the battlefield with [cas_laser_shots] high-power laser beam[cas_laser_shots > 1 ? "s" : ""]."
+		cas_stats += "You scorched the battlefield with [cas_laser_shots] high-power laser beam\s."
 	if(cas_minirockets_fired)
-		support_stats += "Launched [cas_minirockets_fired] air-to-surface mini-rocket[cas_minirockets_fired > 1 ? "s" : ""]."
+		cas_stats += "Launched [cas_minirockets_fired] air-to-surface mini-rocket\s."
 	if(cas_rockets_fired)
-		support_stats += "Launched [cas_rockets_fired] air-to-surface laser-guide rocket[cas_rockets_fired > 1 ? "s" : ""]."
+		cas_stats += "Launched [cas_rockets_fired] air-to-surface laser-guide rocket\s."
 	if(cas_points_used)
-		support_stats += "Used [cas_points_used] dropship fabricator point[cas_points_used > 1 ? "s" : ""]."
+		cas_stats += "Used [cas_points_used] dropship fabricator point\s."
 
 	if(LAZYLEN(cas_stats))
 		stats += "<hr>"
@@ -257,13 +246,13 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	//The funnies
 	var/list/misc_stats = list()
 	if(LAZYLEN(chemicals_ingested))
-		misc_stats += "Most consumed reagent: [get_most_ingested_chemical()]."
+		misc_stats += "Most consumed reagent: [get_most_ingested_chemical()]"
 	if(weights_lifted)
-		misc_stats += "You lifted [weights_lifted] weight[cas_points_used > 1 ? "[weights_lifted > 100 ? "s. Sick gains!" : "s."]" : "."]"
+		misc_stats += "You lifted [weights_lifted] weight\s[weights_lifted > 100 ? ". Sick gains!" : "."]"
 	if(sippies)
-		misc_stats += "You put your mouth on the communal drinking fountain [sippies] time[sippies > 1 ? "s" : ""]."
+		misc_stats += "You put your mouth on the communal drinking fountain [sippies] time\s."
 	if(war_crimes)
-		misc_stats += "You have committed [war_crimes] war crime[war_crimes > 1 ? "s" : ""]."
+		misc_stats += "You have committed [war_crimes] war crime\s."
 
 	if(LAZYLEN(misc_stats))
 		stats += "<hr>"
@@ -299,6 +288,24 @@ The alternative is scattering them everywhere under their respective objects whi
 	personal_statistics.delimbs++
 	return TRUE
 
+///Record whenever a player shoots things, taking into account bonus projectiles without running these checks multiple times
+/obj/projectile/proc/record_projectile_fire(mob/shooter)
+	//Part of code where this is called already checks if the shooter is a mob
+	if(!shooter.ckey)
+		return FALSE
+
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[shooter.ckey]
+	//I am trusting that nobody makes an ammo type that fires multiple projectiles and that each of those fire multiple projectiles
+	personal_statistics.projectiles_fired += 1 + ammo.bonus_projectiles_amount
+	return TRUE
+
+//Lasers have their own fire_at()
+/obj/projectile/hitscan/record_projectile_fire(shooter)
+	//It does not check if the shooter is a mob
+	if(!ismob(shooter))
+		return FALSE
+	return ..()
+
 ///Tally to personal_statistics that a successful shot was made and record the damage dealt
 /mob/living/proc/record_projectile_damage(mob/shooter, damage)
 	//Check if a ckey exists; the check for victim aliveness is handled before the proc call
@@ -314,42 +321,37 @@ The alternative is scattering them everywhere under their respective objects whi
 	return TRUE
 
 ///Record what reagents and how much of them were transferred to a mob into their ckey's /datum/personal_statistics
-/obj/item/reagent_containers/proc/record_reagent_consumption(total, list/reagents_list, mob/user, mob/receiver)
-	if(!total || !LAZYLEN(reagents_list))
+/obj/item/reagent_containers/proc/record_reagent_consumption(amount, list/reagents_list, mob/user, mob/receiver)
+	if(!amount || !LAZYLEN(reagents_list))
 		return FALSE
 
-	//Delcare some booleans for making this proc less of a mess
-	var/is_healing
-	var/ckey_exists
-	var/receiver_ckey_exists
-
+	//Declare separate variables for the user and receiver's personal_statistics, then assign them or make them null if no ckey
 	var/datum/personal_statistics/personal_statistics_user
 	var/datum/personal_statistics/personal_statistics_receiver
-	if(user.ckey)
-		ckey_exists = TRUE
-		personal_statistics_user = GLOB.personal_statistics_list[user.ckey]
+	personal_statistics_user = user?.ckey ? GLOB.personal_statistics_list[user.ckey] : null
 	if(user == receiver)
 		receiver = null
-	else if(receiver?.ckey)
-		receiver_ckey_exists = TRUE
-		personal_statistics_receiver = GLOB.personal_statistics_list[receiver.ckey]
+	else
+		personal_statistics_receiver = receiver?.ckey ? GLOB.personal_statistics_list[receiver.ckey] : null
 
 	//Just give up, how did this even happen?
-	if(!ckey_exists && !receiver_ckey_exists)
+	if(!personal_statistics_user && !personal_statistics_receiver)
 		return FALSE
 
-	for(var/chem in reagents_list)
+	var/is_healing
+	var/portion = amount / reagents.total_volume
+	for(var/datum/reagent/chem in reagents_list)
 		//If there is a receiving mob, let's try to record they ingested something
 		if(receiver)
-			if(receiver_ckey_exists)	//Only record if they have a ckey
-				personal_statistics_receiver.chemicals_ingested[chem] += reagents_list[chem]
+			if(personal_statistics_receiver)	//Only record if they have a ckey
+				personal_statistics_receiver.chemicals_ingested[chem.name] += chem.volume * portion
 		//If there is no receiver, that means the user is the one that needs their chems stat updated
 		else
-			personal_statistics_user.chemicals_ingested[chem] += reagents_list[chem]
+			personal_statistics_user.chemicals_ingested[chem.name] += chem.volume * portion
 
 		//Determine if a healing chem was involved; only needs to be done once
 		if(!is_healing && istype(chem, /datum/reagent/medicine))
-			if(ckey_exists)
+			if(personal_statistics_user)
 				//If a receiving mob exists, we tally up to the user mob's stats that it performed a heal
 				if(receiver)
 					personal_statistics_user.heals++
@@ -375,15 +377,16 @@ The alternative is scattering them everywhere under their respective objects whi
 	return TRUE
 
 ///Record what was drank and if it was medicinal
-/obj/machinery/deployable/reagent_tank/proc/record_sippies(total, list/reagents_list, mob/user)
-	if(!total || !LAZYLEN(reagents_list) || !user.ckey)
+/obj/machinery/deployable/reagent_tank/proc/record_sippies(amount, list/reagents_list, mob/user)
+	if(!amount || !LAZYLEN(reagents_list) || !user.ckey)
 		return FALSE
 
 	var/is_healing
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
-	for(var/chem in reagents_list)
+	var/portion = amount / reagents.total_volume
+	for(var/datum/reagent/chem in reagents_list)
 		//Add the chem and amount consumed to the list
-		personal_statistics.chemicals_ingested[chem] += reagents_list[chem]
+		personal_statistics.chemicals_ingested[chem.name] += chem.volume * portion
 		//Determine if a healing chem was involved; only needs to be done once
 		if(!is_healing && istype(chem, /datum/reagent/medicine))
 			personal_statistics.self_heals++
@@ -397,29 +400,18 @@ The alternative is scattering them everywhere under their respective objects whi
 		return FALSE
 
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[chair.occupant.ckey]
-	//Increment variable based on weapon type in cas_weapon_stats
-	personal_statistics.cas_weapon_stats[weapon.type]++
-	return TRUE
-
-/***
-Refund the point costs of the parts in list/queue to a player's cas_points_used
-
-Note: this is probably the simplest solution with how the fabricator works.
-It may result in wonky stats if the person who ordered the parts was not the one to clear it,
-but rarely is a non-pilot the one to use it, let alone clear the queue.
-***/
-/obj/machinery/dropship_part_fabricator/proc/record_cas_point_refunds(mob/user)
-	if(!user.ckey)
-		return FALSE
-	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
-	for(var/item in queue)
-		//Why is the ammo not a child of this????
-		if(istype(item, /obj/structure/dropship_equipment))
-			var/obj/structure/dropship_equipment/queued_part = item
-			personal_statistics.cas_points_used -= queued_part.point_cost
-		else
-			var/obj/structure/ship_ammo/queued_part = item
-			personal_statistics.cas_points_used -= queued_part.point_cost
+	//Increment variable based on weapon type
+	switch(weapon.type)
+		if(/obj/structure/dropship_equipment/weapon/heavygun)
+			personal_statistics.cas_cannon_shots++
+		if(/obj/structure/dropship_equipment/weapon/heavygun/radial_cas)
+			personal_statistics.cas_cannon_shots++
+		if(/obj/structure/dropship_equipment/weapon/laser_beam_gun)
+			personal_statistics.cas_laser_shots++
+		if(/obj/structure/dropship_equipment/weapon/minirocket_pod)
+			personal_statistics.cas_minirockets_fired++
+		if(/obj/structure/dropship_equipment/weapon/rocket_pod)
+			personal_statistics.cas_rockets_fired++
 	return TRUE
 
 ///Tally how many req-points worth of xenomorphs have been recycled
