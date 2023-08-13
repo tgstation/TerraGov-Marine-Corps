@@ -37,6 +37,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+		/datum/job/terragov/engineering/tech = SMARTIE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Easy<br /><br />
@@ -158,6 +159,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
+		/datum/job/terragov/engineering/tech = SMARTIE_POINTS_REGULAR,
 	)
 	job_points_needed = 5
 	html_description = {"
