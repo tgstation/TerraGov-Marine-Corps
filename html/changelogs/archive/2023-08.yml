@@ -182,3 +182,6 @@
   - bugfix: hunter mirage now works as intended
   forestbbbbbbb:
   - bugfix: Fix double leading space in paygrades
+2023-08-13:
+  Barnet2:
+  - rscadd: Added chemistry request lines to most shipmaps.
