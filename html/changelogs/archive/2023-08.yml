@@ -185,3 +185,20 @@
 2023-08-13:
   Barnet2:
   - rscadd: Added chemistry request lines to most shipmaps.
+2023-08-14:
+  ClosetedSkeletonGH:
+  - rscadd: Adds 150 new robot random names
+  RipGrayson:
+  - rscadd: Added the ability for admins to toggle gimmick tads
+  - balance: The food tad is now classified as a gimmick tad
+  - balance: Gimmick tads now require admin intervention before they can be selected
+  - balance: Enlarged west caves on LV624 to combat map imbalance.
+  Wisemonster:
+  - bugfix: Fixed jobs listing an unused gamemode in their description as the gamemode
+      they are in.
+  Xander3359:
+  - rscadd: Self-dusting implant that triggers on death for the elite moth ERT.
+  - code_imp: Added unit test for implanting
+  ivanmixo:
+  - code_imp: Deleted old shitcode access proc
+  - balance: Bring resin door melee armor back down to previous values
