@@ -96,11 +96,6 @@
 	if(eta_status)
 		. += "Evacuation in: [eta_status]"
 
-	//combat patrol timer
-	var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
-	if(patrol_end_countdown)
-		. += "Round End timer: [patrol_end_countdown]"
-
 	if(internal)
 		. += "Internal Atmosphere Info [internal.name]"
 		. += "Tank Pressure [internal.pressure]"
@@ -118,9 +113,6 @@
 		. += "You are affected by a HOLD order."
 	if(marksman_aura)
 		. += "You are affected by a FOCUS order."
-	var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
-	if(issensorcapturegamemode(SSticker.mode))
-		. += "Activated Sensor Towers: [sensor_mode.sensors_activated]"
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)

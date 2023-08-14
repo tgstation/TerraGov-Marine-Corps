@@ -888,6 +888,13 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 ///Add gamemode related items to statpanel
 /datum/game_mode/proc/get_status_tab_items(datum/dcs, mob/source, list/items)
+	var/patrol_end_countdown = game_end_countdown()
+	if(patrol_end_countdown)
+		items += "Round End timer: [patrol_end_countdown]"
+	var/patrol_wave_countdown = wave_countdown()
+	if(patrol_wave_countdown)
+		items += "Respawn wave timer: [patrol_wave_countdown]"
+
 	if(isobserver(source))
 		var/mob/dead/observer/observer_source = source
 		var/rulerless_countdown = get_hivemind_collapse_countdown()
@@ -900,13 +907,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 			if(stored_larva)
 				items += "Burrowed larva: [stored_larva]"
-
-		var/patrol_end_countdown = game_end_countdown()
-		if(patrol_end_countdown)
-			items += "Round End timer: [patrol_end_countdown]"
-		var/patrol_wave_countdown = wave_countdown()
-		if(patrol_wave_countdown)
-			items += "Respawn wave timer: [patrol_wave_countdown]"
 	else if(isxeno(source))
 		var/mob/living/carbon/xenomorph/xeno_source = source
 		if(xeno_source.hivenumber == XENO_HIVE_NORMAL)
