@@ -8347,7 +8347,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "yw" = (
-/obj/machinery/vending/medical/shipside,
+/obj/machinery/cic_maptable,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "yx" = (

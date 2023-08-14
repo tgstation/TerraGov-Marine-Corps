@@ -1229,9 +1229,7 @@
 /area/sulaco/engineering/atmos)
 "ael" = (
 /obj/machinery/light/mainship,
-/obj/structure/sink{
-	dir = 1
-	},
+/obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
