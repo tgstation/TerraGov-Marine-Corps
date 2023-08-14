@@ -215,6 +215,8 @@
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
+			/obj/item/reagent_containers/spray/surgery = -1,
+			/obj/item/tool/soap = 3,
 			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
 		),
