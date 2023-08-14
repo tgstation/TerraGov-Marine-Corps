@@ -216,6 +216,10 @@
 	accuracy_mult_unwielded = 0.95
 	scatter_unwielded = 25
 
+/obj/item/weapon/gun/energy/lasgun/pulse/Initialize(mapload, spawn_empty)
+	. = ..()
+	AddComponent(/datum/component/reequip, list(SLOT_BELT)) //Innate mag harness, no more free pulse rifles for you >:(
+
 //-------------------------------------------------------
 //A practice version of M43, only for memes
 
