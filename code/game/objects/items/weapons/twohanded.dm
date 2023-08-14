@@ -270,6 +270,16 @@
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
 	///Based on what direction the tip of the spear is pointed at in the sprite; maybe someone makes a spear that points northwest
 	var/current_angle = 45
+	///Time to deploy
+	var/deploy_time = 1 SECONDS
+	///The item this deploys into
+	var/deployable_item = /obj/structure/speartrap
+	///Time to undeploy
+	var/undeploy_time = 1 SECONDS
+
+/obj/item/weapon/twohanded/spear/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 /obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	spin = FALSE
@@ -295,6 +305,49 @@
 	rotate_me.Turn(-(initial(current_angle) - current_angle))
 	transform = rotate_me
 	current_angle = initial(current_angle)	//Reset the angle
+
+/obj/structure/speartrap ///The actual deployed trap
+	name = "Deployed Spear"
+	desc = "A very pointy stick, dont walk into it... please."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "spearglass"
+	resistance_flags = XENO_DAMAGEABLE
+	density = TRUE
+	max_integrity = 200
+	///How much damage the spikes do when you step on them
+	var/trap_damage = 15
+
+/obj/structure/speartrap/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_BUMPED, PROC_REF(on_bump))
+
+///Xenos get slashed when they attack this
+/obj/structure/speartrap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
+	X.apply_damage(trap_damage*1.5, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
+	update_icon()
+	return ..()
+
+///When a mob bumps into the spiketrap
+/obj/structure/speartrap/proc/on_bump(datum/source, atom/movable/victim, oldloc, oldlocs)
+	if(!isliving(victim))
+		return
+
+	if(get_dir(src, victim) == dir)
+		apply_damage(victim)
+
+///Actually taking slowdown and damage from the trap
+/obj/structure/speartrap/proc/apply_damage(mob/living/victim)
+	if(isxeno(victim))
+		victim.apply_damage(trap_damage * 5, BRUTE, updating_health = TRUE)
+
+	var/mob/living/carbon/human/target = victim
+	target.apply_damage(trap_damage, BRUTE, updating_health = TRUE)
+
+	playsound(src, 'sound/weapons/bladeslice.ogg', 50)
+
 
 /obj/item/weapon/twohanded/spear/tactical
 	name = "M-23 spear"
