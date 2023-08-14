@@ -276,6 +276,8 @@
 	var/deployable_item = /obj/structure/speartrap
 	///Time to undeploy
 	var/undeploy_time = 1 SECONDS
+	///Used for the health of the spear
+	max_integrity = 200
 
 /obj/item/weapon/twohanded/spear/Initialize(mapload)
 	. = ..()
@@ -313,7 +315,6 @@
 	icon_state = "spearglass"
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
-	max_integrity = 200
 	///How much damage the spikes do when you step on them
 	var/trap_damage = 15
 
