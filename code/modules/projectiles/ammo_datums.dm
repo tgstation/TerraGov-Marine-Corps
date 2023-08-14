@@ -2744,7 +2744,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "pulse bolt"
 	icon_state = "pulse2"
 	hud_state = "pulse"
-	damage = 90 // this is gotta hurt...
+	damage = 45 // this is gotta hurt...
 	max_range = 40
 	penetration = 100
 	sundering = 100

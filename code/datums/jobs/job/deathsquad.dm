@@ -28,7 +28,6 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/weapon/gun/energy/lasgun/pulse
-	//belt = /obj/item/storage/holster/belt/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
 	shoes = /obj/item/clothing/shoes/marine/deathsquad
@@ -38,10 +37,10 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/tx8
 	suit_store = /obj/item/weapon/gun/flamer/big_flamer/marinestandard/deathsquad
-	//suit_store = /obj/item/weapon/gun/energy/lasgun/pulse
 	r_store = /obj/item/storage/pouch/medkit
 	l_store = /obj/item/storage/pouch/grenade
 	back = /obj/item/storage/backpack/commando
+	implants = list(/obj/item/implant/suicide_dust)
 
 /datum/outfit/job/deathsquad/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -96,7 +95,6 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/weapon/gun/energy/lasgun/pulse
-	//belt = /obj/item/storage/holster/belt/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
 	shoes = /obj/item/clothing/shoes/marine/deathsquad
@@ -105,11 +103,11 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/tx8
-	suit_store = /obj/item/weapon/gun/launcher/rocket/m57a4
+	suit_store = /obj/item/weapon/gun/launcher/rocket/m57a4/deathsquad
 	r_store = /obj/item/storage/pouch/medkit
 	l_store = /obj/item/storage/pouch/explosive
 	back = /obj/item/storage/backpack/commando
-
+	implants = list(/obj/item/implant/suicide_dust)
 
 /datum/outfit/job/deathsquad/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -164,7 +162,6 @@
 	jobtype = /datum/job/deathsquad/gunner
 	id = /obj/item/card/id/silver
 	belt = /obj/item/weapon/gun/energy/lasgun/pulse
-	//belt = /obj/item/storage/holster/belt/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
 	shoes = /obj/item/clothing/shoes/marine/deathsquad
@@ -177,7 +174,7 @@
 	r_store = /obj/item/storage/pouch/medkit
 	l_store = /obj/item/storage/pouch/grenade
 	back = /obj/item/storage/backpack/commando
-
+	implants = list(/obj/item/implant/suicide_dust)
 
 /datum/outfit/job/deathsquad/gunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

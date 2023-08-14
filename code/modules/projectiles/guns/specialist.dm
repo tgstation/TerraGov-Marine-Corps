@@ -723,6 +723,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	placed_overlay_iconstate = "thermo"
 
+/obj/item/weapon/gun/launcher/rocket/m57a4/deathsquad
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/magnetic_harness,
+	)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
 	name = "\improper RL-57 quad thermobaric launcher"
 	desc = "The RL-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
