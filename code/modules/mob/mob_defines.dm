@@ -20,7 +20,7 @@
 	var/m_intent = MOVE_INTENT_RUN
 	var/in_throw_mode = FALSE
 	/// Whether or not the mob can hit themselves.
-	var/do_self_harm = TRUE
+	var/do_self_harm = FALSE
 	var/notransform = FALSE
 	///The list of people observing this mob.
 	var/list/observers

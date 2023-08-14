@@ -2704,7 +2704,7 @@
 	},
 /area/oscar_outpost/village/abandonedbase)
 "Ml" = (
-/obj/item/storage/box/m42c_system,
+/obj/item/storage/box/crate/m42c_system,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Mm" = (

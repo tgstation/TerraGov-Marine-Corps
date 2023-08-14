@@ -11,6 +11,10 @@
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"e" = (
+/obj/machinery/holopad,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "f" = (
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
@@ -124,10 +128,10 @@
 /area/shuttle/minidropship)
 "S" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "minidropship_podlock";
 	name = "inner door-control";
-	pixel_x = -25;
-	dir = 4
+	pixel_x = -25
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
@@ -216,7 +220,7 @@ V
 q
 u
 P
-q
+e
 c
 R
 "}

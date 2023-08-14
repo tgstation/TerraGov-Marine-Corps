@@ -16,6 +16,7 @@
 	if(fill_number && fill_type)
 		for(var/i in 1 to fill_number)
 			new fill_type(src)
+	update_icon()
 
 /obj/item/storage/pouch/examine(mob/user)
 	. = ..()
@@ -35,8 +36,6 @@
 	..()
 	return user.equip_to_appropriate_slot(src)
 
-
-
 /obj/item/storage/pouch/general
 	name = "light general pouch"
 	desc = "A general purpose pouch used to carry small items."
@@ -48,6 +47,7 @@
 	name = "medium general pouch"
 	storage_slots = 2
 	icon_state = "medium_drop"
+	sprite_slots = 2
 	draw_mode = 0
 
 /obj/item/storage/pouch/general/large
@@ -55,6 +55,7 @@
 	storage_slots = null
 	max_storage_space = 6
 	icon_state = "large_drop"
+	sprite_slots = 3
 	draw_mode = 0
 
 /obj/item/storage/pouch/general/large/command/Initialize(mapload)
@@ -98,6 +99,7 @@
 	name = "survival pouch"
 	desc = "It can contain flashlights, a pill, a crowbar, metal sheets, and some bandages."
 	icon_state = "survival"
+	sprite_slots = 1
 	storage_slots = 6
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
@@ -122,6 +124,7 @@
 	name = "first-aid pouch"
 	desc = "Standard marine first-aid pouch. It can contain most common medical supplies."
 	icon_state = "firstaid"
+	sprite_slots = 3
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/reagent_containers/hypospray,
@@ -183,6 +186,7 @@
 	name = "sidearm pouch"
 	desc = "It can contain a pistol or revolver. Useful for emergencies."
 	icon_state = "pistol"
+	sprite_slots = 1
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
@@ -214,6 +218,7 @@
 	name = "magazine pouch"
 	desc = "It can contain ammo magazines."
 	icon_state = "medium_ammo_mag"
+	sprite_slots = 2
 	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 2
 	draw_mode = 0
@@ -236,6 +241,7 @@
 	name = "magazine pouch"
 	desc = "This pouch can contain three ammo magazines."
 	icon_state = "large_ammo_mag"
+	sprite_slots = 3
 	storage_slots = 3
 
 /obj/item/storage/pouch/magazine/large/tx8full
@@ -259,6 +265,7 @@
 	desc = "It can contain pistol and revolver ammo magazines."
 	max_w_class = WEIGHT_CLASS_SMALL
 	icon_state = "pistol_mag"
+	sprite_slots = 3
 	storage_slots = 3
 
 	can_hold = list(
@@ -273,6 +280,7 @@
 	desc = "This pouch can contain six pistol and revolver ammo magazines."
 	storage_slots = 6
 	icon_state = "large_pistol_mag"
+	sprite_slots = 5
 
 /obj/item/storage/pouch/magazine/pistol/large/full
 	fill_type = /obj/item/ammo_magazine/pistol
@@ -330,6 +338,7 @@
 	name = "drum magazine pouch"
 	desc = "It can contain one drum magazine."
 	icon_state = "large_ammo_drum"
+	sprite_slots = 1
 	storage_slots = 1
 	can_hold = list(
 		/obj/item/ammo_magazine/standard_smartmachinegun,
@@ -339,7 +348,8 @@
 /obj/item/storage/pouch/explosive
 	name = "explosive pouch"
 	desc = "It can contain grenades, plastiques, mine boxes, and other explosives."
-	icon_state = "large_explosive"
+	icon_state = "explosive"
+	sprite_slots = 2
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
@@ -386,7 +396,8 @@
 /obj/item/storage/pouch/grenade
 	name = "grenade pouch"
 	desc = "It can contain grenades."
-	icon_state = "explosive"
+	icon_state = "grenade"
+	sprite_slots = 6
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/explosive/grenade,
@@ -431,6 +442,7 @@
 	name = "medkit pouch"
 	desc = "A standard use medkit pouch that can contain all kinds of medical supplies and equipment."
 	icon_state = "medkit"
+	sprite_slots = 1
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 7
@@ -477,6 +489,7 @@
 	name = "medical injector pouch"
 	desc = "A specialized medical pouch that can only hold auto-injectors."
 	icon_state = "firstaid_injector"
+	sprite_slots = 5
 	storage_slots = 8
 	max_storage_space = 14
 	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
@@ -552,6 +565,7 @@
 	name = "medical lolipop pouch"
 	desc = "A small medical pouch with three seperate pockets to sort your medical lollipops."
 	icon_state = "medlolly"
+	sprite_slots = 3
 	storage_slots = 3
 
 	can_hold = list(/obj/item/storage/box/combat_lolipop,)
@@ -566,6 +580,7 @@
 	name = "surgery tools pouch"
 	desc = "An eye catching white medical pouch capable of holding all your surgical tools."
 	icon_state = "surgery"
+	sprite_slots = 1
 	storage_slots = 12
 	max_storage_space = 24
 	can_hold = list(
@@ -612,8 +627,9 @@
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "utility"
+	sprite_slots = 4
 	draw_mode = 1
-	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
+	desc = "It can contain a motion detector, signaller, beacons, map tablets, radios, papers and other handy battlefield communication, navigation, and detection devices."
 	can_hold = list(
 		/obj/item/attachable/motiondetector,
 		/obj/item/radio,
@@ -623,6 +639,16 @@
 		/obj/item/whistle,
 		/obj/item/binoculars,
 		/obj/item/beacon/supply_beacon,
+		/obj/item/compass,
+		/obj/item/deployable_camera,
+		/obj/item/hud_tablet,
+		/obj/item/minimap_tablet,
+		/obj/item/supplytablet,
+		/obj/item/megaphone,
+		/obj/item/tool/hand_labeler,
+		/obj/item/toy/deck,
+		/obj/item/paper,
+		/obj/item/clipboard,
 	)
 
 /obj/item/storage/pouch/field_pouch/full/Initialize(mapload)
@@ -637,6 +663,7 @@
 	name = "electronics pouch"
 	desc = "It is designed to hold most electronics, power cells and circuitboards."
 	icon_state = "electronics"
+	sprite_slots = 1
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/circuitboard,
@@ -656,6 +683,7 @@
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "construction"
+	sprite_slots = 1
 	can_hold = list(
 		/obj/item/stack/barbed_wire,
 		/obj/item/stack/sheet,
@@ -698,6 +726,7 @@
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "tools"
+	sprite_slots = 1
 	can_hold = list(
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/wirecutters,
@@ -750,6 +779,7 @@
 	name = "shotgun shell pouch"
 	desc = "A pouch specialized for holding shotgun ammo."
 	icon_state = "shotshells"
+	sprite_slots = 4
 	storage_slots = 4
 	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)

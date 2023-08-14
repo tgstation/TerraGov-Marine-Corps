@@ -259,6 +259,10 @@
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor/mainship/sterile/corner,
 /area/orion_outpost/surface/building/medbay)
+"bF" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/underground/caveE)
 "bG" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
@@ -6011,6 +6015,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostsw)
+"EW" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/canteen)
 "Fa" = (
 /turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_central)
@@ -6338,6 +6346,10 @@
 /area/orion_outpost/surface/building/breakroom)
 "GT" = (
 /obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/outpostn)
+"GU" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostn)
 "GW" = (
@@ -8025,6 +8037,10 @@
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/building/tadpolepad)
+"Pm" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/underground/caveN/garbledradio)
 "Pn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -9662,6 +9678,10 @@
 	dir = 8
 	},
 /area/orion_outpost/ground/outpostsw)
+"XO" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/underground/caveS/garbledradio)
 "XP" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/mainship/mono,
@@ -18032,7 +18052,7 @@ LV
 pa
 LV
 Xy
-Xy
+GU
 Xy
 Xy
 dA
@@ -19278,7 +19298,7 @@ Fm
 pJ
 Nd
 ac
-dJ
+EW
 EI
 Fm
 XA
@@ -23980,7 +24000,7 @@ PS
 PS
 sl
 Aj
-cr
+Pm
 cr
 cr
 cr
@@ -25635,7 +25655,7 @@ DN
 GN
 sR
 GN
-GN
+XO
 GN
 GN
 GN
@@ -31161,7 +31181,7 @@ sx
 sx
 Fg
 Fg
-Fg
+bF
 lP
 lP
 lP

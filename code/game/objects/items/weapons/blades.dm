@@ -52,14 +52,14 @@
 	w_class = WEIGHT_CLASS_BULKY
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
-	Kelotane - produce a cone of flames<BR>
-	Tramadol - slow your target for 2 seconds<BR>
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
+	Kelotane - set your target and any adjacent mobs aflame<BR>
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
 	<BR>
 	<b>Tips:</b><BR>
 	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
-	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
 /obj/item/weapon/claymore/harvester/Initialize(mapload)
 	. = ..()
@@ -98,6 +98,10 @@
 	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/weapon/claymore/mercsword/machete/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
 	. = ..()
@@ -223,16 +227,15 @@
 	item_state = "vali_knife"
 	force = 25
 	throwforce = 15
-
 	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
-	Kelotane - produce a cone of flames<BR>
-	Tramadol - slow your target for 2 seconds<BR>
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
+	Kelotane - set your target and any adjacent mobs aflame<BR>
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
 	<BR>
 	<b>Tips:</b><BR>
 	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
-	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
 /obj/item/weapon/combat_knife/harvester/Initialize(mapload)
 	. = ..()

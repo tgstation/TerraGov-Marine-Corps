@@ -1003,7 +1003,6 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "aKK" = (
-/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /obj/structure/platform{
 	dir = 8
@@ -4321,6 +4320,13 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
+"cTo" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/gelida/indoors/b_block/hydro)
 "cTL" = (
 /obj/structure/inflatable/wall,
 /obj/effect/spawner/gibspawner/xeno,
@@ -9219,11 +9225,13 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "gku" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
-/turf/closed/mineral/smooth/snowrock,
-/area/gelida/indoors/lone_buildings/spaceport)
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/gelida/indoors/a_block/bridges/corpo_fitness)
 "gkC" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
@@ -11231,7 +11239,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/gelida/indoors/a_block/hallway/damage)
+/area/gelida/indoors/a_block/hallway)
 "hAP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -12450,10 +12458,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
-/turf/open/floor/prison/whitepurple/full{
-	dir = 4
-	},
+/turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/dorm_north)
 "irr" = (
 /turf/closed/shuttle/dropship2/enginethree{
@@ -13076,13 +13081,10 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/bridge)
 "iNZ" = (
-/obj/machinery/power/apc/drained,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
+	dir = 4
 	},
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/wood,
+/turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/executive)
 "iOj" = (
 /obj/effect/spawner/random/misc/structure/girder/highspawn,
@@ -18455,7 +18457,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
@@ -19269,6 +19270,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "nab" = (
@@ -20117,6 +20119,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
+"nEF" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/prison/plate,
+/area/gelida/indoors/a_block/bridges/dorms_fitness)
 "nEL" = (
 /obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/prison/sterilewhite/full,
@@ -20690,6 +20697,13 @@
 /obj/structure/table/mainship,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_2)
+"nXy" = (
+/obj/effect/spawner/random/misc/structure/curtain,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/gelida/indoors/a_block/executive)
 "nXE" = (
 /obj/structure/table/fancywoodentable,
 /obj/effect/spawner/random/misc/folder/nooffset{
@@ -22104,6 +22118,7 @@
 /area/gelida/powergen)
 "oTW" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
+/obj/machinery/power/apc/drained,
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/chunk)
 "oUd" = (
@@ -23022,6 +23037,10 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"pyu" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/east_caves)
 "pyF" = (
 /obj/effect/spawner/gibspawner/xeno,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -24777,6 +24796,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
 "qIJ" = (
@@ -26875,6 +26895,17 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
+"saB" = (
+/obj/item/clothing/mask/facehugger/dead{
+	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
+	name = "????";
+	stat = 2
+	},
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/whitepurple/full{
+	dir = 4
+	},
+/area/gelida/indoors/a_block/dorms)
 "saC" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -29305,6 +29336,10 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/black/full,
 /area/gelida/outdoors/colony_streets/central_streets)
+"tJg" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/sterilewhite/full,
+/area/gelida/indoors/a_block/medical)
 "tJs" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
@@ -38684,7 +38719,7 @@ ndb
 ndb
 ndb
 ndb
-gku
+nvd
 ndb
 ngP
 aIf
@@ -46803,7 +46838,7 @@ wdR
 wdR
 wdR
 fgJ
-jgc
+nEF
 wrb
 jgc
 fgJ
@@ -47260,7 +47295,7 @@ wUn
 odg
 oNd
 odg
-hqy
+saB
 gyo
 yfp
 bNr
@@ -52638,7 +52673,7 @@ lNq
 fkH
 lNq
 lNq
-oGN
+cTo
 pSM
 iuJ
 iuJ
@@ -53449,7 +53484,7 @@ eue
 kTM
 pmX
 oKw
-lWl
+gku
 fUc
 oKw
 smj
@@ -64116,7 +64151,7 @@ oZU
 xUH
 gSK
 cRb
-iri
+dmP
 oZU
 xUH
 gSK
@@ -64338,7 +64373,7 @@ ihl
 ihl
 ihl
 ihl
-nFA
+iri
 oMc
 ihl
 ihl
@@ -64560,7 +64595,7 @@ nGk
 nGk
 nGk
 wsa
-ajE
+iNZ
 kfv
 wsa
 nGk
@@ -64782,7 +64817,7 @@ wsa
 wsa
 wsa
 wsa
-aLX
+nXy
 hpl
 wsa
 wsa
@@ -65004,7 +65039,7 @@ wsa
 nNN
 wet
 wsa
-lzP
+tie
 uDM
 bRH
 ndU
@@ -65226,7 +65261,7 @@ yan
 bdD
 qID
 wsa
-iNZ
+eGU
 mvT
 uDM
 eea
@@ -69479,7 +69514,7 @@ pYZ
 fBW
 orh
 mhj
-mxg
+tJg
 vCT
 ojR
 ojR
@@ -72481,7 +72516,7 @@ xIt
 xIt
 xIt
 jqf
-jqf
+pyu
 uLt
 lnR
 jqf

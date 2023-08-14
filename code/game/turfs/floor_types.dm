@@ -344,39 +344,39 @@
 	icon_state = "thatch"
 	damaged_states = NONE
 
-/turf/open/floor/wood/alt_
+/turf/open/floor/wood/alt_one
 	icon_state = "wood_alt_1"
 	damaged_states = NONE
 
-/turf/open/floor/wood/alt_
+/turf/open/floor/wood/alt_two
 	icon_state = "wood_alt_2"
 	damaged_states = NONE
 
-/turf/open/floor/wood/alt_
+/turf/open/floor/wood/alt_three
 	icon_state = "wood_alt_3"
 	damaged_states = NONE
 
-/turf/open/floor/wood/alt_
+/turf/open/floor/wood/alt_four
 	icon_state = "wood_alt_4"
 	damaged_states = NONE
 
-/turf/open/floor/wood/alt_
+/turf/open/floor/wood/alt_five
 	icon_state = "wood_alt_5"
 	damaged_states = NONE
 
-/turf/open/floor/wood/alt_
+/turf/open/floor/wood/alt_six
 	icon_state = "wood_alt_6"
 	damaged_states = NONE
 
-/turf/open/floor/wood/alt_
+/turf/open/floor/wood/alt_seven
 	icon_state = "wood_alt_7"
 	damaged_states = NONE
 
-/turf/open/floor/wood/alt_
+/turf/open/floor/wood/alt_eight
 	icon_state = "wood_alt_8"
 	damaged_states = NONE
 
-/turf/open/floor/wood/alt_
+/turf/open/floor/wood/alt_nine
 	icon_state = "wood_alt_9"
 	damaged_states = NONE
 
@@ -775,6 +775,9 @@
 
 /turf/open/floor/tile/green/greentaupe
 	icon_state = "green"
+
+/turf/open/floor/tile/green/greentaupecorner
+	icon_state = "greencorner"
 
 /turf/open/floor/tile/green/whitegreen
 	icon_state = "whitegreen"

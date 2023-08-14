@@ -11,7 +11,7 @@ import { createLogger } from '../logging';
 import { Box, computeBoxClassName, computeBoxProps } from './Box';
 import { Icon } from './Icon';
 import { Tooltip } from './Tooltip';
-import { globalEvents } from '../events.js';
+import { globalEvents } from '../events';
 
 const logger = createLogger('Button');
 

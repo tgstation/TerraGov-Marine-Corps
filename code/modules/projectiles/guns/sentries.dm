@@ -31,10 +31,9 @@
 
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
 
-/obj/item/storage/box/sentry
+/obj/item/storage/box/crate/sentry
 	name = "\improper ST-571 sentry crate"
 	desc = "A large case containing all you need to set up an automated sentry."
-	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
 	max_w_class = WEIGHT_CLASS_HUGE
@@ -49,7 +48,7 @@
 		/obj/item/ammo_magazine/sentry,
 	)
 
-/obj/item/storage/box/sentry/Initialize(mapload)
+/obj/item/storage/box/crate/sentry/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)
@@ -194,11 +193,10 @@
 	default_ammo_type = /obj/item/ammo_magazine/sentry/fob_sentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/fob_sentry)
 
-/obj/item/storage/box/minisentry
+/obj/item/storage/box/crate/minisentry
 	name = "\improper ST-580 point defense sentry crate"
 	desc = "A large case containing all you need to set up an ST-580 point defense sentry."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "sentry_case"
+	icon_state = "sentry_mini_case"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 6
 	can_hold = list(
@@ -206,7 +204,7 @@
 		/obj/item/ammo_magazine/minisentry,
 	)
 
-/obj/item/storage/box/minisentry/Initialize(mapload, ...)
+/obj/item/storage/box/crate/minisentry/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/sentry/mini(src)
 	new /obj/item/ammo_magazine/minisentry(src)

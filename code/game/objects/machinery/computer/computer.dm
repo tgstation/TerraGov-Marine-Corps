@@ -35,7 +35,7 @@
 		. += span_warning("It is currently disabled, and can be fixed with a welder.")
 
 	if(machine_stat & BROKEN)
-		. += span_warning("It is broken and needs to be rebuilt.")
+		. += span_warning("It is broken.")
 
 /obj/machinery/computer/process()
 	if(machine_stat & (NOPOWER|BROKEN|DISABLED))
@@ -79,18 +79,13 @@
 		..()
 		return 1
 
-/obj/machinery/computer/update_icon()
-	..()
-	icon_state = initial(icon_state)
-
-	// Broken
+/obj/machinery/computer/update_icon_state()
 	if(machine_stat & (BROKEN|DISABLED))
-		icon_state += "b"
-
-	// Powered
+		icon_state = "[initial(icon_state)]b"
 	else if(machine_stat & NOPOWER)
+		icon_state = "[initial(icon_state)]0"
+	else
 		icon_state = initial(icon_state)
-		icon_state += "0"
 
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN
