@@ -341,7 +341,7 @@
 	fill_type = /obj/item/ammo_magazine/rifle/ap
 	fill_number = 3
 
-/obj/item/storage/pouch/magazine/drum
+/obj/item/storage/pouch/magazine/drum //Deprecated from old DS loadout, maybe consider reworking it before giving it to anyone else -Xander
 	name = "drum magazine pouch"
 	desc = "It can contain one drum magazine."
 	icon_state = "large_ammo_drum"
