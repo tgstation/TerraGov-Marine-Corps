@@ -68,13 +68,13 @@
 		// Blood regens using food, more food = more blood.
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			switch(nutrition)
-				if(450 to INFINITY)
+				if(NUTRITION_OVERFED to INFINITY)
 					adjust_nutrition(-10)
 					blood_volume += 1 // regenerate blood quickly.
-				if(250 to 450)
+				if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
 					adjust_nutrition(-5)
 					blood_volume += 0.5 // regenerate blood slowly.
-				if(0 to 250)
+				if(0 to NUTRITION_HUNGRY)
 					adjust_nutrition(-1)
 					blood_volume += 0.1 // Regenerate blood VERY slowly.
 
