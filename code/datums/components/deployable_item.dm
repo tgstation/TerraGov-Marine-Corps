@@ -66,7 +66,7 @@
 			return
 
 		if(LinkBlocked(get_turf(user), location))
-			location.balloon_alert(user, "No room to deploy")
+			user.balloon_alert(user, "No room to deploy")
 			return
 		if(user.do_actions)
 			user.balloon_alert(user, "You are already doing something!")
@@ -76,11 +76,13 @@
 		var/newdir = user.dir //Save direction before the doafter for ease of deploy
 		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
 			return
-		if(LinkBlocked(get_turf(user), location))
-			location.balloon_alert(user, "No room to deploy")
-			return
-		item_to_deploy.use(1)
-		//user.temporarilyRemoveItemFromInventory(item_to_deploy)
+
+		if(isitemstack(item_to_deploy))
+			var/obj/item/stack/stack_to_deploy = item_to_deploy
+			stack_to_deploy.use(1)
+			item_to_deploy = new type(user, src)
+
+		user.temporarilyRemoveItemFromInventory(item_to_deploy)
 
 		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_AUTOEJECT, COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
 

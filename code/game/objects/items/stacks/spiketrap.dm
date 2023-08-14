@@ -26,6 +26,10 @@
 	desc = "An assortment of piercing spikes."
 	icon = 'icons/Marine/traps.dmi'
 	icon_state = "spiketrap"
+	resistance_flags = XENO_DAMAGEABLE
+	density = TRUE
+	allow_pass_flags = PASS_MOB
+	max_integrity = 200
 	///How much damage the spikes do when you step on them
 	var/spike_damage = 10
 
@@ -35,6 +39,15 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+
+///Xenos get slashed when they attack this
+/obj/structure/spiketrap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
+	X.apply_damage(spike_damage*1.5, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
+	update_icon()
+	return ..()
 
 ///When a mob passes over the turf where the trap is deployed
 /obj/structure/spiketrap/proc/on_cross(datum/source, atom/movable/victim, oldloc, oldlocs)
@@ -59,54 +72,3 @@
 			target.apply_damage(spike_damage, BRUTE, limb_to_hit, updating_health = TRUE)
 
 	playsound(src, 'sound/weapons/bladeslice.ogg', 50)
-
-/*
-	if(!armed || triggered)
-		return FALSE
-	if((L.status_flags & INCORPOREAL))
-		return FALSE
-	var/obj/item/card/id/id = L.get_idcard()
-	if(id?.iff_signal & iff_signal)
-		return FALSE
-
-	L.visible_message(span_danger("[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it."), \
-	span_danger("[icon2html(src, viewers(L))] \The [src] clicks as you move in front of it."), \
-	span_danger("You hear a click."))
-
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
-	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
-	return TRUE
-*/
-
-
-
-/*
-/obj/item/weapon/shield/riot/marine/deployable
-	name = "\improper TL-182 deployable shield"
-	desc = "A compact shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade. Alt click to tighten the strap."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "folding_shield"
-	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = WEIGHT_CLASS_NORMAL
-	max_integrity = 300
-	integrity_failure = 50
-	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 50, FIRE = 0, ACID = 30)
-	slowdown = 0.3
-	flags_item = IS_DEPLOYABLE
-	///The item this deploys into
-	var/deployable_item = /obj/structure/barricade/metal/deployable
-	///Time to deploy
-	var/deploy_time = 1 SECONDS
-	///Time to undeploy
-	var/undeploy_time = 1 SECONDS
-	///Whether it is wired
-	var/is_wired = FALSE
-
-/obj/item/weapon/shield/riot/marine/deployable/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
-
-/obj/item/weapon/shield/riot/marine/deployable/set_shield()
-	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
-*/
-
