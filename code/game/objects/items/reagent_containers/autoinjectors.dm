@@ -330,8 +330,8 @@
 	name = "mindbreaker toxin autoinjector"
 	desc = "An auto-injector loaded with the hardest, deadliest drug around. May cure PTSD. May cause it."
 	icon_state = "Toxic"
-	amount_per_transfer_from_this = 50
-	volume = 50
+	amount_per_transfer_from_this = 30
+	volume = 30
 
 	list_reagents = list(/datum/reagent/toxin/mindbreaker = 50)
 
