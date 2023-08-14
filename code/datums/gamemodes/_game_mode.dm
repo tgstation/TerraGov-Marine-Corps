@@ -60,6 +60,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
 	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
+	///if fun tads are enabled by default
+	var/enable_fun_tads = FALSE
 
 
 /datum/game_mode/New()
@@ -664,7 +666,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(length(SSjob.active_squads[FACTION_TERRAGOV]))
 		scale_squad_jobs()
 	for(var/job_type in job_points_needed_by_job_type)
-		if(!istype(job_type, /datum/job))
+		if(!(job_type in subtypesof(/datum/job)))
 			stack_trace("Invalid job type in job_points_needed_by_job_type. Current mode : [name], Invalid type: [job_type]")
 			continue
 		var/datum/job/scaled_job = SSjob.GetJobType(job_type)

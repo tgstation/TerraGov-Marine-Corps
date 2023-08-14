@@ -341,7 +341,7 @@
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
-	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt)
+	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 0, 15 - inaccuracy_amt)
 
 
 
@@ -374,7 +374,7 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
+		explosion(U, 1, 4, 6, 0, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
 		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss

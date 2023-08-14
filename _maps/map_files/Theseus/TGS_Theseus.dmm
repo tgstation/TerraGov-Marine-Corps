@@ -4895,8 +4895,6 @@
 "bxw" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/smartfridge/chemistry,
-/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "bxH" = (
@@ -7483,11 +7481,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cbA" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/recharger,
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/smartfridge/chemistry,
+/turf/open/floor/plating,
 /area/mainship/medical/lower_medical)
 "cbE" = (
 /turf/open/floor/mainship/sterile/side{
@@ -8205,6 +8201,15 @@
 	dir = 8
 	},
 /area/mainship/hallways/bow_hallway)
+"cNM" = (
+/obj/machinery/line_nexter{
+	dir = 8
+	},
+/obj/structure/barricade/metal,
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/mainship/medical/lower_medical)
 "cNZ" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -8840,6 +8845,14 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
+"dPt" = (
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/mainship/medical/lower_medical)
 "dPz" = (
 /obj/machinery/crema_switch{
 	pixel_x = -24
@@ -10784,7 +10797,9 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "hiF" = (
-/obj/structure/bed/stool,
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -11900,11 +11915,8 @@
 /area/mainship/hallways/aft_hallway)
 "jfZ" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window{
-	dir = 8
-	},
-/obj/machinery/door/window/secure,
 /obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/window/secure/medical,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "jgp" = (
@@ -12792,6 +12804,16 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway)
+"kMt" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/table/mainship/nometal,
+/obj/machinery/recharger,
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/mainship/medical/lower_medical)
 "kMC" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
@@ -15432,6 +15454,9 @@
 "pdX" = (
 /obj/machinery/light/mainship{
 	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -52593,16 +52618,16 @@ buo
 yeW
 mBx
 pdX
+dPt
+cNM
 vuV
-vuV
-cbA
 xpi
 eMf
 xpi
 oAM
 whN
 gEJ
-pdX
+kMt
 uEy
 tZb
 uQx
@@ -52852,7 +52877,7 @@ ost
 nSl
 bxw
 jfZ
-mUE
+cbA
 nSl
 nSl
 mUE

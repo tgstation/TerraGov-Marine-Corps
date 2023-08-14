@@ -252,3 +252,7 @@
 /obj/machinery/door/window/secure/engineering/right
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
+
+// Med Doors
+/obj/machinery/door/window/secure/medical
+	req_access = list(ACCESS_MARINE_CHEMISTRY)

@@ -29,8 +29,8 @@
 	)
 	job_points_needed_by_job_type = list(
 		/datum/job/terragov/squad/smartgunner = 20,
-		/datum/job/terragov/squad/corpsman = 10,
-		/datum/job/terragov/squad/engineer = 10,
+		/datum/job/terragov/squad/corpsman = 5,
+		/datum/job/terragov/squad/engineer = 5,
 		/datum/job/xenomorph = NUCLEAR_WAR_LARVA_POINTS_NEEDED,
 	)
 

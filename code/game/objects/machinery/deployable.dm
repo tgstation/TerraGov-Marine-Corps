@@ -91,3 +91,5 @@
 			take_damage(200, damage_flag = BOMB, effects = TRUE)
 		if(EXPLODE_LIGHT)
 			take_damage(100, damage_flag = BOMB, effects = TRUE)
+		if(EXPLODE_WEAK)
+			take_damage(50, damage_flag = BOMB, effects = TRUE)
