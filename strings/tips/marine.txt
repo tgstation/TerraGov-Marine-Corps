@@ -35,6 +35,7 @@ A fit marine can carry many weapons: in their armor, belt, even hanging from the
 Requisitions has many supplies to enhance the combat power of marine units, such as attachments, ammunition, and other toys; ask their crew what's in store and you may be pleasantly surprised. DISCLAIMER: Extra gears' availability is dependent on supply.
 Cargo points are valuable: some crates, like SL armour, standard weaponry or attachments, may be a waste of points which could be better spent on other stuff.
 As a marine, you can climb over waist-high obstacles like sandbags, window frames or tables by "SpecialClicking" (Default: CTRL) on them or drag-clicking yourself onto them.
+You can jump over waist-high obstacles like platforms, tables, and windowframes, for a small stamina cost. Set your key to jump under the Game Preferences menu!
 The Terra Experimental laser rifles have a mode selector that can be switched using the Unique Action command (Default: Spacebar). Some modes are better than other modes in specific circumstances.
 You can remove armor pieces (leg pieces, arm pieces and chest pieces) and armor modules (Valkyrie, Baldur, etc.) from the XM-02 Combat Exoskeleton by Alt+clicking the exoskeleton.
 You can customize armor pieces and the exoskeleton helmet using any kind of facepaint for a personal touch. Paint the armor pieces before you put them in the exoskeleton!
@@ -94,7 +95,7 @@ As the PO, pay attention to the radio! Who knows if someone needs immediate surg
 As the Captain, you have a unique Mateba revolver that takes a chunk of a target's healthpool down. However, you are important for completing the mission, so do not participate in active combat using the Mateba!
 Even if a patient dies a second after being successfully revived by a defibrillator, this resets the time it takes for them to become permanently brain dead.
 Don't forget that xenomorphs spawn infinitely during the Crash gamemode. Don't waste too much time hunting xenomorphs down!
-The AI and synthetics can talk together on their own channel using the .n prefix.
+The AI and synthetics can talk together on their own channel using the :n prefix.
 There are water canteens in the vendors. Stay hydrated.
 If a corpsman is tending to you, try and hold still.
 Moving around with broken bones is dangerous. It can cause organ damage, which requires immediate medical attention.
@@ -118,7 +119,7 @@ You can fit tiny items into your helmet.
 The time it takes for you to wield your gun can be the difference between life and death.
 Switching to your sidearm is faster than reloading.
 You can preform a tactical reload by dragging a fresh magazine from your belt towards your gun.
-With your sidearm in hand, click a pistol pouch to instantly reload.
+With your sidearm in hand, right-click a pistol pouch to instantly reload.
 You can turn the safety of your gun on.
 Depending on the tactical situations, smoke grenades can do more harm than good.
 A miner without a turret is a sitting duck.
