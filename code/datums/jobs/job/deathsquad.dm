@@ -37,6 +37,7 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/tx8
+	suit_store = /obj/item/weapon/gun/flamer/big_flamer/marinestandard/deathsquad
 	//suit_store = /obj/item/weapon/gun/energy/lasgun/pulse
 	r_store = /obj/item/storage/pouch/medkit
 	l_store = /obj/item/storage/pouch/grenade
@@ -75,6 +76,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/energy/sword/blue, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shield/energy, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/pulse, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
 
 //Deathsquad Leader
 /datum/job/deathsquad/leader
@@ -121,24 +127,30 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_R_POUCH)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_L_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/chunk, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/energy/sword/blue, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shield/energy, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/pulse, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_BACKPACK)
 
 //Deathsquad Gunner
 /datum/job/deathsquad/gunner
@@ -199,7 +211,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/chunk, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/energy/sword/blue, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shield/energy, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/pulse, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
