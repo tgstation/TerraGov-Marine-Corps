@@ -4,7 +4,6 @@
 	skills_type = /datum/skills/sl/deathsquad
 	faction = FACTION_DEATHSQUAD
 
-
 //Deathsquad Standard
 /datum/job/deathsquad/standard
 	title = "Deathsquad Standard"
@@ -12,20 +11,9 @@
 	skills_type = /datum/skills/deathsquad
 	outfit = /datum/outfit/job/deathsquad/standard
 
-/*
-/datum/outfit/job/deathsquad/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/impact, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
-*/
 /datum/outfit/job/deathsquad/standard
 	name = "Deathsquad Standard"
 	jobtype = /datum/job/deathsquad/standard
-
 	id = /obj/item/card/id/silver
 	belt = /obj/item/weapon/gun/energy/lasgun/pulse
 	ears = /obj/item/radio/headset/distress/commando
@@ -88,11 +76,9 @@
 	skills_type = /datum/skills/sl/deathsquad
 	outfit = /datum/outfit/job/deathsquad/leader
 
-
 /datum/outfit/job/deathsquad/leader
 	name = "Deathsquad Leader"
 	jobtype = /datum/job/deathsquad/leader
-
 	id = /obj/item/card/id/silver
 	belt = /obj/item/weapon/gun/energy/lasgun/pulse
 	ears = /obj/item/radio/headset/distress/commando
