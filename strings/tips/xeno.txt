@@ -12,8 +12,8 @@ The queen, shrike, and hivelord have access to Queen's Blessing, a menu for the 
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
 As a xeno, check hive status often.
 As a xeno, you've got pheromones that can help the hive.
-As a runner, you can pounce past window frames and barricades without barbed wires.
-As a runner, pouncing into a barricade with barbed wire stuns you.
+As a runner or hunter, you can pounce past window frames and barricades without barbed wires.
+As a runner or hunter, pouncing into a barricade with barbed wire stuns you.
 As a xeno, aging from young to mature gives you the most benefit, further aging has diminishing returns.
 As a xeno, remember that neurotoxin injected by defilers, sentinels, and the Queen can overdose, killing a marine quickly.
 As a xeno, you can crawl through holes in walls made by acid by SpecialClicking (Default: CTRL) on them or click-dragging yourself on them. If you're too big to pass through, you'll damage the wall instead.
