@@ -5,19 +5,20 @@ As a xeno, do not fight as a young xenomorph.
 Most alien deaths are caused by over-aggression. Rein yourself in, or you may find yourself dying round after round.
 As a xeno, if you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
 It is EXTREMELY IMPORTANT that you as a xenomorph have your abilities set up on keybinds. Ask for help if you don't know how in XOOC or mentorhelp.
-In the xeno tab, you can use the "crawl through vent" verb to quickly find and use vents in the floor without having to alt-click them. You can also keybind it!
+In the xeno tab, you can use the "crawl through vent" verb to quickly find and use vents in the floor without having to Alt-click them. You can also keybind it!
 As a xeno, it is faster to re-fill an empty acid well than rolling on the ground to put out a fire.
-As a xeno, acid wells extinguish fire and explode into an acid cloud when destroyed. The queen, the shrike, praetorians, boilers, and hivelords can make acid wells.
-The queen, shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
+As a xeno, acid wells extinguish fire and explode into an acid cloud when destroyed. The Queen, the Shrike, praetorians, boilers, and hivelords can make acid wells.
+The Queen, the King, the Shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
 As a xeno, check hive status often.
-As a xeno, you've got pheromones that can help the hive.
+Some xenos have pheromones that can help the hive. Frenzy increases speed, Warding increases armor and armor healing, and Recovery increases plasma and health healing.
+Some xenos can recycle the bodies of their fallen hive members. Use this to your advantage to prevent marines from getting points for their Requisitions orders!
 As a xeno, you can pounce past window frames and barricades without barbed wires.
-As a xeno, pouncing into a barricade with barbed wire stuns you.
+As a xeno, pouncing into a barricade with barbed wire causes you to bounce off the barricade.
 As a xeno, aging from young to mature gives you the most benefit, further aging has diminishing returns.
-As a xeno, remember that neurotoxin injected by defilers, sentinels, and the Queen can overdose, killing a marine quickly.
-As a xeno, you can crawl through holes in walls made by acid by SpecialClicking (Default: CTRL) on them or click-dragging yourself on them. If you're too big to pass through, you'll damage the wall instead.
-As a xeno, you can climb over window frames by SpecialClicking (Default: CTRL) on them or click-dragging yourself on them.
+As a xeno, remember that neurotoxin injected can overdose, killing a marine quickly.
+As a xeno, you can crawl through holes in walls made by acid by SpecialClicking (Default: CTRL+click) on them or click-dragging yourself on them. If you're too big to pass through, you'll damage the wall instead.
+As a xeno, you can climb over window frames by jumping (Default: Spacebar), SpecialClicking (Default: CTRL+click) on them, or click-dragging yourself on them.
 As a xeno, do not camp the landing zones prior to the marines building their defenses.
 As a xeno, do not block other xenos' paths when they are retreating. Circumvent this by being on Help Intent or by simply moving away.
 As a xeno, green weeds help you heal faster, blue weeds slow down marines, and weeds with no colors are normal weeds. Rest on the green weeds to heal faster!
@@ -36,8 +37,8 @@ As a spitter, boiler, praetorian, or the Queen, take advantage of unguarded barr
 As a boiler, the King or the Queen, you have the most powerful corrosive acid for melting things.
 As the Shrike, take advantage of your psychic abilities. Use Psychic Fling and Unrelenting Force to displace a marine or even push certain and hazardous objects towards your enemies and vice versa.
 As the Queen, your screech does not only affect the mobs on view, but affects through walls or gases. However, the effect of the screech will be reduced.
-As a drone, hivelord, Hivemind, shrike, and the Queen, a large maze is almost always a good investment.
-As a drone, hivelord, Hivemind, shrike, and the Queen, be clever with your walling. Try to allow for as much fluid movement as possible.
+As a drone, hivelord, Hivemind, Shrike, and the Queen, a large maze is almost always a good investment.
+As a drone, hivelord, Hivemind, Shrike, and the Queen, be clever with your walling. Try to allow for as much fluid movement as possible.
 Sticky resin can act as the path for your maze to be built around.
 The Hivemind is very skilled at flanking marines. Wait for them to push, and wall them off from behind!
 Praying to the Queen-Mother will usually net a response.
@@ -45,14 +46,15 @@ Your queen is your lifeline. Try to listen to her.
 As a hunter, the movement of your Mirage is controlled by your intent.
 Defenders have a very small window to sweep grenades back at marines with their tail.
 Aiming for the head is a good long-term investment, causing brain damage on marines.
+Aiming for the chest can easily damage someone's liver, lungs, or even heart.
 Arms and legs are particularly vulnerable to damage.
 As a xeno, to be robust is to know when to disengage.
 As a xeno, in a duel, observe your enemy. They are likely predictable.
 The Queen-Mother has put a lot of faith into your hive. It would be a shame to let her down.
 As a xeno, attack between the delay of a shotgun being fired.
-As a xeno, listen to the sound of your enemies' magazine! If it sounds hollow, it will soon be empty.
+As a xeno, listen to the sound of your enemy's magazine! If it sounds hollow, it will soon be empty.
 As a xeno, strike hard and fast.
-As a xeno, you are not disposable. However, sacrificing your life to save the queen is widely respected.
+As a xeno, you are not disposable. However, sacrificing your life to save the Queen is widely respected.
 A fortified defender is one of the best ways to stall a push.
 Skilled defilers can easily kill any marine in a span of seconds.
 As a xeno, always have an escape plan.
