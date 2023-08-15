@@ -131,7 +131,7 @@
 	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it."
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "etool_c"
-	item_state = "etool"
+	item_state = "etool_c"
 	force = 2
 	throwforce = 2
 	hitsound = "sound/weapons/shovel.ogg"
