@@ -309,7 +309,7 @@
 /obj/docking_port/mobile/marine_dropship/on_prearrival()
 	. = ..()
 	if(hijack_state == HIJACK_STATE_CRASHING)
-		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT.", "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
 
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
@@ -1363,7 +1363,7 @@
 	var/list/destinations = list()
 	for(var/destination in port_assoc)
 		destinations += destination
-	var/input = tgui_input_list(user ,"Choose a port to teleport to:" ,"Ghost Shuttle teleport" ,destinations ,null, 0)
+	var/input = tgui_input_list(user, "Choose a port to teleport to:", "Ghost Shuttle teleport", destinations, null, 0)
 	if(!input)
 		return
 	var/obj/docking_port/mobile/target_port = SSshuttle.getDock(port_assoc[input])

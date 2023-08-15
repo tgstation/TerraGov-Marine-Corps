@@ -229,7 +229,7 @@
 /obj/item/roller/attack_self(mob/user)
 	deploy_roller(user, user.loc)
 
-/obj/item/roller/afterattack(atom/target, mob/user , proximity)
+/obj/item/roller/afterattack(atom/target, mob/user, proximity)
 	if(!proximity || !isturf(target) || target.density)
 		return
 	var/turf/target_turf = target
@@ -675,7 +675,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		destinations = list()
 		for(var/destination in medevac_assoc)
 			destinations += destination
-		var/input = tgui_input_list(user ,"Choose a medevac to teleport to:" ,"Ghost Medevac teleport" ,destinations ,null, 0)
+		var/input = tgui_input_list(user, "Choose a medevac to teleport to:", "Ghost Medevac teleport", destinations, null, 0)
 		if(!input)
 			return
 		target = medevac_assoc[input]
@@ -716,7 +716,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 /// Adds a medevac roller or stretcher to the medevac beacon. Returns TRUE if the beacon is in the linked_beds* list and false if it is not in there.
 /obj/item/medevac_beacon/proc/add_stretcher(obj/target_bed, mob/user, silent = FALSE)
 	var/obj/item/roller/medevac/rollerbed = target_bed
-	if(rollerbed && istype(rollerbed, /obj/item/roller/medevac))
+	if(istype(rollerbed, /obj/item/roller/medevac))
 		if(rollerbed in linked_beds)
 			if(!silent)
 				if(user)
@@ -734,7 +734,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		return TRUE
 
 	var/obj/structure/bed/medevac_stretcher/stretcherbed = target_bed
-	if(stretcherbed && istype(stretcherbed, /obj/structure/bed/medevac_stretcher))
+	if(istype(stretcherbed, /obj/structure/bed/medevac_stretcher))
 		if(stretcherbed in linked_beds_deployed)
 			if(!silent)
 				if(user)
