@@ -119,6 +119,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
 		/obj/item/healthanalyzer/gloves = list(CAT_MEDSUP, "Health scanner gloves", 2, "black"),
 		/obj/item/defibrillator/gloves = list(CAT_MEDSUP, "Advanced medical gloves", 5, "black"),
+		/obj/effect/vendor_bundle/stretcher = list(CAT_ESS, "Medivac Stretcher", 50, "black"),
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
