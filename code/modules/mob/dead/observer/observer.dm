@@ -938,3 +938,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			return
 
 	return ..()
+
+/mob/dead/observer/point_to(atom/pointed_atom)
+	if(!..())
+		return FALSE
+	visible_message(span_deadsay("[span_name("[src]")] points at [pointed_atom]."))
