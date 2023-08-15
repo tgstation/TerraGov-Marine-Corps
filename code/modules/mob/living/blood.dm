@@ -81,12 +81,13 @@
 						adjust_nutrition(-1)
 						blood_volume += 0.1 // Regenerate blood VERY slowly.
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_OKAY)
+				switch(nutrition)
 					if(NUTRITION_OVERFED to INFINITY) //regens blood from death treshold to around 50% quickly using nutrition and tox
-						adjust_nutrition(-20)
+						adjust_nutrition(-12)
 						adjustToxLoss(1)
 						blood_volume += 5 // regenerate blood very quickly but quickly drains your nutrition and small amounts of tox to keep you alive.
 					if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
-						adjust_nutrition(-10)
+						adjust_nutrition(-8)
 						adjustToxLoss(3)
 						blood_volume += 4 // regenerate blood quickly in exchange for toxin and nutrition.
 					if(0 to NUTRITION_HUNGRY)
