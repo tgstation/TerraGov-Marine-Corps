@@ -500,7 +500,8 @@
 	ability_name = "silence"
 	plasma_cost = 50
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,)
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
+	)
 	cooldown_timer = HUNTER_SILENCE_COOLDOWN
 
 /datum/action/xeno_action/activable/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
