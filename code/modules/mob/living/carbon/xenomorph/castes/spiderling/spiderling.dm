@@ -45,10 +45,10 @@
 	return ..()
 
 //If we're covering our widow, any clicks should be transferred to them
-/mob/living/carbon/xenomorph/spiderling/Click(location, control, params)
+/mob/living/carbon/xenomorph/spiderling/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(!get_dist(src, spidermother))
-		if(isxeno(usr))
-			spidermother.Click(location, control, params)
+		if(isxeno(x))
+			spidermother.attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 			return
 	return ..()
 
@@ -160,7 +160,7 @@
 /// If the spiderling's mother goes into crit, the spiderlings will stop what they are doing and attempt to shield her
 /datum/ai_behavior/spiderling/proc/attempt_guard()
 	SIGNAL_HANDLER
-	if(guarding_status == SPIDERLING_NOT_GUARDING) //Nothing to cleanup
+	if(guarding_status && SPIDERLING_NOT_GUARDING) //Nothing to cleanup
 		INVOKE_ASYNC(src, PROC_REF(guard_owner))
 		return
 
@@ -174,7 +174,7 @@
 	X.update_icons()
 
 /datum/ai_behavior/spiderling/ai_do_move()
-	if(guarding_status == SPIDERLING_ATTEMPTING_GUARD)
+	if(guarding_status && SPIDERLING_ATTEMPTING_GUARD)
 		if(get_dist(mob_parent, atom_to_walk_to) <= 1)
 			var/mob/living/carbon/xenomorph/spiderling/X = mob_parent
 			if(prob(50))
