@@ -557,7 +557,7 @@
 		victim_count++
 
 	if(!victim_count)
-		to_chat(X, "<span class='xenodanger'>We were unable to violate the minds of any victims.")
+		to_chat(X, span_xenodanger("We were unable to violate the minds of any victims."))
 		add_cooldown(HUNTER_SILENCE_WHIFF_COOLDOWN) //We cooldown to prevent spam, but only for a short duration
 		return fail_activate()
 
