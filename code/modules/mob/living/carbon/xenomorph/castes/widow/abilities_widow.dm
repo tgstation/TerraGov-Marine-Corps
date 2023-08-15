@@ -129,7 +129,7 @@
 /datum/action/xeno_action/create_spiderling
 	name = "Birth Spiderling"
 	ability_name = "birth_spiderling"
-	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, removes the cooldown."
+	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 	action_icon_state = "spawn_spiderling"
 	plasma_cost = 100
 	cooldown_timer = 15 SECONDS
@@ -343,7 +343,7 @@
 /datum/action/xeno_action/activable/cannibalise
 	name = "Cannibalise Spiderling"
 	ability_name = "Cannibalise Spiderling"
-	desc = "Consume one of your children, storing their biomass for future use. Birth Spiderling automatically uses this biomass, removing its cooldown. Up to three charges of Cannibalise may be stored at once."
+	desc = "Consume one of your children, storing their biomass for future use. If any charges of Cannibalise are stored, alt-use of Birth Spiderling will create one spiderling in exchange for one charge of Cannibalise. Up to three charges of Cannibalise may be stored at once."
 	action_icon_state = "cannibalise_spiderling"
 	plasma_cost = 150
 	cooldown_timer = 2 SECONDS
@@ -351,7 +351,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING,
 	)
 
-/datum/action/xeno_action/activable/cannibalise/can_use_ability(atom/A)
+/datum/action/xeno_action/activable/cannibalise/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
