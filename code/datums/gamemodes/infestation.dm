@@ -53,6 +53,7 @@
 
 	if(ai_operator)
 		var/mob/living/silicon/ai/bioscanning_ai = usr
+		bioscanning_ai.last_ai_bioscan = world.time
 		#ifndef TESTING
 
 		if((bioscanning_ai.last_ai_bioscan + COOLDOWN_AI_BIOSCAN) > world.time)
@@ -63,7 +64,6 @@
 			return
 
 		#endif
-		bioscanning_ai.last_ai_bioscan = world.time
 
 	else
 		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
