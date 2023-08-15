@@ -169,6 +169,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///If the game is in fullscreen mode
 	var/fullscreen_mode = FALSE
 
+	///Whether or not the MC tab of the Stat Panel refreshes fast. This is expensive so make sure you need it.
+	var/fast_mc_refresh = FALSE
+	///When enabled, will split the 'Admin' panel into several tabs.
+	var/split_admin_tabs = TRUE
+
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"
 	var/atom/movable/screen/map_view/screen_main

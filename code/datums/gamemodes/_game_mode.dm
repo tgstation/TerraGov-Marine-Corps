@@ -91,6 +91,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 /datum/game_mode/proc/pre_setup()
 	setup_blockers()
 	GLOB.balance.Initialize()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_GET_STATUS_TAB_ITEMS, PROC_REF(get_status_tab_items))
 
 	GLOB.landmarks_round_start = shuffle(GLOB.landmarks_round_start)
 	var/obj/effect/landmark/L
@@ -167,6 +168,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 			continue
 
 		qdel(player)
+		living.client.init_verbs()
 		living.notransform = TRUE
 		livings += living
 
@@ -272,7 +274,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
 	SIGNAL_HANDLER
-	source.verbs |= /mob/proc/eord_respawn
+	add_verb(source, /mob/proc/eord_respawn)
 
 /datum/game_mode/proc/end_of_round_deathmatch()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, PROC_REF(grant_eord_respawn)) // New mobs can now respawn into EORD
@@ -286,7 +288,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
-		M.verbs |= /mob/proc/eord_respawn
+		add_verb(M, /mob/proc/eord_respawn)
 		if(isnewplayer(M))
 			continue
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
@@ -577,6 +579,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	player.mind.transfer_to(player.new_character)
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
+	player.new_character.client?.init_verbs()
 	var/area/A = get_area(player.new_character)
 	deadchat_broadcast(span_game(" has woken at [span_name("[A?.name]")]."), span_game("[span_name("[player.new_character.real_name]")] ([job.title])"), follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
 	qdel(player)
@@ -891,3 +894,31 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		new nuke_disk_generator(get_turf(spawn_loc))
 		GLOB.nuke_disk_spawn_locs -= spawn_loc
 		qdel(spawn_loc)
+
+///Add gamemode related items to statpanel
+/datum/game_mode/proc/get_status_tab_items(datum/dcs, mob/source, list/items)
+	var/patrol_end_countdown = game_end_countdown()
+	if(patrol_end_countdown)
+		items += "Round End timer: [patrol_end_countdown]"
+	var/patrol_wave_countdown = wave_countdown()
+	if(patrol_wave_countdown)
+		items += "Respawn wave timer: [patrol_wave_countdown]"
+
+	if(isobserver(source))
+		var/mob/dead/observer/observer_source = source
+		var/rulerless_countdown = get_hivemind_collapse_countdown()
+		if(rulerless_countdown)
+			items += "Orphan hivemind collapse timer: [rulerless_countdown]"
+		if(flags_round_type & MODE_INFESTATION)
+			if(observer_source.larva_position)
+				items += "Position in larva candidate queue: [observer_source.larva_position]"
+			var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+			var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+			if(stored_larva)
+				items += "Burrowed larva: [stored_larva]"
+	else if(isxeno(source))
+		var/mob/living/carbon/xenomorph/xeno_source = source
+		if(xeno_source.hivenumber == XENO_HIVE_NORMAL)
+			var/rulerless_countdown = get_hivemind_collapse_countdown()
+			if(rulerless_countdown)
+				items += "Orphan hivemind collapse timer: [rulerless_countdown]"

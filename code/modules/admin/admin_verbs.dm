@@ -1299,7 +1299,7 @@
 
 /client/proc/get_togglebuildmode()
 	set name = "Toggle Build Mode"
-	set category = "Fun"
+	set category = "Admin.Fun"
 	if(!check_rights(R_SPAWN))
 		return
 	togglebuildmode(mob)
@@ -1356,13 +1356,14 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 
 	tomob.ckey = frommob.ckey
+	tomob.client?.init_verbs()
 	qdel(frommob)
 
 	return TRUE
 
 /client/proc/mass_replace()
 	set name = "Mass replace atom"
-	set category = "Fun"
+	set category = "Admin.Fun"
 	if(!check_rights(R_SPAWN))
 		return
 	var/to_replace = pick_closest_path(input("Pick a movable atom path to be replaced", "Enter path as text") as text)
