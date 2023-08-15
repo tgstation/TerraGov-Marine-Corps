@@ -21,8 +21,10 @@
 	ceiling = CEILING_UNDERGROUND
 
 /area/slumbridge/mining
-	name = "\improper Asteroid Mining Operation"
+	name = "\improper Asteroids"
 	icon_state = "mining"
+	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
 
 /area/slumbridge/mining/dropship
 	name = "\improper Unknown Dropship"
@@ -32,13 +34,13 @@
 
 /area/slumbridge/sombase
 	name = "SOM Base"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_UNDERGROUND
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/slumbridge/sombase/east
 	name = "\improper SOM Base Starboard"
-	ceiling = CEILING_UNDERGROUND
+	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "syndie-ship"
 
 /area/slumbridge/sombase/west
@@ -55,6 +57,11 @@
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 	always_unpowered = TRUE
+
+/area/slumbridge/outside1/bridges
+	icon_state = "away"
+	outside = FALSE
+	ceiling = CEILING_UNDERGROUND
 
 /area/slumbridge/houses
 	name = "Grasslands Housing"
@@ -79,8 +86,11 @@
 	icon_state = "Sleep"
 
 /area/slumbridge/houses/surgery
-	name = "Corner Medical"
+	name = "Dorms Medical"
 	icon_state = "medbay3"
+
+/area/slumbridge/houses/surgery/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/slumbridge/houses/car
 	name = "Heavy Equipment Depo"
@@ -94,10 +104,11 @@
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/slumbridge/zeta/north
-	ceiling = CEILING_UNDERGROUND
+	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "toxlab"
 
 /area/slumbridge/zeta/south
+	ceiling = CEILING_UNDERGROUND
 	name = "Research Lab Foyer"
 	icon_state = "xeno_lab"
 
@@ -154,6 +165,7 @@
 	icon_state = "mining_production"
 	ceiling = CEILING_UNDERGROUND
 	always_unpowered = TRUE
+	outside = FALSE
 
 /area/slumbridge/prison
 	name = "\improper High Security Prison"
@@ -286,6 +298,9 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_CAVES
 	always_unpowered = TRUE
+
+/area/slumbridge/southeastcaves/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/slumbridge/outside4
 	name = "\improper Southeast Jungle"
