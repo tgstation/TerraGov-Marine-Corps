@@ -12,6 +12,7 @@ The Queen, the King, the Shrike, and hivelord have access to Queen's Blessing, a
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
 As a xeno, check hive status often.
 Some xenos have pheromones that can help the hive. Frenzy increases speed, Warding increases armor and armor healing, and Recovery increases plasma and health healing.
+The King has the strongest pheromones, followed by the Queen, praetorians, Hivemind, the Shrike and hivelords, defilers, and carriers. Drones have the weakest pheromones.
 Some xenos can recycle the bodies of their fallen hive members. Use this to your advantage to prevent marines from getting points for their Requisitions orders!
 As a xeno, you can pounce past window frames and barricades without barbed wires.
 As a xeno, pouncing into a barricade with barbed wire causes you to bounce off the barricade.
@@ -27,7 +28,7 @@ As a larva, you can slide under unbolted and unwelded doors by clicking on the d
 As a larva, stay on weeds while growing. You will grow faster as a result.
 As a runner, warlock, or larva, you can pass over window frames without climbing onto them beforehand.
 As a drone or sentinel, your corrosive acid is very weak, but it's better than nothing.
-As a drone or hivelord, spread weeds as much as you can, especially near the front line fighters.
+As a xeno, spread weeds as much as you can, especially near the front-line fighters.
 Before you evolve into the Hivemind as a drone, hide in a secure area! Once you evolve, you will create a core that cannot be moved.
 As a carrier, you can hit a host directly with a thrown facehugger to have a high chance of infecting them near instantly. This will take time, however.
 As a carrier, you can hide traps beneath certain objects and items.
