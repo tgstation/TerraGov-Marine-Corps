@@ -514,7 +514,7 @@
 	var/distance = get_dist(impairer, A)
 	if(distance > HUNTER_SILENCE_RANGE)
 		if(!silent)
-			to_chat(impairer, "<span class='xenodanger'>The target location is too far! We must be [distance - HUNTER_SILENCE_RANGE] tiles closer!</spam>")
+			to_chat(impairer, span_xenodanger("The target location is too far! We must be [distance - HUNTER_SILENCE_RANGE] tiles closer!"))
 		return FALSE
 
 	if(!line_of_sight(impairer, A)) //Need line of sight.
