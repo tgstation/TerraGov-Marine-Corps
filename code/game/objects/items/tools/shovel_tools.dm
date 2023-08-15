@@ -150,7 +150,7 @@
 		item_state = "etool"
 	else
 		icon_state = "etool_c"
-	item_state = "etool_c"
+		item_state = "etool_c"
 	..()
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)
