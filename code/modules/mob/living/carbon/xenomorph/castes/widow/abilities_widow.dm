@@ -160,7 +160,7 @@
 	add_cooldown()
 
 /datum/action/xeno_action/create_spiderling/alternate_action_activate()
-	if(!cannibalise_charges > 0)
+	if(cannibalise_charges <= 0)
 		owner.balloon_alert(owner, "No charges remaining!")
 		return
 	INVOKE_ASYNC(src, PROC_REF(use_cannibalise))
