@@ -900,6 +900,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 ///Add gamemode related items to statpanel
 /datum/game_mode/proc/get_status_tab_items(datum/dcs, mob/source, list/items)
+	SIGNAL_HANDLER
 	var/patrol_end_countdown = game_end_countdown()
 	if(patrol_end_countdown)
 		items += "Round End timer: [patrol_end_countdown]"
