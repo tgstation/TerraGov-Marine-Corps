@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixed jobs not scaling if nobody readies up"
-  - bugfix: "Fixed jobs not being scaled properly"
