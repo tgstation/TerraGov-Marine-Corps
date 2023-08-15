@@ -463,6 +463,8 @@
 #include "code\datums\gamemodes\campaign\campaign_reward_jobs.dm"
 #include "code\datums\gamemodes\campaign\campaign_rewards.dm"
 #include "code\datums\gamemodes\campaign\faction_stats.dm"
+#include "code\datums\gamemodes\campaign\missions\destroy_mission.dm"
+#include "code\datums\gamemodes\campaign\missions\patrol_mission.dm"
 #include "code\datums\greyscale\_greyscale_config.dm"
 #include "code\datums\greyscale\greyscale_configs.dm"
 #include "code\datums\greyscale\layer.dm"
