@@ -5084,7 +5084,6 @@
 "gqB" = (
 /obj/item/defibrillator,
 /obj/item/defibrillator,
-/obj/machinery/recharger,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
@@ -7317,7 +7316,6 @@
 /obj/item/bodybag/cryobag,
 /obj/item/defibrillator,
 /obj/item/defibrillator,
-/obj/machinery/recharger,
 /obj/structure/rack,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -7514,6 +7512,11 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/weapon_room)
+"jPT" = (
+/obj/structure/curtain/medical,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "jQH" = (
 /turf/open/floor/wood,
 /area/mainship/hallways/boxingring)
@@ -13976,6 +13979,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"rDn" = (
+/obj/machinery/recharger,
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "rEw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -46772,11 +46780,11 @@ qMJ
 aSw
 dQG
 jVv
+jPT
 mwj
 mwj
-mwj
-lAT
-yjx
+iwj
+rDn
 wcT
 mbQ
 fPi
@@ -47033,7 +47041,7 @@ iwj
 lAT
 lAT
 lAT
-lSQ
+rDn
 wcT
 ncI
 vhl

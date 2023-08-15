@@ -2332,6 +2332,10 @@
 	dir = 4
 	},
 /area/mainship/hallways/hangar/droppod)
+"aVN" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "aWl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -9563,6 +9567,16 @@
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
+"fml" = (
+/obj/machinery/light/mainship,
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/box/bodybags,
+/obj/item/storage/box/bodybags,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "fmE" = (
 /turf/open/floor/mainship/white/corner{
 	dir = 1
@@ -15723,7 +15737,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "pyR" = (
-/obj/machinery/bodyscanner,
+/obj/machinery/vending/medical/shipside,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "pAa" = (
@@ -19122,10 +19136,7 @@
 	},
 /area/mainship/engineering/lower_engineering)
 "vrv" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/storage/box/bodybags,
-/obj/item/storage/box/bodybags,
-/obj/machinery/firealarm,
+/obj/machinery/cic_maptable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -51083,7 +51094,7 @@ ljk
 bGZ
 nWm
 iGu
-ndj
+fml
 bsC
 tkF
 wNU
@@ -51597,7 +51608,7 @@ bDb
 uBZ
 bDb
 ost
-bMk
+aVN
 bsC
 tVY
 bvL
