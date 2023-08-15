@@ -229,8 +229,8 @@ Contains most of the procs that are called when a mob is attacked by something
 			throw_damage = (thrown_mob.mob_size + 1 - mob_size) * speed
 			apply_damage(throw_damage, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 		if(thrown_mob.mob_size <= mob_size)
-			thrown_mob.stop_throw()
 			thrown_mob.apply_damage(speed, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+		thrown_mob.stop_throw()
 
 	else if(isitem(AM))
 		var/obj/item/thrown_item = AM
