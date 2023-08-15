@@ -1,5 +1,5 @@
 /mob/living/carbon/human/Initialize(mapload)
-	verbs += /mob/living/proc/lay_down
+	add_verb(src, /mob/living/proc/lay_down)
 	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 	blood_type = b_type
 
@@ -89,61 +89,30 @@
 	GLOB.dead_human_list -= src
 	return ..()
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Game"))
-		var/eta_status = SSevacuation?.get_status_panel_eta()
-		if(eta_status)
-			stat("Evacuation in:", eta_status)
+	var/eta_status = SSevacuation?.get_status_panel_eta()
+	if(eta_status)
+		. += "Evacuation in: [eta_status]"
 
-		//combat patrol timer
-		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
-		if(patrol_end_countdown)
-			stat("<b>Round End timer:</b>", patrol_end_countdown)
+	if(internal)
+		. += "Internal Atmosphere Info [internal.name]"
+		. += "Tank Pressure [internal.pressure]"
+		. += "Distribution Pressure [internal.distribute_pressure]"
 
-		//campaign timer
-		if(iscampaigngamemode(SSticker.mode))
-			var/datum/game_mode/hvh/campaign/campaign_mode = SSticker.mode
-			var/datum/campaign_mission/active_mission = campaign_mode.current_mission
-			if(istype(active_mission))
+	if(assigned_squad)
+		if(assigned_squad.primary_objective)
+			. += "Primary Objective: [assigned_squad.primary_objective]"
+		if(assigned_squad.secondary_objective)
+			. += "Secondary Objective: [assigned_squad.secondary_objective]"
 
-				stat("<b>Mission:</b>", active_mission.name)
-				stat("<b>Area of operation:</b>", active_mission.map_name)
-
-				if(active_mission.max_time_reached)
-					stat("<b>Mission status:</b>", "Mission complete")
-				else if(active_mission.game_timer)
-					stat("<b>Mission time remaining:</b>", active_mission.mission_end_countdown())
-
-				if(faction == active_mission.starting_faction)
-					stat("<b>[active_mission.starting_faction] mission objectives:</b>", active_mission.objective_description["starting_faction"])
-				else if(faction == active_mission.hostile_faction)
-					stat("<b>[active_mission.hostile_faction] mission objectives:</b>", active_mission.objective_description["hostile_faction"])
-				else if(faction == FACTION_NEUTRAL)
-					stat("<b>[active_mission.starting_faction] Mission objectives:</b>", active_mission.objective_description["starting_faction"])
-					stat("<b>[active_mission.hostile_faction] Mission objectives:</b>", active_mission.objective_description["hostile_faction"])
-
-		if(internal)
-			stat("Internal Atmosphere Info", internal.name)
-			stat("Tank Pressure", internal.pressure)
-			stat("Distribution Pressure", internal.distribute_pressure)
-
-		if(assigned_squad)
-			if(assigned_squad.primary_objective)
-				stat("Primary Objective: ", assigned_squad.primary_objective)
-			if(assigned_squad.secondary_objective)
-				stat("Secondary Objective: ", assigned_squad.secondary_objective)
-
-		if(mobility_aura)
-			stat(null, "You are affected by a MOVE order.")
-		if(protection_aura)
-			stat(null, "You are affected by a HOLD order.")
-		if(marksman_aura)
-			stat(null, "You are affected by a FOCUS order.")
-		var/datum/game_mode/hvh/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
-		if(issensorcapturegamemode(SSticker.mode))
-			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
+	if(mobility_aura)
+		. += "You are affected by a MOVE order."
+	if(protection_aura)
+		. += "You are affected by a HOLD order."
+	if(marksman_aura)
+		. += "You are affected by a FOCUS order."
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)

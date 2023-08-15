@@ -15,8 +15,9 @@ SUBSYSTEM_DEF(mobs)
 	var/list/list/crates = list(list(), list(), list(), list())
 	var/crate = 1
 
-/datum/controller/subsystem/mobs/stat_entry()
-	..("P:[length(processing)]")
+/datum/controller/subsystem/mobs/stat_entry(msg)
+	msg = "P:[length(GLOB.mob_living_list)]"
+	return ..()
 
 /datum/controller/subsystem/mobs/proc/stop_processing(mob/living/L)
 	if(!CHECK_BITFIELD(L.datum_flags, DF_ISPROCESSING))

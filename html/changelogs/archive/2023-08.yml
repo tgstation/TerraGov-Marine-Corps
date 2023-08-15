@@ -182,3 +182,40 @@
   - bugfix: hunter mirage now works as intended
   forestbbbbbbb:
   - bugfix: Fix double leading space in paygrades
+2023-08-13:
+  Barnet2:
+  - rscadd: Added chemistry request lines to most shipmaps.
+2023-08-14:
+  ClosetedSkeletonGH:
+  - rscadd: Adds 150 new robot random names
+  RipGrayson:
+  - rscadd: Added the ability for admins to toggle gimmick tads
+  - balance: The food tad is now classified as a gimmick tad
+  - balance: Gimmick tads now require admin intervention before they can be selected
+  - balance: Enlarged west caves on LV624 to combat map imbalance.
+  Wisemonster:
+  - bugfix: Fixed jobs listing an unused gamemode in their description as the gamemode
+      they are in.
+  Xander3359:
+  - rscadd: Self-dusting implant that triggers on death for the elite moth ERT.
+  - code_imp: Added unit test for implanting
+  ivanmixo:
+  - code_imp: Deleted old shitcode access proc
+  - balance: Bring resin door melee armor back down to previous values
+2023-08-15:
+  Barnet2:
+  - rscadd: Added soap and sterilizing spray bottles to the NanotrasenMed Plus
+  RipGrayson:
+  - rscadd: Added the ability for the AI to conduct a bioscan on its own
+  Sebbe9123:
+  - balance: Natural blood regen now regens in tiers based on how much nutrition you
+      have.
+  coldironwarrior:
+  - bugfix: fixed the area for a single tile in magmoor's security building
+  ivanmixo:
+  - bugfix: Fixed jobs not scaling if nobody readies up
+  - bugfix: Fixed jobs not being scaled properly
+  lbnesquik:
+  - balance: mortar flare and smoke are 50% cheaper now
+  novaepee:
+  - imageadd: Reqtorio screen background color change

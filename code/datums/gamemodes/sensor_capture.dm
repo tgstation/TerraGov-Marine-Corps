@@ -39,3 +39,7 @@
 		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
 		return TRUE
+
+/datum/game_mode/combat_patrol/sensor_capture/get_status_tab_items(datum/dcs, mob/source, list/items)
+	. = ..()
+	items += "Activated Sensor Towers: [sensors_activated]"

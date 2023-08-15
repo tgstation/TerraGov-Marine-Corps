@@ -97,6 +97,7 @@
 			data["alternate_option"] = alternate_option
 			data["special_occupation"] = be_special
 		if(GAME_SETTINGS)
+			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["ui_style_color"] = ui_style_color
 			data["ui_style"] = ui_style
 			data["ui_style_alpha"] = ui_style_alpha
@@ -130,6 +131,8 @@
 			data["quick_equip"] = list()
 			for(var/quick_equip_slots in quick_equip)
 				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
+			data["fast_mc_refresh"] = fast_mc_refresh
+			data["split_admin_tabs"] = split_admin_tabs
 		if(KEYBIND_SETTINGS)
 			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["key_bindings"] = list()
@@ -807,6 +810,12 @@
 
 		if("unique_action_use_active_hand")
 			unique_action_use_active_hand = !unique_action_use_active_hand
+
+		if("fast_mc_refresh")
+			fast_mc_refresh = !fast_mc_refresh
+
+		if("split_admin_tabs")
+			split_admin_tabs = !split_admin_tabs
 
 		else //  Handle the unhandled cases
 			return

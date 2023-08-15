@@ -25723,8 +25723,8 @@
 	},
 /area/magmoor/command/office/main)
 "sPW" = (
-/turf/closed/wall/r_wall,
-/area/space)
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/security/infocenter)
 "sQh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -41750,7 +41750,7 @@ pLU
 jJJ
 akY
 guy
-sPW
+mOt
 dPK
 dPK
 dPK
@@ -42217,7 +42217,7 @@ pIQ
 fCK
 sYz
 dPK
-dPK
+sPW
 dPK
 dPK
 dPK

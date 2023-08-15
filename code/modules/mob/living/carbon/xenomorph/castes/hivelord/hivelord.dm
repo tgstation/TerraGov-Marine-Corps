@@ -24,8 +24,6 @@
 	update_spits()
 
 
-/mob/living/carbon/xenomorph/hivelord/Stat()
+/mob/living/carbon/xenomorph/hivelord/get_status_tab_items()
 	. = ..()
-
-	if(statpanel("Game"))
-		stat("Active Tunnel Sets:", "[LAZYLEN(tunnels)] / [HIVELORD_TUNNEL_SET_LIMIT]")
+	. += "Active Tunnel Sets: [LAZYLEN(tunnels)] / [HIVELORD_TUNNEL_SET_LIMIT]"

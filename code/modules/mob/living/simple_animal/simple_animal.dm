@@ -216,11 +216,9 @@
 	return TRUE
 
 
-/mob/living/simple_animal/Stat()
+/mob/living/simple_animal/get_status_tab_items()
 	. = ..()
-
-	if(statpanel("Game"))
-		stat("Health:", "[round((health / maxHealth) * 100)]%")
+	. += "Health: [round((health / maxHealth) * 100)]%"
 
 
 /mob/living/simple_animal/ex_act(severity)
