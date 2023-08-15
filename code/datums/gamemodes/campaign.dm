@@ -106,6 +106,27 @@
 
 	select_attrition_points() //both teams choose the number of lads to commit
 
+/datum/game_mode/hvh/campaign/get_status_tab_items(datum/dcs, mob/source, list/items)
+	. = ..()
+	if(!istype(current_mission))
+		return
+
+	items += "Mission: [current_mission.name]"
+	items += "Area of operation: [current_mission.map_name]"
+
+	if(current_mission.max_time_reached)
+		items += "Mission status: Mission complete"
+	else if(current_mission.game_timer)
+		items += "Mission time remaining: [current_mission.mission_end_countdown()]"
+
+	if(source.faction == current_mission.starting_faction)
+		items += "[current_mission.starting_faction] mission objectives: [current_mission.objective_description["starting_faction"]]"
+	else if(source.faction == current_mission.hostile_faction)
+		items += "[current_mission.hostile_faction] mission objectives: [current_mission.objective_description["hostile_faction"]]"
+	else if(source.faction == FACTION_NEUTRAL)
+		items += "[current_mission.starting_faction] Mission objectives:> [current_mission.objective_description["starting_faction"]]"
+		items += "[current_mission.hostile_faction] Mission objectives: [current_mission.objective_description["hostile_faction"]]"
+
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission, acting_faction)
 	current_mission = new new_mission(acting_faction)
