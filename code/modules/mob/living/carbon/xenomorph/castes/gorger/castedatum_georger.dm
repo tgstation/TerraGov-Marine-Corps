@@ -1,15 +1,15 @@
-/datum/xeno_caste/gorger
-	caste_name = "Gorger"
-	display_name = "Gorger"
+/datum/xeno_caste/georger
+	caste_name = "georger"
+	display_name = "georger"
 	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky alien creature that drips with a familiar red fluid."
-	caste_type_path = /mob/living/carbon/xenomorph/gorger
+	caste_type_path = /mob/living/carbon/xenomorph/georger
 	ancient_message = "We are eternal. We will persevere where others will dry and wither."
 	primordial_message = "There is nothing we can't withstand."
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "gorger" //used to match appropriate wound overlays
+	wound_type = "georger" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage = 15
@@ -41,9 +41,9 @@
 	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 
 	// *** Minimap Icon *** //
-	minimap_icon = "gorger"
+	minimap_icon = "georger"
 
-	// *** Gorger Abilities *** //
+	// *** georger Abilities *** //
 	overheal_max = 200
 	drain_plasma_gain = 20
 	carnage_plasma_gain = 25
@@ -61,11 +61,11 @@
 		/datum/action/xeno_action/activable/devour,
 	)
 
-/datum/xeno_caste/gorger/young
+/datum/xeno_caste/georger/young
 	upgrade_name = "Young"
 	upgrade = XENO_UPGRADE_ZERO
 
-/datum/xeno_caste/gorger/mature
+/datum/xeno_caste/georger/mature
 	upgrade_name = "Mature"
 	caste_desc = "A frightening looking, bulky alien creature that drips with a familiar red fluid. It looks a little more dangerous."
 
@@ -86,12 +86,12 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
-	// *** Gorger Abilities *** //
+	// *** georger Abilities *** //
 	overheal_max = 225
 	drain_plasma_gain = 20
 	carnage_plasma_gain = 30
 
-/datum/xeno_caste/gorger/elder
+/datum/xeno_caste/georger/elder
 	upgrade_name = "Elder"
 	caste_desc = "A frightening looking, bulky alien creature that drips with a familiar red fluid. It looks pretty strong."
 
@@ -112,12 +112,12 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 15, FIRE = 15, ACID = 15)
 
-	// *** Gorger Abilities *** //
+	// *** georger Abilities *** //
 	overheal_max = 250
 	drain_plasma_gain = 30
 	carnage_plasma_gain = 35
 
-/datum/xeno_caste/gorger/ancient
+/datum/xeno_caste/georger/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Being within mere eyeshot of this hulking monstrosity fills you with a deep, unshakeable sense of unease."
 	upgrade = XENO_UPGRADE_THREE
@@ -137,12 +137,12 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 20, FIRE = 20, ACID = 20)
 
-	// *** Gorger Abilities *** //
+	// *** georger Abilities *** //
 	overheal_max = 275
 	drain_plasma_gain = 40
 	carnage_plasma_gain = 40
 
-/datum/xeno_caste/gorger/primordial
+/datum/xeno_caste/georger/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "Being within mere eyeshot of this hulking monstrosity fills you with a deep, unshakeable sense of unease. You are unsure if you can even harm it."
 	upgrade = XENO_UPGRADE_FOUR
@@ -159,7 +159,7 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 20, FIRE = 20, ACID = 20)
 
-	// *** Gorger Abilities *** //
+	// *** georger Abilities *** //
 	overheal_max = 275
 	drain_plasma_gain = 40
 	carnage_plasma_gain = 40

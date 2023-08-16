@@ -352,28 +352,28 @@
 	duration = set_duration
 	src.tick_damage_limit = tick_damage_limit
 	RegisterSignals(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(handle_damage_taken))
-	owner.add_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE, TRUE, 0, NONE, TRUE, GORGER_REJUVENATE_SLOWDOWN)
+	owner.add_movespeed_modifier(MOVESPEED_ID_georger_REJUVENATE, TRUE, 0, NONE, TRUE, georger_REJUVENATE_SLOWDOWN)
 	owner.add_filter("[id]m", 0, outline_filter(2, "#455d5762"))
 	return ..()
 
 /datum/status_effect/xeno_rejuvenate/on_remove()
 	. = ..()
 	UnregisterSignal(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
-	owner.remove_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE)
+	owner.remove_movespeed_modifier(MOVESPEED_ID_georger_REJUVENATE)
 	owner.remove_filter("[id]m")
 
 /datum/status_effect/xeno_rejuvenate/tick()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.plasma_stored < GORGER_REJUVENATE_COST)
+	if(owner_xeno.plasma_stored < georger_REJUVENATE_COST)
 		to_chat(owner_xeno, span_notice("Not enough substance to sustain ourselves..."))
 		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_REJUVENATE)
 		return
 
-	owner_xeno.plasma_stored -= GORGER_REJUVENATE_COST
+	owner_xeno.plasma_stored -= georger_REJUVENATE_COST
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner_xeno))
 	to_chat(owner_xeno, span_notice("We feel our wounds close up."))
 
-	var/amount = owner_xeno.maxHealth * GORGER_REJUVENATE_HEAL
+	var/amount = owner_xeno.maxHealth * georger_REJUVENATE_HEAL
 	HEAL_XENO_DAMAGE(owner_xeno, amount, FALSE)
 	tick_damage = 0
 
@@ -529,7 +529,7 @@
 
 	plasma_gain_on_hit = plasma_gain * plasma_mod
 	healing_on_hit = healing * plasma_mod
-	owner_xeno.add_movespeed_modifier(MOVESPEED_ID_GORGER_CARNAGE, TRUE, 0, NONE, TRUE, movement_speed_max * plasma_mod)
+	owner_xeno.add_movespeed_modifier(MOVESPEED_ID_georger_CARNAGE, TRUE, 0, NONE, TRUE, movement_speed_max * plasma_mod)
 
 	to_chat(owner, span_notice("We give into our thirst!"))
 	owner_xeno.emote("roar")
@@ -543,7 +543,7 @@
 
 /datum/status_effect/xeno_carnage/on_remove()
 	. = ..()
-	owner.remove_movespeed_modifier(MOVESPEED_ID_GORGER_CARNAGE)
+	owner.remove_movespeed_modifier(MOVESPEED_ID_georger_CARNAGE)
 	to_chat(owner, span_notice("Our bloodlust subsides..."))
 	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(carnage_slash))
 	owner.remove_filter(list(id, "[id]m"))

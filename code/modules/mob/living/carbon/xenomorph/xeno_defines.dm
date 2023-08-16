@@ -172,7 +172,7 @@
 	///How many tiles the Crest toss ability throws the victim.
 	var/crest_toss_distance = 0
 
-	// *** Gorger Abilities *** //
+	// *** georger Abilities *** //
 	///Maximum amount of overheal that can be gained
 	var/overheal_max = 150
 	///Amount of plasma gained from draining someone
@@ -384,7 +384,7 @@
 	//Pounce vars
 	var/usedPounce = 0
 
-	// Gorger vars
+	// georger vars
 	var/overheal = 0
 
 	// Warrior vars

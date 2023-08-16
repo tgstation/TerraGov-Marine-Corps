@@ -404,25 +404,25 @@
 
 //---CRUSHER END---//
 //============//
-//---GORGER START---//
+//---georger START---//
 
-/mob/living/carbon/xenomorph/gorger/mature
+/mob/living/carbon/xenomorph/georger/mature
 	upgrade = XENO_UPGRADE_ONE
 	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
 
-/mob/living/carbon/xenomorph/gorger/elder
+/mob/living/carbon/xenomorph/georger/elder
 	upgrade = XENO_UPGRADE_TWO
 	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
 
-/mob/living/carbon/xenomorph/gorger/ancient
+/mob/living/carbon/xenomorph/georger/ancient
 	upgrade = XENO_UPGRADE_THREE
 	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
 
-/mob/living/carbon/xenomorph/gorger/primordial
+/mob/living/carbon/xenomorph/georger/primordial
 	upgrade = XENO_UPGRADE_FOUR
 	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
 
-//---GORGER END---//
+//---georger END---//
 //============//
 //---BOILER START---//
 

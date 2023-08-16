@@ -308,43 +308,43 @@
 
 /datum/keybinding/xeno/devour
 	name = "devour"
-	full_name = "Gorger: Devour"
+	full_name = "georger: Devour"
 	description = "Devour your victim to be able to carry it faster."
 	keybind_signal = COMSIG_XENOABILITY_DEVOUR
 
 /datum/keybinding/xeno/drain
 	name = "drain"
-	full_name = "Gorger: Drain"
+	full_name = "georger: Drain"
 	description = "Stagger a marine and drain some of their blood. When used on a dead human, you heal gradually and don't gain blood."
 	keybind_signal = COMSIG_XENOABILITY_DRAIN
 
 /datum/keybinding/xeno/transfusion
 	name = "transfusion"
-	full_name = "Gorger: Transfusion"
+	full_name = "georger: Transfusion"
 	description = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
 	keybind_signal = COMSIG_XENOABILITY_TRANSFUSION
 
 /datum/keybinding/xeno/rejuvenate
 	name = "rejuvenate"
-	full_name = "Gorger: Rejuvenate"
+	full_name = "georger: Rejuvenate"
 	description = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
 	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
 
 /datum/keybinding/xeno/psychic_link
 	name = "psychic link"
-	full_name = "Gorger: Psychic Link"
+	full_name = "georger: Psychic Link"
 	description = "Link to a xenomorph and take some damage in their place. During this time, you can't move. Use rest action to cancel."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_LINK
 
 /datum/keybinding/xeno/carnage
 	name = "carnage"
-	full_name = "Gorger: Carnage"
+	full_name = "georger: Carnage"
 	description = "For a while your attacks drain blood and heal you. During Feast you also heal nearby allies."
 	keybind_signal = COMSIG_XENOABILITY_CARNAGE
 
 /datum/keybinding/xeno/feast
 	name = "feast"
-	full_name = "Gorger: Feast"
+	full_name = "georger: Feast"
 	description = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
 	keybind_signal = COMSIG_XENOABILITY_FEAST
 
