@@ -20,6 +20,8 @@
 			handle_breath()
 			//blood
 			handle_blood()
+			//nutrition
+			handle_nutrition()
 
 			if(stat == CONSCIOUS && getToxLoss() >= 45 && nutrition > 20)
 				vomit()

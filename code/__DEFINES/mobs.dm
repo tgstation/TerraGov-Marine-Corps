@@ -25,6 +25,7 @@
 #define NUTRITION_HUNGRY 250
 #define NUTRITION_WELLFED 400
 #define NUTRITION_OVERFED 450
+#define NUTRITION_MAXIMUM 700
 
 //=================================================
 /*
