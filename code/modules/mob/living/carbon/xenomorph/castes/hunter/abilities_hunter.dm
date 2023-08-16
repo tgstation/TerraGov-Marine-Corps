@@ -524,7 +524,6 @@
 
 	return TRUE
 
-cheap_get_humans_near
 
 /datum/action/xeno_action/activable/silence/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
