@@ -84,7 +84,7 @@
 	var/client/C
 	if((C = owner) || (C = GLOB.directory[target]))
 		disassociate()
-		C.verbs += /client/proc/readmin
+		add_verb(C, /client/proc/readmin)
 
 
 /datum/admins/proc/associate(client/C)
@@ -105,7 +105,8 @@
 	owner = C
 	owner.holder = src
 	owner.add_admin_verbs()
-	owner.verbs -= /client/proc/readmin
+	remove_verb(owner, /client/proc/readmin)
+	owner.init_verbs()
 	GLOB.admins |= C
 
 
@@ -349,6 +350,7 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/delete_all,
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
+	/client/proc/debugstatpanel,
 	/datum/admins/proc/delete_atom,
 	/datum/admins/proc/restart_controller,
 	/datum/admins/proc/check_contents,
@@ -409,7 +411,6 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/play_cinematic,
 	/datum/admins/proc/set_tip,
 	/datum/admins/proc/ghost_interact,
-	/client/proc/toggle_buildmode,
 	/client/proc/force_event,
 	/client/proc/toggle_events,
 	/client/proc/run_weather,
@@ -500,41 +501,41 @@ GLOBAL_PROTECT(admin_verbs_log)
 /client/proc/add_admin_verbs()
 	if(holder)
 		var/rights = holder.rank.rights
-		verbs += GLOB.admin_verbs_default
+		add_verb(src, GLOB.admin_verbs_default)
 		if(rights & R_ADMIN)
-			verbs += GLOB.admin_verbs_admin
+			add_verb(src, GLOB.admin_verbs_admin)
 		if(rights & R_MENTOR)
-			verbs += GLOB.admin_verbs_mentor
+			add_verb(src, GLOB.admin_verbs_mentor)
 		if(rights & R_BAN)
-			verbs += GLOB.admin_verbs_ban
+			add_verb(src, GLOB.admin_verbs_ban)
 		if(rights & R_ASAY)
-			verbs += GLOB.admin_verbs_asay
+			add_verb(src, GLOB.admin_verbs_asay)
 		if(rights & R_FUN)
-			verbs += GLOB.admin_verbs_fun
+			add_verb(src, GLOB.admin_verbs_fun)
 		if(rights & R_SERVER)
-			verbs += GLOB.admin_verbs_server
+			add_verb(src, GLOB.admin_verbs_server)
 		if(rights & R_DEBUG)
-			verbs += GLOB.admin_verbs_debug
+			add_verb(src, GLOB.admin_verbs_debug)
 		if(rights & R_RUNTIME)
-			verbs += GLOB.admin_verbs_runtimes
+			add_verb(src, GLOB.admin_verbs_runtimes)
 		if(rights & R_PERMISSIONS)
-			verbs += GLOB.admin_verbs_permissions
+			add_verb(src, GLOB.admin_verbs_permissions)
 		if(rights & R_DBRANKS)
-			verbs += GLOB.admin_verbs_permissions
+			add_verb(src, GLOB.admin_verbs_permissions)
 		if(rights & R_SOUND)
-			verbs += GLOB.admin_verbs_sound
+			add_verb(src, GLOB.admin_verbs_sound)
 		if(rights & R_COLOR)
-			verbs += GLOB.admin_verbs_color
+			add_verb(src, GLOB.admin_verbs_color)
 		if(rights & R_VAREDIT)
-			verbs += GLOB.admin_verbs_varedit
+			add_verb(src, GLOB.admin_verbs_varedit)
 		if(rights & R_SPAWN)
-			verbs += GLOB.admin_verbs_spawn
+			add_verb(src, GLOB.admin_verbs_spawn)
 		if(rights & R_LOG)
-			verbs += GLOB.admin_verbs_log
+			add_verb(src, GLOB.admin_verbs_log)
 
 
 /client/proc/remove_admin_verbs()
-	verbs.Remove(
+	remove_verb(src, list(
 		GLOB.admin_verbs_default,
 		GLOB.admin_verbs_admin,
 		GLOB.admin_verbs_mentor,
@@ -549,7 +550,7 @@ GLOBAL_PROTECT(admin_verbs_log)
 		GLOB.admin_verbs_varedit,
 		GLOB.admin_verbs_spawn,
 		GLOB.admin_verbs_log,
-		)
+	))
 
 
 /proc/is_mentor(client/C)

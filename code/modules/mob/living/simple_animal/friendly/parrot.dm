@@ -95,10 +95,9 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	return ..()
 
 
-/mob/living/simple_animal/parrot/Stat()
+/mob/living/simple_animal/parrot/get_status_tab_items()
 	. = ..()
-	if(statpanel("Game"))
-		stat("Held Item", held_item)
+	. += "Held Item: [held_item]"
 
 
 /mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)

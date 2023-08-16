@@ -1,0 +1,4 @@
+author: "Scarlet-Oduko"
+delete-after: True
+changes:
+  - bugfix: "Trailblazers no longer teleport to hivemind core with them"
