@@ -18,7 +18,7 @@ You can respawn during End-Of-Round Deathmatch in the OOC tab.
 Sundering reduces the effectiveness of xeno armor by percentage. Some xenomorph castes can heal and decrease sunder. Resting heals sunder, but slowly.
 When you want to claim a mob, claim it now! Others will claim it as soon as they are available.
 You can customize your ghost using the Ghost Customization command under the Preferences tab.
-As either a marine or a xeno, you will die quickly and horribly if you find yourself in a pressureless enviroment (a.k.a spess or underwater).
+As either a marine or a xeno, you will die quickly and horribly if you find yourself in a pressureless enviroment (a.k.a spess).
 There are no such things as macros, only keybinds.
 Communication, be it from a marine to a marine, a drone to the queen, or command to everyone, is vital and information on flanks can change how the entire round plays out.
 As an alien or marine, be careful of the flank, regardless of if the push is going well or stalling out.
