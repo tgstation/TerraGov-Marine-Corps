@@ -141,7 +141,7 @@ A single wraith can be fatal to the operation.
 The Baldur armor module significantly increases your light output. Become the flashlight you always wanted to be!
 Try not to bump into corpsmen. Your life might depend on it.
 With a cigarette pack in hand, target the mouth and click yourself to instantly take one.
-Spamming flares can be incredibly helpful, especially when Kings use Nightfall! Many marines cannot see in darkness, so if you lighten up the firing lane with flares, marines can shoot better.
+Spamming flares can be incredibly helpful, especially when the King uses Nightfall! Many marines cannot see in darkness, so if you lighten up the firing lane with flares, marines can shoot better.
 The cryopods in medbay heal most types of damage but not organ damage!
 When in doubt, throw them in the autodoc.
 Medbay may sometimes run out of power. To avoid this, scream at your nearest engineer to repair the fusion reactors or replace the power cell in medbay's APC.
