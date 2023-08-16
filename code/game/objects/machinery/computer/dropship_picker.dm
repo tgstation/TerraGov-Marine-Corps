@@ -8,7 +8,7 @@
 	circuit = null
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI
-	req_one_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_BRIDGE)
+	req_one_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
 	/// dock id to dock our chosen shuttle at
 	var/dock_id = SHUTTLE_TADPOLE
 	///if true lock console
