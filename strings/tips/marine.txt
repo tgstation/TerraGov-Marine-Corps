@@ -124,7 +124,6 @@ With your sidearm in hand, right-click a pistol pouch to instantly reload.
 You can turn the safety of your gun on.
 Depending on the tactical situations, smoke grenades can do more harm than good.
 A miner without a turret is a sitting duck.
-Claymores often one-shot T1s.
 Crushers easily get trapped in razorwire.
 Do not under any circuimstances hug the rouny.
 Researchers can instruct Newt to follow them around by clicking Newt with a xenomorph analyzer.
