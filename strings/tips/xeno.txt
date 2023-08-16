@@ -11,7 +11,7 @@ As a xeno, acid wells extinguish fire and explode into an acid cloud when destro
 The Queen, the King, the Shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
 As a xeno, check hive status often.
-Some xenos have pheromones that can help the hive. Frenzy increases speed, Warding increases armor and armor healing, and Recovery increases plasma and health healing.
+Some xenos have pheromones that can help the hive. Frenzy increases speed, Warding increases armor, and Recovery increases healing.
 The King has the strongest pheromones, followed by the Queen, praetorians, Hivemind, the Shrike and hivelords, defilers, and carriers. Drones have the weakest pheromones.
 Some xenos can recycle the bodies of their fallen hive members. Use this to your advantage to prevent marines from getting points for their Requisitions orders!
 As a xeno, you can pounce past window frames and barricades without barbed wires.
@@ -35,7 +35,7 @@ As a carrier, you can hide traps beneath certain objects and items.
 As a hunter, you have almost perfect stealth if you stand still.
 As a ravager or the Queen, you are fire-resistant, NOT fireproof. You can still get lit on fire, but you take very little damage from it. As the King, however, you're fireproof until your armor is damaged by sunder.
 As a spitter, boiler, praetorian, or the Queen, take advantage of unguarded barricades and defenses; melt or constantly spit acid on them if you can.
-As a boiler, the King or the Queen, you have the most powerful corrosive acid for melting things.
+As a boiler, primordial hivelord, the King or the Queen, you have the most powerful corrosive acid for melting things.
 As the Shrike, take advantage of your psychic abilities. Use Psychic Fling and Unrelenting Force to displace a marine or even push certain and hazardous objects towards your enemies and vice versa.
 As the Queen, your screech does not only affect the mobs on view, but affects through walls or gases. However, the effect of the screech will be reduced.
 As a drone, hivelord, Hivemind, Shrike, and the Queen, a large maze is almost always a good investment.
@@ -63,3 +63,4 @@ Tileswapping marines via help intent can have interesting consequences.
 As a boiler, you'll begin to glow with the more globules you have stored.
 If you see a red dot, RUN!
 Allowing marines to push caves only to block off their exit is hillariously effective.
+As a xeno, a Tier 3 unit takes up both a Tier 3 and Tier 2 slot.
