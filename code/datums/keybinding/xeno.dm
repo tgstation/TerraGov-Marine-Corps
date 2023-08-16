@@ -496,6 +496,12 @@
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/silence
+	name = "impair senses"
+	full_name = "Hunter: Silence"
+	description = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
+	keybind_signal = COMSIG_XENOABILITY_SILENCE
+
 /datum/keybinding/xeno/mark
 	name = "mark"
 	full_name = "Hunter: Mark"

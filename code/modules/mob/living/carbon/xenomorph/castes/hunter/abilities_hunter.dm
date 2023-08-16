@@ -491,3 +491,87 @@
 	owner.drop_l_hand()
 	X.forceMove(get_turf(selected_illusion.loc))
 	selected_illusion.forceMove(current_turf)
+
+// ***************************************
+// *********** Silence
+// ***************************************
+/datum/action/xeno_action/activable/silence
+	name = "Silence"
+	action_icon_state = "silence"
+	desc = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds, or 15 seconds if they're your Hunter Mark target."
+	ability_name = "silence"
+	plasma_cost = 50
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
+	)
+	cooldown_timer = HUNTER_SILENCE_COOLDOWN
+
+/datum/action/xeno_action/activable/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+
+	var/mob/living/carbon/xenomorph/impairer = owner //Type cast this for on_fire
+
+	var/distance = get_dist(impairer, A)
+	if(distance > HUNTER_SILENCE_RANGE)
+		if(!silent)
+			to_chat(impairer, span_xenodanger("The target location is too far! We must be [distance - HUNTER_SILENCE_RANGE] tiles closer!"))
+		return FALSE
+
+	if(!line_of_sight(impairer, A)) //Need line of sight.
+		if(!silent)
+			to_chat(impairer, span_xenowarning("We require line of sight to the target location!") )
+		return FALSE
+
+	return TRUE
+
+
+/datum/action/xeno_action/activable/silence/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	X.face_atom(A)
+
+	var/victim_count
+	for(var/mob/living/target AS in cheap_get_humans_near(A, HUNTER_SILENCE_AOE))
+		if(!isliving(target)) //Filter out non-living
+			continue
+		if(target.stat == DEAD) //Ignore the dead
+			continue
+		if(!line_of_sight(X, target)) //Need line of sight
+			continue
+		if(isxeno(target)) //Ignore friendlies
+			var/mob/living/carbon/xenomorph/xeno_victim = target
+			if(X.issamexenohive(xeno_victim))
+				continue
+
+		var/silence_multiplier = 1
+		var/datum/action/xeno_action/activable/hunter_mark/mark_action = X.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
+		if(mark_action?.marked_target == target) //Double debuff stacks for the marked target
+			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
+		to_chat(target, span_danger("Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!") ) //Notify privately
+		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
+		target.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS * silence_multiplier)
+		target.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
+		target.adjust_ear_damage(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier, HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
+		target.apply_status_effect(/datum/status_effect/mute, HUNTER_SILENCE_MUTE_DURATION * silence_multiplier)
+		victim_count++
+
+	if(!victim_count)
+		to_chat(X, span_xenodanger("We were unable to violate the minds of any victims."))
+		add_cooldown(HUNTER_SILENCE_WHIFF_COOLDOWN) //We cooldown to prevent spam, but only for a short duration
+		return fail_activate()
+
+	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
+	to_chat(X, span_xenodanger("We invade the mind of [victim_count] [victim_count > 1 ? "victims" : "victim"], silencing and muting them...") )
+	succeed_activate()
+	add_cooldown()
+
+	GLOB.round_statistics.hunter_silence_targets += victim_count //Increment by victim count
+	SSblackbox.record_feedback("tally", "round_statistics", victim_count, "hunter_silence_targets") //Statistics
+
+/datum/action/xeno_action/activable/silence/on_cooldown_finish()
+	to_chat(owner, span_xenowarning("<b>We refocus our psionic energies, allowing us to impose silence again.</b>") )
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	cooldown_timer = initial(cooldown_timer) //Reset the cooldown timer to its initial state in the event of a whiffed Silence.
+	return ..()
