@@ -1,0 +1,4 @@
+author: "KrabSpider"
+delete-after: True
+changes:
+  - rscadd: "Re-adds Silence, a Hunter-exclusive ability that mutes and deafens hostile targets the Hunter has line of sight to in a 5x5 area for 10 seconds. Hunter's Mark targets suffer a 50% longer duration."
