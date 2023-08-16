@@ -62,6 +62,8 @@
 		to_chat(bioscanning_ai, span_warning("Scanning for hostile lifeforms..."))
 		if(!do_after(usr, AI_SCAN_DELAY, TRUE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
 			return
+		else
+			bioscanning_ai.last_ai_bioscan = 0
 
 		#endif
 
