@@ -62,8 +62,7 @@
 
 /datum/campaign_mission/destroy_mission/end_mission()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED)
-	for(var/obj/objective AS in GLOB.campaign_destroy_objectives)
-		qdel(objective) //clean up objectives for any future destroy missions
+	QDEL_LIST(GLOB.campaign_destroy_objectives) //clean up objectives for any future destroy missions
 	return ..()
 
 /datum/campaign_mission/destroy_mission/check_mission_progress()
