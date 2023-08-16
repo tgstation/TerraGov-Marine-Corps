@@ -35,7 +35,7 @@
 //Pink
 #define ARMOR_PALETTE_PEARL_PINK "#673c3d#9b6b6b#b08a8b#d5ccc3#efe6dc"
 #define ARMOR_PALETTE_MOUNTBATTEN "#F2D2E9#D0ABD6#A589BC#877499#685A5D"
-#define ARMOR_PALETTE_PUCE_PINK "#150e10#402139#59184c#972b78#e46c92"
+#define ARMOR_PALETTE_CORAL_PINK "#150e10#402139#59184c#972b78#e46c92"
 #define ARMOR_PALETTE_AZALEA_PINK "#230911#661A31#A23354#CC5073#E67395"
 
 //Red
@@ -150,15 +150,15 @@
 		"Pink" = list(\
 			"Pearl Pink" = ARMOR_PALETTE_PEARL_PINK,\
 			"Mountbatten" = ARMOR_PALETTE_MOUNTBATTEN,\
-			"Puce" = ARMOR_PALETTE_PUCE_PINK,\
+			"Coral" = ARMOR_PALETTE_CORAL_PINK,\
 			"Azalea" = ARMOR_PALETTE_AZALEA_PINK,\
 		),\
 		"Red" = list(\
 			"Red" = ARMOR_PALETTE_LIGHT_RED,\
 			"Blood Red" = ARMOR_PALETTE_BLOOD_RED,\
-			"Alpha" = ARMOR_PALETTE_ALPHA,\
 			"Dark Red" = ARMOR_PALETTE_RED,\
 			"Copper" = ARMOR_PALETTE_COPPER,\
+			"Alpha" = ARMOR_PALETTE_ALPHA,\
 		),\
 		"Orange" = list(\
 			"Orange" = ARMOR_PALETTE_ORANGE,\
@@ -173,8 +173,8 @@
 			"Gold" = ARMOR_PALETTE_YELLOW,\
 			"Olive" = ARMOR_PALETTE_OLIVE,\
 			"Angelic Gold" = ARMOR_PALETTE_ANGELIC,\
-			"Bravo" = ARMOR_PALETTE_BRAVO,\
 			"Cathay Spice" = ARMOR_PALETTE_CATHAY,\
+			"Bravo" = ARMOR_PALETTE_BRAVO,\
 		),\
 		"Green" = list(\
 			"Green" = ARMOR_PALETTE_GREEN,\
@@ -196,8 +196,8 @@
 			"Cloud" = ARMOR_PALETTE_CLOUD,\
 			"Cornflower" = ARMOR_PALETTE_CORNFLOWER,\
 			"Stone Blue" = ARMOR_PALETTE_STONE_BLUE,\
-			"Delta" = ARMOR_PALETTE_DELTA,\
 			"Dark Blue" = ARMOR_PALETTE_BLUE,\
+			"Delta" = ARMOR_PALETTE_DELTA,\
 		),\
 		"Purple" = list(\
 			"Purple" = ARMOR_PALETTE_IRIS_PURPLE,\
