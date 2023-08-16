@@ -66,7 +66,7 @@ As a squad marine, when you are in a tight situation, do not be a hero! Whenever
 As a squad marine, do not be afraid to take risks. See a xeno that is almost dead and slowly retreating? Take the chance to charge and kill it! You have better chances to survive with a squadmate with you.
 As a squad marine, you can help out your squad by bringing extra ammunition and food to share.
 As a squad marine, you can take two two-handed guns, one in the suit slot and one on your back.
-As a squad marine, you can get attachments from the weapons vendors, usually near preparations.
+As a squad marine, you can get attachments from the weapons vendors, usually in preparations.
 As a corpsman or engineer, your number one priority is NOT hunting down xenomorphs! Leave it to the combat marines. You have more essential and important tasks at hand.
 As a doctor, the cryotubes are excellent at dealing with basic damage.
 As a doctor, the cryotubes heal internal bleeding and fractures, although slowly.
