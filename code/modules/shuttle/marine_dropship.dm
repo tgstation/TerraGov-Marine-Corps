@@ -998,6 +998,7 @@
 /obj/structure/dropship_piece/singlewindow/tadpole
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_single_window"
+	allow_pass_flags = PASS_GLASS
 	resistance_flags = NONE
 	opacity = FALSE
 
