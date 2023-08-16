@@ -1,0 +1,5 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - bugfix: "fixed material sheet stacks having no or incorrect inhands sprites"
+  - imageadd: "added new inhands sprites for tools that match the inventory counterpart"
