@@ -95,7 +95,7 @@ As the PO, pay attention to the radio! Who knows if someone needs immediate surg
 As the Captain, you have a unique Mateba revolver that takes a chunk of a target's healthpool down. However, you are important for completing the mission, so do not participate in active combat using the Mateba!
 Even if a patient dies a second after being successfully revived by a defibrillator, this resets the time it takes for them to become permanently brain dead.
 Don't forget that xenomorphs spawn infinitely during the Crash gamemode. Don't waste too much time hunting xenomorphs down!
-The AI and synthetics can talk together on their own channel using the :n prefix.
+The AI and synthetics can talk together on their own channel using the :n or .n prefix.
 You can memorialize fallen marines by using their dogtags on the ship's memorial! Memorialized soldiers will be displayed at the end of the round.
 There are water canteens in the vendors. Stay hydrated.
 If a corpsman is tending to you, try and hold still.
