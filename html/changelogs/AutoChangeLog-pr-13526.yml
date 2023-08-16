@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - rscadd: "Added the ability for the AI to conduct a bioscan on its own"

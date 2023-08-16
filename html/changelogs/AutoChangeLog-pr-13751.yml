@@ -1,4 +1,0 @@
-author: "Sebbe9123"
-delete-after: True
-changes:
-  - balance: "Natural blood regen now regens in tiers based on how much nutrition you have."
