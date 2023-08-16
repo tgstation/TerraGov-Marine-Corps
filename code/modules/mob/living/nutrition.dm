@@ -20,7 +20,7 @@
 					do_vomit()
 				if(100 to INFINITY)
 					visible_message(span_notice("A violent stream of puke shoots out of [src]'s mouth. How'd [p_they()] do that?"), \
-						span_notice("Several jets of blood open up across your body and paint your surroundings red. You feel like you aren't under as much pressure any more."))
+						span_notice("A violent flood of puke spews out of your mouth. You feel like your stomach isn't going to burst anymore."))
 					do_vomit()
 
 /mob/living/carbon/proc/adjust_nutrition(amount)
