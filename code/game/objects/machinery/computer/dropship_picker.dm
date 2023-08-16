@@ -8,7 +8,7 @@
 	circuit = null
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_one_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_BRIDGE)
 	/// dock id to dock our chosen shuttle at
 	var/dock_id = SHUTTLE_TADPOLE
 	///if true lock console
@@ -20,6 +20,9 @@
 	if(dropship_selected)
 		balloon_alert(user, "model has already been chosen!")
 		return FALSE
+	if(!allowed(usr))
+		balloon_alert(user, "Access denied!")
+		return
 	return ..()
 
 /obj/machinery/computer/dropship_picker/ui_interact(mob/user, datum/tgui/ui)
