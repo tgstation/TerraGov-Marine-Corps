@@ -524,7 +524,7 @@
 
 	return TRUE
 
-
+cheap_get_humans_near
 
 /datum/action/xeno_action/activable/silence/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -532,7 +532,7 @@
 	X.face_atom(A)
 
 	var/victim_count
-	for(var/mob/living/target AS in hearers(HUNTER_SILENCE_AOE, A))
+	for(var/mob/living/target AS in cheap_get_humans_near(A, HUNTER_SILENCE_AOE))
 		if(!isliving(target)) //Filter out non-living
 			continue
 		if(target.stat == DEAD) //Ignore the dead
