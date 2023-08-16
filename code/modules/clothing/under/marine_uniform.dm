@@ -307,6 +307,7 @@
 	icon_state = "commando_jumpsuit"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 20, BOMB = 10, BIO = 10, FIRE = 20, ACID = 20)
 	has_sensor = 0
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/deathsquad)
 
 /obj/item/clothing/under/marine/veteran/UPP
 	name = "\improper USL fatigues"

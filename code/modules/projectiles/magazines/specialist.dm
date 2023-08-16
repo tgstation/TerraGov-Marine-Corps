@@ -249,6 +249,7 @@
 	icon_state = "quad_rocket"
 	max_rounds = 4
 	default_ammo = /datum/ammo/rocket/wp/quad/ds
+	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	desc = "The internal tube of an RL-57 thermobaric launcher."
