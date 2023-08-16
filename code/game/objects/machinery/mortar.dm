@@ -447,10 +447,12 @@
 
 /obj/machinery/deployable/mortar/double
 	tally_type = TALLY_MORTAR
-	reload_time = 1 SECONDS
+	reload_time = 2 SECONDS
 	fire_amount = 2
-	max_rounds = 4
+	max_rounds = 2
 	fire_delay = 0.5 SECONDS
+	cool_off_time = 6 SECONDS
+	spread = 2
 
 // The big boy, the Howtizer.
 
@@ -539,36 +541,6 @@
 /particles/howitzer_dust/south
 	velocity =  generator(GEN_VECTOR, list(10, 20), list(-10, 20), SQUARE_RAND)
 	position = list(16, 16)
-
-/obj/item/mortar_kit/rocket_arty
-	name = "\improper TA-120R rocket artillery"
-	desc = "A manual, crew-operated and towable rocket artillery piece, will rain down a volley of 132mm rockets on any of your foes."
-	icon = 'icons/Marine/howitzer.dmi'
-	icon_state = "howitzer"
-	max_integrity = 400
-	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	w_class = WEIGHT_CLASS_HUGE
-	deployable_item = /obj/machinery/deployable/mortar/howitzer/rocket_arty
-
-/obj/machinery/deployable/mortar/howitzer/rocket_arty
-	pixel_x = -16
-	anchored = FALSE // You can move this.
-	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
-	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
-	fall_sound = 'sound/weapons/guns/misc/rocket_whistle.ogg'
-	minimum_range = 22
-	allowed_shells = list(
-		/obj/item/mortal_shell/flare,
-		/obj/item/mortal_shell/rocket,
-		/obj/item/mortal_shell/rocket/incend,
-		/obj/item/mortal_shell/rocket/minelaying,
-	)
-	tally_type = TALLY_ROCKET_ARTY
-	cool_off_time = 5 SECONDS
-	reload_time = 1 SECONDS
-	max_rounds = 12
-	offset_per_turfs = 10
-	spread = 3
 
 /obj/item/mortar_kit/mlrs
 	name = "\improper TA-40L multiple rocket launcher system"
