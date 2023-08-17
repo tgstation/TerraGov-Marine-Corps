@@ -1,5 +1,5 @@
 /mob/new_player
-	invisibility = INVISIBILITY_MAXIMUM
+	invisibility = INVISIBILITY_ABSTRACT
 	stat = DEAD
 	density = FALSE
 	canmove = FALSE
