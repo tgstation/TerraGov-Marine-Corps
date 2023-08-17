@@ -530,7 +530,7 @@
 // ***************************************
 // *********** Earth Riser
 // ***************************************
-#define EARTH_RISER_WIND_UP 1.5 SECONDS
+#define EARTH_RISER_WIND_UP 1.6 SECONDS
 #define EARTH_RISER_RANGE 3
 
 /obj/effect/temp_visual/behemoth/crack/earth_riser/Initialize(mapload, direction)
@@ -554,7 +554,7 @@
 	ability_name = "Earth Riser"
 	action_icon_state = "earth_riser"
 	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. Alternate use destroys active pillars, starting with the oldest one."
-	plasma_cost = 40
+	plasma_cost = 25
 	cooldown_timer = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EARTH_RISER,
@@ -725,8 +725,8 @@
 	ability_name = "Seismic Fracture"
 	action_icon_state = "seismic_fracture"
 	desc = "Blast the earth around the selected location, inflicting heavy damage in a large radius."
-	plasma_cost = 60
-	cooldown_timer = 25 SECONDS
+	plasma_cost = 35
+	cooldown_timer = 20 SECONDS
 	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SEISMIC_FRACTURE,
