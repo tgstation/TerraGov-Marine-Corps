@@ -1,7 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - rscadd: "Added mortar smoke shells to the factory"
-  - qol: "Improved refills flavor text, so you know what's actually in your hands"
-  - bugfix: "fixed the Flares refills being wrongly called High Explosives"
-  - balance: "Actually implemented a discount for HE, INC, Flare and Smoke mortar shells via factory"

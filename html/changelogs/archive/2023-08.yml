@@ -232,3 +232,37 @@
   - bugfix: Fixed people getting stuck in tad camera view
   yyzsong:
   - bugfix: Replaced a missing area tile for ice.
+2023-08-17:
+  Blundir:
+  - bugfix: fixed material sheet stacks having no or incorrect inhands sprites
+  - imageadd: added new inhands sprites for tools that match the inventory counterpart
+  DeerJesus:
+  - rscadd: added nt-06 experimental liquor, a proto-bacchus-blessing that fucks up
+      any liver it touches
+  - rscadd: added the bottle of space-aged whiskey (like ship-aged whiskey irl but
+      a pun and more relevant)
+  - rscadd: added SIX new items to the corporate liason suitcase!
+  KrabSpider:
+  - rscadd: Re-adds Silence, a Hunter-exclusive ability that mutes and deafens hostile
+      targets the Hunter has line of sight to in a 5x5 area for 10 seconds. Hunter's
+      Mark targets suffer a 50% longer duration.
+  Lumipharon:
+  - bugfix: fixed an issue with throwing some mobs not stopping correctly
+  - bugfix: fixed the front tad window allow fire and projectiles through
+  RipGrayson:
+  - bugfix: Fixed being able to spam AI bioscans
+  Scarlet-Oduko:
+  - bugfix: Trailblazers no longer teleport to hivemind core with them
+  Xander3359:
+  - balance: Garand clips are smaller
+  - balance: Death Squads are actual threats once more
+  coldironwarrior:
+  - spellcheck: updates the roundstart tips
+  forestbbbbbbb:
+  - rscdel: Remove a bad crash site from Big Red
+  lbnesquik:
+  - rscadd: Added mortar smoke shells to the factory
+  - qol: Improved refills flavor text, so you know what's actually in your hands
+  - bugfix: fixed the Flares refills being wrongly called High Explosives
+  - balance: Actually implemented a discount for HE, INC, Flare and Smoke mortar shells
+      via factory
