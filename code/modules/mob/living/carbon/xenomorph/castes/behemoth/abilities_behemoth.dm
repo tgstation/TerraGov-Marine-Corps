@@ -330,7 +330,7 @@
 	if(primal_wrath_action?.ability_active)
 		var/animation_time = LANDSLIDE_RANGE * LANDSLIDE_ENHANCED_STEP_DELAY
 		addtimer(CALLBACK(src, PROC_REF(enhanced_do_charge), direction, charge_damage, LANDSLIDE_ENHANCED_STEP_DELAY, LANDSLIDE_RANGE), LANDSLIDE_ENHANCED_WIND_UP)
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), xeno_owner, 'sound/effects/behemoth/landslide_enhanced_charge.ogg', 30, TRUE), LANDSLIDE_ENHANCED_WIND_UP)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), xeno_owner, 'sound/effects/behemoth/landslide_enhanced_charge.ogg', 30, TRUE), LANDSLIDE_ENHANCED_WIND_UP)
 		animate(xeno_owner, time = LANDSLIDE_ENHANCED_WIND_UP, flags = ANIMATION_END_NOW)
 		animate(pixel_y = xeno_owner.pixel_y + (LANDSLIDE_RANGE / 2), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_OUT)
 		animate(pixel_y = initial(xeno_owner.pixel_y), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_IN)
@@ -407,7 +407,7 @@
 				hit_living(affected_living, damage)
 			if(isearthpillar(affected_atom))
 				var/obj/structure/earth_pillar/affected_pillar = affected_atom
-				affected_pillar.MouseDrop(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
+				affected_pillar.throw_pillar(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
 				continue
 			if(ismecha(affected_atom))
 				var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
@@ -466,7 +466,7 @@
 				hit_living(affected_living, damage)
 			if(isearthpillar(affected_atom))
 				var/obj/structure/earth_pillar/affected_pillar = affected_atom
-				affected_pillar.MouseDrop(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
+				affected_pillar.throw_pillar(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
 				continue
 			if(ismecha(affected_atom))
 				var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
@@ -1133,8 +1133,9 @@
 	SIGNAL_HANDLER
 	if(ability_active)
 		toggle_buff(FALSE)
-	UnregisterSignal(owner, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 	STOP_PROCESSING(SSprocessing, src)
+	if(owner)
+		UnregisterSignal(owner, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 
 
 // ***************************************
@@ -1262,21 +1263,6 @@
 	playsound(src, get_sfx("behemoth_earth_pillar_hit"), 40)
 	new /obj/effect/temp_visual/behemoth/landslide/hit(get_turf(src))
 
-// When clickdragging an Earth Pillar, it fires it as a projectile to whatever we clickdragged it to.
-/obj/structure/earth_pillar/MouseDrop(atom/over_atom, landslide)
-	if(!isxeno(usr) || !in_range(src, usr) || over_atom == src || warning_flashes < initial(warning_flashes))
-		return
-	var/source_turf = get_turf(src)
-	playsound(source_turf, get_sfx("behemoth_earth_pillar_hit"), 40)
-	new /obj/effect/temp_visual/behemoth/landslide/hit(source_turf)
-	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
-	earth_riser_action?.add_cooldown()
-	qdel(src)
-	var/datum/ammo/xeno/earth_pillar/projectile = landslide? GLOB.ammo_list[/datum/ammo/xeno/earth_pillar/landslide] : GLOB.ammo_list[/datum/ammo/xeno/earth_pillar]
-	var/obj/projectile/new_projectile = new /obj/projectile(source_turf)
-	new_projectile.generate_bullet(projectile)
-	new_projectile.fire_at(get_turf(over_atom), usr, null, new_projectile.ammo.max_range, loc_override = source_turf)
-
 // Attacking an Earth Pillar as a xeno has a few possible interactions, based on intent:
 // - Harm intent will reduce a counter in this structure. When the counter hits zero, the structure is destroyed, meaning it is much easier to break it as a xeno.
 // - Help intent as a Behemoth will trigger an easter egg. Does nothing, just fluff.
@@ -1326,6 +1312,25 @@
 		if(EXPLODE_LIGHT)
 			take_damage(max_integrity / 3)
 
+// When clickdragging an Earth Pillar, it fires it as a projectile to whatever we clickdragged it to.
+/obj/structure/earth_pillar/MouseDrop(atom/over_atom)
+	throw_pillar(over_atom)
+
+/// Deletes the pillar and creates a projectile on the same tile, to be fired at the target atom.
+/obj/structure/earth_pillar/proc/throw_pillar(atom/target_atom, landslide)
+	if(!isxeno(usr) || !in_range(src, usr) || target_atom == src || warning_flashes < initial(warning_flashes))
+		return
+	var/source_turf = get_turf(src)
+	playsound(source_turf, get_sfx("behemoth_earth_pillar_hit"), 40)
+	new /obj/effect/temp_visual/behemoth/landslide/hit(source_turf)
+	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
+	earth_riser_action?.add_cooldown()
+	qdel(src)
+	var/datum/ammo/xeno/earth_pillar/projectile = landslide? GLOB.ammo_list[/datum/ammo/xeno/earth_pillar/landslide] : GLOB.ammo_list[/datum/ammo/xeno/earth_pillar]
+	var/obj/projectile/new_projectile = new /obj/projectile(source_turf)
+	new_projectile.generate_bullet(projectile)
+	new_projectile.fire_at(get_turf(target_atom), usr, null, new_projectile.ammo.max_range, loc_override = source_turf)
+
 /// Seismic Fracture (as in the ability) has a special interaction with any Earth Pillars caught in its attack range.
 /// Those Earth Pillars will reflect the same attack in a similar range around it, destroying itself afterwards.
 /obj/structure/earth_pillar/proc/seismic_fracture()
@@ -1343,7 +1348,7 @@
 #define EARTH_PILLAR_DAMAGE_MODIFIER 0.5
 
 /datum/ammo/xeno/earth_pillar
-	name = "rock"
+	name = "earth pillar"
 	icon_state = "earth_pillar"
 	ping = null
 	bullet_color = COLOR_LIGHT_ORANGE
@@ -1354,8 +1359,10 @@
 	armor_type = MELEE
 
 /datum/ammo/xeno/earth_pillar/do_at_max_range(turf/hit_turf, obj/projectile/proj)
-	new /obj/effect/temp_visual/behemoth/earth_pillar/broken(hit_turf)
-	playsound(hit_turf, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
+	return rock_broke(hit_turf, proj)
+
+/datum/ammo/xeno/earth_pillar/on_hit_turf(turf/hit_turf, obj/projectile/proj)
+	return rock_broke(hit_turf, proj)
 
 /datum/ammo/xeno/earth_pillar/on_hit_mob(mob/hit_mob, obj/projectile/proj)
 	if(!isxeno(proj.firer) || !isliving(hit_mob))
@@ -1370,9 +1377,12 @@
 /datum/ammo/xeno/earth_pillar/on_hit_obj(obj/hit_object, obj/projectile/proj)
 	return on_hit_anything(get_turf(hit_object), proj)
 
-/datum/ammo/xeno/earth_pillar/on_hit_turf(turf/hit_turf, obj/projectile/proj)
-	return on_hit_anything(hit_turf, proj)
+/// VFX + SFX for when the rock doesn't hit anything.
+/datum/ammo/xeno/earth_pillar/proc/rock_broke(turf/hit_turf, obj/projectile/proj)
+	new /obj/effect/temp_visual/behemoth/earth_pillar/broken(hit_turf)
+	playsound(hit_turf, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
 
+/// Does some stuff if the rock DOES hit something.
 /datum/ammo/xeno/earth_pillar/proc/on_hit_anything(turf/hit_turf, obj/projectile/proj)
 	playsound(hit_turf, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/destroyed(hit_turf)
@@ -1382,7 +1392,8 @@
 	var/datum/action/xeno_action/activable/seismic_fracture/seismic_fracture_action = xeno_firer.actions_by_path[/datum/action/xeno_action/activable/seismic_fracture]
 	seismic_fracture_action?.do_ability(hit_turf, earth_pillar = TRUE)
 
-/datum/ammo/xeno/earth_pillar/landslide
-
 /datum/ammo/xeno/earth_pillar/landslide/do_at_max_range(turf/hit_turf, obj/projectile/proj)
+	return on_hit_anything(hit_turf, proj)
+
+/datum/ammo/xeno/earth_pillar/landslide/on_hit_turf(turf/hit_turf, obj/projectile/proj)
 	return on_hit_anything(hit_turf, proj)
