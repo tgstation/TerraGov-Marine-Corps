@@ -724,7 +724,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	title = MEDICAL_DOCTOR
 	comm_title = "MD"
 	paygrade = "RES"
-	total_positions = 6
+	total_positions = 4
 	supervisors = "the chief medical officer"
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
