@@ -1204,7 +1204,7 @@
 	base_icon_state = "earth_pillar_0"
 	layer = ABOVE_LYING_MOB_LAYER
 	climbable = TRUE
-	climb_delay = 2 SECONDS
+	climb_delay = 1.5 SECONDS
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	density = TRUE
 	max_integrity = 200
@@ -1345,15 +1345,13 @@
 
 // Earth Riser is capable of interacting with existing Earth Pillars to fire a projectile.
 // See the Earth Riser ability for specifics.
-#define EARTH_PILLAR_DAMAGE_MODIFIER 0.5
-
 /datum/ammo/xeno/earth_pillar
 	name = "earth pillar"
 	icon_state = "earth_pillar"
 	ping = null
 	bullet_color = COLOR_LIGHT_ORANGE
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
-	shell_speed = 0.8
+	shell_speed = 0.7
 	damage_falloff = 0
 	damage_type = BRUTE
 	armor_type = MELEE

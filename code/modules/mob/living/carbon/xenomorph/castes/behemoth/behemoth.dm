@@ -38,7 +38,7 @@
 	if(behemoth_roll_action?.charge_ability_on)
 		return "behemoth_wounded_charging_[severity]"
 
-/mob/living/carbon/xenomorph/behemoth/Stat()
+/mob/living/carbon/xenomorph/behemoth/get_status_tab_items()
 	. = ..()
-	if(statpanel("Game") && xeno_caste.wrath_max > 0)
-		stat("Wrath:", "[wrath_stored] / [xeno_caste.wrath_max]")
+	if(xeno_caste.wrath_max > 0)
+		. += "Wrath: [wrath_stored] / [xeno_caste.wrath_max]"
