@@ -74,7 +74,7 @@
 /datum/asset/spritesheet/chat
 	name = "chat"
 
-/datum/asset/spritesheet/chat/register()
+/datum/asset/spritesheet/chat/create_spritesheets()
 	InsertAll("emoji", 'icons/misc/emoji.dmi')
 	// pre-loading all lanugage icons also helps to avoid meta
 	InsertAll("language", 'icons/misc/language.dmi')
@@ -85,7 +85,6 @@
 		if (icon != 'icons/misc/language.dmi')
 			var/icon_state = initial(L.icon_state)
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
-	..()
 
 /datum/asset/simple/namespaced/common
 	assets = list("padlock.png" = 'html/images/padlock.png')
@@ -121,37 +120,32 @@
 /datum/asset/spritesheet/blessingmenu
 	name = "blessingmenu"
 
-/datum/asset/spritesheet/blessingmenu/register()
+/datum/asset/spritesheet/blessingmenu/create_spritesheets()
 	InsertAll("", 'icons/UI_Icons/buyable_icons.dmi')
-	..()
 
 /datum/asset/spritesheet/mechaarmor
 	name = "mechaarmor"
 
-/datum/asset/spritesheet/mechaarmor/register()
+/datum/asset/spritesheet/mechaarmor/create_spritesheets()
 	InsertAll("", 'icons/UI_Icons/mecha/armor.dmi')
-	..()
 
 /datum/asset/spritesheet/mech_builder
 	name = "mech_builder"
 
-/datum/asset/spritesheet/mech_builder/register()
+/datum/asset/spritesheet/mech_builder/create_spritesheets()
 	InsertAll("", 'icons/mecha/mecha_equipment_64x32.dmi')
-	..()
 
 /datum/asset/spritesheet/mech_ammo
 	name = "mech_ammo"
 
-/datum/asset/spritesheet/mech_ammo/register()
+/datum/asset/spritesheet/mech_ammo/create_spritesheets()
 	InsertAll("", 'icons/mecha/mecha_ammo.dmi')
-	..()
 
 /datum/asset/spritesheet/hivestatus
 	name = "hivestatus"
 
-/datum/asset/spritesheet/hivestatus/register()
+/datum/asset/spritesheet/hivestatus/create_spritesheets()
 	InsertAll("", 'icons/UI_Icons/hive_status_icons.dmi')
-	..()
 
 /datum/asset/simple/particle_editor
 	assets = list(

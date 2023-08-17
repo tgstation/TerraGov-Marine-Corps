@@ -491,6 +491,15 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 	. = ..()
 	recipe = GLOB.mortar_shell
 
+/obj/item/factory_part/mortar_shell_tfoot
+	name = "mortar shell"
+	desc = "An unfinished flare mortar shell."
+	result = /obj/item/mortal_shell/plasmaloss
+
+/obj/item/factory_part/mortar_shell_tfoot/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.mortar_shell
+
 /obj/item/factory_part/mortar_shell_flare
 	name = "mortar shell"
 	desc = "An unfinished flare mortar shell."
@@ -500,14 +509,16 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 	. = ..()
 	recipe = GLOB.mortar_shell
 
-/obj/item/factory_part/mortar_shell_tfoot
+/obj/item/factory_part/mortar_shell_smoke
 	name = "mortar shell"
-	desc = "An unfinished flare mortar shell."
-	result = /obj/item/mortal_shell/plasmaloss
+	desc = "An unfinished smoke mortar shell."
+	result = /obj/item/mortal_shell/smoke
 
-/obj/item/factory_part/mortar_shell_tfoot/Initialize(mapload)
+/obj/item/factory_part/mortar_shell_smoke/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.mortar_shell
+
+
 
 GLOBAL_LIST_INIT(mlrs_rocket, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
