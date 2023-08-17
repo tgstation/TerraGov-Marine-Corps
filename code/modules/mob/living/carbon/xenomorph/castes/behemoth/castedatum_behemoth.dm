@@ -13,15 +13,15 @@
 	melee_damage = 24
 
 	// *** Speed *** //
-	speed = -0.3
-	weeds_speed_mod = -0.2
+	speed = -0.2
+	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 825
+	max_health = 725
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -74,14 +74,14 @@
 	melee_damage = 24
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 850
+	max_health = 750
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -99,14 +99,14 @@
 	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 875
+	max_health = 775
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -125,14 +125,14 @@
 	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 900
+	max_health = 800
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -146,20 +146,22 @@
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_FOUR
 	primordial_message = "In the ancient embrace of the earth, we have honed our art to perfection. Our might will crush the feeble pleas of our enemies before they can escape their lips."
-	wrath_max = 700
+
+	// *** Wrath *** //
+	wrath_max = 800
 
 	// *** Melee Attacks *** //
 	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 900
+	max_health = 800
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
