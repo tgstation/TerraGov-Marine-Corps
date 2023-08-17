@@ -1411,13 +1411,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
 	hud_state = "railgun_ap"
-	icon_state = "blue_bullet"
+	icon_state = "pulse"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 14
-	damage = 150
+	damage = 60
 	penetration = 100
-	sundering = 20
+	sundering = 10
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
@@ -1429,9 +1429,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "railgun_hvap"
 	shell_speed = 5
 	max_range = 21
-	damage = 100
+	damage = 50
 	penetration = 30
-	sundering = 50
+	sundering = 20
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 2 SECONDS, knockback = 3)
@@ -1440,9 +1440,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "smart armor piercing railgun slug"
 	hud_state = "railgun_smart"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
-	damage = 100
+	damage = 50
 	penetration = 20
-	sundering = 20
+	sundering = 10
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 3 SECONDS, slowdown = 3)

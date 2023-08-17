@@ -920,6 +920,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "railgun"
 	item_state = "railgun"
+	muzzleflash_iconstate = "muzzle_flash_pulse"
+	muzzle_flash_color = COLOR_BLUE_LIGHT
 	max_shells = 3 //codex
 	caliber = CALIBER_RAILGUN
 	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
@@ -944,10 +946,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
+	windup_delay = 0.5 SECONDS
 	fire_delay = 3 SECONDS
-	burst_amount = 1
+	burst_amount = 3
 	accuracy_mult = 2
-	recoil = 3
+	recoil = 1.5
 	scatter = 0
 	movement_acc_penalty_mult = 6
 
