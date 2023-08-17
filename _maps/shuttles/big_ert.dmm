@@ -768,9 +768,6 @@
 /obj/item/ammo_magazine/pistol/vp70{
 	pixel_x = 5
 	},
-/obj/item/weapon/gun/pistol/vp70{
-	pixel_y = 4
-	},
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "ci" = (

@@ -43,7 +43,6 @@
 /area/lv624/ground/caves/central2)
 "cP" = (
 /obj/structure/rack/nometal,
-/obj/item/weapon/gun/pistol/vp70,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
@@ -435,7 +434,6 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "FT" = (
-/obj/item/weapon/gun/pistol/vp70,
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},

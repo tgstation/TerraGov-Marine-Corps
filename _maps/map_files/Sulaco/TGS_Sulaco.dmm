@@ -16692,10 +16692,6 @@
 	},
 /obj/item/stack/sheet/mineral/diamond,
 /obj/item/stack/sheet/mineral/gold,
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
 /obj/item/storage/fancy/cigar,
 /obj/machinery/firealarm{
 	dir = 8

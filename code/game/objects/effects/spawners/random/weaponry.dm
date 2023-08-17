@@ -25,7 +25,6 @@
 		/obj/item/weapon/gun/pistol/standard_heavypistol,
 		/obj/item/weapon/gun/revolver/standard_revolver,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
-		/obj/item/weapon/gun/pistol/vp70,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/weapon/gun/rifle/pepperball,
@@ -96,7 +95,6 @@
 		/obj/item/weapon/gun/pistol/standard_heavypistol,
 		/obj/item/weapon/gun/revolver/standard_revolver,
 		/obj/item/weapon/gun/revolver/cmb,
-		/obj/item/weapon/gun/pistol/vp70,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 	)
 

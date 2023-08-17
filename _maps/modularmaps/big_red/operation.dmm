@@ -1451,7 +1451,6 @@
 /area/bigredv2/outside/admin_building)
 "ZX" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/pistol/vp70,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},

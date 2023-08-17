@@ -1583,8 +1583,6 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ahB" = (
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
 /obj/item/clothing/under/liaison_suit/formal,
 /obj/item/clothing/under/liaison_suit,
 /obj/item/clothing/under/liaison_suit/outing,

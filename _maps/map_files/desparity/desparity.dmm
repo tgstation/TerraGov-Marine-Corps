@@ -5049,7 +5049,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/item/weapon/gun/pistol/vp70,
 /obj/item/stack/rods,
 /turf/open/floor/rcircuit/off,
 /area/lv624/ground/jungle9)

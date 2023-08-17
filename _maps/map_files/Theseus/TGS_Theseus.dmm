@@ -16415,8 +16415,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "qAP" = (
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/liaison_suit/formal,
 /obj/item/clothing/under/liaison_suit,

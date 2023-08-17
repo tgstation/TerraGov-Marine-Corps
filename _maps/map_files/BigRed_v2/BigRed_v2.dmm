@@ -7289,7 +7289,6 @@
 	},
 /obj/structure/closet/cabinet,
 /obj/item/disk/nuclear,
-/obj/item/weapon/gun/pistol/vp70,
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDq" = (

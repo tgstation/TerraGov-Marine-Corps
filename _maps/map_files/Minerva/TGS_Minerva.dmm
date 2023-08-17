@@ -615,10 +615,6 @@
 	},
 /obj/item/stack/sheet/mineral/diamond,
 /obj/item/stack/sheet/mineral/gold,
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -1038,8 +1034,6 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "cY" = (
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/liaison_suit/formal,
 /obj/item/clothing/under/liaison_suit,

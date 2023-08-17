@@ -257,7 +257,6 @@
 		/obj/item/weapon/gun/pistol/c99/tranq,
 		/obj/item/weapon/gun/pistol/holdout,
 		/obj/item/weapon/gun/pistol/highpower,
-		/obj/item/weapon/gun/pistol/vp70,
 		/obj/item/weapon/gun/pistol/vp78,
 		/obj/item/weapon/gun/pistol/som,
 		/obj/item/weapon/gun/pistol/icc_dpistol,

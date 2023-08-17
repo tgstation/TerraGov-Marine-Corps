@@ -107,11 +107,6 @@
 			/obj/item/ammo_magazine/pistol/standard_pocketpistol,
 			/obj/item/ammo_magazine/pistol/standard_pocketpistol,
 		),
-		list(/obj/item/weapon/gun/pistol/vp70,
-			/obj/item/ammo_magazine/pistol/vp70,
-			/obj/item/ammo_magazine/pistol/vp70,
-			/obj/item/ammo_magazine/pistol/vp70,
-		),
 		list(/obj/item/weapon/gun/pistol/plasma_pistol,
 			/obj/item/ammo_magazine/pistol/plasma_pistol,
 			/obj/item/ammo_magazine/pistol/plasma_pistol,
@@ -260,5 +255,4 @@
 		),
 		list(/obj/item/weapon/gun/revolver/cmb, /obj/item/ammo_magazine/revolver/cmb, /obj/item/ammo_magazine/revolver/cmb, /obj/item/ammo_magazine/revolver/cmb,),
 		list(/obj/item/weapon/gun/pistol/standard_pocketpistol, /obj/item/ammo_magazine/pistol/standard_pocketpistol, /obj/item/ammo_magazine/pistol/standard_pocketpistol, /obj/item/ammo_magazine/pistol/standard_pocketpistol,),
-		list(/obj/item/weapon/gun/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70,),
 	)
