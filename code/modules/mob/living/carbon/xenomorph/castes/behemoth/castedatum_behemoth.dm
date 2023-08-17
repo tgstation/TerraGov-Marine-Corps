@@ -50,21 +50,9 @@
 		/datum/action/xeno_action/activable/seismic_fracture,
 	)
 
-/datum/xeno_caste/behemoth/on_caste_applied(mob/xenomorph)
-	. = ..()
-	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/behemoth)
-	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
-
-/datum/xeno_caste/behemoth/on_caste_removed(mob/xenomorph)
-	. = ..()
-	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/behemoth)
-	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
-
-
 /datum/xeno_caste/behemoth/young
 	upgrade_name = "Young"
 	upgrade = XENO_UPGRADE_ZERO
-
 
 /datum/xeno_caste/behemoth/mature
 	upgrade_name = "Mature"
@@ -90,7 +78,6 @@
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
-
 /datum/xeno_caste/behemoth/elder
 	upgrade_name = "Elder"
 	upgrade = XENO_UPGRADE_TWO
@@ -114,7 +101,6 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-
 
 /datum/xeno_caste/behemoth/ancient
 	upgrade_name = "Ancient"
@@ -140,7 +126,6 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-
 
 /datum/xeno_caste/behemoth/primordial
 	upgrade_name = "Primordial"

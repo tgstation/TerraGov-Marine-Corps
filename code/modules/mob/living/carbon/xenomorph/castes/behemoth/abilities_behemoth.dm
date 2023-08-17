@@ -125,7 +125,7 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = FALSE
-	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons()
 	add_cooldown(15 SECONDS)
 
@@ -133,7 +133,7 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = TRUE
-	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons()
 	for(var/mob/living/rider AS in xeno_owner.buckled_mobs)
 		xeno_owner.unbuckle_mob(rider)
