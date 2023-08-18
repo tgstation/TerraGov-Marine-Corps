@@ -287,7 +287,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/activable/bombard/proc/root()
 	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		owner.balloon_alert_to_viewers("Rooting out of place...")
-		if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+		if(!do_after(owner, 2 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
 			owner.balloon_alert(owner, "Interrupted!")
 			return
 		owner.balloon_alert(owner, "Unrooted!")
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return
 
 	owner.balloon_alert_to_viewers("Rooting into place...")
-	if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+	if(!do_after(owner, 2 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
 		owner.balloon_alert(owner, "Interrupted!")
 		return
 
