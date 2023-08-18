@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Acting squad leaders now have 1 level lower in leadership compared to actual squad leaders"
+  - bugfix: "Fixed squaddies being able to use leader droppods"
