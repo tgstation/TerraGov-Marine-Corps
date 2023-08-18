@@ -40,11 +40,14 @@
 			to_chat(user, span_warning("Your other hand can't hold [src]!"))
 			return FALSE
 
+	if(!place_offhand(user))
+		to_chat(user, span_warning("You cannot wield [src] right now."))
+		return FALSE
+
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
 	update_item_state()
-	place_offhand(user, name)
 	return TRUE
 
 
@@ -64,18 +67,20 @@
 	return TRUE
 
 
-/obj/item/proc/place_offhand(mob/user, item_name)
-	to_chat(user, span_notice("You grab [item_name] with both hands."))
+/obj/item/proc/place_offhand(mob/user)
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
-	offhand.name = "[item_name] - offhand"
-	offhand.desc = "Your second grip on the [item_name]."
-	user.put_in_inactive_hand(offhand)
+	if(!user.put_in_inactive_hand(offhand))
+		qdel(offhand)
+		return FALSE
+	to_chat(user, span_notice("You grab [src] with both hands."))
+	offhand.name = "[name] - offhand"
+	offhand.desc = "Your second grip on [src]."
 	user.update_inv_l_hand()
 	user.update_inv_r_hand()
-
+	return TRUE
 
 /obj/item/proc/remove_offhand(mob/user)
-	to_chat(user, span_notice("You are now carrying [name] with one hand."))
+	to_chat(user, span_notice("You are now carrying [src] with one hand."))
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand) && !QDELETED(offhand))
 		qdel(offhand)
