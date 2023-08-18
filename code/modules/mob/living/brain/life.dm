@@ -130,7 +130,7 @@
 				else
 					hud_used.healths.icon_state = "health6"
 		else
-			hud_used.healths.icon_state = "health7"
+			hud_used.healths.icon_state = "health_dead"
 
 
 	if(stat != DEAD) //the dead get zero fullscreens

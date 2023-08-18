@@ -54,6 +54,7 @@
 /atom/movable/screen/alien/plasmadisplay
 	name = "Plasma Stored"
 	desc = "0/0"
+	icon = 'icons/mob/screen/alien_better.dmi'
 	icon_state = "power_display2"
 	screen_loc = ui_alienplasmadisplay
 

@@ -189,7 +189,7 @@
 		return
 
 	if(stat == DEAD)
-		hud_used.healths.icon_state = "health7"
+		hud_used.healths.icon_state = "health_dead"
 		return
 
 	if(HAS_TRAIT(src, TRAIT_PAIN_IMMUNE)) //We can't tell how hurt we are if we can't feel pain
@@ -205,7 +205,7 @@
 			hud_used.healths.icon_state = "health6"
 			return
 		if(2)
-			hud_used.healths.icon_state = "health7"
+			hud_used.healths.icon_state = "health_dead"
 			return
 
 	if(health < get_crit_threshold())
