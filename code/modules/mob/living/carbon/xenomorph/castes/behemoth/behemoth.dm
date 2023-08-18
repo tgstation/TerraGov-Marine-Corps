@@ -12,7 +12,6 @@
 	upgrade = XENO_UPGRADE_ZERO
 	drag_delay = 6
 	mob_size = MOB_SIZE_BIG
-	buckle_flags = CAN_BUCKLE
 	max_buckled_mobs = 2
 	pixel_x = -28.5
 	old_x = -28.5
