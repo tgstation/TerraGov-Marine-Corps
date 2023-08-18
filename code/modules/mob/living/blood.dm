@@ -69,7 +69,7 @@
 		switch(blood_volume)
 			if(BLOOD_VOLUME_SAFE to BLOOD_VOLUME_NORMAL) //Passively regens blood very slowly from 90% to 100% without a tradeoff.
 				blood_volume += 0.1
-			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE) //Regens blood from 50% ish to 90% using nutrition.
+			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_SAFE) //Regens blood from 60% ish to 90% using nutrition.
 				switch(nutrition)
 					if(NUTRITION_OVERFED to INFINITY)
 						adjust_nutrition(-10)
@@ -80,20 +80,6 @@
 					if(0 to NUTRITION_HUNGRY)
 						adjust_nutrition(-1)
 						blood_volume += 0.1 // Regenerate blood VERY slowly.
-			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_OKAY)
-				switch(nutrition)
-					if(NUTRITION_OVERFED to INFINITY) //regens blood from death treshold to around 50% quickly using nutrition and tox
-						adjust_nutrition(-12)
-						adjustToxLoss(1)
-						blood_volume += 5 // regenerate blood very quickly but quickly drains your nutrition and small amounts of tox to keep you alive.
-					if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
-						adjust_nutrition(-8)
-						adjustToxLoss(3)
-						blood_volume += 4 // regenerate blood quickly in exchange for toxin and nutrition.
-					if(0 to NUTRITION_HUNGRY)
-						adjust_nutrition(-5)
-						adjustToxLoss(5)
-						blood_volume += 3 // Regenerate blood somewhat quickly in exchange for a lot of tox and a little nutrition.
 
 		//Bleeding out
 		var/blood_max = 0
