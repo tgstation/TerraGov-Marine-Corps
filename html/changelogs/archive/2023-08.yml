@@ -266,3 +266,11 @@
   - bugfix: fixed the Flares refills being wrongly called High Explosives
   - balance: Actually implemented a discount for HE, INC, Flare and Smoke mortar shells
       via factory
+2023-08-18:
+  Barnet2:
+  - rscadd: Added Medical Doctor clothing to the Clothing Vendor in a new section
+      called "Medical Clothing"
+  - bugfix: Medical scrubs now have their respective color on their name.
+  - balance: Medical Doctor slots reduced to 2 from 6.
+  forestbbbbbbb:
+  - rscadd: Ghosts can point
