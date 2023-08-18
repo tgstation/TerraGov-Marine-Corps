@@ -520,6 +520,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/roller/medevac/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
+	holder = null
 	if(linked_beacon)
 		linked_beacon.remove_stretcher(src)
 	return ..()
