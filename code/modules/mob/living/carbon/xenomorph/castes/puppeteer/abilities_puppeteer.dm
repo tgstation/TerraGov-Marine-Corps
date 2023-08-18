@@ -89,6 +89,7 @@
 // ***************************************
 // *********** Dreadful Presence
 // ***************************************
+#define DREAD_RANGE 6
 /datum/action/xeno_action/dreadful_presence
 	name = "Dreadful Presence"
 	action_icon_state = "dreadful_presence"
@@ -102,7 +103,7 @@
 /datum/action/xeno_action/dreadful_presence/action_activate()
 	var/obj/effect/overlay/dread/effect = new
 	owner.vis_contents += effect
-	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
+	for(var/mob/living/carbon/human/human in view(DREAD_RANGE, owner.loc))
 		to_chat(human, span_userdanger("An overwhelming sense of dread washes over you... You are temporarily slowed down!"))
 		human.set_timed_status_effect(6 SECONDS, /datum/status_effect/dread)
 		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob/living/carbon/human, emote), "scream"), rand(1,2))
@@ -114,6 +115,7 @@
 	owner.vis_contents -= effect
 	qdel(effect)
 
+#undef DREAD_RANGE
 // ***************************************
 // *********** Refurbish Husk
 // ***************************************
@@ -302,7 +304,7 @@
 			continue
 		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
-			new /obj/effect/xenomorph/spray(acid_tile, 12 SECONDS, 16)
+			new /obj/effect/xenomorph/spray(acid_tile, 12 SECONDS, 18)
 // ***************************************
 // *********** Articulate
 // ***************************************
