@@ -367,6 +367,33 @@ TUNNEL
 /obj/structure/xeno/tunnel/attack_larva(mob/living/carbon/xenomorph/larva/L) //So larvas can actually use tunnels
 	attack_alien(L)
 
+/obj/structure/xeno/tunnel/attack_ghost(mob/dead/observer/user)
+	. = ..()
+
+	var/list/obj/destinations = GLOB.xeno_tunnels_by_hive[hivenumber]
+	var/obj/structure/xeno/tunnel/targettunnel
+	if(LAZYLEN(destinations) > 2)
+		var/list/tunnel_assoc = list()
+		for(var/obj/D in destinations)
+			tunnel_assoc["X:[D.x], Y:[D.y] - \[[get_area(D)]\]"] = D
+		destinations = list()
+		for(var/d in tunnel_assoc)
+			destinations += d
+		var/input = tgui_input_list(user ,"Choose a tunnel to teleport to:" ,"Ghost Tunnel teleport" ,destinations ,null, 0)
+		if(!input)
+			return
+		targettunnel = tunnel_assoc[input]
+		if(!input)
+			return
+	else
+		//There are only 2 tunnels. Pick the other one.
+		for(var/P in destinations)
+			if(P != src)
+				targettunnel = P
+	if(!targettunnel || QDELETED(targettunnel) || !targettunnel.loc)
+		return
+	user.forceMove(get_turf(targettunnel))
+
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
 	var/obj/structure/xeno/tunnel/targettunnel = tgui_input_list(M, "Choose a tunnel to crawl to", "Tunnel", GLOB.xeno_tunnels_by_hive[hivenumber])

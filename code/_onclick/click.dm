@@ -484,11 +484,8 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 
 /mob/proc/ShiftMiddleClickOn(atom/A)
-	return
-
-
-/mob/living/ShiftMiddleClickOn(atom/A)
 	point_to(A)
+	return
 
 
 /atom/proc/CtrlShiftClick(mob/user)

@@ -720,34 +720,32 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "A19 high velocity bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
-	shrapnel_chance = 0
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 15
-	accurate_range_min = 6
 	damage = 40
 	penetration = 20
 	sundering = 10
+	bullet_color = COLOR_SOFT_RED
 
 /datum/ammo/bullet/rifle/tx8/incendiary
 	name = "high velocity incendiary bullet"
 	hud_state = "hivelo_fire"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
 	damage = 25
-	accuracy = -10
 	penetration = 20
 	sundering = 2.5
+	bullet_color = LIGHT_COLOR_FIRE
 
 /datum/ammo/bullet/rifle/tx8/impact
 	name = "high velocity impact bullet"
 	hud_state = "hivelo_impact"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
-	damage = 25
-	penetration = 30
-	sundering = 5
+	damage = 30
+	penetration = 10
+	sundering = 12.5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 20, slowdown = 1)
+	staggerstun(M, P, max_range = 14, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/rifle/mpi_km
 	name = "crude heavy rifle bullet"
@@ -2744,7 +2742,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "pulse bolt"
 	icon_state = "pulse2"
 	hud_state = "pulse"
-	damage = 90 // this is gotta hurt...
+	damage = 45 // this is gotta hurt...
 	max_range = 40
 	penetration = 100
 	sundering = 100

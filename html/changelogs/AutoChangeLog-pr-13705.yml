@@ -1,0 +1,6 @@
+author: "Redory"
+delete-after: True
+changes:
+  - qol: "Ghosts can teleport using Medevacs, Xeno tunnels, ASRS teleporters, Wraith portals and Shuttle computers."
+  - qol: "Medevac stretchers now have a realtime cooldown on their sprite when in inventory."
+  - qol: "Medevac beacons now list all linked stretchers and show their cooldowns."

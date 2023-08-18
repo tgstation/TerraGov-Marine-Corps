@@ -301,7 +301,7 @@
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job) && !issommarineleaderjob(squad_leader.job))
-		squad_leader.set_skills(squad_leader.skills.setRating(leadership = SKILL_LEAD_EXPERT))
+		squad_leader.set_skills(squad_leader.skills.setRating(leadership = SKILL_LEAD_TRAINED))
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))

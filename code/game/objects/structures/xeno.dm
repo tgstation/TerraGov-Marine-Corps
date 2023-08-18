@@ -165,6 +165,9 @@
 	///The timer that tracks the delay above
 	var/closetimer
 
+/obj/structure/mineral_door/resin/smooth_icon()
+	. = ..()
+	update_icon()
 
 /obj/structure/mineral_door/resin/Initialize(mapload)
 	. = ..()

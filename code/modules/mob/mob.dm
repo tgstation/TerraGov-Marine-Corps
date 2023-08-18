@@ -778,3 +778,14 @@
 		hud_used.remove_parallax(src)
 		return
 	hud_used.create_parallax(src)
+
+/mob/proc/point_to_atom(atom/pointed_atom)
+	var/turf/tile = get_turf(pointed_atom)
+	if(!tile)
+		return FALSE
+	var/turf/our_tile = get_turf(src)
+	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0)
+	visual.invisibility = invisibility
+	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointed_atom.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y, time = 1.7, easing = EASE_OUT)
+	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, pointed_atom)
+	return TRUE

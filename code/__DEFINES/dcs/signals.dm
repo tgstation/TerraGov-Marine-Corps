@@ -724,6 +724,7 @@
 #define COMSIG_XENOABILITY_RALLY_HIVE "xenoability_rally_hive"
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 #define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
+#define COMSIG_XENOABILITY_SILENCE "xenoability_silence"
 
 #define COMSIG_XENOABILITY_TOXIC_SPIT "xenoability_toxic_spit"
 #define COMSIG_XENOABILITY_TOXIC_SLASH "xenoability_toxic_slash"

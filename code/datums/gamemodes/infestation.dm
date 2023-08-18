@@ -58,12 +58,13 @@
 		if((bioscanning_ai.last_ai_bioscan + COOLDOWN_AI_BIOSCAN) > world.time)
 			to_chat(bioscanning_ai, "Bioscan instruments are still recalibrating from their last use.")
 			return
+		bioscanning_ai.last_ai_bioscan = world.time
 		to_chat(bioscanning_ai, span_warning("Scanning for hostile lifeforms..."))
 		if(!do_after(usr, AI_SCAN_DELAY, TRUE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+			bioscanning_ai.last_ai_bioscan = 0
 			return
 
 		#endif
-		bioscanning_ai.last_ai_bioscan = world.time
 
 	else
 		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)

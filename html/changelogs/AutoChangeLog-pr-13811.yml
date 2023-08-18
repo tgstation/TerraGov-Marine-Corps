@@ -1,0 +1,8 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - rscdel: "unused rocket arty typepath"
+  - balance: "db mortar reload time to 2 seconds"
+  - balance: "db mortar max rounds to 2"
+  - balance: "db mortar now has cooloff time of 6s"
+  - balance: "db mortar now has base spread of 2 tiles"
