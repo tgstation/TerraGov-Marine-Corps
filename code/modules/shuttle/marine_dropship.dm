@@ -309,7 +309,7 @@
 /obj/docking_port/mobile/marine_dropship/on_prearrival()
 	. = ..()
 	if(hijack_state == HIJACK_STATE_CRASHING)
-		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT.", "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
 
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
@@ -1346,6 +1346,32 @@
 			dataset["locked"] = !M.check_dock(S, silent=TRUE)
 			data["destinations"] += list(dataset)
 	return data
+
+/obj/machinery/computer/shuttle/shuttle_control/attack_ghost(mob/dead/observer/user)
+	var/list/all_destinations = splittext(possible_destinations,";")
+
+	if(length(all_destinations) < 2)
+		return
+
+	// Getting all valid destinations into an assoc list with "name" = "portid"
+	var/list/port_assoc = list()
+	for(var/destination in all_destinations)
+		for(var/obj/docking_port/port AS in SSshuttle.stationary)
+			if(destination != port.id)
+				continue
+			port_assoc["[port.name]"] = destination
+
+	var/list/destinations = list()
+	for(var/destination in port_assoc)
+		destinations += destination
+	var/input = tgui_input_list(user, "Choose a port to teleport to:", "Ghost Shuttle teleport", destinations, null, 0)
+	if(!input)
+		return
+	var/obj/docking_port/mobile/target_port = SSshuttle.getDock(port_assoc[input])
+
+	if(!target_port || QDELETED(target_port) || !target_port.loc)
+		return
+	user.forceMove(get_turf(target_port))
 
 /// Relinks the shuttleId in the console to a valid shuttle currently existing. Will only relink to a shuttle with a matching control_flags flag. Returns true if successfully relinked
 /obj/machinery/computer/shuttle/shuttle_control/proc/RelinkShuttleId(forcedId)
