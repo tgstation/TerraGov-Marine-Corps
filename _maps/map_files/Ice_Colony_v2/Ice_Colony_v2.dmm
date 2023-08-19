@@ -25,6 +25,7 @@
 	id = "req_sec_storage";
 	name = "\improper Requesitions Storage Shutters"
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/sec_storage)
 "aau" = (
@@ -229,6 +230,7 @@
 	id = "req_sec_storage";
 	name = "\improper Requesitions Storage Shutters"
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/sec_storage)
 "adb" = (
@@ -22366,6 +22368,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west/garbledradio)
 "iEO" = (
@@ -22422,10 +22425,8 @@
 /area/ice_colony/underground/crew/bball/garbledradio)
 "iHM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/open)
+/turf/closed/wall/r_wall,
+/area/ice_colony/underground/hallway/north_west/garbledradio)
 "iIp" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/random/engineering/metal/nooffset{
@@ -24773,12 +24774,9 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "lPE" = (
-/obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/underground/caves/ice_se)
+/turf/closed/wall/r_wall,
+/area/ice_colony/underground/requesition/sec_storage)
 "lPM" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -33651,6 +33649,7 @@
 "xAD" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "xAO" = (
@@ -36511,7 +36510,7 @@ xJX
 xJX
 uSg
 uSg
-uSg
+tbJ
 uSg
 uSg
 uSg
@@ -36723,7 +36722,7 @@ uSg
 uSg
 uSg
 uSg
-uSg
+tbJ
 uSg
 oxN
 oxN
@@ -36935,7 +36934,7 @@ uSg
 uSg
 uSg
 uSg
-uSg
+tbJ
 uSg
 oxN
 oxN
@@ -37147,7 +37146,7 @@ uSg
 uSg
 uSg
 uSg
-uSg
+tbJ
 uSg
 hKV
 hKV
@@ -37359,7 +37358,7 @@ uSg
 uSg
 uSg
 uSg
-uSg
+tbJ
 uSg
 hKV
 oxN
@@ -38514,7 +38513,7 @@ bdg
 bdg
 bdg
 bdg
-biy
+lPE
 biy
 biy
 biy
@@ -38726,7 +38725,7 @@ bfQ
 bdu
 cFf
 oWj
-biy
+lPE
 uZI
 uZI
 uZI
@@ -38938,7 +38937,7 @@ mpQ
 mpQ
 mpQ
 bgi
-biy
+lPE
 uZI
 dPf
 tSd
@@ -39786,7 +39785,7 @@ mpQ
 abu
 mpQ
 bhX
-biy
+lPE
 nxB
 dPf
 dPf
@@ -39998,7 +39997,7 @@ oLK
 bfo
 bfo
 bhY
-biy
+lPE
 nFp
 uZI
 uZI
@@ -40011,7 +40010,7 @@ blG
 bms
 uYv
 wRS
-uQB
+xxV
 uQB
 uQB
 uQB
@@ -40210,15 +40209,15 @@ mpQ
 mpQ
 mpQ
 bhY
-biy
-biy
-biy
-biy
-biy
-biy
-biy
-biy
-biy
+lPE
+lPE
+lPE
+lPE
+lPE
+lPE
+lPE
+lPE
+lPE
 blH
 bms
 uYv
@@ -40430,12 +40429,12 @@ bjJ
 bjW
 bku
 uYv
-uYv
-uYv
+iHM
+iHM
 iEz
-uYv
-uYv
-uYv
+iHM
+iHM
+iHM
 uYv
 uYv
 uYv
@@ -64443,7 +64442,7 @@ xxV
 xxV
 psJ
 psJ
-iHM
+psJ
 xxV
 tbJ
 xxV
@@ -68415,7 +68414,7 @@ vvy
 vvy
 vvy
 swc
-lPE
+swc
 uSg
 xJX
 xJX
@@ -68615,7 +68614,7 @@ xJX
 uSg
 uSg
 xJX
-uSg
+tbJ
 nWj
 nWj
 nWj
