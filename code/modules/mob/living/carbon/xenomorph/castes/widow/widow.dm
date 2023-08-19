@@ -31,9 +31,6 @@
 
 
 //Prevents humans unbuckling spiderlings
-/mob/living/carbon/xenomorph/widow/attack_hand(mob/living/user)
-	return
-
 /mob/living/carbon/xenomorph/widow/user_unbuckle_mob(mob/living/buckled_mob, mob/user, silent)
 	if(ishuman(user))
 		return
@@ -44,7 +41,7 @@
 	if(new_stat == UNCONSCIOUS)
 		unbuckle_all_mobs(TRUE) //If we have spiderlings on us, get them off and ready for guard
 		SEND_SIGNAL(src, COMSIG_SPIDERLING_GUARD)
-	if(new_stat == CONSCIOUS)
+	else if(new_stat == CONSCIOUS)
 		unbuckle_all_mobs(TRUE)
 		SEND_SIGNAL(src, COMSIG_SPIDERLING_UNGUARD)
 

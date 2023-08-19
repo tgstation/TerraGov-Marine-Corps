@@ -196,7 +196,6 @@
 				continue
 			A = item
 			owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
-			succeed_activate()
 			break
 		if(!ishuman(A)) //If no human found, cancel ability
 			owner.balloon_alert(owner, "Nothing to attack, cancelled")

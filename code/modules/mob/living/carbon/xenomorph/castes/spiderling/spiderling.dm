@@ -160,7 +160,7 @@
 /// If the spiderling's mother goes into crit, the spiderlings will stop what they are doing and attempt to shield her
 /datum/ai_behavior/spiderling/proc/attempt_guard()
 	SIGNAL_HANDLER
-	if(guarding_status && SPIDERLING_NOT_GUARDING) //Nothing to cleanup
+	if(guarding_status == SPIDERLING_NOT_GUARDING) //Nothing to cleanup
 		INVOKE_ASYNC(src, PROC_REF(guard_owner))
 		return
 
@@ -174,15 +174,14 @@
 	X.update_icons()
 
 /datum/ai_behavior/spiderling/ai_do_move()
-	if(guarding_status && SPIDERLING_ATTEMPTING_GUARD)
-		if(get_dist(mob_parent, atom_to_walk_to) <= 1)
-			var/mob/living/carbon/xenomorph/spiderling/X = mob_parent
-			if(prob(50))
-				X.emote("hiss")
-			guarding_status = SPIDERLING_GUARDING
-			var/mob/living/carbon/xenomorph/widow/to_guard = escorted_atom
-			to_guard.buckle_mob(X, TRUE, TRUE)
-			X.dir = SOUTH
+	if((guarding_status == SPIDERLING_ATTEMPTING_GUARD) && (get_dist(mob_parent, atom_to_walk_to) <= 1))
+		var/mob/living/carbon/xenomorph/spiderling/X = mob_parent
+		if(prob(50))
+			X.emote("hiss")
+		guarding_status = SPIDERLING_GUARDING
+		var/mob/living/carbon/xenomorph/widow/to_guard = escorted_atom
+		to_guard.buckle_mob(X, TRUE, TRUE)
+		X.dir = SOUTH
 	return ..()
 
 /// Moves spiderlings to the widow
