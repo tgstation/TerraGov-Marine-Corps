@@ -199,7 +199,9 @@
 	var/static/image/sanguinal_high_image = image('icons/mob/hud.dmi', icon_state = "sanguinal_high")
 	var/static/image/intoxicated_high_image = image('icons/mob/hud.dmi', icon_state = "intoxicated_high")
 	var/static/image/hive_target_image = image('icons/mob/hud.dmi', icon_state = "hive_target")
-	var/static/image/medicalnanites_image = image('icons/mob/hud.dmi', icon_state = "nanites")
+	var/static/image/medicalnanites_high_image = image('icons/mob/hud.dmi', icon_state = "nanites")
+	var/static/image/medicalnanites_medium_image = image('icons/mob/hud.dmi', icon_state = "nanites_medium")
+	var/static/image/medicalnanites_low_image = image('icons/mob/hud.dmi', icon_state = "nanites_low")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
@@ -238,8 +240,12 @@
 		if(jellyjuice_amount > 0) // Has no effect beyond having it in them, don't need to have a high image.
 			xeno_reagent.overlays += jellyjuice_image
 
-		if(medicalnanites_amount > 0)
-			xeno_reagent.overlays += medicalnanites_image
+		if(medicalnanites_amount > 25)
+			xeno_reagent.overlays += medicalnanites_high_image
+		else if(medicalnanites_amount > 15)
+			xeno_reagent.overlays += medicalnanites_medium_image
+		else if(medicalnanites_amount > 0)
+			xeno_reagent.overlays += medicalnanites_low_image
 
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent
 
@@ -316,7 +322,7 @@
 			if(!client)
 				var/mob/dead/observer/ghost = get_ghost()
 				if(!ghost?.can_reenter_corpse)
-					status_hud.icon_state = "huddead"
+					status_hud.icon_state = "huddeaddefib4"
 					if(istype(wear_ear, /obj/item/radio/headset/mainship))
 						var/obj/item/radio/headset/mainship/headset = wear_ear
 						headset.set_undefibbable_on_minimap()
