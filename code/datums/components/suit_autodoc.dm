@@ -339,7 +339,7 @@
 */
 /datum/component/suit_autodoc/interact(mob/user)
 	var/dat = {"
-	<A href='?src=[REF(src)];automed_on=1'>Turn Automed System: [enabled ? "Off" : "On"]</A><BR>
+	<A href='?src=[REF(src)];automed_on=1'>Toggle Automed System: [enabled ? "On" : "Off"]</A><BR>
 	<BR>
 	<B>Integrated Health Analyzer:</B><BR>
 	<A href='byond://?src=[REF(src)];analyzer=1'>Scan Wearer</A><BR>
