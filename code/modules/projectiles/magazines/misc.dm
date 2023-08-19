@@ -15,6 +15,11 @@
 	current_rounds = 150
 	max_rounds = 150
 
+/obj/item/ammo_magazine/packet/p10x24mm/ap
+	desc = "A box containing 150 armor piercing rounds of 10x24mm caseless."
+	icon_state = "box_10x24mm_ap"
+	default_ammo = /datum/ammo/bullet/rifle/ap
+
 /obj/item/ammo_magazine/packet/p10x265mm
 	name = "box of 10x26.5mm"
 	desc = "A box containing 100 rounds of 10x26.5mm caseless."
@@ -23,6 +28,11 @@
 	default_ammo = /datum/ammo/bullet/rifle/standard_br
 	current_rounds = 100
 	max_rounds = 100
+
+/obj/item/ammo_magazine/packet/p10x265mm/ap
+	desc = "A box containing 100 armor piercing rounds of 10x26.5mm caseless."
+	icon_state = "box_10x265mm_ap"
+	default_ammo = /datum/ammo/bullet/rifle/standard_br/ap
 
 /obj/item/ammo_magazine/packet/p10x27mm
 	name = "box of 10x27mm"
@@ -41,6 +51,11 @@
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	current_rounds = 125
 	max_rounds = 125
+
+/obj/item/ammo_magazine/packet/p10x25mm/ap
+	desc = "A box containing 125 armor piercing rounds of 10x25mm caseless."
+	icon_state = "box_10x25mm_ap"
+	default_ammo = /datum/ammo/bullet/rifle/heavy/ap
 
 /obj/item/ammo_magazine/packet/p492x34mm
 	name = "box of 4.92x34mm"
@@ -173,6 +188,11 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 150
 	max_rounds = 150
+
+/obj/item/ammo_magazine/packet/p10x20mm/ap
+	desc = "A packet containing 125 rounds of 10x20mm caseless."
+	icon_state = "box_10x20mm_ap"
+	default_ammo = /datum/ammo/bullet/smg/ap
 
 /obj/item/ammo_magazine/packet/acp_smg
 	name = "box of .45 ACP HP"
