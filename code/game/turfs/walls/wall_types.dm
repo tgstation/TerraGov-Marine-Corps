@@ -19,15 +19,18 @@
 
 /turf/closed/wall/mainship/smooth_icon()
 	. = ..()
+	cut_overlays()
 	if(decorated_wall)
 		var/r1 = rand(0,10) //Make a random chance for this to happen
 		var/r2 = rand(0,3) // Which wall if we do choose it
-		if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|NORTH_JUNCTION)))
+		if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (WEST_JUNCTION)))
+			return
+		if(CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION)) || !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (EAST_JUNCTION)))
 			return
 		else
 			switch(r1)
 				if(9 to 10)
-					add_overlay(image(icon, r2, layer = ABOVE_ALL_MOB_LAYER))
+					add_overlay("[r2]")
 
 /turf/closed/wall/mainship/outer
 	name = "outer hull"
@@ -36,6 +39,7 @@
 	walltype = "testwall"
 	resistance_flags = RESIST_ALL //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
 	icon_state = "wall-invincible"
+	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/outer/reinforced
 	name = "reinforced hull"
@@ -68,6 +72,7 @@
 	walltype = "gwall"
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
+	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
 	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)

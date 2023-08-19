@@ -13,8 +13,9 @@
 	var/girder_state = GIRDER_NORMAL
 	var/reinforcement = null
 	var/icon_prefix = "girder"
-	smoothing_behavior = SMOOTH_BITMASK
-	canSmoothWith = list(SMOOTH_GROUP_GIRDER)
+	smoothing_flags = SMOOTH_BITMASK
+	canSmoothWith = list(SMOOTH_GROUP_GIRDER,SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,)
+	smoothing_groups = list(SMOOTH_GROUP_GIRDER)
 	base_icon_state = "girder"
 
 /obj/structure/girder/add_debris_element()
