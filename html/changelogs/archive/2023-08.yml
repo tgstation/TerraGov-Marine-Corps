@@ -274,3 +274,22 @@
   - balance: Medical Doctor slots reduced to 2 from 6.
   forestbbbbbbb:
   - rscadd: Ghosts can point
+2023-08-19:
+  Lumipharon:
+  - balance: Acting squad leaders now have 1 level lower in leadership compared to
+      actual squad leaders
+  - bugfix: Fixed squaddies being able to use leader droppods
+  Redory:
+  - qol: Ghosts can teleport using Medevacs, Xeno tunnels, ASRS teleporters, Wraith
+      portals and Shuttle computers.
+  - qol: Medevac stretchers now have a realtime cooldown on their sprite when in inventory.
+  - qol: Medevac beacons now list all linked stretchers and show their cooldowns.
+  ivanmixo:
+  - bugfix: Fixes some wield bugs
+  - bugfix: You can't open the shutters before the alamo can even take off anymore
+  tyeagg:
+  - rscdel: unused rocket arty typepath
+  - balance: db mortar reload time to 2 seconds
+  - balance: db mortar max rounds to 2
+  - balance: db mortar now has cooloff time of 6s
+  - balance: db mortar now has base spread of 2 tiles
