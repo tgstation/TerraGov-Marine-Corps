@@ -35,6 +35,7 @@
 	ignore += typesof(/obj/effect/abstract/particle_holder)
 	ignore += typesof(/obj/effect/spawner/modularmap)
 	ignore += typesof(/obj/effect/ai_node/spawner)
+	ignore += typesof(/obj/effect/mapping_helpers)
 	ignore += typesof(/obj/effect/temp_visual)
 	ignore += typesof(/atom/movable/screen)
 

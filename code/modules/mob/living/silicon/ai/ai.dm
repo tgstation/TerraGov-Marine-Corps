@@ -87,7 +87,7 @@
 	create_eye()
 
 	if(!job)
-		var/datum/job/terragov/silicon/ai/ai_job = SSjob.type_occupations[/datum/job/terragov/silicon/ai]
+		var/datum/job/terragov/silicon/ai/ai_job = SSjob.GetJobType(/datum/job/terragov/silicon/ai)
 		if(!ai_job)
 			stack_trace("Unemployment has reached to an AI, who has failed to find a job.")
 		apply_assigned_role_to_spawn(ai_job)
