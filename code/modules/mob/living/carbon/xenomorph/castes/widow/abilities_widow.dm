@@ -367,15 +367,17 @@
 	if(!do_after(owner, 0.5 SECONDS, TRUE, A, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	owner.emote("roar")
 	var/mob/living/carbon/xenomorph/spiderling/to_cannibalise = A
-	to_cannibalise.death()
+	QDEL_NULL(to_cannibalise)
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
+	if(!create_spiderling_action)
+		return
+
 	if(create_spiderling_action.cannibalise_charges < 3)
 		create_spiderling_action.cannibalise_charges += 1
 		owner.balloon_alert(owner, "[create_spiderling_action.cannibalise_charges]/3 charges")
 	else
-		owner.balloon_alert(owner, "We are already full, no charges gained! 3/3 charges")
+		owner.balloon_alert(owner, "We're full, no charges gained!")
 	playsound(owner.loc, 'sound/items/eatfood.ogg', 15, TRUE)
 	succeed_activate()
 	add_cooldown()
