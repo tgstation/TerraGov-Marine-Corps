@@ -662,7 +662,7 @@
 #define SEISMIC_FRACTURE_ATTACK_RADIUS 2
 #define SEISMIC_FRACTURE_ATTACK_RADIUS_ENHANCED 5
 #define SEISMIC_FRACTURE_ATTACK_RADIUS_EARTH_PILLAR 2
-#define SEISMIC_FRACTURE_ENHANCED_DELAY 1.2 SECONDS
+#define SEISMIC_FRACTURE_ENHANCED_DELAY 1 SECONDS
 #define SEISMIC_FRACTURE_PARALYZE_DURATION 1 SECONDS
 #define SEISMIC_FRACTURE_DAMAGE_MULTIPLIER 1.2
 #define SEISMIC_FRACTURE_DAMAGE_MECHA_MODIFIER 10
@@ -885,7 +885,7 @@
 #define PRIMAL_WRATH_ACTIVATION_DURATION 3 SECONDS // Timed with the sound played.
 #define PRIMAL_WRATH_RANGE 12
 #define PRIMAL_WRATH_DAMAGE_MULTIPLIER 1.2
-#define PRIMAL_WRATH_SPEED_BONUS -0.2
+#define PRIMAL_WRATH_SPEED_BONUS -0.3
 #define PRIMAL_WRATH_DECAY_MULTIPLIER 1.2
 #define PRIMAL_WRATH_ACTIVE_DECAY_DIVISION 40
 #define PRIMAL_WRATH_GAIN_MULTIPLIER 0.5
@@ -1015,7 +1015,7 @@
 	for(var/mob/living/affected_living in cheap_get_humans_near(owner, PRIMAL_WRATH_RANGE) + cheap_get_xenos_near(owner, PRIMAL_WRATH_RANGE))
 		if(!affected_living.hud_used)
 			continue
-		shake_camera(affected_living, 1, 0.2)
+		shake_camera(affected_living, 1, 0.1)
 		var/atom/movable/screen/plane_master/floor/floor_plane = affected_living.hud_used.plane_masters["[FLOOR_PLANE]"]
 		var/atom/movable/screen/plane_master/game_world/world_plane = affected_living.hud_used.plane_masters["[GAME_PLANE]"]
 		if(floor_plane.get_filter("primal_wrath") || world_plane.get_filter("primal_wrath"))
@@ -1089,7 +1089,7 @@
 	decay_time = initial(decay_time)
 	decay_amount = initial(decay_amount)
 	if(xeno_owner.wrath_stored < xeno_owner.xeno_caste.wrath_max)
-		xeno_owner.wrath_stored = max(xeno_owner.wrath_stored + (amount * PRIMAL_WRATH_GAIN_MULTIPLIER), xeno_owner.xeno_caste.wrath_max)
+		xeno_owner.wrath_stored = min(xeno_owner.wrath_stored + (amount * PRIMAL_WRATH_GAIN_MULTIPLIER), xeno_owner.xeno_caste.wrath_max)
 
 /**
  * Toggles the buff, which increases the owner's damage based on a multiplier, and gives them a particle effect.
@@ -1351,7 +1351,7 @@
 	ping = null
 	bullet_color = COLOR_LIGHT_ORANGE
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
-	shell_speed = 0.7
+	shell_speed = 1
 	damage_falloff = 0
 	damage_type = BRUTE
 	armor_type = MELEE
