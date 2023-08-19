@@ -481,8 +481,8 @@
 
 /obj/structure/dropship_equipment/weapon_holder/Initialize(mapload)
 	. = ..()
-	if(held_deployable)
-		return
+	if(!deployable_type)
+		return INITIALIZE_HINT_QDEL
 	var/obj/machinery/deployable/new_deployable = new deployable_type(src)
 	held_deployable = new_deployable.loc //new_deployable.loc, since it deploys on new(), is located within the held_deployable. Therefore new_deployable.loc = held_deployable.
 

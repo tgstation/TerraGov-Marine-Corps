@@ -1053,6 +1053,9 @@
 
 /obj/structure/barricade/metal/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
+	if(!_internal_item && !internal_shield)
+		return INITIALIZE_HINT_QDEL
+
 	internal_shield = _internal_item
 
 	name = internal_shield.name

@@ -10,6 +10,8 @@
 
 /obj/machinery/deployable/Initialize(mapload, _internal_item, mob/deployer)
 	. = ..()
+	if(!internal_item && !_internal_item)
+		return INITIALIZE_HINT_QDEL
 	internal_item = _internal_item
 
 	name = internal_item.name

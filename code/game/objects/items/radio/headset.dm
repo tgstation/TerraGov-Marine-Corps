@@ -421,7 +421,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	command = TRUE
 
 /obj/item/radio/headset/mainship/mcom/som
-	frequency = RADIO_CHANNEL_SOM
+	frequency = FREQ_SOM
 	keyslot = /obj/item/encryptionkey/mcom/som
 	faction = FACTION_SOM
 	minimap_type = /datum/action/minimap/som

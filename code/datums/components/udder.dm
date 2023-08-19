@@ -90,6 +90,8 @@
  * also useful for changing initial amounts in reagent holder (cows start with milk, gutlunches start empty)
  */
 /obj/item/udder/proc/initial_conditions()
+	if(!udder_mob)
+		return
 	reagents.add_reagent(/datum/reagent/consumable/drink/milk, 20)
 	START_PROCESSING(SSobj, src)
 

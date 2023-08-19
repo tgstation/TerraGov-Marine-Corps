@@ -556,8 +556,9 @@
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"uncloak",,wearer.dir)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(mob/user)
-	UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
-	if (!user)
+	if(wearer)
+		UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
+	if(!user)
 		camo_active = FALSE
 		wearer = null
 		STOP_PROCESSING(SSprocessing, src)
