@@ -204,28 +204,6 @@
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_0"
 
-	// Crit Hud (Probably oxy crit from human Hud)
-	if(stat != DEAD && !endure)
-		var/severity = 0
-		var/divideh = maxHealth / health
-		switch(divideh)
-			if(1.5 to 2)
-				severity = 1
-			if(2 to 3)
-				severity = 2
-			if(3 to 4.5)
-				severity = 3
-			if(4.5 to 6.5)
-				severity = 4
-			if(6.5 to 10)
-				severity = 5
-			if(10 to INFINITY)
-				severity = 6
-		overlay_fullscreen("xcrit", /atom/movable/screen/fullscreen/oxy, severity)
-	else
-		clear_fullscreen("xcrit")
-
-
 	interactee?.check_eye(src)
 
 	return TRUE
