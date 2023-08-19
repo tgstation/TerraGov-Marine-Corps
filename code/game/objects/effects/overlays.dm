@@ -64,6 +64,14 @@
 	icon_state = "laser_target3"
 	layer = ABOVE_FLY_LAYER
 
+/obj/effect/overlay/pod_warning //Used to indicate incoming POD
+	name = "pod warning"
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	icon = 'icons/effects/lases.dmi'
+	icon_state = "pod_laser"
+	layer = ABOVE_FLY_LAYER
+
 //CAS:
 
 //Minirockets

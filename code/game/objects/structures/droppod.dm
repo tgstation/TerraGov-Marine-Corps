@@ -266,6 +266,10 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	forceMove(pick(reserved_area.reserved_turfs))
 	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
 
+	var/obj/effect/overlay/pod_warning/laserpod = new /obj/effect/overlay/pod_warning(target)
+	laserpod.dir = target
+	QDEL_IN(laserpod, launch_time)
+
 /obj/structure/droppod/proc/finish_drop(mob/user)
 	var/turf/targetturf = locate(target_x, target_y, 2)
 	for(var/a in targetturf.contents)
