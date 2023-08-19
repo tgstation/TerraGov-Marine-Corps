@@ -14,6 +14,20 @@
 	density = TRUE
 
 	base_icon_state = "testwall"
+	///do we have bits of decoration to add to the walls?
+	var/decorated_wall = TRUE
+
+/turf/closed/wall/mainship/smooth_icon()
+	. = ..()
+	if(decorated_wall)
+		var/r1 = rand(0,10) //Make a random chance for this to happen
+		var/r2 = rand(0,3) // Which wall if we do choose it
+		if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|NORTH_JUNCTION)))
+			return
+		else
+			switch(r1)
+				if(9 to 10)
+					add_overlay(image(icon, r2, layer = ABOVE_ALL_MOB_LAYER))
 
 /turf/closed/wall/mainship/outer
 	name = "outer hull"
@@ -40,6 +54,7 @@
 	icon = 'icons/turf/walls/wwall.dmi'
 	base_icon_state = "wwall"
 	icon_state = "wwall-0"
+	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/gray
 	walltype = "gwall"
@@ -66,6 +81,7 @@
 
 /turf/closed/wall/mainship/research
 	resistance_flags = UNACIDABLE
+	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
@@ -78,6 +94,7 @@
 	name = "cell wall"
 	walltype = null
 	smoothing_flags = NONE
+	decorated_wall = FALSE
 
 /turf/closed/wall/mainship/research/containment/wall/corner
 	icon_state = "containment_wall_corner"
