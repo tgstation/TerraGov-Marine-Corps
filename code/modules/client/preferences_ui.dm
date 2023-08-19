@@ -156,12 +156,12 @@
 				"underwear" = list(
 					"male" = GLOB.underwear_m,
 					"female" = GLOB.underwear_f,
-					"plural" = GLOB.underwear_n
+					"plural" = GLOB.underwear_f + GLOB.underwear_m,
 				),
 				"undershirt" = list(
 					"male" = GLOB.undershirt_m,
 					"female" = GLOB.undershirt_f,
-					"plural" = GLOB.undershirt_n
+					"plural" = GLOB.undershirt_m + GLOB.undershirt_f,
 				),
 				"backpack" = GLOB.backpacklist,
 				)
@@ -339,13 +339,10 @@
 
 		if("underwear")
 			var/list/underwear_options
-			switch(gender)
-				if(MALE)
-					underwear_options = GLOB.underwear_m
-				if(FEMALE)
-					underwear_options = GLOB.underwear_f
-				else
-					underwear_options = GLOB.underwear_n
+			if(gender == MALE)
+				underwear_options = GLOB.underwear_m
+			else
+				underwear_options = GLOB.underwear_f
 
 			var/new_underwear = underwear_options.Find(params["newValue"])
 			if(!new_underwear)

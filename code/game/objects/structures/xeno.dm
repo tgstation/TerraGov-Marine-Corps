@@ -45,6 +45,8 @@
 			take_damage((rand(140, 300)), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage((rand(50, 100)), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 50), BRUTE, BOMB)
 
 /obj/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -153,7 +155,7 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
-	soft_armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 15, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 33, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 15, BIO = 0, FIRE = 0, ACID = 0)
 	trigger_sound = "alien_resin_move"
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
@@ -214,6 +216,8 @@
 			qdel()
 		if(EXPLODE_LIGHT)
 			take_damage((rand(50, 60)), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(30, BRUTE, BOMB)
 
 /turf/closed/wall/resin/fire_act()
 	take_damage(50, BURN, FIRE)

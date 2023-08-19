@@ -18,6 +18,15 @@
 /obj/effect/turf_decal/warning_stripes/medical
 	icon_state = "medical"
 
+/obj/effect/turf_decal/warning_stripes/fcdr
+	icon_state = "fcdr"
+
+/obj/effect/turf_decal/warning_stripes/synth
+	icon_state = "synth"
+
+/obj/effect/turf_decal/warning_stripes/mech
+	icon_state = "mech"
+
 /obj/effect/turf_decal/warning_stripes/stripedsquare
 	icon_state = "stripe_square"
 

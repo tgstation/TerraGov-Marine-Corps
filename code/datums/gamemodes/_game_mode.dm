@@ -14,6 +14,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/round_finished
 	var/list/round_end_states = list()
 	var/list/valid_job_types = list()
+	var/list/job_points_needed_by_job_type = list()
 
 	var/round_time_fog
 	var/flags_round_type = NONE
@@ -59,6 +60,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
 	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
+	///if fun tads are enabled by default
+	var/enable_fun_tads = FALSE
 
 
 /datum/game_mode/New()
@@ -662,6 +665,12 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		return FALSE
 	if(length(SSjob.active_squads[FACTION_TERRAGOV]))
 		scale_squad_jobs()
+	for(var/job_type in job_points_needed_by_job_type)
+		if(!(job_type in subtypesof(/datum/job)))
+			stack_trace("Invalid job type in job_points_needed_by_job_type. Current mode : [name], Invalid type: [job_type]")
+			continue
+		var/datum/job/scaled_job = SSjob.GetJobType(job_type)
+		scaled_job.job_points_needed = job_points_needed_by_job_type[job_type]
 	return TRUE
 
 /datum/game_mode/proc/scale_squad_jobs()

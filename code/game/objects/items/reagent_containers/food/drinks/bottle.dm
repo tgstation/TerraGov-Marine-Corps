@@ -53,7 +53,7 @@
 		else
 			user.visible_message(span_danger("[user] has hit [user.p_them()]self with the bottle of [name] on the head!"))
 		if(weaken_duration >= force) //if they have armor, no stun
-			target.apply_effect(2, WEAKEN)
+			target.apply_effect(4 SECONDS, WEAKEN)
 
 	else
 		if(target != user)

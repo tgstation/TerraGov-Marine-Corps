@@ -27,6 +27,8 @@
 	var/hud_state_empty = "grenade_empty"
 	///Light impact range when exploding
 	var/light_impact_range = 4
+	///Weak impact range when exploding
+	var/weak_impact_range = 0
 
 
 /obj/item/explosive/grenade/Initialize(mapload)
@@ -87,7 +89,7 @@
 
 
 /obj/item/explosive/grenade/proc/prime()
-	explosion(loc, light_impact_range = src.light_impact_range)
+	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
 	qdel(src)
 
 /obj/item/explosive/grenade/flamer_fire_act(burnlevel)
@@ -145,8 +147,8 @@
 	var/effective_strength = max(victim.modify_by_armor(strength, BIO), strength * 0.25)
 	victim.adjustCloneLoss(effective_strength)
 	victim.adjustStaminaLoss(effective_strength * 7)
-	victim.adjust_stagger(effective_strength / 2)
-	victim.add_slowdown(effective_strength / 2)
+	victim.adjust_stagger(effective_strength  SECONDS * 0.5)
+	victim.add_slowdown(effective_strength * 0.5)
 	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
 	victim.adjust_radiation(effective_strength * 20) //Radiation status effect, duration is in deciseconds
 	balloon_alert(victim, "weakened by radiation")

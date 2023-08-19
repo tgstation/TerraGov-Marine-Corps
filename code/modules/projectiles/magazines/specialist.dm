@@ -35,6 +35,7 @@
 	default_ammo = /datum/ammo/bullet/sniper/elite
 	caliber = CALIBER_10X99
 	icon_state = "m42c"
+	icon_state_mini = "mag_rifle_big_white"
 	max_rounds = 6
 
 
@@ -351,12 +352,14 @@
 	name = "railgun canister (High Velocity Armor Piericing)"
 	desc = "A canister holding a tungsten projectile to be used inside a railgun. HVAP is written across the canister. This round has less punching power than other railgun canister types, but will leave a sizeable hole in the targets armor."
 	icon_state = "railgun_hvap"
+	icon_state_mini = "mag_railgun_blue"
 	default_ammo = /datum/ammo/bullet/railgun/hvap
 
 /obj/item/ammo_magazine/railgun/smart
 	name = "railgun canister (Smart Armor Piericing)"
 	desc = "A canister holding a tungsten projectile to be used inside a railgun. SAP is written across the canister. This round has poor punching power due to low velocity for the smart ammunition, but will leave a target significantly staggered and stunned due to the impact."
 	icon_state = "railgun_smart"
+	icon_state_mini = "mag_railgun_green"
 	default_ammo = /datum/ammo/bullet/railgun/smart
 
 // pepperball
@@ -427,5 +430,5 @@
 	default_ammo = /datum/ammo/bullet/coilgun
 	max_rounds = 5
 	reload_delay = 10
-	icon_state_mini = "mag_railgun"
+	icon_state_mini = "mag_dmr"
 

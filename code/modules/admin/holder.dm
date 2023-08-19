@@ -482,6 +482,7 @@ GLOBAL_PROTECT(admin_verbs_sound)
 	/datum/admins/proc/spawn_atom,
 	/client/proc/get_togglebuildmode,
 	/client/proc/mass_replace,
+	/client/proc/toggle_admin_tads,
 	)
 GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 GLOBAL_PROTECT(admin_verbs_spawn)

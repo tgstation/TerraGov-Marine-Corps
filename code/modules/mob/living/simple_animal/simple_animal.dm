@@ -229,12 +229,15 @@
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			gib()
+			return
 		if(EXPLODE_HEAVY)
 			adjustBruteLoss(60)
-			UPDATEHEALTH(src)
 		if(EXPLODE_LIGHT)
 			adjustBruteLoss(30)
-			UPDATEHEALTH(src)
+		if(EXPLODE_WEAK)
+			adjustBruteLoss(15)
+
+	UPDATEHEALTH(src)
 
 
 /mob/living/simple_animal/get_idcard(hand_first)

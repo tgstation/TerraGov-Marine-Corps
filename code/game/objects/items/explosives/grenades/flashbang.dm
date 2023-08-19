@@ -59,9 +59,7 @@
 ///The effects applied to all mobs in range
 /obj/item/explosive/grenade/flashbang/proc/base_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(M.flash_act())
-		M.Stun(40)
-		M.Paralyze(20 SECONDS)
-
+		M.apply_effects(stun = 4 SECONDS, paralyze = 2 SECONDS)
 	if(M.ear_damage >= 15)
 		to_chat(M, span_warning("Your ears start to ring badly!"))
 		if(!banglet)
@@ -75,11 +73,9 @@
 ///The effects applied to mobs in the inner_range
 /obj/item/explosive/grenade/flashbang/proc/inner_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(ear_safety > 0)
-		M.Stun(40)
-		M.Paralyze(20)
+		M.apply_effects(stun = 4 SECONDS, paralyze = 2 SECONDS)
 	else
-		M.Stun(20 SECONDS)
-		M.Paralyze(60)
+		M.apply_effects(stun = 20 SECONDS, paralyze = 6 SECONDS)
 		if((prob(14) || (M == src.loc && prob(70))))
 			M.adjust_ear_damage(rand(1, 10),15)
 		else
@@ -88,13 +84,13 @@
 ///The effects applied to mobs in the outer_range
 /obj/item/explosive/grenade/flashbang/proc/outer_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(!ear_safety)
-		M.Stun(16 SECONDS)
+		M.apply_effect(16 SECONDS, STUN)
 		M.adjust_ear_damage(rand(0, 3),8)
 
 ///The effects applied to mobs outside of outer_range
 /obj/item/explosive/grenade/flashbang/proc/max_range_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(!ear_safety)
-		M.Stun(80)
+		M.apply_effect(8 SECONDS, STUN)
 		M.adjust_ear_damage(rand(0, 1),6)
 
 
@@ -185,10 +181,10 @@
 		M.blur_eyes(7)
 
 	if(ear_safety > 0)
-		M.adjust_stagger(3)
+		M.adjust_stagger(3 SECONDS)
 		M.add_slowdown(3)
 	else
-		M.adjust_stagger(6)
+		M.adjust_stagger(6 SECONDS)
 		M.add_slowdown(6)
 		if((prob(14) || (M == src.loc && prob(70))))
 			M.adjust_ear_damage(rand(1, 10),15)
@@ -200,7 +196,7 @@
 		M.blur_eyes(6)
 
 	if(!ear_safety)
-		M.adjust_stagger(4)
+		M.adjust_stagger(4 SECONDS)
 		M.add_slowdown(4)
 		M.adjust_ear_damage(rand(0, 3),8)
 
@@ -209,6 +205,6 @@
 		M.blur_eyes(4)
 
 	if(!ear_safety)
-		M.adjust_stagger(2)
+		M.adjust_stagger(2 SECONDS)
 		M.add_slowdown(2)
 		M.adjust_ear_damage(rand(0, 1),6)

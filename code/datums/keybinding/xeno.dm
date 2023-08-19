@@ -558,11 +558,11 @@
 	hotkey_keys = list("F")
 
 
-/datum/keybinding/xeno/gravity_grenade
+/datum/keybinding/xeno/psychic_storm
 	name = "gravnade"
-	full_name = "Shrike: Gravity Grenade"
+	full_name = "Shrike: Psychic Vortex"
 	description = ""
-	keybind_signal = COMSIG_XENOABILITY_GRAV_NADE
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_VORTEX
 	hotkey_keys = list("X")
 
 /datum/keybinding/xeno/screech

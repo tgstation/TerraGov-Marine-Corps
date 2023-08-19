@@ -34,22 +34,6 @@
 
 	return TRUE
 
-
-/obj/proc/check_access_list(L[])
-	if(!req_access  && !req_one_access)	return 1
-	if(!islist(req_access)) return 1
-	if(!length(req_access) && (!req_one_access || !length(req_one_access)))	return 1
-	if(!islist(L))	return
-	var/i
-	for(i in req_access)
-		if(!(i in L)) return //doesn't have this access
-	if(length(req_one_access))
-		for(i in req_one_access)
-			if(i in L) return 1//has an access from the single access list
-		return
-	return 1
-
-
 /proc/get_region_accesses(code)
 	switch(code)
 		if(0)
@@ -200,228 +184,228 @@
 		if("C")
 			. = size ? "" : "Civilian"
 		if("CD")
-			. = size ? "Dr. " : "Doctor"
+			. = size ? "Dr." : "Doctor"
 		if("PROF")
-			. = size ? "Prof. " : "Professor"
+			. = size ? "Prof." : "Professor"
 		if("RES")
-			. = size ? "RES " : "Medical Resident"
+			. = size ? "RES" : "Medical Resident"
 		if("MD")
-			. = size ? "MD " : "Medical Doctor"
+			. = size ? "MD" : "Medical Doctor"
 		if("CHO")
-			. = size ? "CHO " : "Chief Health Officer"
+			. = size ? "CHO" : "Chief Health Officer"
 		if("CMO")
-			. = size ? "CMO " : "Chief Medical Officer"
+			. = size ? "CMO" : "Chief Medical Officer"
 		if("CMN")
 			. = size ? "CMN" : "Crewman"
 		if("PMC1")
-			. = size ? "PMC " : "PM Contractor"
+			. = size ? "PMC" : "PM Contractor"
 		if("PMC2")
-			. = size ? "PMSC " : "PM Senior Contractor"
+			. = size ? "PMSC" : "PM Senior Contractor"
 		if("PMC3")
-			. = size ? "PMSC " : "PM Senior Contractor"
+			. = size ? "PMSC" : "PM Senior Contractor"
 		if("PMC4")
-			. = size ? "PMTL " : "PM Team Leader"
+			. = size ? "PMTL" : "PM Team Leader"
 		if("PMCDS")
-			. = size ? "APS " : "Assets Protection Specialist"
+			. = size ? "APS" : "Assets Protection Specialist"
 		if("PMCDSL")
-			. = size ? "APTL " : "Assets Protection Team Leader"
+			. = size ? "APTL" : "Assets Protection Team Leader"
 		if("NT1")
-			. = size ? "INT " : "Corporate Intern"
+			. = size ? "INT" : "Corporate Intern"
 		if("NT2")
-			. = size ? "ASSOC " : "Corporate Associate"
+			. = size ? "ASSOC" : "Corporate Associate"
 		if("NT3")
-			. = size ? "PTNR " : "Corporate Partner"
+			. = size ? "PTNR" : "Corporate Partner"
 		if("NT4")
-			. = size ? "ANLST " : "Corporate Analyst"
+			. = size ? "ANLST" : "Corporate Analyst"
 		if("NT5")
-			. = size ? "SPVR " : "Corporate Supervisor"
+			. = size ? "SPVR" : "Corporate Supervisor"
 		if("E1")
-			. = size ? "PVT " : "Private"
+			. = size ? "PVT" : "Private"
 		if("E2")
-			. = size ? "PFC " : "Private First Class"
+			. = size ? "PFC" : "Private First Class"
 		if("E3")
-			. = size ? "LCPL " : "Lance Corporal"
+			. = size ? "LCPL" : "Lance Corporal"
 		if("E3E")
-			. = size ? "SCPL " : "Section Corporal" //Anachronistic if we're going by common US ranks, above E3 but below E4.
+			. = size ? "SCPL" : "Section Corporal" //Anachronistic if we're going by common US ranks, above E3 but below E4.
 		if("E4")
-			. = size ? "CPL " : "Corporal"
+			. = size ? "CPL" : "Corporal"
 		if("E5")
-			. = size ? "SGT " : "Sergeant"
+			. = size ? "SGT" : "Sergeant"
 		if("E6")
-			. = size ? "SSGT " : "Staff Sergeant"
+			. = size ? "SSGT" : "Staff Sergeant"
 		if("E7")
-			. = size ? "GYSGT " : "Gunnery Sergeant"
+			. = size ? "GYSGT" : "Gunnery Sergeant"
 		if("E8")
-			. = size ? "MSGT " : "Master Sergeant"
+			. = size ? "MSGT" : "Master Sergeant"
 		if("E8E")
-			. = size ? "FSGT " : "First Sergeant"
+			. = size ? "FSGT" : "First Sergeant"
 		if("E9")
-			. = size ? "SGM " : "Sergeant Major"
+			. = size ? "SGM" : "Sergeant Major"
 		if("E9E")
-			. = size ? "CSGM " : "Command Sergeant Major"
+			. = size ? "CSGM" : "Command Sergeant Major"
 		if("O1")
-			. = size ? "ENS " : "Ensign"
+			. = size ? "ENS" : "Ensign"
 		if("O2")
-			. = size ? "LTJG " : "Lieutenant Junior Grade"
+			. = size ? "LTJG" : "Lieutenant Junior Grade"
 		if("O3")
-			. = size ? "LT " : "Lieutenant"
+			. = size ? "LT" : "Lieutenant"
 		if("O4")
-			. = size ? "LCDR " : "Lieutenant Commander"
+			. = size ? "LCDR" : "Lieutenant Commander"
 		if("O5")
-			. = size ? "CDR " : "Commander"
+			. = size ? "CDR" : "Commander"
 		if("O6")
-			. = size ? "CPT " : "Captain"
+			. = size ? "CPT" : "Captain"
 		if("O7")
-			. = size ? "COMM " : "Commodore"
+			. = size ? "COMM" : "Commodore"
 		if("O8")
-			. = size ? "RADM " : "Rear Admiral"
+			. = size ? "RADM" : "Rear Admiral"
 		if("O9")
-			. = size ? "VADM " : "Vice Admiral"
+			. = size ? "VADM" : "Vice Admiral"
 		if("10")
-			. = size ? "ADM " : "Admiral"
+			. = size ? "ADM" : "Admiral"
 		if("11")
-			. = size ? "FADM " : "Fleet Admiral"
+			. = size ? "FADM" : "Fleet Admiral"
 		if("WO")
-			. = size ? "WO " : "Warrant Officer"
+			. = size ? "WO" : "Warrant Officer"
 		if("CWO")
-			. = size ? "CWO " : "Chief Warrant Officer"
+			. = size ? "CWO" : "Chief Warrant Officer"
 		if("PO3")
-			. = size ? "PO3 " : "Petty Officer Third Class"
+			. = size ? "PO3" : "Petty Officer Third Class"
 		if("PO2")
-			. = size ? "PO2 " : "Petty Officer Second Class"
+			. = size ? "PO2" : "Petty Officer Second Class"
 		if("PO1")
-			. = size ? "PO1 " : "Petty Officer First Class"
+			. = size ? "PO1" : "Petty Officer First Class"
 		if("CPO")
-			. = size ? "CPO " : "Chief Petty Officer"
+			. = size ? "CPO" : "Chief Petty Officer"
 		if("MO4")
-			. = size ? "MAJ " : "Major"
+			. = size ? "MAJ" : "Major"
 		if("MO5")
-			. = size ? "LtCol " : "Lieutenant Colonel"
+			. = size ? "LtCol" : "Lieutenant Colonel"
 		if("UPP1")
-			. = size ? "UGNR " : "USL Gunner"
+			. = size ? "UGNR" : "USL Gunner"
 		if("UPP2")
-			. = size ? "USUR " : "USL Surgeon"
+			. = size ? "USUR" : "USL Surgeon"
 		if("UPP3")
-			. = size ? "UPOM " : "USL Powder Monkey"
+			. = size ? "UPOM" : "USL Powder Monkey"
 		if("UPP4")
-			. = size ? "UCPT " : "USL Captain"
+			. = size ? "UCPT" : "USL Captain"
 		if("UPP5")
-			. = size ? "UQM " : "USL Quartermaster"
+			. = size ? "UQM" : "USL Quartermaster"
 		if("UPP6")
-			. = size ? "USSGT " : "USL Staff Sergeant"
+			. = size ? "USSGT" : "USL Staff Sergeant"
 		if("UPP7")
-			. = size ? "UENS " : "USL Ensign"
+			. = size ? "UENS" : "USL Ensign"
 		if("UPP8")
-			. = size ? "ULT " : "USL Lieutenant"
+			. = size ? "ULT" : "USL Lieutenant"
 		if("UPP9")
-			. = size ? "ULCDR " : "USL Lieutenant Commander"
+			. = size ? "ULCDR" : "USL Lieutenant Commander"
 		if("UPP10")
-			. = size ? "UCDR " : "USL Commander"
+			. = size ? "UCDR" : "USL Commander"
 		if("UPP11")
-			. = size ? "UADM " : "USL Admiral"
+			. = size ? "UADM" : "USL Admiral"
 		if("UPPC1")
-			. = size ? "UEPM " : "USL Elite Powder Monkey"
+			. = size ? "UEPM" : "USL Elite Powder Monkey"
 		if("UPPC2")
-			. = size ? "UESUR " : "USL Elite Surgeon"
+			. = size ? "UESUR" : "USL Elite Surgeon"
 		if("UPPC3")
-			. = size ? "UECPT " : "USL Elite Captain"
+			. = size ? "UECPT" : "USL Elite Captain"
 		if("FRE1")
-			. = size ? "FRE " : "Freelancer Standard"
+			. = size ? "FRE" : "Freelancer Standard"
 		if("FRE2")
-			. = size ? "FRE " : "Freelancer Medic"
+			. = size ? "FRE" : "Freelancer Medic"
 		if("FRE3")
-			. = size ? "FRE " : "Freelancer Veteran"
+			. = size ? "FRE" : "Freelancer Veteran"
 		if("FRE4")
-			. = size ? "FRE " : "Freelancer Leader"
+			. = size ? "FRE" : "Freelancer Leader"
 		if("CLF1")
-			. = size ? "CLF " : "CLF Standard"
+			. = size ? "CLF" : "CLF Standard"
 		if("CLF2")
-			. = size ? "CLF " : "CLF Medic"
+			. = size ? "CLF" : "CLF Medic"
 		if("CLF3")
-			. = size ? "CLF " : "CLF Leader"
+			. = size ? "CLF" : "CLF Leader"
 		if("SOM_E1")
-			. = size ? "PTE " : "SOM Private"
+			. = size ? "PTE" : "SOM Private"
 		if("SOM_E2")
-			. = size ? "PFC " : "SOM Private First Class"
+			. = size ? "PFC" : "SOM Private First Class"
 		if("SOM_E3")
-			. = size ? "LCP " : "SOM Lance Corporal"
+			. = size ? "LCP" : "SOM Lance Corporal"
 		if("SOM_E4")
-			. = size ? "CPL " : "SOM Corporal"
+			. = size ? "CPL" : "SOM Corporal"
 		if("SOM_E5")
-			. = size ? "CFC " : "SOM Corporal First Class"
+			. = size ? "CFC" : "SOM Corporal First Class"
 		if("SOM_S1")
-			. = size ? "3SG " : "SOM Third Sergeant"
+			. = size ? "3SG" : "SOM Third Sergeant"
 		if("SOM_S2")
-			. = size ? "2SG " : "SOM Second Sergeant"
+			. = size ? "2SG" : "SOM Second Sergeant"
 		if("SOM_S3")
-			. = size ? "1SG " : "SOM First Sergeant"
+			. = size ? "1SG" : "SOM First Sergeant"
 		if("SOM_S4")
-			. = size ? "SSG " : "SOM Staff Sergeant"
+			. = size ? "SSG" : "SOM Staff Sergeant"
 		if("SOM_S5")
-			. = size ? "MSG " : "SOM Master Sergeant"
+			. = size ? "MSG" : "SOM Master Sergeant"
 		if("SOM_W1")
-			. = size ? "3WO " : "SOM Third Warrant Officer"
+			. = size ? "3WO" : "SOM Third Warrant Officer"
 		if("SOM_W2")
-			. = size ? "2WO " : "SOM Second Warrant Officer"
+			. = size ? "2WO" : "SOM Second Warrant Officer"
 		if("SOM_W3")
-			. = size ? "1WWO " : "SOM First Warrant Officer"
+			. = size ? "1WWO" : "SOM First Warrant Officer"
 		if("SOM_W4")
-			. = size ? "MWO " : "SOM Master Warrant Officer"
+			. = size ? "MWO" : "SOM Master Warrant Officer"
 		if("SOM_W5")
-			. = size ? "SWO " : "SOM Senior Warrant Officer"
+			. = size ? "SWO" : "SOM Senior Warrant Officer"
 		if("SOM_W6")
-			. = size ? "CWO " : "SOM Chief Warrant Officer"
+			. = size ? "CWO" : "SOM Chief Warrant Officer"
 		if("SOM_O1")
-			. = size ? "2LT " : "SOM Second Lieutenant"
+			. = size ? "2LT" : "SOM Second Lieutenant"
 		if("SOM_O2")
-			. = size ? "LTA " : "SOM Lieutenant"
+			. = size ? "LTA" : "SOM Lieutenant"
 		if("SOM_O3")
-			. = size ? "CPT " : "SOM Captain"
+			. = size ? "CPT" : "SOM Captain"
 		if("SOM_O4")
-			. = size ? "MAJ " : "SOM Major"
+			. = size ? "MAJ" : "SOM Major"
 		if("SOM_O5")
-			. = size ? "LTC " : "SOM Lieutenant-Colonel"
+			. = size ? "LTC" : "SOM Lieutenant-Colonel"
 		if("SOM_O6")
-			. = size ? "SLTC " : "SOM Senior Lieutenant-Colonel"
+			. = size ? "SLTC" : "SOM Senior Lieutenant-Colonel"
 		if("SOM_O7")
-			. = size ? "COL " : "SOM Colonel"
+			. = size ? "COL" : "SOM Colonel"
 		if("SOM_G1")
-			. = size ? "BG " : "SOM Brigadier-General"
+			. = size ? "BG" : "SOM Brigadier-General"
 		if("SOM_G2")
-			. = size ? "MG " : "SOM Major-General"
+			. = size ? "MG" : "SOM Major-General"
 		if("SOM_G3")
-			. = size ? "LG " : "SOM Lieutenant-General"
+			. = size ? "LG" : "SOM Lieutenant-General"
 		if("SOM_G4")
-			. = size ? "GEN " : "SOM General"
+			. = size ? "GEN" : "SOM General"
 		if("SOM_A1")
-			. = size ? "RADM(1) " : "SOM Rear-Admiral"
+			. = size ? "RADM(1)" : "SOM Rear-Admiral"
 		if("SOM_A2")
-			. = size ? "RADM(2) " : "SOM Rear-Admiral"
+			. = size ? "RADM(2)" : "SOM Rear-Admiral"
 		if("SOM_A3")
-			. = size ? "VADM " : "SOM Vice-Admiral"
+			. = size ? "VADM" : "SOM Vice-Admiral"
 		if("SOM_A4")
-			. = size ? "ADM " : "SOM Admiral"
+			. = size ? "ADM" : "SOM Admiral"
 		if("ICC1")
-			. = size ? "ICC " : "ICC Standard"
+			. = size ? "ICC" : "ICC Standard"
 		if("ICC2")
-			. = size ? "ICC " : "ICC Medic"
+			. = size ? "ICC" : "ICC Medic"
 		if("ICC3")
-			. = size ? "ICCG " : "ICC Guard"
+			. = size ? "ICCG" : "ICC Guard"
 		if("ICC4")
-			. = size ? "ICCL " : "ICC Leader"
+			. = size ? "ICCL" : "ICC Leader"
 		if("MRC1")
-			. = size ? "MERC " : "MERC Heavy"
+			. = size ? "MERC" : "MERC Heavy"
 		if("MRC2")
-			. = size ? "MERC " : "MERC Miner"
+			. = size ? "MERC" : "MERC Miner"
 		if("MRC3")
-			. = size ? "MERC " : "MERC Engineer"
+			. = size ? "MERC" : "MERC Engineer"
 		if("VM")
-			. = size ? "VAT " : "VatGrown Marine"
+			. = size ? "VAT" : "VatGrown Marine"
 		if("Mk.III")
-			. = size ? "Mk.III " : "Mark III"
+			. = size ? "Mk.III" : "Mark III"
 		if("Mk.II")
-			. = size ? "Mk.II " : "Mark II"
+			. = size ? "Mk.II" : "Mark II"
 		if("Mk.I")
-			. = size ? "Mk.I " : "Mark I"
+			. = size ? "Mk.I" : "Mark I"
 		else
-			. = paygrade + " " //custom paygrade
+			. = paygrade //custom paygrade

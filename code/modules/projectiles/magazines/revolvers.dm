@@ -8,21 +8,23 @@
 	flags_equip_slot = NONE
 	caliber = CALIBER_44
 	icon_state = "m44"
+	icon_state_mini = "mag_revolver_bronze"
 	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 6
-	icon_state_mini = "mag_revolver"
 
 /obj/item/ammo_magazine/revolver/marksman
 	name = "\improper R-44 marksman speed loader (.44)"
 	default_ammo = /datum/ammo/bullet/revolver/marksman
 	caliber = CALIBER_44
 	icon_state = "m_m44"
+	icon_state_mini = "mag_revolver_bronze_red"
 
 /obj/item/ammo_magazine/revolver/heavy
 	name = "\improper R-44 PW-MX speed loader (.44)"
 	default_ammo = /datum/ammo/bullet/revolver/heavy
 	caliber = CALIBER_44
 	icon_state = "h_m44"
+	icon_state_mini = "mag_revolver_bronze_purple"
 
 /obj/item/ammo_magazine/revolver/standard_revolver
 	name = "\improper R-44 magnum speed loader (.44)"
@@ -31,6 +33,7 @@
 	flags_equip_slot = NONE
 	caliber = CALIBER_44
 	icon_state = "tp44"
+	icon_state_mini = "mag_revolver"
 	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 7
 
@@ -39,6 +42,7 @@
 	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = CALIBER_762X38
 	icon_state = "ny762"
+	icon_state_mini = "mag_revolver_blue"
 
 
 /obj/item/ammo_magazine/revolver/small
@@ -47,6 +51,7 @@
 	default_ammo = /datum/ammo/bullet/revolver/ricochet/four
 	caliber = CALIBER_357
 	icon_state = "sw357"
+	icon_state_mini = "mag_revolver_greyred"
 	max_rounds = 6
 
 /obj/item/ammo_magazine/revolver/mateba
@@ -54,6 +59,7 @@
 	default_ammo = /datum/ammo/bullet/revolver/highimpact
 	caliber = CALIBER_454
 	icon_state = "mateba"
+	icon_state_mini = "mag_revolver"
 	max_rounds = 6
 
 /obj/item/ammo_magazine/revolver/cmb
@@ -61,6 +67,7 @@
 	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = CALIBER_357
 	icon_state = "cmb"
+	icon_state_mini = "mag_revolver_greypurple"
 	max_rounds = 6
 
 /obj/item/ammo_magazine/revolver/judge
@@ -70,6 +77,7 @@
 	caliber = CALIBER_45L
 	max_rounds = 5
 	icon_state = "m_m44"
+	icon_state_mini = "mag_revolver_bronze_red"
 
 /obj/item/ammo_magazine/revolver/judge/buckshot
 	name = "\improper Judge buckshot speed loader (.45L)"
@@ -77,6 +85,7 @@
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
 	caliber = CALIBER_45L
 	icon_state = "h_m44"
+	icon_state_mini = "mag_revolver_bronze_purple"
 
 /obj/item/ammo_magazine/revolver/standard_magnum
 	name = "\improper R-76 speed loader (12.7mm)"
@@ -85,3 +94,4 @@
 	max_rounds = 5
 	caliber = CALIBER_12x7
 	icon_state = "t76"
+	icon_state_mini = "mag_revolver_red"

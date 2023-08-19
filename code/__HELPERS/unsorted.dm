@@ -48,16 +48,6 @@
 /datum/proc/stack_trace(msg)
 	CRASH(msg)
 
-
-GLOBAL_REAL_VAR(list/stack_trace_storage)
-/proc/gib_stack_trace()
-	stack_trace_storage = list()
-	stack_trace()
-	stack_trace_storage.Cut(1, min(3, length(stack_trace_storage)))
-	. = stack_trace_storage
-	stack_trace_storage = null
-
-
 //returns a GUID like identifier (using a mostly made up record format)
 //guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
 //	(But may make a nice salt to one)
