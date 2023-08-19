@@ -326,7 +326,7 @@
 	var/list/current_aura_list = list()
 
 /mob/camera/aiEye/remote/hud/overwatch/Initialize(mapload)
-	..()
+	. = ..()
 	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
 	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 

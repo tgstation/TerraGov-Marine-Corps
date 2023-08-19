@@ -74,8 +74,10 @@
 			master.lighting_corner_SE = src
 
 /datum/static_lighting_corner/proc/self_destruct_if_idle()
-	if (!LAZYLEN(affecting))
+	if(!LAZYLEN(affecting))
 		qdel(src, force = TRUE)
+		return TRUE
+	return FALSE
 
 /datum/static_lighting_corner/proc/vis_update()
 	for (var/datum/static_light_source/light_source AS in affecting)
@@ -144,7 +146,7 @@
 		lighting_object.needs_update = TRUE
 		SSlighting.objects_queue += lighting_object
 
-	self_destruct_if_idle()
+	return self_destruct_if_idle()
 
 
 /datum/static_lighting_corner/dummy/New()

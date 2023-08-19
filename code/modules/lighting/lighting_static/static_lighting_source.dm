@@ -167,7 +167,7 @@
 
 	if (QDELETED(source_atom))
 		qdel(src)
-		return
+		return TRUE
 
 	if (source_atom.light_power != light_power)
 		light_power = source_atom.light_power
@@ -183,7 +183,7 @@
 
 	if (!light_range || !light_power)
 		qdel(src)
-		return
+		return TRUE
 
 	if (isturf(top_atom))
 		if (source_turf != top_atom)
