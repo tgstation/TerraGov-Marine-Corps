@@ -1,0 +1,7 @@
+{
+    "map_name": "Daedalus Prison",
+    "map_path": "map_files/daedalus_prison",
+    "map_file": "daedalus_prison.dmm",
+	"quickbuilds": 1800,
+	"announce_text": "A second generation colony has had a beacon transmitting the same signal, nonstop. Attempts to hail the colony over comms have proved futile. Because the ship was at a nearby drydock, it has been dispatched to figure out what's wrong. TGMC, prepare to deploy!"
+}
