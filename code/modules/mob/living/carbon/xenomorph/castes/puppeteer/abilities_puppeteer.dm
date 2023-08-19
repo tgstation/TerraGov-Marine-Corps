@@ -145,7 +145,7 @@
 		if(!silent)
 			owner_xeno.balloon_alert(owner_xeno, "too many puppets! (max: [owner_xeno.xeno_caste.max_puppets])")
 		return FALSE
-	if(HAS_TRAIT(target, TRAIT_MAPSPAWNED))
+	if(HAS_TRAIT(target, TRAIT_MAPSPAWNED) || HAS_TRAIT(target, TRAIT_HOLLOW))
 		if(!silent)
 			owner_xeno.balloon_alert(owner_xeno, "of no use!")
 		return FALSE
@@ -167,11 +167,14 @@
 		return FALSE
 	succeed_activate()
 
-/datum/action/xeno_action/activable/refurbish_husk/use_ability(mob/living/victim)
+/datum/action/xeno_action/activable/refurbish_husk/use_ability(mob/living/carbon/human/victim)
 	var/turf/victim_turf = get_turf(victim)
 
-	victim.unequip_everything()
-	victim.gib()
+	ADD_TRAIT(victim, TRAIT_HOLLOW, TRAIT_GENERIC)
+	if(victim.species)
+		hgibs(victim_turf, victim.species.flesh_color, victim.species.blood_color)
+	else
+		hgibs(victim_turf)
 	var/mob/living/carbon/xenomorph/puppet/puppet = new(victim_turf, owner)
 	puppet.voice = victim.voice
 	add_puppet(puppet)
@@ -179,7 +182,7 @@
 
 /// Adds a puppet to our list
 /datum/action/xeno_action/activable/refurbish_husk/proc/add_puppet(mob/living/carbon/xenomorph/puppet/new_puppet)
-	RegisterSignal(new_puppet, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(remove_puppet))
+	RegisterSignals(new_puppet, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(remove_puppet))
 	RegisterSignal(new_puppet, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack))
 	puppets += new_puppet
 
