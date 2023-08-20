@@ -220,8 +220,9 @@
 		lifetime = smoke_time
 
 /datum/effect_system/smoke_spread/start()
-	if(!QDELETED(holder))
-		location = get_turf(holder)
+	var/atom/_holder = get_holder()
+	if(!QDELETED(_holder))
+		location = get_turf(_holder)
 	new smoke_type(location, range, lifetime)
 
 /////////////////////////////////////////////
@@ -392,8 +393,9 @@
 	var/strength = 1
 
 /datum/effect_system/smoke_spread/xeno/start()
-	if(QDELETED(location) && !QDELETED(holder))
-		location = get_turf(holder)
+	var/atom/_holder = get_holder()
+	if(QDELETED(location) && !QDELETED(_holder))
+		location = get_turf(get_holder())
 	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location, range, lifetime, src)
 	S.strength = strength
 
