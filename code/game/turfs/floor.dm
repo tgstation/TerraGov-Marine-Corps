@@ -116,13 +116,15 @@
 	var/obj/item/tool/crowbar/user_crowbar = user.is_holding_item_of_type(/obj/item/tool/crowbar)
 	if(!user_crowbar)
 		return
+	if(is_mainship_level(user.z))
+		return
 	var/turf/open/floor/plating/P = pry_tile(user_crowbar, user, TRUE)
 	if(!istype(P))
 		return
 	P.attackby(T, user, params)
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
-	if(floor_tile && pry_tile(I, user))
+	if(floor_tile && pry_tile(I, user) && !is_mainship_level(user.z))
 		return TRUE
 
 ///Removes the floor tile from the turf via a tool
