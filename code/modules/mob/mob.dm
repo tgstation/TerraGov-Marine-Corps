@@ -16,6 +16,9 @@
 		mind = null
 	if(hud_used)
 		QDEL_NULL(hud_used)
+	if(s_active)
+		s_active.hide_from(src)
+	unset_machine()
 	for(var/a in actions)
 		var/datum/action/action_to_remove = a
 		action_to_remove.remove_action(src)

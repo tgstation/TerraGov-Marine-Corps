@@ -17,6 +17,7 @@
 		/obj/effect/landmark/weapon_spawn,
 		/mob/living/carbon/xenomorph,
 		/turf/closed/wall/variable,
+		/obj/machinery/computer/nuke_disk_generator,
 	)
 	//This turf existing is an error in and of itself
 	ignore += typesof(/turf/baseturf_skipover)
