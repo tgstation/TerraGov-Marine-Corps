@@ -407,7 +407,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 12.5
 	shrapnel_chance = 15
-	sundering = 2
+	sundering = 0.5
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
