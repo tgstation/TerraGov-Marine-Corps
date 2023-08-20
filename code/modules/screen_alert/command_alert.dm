@@ -9,7 +9,7 @@
 
 	letters_per_update = 2
 	fade_out_delay = 5 SECONDS
-	style_open = "<span class='maptext' style=font-size:20pt;text-align:center valign='top'>"
+	style_open = "<span class='maptext' style=font-size:16pt;text-align:center valign='top'>"
 	style_close = "</span>"
 
 /datum/action/innate/message_squad
