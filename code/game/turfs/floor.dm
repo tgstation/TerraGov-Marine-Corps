@@ -140,7 +140,7 @@
 	else
 		if(user && !silent)
 			to_chat(user, span_notice("You remove the floor tile."))
-		if(make_tile && !is_mainship_level(user.z))
+		if(make_tile)
 			spawn_tile()
 	return make_plating()
 
