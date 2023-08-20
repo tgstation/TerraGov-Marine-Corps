@@ -311,8 +311,10 @@
 /obj/structure/speartrap ///The actual deployed trap
 	name = "Deployed Spear"
 	desc = "A very pointy stick, dont walk into it... please."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "spearglass"
+	icon = 'icons/Marine/trap_spear.dmi'
+	icon_state = "speartrap"
+	pixel_x = -13
+	pixel_y = -9 //Don't touch the offsets unless you intend on respriting these
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
 	///How much damage the spikes do when you step on them
@@ -327,7 +329,8 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	X.apply_damage(trap_damage*1.5, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
+	if(get_dir(src, X) == dir) //You only get hurt if you attack the pointy end
+		X.apply_damage(trap_damage*5, blocked = MELEE, updating_health = TRUE)
 	update_icon()
 	return ..()
 
@@ -344,8 +347,8 @@
 	if(isxeno(victim))
 		victim.apply_damage(trap_damage * 5, BRUTE, updating_health = TRUE)
 
-	var/mob/living/carbon/human/target = victim
-	target.apply_damage(trap_damage, BRUTE, updating_health = TRUE)
+	victim.apply_damage(trap_damage, BRUTE, updating_health = TRUE)
+	victim.apply_status_effect(/datum/status_effect/incapacitating/immobilized, 1 SECONDS) //Punishing, but also prevents instadeath
 
 	playsound(src, 'sound/weapons/bladeslice.ogg', 50)
 
