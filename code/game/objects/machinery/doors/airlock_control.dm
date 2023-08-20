@@ -262,9 +262,10 @@
 	. = ..()
 	set_frequency(frequency)
 
-
-/obj/machinery/access_button/New()
-	..()
+/obj/machinery/access_button/Destroy()
+	SSradio.remove_object(src, frequency)
+	radio_connection = null
+	return ..()
 
 /obj/machinery/access_button/airlock_interior
 	frequency = 1379
