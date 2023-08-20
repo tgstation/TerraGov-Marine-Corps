@@ -457,6 +457,11 @@
 	coverage = 85 //has a shield
 	anchor_time = 1 SECONDS
 
+/obj/machinery/deployable/mounted/moveable/atgun/Destroy()
+	if(sponson)
+		QDEL_NULL(sponson)
+	return ..()
+
 /obj/item/storage/internal/ammo_rack
 	storage_slots = 10
 	max_storage_space = 40
