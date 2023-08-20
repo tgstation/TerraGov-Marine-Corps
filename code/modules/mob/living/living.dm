@@ -18,7 +18,6 @@
 
 	handle_drugged()
 	handle_slowdown()
-	handle_stagger()
 
 ///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
 /mob/living/proc/finish_aura_cycle()
@@ -99,6 +98,8 @@
 	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
 /mob/living/Destroy()
+	for(var/datum/status_effect/effect AS in status_effects)
+		qdel(effect)
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
 		if(embedded.embedding.embedded_flags & EMBEDDED_DEL_ON_HOLDER_DEL)
@@ -714,19 +715,6 @@ below 100 is not dizzy
 	return name
 
 
-/mob/living/proc/point_to_atom(atom/A, turf/T)
-	var/turf/tile = get_turf(A)
-	if (!tile)
-		return FALSE
-	var/turf/our_tile = get_turf(src)
-	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0, invisibility)
-	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
-	visible_message("<b>[src]</b> points to [A]")
-	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, A)
-	return TRUE
-
-
 /mob/living/get_photo_description(obj/item/camera/camera)
 	var/holding
 	if(l_hand || r_hand)
@@ -819,6 +807,10 @@ below 100 is not dizzy
 /mob/living/can_interact_with(datum/D)
 	return D == src || D.Adjacent(src)
 
+/mob/living/onTransitZ(old_z, new_z)
+	. = ..()
+	set_jump_component()
+
 /**
  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
  *
@@ -887,9 +879,6 @@ below 100 is not dizzy
 	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
 		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
 		if(offhand && (offhand.flags_item & WIELDED))
-			to_chat(src, span_warning("Your other hand is too busy holding \the [offhand.name]"))
-			return
-		else
 			wielded_item.unwield(src) //Get rid of it.
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
@@ -963,4 +952,18 @@ below 100 is not dizzy
 
 ///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
 /mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
+	var/gravity = get_gravity()
+	if(gravity < 1) //low grav
+		duration *= 2.5 - gravity
+		cooldown *= 2 - gravity
+		cost *= gravity * 0.5
+		height *= 2 - gravity
+		if(gravity <= 0.75)
+			flags_pass |= PASS_DEFENSIVE_STRUCTURE
+	else if(gravity > 1) //high grav
+		duration *= gravity * 0.5
+		cooldown *= gravity
+		cost *= gravity
+		height *= gravity * 0.5
+
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)

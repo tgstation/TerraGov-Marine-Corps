@@ -192,6 +192,10 @@
 	dir = 9
 	},
 /area/bigredv2/outside/se)
+"om" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "ou" = (
 /obj/effect/landmark/corpsespawner/marine,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -1144,7 +1148,7 @@ rV
 "}
 (17,1,1) = {"
 Rk
-Ok
+om
 jL
 Ok
 Ll

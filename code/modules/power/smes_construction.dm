@@ -89,7 +89,7 @@
 			else
 				to_chat(h_user, "Small electrical arc sparks and burns your hand as you touch the [src]!")
 				h_user.adjustFireLoss(rand(5,10))
-				h_user.Unconscious(40)
+				h_user.Unconscious(4 SECONDS)
 			charge = 0
 
 		if (16 to 35)
@@ -148,7 +148,7 @@
 						visible_message("Magnetic containment stabilised.")
 						return
 					visible_message("DANGER! Magnetic containment field failure in 3 ... 2 ... 1 ...")
-					explosion(loc, 2, 3, 5, 8)
+					explosion(loc, 2, 3, 5, 0, 8)
 					// Not sure if this is necessary, but just in case the SMES *somehow* survived..
 					qdel(src)
 

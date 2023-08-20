@@ -102,44 +102,41 @@
 	. = ..()
 	if(.)
 		return
-
 	if((flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir))
 		return TRUE
-
 	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
-
 	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
 		return TRUE
-
 	if(mover?.throwing && (allow_pass_flags & PASS_THROW))
 		return TRUE
-
 	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
 		return TRUE
-
-	if((allow_pass_flags & PASS_WALKOVER) && ismob(mover) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH))
+	if((allow_pass_flags & PASS_AIR) && (mover.pass_flags & PASS_AIR))
 		return TRUE
-
-	return FALSE
+	if(!ismob(mover))
+		return FALSE
+	if((allow_pass_flags & PASS_MOB))
+		return TRUE
+	if((allow_pass_flags & PASS_WALKOVER) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH))
+		return TRUE
 
 ///Handles extra checks for things trying to exit this objects turf
 /obj/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	SIGNAL_HANDLER
 	if(mover?.throwing && (allow_pass_flags & PASS_THROW))
 		return NONE
-
 	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return NONE
-
 	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
 		return NONE
-
+	if((allow_pass_flags & PASS_AIR) && (mover.pass_flags & PASS_AIR))
+		return TRUE
 	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
 		return NONE
-
 	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
+
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
 

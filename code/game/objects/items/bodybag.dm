@@ -217,23 +217,23 @@
 
 	if(!opened && bodybag_occupant)
 		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-		balloon_alert(bodybag_occupant, "jolts out of the bag")
+		balloon_alert(bodybag_occupant, "[proj] jolts you out of the bag")
 		open()
 
 /obj/structure/closet/bodybag/flamer_fire_act(burnlevel)
 	if(!opened && bodybag_occupant)
-		balloon_alert(bodybag_occupant, "fire forces you out")
-		open()
+		balloon_alert(bodybag_occupant, "The fire forces you out")
 		bodybag_occupant.flamer_fire_act(burnlevel)
+		open()
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
-		balloon_alert(bodybag_occupant, "blows you out")
-		open()
+		balloon_alert(bodybag_occupant, "The explosion blows you out")
 		bodybag_occupant.ex_act(severity)
+		open()
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			visible_message(span_danger("\The shockwave blows [name] apart!"))
+			visible_message(span_danger("The shockwave blows [src] apart!"))
 			qdel(src) //blown apart
 
 /obj/structure/closet/bodybag/proc/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)

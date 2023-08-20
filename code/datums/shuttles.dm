@@ -124,6 +124,7 @@
 	description = "The plain and simple old Tadpole-03 model."
 	///shuttle switch console name
 	var/display_name = "Tadpole Standard Model"
+	var/admin_enable = TRUE
 
 /datum/map_template/shuttle/minidropship/old
 	suffix = "_big"
@@ -134,6 +135,7 @@
 	suffix = "_food"
 	description = "A Tadpole modified to provide foods and services. Who the hell let this on the military catalogue? Bounty on that guy."
 	display_name = "Tadpole Food-truck Model"
+	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/factorio
 	suffix = "_factorio"

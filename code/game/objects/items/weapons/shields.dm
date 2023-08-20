@@ -187,7 +187,7 @@
 		to_chat(user, span_notice("[src] is now active."))
 	else
 		force = initial(force)
-		w_class = WEIGHT_CLASS_TINY
+		w_class = WEIGHT_CLASS_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE)
 		to_chat(user, span_notice("[src] can now be concealed."))
 	add_fingerprint(user, "turned [active ? "on" : "off"]")

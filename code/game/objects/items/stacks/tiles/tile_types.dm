@@ -37,19 +37,21 @@
 
 /obj/item/stack/tile/plasteel/welder_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(!use(4))
-		balloon_alert(user, "Need 4 tiles")
-		return
-
 	var/obj/item/tool/weldingtool/welder = I
 	if(!(welder.use(1)))
 		to_chat(user, span_warning("You need more welding fuel to complete this task."))
-		return
+		return FALSE
+
+	var/drop_loc = get_turf(src)
+	if(!use(4))
+		balloon_alert(user, "Need 4 tiles")
+		return FALSE
 
 	welder.eyecheck(user)
 	to_chat(user, span_warning("You turn the floor plates back into a metal sheet."))
 	playsound(src, 'sound/items/welder.ogg', 25, 1)
-	new /obj/item/stack/sheet/metal(get_turf(src))
+	new /obj/item/stack/sheet/metal(drop_loc)
+	return TRUE
 
 ///Creates plating, used for space turfs only
 /obj/item/stack/tile/plasteel/proc/build(turf/space_turf)

@@ -1,5 +1,5 @@
 /mob/new_player
-	invisibility = INVISIBILITY_MAXIMUM
+	invisibility = INVISIBILITY_ABSTRACT
 	stat = DEAD
 	density = FALSE
 	canmove = FALSE
@@ -69,24 +69,23 @@
 			return null
 		return output
 
-/mob/new_player/Stat()
+/mob/new_player/get_status_tab_items()
 	. = ..()
 
 	if(!SSticker)
 		return
 
-	if(statpanel("Status"))
-
-		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
-			for(var/i in GLOB.player_list)
-				if(isnewplayer(i))
-					var/mob/new_player/N = i
-					stat("[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]", N.ready ? "Playing" : "")
-				else if(isobserver(i))
-					var/mob/dead/observer/O = i
-					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
+	if(SSticker.current_state == GAME_STATE_PREGAME)
+		. += "Time To Start: [SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]"
+		. += "Players: [length(GLOB.player_list)]"
+		. += "Players Ready: [length(GLOB.ready_players)]"
+		for(var/i in GLOB.player_list)
+			if(isnewplayer(i))
+				var/mob/new_player/N = i
+				. += "[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key][N.ready ? " Playing" : ""]"
+			else if(isobserver(i))
+				var/mob/dead/observer/O = i
+				. += "[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key] Observing"
 
 
 /mob/new_player/Topic(href, href_list[])
@@ -295,6 +294,7 @@
 	var/spawn_type = assigned_role.return_spawn_type(client.prefs)
 	var/mob/living/spawning_living = new spawn_type()
 	GLOB.joined_player_list += ckey
+	client.init_verbs()
 
 	spawning_living.on_spawn(src)
 
@@ -394,6 +394,7 @@
 	observer.name = observer.real_name
 
 	mind.transfer_to(observer, TRUE)
+	observer.client?.init_verbs()
 	qdel(src)
 
 ///Toggles the new players ready state

@@ -46462,7 +46462,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "sBT" = (
@@ -47018,7 +47017,6 @@
 /obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
-/obj/effect/landmark/fob_sentry,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "ubZ" = (
@@ -47444,7 +47442,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "vfM" = (

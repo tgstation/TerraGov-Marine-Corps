@@ -48,7 +48,7 @@
 		log_game(user, target, "implanted", src)
 		imp = null
 		update_icon()
-		return
+		return TRUE
 	to_chat(user, span_notice(" You fail to implant [target]."))
 
 /obj/item/implanter/neurostim
@@ -70,3 +70,7 @@
 /obj/item/implanter/blade
 	name = "blade implant implanter"
 	imp = /obj/item/implant/deployitem/blade
+
+/obj/item/implanter/suicide_dust
+	name = "Self-Gibbing implant"
+	imp = /obj/item/implant/suicide_dust

@@ -82,13 +82,15 @@
 			take_damage(rand(400), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(75, 100), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(30, 50), BRUTE, BOMB)
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
 	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		SSresinshaping.quickbuilds++
+		SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
 		take_damage(max_integrity) // Ensure its destroyed
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \

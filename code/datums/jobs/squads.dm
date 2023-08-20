@@ -140,6 +140,15 @@
 	. = ..()
 	tracking_id = SSdirection.init_squad(name, squad_leader)
 
+	for(var/state in GLOB.playable_squad_icons)
+		var/icon/top = icon('icons/UI_icons/map_blips.dmi', state, frame = 1)
+		top.Blend(color, ICON_MULTIPLY)
+		var/icon/bottom = icon('icons/UI_icons/map_blips.dmi', "squad_underlay", frame = 1)
+		top.Blend(bottom, ICON_UNDERLAY)
+
+		var/icon_state = lowertext(name) + "_" + state
+		GLOB.minimap_icons[icon_state] = icon2base64(top)
+
 
 /datum/squad/proc/get_all_members()
 	return marines_list
@@ -292,7 +301,7 @@
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job) && !issommarineleaderjob(squad_leader.job))
-		squad_leader.set_skills(squad_leader.skills.setRating(leadership = SKILL_LEAD_EXPERT))
+		squad_leader.set_skills(squad_leader.skills.setRating(leadership = SKILL_LEAD_TRAINED))
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
@@ -332,13 +341,6 @@
 
 	for(var/mob/living/marine AS in marines_list)
 		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
-
-/datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
-	if(!target.client)
-		return
-	target.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>CIC MESSAGE FROM [sender.real_name]:</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
-	return TRUE
-
 
 /datum/squad/proc/check_entry(datum/job/job)
 	if(!(job.title in current_positions))

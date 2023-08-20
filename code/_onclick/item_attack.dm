@@ -109,7 +109,7 @@
 	playsound(attached_clamp.linked_powerloader, 'sound/machines/hydraulics_2.ogg', 40, 1)
 	attached_clamp.update_icon()
 	user.visible_message(span_notice("[user] grabs [attached_clamp.loaded] with [attached_clamp]."),
-	span_notice("You grab [attached_clamp.loaded] with [src]."))
+	span_notice("You grab [attached_clamp.loaded] with [attached_clamp]."))
 
 /mob/living/attacked_by(obj/item/I, mob/living/user, def_zone)
 

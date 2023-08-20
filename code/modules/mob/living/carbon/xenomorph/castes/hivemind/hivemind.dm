@@ -117,6 +117,9 @@
 	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
 	addtimer(CALLBACK(src, PROC_REF(do_change_form)), TIME_TO_TRANSFORM)
 
+/mob/living/carbon/xenomorph/hivemind/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
+	return //no jumping, bad hivemind
+
 ///Finish the form changing of the hivemind and give the needed stats
 /mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
 	LAZYCLEARLIST(movespeed_modification)
@@ -168,18 +171,21 @@
 	if(loc_weeds_type || check_weeds(get_turf(src)))
 		return
 	return_to_core()
-	to_chat(src, "<span class='xenonotice'>We had no weeds nearby, we got moved to our core.")
+	to_chat(src, span_xenonotice("We had no weeds nearby, we got moved to our core."))
 	return
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
 	if(!(status_flags & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		do_change_form()
+	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in contents)
+		sticky_bomb.clean_refs()
+		sticky_bomb.forceMove(loc)
 	forceMove(get_turf(core))
 
 ///Start the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/start_teleport(turf/T)
 	if(!isopenturf(T))
-		to_chat(src, span_notice("You cannot teleport into a wall"))
+		balloon_alert(src, "Can't teleport into a wall")
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	flick("Hivemind_materialisation_fast_reverse", src)
@@ -189,7 +195,7 @@
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
 	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
-		to_chat(src, span_warning("The weeds on our destination were destroyed"))
+		balloon_alert(src, "No weeds in destination")
 	else
 		forceMove(T)
 

@@ -44,11 +44,14 @@
 			to_chat(user, span_warning("Your other hand can't hold [src]!"))
 			return FALSE
 
+	if(!place_offhand(user))
+		to_chat(user, span_warning("You cannot wield [src] right now."))
+		return FALSE
+
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
 	update_item_state()
-	place_offhand(user, name)
 	return TRUE
 
 
@@ -68,18 +71,20 @@
 	return TRUE
 
 
-/obj/item/proc/place_offhand(mob/user, item_name)
-	to_chat(user, span_notice("You grab [item_name] with both hands."))
+/obj/item/proc/place_offhand(mob/user)
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
-	offhand.name = "[item_name] - offhand"
-	offhand.desc = "Your second grip on the [item_name]."
-	user.put_in_inactive_hand(offhand)
+	if(!user.put_in_inactive_hand(offhand))
+		qdel(offhand)
+		return FALSE
+	to_chat(user, span_notice("You grab [src] with both hands."))
+	offhand.name = "[name] - offhand"
+	offhand.desc = "Your second grip on [src]."
 	user.update_inv_l_hand()
 	user.update_inv_r_hand()
-
+	return TRUE
 
 /obj/item/proc/remove_offhand(mob/user)
-	to_chat(user, span_notice("You are now carrying [name] with one hand."))
+	to_chat(user, span_notice("You are now carrying [src] with one hand."))
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand) && !QDELETED(offhand))
 		qdel(offhand)
@@ -302,6 +307,10 @@
 	icon_state = "spear"
 	item_state = "spear"
 
+/obj/item/weapon/twohanded/spear/tactical/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
 /obj/item/weapon/twohanded/spear/tactical/harvester
 	name = "\improper HP-S Harvester spear"
 	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' spear. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
@@ -311,6 +320,15 @@
 	force_wielded = 60
 	throwforce = 60
 	flags_item = TWOHANDED
+	var/codex_info = {"<b>Reagent info:</b><BR>
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
+	Kelotane - set your target and any adjacent mobs aflame<BR>
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
+	<BR>
+	<b>Tips:</b><BR>
+	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
 /obj/item/weapon/twohanded/spear/tactical/harvester/Initialize(mapload)
 	. = ..()
@@ -388,17 +406,15 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = TWOHANDED
 	resistance_flags = NONE
-
-	/// Lists the information in the codex
 	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
-	Kelotane - produce a cone of flames<BR>
-	Tramadol - slow your target for 2 seconds<BR>
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
+	Kelotane - set your target and any adjacent mobs aflame<BR>
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
 	<BR>
 	<b>Tips:</b><BR>
 	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
-	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
 /obj/item/weapon/twohanded/glaive/harvester/Initialize(mapload)
 	. = ..()
@@ -505,15 +521,15 @@
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
 	if (knockback)
-		stun = 1
-		weaken = 2
+		stun = 2 SECONDS
+		weaken = 4 SECONDS
 		knockback = 0
 		balloon_alert(user, "Selected mode: CRUSH.")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
 		return
 
-	stun = 1
-	weaken = 1
+	stun = 2 SECONDS
+	weaken = 2 SECONDS
 	knockback = 1
 	balloon_alert(user, "Selected mode: KNOCKBACK.")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -555,7 +571,7 @@
 		if(xeno_victim.crest_defense) //Crest defense protects us from the stun.
 			stun = 0
 		else
-			stun = 1
+			stun = 2 SECONDS
 
 	if(!M.IsStun() && !M.IsParalyzed() && !isxenoqueen(M)) //Prevent chain stunning. Queen is protected.
 		M.apply_effects(stun,weaken)

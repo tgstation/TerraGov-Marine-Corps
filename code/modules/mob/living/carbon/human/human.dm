@@ -1,5 +1,5 @@
 /mob/living/carbon/human/Initialize(mapload)
-	verbs += /mob/living/proc/lay_down
+	add_verb(src, /mob/living/proc/lay_down)
 	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 	blood_type = b_type
 
@@ -89,39 +89,30 @@
 	GLOB.dead_human_list -= src
 	return ..()
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Game"))
-		var/eta_status = SSevacuation?.get_status_panel_eta()
-		if(eta_status)
-			stat("Evacuation in:", eta_status)
+	var/eta_status = SSevacuation?.get_status_panel_eta()
+	if(eta_status)
+		. += "Evacuation in: [eta_status]"
 
-		//combat patrol timer
-		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
-		if(patrol_end_countdown)
-			stat("<b>Round End timer:</b>", patrol_end_countdown)
+	if(internal)
+		. += "Internal Atmosphere Info [internal.name]"
+		. += "Tank Pressure [internal.pressure]"
+		. += "Distribution Pressure [internal.distribute_pressure]"
 
-		if(internal)
-			stat("Internal Atmosphere Info", internal.name)
-			stat("Tank Pressure", internal.pressure)
-			stat("Distribution Pressure", internal.distribute_pressure)
+	if(assigned_squad)
+		if(assigned_squad.primary_objective)
+			. += "Primary Objective: [assigned_squad.primary_objective]"
+		if(assigned_squad.secondary_objective)
+			. += "Secondary Objective: [assigned_squad.secondary_objective]"
 
-		if(assigned_squad)
-			if(assigned_squad.primary_objective)
-				stat("Primary Objective: ", assigned_squad.primary_objective)
-			if(assigned_squad.secondary_objective)
-				stat("Secondary Objective: ", assigned_squad.secondary_objective)
-
-		if(mobility_aura)
-			stat(null, "You are affected by a MOVE order.")
-		if(protection_aura)
-			stat(null, "You are affected by a HOLD order.")
-		if(marksman_aura)
-			stat(null, "You are affected by a FOCUS order.")
-		var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
-		if(issensorcapturegamemode(SSticker.mode))
-			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
+	if(mobility_aura)
+		. += "You are affected by a MOVE order."
+	if(protection_aura)
+		. += "You are affected by a HOLD order."
+	if(marksman_aura)
+		. += "You are affected by a FOCUS order."
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)
@@ -129,39 +120,53 @@
 
 	var/b_loss = 0
 	var/f_loss = 0
-	var/stagger_slow_amount = 0
+	var/stagger_amount = 0
+	var/slowdown_amount = 0
 	var/ear_damage_amount = 0
-	var/armor_modifier = modify_by_armor(1, BOMB) //percentage that pierces overall bomb armor
+	var/bomb_armor_ratio = modify_by_armor(1, BOMB) //percentage that pierces overall bomb armor
 
-	if(armor_modifier <= 0) //we have 100 effective bomb armor
+	if(bomb_armor_ratio <= 0) //we have 100 effective bomb armor
 		return
+
+	if((severity == EXPLODE_DEVASTATE) && (bomb_armor_ratio > HUMAN_EXPLOSION_GIB_THRESHOLD))
+		return gib() //you got OB'd naked
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			b_loss = rand(160, 200)
 			f_loss = rand(160, 200)
-			stagger_slow_amount = 12
+			stagger_amount = 24 SECONDS
+			slowdown_amount = 12
 			ear_damage_amount = 60
 
 		if(EXPLODE_HEAVY)
 			b_loss = rand(80, 100)
 			f_loss = rand(80, 100)
-			stagger_slow_amount = 6
+			stagger_amount = 12 SECONDS
+			slowdown_amount = 6
 			ear_damage_amount = 30
 
 		if(EXPLODE_LIGHT)
 			b_loss = rand(40, 50)
 			f_loss = rand(40, 50)
-			stagger_slow_amount = 3
+			stagger_amount = 6 SECONDS
+			slowdown_amount = 3
 			ear_damage_amount = 10
 
+		if(EXPLODE_WEAK)
+			b_loss = 20
+			f_loss = 20
+			stagger_amount = 2 SECONDS
+			slowdown_amount = 1
+			ear_damage_amount = 5
+
 	if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-		adjust_ear_damage(ear_damage_amount * armor_modifier, ear_damage_amount * 4 * armor_modifier)
-	adjust_stagger(stagger_slow_amount * armor_modifier)
-	add_slowdown(stagger_slow_amount * armor_modifier)
+		adjust_ear_damage(ear_damage_amount * bomb_armor_ratio, ear_damage_amount * 4 * bomb_armor_ratio)
+	adjust_stagger(stagger_amount * bomb_armor_ratio)
+	add_slowdown(slowdown_amount * bomb_armor_ratio)
 
 	#ifdef DEBUG_HUMAN_ARMOR
-	to_chat(world, "DEBUG EX_ACT: armor_modifier: [armor_modifier], b_loss: [b_loss], f_loss: [f_loss]")
+	to_chat(world, "DEBUG EX_ACT: bomb_armor_ratio: [bomb_armor_ratio], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
 	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE, max_limbs = 4)

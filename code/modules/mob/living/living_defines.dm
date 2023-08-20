@@ -134,11 +134,8 @@
 	/// How much friendly fire damage has this mob done in the last 30 seconds.
 	var/list/friendly_fire = list()
 
-	///Stagger and slow vars; Stagger penalizes projectile damage for non-Xenos and disables ability use for Xenos. Slowdown is obvious.
 	///Temporary penalty on movement. Regenerates each tick.
 	var/slowdown = 0
-	///Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
-	var/stagger = 0
 	///Id of the timer to set the afk status to MOB_DISCONNECTED
 	var/afk_timer_id
 	///If this mob is afk

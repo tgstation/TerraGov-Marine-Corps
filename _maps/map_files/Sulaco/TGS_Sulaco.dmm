@@ -92,9 +92,10 @@
 /area/sulaco/engineering/engine)
 "aaq" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/mass_spectrometer,
-/obj/item/reagent_scanner,
-/obj/item/tool/hand_labeler,
+/obj/machinery/reagentgrinder,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/reagent_containers/dropper,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -146,13 +147,11 @@
 	},
 /area/sulaco/medbay/west)
 "aav" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/reagentgrinder,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/glass/beaker/large,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -200,9 +199,12 @@
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay)
 "aaM" = (
-/obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/secure/medical{
+	dir = 8
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/chemistry)
 "aaN" = (
@@ -1227,9 +1229,7 @@
 /area/sulaco/engineering/atmos)
 "ael" = (
 /obj/machinery/light/mainship,
-/obj/structure/sink{
-	dir = 1
-	},
+/obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -6016,6 +6016,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "aFh" = (
@@ -6885,6 +6886,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "aKU" = (
@@ -13797,6 +13799,10 @@
 /obj/item/book/manual/medical_diagnostics_manual,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/cmo)
+"gUR" = (
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint3)
 "gVp" = (
 /obj/machinery/gibber,
 /turf/open/floor/prison/sterilewhite,
@@ -15374,9 +15380,6 @@
 	},
 /area/sulaco/hallway/central_hall)
 "iOv" = (
-/obj/structure/bed/chair/nometal{
-	dir = 4
-	},
 /obj/machinery/air_alarm,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
@@ -16772,7 +16775,6 @@
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "kzw" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/cable,
@@ -16783,6 +16785,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -19518,6 +19521,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 1
 	},
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "okh" = (
@@ -21976,7 +21980,7 @@
 /area/sulaco/hangar/cas)
 "rpY" = (
 /obj/structure/rack,
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "rqF" = (
@@ -23882,6 +23886,10 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/engine)
+"tBY" = (
+/obj/effect/spawner/random/misc/gnome,
+/turf/open/floor/grass,
+/area/mainship/living/starboard_garden)
 "tCl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -24169,7 +24177,9 @@
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
+	id_tag = "mbayexit"
+	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
@@ -45407,7 +45417,7 @@ toM
 vIO
 cOs
 cDU
-qzH
+gUR
 xKi
 mDu
 qDO
@@ -57217,7 +57227,7 @@ sZZ
 gJO
 uyz
 iWb
-sMe
+tBY
 dMC
 mDu
 qDO

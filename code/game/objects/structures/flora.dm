@@ -21,6 +21,9 @@
 		if(EXPLODE_LIGHT)
 			if(prob(50))
 				qdel(src)
+		if(EXPLODE_WEAK)
+			if(prob(10))
+				qdel(src)
 
 
 /obj/structure/flora/flamer_fire_act(burnlevel)
@@ -61,6 +64,8 @@
 			take_damage(rand(140, 300), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 100), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 50), BRUTE, BOMB)
 	START_PROCESSING(SSobj, src)
 
 
@@ -218,6 +223,12 @@
 
 /obj/structure/flora/grass/tallgrass/tallgrasscorner
 	name = "tall grass"
+	icon_state = "tallgrass_corner"
+
+/obj/structure/flora/grass/tallgrass/hideable
+	layer = BUSH_LAYER
+
+/obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner
 	icon_state = "tallgrass_corner"
 
 //bushes

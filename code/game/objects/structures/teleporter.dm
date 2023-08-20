@@ -93,6 +93,12 @@
 	for(var/atom/movable/thing_to_teleport AS in teleporting)
 		thing_to_teleport.forceMove(get_turf(deployed_linked_teleporter))
 
+/obj/machinery/deployable/teleporter/attack_ghost(mob/dead/observer/user)
+	var/obj/item/teleporter_kit/kit = internal_item
+	if(!istype(kit) || !kit.linked_teleporter)
+		return
+	user.forceMove(get_turf(kit.linked_teleporter))
+
 /obj/machinery/deployable/teleporter/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(!user)
@@ -175,7 +181,6 @@
 	QDEL_NULL(cell)
 	return ..()
 
-
 ///Link the two teleporters
 /obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/link_teleport)
 	if(linked_teleporter)
@@ -206,6 +211,11 @@
 
 /obj/item/teleporter_kit/attack_self(mob/user)
 	do_unique_action(user)
+
+/obj/item/teleporter_kit/attack_ghost(mob/dead/observer/user)
+	if(!linked_teleporter)
+		return
+	user.forceMove(get_turf(linked_teleporter))
 
 /obj/effect/teleporter_linker
 	name = "\improper ASRS bluespace teleporters"
