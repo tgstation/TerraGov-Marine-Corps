@@ -249,12 +249,10 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	icon_state = "leaderpod"
 
 /obj/structure/droppod/leader/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
-	. = ..()
-	if(!.)
-		return
-	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_EXPERT)
+	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
 		balloon_alert(buckling_mob, "Can't use that!") // basically squad lead+ cant touch this
 		return FALSE
+	return ..()
 
 /obj/structure/droppod/leader/set_target(new_x, new_y)
 	. = ..()

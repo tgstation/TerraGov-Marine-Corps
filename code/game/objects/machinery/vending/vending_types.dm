@@ -551,6 +551,7 @@
 		/obj/item/clothing/head/hardhat = 4,
 		/obj/item/clothing/head/welding = 4,
 		/obj/item/clothing/glasses/welding = 4,
+		/obj/item/radio = -1,
 		/obj/item/taperecorder = -1,
 		/obj/item/assembly/igniter = -1,
 		/obj/item/assembly/signaler = -1,
