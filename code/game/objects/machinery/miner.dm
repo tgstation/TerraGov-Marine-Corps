@@ -42,14 +42,19 @@
 	var/miner_integrity = 100
 	///Max health of the miner
 	var/max_miner_integrity = 100
-	///What type of upgrade it has installed , used to change the icon of the miner.
+	///What type of upgrade it has installed , used to change the behaviour of the miner.
 	var/miner_upgrade_type
+	///What type of miner this is. Options: default_miner, autominer, armor_miner, overclock_miner, platinum_miner
+	var/miner_type = "default_miner"
+	///If the miner is a platinum miner
+	var/isplatinum = FALSE
 	///What faction secured that miner
 	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
-	icon_state = "mining_drill_error"
+	icon_state = "mining_drill_frame"
+	miner_type = "mining_drill_frame"
 
 /obj/machinery/miner/damaged/init_marker()
 	return //Marker will be set by itself once processing pauses when it detects this miner is broke.
@@ -59,6 +64,8 @@
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
 	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT
+	isplatinum = TRUE
+
 /obj/machinery/miner/Initialize(mapload)
 	. = ..()
 	init_marker()
@@ -76,16 +83,16 @@
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
 		if(MINER_RUNNING)
-			icon_state = "mining_drill_active_[miner_upgrade_type]"
+			icon_state = "[miner_type]"
 			set_light(MINER_LIGHT_RUNNING, MINER_LIGHT_RUNNING)
 		if(MINER_SMALL_DAMAGE)
-			icon_state = "mining_drill_braced_[miner_upgrade_type]"
+			icon_state = "[miner_type]_disabled"
 			set_light(MINER_LIGHT_SDAMAGE, MINER_LIGHT_SDAMAGE)
 		if(MINER_MEDIUM_DAMAGE)
-			icon_state = "mining_drill_[miner_upgrade_type]"
+			icon_state = "[miner_type]_disabled"
 			set_light(MINER_LIGHT_MDAMAGE, MINER_LIGHT_MDAMAGE)
 		if(MINER_DESTROYED)
-			icon_state = "mining_drill_error_[miner_upgrade_type]"
+			icon_state = "[miner_type]_destroyed"
 			set_light(MINER_LIGHT_DESTROYED, MINER_LIGHT_DESTROYED)
 
 /// Called whenever someone attacks the miner with a object which is considered a upgrade.The object needs to have a uptype var.
@@ -107,9 +114,15 @@
 		if(MINER_RESISTANT)
 			max_miner_integrity = 300
 			miner_integrity = 300
+			if(!isplatinum)
+				miner_type = "armor_miner"
 		if(MINER_OVERCLOCKED)
 			required_ticks = 60
+			if(!isplatinum)
+				miner_type = "overclock_miner"
 		if(MINER_AUTOMATED)
+			if(!isplatinum)
+				miner_type = "autominer"
 			if(stored_mineral)
 				SSpoints.supply_points[faction] += mineral_value * stored_mineral
 				SSpoints.dropship_points += dropship_bonus * stored_mineral
@@ -234,6 +247,10 @@
 		return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	miner_integrity = max_miner_integrity
+	if(!isplatinum)
+		miner_type = "default_miner"
+	else
+		miner_type = "platinum_miner"
 	set_miner_status()
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
 	span_notice("You repair [src]'s tubing and plating."))
