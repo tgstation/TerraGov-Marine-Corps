@@ -148,6 +148,7 @@
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "arrow"
+	layer = POINT_LAYER
 	anchored = TRUE
 	effect_duration = 25
 
