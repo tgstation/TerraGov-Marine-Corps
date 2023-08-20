@@ -27,10 +27,8 @@
 			return
 		if(CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION)) || !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (EAST_JUNCTION)))
 			return
-		else
-			switch(r1)
-				if(9 to 10)
-					add_overlay("[r2]")
+		if(r1 == 9 || r1 == 10)
+			add_overlay("[r2]")
 
 /turf/closed/wall/mainship/outer
 	name = "outer hull"
