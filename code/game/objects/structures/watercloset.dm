@@ -321,7 +321,8 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
-	var/busy = FALSE 	//Something's being washed at the moment
+	///is someone currently washing at this sink?
+	var/busy = FALSE
 
 /obj/structure/sink/Initialize(mapload)
 	. = ..()
