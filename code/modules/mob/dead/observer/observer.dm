@@ -792,7 +792,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	reset_perspective(null)
 
-	var/mob/target = tgui_input_list(usr, "Please select a mob:", "Observe", GLOB.mob_list)
+	var/mob/target = tgui_input_list(usr, "Please select a mob:", "Observe", GLOB.mob_living_list)
 	if(!target)
 		return
 
