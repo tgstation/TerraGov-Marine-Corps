@@ -175,7 +175,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		update_icon()
 
 /obj/item/Destroy()
-	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
 	if(ismob(loc))
 		var/mob/m = loc
@@ -341,7 +340,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/dropped(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
-	if(flags_item & DELONDROP)
+	if((flags_item & DELONDROP) && !QDELETED(src))
 		qdel(src)
 
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)

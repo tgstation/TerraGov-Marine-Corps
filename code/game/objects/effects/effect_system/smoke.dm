@@ -439,13 +439,18 @@
 	return ..()
 
 /datum/effect_system/smoke_spread/chem
-	var/obj/chemholder
+	/// Evil evil hack so we have something to "hold" our reagents
+	var/atom/movable/chem_holder/chemholder
 	smoke_type = /obj/effect/particle_effect/smoke/chem
 
 /datum/effect_system/smoke_spread/chem/New()
 	. = ..()
 	chemholder = new()
 	chemholder.create_reagents(500)
+
+/datum/effect_system/smoke_spread/chem/Destroy()
+	QDEL_NULL(chemholder)
+	return ..()
 
 /datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry, radius = 1, loca, smoke_time, silent = FALSE)
 	if(isturf(loca))

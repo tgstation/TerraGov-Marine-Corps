@@ -167,7 +167,8 @@
 
 /obj/item/proc/store_in_cryo()
 	if(is_type_in_typecache(src, GLOB.do_not_preserve) || flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP))
-		qdel(src)
+		if(!QDELETED(src))
+			qdel(src)
 		return
 	moveToNullspace()
 	GLOB.cryoed_item_list += src

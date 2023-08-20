@@ -409,14 +409,13 @@
 				"Forever alone :("\
 			)
 			send2adminchat("Server", "[cheesy_message] (No staff online)")
+	if(mob)
+		mob.become_uncliented()
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 	seen_messages = null
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
-	if(movingmob != null)
-		LAZYREMOVE(movingmob.client_mobs_in_contents, mob)
-		movingmob = null
 	SSping.currentrun -= src
 	QDEL_NULL(tooltips)
 	Master.UpdateTickRate()

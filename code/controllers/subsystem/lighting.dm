@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(lighting)
 	updators_num = 0
 	for(var/datum/static_lighting_corner/C AS in corners_queue)
 		updators_num++
-		C.needs_update = FALSE //update_objects() can call qdel if the corner is storing no data
+		//C.needs_update = FALSE //update_objects() can call qdel if the corner is storing no data
 		if(C.update_objects())
 			updators_num--
 		if(init_tick_checks)
