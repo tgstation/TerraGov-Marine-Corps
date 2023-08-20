@@ -15,7 +15,8 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /datum/effect_system
 	var/number = 3
 	var/cardinals = 0
-	var/turf/location
+	///Weakref to our location
+	var/datum/weakref/location
 	///Weakref to our holder
 	var/datum/weakref/holder
 	var/setup = 0
@@ -25,7 +26,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	if(atom)
 		attach(atom)
 	if(setup_and_start)
-		src.location = get_turf(location)
+		src.location = WEAKREF(location)
 		number = min(n, 10)
 		cardinals = c
 		setup = TRUE
@@ -39,7 +40,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		n = 10
 	number = n
 	cardinals = c
-	location = loca
+	location = WEAKREF(loca)
 	setup = 1
 
 /datum/effect_system/proc/attach(atom/atom)
@@ -55,11 +56,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /// Getter proc for the holder. Use this instead of directly doing holder.resolve()
 /datum/effect_system/proc/get_holder()
 	return holder?.resolve()
-
-/datum/effect_system/Destroy()
-	location = null
-	return ..()
-
 
 /////////////////////////////////////////////
 // GENERIC STEAM SPREAD SYSTEM
@@ -86,8 +82,8 @@ steam.start() -- spawns the effect
 
 /datum/effect_system/steam_spread/spawn_particle()
 	if(get_holder())
-		location = get_turf(holder.resolve())
-	var/obj/effect/particle_effect/steam/steam = new /obj/effect/particle_effect/steam(location)
+		location = WEAKREF(get_turf(holder.resolve()))
+	var/obj/effect/particle_effect/steam/steam = new /obj/effect/particle_effect/steam(location.resolve())
 	var/direction
 	if(cardinals)
 		direction = pick(GLOB.cardinals)
@@ -125,8 +121,8 @@ steam.start() -- spawns the effect
 
 /datum/effect_system/spark_spread/spawn_particle()
 	if(get_holder())
-		location = get_turf(holder.resolve())
-	var/obj/effect/particle_effect/sparks/sparks = new /obj/effect/particle_effect/sparks(location)
+		location = WEAKREF(get_turf(holder.resolve()))
+	var/obj/effect/particle_effect/sparks/sparks = new /obj/effect/particle_effect/sparks(location.resolve())
 	var/direction
 	if(src.cardinals)
 		direction = pick(GLOB.cardinals)
