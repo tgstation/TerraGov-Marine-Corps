@@ -2235,6 +2235,14 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"apH" = (
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/medical,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "auM" = (
 /obj/structure/bed/stool{
 	pixel_y = 8
@@ -2484,11 +2492,27 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
+"ljg" = (
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/engineer,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "ljx" = (
 /obj/structure/dropship_equipment/weapon/minirocket_pod,
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"lmD" = (
+/obj/effect/turf_decal/warning_stripes/engineer,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box/small,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "lmU" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -2537,6 +2561,12 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"oPy" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/engineer,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "oQb" = (
 /obj/machinery/light{
 	dir = 8
@@ -2613,6 +2643,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
+"rtT" = (
+/obj/effect/turf_decal/warning_stripes/medical,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box/small,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "rDw" = (
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
@@ -2675,6 +2713,14 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"uhl" = (
+/obj/effect/turf_decal/warning_stripes/leader,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box/small,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "umn" = (
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/medical3,
@@ -2712,6 +2758,14 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"wgC" = (
+/obj/effect/turf_decal/warning_stripes/smartgunner,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box/small,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "wpk" = (
 /obj/structure/ship_ammo/minirocket,
 /obj/machinery/light{
@@ -4887,8 +4941,8 @@ aac
 aal
 aao
 aaw
-aaA
-aaA
+uhl
+uhl
 aaA
 aaA
 aaA
@@ -5127,14 +5181,14 @@ aae
 aal
 aat
 aaw
+wgC
+wgC
 aaA
-aaA
-aaA
-aaA
-aaA
-aaA
-aaA
-tQD
+rtT
+apH
+ljg
+lmD
+oPy
 aaC
 fAT
 dwY
