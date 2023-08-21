@@ -12183,6 +12183,11 @@
 /obj/item/trash/plate,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
+"pjg" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 "pkg" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -62346,8 +62351,8 @@ bfc
 vyZ
 bfc
 tzo
-tPk
-tzo
+pjg
+jcm
 tzo
 eny
 tzo
@@ -62563,7 +62568,7 @@ bfc
 vyZ
 vyZ
 gCQ
-tPk
+pjg
 tzo
 dVK
 tzo
