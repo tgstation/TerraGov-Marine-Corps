@@ -102,16 +102,6 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_EORD_RESPAWN, 5 SECONDS)
 
-
-	var/mob/living/liver
-	// if(isliving(usr))
-	// 	liver = usr
-	// 	if(liver.health >= liver.health_threshold_crit)
-	// 		to_chat(src, "You can only use this when you're dead or crit.")
-	// 		return
-
-
-
 	if(usr)
 		do_eord_respawn(usr)
 
