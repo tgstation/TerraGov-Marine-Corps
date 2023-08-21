@@ -225,20 +225,11 @@
 	density = FALSE
 	opacity = FALSE
 
-/obj/structure/stairs/edge //only required if you need the south side overlay
-	name = "Stairs"
-	icon = 'icons/obj/structures/structures.dmi'
-	desc = "Stairs.  You walk up and down them."
-	icon_state = "rampbottom"
-	layer = TURF_LAYER
-	density = FALSE
-	opacity = FALSE
-
-/obj/structure/stairs/edge/Initialize(mapload)
+/obj/structure/stairs/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/structure/stairs/edge/update_overlays()
+/obj/structure/stairs/edge/update_overlays() //single stair
 	. = ..()
 	if(dir == WEST || dir == EAST)
 		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
@@ -248,12 +239,18 @@
 /obj/structure/stairs/seamless
 	icon_state = "stairs_seamless"
 
+/obj/structure/stairs/seamless/edge
+	icon_state = "stairs_seamless_edge"
+
+/obj/structure/stairs/seamless/edge/update_overlays()
+	. = ..()
+	if(dir == SOUTHWEST || dir == NORTHWEST)
+		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+		new_overlay.pixel_y = -32
+		. += new_overlay
+
 /obj/structure/stairs/seamless/platform
 	icon_state = "railstairs_seamless"
-
-/obj/structure/stairs/seamless/platform/Initialize(mapload)
-	. = ..()
-	update_icon()
 
 /obj/structure/stairs/seamless/platform/update_overlays()
 	. = ..()
@@ -273,10 +270,6 @@
 
 /obj/structure/stairs/seamless/platform/adobe //west and east
 	icon_state = "adobe_stairs"
-
-/obj/structure/stairs/seamless/platform/adobe/Initialize(mapload)
-	. = ..()
-	update_icon()
 
 /obj/structure/stairs/seamless/platform/adobe/update_overlays()
 	. = ..()

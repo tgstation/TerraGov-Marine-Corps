@@ -4,9 +4,10 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "ai" = (
 /turf/open/floor/tile/arrival{
@@ -414,9 +415,10 @@
 "kP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "kV" = (
 /obj/structure/prop/mainship/ship_memorial,
@@ -1000,7 +1002,8 @@
 /area/deathmatch)
 "xM" = (
 /obj/structure/inflatable/popped,
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "xN" = (
 /obj/machinery/vending/snack,
@@ -1449,9 +1452,10 @@
 /area/deathmatch)
 "HB" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "HR" = (
 /obj/machinery/light{
@@ -1570,9 +1574,10 @@
 /area/deathmatch)
 "Le" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Lf" = (
 /obj/structure/platform_decoration,
@@ -1691,9 +1696,10 @@
 /area/deathmatch)
 "Np" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "ND" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -2100,7 +2106,8 @@
 /area/deathmatch)
 "Xb" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Xg" = (
 /obj/structure/flora/pottedplant/twentytwo,
