@@ -70,6 +70,9 @@
 /mob/living/silicon/ai/Initialize(mapload, ...)
 	. = ..()
 
+	if(!CONFIG_GET(flag/allow_ai))
+		return INITIALIZE_HINT_QDEL
+
 	track = new(src)
 	builtInCamera = new(src)
 	builtInCamera.network = list("marinemainship")
