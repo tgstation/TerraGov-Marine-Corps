@@ -27,10 +27,9 @@
 	. = ..()
 	hugger_overlays_icon = mutable_appearance('icons/Xeno/2x2_Xenos.dmi',"empty")
 
-/mob/living/carbon/xenomorph/carrier/Stat()
+/mob/living/carbon/xenomorph/carrier/get_status_tab_items()
 	. = ..()
-	if(statpanel("Game"))
-		stat("Stored Huggers:", "[huggers] / [xeno_caste.huggers_max]")
+	. += "Stored Huggers: [huggers] / [xeno_caste.huggers_max]"
 
 /mob/living/carbon/xenomorph/carrier/update_icons()
 	. = ..()

@@ -411,7 +411,7 @@
 			if(H.stat == DEAD)
 				continue
 			H.apply_effects(1,1)
-			H.adjust_stagger(2)
+			H.adjust_stagger(2 SECONDS)
 			shake_camera(H, 2, 1)
 		else if(isitem(movable_victim))
 			var/turf/targetturf = get_turf(owner)

@@ -157,6 +157,8 @@
 			take_damage(100, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(50, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(25, BRUTE, BOMB)
 
 ///Releases whatever is inside the tank
 /obj/structure/xenoautopsy/tank/proc/release_occupant()
@@ -305,12 +307,12 @@
 
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)
-		if (1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if (2)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
 				qdel(src)
-		if (3)
+		if(EXPLODE_LIGHT, EXPLODE_WEAK)
 			if (prob(5))
 				qdel(src)
 

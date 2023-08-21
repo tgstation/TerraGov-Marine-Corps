@@ -1299,10 +1299,26 @@
 
 /client/proc/get_togglebuildmode()
 	set name = "Toggle Build Mode"
-	set category = "Fun"
+	set category = "Admin.Fun"
 	if(!check_rights(R_SPAWN))
 		return
 	togglebuildmode(mob)
+
+/client/proc/toggle_admin_tads()
+	set category = "Fun"
+	set name = "Toggle Tadpole Restrictions"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(SSticker.mode.enable_fun_tads)
+		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions off.")
+		log_admin("[key_name(usr)] toggled Tadpole restrictions off.")
+		SSticker.mode.enable_fun_tads = FALSE
+	else
+		SSticker.mode.enable_fun_tads = TRUE
+		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions on.")
+		log_admin("[key_name(usr)] toggled Tadpole restrictions on.")
 
 //returns TRUE to let the dragdrop code know we are trapping this event
 //returns FALSE if we don't plan to trap the event
@@ -1340,13 +1356,14 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 
 	tomob.ckey = frommob.ckey
+	tomob.client?.init_verbs()
 	qdel(frommob)
 
 	return TRUE
 
 /client/proc/mass_replace()
 	set name = "Mass replace atom"
-	set category = "Fun"
+	set category = "Admin.Fun"
 	if(!check_rights(R_SPAWN))
 		return
 	var/to_replace = pick_closest_path(input("Pick a movable atom path to be replaced", "Enter path as text") as text)

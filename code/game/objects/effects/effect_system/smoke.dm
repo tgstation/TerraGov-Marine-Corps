@@ -10,6 +10,7 @@
 	anchored = TRUE
 	layer = FLY_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	pass_flags = PASS_AIR
 	var/amount = 3
 	var/lifetime = 5
 	///time in decisecond for a smoke to spread one tile.

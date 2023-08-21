@@ -715,19 +715,6 @@ below 100 is not dizzy
 	return name
 
 
-/mob/living/proc/point_to_atom(atom/A, turf/T)
-	var/turf/tile = get_turf(A)
-	if (!tile)
-		return FALSE
-	var/turf/our_tile = get_turf(src)
-	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0, invisibility)
-	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
-	visible_message("<b>[src]</b> points to [A]")
-	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, A)
-	return TRUE
-
-
 /mob/living/get_photo_description(obj/item/camera/camera)
 	var/holding
 	if(l_hand || r_hand)
@@ -892,9 +879,6 @@ below 100 is not dizzy
 	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
 		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
 		if(offhand && (offhand.flags_item & WIELDED))
-			to_chat(src, span_warning("Your other hand is too busy holding \the [offhand.name]"))
-			return
-		else
 			wielded_item.unwield(src) //Get rid of it.
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)

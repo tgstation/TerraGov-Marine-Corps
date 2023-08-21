@@ -155,12 +155,13 @@ SUBSYSTEM_DEF(job)
 
 	initial_players_assigned += length(GLOB.ready_players)
 
+	SSticker.mode.scale_roles()
+
 	JobDebug("DO, Len: [length(unassigned)]")
 	if(!initial_players_assigned)
 		clean_roundstart_occupations()
 		return FALSE
 
-	SSticker.mode.scale_roles()
 
 	//Jobs will use the default access unless the population is below a certain level.
 	var/mat = CONFIG_GET(number/minimal_access_threshold)

@@ -37,6 +37,7 @@
 	scatter = -2
 	scatter_unwielded = 4
 	akimbo_additional_delay = 0.9
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	placed_overlay_iconstate = "pistol"
 
@@ -195,6 +196,7 @@
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.20 //Has a forced laser sight.
 	accuracy_mult_unwielded = 0.95
+	scatter_unwielded = 4
 	recoil = -2
 	recoil_unwielded = -2
 
@@ -229,7 +231,7 @@
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
 	recoil = -2
-	recoil_unwielded = -1
+	scatter_unwielded = 2
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper P-1911A1 custom pistol"
@@ -516,6 +518,7 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
+	extra_delay = 0.3 SECONDS
 	burst_amount = 3
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
