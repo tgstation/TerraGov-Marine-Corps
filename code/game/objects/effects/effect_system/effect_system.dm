@@ -122,7 +122,7 @@ steam.start() -- spawns the effect
 /datum/effect_system/spark_spread/spawn_particle()
 	if(get_holder())
 		location = WEAKREF(get_turf(holder?.resolve()))
-	var/obj/effect/particle_effect/sparks/sparks = new /obj/effect/particle_effect/sparks(location.resolve())
+	var/obj/effect/particle_effect/sparks/sparks = new /obj/effect/particle_effect/sparks(location?.resolve())
 	var/direction
 	if(src.cardinals)
 		direction = pick(GLOB.cardinals)
