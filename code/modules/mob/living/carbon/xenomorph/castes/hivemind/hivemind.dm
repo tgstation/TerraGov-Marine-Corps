@@ -306,6 +306,7 @@
 	max_integrity = 600
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "weed_hivemind4"
+	plane = FLOOR_PLANE
 	var/mob/living/carbon/xenomorph/hivemind/parent
 	xeno_structure_flags = CRITICAL_STRUCTURE|DEPART_DESTRUCTION_IMMUNE
 	///The cooldown of the alert hivemind gets when a hostile is near it's core

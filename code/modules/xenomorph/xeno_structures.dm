@@ -743,6 +743,7 @@ TUNNEL
 	icon = 'icons/Xeno/resin_silo.dmi'
 	icon_state = "weed_silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
+	plane = FLOOR_PLANE
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
