@@ -287,7 +287,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/activable/bombard/proc/root()
 	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		owner.balloon_alert_to_viewers("Rooting out of place...")
-		if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+		if(!do_after(owner, 2 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
 			owner.balloon_alert(owner, "Interrupted!")
 			return
 		owner.balloon_alert(owner, "Unrooted!")
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return
 
 	owner.balloon_alert_to_viewers("Rooting into place...")
-	if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+	if(!do_after(owner, 2 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
 		owner.balloon_alert(owner, "Interrupted!")
 		return
 
@@ -340,7 +340,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	desc = "You dump your acid to escape, creating clouds of deadly acid mist behind you, while becoming faster for a short period of time. Unroots you if you are rooted."
 	ability_name = "dump acid"
 	plasma_cost = 150
-	cooldown_timer = 230 SECONDS
+	cooldown_timer = 180 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_ROOTED
 	keybinding_signals = list(
