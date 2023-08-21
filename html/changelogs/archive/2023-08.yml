@@ -296,3 +296,16 @@
 2023-08-20:
   ivanmixo:
   - bugfix: Fixed all xeno hives sharing the same point pool
+2023-08-21:
+  Lewdcifer:
+  - balance: MK88 Mod 4 Combat Pistol nerfed. Sunder reduced from 2 > 0.5, burst fire
+      now has a 0.3s delay between bursts.
+  Xander3359:
+  - rscadd: station bounced radio in engi-vend
+  forestbbbbbbb:
+  - bugfix: Pointing arrows are no longer hidden under things
+  ivanmixo:
+  - balance: AI xenos no longer gib on death every time
+  - code_imp: Unit tests are done in a box now instead of space
+  - balance: Pistols now have full auto! No more spam clicking
+  - balance: Increased the unwielded scatter of the P23 and 1911
