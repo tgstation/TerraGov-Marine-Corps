@@ -221,7 +221,7 @@
 
 /datum/effect_system/smoke_spread/start()
 	var/atom/_holder = get_holder()
-	var/turf/_location = location.resolve()
+	var/turf/_location = location?.resolve()
 	if(!QDELETED(_holder))
 		_location = get_turf(_holder)
 	new smoke_type(_location, range, lifetime)
@@ -395,7 +395,7 @@
 
 /datum/effect_system/smoke_spread/xeno/start()
 	var/atom/_holder = get_holder()
-	var/turf/_location = location.resolve()
+	var/turf/_location = location?.resolve()
 	if(QDELETED(_location) && !QDELETED(_holder))
 		location = WEAKREF(get_turf(get_holder()))
 	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(_location, range, lifetime, src)
@@ -474,17 +474,17 @@
 		if(contained)
 			contained = "\[[contained]\]"
 
-		var/turf/_location = location.resolve()
+		var/turf/_location = location?.resolve()
 		if(_location)
 			message_admins("Smoke: ([ADMIN_VERBOSEJMP(_location)])[contained].")
 			log_game("A chemical smoke reaction has taken place in ([AREACOORD(_location)])[contained].")
 
 /datum/effect_system/smoke_spread/chem/start()
 	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
-	var/turf/_location = location.resolve()
+	var/turf/_location = location?.resolve()
 	if(QDELETED(_location) && !QDELETED(holder))
 		location = WEAKREF(get_turf(holder))
-	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location.resolve(), range, lifetime, src)
+	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location?.resolve(), range, lifetime, src)
 
 	if(chemholder.reagents.total_volume > 1) // can't split 1 very well
 		chemholder.reagents.copy_to(S, chemholder.reagents.total_volume)

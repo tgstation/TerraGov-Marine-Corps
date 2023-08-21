@@ -16,7 +16,7 @@
 	flashing_factor = flash_fact
 
 /datum/effect_system/reagents_explosion/start()
-	var/turf/_location = location.resolve()
+	var/turf/_location = location?.resolve()
 	if(explosion_message)
 		_location.visible_message(span_danger("The solution violently explodes!"), \
 								span_hear("You hear an explosion!"))
