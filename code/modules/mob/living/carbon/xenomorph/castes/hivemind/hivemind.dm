@@ -8,7 +8,7 @@
 
 	icon_state = "hivemind_marker"
 	bubble_icon = "alienroyal"
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
 	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
