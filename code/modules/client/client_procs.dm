@@ -927,10 +927,16 @@
 	return TRUE
 
 GLOBAL_VAR_INIT(automute_on, null)
-/client/proc/handle_spam_prevention(message, mute_type)
+/client/proc/handle_spam_prevention(message, mute_type, special_message_flag)
 	//Performance
 	if(isnull(GLOB.automute_on))
 		GLOB.automute_on = CONFIG_GET(flag/automute_on)
+
+	if((special_message_flag & MESSAGE_FLAG_MENTOR) && check_rights(R_MENTOR, FALSE))
+		return //Please stop muting me in my own responses.
+
+	if((special_message_flag & MESSAGE_FLAG_ADMIN) && check_rights(R_ADMIN, FALSE))
+		return //Technically not needed due to admin bypasses later in this proc, but I'll throw it in if for some reason someone changes their immunity.
 
 	total_message_count += 1
 
