@@ -225,14 +225,51 @@
 	density = FALSE
 	opacity = FALSE
 
+/obj/structure/stairs/edge //only required if you need the south side overlay
+	name = "Stairs"
+	icon = 'icons/obj/structures/structures.dmi'
+	desc = "Stairs.  You walk up and down them."
+	icon_state = "rampbottom"
+	layer = TURF_LAYER
+	density = FALSE
+	opacity = FALSE
+
+/obj/structure/stairs/edge/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/stairs/edge/update_overlays()
+	. = ..()
+	if(dir == WEST || dir == EAST)
+		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+		new_overlay.pixel_y = -32
+		. += new_overlay
+
 /obj/structure/stairs/seamless
 	icon_state = "stairs_seamless"
 
 /obj/structure/stairs/seamless/platform
 	icon_state = "railstairs_seamless"
 
+/obj/structure/stairs/seamless/platform/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/stairs/seamless/platform/update_overlays()
+	. = ..()
+	if(dir == WEST || dir == EAST)
+		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
+		. += new_overlay
+
+/obj/structure/stairs/seamless/platform/water
+	icon_state = "railstairs_seamless_water"
+
 /obj/structure/stairs/seamless/platform/alt
 	icon_state = "railstairs_seamless_vert"
+
+/obj/structure/stairs/seamless/platform/alt/water
+	icon_state = "railstairs_seamless_vert_water"
 
 /obj/structure/stairs/seamless/platform/adobe //west and east
 	icon_state = "adobe_stairs"
