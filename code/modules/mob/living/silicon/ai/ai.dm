@@ -82,6 +82,8 @@
 	laws += "Protect: Protect the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
 	laws += "Preserve: Do not allow unauthorized personnel to tamper with your equipment."
 
+	set_random_ai_screen()
+
 	mini = new
 	mini.give_action(src)
 	create_eye()
@@ -440,6 +442,9 @@
 	linked_artillery = null
 	to_chat(src, span_notice("NOTICE: Connection closed with linked mortar."))
 
+/mob/living/silicon/ai/proc/set_random_ai_screen()
+	var/list/iconstates = GLOB.ai_core_display_screens
+	icon_state = resolve_ai_icon(pick(iconstates))
 /datum/action/control_vehicle
 	name = "Select vehicle to control"
 	action_icon_state = "enter_droid"
