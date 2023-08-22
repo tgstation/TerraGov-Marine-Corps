@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - bugfix: "Fixed girders not properly smoothing by migrating them to current smoothing system."
-  - bugfix: "Fixed ship wall decorations being unused since smoothing system migration."
