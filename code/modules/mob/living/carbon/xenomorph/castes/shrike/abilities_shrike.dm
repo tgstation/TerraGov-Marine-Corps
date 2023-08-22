@@ -329,7 +329,7 @@
 	name = "Psychic Grab"
 	action_icon_state = "grab"
 	desc = "Attracts the target to the owner of the ability."
-	cooldown_timer = 12 SECONDS
+	cooldown_timer = 30 SECONDS
 	plasma_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_GRAB,
