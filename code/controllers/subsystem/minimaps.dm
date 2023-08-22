@@ -83,6 +83,8 @@ SUBSYSTEM_DEF(minimaps)
  * Generates the minimap for a Z level
  */
 /datum/controller/subsystem/minimaps/proc/load_new_z(datum/dcs, datum/space_level/z_level)
+	SIGNAL_HANDLER
+
 	var/level = z_level.z_value
 	minimaps_by_z["[level]"] = new /datum/hud_displays
 	if(!is_mainship_level(level) && !is_ground_level(level))
