@@ -2881,7 +2881,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "dzT" = (
@@ -3146,7 +3145,6 @@
 "dRR" = (
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
 /obj/structure/benchpress,
-/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "dSL" = (
@@ -4374,7 +4372,6 @@
 /obj/effect/decal/cleanable/cobweb{
 	dir = 8
 	},
-/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "fyc" = (
@@ -5487,13 +5484,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
-"gZg" = (
-/obj/structure/bed/stool{
-	pixel_y = 8
-	},
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/grass,
-/area/mainship/living/starboard_garden)
 "gZv" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -7755,6 +7745,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "khM" = (
@@ -8287,6 +8278,7 @@
 	dir = 8
 	},
 /obj/item/fuel_cell/full,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "kNK" = (
@@ -14372,10 +14364,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
-"shm" = (
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
 "shx" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -15178,11 +15166,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
-"tgl" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/misc/gnome/fiftyfifty,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/lower_hull)
 "thc" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -16388,6 +16371,14 @@
 	dir = 1
 	},
 /area/mainship/engineering/engineering_workshop)
+"uCf" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/gnome,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "uCj" = (
 /obj/item/storage/firstaid/adv,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -41657,7 +41648,7 @@ gmc
 kEP
 rKn
 dus
-shm
+fRw
 qeW
 qeW
 qeW
@@ -49625,7 +49616,7 @@ fyR
 qfG
 mqD
 jHd
-gZg
+mrK
 gbM
 hUf
 lPc
@@ -50845,7 +50836,7 @@ mBZ
 mBZ
 hRh
 dWf
-tgl
+wPV
 wVZ
 dpY
 uKp
@@ -59690,7 +59681,7 @@ uSe
 uSe
 uSe
 uSe
-ior
+uCf
 esN
 nWT
 nWT

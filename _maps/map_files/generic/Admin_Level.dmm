@@ -2901,13 +2901,13 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 15;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 15
 	},
 /obj/structure/table/fancywoodentable,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 15;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = 15
 	},
 /obj/item/storage/fancy/cigar,
 /turf/open/floor/tile/dark/gray,
@@ -11712,8 +11712,8 @@
 	},
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 8;
-	pixel_y = -11;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = -11
 	},
 /obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
@@ -17075,7 +17075,6 @@
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/item/explosive/grenade/sectoid,
 /obj/item/explosive/grenade/sectoid,
-/obj/item/toy/plush/gnome,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/chapel/main)
 "wll" = (

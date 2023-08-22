@@ -5799,6 +5799,7 @@
 	},
 /area/sulaco/research)
 "aEh" = (
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/sulaco/research)
 "aEi" = (
@@ -6016,7 +6017,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
 	},
-/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "aFh" = (
@@ -6886,7 +6886,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "aKU" = (
@@ -8893,6 +8892,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "aYM" = (
@@ -13799,10 +13799,6 @@
 /obj/item/book/manual/medical_diagnostics_manual,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/cmo)
-"gUR" = (
-/obj/effect/spawner/random/misc/gnome/fiftyfifty,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
 "gVp" = (
 /obj/machinery/gibber,
 /turf/open/floor/prison/sterilewhite,
@@ -16063,6 +16059,7 @@
 	holo_range = 9;
 	name = "Basketball Court holopad"
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "jJa" = (
@@ -19521,7 +19518,6 @@
 /obj/machinery/light/mainship/small{
 	dir = 1
 	},
-/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "okh" = (
@@ -20070,6 +20066,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
 "oPD" = (
@@ -22369,6 +22366,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/clothing/head/modular/robot/heavy,
 /obj/machinery/light/mainship/small,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "rOn" = (
@@ -23886,10 +23884,6 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/engine)
-"tBY" = (
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/grass,
-/area/mainship/living/starboard_garden)
 "tCl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -45417,7 +45411,7 @@ toM
 vIO
 cOs
 cDU
-gUR
+qzH
 xKi
 mDu
 qDO
@@ -57227,7 +57221,7 @@ sZZ
 gJO
 uyz
 iWb
-tBY
+sMe
 dMC
 mDu
 qDO

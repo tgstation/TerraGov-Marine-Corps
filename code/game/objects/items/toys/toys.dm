@@ -540,6 +540,10 @@
 	item_state = "gnome"
 	attack_verb = list("kickes", "punches", "pounces")
 
+/obj/item/toy/plush/gnome/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, 'sound/items/gnome.ogg', 50)
+
 /obj/item/toy/plush/gnome/living
 	resistance_flags = UNACIDABLE
 	///how far the gnome should choose for teleportation purposes
@@ -562,7 +566,6 @@
 /obj/item/toy/plush/gnome/living/Initialize(mapload)
 	. = ..()
 	gnome_origin = get_turf(src)
-	AddComponent(/datum/component/squeak, 'sound/items/gnome.ogg', 50)
 	addtimer(CALLBACK(src, PROC_REF(gnome_act)), 5 MINUTES)
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
