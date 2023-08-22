@@ -53,7 +53,7 @@
 /proc/buy_personal_blessings(mob/user)
 	var/upgrade_cost = 30
 	var/evolution_cost = 20
-	var/primo_cost = 50
+	var/primo_cost = 100
 	var/dat = "<br><b>Avaliable Options:</b><BR>"
 
 	dat += "<b>Buy Maturity Stage - Cost: </b> <a href='byond://?src=\ref[user];maturity_buy=[upgrade_cost]'>[upgrade_cost]</a><br>"

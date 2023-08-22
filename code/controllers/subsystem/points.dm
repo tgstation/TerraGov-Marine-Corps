@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(points)
 	///Assoc list of personal psy points
 	var/personal_psy_points = list()
 	///Personal psy points gain modifier
-	var/ppp_multiplier = 0.016
+	var/ppp_multiplier = 0.01
 	///Personal psy points limit
 	var/ppp_limit = 100
 
