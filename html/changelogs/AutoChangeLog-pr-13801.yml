@@ -1,5 +1,0 @@
-author: "Sebbe9123"
-delete-after: True
-changes:
-  - balance: "Rebalances blood regen to be more player friendly above 90%"
-  - balance: "Adds a tier below 50% blood to quickly bring you above 50%"

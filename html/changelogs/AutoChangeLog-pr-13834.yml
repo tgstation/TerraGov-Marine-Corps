@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - balance: "Firedoors now take a few seconds to weld and unweld"
-  - refactor: "Cleaned handwashing code up somewhat"
-  - bugfix: "Fixed an incorrect balloon alert when operating a fire extinguisher"
