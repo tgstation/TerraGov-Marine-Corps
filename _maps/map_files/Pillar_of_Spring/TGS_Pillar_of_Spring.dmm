@@ -3408,7 +3408,7 @@
 	dir = 2;
 	id = "hangar_lockdown"
 	},
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -3656,7 +3656,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar{
 	dir = 1
 	},
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -4716,7 +4716,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar{
 	dir = 1
 	},
-/obj/structure/stairs/seamless/platform/alt,
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "fXL" = (
@@ -15589,7 +15589,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar{
 	dir = 1
 	},
-/obj/structure/stairs/seamless/platform/alt,
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "tGe" = (
@@ -15914,7 +15914,7 @@
 	dir = 2;
 	id = "hangar_lockdown"
 	},
-/obj/structure/stairs/seamless/platform/alt,
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "tXD" = (
@@ -17459,7 +17459,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar{
 	dir = 1
 	},
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -18371,7 +18371,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar{
 	dir = 1
 	},
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -19388,7 +19388,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar{
 	dir = 1
 	},
-/obj/structure/stairs/seamless/platform/alt,
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "ygV" = (

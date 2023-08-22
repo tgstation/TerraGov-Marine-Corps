@@ -2786,7 +2786,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/stairs/cornerdark/seamless,
+/obj/structure/stairs/corner_seamless,
 /turf/open/floor/prison,
 /area/sulaco/bridge)
 "apy" = (
@@ -5435,7 +5435,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 4
 	},
 /turf/open/floor/prison/red,
