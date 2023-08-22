@@ -229,6 +229,15 @@
 	. = ..()
 	update_icon()
 
+	var/static/list/connections = list(
+		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override),
+		COMSIG_TURF_CHECK_COVERED = PROC_REF(turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/stairs/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_CATWALK] = layer
+
 //stand alone stairs
 /obj/structure/stairs/edge
 	icon_state = "rampbottom"
