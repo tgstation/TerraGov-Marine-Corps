@@ -17075,6 +17075,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/item/explosive/grenade/sectoid,
 /obj/item/explosive/grenade/sectoid,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/chapel/main)
 "wll" = (
