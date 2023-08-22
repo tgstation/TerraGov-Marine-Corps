@@ -527,6 +527,12 @@
 	item_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
 
+#define STANDARD_GNOME_ACT_TIMER 5 MINUTES
+#define STANDARD_GNOME_MOVE_RANGE 5
+#define HIGH_GNOME_MOVE_RANGE 40
+#define STANDARD_GNOME_PIPE_CHANCE 50
+#define GNOME_EXCLUSION_RANGE 21
+
 /obj/item/toy/plush/gnome
 	name = "gnome"
 	desc = "A mythological creature that guarded Terra's garden. You wonder why it is here."
@@ -534,9 +540,120 @@
 	item_state = "gnome"
 	attack_verb = list("kickes", "punches", "pounces")
 
-/obj/item/toy/plush/gnome/Initialize(mapload)
+/obj/item/toy/plush/gnome/living
+	resistance_flags = UNACIDABLE
+	///how far the gnome should choose for teleportation purposes
+	var/gnome_move_range = 5
+	///how many failed teleports we've done
+	var/teleport_retries = 0
+	///sanity cap to prevent gnome spending too much time calculating possible teleport areas, it's theoretically possible to store the gnome in an impossible area so we need to check this
+	var/max_tries = 150
+	///list for keeping track of the mobs around us
+	var/mob/possible_mobs = list()
+	///used for determining if a gnome is in the pipe network
+	var/pipe_mode = FALSE
+	///how likely are we to enter a pipe
+	var/pipe_mode_chance = STANDARD_GNOME_PIPE_CHANCE
+	///hold an int that determines what the interval a gnome acts
+	var/gnome_act_timer
+	///original gnome spawn location, used as an emergency backup
+	var/gnome_origin
+
+/obj/item/toy/plush/gnome/living/Initialize(mapload)
 	. = ..()
+	gnome_origin = get_turf(src)
 	AddComponent(/datum/component/squeak, 'sound/items/gnome.ogg', 50)
+	addtimer(CALLBACK(src, PROC_REF(gnome_act)), 5 MINUTES)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
+
+///proc for handling gnome behavior routines
+/obj/item/toy/plush/gnome/living/proc/gnome_act()
+	gnome_act_timer = rand(2,6)
+	pipe_mode_chance = STANDARD_GNOME_PIPE_CHANCE
+	possible_mobs = list()
+	var/turf/targetturf = get_turf(src)
+	for(var/mob/nearbymob in range(GNOME_EXCLUSION_RANGE, src)) //20 is the max view of a ghost
+		if(isanimal(nearbymob))
+			continue
+		possible_mobs += nearbymob
+	if(handle_pipe_mode(targetturf) && pipe_mode)
+		return
+	if(isspacearea(get_area(src)))
+		src.forceMove(gnome_origin) //we're in space, return to origin
+		return
+	gnome_move_range = gnome_move_range + teleport_retries * 3 //for each teleport retry the gnome gets a multiplier to distance, to allow it to "escape" if left unattended
+	if(length(possible_mobs))
+		addtimer(CALLBACK(src, PROC_REF(gnome_act)), rand(15,90) SECONDS) //we're being watched, set shorter counter so we can escape once eyes are off of us
+		teleport_retries += 1 //for each time a watching mob suppresses our teleport, increment counter
+		return
+	else
+		var/loopcount
+		while(!length(possible_mobs))
+			loopcount += 1
+			var/area/targetarea = get_area(targetturf)
+			if(!targetarea || !targetturf)
+				targetturf = get_turf(src) //somehow we've lost our turf, use the one underneath us
+				continue
+			targetturf = locate(targetturf.x + rand(gnome_move_range * -1, gnome_move_range), targetturf.y + rand(gnome_move_range * -1, gnome_move_range), targetturf.z)
+			targetarea = get_area(targetturf)
+			if(get_teleport_prereqs(targetturf) || loopcount >= max_tries)
+				teleport_retries = 0 //teleported successfully, clear teleport_retries
+				break
+		src.forceMove(targetturf)
+	addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer MINUTES)
+
+///validate that the turf we're attempting to teleport to is not dense in space etc
+/obj/item/toy/plush/gnome/living/proc/get_teleport_prereqs(turf/targetturf)
+	var/area/targetarea = get_area(targetturf)
+	if(!targetarea || !targetturf)
+		return FALSE
+	if(isclosedturf(targetturf))
+		return FALSE
+	if(isspaceturf(targetturf) || isspacearea(targetarea) || islava(targetturf))
+		return FALSE
+	for(var/atom/movable/object AS in targetturf.contents) //don't move to tiles with dense objects on them
+		if(object.density)
+			return FALSE
+	possible_mobs = list()
+	for(var/mob/nearbymob in range(GNOME_EXCLUSION_RANGE, src)) //make sure wherever we're going doesn't have observing mobs
+		if(isanimal(nearbymob))
+			continue
+		possible_mobs += nearbymob
+	if(length(possible_mobs))
+		return FALSE
+	return TRUE
+
+//handles gnome "escaping" a shuttle crush
+/obj/item/toy/plush/gnome/living/proc/shuttle_crush()
+	SIGNAL_HANDLER
+	new /obj/item/toy/plush/gnome(gnome_origin) //shuttle crush deletes an object, create new gnome at spawn point to give illusion of escape
+
+///validate that the turf we're attempting to teleport to is not dense in space etc
+/obj/item/toy/plush/gnome/living/proc/handle_pipe_mode(turf/targetturf)
+	pipe_mode_chance -= length(possible_mobs) * 10 //for each mob nearby subtract 10 from the chance to interact with vents
+	if(!prob(pipe_mode_chance))
+		return
+	if(pipe_mode)
+		var/list/pumplist = list()
+		for(var/obj/machinery/atmospherics/components/unary/vent_pump/targetpump in range(120, src))
+			pumplist += targetpump
+		if(length(pumplist))
+			var/obj/machinery/atmospherics/components/unary/vent_pump/exit_pump = pick(pumplist)
+			forceMove(pick(exit_pump.loc))
+			playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+			pipe_mode = FALSE
+	else //if we're not in pipe mode check the ground for scrubbers/vents, if we find one enter it
+		for(var/atom/movable/object AS in targetturf.contents)
+			if(isatmosvent(object) || isatmosscrubber(object))
+				pipe_mode = TRUE
+				src.forceMove(object)
+				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+
+#undef STANDARD_GNOME_ACT_TIMER
+#undef STANDARD_GNOME_MOVE_RANGE
+#undef HIGH_GNOME_MOVE_RANGE
+#undef STANDARD_GNOME_PIPE_CHANCE
+#undef GNOME_EXCLUSION_RANGE
 
 /obj/item/toy/beach_ball/basketball
 	name = "basketball"

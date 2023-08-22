@@ -220,6 +220,10 @@
 
 #define ismachinery(A) (istype(A, /obj/machinery))
 
+#define isatmosscrubber(A) (istype(A, /obj/machinery/atmospherics/components/unary/vent_scrubber))
+
+#define isatmosvent(A) (istype(A, /obj/machinery/atmospherics/components/unary/vent_pump))
+
 #define ispowermachinery(A) (istype(A, /obj/machinery/power))
 
 #define isAPC(A) (istype(A, /obj/machinery/power/apc))
