@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - rscadd: "Added medivac beds to corpsmen vendor for their entire budget"
+  - code_imp: "Added a space to the mortar code :)"
