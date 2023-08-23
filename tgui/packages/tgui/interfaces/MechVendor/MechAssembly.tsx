@@ -255,7 +255,7 @@ export const MechAssembly = (props, context) => {
               </Collapsible>
               <Collapsible
                 color={'transparent'}
-                title={'Bullet Armor: ' + current_stats.armor['melee'] + '%'}>
+                title={'Bullet Armor: ' + current_stats.armor['bullet'] + '%'}>
                 <Box maxWidth={'160px'}>Bullet protection.</Box>
               </Collapsible>
               <Collapsible

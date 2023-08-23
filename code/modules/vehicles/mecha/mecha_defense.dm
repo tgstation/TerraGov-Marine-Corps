@@ -216,6 +216,9 @@
 		if(!do_after(user, 10 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
 
+		if(obj_integrity > max_integrity * 0.5)
+			return
+
 		if(!plasteel_sheets.use(5))
 			return
 

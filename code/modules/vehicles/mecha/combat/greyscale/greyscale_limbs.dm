@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	///when attached the mechs health is modified by this amount
 	var/health_mod = 0
 	///when attached the mechs armor is modified by this amount
-	var/list/soft_armor_mod = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 10, BOMB = 40, BIO = 15, FIRE = 20, ACID = 0)
+	var/list/soft_armor_mod = list(MELEE = 0, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 10, BIO = 15, FIRE = 20, ACID = 0)
 	///when attached the mechs slowdown is modified by this amount
 	var/slowdown_mod = 0
 	///typepath for greyscale icon generation
