@@ -1,42 +1,51 @@
 GLOBAL_VAR(log_directory)
 GLOBAL_PROTECT(log_directory)
-GLOBAL_VAR(world_game_log)
-GLOBAL_PROTECT(world_game_log)
-GLOBAL_VAR(world_mecha_log)
-GLOBAL_PROTECT(world_mecha_log)
-GLOBAL_VAR(world_asset_log)
-GLOBAL_PROTECT(world_asset_log)
-GLOBAL_VAR(world_runtime_log)
-GLOBAL_PROTECT(world_runtime_log)
-GLOBAL_VAR(world_debug_log)
-GLOBAL_PROTECT(world_debug_log)
-GLOBAL_VAR(world_qdel_log)
-GLOBAL_PROTECT(world_qdel_log)
-GLOBAL_VAR(world_attack_log)
-GLOBAL_PROTECT(world_attack_log)
-GLOBAL_VAR(world_href_log)
-GLOBAL_PROTECT(world_href_log)
-GLOBAL_VAR(world_mob_tag_log)
-GLOBAL_PROTECT(world_mob_tag_log)
+
 GLOBAL_VAR(round_id)
 GLOBAL_PROTECT(round_id)
-GLOBAL_VAR(config_error_log)
-GLOBAL_PROTECT(config_error_log)
-GLOBAL_VAR(sql_error_log)
-GLOBAL_PROTECT(sql_error_log)
-GLOBAL_VAR(world_telecomms_log)
-GLOBAL_PROTECT(world_telecomms_log)
-GLOBAL_VAR(world_speech_indicators_log)
-GLOBAL_PROTECT(world_speech_indicators_log)
-GLOBAL_VAR(world_manifest_log)
-GLOBAL_PROTECT(world_manifest_log)
-GLOBAL_VAR(world_paper_log)
-GLOBAL_PROTECT(world_paper_log)
-GLOBAL_VAR(filter_log)
-GLOBAL_PROTECT(filter_log)
-GLOBAL_VAR(tgui_log)
-GLOBAL_PROTECT(tgui_log)
 
+#define DECLARE_LOG_NAMED(log_var_name, log_file_name, start)\
+GLOBAL_VAR(##log_var_name);\
+GLOBAL_PROTECT(##log_var_name);\
+/world/_initialize_log_files(temp_log_override = null){\
+	..();\
+	GLOB.##log_var_name = temp_log_override || "[GLOB.log_directory]/[##log_file_name].log";\
+	if(!temp_log_override && ##start){\
+		start_log(GLOB.##log_var_name);\
+	}\
+}
+
+#define DECLARE_LOG(log_name, start) DECLARE_LOG_NAMED(##log_name, "[copytext(#log_name, 1, length(#log_name) - 4)]", start)
+#define START_LOG TRUE
+#define DONT_START_LOG FALSE
+
+/// Populated by log declaration macros to set log file names and start messages
+/world/proc/_initialize_log_files(temp_log_override = null)
+	// Needs to be here to avoid compiler warnings
+	SHOULD_CALL_PARENT(TRUE)
+	return
+
+DECLARE_LOG_NAMED(world_game_log, "game", START_LOG)
+DECLARE_LOG_NAMED(world_mecha_log, "mecha", DONT_START_LOG)
+DECLARE_LOG_NAMED(world_asset_log, "asset", DONT_START_LOG)
+DECLARE_LOG_NAMED(world_runtime_log, "runtime", START_LOG)
+DECLARE_LOG_NAMED(world_debug_log, "debug", START_LOG)
+DECLARE_LOG_NAMED(world_qdel_log, "qdel", DONT_START_LOG)
+DECLARE_LOG_NAMED(world_attack_log, "attack", START_LOG)
+DECLARE_LOG_NAMED(world_href_log, "href", START_LOG)
+DECLARE_LOG_NAMED(world_mob_tag_log, "mob_tag", START_LOG)
+DECLARE_LOG_NAMED(config_error_log, "config_error", DONT_START_LOG)
+DECLARE_LOG_NAMED(sql_error_log, "sql_error", START_LOG)
+DECLARE_LOG_NAMED(world_telecomms_log, "tcomms", START_LOG)
+DECLARE_LOG_NAMED(world_speech_indicators_log, "speech_indicators", DONT_START_LOG)
+DECLARE_LOG_NAMED(world_manifest_log, "manifest", START_LOG)
+DECLARE_LOG_NAMED(world_paper_log, "paper", START_LOG)
+DECLARE_LOG_NAMED(filter_log, "filter", DONT_START_LOG)
+DECLARE_LOG_NAMED(tgui_log, "tgui", DONT_START_LOG)
+
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
+DECLARE_LOG_NAMED(test_log, "tests", START_LOG)
+#endif
 
 GLOBAL_LIST_EMPTY(admin_log)
 GLOBAL_PROTECT(admin_log)

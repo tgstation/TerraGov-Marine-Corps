@@ -33,7 +33,6 @@ GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for e
 GLOBAL_LIST_EMPTY(living_cameras)
 GLOBAL_LIST_EMPTY(aiEyes)
 GLOBAL_LIST_EMPTY(humans_by_zlevel)			//z level /list/list of alive humans
-GLOBAL_LIST_EMPTY(observers_by_zlevel)
 
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
@@ -45,7 +44,16 @@ GLOBAL_LIST_EMPTY(all_languages)
 GLOBAL_LIST_EMPTY(all_species)
 GLOBAL_LIST_EMPTY(roundstart_species)
 
-GLOBAL_LIST_EMPTY_TYPED(xeno_caste_datums, /list/datum/xeno_caste)
+GLOBAL_LIST_INIT_TYPED(xeno_caste_datums, /list/datum/xeno_caste, init_xeno_caste_list())
+
+/proc/init_xeno_caste_list()
+	. = list()
+	for(var/X in subtypesof(/datum/xeno_caste))
+		var/datum/xeno_caste/C = new X
+		if(!(C.caste_type_path in .))
+			.[C.caste_type_path] = list()
+		.[C.caste_type_path][C.upgrade] = C
+
 GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/runner,
 	/mob/living/carbon/xenomorph/runner/mature,
@@ -166,12 +174,49 @@ GLOBAL_LIST_INIT(xeno_types_tier_one, list(/mob/living/carbon/xenomorph/runner, 
 GLOBAL_LIST_INIT(xeno_types_tier_two, list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/spitter, /mob/living/carbon/xenomorph/hivelord, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/bull, /mob/living/carbon/xenomorph/wraith))
 GLOBAL_LIST_INIT(xeno_types_tier_three, list(/mob/living/carbon/xenomorph/gorger, /mob/living/carbon/xenomorph/widow, /mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/praetorian, /mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/defiler, /mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/shrike))
 
-GLOBAL_LIST_EMPTY_TYPED(hive_datums, /datum/hive_status) // init by make_datum_references_lists()
+GLOBAL_LIST_INIT_TYPED(hive_datums, /datum/hive_status, init_hive_datum_list()) // init by make_datum_references_lists()
 
-///Contains static data passed to all hive status UI.
-GLOBAL_LIST_EMPTY(hive_ui_static_data) // init by make_datum_references_lists()
+/proc/init_hive_datum_list()
+	. = list()
+	for(var/H in subtypesof(/datum/hive_status))
+		var/datum/hive_status/HS = new H
+		.[HS.hivenumber] = HS
+
 ///Returns the index of the corresponding static caste data given caste typepath.
 GLOBAL_LIST_EMPTY(hive_ui_caste_index)
+
+///Contains static data passed to all hive status UI.
+GLOBAL_LIST_INIT(hive_ui_static_data, init_hive_status_lists()) // init by make_datum_references_lists()
+
+/proc/init_hive_status_lists()
+	. = list()
+	// Initializes static ui data used by all hive status UI
+	var/list/per_tier_counter = list()
+	for(var/caste_type_path AS in GLOB.xeno_caste_datums)
+		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
+		var/type_path = initial(caste.caste_type_path)
+
+		GLOB.hive_ui_caste_index[type_path] = length(.) //Starts from 0.
+
+		var/icon/xeno_minimap = icon('icons/UI_icons/map_blips.dmi', initial(caste.minimap_icon))
+		var/tier = initial(caste.tier)
+		if(tier == XENO_TIER_MINION)
+			continue
+		if(isnull(per_tier_counter[tier]))
+			per_tier_counter[tier] = 0
+
+		. += list(list(
+			"name" = initial(caste.caste_name),
+			"is_queen" = type_path == /mob/living/carbon/xenomorph/queen,
+			"minimap" = icon2base64(xeno_minimap),
+			"sort_mod" = per_tier_counter[tier]++,
+			"tier" = GLOB.tier_as_number[tier],
+			"is_unique" = caste.maximum_active_caste == 1,
+			"can_transfer_plasma" = CHECK_BITFIELD(initial(caste.can_flags), CASTE_CAN_BE_GIVEN_PLASMA),
+			"evolution_max" = initial(caste.evolution_threshold)
+		))
+
+
 
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
 	var/list/mob_types = list()

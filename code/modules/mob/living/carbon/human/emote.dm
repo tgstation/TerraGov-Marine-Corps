@@ -68,7 +68,7 @@
 	. = ..()
 	if(!.)
 		return
-	user.Unconscious(40)
+	user.Unconscious(4 SECONDS)
 
 
 /datum/emote/living/carbon/human/cough
@@ -115,7 +115,7 @@
 	. = ..()
 	if(!.)
 		return
-	user.AdjustSleeping(10)
+	user.AdjustSleeping(1 SECONDS)
 
 
 /datum/emote/living/carbon/human/frown

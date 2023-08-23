@@ -202,6 +202,8 @@
 			take_damage(rand(33, 66), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 33), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(10, BRUTE, BOMB)
 	update_icon()
 
 

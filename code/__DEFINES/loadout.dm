@@ -26,6 +26,9 @@
 #define CAT_SMR "SUITS AND ARMOR" // Synth's suits
 #define CAT_SHN "HATS" // Synth's non-protective hats
 
+#define VENDOR_FACTION_NEUTRAL "Neutral"
+#define VENDOR_FACTION_CRASH "Valhalla"
+#define VENDOR_FACTION_VALHALLA "Crash"
 
 GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MOD = 1,
@@ -67,7 +70,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 2, "black"),
 		/obj/item/explosive/plastique/genghis_charge = list(CAT_ENGSUP, "EX-62 Genghis incendiary charge", 15, "black"),
 		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "black"),
-		/obj/item/storage/box/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "black"),
+		/obj/item/storage/box/crate/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "black"),
 		/obj/structure/closet/crate/uav_crate = list(CAT_ENGSUP, "Iguana Unmanned Vehicle", 50, "black"),
 		/obj/item/attachable/buildasentry = list(CAT_ENGSUP, "Build-A-Sentry Attachment", 30, "black"),
 		/obj/item/binoculars/tactical/range = list(CAT_ENGSUP, "Range Finder", 10, "black"),
@@ -116,6 +119,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
 		/obj/item/healthanalyzer/gloves = list(CAT_MEDSUP, "Health scanner gloves", 2, "black"),
 		/obj/item/defibrillator/gloves = list(CAT_MEDSUP, "Advanced medical gloves", 5, "black"),
+		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "black"),
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
@@ -181,6 +185,15 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_SGSUP, "SG-85 Smart Handheld Gatling Gun", 27, "orange"), //If a smartgunner buys a SG-85, then they should be able to buy only 1 powerpack and 2 ammo bins
 	/obj/item/ammo_magazine/minigun_powerpack/smartgun = list(CAT_SGSUP, "SG-85 Powerpack", 10, "black"),
 	/obj/item/ammo_magazine/packet/smart_minigun = list(CAT_SGSUP, "SG-85 Ammo Bin", 4, "black"),
+	/obj/item/weapon/gun/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle", 25, "orange"), //If a SG buys a SG-62, they'll have 15 points left, should be enough to buy some mags and or extra SR ammo.
+	/obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Magazine", 3, "orange"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle = list(CAT_SGSUP, "SR-153 Spotting Rifle Magazine", 2, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact = list(CAT_SGSUP, "SR-153 Spotting Rifle High Impact Magazine", 2, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber = list(CAT_SGSUP, "SR-153 Spotting Rifle Heavy Rubber Magazine", 2, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten = list(CAT_SGSUP, "SR-153 Spotting Rifle Tungsten Magazine", 2, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak = list(CAT_SGSUP, "SR-153 Spotting Rifle Flak Magazine", 2, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss = list(CAT_SGSUP, "SR-153 Spotting Rifle Tanglefoot Magazine", 3, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary = list(CAT_SGSUP, "SR-153 Spotting Rifle Incendiary Magazine", 3, "black"),
 	))
 
 
@@ -221,7 +234,7 @@ GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
 
 ///All the vendor types which the automated loadout vendor can take items from.
 GLOBAL_LIST_INIT(loadout_linked_vendor, list(
-	FACTION_NEUTRAL = list(
+	VENDOR_FACTION_NEUTRAL = list(
 		/obj/machinery/vending/weapon,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
@@ -230,7 +243,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
-	FACTION_VALHALLA = list(
+	VENDOR_FACTION_VALHALLA = list(
 		/obj/machinery/vending/weapon/valhalla,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
@@ -240,6 +253,15 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/machinery/vending/medical/shipside,
+	),
+	VENDOR_FACTION_CRASH = list(
+		/obj/machinery/vending/weapon/crash,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed,
+		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/tool,
 	)
 ))
 
@@ -632,7 +654,7 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch", 0, "black"),
 		/obj/item/storage/pouch/electronics/full = list(CAT_POU, "Electronics pouch", 0, "black"),
 		/obj/item/storage/pouch/medkit/medic = list(CAT_POU, "Medkit pouch", 0, "black"),
-		/obj/item/storage/pouch/surgery = list(CAT_WEB, "White surgical pouch", 0, "black"),
+		/obj/item/storage/pouch/surgery = list(CAT_POU, "White surgical pouch", 0, "black"),
 		/obj/item/storage/holster/flarepouch/full = list(CAT_POU, "Flare pouch", 0, "black"),
 		/obj/item/storage/pouch/radio = list(CAT_POU, "Radio pouch", 0, "black"),
 		/obj/item/storage/pouch/field_pouch/full = list(CAT_POU, "Field pouch", 0, "black"),

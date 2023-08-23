@@ -12,9 +12,9 @@
 /area/shuttle/minidropship)
 "d" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "minidropship_podlock";
 	name = "inner door-control";
-	dir = 8;
 	pixel_x = 25;
 	pixel_y = 8
 	},
@@ -68,6 +68,7 @@
 	},
 /area/shuttle/minidropship)
 "o" = (
+/obj/machinery/holopad,
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "q" = (

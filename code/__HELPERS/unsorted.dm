@@ -48,16 +48,6 @@
 /datum/proc/stack_trace(msg)
 	CRASH(msg)
 
-
-GLOBAL_REAL_VAR(list/stack_trace_storage)
-/proc/gib_stack_trace()
-	stack_trace_storage = list()
-	stack_trace()
-	stack_trace_storage.Cut(1, min(3, length(stack_trace_storage)))
-	. = stack_trace_storage
-	stack_trace_storage = null
-
-
 //returns a GUID like identifier (using a mostly made up record format)
 //guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
 //	(But may make a nice salt to one)
@@ -1242,7 +1232,7 @@ will handle it, but:
  *	Variables:
  *	center - where the cone begins, or center of a circle drawn with this
  *	max_row_count - how many rows are checked
- *	starting_row - from how far should the turfs start getting included in the cone
+ *	starting_row - from how far should the turfs start getting included in the cone. -1 required to include center turf due to byond
  *	cone_width - big the angle of the cone is
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration solid walls
@@ -1261,10 +1251,10 @@ will handle it, but:
 
 	if(left_angle < 0)
 		left_angle += 360
-
+	center = get_turf(center)
 	var/list/cardinals = GLOB.alldirs
-	var/list/turfs_to_check = list(get_turf(center))
-	var/list/cone_turfs = list()
+	var/list/turfs_to_check = list(center)
+	var/list/cone_turfs = list(center)
 
 	for(var/row in 1 to max_row_count)
 		if(row > 2)

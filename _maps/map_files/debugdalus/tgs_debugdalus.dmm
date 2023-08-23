@@ -488,7 +488,6 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/engineering_workshop)
 "aci" = (
-/obj/machinery/power/apc/mainship,
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
@@ -627,7 +626,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acX" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /obj/structure/rack,
 /obj/item/stack/sheet/glass{
 	amount = 50;
@@ -1569,7 +1568,6 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
-/obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
@@ -1700,7 +1698,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ahV" = (
@@ -2198,10 +2195,6 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
-/obj/machinery/power/apc/mainship{
-	dir = 1
-	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ajX" = (
@@ -2240,6 +2233,14 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
+"apH" = (
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/medical,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "auM" = (
@@ -2491,11 +2492,27 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
+"ljg" = (
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/engineer,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "ljx" = (
 /obj/structure/dropship_equipment/weapon/minirocket_pod,
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"lmD" = (
+/obj/effect/turf_decal/warning_stripes/engineer,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box/small,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "lmU" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -2544,6 +2561,12 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"oPy" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/engineer,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "oQb" = (
 /obj/machinery/light{
 	dir = 8
@@ -2620,6 +2643,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
+"rtT" = (
+/obj/effect/turf_decal/warning_stripes/medical,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box/small,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "rDw" = (
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
@@ -2682,6 +2713,14 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"uhl" = (
+/obj/effect/turf_decal/warning_stripes/leader,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box/small,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "umn" = (
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/medical3,
@@ -2719,6 +2758,14 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"wgC" = (
+/obj/effect/turf_decal/warning_stripes/smartgunner,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box/small,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "wpk" = (
 /obj/structure/ship_ammo/minirocket,
 /obj/machinery/light{
@@ -4894,8 +4941,8 @@ aac
 aal
 aao
 aaw
-aaA
-aaA
+uhl
+uhl
 aaA
 aaA
 aaA
@@ -5134,14 +5181,14 @@ aae
 aal
 aat
 aaw
+wgC
+wgC
 aaA
-aaA
-aaA
-aaA
-aaA
-aaA
-aaA
-tQD
+rtT
+apH
+ljg
+lmD
+oPy
 aaC
 fAT
 dwY

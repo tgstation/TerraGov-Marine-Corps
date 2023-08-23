@@ -29,7 +29,7 @@
 		else
 			to_chat(M, span_warning("The floor jolts under your feet!"))
 			shake_camera(M, 10, 1)
-			M.Paralyze(60)
+			M.Paralyze(6 SECONDS)
 		CHECK_TICK
 
 	for(var/i in GLOB.ai_list)
@@ -309,7 +309,7 @@
 /obj/docking_port/mobile/marine_dropship/on_prearrival()
 	. = ..()
 	if(hijack_state == HIJACK_STATE_CRASHING)
-		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT.", "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
 
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
@@ -823,6 +823,7 @@
 	density = TRUE
 	resistance_flags = RESIST_ALL
 	opacity = TRUE
+	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 
 /obj/structure/dropship_piece/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -917,7 +918,6 @@
 /obj/structure/dropship_piece/one/engine/rightbottom
 	icon_state = "brown_engine_rb"
 
-
 /obj/structure/dropship_piece/one/rearwing/lefttop
 	icon_state = "brown_rearwing_lt"
 
@@ -933,18 +933,22 @@
 /obj/structure/dropship_piece/one/rearwing/leftlbottom
 	icon_state = "brown_rearwing_llb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/rightrbottom
 	icon_state = "brown_rearwing_rrb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/leftllbottom
 	icon_state = "brown_rearwing_lllb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 /obj/structure/dropship_piece/one/rearwing/rightrrbottom
 	icon_state = "brown_rearwing_rrrb"
 	opacity = FALSE
+	allow_pass_flags = PASSABLE
 
 
 
@@ -994,6 +998,7 @@
 /obj/structure/dropship_piece/singlewindow/tadpole
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_single_window"
+	allow_pass_flags = PASS_GLASS
 	resistance_flags = NONE
 	opacity = FALSE
 
@@ -1341,6 +1346,32 @@
 			dataset["locked"] = !M.check_dock(S, silent=TRUE)
 			data["destinations"] += list(dataset)
 	return data
+
+/obj/machinery/computer/shuttle/shuttle_control/attack_ghost(mob/dead/observer/user)
+	var/list/all_destinations = splittext(possible_destinations,";")
+
+	if(length(all_destinations) < 2)
+		return
+
+	// Getting all valid destinations into an assoc list with "name" = "portid"
+	var/list/port_assoc = list()
+	for(var/destination in all_destinations)
+		for(var/obj/docking_port/port AS in SSshuttle.stationary)
+			if(destination != port.id)
+				continue
+			port_assoc["[port.name]"] = destination
+
+	var/list/destinations = list()
+	for(var/destination in port_assoc)
+		destinations += destination
+	var/input = tgui_input_list(user, "Choose a port to teleport to:", "Ghost Shuttle teleport", destinations, null, 0)
+	if(!input)
+		return
+	var/obj/docking_port/mobile/target_port = SSshuttle.getDock(port_assoc[input])
+
+	if(!target_port || QDELETED(target_port) || !target_port.loc)
+		return
+	user.forceMove(get_turf(target_port))
 
 /// Relinks the shuttleId in the console to a valid shuttle currently existing. Will only relink to a shuttle with a matching control_flags flag. Returns true if successfully relinked
 /obj/machinery/computer/shuttle/shuttle_control/proc/RelinkShuttleId(forcedId)

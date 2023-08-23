@@ -246,7 +246,7 @@
 		if(toggle_signal)
 			new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 		new_action.give_action(user)
-	highlight.current_variant = "none"
+	highlight.current_variant = length(icon_state_variants[current_variant][HIGHLIGHT_VARIANTS]) ? icon_state_variants[current_variant][HIGHLIGHT_VARIANTS][1] : "none"
 	highlight.icon_state_variants = icon_state_variants[current_variant][HIGHLIGHT_VARIANTS]
 	ENABLE_BITFIELD(highlight.colorable_allowed, PRESET_COLORS_ALLOWED)
 	update_icon()
@@ -261,7 +261,6 @@
 	slot = ATTACHMENT_SLOT_KAMA
 	attachment_layer = KAMA_LAYER
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
-	colorable_allowed = PRESET_COLORS_ALLOWED
 	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight/kama)
 	greyscale_config = /datum/greyscale_config/cape
 	icon_state_variants = list(
@@ -269,6 +268,18 @@
 			HOOD = FALSE,
 			HIGHLIGHT_VARIANTS = list(
 				"kama",
+			),
+		),
+		"kilt" = list(
+			HOOD = FALSE,
+			HIGHLIGHT_VARIANTS = list(
+				"kilt",
+			),
+		),
+		"kilt (alt)" = list(
+			HOOD = FALSE,
+			HIGHLIGHT_VARIANTS = list(
+				"kilt",
 			),
 		),
 	)
@@ -316,4 +327,3 @@
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	current_variant = "kama"
 	icon_state_variants = list()
-

@@ -159,7 +159,7 @@
 	L.adjustStaminaLoss(5*effect_str)
 	L.set_drugginess(10)
 	L.jitter(3)
-	L.AdjustConfused(6)
+	L.AdjustConfused(0.6 SECONDS)
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
@@ -455,10 +455,10 @@
 
 /datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
-	L.adjustDrowsyness(-5)
-	L.AdjustUnconscious(-20)
-	L.AdjustStun(-20)
-	L.AdjustParalyzed(-20)
+	L.adjustDrowsyness(-0.5 SECONDS)
+	L.AdjustUnconscious(-2 SECONDS)
+	L.AdjustStun(-2 SECONDS)
+	L.AdjustParalyzed(-2 SECONDS)
 	L.adjustToxLoss(effect_str)
 	L.hallucination = max(0, L.hallucination - 10)
 	switch(current_cycle)
@@ -510,10 +510,10 @@
 		C.drunkenness = max(C.drunkenness-5, 0)
 	L.AdjustConfused(-10 SECONDS)
 	L.adjust_blurriness(-5)
-	L.AdjustUnconscious(-40)
-	L.AdjustStun(-40)
-	L.AdjustParalyzed(-20)
-	L.AdjustSleeping(-40)
+	L.AdjustUnconscious(-4 SECONDS)
+	L.AdjustStun(-4 SECONDS)
+	L.AdjustParalyzed(-2 SECONDS)
+	L.AdjustSleeping(-4 SECONDS)
 	L.adjustStaminaLoss(-30*effect_str)
 	L.heal_limb_damage(7.5*effect_str, 7.5*effect_str)
 	L.adjustToxLoss(3.75*effect_str)
@@ -675,7 +675,7 @@
 	L.apply_damage(15*effect_str, TOX)
 
 /datum/reagent/medicine/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(15*effect_str, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
+	L.apply_damage(15*effect_str, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
@@ -847,7 +847,7 @@
 	if(L.blood_volume < BLOOD_VOLUME_BAD)
 		L.blood_volume = (BLOOD_VOLUME_BAD+1)
 		L.reagents.add_reagent(/datum/reagent/toxin,25)
-		L.AdjustSleeping(100)
+		L.AdjustSleeping(10 SECONDS)
 	return ..()
 
 /datum/reagent/medicine/nanoblood/overdose_process(mob/living/L, metabolism)
@@ -875,9 +875,9 @@
 
 /datum/reagent/medicine/ultrazine/on_mob_life(mob/living/L, metabolism)
 	if(prob(50))
-		L.AdjustParalyzed(-20)
-		L.AdjustStun(-20)
-		L.AdjustUnconscious(-20)
+		L.AdjustParalyzed(-2 SECONDS)
+		L.AdjustStun(-2 SECONDS)
+		L.AdjustUnconscious(-2 SECONDS)
 	L.adjustStaminaLoss(-2*effect_str)
 	if(prob(2))
 		L.emote(pick("twitch","blink_r","shiver"))
@@ -898,7 +898,7 @@
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
 		L.adjustStaminaLoss(35)
-		L.Stun(20)
+		L.Stun(2 SECONDS)
 	if(prob(20))
 		L.hallucination += 15
 
@@ -908,7 +908,7 @@
 		to_chat(L, span_warning("[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]"))
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
-		L.Stun(30)
+		L.Stun(3 SECONDS)
 	if(prob(20))
 		L.hallucination += 20
 		L.dizzy(60)
@@ -920,7 +920,7 @@
 		to_chat(L, span_danger("[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]"))
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
-		L.Stun(80)
+		L.Stun(8 SECONDS)
 		L.do_jitter_animation(200)
 	if(prob(20))
 		L.hallucination += 30
@@ -1104,7 +1104,7 @@
 	L.dizzy(-1)
 	L.adjustDrowsyness(-1)
 	L.adjust_timed_status_effect(-2 SECONDS, /datum/status_effect/speech/stutter)
-	L.AdjustConfused(-20)
+	L.AdjustConfused(-2 SECONDS)
 	var/mob/living/carbon/C = L
 	C.drunkenness = max(C.drunkenness-4, 0)
 	L.reagents.remove_all_type(/datum/reagent/consumable/ethanol, 0.5*effect_str, 0, 1)
@@ -1160,7 +1160,7 @@
 	L.adjustToxLoss(-30*effect_str)
 	L.heal_limb_damage(30*effect_str, 30*effect_str)
 	L.adjustStaminaLoss(-30*effect_str)
-	L.AdjustStun(-100)
+	L.AdjustStun(-10 SECONDS)
 	if(prob(5))
 		L.adjustBruteLoss(1200*effect_str) //the big oof. No, it's not kill or gib, I want them to nugget.
 
@@ -1342,7 +1342,7 @@
 
 /datum/reagent/medicine/research/stimulon/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(type)
-	L.Paralyze(20)
+	L.Paralyze(2 SECONDS)
 	to_chat(L, span_warning("You reel as the stimulant departs your bloodstream!"))
 
 /datum/reagent/medicine/research/stimulon/on_mob_life(mob/living/L, metabolism)

@@ -64,7 +64,7 @@
 			to_chat(src, span_danger("[msg]"))
 			return
 	var/stl = CONFIG_GET(number/second_topic_limit)
-	if (!holder && stl)
+	if (!holder && stl && href_list["window_id"] != "statbrowser")
 		var/second = round(world.time, 10)
 		if (!topiclimiter)
 			topiclimiter = new(LIMITER_SIZE)
@@ -80,6 +80,8 @@
 		return
 	if(href_list["reload_tguipanel"])
 		nuke_chat()
+	if(href_list["reload_statbrowser"])
+		stat_panel.reinitialize()
 
 	//Logs all hrefs.
 	log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
@@ -141,6 +143,10 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	// Instantiate stat panel
+	stat_panel = new(src, "statbrowser")
+	stat_panel.subscribe(src, PROC_REF(on_stat_panel_message))
+
 	// Instantiate tgui panel
 	tgui_panel = new(src, "browseroutput")
 
@@ -161,7 +167,7 @@
 		holder.owner = src
 		holder.activate()
 	else if(GLOB.deadmins[ckey])
-		verbs += /client/proc/readmin
+		add_verb(src, /client/proc/readmin)
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = GLOB.preferences_datums[ckey]
@@ -222,7 +228,13 @@
 
 	tgui_say.initialize()
 
-
+	// Initialize stat panel
+	stat_panel.initialize(
+		inline_html = file("html/statbrowser.html"),
+		inline_js = file("html/statbrowser.js"),
+		inline_css = file("html/statbrowser.css"),
+	)
+	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
 
 	if(byond_version < REQUIRED_CLIENT_MAJOR || (byond_build && byond_build < REQUIRED_CLIENT_MINOR))
 		//to_chat(src, span_userdanger("Your version of byond is severely out of date."))
@@ -358,6 +370,10 @@
 //////////////////
 /client/Del()
 	if(!gc_destroyed)
+		gc_destroyed = world.time
+		if (!QDELING(src))
+			stack_trace("Client does not purport to be QDELING, this is going to cause bugs in other places!")
+
 		// Yes this is the same as what's found in qdel(). Yes it does need to be here
 		// Get off my back
 		SEND_SIGNAL(src, COMSIG_QDELETING, TRUE)
@@ -368,6 +384,8 @@
 /client/Destroy()
 	SEND_SIGNAL(src, COMSIG_CLIENT_DISCONNECTED)
 	log_access("Logout: [key_name(src)]")
+	if(obj_window)
+		QDEL_NULL(obj_window)
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))
 			message_admins("Admin logout: [key_name(src)].")
@@ -407,21 +425,21 @@
 	return QDEL_HINT_HARDDEL_NOW
 
 /client/Click(atom/object, atom/location, control, params)
-	if(!control)
-		return
 	if(click_intercepted)
 		if(click_intercepted >= world.time)
 			click_intercepted = 0 //Reset and return. Next click should work, but not this one.
 			return
 		click_intercepted = 0 //Just reset. Let's not keep re-checking forever.
 	var/ab = FALSE
-	var/list/L = params2list(params)
+	var/list/modifiers = params2list(params)
 
-	var/dragged = L["drag"]
-	if(dragged && !L[dragged])
+	var/button_clicked = LAZYACCESS(modifiers, "button")
+
+	var/dragged = LAZYACCESS(modifiers, "drag")
+	if(dragged && button_clicked != dragged)
 		return
 
-	if(object && object == middragatom && L["left"])
+	if(object && object == middragatom && button_clicked == "left")
 		ab = max(0, 5 SECONDS - (world.time - middragtime) * 0.1)
 
 	var/mcl = CONFIG_GET(number/minute_click_limit)
@@ -801,7 +819,7 @@
  *
  * Handles adding macros for the keys that need it
  * And adding movement keys to the clients movement_keys list
- * At the time of writing this, communication(OOC, Say, IC) require macros
+ * At the time of writing this, communication(OOC, Say, IC, ASAY, MSAY) require macros
  * Arguments:
  * * direct_prefs - the preference we're going to get keybinds from
  */
@@ -842,7 +860,18 @@
 				if(XOOC_CHANNEL)
 					var/xooc = tgui_say_create_open_command(XOOC_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[xooc]")
-
+				if(ADMIN_CHANNEL)
+					if(holder)
+						var/asay = tgui_say_create_open_command(ADMIN_CHANNEL)
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[asay]")
+					else
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
+				if(MENTOR_CHANNEL)
+					if(holder)
+						var/msay = tgui_say_create_open_command(MENTOR_CHANNEL)
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[msay]")
+					else
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
 
 /client/proc/change_view(new_size)
 	if(isnull(new_size))
@@ -898,10 +927,16 @@
 	return TRUE
 
 GLOBAL_VAR_INIT(automute_on, null)
-/client/proc/handle_spam_prevention(message, mute_type)
+/client/proc/handle_spam_prevention(message, mute_type, special_message_flag)
 	//Performance
 	if(isnull(GLOB.automute_on))
 		GLOB.automute_on = CONFIG_GET(flag/automute_on)
+
+	if((special_message_flag & MESSAGE_FLAG_MENTOR) && check_rights(R_MENTOR, FALSE))
+		return //Please stop muting me in my own responses.
+
+	if((special_message_flag & MESSAGE_FLAG_ADMIN) && check_rights(R_ADMIN, FALSE))
+		return //Technically not needed due to admin bypasses later in this proc, but I'll throw it in if for some reason someone changes their immunity.
 
 	total_message_count += 1
 
@@ -966,3 +1001,47 @@ GLOBAL_VAR_INIT(automute_on, null)
 		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
 	else
 		SSambience.ambience_listening_clients -= src
+
+/// compiles a full list of verbs and sends it to the browser
+/client/proc/init_verbs()
+	if(IsAdminAdvancedProcCall())
+		return
+	var/list/verblist = list()
+	var/list/verbstoprocess = verbs.Copy()
+	if(mob)
+		verbstoprocess += mob.verbs
+		for(var/atom/movable/thing as anything in mob.contents)
+			verbstoprocess += thing.verbs
+	panel_tabs.Cut() // panel_tabs get reset in init_verbs on JS side anyway
+	for(var/procpath/verb_to_init as anything in verbstoprocess)
+		if(!verb_to_init)
+			continue
+		if(verb_to_init.hidden)
+			continue
+		if(!istext(verb_to_init.category))
+			continue
+		panel_tabs |= verb_to_init.category
+		verblist[++verblist.len] = list(verb_to_init.category, verb_to_init.name)
+	src.stat_panel.send_message("init_verbs", list(panel_tabs = panel_tabs, verblist = verblist))
+
+/client/proc/check_panel_loaded()
+	if(stat_panel.is_ready())
+		return
+	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
+
+/**
+ * Handles incoming messages from the stat-panel TGUI.
+ */
+/client/proc/on_stat_panel_message(type, payload)
+	switch(type)
+		if("Update-Verbs")
+			init_verbs()
+		if("Remove-Tabs")
+			panel_tabs -= payload["tab"]
+		if("Send-Tabs")
+			panel_tabs |= payload["tab"]
+		if("Reset-Tabs")
+			panel_tabs = list()
+		if("Set-Tab")
+			stat_tab = payload["tab"]
+			SSstatpanels.immediate_send_stat_data(src)

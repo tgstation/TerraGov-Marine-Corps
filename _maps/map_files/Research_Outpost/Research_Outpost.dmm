@@ -1530,7 +1530,6 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/north_west)
 "ho" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "hq" = (
@@ -3919,9 +3918,6 @@
 	dir = 6
 	},
 /area/outpost/dormitories)
-"rQ" = (
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/caves/west)
 "rR" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/blood/writing{
@@ -4137,7 +4133,6 @@
 	},
 /area/outpost/caves/south)
 "sN" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/east)
 "sO" = (
@@ -4447,9 +4442,6 @@
 	dir = 1
 	},
 /area/outpost/yard/south)
-"um" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/cargo)
 "un" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/red2,
@@ -5796,11 +5788,6 @@
 	dir = 4
 	},
 /area/outpost/science/hydponics)
-"At" = (
-/turf/open/floor/tile/dark/purple2{
-	dir = 1
-	},
-/area/outpost/science)
 "Au" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2,
 /obj/structure/window/reinforced{
@@ -8050,7 +8037,6 @@
 	},
 /area/outpost/science/hydponics)
 "KW" = (
-/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -8143,11 +8129,9 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/obj/machinery/power/apc/drained,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -8712,7 +8696,6 @@
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
 "NW" = (
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "NX" = (
@@ -10350,9 +10333,6 @@
 "Vm" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
-/area/outpost/cargo)
-"Vn" = (
-/turf/open/floor/plating/asteroidfloor,
 /area/outpost/cargo)
 "Vo" = (
 /turf/closed/wall,
@@ -14654,9 +14634,9 @@ yW
 yW
 yW
 yW
-rQ
-rQ
-rQ
+EB
+EB
+EB
 Nu
 zh
 zh
@@ -14783,11 +14763,11 @@ yW
 yW
 yW
 yW
-rQ
-rQ
-rQ
-rQ
-rQ
+EB
+EB
+EB
+EB
+EB
 Nu
 zh
 zh
@@ -14915,8 +14895,8 @@ yW
 nO
 AL
 dn
-rQ
-rQ
+EB
+EB
 Nu
 Hg
 jW
@@ -15047,8 +15027,8 @@ AL
 AL
 AL
 dn
-rQ
-rQ
+EB
+EB
 VV
 zh
 zh
@@ -15982,12 +15962,12 @@ hi
 hi
 oP
 IU
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+EB
+EB
+EB
+EB
+EB
+EB
 yW
 Ry
 yW
@@ -16117,9 +16097,9 @@ Xw
 Mp
 Wq
 wB
-rQ
-rQ
-rQ
+EB
+EB
+EB
 EB
 Xm
 Hc
@@ -18373,26 +18353,26 @@ yW
 yW
 kx
 kx
-um
-um
+LC
+LC
 gW
 WV
-Vn
+WV
 yJ
 tl
-um
-um
+LC
+LC
 kx
 kx
 kx
 kx
 kx
 LC
-um
-um
-um
-um
-um
+LC
+LC
+LC
+LC
+LC
 kx
 kx
 yW
@@ -18508,8 +18488,8 @@ QY
 QY
 QY
 gW
-Vn
-Vn
+WV
+WV
 bF
 tl
 QY
@@ -18519,7 +18499,7 @@ QY
 QY
 QY
 QY
-um
+LC
 GE
 GE
 QY
@@ -23486,7 +23466,7 @@ vE
 zx
 oD
 bL
-At
+FI
 pF
 ry
 ZF

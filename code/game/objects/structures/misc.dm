@@ -157,6 +157,8 @@
 			take_damage(100, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(50, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(25, BRUTE, BOMB)
 
 ///Releases whatever is inside the tank
 /obj/structure/xenoautopsy/tank/proc/release_occupant()
@@ -273,7 +275,7 @@
 	desc = "Completely impassable - or are they?"
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
-	density = FALSE
+	density = TRUE
 	anchored = TRUE
 	layer = MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
@@ -283,28 +285,34 @@
 	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
 		return prob(60)
 
-	var/obj/structure/bed/B = mover
-	if(istype(B) && LAZYLEN(B.buckled_mobs))//if it's a bed/chair and someone is buckled, it will not pass
-		return FALSE
-
-	if(istype(mover, /obj/vehicle))	//no vehicles
-		return FALSE
-
-	if(isliving(mover)) // You Shall Not Pass!
+	if(isliving(mover))
 		var/mob/living/M = mover
-		if(!M.lying_angle && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass. //todo kill shitcode
+		if(M.lying_angle)
+			return TRUE
+		if(M.mob_size <= MOB_SIZE_SMALL)
+			return TRUE
+		if(isxenorunner(M)) //alas, snowflake
+			return TRUE
+		return FALSE
+
+	if(isobj(mover))
+		if(LAZYLEN(mover.buckled_mobs))
 			return FALSE
+		if(isvehicle(mover))
+			return FALSE
+
+		return TRUE
 
 	return ..()
 
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)
-		if (1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if (2)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
 				qdel(src)
-		if (3)
+		if(EXPLODE_LIGHT, EXPLODE_WEAK)
 			if (prob(5))
 				qdel(src)
 

@@ -2557,11 +2557,6 @@
 /obj/machinery/air_alarm,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
-"ajx" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained,
-/turf/open/floor/prison/darkred/full,
-/area/prison/cellblock/maxsec/north)
 "ajy" = (
 /obj/machinery/light{
 	dir = 4
@@ -20802,14 +20797,6 @@
 	dir = 5
 	},
 /area/prison/storage/vip)
-"bmw" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/prison,
-/area/prison/hangar/main)
 "bmx" = (
 /turf/open/floor/prison/rampbottom{
 	dir = 4
@@ -23454,10 +23441,7 @@
 /area/prison/holding/holding1)
 "buZ" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/turf/open/floor/prison/darkred/full,
+/turf/open/floor/prison,
 /area/prison/hangar/main)
 "bva" = (
 /obj/structure/disposalpipe/segment,
@@ -24225,8 +24209,9 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/se)
 "bxL" = (
+/obj/effect/ai_node,
 /obj/structure/cable,
-/turf/open/floor/prison/darkred/full,
+/turf/open/floor/prison,
 /area/prison/hangar/main)
 "bxM" = (
 /turf/open/floor/prison/darkred/full,
@@ -24347,10 +24332,6 @@
 	dir = 1
 	},
 /area/prison/hallway/entrance)
-"byi" = (
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/prison/hangar/main)
 "byj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -24649,10 +24630,6 @@
 "bzf" = (
 /turf/closed/wall/r_wall/prison,
 /area/prison/quarters/security)
-"bzh" = (
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/prison/hangar/main)
 "bzj" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 2;
@@ -24668,7 +24645,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "East Monorail Station"
 	},
-/obj/structure/cable,
 /turf/open/floor/prison/darkred/full,
 /area/prison/hangar/main)
 "bzq" = (
@@ -25414,12 +25390,6 @@
 	dir = 8
 	},
 /area/prison/hangar/main)
-"bBW" = (
-/obj/structure/cable,
-/turf/open/floor/prison/darkred{
-	dir = 8
-	},
-/area/prison/hangar/main)
 "bBX" = (
 /turf/open/floor/prison/darkred{
 	dir = 4
@@ -25775,12 +25745,6 @@
 	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar/main)
-"bDn" = (
-/obj/structure/cable,
-/turf/open/floor/prison/darkred{
-	dir = 4
-	},
 /area/prison/hangar/main)
 "bDo" = (
 /obj/structure/cable,
@@ -40298,7 +40262,6 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cLT" = (
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/prison/darkred/full,
 /area/prison/hangar/main)
@@ -40589,10 +40552,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -42363,6 +42322,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "iqK" = (
@@ -44090,13 +44050,6 @@
 /obj/machinery/air_alarm,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/maxsec)
-"mSO" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/prison/hangar/main)
 "mTC" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
@@ -44511,6 +44464,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/multi_tile/mainship/maint/free_access,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "nQR" = (
@@ -44547,7 +44501,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/prison/maintenance/residential/ne)
 "nRo" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	welded = 1
@@ -46509,7 +46462,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "sBT" = (
@@ -47065,7 +47017,6 @@
 /obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
-/obj/effect/landmark/fob_sentry,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "ubZ" = (
@@ -47491,7 +47442,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "vfM" = (
@@ -47927,6 +47877,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/prison/hangar/main)
 "whB" = (
@@ -80935,7 +80886,7 @@ aAO
 aAO
 aAO
 add
-ajx
+ajN
 ajN
 mhw
 acS
@@ -106689,8 +106640,8 @@ xKV
 aXr
 qNy
 uEg
-uEg
-uEg
+iMr
+iMr
 dAe
 aYL
 aYL
@@ -106971,8 +106922,8 @@ bnQ
 aou
 bnQ
 kZy
-byi
-bzh
+buZ
+nTj
 sao
 sao
 sSf
@@ -107228,7 +107179,7 @@ sBT
 sBT
 sBT
 yiF
-bmw
+bxL
 aYL
 bzn
 byu
@@ -107485,7 +107436,7 @@ nTj
 nTj
 bnQ
 pDQ
-bnQ
+buZ
 aYL
 bAI
 byv
@@ -107741,7 +107692,7 @@ fWv
 fLx
 xgj
 bnQ
-mSO
+pDQ
 uQQ
 bzj
 bAJ
@@ -107998,7 +107949,7 @@ laI
 nTj
 gnJ
 bnQ
-mSO
+pDQ
 bnQ
 aYL
 bAK
@@ -108255,7 +108206,7 @@ kHP
 bfT
 bwo
 bnQ
-mSO
+pDQ
 eJX
 bhw
 bAL
@@ -108512,7 +108463,7 @@ uHL
 eQi
 bwp
 bnQ
-mSO
+pDQ
 bnQ
 aYL
 bpW
@@ -108769,7 +108720,7 @@ nTj
 dXl
 bwq
 bnQ
-mSO
+pDQ
 gSk
 aYL
 bjJ
@@ -109026,7 +108977,7 @@ nTj
 dXl
 bwr
 bnQ
-mSO
+pDQ
 wUH
 aXt
 obp
@@ -109283,7 +109234,7 @@ nTj
 dXl
 bws
 bnQ
-mSO
+pDQ
 bnQ
 aXt
 fuY
@@ -109797,7 +109748,7 @@ nTj
 dXl
 bwq
 bnQ
-byi
+bnQ
 eJX
 obp
 bAP
@@ -110054,7 +110005,7 @@ nTj
 dXl
 bwr
 bnQ
-byi
+bnQ
 bnQ
 obp
 bAP
@@ -110311,7 +110262,7 @@ nTj
 dXl
 bws
 bnQ
-byi
+bnQ
 bnQ
 obp
 bAP
@@ -110568,7 +110519,7 @@ nTj
 dXl
 bwp
 bnQ
-byi
+bnQ
 bnQ
 aXt
 bAP
@@ -110825,7 +110776,7 @@ nTj
 dXl
 bwq
 bnQ
-byi
+bnQ
 bnQ
 aXt
 wAk
@@ -111082,7 +111033,7 @@ iVq
 kMX
 bwr
 bnQ
-byi
+bnQ
 byl
 bzn
 bqf
@@ -111339,12 +111290,12 @@ wbe
 bfV
 bwt
 bnQ
-bxL
+bxM
 cLT
 bzo
 bAR
-bBW
-bBW
+fDy
+fDy
 fDy
 fDy
 fDy
@@ -111601,7 +111552,7 @@ bxM
 bxM
 bAS
 bBX
-bDn
+bBX
 bBX
 bBX
 bBX
@@ -111858,7 +111809,7 @@ gdP
 bzn
 bAT
 bBY
-buZ
+bxM
 bET
 bGl
 bET

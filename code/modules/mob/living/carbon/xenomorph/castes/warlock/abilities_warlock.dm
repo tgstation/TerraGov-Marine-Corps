@@ -163,7 +163,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(0.5, 0.5)
+				H.apply_effects(1 SECONDS, 1 SECONDS)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 6)
@@ -216,11 +216,11 @@
 	alpha = obj_integrity * 255 / max_integrity
 	if(obj_integrity <= 0)
 		release_projectiles()
-		owner.apply_effects(weaken = 0.5)
+		owner.apply_effect(1 SECONDS, WEAKEN)
 
 /obj/effect/xeno/shield/obj_destruction()
 	release_projectiles()
-	owner.apply_effects(weaken = 0.5)
+	owner.apply_effect(1 SECONDS, WEAKEN)
 	return ..()
 
 ///Unfeezes the projectiles on their original path
@@ -390,7 +390,7 @@
 					continue
 				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength, BRUTE, blocked = BOMB)
 				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = BOMB)
-				carbon_victim.adjust_stagger(5)
+				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
 			else if(ismecha(victim))
 				var/obj/vehicle/sealed/mecha/mecha_victim = victim
