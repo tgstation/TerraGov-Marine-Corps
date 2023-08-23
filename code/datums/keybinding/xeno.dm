@@ -888,6 +888,12 @@
 	description = "Scoop up and carry your spawn with you."
 	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
 
+/datum/keybinding/xeno/cannibalise
+	name = "Cannibalise Spiderling"
+	full_name = "Widow: Cannibalise Spiderling"
+	description = "Eat your own young and store their biomass for later."
+	keybind_signal = COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING
+
 /datum/keybinding/xeno/web_hook
 	name = "Web Hook"
 	full_name = "Widow: Web Hook"
