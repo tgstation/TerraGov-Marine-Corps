@@ -552,7 +552,7 @@
 	var/max_tries = 150
 	///list for keeping track of the mobs around us
 	var/mob/possible_mobs = list()
-	///list for keeping track items in current gnome turf
+	///list for keeping track of items in current gnome turf
 	var/list/turf_contents = list()
 	///used for determining if a gnome is in the pipe network
 	var/pipe_mode = FALSE
@@ -569,20 +569,21 @@
 	addtimer(CALLBACK(src, PROC_REF(gnome_act)), 5 MINUTES)
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
-///proc for handling gnome behavior routines
+///root proc for handling gnome AI routines
 /obj/item/toy/plush/gnome/living/proc/gnome_act()
 	turf_contents = list()
+	///targetturf stores our position at the start of routine in all. teleport_routine uses it as a baseline for determining where to find teleport locations also
 	var/turf/targetturf = get_turf(src)
 	for(var/atom/movable/object AS in targetturf.contents)
 		turf_contents += object
-	gnome_act_timer = rand(2,6)
+	gnome_act_timer = rand(4,8)
 	pipe_mode_chance = STANDARD_GNOME_PIPE_CHANCE
 	if(prob(10))
 		do_flavor_actions(targetturf) //flavor actions don't take being watched into account
 		addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer MINUTES)
 		return
 	possible_mobs = list()
-	for(var/mob/nearbymob in range(GNOME_EXCLUSION_RANGE, src))
+	for(var/mob/nearbymob in range(GNOME_EXCLUSION_RANGE, src)) //all mobs are included except animals, this means that AIs and ghosts will block gnome movement
 		if(isanimal(nearbymob))
 			continue
 		possible_mobs += nearbymob
@@ -591,7 +592,7 @@
 		return
 	if(isspacearea(get_area(src)))
 		src.forceMove(gnome_origin) //we're in space, return to origin
-		targetturf = get_turf(src)
+		targetturf = get_turf(src) //reset targetturf to origin to avoid problems with teleport_routine
 	gnome_move_range = gnome_move_range + teleport_retries * 3 //for each teleport retry the gnome gets a multiplier to distance, to allow it to "escape" if left unattended
 	if(length(possible_mobs))
 		addtimer(CALLBACK(src, PROC_REF(gnome_act)), rand(15,90) SECONDS) //we're being watched, set shorter counter so we can escape once eyes are off of us
@@ -599,14 +600,14 @@
 		return
 	else
 		if(handle_ladders())
-			targetturf = get_turf(src) //need to reset targetturf to new position indicated by ladder, or teleport_routine will choose a bad turf
+			targetturf = get_turf(src) //need to reset targetturf to new position indicated by ladder use, or teleport_routine will calculate from old position
 		teleport_routine(targetturf)
 	addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer MINUTES)
 
-//handles gnome going up or down ladder
+//handles gnome going up or down ladders
 /obj/item/toy/plush/gnome/living/proc/handle_ladders()
 	for(var/atom/movable/object AS in turf_contents)
-		if(!length(turf_contents) || prob(60))
+		if(!length(turf_contents) || prob(60)) //possibility that we don't use a ladder
 			return FALSE
 		if(isladder(object))
 			var/obj/structure/ladder/selectedladder = object
@@ -621,7 +622,7 @@
 				break
 	return TRUE
 
-///various flavor actions
+///handles gnome teleportation when not being observed by players
 /obj/item/toy/plush/gnome/living/proc/teleport_routine(turf/targetturf)
 	var/loopcount
 	while(!length(possible_mobs))
@@ -630,9 +631,10 @@
 		if(!targetarea || !targetturf)
 			targetturf = get_turf(src) //somehow we've lost our turf, use the one underneath us
 			continue
+		//find teleport locations within radius gnome_move_range of targetturf. once found, we verify that it's valid, set our new targetturf to it and move gnome to the new location
 		targetturf = locate(targetturf.x + rand(gnome_move_range * -1, gnome_move_range), targetturf.y + rand(gnome_move_range * -1, gnome_move_range), targetturf.z)
 		targetarea = get_area(targetturf)
-		if(get_teleport_prereqs(targetturf) || loopcount >= max_tries)
+		if(get_teleport_prereqs(targetturf) || loopcount >= max_tries) //try different turfs within range until we find something that passes get_teleport_prereqs or we hit max amount of loops
 			teleport_retries = 0 //teleported successfully, clear teleport_retries
 			break
 	src.forceMove(targetturf)
@@ -716,7 +718,7 @@
 	SIGNAL_HANDLER
 	new /obj/item/toy/plush/gnome(gnome_origin) //shuttle crush deletes src object, create new gnome at spawn point to give illusion of escape
 
-///validate that the turf we're attempting to teleport to is not dense in space etc
+///handles gnome transportation using pipes
 /obj/item/toy/plush/gnome/living/proc/handle_pipe_mode(turf/targetturf)
 	pipe_mode_chance -= length(possible_mobs) * 10 //for each mob nearby subtract 10 from the chance to interact with vents
 	if(!prob(pipe_mode_chance))
@@ -735,9 +737,9 @@
 			return
 		for(var/atom/movable/object AS in turf_contents)
 			if(isatmosvent(object) || isatmosscrubber(object))
-				pipe_mode = TRUE
 				src.forceMove(object)
 				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+				pipe_mode = TRUE
 
 #undef HIGH_GNOME_MOVE_RANGE
 #undef STANDARD_GNOME_PIPE_CHANCE
