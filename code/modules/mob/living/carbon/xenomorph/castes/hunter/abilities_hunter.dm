@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/xeno_action/stealth
 	name = "Toggle Stealth"
-	action_icon_state = "stealth_on"
+	action_icon_state = "xenohide"
 	desc = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
 	plasma_cost = 10
