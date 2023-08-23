@@ -527,7 +527,6 @@
 	item_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
 
-#define STANDARD_GNOME_MOVE_RANGE 5
 #define HIGH_GNOME_MOVE_RANGE 40
 #define STANDARD_GNOME_PIPE_CHANCE 50
 #define GNOME_EXCLUSION_RANGE 21 //20 is the max view of a ghost
@@ -579,7 +578,7 @@
 	gnome_act_timer = rand(2,6)
 	pipe_mode_chance = STANDARD_GNOME_PIPE_CHANCE
 	if(prob(10))
-		do_flavor_actions(targetturf) //flavor actions don't take human
+		do_flavor_actions(targetturf) //flavor actions don't take being watched into account
 		addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer MINUTES)
 		return
 	possible_mobs = list()
@@ -587,11 +586,12 @@
 		if(isanimal(nearbymob))
 			continue
 		possible_mobs += nearbymob
-	if(handle_pipe_mode(targetturf) && pipe_mode)
+	if(handle_pipe_mode(targetturf) && pipe_mode) //if we're in pipe_mode we return,
+		addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer MINUTES)
 		return
 	if(isspacearea(get_area(src)))
 		src.forceMove(gnome_origin) //we're in space, return to origin
-		return
+		targetturf = get_turf(src)
 	gnome_move_range = gnome_move_range + teleport_retries * 3 //for each teleport retry the gnome gets a multiplier to distance, to allow it to "escape" if left unattended
 	if(length(possible_mobs))
 		addtimer(CALLBACK(src, PROC_REF(gnome_act)), rand(15,90) SECONDS) //we're being watched, set shorter counter so we can escape once eyes are off of us
@@ -695,9 +695,11 @@
 			(balloon_alert_to_viewers("adjusts its hat")),
 			(balloon_alert_to_viewers("mimes a quick stabbing motion")),
 			(balloon_alert_to_viewers("rolls its eyes")),
+			(balloon_alert_to_viewers("mutters something")),
 			(balloon_alert_to_viewers("darts its eyes back and forth")),
 			(balloon_alert_to_viewers("stifles a laugh")),
 			(balloon_alert_to_viewers("blinks")),
+			(balloon_alert_to_viewers("squints")),
 			(balloon_alert_to_viewers("glares")),
 			(balloon_alert_to_viewers("[src]'s eyes gleam malevolently")))
 		if(6)
@@ -737,7 +739,6 @@
 				src.forceMove(object)
 				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
-#undef STANDARD_GNOME_MOVE_RANGE
 #undef HIGH_GNOME_MOVE_RANGE
 #undef STANDARD_GNOME_PIPE_CHANCE
 #undef GNOME_EXCLUSION_RANGE
