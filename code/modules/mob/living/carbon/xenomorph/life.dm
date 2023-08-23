@@ -229,6 +229,7 @@
 		return
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	med_hud_set_health()
+	handle_regular_hud_updates()
 	update_stat()
 	update_wounds()
 
