@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/xeno_action/toggle_savage
 	name = "Toggle Savage"
-	action_icon_state = "savage_on"
+	action_icon_state = "lunge"
 	desc = "Toggle on to add a vicious attack to your pounce."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
@@ -26,7 +26,7 @@
 
 /datum/action/xeno_action/toggle_savage/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
-	action_icon_state = X.savage ? "savage_off" : "savage_on"
+	action_icon_state = X.savage ? "savage_off" : "lunge"
 	return ..()
 
 /mob/living/carbon/xenomorph/proc/Savage(mob/living/carbon/M)
@@ -142,7 +142,7 @@
 	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		owner.layer = MOB_LAYER
 		var/datum/action/xeno_action/xenohide/hide_action = owner.actions_by_path[/datum/action/xeno_action/xenohide]
-		hide_action?.button?.cut_overlay(mutable_appearance('icons/mob/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
+		hide_action?.button?.cut_overlay(mutable_appearance('icons/Xeno/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
 	if(owner.buckled)
 		owner.buckled.unbuckle_mob(owner)
 
