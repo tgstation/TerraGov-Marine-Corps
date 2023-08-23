@@ -664,7 +664,7 @@
 
 ///various flavor actions
 /obj/item/toy/plush/gnome/living/proc/do_flavor_actions(turf/targetturf)
-	var/randomchoice = rand(1,6)
+	var/randomchoice = rand(1,8)
 	switch(randomchoice)
 		if(1)
 			pick(playsound(src, 'sound/items/gnome.ogg', 35, TRUE),
@@ -713,6 +713,11 @@
 					playsound(src,'sound/items/hypospray.ogg', 25, 1)
 					balloon_alert_to_viewers("Injects [object] into its arm")
 					break
+		if(7)
+			flick("gnome_hop", src)
+		if(8)
+			teleport_routine()
+
 
 
 //handles gnome "escaping" a shuttle crush
