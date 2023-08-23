@@ -932,7 +932,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 0
 
 /datum/ammo/bullet/shotgun/frag/drop_nade(turf/T)
-	explosion(T, 0, 0, 2, 1)
+	explosion(T, weak_impact_range = 2)
 
 /datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
