@@ -716,7 +716,7 @@
 		if(7)
 			flick("gnome_hop", src)
 		if(8)
-			teleport_retries = 10 //gnome is getting out of here
+			teleport_retries += 10 //gnome is getting out of here
 			teleport_routine()
 
 
