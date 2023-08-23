@@ -527,11 +527,10 @@
 	item_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
 
-#define STANDARD_GNOME_ACT_TIMER 5 MINUTES
 #define STANDARD_GNOME_MOVE_RANGE 5
 #define HIGH_GNOME_MOVE_RANGE 40
 #define STANDARD_GNOME_PIPE_CHANCE 50
-#define GNOME_EXCLUSION_RANGE 21
+#define GNOME_EXCLUSION_RANGE 21 //20 is the max view of a ghost
 
 /obj/item/toy/plush/gnome
 	name = "gnome"
@@ -554,6 +553,8 @@
 	var/max_tries = 150
 	///list for keeping track of the mobs around us
 	var/mob/possible_mobs = list()
+	///list for keeping track items in current gnome turf
+	var/list/turf_contents = list()
 	///used for determining if a gnome is in the pipe network
 	var/pipe_mode = FALSE
 	///how likely are we to enter a pipe
@@ -571,11 +572,18 @@
 
 ///proc for handling gnome behavior routines
 /obj/item/toy/plush/gnome/living/proc/gnome_act()
+	turf_contents = list()
+	var/turf/targetturf = get_turf(src)
+	for(var/atom/movable/object AS in targetturf.contents)
+		turf_contents += object
 	gnome_act_timer = rand(2,6)
 	pipe_mode_chance = STANDARD_GNOME_PIPE_CHANCE
+	if(prob(10))
+		do_flavor_actions(targetturf) //flavor actions don't take human
+		addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer MINUTES)
+		return
 	possible_mobs = list()
-	var/turf/targetturf = get_turf(src)
-	for(var/mob/nearbymob in range(GNOME_EXCLUSION_RANGE, src)) //20 is the max view of a ghost
+	for(var/mob/nearbymob in range(GNOME_EXCLUSION_RANGE, src))
 		if(isanimal(nearbymob))
 			continue
 		possible_mobs += nearbymob
@@ -590,23 +598,47 @@
 		teleport_retries += 1 //for each time a watching mob suppresses our teleport, increment counter
 		return
 	else
-		var/loopcount
-		while(!length(possible_mobs))
-			loopcount += 1
-			var/area/targetarea = get_area(targetturf)
-			if(!targetarea || !targetturf)
-				targetturf = get_turf(src) //somehow we've lost our turf, use the one underneath us
-				continue
-			targetturf = locate(targetturf.x + rand(gnome_move_range * -1, gnome_move_range), targetturf.y + rand(gnome_move_range * -1, gnome_move_range), targetturf.z)
-			targetarea = get_area(targetturf)
-			if(get_teleport_prereqs(targetturf) || loopcount >= max_tries)
-				teleport_retries = 0 //teleported successfully, clear teleport_retries
-				break
-		src.forceMove(targetturf)
+		if(handle_ladders())
+			targetturf = get_turf(src) //need to reset targetturf to new position indicated by ladder, or teleport_routine will choose a bad turf
+		teleport_routine(targetturf)
 	addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer MINUTES)
 
+//handles gnome going up or down ladder
+/obj/item/toy/plush/gnome/living/proc/handle_ladders()
+	for(var/atom/movable/object AS in turf_contents)
+		if(!length(turf_contents) || prob(60))
+			return FALSE
+		if(isladder(object))
+			var/obj/structure/ladder/selectedladder = object
+			if(selectedladder.up && selectedladder.down)
+				pick(src.forceMove(get_turf(selectedladder.up)), src.forceMove(get_turf(selectedladder.down)))
+				break
+			else if(selectedladder.up)
+				src.forceMove(get_turf(selectedladder.up))
+				break
+			else if(selectedladder.down)
+				src.forceMove(get_turf(selectedladder.down))
+				break
+	return TRUE
+
+///various flavor actions
+/obj/item/toy/plush/gnome/living/proc/teleport_routine(turf/targetturf)
+	var/loopcount
+	while(!length(possible_mobs))
+		loopcount += 1
+		var/area/targetarea = get_area(targetturf)
+		if(!targetarea || !targetturf)
+			targetturf = get_turf(src) //somehow we've lost our turf, use the one underneath us
+			continue
+		targetturf = locate(targetturf.x + rand(gnome_move_range * -1, gnome_move_range), targetturf.y + rand(gnome_move_range * -1, gnome_move_range), targetturf.z)
+		targetarea = get_area(targetturf)
+		if(get_teleport_prereqs(targetturf) || loopcount >= max_tries)
+			teleport_retries = 0 //teleported successfully, clear teleport_retries
+			break
+	src.forceMove(targetturf)
+
 ///validate that the turf we're attempting to teleport to is not dense in space etc
-/obj/item/toy/plush/gnome/living/proc/get_teleport_prereqs(turf/targetturf)
+/obj/item/toy/plush/gnome/living/proc/get_teleport_prereqs(turf/targetturf, ignore_watching_players = FALSE)
 	var/area/targetarea = get_area(targetturf)
 	if(!targetarea || !targetturf)
 		return FALSE
@@ -622,14 +654,65 @@
 		if(isanimal(nearbymob))
 			continue
 		possible_mobs += nearbymob
-	if(length(possible_mobs))
+	if(length(possible_mobs) && !ignore_watching_players)
 		return FALSE
 	return TRUE
+
+///various flavor actions
+/obj/item/toy/plush/gnome/living/proc/do_flavor_actions(turf/targetturf)
+	var/randomchoice = rand(1,6)
+	switch(randomchoice)
+		if(1)
+			pick(playsound(src, 'sound/items/gnome.ogg', 35, TRUE),
+			playsound(src, 'sound/misc/robotic scream.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/pred_laugh1.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/pred_laugh2.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/pred_laugh3.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/gnomelaugh.ogg', 35, TRUE),
+			playsound(src, 'sound/weapons/guns/fire/tank_cannon1.ogg', 35, TRUE),
+			playsound(src, 'sound/weapons/guns/fire/tank_cannon2.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/pred_helpme.ogg', 35, TRUE))
+		if(2)
+			for(var/atom/movable/object AS in turf_contents)
+				if(isfood(object))
+					qdel(object)
+					playsound(src,'sound/items/eatfood.ogg', 25, 1)
+					balloon_alert_to_viewers("Consumes [object]")
+					break
+		if(3)
+			for(var/dirn in shuffle(GLOB.alldirs))
+				var/turf/destturf = get_step(src,dirn)
+				if(get_teleport_prereqs(destturf, TRUE))
+					src.forceMove(destturf)
+					break
+		if(4)
+			new /obj/item/tool/kitchen/knife/butcher(targetturf)
+			new /obj/effect/decal/cleanable/blood(targetturf)
+			color = COLOR_DARK_RED
+			desc += " It's covered in a dried reddish liquid, probably cranberry juice."
+		if(5)
+			pick(balloon_alert_to_viewers("stares"),
+			(balloon_alert_to_viewers("adjusts its hat")),
+			(balloon_alert_to_viewers("mimes a quick stabbing motion")),
+			(balloon_alert_to_viewers("rolls its eyes")),
+			(balloon_alert_to_viewers("darts its eyes back and forth")),
+			(balloon_alert_to_viewers("stifles a laugh")),
+			(balloon_alert_to_viewers("blinks")),
+			(balloon_alert_to_viewers("glares")),
+			(balloon_alert_to_viewers("[src]'s eyes gleam malevolently")))
+		if(6)
+			for(var/atom/movable/object AS in turf_contents)
+				if(isinjector(object))
+					qdel(object)
+					playsound(src,'sound/items/hypospray.ogg', 25, 1)
+					balloon_alert_to_viewers("Injects [object] into its arm")
+					break
+
 
 //handles gnome "escaping" a shuttle crush
 /obj/item/toy/plush/gnome/living/proc/shuttle_crush()
 	SIGNAL_HANDLER
-	new /obj/item/toy/plush/gnome(gnome_origin) //shuttle crush deletes an object, create new gnome at spawn point to give illusion of escape
+	new /obj/item/toy/plush/gnome(gnome_origin) //shuttle crush deletes src object, create new gnome at spawn point to give illusion of escape
 
 ///validate that the turf we're attempting to teleport to is not dense in space etc
 /obj/item/toy/plush/gnome/living/proc/handle_pipe_mode(turf/targetturf)
@@ -646,13 +729,14 @@
 			playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 			pipe_mode = FALSE
 	else //if we're not in pipe mode check the ground for scrubbers/vents, if we find one enter it
-		for(var/atom/movable/object AS in targetturf.contents)
+		if(!length(turf_contents))
+			return
+		for(var/atom/movable/object AS in turf_contents)
 			if(isatmosvent(object) || isatmosscrubber(object))
 				pipe_mode = TRUE
 				src.forceMove(object)
 				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
-#undef STANDARD_GNOME_ACT_TIMER
 #undef STANDARD_GNOME_MOVE_RANGE
 #undef HIGH_GNOME_MOVE_RANGE
 #undef STANDARD_GNOME_PIPE_CHANCE
