@@ -87,7 +87,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/forward_charge
 	name = "Forward Charge"
-	action_icon_state = "charge"
+	action_icon_state = "pounce"
 	desc = "Charge up to 4 tiles and knockdown any targets in our way."
 	ability_name = "charge"
 	cooldown_timer = 10 SECONDS
