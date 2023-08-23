@@ -625,6 +625,7 @@
 ///handles gnome teleportation when not being observed by players
 /obj/item/toy/plush/gnome/living/proc/teleport_routine(turf/targetturf)
 	var/loopcount
+	flick("gnome_escape", src)
 	while(!length(possible_mobs))
 		loopcount += 1
 		var/area/targetarea = get_area(targetturf)
@@ -638,6 +639,7 @@
 			teleport_retries = 0 //teleported successfully, clear teleport_retries
 			break
 	src.forceMove(targetturf)
+	flick("gnome_return", src)
 
 ///validate that the turf we're attempting to teleport to is not dense in space etc
 /obj/item/toy/plush/gnome/living/proc/get_teleport_prereqs(turf/targetturf, ignore_watching_players = FALSE)
