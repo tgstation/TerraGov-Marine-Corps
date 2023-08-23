@@ -1027,7 +1027,7 @@
 			/obj/item/clothing/head/modular/marine/eva = -1,
 			/obj/item/clothing/head/modular/marine/eva/skull = -1,
 			/obj/item/clothing/head/modular/marine/helljumper = -1,
-			/obj/item/clothing/head/modular/marine/ranger = -1,
+			/obj/item/clothing/head/modular/marine/hotaru = -1,
 			/obj/item/clothing/head/modular/marine/traditional = -1,
 			/obj/item/clothing/head/modular/marine/trooper = -1,
 			/obj/item/clothing/head/modular/marine/gungnir = -1,
@@ -1078,6 +1078,11 @@
 			/obj/item/armor_module/armor/chest/marine/kabuto = -1,
 			/obj/item/armor_module/armor/legs/marine/kabuto = -1,
 			/obj/item/armor_module/armor/arms/marine/kabuto = -1,
+			/obj/item/clothing/head/modular/marine/hotaru = -1,
+			/obj/item/clothing/suit/modular/jaeger/hotaru = -1,
+			/obj/item/armor_module/armor/chest/marine/hotaru = -1,
+			/obj/item/armor_module/armor/legs/marine/hotaru = -1,
+			/obj/item/armor_module/armor/arms/marine/hotaru = -1,
 
 		),
 		"Jaeger Mk.I chestpieces" = list(

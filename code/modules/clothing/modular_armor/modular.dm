@@ -97,6 +97,10 @@
 		/obj/item/armor_module/armor/legs/marine/kabuto,
 		/obj/item/armor_module/armor/arms/marine/kabuto,
 
+		/obj/item/armor_module/armor/chest/marine/hotaru,
+		/obj/item/armor_module/armor/legs/marine/hotaru,
+		/obj/item/armor_module/armor/arms/marine/hotaru,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
