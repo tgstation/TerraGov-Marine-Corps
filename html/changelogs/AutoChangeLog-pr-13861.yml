@@ -1,0 +1,4 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - refactor: "reorganized xenomorph sprites folder"
