@@ -196,9 +196,9 @@
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.20 //Has a forced laser sight.
 	accuracy_mult_unwielded = 0.95
-	scatter_unwielded = 4
 	recoil = -2
 	recoil_unwielded = -2
+	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
@@ -231,7 +231,7 @@
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
 	recoil = -2
-	scatter_unwielded = 2
+	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper P-1911A1 custom pistol"
@@ -518,7 +518,6 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
-	extra_delay = 0.3 SECONDS
 	burst_amount = 3
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
@@ -526,6 +525,8 @@
 	aim_slowdown = 0.2
 	scatter = 0
 	scatter_unwielded = 6
+	lower_akimbo_accuracy = 2
+	akimbo_additional_delay = 2
 
 /obj/item/weapon/gun/pistol/vp70/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/compensator)
