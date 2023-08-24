@@ -2,7 +2,8 @@
 /datum/campaign_mission/tdm
 	name = "Combat patrol"
 	map_name = "Orion Outpost"
-	map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm'
+	//map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm'
+	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	objective_description = list(
 		"starting_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
 		"hostile_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
