@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed 1911 having lower scatter than it should"
+  - balance: "Mod4 no longer has an extra delay when burst firing"
+  - balance: "Slight akimbo nerfs to the P-23, 1911 and Mod4"
