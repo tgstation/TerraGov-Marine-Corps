@@ -1,7 +1,7 @@
 /obj/structure/musician
 	name = "Not A Piano"
 	desc = "Something broke, contact coderbus."
-	interaction_flags = INTERACT_OBJ_DEFAULT
+	interaction_flags = INTERACT_OBJ_UI
 	var/can_play_unanchored = FALSE
 	var/list/allowed_instrument_ids = list("r3grand","r3harpsi","crharpsi","crgrand1","crbright1", "crichugan", "crihamgan","piano")
 	var/datum/song/song
