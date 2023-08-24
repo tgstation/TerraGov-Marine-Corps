@@ -1,5 +1,5 @@
 {
-	"marine_uniform":[
+	"hyperscale_marine_jumpsuit":[
 		{
 			"type": "hyperscale",
 			"icon_state": "hyperscale_marine_jumpsuit"
@@ -10,7 +10,7 @@
 			"blend_mode":"overlay"
 		}
 	],
-	"marine_uniform_d":[
+	"hyperscale_marine_jumpsuit_d":[
 		{
 			"type": "hyperscale",
 			"icon_state": "hyperscale_marine_jumpsuit_d"
@@ -21,7 +21,7 @@
 			"blend_mode": "overlay"
 		}
 	],
-	"marine_uniform_h":[
+	"hyperscale_marine_jumpsuit_h":[
 		{
 			"type": "hyperscale",
 			"icon_state": "hyperscale_marine_jumpsuit_h"
@@ -32,7 +32,7 @@
 			"blend_mode": "overlay"
 		}
 	],
-	"marine_uniform_r":[
+	"hyperscale_marine_jumpsuit_r":[
 		{
 			"type": "hyperscale",
 			"icon_state": "hyperscale_marine_jumpsuit_r"

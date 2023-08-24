@@ -189,7 +189,7 @@
  */
 
 /datum/greyscale_config/marine_uniform
-	icon_file = 'icons/mob/modular/marine_uniforms.dmi'
+	icon_file = 'icons/mob/modular/marine_uniform.dmi'
 	json_config = 'code/datums/greyscale/json_configs/marine_uniform.json'
 
 /*
