@@ -208,7 +208,7 @@
 /obj/effect/xenomorph/warp_shadow
 	name = "warp shadow"
 	desc = "A strange rift in space and time. You probably shouldn't touch this."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/wraith.dmi'
 	icon_state = "Wraith Walking"
 	color = COLOR_BLACK
 	alpha = 128 //Translucent
