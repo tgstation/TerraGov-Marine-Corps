@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/baneling
 	name = "Baneling"
 	desc = "An oozy, squishy alien that can roll in agile speeds, storing various dangerous chemicals in its sac..."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/baneling.dmi'
 	icon_state = "Baneling Walking"
 	bubble_icon = "alienleft"
 	health = 100
@@ -37,7 +37,7 @@
 /obj/structure/xeno/baneling_pod
 	name = "Baneling pod"
 	desc = "A resin structure filled with an oozing slimy pod that swells constantly. It is filled to the brim with small, crawling figures, merging what seems to be other pods inside."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/baneling.dmi'
 	icon_state = "Baneling Pod"
 	max_integrity = 100
 	density = FALSE
