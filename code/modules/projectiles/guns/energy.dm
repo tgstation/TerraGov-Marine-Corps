@@ -206,14 +206,21 @@
 	default_ammo_type = /obj/item/cell/lasgun/pulse
 	allowed_ammo_types = list(/obj/item/cell/lasgun/pulse)
 
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 	ammo_level_icon = "m19c4"
-	fire_delay = 8
+	fire_delay = 4
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.95
 	scatter_unwielded = 25
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+
+/obj/item/weapon/gun/energy/lasgun/pulse/Initialize(mapload, spawn_empty)
+	. = ..()
+	AddComponent(/datum/component/reequip, list(SLOT_BELT)) //Innate mag harness, no more free pulse rifles for you >:(
 
 //-------------------------------------------------------
 //A practice version of M43, only for memes

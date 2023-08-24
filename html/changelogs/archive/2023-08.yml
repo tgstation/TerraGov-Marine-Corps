@@ -182,3 +182,167 @@
   - bugfix: hunter mirage now works as intended
   forestbbbbbbb:
   - bugfix: Fix double leading space in paygrades
+2023-08-13:
+  Barnet2:
+  - rscadd: Added chemistry request lines to most shipmaps.
+2023-08-14:
+  ClosetedSkeletonGH:
+  - rscadd: Adds 150 new robot random names
+  RipGrayson:
+  - rscadd: Added the ability for admins to toggle gimmick tads
+  - balance: The food tad is now classified as a gimmick tad
+  - balance: Gimmick tads now require admin intervention before they can be selected
+  - balance: Enlarged west caves on LV624 to combat map imbalance.
+  Wisemonster:
+  - bugfix: Fixed jobs listing an unused gamemode in their description as the gamemode
+      they are in.
+  Xander3359:
+  - rscadd: Self-dusting implant that triggers on death for the elite moth ERT.
+  - code_imp: Added unit test for implanting
+  ivanmixo:
+  - code_imp: Deleted old shitcode access proc
+  - balance: Bring resin door melee armor back down to previous values
+2023-08-15:
+  Barnet2:
+  - rscadd: Added soap and sterilizing spray bottles to the NanotrasenMed Plus
+  RipGrayson:
+  - rscadd: Added the ability for the AI to conduct a bioscan on its own
+  Sebbe9123:
+  - balance: Natural blood regen now regens in tiers based on how much nutrition you
+      have.
+  coldironwarrior:
+  - bugfix: fixed the area for a single tile in magmoor's security building
+  ivanmixo:
+  - bugfix: Fixed jobs not scaling if nobody readies up
+  - bugfix: Fixed jobs not being scaled properly
+  lbnesquik:
+  - balance: mortar flare and smoke are 50% cheaper now
+  novaepee:
+  - imageadd: Reqtorio screen background color change
+2023-08-16:
+  Barnet2:
+  - qol: All shipside medbays now have a map table.
+  - qol: All shipside medbays now have a blood vendor in the main lobby.
+  - qol: Rechargers in medbay on Pillar of Spring are now more visible.
+  Lumipharon:
+  - bugfix: fixed resin doors appearing closed when they are actuall open, after creation
+  forestbbbbbbb:
+  - rscadd: ported tg statpanel
+  ivanmixo:
+  - bugfix: Fixed people getting stuck in tad camera view
+  yyzsong:
+  - bugfix: Replaced a missing area tile for ice.
+2023-08-17:
+  Blundir:
+  - bugfix: fixed material sheet stacks having no or incorrect inhands sprites
+  - imageadd: added new inhands sprites for tools that match the inventory counterpart
+  DeerJesus:
+  - rscadd: added nt-06 experimental liquor, a proto-bacchus-blessing that fucks up
+      any liver it touches
+  - rscadd: added the bottle of space-aged whiskey (like ship-aged whiskey irl but
+      a pun and more relevant)
+  - rscadd: added SIX new items to the corporate liason suitcase!
+  KrabSpider:
+  - rscadd: Re-adds Silence, a Hunter-exclusive ability that mutes and deafens hostile
+      targets the Hunter has line of sight to in a 5x5 area for 10 seconds. Hunter's
+      Mark targets suffer a 50% longer duration.
+  Lumipharon:
+  - bugfix: fixed an issue with throwing some mobs not stopping correctly
+  - bugfix: fixed the front tad window allow fire and projectiles through
+  RipGrayson:
+  - bugfix: Fixed being able to spam AI bioscans
+  Scarlet-Oduko:
+  - bugfix: Trailblazers no longer teleport to hivemind core with them
+  Xander3359:
+  - balance: Garand clips are smaller
+  - balance: Death Squads are actual threats once more
+  coldironwarrior:
+  - spellcheck: updates the roundstart tips
+  forestbbbbbbb:
+  - rscdel: Remove a bad crash site from Big Red
+  lbnesquik:
+  - rscadd: Added mortar smoke shells to the factory
+  - qol: Improved refills flavor text, so you know what's actually in your hands
+  - bugfix: fixed the Flares refills being wrongly called High Explosives
+  - balance: Actually implemented a discount for HE, INC, Flare and Smoke mortar shells
+      via factory
+2023-08-18:
+  Barnet2:
+  - rscadd: Added Medical Doctor clothing to the Clothing Vendor in a new section
+      called "Medical Clothing"
+  - bugfix: Medical scrubs now have their respective color on their name.
+  - balance: Medical Doctor slots reduced to 2 from 6.
+  forestbbbbbbb:
+  - rscadd: Ghosts can point
+2023-08-19:
+  Lumipharon:
+  - balance: Acting squad leaders now have 1 level lower in leadership compared to
+      actual squad leaders
+  - bugfix: Fixed squaddies being able to use leader droppods
+  Redory:
+  - qol: Ghosts can teleport using Medevacs, Xeno tunnels, ASRS teleporters, Wraith
+      portals and Shuttle computers.
+  - qol: Medevac stretchers now have a realtime cooldown on their sprite when in inventory.
+  - qol: Medevac beacons now list all linked stretchers and show their cooldowns.
+  ivanmixo:
+  - bugfix: Fixes some wield bugs
+  - bugfix: You can't open the shutters before the alamo can even take off anymore
+  tyeagg:
+  - rscdel: unused rocket arty typepath
+  - balance: db mortar reload time to 2 seconds
+  - balance: db mortar max rounds to 2
+  - balance: db mortar now has cooloff time of 6s
+  - balance: db mortar now has base spread of 2 tiles
+2023-08-20:
+  ivanmixo:
+  - bugfix: Fixed all xeno hives sharing the same point pool
+2023-08-21:
+  Lewdcifer:
+  - balance: MK88 Mod 4 Combat Pistol nerfed. Sunder reduced from 2 > 0.5, burst fire
+      now has a 0.3s delay between bursts.
+  Xander3359:
+  - rscadd: station bounced radio in engi-vend
+  forestbbbbbbb:
+  - bugfix: Pointing arrows are no longer hidden under things
+  ivanmixo:
+  - balance: AI xenos no longer gib on death every time
+  - code_imp: Unit tests are done in a box now instead of space
+  - balance: Pistols now have full auto! No more spam clicking
+  - balance: Increased the unwielded scatter of the P23 and 1911
+2023-08-22:
+  DeltaFire15:
+  - admin: Mentors now bypass spam filters when using private messages.
+  Lumipharon:
+  - code_imp: Killed images in sec/med records
+  RipGrayson:
+  - bugfix: Fixed girders not properly smoothing by migrating them to current smoothing
+      system.
+  - bugfix: Fixed ship wall decorations being unused since smoothing system migration.
+  - balance: Firedoors now take a few seconds to weld and unweld
+  - refactor: Cleaned handwashing code up somewhat
+  - bugfix: Fixed an incorrect balloon alert when operating a fire extinguisher
+  - balance: Welding floor tiles no longer generate metal
+  Sebbe9123:
+  - balance: Rebalances blood regen to be more player friendly above 90%
+  - balance: Adds a tier below 50% blood to quickly bring you above 50%
+  coldironwarrior:
+  - bugfix: added some missing fog tiles around silos on ice colony and big red for
+      crash games
+  lbnesquik:
+  - qol: added some markings to the debugdalus
+2023-08-24:
+  Blundir:
+  - refactor: reorganized xenomorph sprites folder
+  Lumipharon:
+  - imageadd: added some new/touched up stair sprites
+  breadhunt:
+  - rscadd: 'New Widow ability: Cannibalise. Consume one of our young, in exchange
+      for a lowered cooldown when birthing new young.'
+  - imageadd: Cannibalise icon
+  coldironwarrior:
+  - bugfix: adds a missing wire to the pillar of spring medbay store room
+  forestbbbbbbb:
+  - bugfix: fixed maps
+  lbnesquik:
+  - rscadd: Added medivac beds to corpsmen vendor for their entire budget
+  - code_imp: Added a space to the mortar code :)

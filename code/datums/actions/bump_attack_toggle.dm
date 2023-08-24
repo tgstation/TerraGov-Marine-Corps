@@ -1,6 +1,7 @@
 // Toggle Bumpattacks
 /datum/action/bump_attack_toggle
 	name = "Toggle Bump Attacks"
+	action_icon = 'icons/Xeno/actions.dmi'
 	action_type = ACTION_TOGGLE
 	/// If we are toggled to attack whoever we bump onto, set by the bumping attack component when its toggled
 	var/attacking = FALSE

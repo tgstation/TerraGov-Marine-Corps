@@ -507,6 +507,7 @@
 	name = "C1 Garand enbloc clip"
 	desc = "A enbloc clip filled with .30 caliber rifle rounds for the C1 Garand."
 	caliber = CALIBER_3006
+	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "garand"
 	icon_state_mini = "clips"
 	default_ammo = /datum/ammo/bullet/rifle/garand

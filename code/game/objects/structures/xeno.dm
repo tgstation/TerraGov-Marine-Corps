@@ -122,7 +122,7 @@
 
 	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
 		if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
-			SSresinshaping.quickbuilds++
+			SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, "alien_resin_break", 25) //SFX
 		deconstruct(TRUE)
@@ -155,7 +155,7 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
-	soft_armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 15, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 33, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 15, BIO = 0, FIRE = 0, ACID = 0)
 	trigger_sound = "alien_resin_move"
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
@@ -165,6 +165,9 @@
 	///The timer that tracks the delay above
 	var/closetimer
 
+/obj/structure/mineral_door/resin/smooth_icon()
+	. = ..()
+	update_icon()
 
 /obj/structure/mineral_door/resin/Initialize(mapload)
 	. = ..()
@@ -195,7 +198,7 @@
 		try_toggle_state(X)
 		return TRUE
 	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		SSresinshaping.quickbuilds++
+		SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
 		qdel(src)
 		return TRUE
 

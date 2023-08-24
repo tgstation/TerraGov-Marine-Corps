@@ -13,7 +13,7 @@
 		/datum/job/terragov/engineering/tech = 2,
 		/datum/job/terragov/requisitions/officer = 1,
 		/datum/job/terragov/medical/professor = 1,
-		/datum/job/terragov/medical/medicalofficer = 6,
+		/datum/job/terragov/medical/medicalofficer = 4,
 		/datum/job/terragov/medical/researcher = 2,
 		/datum/job/terragov/civilian/liaison = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
@@ -29,8 +29,8 @@
 	)
 	job_points_needed_by_job_type = list(
 		/datum/job/terragov/squad/smartgunner = 20,
-		/datum/job/terragov/squad/corpsman = 10,
-		/datum/job/terragov/squad/engineer = 10,
+		/datum/job/terragov/squad/corpsman = 5,
+		/datum/job/terragov/squad/engineer = 5,
 		/datum/job/xenomorph = NUCLEAR_WAR_LARVA_POINTS_NEEDED,
 	)
 

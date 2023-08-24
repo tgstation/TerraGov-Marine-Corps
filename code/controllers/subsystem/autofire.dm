@@ -39,7 +39,8 @@ SUBSYSTEM_DEF(automatedfire)
 	head_offset = world.time
 	bucket_resolution = world.tick_lag
 
-/datum/controller/subsystem/automatedfire/stat_entry(msg = "ActShooters:[shooter_count]")
+/datum/controller/subsystem/automatedfire/stat_entry(msg)
+	msg = "ActShooters:[shooter_count]"
 	return ..()
 
 /datum/controller/subsystem/automatedfire/fire(resumed = FALSE)

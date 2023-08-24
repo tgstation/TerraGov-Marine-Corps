@@ -123,5 +123,6 @@
 #define ui_ai_announcement_help "SOUTH:6,WEST+5"
 #define ui_ai_track_with_camera "SOUTH:6,WEST+2"
 #define ui_ai_camera_light "SOUTH:6,WEST+3"
-#define ui_ai_multicam "SOUTH+1:6,WEST+13"
-#define ui_ai_add_multicam "SOUTH+1:6,WEST+14"
+#define ui_ai_multicam "SOUTH:6,WEST+17"
+#define ui_ai_add_multicam "SOUTH:6,WEST+18"
+#define ui_ai_bioscan "SOUTH:6,WEST+6"

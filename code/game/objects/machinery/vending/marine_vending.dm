@@ -1296,6 +1296,16 @@
 			/obj/item/clothing/head/beret/marine = -1,
 			/obj/item/clothing/head/tgmcberet = -1,
 		),
+		"Medical Clothing" = list(
+			/obj/item/clothing/under/rank/medical/blue = -1,
+			/obj/item/clothing/under/rank/medical/green = -1,
+			/obj/item/clothing/under/rank/medical/purple = -1,
+			/obj/item/clothing/suit/storage/labcoat = -1,
+			/obj/item/clothing/suit/surgical = -1,
+			/obj/item/clothing/mask/surgical = -1,
+			/obj/item/clothing/gloves/latex = -1,
+			/obj/item/clothing/shoes/white = -1,
+		),
 	)
 
 	prices = list()
