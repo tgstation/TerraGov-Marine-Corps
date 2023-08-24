@@ -68,5 +68,9 @@ map desparity
 endmap
 
 map lawanka
-minplayers 60
+	minplayers 60
+endmap
+
+map daedalus_prison
+	minplayers 30
 endmap
