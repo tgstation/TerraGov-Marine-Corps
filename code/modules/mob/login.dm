@@ -39,6 +39,7 @@
 		key = client.key
 	reset_perspective(loc)
 
+	med_hud_set_status()
 	reload_huds()
 	reload_fullscreens()
 
