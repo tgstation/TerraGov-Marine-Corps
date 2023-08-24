@@ -185,6 +185,14 @@
 	json_config = 'code/datums/greyscale/json_configs/leather_jacket.json'
 
 /*
+ * COLORABLE UNIFORM
+ */
+
+/datum/greyscale_config/marine_uniform
+	icon_file = 'icons/mob/modular/marine_uniforms.dmi'
+	json_config = 'code/datums/greyscale/json_configs/marine_uniform.json'
+
+/*
  * COLORABLE BADGES
  */
 
