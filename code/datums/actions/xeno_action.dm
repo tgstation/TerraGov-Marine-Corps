@@ -2,6 +2,7 @@
 /datum/action/xeno_action
 	///If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	desc = "This ability can not be found in codex."
+	action_icon = 'icons/Xeno/actions.dmi'
 	var/plasma_cost = 0
 	///bypass use limitations checked by can_use_action()
 	var/use_state_flags = NONE
@@ -19,7 +20,7 @@
 	if(plasma_cost)
 		name = "[name] ([plasma_cost])"
 	var/image/cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock", ACTION_LAYER_CLOCK)
-	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/mob/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
+	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/Xeno/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
 	visual_references[VREF_IMAGE_XENO_CLOCK] = cooldown_image

@@ -1377,9 +1377,10 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "amz" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "amA" = (
 /obj/structure/bed/chair{
@@ -1674,7 +1675,8 @@
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "aol" = (
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "aom" = (
 /obj/structure/table/woodentable,

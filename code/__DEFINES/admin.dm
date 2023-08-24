@@ -85,6 +85,9 @@
 #define SPAM_TRIGGER_WEIGHT_WARNING 2.5 //The weight required per the time period before the spam-prevention will warn you
 #define SPAM_TRIGGER_WEIGHT_AUTOMUTE 4 //The weight required per the time period before the spam-prevention will automute you
 
+#define MESSAGE_FLAG_ADMIN (1<<0) //! Spam filter info that this message is admin-related and shouldn't count towards admin spam limit (not needed currently due to admins bypassing it but eh!)
+#define MESSAGE_FLAG_MENTOR (1<<1) //! Spam filter info that this message is mentor-related and shouldn't count towards a mentor's spam limit.
+
 #define MAX_LENGTH_REQ_REASON 250
 
 ///Max length of a keypress command before it's considered to be a forged packet/bogus command

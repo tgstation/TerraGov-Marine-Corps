@@ -41,8 +41,9 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/hashed_minimaps = list()
 
 /datum/controller/subsystem/minimaps/Initialize()
-	for(var/level=1 to length(SSmapping.z_list))
-		generate_minimap(level)
+	for(var/datum/space_level/z_level AS in SSmapping.z_list)
+		load_new_z(null, z_level)
+	//RegisterSignal(SSdcs, COMSIG_GLOB_NEW_Z, PROC_REF(load_new_z))
 
 	initialized = TRUE
 
@@ -76,7 +77,10 @@ SUBSYSTEM_DEF(minimaps)
 	iteration = 0
 
 ///Creates a minimap for a particular z level
-/datum/controller/subsystem/minimaps/proc/generate_minimap(level)
+/datum/controller/subsystem/minimaps/proc/load_new_z(datum/dcs, datum/space_level/z_level)
+	SIGNAL_HANDLER
+
+	var/level = z_level.z_value
 	minimaps_by_z["[level]"] = new /datum/hud_displays
 	if(!is_mainship_level(level) && !is_ground_level(level) && !is_away_level(level)) //todo: maybe move this around
 		return
@@ -101,7 +105,9 @@ SUBSYSTEM_DEF(minimaps)
 	icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
 	icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
 
-	//generation is done, now we need to center the icon to someones view, this can be left out if you like it ugly and will halve SSinit time
+	//generation is done, now we need to center the icon to someones view,
+	//this can be left out if you like it ugly and will halve SSinit time
+
 	//calculate the offset of the icon
 	var/largest_x = 0
 	var/smallest_x = SCREEN_PIXEL_SIZE

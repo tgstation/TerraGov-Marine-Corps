@@ -67,7 +67,7 @@
 	SSair.setup_atmos_machinery()
 	SSair.setup_pipenets()
 	if(minimap)
-		SSminimaps.generate_minimap(level.z_value)
+		SSminimaps.load_new_z(null, level)
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 
 	return level
