@@ -1426,6 +1426,7 @@
 	pixel_x = 8;
 	pixel_y = 1
 	},
+/mob/living/simple_animal/cat/Runtime,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -3586,6 +3587,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/structure/bed/chair/nometal,
+/mob/living/simple_animal/corgi/ian,
 /turf/open/floor/mainship/terragov/west{
 	dir = 9
 	},
@@ -11003,6 +11005,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
+"dhz" = (
+/mob/living/simple_animal/cat/martin,
+/turf/open/floor/prison,
+/area/sulaco/cargo/office)
 "dhK" = (
 /obj/structure/cable,
 /turf/open/floor/prison/red{
@@ -22736,6 +22742,13 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
+"shy" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/mob/living/simple_animal/corgi/ranger,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria)
 "shz" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/prop/mainship/computer{
@@ -25624,6 +25637,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment,
+/mob/living/simple_animal/cat/martin,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo/prep)
 "vSd" = (
@@ -48967,7 +48981,7 @@ xVA
 epB
 aGY
 aJU
-aKB
+shy
 aKW
 aKB
 aKB
@@ -51034,7 +51048,7 @@ kzU
 alk
 vIy
 vdG
-alk
+dhz
 alk
 aqh
 iGf
