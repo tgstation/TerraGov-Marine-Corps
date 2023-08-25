@@ -1306,6 +1306,9 @@
 			/obj/item/clothing/gloves/latex = -1,
 			/obj/item/clothing/shoes/white = -1,
 		),
+		"Civilian Surplus Wear" = list(
+			/obj/item/clothing/under/rank/chaplain = -1
+		)
 	)
 
 	prices = list()
