@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - bugfix: "Cannibalise doesn't let widow have too many spiderlings"
