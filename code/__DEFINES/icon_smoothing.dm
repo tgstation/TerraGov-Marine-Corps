@@ -138,3 +138,4 @@
 #define SMOOTH_GROUP_XENO_STRUCTURES S_OBJ(69) //Resin structures.
 
 #define SMOOTH_GROUP_FOAM_WALL S_OBJ(70) //foam walls.
+#define SMOOTH_GROUP_TALL_GRASS S_OBJ(71) //tall grass

@@ -1,4 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"al" = (
+/obj/structure/stairs/edge{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/space)
 "am" = (
 /obj/structure/catwalk,
 /turf/open/ground/grass/weedable,
@@ -6,6 +14,12 @@
 "an" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor,
+/area/space)
+"bS" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
 /area/space)
 "bV" = (
 /obj/structure/catwalk,
@@ -18,6 +32,10 @@
 /obj/structure/stairs/seamless{
 	dir = 1
 	},
+/turf/open/ground/grass/weedable,
+/area/space)
+"cm" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/ground/grass/weedable,
 /area/space)
 "dT" = (
@@ -48,6 +66,18 @@
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
+"gW" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/space)
+"hn" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/space)
 "hv" = (
 /turf/open/ground/grass/weedable,
 /area/shuttle/drop1/lz1)
@@ -94,9 +124,21 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"lD" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/space)
 "me" = (
 /obj/structure/rock/variable/jungle_large,
 /turf/open/liquid/water/river/autosmooth,
+/area/space)
+"ns" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
 /area/space)
 "nK" = (
 /obj/structure/cargo_container{
@@ -147,6 +189,12 @@
 "rn" = (
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
+"rQ" = (
+/obj/structure/stairs/seamless/edge_vert,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/space)
 "rS" = (
 /obj/structure/stairs/seamless/edge_vert{
 	dir = 8
@@ -188,9 +236,22 @@
 	},
 /turf/closed/wall,
 /area/space)
+"uc" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/space)
 "up" = (
 /obj/structure/rock/variable/jungle,
 /turf/open/ground/grass/weedable,
+/area/space)
+"uI" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
 /area/space)
 "vZ" = (
 /turf/open/floor/plating/ground/dirt2,
@@ -235,6 +296,12 @@
 "zi" = (
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"zn" = (
+/obj/structure/flora/grass/tallgrass{
+	color = "#7a8c54"
+	},
+/turf/open/ground/grass/weedable,
+/area/space)
 "zs" = (
 /obj/structure/stairs/edge{
 	dir = 1
@@ -245,11 +312,25 @@
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
 /area/space)
+"Ai" = (
+/obj/structure/stairs/edge{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/space)
 "Aw" = (
 /obj/machinery/door/airlock/colony/medical/hydroponics{
 	dir = 1
 	},
 /turf/open/floor,
+/area/space)
+"AG" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
 /area/space)
 "Bb" = (
 /turf/open/liquid/water/river,
@@ -275,11 +356,22 @@
 "CG" = (
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/space)
+"Dp" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/space)
 "DO" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/space)
 "EX" = (
 /turf/open/ground/grass/weedable,
+/area/space)
+"Fy" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
 /area/space)
 "FH" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -298,11 +390,27 @@
 /obj/structure/flora/jungle/grass,
 /turf/open/ground/grass/weedable,
 /area/space)
+"Gm" = (
+/obj/structure/flora/grass/tallgrass/tallgrasscorner{
+	color = "#7a8c54";
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/space)
+"GI" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/space)
 "Hm" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
 	},
 /area/shuttle/drop1/lz1)
+"Hy" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/space)
 "Ic" = (
 /obj/structure/platform{
 	dir = 8
@@ -316,6 +424,9 @@
 /area/space)
 "Je" = (
 /turf/open/liquid/water/river/autosmooth,
+/area/space)
+"JL" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2,
 /area/space)
 "JR" = (
 /obj/structure/platform{
@@ -337,6 +448,11 @@
 "Lx" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
+	},
+/area/space)
+"LE" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 8
 	},
 /area/space)
 "LG" = (
@@ -396,11 +512,34 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor,
 /area/space)
+"Qo" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/space)
+"Qw" = (
+/obj/structure/flora/grass/tallgrass/tallgrasscorner{
+	color = "#7a8c54";
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/space)
+"QL" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 1
+	},
+/area/space)
 "Ri" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
 	},
 /area/shuttle/drop1/lz1)
+"Rk" = (
+/obj/structure/flora/grass/tallgrass/tallgrasscorner{
+	color = "#7a8c54"
+	},
+/turf/open/ground/grass/weedable,
+/area/space)
 "RA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor,
@@ -427,6 +566,11 @@
 /area/space)
 "TJ" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/space)
+"Ua" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
 	},
 /area/space)
@@ -480,6 +624,16 @@
 "Yu" = (
 /obj/structure/stairs/seamless/edge,
 /turf/open/ground/grass/weedable,
+/area/space)
+"Zj" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/space)
+"Zq" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/floor/plating/ground/dirtgrassborder2,
 /area/space)
 
 (1,1,1) = {"
@@ -4533,9 +4687,9 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
+cm
+cm
+cm
 EX
 EX
 EX
@@ -4684,10 +4838,10 @@ Gd
 Gd
 Gd
 Gd
-EX
-EX
-EX
-EX
+cm
+cm
+cm
+cm
 EX
 EX
 EX
@@ -4836,10 +4990,10 @@ Gd
 Gd
 Gd
 Gd
-EX
-EX
-EX
-EX
+cm
+cm
+cm
+cm
 EX
 EX
 EX
@@ -4989,11 +5143,11 @@ Gd
 Gd
 Gd
 Gd
-EX
-EX
-EX
-EX
-EX
+cm
+cm
+cm
+cm
+cm
 EX
 EX
 EX
@@ -5143,11 +5297,11 @@ Gd
 Gd
 Gd
 Gd
-EX
-EX
-EX
-EX
-EX
+cm
+cm
+cm
+cm
+cm
 EX
 EX
 EX
@@ -5295,11 +5449,11 @@ EX
 Gd
 Gd
 Gd
-EX
-EX
-EX
-EX
-EX
+cm
+cm
+cm
+cm
+cm
 EX
 EX
 EX
@@ -5449,8 +5603,8 @@ Gd
 Gd
 EX
 EX
-EX
-EX
+cm
+cm
 EX
 EX
 EX
@@ -6340,7 +6494,7 @@ EX
 Gd
 Gd
 EX
-EX
+Qw
 EX
 EX
 EX
@@ -6492,8 +6646,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+Rk
+zn
 EX
 Gd
 EX
@@ -6644,7 +6798,7 @@ EX
 EX
 EX
 EX
-EX
+Gm
 EX
 EX
 Gd
@@ -6795,7 +6949,7 @@ EX
 EX
 EX
 EX
-Lx
+EX
 EX
 EX
 EX
@@ -6946,9 +7100,9 @@ Gd
 Gd
 Gd
 Gd
-CG
-vZ
-TJ
+EX
+EX
+EX
 EX
 EX
 EX
@@ -7099,7 +7253,7 @@ Gd
 Gd
 EX
 EX
-IF
+EX
 EX
 EX
 EX
@@ -8156,11 +8310,11 @@ EX
 EX
 EX
 EX
+CG
+TJ
 EX
 EX
-EX
-EX
-pr
+an
 Mg
 Mg
 Mg
@@ -8308,10 +8462,10 @@ EX
 EX
 up
 EX
-EX
-EX
-EX
-EX
+CG
+LE
+Lx
+Qo
 pr
 Mg
 Mg
@@ -8460,11 +8614,11 @@ pr
 pr
 pr
 EX
-EX
-EX
-EX
-ey
-Mg
+Ua
+uI
+vZ
+rQ
+RA
 Mg
 Mg
 Mg
@@ -8612,10 +8766,10 @@ Mg
 Mg
 pr
 up
-EX
-EX
-EX
-Wf
+GI
+JL
+vZ
+uc
 Mg
 Mg
 Mg
@@ -8764,10 +8918,10 @@ Mg
 Mg
 pr
 EX
-EX
-EX
-EX
-EX
+CG
+QL
+IF
+lD
 pr
 Mg
 Mg
@@ -8916,11 +9070,11 @@ Mg
 Mg
 pr
 EX
+CG
+TJ
 EX
 EX
-EX
-EX
-pr
+an
 Mg
 Mg
 Mg
@@ -9067,12 +9221,12 @@ Mg
 Mg
 Mg
 pr
-EX
-EX
-EX
+GI
+JL
+TJ
 EX
 Gl
-pr
+an
 Mg
 Mg
 Mg
@@ -9218,10 +9372,10 @@ Mg
 Mg
 Mg
 Mg
-Mg
-rS
-EX
-EX
+RA
+Hy
+vZ
+TJ
 EX
 Gd
 pr
@@ -9371,9 +9525,9 @@ Mg
 Mg
 Mg
 Mg
-VI
-EX
-Gl
+hn
+vZ
+bS
 zI
 Gd
 pr
@@ -9523,9 +9677,9 @@ Mg
 Mg
 Mg
 pr
-EX
-EX
-EX
+CG
+QL
+Dp
 Gd
 Gd
 pr
@@ -9675,8 +9829,8 @@ Mg
 Mg
 Mg
 pr
-EX
-EX
+CG
+TJ
 Gl
 Gd
 Gd
@@ -9827,8 +9981,8 @@ Mg
 Mg
 Mg
 pr
-EX
-EX
+CG
+TJ
 EX
 Gd
 Gd
@@ -9979,8 +10133,8 @@ pr
 pr
 pr
 pr
-EX
-sk
+CG
+Zj
 EX
 Gd
 Gd
@@ -10130,11 +10284,11 @@ Mg
 pr
 EX
 EX
-Gl
 EX
-EX
-EX
-fa
+CG
+LE
+Lx
+AG
 Gd
 EX
 EX
@@ -10283,11 +10437,11 @@ pr
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
+Ua
+IF
+uI
+LE
+Qo
 sk
 EX
 pr
@@ -10437,10 +10591,10 @@ EX
 Gd
 Gd
 EX
-sk
-EX
-EX
-EX
+Zq
+vZ
+LE
+Qo
 EX
 pr
 Mg
@@ -10589,10 +10743,10 @@ EX
 Gd
 Gd
 Gd
-EX
-Gl
-EX
-zI
+Ua
+ns
+uI
+gW
 EX
 pr
 Mg
@@ -10743,8 +10897,8 @@ Gd
 Gd
 Gd
 Gd
-EX
-EX
+CG
+TJ
 EX
 pr
 Mg
@@ -10895,8 +11049,8 @@ EX
 EX
 Gd
 zI
-EX
-EX
+CG
+TJ
 fa
 pr
 Mg
@@ -11040,15 +11194,15 @@ Mg
 Mg
 Mg
 pr
+fa
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
+GI
+Lx
+JL
+TJ
 EX
 pr
 Mg
@@ -11197,10 +11351,10 @@ pr
 pr
 zI
 EX
-EX
-EX
-EX
-EX
+CG
+QL
+IF
+Dp
 EX
 pr
 Mg
@@ -11348,9 +11502,9 @@ Mg
 Mg
 pr
 EX
-EX
-EX
-EX
+GI
+JL
+TJ
 up
 EX
 EX
@@ -11500,10 +11654,10 @@ Mg
 Mg
 pr
 EX
-EX
-EX
-EX
-EX
+CG
+vZ
+LE
+Qo
 zI
 EX
 pr
@@ -11651,11 +11805,11 @@ Mg
 Mg
 Mg
 pr
-EX
-WA
-EX
-WA
-zI
+sk
+Ai
+IF
+al
+Fy
 pr
 pr
 pr

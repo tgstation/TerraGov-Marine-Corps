@@ -220,6 +220,7 @@
 	icon_state = "tallgrass"
 	layer = TALL_GRASS_LAYER
 	opacity = TRUE
+	color = "#7a8c54"
 
 /obj/structure/flora/grass/tallgrass/tallgrasscorner
 	name = "tall grass"
@@ -230,6 +231,23 @@
 
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner
 	icon_state = "tallgrass_corner"
+
+/obj/structure/flora/grass/tallgrass/autosmooth
+	name = "tall grass"
+	icon = 'icons/obj/flora/smooth/tall_grass.dmi'
+	icon_state = "tallgrass-icon"
+	base_icon_state = "tallgrass"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_TALL_GRASS)
+	canSmoothWith = list(
+		SMOOTH_GROUP_TALL_GRASS,
+		SMOOTH_GROUP_ASTEROID_WARNING,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_FLORA,
+		SMOOTH_GROUP_WINDOW_FRAME,
+	)
 
 //bushes
 /obj/structure/flora/bush
