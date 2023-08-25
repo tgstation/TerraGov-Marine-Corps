@@ -2860,6 +2860,9 @@
 	dir = 1;
 	name = "\improper Medical Storage Airlock"
 	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "dxc" = (
@@ -4011,8 +4014,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "eZp" = (
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/aft_hallway)
+/obj/machinery/holopad,
+/turf/open/floor/mainship/floor,
+/area/mainship/living/pilotbunks)
 "faw" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -4654,6 +4658,7 @@
 	dir = 4
 	},
 /obj/structure/closet/bodybag,
+/obj/machinery/holopad,
 /turf/open/floor/cult,
 /area/medical/morgue)
 "fNR" = (
@@ -5633,6 +5638,13 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"hjG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/medical_science)
 "hlE" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
@@ -9197,6 +9209,7 @@
 /obj/machinery/air_alarm{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -9612,7 +9625,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "mfH" = (
-/obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/medical_science)
 "mgw" = (
@@ -10412,6 +10424,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
+/obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "ngO" = (
@@ -10869,6 +10882,7 @@
 /area/mainship/medical/chemistry)
 "nJd" = (
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry,
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "nJG" = (
@@ -12132,6 +12146,9 @@
 	dir = 1;
 	name = "\improper Medical Storage Airlock"
 	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "pqh" = (
@@ -12936,6 +12953,12 @@
 	dir = 4
 	},
 /area/space)
+"qqh" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/command/airoom)
 "qqP" = (
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/wood,
@@ -14094,6 +14117,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
+"rOr" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "rOw" = (
 /turf/open/floor/carpet/side,
 /area/mainship/living/commandbunks)
@@ -14654,6 +14681,16 @@
 	dir = 10
 	},
 /area/mainship/squads/req)
+"syD" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "syR" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -15301,6 +15338,15 @@
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/living/briefing)
+"tqD" = (
+/obj/machinery/door_control/old/medbay{
+	id = "Medbay";
+	name = "Medbay Lockdown";
+	pixel_x = 6;
+	pixel_y = -20
+	},
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/upper_medical)
 "tqR" = (
 /turf/closed/wall/mainship,
 /area/mainship/engineering/upper_engineering)
@@ -17664,6 +17710,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"wkJ" = (
+/obj/machinery/iv_drip,
+/obj/machinery/holopad,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "wkZ" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship,
@@ -19016,6 +19067,10 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
+"xOg" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "xQh" = (
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 1
@@ -19232,6 +19287,7 @@
 /area/mainship/squads/general)
 "xYD" = (
 /obj/effect/ai_node,
+/obj/machinery/holopad,
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "xYE" = (
@@ -42702,7 +42758,7 @@ esN
 kEP
 gmc
 kRY
-kQn
+hjG
 ubk
 mfH
 gmc
@@ -43992,7 +44048,7 @@ yjx
 bmo
 mzF
 vTy
-bxv
+tqD
 wcT
 pRb
 ppa
@@ -46296,7 +46352,7 @@ fTy
 iuw
 dQG
 mHi
-igh
+wkJ
 qZR
 mvs
 lGi
@@ -48088,7 +48144,7 @@ plN
 kDx
 suq
 bOz
-dpY
+xOg
 kWu
 usa
 bnL
@@ -48098,7 +48154,7 @@ vBY
 eBB
 liX
 yjx
-lAT
+bnL
 lQN
 dLo
 dLo
@@ -50425,7 +50481,7 @@ vAn
 vAn
 vAn
 vAn
-eZp
+swv
 vmD
 vmD
 vmD
@@ -54069,7 +54125,7 @@ hQD
 gll
 uMf
 fCi
-fCi
+qqh
 fCi
 fCi
 pdo
@@ -54289,18 +54345,18 @@ tVF
 rUF
 dtI
 kUU
-pGb
+rOr
 tVr
 xXT
 rUF
 tKs
 krM
-cPg
+rHh
 fYB
 xXT
 rUF
 nMA
-ycH
+syD
 rJe
 rUF
 vmD
@@ -55075,7 +55131,7 @@ pak
 hmH
 rUF
 dJU
-cPg
+rHh
 cPg
 cPg
 kdF
@@ -55281,7 +55337,7 @@ xLu
 nIj
 rmQ
 rip
-vou
+eZp
 uIX
 uIy
 xLu
@@ -57904,7 +57960,7 @@ hlO
 aat
 kuk
 sYd
-cPg
+rHh
 gUo
 mqK
 uKH
@@ -58649,12 +58705,12 @@ ykn
 pko
 tis
 cPg
-cPg
+rHh
 hcr
 adk
 cPg
 cPg
-lOp
+voa
 jbe
 cPg
 cPg
@@ -58664,7 +58720,7 @@ hgP
 cPg
 cPg
 cPg
-lOp
+voa
 jbe
 cPg
 cPg
