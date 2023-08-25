@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/puppet
 	name = "Puppet"
 	desc = "A reanimated body, crudely pieced together and held in place by an ominous energy tethered to some unknown force."
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/castes/puppet.dmi'
 	icon_state = "Puppet Running"
 	health = 250
 	maxHealth = 250
