@@ -9065,6 +9065,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/machinery/light/mainship{
+	dir = 1
+	},
 /turf/open/floor/prison/arrow/clean{
 	dir = 8
 	},
@@ -9655,10 +9658,19 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "btR" = (
-/obj/machinery/door_control/mainship/droppod{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/mainship/stripesquare,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/machinery/vending/nanomed,
+/turf/open/floor/prison/arrow/clean{
+	dir = 8
+	},
 /area/sulaco/hangar/droppod)
 "buz" = (
 /obj/machinery/firealarm{
@@ -11715,19 +11727,9 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
 "ehA" = (
-/obj/structure/rack,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/structure/sign/pods,
-/turf/open/floor/mainship/sterile/plain,
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
+/turf/open/space/basic,
 /area/sulaco/hangar/droppod)
 "ehJ" = (
 /obj/structure/window/reinforced{
@@ -13117,8 +13119,12 @@
 /turf/open/floor/prison,
 /area/sulaco/bar)
 "gbP" = (
-/obj/effect/soundplayer,
-/turf/closed/wall/mainship/gray,
+/obj/structure/droppod,
+/obj/structure/drop_pod_launcher,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/prison/cleanmarked,
 /area/sulaco/hangar/droppod)
 "gbY" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -13311,13 +13317,10 @@
 /area/sulaco/engineering/lower_engineering)
 "gkO" = (
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/light/mainship{
-	dir = 1
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/prison/arrow/clean{
 	dir = 8
@@ -13560,6 +13563,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
+"gEJ" = (
+/obj/machinery/door_control/mainship/droppod{
+	dir = 4
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/sulaco/hangar/droppod)
 "gEK" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
@@ -14832,18 +14841,12 @@
 /area/sulaco/briefing)
 "ikJ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/machinery/vending/nanomed,
-/turf/open/floor/prison/arrow/clean{
-	dir = 8
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
 	},
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/droppod)
 "ilp" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -16192,7 +16195,7 @@
 /obj/machinery/camera/autoname,
 /obj/machinery/door_control/mainship/droppod,
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5
+	dir = 1
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -17221,12 +17224,15 @@
 	},
 /area/sulaco/engineering)
 "lfa" = (
-/obj/structure/droppod,
-/obj/structure/drop_pod_launcher,
-/obj/machinery/light/mainship{
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/prison/cleanmarked,
+/turf/open/floor/prison/arrow/clean{
+	dir = 8
+	},
 /area/sulaco/hangar/droppod)
 "lfS" = (
 /obj/vehicle/ridden/motorbike,
@@ -17407,6 +17413,12 @@
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
+"luh" = (
+/obj/machinery/door/poddoor/mainship/droppod{
+	dir = 2
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/sulaco/hangar/droppod)
 "lve" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -18664,9 +18676,6 @@
 "mZj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5
 	},
 /turf/open/floor/prison/arrow/clean{
 	dir = 8
@@ -22085,11 +22094,14 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "rvS" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/droppod)
@@ -22530,10 +22542,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 9
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5
+	dir = 1
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/droppod)
@@ -23155,10 +23164,19 @@
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "sLp" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/prison/bright_clean,
+/obj/structure/rack,
+/obj/item/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
+/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/claymore/mercsword/machete,
+/obj/structure/sign/pods,
+/turf/open/floor/mainship/sterile/plain,
 /area/sulaco/hangar/droppod)
 "sLA" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -23742,12 +23760,12 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/living/starboard_garden)
 "tur" = (
+/obj/machinery/light/mainship,
+/obj/machinery/cic_maptable/droppod_maptable,
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
+	dir = 6
 	},
-/turf/open/floor/prison/arrow/clean{
-	dir = 8
-	},
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/droppod)
 "tus" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -25068,10 +25086,8 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "vhM" = (
-/obj/machinery/light/mainship,
-/obj/machinery/cic_maptable/droppod_maptable,
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 6
+	dir = 9
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/droppod)
@@ -61297,15 +61313,15 @@ aaa
 aaa
 aaa
 nzi
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
+cyv
+cyv
+cyv
+cyv
+cyv
+cyv
+cyv
+cyv
+cyv
 aPg
 aQv
 aRd
@@ -61555,15 +61571,15 @@ aaa
 aaa
 nzi
 bWf
-bWf
-bWf
-bWf
-bWf
-bWf
-bWf
-bWf
-bWf
-bFa
+rFM
+rFM
+rFM
+gbP
+rFM
+rFM
+qBE
+xca
+aPF
 aQI
 aQr
 fEL
@@ -61812,15 +61828,15 @@ aaa
 aaa
 nzi
 bWf
-rFM
-rFM
-rFM
+baj
 lfa
-rFM
-rFM
-qBE
+lfa
+lfa
+gkO
+mZj
+vhM
 xca
-aPF
+aRR
 uVR
 vVE
 rts
@@ -62069,15 +62085,15 @@ aaa
 aaa
 nzi
 bWf
-gkO
-baj
-baj
-baj
-mZj
-tur
+rFM
+rFM
+rFM
+rFM
+qBE
+vIJ
 sLp
 xca
-aRR
+aPF
 gHU
 aPF
 hgI
@@ -62329,13 +62345,13 @@ bWf
 rFM
 rFM
 rFM
-rFM
-qBE
-vIJ
-ehA
+rTz
+ikJ
+tur
 xca
-aPF
-aPF
+xca
+xHm
+aSk
 aPF
 wVa
 dtI
@@ -62583,15 +62599,15 @@ aaa
 aaa
 nzi
 bWf
-rFM
-rFM
-rFM
-rTz
+btR
+lfa
+lfa
+lfa
 rvS
-vhM
-xca
-xca
-gbP
+dde
+gEJ
+tcy
+wjr
 jQS
 aPF
 wXL
@@ -62840,14 +62856,14 @@ aaa
 aaa
 nzi
 bWf
-ikJ
-baj
-baj
-baj
+rFM
+rFM
+rFM
+rFM
 sbs
 dde
-btR
-tcy
+wjr
+luh
 wjr
 aSl
 gHU
@@ -63097,10 +63113,10 @@ aaa
 aaa
 nzi
 bWf
-rFM
-rFM
-rFM
-rFM
+ehA
+ehA
+ehA
+ehA
 sWO
 dvi
 qHe
