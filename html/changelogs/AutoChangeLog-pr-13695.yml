@@ -1,6 +1,0 @@
-author: "Redory"
-delete-after: True
-changes:
-  - imageadd: "added mini_icons for (hopefully) all mags."
-  - imageadd: "redid the compact magazine labels with correct weapon naming conventions."
-  - imagedel: "deleted one or two outdated mini_icons."

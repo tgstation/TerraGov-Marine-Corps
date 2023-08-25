@@ -498,6 +498,12 @@
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/silence
+	name = "impair senses"
+	full_name = "Hunter: Silence"
+	description = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
+	keybind_signal = COMSIG_XENOABILITY_SILENCE
+
 /datum/keybinding/xeno/mark
 	name = "mark"
 	full_name = "Hunter: Mark"
@@ -881,6 +887,12 @@
 	full_name = "Widow: Attach Spiderlings"
 	description = "Scoop up and carry your spawn with you."
 	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
+
+/datum/keybinding/xeno/cannibalise
+	name = "Cannibalise Spiderling"
+	full_name = "Widow: Cannibalise Spiderling"
+	description = "Eat your own young and store their biomass for later."
+	keybind_signal = COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING
 
 /datum/keybinding/xeno/web_hook
 	name = "Web Hook"

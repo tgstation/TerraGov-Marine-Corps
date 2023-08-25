@@ -56,10 +56,11 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "jb" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "jc" = (
 /obj/machinery/door/poddoor/railing{
@@ -157,9 +158,10 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "rF" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "sr" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -231,10 +233,11 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 1
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "xE" = (
 /obj/effect/landmark/eord_roomba,
@@ -285,15 +288,17 @@
 /area/deathmatch)
 "De" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Do" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Ei" = (
 /obj/structure/platform{
@@ -372,16 +377,18 @@
 /area/deathmatch)
 "LA" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "LY" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Mn" = (
 /turf/open/floor/plating/asteroidfloor,
@@ -406,10 +413,11 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 2
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "PF" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -503,9 +511,10 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "YO" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "ZA" = (
 /obj/structure/table/reinforced,

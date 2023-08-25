@@ -653,7 +653,7 @@
 	},
 /area/orion_outpost/surface/building/prep)
 "dM" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -927,7 +927,7 @@
 	},
 /area/orion_outpost/surface/building/command)
 "fc" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -1671,7 +1671,7 @@
 	},
 /area/orion_outpost/surface/landing_pad)
 "jk" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -2019,7 +2019,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
 "kT" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -2140,7 +2140,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/orion_outpost/surface/building/medbay)
 "lw" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -2376,7 +2376,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/nebuilding)
 "mJ" = (
-/obj/structure/stairs/seamless/platform/alt,
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostcent)
 "mL" = (
@@ -2443,7 +2443,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostsw)
 "nb" = (
-/obj/structure/stairs/seamless/platform/alt,
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "nc" = (
@@ -3346,7 +3346,7 @@
 	},
 /area/orion_outpost/surface/building/command)
 "rm" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -4740,7 +4740,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "yp" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -5022,7 +5022,7 @@
 	},
 /area/orion_outpost/surface/building/cargo)
 "zV" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -5093,7 +5093,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostse)
 "Ap" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -5399,7 +5399,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/tadpolepad)
 "BU" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -5761,7 +5761,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostnw)
 "DH" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -6266,7 +6266,7 @@
 	},
 /area/orion_outpost/surface/landing_pad_2)
 "Gy" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -8056,7 +8056,7 @@
 /turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "Pr" = (
-/obj/structure/stairs/seamless/platform/alt,
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
 "Ps" = (
@@ -8085,7 +8085,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/underground/caveE/garbledradio)
 "Py" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -9812,7 +9812,7 @@
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/prep)
 "Yv" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/mainship/green{

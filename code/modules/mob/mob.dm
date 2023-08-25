@@ -40,72 +40,6 @@
 	log_mob_tag("\[[tag]\] CREATED: [key_name(src)]")
 	become_hearing_sensitive()
 
-
-/mob/Stat()
-	. = ..()
-	if(statpanel("Status"))
-		if(GLOB.round_id)
-			stat("Round ID:", GLOB.round_id)
-		stat("Operation Time:", stationTimestamp("hh:mm"))
-		stat("Current Map:", length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
-		stat("Current Ship:", length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
-		stat("Game Mode:", "[GLOB.master_mode]")
-
-	if(statpanel("Game"))
-		if(client)
-			stat("Ping:", "[round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
-		stat("Time Dilation:", "[round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
-
-	if(client?.holder?.rank?.rights)
-		if(client.holder.rank.rights & (R_DEBUG))
-			if(statpanel("MC"))
-				stat("CPU:", "[world.cpu]")
-				stat("Instances:", "[num2text(length(world.contents), 10)]")
-				stat("World Time:", "[world.time]")
-				GLOB.stat_entry()
-				config.stat_entry()
-				GLOB.cameranet.stat_entry()
-				stat(null)
-				if(Master)
-					Master.stat_entry()
-				else
-					stat("Master Controller:", "ERROR")
-				if(Failsafe)
-					Failsafe.stat_entry()
-				else
-					stat("Failsafe Controller:", "ERROR")
-				if(Master)
-					stat(null)
-					for(var/datum/controller/subsystem/SS in Master.subsystems)
-						SS.stat_entry()
-		if(client.holder.rank.rights & (R_ADMIN|R_MENTOR))
-			if(statpanel("Tickets"))
-				GLOB.ahelp_tickets.stat_entry()
-		if(length(GLOB.sdql2_queries))
-			if(statpanel("SDQL2"))
-				stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
-				for(var/i in GLOB.sdql2_queries)
-					var/datum/SDQL2_query/Q = i
-					Q.generate_stat()
-
-	if(listed_turf && client)
-		if(!TurfAdjacent(listed_turf))
-			listed_turf = null
-		else
-			statpanel(listed_turf.name, null, listed_turf)
-			var/list/overrides = list()
-			for(var/image/I in client.images)
-				if(I.loc && I.loc.loc == listed_turf && I.override)
-					overrides += I.loc
-			for(var/atom/A in listed_turf)
-				if(!A.mouse_opacity)
-					continue
-				if(A.invisibility > see_invisible)
-					continue
-				if(length(overrides) && (A in overrides))
-					continue
-				statpanel(listed_turf.name, null, A)
-
 /mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
 		return FALSE
@@ -712,6 +646,11 @@
 /mob/proc/is_muzzled()
 	return FALSE
 
+/// Adds this list to the output to the stat browser
+/mob/proc/get_status_tab_items()
+	. = list("") //we want to offset unique stuff from standard stuff
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_GET_STATUS_TAB_ITEMS, src, .)
+	SEND_SIGNAL(src, COMSIG_MOB_GET_STATUS_TAB_ITEMS, .)
 
 // reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective)
 // reset_perspective(null) set eye to common default : mob on turf, loc otherwise
@@ -856,3 +795,14 @@
 		hud_used.remove_parallax(src)
 		return
 	hud_used.create_parallax(src)
+
+/mob/proc/point_to_atom(atom/pointed_atom)
+	var/turf/tile = get_turf(pointed_atom)
+	if(!tile)
+		return FALSE
+	var/turf/our_tile = get_turf(src)
+	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0)
+	visual.invisibility = invisibility
+	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointed_atom.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y, time = 1.7, easing = EASE_OUT)
+	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, pointed_atom)
+	return TRUE

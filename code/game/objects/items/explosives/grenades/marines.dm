@@ -77,7 +77,8 @@
 	icon_state = "grenade_sticky"
 	item_state = "grenade_sticky"
 	det_time = 5 SECONDS
-	light_impact_range = 3
+	light_impact_range = 2
+	weak_impact_range = 3
 	///Current atom this grenade is attached to, used to remove the overlay.
 	var/atom/stuck_to
 	///Current image overlay applied to stuck_to, used to remove the overlay after detonation.
@@ -118,7 +119,6 @@
 	icon_state = "grenade_sticky_fire"
 	item_state = "grenade_sticky_fire"
 	det_time = 5 SECONDS
-	light_impact_range = 1
 
 /obj/item/explosive/grenade/sticky/trailblazer/prime()
 	flame_radius(0.5, get_turf(src))
@@ -245,7 +245,8 @@
 	icon_state = "ags_grenade"
 	item_state = "ags_grenade"
 	det_time = 2 SECONDS
-	light_impact_range = 3
+	light_impact_range = 2
+	weak_impact_range = 4
 
 
 /obj/item/explosive/grenade/smokebomb

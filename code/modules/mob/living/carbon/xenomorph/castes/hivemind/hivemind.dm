@@ -8,7 +8,7 @@
 
 	icon_state = "hivemind_marker"
 	bubble_icon = "alienroyal"
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
 	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
@@ -177,6 +177,9 @@
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
 	if(!(status_flags & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		do_change_form()
+	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in contents)
+		sticky_bomb.clean_refs()
+		sticky_bomb.forceMove(loc)
 	forceMove(get_turf(core))
 
 ///Start the teleportation process to send the hivemind manifestation to the selected turf
@@ -306,8 +309,8 @@
 	name = "hivemind core"
 	desc = "A very weird, pulsating node. This looks almost alive."
 	max_integrity = 600
-	icon = 'icons/Xeno/weeds.dmi'
-	icon_state = "weed_hivemind4"
+	icon = 'icons/Xeno/1x1building.dmi'
+	icon_state = "hivemind_core"
 	var/mob/living/carbon/xenomorph/hivemind/parent
 	xeno_structure_flags = CRITICAL_STRUCTURE|DEPART_DESTRUCTION_IMMUNE
 	///The cooldown of the alert hivemind gets when a hostile is near it's core

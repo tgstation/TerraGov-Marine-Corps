@@ -218,6 +218,14 @@
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 
+/area/testroom
+	requires_power = FALSE
+	// Mobs should be able to see inside the testroom
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+	name = "Test Room"
+	icon_state = "test_room"
+
 
 /area/syndicate_mothership
 	name = "Abandoned Syndicate Base"

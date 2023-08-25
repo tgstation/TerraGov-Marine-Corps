@@ -348,7 +348,7 @@ WEAPONS
 /datum/supply_packs/weapons/tx54_he
 	name = "GL-54 HE grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
-	cost = 100
+	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/tx55
@@ -610,6 +610,45 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/packet/smart_minigun)
 	cost = 50
 
+/datum/supply_packs/weapons/smarttarget_rifle
+	name = "SG-62 Smart Target Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smarttargetrifle)
+	cost = 400
+
+/datum/supply_packs/weapons/smarttarget_rifle_ammo
+	name = "SG-62 smart target rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_smarttargetrifle)
+	cost = 35
+
+/datum/supply_packs/weapons/spotting_rifle_ammo
+	name = "SR-153 spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle)
+	cost = 15
+
+/datum/supply_packs/weapons/spotting_rifle_ammo/highimpact
+	name = "SR-153 high impact spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact)
+
+/datum/supply_packs/weapons/spotting_rifle_ammo/heavyrubber
+	name = "SR-153 heavy rubber spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber)
+
+/datum/supply_packs/weapons/spotting_rifle_ammo/plasmaloss
+	name = "SR-153 tanglefoot spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss)
+
+/datum/supply_packs/weapons/spotting_rifle_ammo/tungsten
+	name = "SR-153 tungsten spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten)
+
+/datum/supply_packs/weapons/spotting_rifle_ammo/flak
+	name = "SR-153 flak spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak)
+
+/datum/supply_packs/weapons/spotting_rifle_ammo/incendiary
+	name = "SR-153 incendiary spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary)
+
 /datum/supply_packs/weapons/flamethrower
 	name = "FL-84 Flamethrower"
 	contains = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard)
@@ -818,7 +857,7 @@ EXPLOSIVES
 
 /datum/supply_packs/explosives/mortar_ammo_he
 	name = "T-50S mortar HE shell (x2)"
-	contains = list(/obj/item/mortal_shell/he,/obj/item/mortal_shell/he)
+	contains = list(/obj/item/mortal_shell/he, /obj/item/mortal_shell/he)
 	cost = 10
 
 /datum/supply_packs/explosives/mortar_ammo_incend
@@ -829,13 +868,13 @@ EXPLOSIVES
 /datum/supply_packs/explosives/mortar_ammo_flare
 	name = "T-50S mortar flare shell (x2)"
 	notes = "Can be fired out of the MG-100Y howitzer, as well."
-	contains = list(/obj/item/mortal_shell/flare,/obj/item/mortal_shell/flare)
-	cost = 10
+	contains = list(/obj/item/mortal_shell/flare, /obj/item/mortal_shell/flare)
+	cost = 5
 
 /datum/supply_packs/explosives/mortar_ammo_smoke
 	name = "T-50S mortar smoke shell (x2)"
 	contains = list(/obj/item/mortal_shell/smoke, /obj/item/mortal_shell/smoke)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/explosives/mortar_ammo_plasmaloss
 	name = "T-50S mortar tanglefoot shell"
@@ -2128,12 +2167,12 @@ FACTORY
 /datum/supply_packs/factory/mortar_shell_he_refill
 	name = "Mortar High Explosive shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_he_refill)
-	cost = 150
+	cost = 120
 
 /datum/supply_packs/factory/mortar_shell_incen_refill
 	name = "Mortar Incendiary shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_incen_refill)
-	cost = 150
+	cost = 120
 
 /datum/supply_packs/factory/mortar_shell_tfoot_refill
 	name = "Mortar Tanglefoot Gas shell assembly refill"
@@ -2141,9 +2180,14 @@ FACTORY
 	cost = 200
 
 /datum/supply_packs/factory/mortar_shell_flare_refill
-	name = "Mortar High Explosive shell assembly refill"
+	name = "Mortar Flare shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_flare_refill)
-	cost = 150
+	cost = 100
+
+/datum/supply_packs/factory/mortar_shell_smoke_refill
+	name = "Mortar Smoke shell assembly refill"
+	contains = list(/obj/item/factory_refill/mortar_shell_smoke_refill)
+	cost = 100
 
 /datum/supply_packs/factory/mlrs_rocket_refill
 	name = "MLRS High Explosive rocket assembly refill"

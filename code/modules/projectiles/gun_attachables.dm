@@ -989,6 +989,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/strstock
+	name = "SG-62 stock"
+	desc = "A standard rifle stock."
+	icon_state = "sg62stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/lasgun
 	name = "\improper M43 Sunfury lasgun stock"
 	desc = "The standard stock for the M43 Sunfury lasgun."

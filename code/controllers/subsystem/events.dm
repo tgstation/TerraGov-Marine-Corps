@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(events)
 //aka Badmin Central
 /client/proc/force_event()
 	set name = "Trigger Event"
-	set category = "Fun"
+	set category = "Admin.Fun"
 
 	if(!holder ||!check_rights(R_FUN))
 		return
@@ -120,7 +120,7 @@ SUBSYSTEM_DEF(events)
 
 /client/proc/toggle_events()
 	set name = "Toggle Events Subsystem"
-	set category = "Fun"
+	set category = "Admin.Fun"
 
 	if(!holder ||!check_rights(R_FUN))
 		return
