@@ -23,7 +23,7 @@
 	UnregisterSignal(parent, list(COMSIG_XENO_IFF_CHECK, COMSIG_ATOM_EXAMINE, COMSIG_XENOMORPH_EVOLVED))
 
 /**
- * Reacts to an IFF check requesting signal by attaching its own IFF to the sent list.
+ * Reacts to an IFF check requesting signal by attaching its own IFF to the bitflag contained in the list sent.
  * Done this way because of in-place list magic, so for example a xeno could have multiple reactions from different sources and it would properly combine them.
  */
 /datum/component/xeno_iff/proc/iff_check(datum/source, list/iff_list)
