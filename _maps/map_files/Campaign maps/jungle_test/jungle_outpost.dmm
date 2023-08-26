@@ -261,6 +261,13 @@
 	dir = 8
 	},
 /area/space)
+"nH" = (
+/obj/structure/table/mainship,
+/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/head/chefhat,
+/obj/item/clothing/gloves/latex,
+/turf/open/floor,
+/area/space)
 "nK" = (
 /obj/structure/cargo_container{
 	dir = 1
@@ -324,6 +331,11 @@
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"qF" = (
+/obj/machinery/microwave,
+/obj/structure/table/mainship,
+/turf/open/floor,
+/area/space)
 "rb" = (
 /turf/closed/wall/mainship/gray,
 /area/space)
@@ -339,6 +351,12 @@
 "rn" = (
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
+"rq" = (
+/obj/structure/table/mainship,
+/obj/item/tool/kitchen/rollingpin,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
+/turf/open/floor,
+/area/space)
 "rs" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 1
@@ -530,11 +548,6 @@
 "xS" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/space)
-"xU" = (
-/obj/structure/table/mainship,
-/obj/machinery/microwave,
-/turf/open/floor,
-/area/space)
 "yV" = (
 /obj/structure/prop/vehicle/crane{
 	dir = 4
@@ -605,10 +618,6 @@
 /obj/structure/stairs/edge,
 /turf/open/liquid/water/river/autosmooth,
 /area/space)
-"BK" = (
-/obj/structure/rock/variable/jungle_large,
-/turf/open/ground/grass/weedable,
-/area/space)
 "BO" = (
 /turf/open/floor/plating/ground/concrete,
 /area/shuttle/drop1/lz1)
@@ -621,6 +630,7 @@
 /turf/open/floor/mainship/mono,
 /area/space)
 "Cz" = (
+/obj/structure/table/mainship,
 /obj/machinery/griddle,
 /turf/open/floor,
 /area/space)
@@ -640,15 +650,6 @@
 /area/space)
 "Dq" = (
 /obj/structure/table/mainship,
-/turf/open/floor,
-/area/space)
-"Dx" = (
-/obj/structure/table/mainship,
-/obj/item/tool/kitchen/rollingpin,
-/obj/item/clothing/gloves/latex,
-/obj/item/clothing/head/chefhat,
-/obj/item/clothing/suit/chef/classic,
-/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor,
 /area/space)
 "DO" = (
@@ -4117,9 +4118,9 @@ pr
 jv
 Vq
 EX
-EX
-EX
-EX
+CU
+CU
+CU
 EX
 EX
 EX
@@ -4269,9 +4270,9 @@ Mg
 Mg
 Tx
 EX
-EX
-EX
-EX
+CU
+CU
+CU
 EX
 EX
 EX
@@ -4421,9 +4422,9 @@ Mg
 Mg
 NU
 EX
-EX
-EX
-EX
+CU
+CU
+CU
 EX
 EX
 EX
@@ -4573,9 +4574,9 @@ Mg
 Mg
 LG
 EX
-EX
-EX
-EX
+CU
+CU
+CU
 EX
 Gd
 Gd
@@ -4725,9 +4726,9 @@ Mg
 Mg
 wV
 EX
-EX
-EX
-EX
+De
+De
+De
 EX
 Gd
 Gd
@@ -4877,9 +4878,9 @@ Mg
 Mg
 NU
 EX
-EX
-EX
-EX
+De
+De
+De
 EX
 EX
 Gd
@@ -5029,9 +5030,9 @@ Mg
 Mg
 Tx
 EX
-EX
-EX
-EX
+De
+De
+De
 EX
 EX
 Gd
@@ -5181,9 +5182,9 @@ pr
 oP
 eG
 EX
-EX
-EX
-EX
+De
+De
+De
 EX
 Gd
 Gd
@@ -5333,9 +5334,9 @@ NU
 EX
 EX
 EX
-EX
-EX
-EX
+De
+De
+De
 EX
 Gd
 Gd
@@ -11068,7 +11069,7 @@ Zq
 vZ
 LE
 Qo
-EX
+zI
 pr
 ki
 Dq
@@ -11676,7 +11677,7 @@ GI
 Lx
 JL
 TJ
-EX
+zI
 pr
 ki
 Dq
@@ -11978,9 +11979,9 @@ Wx
 GI
 JL
 TJ
-up
+zI
 EX
-EX
+Gl
 pr
 ki
 Dq
@@ -11992,7 +11993,7 @@ Dq
 Hp
 an
 EX
-BK
+EX
 EX
 EX
 EX
@@ -12131,8 +12132,8 @@ CG
 vZ
 LE
 Qo
-zI
-EX
+up
+fa
 pr
 Mg
 Mg
@@ -12290,6 +12291,7 @@ Mg
 Mg
 Mg
 Mg
+Mg
 pr
 Mw
 pr
@@ -12297,7 +12299,6 @@ pr
 pr
 pr
 pr
-EX
 EX
 EX
 EX
@@ -12442,6 +12443,7 @@ Mg
 Mg
 Mg
 Mg
+Mg
 Dq
 Mg
 Lf
@@ -12449,7 +12451,6 @@ pr
 Kf
 hD
 pr
-EX
 EX
 EX
 EX
@@ -12595,6 +12596,7 @@ Mg
 Mg
 Mg
 jq
+Dq
 Mg
 zp
 pr
@@ -12602,7 +12604,6 @@ XP
 LS
 Fw
 SF
-EX
 EX
 EX
 EX
@@ -12748,12 +12749,12 @@ Mg
 Mg
 jq
 Mg
-Dx
+Mg
+rq
 pr
 XR
 LS
 pr
-EX
 EX
 EX
 EX
@@ -12900,12 +12901,12 @@ Mg
 Mg
 Cz
 Mg
-xU
-pr
-Tl
+Mg
+Mg
+Fw
+LS
 LS
 pr
-EX
 EX
 EX
 EX
@@ -13051,13 +13052,13 @@ Mg
 Mg
 Mg
 tz
+nH
 Kp
-Mg
-Fw
-LS
-LS
+qF
 pr
-EX
+LS
+Tl
+pr
 EX
 EX
 EX
@@ -13209,7 +13210,7 @@ pr
 pr
 pr
 pr
-EX
+pr
 EX
 EX
 EX
