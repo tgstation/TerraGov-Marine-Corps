@@ -72,11 +72,11 @@
 
 /datum/action/xeno_action/select_reagent/baneling/select_reagent_radial()
 	var/static/list/reagent_images_list = list(
-		DEFILER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
-		DEFILER_HEMODILE = image('icons/mob/actions.dmi', icon_state = DEFILER_HEMODILE),
-		DEFILER_TRANSVITOX = image('icons/mob/actions.dmi', icon_state = DEFILER_TRANSVITOX),
-		DEFILER_OZELOMELYN = image('icons/mob/actions.dmi', icon_state = DEFILER_OZELOMELYN),
-		BANELING_ACID = image('icons/mob/actions.dmi', icon_state = BANELING_ACID),
+		DEFILER_NEUROTOXIN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
+		DEFILER_HEMODILE = image('icons/Xeno/actions.dmi', icon_state = DEFILER_HEMODILE),
+		DEFILER_TRANSVITOX = image('icons/Xeno/actions.dmi', icon_state = DEFILER_TRANSVITOX),
+		DEFILER_OZELOMELYN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_OZELOMELYN),
+		BANELING_ACID = image('icons/Xeno/actions.dmi', icon_state = BANELING_ACID),
 		)
 	var/toxin_choice = show_radial_menu(owner, owner, reagent_images_list, radius = 48)
 	if(!toxin_choice)
