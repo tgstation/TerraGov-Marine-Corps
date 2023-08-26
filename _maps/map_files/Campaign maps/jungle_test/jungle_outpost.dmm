@@ -690,6 +690,11 @@
 "xS" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/space)
+"xU" = (
+/obj/structure/flora/jungle/large_bush,
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/weedable,
+/area/space)
 "yV" = (
 /obj/structure/prop/vehicle/crane{
 	dir = 4
@@ -730,6 +735,10 @@
 /obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/ground/grass/weedable,
+/area/space)
+"zy" = (
+/obj/structure/platform_decoration,
 /turf/open/ground/grass/weedable,
 /area/space)
 "zI" = (
@@ -776,6 +785,12 @@
 /obj/structure/catwalk,
 /obj/structure/platform,
 /turf/open/liquid/water/river/autosmooth,
+/area/space)
+"Bl" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
 /area/space)
 "Bp" = (
 /obj/structure/cargo_container,
@@ -841,6 +856,12 @@
 /obj/structure/table/mainship,
 /turf/open/floor,
 /area/space)
+"Dv" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/space)
 "DO" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/space)
@@ -861,12 +882,6 @@
 	dir = 2
 	},
 /turf/open/floor/freezer,
-/area/space)
-"Fy" = (
-/obj/structure/flora/jungle/grass/thin,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
-	dir = 4
-	},
 /area/space)
 "FH" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -1169,6 +1184,12 @@
 	dir = 9
 	},
 /area/shuttle/drop1/lz1)
+"Rp" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/open/ground/grass/weedable,
+/area/space)
 "Rx" = (
 /obj/structure/platform,
 /turf/closed/wall/r_wall,
@@ -9677,7 +9698,7 @@ rG
 Mg
 rG
 sd
-EX
+zI
 CG
 QL
 IF
@@ -11203,7 +11224,7 @@ uI
 LE
 Qo
 sk
-EX
+cm
 pr
 Mg
 Mg
@@ -11355,8 +11376,8 @@ Zq
 vZ
 LE
 Qo
-zI
-pr
+cm
+an
 ki
 Dq
 Hp
@@ -11508,7 +11529,7 @@ ns
 uI
 gW
 EX
-pr
+an
 ki
 Dq
 Hp
@@ -11659,8 +11680,8 @@ Gd
 Gd
 CG
 TJ
-EX
-pr
+up
+an
 ki
 Dq
 Hp
@@ -11810,8 +11831,8 @@ zI
 Gd
 zI
 CG
-TJ
-fa
+Bl
+Gl
 pr
 Mg
 Mg
@@ -11964,7 +11985,7 @@ Lx
 JL
 TJ
 zI
-pr
+an
 ki
 Dq
 Hp
@@ -12115,8 +12136,8 @@ CG
 QL
 IF
 Dp
-EX
-pr
+cm
+an
 ki
 Dq
 Hp
@@ -12266,9 +12287,9 @@ GI
 JL
 TJ
 zI
-EX
-Gl
-pr
+cm
+cm
+an
 ki
 Dq
 Hp
@@ -12418,8 +12439,8 @@ CG
 vZ
 LE
 Qo
-up
-fa
+cm
+xU
 pr
 Mg
 Mg
@@ -12567,9 +12588,9 @@ rs
 NU
 sk
 Ai
-IF
+Dv
 al
-Fy
+Gl
 pr
 pr
 pr
@@ -18023,12 +18044,12 @@ EX
 EX
 EX
 EX
-EX
+zy
 EX
 bV
 Pv
 EX
-EX
+Rp
 EX
 EX
 EX
@@ -20458,11 +20479,11 @@ ee
 LW
 ee
 tQ
-tQ
-tQ
-tQ
-tQ
-tQ
+bp
+bp
+bp
+bp
+bp
 nh
 EX
 EX
