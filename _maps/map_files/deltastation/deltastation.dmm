@@ -50773,10 +50773,12 @@
 /turf/open/floor/iron,
 /area/deltastation/security/processing)
 "kpn" = (
-/obj/machinery/recycler,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "bunkerrecycle"
+	},
+/obj/machinery/recycler{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/derelictwest)
