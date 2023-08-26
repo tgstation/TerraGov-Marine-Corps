@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(aura)
 	///Whether we should skip the next tick. Set to false after skipping once. Won't pulse to targets or reduce duration.
 	var/suppressed = FALSE
 
-/datum/aura_bearer/New(atom/aura_emitter, aura_names, aura_range, aura_strength, aura_duration, aura_faction, aura_hivenumber, aura_castes)
+/datum/aura_bearer/New(atom/aura_emitter, aura_names, aura_range, aura_strength, aura_duration, aura_faction, aura_hivenumber)
 	..()
 	emitter = aura_emitter
 	range = aura_range
