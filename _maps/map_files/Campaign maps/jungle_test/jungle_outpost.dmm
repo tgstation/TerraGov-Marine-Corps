@@ -1,4 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal5,
+/turf/open/floor/mainship/mono,
+/area/space)
 "al" = (
 /obj/structure/stairs/edge{
 	dir = 8
@@ -13,6 +18,24 @@
 /area/space)
 "an" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/turf/open/floor,
+/area/space)
+"aX" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/mainship/mono,
+/area/space)
+"bk" = (
+/obj/structure/sink,
+/turf/open/floor/mainship/mono,
+/area/space)
+"bz" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor,
+/area/space)
+"bR" = (
+/obj/machinery/door/airlock/mainship/generic/glass{
+	dir = 2
+	},
 /turf/open/floor,
 /area/space)
 "bS" = (
@@ -38,11 +61,35 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/ground/grass/weedable,
 /area/space)
+"cZ" = (
+/obj/structure/flora/grass/tallgrass/tallgrasscorner{
+	color = "#7a8c54";
+	dir = 5
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/space)
 "dT" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
+/area/space)
+"dU" = (
+/obj/machinery/vending/cola,
+/turf/open/floor,
+/area/space)
+"ej" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/mono,
+/area/space)
+"ep" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/freezer,
+/area/space)
+"ev" = (
+/turf/open/floor/mainship/mono,
 /area/space)
 "ey" = (
 /obj/structure/stairs/seamless/edge_vert,
@@ -54,6 +101,12 @@
 	},
 /turf/closed/wall,
 /area/space)
+"eT" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 4
+	},
+/turf/open/floor,
+/area/space)
 "eU" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/space)
@@ -61,11 +114,27 @@
 /obj/structure/flora/jungle/large_bush,
 /turf/open/ground/grass/weedable,
 /area/space)
+"fC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/freezer,
+/area/space)
+"gs" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor,
+/area/space)
 "gu" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
+"gQ" = (
+/obj/structure/table,
+/turf/open/floor,
+/area/space)
 "gW" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -81,11 +150,32 @@
 "hv" = (
 /turf/open/ground/grass/weedable,
 /area/shuttle/drop1/lz1)
+"hz" = (
+/obj/structure/sink{
+	dir = 8
+	},
+/obj/structure/mirror{
+	dir = 4
+	},
+/turf/open/floor/freezer,
+/area/space)
+"hD" = (
+/obj/structure/rack,
+/turf/open/floor/freezer,
+/area/space)
+"hE" = (
+/obj/machinery/griddle,
+/turf/open/floor/mainship/mono,
+/area/space)
 "hO" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
 /turf/open/floor,
+/area/space)
+"hT" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/mainship/mono,
 /area/space)
 "iq" = (
 /obj/structure/stairs/seamless/platform_vert/water{
@@ -93,11 +183,37 @@
 	},
 /turf/open/liquid/water/river/autosmooth,
 /area/space)
+"jj" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4,
+/turf/open/floor/mainship/mono,
+/area/space)
+"jq" = (
+/obj/structure/table/mainship,
+/obj/item/tool/kitchen/tray,
+/turf/open/floor,
+/area/space)
 "jv" = (
 /obj/structure/platform{
 	dir = 8
 	},
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/turf/open/floor,
+/area/space)
+"jL" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor,
+/area/space)
+"kb" = (
+/obj/machinery/light,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/space)
+"ki" = (
+/obj/structure/bed/chair,
 /turf/open/floor,
 /area/space)
 "ky" = (
@@ -130,6 +246,11 @@
 	dir = 4
 	},
 /area/space)
+"lE" = (
+/obj/structure/table/mainship,
+/obj/item/storage/fancy/chemrettes,
+/turf/open/floor/mainship/mono,
+/area/space)
 "me" = (
 /obj/structure/rock/variable/jungle_large,
 /turf/open/liquid/water/river/autosmooth,
@@ -155,6 +276,14 @@
 "nY" = (
 /obj/machinery/door/airlock/glass_engineering,
 /turf/open/floor,
+/area/space)
+"ol" = (
+/obj/machinery/processor,
+/turf/open/floor/mainship/mono,
+/area/space)
+"oB" = (
+/obj/effect/ai_node,
+/turf/open/floor/freezer,
 /area/space)
 "oP" = (
 /obj/structure/platform{
@@ -182,13 +311,48 @@
 /obj/structure/platform,
 /turf/open/floor,
 /area/space)
+"pM" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/mainship/mono,
+/area/space)
+"pT" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/space)
 "qE" = (
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"rb" = (
+/turf/closed/wall/mainship/gray,
+/area/space)
+"rf" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/freezer,
+/area/space)
+"rg" = (
+/obj/machinery/light,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/mono,
+/area/space)
 "rn" = (
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
+"rs" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor,
+/area/space)
+"rG" = (
+/obj/structure/bed/bunkbed,
+/turf/open/floor,
+/area/space)
+"rP" = (
+/obj/machinery/door/airlock/mainship/generic/glass,
+/turf/open/floor,
+/area/space)
 "rQ" = (
 /obj/structure/stairs/seamless/edge_vert,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -200,6 +364,11 @@
 	dir = 8
 	},
 /turf/open/ground/grass/weedable,
+/area/space)
+"sd" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform,
+/turf/open/floor,
 /area/space)
 "sk" = (
 /obj/structure/flora/jungle/bush,
@@ -215,6 +384,10 @@
 /obj/structure/catwalk,
 /turf/open/liquid/water/river/autosmooth,
 /area/space)
+"tg" = (
+/obj/machinery/washing_machine,
+/turf/open/floor,
+/area/space)
 "tj" = (
 /obj/structure/stairs/seamless,
 /turf/open/ground/grass/weedable,
@@ -224,11 +397,23 @@
 /obj/structure/catwalk,
 /turf/open/liquid/water/river/autosmooth,
 /area/space)
+"tz" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor,
+/area/space)
+"tE" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/mainship/mono,
+/area/space)
 "tN" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
+/area/space)
+"tV" = (
+/obj/machinery/vending/snack,
+/turf/open/floor,
 /area/space)
 "ub" = (
 /obj/structure/platform{
@@ -244,14 +429,51 @@
 	dir = 1
 	},
 /area/space)
+"ui" = (
+/obj/structure/bed/chair,
+/turf/open/floor/mainship/mono,
+/area/space)
 "up" = (
 /obj/structure/rock/variable/jungle,
 /turf/open/ground/grass/weedable,
+/area/space)
+"ux" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/space)
+"uz" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
 /area/space)
 "uI" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 4
 	},
+/area/space)
+"vn" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor,
+/area/space)
+"vC" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/mono,
+/area/space)
+"vI" = (
+/obj/structure/bed/chair/sofa/corner{
+	dir = 4
+	},
+/turf/open/floor,
+/area/space)
+"vV" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/open/floor/freezer,
 /area/space)
 "vZ" = (
 /turf/open/floor/plating/ground/dirt2,
@@ -259,6 +481,16 @@
 "wm" = (
 /obj/structure/prop/vehicle/crawler/crawler_cargo,
 /turf/open/floor/plating/ground/concrete,
+/area/space)
+"wn" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/mainship/mono,
+/area/space)
+"wq" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
 /area/space)
 "wF" = (
 /obj/structure/platform{
@@ -271,6 +503,17 @@
 	dir = 4
 	},
 /turf/open/ground/grass/weedable,
+/area/space)
+"wS" = (
+/obj/structure/table/mainship,
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/window{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/snacks/mre_pack/meal2,
+/turf/open/floor/mainship/mono,
 /area/space)
 "wV" = (
 /obj/structure/stairs/seamless/platform_vert{
@@ -287,6 +530,11 @@
 "xS" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/space)
+"xU" = (
+/obj/structure/table/mainship,
+/obj/machinery/microwave,
+/turf/open/floor,
+/area/space)
 "yV" = (
 /obj/structure/prop/vehicle/crane{
 	dir = 4
@@ -296,11 +544,11 @@
 "zi" = (
 /turf/open/floor/plating/ground/concrete,
 /area/space)
-"zn" = (
-/obj/structure/flora/grass/tallgrass{
-	color = "#7a8c54"
+"zp" = (
+/obj/machinery/processor{
+	pixel_y = 5
 	},
-/turf/open/ground/grass/weedable,
+/turf/open/floor,
 /area/space)
 "zs" = (
 /obj/structure/stairs/edge{
@@ -326,14 +574,28 @@
 	},
 /turf/open/floor,
 /area/space)
+"Ay" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal6,
+/turf/open/floor/mainship/mono,
+/area/space)
 "AG" = (
 /obj/structure/flora/jungle/large_bush,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
 	},
 /area/space)
+"Ba" = (
+/obj/structure/table,
+/turf/open/floor/freezer,
+/area/space)
 "Bb" = (
 /turf/open/liquid/water/river,
+/area/space)
+"Bf" = (
+/obj/structure/catwalk,
+/obj/structure/platform,
+/turf/open/liquid/water/river/autosmooth,
 /area/space)
 "Bp" = (
 /obj/structure/cargo_container,
@@ -353,19 +615,62 @@
 "BZ" = (
 /turf/open/floor/plating/ground/dirt,
 /area/space)
+"Cm" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/space)
+"Cz" = (
+/obj/machinery/griddle,
+/turf/open/floor,
+/area/space)
 "CG" = (
 /turf/open/floor/plating/ground/dirtgrassborder2,
+/area/space)
+"CU" = (
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/space)
+"De" = (
+/turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
 "Dp" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 4
 	},
 /area/space)
+"Dq" = (
+/obj/structure/table/mainship,
+/turf/open/floor,
+/area/space)
+"Dx" = (
+/obj/structure/table/mainship,
+/obj/item/tool/kitchen/rollingpin,
+/obj/item/clothing/gloves/latex,
+/obj/item/clothing/head/chefhat,
+/obj/item/clothing/suit/chef/classic,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
+/turf/open/floor,
+/area/space)
 "DO" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/space)
+"Er" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/space)
+"EO" = (
+/obj/structure/table/mainship,
+/obj/machinery/microwave,
+/turf/open/floor/mainship/mono,
+/area/space)
 "EX" = (
 /turf/open/ground/grass/weedable,
+/area/space)
+"Fw" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
+/turf/open/floor/freezer,
 /area/space)
 "Fy" = (
 /obj/structure/flora/jungle/grass/thin,
@@ -390,12 +695,11 @@
 /obj/structure/flora/jungle/grass,
 /turf/open/ground/grass/weedable,
 /area/space)
-"Gm" = (
-/obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
-	dir = 10
+"Gw" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
 	},
-/turf/open/ground/grass/weedable,
+/turf/open/floor/mainship/mono,
 /area/space)
 "GI" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
@@ -405,6 +709,12 @@
 	dir = 6
 	},
 /area/shuttle/drop1/lz1)
+"Hp" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor,
+/area/space)
 "Hy" = (
 /obj/structure/stairs/seamless/edge_vert{
 	dir = 8
@@ -416,6 +726,20 @@
 	dir = 8
 	},
 /turf/open/floor,
+/area/space)
+"Id" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/space)
+"Iu" = (
+/obj/structure/flora/grass/tallgrass/tallgrasscorner{
+	color = "#7a8c54";
+	dir = 6
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
 "IF" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -434,6 +758,28 @@
 	},
 /turf/closed/wall,
 /area/space)
+"Kf" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/meat/monkey,
+/obj/item/reagent_containers/food/snacks/meat/monkey,
+/obj/item/reagent_containers/food/snacks/meat/monkey,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/turf/open/floor/freezer,
+/area/space)
+"Kp" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/turf/open/floor,
+/area/space)
 "KS" = (
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -445,10 +791,30 @@
 /obj/structure/stairs/seamless/platform_vert/water,
 /turf/open/liquid/water/river/autosmooth,
 /area/space)
+"Lf" = (
+/obj/machinery/reagentgrinder{
+	pixel_y = 5
+	},
+/obj/structure/table/mainship,
+/turf/open/floor,
+/area/space)
+"Lg" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/freezer,
+/area/space)
+"Lq" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal2,
+/turf/open/floor/mainship/mono,
+/area/space)
 "Lx" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
 	},
+/area/space)
+"LA" = (
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/turf/open/floor,
 /area/space)
 "LE" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
@@ -461,6 +827,9 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/space)
+"LS" = (
+/turf/open/floor/freezer,
+/area/space)
 "Mg" = (
 /turf/open/floor,
 /area/space)
@@ -469,6 +838,29 @@
 	dir = 4
 	},
 /turf/open/ground/grass/weedable,
+/area/space)
+"Ms" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/space)
+"Mv" = (
+/obj/structure/bed/chair/sofa{
+	dir = 1
+	},
+/turf/open/floor,
+/area/space)
+"Mw" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor,
+/area/space)
+"MC" = (
+/obj/structure/bed/chair,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
 /area/space)
 "Nv" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
@@ -487,6 +879,16 @@
 	},
 /turf/closed/wall,
 /area/space)
+"Op" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
+"Ou" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/ground/grass/weedable,
+/area/space)
 "OA" = (
 /obj/structure/catwalk,
 /obj/structure/catwalk,
@@ -499,6 +901,12 @@
 /obj/structure/catwalk,
 /obj/structure/platform,
 /turf/open/ground/grass/weedable,
+/area/space)
+"PC" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
 /area/space)
 "PT" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -517,12 +925,10 @@
 	dir = 8
 	},
 /area/space)
-"Qw" = (
-/obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
-	dir = 6
-	},
-/turf/open/ground/grass/weedable,
+"QH" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
 /area/space)
 "QL" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
@@ -534,15 +940,23 @@
 	dir = 9
 	},
 /area/shuttle/drop1/lz1)
-"Rk" = (
-/obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54"
-	},
-/turf/open/ground/grass/weedable,
-/area/space)
 "RA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor,
+/area/space)
+"RC" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor,
+/area/space)
+"RP" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted,
+/obj/machinery/door/window{
+	dir = 8
+	},
+/turf/open/floor/freezer,
 /area/space)
 "RX" = (
 /obj/structure/platform{
@@ -550,9 +964,16 @@
 	},
 /turf/closed/wall,
 /area/space)
+"Sz" = (
+/turf/closed/mineral/smooth,
+/area/space)
 "SF" = (
 /obj/structure/stairs/edge,
 /turf/open/ground/grass/weedable,
+/area/space)
+"Tl" = (
+/obj/machinery/gibber,
+/turf/open/floor/freezer,
 /area/space)
 "Tr" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -574,9 +995,19 @@
 	dir = 1
 	},
 /area/space)
+"Ub" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
 "Uc" = (
 /obj/structure/catwalk,
 /turf/open/liquid/water,
+/area/space)
+"Ur" = (
+/obj/structure/closet/secure_closet/freezer,
+/turf/open/floor/freezer,
 /area/space)
 "UI" = (
 /obj/structure/prop/vehicle/truck,
@@ -607,6 +1038,10 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/space)
+"Wx" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/ground/grass/weedable,
+/area/space)
 "WA" = (
 /obj/structure/stairs/edge{
 	dir = 8
@@ -621,19 +1056,57 @@
 /obj/structure/prop/vehicle/crawler/crawler_fuel,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"XP" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
+/turf/open/floor/freezer,
+/area/space)
+"XR" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/turf/open/floor/freezer,
+/area/space)
+"XU" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/space)
+"Yi" = (
+/obj/structure/bed/chair,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
 "Yu" = (
 /obj/structure/stairs/seamless/edge,
 /turf/open/ground/grass/weedable,
 /area/space)
 "Zj" = (
 /obj/structure/flora/jungle/bush,
-/turf/open/floor/plating/ground/dirtgrassborder2{
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 1
 	},
 /area/space)
 "Zq" = (
 /obj/structure/flora/jungle/bush,
 /turf/open/floor/plating/ground/dirtgrassborder2,
+/area/space)
+"Zw" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/space)
+"ZR" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/mainship/mono,
 /area/space)
 
 (1,1,1) = {"
@@ -1831,8 +2304,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
 EX
 EX
 EX
@@ -1975,17 +2448,17 @@ Gd
 EX
 EX
 EX
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -2126,18 +2599,18 @@ EX
 EX
 EX
 EX
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -2278,16 +2751,16 @@ EX
 EX
 EX
 EX
+Gd
+Gd
 EX
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -2428,6 +2901,9 @@ Gd
 EX
 EX
 EX
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -2448,16 +2924,13 @@ EX
 EX
 EX
 EX
+Gd
+Gd
+Gd
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Gd
 xS
 "}
 (13,1,1) = {"
@@ -2468,18 +2941,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+rb
+rb
+rb
+rb
+rb
+Sz
+Sz
+Sz
+De
+De
+CU
+XU
 EX
 EX
 EX
@@ -2580,6 +3053,9 @@ Gd
 EX
 EX
 EX
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -2600,16 +3076,13 @@ EX
 EX
 EX
 EX
+Gd
+Gd
+Gd
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
 xS
 "}
 (14,1,1) = {"
@@ -2620,18 +3093,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+rb
+PC
+wq
+PC
+rb
+Sz
+Sz
+Sz
+Sz
+De
+CU
+CU
 EX
 EX
 EX
@@ -2731,6 +3204,9 @@ EX
 EX
 EX
 EX
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -2741,6 +3217,8 @@ EX
 EX
 EX
 EX
+Gd
+Gd
 EX
 EX
 EX
@@ -2751,16 +3229,11 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
+Gd
 EX
 xS
 "}
@@ -2772,18 +3245,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+rb
+ej
+ev
+lE
+rb
+Sz
+Sz
+rb
+rb
+rb
+Lg
+rb
 EX
 EX
 EX
@@ -2883,6 +3356,25 @@ EX
 EX
 EX
 EX
+Gd
+Gd
+EX
+EX
+EX
+Gd
+Gd
+Gd
+EX
+EX
+EX
+EX
+EX
+Gd
+Gd
+Gd
+EX
+Gd
+Gd
 EX
 EX
 EX
@@ -2890,27 +3382,8 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
 EX
 EX
 EX
@@ -2924,18 +3397,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+rb
+Op
+vC
+Op
+rb
+rb
+rb
+rb
+rf
+fC
+oB
+rb
 EX
 EX
 EX
@@ -3040,24 +3513,24 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Gd
 Gd
 Gd
 EX
 EX
 EX
 EX
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
 EX
 EX
-EX
-EX
-EX
+Gd
+Gd
 EX
 EX
 EX
@@ -3076,18 +3549,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+tE
+ev
+ev
+Zw
+ev
+ev
+Zw
+rb
+Ur
+oB
+Tl
+rb
 EX
 EX
 EX
@@ -3192,13 +3665,6 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
 Gd
 Gd
 Gd
@@ -3206,11 +3672,18 @@ Gd
 EX
 EX
 EX
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -3228,18 +3701,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+tE
+ui
+jj
+uz
+ej
+uz
+rg
+rb
+rb
+wn
+rb
+rb
 EX
 EX
 EX
@@ -3344,10 +3817,10 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -3361,8 +3834,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
 EX
 EX
 EX
@@ -3380,18 +3853,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+tE
+ui
+ej
+uz
+Ay
+uz
+Zw
+Gw
+vC
+kb
+rb
+Sz
 EX
 EX
 EX
@@ -3515,8 +3988,8 @@ EX
 EX
 Gd
 Gd
-EX
-EX
+Gd
+Gd
 EX
 EX
 EX
@@ -3532,18 +4005,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+rb
+Yi
+ej
+uz
+aa
+Id
+ev
+rb
+ev
+ol
+rb
+Sz
 EX
 EX
 EX
@@ -3667,7 +4140,7 @@ EX
 Gd
 Gd
 Gd
-EX
+Gd
 EX
 EX
 EX
@@ -3684,18 +4157,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+rb
+rb
+rb
+bk
+ev
+ev
+ev
+wS
+ev
+EO
+rb
+Sz
 EX
 EX
 EX
@@ -3824,7 +4297,7 @@ EX
 EX
 EX
 EX
-EX
+Gd
 Gd
 xS
 "}
@@ -3836,18 +4309,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+tE
+MC
+ej
+uz
+Lq
+uz
+ev
+wS
+ev
+hE
+rb
+De
 EX
 EX
 EX
@@ -3975,8 +4448,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
 Gd
 xS
 "}
@@ -3988,18 +4461,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+tE
+ui
+Lq
+uz
+ej
+uz
+ev
+wS
+Ub
+hE
+rb
+De
 EX
 EX
 EX
@@ -4104,8 +4577,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
 EX
 Gd
 Gd
@@ -4126,8 +4599,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
 Gd
 Gd
 xS
@@ -4140,18 +4613,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+rb
+ui
+ej
+uz
+ej
+uz
+rb
+rb
+rb
+rb
+rb
+De
 EX
 EX
 EX
@@ -4256,25 +4729,25 @@ EX
 EX
 EX
 EX
-EX
-EX
 Gd
 Gd
-Gd
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-Gd
-Gd
-EX
 Gd
 Gd
 Gd
 EX
+EX
+EX
+EX
+EX
+EX
+EX
+Gd
+Gd
+EX
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -4292,18 +4765,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+rb
+Cm
+hT
+Zw
+ZR
+kb
+rb
+ux
+De
+De
+De
+De
 EX
 EX
 EX
@@ -4409,7 +4882,7 @@ EX
 EX
 EX
 EX
-EX
+Gd
 Gd
 Gd
 EX
@@ -4444,18 +4917,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+QH
+Er
+Zw
+ev
+ev
+ev
+pT
+CU
+CU
+CU
+CU
+CU
 EX
 EX
 EX
@@ -4596,18 +5069,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+ev
+ev
+aX
+pM
+vC
+ev
+ev
+CU
+CU
+CU
+XU
+CU
 EX
 EX
 EX
@@ -4748,18 +5221,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+rb
+rb
+tE
+tE
+tE
+rb
+rb
+De
+De
+Iu
+cZ
+De
 EX
 EX
 EX
@@ -5031,12 +5504,12 @@ EX
 EX
 EX
 EX
+Gd
+Gd
+Gd
 EX
 EX
-EX
-EX
-EX
-EX
+Gd
 EX
 EX
 Gd
@@ -5184,11 +5657,11 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -5338,8 +5811,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
 EX
 EX
 EX
@@ -5487,11 +5960,11 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -5638,12 +6111,12 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -5793,11 +6266,11 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -5945,11 +6418,11 @@ EX
 EX
 EX
 EX
+Gd
+Gd
 EX
-EX
-EX
-EX
-EX
+Gd
+Gd
 EX
 EX
 EX
@@ -6080,9 +6553,9 @@ vZ
 eU
 eU
 EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -6096,8 +6569,8 @@ Gd
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
 EX
 EX
 EX
@@ -6232,10 +6705,10 @@ eU
 eU
 EX
 EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -6384,10 +6857,10 @@ Gd
 Gd
 EX
 EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -6494,7 +6967,7 @@ EX
 Gd
 Gd
 EX
-Qw
+EX
 EX
 EX
 EX
@@ -6536,12 +7009,12 @@ Gd
 Gd
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
 EX
 EX
 EX
@@ -6646,54 +7119,54 @@ EX
 EX
 EX
 EX
-Rk
-zn
-EX
-Gd
-EX
-EX
-Je
-Je
-Je
-Je
-Je
-Je
-Je
-Je
-Je
-Je
-Je
-Je
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
 EX
 EX
 EX
 Gd
+EX
+EX
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
 Gd
 Gd
 Gd
+Gd
 EX
 EX
 EX
+Gd
+Gd
 EX
 EX
 EX
-EX
-EX
-EX
+Gd
 EX
 EX
 EX
@@ -6798,7 +7271,7 @@ EX
 EX
 EX
 EX
-Gm
+EX
 EX
 EX
 Gd
@@ -7147,8 +7620,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
 EX
 EX
 EX
@@ -7300,8 +7773,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
 EX
 EX
 Gd
@@ -7452,7 +7925,7 @@ EX
 EX
 EX
 EX
-EX
+Gd
 Gd
 Gd
 Gd
@@ -7539,9 +8012,9 @@ EX
 EX
 EX
 EX
-am
+bV
 tc
-tc
+Bf
 Je
 Je
 EX
@@ -7691,9 +8164,9 @@ EX
 EX
 EX
 EX
+bV
 am
-am
-tc
+Bf
 Je
 EX
 EX
@@ -7843,9 +8316,9 @@ EX
 EX
 EX
 EX
+bV
 am
-am
-am
+Pv
 EX
 EX
 EX
@@ -7995,9 +8468,9 @@ EX
 EX
 EX
 EX
+bV
 am
-am
-am
+Pv
 EX
 EX
 EX
@@ -8147,9 +8620,9 @@ EX
 EX
 EX
 EX
+bV
 am
-am
-am
+Pv
 EX
 EX
 EX
@@ -8299,9 +8772,9 @@ EX
 EX
 EX
 EX
+bV
 am
-am
-am
+Pv
 EX
 EX
 EX
@@ -8597,23 +9070,23 @@ EX
 EX
 EX
 Gd
+Of
+RX
+RX
+RX
+RX
+RX
+rP
 pr
-pr
-pr
-pr
-pr
-pr
-Mg
-pr
-Mg
-pr
-pr
-pr
-pr
-pr
-pr
-pr
-EX
+rP
+RX
+RX
+RX
+jL
+jL
+RX
+Vq
+Wx
 Ua
 uI
 vZ
@@ -8749,22 +9222,22 @@ EX
 EX
 EX
 EX
+JR
+tg
+Mg
+gQ
+gQ
 pr
 Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
 pr
+Mg
+rG
+Mg
+rG
+NU
 up
 GI
 JL
@@ -8901,22 +9374,22 @@ EX
 EX
 EX
 EX
-pr
+JR
+tg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+pA
 Mg
 Mg
 Mg
 Mg
 pr
+Mg
+rG
+Mg
+rG
+sd
 EX
 CG
 QL
@@ -9053,22 +9526,22 @@ EX
 EX
 WA
 EX
+JR
+tg
+Mg
+gQ
+gQ
 pr
 Mg
 Mg
 Mg
 Mg
+RA
 Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-pr
+sd
 EX
 CG
 TJ
@@ -9201,10 +9674,15 @@ DO
 DO
 DO
 pr
-an
-an
+jL
+jL
 nY
-an
+jL
+pr
+pr
+pr
+pr
+pr
 pr
 Mg
 Mg
@@ -9215,14 +9693,9 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-pr
-GI
-JL
+sd
+EX
+CG
 TJ
 EX
 Gl
@@ -9357,7 +9830,7 @@ Mg
 Mg
 Mg
 Mg
-pA
+bR
 Mg
 Mg
 Mg
@@ -9367,14 +9840,14 @@ Mg
 Mg
 Mg
 Mg
+pr
 Mg
+rG
 Mg
-Mg
-Mg
-Mg
-RA
-Hy
-vZ
+rG
+sd
+GI
+JL
 TJ
 EX
 Gd
@@ -9519,15 +9992,15 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-hn
-vZ
-bS
+pr
+pr
+pr
+pr
+pr
+NU
+CG
+QL
+Ms
 zI
 Gd
 pr
@@ -9661,7 +10134,7 @@ Mg
 Mg
 Mg
 Mg
-pA
+bR
 Mg
 Mg
 Mg
@@ -9676,10 +10149,10 @@ Mg
 Mg
 Mg
 Mg
-pr
+NU
 CG
-QL
-Dp
+LE
+Qo
 Gd
 Gd
 pr
@@ -9809,13 +10282,15 @@ DO
 DO
 DO
 pr
-an
-an
+Nv
+Nv
 nY
-an
+Nv
 pr
 Mg
 Mg
+LA
+LA
 Mg
 Mg
 Mg
@@ -9826,12 +10301,10 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-pr
-CG
-TJ
-Gl
+RA
+Hy
+vZ
+bS
 Gd
 Gd
 Gd
@@ -9965,6 +10438,13 @@ EX
 EX
 wL
 EX
+JR
+pr
+pr
+pr
+pr
+pr
+pr
 pr
 Mg
 Mg
@@ -9974,16 +10454,9 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-pr
-CG
+hn
+vZ
 TJ
-EX
 Gd
 Gd
 Gd
@@ -10117,29 +10590,29 @@ EX
 EX
 EX
 EX
-pr
+JR
+rG
 Mg
+rG
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+rG
 Mg
 pr
+Mg
+Mg
+Mg
+Mg
 pr
-pr
-pr
+ub
+ub
+eG
 CG
 Zj
-EX
+Dp
 Gd
 Gd
-EX
-EX
+cm
+cm
 pr
 Mg
 Mg
@@ -10269,38 +10742,38 @@ EX
 EX
 EX
 EX
-pr
+vn
+rG
 Mg
+rG
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+rG
 Mg
 pr
-EX
-EX
-EX
+Mg
+Mg
+Mg
+Mg
+NU
+cm
+cm
+cm
 CG
 LE
 Lx
 AG
 Gd
-EX
-EX
+Wx
+cm
 pr
+pr
+an
+an
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+hO
+an
+an
+pr
 pr
 pr
 pr
@@ -10421,21 +10894,21 @@ EX
 EX
 EX
 EX
-pr
+vn
 Mg
 Mg
 Mg
 Mg
 Mg
 Mg
+RA
 Mg
 Mg
 Mg
 Mg
-Mg
-pr
-EX
-EX
+sd
+cm
+cm
 EX
 Ua
 IF
@@ -10573,7 +11046,7 @@ EX
 EX
 EX
 EX
-pr
+vn
 Mg
 Mg
 Mg
@@ -10584,28 +11057,28 @@ Mg
 Mg
 Mg
 Mg
-Mg
-pr
+gQ
+sd
 EX
 EX
 Gd
 Gd
-EX
+Ou
 Zq
 vZ
 LE
 Qo
 EX
 pr
+ki
+Dq
+Hp
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-pr
+ki
+Dq
+Hp
+an
 EX
 EX
 EX
@@ -10725,19 +11198,19 @@ Je
 EX
 EX
 EX
-pr
+vn
+rG
 Mg
+rG
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+rG
 Mg
 pr
+Mg
+Mg
+Mg
+gQ
+sd
 Gl
 EX
 Gd
@@ -10749,15 +11222,15 @@ uI
 gW
 EX
 pr
+ki
+Dq
+Hp
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-pr
+ki
+Dq
+Hp
+an
 EX
 EX
 EX
@@ -10877,20 +11350,20 @@ Je
 Je
 EX
 EX
-pr
+JR
+rG
 Mg
+rG
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+rG
 Mg
 pr
-EX
+Mg
+Mg
+Mg
+gQ
+sd
+Ou
 EX
 EX
 Gd
@@ -10901,15 +11374,15 @@ CG
 TJ
 EX
 pr
+ki
+Dq
+Hp
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-pr
+ki
+Dq
+Hp
+an
 EX
 EX
 EX
@@ -11029,24 +11502,24 @@ Je
 Je
 EX
 EX
+JR
+pr
+pr
+pr
+pr
+pr
+pr
 pr
 Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-pr
+sd
 EX
 EX
 sk
-EX
-EX
+Gl
+zI
 Gd
 zI
 CG
@@ -11181,22 +11654,22 @@ Je
 EX
 EX
 EX
-pr
+JR
+rG
 Mg
+rG
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+rG
 Mg
 pr
+Mg
+Mg
+Mg
+Mg
+NU
 fa
 EX
-EX
+zI
 EX
 EX
 GI
@@ -11205,15 +11678,15 @@ JL
 TJ
 EX
 pr
+ki
+Dq
+Hp
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-pr
+ki
+Dq
+Hp
+an
 EX
 EX
 EX
@@ -11333,22 +11806,22 @@ EX
 EX
 EX
 EX
-pr
+vn
+rG
 Mg
+rG
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+rG
 Mg
 pr
+Mg
+Mg
+Mg
+Mg
 pr
-pr
-pr
+RX
+RX
+Vq
 zI
 EX
 CG
@@ -11357,15 +11830,15 @@ IF
 Dp
 EX
 pr
+ki
+Dq
+Hp
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-pr
+ki
+Dq
+Hp
+an
 EX
 EX
 EX
@@ -11485,23 +11958,23 @@ EX
 EX
 EX
 EX
-pr
+vn
 Mg
 Mg
 Mg
 Mg
 Mg
 Mg
+RA
 Mg
 Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-pr
-EX
+eT
+vI
+sd
+Wx
 GI
 JL
 TJ
@@ -11509,15 +11982,15 @@ up
 EX
 EX
 pr
+ki
+Dq
+Hp
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-pr
+ki
+Dq
+Hp
+an
 EX
 BK
 EX
@@ -11637,7 +12110,7 @@ EX
 EX
 EX
 EX
-pr
+vn
 Mg
 Mg
 Mg
@@ -11650,9 +12123,9 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-pr
+gQ
+Mv
+sd
 EX
 CG
 vZ
@@ -11789,22 +12262,22 @@ EX
 EX
 EX
 EX
-pr
+vn
+rG
 Mg
+rG
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+rG
 Mg
 pr
+Mg
+Mg
+Mg
+Mg
+Mg
+Mg
+rs
+NU
 sk
 Ai
 IF
@@ -11817,10 +12290,10 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
+pr
+Mw
+pr
+pr
 pr
 pr
 pr
@@ -11941,40 +12414,40 @@ EX
 EX
 EX
 EX
-pr
+JR
+rG
 Mg
+rG
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+rG
 Mg
 pr
-an
+Mg
+Mg
+LA
+LA
+Mg
+Mg
+Mg
+pr
+jL
 nY
-pr
+RX
 nY
-an
+jL
 pr
+RC
+tV
 Mg
 Mg
 Mg
 Mg
+Dq
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+Lf
+pr
+Kf
+hD
 pr
 EX
 EX
@@ -12093,9 +12566,18 @@ EX
 EX
 EX
 EX
+JR
+pr
+pr
+pr
+pr
+pr
+pr
 pr
 Mg
 Mg
+LA
+LA
 Mg
 Mg
 Mg
@@ -12112,23 +12594,14 @@ Mg
 Mg
 Mg
 Mg
+jq
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+zp
 pr
-EX
+XP
+LS
+Fw
+SF
 EX
 EX
 EX
@@ -12245,6 +12718,9 @@ EX
 EX
 EX
 EX
+JR
+Mg
+Mg
 pr
 Mg
 Mg
@@ -12270,15 +12746,12 @@ Mg
 Mg
 Mg
 Mg
+jq
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+Dx
+pr
+XR
+LS
 pr
 EX
 EX
@@ -12397,6 +12870,9 @@ EX
 EX
 EX
 EX
+JR
+Mg
+Mg
 pr
 Mg
 Mg
@@ -12422,15 +12898,12 @@ Mg
 Mg
 Mg
 Mg
+Cz
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+xU
+pr
+Tl
+LS
 pr
 EX
 EX
@@ -12549,6 +13022,9 @@ kR
 pr
 EX
 EX
+JR
+Mw
+pr
 pr
 Mg
 Mg
@@ -12561,15 +13037,12 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
 pr
-an
+Nv
 nY
-pr
+ub
 nY
-an
+Nv
 pr
 Mg
 Mg
@@ -12577,12 +13050,12 @@ Mg
 Mg
 Mg
 Mg
+tz
+Kp
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+Fw
+LS
+LS
 pr
 EX
 EX
@@ -12699,14 +13172,9 @@ pr
 Mg
 hO
 pr
-an
-an
+jL
+jL
 pr
-Mg
-Mg
-Mg
-Mg
-Mg
 Mg
 Mg
 Mg
@@ -12717,6 +13185,11 @@ pr
 pr
 pr
 pr
+pr
+pr
+Lg
+pr
+eG
 EX
 wL
 EX
@@ -12860,12 +13333,14 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
 pr
+hz
+hz
+hz
+LS
+LS
+LS
+NU
 EX
 EX
 EX
@@ -12873,14 +13348,12 @@ EX
 EX
 EX
 EX
-EX
-zs
+PY
 Mg
 Mg
 Mg
-Mg
-Mg
-SF
+Tx
+EX
 EX
 EX
 EX
@@ -13011,13 +13484,15 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+tV
 pr
+LS
+LS
+LS
+LS
+pr
+pr
+NU
 EX
 EX
 EX
@@ -13025,13 +13500,11 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-am
-am
-am
-EX
+JR
+Mg
+Mg
+Mg
+NU
 EX
 EX
 EX
@@ -13163,28 +13636,28 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+dU
 pr
+LS
+LS
+LS
+LS
+LS
+LS
+NU
 EX
 EX
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-am
-am
-am
-EX
-EX
+ey
+RA
+Mg
+Mg
+Mg
+RA
+rS
 EX
 EX
 EX
@@ -13315,28 +13788,28 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+bz
 pr
+RP
+RP
+RP
+RP
+LS
+LS
+NU
 EX
 EX
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-am
-am
-am
-EX
-EX
+Wf
+Mg
+Mg
+Mg
+Mg
+Mg
+VI
 EX
 EX
 EX
@@ -13459,8 +13932,8 @@ pr
 Mg
 hO
 pr
-an
-an
+Nv
+Nv
 pr
 Mg
 Mg
@@ -13468,12 +13941,14 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
 pr
+pr
+pr
+pr
+pr
+LS
+LS
+NU
 EX
 EX
 EX
@@ -13481,13 +13956,11 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-am
-am
-am
-EX
+JR
+Mg
+Mg
+Mg
+NU
 EX
 EX
 EX
@@ -13613,12 +14086,7 @@ sp
 pr
 EX
 EX
-pr
-Mg
-Mg
-Mg
-Mg
-Mg
+JR
 Mg
 Mg
 Mg
@@ -13626,6 +14094,13 @@ Mg
 Mg
 Mg
 pr
+vV
+vV
+vV
+LS
+LS
+LS
+NU
 EX
 EX
 EX
@@ -13633,14 +14108,12 @@ EX
 EX
 EX
 EX
-EX
-zs
+PY
 Mg
 Mg
 Mg
-Mg
-Mg
-SF
+Tx
+EX
 EX
 EX
 EX
@@ -13765,12 +14238,7 @@ EX
 EX
 EX
 EX
-pr
-Mg
-Mg
-Mg
-Mg
-Mg
+JR
 Mg
 Mg
 Mg
@@ -13778,8 +14246,13 @@ Mg
 Mg
 Mg
 pr
-EX
-EX
+ep
+ep
+ep
+LS
+Ba
+Ba
+NU
 EX
 EX
 EX
@@ -13917,21 +14390,21 @@ EX
 EX
 EX
 EX
-pr
-pr
-pr
+xP
+Nv
+Nv
+ub
 Mg
 Mg
-Mg
-Mg
-pr
-pr
-pr
-pr
-pr
-pr
-EX
-EX
+ub
+ub
+ub
+ub
+ub
+ub
+ub
+ub
+eG
 EX
 EX
 EX
@@ -14072,10 +14545,10 @@ EX
 EX
 EX
 EX
-am
-am
-am
-tc
+EX
+bV
+Pv
+Je
 Je
 EX
 EX
@@ -14224,10 +14697,10 @@ EX
 EX
 EX
 EX
-am
-am
-am
-tc
+EX
+bV
+Pv
+Je
 Je
 Je
 EX
@@ -14376,10 +14849,10 @@ EX
 EX
 EX
 EX
-am
-am
-tc
-tc
+EX
+bV
+Bf
+Je
 Je
 Je
 EX
@@ -14528,10 +15001,10 @@ EX
 EX
 EX
 EX
-am
-am
-tc
-tc
+EX
+bV
+Bf
+Je
 Je
 Je
 Je
@@ -14680,10 +15153,10 @@ EX
 EX
 EX
 EX
-am
-am
-am
-tc
+EX
+bV
+Pv
+Je
 Je
 Je
 Je
@@ -14832,10 +15305,10 @@ EX
 EX
 EX
 EX
-am
-am
-am
-am
+EX
+bV
+Pv
+EX
 EX
 Je
 Je
@@ -14984,10 +15457,10 @@ EX
 EX
 EX
 EX
-am
-am
-am
-am
+EX
+bV
+Pv
+EX
 EX
 EX
 Je
@@ -15136,10 +15609,10 @@ EX
 EX
 EX
 EX
-am
-am
-am
-am
+EX
+bV
+Pv
+EX
 EX
 Je
 Je
@@ -15287,12 +15760,12 @@ EX
 EX
 EX
 Of
-RX
-am
-am
-am
-am
-RX
+Vq
+EX
+bV
+Pv
+EX
+Of
 Vq
 KX
 Je
@@ -15438,14 +15911,14 @@ pr
 EX
 EX
 EX
-JR
+xP
+Mg
+Ic
 Mg
 Mg
+Ic
 Mg
-Mg
-Mg
-Mg
-NU
+eG
 KX
 Je
 Je
@@ -15587,21 +16060,21 @@ Mg
 Mg
 Mg
 Mg
-am
-am
-am
-am
+EX
+EX
+EX
+EX
+gs
 Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-am
-Uc
-tc
-tc
-Uc
+pI
+EX
+KX
+Je
+Je
+KX
 Mg
 Mg
 an
@@ -16043,21 +16516,21 @@ Mg
 Mg
 Mg
 Mg
-am
-am
-tc
-tc
+EX
+EX
+Je
+Je
+gs
 Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-am
-am
-am
-am
-am
+pI
+EX
+EX
+EX
+EX
+EX
 Mg
 Mg
 Mg
@@ -16198,14 +16671,14 @@ pr
 EX
 EX
 Je
-JR
+Of
+Mg
+wF
 Mg
 Mg
+wF
 Mg
-Mg
-Mg
-Mg
-NU
+Vq
 EX
 EX
 EX
@@ -16351,12 +16824,12 @@ EX
 Je
 Je
 xP
-ub
+eG
+Je
 tc
 tc
-tc
-am
-ub
+EX
+xP
 eG
 EX
 EX
@@ -16504,10 +16977,10 @@ Je
 Je
 Je
 Je
-tc
+Je
 tc
 am
-am
+EX
 EX
 EX
 EX
@@ -16656,10 +17129,10 @@ EX
 Je
 Je
 Je
-tc
+Je
 am
 am
-am
+EX
 EX
 EX
 EX
@@ -16808,10 +17281,10 @@ EX
 EX
 Je
 Je
+EX
 am
 am
-am
-am
+EX
 EX
 EX
 EX
@@ -16960,10 +17433,10 @@ EX
 EX
 EX
 EX
+EX
 am
 am
-am
-am
+EX
 EX
 EX
 EX
@@ -17112,10 +17585,10 @@ EX
 EX
 EX
 EX
+EX
 am
 am
-am
-am
+EX
 EX
 EX
 EX
@@ -17264,10 +17737,10 @@ EX
 EX
 EX
 EX
+EX
 am
 am
-am
-am
+EX
 EX
 EX
 EX
@@ -17415,12 +17888,12 @@ EX
 EX
 EX
 EX
-EX
-am
-am
-am
-am
-EX
+Mg
+Mg
+Mg
+Mg
+Mg
+Mg
 EX
 EX
 EX
@@ -17561,18 +18034,18 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
 pr
 pr
-Mg
-Mg
-Mg
-Mg
 pr
+pr
+pr
+pr
+an
+pr
+Mg
+hO
+pr
+an
 pr
 EX
 EX
@@ -17714,11 +18187,11 @@ EX
 EX
 EX
 pr
-pr
-pr
-pr
-pr
-pr
+Mg
+Mg
+Mg
+Mg
+Mg
 Mg
 Mg
 Mg
@@ -18938,9 +19411,9 @@ Mg
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
+pr
+pr
+pr
 pr
 EX
 EX
@@ -19091,9 +19564,9 @@ Mg
 Mg
 Mg
 pr
-pr
-pr
-pr
+EX
+EX
+EX
 EX
 EX
 EX
@@ -20906,14 +21379,14 @@ EX
 EX
 EX
 pr
+pr
+pr
+pr
+pr
+pr
 Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
-Mg
+hO
+pr
 pr
 EX
 EX
@@ -21057,16 +21530,16 @@ EX
 EX
 EX
 EX
-pr
-pr
-pr
-pr
-pr
-pr
-pr
-Mg
-pr
-pr
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
 EX
 EX
 EX

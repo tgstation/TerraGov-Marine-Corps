@@ -498,7 +498,7 @@
 	pixel_y = -8
 	icon_variants = 3
 
-/obj/structure/flora/jungle/variable/large_bush/Initialize(mapload)
+/obj/structure/flora/jungle/large_bush/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/largetransparency, 0, 0, 0, 1)
 
@@ -532,12 +532,6 @@
 /obj/structure/flora/jungle/vines/heavy/Initialize(mapload)
 	. = ..()
 	icon_state = pick("Hvy1","Hvy2","Hvy3","Med1","Med2","Med3")
-
-/obj/structure/flora/jungle/tree/grasscarpet
-	name = "thick grass"
-	desc = "A thick mat of dense grass."
-	icon_state = "grasscarpet"
-	layer = BELOW_MOB_LAYER
 
 
 //drought map flora
