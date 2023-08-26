@@ -47,5 +47,5 @@
  */
 /mob/living/carbon/xenomorph/proc/xeno_iff_check()
 	var/list/inplace_iff = list(NONE)
-	SEND_SIGNAL(src, COMSIG_XENO_IFF_CHECK, inplace_iff) //Inplace list magic to allow for multiple potential listeners to all do their things on the same list.
+	SEND_SIGNAL(src, COMSIG_XENO_IFF_CHECK, inplace_iff) //Inplace list magic to allow for multiple potential listeners to all do their things on the same variable.
 	return inplace_iff[1]
