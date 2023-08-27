@@ -43,7 +43,7 @@
 
 /**
  * This handles checking for a xenomorph's potential IFF signals carried by components
- * Currently, IFF tags attach a components listening for this.
+ * Currently, IFF tags attach a component listening for this.
  */
 /mob/living/carbon/xenomorph/proc/xeno_iff_check()
 	var/list/inplace_iff = list(NONE)
