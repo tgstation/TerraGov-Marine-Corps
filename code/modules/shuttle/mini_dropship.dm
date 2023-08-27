@@ -42,8 +42,6 @@
 	var/origin_port_id = SHUTTLE_TADPOLE
 	/// The user of the ui
 	var/mob/living/ui_user
-	/// If this computer was damaged by a xeno
-	var/damaged = FALSE
 	/// How long before you can launch tadpole after a landing
 	var/launching_delay = 10 SECONDS
 	///Minimap for use while in landing cam mode
@@ -71,9 +69,7 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/give_actions(mob/living/user)
 	if(!user)
-		if(!current_user)
-			return
-		user = current_user
+		return
 
 	for(var/datum/action/action_from_shuttle_docker AS in actions)
 		action_from_shuttle_docker.remove_action(user)
@@ -112,15 +108,12 @@
 		to_transit = FALSE
 		next_fly_state = destination_fly_state
 		return
-	give_actions()
 	if(fly_state == SHUTTLE_ON_GROUND)
 		TIMER_COOLDOWN_START(src, COOLDOWN_TADPOLE_LAUNCHING, launching_delay)
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
 	shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit/atmos)
 	open_prompt = TRUE
-	if(ui_user?.Adjacent(src))
-		open_prompt(ui_user, GLOB.minidropship_start_loc)
 
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
@@ -161,14 +154,14 @@
 
 /// Toggle the vision between small nightvision and turf vision
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_nvg()
-	if(!check_hovering_spot(eyeobj.loc))
+	if(!check_hovering_spot(eyeobj?.loc))
 		to_chat(ui_user, span_warning("Can not toggle night vision mode in caves"))
 		return
 	nvg_vision_mode = !nvg_vision_mode
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()
-	if(damaged)
+	if(machine_stat & BROKEN)
 		return
 	if(X.status_flags & INCORPOREAL)
 		return
@@ -189,7 +182,7 @@
 	var/datum/effect_system/spark_spread/s2 = new /datum/effect_system/spark_spread
 	s2.set_up(3, 1, src)
 	s2.start()
-	damaged = TRUE
+	set_broken()
 	open_prompt = FALSE
 	clean_ui_user()
 
@@ -206,7 +199,7 @@
 		visible_message("Autopilot detects loss of helm control. Halting take off!")
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/can_interact(mob/user)
-	if(damaged)
+	if(machine_stat & BROKEN)
 		to_chat(user, span_warning("The [src] blinks and lets out a crackling noise. Its broken!"))
 		return
 	return ..()

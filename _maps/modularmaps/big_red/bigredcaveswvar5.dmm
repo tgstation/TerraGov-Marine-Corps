@@ -78,6 +78,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
+"K" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "L" = (
 /obj/effect/landmark/patrol_point{
 	id = "SOM_14";
@@ -582,7 +586,7 @@ f
 f
 f
 V
-T
+K
 w
 T
 T

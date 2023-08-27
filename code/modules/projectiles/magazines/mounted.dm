@@ -10,7 +10,7 @@
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 5 SECONDS
-	icon_state_mini = "mag_tl102"
+	icon_state_mini = "mag_hmg"
 
 ///This is the one that comes in the mapbound and dropship mounted version of the HSG-102, it has a stupid amount of ammo. Even more than the ammo counter can display.
 /obj/item/ammo_magazine/tl102/hsg_nest
@@ -23,6 +23,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mg08_mag"
+	icon_state_mini = "mag_drum_big_green"
 	flags_magazine = NONE
 	caliber = CALIBER_10X28
 	max_rounds = 500
@@ -35,6 +36,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_equip_slot = ITEM_SLOT_BELT
 	icon_state = "mg08_mag_small"
+	icon_state_mini = "mag_hmg"
 	max_rounds = 250
 	reload_delay = 5 SECONDS
 
@@ -44,6 +46,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "mag"
+	icon_state_mini = "mag_drum_big_armygreen"
 	flags_magazine = NONE
 	caliber = CALIBER_10x27_CASELESS
 	max_rounds = 150

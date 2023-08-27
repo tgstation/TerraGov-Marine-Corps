@@ -6,7 +6,7 @@
 	icon_state = "roomba"
 	density = FALSE
 	anchored = FALSE
-	voice_filter = "aderivative"
+	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	///Keeps track of how many items have been sucked for fluff
 	var/counter = 0
 	///The mine we have attached to this roomba
@@ -122,9 +122,9 @@
 		return
 	tgui_alert(user, "Are you really sure to want to try your luck with the devilish roomba?", "The roomba roulette", list("Yes", "Yes!", "Yes?"))
 	if(prob(50))
-		explosion(user, 1, 0, 0, 0, 0, 4, "[user] lost at the roomba roulette")
+		explosion(user, 1, throw_range = "[user] lost at the roomba roulette")
 		return
-	explosion(src, 1, 0, 0, 0, 0, 4, "[user] won at the roomba roulette")
+	explosion(src, 1, throw_range = "[user] won at the roomba roulette")
 	qdel(src)
 
 /obj/machinery/roomba/attackby(obj/item/I, mob/living/user, def_zone)

@@ -190,7 +190,7 @@
 
 /obj/item/clothing/suit/modular/rownin
 	name = "\improper Rownin Skeleton"
-	desc = "A light armor, if you can even called it that, for dedicated marines that want to travel light and have agility in exchange of protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	desc = "A light armor, if you can even call it that, for marines that want to have agility in exchange for protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	icon_state = "rownin_skeleton"
 	item_state = "rownin_skeleton"
 	allowed_uniform_type = /obj/item/clothing/under

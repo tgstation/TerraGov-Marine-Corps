@@ -21,34 +21,40 @@
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
 	minimap_color = MINIMAP_DIRT
+	icon_variants = 4
+
+/turf/open/floor/plating/ground/dirt/normal_states()
+	if((icon_variants < 2) || !prob(6))
+		return initial(icon_state)
+	return "[initial(icon_state)]_[rand(1, icon_variants)]"
 
 /turf/open/floor/plating/ground/dirt/dug
+	icon_variants = 1
 	icon_state = "desert_dug"
 
 /turf/open/floor/plating/ground/dirt/typezero
-	icon_state = "desert0"
+	icon_variants = 1
+	icon_state = "desert_1"
 
 /turf/open/floor/plating/ground/dirt/typeone
-	icon_state = "desert1"
+	icon_variants = 1
+	icon_state = "desert_2"
 
 /turf/open/floor/plating/ground/dirt/typetwo
-	icon_state = "desert2"
+	icon_variants = 1
+	icon_state = "desert_3"
 
 /turf/open/floor/plating/ground/dirt/typethree
-	icon_state = "desert3"
+	icon_variants = 1
+	icon_state = "desert_4"
 
-/turf/open/floor/plating/ground/dirt/Initialize(mapload)
-	. = ..()
-	if(rand(0,15) == 0)
-		icon_state = "desert[pick("0","1","2","3")]"
-
-/turf/open/floor/plating/ground/dirt/desert
+/turf/open/floor/plating/ground/dirt_desert
 	name = "desert"
-	icon_state = "desert5"
-
-/turf/open/floor/plating/ground/dirt/desert/Initialize(mapload)
-	. = ..()
-	icon_state = "desert[pick("5","6")]"
+	icon_state = "desert_alt"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
+	icon_variants = 2
 
 /turf/open/floor/plating/ground/dirtgrassborder
 	name = "grass"
@@ -129,18 +135,12 @@
 	icon_state = "grass3"
 
 /turf/open/ground/grass/grassalt
-	icon_state = "dgrass0"
-
-/turf/open/ground/grass/grassalt/Initialize(mapload)
-	. = ..()
-	icon_state = "dgrass[pick("0","1","2","3","4")]"
+	icon_state = "dgrass"
+	icon_variants = 5
 
 /turf/open/ground/grass/grassalt/tall
-	icon_state = "fullgrass0"
-
-/turf/open/ground/grass/grassalt/tall/Initialize(mapload)
-	. = ..()
-	icon_state = "fullgrass[pick("0","1","2","3","4")]"
+	icon_state = "fullgrass"
+	icon_variants = 5
 
 // Big Red
 
@@ -205,10 +205,7 @@
 /turf/open/floor/plating/ground/mars/alt
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "mars1"
-
-/turf/open/floor/plating/ground/mars/alt/Initialize(mapload)
-	. = ..()
-	icon_state = "mars[pick("1","2","3","4","5")]"
+	icon_variants = 5
 
 //Ice Colony grounds
 
@@ -261,15 +258,11 @@
 //desert floor
 /turf/open/floor/plating/ground/desertdam/desert
 	name = "desert"
-	icon_state = "desert0"
+	icon_state = "desert"
 	mediumxenofootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	shoefootstep = FOOTSTEP_SAND
-
-/turf/open/floor/plating/ground/desertdam/desert/Initialize(mapload)
-	. = ..()
-	icon_state = "desert[pick("0","1","2","3","4","5","6","7")]"
-
+	icon_variants = 8
 
 //asphalt road
 /turf/open/floor/plating/ground/desertdam/asphalt
@@ -348,11 +341,8 @@
 //inner cave floor
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	name = "cave"
-	icon_state = "inner_cave_full0"
-
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor/Initialize(mapload)
-	. = ..()
-	icon_state = "inner_cave_full[pick("0","1")]"
+	icon_state = "inner_cave_full"
+	icon_variants = 2
 
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave/corners
 	name = "cave"
@@ -370,11 +360,7 @@
 	barefootstep = FOOTSTEP_SAND
 	shoefootstep = FOOTSTEP_SAND
 	minimap_color = MINIMAP_DIRT
-	var/icon_variants = 3
-
-/turf/open/floor/plating/ground/drought/Initialize(mapload)
-	. = ..()
-	icon_state = "[initial(icon_state)]_[pick(1, icon_variants)]"
+	icon_variants = 3
 
 /turf/open/floor/plating/ground/drought/alt
 	icon_state = "desert_alt"

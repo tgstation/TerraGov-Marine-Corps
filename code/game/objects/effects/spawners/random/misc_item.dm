@@ -141,6 +141,17 @@
 /obj/effect/spawner/random/misc/plushie/nospawnninetynine
 	spawn_loot_chance = 1
 
+/obj/effect/spawner/random/misc/gnome
+	name = "Random gnome spawner"
+	icon_state = "random_gnome"
+	spawn_loot_chance = 15
+	loot = list(
+		/obj/item/toy/plush/gnome,
+	)
+
+/obj/effect/spawner/random/misc/gnome/fiftyfifty
+	spawn_loot_chance = 50
+
 /obj/effect/spawner/random/misc/plant
 	name = "Random potted plant spawner"
 	icon_state = "random_plant"

@@ -1,5 +1,5 @@
 /datum/admins/proc/set_view_range()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Set View Range"
 
 	if(!check_rights(R_FUN))
@@ -24,7 +24,7 @@
 
 
 /datum/admins/proc/emp()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "EM Pulse"
 
 	if(!check_rights(R_FUN))
@@ -48,7 +48,7 @@
 
 
 /datum/admins/proc/queen_report()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Queen Mother Report"
 
 	if(!check_rights(R_FUN))
@@ -70,7 +70,7 @@
 
 /datum/admins/proc/rouny_all()
 	set name = "Toggle Glob Xeno Rouny"
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set desc = "Toggle all living xenos into rouny versions of themselves"
 
 	if(!check_rights(R_FUN))
@@ -83,8 +83,8 @@
 
 
 /datum/admins/proc/hive_status()
-	set category = "Fun"
-	set name = "Hive Status"
+	set category = "Admin.Fun"
+	set name = "Check Hive Status"
 	set desc = "Check the status of the hive."
 
 	if(!check_rights(R_FUN))
@@ -99,7 +99,7 @@
 
 
 /datum/admins/proc/ai_report()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "AI Report"
 
 	if(!check_rights(R_FUN))
@@ -129,7 +129,7 @@
 
 
 /datum/admins/proc/command_report()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Command Report"
 
 	if(!check_rights(R_FUN))
@@ -158,7 +158,7 @@
 
 
 /datum/admins/proc/narrate_global()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Global Narrate"
 
 	if(!check_rights(R_FUN))
@@ -217,7 +217,7 @@
 
 
 /datum/admins/proc/subtle_message_panel()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Subtle Message Mob"
 
 	if(!check_rights(R_FUN|R_MENTOR))
@@ -256,7 +256,7 @@
 
 
 /datum/admins/proc/award_medal()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Award a Medal"
 
 	if(!check_rights(R_FUN))
@@ -266,7 +266,7 @@
 
 
 /datum/admins/proc/custom_info()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Change Custom Info"
 
 	if(!check_rights(R_FUN))
@@ -304,7 +304,7 @@
 
 
 /datum/admins/proc/sound_file(S as sound)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Play Imported Sound"
 	set desc = "Play a sound imported from anywhere on your computer."
 
@@ -336,7 +336,7 @@
 
 
 /datum/admins/proc/sound_web()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Play Internet Sound"
 
 	if(!check_rights(R_SOUND))
@@ -428,7 +428,7 @@
 
 
 /datum/admins/proc/sound_stop()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Stop Regular Sounds"
 
 	if(!check_rights(R_SOUND))
@@ -443,7 +443,7 @@
 
 
 /datum/admins/proc/music_stop()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Stop Playing Music"
 
 	if(!check_rights(R_SOUND))
@@ -459,7 +459,7 @@
 
 
 /datum/admins/proc/announce()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Admin Announce"
 
 	if(!check_rights(R_FUN))
@@ -478,7 +478,7 @@
 
 
 /datum/admins/proc/force_distress()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Distress Beacon"
 	set desc = "Call a distress beacon manually."
 
@@ -567,7 +567,7 @@
 
 
 /datum/admins/proc/drop_bomb()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -597,13 +597,13 @@
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_napalm), get_turf(usr.loc)), 1 SECONDS)
 		if("Small Bomb")
-			explosion(usr.loc, 1, 2, 3, 3)
+			explosion(usr.loc, 1, 2, 3, 0, 3)
 		if("Medium Bomb")
-			explosion(usr.loc, 2, 3, 4, 4)
+			explosion(usr.loc, 2, 3, 4, 0, 4)
 		if("Big Bomb")
-			explosion(usr.loc, 3, 5, 7, 5)
+			explosion(usr.loc, 3, 5, 7, 0, 5)
 		if("Maxcap")
-			explosion(usr.loc, GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+			explosion(usr.loc, GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, 0, GLOB.MAX_EX_FLASH_RANGE)
 		if("Custom Bomb")
 			var/input_devastation_range = input("Devastation range (in tiles):", "Drop Bomb") as null|num
 			var/input_heavy_impact_range = input("Heavy impact range (in tiles):", "Drop Bomb") as null|num
@@ -621,10 +621,10 @@
 			input_flame_range = clamp(input_flame_range, 0, world_max)
 			switch(tgui_alert(usr, "Deploy payload?", "DIR: [input_devastation_range] | HIR: [input_heavy_impact_range] | LIR: [input_light_impact_range] | FshR: [input_flash_range] | FlmR: [input_flame_range] | ThR: [input_throw_range]", list("Launch!", "Cancel")))
 				if("Launch!")
-					explosion(usr.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range)
+					explosion(usr.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, 0, input_flash_range, input_flame_range, input_throw_range)
 				else
 					return
-			choice = "[choice] ([input_devastation_range], [input_heavy_impact_range], [input_light_impact_range], [input_flash_range], [input_flame_range])" //For better logging.
+			choice = "[choice] ([input_devastation_range], [input_heavy_impact_range], [input_light_impact_range], 0, [input_flash_range], [input_flame_range])" //For better logging.
 		else
 			return
 
@@ -634,7 +634,7 @@
 /proc/delayed_detonate_bomb(turf/impact, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range, ceiling_debris)
 	if(ceiling_debris)
 		impact.ceiling_debris_check(ceiling_debris)
-	explosion(impact, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range)
+	explosion(impact, input_devastation_range, input_heavy_impact_range, input_light_impact_range, 0, input_flash_range, input_flame_range, input_throw_range)
 
 /proc/delayed_detonate_bomb_fatty(turf/impact)
 	impact.ceiling_debris_check(2)
@@ -651,12 +651,12 @@
 
 /proc/delayed_detonate_bomb_napalm(turf/impact)
 	impact.ceiling_debris_check(3)
-	explosion(impact, 2, 3, 4, 6)
+	explosion(impact, 2, 3, 4, 0, 6)
 	flame_radius(5, impact, 60, 30)
 
 
 /datum/admins/proc/drop_dynex_bomb()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Drop DynEx Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -669,7 +669,7 @@
 
 
 /datum/admins/proc/change_security_level()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Set Security Level"
 
 	if(!check_rights(R_FUN))
@@ -689,7 +689,7 @@
 
 
 /datum/admins/proc/rank_and_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Rank and Equipment"
 
 	if(!check_rights(R_FUN))
@@ -731,7 +731,7 @@
 
 
 /datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.human_mob_list)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Edit Appearance"
 
 	if(!check_rights(R_FUN))
@@ -766,7 +766,7 @@
 
 
 /datum/admins/proc/offer(mob/living/L in GLOB.mob_living_list)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Offer Mob"
 
 	if(!check_rights(R_FUN))
@@ -801,7 +801,7 @@
 
 
 /datum/admins/proc/xeno_panel(mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Xeno Panel"
 
 	if(!check_rights(R_FUN))
@@ -872,18 +872,8 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
 
 
-/client/proc/toggle_buildmode()
-	set category = "Fun"
-	set name = "Toggle Build Mode"
-
-	if(!check_rights(R_FUN))
-		return
-
-	togglebuildmode(usr)
-
-
 /datum/admins/proc/imaginary_friend()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Imaginary Friend"
 
 	if(!check_rights(R_FUN|R_MENTOR))
@@ -925,7 +915,7 @@
 	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(friend_owner)].")
 
 /datum/admins/proc/force_dropship()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Force Dropship"
 
 	if(!check_rights(R_FUN))
@@ -999,7 +989,7 @@
 
 
 /datum/admins/proc/play_cinematic()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Play Cinematic"
 
 	if(!check_rights(R_FUN))
@@ -1016,7 +1006,7 @@
 
 
 /datum/admins/proc/set_tip()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Set Tip"
 
 	if(!check_rights(R_FUN))
@@ -1037,7 +1027,7 @@
 
 
 /datum/admins/proc/ghost_interact()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Ghost Interact"
 
 	if(!check_rights(R_FUN))
@@ -1049,7 +1039,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
 
 /client/proc/run_weather()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Run Weather"
 	set desc = "Triggers a weather on the z-level you choose."
 
@@ -1073,7 +1063,7 @@
 
 ///client verb to set round end sound
 /client/proc/set_round_end_sound(S as sound)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Set Round End Sound"
 	if(!check_rights(R_SOUND))
 		return
@@ -1086,7 +1076,7 @@
 
 ///Adjusts gravity, modifying the jump component for all mobs
 /datum/admins/proc/adjust_gravity()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Adjust Gravity"
 
 	if(!check_rights(R_FUN))

@@ -1646,7 +1646,7 @@
 /turf/open/floor/plating/scorched,
 /area/oscar_outpost/village/abandonedbase)
 "tR" = (
-/obj/item/storage/box/m42c_system,
+/obj/item/storage/box/crate/m42c_system,
 /turf/open/shuttle/elevator/grating,
 /area/oscar_outpost/village/abandonedbase)
 "tW" = (

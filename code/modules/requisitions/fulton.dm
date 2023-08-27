@@ -3,6 +3,11 @@
 	desc = "A balloon that can be used to extract equipment or personnel. Anything not bolted down can be moved."
 	icon = 'icons/obj/items/fulton.dmi'
 	icon_state = "extraction_pack"
+	item_state = "fulton"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_NORMAL
 	tool_behaviour = TOOL_FULTON
 	resistance_flags = RESIST_ALL

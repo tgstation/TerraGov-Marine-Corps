@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		filter += tts_filter.Join(",")
 
 	if(voice && found_client)
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, message_range = range)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, message_range = range, pitch = pitch, silicon = tts_silicon_voice_effect)
 
 #define CMSG_FREQPART compose_freq(speaker, radio_freq)
 #define CMSG_JOBPART compose_job(speaker, message_language, raw_message, radio_freq)
@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 		var/paygrade = H.get_paygrade()
 		if(paygrade)
-			return "[paygrade]"	//Attempt to read off the id before defaulting to job
+			return "[paygrade] "	//Attempt to read off the id before defaulting to job
 
 		var/datum/job/J = H.job
 		if(!istype(J))
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		var/mob/living/carbon/human/H = VT.source
 		var/paygrade = H.get_paygrade()
 		if(paygrade)
-			return "[paygrade]"	//Attempt to read off the id before defaulting to job
+			return "[paygrade] "	//Attempt to read off the id before defaulting to job
 
 		var/datum/job/J = H.job
 		if(!istype(J))

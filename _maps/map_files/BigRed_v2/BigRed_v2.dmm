@@ -1377,9 +1377,10 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "amz" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "amA" = (
 /obj/structure/bed/chair{
@@ -1674,7 +1675,8 @@
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "aol" = (
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "aom" = (
 /obj/structure/table/woodentable,
@@ -9216,6 +9218,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
+"gGk" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/southwest)
 "gGl" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -10564,8 +10570,10 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "knO" = (
-/obj/machinery/recharge_station,
 /obj/effect/landmark/weed_node,
+/obj/structure/toilet{
+	pixel_y = 8
+	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "kog" = (
@@ -11877,6 +11885,10 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
+"ojF" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
 "okf" = (
 /obj/effect/spawner/modularmap/bigred/lambdalock,
 /turf/open/space/basic,
@@ -12173,6 +12185,11 @@
 /obj/item/trash/plate,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
+"pjg" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 "pkg" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -12853,6 +12870,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"rpO" = (
+/obj/structure/toilet{
+	pixel_y = 8
+	},
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/dorms)
 "rrc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12912,6 +12937,10 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"rAy" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "rBl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -12962,6 +12991,11 @@
 	dir = 5
 	},
 /area/bigredv2/outside/nw)
+"rJM" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
 "rKr" = (
 /obj/machinery/door/window,
 /obj/effect/landmark/weed_node,
@@ -19614,7 +19648,7 @@ aaa
 aaa
 aaa
 aaa
-dSm
+gGk
 aaa
 aaa
 aaa
@@ -37316,7 +37350,7 @@ akt
 acp
 lGe
 luR
-lGe
+ojF
 tbH
 luR
 lGe
@@ -38858,7 +38892,7 @@ asH
 aBo
 vbk
 asH
-hDv
+rpO
 aEN
 bKz
 asH
@@ -44587,7 +44621,7 @@ gCQ
 jnj
 gCQ
 sQi
-kJU
+rJM
 sQi
 sQi
 sQi
@@ -47384,7 +47418,7 @@ sZJ
 lVe
 sZJ
 eEK
-irs
+gCQ
 gCQ
 gCQ
 gCQ
@@ -61165,7 +61199,7 @@ gCQ
 gCQ
 gCQ
 gCQ
-vyZ
+rAy
 vyZ
 vyZ
 vyZ
@@ -62319,8 +62353,8 @@ bfc
 vyZ
 bfc
 tzo
-tPk
-tzo
+pjg
+jcm
 tzo
 eny
 tzo
@@ -62498,7 +62532,7 @@ aaa
 aaa
 aaa
 aaa
-vyZ
+rAy
 vyZ
 vyZ
 mtc
@@ -62536,7 +62570,7 @@ bfc
 vyZ
 vyZ
 gCQ
-tPk
+pjg
 tzo
 dVK
 tzo

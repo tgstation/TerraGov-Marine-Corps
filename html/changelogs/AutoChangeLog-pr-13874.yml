@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - qol: "Added more AI holopads to POS"
+  - bugfix: "re-fixed missing firelocks and shutters buttons to POS."

@@ -56,8 +56,12 @@
 
 	/// The voice that this movable makes when speaking
 	var/voice
+	/// The pitch adjustment that this movable uses when speaking.
+	var/pitch = 0
 	/// The filter to apply to the voice when processing the TTS audio message.
 	var/voice_filter = ""
+	/// Set to anything other than "" to activate the silicon voice effect for TTS messages.
+	var/tts_silicon_voice_effect = ""
 
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_movable_lights
@@ -298,7 +302,7 @@
 // You probably want CanPass()
 /atom/movable/Cross(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSS, AM)
-	return CanPass(AM, AM.loc, TRUE)
+	return CanPass(AM, AM.loc)
 
 
 ///default byond proc that is deprecated for us in lieu of signals. do not call
@@ -454,12 +458,12 @@
 
 	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
 		var/obj/O = hit_atom
-		if(!O.anchored && !isxeno(src))
+		if(!O.anchored)
 			step(O, dir)
 		O.hitby(src, speed)
 
 	else if(isturf(hit_atom))
-		set_throwing(FALSE)
+		stop_throw()
 		var/turf/T = hit_atom
 		if(T.density)
 			if(bounce)
@@ -475,6 +479,12 @@
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
+
+	var/gravity = get_gravity()
+	if(gravity < 1)
+		range = round(range * (2 - gravity))
+	else if(gravity > 1)
+		range = ROUND_UP(range * (2 - gravity))
 
 	if(!targetted_throw)
 		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))
@@ -526,8 +536,7 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
-					break
+				Move(step)
 				error += dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -537,8 +546,7 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
-					break
+				Move(step)
 				error -= dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -552,8 +560,7 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
-					break
+				Move(step)
 				error += dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -563,8 +570,7 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
-					break
+				Move(step)
 				error -= dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -1155,3 +1161,12 @@
 
 	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
 		LAZYREMOVEASSOC(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, former_client.mob)
+
+///Checks the gravity the atom is subjected to
+/atom/movable/proc/get_gravity()
+	if(z)
+		return SSmapping.gravity_by_z_level["[z]"]
+	var/turf/src_turf = get_turf(src)
+	if(src_turf?.z)
+		return SSmapping.gravity_by_z_level["[src_turf.z]"]
+	return 1 //if both fail we're in nullspace, just return a 1 as a fallback

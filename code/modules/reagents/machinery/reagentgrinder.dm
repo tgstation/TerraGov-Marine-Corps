@@ -385,3 +385,6 @@
 
 /obj/machinery/reagentgrinder/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/reagentgrinder/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE

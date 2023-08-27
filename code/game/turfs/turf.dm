@@ -895,6 +895,12 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.lowMovAtom[a] += list(src)
+			if(EXPLODE_WEAK)
+				SSexplosions.weakMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.weakMovAtom[a] += list(src)
 
 
 /turf/vv_edit_var(var_name, new_value)

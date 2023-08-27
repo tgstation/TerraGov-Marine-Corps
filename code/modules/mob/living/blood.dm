@@ -12,12 +12,6 @@
 		return
 
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
-
-
-
-		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL)
-			blood_volume += 0.1 // regenerate blood VERY slowly
 		if(blood_volume > BLOOD_VOLUME_MAXIMUM) //Warning: contents under pressure.
 			var/spare_blood = blood_volume - ((BLOOD_VOLUME_MAXIMUM + BLOOD_VOLUME_NORMAL) / 2) //Knock you to the midpoint between max and normal to not spam.
 			if(drip(spare_blood))
@@ -58,7 +52,7 @@
 				if(prob(10) && stat == UNCONSCIOUS)
 					adjustToxLoss(1)
 				if(prob(15))
-					Unconscious(rand(20,60))
+					Unconscious(rand(2 SECONDS,6 SECONDS))
 					var/word = pick("dizzy","woozy","faint")
 					to_chat(src, span_warning("You feel extremely [word]"))
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
@@ -71,13 +65,21 @@
 				death()
 
 
-		// Without enough blood you slowly go hungry.
-		if(blood_volume < BLOOD_VOLUME_SAFE)
-			switch(nutrition)
-				if(300 to INFINITY)
-					adjust_nutrition(-10)
-				if(200 to 300)
-					adjust_nutrition(-3)
+		// Blood regens using food, more food = more blood.
+		switch(blood_volume)
+			if(BLOOD_VOLUME_SAFE to BLOOD_VOLUME_NORMAL) //Passively regens blood very slowly from 90% to 100% without a tradeoff.
+				blood_volume += 0.1
+			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_SAFE) //Regens blood from 60% ish to 90% using nutrition.
+				switch(nutrition)
+					if(NUTRITION_OVERFED to INFINITY)
+						adjust_nutrition(-10)
+						blood_volume += 1 // regenerate blood quickly.
+					if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
+						adjust_nutrition(-5)
+						blood_volume += 0.5 // regenerate blood slowly.
+					if(0 to NUTRITION_HUNGRY)
+						adjust_nutrition(-1)
+						blood_volume += 0.1 // Regenerate blood VERY slowly.
 
 		//Bleeding out
 		var/blood_max = 0

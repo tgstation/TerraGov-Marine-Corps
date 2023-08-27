@@ -124,6 +124,7 @@
 	description = "The plain and simple old Tadpole-03 model."
 	///shuttle switch console name
 	var/display_name = "Tadpole Standard Model"
+	var/admin_enable = TRUE
 
 /datum/map_template/shuttle/minidropship/old
 	suffix = "_big"
@@ -134,14 +135,26 @@
 	suffix = "_food"
 	description = "A Tadpole modified to provide foods and services. Who the hell let this on the military catalogue? Bounty on that guy."
 	display_name = "Tadpole Food-truck Model"
+	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/factorio
 	suffix = "_factorio"
 	description = "A Tadpole model for hauling, engineering and general maintenance. Patented by Nakamura Engineering, and is a rather reliable way to transport goods."
 	display_name = "Tadpole NK-Haul Model"
 
+/datum/map_template/shuttle/minidropship/mobile_bar
+	suffix =	"_mobile_bar"
+	description =	"A Tadpole modified to provide drinks and disservices. God dammit it's him again, I thought we got rid of him."
+	display_name =	"Tadpole Mobile-Bar Model"
+	admin_enable = FALSE
+
+/datum/map_template/shuttle/minidropship/combat_tad
+	suffix = "_combat_tad"
+	description = "A Tadpole model modified to have three weapon hardpoints instead of just one, the majority of the other standard features had to be scrapped to fit all three of them on."
+	display_name = "Tadpole Combat Model"
+
 /datum/map_template/shuttle/minidropship/umbilical
-	suffix = "_umbilical"
+	suffix =	"_umbilical"
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
 	display_name = "Tadpole Umbilical Model"
 
@@ -161,7 +174,7 @@
 	shuttle_id = SHUTTLE_DISTRESS_UPP
 	name = "Distress UPP"
 
-/datum/map_template/shuttle/small_ert/ufo
+/datum/map_template/shuttle/small_ert/ufo 
 	shuttle_id = SHUTTLE_DISTRESS_UFO
 	name = "Small UFO"
 
