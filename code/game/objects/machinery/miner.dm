@@ -103,7 +103,7 @@
 			base_icon_state = "platinum_miner"
 
 /obj/machinery/miner/update_icon()
-	update_icon_state()
+	. = ..()
 	switch(miner_status)
 		if(MINER_RUNNING)
 			icon_state = base_icon_state
