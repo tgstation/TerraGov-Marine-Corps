@@ -62,13 +62,6 @@
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	RegisterSignal(xeno_hive, COMSIG_HIVE_XENO_DEATH, PROC_REF(on_xeno_death))
 
-/datum/game_mode/infestation/nuclear_war/scale_roles(initial_players_assigned)
-	. = ..()
-	if(!.)
-		return
-	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/xenomorph)
-	scaled_job.job_points_needed = NUCLEAR_WAR_LARVA_POINTS_NEEDED
-
 /datum/game_mode/infestation/nuclear_war/orphan_hivemind_collapse()
 	if(round_finished)
 		return
