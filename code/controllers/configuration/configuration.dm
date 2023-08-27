@@ -88,6 +88,9 @@
 	LoadPolicy()
 	LoadChatFilter()
 
+	if(CONFIG_GET(flag/usewhitelist))
+		load_whitelist()
+
 	if(Master)
 		Master.OnConfigLoad()
 
@@ -231,10 +234,9 @@
 	return !(var_name in banned_edits) && ..()
 
 
-/datum/controller/configuration/stat_entry()
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
-	stat("[name]:", statclick)
+/datum/controller/configuration/stat_entry(msg)
+	msg = "Edit"
+	return msg
 
 
 /datum/controller/configuration/proc/Get(entry_type)

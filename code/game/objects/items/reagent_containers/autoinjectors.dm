@@ -318,3 +318,20 @@
 	volume = 100
 
 	list_reagents = list(/datum/reagent/toxin/pain = 100)
+/obj/item/reagent_containers/hypospray/autoinjector/spacedrugs //CL goodie
+	name = "space drugs autoinjector"
+	desc = "An auto-injector loaded with sweet, sweet space drugs... Hard to get as a marine."
+	icon_state = "autoinjector-1"
+	amount_per_transfer_from_this = 25
+	volume = 25
+
+	list_reagents = list(/datum/reagent/space_drugs = 25)
+/obj/item/reagent_containers/hypospray/autoinjector/mindbreaker //made for debugging
+	name = "mindbreaker toxin autoinjector"
+	desc = "An auto-injector loaded with the hardest, deadliest drug around. May cure PTSD. May cause it."
+	icon_state = "Toxic"
+	amount_per_transfer_from_this = 30
+	volume = 30
+
+	list_reagents = list(/datum/reagent/toxin/mindbreaker = 50)
+

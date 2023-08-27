@@ -392,9 +392,10 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "to" = (
 /obj/structure/table/gamblingtable,
@@ -597,9 +598,10 @@
 /area/deathmatch)
 "Ay" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "AC" = (
 /obj/structure/largecrate/random/case,
@@ -708,9 +710,10 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Fu" = (
 /obj/machinery/light{
@@ -1040,9 +1043,10 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Tw" = (
 /obj/structure/flora/tree/jungle,
@@ -1082,9 +1086,10 @@
 "Vm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Vv" = (
 /obj/effect/decal/cleanable/dirt,

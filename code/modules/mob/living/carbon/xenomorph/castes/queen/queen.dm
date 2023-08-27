@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/queen
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/queen.dmi'
 	icon_state = "Queen Walking"
 	attacktext = "bites"
 	attack_sound = null

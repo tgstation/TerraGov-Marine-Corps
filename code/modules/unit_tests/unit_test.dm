@@ -7,26 +7,22 @@ Call Fail() to fail the test (You should specify a reason)
 
 You may use /New() and /Destroy() for setup/teardown respectively
 
-You can use the run_loc_bottom_left and run_loc_top_right to get turfs for testing
+You can use the run_loc_floor_bottom_left and run_loc_floor_top_right to get turfs for testing
 
 */
 
 GLOBAL_DATUM(current_test, /datum/unit_test)
 GLOBAL_VAR_INIT(failed_any_test, FALSE)
-GLOBAL_VAR(test_log)
 
 /datum/unit_test
 	//Bit of metadata for the future maybe
 	var/list/procs_tested
 
-	/// The bottom left turf of the testing zone
-	var/turf/run_loc_bottom_left
+	/// The bottom left floor turf of the testing zone
+	var/turf/run_loc_floor_bottom_left
 
-	/// The top right turf of the testing zone
-	var/turf/run_loc_top_right
-
-	/// The type of turf to allocate for the testing zone
-	var/test_turf_type = /turf/open/floor/plating
+	/// The top right floor turf of the testing zone
+	var/turf/run_loc_floor_top_right
 
 	//internal shit
 	var/focus = FALSE
@@ -34,23 +30,27 @@ GLOBAL_VAR(test_log)
 	var/list/allocated
 	var/list/fail_reasons
 
-	var/static/datum/turf_reservation/turf_reservation
+	var/static/datum/space_level/reservation
 
 /datum/unit_test/New()
-	if (isnull(turf_reservation))
-		turf_reservation = SSmapping.RequestBlockReservation(5, 5)
-
-	for (var/turf/reserved_turf in turf_reservation.reserved_turfs)
-		reserved_turf.ChangeTurf(test_turf_type)
+	if (isnull(reservation))
+		var/datum/map_template/unit_tests/template = new
+		reservation = template.load_new_z()
 
 	allocated = new
-	run_loc_bottom_left = locate(turf_reservation.bottom_left_coords[1], turf_reservation.bottom_left_coords[2], turf_reservation.bottom_left_coords[3])
-	run_loc_top_right = locate(turf_reservation.top_right_coords[1], turf_reservation.top_right_coords[2], turf_reservation.top_right_coords[3])
+	run_loc_floor_bottom_left = get_turf(locate(/obj/effect/landmark/unit_test_bottom_left) in GLOB.landmarks_list)
+	run_loc_floor_top_right = get_turf(locate(/obj/effect/landmark/unit_test_top_right) in GLOB.landmarks_list)
+
+	TEST_ASSERT(isfloorturf(run_loc_floor_bottom_left), "run_loc_floor_bottom_left was not a floor ([run_loc_floor_bottom_left])")
+	TEST_ASSERT(isfloorturf(run_loc_floor_top_right), "run_loc_floor_top_right was not a floor ([run_loc_floor_top_right])")
 
 /datum/unit_test/Destroy()
-	//clear the test area
-	for(var/atom/movable/AM in block(run_loc_bottom_left, run_loc_top_right))
-		qdel(AM)
+	// clear the test area
+	for(var/turf/turf in block(locate(1, 1, run_loc_floor_bottom_left.z), locate(world.maxx, world.maxy, run_loc_floor_bottom_left.z)))
+		for(var/content in turf.contents)
+			if(iseffect(content))
+				continue
+			qdel(content)
 	QDEL_LIST(allocated)
 	return ..()
 
@@ -70,9 +70,9 @@ GLOBAL_VAR(test_log)
 /datum/unit_test/proc/allocate(type, ...)
 	var/list/arguments = args.Copy(2)
 	if (!length(arguments))
-		arguments = list(run_loc_bottom_left)
+		arguments = list(run_loc_floor_bottom_left)
 	else if (arguments[1] == null)
-		arguments[1] = run_loc_bottom_left
+		arguments[1] = run_loc_floor_bottom_left
 	var/instance = new type(arglist(arguments))
 	allocated += instance
 	return instance
@@ -123,3 +123,7 @@ GLOBAL_VAR(test_log)
 
 	SSticker.force_ending = TRUE
 	SSticker.Reboot()
+
+/datum/map_template/unit_tests
+	name = "Unit Tests Zone"
+	mappath = "_maps/templates/unit_tests.dmm"

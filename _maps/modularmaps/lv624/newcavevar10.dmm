@@ -2,22 +2,6 @@
 "aa" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
-"ab" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
-/area/lv624/ground/caves/rock)
-"ac" = (
-/turf/closed/mineral,
-/area/lv624/ground/caves/rock)
-"ad" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
-"ae" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
 "af" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/tritium{
@@ -51,25 +35,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
-"al" = (
-/obj/structure/rack,
-/obj/item/tool/shovel,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
-/area/lv624/ground/caves/central1)
 "am" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "an" = (
 /turf/open/floor/tile/dark,
-/area/lv624/ground/caves/central1)
-"ao" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "ap" = (
 /obj/structure/rack,
@@ -80,67 +51,15 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"aq" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
-"ar" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
-"as" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
-"at" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/mineral/iron{
-	amount = 5
-	},
-/obj/item/stack/sheet/mineral/platinum,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
-/area/lv624/ground/caves/central1)
 "au" = (
 /turf/closed/mineral/smooth/indestructible,
-/area/lv624/ground/caves/rock)
-"av" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
 /area/lv624/ground/caves/rock)
 "aw" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
-"ax" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/r_wall,
-/area/lv624/ground/caves/rock)
-"ay" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
 "az" = (
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
-"aA" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central3)
-"aB" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
-"aC" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
 "aD" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/gold{
@@ -159,11 +78,6 @@
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
-/area/lv624/ground/caves/central1)
-"aF" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "aG" = (
 /obj/effect/landmark/weed_node,
@@ -185,22 +99,11 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"aK" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
 "aL" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/central1)
 "aM" = (
 /turf/closed/wall,
-/area/lv624/ground/caves/central1)
-"aN" = (
-/obj/structure/rack,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
 /area/lv624/ground/caves/central1)
 "aO" = (
 /obj/structure/rack,
@@ -218,10 +121,6 @@
 /area/lv624/ground/caves/central1)
 "aP" = (
 /obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
-"aQ" = (
-/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "aR" = (
@@ -263,9 +162,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"aX" = (
-/turf/closed/mineral/indestructible,
-/area/lv624/ground/caves/rock)
 "aY" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
@@ -299,25 +195,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
-"sj" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
 "su" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"yh" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
 "Ai" = (
 /obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
-"As" = (
-/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "DE" = (
@@ -344,11 +228,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"Nn" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
 "PA" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth,
@@ -506,10 +385,10 @@ aT
 aT
 aT
 ah
-aQ
+ag
 ah
 ah
-aQ
+ag
 aT
 aT
 aT
@@ -716,7 +595,7 @@ aT
 aT
 aT
 aT
-aQ
+ag
 ah
 ah
 ah
@@ -752,9 +631,9 @@ aT
 aT
 aT
 ah
-aQ
+ag
 aG
-aQ
+ag
 ah
 aG
 ah
@@ -862,7 +741,7 @@ aG
 ah
 ah
 ah
-Nn
+aZ
 ah
 aT
 aT
@@ -898,7 +777,7 @@ ah
 ah
 aG
 ah
-aQ
+ag
 aT
 aT
 aT
@@ -1031,16 +910,16 @@ ah
 ah
 ah
 aG
-yh
-sj
+aR
+aY
 ah
 ah
 ah
 aV
 aV
-aQ
+ag
 ah
-aQ
+ag
 aT
 aT
 aT
@@ -1066,8 +945,8 @@ aG
 ah
 ah
 ah
-yh
-sj
+aR
+aY
 aV
 aG
 ah
@@ -1095,18 +974,18 @@ aT
 PA
 aT
 aT
-aQ
+ag
 ah
 fk
 ah
 ah
-aQ
-yh
-sj
+ag
+aR
+aY
 ah
 ah
 ah
-aQ
+ag
 ah
 ah
 aV
@@ -1214,7 +1093,7 @@ ah
 ah
 Kf
 aV
-Nn
+aZ
 ah
 ah
 aG
@@ -1281,11 +1160,11 @@ PA
 aT
 ah
 ah
-aQ
+ag
 aG
 ah
 ah
-aQ
+ag
 ah
 sb
 aT
@@ -1320,7 +1199,7 @@ ah
 aV
 aV
 aV
-Nn
+aZ
 ah
 ah
 ah
@@ -1380,13 +1259,13 @@ aT
 aT
 aT
 aT
-Nn
-aQ
+aZ
+ag
 ah
 aG
 ah
 ah
-aQ
+ag
 aT
 aT
 aT
@@ -1486,7 +1365,7 @@ aT
 aV
 sb
 ah
-aQ
+ag
 ah
 aT
 aT
@@ -1517,7 +1396,7 @@ aT
 aT
 aT
 aT
-Nn
+aZ
 aV
 ah
 ah
@@ -1526,13 +1405,13 @@ aT
 aT
 aT
 aG
-aQ
+ag
 ah
 aG
 ah
-aQ
+ag
 ah
-aQ
+ag
 aV
 aT
 aT
@@ -1692,7 +1571,7 @@ aT
 aT
 aT
 aT
-Nn
+aZ
 ah
 ah
 ah
@@ -1704,7 +1583,7 @@ aT
 aT
 aT
 aT
-Nn
+aZ
 ah
 ah
 ah
@@ -1764,7 +1643,7 @@ aT
 aT
 aV
 ah
-aQ
+ag
 ah
 aT
 aT
@@ -1777,7 +1656,7 @@ aT
 aT
 ah
 aV
-Nn
+aZ
 ah
 ah
 aT
@@ -1810,7 +1689,7 @@ aT
 aT
 aT
 aT
-aQ
+ag
 ah
 aG
 ah
@@ -1846,13 +1725,13 @@ aT
 aT
 aV
 aG
-aQ
+ag
 ah
 ah
 ah
 aG
 ah
-aQ
+ag
 aT
 aT
 aT
@@ -1879,7 +1758,7 @@ aT
 aT
 aT
 aT
-Nn
+aZ
 ah
 ah
 aT
@@ -1923,10 +1802,10 @@ aT
 aT
 ah
 ah
-Nn
+aZ
 ah
 aG
-aP
+ah
 aG
 "}
 (46,1,1) = {"
@@ -1939,10 +1818,10 @@ aT
 aT
 aT
 aT
-aQ
+ag
 aG
 ah
-aQ
+ag
 aT
 aT
 aT
@@ -2047,7 +1926,7 @@ aT
 aT
 ah
 ah
-aQ
+ag
 aT
 aT
 aT
@@ -2056,17 +1935,17 @@ aT
 aT
 aT
 aT
-aQ
+ag
 ah
 ah
 ah
 ah
 ah
-aQ
+ag
 ah
 ah
 ah
-aQ
+ag
 ah
 "}
 (50,1,1) = {"
@@ -2083,7 +1962,7 @@ ah
 ah
 aG
 ah
-Nn
+aZ
 aT
 aT
 aT
@@ -2092,7 +1971,7 @@ aT
 aT
 ah
 ah
-Nn
+aZ
 aV
 ah
 ah
@@ -2223,7 +2102,7 @@ aT
 ah
 ah
 ah
-aQ
+ag
 aG
 ah
 aV
@@ -2235,7 +2114,7 @@ ah
 aG
 aV
 ah
-Nn
+aZ
 aT
 aT
 aT
@@ -2257,12 +2136,12 @@ aT
 aT
 ah
 aG
-aQ
+ag
 ah
 ah
 ah
 ah
-aQ
+ag
 ah
 ah
 ah
@@ -2302,9 +2181,9 @@ aG
 ah
 aV
 aV
-aQ
+ag
 ah
-Nn
+aZ
 aV
 aT
 aT
@@ -2363,11 +2242,11 @@ aT
 aT
 ah
 ah
-aQ
+ag
 ah
 ah
 ah
-aQ
+ag
 ah
 ah
 ah
@@ -2466,9 +2345,9 @@ aT
 aT
 aT
 ah
-aQ
+ag
 ah
-aQ
+ag
 ah
 aV
 aT
@@ -2505,7 +2384,7 @@ ah
 ah
 aV
 aV
-Nn
+aZ
 aT
 aT
 aT
@@ -2547,7 +2426,7 @@ aT
 sb
 ah
 ah
-aQ
+ag
 aG
 aT
 aT
@@ -2573,7 +2452,7 @@ aT
 aT
 ah
 ah
-Nn
+aZ
 aT
 aT
 aT
@@ -2641,7 +2520,7 @@ aT
 aT
 aT
 ah
-aQ
+ag
 ah
 aV
 aT
@@ -2722,9 +2601,9 @@ aT
 aT
 aT
 ah
-aQ
+ag
 ah
-aQ
+ag
 aT
 aT
 aT
@@ -2793,7 +2672,7 @@ aT
 aT
 ah
 aV
-Nn
+aZ
 ah
 ah
 aT
@@ -2896,10 +2775,10 @@ aT
 aT
 aT
 aI
-As
+aH
 Ft
 aI
-As
+aH
 aI
 aT
 aT
@@ -2921,7 +2800,7 @@ au
 au
 aT
 Ft
-As
+aH
 aI
 aI
 eD
@@ -2940,8 +2819,8 @@ aT
 ga
 ak
 Kr
-at
-aN
+aU
+aW
 ak
 "}
 (75,1,1) = {"
@@ -3032,7 +2911,7 @@ aI
 Ft
 aI
 aT
-As
+aH
 aI
 aI
 aI
@@ -3134,14 +3013,14 @@ aT
 aT
 aT
 aI
-As
+aH
 aI
 aI
 eD
 aI
 aI
 aI
-As
+aH
 It
 aI
 aT

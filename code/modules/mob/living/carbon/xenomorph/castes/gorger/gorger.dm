@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/gorger
 	name = "Gorger"
 	desc = "A large, powerfully muscled xeno with seemingly more vitality than others."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/gorger.dmi'
 	icon_state = "Gorger Walking"
 	health = 600
 	maxHealth = 600

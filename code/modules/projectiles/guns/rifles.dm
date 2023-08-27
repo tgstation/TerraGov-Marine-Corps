@@ -1245,8 +1245,89 @@
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
 	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
 
+/obj/item/weapon/gun/rifle/standard_smartmachinegun/deathsquad
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
+
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
 	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/verticalgrip)
+
+//-------------------------------------------------------
+//SG Target Rifle, has underbarreled spotting rifle that applies effects.
+
+/obj/item/weapon/gun/rifle/standard_smarttargetrifle
+	name = "\improper SG-62 Kauser-KT smart target rifle"
+	desc = "The Kauser-KT SG-62 is a IFF-capable rifle used by the TerraGov Marine Corps, coupled with a spotting rifle that is also IFF capable of applying various bullets with specialized ordnance, this is a gun with many answers to many situations... if you have the right ammo loaded. Requires special training and it cannot turn off IFF. It uses high velocity 10x27mm for the rifle and 12x66mm ammunition for the underslung rifle."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "sg62"
+	item_state = "sg62"
+	caliber = CALIBER_10x27_CASELESS //codex
+	max_shells = 40 //codex
+	aim_slowdown = 0.85
+	wield_delay = 0.65 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/t62.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_smarttargetrifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_smarttargetrifle)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/weapon/gun/rifle/standard_spottingrifle,
+		/obj/item/attachable/stock/strstock,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = SKILL_SMARTGUN //Uses SG skill for the penalties.
+	attachable_offset = list("muzzle_x" = 12, "muzzle_y" = 22, "rail_x" = 15, "rail_y" = 22, "under_x" = 28, "under_y" = 16, "stock_x" = 12, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/weapon/gun/rifle/standard_spottingrifle, /obj/item/attachable/stock/strstock)
+
+	fire_delay = 0.5 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.4
+	accuracy_mult = 1.1
+	scatter = 0
+	scatter_unwielded = 20
+	movement_acc_penalty_mult = 8
+
+	placed_overlay_iconstate = "smartgun"
+
+/obj/item/weapon/gun/rifle/standard_spottingrifle
+	name = "SR-153 spotting rifle"
+	desc = "An underslung spotting rifle, generally found ontop of another gun.."
+	icon_state = "sr153"
+	icon = 'icons/Marine/gun64.dmi'
+	fire_sound =  'sound/weapons/guns/fire/spottingrifle.ogg'
+	caliber = CALIBER_12x7
+	slot = ATTACHMENT_SLOT_UNDER
+	max_shells = 5
+	default_ammo_type =/obj/item/ammo_magazine/rifle/standard_spottingrifle
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak,
+	)
+	force = 5
+	attachable_allowed = list()
+	actions_types = list()
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	flags_gun_features = GUN_IS_ATTACHMENT|GUN_WIELDED_FIRING_ONLY|GUN_ATTACHMENT_FIRE_ONLY|GUN_AMMO_COUNTER|GUN_IFF
+	flags_attach_features = NONE
+	fire_delay = 1 SECONDS
+	accuracy_mult = 1.25
+	pixel_shift_x = 18
+	pixel_shift_y = 16
 
 //-------------------------------------------------------
 //Sectoid Rifle
@@ -1278,6 +1359,10 @@
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
 	movement_acc_penalty_mult = 3
+
+/obj/item/weapon/gun/rifle/sectoid_rifle/Initialize(mapload, spawn_empty)
+	. = ..()
+	AddComponent(/datum/component/reequip, list(SLOT_BACK)) //Sectoids have alien powers that make them not lose their gun
 
 //only sectoids can fire it
 /obj/item/weapon/gun/rifle/sectoid_rifle/able_to_fire(mob/user)
@@ -2314,3 +2399,56 @@
 
 /obj/item/weapon/gun/rifle/icc_confrontationrifle/leader
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel)
+
+//-------------------------------------------------------
+//ML-41 Autoshotgun
+
+/obj/item/weapon/gun/rifle/icc_autoshotgun
+	name = "\improper ML-41 autoshotgun"
+	desc = "The ML-41 Automatic Shotgun is used by the ICCAF in fast paced boarding assaults, fielding a wide variety of ammo for all situations. Takes 16-round 12 gauge drums."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "ml41"
+	item_state = "ml41"
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
+	caliber = CALIBER_12G //codex
+	max_shells = 16 //codex
+	force = 20
+	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_autoshotgun
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/icc_autoshotgun,
+		/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/motiondetector,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY //Its a shotgun type weapon effectively, most shotgun type weapons shouldn't be able to point blank 1 handed.
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 26,"rail_x" = 26, "rail_y" = 24, "under_x" = 40, "under_y" = 16, "stock_x" = 26, "stock_y" = 13)
+	gun_skill_category = SKILL_SHOTGUNS
+
+	fire_delay = 0.9 SECONDS
+	accuracy_mult = 1.15
+	damage_mult = 0.5
+	aim_slowdown = 0.6
+	wield_delay = 0.55 SECONDS
+	burst_amount = 1
+	scatter = 8
+	movement_acc_penalty_mult = 2
+
+/obj/item/weapon/gun/rifle/icc_autoshotgun/guard
+	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/magnetic_harness)

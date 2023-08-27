@@ -117,6 +117,7 @@
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/smokebomb = 25,
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
+			/obj/item/explosive/grenade/sticky/cloaker = 10,
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
@@ -136,7 +137,7 @@
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
-			/obj/item/storage/box/sentry = 4,
+			/obj/item/storage/box/crate/sentry = 4,
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
@@ -552,7 +553,7 @@
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = -1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = -1,
 			/obj/structure/largecrate/supply/weapons/standard_atgun = -1,
-			/obj/item/storage/box/sentry = -1,
+			/obj/item/storage/box/crate/sentry = -1,
 			/obj/item/storage/box/tl102 = -1,
 			/obj/item/weapon/gun/heavymachinegun = -1,
 			/obj/item/ammo_magazine/heavymachinegun = -1,
@@ -739,6 +740,7 @@
 			/obj/item/shotgunbox = -1,
 			/obj/item/shotgunbox/buckshot = -1,
 			/obj/item/shotgunbox/flechette = -1,
+			/obj/item/shotgunbox/tracker = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = -1,
@@ -751,15 +753,16 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/martini/full = -1,
-			/obj/item/storage/box/visual/magazine/compact/tx11/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/ar11/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = -1,
-			/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full = -1,
-			/obj/item/storage/box/visual/magazine/compact/tx15/slug/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/sh15/flechette/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/sh15/slug/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_br/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/chamberedrifle/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/standard_mmg/full = -1,
 		),
 		"Mecha Ammo" = list(
 			/obj/item/mecha_ammo/vendable/pistol = -1,
@@ -966,7 +969,7 @@
 	icon_state = "bloodvendor"
 	icon_vend = "bloodvendor-vend"
 	icon_deny = "bloodvendor-deny"
-	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O negative is the universal donor, use it!; Prevent hypovolemic shock starting today!"
+	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O negative is the universal donor, use it!;Prevent hypovolemic shock starting today!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,
@@ -1141,6 +1144,7 @@
 		"Standard" = list(
 			/obj/item/clothing/under/marine/robotic = -1,
 			/obj/item/clothing/under/marine = -1,
+			/obj/item/clothing/under/marine/hyperscale = -1,
 			/obj/item/clothing/under/marine/camo = -1,
 			/obj/item/clothing/under/marine/camo/desert = -1,
 			/obj/item/clothing/under/marine/camo/snow = -1,
@@ -1204,7 +1208,6 @@
 			/obj/item/storage/pouch/tools/full = -1,
 			/obj/item/storage/pouch/field_pouch = -1,
 			/obj/item/storage/pouch/general/large = -1,
-			/obj/item/storage/pouch/document = -1,
 			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
 			/obj/item/storage/pouch/general/medium = -1,
 		),
@@ -1293,6 +1296,16 @@
 			/obj/item/clothing/head/tgmcberet/snow = -1,
 			/obj/item/clothing/head/beret/marine = -1,
 			/obj/item/clothing/head/tgmcberet = -1,
+		),
+		"Medical Clothing" = list(
+			/obj/item/clothing/under/rank/medical/blue = -1,
+			/obj/item/clothing/under/rank/medical/green = -1,
+			/obj/item/clothing/under/rank/medical/purple = -1,
+			/obj/item/clothing/suit/storage/labcoat = -1,
+			/obj/item/clothing/suit/surgical = -1,
+			/obj/item/clothing/mask/surgical = -1,
+			/obj/item/clothing/gloves/latex = -1,
+			/obj/item/clothing/shoes/white = -1,
 		),
 	)
 
@@ -1513,6 +1526,7 @@
 			/obj/item/ammo_magazine/smg/som = -1,
 			/obj/item/weapon/gun/shotgun/som = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = -1,
+			/obj/item/cell/lasgun/volkite/small = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin = -1,
@@ -1535,6 +1549,9 @@
 			/obj/item/ammo_magazine/pistol/icc_dpistol = -1,
 			/obj/item/weapon/gun/rifle/icc_coilgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_coilgun = -1,
+			/obj/item/weapon/gun/rifle/icc_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/icc_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = -1,
 			/obj/item/weapon/gun/shotgun/pump/trenchgun = -1,
 		),
 		"PMC" = list(

@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // ***************************************
 /datum/action/xeno_action/activable/acid_dash
 	name = "Acid Dash"
-	action_icon_state = "charge"
+	action_icon_state = "pounce"
 	desc = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another weaker cast of the ability."
 	ability_name = "acid dash"
 	plasma_cost = 250
@@ -223,6 +223,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	span_danger("We dash towards \the [A], spraying acid down our path!") )
 	succeed_activate()
 
+	last_turf = get_turf(owner)
 	owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	owner.throw_at(A, range, 2, owner)
 

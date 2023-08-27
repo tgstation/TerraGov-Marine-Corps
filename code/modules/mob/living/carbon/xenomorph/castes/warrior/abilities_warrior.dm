@@ -326,7 +326,7 @@
 				stagger_slow_stacks = 0
 				stun_duration = 0
 
-		victim.adjust_stagger(stagger_slow_stacks)
+		victim.adjust_stagger(stagger_slow_stacks SECONDS)
 		victim.add_slowdown(stagger_slow_stacks)
 		victim.adjust_blurriness(stagger_slow_stacks) //Cosmetic eye blur SFX
 		victim.ParalyzeNoChain(stun_duration)
@@ -539,7 +539,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
-	adjust_stagger(stagger_stacks)
+	adjust_stagger(stagger_stacks SECONDS)
 	add_slowdown(slowdown_stacks)
 	adjust_blurriness(slowdown_stacks) //Cosmetic eye blur SFX
 
@@ -582,7 +582,7 @@
 
 	if(!target.punch_act(X, damage, target_zone, push = FALSE, punch_description = "precise", stagger_stacks = 3, slowdown_stacks = 6))
 		return fail_activate()
-	if(X.empower())
+	if(X.empower() && ishuman(target))
 		target.blind_eyes(3)
 		target.blur_eyes(6)
 		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))

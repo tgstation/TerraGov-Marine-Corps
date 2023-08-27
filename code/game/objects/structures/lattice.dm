@@ -83,16 +83,10 @@
 /obj/structure/catwalk/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override)
+		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override),
+		COMSIG_TURF_CHECK_COVERED = PROC_REF(turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-	var/turf/T = get_turf(src)
-	if(istype(T, /turf/open))
-		var/turf/open/O = T
-		O.has_catwalk = TRUE
-
-///overrides the turf's normal footstep sound
-/obj/structure/catwalk/proc/footstep_override(atom/movable/source, list/footstep_overrides)
-	SIGNAL_HANDLER
+/obj/structure/catwalk/footstep_override(atom/movable/source, list/footstep_overrides)
 	footstep_overrides[FOOTSTEP_CATWALK] = layer

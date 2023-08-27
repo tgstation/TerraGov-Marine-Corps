@@ -254,8 +254,6 @@
 		strafelist -= strafed
 		strafed.ex_act(EXPLODE_LIGHT)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
-		for(var/atom/movable/AM AS in strafed)
-			AM.ex_act(EXPLODE_LIGHT)
 
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 2)
@@ -296,7 +294,6 @@
 		QDEL_IN(src, travelling_time) //deleted after last railgun has fired and impacted the ground.
 
 /obj/structure/ship_ammo/railgun/show_loaded_desc(mob/user)
-	// to_chat(user, "It's loaded with \a [src] containing [ammo_count] slug\s.")
 	return "It's loaded with \a [src] containing [ammo_count] slug\s."
 
 
@@ -523,7 +520,6 @@
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
 /obj/structure/ship_ammo/minirocket/show_loaded_desc(mob/user)
-	// to_chat(user, "It's loaded with \a [src] containing [ammo_count] minirocket\s.")
 	return "It's loaded with \a [src] containing [ammo_count] minirocket\s."
 
 /obj/structure/ship_ammo/minirocket/examine(mob/user)

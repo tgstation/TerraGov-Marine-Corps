@@ -59,13 +59,16 @@
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
 
-	if(mover?.throwing && density && is_wired && iscarbon(mover) && (direction & dir))
+	if(mover?.throwing && !CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && density && is_wired && iscarbon(mover) && (direction & dir))
 		knownblockers += src
 		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
-	if(is_wired && density && ismob(mover) && (get_dir(loc, target) & dir))
-		return FALSE
+	if(get_dir(loc, target) & dir)
+		if(!CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && is_wired && density && ismob(mover))
+			return FALSE
+		if(istype(mover, /obj/effect/xenomorph)) //cades stop xeno effects like acid spray
+			return FALSE
 
 	return ..()
 
@@ -154,6 +157,8 @@
 			take_damage(rand(33, 66), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 33), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(10, BRUTE, BOMB)
 	update_icon()
 
 /obj/structure/barricade/setDir(newdir)
@@ -685,6 +690,8 @@
 			take_damage(rand(150, 350), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 100), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 50), BRUTE, BOMB)
 
 	update_icon()
 
@@ -950,6 +957,8 @@
 			take_damage(rand(200, 400), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 150), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 75), BRUTE, BOMB)
 
 	update_icon()
 
