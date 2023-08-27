@@ -153,6 +153,11 @@
 	description = "A Tadpole model modified to have three weapon hardpoints instead of just one, the majority of the other standard features had to be scrapped to fit all three of them on."
 	display_name = "Tadpole Combat Model"
 
+/datum/map_template/shuttle/minidropship/Compact
+	suffix =	"_compact"
+	description = "A marines worst nightmare. This tad sacrifices space for manuverability, has everything a normal standerd tad has accept a fire extinguisher"
+	display_name = "Tadpole Compact Model"
+
 /datum/map_template/shuttle/minidropship/umbilical
 	suffix =	"_umbilical"
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
@@ -174,7 +179,7 @@
 	shuttle_id = SHUTTLE_DISTRESS_UPP
 	name = "Distress UPP"
 
-/datum/map_template/shuttle/small_ert/ufo 
+/datum/map_template/shuttle/small_ert/ufo
 	shuttle_id = SHUTTLE_DISTRESS_UFO
 	name = "Small UFO"
 
