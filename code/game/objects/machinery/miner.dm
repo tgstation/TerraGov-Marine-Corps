@@ -14,13 +14,22 @@
 #define PLATINUM_CRATE_SELL_AMOUNT 300
 #define PHORON_DROPSHIP_BONUS_AMOUNT 15
 #define PLATINUM_DROPSHIP_BONUS_AMOUNT 30
+
+///miner_type flags
+#define MINER_UNTOUCHED (1<<0) //Miner before any human has interacted with it
+#define DEFAULT_MINER (1<<1) //Default miner with no upgrades
+#define AUTOMINER (1<<2) //Miner with automation upgrade
+#define ARMOR_MINER (1<<3) //Miner with the armor upgrade
+#define OVERCLOCK_MINER (1<<4) //Miner with the overclocker upgrade
+#define MINER_PLATINUM (1<<5) //Platinum miner (With or without upgrades)
+
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
 	name = "\improper Nanotrasen phoron Mining Well"
 	desc = "Top-of-the-line Nanotrasen research drill with it's own export module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
 	icon = 'icons/obj/mining_drill.dmi'
 	density = TRUE
-	icon_state = "mining_drill_active"
+	icon_state = "mining_drill_frame"
 	anchored = TRUE
 	coverage = 30
 	layer = ABOVE_MOB_LAYER
@@ -44,17 +53,13 @@
 	var/max_miner_integrity = 100
 	///What type of upgrade it has installed , used to change the behaviour of the miner.
 	var/miner_upgrade_type
-	///What type of miner this is. Options: default_miner, autominer, armor_miner, overclock_miner, platinum_miner
-	var/miner_type = "default_miner"
-	///If the miner is a platinum miner
-	var/isplatinum = FALSE
 	///What faction secured that miner
 	var/faction = FACTION_TERRAGOV
+	///Flag for the type of miner, used to change the sprites once a miner is repaired or upgraded
+	var/miner_type = MINER_UNTOUCHED
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
-	icon_state = "mining_drill_frame"
-	miner_type = "mining_drill_frame"
 
 /obj/machinery/miner/damaged/init_marker()
 	return //Marker will be set by itself once processing pauses when it detects this miner is broke.
@@ -62,9 +67,10 @@
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
+	icon_state = "platinum_miner_destroyed" //Modular maps are kinda weird if you dont have an icon_state
 	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
 	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT
-	isplatinum = TRUE
+	miner_type = MINER_PLATINUM
 
 /obj/machinery/miner/Initialize(mapload)
 	. = ..()
@@ -80,19 +86,36 @@
 	var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
 
+/obj/machinery/miner/update_icon_state()
+	. = ..()
+	switch(miner_type)
+		if(MINER_UNTOUCHED)
+			base_icon_state = "mining_drill_frame"
+		if(DEFAULT_MINER)
+			base_icon_state = "default_miner"
+		if(AUTOMINER)
+			base_icon_state = "autominer"
+		if(ARMOR_MINER)
+			base_icon_state = "armor_miner"
+		if(OVERCLOCK_MINER)
+			base_icon_state = "overclock_miner"
+		if(MINER_PLATINUM)
+			base_icon_state = "platinum_miner"
+
 /obj/machinery/miner/update_icon()
+	update_icon_state()
 	switch(miner_status)
 		if(MINER_RUNNING)
-			icon_state = "[miner_type]"
+			icon_state = base_icon_state
 			set_light(MINER_LIGHT_RUNNING, MINER_LIGHT_RUNNING)
 		if(MINER_SMALL_DAMAGE)
-			icon_state = "[miner_type]_disabled"
+			icon_state = base_icon_state + "_disabled"
 			set_light(MINER_LIGHT_SDAMAGE, MINER_LIGHT_SDAMAGE)
 		if(MINER_MEDIUM_DAMAGE)
-			icon_state = "[miner_type]_disabled"
+			icon_state = base_icon_state + "_disabled"
 			set_light(MINER_LIGHT_MDAMAGE, MINER_LIGHT_MDAMAGE)
 		if(MINER_DESTROYED)
-			icon_state = "[miner_type]_destroyed"
+			icon_state = base_icon_state + "_destroyed"
 			set_light(MINER_LIGHT_DESTROYED, MINER_LIGHT_DESTROYED)
 
 /// Called whenever someone attacks the miner with a object which is considered a upgrade.The object needs to have a uptype var.
@@ -114,15 +137,15 @@
 		if(MINER_RESISTANT)
 			max_miner_integrity = 300
 			miner_integrity = 300
-			if(!isplatinum)
-				miner_type = "armor_miner"
+			if(!(miner_type & MINER_PLATINUM))
+				miner_type = ARMOR_MINER
 		if(MINER_OVERCLOCKED)
 			required_ticks = 60
-			if(!isplatinum)
-				miner_type = "overclock_miner"
+			if(!(miner_type & MINER_PLATINUM))
+				miner_type = OVERCLOCK_MINER
 		if(MINER_AUTOMATED)
-			if(!isplatinum)
-				miner_type = "autominer"
+			if(!(miner_type & MINER_PLATINUM))
+				miner_type = AUTOMINER
 			if(stored_mineral)
 				SSpoints.supply_points[faction] += mineral_value * stored_mineral
 				SSpoints.dropship_points += dropship_bonus * stored_mineral
@@ -176,6 +199,7 @@
 				upgrade = new /obj/item/minerupgrade/automatic
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
+		miner_type = DEFAULT_MINER
 		update_icon()
 	if(miner_status != MINER_DESTROYED)
 		return
@@ -247,10 +271,8 @@
 		return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	miner_integrity = max_miner_integrity
-	if(!isplatinum)
-		miner_type = "default_miner"
-	else
-		miner_type = "platinum_miner"
+	if(!(miner_type & MINER_PLATINUM))
+		miner_type = DEFAULT_MINER
 	set_miner_status()
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
 	span_notice("You repair [src]'s tubing and plating."))
