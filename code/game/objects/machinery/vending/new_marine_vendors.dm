@@ -679,6 +679,12 @@
 		/obj/item/clothing/glasses/hud/health,
 	)
 
+/obj/effect/vendor_bundle/stretcher
+	gear_to_spawn = list(
+		/obj/item/roller/medevac,
+		/obj/item/medevac_beacon,
+	)
+
 /obj/effect/vendor_bundle/engi
 	gear_to_spawn = list(
 		/obj/item/explosive/plastique,

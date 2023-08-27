@@ -319,7 +319,8 @@
 	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
 	ai_targeter.forceMove(src.loc)
 	ai_targeter = null
-///Handles the continuity transfer of linked binoculars from the mortar struct to the mortar item
+
+/// Handles the continuity transfer of linked binoculars from the mortar struct to the mortar item
 /obj/machinery/deployable/mortar/proc/handle_undeploy_references()
 	SIGNAL_HANDLER
 	var/obj/item/mortar_kit/mortar = get_internal_item()

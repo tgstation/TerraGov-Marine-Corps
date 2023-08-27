@@ -8,7 +8,7 @@
 
 	icon_state = "hivemind_marker"
 	bubble_icon = "alienroyal"
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
 	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
@@ -309,8 +309,8 @@
 	name = "hivemind core"
 	desc = "A very weird, pulsating node. This looks almost alive."
 	max_integrity = 600
-	icon = 'icons/Xeno/weeds.dmi'
-	icon_state = "weed_hivemind4"
+	icon = 'icons/Xeno/1x1building.dmi'
+	icon_state = "hivemind_core"
 	var/mob/living/carbon/xenomorph/hivemind/parent
 	xeno_structure_flags = CRITICAL_STRUCTURE|DEPART_DESTRUCTION_IMMUNE
 	///The cooldown of the alert hivemind gets when a hostile is near it's core

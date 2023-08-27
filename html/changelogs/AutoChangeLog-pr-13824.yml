@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - code_imp: "Unit tests are done in a box now instead of space"

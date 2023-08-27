@@ -1144,6 +1144,7 @@
 		"Standard" = list(
 			/obj/item/clothing/under/marine/robotic = -1,
 			/obj/item/clothing/under/marine = -1,
+			/obj/item/clothing/under/marine/hyperscale = -1,
 			/obj/item/clothing/under/marine/camo = -1,
 			/obj/item/clothing/under/marine/camo/desert = -1,
 			/obj/item/clothing/under/marine/camo/snow = -1,
@@ -1306,6 +1307,9 @@
 			/obj/item/clothing/gloves/latex = -1,
 			/obj/item/clothing/shoes/white = -1,
 		),
+		"Civilian Surplus Wear" = list(
+			/obj/item/clothing/under/rank/chaplain = -1
+		)
 	)
 
 	prices = list()
@@ -1548,6 +1552,9 @@
 			/obj/item/ammo_magazine/pistol/icc_dpistol = -1,
 			/obj/item/weapon/gun/rifle/icc_coilgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_coilgun = -1,
+			/obj/item/weapon/gun/rifle/icc_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/icc_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = -1,
 			/obj/item/weapon/gun/shotgun/pump/trenchgun = -1,
 		),
 		"PMC" = list(

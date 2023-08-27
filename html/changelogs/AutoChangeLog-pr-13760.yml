@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "AI xenos no longer gib on death every time"

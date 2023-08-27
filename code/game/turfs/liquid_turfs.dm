@@ -23,7 +23,7 @@
 
 /turf/open/liquid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(has_catwalk)
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
 		return FALSE
 	. = TRUE
 
@@ -66,9 +66,9 @@
 	var/turf/open/liquid/new_turf = mob_leaver.loc
 	if(istype(new_turf))
 		if(length(new_turf.canSmoothWith))
-			if(!new_turf.has_catwalk && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
+			if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED) && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
 				return
-		else if(!new_turf.has_catwalk)
+		else if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED))
 			return
 
 	var/icon/mob_icon = icon(mob_leaver.icon)

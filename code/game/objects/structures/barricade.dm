@@ -64,8 +64,11 @@
 		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
-	if(!CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && is_wired && density && ismob(mover) && (get_dir(loc, target) & dir))
-		return FALSE
+	if(get_dir(loc, target) & dir)
+		if(!CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && is_wired && density && ismob(mover))
+			return FALSE
+		if(istype(mover, /obj/effect/xenomorph)) //cades stop xeno effects like acid spray
+			return FALSE
 
 	return ..()
 

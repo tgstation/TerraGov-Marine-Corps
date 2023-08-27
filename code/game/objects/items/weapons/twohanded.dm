@@ -52,6 +52,8 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
 	update_item_state()
+	user.update_inv_l_hand()
+	user.update_inv_r_hand()
 	return TRUE
 
 
@@ -79,8 +81,6 @@
 	to_chat(user, span_notice("You grab [src] with both hands."))
 	offhand.name = "[name] - offhand"
 	offhand.desc = "Your second grip on [src]."
-	user.update_inv_l_hand()
-	user.update_inv_r_hand()
 	return TRUE
 
 /obj/item/proc/remove_offhand(mob/user)
