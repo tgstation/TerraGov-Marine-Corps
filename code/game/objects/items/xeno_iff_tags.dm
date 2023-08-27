@@ -35,7 +35,7 @@
 
 
 
-//Eventmins are fun to I'll make your job a tiny bit easier.
+//Eventmins are fun so I'll make your job a tiny bit easier.
 
 /obj/item/xeno_iff_tag/som
 	name = "Sons of Mars xenomorph IFF tag"
