@@ -31,8 +31,7 @@
 	iff_list[1] |= iff_type
 
 /**
- * Handles being examined by showing a tag is attached.
- * Could possibly do with having it list IFFs, or if it has similar ones as the user, but just hinting at a tag is good enough for now.
+ * Handles being examined by showing a tag is attached, aswell as if it is friendly relative to the own (if a human examines).
  */
 /datum/component/xeno_iff/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
