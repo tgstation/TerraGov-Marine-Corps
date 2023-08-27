@@ -131,7 +131,7 @@ GLOBAL_VAR_INIT(failed_any_test, FALSE)
 
 	SSticker.force_ending = TRUE
 	//We have to call this manually because del_text can preceed us, and SSticker doesn't fire in the post game
-	SSticker.Reboot()
+	SSticker.mode.declare_completion()
 
 /datum/map_template/unit_tests
 	name = "Unit Tests Zone"

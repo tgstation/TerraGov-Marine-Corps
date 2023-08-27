@@ -168,13 +168,20 @@
 	if(length(list_or_datum))
 		list_or_datum[var_name] = var_value
 		return
-	var/datum/D = list_or_datum
-	if(QDELETED(D))
+	var/datum/datum = list_or_datum
+
+	if(isweakref(datum))
+		var/datum/weakref/datum_weakref = datum
+		datum = datum_weakref.resolve()
+		if(isnull(datum))
+			return
+
+	if(QDELETED(datum))
 		return
 	if(IsAdminAdvancedProcCall())
-		D.vv_edit_var(var_name, var_value)
+		datum.vv_edit_var(var_name, var_value)
 	else
-		D.vars[var_name] = var_value
+		datum.vars[var_name] = var_value
 
 /proc/___callbacknew(typepath, arguments)
 	new typepath(arglist(arguments))
