@@ -1027,7 +1027,7 @@
 			/obj/item/clothing/head/modular/marine/eva = -1,
 			/obj/item/clothing/head/modular/marine/eva/skull = -1,
 			/obj/item/clothing/head/modular/marine/helljumper = -1,
-			/obj/item/clothing/head/modular/marine/hotaru = -1,
+			/obj/item/clothing/head/modular/marine/ranger = -1,
 			/obj/item/clothing/head/modular/marine/traditional = -1,
 			/obj/item/clothing/head/modular/marine/trooper = -1,
 			/obj/item/clothing/head/modular/marine/gungnir = -1,
