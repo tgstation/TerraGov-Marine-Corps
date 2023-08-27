@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "Added new 12G Frag rounds, only for ICC so far."
+  - rscadd: "New ML-41 12G autoshotgun, it can fire 12G flechettes and fragmentation rounds."

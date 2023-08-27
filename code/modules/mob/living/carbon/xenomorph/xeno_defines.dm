@@ -399,6 +399,10 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
+	// Baneling vars
+	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
+	var/stored_charge = 0
+
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE

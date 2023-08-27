@@ -2399,3 +2399,56 @@
 
 /obj/item/weapon/gun/rifle/icc_confrontationrifle/leader
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel)
+
+//-------------------------------------------------------
+//ML-41 Autoshotgun
+
+/obj/item/weapon/gun/rifle/icc_autoshotgun
+	name = "\improper ML-41 autoshotgun"
+	desc = "The ML-41 Automatic Shotgun is used by the ICCAF in fast paced boarding assaults, fielding a wide variety of ammo for all situations. Takes 16-round 12 gauge drums."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "ml41"
+	item_state = "ml41"
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
+	caliber = CALIBER_12G //codex
+	max_shells = 16 //codex
+	force = 20
+	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_autoshotgun
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/icc_autoshotgun,
+		/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/motiondetector,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY //Its a shotgun type weapon effectively, most shotgun type weapons shouldn't be able to point blank 1 handed.
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 26,"rail_x" = 26, "rail_y" = 24, "under_x" = 40, "under_y" = 16, "stock_x" = 26, "stock_y" = 13)
+	gun_skill_category = SKILL_SHOTGUNS
+
+	fire_delay = 0.9 SECONDS
+	accuracy_mult = 1.15
+	damage_mult = 0.5
+	aim_slowdown = 0.6
+	wield_delay = 0.55 SECONDS
+	burst_amount = 1
+	scatter = 8
+	movement_acc_penalty_mult = 2
+
+/obj/item/weapon/gun/rifle/icc_autoshotgun/guard
+	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/magnetic_harness)

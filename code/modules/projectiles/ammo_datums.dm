@@ -913,6 +913,41 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	damage_falloff = 4
 
+
+/datum/ammo/bullet/shotgun/frag
+	name = "shotgun explosive shell"
+	handful_icon_state = "shotgun tracker shell"
+	hud_state = "shotgun_tracker"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/frag/frag_spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 6
+	accuracy_var_low = 8
+	accuracy_var_high = 8
+	max_range = 15
+	damage = 10
+	damage_falloff = 0.5
+	penetration = 0
+
+/datum/ammo/bullet/shotgun/frag/drop_nade(turf/T)
+	explosion(T, weak_impact_range = 2)
+
+/datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/bullet/shotgun/frag/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : O.loc)
+
+/datum/ammo/bullet/shotgun/frag/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/bullet/shotgun/frag/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/bullet/shotgun/frag/frag_spread
+	name = "additional frag shell"
+	damage = 5
+
 /datum/ammo/bullet/shotgun/sx16_buckshot
 	name = "shotgun buckshot shell" //16 gauge is between 12 and 410 bore.
 	handful_icon_state = "shotgun buckshot shell"

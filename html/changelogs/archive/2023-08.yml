@@ -346,3 +346,15 @@
   lbnesquik:
   - rscadd: Added medivac beds to corpsmen vendor for their entire budget
   - code_imp: Added a space to the mortar code :)
+2023-08-25:
+  Lumipharon:
+  - bugfix: fixed 1911 having lower scatter than it should
+  - balance: Mod4 no longer has an extra delay when burst firing
+  - balance: Slight akimbo nerfs to the P-23, 1911 and Mod4
+  - bugfix: fixed acid sprays getting blocked by things that weren't supposed to
+2023-08-26:
+  QualityVan:
+  - bugfix: Cannibalise doesn't let widow have too many spiderlings
+2023-08-27:
+  yyzsong:
+  - qol: Prebuilt tunnels are no longer named as obtusely

@@ -147,7 +147,8 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
-		X.balloon_alert(X, "Max Spiderlings")
+		if(!silent)
+			X.balloon_alert(X, "Max Spiderlings")
 		return FALSE
 
 /// The action to create spiderlings
@@ -160,8 +161,12 @@
 	add_cooldown()
 
 /datum/action/xeno_action/create_spiderling/alternate_action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
 	if(cannibalise_charges <= 0)
-		owner.balloon_alert(owner, "No charges remaining!")
+		X.balloon_alert(X, "No charges remaining!")
+		return
+	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
+		X.balloon_alert(X, "Max Spiderlings")
 		return
 	INVOKE_ASYNC(src, PROC_REF(use_cannibalise))
 	return COMSIG_KB_ACTIVATED
