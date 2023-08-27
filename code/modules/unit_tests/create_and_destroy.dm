@@ -39,6 +39,7 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	ignore += typesof(/obj/effect/ai_node/spawner)
 	ignore += typesof(/obj/effect/mapping_helpers)
 	ignore += typesof(/obj/effect/temp_visual)
+	ignore += typesof(/obj/effect/landmark)
 	ignore += typesof(/atom/movable/screen)
 	ignore += typesof(/obj/effect/baseturf_helper)
 

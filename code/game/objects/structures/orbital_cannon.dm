@@ -38,6 +38,11 @@
 	tray = O
 	tray.linked_ob = src
 
+/obj/structure/orbital_cannon/Destroy()
+	if(tray)
+		tray.linked_ob = null
+		tray = null
+	return ..()
 
 /obj/structure/orbital_cannon/update_icon_state()
 	if(chambered_tray)

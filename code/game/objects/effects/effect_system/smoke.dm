@@ -23,7 +23,7 @@
 	///Delay in ticks before this smoke can affect a given mob again, applied in living's effect_smoke
 	var/minimum_effect_delay = 1 SECONDS
 	///The original source of the smoke. Used for smoke spread checks
-	var/origin
+	var/atom/movable/origin
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -59,6 +59,7 @@
 		var/obj/effect/particle_effect/smoke/neighbor = pick(cloud.smokes - src)
 		neighbor.chemical_effect()
 	STOP_PROCESSING(SSobj, src)
+	origin = null
 	if(cloud)
 		LAZYREMOVE(cloud.smokes, src)
 		if(cloud.single_use && !LAZYLEN(cloud.smokes))
