@@ -146,6 +146,7 @@
 	suffix =	"_mobile_bar"
 	description =	"A Tadpole modified to provide drinks and disservices. God dammit it's him again, I thought we got rid of him."
 	display_name =	"Tadpole Mobile-Bar Model"
+	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/combat_tad
 	suffix = "_combat_tad"

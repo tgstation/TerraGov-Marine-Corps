@@ -1,16 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
+/obj/machinery/griddle,
 /obj/item/reagent_containers/glass/rag,
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
-/obj/machinery/grill,
 /turf/open/floor/iron/white/textured,
 /area/shuttle/minidropship)
 "c" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /obj/machinery/camera/autoname/mainship,
-/obj/structure/barricade/metal{
-	dir = 1
-	},
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "d" = (
@@ -38,24 +35,18 @@
 "f" = (
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
-"g" = (
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/turf/open/floor/iron/white/textured_half{
-	dir = 8
-	},
-/area/shuttle/minidropship)
 "l" = (
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal{
-	dir = 4
-	},
 /turf/open/floor/mainship/white{
+	dir = 8
+	},
+/area/shuttle/minidropship)
+"m" = (
+/turf/open/floor/iron/white/textured_half{
 	dir = 8
 	},
 /area/shuttle/minidropship)
@@ -72,9 +63,6 @@
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/reinforced,
 /obj/item/book/manual/chef_recipes,
-/obj/structure/barricade/metal{
-	dir = 8
-	},
 /turf/open/floor/mainship/white{
 	dir = 4
 	},
@@ -84,9 +72,6 @@
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "q" = (
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
 /turf/open/floor/iron/white/textured_corner{
 	dir = 1
 	},
@@ -106,9 +91,6 @@
 	},
 /obj/machinery/vending/nanomed/tadpolemed{
 	dir = 4
-	},
-/obj/structure/barricade/metal{
-	dir = 1
 	},
 /turf/open/floor/iron/white/textured_corner,
 /area/shuttle/minidropship)
@@ -143,9 +125,6 @@
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
-/obj/structure/barricade/metal{
-	dir = 8
-	},
 /turf/open/floor/mainship/white{
 	dir = 4
 	},
@@ -173,9 +152,6 @@
 /turf/open/floor/iron/white/textured,
 /area/shuttle/minidropship)
 "E" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
 /turf/open/floor/iron/white/textured_corner{
 	dir = 4
 	},
@@ -213,9 +189,6 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
-	dir = 1
-	},
 /turf/open/floor/iron/white/textured_corner{
 	dir = 8
 	},
@@ -228,9 +201,6 @@
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder{
 	pixel_y = 5
-	},
-/obj/structure/barricade/metal{
-	dir = 4
 	},
 /turf/open/floor/mainship/white{
 	dir = 8
@@ -253,14 +223,6 @@
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/template_noop,
 /area/shuttle/minidropship)
-"U" = (
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/turf/open/floor/iron/white/textured_half{
-	dir = 8
-	},
-/area/shuttle/minidropship)
 "V" = (
 /obj/structure/dropship_piece/tadpole/engine{
 	dir = 1;
@@ -273,9 +235,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal{
-	dir = 4
-	},
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
@@ -286,9 +245,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal{
-	dir = 8
-	},
 /turf/open/floor/mainship/white{
 	dir = 4
 	},
@@ -344,8 +300,8 @@ J
 x
 v
 P
-U
-U
+m
+m
 E
 s
 "}
@@ -366,8 +322,8 @@ J
 x
 L
 d
-g
-g
+m
+m
 q
 y
 "}
