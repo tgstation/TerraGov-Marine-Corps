@@ -37,7 +37,8 @@ SUBSYSTEM_DEF(lighting)
 	var/updators_num = 0
 	for(var/datum/static_light_source/L AS in static_sources_queue)
 		updators_num++
-		if(L.update_corners()) //deleted light sources remove themselves from the list
+		L.update_corners()
+		if(QDELETED(L))
 			updators_num--
 
 		L.needs_update = LIGHTING_NO_UPDATE
@@ -54,8 +55,9 @@ SUBSYSTEM_DEF(lighting)
 	updators_num = 0
 	for(var/datum/static_lighting_corner/C AS in corners_queue)
 		updators_num++
-		//C.needs_update = FALSE //update_objects() can call qdel if the corner is storing no data
-		if(C.update_objects())
+		C.needs_update = FALSE //update_objects() can call qdel if the corner is storing no data
+		C.update_objects()
+		if(QDELETED(C))
 			updators_num--
 		if(init_tick_checks)
 			CHECK_TICK
