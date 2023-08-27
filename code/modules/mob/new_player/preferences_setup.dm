@@ -207,6 +207,7 @@
 	character.religion = religion
 
 	character.voice = tts_voice
+	character.pitch = tts_pitch
 
 	character.moth_wings = moth_wings
 	character.underwear = underwear

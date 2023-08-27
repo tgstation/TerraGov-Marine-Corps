@@ -1055,7 +1055,7 @@ ColorTone(rgb, tone)
 
 
 //Costlier version of icon2html() that uses getFlatIcon() to account for overlays, underlays, etc. Use with extreme moderation, ESPECIALLY on mobs.
-/proc/costly_icon2html(thing, target)
+/proc/costly_icon2html(thing, target, sourceonly = FALSE)
 	if(!thing)
 		return
 
@@ -1063,7 +1063,7 @@ ColorTone(rgb, tone)
 		return icon2html(thing, target)
 
 	var/icon/I = getFlatIcon(thing)
-	return icon2html(I, target)
+	return icon2html(I, target, sourceonly = sourceonly)
 
 
 //For creating consistent icons for human looking simple animals

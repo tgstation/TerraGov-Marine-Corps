@@ -1,5 +1,7 @@
 /mob/dead/observer/Login()
 	. = ..()
+	SSmobs.dead_players_by_zlevel[z] += src
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(observer_z_changed))
 
 	client.prefs.load_preferences()
 	ghost_medhud = client.prefs.ghost_hud & GHOST_HUD_MED

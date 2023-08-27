@@ -12,6 +12,12 @@
 			"icon_state": "kama"
 		}
 	],
+	"highlight_kilt": [
+		{
+			"type": "hyperscale",
+			"icon_state": "kilt"
+		}
+	],
 	"highlight_scarf":[
 		{
 			"type": "hyperscale",

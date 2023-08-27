@@ -37,6 +37,7 @@
 	scatter = -2
 	scatter_unwielded = 4
 	akimbo_additional_delay = 0.9
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	placed_overlay_iconstate = "pistol"
 
@@ -50,7 +51,7 @@
 	item_state = "tp14"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
@@ -171,7 +172,7 @@
 	item_state = "tp23"
 	caliber = CALIBER_45ACP //codex
 	max_shells = 14 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p23.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
@@ -197,6 +198,7 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	recoil_unwielded = -2
+	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
@@ -229,7 +231,7 @@
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
 	recoil = -2
-	recoil_unwielded = -1
+	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper P-1911A1 custom pistol"
@@ -428,7 +430,7 @@
 	fire_animation = "tp17_fire"
 	caliber = CALIBER_380ACP //codex
 	max_shells = 8 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp17.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p17.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pocketpistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pocketpistol)
 	w_class = WEIGHT_CLASS_TINY
@@ -484,13 +486,13 @@
 //VP70
 
 /obj/item/weapon/gun/pistol/vp70
-	name = "\improper 88 Mod 4 combat pistol"
+	name = "\improper MK88 Mod 4 combat pistol"
 	desc = "An uncommon automatic handgun used for self defense, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
 	icon_state = "88m4"
 	item_state = "88m4"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 18 //codex
-	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_88mod4.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
@@ -523,6 +525,8 @@
 	aim_slowdown = 0.2
 	scatter = 0
 	scatter_unwielded = 6
+	lower_akimbo_accuracy = 2
+	akimbo_additional_delay = 2
 
 /obj/item/weapon/gun/pistol/vp70/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/compensator)

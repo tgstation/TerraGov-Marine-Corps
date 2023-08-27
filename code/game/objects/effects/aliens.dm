@@ -5,7 +5,7 @@
 /obj/effect/xenomorph
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
-	icon = 'icons/Xeno/effects.dmi'
+	icon = 'icons/Xeno/Effects.dmi'
 	layer = FLY_LAYER
 
 /obj/effect/xenomorph/splatter
@@ -41,7 +41,7 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_GRILLE
+	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_GRILLE|PASS_AIR
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
@@ -208,7 +208,7 @@
 /obj/effect/xenomorph/warp_shadow
 	name = "warp shadow"
 	desc = "A strange rift in space and time. You probably shouldn't touch this."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/wraith.dmi'
 	icon_state = "Wraith Walking"
 	color = COLOR_BLACK
 	alpha = 128 //Translucent

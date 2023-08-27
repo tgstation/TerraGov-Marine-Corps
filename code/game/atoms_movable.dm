@@ -56,8 +56,12 @@
 
 	/// The voice that this movable makes when speaking
 	var/voice
+	/// The pitch adjustment that this movable uses when speaking.
+	var/pitch = 0
 	/// The filter to apply to the voice when processing the TTS audio message.
 	var/voice_filter = ""
+	/// Set to anything other than "" to activate the silicon voice effect for TTS messages.
+	var/tts_silicon_voice_effect = ""
 
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_movable_lights
@@ -298,7 +302,7 @@
 // You probably want CanPass()
 /atom/movable/Cross(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSS, AM)
-	return CanPass(AM, AM.loc, TRUE)
+	return CanPass(AM, AM.loc)
 
 
 ///default byond proc that is deprecated for us in lieu of signals. do not call
@@ -454,12 +458,12 @@
 
 	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
 		var/obj/O = hit_atom
-		if(!O.anchored && !isxeno(src))
+		if(!O.anchored)
 			step(O, dir)
 		O.hitby(src, speed)
 
 	else if(isturf(hit_atom))
-		set_throwing(FALSE)
+		stop_throw()
 		var/turf/T = hit_atom
 		if(T.density)
 			if(bounce)
@@ -471,33 +475,16 @@
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
 
-
-/**
- * This proc decides whether a thrown object can pass a turf it is in and checks for throw impacts, aswell as possible parrying things.
- * Normally returns nothing / null, except when parried in which case it returns whatever parried it.
-**/
-/atom/movable/proc/hit_check(speed, flying = FALSE)
-	if(!throwing)
-		return
-	for(var/atom/A in get_turf(src))
-		if(A == src)
-			continue
-		if(isliving(A))
-			var/mob/living/L = A
-			if(pass_flags & PASS_MOB || (!L.density || (L.pass_flags & PASS_THROW)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
-				continue
-			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
-				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
-				return A
-			throw_impact(A, speed)
-		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.allow_pass_flags & PASS_THROW) || iscarbon(src)) && !flying)
-			throw_impact(A, speed)
-
-
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
+
+	var/gravity = get_gravity()
+	if(gravity < 1)
+		range = round(range * (2 - gravity))
+	else if(gravity > 1)
+		range = ROUND_UP(range * (2 - gravity))
 
 	if(!targetted_throw)
 		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))
@@ -522,7 +509,6 @@
 		setDir(get_dir(src, target))
 		flags_atom |= DIRLOCK
 
-	var/atom/parrier	//If something parried the throw, this is set and prevents default throw ending in favor of triggering another throw back to its source.
 	throw_source = get_turf(src)	//store the origin turf
 
 	var/dist_x = abs(target.x - x)
@@ -551,10 +537,6 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed, flying)
-				if(hit_check_return)
-					parrier = hit_check_return
-					break
 				error += dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -565,10 +547,6 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed, flying)
-				if(hit_check_return)
-					parrier = hit_check_return
-					break
 				error -= dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -583,10 +561,6 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed, flying)
-				if(hit_check_return)
-					parrier = hit_check_return
-					break
 				error += dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -597,10 +571,6 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed, flying)
-				if(hit_check_return)
-					parrier = hit_check_return
-					break
 				error -= dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -610,9 +580,6 @@
 	//done throwing, either because it hit something or it finished moving
 	if(!originally_dir_locked)
 		flags_atom &= ~DIRLOCK
-	if(parrier)
-		INVOKE_NEXT_TICK(src, PROC_REF(throw_at), (thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
-		return	//Do not trigger final turf impact nor throw end comsigs as it returns back to its source and should be treated as a single throw.
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
@@ -1194,3 +1161,12 @@
 
 	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
 		LAZYREMOVEASSOC(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, former_client.mob)
+
+///Checks the gravity the atom is subjected to
+/atom/movable/proc/get_gravity()
+	if(z)
+		return SSmapping.gravity_by_z_level["[z]"]
+	var/turf/src_turf = get_turf(src)
+	if(src_turf?.z)
+		return SSmapping.gravity_by_z_level["[src_turf.z]"]
+	return 1 //if both fail we're in nullspace, just return a 1 as a fallback

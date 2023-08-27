@@ -83,9 +83,10 @@
 	},
 /area/bigredv2/outside/chapel)
 "pS" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/chapel)
 "qq" = (
 /obj/structure/bed/chair/wood/wings{
@@ -101,6 +102,7 @@
 	},
 /obj/effect/decal/cleanable/blood/six{
 	dir = 4;
+	
 	},
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
@@ -150,6 +152,7 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/six{
 	dir = 4;
+	
 	},
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
@@ -220,7 +223,8 @@
 /area/bigredv2/outside/chapel)
 "CO" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/chapel)
 "De" = (
 /obj/structure/cable,
@@ -307,6 +311,7 @@
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/blood/six{
 	dir = 1;
+	
 	},
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
@@ -351,6 +356,7 @@
 "VS" = (
 /obj/effect/decal/cleanable/blood/six{
 	dir = 1;
+	
 	},
 /turf/open/floor/tile/chapel{
 	dir = 8
@@ -368,6 +374,7 @@
 "XR" = (
 /obj/effect/decal/cleanable/blood/six{
 	dir = 1;
+	
 	},
 /turf/open/floor/tile/chapel{
 	dir = 1

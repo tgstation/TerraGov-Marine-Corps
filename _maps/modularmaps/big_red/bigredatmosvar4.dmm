@@ -440,6 +440,10 @@
 /obj/structure/table,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"Pq" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "Qd" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/se)
@@ -999,7 +1003,7 @@ Qq
 "}
 (17,1,1) = {"
 Vb
-VI
+Pq
 IP
 VI
 OJ

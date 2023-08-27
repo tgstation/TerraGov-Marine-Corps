@@ -63,7 +63,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 200
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/tl102/hsg_nest
@@ -84,7 +84,7 @@
 		/obj/item/ammo_magazine/tl102/hsg_nest,
 	)
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 /obj/item/weapon/gun/tl102/hsg_nest/sandless
 	icon_state = "entrenched_sandless"
@@ -131,7 +131,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 300
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/standard_minigun/nest
@@ -146,7 +146,7 @@
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest,)
 
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
 //-------------------------------------------------------
 //ATR-22 mounted heavy anti-air gun
@@ -188,11 +188,11 @@
 	deployable_item = /obj/machinery/deployable/mounted/moveable/auto_cannon
 
 	max_integrity = 500
-	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 /obj/machinery/deployable/mounted/moveable/auto_cannon
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
-	coverage = 75 //has a shield
+	coverage = 85 //has a shield
 
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
@@ -230,7 +230,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 400
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
 //RR-15 mounted heavy recoilless rifle
@@ -273,7 +273,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 600
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
@@ -335,7 +335,7 @@
 	deployable_item = /obj/machinery/deployable/mounted/moveable
 
 	max_integrity = 200
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
 
 
@@ -355,7 +355,8 @@
 	force = 40
 	aim_slowdown = 1.2
 	wield_delay = 2 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/t27.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mg27.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mg27_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -373,7 +374,6 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/bayonetknife/som,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/unremovable/mmg,
 		/obj/item/attachable/stock/t27,
@@ -389,7 +389,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.05 SECONDS
 	aim_speed_modifier = 5
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 
 	scatter = 30 // you're not firing this standing.
@@ -441,7 +441,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_time = 6 SECONDS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
-	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 	scatter = 0
 	recoil = 3
@@ -454,7 +454,7 @@
 /obj/machinery/deployable/mounted/moveable/atgun
 	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
-	coverage = 75 //has a shield
+	coverage = 85 //has a shield
 	anchor_time = 1 SECONDS
 
 /obj/item/storage/internal/ammo_rack
@@ -493,7 +493,9 @@
 		if(EXPLODE_HEAVY)
 			take_damage(rand(150, 200), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(10, 50), BRUTE, BOMB)
+			take_damage(rand(50, 100), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 50), BRUTE, BOMB)
 
 //AGLS-37, or Automatic Grenade Launching System 37, a fully automatic mounted grenade launcher that fires fragmentation and HE shells, can't be turned.
 
@@ -539,7 +541,7 @@
 
 
 	max_integrity = 300
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
 
 

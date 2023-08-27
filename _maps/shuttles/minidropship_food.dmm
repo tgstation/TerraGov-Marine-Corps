@@ -80,6 +80,7 @@
 	},
 /area/shuttle/minidropship)
 "o" = (
+/obj/machinery/holopad,
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "q" = (

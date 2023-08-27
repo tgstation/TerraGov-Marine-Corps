@@ -105,7 +105,8 @@
 
 #define STUN "stun"
 #define WEAKEN "weaken"
-#define PARALYZE "paralize"
+#define PARALYZE "paralyze"
+#define STAGGER "stagger"
 #define AGONY "agony" // Added in PAIN!
 #define STUTTER "stutter"
 #define EYE_BLUR "eye_blur"
@@ -446,7 +447,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 ///Stamina exhaustion
 
 #define LIVING_STAMINA_EXHAUSTION_COOLDOWN 10 SECONDS //Amount of time between 0 stamina exhaustion events
-#define STAMINA_EXHAUSTION_DEBUFF_STACKS 6 //Amount of slow and stagger stacks applied on stamina exhaustion events
+#define STAMINA_EXHAUSTION_STAGGER_DURATION 10 SECONDS //Amount of stagger applied on stamina exhaustion events
+#define STAMINA_EXHAUSTION_DEBUFF_STACKS 6 //Amount of slow and eyeblur stacks applied on stamina exhaustion events
 
 
 //Shock defines
@@ -469,7 +471,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SLOWDOWN_REGEN 0.4
 
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
-#define XENO_EXPLOSION_RESIST_3_MODIFIER 0.25 //multiplies top level explosive damage by this amount.
 #define XENO_EXPLOSION_GIB_THRESHOLD 0.95 //if your effective bomb armour is less than 5, devestating explosions will gib xenos
 
 #define KING_SUMMON_TIMER_DURATION 5 MINUTES
@@ -689,6 +690,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RUNNER_EVASION_RUN_DELAY 0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
 #define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD 120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
 
+//Baneling defines
+#define BANELING_CHARGE_MAX 2
+#define BANELING_CHARGE_GAIN_TIME 240 SECONDS
+#define BANELING_CHARGE_RESPAWN_TIME 30 SECONDS
+/// Not specified in seconds because it causes smoke to last almost four times as long if done so
+#define BANELING_SMOKE_DURATION 4
+
 //Sentinel defines
 #define SENTINEL_TOXIC_SPIT_STACKS_PER 2 //Amount of debuff stacks to be applied per spit.
 #define SENTINEL_TOXIC_SLASH_COUNT 3 //Amount of slashes before the buff runs out
@@ -713,7 +721,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER 0.5
 #define WRAITH_BANISH_VERY_SHORT_MULTIPLIER 0.3
 
-#define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+#define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 SECONDS //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 #define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 
 //Warrior defines
@@ -803,6 +811,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define GRAB_PIXEL_SHIFT_NECK 16
 
 #define HUMAN_CARRY_SLOWDOWN 0.35
+#define HUMAN_EXPLOSION_GIB_THRESHOLD 0.95
 
 
 // =============================

@@ -466,9 +466,16 @@
 /datum/keybinding/xeno/change_form
 	name = "change_form"
 	full_name = "Hivemind: Change Form"
-	description = ""
+	description = "Change form to/from incorporeal."
 	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM
 	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/change_form
+	name = "change_form"
+	full_name = "Hivemind: Open teleportation minimap"
+	description = "Opens up the minimap which, when you click somewhere, tries to teleport you to the selected location"
+	keybind_signal = COMISG_XENOMORPH_HIVEMIND_TELEPORT
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
@@ -490,6 +497,12 @@
 	description = "Creates multiple mirror images of the xeno."
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/silence
+	name = "impair senses"
+	full_name = "Hunter: Silence"
+	description = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
+	keybind_signal = COMSIG_XENOABILITY_SILENCE
 
 /datum/keybinding/xeno/mark
 	name = "mark"
@@ -551,11 +564,11 @@
 	hotkey_keys = list("F")
 
 
-/datum/keybinding/xeno/gravity_grenade
+/datum/keybinding/xeno/psychic_storm
 	name = "gravnade"
-	full_name = "Shrike: Gravity Grenade"
+	full_name = "Shrike: Psychic Vortex"
 	description = ""
-	keybind_signal = COMSIG_XENOABILITY_GRAV_NADE
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_VORTEX
 	hotkey_keys = list("X")
 
 /datum/keybinding/xeno/screech
@@ -593,6 +606,12 @@
 	full_name = "Queen: Hive Message"
 	description = "Instantly displays a bolded announcement to all xenos in the hive."
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
+
+/datum/keybinding/xeno/queen_bulwark
+	name = "queen_bulwark"
+	full_name = "Queen: Bulwark"
+	description = "Forms an area around you that reduces damage taken by friendly xenomorphs."
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_BULWARK
 
 /datum/keybinding/xeno/deevolve
 	name = "deevolve"
@@ -869,6 +888,12 @@
 	description = "Scoop up and carry your spawn with you."
 	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
 
+/datum/keybinding/xeno/cannibalise
+	name = "Cannibalise Spiderling"
+	full_name = "Widow: Cannibalise Spiderling"
+	description = "Eat your own young and store their biomass for later."
+	keybind_signal = COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING
+
 /datum/keybinding/xeno/web_hook
 	name = "Web Hook"
 	full_name = "Widow: Web Hook"
@@ -880,6 +905,30 @@
 	full_name = "Widow: Spiderling Mark"
 	description = "Signal your spawn to a target they shall attack."
 	keybind_signal = COMSIG_XENOABILITY_SPIDERLING_MARK
+
+/datum/keybinding/xeno/dash_explosion
+	name = "Dash Explosion"
+	full_name = "Baneling: Dash Explode"
+	description = "Aim in a direction, charge up and dash, knocking down any humans hit and detonate yourself. "
+	keybind_signal = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION
+
+/datum/keybinding/xeno/spawn_pod
+	name = "Spawn Pod"
+	full_name = "Baneling: Spawn Pod"
+	description = "Spawn a pod on your current position, when you die from any source you will respawn on this pod. Activate again to change its location. "
+	keybind_signal = COMSIG_XENOABILITY_BANELING_SPAWN_POD
+
+/datum/keybinding/xeno/baneling_explode
+	name = "Explode"
+	full_name = "Baneling: Explode"
+	description = "Detonate yourself, spreading your currently selected reagent. Size depends on current stored plasma, more plasma is more reagent."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_EXPLODE
+
+/datum/keybinding/xeno/select_reagent/baneling
+	name = "Select Reagent"
+	full_name = "Baneling: Select Reagent"
+	description = "Choose a reagent that will be spread upon death. Costs plasma to change."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
 
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()

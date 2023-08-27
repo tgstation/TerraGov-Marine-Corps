@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(blackbox)
 			return
 
 	if(!GLOB.round_id)
-		SSdbcore.SetRoundID()
+		SSdbcore.InitializeRound()
 
 
 	if(CONFIG_GET(flag/use_exp_tracking))

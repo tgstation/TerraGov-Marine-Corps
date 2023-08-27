@@ -98,30 +98,27 @@
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
-/mob/living/carbon/xenomorph/Stat()
+/mob/living/carbon/xenomorph/get_status_tab_items()
 	. = ..()
 
-	if(!statpanel("Game"))
-		return
-
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
-		stat("Evolve Progress:", "(FINISHED)")
+		. += "Evolve Progress: (FINISHED)"
 	else if(!hive.check_ruler())
-		stat("Evolve Progress:", "(HALTED - NO RULER)")
+		. += "Evolve Progress: (HALTED - NO RULER)"
 	else
-		stat("Evolve Progress:", "[evolution_stored]/[xeno_caste.evolution_threshold]")
+		. += "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]"
 
 	if(upgrade_possible())
-		stat("Upgrade Progress:", "[upgrade_stored]/[xeno_caste.upgrade_threshold]")
+		. += "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]"
 	else //Upgrade process finished or impossible
-		stat("Upgrade Progress:", "(FINISHED)")
+		. += "Upgrade Progress: (FINISHED)"
 
-	stat("Health:", "[overheal ? "[overheal] + ": ""][health]/[maxHealth]") //Changes with balance scalar, can't just use the caste
+	. += "Health: [overheal ? "[overheal] + ": ""][health]/[maxHealth]" //Changes with balance scalar, can't just use the caste
 
 	if(xeno_caste.plasma_max > 0)
-		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
+		. += "Plasma: [plasma_stored]/[xeno_caste.plasma_max]"
 
-	stat("Sunder:", "[100-sunder]% armor left")
+	. += "Sunder: [100-sunder]% armor left"
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
@@ -137,7 +134,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[AURA_XENO_FRENZY] pheromone strength:", msg_holder)
+		. += "[AURA_XENO_FRENZY] pheromone strength: [msg_holder]"
 	if(warding_aura)
 		switch(warding_aura)
 			if(-INFINITY to 1.0)
@@ -150,7 +147,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[AURA_XENO_WARDING] pheromone strength:", msg_holder)
+		. += "[AURA_XENO_WARDING] pheromone strength: [msg_holder]"
 	if(recovery_aura)
 		switch(recovery_aura)
 			if(-INFINITY to 1.0)
@@ -163,12 +160,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[AURA_XENO_RECOVERY] pheromone strength:", msg_holder)
-
-	if(hivenumber == XENO_HIVE_NORMAL)
-		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
-		if(hivemind_countdown)
-			stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
+		. += "[AURA_XENO_RECOVERY] pheromone strength: [msg_holder]"
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
@@ -199,13 +191,12 @@
 /mob/living/carbon/xenomorph/proc/remove_inherent_verbs()
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
-			verbs -= verb_path
+			remove_verb(verbs, verb_path)
 
 //Add all your inherent caste verbs and procs. Used in evolution.
 /mob/living/carbon/xenomorph/proc/add_inherent_verbs()
 	if(inherent_verbs)
-		for(var/verb_path in inherent_verbs)
-			verbs |= verb_path
+		add_verb(src, inherent_verbs)
 
 
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
@@ -266,10 +257,8 @@
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom
-		if(!O.density)
-			return FALSE//Not a dense object? Doesn't matter then, pass over it.
-		if(!O.anchored)
-			step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
+		if(!O.anchored && !isxeno(src))
+			step(O, dir)
 		SEND_SIGNAL(src, COMSIG_XENO_OBJ_THROW_HIT, O, speed)
 		return TRUE
 
@@ -429,7 +418,7 @@
 /mob/living/carbon/human/apply_acid_spray_damage(damage)
 	take_overall_damage(damage, BURN, ACID, updating_health = TRUE)
 	emote("scream")
-	Paralyze(20)
+	Paralyze(2 SECONDS)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	ExtinguishMob()
@@ -474,7 +463,7 @@
 	playsound(C, "alien_drool", 15, TRUE)
 	do
 		face_atom(C)
-		if(stagger)
+		if(IsStaggered())
 			return FALSE
 		do_attack_animation(C)
 		C.reagents.add_reagent(toxin, transfer_amount)
@@ -494,7 +483,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/proc/setup_verbs()
-	verbs += /mob/living/proc/lay_down
+	add_verb(src, /mob/living/proc/lay_down)
 
 /mob/living/carbon/xenomorph/hivemind/setup_verbs()
 	return

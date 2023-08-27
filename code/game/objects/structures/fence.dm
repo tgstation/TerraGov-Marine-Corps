@@ -22,9 +22,11 @@
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(100, 125))//Almost broken or half way
+			take_damage(rand(100, 125), BRUTE, BOMB)//Almost broken or half way
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 75))
+			take_damage(rand(50, 75), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(30, BRUTE, BOMB)
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -86,7 +88,7 @@
 			if(GRAB_AGGRESSIVE)
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				if(prob(50))
-					M.Paralyze(20)
+					M.Paralyze(2 SECONDS)
 				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(25)

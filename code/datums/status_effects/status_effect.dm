@@ -3,15 +3,22 @@
 //When making a new status effect, add a define to status_effects.dm in __DEFINES for ease of use!
 
 /datum/status_effect
-	var/id = "effect" //Used for screen alerts.
-	var/duration = -1 //How long the status effect lasts in DECISECONDS. Enter -1 for an effect that never ends unless removed through some means.
-	var/tick_interval = 10 //How many deciseconds between ticks, approximately. Leave at 10 for every second.
-	var/mob/living/owner //The mob affected by the status effect.
-	var/status_type = STATUS_EFFECT_UNIQUE //How many of the effect can be on one mob, and what happens when you try to add another
-	var/on_remove_on_mob_delete = FALSE //if we call on_remove() when the mob is deleted
-	var/examine_text //If defined, this text will appear when the mob is examined - to use he, she etc. use "SUBJECTPRONOUN" and replace it in the examines themselves
-	var/alert_type = /atom/movable/screen/alert/status_effect //the alert thrown by the status effect, contains name and description
-	var/atom/movable/screen/alert/status_effect/linked_alert = null //the alert itself, if it exists
+	///Used for screen alerts
+	var/id = "effect"
+	///How long the status effect lasts in DECISECONDS. Enter -1 for an effect that never ends unless removed through some means
+	var/duration = -1
+	///How many deciseconds between ticks, approximately. Leave at 10 for every second
+	var/tick_interval = 10
+	///The mob affected by the status effect.
+	var/mob/living/owner
+	///How many of the effect can be on one mob, and what happens when you try to add another
+	var/status_type = STATUS_EFFECT_UNIQUE
+	///If defined, this text will appear when the mob is examined - to use he, she etc. use "SUBJECTPRONOUN" and replace it in the examines themselves
+	var/examine_text
+	///the alert thrown by the status effect, contains name and description
+	var/alert_type = /atom/movable/screen/alert/status_effect
+	///the alert itself, if it exists
+	var/atom/movable/screen/alert/status_effect/linked_alert = null
 
 /datum/status_effect/New(list/arguments)
 	on_creation(arglist(arguments))
@@ -54,23 +61,24 @@
 	if(duration != -1 && duration < world.time)
 		qdel(src)
 
-/datum/status_effect/proc/on_apply() //Called whenever the buff is applied; returning FALSE will cause it to autoremove itself.
+//Called whenever the buff is applied; returning FALSE will cause it to autoremove itself
+/datum/status_effect/proc/on_apply()
 	return TRUE
-/datum/status_effect/proc/tick() //Called every tick.
-/datum/status_effect/proc/on_remove() //Called whenever the buff expires or is removed; do note that at the point this is called, it is out of the owner's status_effects but owner is not yet null
-/datum/status_effect/proc/be_replaced() //Called instead of on_remove when a status effect is replaced by itself or when a status effect with on_remove_on_mob_delete = FALSE has its mob deleted
-	owner.clear_alert(id)
-	LAZYREMOVE(owner.status_effects, src)
-	owner = null
-	qdel(src)
 
+///Called every tick
+/datum/status_effect/proc/tick()
+
+//Called whenever the buff expires or is removed; do note that at the point this is called, it is out of the owner's status_effects but owner is not yet null
+/datum/status_effect/proc/on_remove()
+
+///Refreshed the duration
 /datum/status_effect/proc/refresh()
 	var/original_duration = initial(duration)
 	if(original_duration == -1)
 		return
 	duration = world.time + original_duration
 
-//clickdelay/nextmove modifiers!
+///clickdelay/nextmove modifiers!
 /datum/status_effect/proc/nextmove_modifier()
 	return 1
 
@@ -101,7 +109,7 @@
 	for(var/datum/status_effect/S in status_effects)
 		if(S.id == initial(S1.id) && S.status_type)
 			if(S.status_type == STATUS_EFFECT_REPLACE)
-				S.be_replaced()
+				qdel(S)
 			else if(S.status_type == STATUS_EFFECT_REFRESH)
 				S.refresh()
 				return
