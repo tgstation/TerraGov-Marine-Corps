@@ -1549,6 +1549,9 @@
 			/obj/item/ammo_magazine/pistol/icc_dpistol = -1,
 			/obj/item/weapon/gun/rifle/icc_coilgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_coilgun = -1,
+			/obj/item/weapon/gun/rifle/icc_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/icc_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = -1,
 			/obj/item/weapon/gun/shotgun/pump/trenchgun = -1,
 		),
 		"PMC" = list(
