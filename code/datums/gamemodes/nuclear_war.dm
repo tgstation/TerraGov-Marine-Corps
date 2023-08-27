@@ -166,10 +166,13 @@
 	xeno_job.add_job_positions(FLOOR(larva_surplus, 1))
 	xeno_hive.update_tier_limits()
 
+/// Signal handler to start xeno larva cooldown
 /datum/game_mode/infestation/nuclear_war/proc/on_xeno_death()
 	SIGNAL_HANDLER
 	cooling_larvas++
 	addtimer(CALLBACK(src, PROC_REF(larva_cooled)), 5 MINUTES)
 
+///Timer call only, decreases cooling larvas
 /datum/game_mode/infestation/nuclear_war/proc/larva_cooled()
 	cooling_larvas--
+	balance_scales()
