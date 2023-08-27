@@ -396,6 +396,11 @@
 	handle_weeds_on_movement()
 	return ..()
 
+/mob/living/carbon/xenomorph/CanAllowThrough(atom/movable/mover, turf/target)
+	if(mover.throwing && ismob(mover) && isxeno(mover.thrower)) //xenos can throw mobs past other xenos
+		return TRUE
+	return ..()
+
 /mob/living/carbon/xenomorph/set_stat(new_stat)
 	. = ..()
 	if(isnull(.))
