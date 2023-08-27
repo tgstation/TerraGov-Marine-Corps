@@ -1,0 +1,4 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - imageadd: "first aid kits resprite"
