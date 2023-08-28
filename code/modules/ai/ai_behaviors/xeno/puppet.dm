@@ -19,7 +19,7 @@
 
 ///starts AI and registers obstructed move signal
 /datum/ai_behavior/puppet/start_ai()
-	var/master = master_ref.resolve()
+	var/master = master_ref?.resolve()
 	if(master)
 		RegisterSignal(master, COMSIG_PUPPET_CHANGE_ALL_ORDER, PROC_REF(change_order))
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, PROC_REF(deal_with_obstacle))
@@ -30,7 +30,7 @@
 /datum/ai_behavior/puppet/cleanup_signals()
 	. = ..()
 	UnregisterSignal(mob_parent, list(COMSIG_OBSTRUCTED_MOVE,COMSIG_PUPPET_CHANGE_ORDER))
-	var/master = master_ref.resolve()
+	var/master = master_ref?.resolve()
 	if(master)
 		UnregisterSignal(master, COMSIG_PUPPET_CHANGE_ALL_ORDER)
 
