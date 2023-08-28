@@ -326,20 +326,6 @@
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/barracks)
-"eE" = (
-/obj/effect/landmark/start/job/squadcorpsman,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/barracks)
-"eJ" = (
-/obj/effect/landmark/start/job/squadleader,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/barracks)
 "eK" = (
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base/prep)
@@ -1758,15 +1744,12 @@
 	},
 /area/mainship/patrol_base)
 "Ab" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
 /turf/open/floor/mainship/black/corner{
 	dir = 1
 	},
-/area/mainship/patrol_base/barracks)
-"Ad" = (
-/obj/structure/bed/chair/nometal{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/barracks)
 "Af" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow{
@@ -2321,6 +2304,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
+"HK" = (
+/obj/structure/bed/bunkbed,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/barracks)
 "HP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2540,6 +2530,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
 "KR" = (
+/obj/structure/bed/chair/nometal,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -2616,6 +2607,13 @@
 	dir = 6
 	},
 /area/mainship/patrol_base)
+"Mm" = (
+/obj/structure/bed/bunkbed,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/barracks)
 "Mo" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -2692,9 +2690,6 @@
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base/barracks)
 "Ob" = (
-/obj/structure/bed/chair/nometal{
-	dir = 8
-	},
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/mainship/black/corner{
 	dir = 8
@@ -3294,11 +3289,21 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
+"WU" = (
+/obj/structure/bed/chair/nometal,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/barracks)
 "WV" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/glass/beaker/cryomix,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
+"WX" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/barracks)
 "WY" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/machinery/light/mainship{
@@ -3379,16 +3384,6 @@
 "XV" = (
 /turf/open/floor/mainship_hull/gray/dir,
 /area/space)
-"Yb" = (
-/obj/effect/landmark/start/job/squadengineer,
-/obj/machinery/light,
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/barracks)
-"Yf" = (
-/obj/effect/landmark/start/job/squadmarine,
-/obj/machinery/light,
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/barracks)
 "Yh" = (
 /obj/structure/dropship_piece/tadpole/engine{
 	pixel_x = -23
@@ -25933,11 +25928,11 @@ cn
 cn
 cn
 xm
-xt
+WX
 xt
 FS
 xt
-xt
+WU
 NJ
 cn
 cn
@@ -26170,12 +26165,12 @@ ef
 ef
 cn
 eC
-eC
+HK
 eC
 eC
 tm
 xo
-Ad
+xt
 xt
 Gb
 xt
@@ -26184,7 +26179,7 @@ Ob
 PY
 eC
 eC
-eC
+HK
 eC
 cn
 ef
@@ -26411,7 +26406,7 @@ ef
 ef
 ef
 cp
-eE
+hI
 hI
 hI
 hI
@@ -26427,7 +26422,7 @@ Qh
 Tg
 Tg
 Tg
-Yb
+Tg
 cp
 ef
 ef
@@ -27137,7 +27132,7 @@ ef
 ef
 ef
 cp
-eJ
+hN
 hN
 hN
 hN
@@ -27153,7 +27148,7 @@ Qh
 Ti
 Ti
 Ti
-Yf
+Ti
 cp
 ef
 ef
@@ -27380,7 +27375,7 @@ ef
 ef
 cn
 eC
-eC
+Mm
 eC
 eC
 tH
@@ -27394,7 +27389,7 @@ xA
 Qh
 eC
 eC
-eC
+Mm
 eC
 cn
 ef
