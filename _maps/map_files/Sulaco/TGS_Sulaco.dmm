@@ -994,8 +994,7 @@
 "adA" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/obj/structure/lattice,
-/turf/open/space/basic,
+/turf/open/floor/plating/airless,
 /area/space)
 "adB" = (
 /obj/machinery/bodyscanner,
