@@ -123,7 +123,7 @@
 
 	lunge_target = A
 
-	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_lunge_target))
+	RegisterSignal(lunge_target, COMSIG_QDELETING, PROC_REF(clean_lunge_target))
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_lunge_possible))
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(clean_lunge_target))
 
@@ -152,7 +152,7 @@
 /// Null lunge target and reset throw vars
 /datum/action/xeno_action/activable/adrenalinejump/proc/clean_lunge_target()
 	SIGNAL_HANDLER
-	UnregisterSignal(lunge_target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(lunge_target, COMSIG_QDELETING)
 	UnregisterSignal(owner, COMSIG_MOVABLE_POST_THROW)
 	lunge_target = null
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
@@ -288,7 +288,8 @@
 	if(!.)
 		return FALSE
 	if(R.on_fire)
-		to_chat(R, span_danger("We can't evade while on fire!"))
+		if(!silent)
+			owner.balloon_alert(owner, "Can't while on fire!")
 		return FALSE
 	return TRUE
 
@@ -309,11 +310,11 @@
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
 		COMSIG_LIVING_STATUS_UNCONSCIOUS,
 		COMSIG_LIVING_STATUS_SLEEP,
-		COMSIG_LIVING_STATUS_STAGGER), PROC_REF(evasion_debuff_check))
+		COMSIG_LIVING_STATUS_STAGGER,
+		COMSIG_LIVING_IGNITED), PROC_REF(evasion_debuff_check))
 
 	RegisterSignal(R, COMSIG_MOVABLE_MOVED, PROC_REF(handle_evasion))
 	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(evasion_dodge)) //This is where we actually check to see if we dodge the projectile.
-	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, PROC_REF(evasion_burn_check)) //Register status effects and fire which impact evasion.
 	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, PROC_REF(evasion_flamer_hit)) //Register status effects and fire which impact evasion.
 	RegisterSignal(R, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge)) //Register status effects and fire which impact evasion.
 
@@ -348,14 +349,6 @@
 		to_chat(owner, span_danger("The searing fire compromises our ability to dodge!"))
 		evasion_deactivate()
 
-///Called when the owner is burning
-/datum/action/xeno_action/evasive_maneuvers/proc/evasion_burn_check()
-	SIGNAL_HANDLER
-
-	var/mob/living/carbon/xenomorph/panther/R = owner
-	to_chat(R, span_danger("Being on fire compromises our ability to dodge!"))
-	evasion_deactivate()
-
 ///After getting hit with an Evasion disabling debuff, this is where we check to see if evasion is active, and if we actually have debuff stacks
 /datum/action/xeno_action/evasive_maneuvers/proc/evasion_debuff_check(datum/source, amount)
 	SIGNAL_HANDLER
@@ -384,7 +377,7 @@
 		COMSIG_LIVING_STATUS_SLEEP,
 		COMSIG_LIVING_STATUS_STAGGER,
 		COMSIG_XENO_PROJECTILE_HIT,
-		COMSIG_XENOMORPH_FIRE_BURNING,
+		COMSIG_LIVING_IGNITED,
 		COMSIG_LIVING_PRE_THROW_IMPACT,
 		COMSIG_LIVING_ADD_VENTCRAWL,
 		COMSIG_ATOM_BULLET_ACT,))
