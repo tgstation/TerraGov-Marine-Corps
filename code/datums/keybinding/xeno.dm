@@ -888,6 +888,12 @@
 	description = "Scoop up and carry your spawn with you."
 	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
 
+/datum/keybinding/xeno/cannibalise
+	name = "Cannibalise Spiderling"
+	full_name = "Widow: Cannibalise Spiderling"
+	description = "Eat your own young and store their biomass for later."
+	keybind_signal = COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING
+
 /datum/keybinding/xeno/web_hook
 	name = "Web Hook"
 	full_name = "Widow: Web Hook"
@@ -899,6 +905,30 @@
 	full_name = "Widow: Spiderling Mark"
 	description = "Signal your spawn to a target they shall attack."
 	keybind_signal = COMSIG_XENOABILITY_SPIDERLING_MARK
+
+/datum/keybinding/xeno/dash_explosion
+	name = "Dash Explosion"
+	full_name = "Baneling: Dash Explode"
+	description = "Aim in a direction, charge up and dash, knocking down any humans hit and detonate yourself. "
+	keybind_signal = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION
+
+/datum/keybinding/xeno/spawn_pod
+	name = "Spawn Pod"
+	full_name = "Baneling: Spawn Pod"
+	description = "Spawn a pod on your current position, when you die from any source you will respawn on this pod. Activate again to change its location. "
+	keybind_signal = COMSIG_XENOABILITY_BANELING_SPAWN_POD
+
+/datum/keybinding/xeno/baneling_explode
+	name = "Explode"
+	full_name = "Baneling: Explode"
+	description = "Detonate yourself, spreading your currently selected reagent. Size depends on current stored plasma, more plasma is more reagent."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_EXPLODE
+
+/datum/keybinding/xeno/select_reagent/baneling
+	name = "Select Reagent"
+	full_name = "Baneling: Select Reagent"
+	description = "Choose a reagent that will be spread upon death. Costs plasma to change."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
 
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()

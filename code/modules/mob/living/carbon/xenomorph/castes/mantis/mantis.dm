@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/mantis
 	name = "Mantis"
 	desc = "A red, violent alien with four legs and two deadly scythes. Its eyes hone sharply onto its prey..."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/mantis.dmi'
 	icon_state = "Mantis Walking"
 	health = 150
 	maxHealth = 150

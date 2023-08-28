@@ -4,6 +4,13 @@
 	name = "ground dirt"
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
+	///Number of icon state variation this turf has
+	var/icon_variants = 1
+
+/turf/open/ground/update_icon_state()
+	if(icon_variants < 2)
+		return initial(icon_state)
+	return "[initial(icon_state)]_[rand(1, icon_variants)]"
 
 /turf/open/ground/AfterChange()
 	. = ..()

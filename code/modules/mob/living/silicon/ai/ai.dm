@@ -82,6 +82,9 @@
 	laws += "Protect: Protect the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
 	laws += "Preserve: Do not allow unauthorized personnel to tamper with your equipment."
 
+	var/list/iconstates = GLOB.ai_core_display_screens
+	icon_state = resolve_ai_icon(pick(iconstates))
+
 	mini = new
 	mini.give_action(src)
 	create_eye()

@@ -407,7 +407,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 12.5
 	shrapnel_chance = 15
-	sundering = 2
+	sundering = 0.5
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
@@ -912,6 +912,41 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 10
 	damage = 40
 	damage_falloff = 4
+
+
+/datum/ammo/bullet/shotgun/frag
+	name = "shotgun explosive shell"
+	handful_icon_state = "shotgun tracker shell"
+	hud_state = "shotgun_tracker"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/frag/frag_spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 6
+	accuracy_var_low = 8
+	accuracy_var_high = 8
+	max_range = 15
+	damage = 10
+	damage_falloff = 0.5
+	penetration = 0
+
+/datum/ammo/bullet/shotgun/frag/drop_nade(turf/T)
+	explosion(T, weak_impact_range = 2)
+
+/datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/bullet/shotgun/frag/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : O.loc)
+
+/datum/ammo/bullet/shotgun/frag/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/bullet/shotgun/frag/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/bullet/shotgun/frag/frag_spread
+	name = "additional frag shell"
+	damage = 5
 
 /datum/ammo/bullet/shotgun/sx16_buckshot
 	name = "shotgun buckshot shell" //16 gauge is between 12 and 410 bore.
@@ -3125,6 +3160,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/mob/living/carbon/xenomorph/xeno_firer = P.firer
 		aoe_damage = xeno_firer.xeno_caste.blast_strength
 
+	var/list/throw_atoms = list()
 	var/list/turf/target_turfs = generate_true_cone(T, aoe_range, -1, 359, 0, air_pass = TRUE)
 	for(var/turf/target_turf AS in target_turfs)
 		for(var/atom/movable/target AS in target_turf)
@@ -3142,10 +3178,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 			if(target.anchored)
 				continue
-			var/throw_dir = get_dir(T, target)
-			if(T == get_turf(target))
-				throw_dir = get_dir(P.starting_turf, T)
-			target.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 3, 1, spin = TRUE)
+			throw_atoms += target
+
+	for(var/atom/movable/target AS in throw_atoms)
+		var/throw_dir = get_dir(T, target)
+		if(T == get_turf(target))
+			throw_dir = get_dir(P.starting_turf, T)
+		target.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 3, 1, spin = TRUE)
 
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 

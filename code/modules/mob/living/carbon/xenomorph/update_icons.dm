@@ -85,11 +85,11 @@
 		apply_overlay(X_L_HAND_LAYER)
 
 /mob/living/carbon/xenomorph/proc/create_shriekwave()
-	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
+	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/64x64_Xeno_overlays.dmi', "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
 	apply_temp_overlay(X_SUIT_LAYER, 3 SECONDS)
 
 /mob/living/carbon/xenomorph/proc/create_stomp()
-	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state" = "stomp") //Ehh, suit layer's not being used.
+	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/64x64_Xeno_overlays.dmi', "icon_state" = "stomp") //Ehh, suit layer's not being used.
 	apply_temp_overlay(X_SUIT_LAYER, 1.2 SECONDS)
 
 /mob/living/carbon/xenomorph/update_fire()
@@ -115,6 +115,7 @@
 		return
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
+	wound_overlay.icon = src.icon
 	wound_overlay.vis_flags |= VIS_HIDE
 	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
 		wound_overlay.icon_state = "none"
@@ -149,11 +150,10 @@
 
 ///Used to display the xeno wounds without rapidly switching overlays
 /atom/movable/vis_obj/xeno_wounds
-	icon = 'icons/Xeno/wound_overlays.dmi'
 	vis_flags = VIS_INHERIT_DIR
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/64x64_Xeno_overlays.dmi'
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay/small
 	icon = 'icons/Xeno/Effects.dmi'

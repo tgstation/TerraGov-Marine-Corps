@@ -1939,7 +1939,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand8)
 "aXL" = (
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 8
 	},
 /obj/structure/platform_decoration{
@@ -3262,7 +3262,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/kitchen)
 "bQN" = (
-/obj/structure/stairs/cornerdark/seamless,
+/obj/structure/stairs/corner_seamless,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "bQV" = (
@@ -5644,7 +5644,7 @@
 /area/lv624/lazarus/robotics)
 "eCG" = (
 /obj/effect/turf_decal/sandytile,
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 8
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -5977,7 +5977,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "fbm" = (
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 4
 	},
 /turf/open/floor/tile/darkish,
@@ -7453,7 +7453,7 @@
 	},
 /area/lv624/lazarus/spaceport2)
 "gLx" = (
-/obj/structure/stairs/cornerdark/seamless,
+/obj/structure/stairs/corner_seamless,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "gLI" = (
@@ -9207,7 +9207,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "iHH" = (
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 1
 	},
 /obj/structure/platform_decoration,
@@ -9347,7 +9347,7 @@
 /area/lv624/lazarus/main_hall)
 "iQK" = (
 /obj/structure/flora/jungle/vines,
-/obj/structure/stairs/cornerdark/seamless,
+/obj/structure/stairs/corner_seamless,
 /turf/open/floor/bcircuit/off,
 /area/lv624/lazarus/sandtemple)
 "iRe" = (
@@ -9878,7 +9878,7 @@
 /turf/open/floor/cult/clock,
 /area/lv624/lazarus/bar)
 "jxC" = (
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -10447,7 +10447,7 @@
 /area/lv624/lazarus/secure_storage)
 "kaT" = (
 /obj/effect/turf_decal/sandytile,
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -11307,7 +11307,7 @@
 "kZT" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/ai_node,
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 8
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -11547,7 +11547,7 @@
 /area/lv624/lazarus/main_hall)
 "lnx" = (
 /obj/effect/turf_decal/sandytile,
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -11941,7 +11941,7 @@
 	},
 /area/lv624/lazarus/hydroponics/aux)
 "lOy" = (
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 4
 	},
 /turf/open/floor/bcircuit/off,
@@ -17757,7 +17757,7 @@
 /area/lv624/ground/compound/c)
 "soz" = (
 /obj/effect/turf_decal/sandytile,
-/obj/structure/stairs/cornerdark/seamless,
+/obj/structure/stairs/corner_seamless,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "spO" = (
