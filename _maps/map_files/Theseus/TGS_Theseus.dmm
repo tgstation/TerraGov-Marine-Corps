@@ -95,14 +95,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
-"aar" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 2
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/lower_engineering)
 "aas" = (
 /obj/machinery/telecomms/server/presets/bravo,
 /obj/machinery/light/mainship{
@@ -6656,7 +6648,6 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -10806,13 +10797,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"hgZ" = (
-/obj/structure/window/framed/mainship/hull,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/turf/closed/wall/mainship/outer,
-/area/mainship/command/cic)
 "hhA" = (
 /obj/structure/ship_ammo/heavygun,
 /turf/open/floor/mainship/cargo,
@@ -12453,14 +12437,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/firing_range)
-"kmv" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/engineering/engine_core)
 "kmW" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -17972,11 +17948,6 @@
 	dir = 10
 	},
 /area/mainship/living/tankerbunks)
-"tkT" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/mainship/ai,
-/area/mainship/command/airoom)
 "tlq" = (
 /obj/structure/window/reinforced,
 /obj/machinery/light/mainship{
@@ -33624,7 +33595,7 @@ wPV
 wPV
 wPV
 wPV
-hgZ
+pBS
 hqL
 tmp
 tmp
@@ -70879,7 +70850,7 @@ rhS
 hbF
 rZo
 rhS
-tkT
+rhS
 adj
 dLh
 xAd
@@ -71398,7 +71369,7 @@ jyd
 lYK
 pns
 rGn
-aar
+tuJ
 pBg
 bCW
 btn
@@ -73727,7 +73698,7 @@ bIU
 bpX
 bpX
 bxQ
-kmv
+xjw
 xON
 brQ
 uaA
@@ -74241,7 +74212,7 @@ bIU
 bpX
 bpX
 bxQ
-kmv
+xjw
 xON
 brQ
 jFy
@@ -74498,7 +74469,7 @@ bTG
 rcQ
 bxQ
 bxQ
-kmv
+xjw
 syT
 brQ
 jFy

@@ -110,7 +110,7 @@
 /area/centcom/supplypod/loading/ert)
 "akp" = (
 /obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 1
 	},
 /turf/open/floor/tile/neutral{
@@ -410,7 +410,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /turf/open/floor/tile/neutral,
@@ -2770,10 +2770,6 @@
 "dBD" = (
 /turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"dCk" = (
-/obj/structure/lattice,
-/turf/closed/mineral/smooth,
-/area/space)
 "dDv" = (
 /obj/machinery/camera/autoname/thunderdome/hidden,
 /turf/open/floor/tile/red/redtaupe{
@@ -3199,7 +3195,7 @@
 /area/centcom/valhalla/engine/break_room)
 "dTC" = (
 /obj/machinery/smartfridge/nopower,
-/turf/closed/wall,
+/turf/open/space/basic,
 /area/centcom/valhalla/hydroponics)
 "dTJ" = (
 /obj/structure/closet/crate,
@@ -3821,7 +3817,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/structure/closet/emcloset,
@@ -7337,7 +7333,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 1
 	},
 /turf/open/floor/tile/neutral{
@@ -7387,7 +7383,7 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/pump,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -7980,7 +7976,7 @@
 /area/centcom/valhalla/medical/chemistry)
 "kyR" = (
 /obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 1
 	},
 /turf/open/floor/tile/neutral{
@@ -8363,7 +8359,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -8440,7 +8436,7 @@
 /area/centcom/valhalla/security/brig)
 "lhY" = (
 /obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -8470,7 +8466,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /turf/open/floor/tile/neutral,
@@ -12087,7 +12083,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/central_one)
 "qjg" = (
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -13112,7 +13108,7 @@
 /area/centcom/valhalla/medical/medbay)
 "ruB" = (
 /obj/machinery/smartfridge/chemistry/nopower,
-/turf/closed/wall,
+/turf/open/space/basic,
 /area/centcom/valhalla/medical/chemistry)
 "rvz" = (
 /obj/machinery/door/firedoor,
@@ -14102,7 +14098,7 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/scrubber,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
@@ -16806,7 +16802,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "brigfront";
-	name = "Brig Blast door"
+	name = "Brig Blast Door"
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig)
@@ -18205,7 +18201,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/engine/engineering)
 "xyy" = (
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /turf/open/floor/tile/neutral/full,
@@ -18775,7 +18771,7 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/scrubber,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
@@ -22566,7 +22562,7 @@ xXc
 vQc
 vQc
 jYG
-dCk
+jYG
 hTv
 lPX
 oNZ
