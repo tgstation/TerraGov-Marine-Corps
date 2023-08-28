@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/facehugger
 	name = "Facehugger"
 	desc = "This one looks much more active than its fellows"
-	icon = 'icons/Xeno/facehugger_playable.dmi'
+	icon = 'modular_RUtgmc/icons/Xeno/castes/facehugger.dmi'
 	icon_state = "Facehugger Walking"
 
 	health = 50

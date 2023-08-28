@@ -1,4 +1,6 @@
 #include "code\__DEFINES\mobs.dm"
+#include "code\__DEFINES\xeno.dm"
+#include "code\__DEFINES\dsc\signals.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\predalien\castedatum_predalien.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\predalien\predalien.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\predalien\abilities_predalien.dm"
