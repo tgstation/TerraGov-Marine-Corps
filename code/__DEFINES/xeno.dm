@@ -132,8 +132,8 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 
 //List of puppeteer order images
 GLOBAL_LIST_INIT(puppeteer_order_images_list, list(
-		PUPPET_ATTACK = image('icons/mob/actions.dmi', icon_state = "enrage"),
-		PUPPET_SCOUT = image('icons/mob/actions.dmi', icon_state = "17"),
+		PUPPET_ATTACK = image('icons/Xeno/actions.dmi', icon_state = "enrage"),
+		PUPPET_SCOUT = image('icons/mob/actions.dmi', icon_state = "66"),
 		PUPPET_RECALL = image('icons/mob/actions.dmi', icon_state = "rally")
 		))
 
