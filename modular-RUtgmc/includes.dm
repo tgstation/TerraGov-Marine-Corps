@@ -1,0 +1,7 @@
+#include "modular-RUtgmc\code\modules\mob\living\carbon\xenomorph\castes\predalien\castedatum_predalien.dm"
+#include "modular-RUtgmc\code\modules\mob\living\carbon\xenomorph\castes\predalien\predalien.dm"
+#include "modular-RUtgmc\code\modules\mob\living\carbon\xenomorph\castes\predalien\abilities_predalien.dm"
+#include "modular-RUtgmc\code\modules\mob\living\carbon\xenomorph\castes\panther\castedatum_panther.dm"
+#include "modular-RUtgmc\code\modules\mob\living\carbon\xenomorph\castes\panther\panther.dm"
+#include "modular-RUtgmc\code\modules\mob\living\carbon\xenomorph\castes\panther\abilities_panther.dm"
+#include "modular-RUtgmc\code\__DEFINES\mobs.dm"
