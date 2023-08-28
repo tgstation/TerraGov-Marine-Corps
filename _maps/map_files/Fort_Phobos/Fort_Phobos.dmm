@@ -211,7 +211,7 @@
 /turf/open/floor/mainship/som/sw,
 /area/mainship/patrol_base/som/barracks)
 "dv" = (
-/obj/structure/stairs/seamless/platform_vert{
+/obj/structure/stairs/seamless/edge_vert{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete/lines,
@@ -223,8 +223,8 @@
 /turf/closed/shuttle/dropship_regular/top_corner/alt,
 /area/mainship/patrol_base/som/hanger)
 "dA" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 1
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
@@ -691,7 +691,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
 "kQ" = (
-/obj/structure/stairs/seamless/platform_vert,
+/obj/structure/stairs/seamless/edge_vert,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -1079,7 +1079,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/hanger)
 "rt" = (
-/obj/structure/stairs/seamless/platform_vert{
+/obj/structure/stairs/seamless/edge_vert{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete/lines{
@@ -1168,15 +1168,15 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "sf" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 1
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
 /area/mainship/patrol_base/som)
 "sk" = (
-/obj/structure/stairs/seamless/platform_vert{
+/obj/structure/stairs/seamless/edge_vert{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete/lines,
@@ -2179,8 +2179,8 @@
 	},
 /area/mainship/patrol_base/som/hanger)
 "Gj" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 8
+/obj/structure/stairs/seamless/edge{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
@@ -2323,7 +2323,7 @@
 /turf/open/floor/mainship/white/full,
 /area/mainship/patrol_base/som/hanger)
 "Il" = (
-/obj/structure/stairs/seamless/platform_vert{
+/obj/structure/stairs/seamless/edge_vert{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete/lines,
@@ -2355,7 +2355,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
 "IX" = (
-/obj/structure/stairs/seamless/platform_vert{
+/obj/structure/stairs/seamless/edge_vert{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete/lines{
@@ -3022,7 +3022,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som/command)
 "SA" = (
-/obj/structure/stairs/seamless/platform_vert{
+/obj/structure/stairs/seamless/edge_vert{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete/lines,
@@ -3153,8 +3153,8 @@
 	},
 /area/mainship/patrol_base/som)
 "Uy" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 8
+/obj/structure/stairs/seamless/edge{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
@@ -3185,7 +3185,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/hanger)
 "Vo" = (
-/obj/structure/stairs/seamless/platform_vert,
+/obj/structure/stairs/seamless/edge_vert,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
