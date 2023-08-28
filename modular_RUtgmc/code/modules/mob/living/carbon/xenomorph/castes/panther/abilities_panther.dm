@@ -1,11 +1,10 @@
 /// runner abilities
 /datum/action/xeno_action/activable/psydrain/panther
 	plasma_cost = 10
-	var/pantherplasmaheal = 0
 
 /datum/action/xeno_action/activable/pounce/panther
 	plasma_cost = 20
-	pantherplasmaheal = 45
+	var/pantherplasmaheal = 45
 
 ///////////////////////////////////
 // ***************************************
