@@ -171,10 +171,7 @@
 	var/turf/victim_turf = get_turf(victim)
 
 	ADD_TRAIT(victim, TRAIT_HOLLOW, TRAIT_GENERIC)
-	if(victim.species)
-		hgibs(victim_turf, victim.species.flesh_color, victim.species.blood_color)
-	else
-		hgibs(victim_turf)
+	victim.spawn_gibs()
 	var/mob/living/carbon/xenomorph/puppet/puppet = new(victim_turf, owner)
 	puppet.voice = victim.voice
 	add_puppet(puppet)

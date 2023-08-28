@@ -14,26 +14,31 @@
 	. = ..()
 	master_ref = WEAKREF(escorted_atom)
 	RegisterSignals(escorted_atom, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(die_on_master_death))
-	RegisterSignal(escorted_atom, COMSIG_PUPPET_CHANGE_ALL_ORDER, PROC_REF(change_order))
-	RegisterSignal(mob_parent, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
 	change_order(null, PUPPET_RECALL)
 	feed = mob_parent.actions_by_path[/datum/action/xeno_action/activable/feed]
 
 ///starts AI and registers obstructed move signal
 /datum/ai_behavior/puppet/start_ai()
+	var/master = master_ref.resolve()
+	if(master)
+		RegisterSignal(master, COMSIG_PUPPET_CHANGE_ALL_ORDER, PROC_REF(change_order))
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, PROC_REF(deal_with_obstacle))
+	RegisterSignal(mob_parent, COMSIG_PUPPET_CHANGE_ORDER, PROC_REF(change_order))
 	return ..()
 
 ///cleans up signals and unregisters obstructed move signal
 /datum/ai_behavior/puppet/cleanup_signals()
 	. = ..()
-	UnregisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE)
+	UnregisterSignal(mob_parent, list(COMSIG_OBSTRUCTED_MOVE,COMSIG_PUPPET_CHANGE_ORDER))
+	var/master = master_ref.resolve()
+	if(master)
+		UnregisterSignal(master, COMSIG_PUPPET_CHANGE_ALL_ORDER)
 
-///signal handler for if the master (puppeteer) dies, kills the puppet
+///signal handler for if the master (puppeteer) dies, gibs the puppet
 /datum/ai_behavior/puppet/proc/die_on_master_death(mob/living/source)
 	SIGNAL_HANDLER
 	if(!QDELETED(mob_parent))
-		mob_parent.death()
+		mob_parent.gib()
 
 ///Signal handler to try to attack our target
 ///Attack our current atom we are moving to, if targetted is specified attack that instead

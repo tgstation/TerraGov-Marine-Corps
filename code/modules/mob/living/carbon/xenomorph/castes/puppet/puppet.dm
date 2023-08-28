@@ -27,6 +27,11 @@
 	weak_master = WEAKREF(puppeteer)
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/puppet, puppeteer)
 
+/mob/living/carbon/xenomorph/puppet/on_death()
+	. = ..()
+	if(!QDELETED(src))
+		gib()
+
 /mob/living/carbon/xenomorph/puppet/Life()
 	. = ..()
 	var/atom/movable/master = weak_master?.resolve()
