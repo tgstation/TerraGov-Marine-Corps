@@ -129,7 +129,8 @@
 	var/finishmessage = pick("You feel stronger!","You feel like you're the boss of this gym!","You feel robust!","The challenge is real!")
 	var/mob/living/carbon/bencher = user
 	if(bencher.nutrition >= NUTRITION_OVERFED)
-		bencher.set_nutrition(NUTRITION_OVERFED-1)
+		var/weight_to_lose = NUTRITION_OVERFED - bencher.nutrition
+		bencher.adjust_nutrition(weight_to_lose)
 		finishmessage = pick("You no longer feel overweight.","You clothes are no longer too tight.","YOU BECOME LESS FAT!")
 	to_chat(user, finishmessage)
 
