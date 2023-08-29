@@ -1366,11 +1366,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway)
 "ann" = (
-/obj/structure/ship_ammo/rocket/banshee,
+/obj/structure/ship_ammo/CAS/rocket/banshee,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "anQ" = (
-/obj/structure/ship_ammo/heavygun,
+/obj/structure/ship_ammo/CAS/heavygun,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
@@ -2772,7 +2772,7 @@
 	},
 /area/mainship/living/basketball)
 "bdj" = (
-/obj/structure/ship_ammo/rocket/keeper,
+/obj/structure/ship_ammo/CAS/rocket/keeper,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "bdk" = (
@@ -2859,7 +2859,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "bdW" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/CAS/rocket/widowmaker,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "bdX" = (
@@ -3777,7 +3777,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "blo" = (
-/obj/structure/dropship_equipment/weapon/rocket_pod,
+/obj/structure/dropship_equipment/CAS/weapon/rocket_pod,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "blq" = (
@@ -5340,7 +5340,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
 "bCK" = (
-/obj/structure/ship_ammo/minirocket,
+/obj/structure/ship_ammo/CAS/minirocket,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "bCL" = (
@@ -8974,7 +8974,7 @@
 	},
 /area/mainship/hallways/port_hallway)
 "dZK" = (
-/obj/structure/ship_ammo/minirocket/illumination,
+/obj/structure/ship_ammo/CAS/minirocket/illumination,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "ead" = (
@@ -10814,7 +10814,7 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/command/cic)
 "hhA" = (
-/obj/structure/ship_ammo/heavygun,
+/obj/structure/ship_ammo/CAS/heavygun,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "hiF" = (
@@ -13908,7 +13908,7 @@
 	},
 /area/mainship/command/cic)
 "myv" = (
-/obj/structure/dropship_equipment/weapon/heavygun,
+/obj/structure/dropship_equipment/CAS/weapon/heavygun,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "mzi" = (
@@ -16741,7 +16741,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "qYe" = (
-/obj/structure/dropship_equipment/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/flare_launcher,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "qZy" = (
@@ -19368,7 +19368,7 @@
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_point_defense)
 "vNA" = (
-/obj/structure/dropship_equipment/sentry_holder,
+/obj/structure/dropship_equipment/shuttle/sentry_holder,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "vND" = (
@@ -19786,7 +19786,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
 "wCq" = (
-/obj/structure/dropship_equipment/weapon/minirocket_pod,
+/obj/structure/dropship_equipment/CAS/weapon/minirocket_pod,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "wDA" = (
@@ -20166,7 +20166,7 @@
 /turf/open/floor/mainship/purple/full,
 /area/mainship/hallways/hangar)
 "xjo" = (
-/obj/structure/dropship_equipment/weapon_holder/machinegun,
+/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xjw" = (
@@ -20341,7 +20341,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "xCC" = (
-/obj/structure/dropship_equipment/operatingtable,
+/obj/structure/dropship_equipment/CAS/operatingtable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xCV" = (
