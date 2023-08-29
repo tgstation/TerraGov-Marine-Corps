@@ -168,6 +168,11 @@
 	description = "A classic old Earth helecopter desigine retrofitted for space flight, mainly used to scare Colonial Liberation Front members."
 	display_name = "Tadpole Old Earth Model"
 
+/datum/map_template/shuttle/minidropship/mortar
+	suffix = "_mortar"
+	description = "A NK-Haul Tadpole variant specificly modifed for raining large quantitys of death on your enemies, or for firework shows."
+	display_name = "Tadpole NK-Haul Mortar Conversion Model"
+
 /datum/map_template/shuttle/minidropship/umbilical
 	suffix =	"_umbilical"
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
