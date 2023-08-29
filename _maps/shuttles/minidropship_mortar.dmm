@@ -36,7 +36,7 @@
 /area/shuttle/minidropship)
 "k" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
-/turf/open/floor/plating/plating_catwalk,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "m" = (
 /turf/template_noop,
@@ -197,8 +197,8 @@ G
 n
 f
 Q
+Z
 Q
-d
 f
 e
 B
@@ -207,9 +207,9 @@ B
 G
 y
 O
-d
+Z
 k
-d
+Z
 V
 d
 E
@@ -219,8 +219,8 @@ G
 K
 f
 Q
+Z
 Q
-d
 f
 f
 B
