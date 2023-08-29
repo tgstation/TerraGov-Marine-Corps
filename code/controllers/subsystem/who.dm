@@ -156,13 +156,13 @@ SUBSYSTEM_DEF(who)
 	))
 
 	new_list_data["additional_info"] += list(list(
-		"content" = "Yautjes: [additiona_data["yautja"]]",
+		"content" = "Yautjas: [additiona_data["yautja"]]",
 		"color" = "#7ABA19",
 		"text" = "Players playing as Yautja",
 	))
 
 	new_list_data["additional_info"] += list(list(
-		"content" = "Infected Yautjes: [additiona_data["infected_preds"]])",
+		"content" = "Infected Yautjas: [additiona_data["infected_preds"]])",
 		"color" = "#7ABA19",
 		"text" = "Players playing as Infected Yautja",
 	))
