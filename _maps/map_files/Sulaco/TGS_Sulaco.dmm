@@ -11735,7 +11735,7 @@
 "ehA" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
-/turf/open/space/basic,
+/turf/open/floor/prison/cleanmarked,
 /area/sulaco/hangar/droppod)
 "ehJ" = (
 /obj/structure/window/reinforced{
