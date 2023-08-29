@@ -11,7 +11,6 @@
 	old_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
-	mob_size = MOB_SIZE_BIG
 	drag_delay = 5 //pulling a big dead xeno is hard
 	bubble_icon = "alien"
 
