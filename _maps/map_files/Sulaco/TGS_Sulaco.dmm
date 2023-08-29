@@ -18202,7 +18202,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/CAS/operatingtable,
+/obj/structure/dropship_equipment/shuttle/operatingtable,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "mwI" = (

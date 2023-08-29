@@ -832,7 +832,7 @@
 
 //////////////// OTHER EQUIPMENT /////////////////
 
-/obj/structure/dropship_equipment/CAS/operatingtable
+/obj/structure/dropship_equipment/shuttle/operatingtable
 	name = "Dropship Operating Table Deployment System"
 	desc = "Used for advanced medical procedures. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	equip_category = DROPSHIP_CREW_WEAPON
@@ -841,25 +841,25 @@
 	point_cost = 100
 	var/obj/machinery/optable/deployed_table
 
-/obj/structure/dropship_equipment/CAS/operatingtable/Initialize(mapload)
+/obj/structure/dropship_equipment/shuttle/operatingtable/Initialize(mapload)
 	. = ..()
 	if(!deployed_table)
 		deployed_table = new(src)
 		RegisterSignal(deployed_table, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby_wrapper))//if something (like a powerloader) clicks on the deployed thing relay it
 
-/obj/structure/dropship_equipment/CAS/operatingtable/proc/attackby_wrapper(datum/source, obj/item/I, mob/user, params)
+/obj/structure/dropship_equipment/shuttle/operatingtable/proc/attackby_wrapper(datum/source, obj/item/I, mob/user, params)
 	attackby(I, user, params)
 
-/obj/structure/dropship_equipment/CAS/operatingtable/examine(mob/user)
+/obj/structure/dropship_equipment/shuttle/operatingtable/examine(mob/user)
 	. = ..()
 	if(!deployed_table)
 		. += "Its table is broken."
 
-/obj/structure/dropship_equipment/CAS/operatingtable/Destroy()
+/obj/structure/dropship_equipment/shuttle/operatingtable/Destroy()
 	QDEL_NULL(deployed_table)
 	return ..()
 
-/obj/structure/dropship_equipment/CAS/operatingtable/update_equipment()
+/obj/structure/dropship_equipment/shuttle/operatingtable/update_equipment()
 	if(!deployed_table)
 		return
 	deployed_table.layer = ABOVE_OBJ_LAYER + 0.01 //make sure its directly ABOVE the layer

@@ -7728,7 +7728,7 @@
 "kdC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/dropship_equipment/CAS/operatingtable,
+/obj/structure/dropship_equipment/shuttle/operatingtable,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "kdF" = (
