@@ -13,19 +13,25 @@
 		/datum/job/terragov/engineering/tech = 2,
 		/datum/job/terragov/requisitions/officer = 1,
 		/datum/job/terragov/medical/professor = 1,
-		/datum/job/terragov/medical/medicalofficer = 6,
+		/datum/job/terragov/medical/medicalofficer = 4,
 		/datum/job/terragov/medical/researcher = 2,
 		/datum/job/terragov/civilian/liaison = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/mech_pilot = 0,
 		/datum/job/terragov/silicon/ai = 1,
-		/datum/job/terragov/squad/engineer = 8,
-		/datum/job/terragov/squad/corpsman = 8,
+		/datum/job/terragov/squad/engineer = 1,
+		/datum/job/terragov/squad/corpsman = 1,
 		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1
+	)
+	job_points_needed_by_job_type = list(
+		/datum/job/terragov/squad/smartgunner = 20,
+		/datum/job/terragov/squad/corpsman = 5,
+		/datum/job/terragov/squad/engineer = 5,
+		/datum/job/xenomorph = NUCLEAR_WAR_LARVA_POINTS_NEEDED,
 	)
 
 /datum/game_mode/infestation/nuclear_war/post_setup()
@@ -46,13 +52,6 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
-
-/datum/game_mode/infestation/nuclear_war/scale_roles(initial_players_assigned)
-	. = ..()
-	if(!.)
-		return
-	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/xenomorph) //Xenos
-	scaled_job.job_points_needed = NUCLEAR_WAR_LARVA_POINTS_NEEDED
 
 /datum/game_mode/infestation/nuclear_war/orphan_hivemind_collapse()
 	if(round_finished)

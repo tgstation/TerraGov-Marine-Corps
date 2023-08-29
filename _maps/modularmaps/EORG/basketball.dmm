@@ -236,9 +236,10 @@
 /turf/open/floor/mainship/green,
 /area/deathmatch)
 "aC" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "aD" = (
 /obj/machinery/scoreboard{
@@ -249,7 +250,8 @@
 /turf/open/floor/mainship/green,
 /area/deathmatch)
 "aE" = (
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "aF" = (
 /obj/effect/ai_node,

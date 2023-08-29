@@ -29,7 +29,10 @@
 		/mob/living/carbon/xenomorph/boiler,
 		/mob/living/carbon/xenomorph/praetorian,
 	)
-	deevolves_to = /mob/living/carbon/xenomorph/sentinel
+	deevolves_to = list(
+		/mob/living/carbon/xenomorph/sentinel,
+		/mob/living/carbon/xenomorph/baneling,
+	)
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED

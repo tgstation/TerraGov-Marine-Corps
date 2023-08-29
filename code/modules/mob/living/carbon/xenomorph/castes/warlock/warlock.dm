@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/warlock
 	name = "Warlock"
 	desc = "A large, physically frail creature. It hovers in the air and seems to buzz with psychic power."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/warlock.dmi'
 	icon_state = "Warlock Walking"
 	bubble_icon = "alienroyal"
 	attacktext = "slashes"

@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/bull
 	name = "Bull"
 	desc = "A bright red alien with a matching temper."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/bull.dmi'
 	icon_state = "Bull Walking"
 	bubble_icon = "alienleft"
 	health = 160

@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/king
 	name = "King"
 	desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/king.dmi'
 	icon_state = "King Walking"
 	attacktext = "bites"
 	attack_sound = null

@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/ravager
 	name = "Ravager"
 	desc = "A huge, nasty red alien with enormous scythed claws."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/ravager.dmi'
 	icon_state = "Ravager Walking"
 	health = 250
 	maxHealth = 250

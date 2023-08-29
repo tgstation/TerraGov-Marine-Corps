@@ -231,8 +231,6 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/rifle/m16 = -1,
 		/obj/item/ammo_magazine/rifle/m16 = -1,
 		/obj/item/ammo_magazine/packet/pnato = -1,
-		/obj/item/weapon/gun/rifle/sniper/svd = -1,
-		/obj/item/ammo_magazine/sniper/svd = -1,
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_one

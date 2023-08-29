@@ -389,7 +389,7 @@
 	},
 /area/whiskey_outpost)
 "bz" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -439,11 +439,11 @@
 /turf/open/floor/prison/plate,
 /area/whiskey_outpost)
 "bH" = (
-/obj/item/storage/box/sentry{
+/obj/item/storage/box/crate/sentry{
 	pixel_x = 9;
 	pixel_y = 11
 	},
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /obj/effect/turf_decal/grassdecal,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
@@ -965,7 +965,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "eB" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/west)
 "eC" = (
@@ -1168,8 +1168,8 @@
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/north)
 "fE" = (
-/obj/item/storage/box/minisentry,
-/obj/item/storage/box/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
 /obj/structure/rack,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
@@ -2698,7 +2698,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "nh" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "nj" = (
@@ -3219,7 +3219,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "pG" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -3810,7 +3810,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "sB" = (
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "sD" = (
 /obj/structure/flora/tree/joshua,
@@ -4278,8 +4279,8 @@
 "vI" = (
 /obj/structure/closet/crate/secure/ammo,
 /obj/item/big_ammo_box/ap,
-/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full,
-/obj/item/storage/box/visual/magazine/compact/tx15/slug/full,
+/obj/item/storage/box/visual/magazine/compact/sh15/flechette/full,
+/obj/item/storage/box/visual/magazine/compact/sh15/slug/full,
 /obj/item/storage/box/visual/magazine/compact/standard_smg/full,
 /obj/item/storage/box/visual/magazine/compact/standard_smg/full,
 /obj/item/storage/box/visual/magazine/compact/standard_revolver/full,
@@ -4485,7 +4486,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "wL" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
@@ -4512,7 +4513,7 @@
 	},
 /area/whiskey_outpost/outside/south)
 "wT" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "xd" = (
@@ -5567,9 +5568,10 @@
 /obj/structure/barricade/plasteel{
 	dir = 4
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "DX" = (
 /obj/machinery/floodlight/outpost,
@@ -5686,9 +5688,10 @@
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost)
 "ET" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "EV" = (
 /obj/machinery/floodlight/outpost,
@@ -6605,7 +6608,7 @@
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/west)
 "Mu" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/east)
 "My" = (
@@ -7853,7 +7856,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "Xs" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost)
 "Xt" = (
@@ -7979,7 +7982,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "YA" = (
-/obj/item/storage/box/sentry,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "YC" = (

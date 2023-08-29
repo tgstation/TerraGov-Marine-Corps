@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/sentinel
 	name = "Sentinel"
 	desc = "A slithery, spitting kind of alien."
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon = 'icons/Xeno/castes/sentinel.dmi'
 	icon_state = "Sentinel Walking"
 	bubble_icon = "alienleft"
 	health = 150

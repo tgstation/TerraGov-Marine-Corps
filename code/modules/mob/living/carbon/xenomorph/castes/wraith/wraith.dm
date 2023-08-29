@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/wraith
 	name = "Wraith"
 	desc = "A strange tendriled alien. The air around it warps and shimmers like a heat mirage."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/wraith.dmi'
 	icon_state = "Wraith Walking"
 	bubble_icon = "alienleft"
 	health = 150

@@ -26,7 +26,7 @@
 
 /datum/action/xeno_action/toggle_savage/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
-	action_icon_state = X.savage ? "savage_off" : "savage_on"
+	action_icon_state = X.savage ? "savage_off" : "lunge"
 	return ..()
 
 /mob/living/carbon/xenomorph/proc/Savage(mob/living/carbon/M)
@@ -38,7 +38,7 @@
 		to_chat(src, span_xenowarning("We're too tired to savage right now."))
 		return
 
-	if(stagger)
+	if(IsStaggered())
 		to_chat(src, span_xenodanger("We're too disoriented from the shock to savage!"))
 		return
 
@@ -92,9 +92,7 @@
 
 /datum/action/xeno_action/activable/pounce/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!istype(target, /obj/structure/table) && !istype(target, /obj/structure/rack))
-		target.hitby(X, speed) //This resets throwing.
+	target.hitby(owner, speed)
 	pounce_complete()
 
 /datum/action/xeno_action/activable/pounce/proc/mob_hit(datum/source, mob/living/M)
@@ -144,7 +142,7 @@
 	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		owner.layer = MOB_LAYER
 		var/datum/action/xeno_action/xenohide/hide_action = owner.actions_by_path[/datum/action/xeno_action/xenohide]
-		hide_action?.button?.cut_overlay(mutable_appearance('icons/mob/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
+		hide_action?.button?.cut_overlay(mutable_appearance('icons/Xeno/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
 	if(owner.buckled)
 		owner.buckled.unbuckle_mob(owner)
 

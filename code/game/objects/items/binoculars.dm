@@ -27,7 +27,7 @@
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
-	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked mortar. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked artillery. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
@@ -63,12 +63,12 @@
 			. += span_notice("They are currently set to railgun targeting mode.")
 		if(MODE_ORBITAL)
 			. += span_notice("They are currently set to orbital bombardment mode.")
-	. += span_notice("Use on a mortar to link it for remote targeting.")
+	. += span_notice("Use on an artillery piece to link it for remote targeting.")
 	if(length(linked_mortars))
-		. += span_notice("They are currently linked to [length(linked_mortars)] mortar(s).")
-		. += span_notice("They are currently set to mortar [selected_mortar].")
+		. += span_notice("They are currently linked to [length(linked_mortars)] artillery piece(s).")
+		. += span_notice("They are currently set to [linked_mortars[selected_mortar].name] N°[selected_mortar].")
 		return
-	. += span_notice("They are not linked to a mortar.")
+	. += span_notice("They are not linked to any artillery piece(s).")
 
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
@@ -139,10 +139,12 @@
 	. = ..()
 	if(!length(linked_mortars))
 		return
+	if(length(linked_mortars) == 1) 
+		to_chat(user, span_notice("There is only one linked piece, you can't switch to another."))
 	selected_mortar += 1
 	check_mortar_index()
 	var/obj/mortar = linked_mortars[selected_mortar]
-	to_chat(user, span_notice("NOW SENDING COORDINATES TO MORTAR [selected_mortar] AT: LONGITUDE [mortar.x]. LATITUDE [mortar.y]."))
+	to_chat(user, span_notice("NOW SENDING COORDINATES TO [linked_mortars[selected_mortar].name] AT: LONGITUDE [mortar.x]. LATITUDE [mortar.y]."))
 
 /obj/item/binoculars/tactical/verb/toggle_mode(mob/user)
 	set category = "Object"
@@ -199,11 +201,7 @@
 		return
 	var/datum/squad/S = user.assigned_squad
 
-	var/laz_name = ""
-	laz_name += user.get_paygrade()
-	laz_name += user.name
-	if(S)
-		laz_name += " ([S.name])"
+	var/laz_name = "[user.get_paygrade()] [user.name][S ? " ([S.name])" : null]"
 
 
 	var/area/targ_area = get_area(A)
@@ -243,11 +241,11 @@
 					break
 		if(MODE_RANGE_FINDER)
 			if(!length(linked_mortars))
-				to_chat(user, span_notice("No linked mortars found."))
+				to_chat(user, span_notice("No linked artillery found."))
 				return
 			check_mortar_index() // incase varedit screws something up
 			targetturf = TU
-			to_chat(user, span_notice("COORDINATES TARGETED BY MORTAR [selected_mortar]: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
+			to_chat(user, span_notice("COORDINATES TARGETED BY ARTILLERY [selected_mortar]: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			var/obj/machinery/deployable/mortar/mortar = linked_mortars[selected_mortar]
 			mortar.recieve_target(TU,user)
@@ -326,9 +324,9 @@
 ///Proc called when linked_mortar is deleted.
 /obj/item/binoculars/tactical/proc/clean_refs(datum/source)
 	SIGNAL_HANDLER
+	say("NOTICE: Connection lost with linked artillery.")
 	linked_mortars -= source
 	check_mortar_index()
-	say("NOTICE: connection lost with linked mortar.")
 
 /obj/item/binoculars/tactical/scout
 	name = "scout tactical binoculars"
@@ -339,7 +337,7 @@
 //For events
 /obj/item/binoculars/tactical/range
 	name = "range-finder"
-	desc = "A pair of binoculars designed to find coordinates. Shift+Click or Ctrl+Click to get coordinates when using."
+	desc = "A pair of binoculars designed to find coordinates, and aim linked artillery pieces. Shift+Click or Ctrl+Click to get coordinates while using them. Alt+Click to change selected linked artillery"
 	changable = 0
 	mode = MODE_RANGE_FINDER
 

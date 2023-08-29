@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/spitter
 	name = "Spitter"
 	desc = "A gross, oozing alien of some kind."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/spitter.dmi'
 	icon_state = "Spitter Walking"
 	bubble_icon = "alienroyal"
 	health = 180

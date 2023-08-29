@@ -382,6 +382,7 @@
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/flamer_nozzle/wide/red,
 		/obj/item/attachable/flamer_nozzle/long,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 	)
@@ -411,6 +412,16 @@
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
 	starting_attachment_types = list(
 		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/stock/t84stock,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/deathsquad
+	allowed_ammo_types = list(/obj/item/ammo_magazine/flamer_tank/large/X/deathsquad)
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
+	starting_attachment_types = list(
+		/obj/item/attachable/flamer_nozzle/wide/red,
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 		/obj/item/attachable/magnetic_harness,

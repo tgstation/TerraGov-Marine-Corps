@@ -5,14 +5,20 @@
 	flags_xeno_abilities = ABILITY_CRASH
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/terragov/squad/engineer = 8,
-		/datum/job/terragov/squad/corpsman = 8,
+		/datum/job/terragov/squad/engineer = 1,
+		/datum/job/terragov/squad/corpsman = 1,
 		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/xenomorph = FREE_XENO_AT_START
+	)
+	job_points_needed_by_job_type = list(
+		/datum/job/terragov/squad/smartgunner = 20,
+		/datum/job/terragov/squad/corpsman = 5,
+		/datum/job/terragov/squad/engineer = 5,
+		/datum/job/xenomorph = CRASH_LARVA_POINTS_NEEDED,
 	)
 
 	// Round end conditions
@@ -30,15 +36,6 @@
 	///Last time larva balance was checked
 	var/last_larva_check
 	bioscan_interval = 0
-
-
-/datum/game_mode/infestation/crash/scale_roles()
-	. = ..()
-	if(!.)
-		return
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.job_points_needed = CRASH_LARVA_POINTS_NEEDED
-
 
 /datum/game_mode/infestation/crash/pre_setup()
 	. = ..()

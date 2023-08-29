@@ -1377,9 +1377,10 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "amz" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "amA" = (
 /obj/structure/bed/chair{
@@ -1674,7 +1675,8 @@
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "aol" = (
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "aom" = (
 /obj/structure/table/woodentable,
@@ -12183,6 +12185,11 @@
 /obj/item/trash/plate,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
+"pjg" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 "pkg" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -47411,7 +47418,7 @@ sZJ
 lVe
 sZJ
 eEK
-irs
+gCQ
 gCQ
 gCQ
 gCQ
@@ -62346,8 +62353,8 @@ bfc
 vyZ
 bfc
 tzo
-tPk
-tzo
+pjg
+jcm
 tzo
 eny
 tzo
@@ -62563,7 +62570,7 @@ bfc
 vyZ
 vyZ
 gCQ
-tPk
+pjg
 tzo
 dVK
 tzo

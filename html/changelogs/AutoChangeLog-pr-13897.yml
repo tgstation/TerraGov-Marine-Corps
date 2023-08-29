@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - bugfix: "Fixed Sulaco Drop Pod bay having space tiles in it."

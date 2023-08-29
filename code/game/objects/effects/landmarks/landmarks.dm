@@ -430,16 +430,6 @@
 						/obj/item/weapon/chainsword,
 						)
 
-/obj/effect/landmark/fob_sentry
-	name = "Fob sentry"
-	icon = 'icons/Marine/sentry.dmi'
-	icon_state = "sentry"
-
-/obj/effect/landmark/fob_sentry/Initialize(mapload)
-	. = ..()
-	GLOB.fob_sentries_loc += loc
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/sensor_tower
 	name = "Sensor tower"
 	icon = 'icons/obj/structures/sensor.dmi'
@@ -495,3 +485,13 @@
 /obj/effect/landmark/eord_roomba/Destroy()
 	GLOB.eord_roomba_spawns -= src
 	return ..()
+
+/// Marks the bottom left of the testing zone.
+/// In landmarks.dm and not unit_test.dm so it is always active in the mapping tools.
+/obj/effect/landmark/unit_test_bottom_left
+	name = "unit test zone bottom left"
+
+/// Marks the top right of the testing zone.
+/// In landmarks.dm and not unit_test.dm so it is always active in the mapping tools.
+/obj/effect/landmark/unit_test_top_right
+	name = "unit test zone top right"

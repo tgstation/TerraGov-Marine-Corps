@@ -7,6 +7,7 @@
 	desc = "A pistol magazine."
 	caliber = CALIBER_9X19
 	icon_state = "tp14"
+	icon_state_mini = "mag_pistol"
 	max_rounds = 21
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
@@ -35,7 +36,7 @@
 	max_rounds = 14
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
-	icon_state_mini = "mag_pistol"
+	icon_state_mini = "mag_pistol_orange"
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
@@ -69,6 +70,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = CALIBER_45ACP
 	icon_state = "1911"
+	icon_state_mini = "mag_pistol_normal"
 	max_rounds = 10
 
 
@@ -81,6 +83,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = CALIBER_45ACP
 	icon_state = ".45"
+	icon_state_mini = "mag_pistol"
 	max_rounds = 14
 
 
@@ -91,6 +94,7 @@
 	name = "\improper P-22 magazine (9mm)"
 	caliber = CALIBER_9X19
 	icon_state = "g22"
+	icon_state_mini = "mag_pistol_normal"
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/pistol
 
@@ -98,6 +102,7 @@
 	name = "\improper G22 tranq magazine (9mm)"
 	caliber = CALIBER_9X19_TRANQUILIZER
 	icon_state = "g22"
+	icon_state_mini = "mag_pistol_normal"
 	max_rounds = 12
 	default_ammo = /datum/ammo/bullet/pistol/tranq
 
@@ -130,6 +135,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/hollow
 	caliber = CALIBER_22LR
 	icon_state = "pk-9"
+	icon_state_mini = "mag_pistol_orange"
 	max_rounds = 12
 
 //-------------------------------------------------------
@@ -141,6 +147,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/tiny
 	caliber = CALIBER_22LR
 	icon_state = ".22"
+	icon_state_mini = "mag_pistol_normal"
 	max_rounds = 5
 	w_class = WEIGHT_CLASS_TINY
 
@@ -153,6 +160,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
 	caliber = CALIBER_380ACP
 	icon_state = "tp17"
+	icon_state_mini = "mag_pistol"
 	max_rounds = 8
 	w_class = WEIGHT_CLASS_TINY
 
@@ -164,6 +172,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/superheavy
 	caliber = CALIBER_50AE
 	icon_state = "m4a3" //PLACEHOLDER
+	icon_state_mini = "mag_pistol_normal"
 	max_rounds = 13
 
 //-------------------------------------------------------
@@ -174,6 +183,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = CALIBER_9X19
 	icon_state = "88m4"
+	icon_state_mini = "mag_pistol"
 	max_rounds = 18
 
 //-------------------------------------------------------
@@ -194,6 +204,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = CALIBER_9X19
 	icon_state = "v11"
+	icon_state_mini = "mag_pistol_normal"
 	max_rounds = 18
 
 /obj/item/ammo_magazine/pistol/som/incendiary
@@ -216,6 +227,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = CALIBER_45ACP
 	icon_state = "pl5"
+	icon_state_mini = "mag_pistol"
 	max_rounds = 18
 
 //-------------------------------------------------------
@@ -228,6 +240,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/squash
 	caliber = CALIBER_9X19
 	icon_state = "tp17"
+	icon_state_mini = "mag_pistol"
 	max_rounds = 50
 
 
@@ -238,6 +251,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/mankey
 	caliber = CALIBER_70MANKEY
 	icon_state = "c70"
+	icon_state_mini = "Rule One: donotspeakofthis"
 	max_rounds = 300
 
 //SP-13 (Calico)
@@ -245,6 +259,7 @@
 	name = "\improper SP-13 magazine (9mm AP)"
 	caliber = CALIBER_9X19
 	icon_state = "tx13"
+	icon_state_mini = "mag_pistol_tube"
 	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol/ap

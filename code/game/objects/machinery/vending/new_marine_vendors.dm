@@ -93,11 +93,13 @@
 	. = list()
 
 	var/obj/item/card/id/I = user.get_idcard()
-	var/buy_choices = I?.marine_buy_choices
+	var/list/buy_choices = I?.marine_buy_choices
 	var/obj/item/card/id/dogtag/full/ptscheck = new /obj/item/card/id/dogtag/full
 
 	.["cats"] = list()
 	for(var/cat in GLOB.marine_selector_cats)
+		if(!length(buy_choices))
+			break
 		.["cats"][cat] = list(
 			"remaining" = buy_choices[cat],
 			"total" = GLOB.marine_selector_cats[cat],
@@ -351,6 +353,11 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/clothes/valhalla
+	vendor_role = /datum/job/fallen/marine/standard
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/clothes/commander
 	name = "GHMME Automated Commander Closet"
 	req_access = list(ACCESS_MARINE_COMMANDER)
@@ -429,6 +436,11 @@
 	icon_deny = "synth-deny"
 	vendor_role = /datum/job/terragov/silicon/synthetic
 	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/clothes/synth/valhalla
+	vendor_role = /datum/job/fallen/marine/synthetic
+	resistance_flags = INDESTRUCTIBLE
+
 
 /obj/machinery/marine_selector/clothes/synth/Initialize(mapload)
 	. = ..()
@@ -529,6 +541,11 @@
 /obj/machinery/marine_selector/gear/commander/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.commander_gear_listed_products
+
+/obj/machinery/marine_selector/gear/commander/valhalla
+	vendor_role = /datum/job/fallen/marine/fieldcommander
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 ///Spawns a set of objects from specified typepaths. For vendors to spawn multiple items while only needing one path.
 /obj/effect/vendor_bundle
@@ -660,6 +677,12 @@
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/storage/firstaid/adv,
 		/obj/item/clothing/glasses/hud/health,
+	)
+
+/obj/effect/vendor_bundle/stretcher
+	gear_to_spawn = list(
+		/obj/item/roller/medevac,
+		/obj/item/medevac_beacon,
 	)
 
 /obj/effect/vendor_bundle/engi

@@ -42,6 +42,7 @@
 		SMOOTH_GROUP_WINDOW_FRAME,
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_GIRDER,
 	)
 
 /turf/closed/wall/add_debris_element()
@@ -267,7 +268,6 @@
 
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
-	G.icon_prefix = "girder[junctiontype]"
 	G.update_icon()
 
 	if(destroyed_girder)
@@ -304,6 +304,8 @@
 				dismantle_wall(TRUE, TRUE)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 250), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(0, 50), BRUTE, BOMB)
 
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)

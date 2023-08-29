@@ -867,7 +867,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(iscarbon(proj.firer))
 		var/mob/living/carbon/shooter_carbon = proj.firer
-		if(shooter_carbon.stagger)
+		if(shooter_carbon.IsStaggered())
 			damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 	var/original_damage = damage
 	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)

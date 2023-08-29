@@ -295,8 +295,9 @@
 		/obj/item/attachable/lace,
 		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/stock/t76,
+		/obj/item/attachable/scope/standard_magnum,
 	)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 15, "rail_y" = 23, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 18)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 15, "rail_y" = 23, "under_x" = 22, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
 	windup_delay = 0.5 SECONDS
 	aim_slowdown = 0.1
 	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
@@ -312,6 +313,39 @@
 
 	starting_attachment_types = list(/obj/item/attachable/stock/t76)
 
+/obj/item/weapon/gun/revolver/standard_magnum/fancy
+	starting_attachment_types = list()
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/stock/t76,
+		/obj/item/attachable/scope/standard_magnum,
+		/obj/item/attachable/compensator,
+	)
+
+/obj/item/weapon/gun/revolver/standard_magnum/fancy/gold
+	desc = "A gold plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon_state = "g_t76"
+	item_state = "g_t76"
+	fire_animation = "g_t76_fire"
+
+/obj/item/weapon/gun/revolver/standard_magnum/fancy/silver
+	desc = "A silver plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon_state = "s_t76"
+	item_state = "s_t76"
+	fire_animation = "s_t76_fire"
+
+/obj/item/weapon/gun/revolver/standard_magnum/fancy/nickle
+	desc = "A nickle plated R-76 magnum, for a more tasteful finish. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon_state = "n_t76"
+	item_state = "n_t76"
+	fire_animation = "n_t76_fire"
 
 //Single action revolvers below
 //---------------------------------------------------

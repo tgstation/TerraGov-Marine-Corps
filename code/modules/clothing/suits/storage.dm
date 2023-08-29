@@ -6,7 +6,7 @@
 		ATTACHMENT_SLOT_BADGE,
 	)
 	attachments_allowed = list(
-		/obj/item/armor_module/storage/general/irremovable,
+		/obj/item/armor_module/storage/pocket,
 		/obj/item/armor_module/armor/badge,
 	)
-	starting_attachments = list(/obj/item/armor_module/storage/general/irremovable)
+	starting_attachments = list(/obj/item/armor_module/storage/pocket)

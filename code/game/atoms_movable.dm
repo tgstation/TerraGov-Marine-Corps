@@ -302,7 +302,7 @@
 // You probably want CanPass()
 /atom/movable/Cross(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSS, AM)
-	return CanPass(AM, AM.loc, TRUE)
+	return CanPass(AM, AM.loc)
 
 
 ///default byond proc that is deprecated for us in lieu of signals. do not call
@@ -458,12 +458,12 @@
 
 	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
 		var/obj/O = hit_atom
-		if(!O.anchored && !isxeno(src))
+		if(!O.anchored)
 			step(O, dir)
 		O.hitby(src, speed)
 
 	else if(isturf(hit_atom))
-		set_throwing(FALSE)
+		stop_throw()
 		var/turf/T = hit_atom
 		if(T.density)
 			if(bounce)
@@ -1164,4 +1164,9 @@
 
 ///Checks the gravity the atom is subjected to
 /atom/movable/proc/get_gravity()
-	return SSmapping.gravity_by_z_level["[z]"]
+	if(z)
+		return SSmapping.gravity_by_z_level["[z]"]
+	var/turf/src_turf = get_turf(src)
+	if(src_turf?.z)
+		return SSmapping.gravity_by_z_level["[src_turf.z]"]
+	return 1 //if both fail we're in nullspace, just return a 1 as a fallback

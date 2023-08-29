@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/runner
 	name = "Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
-	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
+	icon = 'icons/Xeno/castes/runner.dmi' //They are now like, 2x1 or something
 	icon_state = "Runner Walking"
 	bubble_icon = "alienleft"
 	health = 100

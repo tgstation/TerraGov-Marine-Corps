@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/praetorian
 	name = "Praetorian"
 	desc = "A huge, looming beast of an alien."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/praetorian.dmi'
 	icon_state = "Praetorian Walking"
 	health = 210
 	maxHealth = 210
