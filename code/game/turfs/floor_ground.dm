@@ -114,20 +114,6 @@
 	mediumxenofootstep = FOOTSTEP_GRASS
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 
-/turf/open/ground/grass/weedable
-	name = "soft grass"
-
-/turf/open/ground/grasspatch
-	name = "grass"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "grass1"
-	shoefootstep = FOOTSTEP_GRASS
-	barefootstep = FOOTSTEP_GRASS
-	mediumxenofootstep = FOOTSTEP_GRASS
-
-/turf/open/ground/grasspatch/grassyellow
-	color = "#ffb682"
-
 /turf/open/ground/grass/grass2
 	icon_state = "grass2"
 
@@ -141,6 +127,17 @@
 /turf/open/ground/grass/grassalt/tall
 	icon_state = "fullgrass"
 	icon_variants = 5
+
+/turf/open/ground/grass/weedable
+	name = "soft grass"
+
+/turf/open/ground/grass/weedable/patch
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "grass"
+	icon_variants = 3
+
+/turf/open/ground/grass/weedable/patch/grassyellow
+	color = "#ffb682"
 
 // Big Red
 
