@@ -73,7 +73,7 @@ export const MESSAGE_TYPES = [
     name: 'Warnings',
     description: 'Urgent messages from the game and items',
     selector:
-      '.warning, .xenowarning, .danger, .xenodanger, .highdanger, .xenohighdanger, .xenoannounce',
+      '.warning, .xenowarning, .danger, .xenodanger, .highdanger, .xenohighdanger, .xenoannounce, .xenobanishtitleannonce, .xenobanishannonce',
   },
   {
     type: MESSAGE_TYPE_DEADCHAT,
