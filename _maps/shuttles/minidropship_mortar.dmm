@@ -160,7 +160,6 @@
 /area/shuttle/minidropship)
 "V" = (
 /obj/machinery/holopad,
-/obj/structure/dropship_equipment/weapon_holder/mortar_holder,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "Y" = (
@@ -188,7 +187,7 @@ Z
 M
 Y
 Y
-Y
+d
 I
 Z
 Z
@@ -199,7 +198,7 @@ n
 f
 Q
 Q
-Q
+d
 f
 e
 B
@@ -210,7 +209,7 @@ y
 O
 d
 k
-Q
+d
 V
 d
 E
@@ -221,7 +220,7 @@ K
 f
 Q
 Q
-Q
+d
 f
 f
 B
@@ -232,7 +231,7 @@ Z
 M
 Y
 Y
-Y
+d
 I
 Z
 Z
