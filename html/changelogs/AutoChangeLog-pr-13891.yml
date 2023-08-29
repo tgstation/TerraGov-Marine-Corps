@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Xenos can throw mobs past xenos once again"
+  - bugfix: "Fixed an issue with throwing mobs past warriors specifically"
