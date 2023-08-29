@@ -1,0 +1,5 @@
+author: "yyzsong"
+delete-after: True
+changes:
+  - rscadd: "More toys in valhalla!"
+  - rscdel: "Vali weapons and MMG no longer in valhalla req vendor (why were they ever) (still in the gun vendor dont worry)"
