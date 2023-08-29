@@ -122,7 +122,6 @@
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 	///Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
 	var/grab_resist_level = 0
-	var/datum/job/job
 	var/comm_title = ""
 	///how much blood the mob has
 	var/blood_volume = 0
