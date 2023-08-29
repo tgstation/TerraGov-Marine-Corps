@@ -3414,9 +3414,6 @@
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
-/obj/machinery/door_control/mainship/ammo{
-	dir = 8
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "egW" = (
@@ -3653,6 +3650,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
+"ewo" = (
+/obj/machinery/door_control/mainship/ammo,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "exv" = (
 /obj/structure/cable,
 /obj/machinery/door/firedoor/mainship{
@@ -54546,7 +54547,7 @@ tyN
 tyN
 ggf
 tyN
-dpY
+ewo
 dpY
 syc
 hFZ
