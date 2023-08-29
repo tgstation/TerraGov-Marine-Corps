@@ -128,7 +128,7 @@
 
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_lunge_target))
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_lunge_possible))
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(clean_lunge_target))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(finish_lunge))
 	if(lunge_target.Adjacent(X)) //They're already in range, neck grab without lunging.
 		lunge_grab(X, lunge_target)
 	else
