@@ -24,8 +24,9 @@
 
 /mob/living/carbon/xenomorph/puppet/Initialize(mapload, mob/living/carbon/xenomorph/puppeteer)
 	. = ..()
-	weak_master = WEAKREF(puppeteer)
-	transfer_to_hive(puppeteer.hivenumber)
+	if(puppeteer)
+		weak_master = WEAKREF(puppeteer)
+		transfer_to_hive(puppeteer.hivenumber)
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/puppet, puppeteer)
 
 /mob/living/carbon/xenomorph/puppet/on_death()
