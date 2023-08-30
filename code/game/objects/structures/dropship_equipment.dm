@@ -642,7 +642,7 @@
 
 ////////////////////////////////////// WEAPONS ///////////////////////////////////////
 
-/obj/structure/dropship_equipment/CAS/weapon
+/obj/structure/dropship_equipment/cas/weapon
 	name = "abstract weapon"
 	icon = 'icons/Marine/mainship_props64.dmi'
 	equip_category = DROPSHIP_WEAPON
@@ -654,7 +654,7 @@
 	var/firing_sound
 	var/firing_delay = 20 //delay between firing. 2 seconds by default
 
-/obj/structure/dropship_equipment/CAS/weapon/update_equipment()
+/obj/structure/dropship_equipment/cas/weapon/update_equipment()
 	if(ship_base)
 		setDir(ship_base.dir)
 		bound_width = 32
@@ -665,14 +665,14 @@
 		bound_height = initial(bound_height)
 	update_icon()
 
-/obj/structure/dropship_equipment/CAS/weapon/equipment_interact(mob/user)
+/obj/structure/dropship_equipment/cas/weapon/equipment_interact(mob/user)
 	if(dropship_equipment_flags & IS_INTERACTABLE)
 		if(linked_console.selected_equipment == src)
 			linked_console.selected_equipment = null
 		else
 			linked_console.selected_equipment = src
 
-/obj/structure/dropship_equipment/CAS/weapon/examine(mob/user)
+/obj/structure/dropship_equipment/cas/weapon/examine(mob/user)
 	. = ..()
 	if(ammo_equipped)
 		. += ammo_equipped.show_loaded_desc(user)
@@ -681,12 +681,12 @@
 
 
 
-/obj/structure/dropship_equipment/CAS/weapon/proc/deplete_ammo()
+/obj/structure/dropship_equipment/cas/weapon/proc/deplete_ammo()
 	if(ammo_equipped)
 		ammo_equipped.ammo_count = max(ammo_equipped.ammo_count-ammo_equipped.ammo_used_per_firing, 0)
 	update_icon()
 
-/obj/structure/dropship_equipment/CAS/weapon/proc/open_fire(obj/selected_target, attackdir)
+/obj/structure/dropship_equipment/cas/weapon/proc/open_fire(obj/selected_target, attackdir)
 	var/turf/target_turf = get_turf(selected_target)
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, 1)
@@ -712,7 +712,7 @@
 	addtimer(CALLBACK(SA, TYPE_PROC_REF(/obj/structure/ship_ammo, detonate_on), target_turf, attackdir), ammo_travelling_time)
 	QDEL_LIST_IN(effects_to_delete, ammo_travelling_time)
 
-/obj/structure/dropship_equipment/CAS/weapon/heavygun
+/obj/structure/dropship_equipment/cas/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
 	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run. Moving this will require some sort of lifter."
 	icon_state = "30mm_cannon"
@@ -721,7 +721,7 @@
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_30MM
 
-/obj/structure/dropship_equipment/CAS/weapon/heavygun/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/heavygun/update_icon()
 	if(ammo_equipped)
 		icon_state = "30mm_cannon_loaded[ammo_equipped.ammo_count?"1":"0"]"
 	else
@@ -730,16 +730,16 @@
 		else
 			icon_state = "30mm_cannon"
 
-/obj/structure/dropship_equipment/CAS/weapon/heavygun/radial_cas
+/obj/structure/dropship_equipment/cas/weapon/heavygun/radial_cas
 	name = "Condor Jet Radial minigun"
 	point_cost = 0
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|IS_NOT_REMOVABLE
 
-/obj/structure/dropship_equipment/CAS/weapon/heavygun/radial_cas/Initialize(mapload)
+/obj/structure/dropship_equipment/cas/weapon/heavygun/radial_cas/Initialize(mapload)
 	. = ..()
-	ammo_equipped = new /obj/structure/ship_ammo/CAS/heavygun(src)
+	ammo_equipped = new /obj/structure/ship_ammo/cas/heavygun(src)
 
-/obj/structure/dropship_equipment/CAS/weapon/rocket_pod
+/obj/structure/dropship_equipment/cas/weapon/rocket_pod
 	name = "rocket pod"
 	icon_state = "rocket_pod"
 	desc = "A rocket pod weapon system capable of launching a single laser-guided rocket. Moving this will require some sort of lifter."
@@ -748,11 +748,11 @@
 	point_cost = 600
 	ammo_type_used = CAS_MISSILE
 
-/obj/structure/dropship_equipment/CAS/weapon/rocket_pod/deplete_ammo()
+/obj/structure/dropship_equipment/cas/weapon/rocket_pod/deplete_ammo()
 	ammo_equipped = null //nothing left to empty after firing
 	update_icon()
 
-/obj/structure/dropship_equipment/CAS/weapon/rocket_pod/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/rocket_pod/update_icon()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "rocket_pod_loaded[ammo_equipped.ammo_id]"
 	else
@@ -762,7 +762,7 @@
 			icon_state = "rocket_pod"
 
 
-/obj/structure/dropship_equipment/CAS/weapon/minirocket_pod
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod
 	name = "minirocket pod"
 	icon_state = "minirocket_pod"
 	desc = "A mini rocket pod capable of launching six laser-guided mini rockets. Moving this will require some sort of lifter."
@@ -772,7 +772,7 @@
 	point_cost = 600
 	ammo_type_used = CAS_MINI_ROCKET
 
-/obj/structure/dropship_equipment/CAS/weapon/minirocket_pod/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod/update_icon()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "minirocket_pod_loaded"
 	else
@@ -781,12 +781,12 @@
 		else
 			icon_state = "minirocket_pod"
 
-/obj/structure/dropship_equipment/CAS/weapon/minirocket_pod/deplete_ammo()
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod/deplete_ammo()
 	..()
 	if(ammo_equipped && !ammo_equipped.ammo_count) //fired last minirocket
 		ammo_equipped = null
 
-/obj/structure/dropship_equipment/CAS/weapon/laser_beam_gun
+/obj/structure/dropship_equipment/cas/weapon/laser_beam_gun
 	name = "laser beam gun"
 	icon_state = "laser_beam"
 	desc = "State of the art technology recently acquired by the TGMC, it fires a battery-fed pulsed laser beam at near lightspeed setting on fire everything it touches. Moving this will require some sort of lifter."
@@ -797,7 +797,7 @@
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_LASER_BATTERY
 
-/obj/structure/dropship_equipment/CAS/weapon/laser_beam_gun/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/laser_beam_gun/update_icon()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "laser_beam_loaded"
 	else
@@ -808,7 +808,7 @@
 
 
 
-/obj/structure/dropship_equipment/CAS/weapon/launch_bay //This isn't printable, so having it under CAS shouldn't cause issues
+/obj/structure/dropship_equipment/cas/weapon/launch_bay //This isn't printable, so having it under CAS shouldn't cause issues
 	name = "launch bay"
 	icon_state = "launch_bay"
 	desc = "A launch bay to drop special ordnance. Fits inside the dropship's crew weapon emplacement. Moving this will require some sort of lifter."
@@ -818,7 +818,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON //fits inside the central spot of the dropship
 	point_cost = 0
 
-/obj/structure/dropship_equipment/CAS/weapon/launch_bay/update_icon()
+/obj/structure/dropship_equipment/cas/weapon/launch_bay/update_icon()
 	if(ammo_equipped?.ammo_count)
 		icon_state = "launch_bay_loaded"
 	else

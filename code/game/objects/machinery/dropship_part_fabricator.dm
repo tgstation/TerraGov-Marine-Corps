@@ -35,8 +35,8 @@
 	dat += "<a href='byond://?src=\ref[src];choice=clear'>CLEAR PRINT QUEUE</a><br>"
 
 	dat += "<h3>Condor Equipment:</h3>"
-	for(var/build_type in typesof(/obj/structure/dropship_equipment/CAS))
-		var/obj/structure/dropship_equipment/CAS/DEC = build_type
+	for(var/build_type in typesof(/obj/structure/dropship_equipment/cas))
+		var/obj/structure/dropship_equipment/cas/DEC = build_type
 		var/build_name = initial(DEC.name)
 		var/build_cost = initial(DEC.point_cost)
 		if(build_cost)
@@ -51,8 +51,8 @@
 			dat += "<a href='byond://?src=\ref[src];choice=[build_type]'>[build_name] ([build_cost])</a><br>"
 
 	dat += "<h3>Condor Ammo:</h3>"
-	for(var/build_type in typesof(/obj/structure/ship_ammo/CAS))
-		var/obj/structure/ship_ammo/CAS/SAC = build_type
+	for(var/build_type in typesof(/obj/structure/ship_ammo/cas))
+		var/obj/structure/ship_ammo/cas/SAC = build_type
 		var/build_name = initial(SAC.name)
 		var/build_cost = initial(SAC.point_cost)
 		if(build_cost)

@@ -57,7 +57,7 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "aj" = (
-/obj/structure/dropship_equipment/CAS/weapon/rocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/rocket_pod,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "ak" = (
@@ -846,7 +846,7 @@
 	pixel_x = -2;
 	pixel_y = -6
 	},
-/obj/structure/dropship_equipment/CAS/weapon/minirocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "cu" = (
@@ -1317,7 +1317,7 @@
 	},
 /area/mainship/hallways/hangar)
 "dR" = (
-/obj/structure/dropship_equipment/CAS/weapon/heavygun,
+/obj/structure/dropship_equipment/cas/weapon/heavygun,
 /obj/item/ammo_casing/bullet{
 	pixel_x = -3
 	},
@@ -1335,7 +1335,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "dS" = (
-/obj/structure/dropship_equipment/CAS/weapon/heavygun,
+/obj/structure/dropship_equipment/cas/weapon/heavygun,
 /obj/effect/decal/cleanable/blood/oil{
 	name = "grease";
 	pixel_x = -2;
@@ -1394,7 +1394,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "dX" = (
-/obj/structure/dropship_equipment/CAS/weapon/minirocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "dY" = (
@@ -1779,7 +1779,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
 "ff" = (
-/obj/structure/ship_ammo/CAS/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "fg" = (
@@ -2175,7 +2175,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "go" = (
-/obj/structure/ship_ammo/CAS/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "gp" = (
@@ -3045,7 +3045,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "iE" = (
-/obj/structure/ship_ammo/CAS/minirocket/illumination,
+/obj/structure/ship_ammo/cas/minirocket/illumination,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -3287,11 +3287,11 @@
 	},
 /area/mainship/squads/general)
 "jv" = (
-/obj/structure/ship_ammo/CAS/minirocket/illumination,
+/obj/structure/ship_ammo/cas/minirocket/illumination,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "jw" = (
-/obj/structure/ship_ammo/CAS/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
@@ -5224,7 +5224,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
 "pe" = (
-/obj/structure/ship_ammo/CAS/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "pf" = (
@@ -5608,7 +5608,7 @@
 /turf/open/floor/plating,
 /area/mainship/command/corporateliaison)
 "qp" = (
-/obj/structure/ship_ammo/CAS/rocket/keeper,
+/obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "qq" = (
@@ -5772,7 +5772,7 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/powered)
 "qR" = (
-/obj/structure/ship_ammo/CAS/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -6316,7 +6316,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "sJ" = (
-/obj/structure/ship_ammo/CAS/minirocket/illumination,
+/obj/structure/ship_ammo/cas/minirocket/illumination,
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
@@ -6749,7 +6749,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "tZ" = (
-/obj/structure/ship_ammo/CAS/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
@@ -7725,7 +7725,7 @@
 /obj/machinery/door_control/mainship/ammo{
 	dir = 1
 	},
-/obj/structure/ship_ammo/CAS/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "wJ" = (
@@ -10066,7 +10066,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "Dy" = (
-/obj/structure/ship_ammo/CAS/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "Dz" = (

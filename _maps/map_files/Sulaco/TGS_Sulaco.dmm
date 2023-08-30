@@ -7284,7 +7284,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "aMP" = (
-/obj/structure/dropship_equipment/CAS/weapon/rocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/rocket_pod,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "aMS" = (
@@ -9437,7 +9437,7 @@
 /area/sulaco/engineering/atmos)
 "bew" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/ship_ammo/CAS/minirocket/illumination,
+/obj/structure/ship_ammo/cas/minirocket/illumination,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "bex" = (
@@ -9493,7 +9493,7 @@
 /area/sulaco/cargo)
 "bhA" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/ship_ammo/CAS/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "bhG" = (
@@ -9808,7 +9808,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hangar)
 "bFu" = (
-/obj/structure/ship_ammo/CAS/rocket/keeper,
+/obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "bGR" = (
@@ -11598,7 +11598,7 @@
 /turf/open/floor/prison/marked,
 /area/mainship/command/self_destruct)
 "dZG" = (
-/obj/structure/ship_ammo/CAS/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "dZI" = (
@@ -11828,7 +11828,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/structure/ship_ammo/CAS/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "eqh" = (
@@ -14868,7 +14868,7 @@
 /area/sulaco/medbay)
 "ilD" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/structure/ship_ammo/CAS/minirocket/illumination,
+/obj/structure/ship_ammo/cas/minirocket/illumination,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "imd" = (
@@ -15370,7 +15370,7 @@
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "iNC" = (
-/obj/structure/ship_ammo/CAS/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "iNW" = (
@@ -16288,7 +16288,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/structure/dropship_equipment/CAS/weapon/heavygun,
+/obj/structure/dropship_equipment/cas/weapon/heavygun,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "jWd" = (
@@ -16690,7 +16690,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "kut" = (
-/obj/structure/dropship_equipment/CAS/weapon/minirocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "kvB" = (
@@ -16718,7 +16718,7 @@
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay/west)
 "kwh" = (
-/obj/structure/ship_ammo/CAS/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "kwG" = (
@@ -18879,7 +18879,7 @@
 	},
 /area/sulaco/hangar)
 "npi" = (
-/obj/structure/dropship_equipment/CAS/weapon/heavygun,
+/obj/structure/dropship_equipment/cas/weapon/heavygun,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "nps" = (
@@ -18891,7 +18891,7 @@
 /area/sulaco/marine)
 "nqJ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/CAS/weapon/minirocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "nrh" = (
@@ -18913,7 +18913,7 @@
 /turf/open/floor/wood,
 /area/sulaco/medbay/west)
 "ntA" = (
-/obj/structure/ship_ammo/CAS/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "nug" = (
@@ -19025,7 +19025,7 @@
 /area/sulaco/engineering/engine)
 "nCl" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/ship_ammo/CAS/rocket/keeper,
+/obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "nCN" = (
@@ -21140,7 +21140,7 @@
 /area/shuttle/distress/arrive_2)
 "qku" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/ship_ammo/CAS/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "qkC" = (
@@ -21351,7 +21351,7 @@
 /area/sulaco/medbay/surgery_two)
 "qAV" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/ship_ammo/CAS/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "qAW" = (
@@ -23063,7 +23063,7 @@
 /area/sulaco/hangar)
 "sCO" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/ship_ammo/CAS/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "sEr" = (
@@ -25056,7 +25056,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/structure/ship_ammo/CAS/minirocket/illumination,
+/obj/structure/ship_ammo/cas/minirocket/illumination,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "vfr" = (
