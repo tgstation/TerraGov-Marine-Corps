@@ -178,7 +178,7 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 
 		//calculate step duration
 		var/step_duration = max(0.5 SECONDS, rand(surgery_step.min_duration, surgery_step.max_duration) - 1 SECONDS * user.skills.getRating(SKILL_SURGERY))
-		if(locate(/obj/machinery/optable, M.loc))
+		if(locate(/obj/machinery/optable) in M.loc)
 			step_duration = max(0.5 SECONDS, surgery_step.min_duration - 1 SECONDS * user.skills.getRating(SKILL_SURGERY))
 
 		//Multiply tool success rate with multipler
