@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - bugfix: "Oze sting cooldown ending doesn't tell you that you can neuro sting again"

@@ -1024,10 +1024,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/east)
-"aLP" = (
-/obj/structure/lattice,
-/turf/closed/mineral/smooth,
-/area/magmoor/cave/rock)
 "aLW" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
@@ -3339,7 +3335,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -12416,10 +12411,6 @@
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
-"iZQ" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/magmoor/compound)
 "jaj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -14000,7 +13991,6 @@
 /area/magmoor/compound/west)
 "kaN" = (
 /obj/structure/closet/secure_closet/scientist,
-/obj/structure/closet/secure_closet/scientist,
 /turf/open/floor/mainship/purple{
 	dir = 5
 	},
@@ -14852,7 +14842,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -16663,10 +16652,6 @@
 /obj/structure/sign/greencross,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
-"lYp" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/magmoor/cave/north)
 "lYz" = (
 /obj/effect/attach_point/weapon/dropship1,
 /turf/open/floor/plating,
@@ -22007,10 +21992,6 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/magmoor/command/commandroom)
-"pUe" = (
-/obj/structure/window/framed/colony,
-/turf/closed/wall,
-/area/magmoor/civilian/arrival)
 "pUl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -24034,18 +24015,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/east)
-"rwn" = (
-/obj/machinery/door/airlock/medical{
-	name = "\improper Changing room"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/white,
-/area/magmoor/civilian/pool)
 "rxl" = (
 /turf/closed/mineral/smooth,
 /area/magmoor/cave/rock)
@@ -29654,11 +29623,6 @@
 	},
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
-"vCE" = (
-/obj/structure/lattice,
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/magmoor/compound)
 "vCT" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -45170,9 +45134,9 @@ kcd
 kcd
 idE
 aWO
-lYp
+aWO
 kWl
-lYp
+aWO
 gxb
 bQv
 bQv
@@ -46102,9 +46066,9 @@ kxx
 kcd
 rxl
 aWO
-lYp
+aWO
 kWl
-lYp
+aWO
 gxb
 wIw
 iyf
@@ -46334,7 +46298,7 @@ kcd
 kcd
 rxl
 rxl
-aLP
+rxl
 tDp
 tDp
 xyy
@@ -47549,9 +47513,9 @@ uRB
 vto
 vto
 qvx
-iZQ
-vCE
-iZQ
+qvx
+beI
+qvx
 qvx
 esA
 cJW
@@ -48481,9 +48445,9 @@ hIT
 hIT
 lCA
 qvx
-iZQ
-vCE
-iZQ
+qvx
+beI
+qvx
 qvx
 rKd
 rKd
@@ -52039,7 +52003,7 @@ jNT
 pzo
 hPQ
 rHt
-pUe
+eAh
 dCD
 mMM
 dCD
@@ -52738,7 +52702,7 @@ qne
 eAh
 gbc
 pzo
-pUe
+eAh
 dCD
 pnI
 dCD
@@ -63575,7 +63539,7 @@ kcd
 kcd
 kcd
 rxl
-aLP
+rxl
 uDn
 uDn
 ymj
@@ -64365,7 +64329,7 @@ hcl
 cQo
 tQU
 tQU
-rwn
+nDE
 tQU
 tQU
 tQU

@@ -3352,14 +3352,8 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
 /turf/open/floor/mainship/black{
 	dir = 8
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
 	},
 /area/mainship/command/self_destruct)
 "eeX" = (
@@ -5419,7 +5413,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar{
 	dir = 8
 	},
@@ -7978,13 +7971,6 @@
 "kxh" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/chapel)
-"kxj" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment/corner,
-/obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/lower_hull)
 "kxm" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
@@ -14307,7 +14293,6 @@
 	},
 /area/mainship/medical/medical_science)
 "sau" = (
-/obj/structure/lattice,
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
 	},
@@ -14601,7 +14586,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/maint{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
@@ -17348,7 +17332,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -17375,12 +17358,6 @@
 /obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
-"vHQ" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/door/firedoor/mainship,
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/port_hallway)
 "vJi" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -18942,7 +18919,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "xEZ" = (
-/obj/structure/lattice,
 /turf/closed/shuttle/ert/engines/left{
 	dir = 1
 	},
@@ -47906,7 +47882,7 @@ nNV
 onk
 wcT
 ekk
-vHQ
+pXr
 ekk
 gkL
 qvJ
@@ -57132,7 +57108,7 @@ qpC
 nWT
 nWT
 esN
-kxj
+ssm
 hUz
 hUz
 hUz
