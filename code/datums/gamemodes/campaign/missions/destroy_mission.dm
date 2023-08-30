@@ -77,8 +77,12 @@
 		outcome = MISSION_OUTCOME_MAJOR_VICTORY
 		return TRUE
 
-	if(!max_time_reached)
-		return FALSE
+	if(!max_time_reached) //if there is still time on the clock, game continues UNLESS attacking side is completely spent
+		if(mode.stat_list[starting_faction].active_attrition_points)
+			return FALSE //attacking team still has more bodies to throw into the fight
+		var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
+		if(length(player_list[1]))
+			return FALSE //attacking team still has living guys
 
 	if(objectives_destroyed >= min_destruction_amount) //Destroyed at least the minimum required
 		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]")
@@ -107,7 +111,7 @@
 ///Handles the destruction of an objective
 /datum/campaign_mission/destroy_mission/proc/objective_destroyed(datum/source)
 	SIGNAL_HANDLER
-	objectives_destroyed = objectives_total -= 1
+	objectives_destroyed = objectives_destroyed ++
 	var/message_to_play
 	if(objectives_destroyed == objectives_total)
 		message_to_play = "last"

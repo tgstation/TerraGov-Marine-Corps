@@ -1,8 +1,7 @@
 /////basic tdm mission - i.e. combat patrol
-/datum/campaign_mission/tdm
+/datum/campaign_mission/raiding_base
 	name = "Combat patrol"
 	map_name = "Orion Outpost"
-	//map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm' //testing new map
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	objective_description = list(
 		"starting_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
@@ -39,14 +38,14 @@
 		"hostile_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
 	)
 
-/datum/campaign_mission/tdm/play_start_intro()
+/datum/campaign_mission/raiding_base/play_start_intro()
 	intro_message = list(
 		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
 		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
 	)
 	. = ..()
 
-/datum/campaign_mission/tdm/check_mission_progress()
+/datum/campaign_mission/raiding_base/check_mission_progress()
 	if(outcome)
 		return TRUE
 
@@ -55,17 +54,17 @@
 
 	///pulls the number of both factions, dead or alive
 	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-	var/num_start_team = length(player_list[1])
-	var/num_hostile_team = length(player_list[2])
-	var/num_dead_start_team = length(player_list[3])
-	var/num_dead_hostile_team = length(player_list[4])
+	var/num_team_one = length(player_list[1])
+	var/num_team_two = length(player_list[2])
+	var/num_dead_team_one = length(player_list[3])
+	var/num_dead_team_two = length(player_list[4])
 
-	if(num_hostile_team && num_start_team && !max_time_reached)
+	if(num_team_two && num_team_one && !max_time_reached)
 		return //fighting is ongoing
 
 	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
-	if(!num_hostile_team)
-		if(!num_start_team)
+	if(!num_team_two)
+		if(!num_team_one)
 			message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //everyone died at the same time, no one wins
 			outcome = MISSION_OUTCOME_DRAW
 			return TRUE
@@ -73,17 +72,17 @@
 		outcome = MISSION_OUTCOME_MAJOR_VICTORY
 		return TRUE
 
-	if(!num_start_team)
+	if(!num_team_one)
 		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]") //hostile team wiped the starting team
 		outcome = MISSION_OUTCOME_MAJOR_LOSS
 		return TRUE
 
 	//minor victories for more kills or draw for equal kills
-	if(num_dead_hostile_team > num_dead_start_team)
+	if(num_dead_team_two > num_dead_team_one)
 		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]") //starting team got more kills
 		outcome = MISSION_OUTCOME_MINOR_VICTORY
 		return TRUE
-	if(num_dead_start_team > num_dead_hostile_team)
+	if(num_dead_team_one > num_dead_team_two)
 		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]") //hostile team got more kills
 		outcome = MISSION_OUTCOME_MINOR_LOSS
 		return TRUE
@@ -93,28 +92,17 @@
 	return TRUE
 
 //todo: remove these if nothing new is added
-/datum/campaign_mission/tdm/apply_major_victory()
+/datum/campaign_mission/raiding_base/apply_major_victory()
 	. = ..()
 
-/datum/campaign_mission/tdm/apply_minor_victory()
+/datum/campaign_mission/raiding_base/apply_minor_victory()
 	. = ..()
 
-/datum/campaign_mission/tdm/apply_draw()
+/datum/campaign_mission/raiding_base/apply_draw()
 	winning_faction = pick(starting_faction, hostile_faction)
 
-/datum/campaign_mission/tdm/apply_minor_loss()
+/datum/campaign_mission/raiding_base/apply_minor_loss()
 	. = ..()
 
-/datum/campaign_mission/tdm/apply_major_loss()
+/datum/campaign_mission/raiding_base/apply_major_loss()
 	. = ..()
-
-///test missions
-/datum/campaign_mission/tdm/lv624
-	name = "Combat patrol 2"
-	map_name = "LV-624"
-	map_file = '_maps/map_files/LV624/LV624.dmm' //todo: make modulars work with late load
-
-/datum/campaign_mission/tdm/desparity
-	name = "Combat patrol 3"
-	map_name = "Desparity"
-	map_file = '_maps/map_files/desparity/desparity.dmm'

@@ -62,4 +62,4 @@
 
 ///Adds a new reward to the faction for use
 /datum/faction_stats/proc/add_reward(datum/campaign_reward/new_reward)
-	faction_rewards += new new_reward(src)
+	faction_rewards += new new_reward(src) //todo: add some logic for adding uses to existing rewards if applicable (see how this looks with the ui first, may or may not be desired)
