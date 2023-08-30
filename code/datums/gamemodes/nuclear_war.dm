@@ -152,6 +152,8 @@
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	if(stored_larva)
+		return
 	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
 	if(!num_xenos)
 		xeno_job.add_job_positions(1)
@@ -162,9 +164,9 @@
 	var/total_slots = get_total_joblarvaworth() / xeno_job.job_points_needed
 	var/larva_surplus = total_slots + silo_bonus - num_xenos - cooling_larvas
 	if(larva_surplus < 1)
-		log_debug("SILO_REWORK_DEBUG: NO LARVA SURPLUS larva surplus: [larva_surplus], num_xenos: [num_xenos], total_slots: [total_slots], silo_bonus: [silo_bonus], stored_larva: [stored_larva]")
+		log_debug("SILO_REWORK_DEBUG: NO LARVA SURPLUS larva surplus: [larva_surplus], num_xenos: [num_xenos], total_slots: [total_slots], silo_bonus: [silo_bonus], stored_larva: [stored_larva], cooling_larvas:[cooling_larvas]")
 		return //Things are balanced, no burrowed needed
-	log_debug("SILO_REWORK_DEBUG: ADDING LARVA larva surplus: [larva_surplus], num_xenos: [num_xenos], total_slots: [total_slots], silo_bonus: [silo_bonus], stored_larva: [stored_larva]")
+	log_debug("SILO_REWORK_DEBUG: ADDING LARVA larva surplus: [larva_surplus], num_xenos: [num_xenos], total_slots: [total_slots], silo_bonus: [silo_bonus], stored_larva: [stored_larva], cooling_larvas:[cooling_larvas]")
 	xeno_job.add_job_positions(larva_surplus)
 	xeno_hive.update_tier_limits()
 
