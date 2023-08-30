@@ -1,4 +1,0 @@
-author: "forestbbbbbbb"
-delete-after: True
-changes:
-  - bugfix: "You can no longer use non-ASCII characters in OOC"

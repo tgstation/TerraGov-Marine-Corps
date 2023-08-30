@@ -994,8 +994,7 @@
 "adA" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/obj/structure/lattice,
-/turf/closed/banish_space,
+/turf/open/floor/plating/airless,
 /area/space)
 "adB" = (
 /obj/machinery/bodyscanner,
@@ -2496,7 +2495,6 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "anK" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 8
@@ -11735,7 +11733,7 @@
 "ehA" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
-/turf/open/space/basic,
+/turf/open/floor/prison/cleanmarked,
 /area/sulaco/hangar/droppod)
 "ehJ" = (
 /obj/structure/window/reinforced{
@@ -17419,12 +17417,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
-"luh" = (
-/obj/machinery/door/poddoor/mainship/droppod{
-	dir = 2
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/sulaco/hangar/droppod)
 "lve" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -61327,15 +61319,15 @@ aaa
 aaa
 aaa
 nzi
-cyv
-cyv
-cyv
-cyv
-cyv
-cyv
-cyv
-cyv
-cyv
+bWf
+bWf
+bWf
+bWf
+bWf
+bWf
+bWf
+bWf
+bWf
 aPg
 aQv
 aRd
@@ -62877,7 +62869,7 @@ rFM
 sbs
 dde
 wjr
-luh
+tcy
 wjr
 aSl
 gHU

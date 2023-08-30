@@ -964,7 +964,6 @@
 /area/medical/medbay2)
 "ex" = (
 /obj/structure/closet/bodybag/cryobag,
-/obj/structure/closet/bodybag/cryobag,
 /turf/open/floor/tile/bar,
 /area/medical/medbay2)
 "eA" = (

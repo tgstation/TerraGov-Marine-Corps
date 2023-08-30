@@ -2940,7 +2940,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -16019,7 +16018,6 @@
 /area/ice_colony/underground/crew/leisure)
 "bPa" = (
 /obj/structure/closet/crate,
-/obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
 	amount = 15
 	},
@@ -23699,7 +23697,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment/garbledradio)
@@ -33388,7 +33385,6 @@
 	},
 /area/ice_colony/surface/command)
 "xna" = (
-/obj/structure/closet/crate,
 /obj/structure/closet/crate,
 /obj/machinery/light/small{
 	dir = 4
