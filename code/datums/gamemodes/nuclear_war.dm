@@ -160,7 +160,7 @@
 		log_debug("SILO_REWORK_DEBUG: NO XENOS, ADDING LARVA")
 		return
 
-	var/silo_bonus = length(possible_silos) <= 1 ? 0 : (length(possible_silos) * 3)
+	var/silo_bonus = length(possible_silos) * 3
 	var/total_slots = get_total_joblarvaworth() / xeno_job.job_points_needed
 	var/larva_surplus = total_slots + silo_bonus - num_xenos - cooling_larvas
 	if(larva_surplus < 1)
