@@ -819,6 +819,33 @@
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
 
+/datum/keybinding/xeno/psychic_shield
+	name = "Psychic Shield"
+	full_name = "Warlock: Psychic Shield"
+	description = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_SHIELD
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/trigger_psychic_shield
+	name = "Trigger Psychic Shield"
+	full_name = "Warlock: Trigger Psychic Shield"
+	description = "Triggers the Psychic Shield ability without selecting it."
+	keybind_signal = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD
+
+/datum/keybinding/xeno/psychic_blast
+	name = "Psychic Blast"
+	full_name = "Warlock: Psychic Blast"
+	description = "Fire a lightly-damaging AOE psychic beam which knocks back enemies after a short charge-up."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_BLAST
+	hotkey_keys = list("R")
+
+/datum/keybinding/xeno/psychic_crush
+	name = "Psychic Crush"
+	full_name = "Warlock: Psychic Crush"
+	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
+	hotkey_keys = list("Q")
+
 /datum/keybinding/xeno/toggle_agility
 	name = "toggle_agility"
 	full_name = "Warrior: Toggle Agility"
@@ -860,75 +887,6 @@
 	description = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
 	keybind_signal = COMSIG_XENOABILITY_JAB
 	hotkey_keys = list("E")
-
-/datum/keybinding/xeno/rewind
-	name = "rewind"
-	full_name = "Wraith: Time Shift"
-	description = "Save the location and status of the target. When the time is up, the target location and status are restored"
-	keybind_signal = COMSIG_XENOABILITY_REWIND
-
-/datum/keybinding/xeno/portal
-	name = "portal"
-	full_name = "Wraith: Portal"
-	description = "Place the first portal on your location. You can travel from portal one to portal two and vice versa."
-	keybind_signal =COMSIG_XENOABILITY_PORTAL
-
-/datum/keybinding/xeno/portal_two
-	name = "portal_two"
-	full_name = "Wraith: Portal two"
-	description = "Place the second portal on your location. You can travel from portal one to portal two and vice versa."
-	keybind_signal =COMSIG_XENOABILITY_PORTAL_ALTERNATE
-
-/datum/keybinding/xeno/blink
-	name = "wraith_blink"
-	full_name = "Wraith: Blink"
-	description = "Teleport to a space a short distance away within line of sight. Can teleport mobs you're dragging with you at the cost of higher cooldown."
-	keybind_signal = COMSIG_XENOABILITY_BLINK
-
-/datum/keybinding/xeno/banish
-	name = "banish"
-	full_name = "Wraith: Banish"
-	description = "Banish a creature or object a short distance away within line of sight to null space. Can target oneself and allies. Can be manually cancelled with Recall."
-	keybind_signal = COMSIG_XENOABILITY_BANISH
-
-/datum/keybinding/xeno/recall
-	name = "recall"
-	full_name = "Wraith: Recall"
-	description = "Recall a target from netherspace, ending Banish's effect."
-	keybind_signal = COMSIG_XENOABILITY_RECALL
-
-/datum/keybinding/xeno/timestop
-	name = "timestop"
-	full_name = "Wraith: Time stop"
-	description = "Freezes bullets in their course, and they will start to move again only after a certain time"
-	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
-
-/datum/keybinding/xeno/psychic_shield
-	name = "Psychic Shield"
-	full_name = "Warlock: Psychic Shield"
-	description = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback."
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_SHIELD
-	hotkey_keys = list("E")
-
-/datum/keybinding/xeno/trigger_psychic_shield
-	name = "Trigger Psychic Shield"
-	full_name = "Warlock: Trigger Psychic Shield"
-	description = "Triggers the Psychic Shield ability without selecting it."
-	keybind_signal = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD
-
-/datum/keybinding/xeno/psychic_blast
-	name = "Psychic Blast"
-	full_name = "Warlock: Psychic Blast"
-	description = "Fire a lightly-damaging AOE psychic beam which knocks back enemies after a short charge-up."
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_BLAST
-	hotkey_keys = list("R")
-
-/datum/keybinding/xeno/psychic_crush
-	name = "Psychic Crush"
-	full_name = "Warlock: Psychic Crush"
-	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
-	hotkey_keys = list("Q")
 
 	/datum/keybinding/xeno/burrow
 	name = "burrow"
@@ -977,3 +935,45 @@
 	full_name = "Widow: Spiderling Mark"
 	description = "Signal your spawn to a target they shall attack."
 	keybind_signal = COMSIG_XENOABILITY_SPIDERLING_MARK
+
+/datum/keybinding/xeno/rewind
+	name = "rewind"
+	full_name = "Wraith: Time Shift"
+	description = "Save the location and status of the target. When the time is up, the target location and status are restored"
+	keybind_signal = COMSIG_XENOABILITY_REWIND
+
+/datum/keybinding/xeno/portal
+	name = "portal"
+	full_name = "Wraith: Portal"
+	description = "Place the first portal on your location. You can travel from portal one to portal two and vice versa."
+	keybind_signal =COMSIG_XENOABILITY_PORTAL
+
+/datum/keybinding/xeno/portal_two
+	name = "portal_two"
+	full_name = "Wraith: Portal two"
+	description = "Place the second portal on your location. You can travel from portal one to portal two and vice versa."
+	keybind_signal =COMSIG_XENOABILITY_PORTAL_ALTERNATE
+
+/datum/keybinding/xeno/blink
+	name = "wraith_blink"
+	full_name = "Wraith: Blink"
+	description = "Teleport to a space a short distance away within line of sight. Can teleport mobs you're dragging with you at the cost of higher cooldown."
+	keybind_signal = COMSIG_XENOABILITY_BLINK
+
+/datum/keybinding/xeno/banish
+	name = "banish"
+	full_name = "Wraith: Banish"
+	description = "Banish a creature or object a short distance away within line of sight to null space. Can target oneself and allies. Can be manually cancelled with Recall."
+	keybind_signal = COMSIG_XENOABILITY_BANISH
+
+/datum/keybinding/xeno/recall
+	name = "recall"
+	full_name = "Wraith: Recall"
+	description = "Recall a target from netherspace, ending Banish's effect."
+	keybind_signal = COMSIG_XENOABILITY_RECALL
+
+/datum/keybinding/xeno/timestop
+	name = "timestop"
+	full_name = "Wraith: Time stop"
+	description = "Freezes bullets in their course, and they will start to move again only after a certain time"
+	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
