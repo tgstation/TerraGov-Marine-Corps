@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/warrior
 	name = "Warrior"
 	desc = "A beefy, alien with an armored carapace."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/warrior.dmi'
 	icon_state = "Warrior Walking"
 	bubble_icon = "alienroyal"
 	health = 200
@@ -70,7 +70,7 @@
 	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
 	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
 	L.drop_all_held_items()
-	L.Paralyze(1)
+	L.Paralyze(0.1 SECONDS)
 	visible_message(span_xenowarning("\The [src] grabs [L] by the throat!"), \
 	span_xenowarning("We grab [L] by the throat!"))
 	return TRUE
@@ -79,12 +79,6 @@
 /mob/living/carbon/xenomorph/warrior/resisted_against(datum/source)
 	var/mob/living/victim = source
 	victim.do_resist_grab()
-
-
-/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM, speed = 5)
-	if(ishuman(AM))
-		return
-	..()
 
 // ***************************************
 // *********** Primordial procs

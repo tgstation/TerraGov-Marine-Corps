@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/beetle
 	name = "Beetle"
 	desc = "A bulky, six-legged alien with a horn. Its carapace seems quite durable."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/beetle.dmi'
 	icon_state = "Beetle Walking"
 	health = 200
 	maxHealth = 200
@@ -24,4 +24,4 @@
 	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
 	target_turf = get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), 4, 70, H)
-	H.Paralyze(20)
+	H.Paralyze(2 SECONDS)

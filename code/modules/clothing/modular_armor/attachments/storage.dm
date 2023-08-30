@@ -34,12 +34,13 @@
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(access_storage))
 	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(insert_item))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(open_storage))
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	equip_delay_self = initial(equip_delay_self)
 	strip_delay = initial(strip_delay)
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_ATOM_ATTACKBY))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_GHOST))
 	storage.master_item = src
 	return ..()
 
@@ -54,7 +55,7 @@
 ///Opens the internal storage when the parent is alt right clicked on.
 /obj/item/armor_module/storage/proc/open_storage(datum/source, mob/living/user)
 	SIGNAL_HANDLER
-	if(parent.loc != user)
+	if(!isobserver(user) && parent.loc != user)
 		return
 	storage.open(user)
 	return COMPONENT_NO_ATTACK_HAND
@@ -295,6 +296,10 @@
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/pill,
+		/obj/item/storage/syringe_case,
+		/obj/item/roller/medevac,
+		/obj/item/roller,
+		/obj/item/bodybag,
 		/obj/item/storage/pill_bottle,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/gloves/latex,
@@ -379,6 +384,7 @@
 /obj/item/armor_module/storage/boot/som_knife/Initialize(mapload)
 	. = ..()
 	new /obj/item/attachable/bayonetknife/som(storage)
+
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."

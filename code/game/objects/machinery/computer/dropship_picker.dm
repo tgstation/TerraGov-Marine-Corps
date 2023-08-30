@@ -33,6 +33,8 @@
 	. = list()
 	var/list/shuttles = list()
 	for (var/datum/map_template/shuttle/minidropship/shuttle_template AS in SSmapping.minidropship_templates)
+		if(!shuttle_template.admin_enable && !SSticker.mode.enable_fun_tads)
+			continue
 		shuttles += list(list(
 			"name" = shuttle_template.display_name,
 			"description" = shuttle_template.description,
@@ -60,6 +62,8 @@
 		"_big" = 'icons/ui_icons/dropshippicker/_big.png',
 		"_food" = 'icons/ui_icons/dropshippicker/_food.png',
 		"_factorio" = 'icons/ui_icons/dropshippicker/_factorio.png',
+		"_combat_tad" = 'icons/ui_icons/dropshippicker/_combat_tad.png',
+		"_mobile_bar" = 'icons/ui_icons/dropshippicker/_mobile_bar.png',
 		"_umbilical" = 'icons/ui_icons/dropshippicker/_umbilical.png',
 	)
 
@@ -67,7 +71,7 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	if(dropship_selected)
 		return FALSE
 

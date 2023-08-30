@@ -164,6 +164,8 @@
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["sound_tts"], sound_tts)
 	READ_FILE(S["volume_tts"], volume_tts)
+	READ_FILE(S["fast_mc_refresh"], fast_mc_refresh)
+	READ_FILE(S["split_admin_tabs"], split_admin_tabs)
 
 	READ_FILE(S["key_bindings"], key_bindings)
 	READ_FILE(S["custom_emotes"], custom_emotes)
@@ -239,6 +241,9 @@
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
+
+	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
+	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
 	return TRUE
 
 
@@ -304,6 +309,10 @@
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
 
+	// Admin
+	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
+	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
+
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["ooccolor"], ooccolor)
@@ -351,6 +360,10 @@
 	WRITE_FILE(S["tgui_input"], tgui_input)
 	WRITE_FILE(S["tgui_input_big_buttons"], tgui_input_big_buttons)
 	WRITE_FILE(S["tgui_input_buttons_swap"], tgui_input_buttons_swap)
+
+	// Admin options
+	WRITE_FILE(S["fast_mc_refresh"], fast_mc_refresh)
+	WRITE_FILE(S["split_admin_tabs"], split_admin_tabs)
 
 	return TRUE
 
@@ -464,17 +477,12 @@
 	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER, MAX_QUICK_EQUIP_SLOTS, TRUE, VALID_EQUIP_SLOTS)
 	for(var/quick_equip_slots in quick_equip)
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], initial(quick_equip_slots))
-	switch(gender)
-		if(MALE)
-			underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
-			undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
-		if(FEMALE)
-			underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-			undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
-		else
-			underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_n), initial(underwear))
-			undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_n), initial(undershirt))
-			
+	if(gender == MALE)
+		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
+	else
+		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
+		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
 	backpack = sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
 
 	h_style = sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))
@@ -558,17 +566,12 @@
 	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER, MAX_QUICK_EQUIP_SLOTS, TRUE, VALID_EQUIP_SLOTS)
 	for(var/quick_equip_slots in quick_equip)
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], initial(quick_equip_slots))
-	switch(gender)
-		if(MALE)
-			underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
-			undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
-		if(FEMALE)
-			underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-			undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
-		else
-			underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_n), initial(underwear))
-			undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_n), initial(undershirt))
-	
+	if(gender == MALE)
+		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
+	else
+		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
+	undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
 	backpack = sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
 
 	h_style = sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))

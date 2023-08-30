@@ -84,7 +84,7 @@
 		adjustDrowsyness(-restingpwr)
 		blur_eyes(2)
 		if(drowsyness > 18 && prob(5))
-			Sleeping(20)
+			Sleeping(2 SECONDS)
 			Unconscious(10 SECONDS)
 
 	if(jitteriness)
@@ -103,7 +103,7 @@
 		handle_dreams()
 		if(mind)
 			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
-				AdjustSleeping(-20)
+				AdjustSleeping(-2 SECONDS)
 		if(!isxeno(src))
 			if(prob(2) && health && !hallucination)
 				emote("snore")
@@ -120,7 +120,7 @@
 
 		if(drunkenness >= 41)
 			if(prob(25))
-				AdjustConfused(40)
+				AdjustConfused(4 SECONDS)
 			if(dizziness < 450) // To avoid giving the player overly dizzy too
 				dizzy(8)
 

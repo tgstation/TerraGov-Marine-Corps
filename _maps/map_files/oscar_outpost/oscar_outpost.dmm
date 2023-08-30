@@ -2934,7 +2934,6 @@
 	},
 /obj/machinery/door/window{
 	dir = 2;
-	name = "broken sunglasses";
 	pixel_y = 9
 	},
 /obj/structure/window{
@@ -4412,11 +4411,6 @@
 /obj/item/reagent_containers/glass/bottle/tricordrazine,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village)
-"BQ" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/oscar_outpost)
 "BR" = (
 /obj/machinery/chem_dispenser,
 /obj/effect/spawner/random/medical/beaker/bluespace,
@@ -5370,8 +5364,6 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
 "Gl" = (
-/obj/item/storage/box/minisentry,
-/obj/item/storage/box/minisentry,
 /obj/structure/rack,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
@@ -8680,10 +8672,6 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
-"TI" = (
-/obj/item/storage/box/loot/mortar_pack,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/village/fairgrounds)
 "TJ" = (
 /obj/structure/table/rusticwoodentable,
 /obj/item/reagent_containers/food/snacks/sliceable/cheesewheel{
@@ -9014,11 +9002,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
-"Vz" = (
-/obj/structure/girder,
-/obj/structure/girder,
-/turf/open/floor/plating,
-/area/oscar_outpost)
 "VC" = (
 /obj/structure/barricade/metal{
 	dir = 4
@@ -18189,7 +18172,7 @@ TV
 XG
 FG
 bk
-Vz
+Vw
 bk
 TV
 XG
@@ -19016,7 +18999,7 @@ bk
 bk
 bk
 bk
-BQ
+YO
 YO
 YO
 YO
@@ -41135,7 +41118,7 @@ lg
 Ta
 Ta
 Se
-TI
+Xj
 Gq
 Ta
 Ta
@@ -42899,7 +42882,7 @@ Ta
 Ta
 Ta
 Se
-TI
+Xj
 Gq
 Ta
 Ta

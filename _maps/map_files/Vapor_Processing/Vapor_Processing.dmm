@@ -964,7 +964,6 @@
 /area/medical/medbay2)
 "ex" = (
 /obj/structure/closet/bodybag/cryobag,
-/obj/structure/closet/bodybag/cryobag,
 /turf/open/floor/tile/bar,
 /area/medical/medbay2)
 "eA" = (
@@ -1168,7 +1167,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "fq" = (
 /obj/machinery/power/terminal,
@@ -2690,7 +2689,7 @@
 /turf/open/floor,
 /area/maintenance/substation)
 "oa" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "ob" = (
 /obj/structure/closet/emcloset,
@@ -2717,7 +2716,7 @@
 /area/maintenance/substation)
 "ol" = (
 /obj/structure/cable,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "ot" = (
 /obj/structure/cable,
@@ -2848,7 +2847,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pp" = (
 /obj/structure/window/framed/colony,
@@ -2866,10 +2865,10 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pu" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pv" = (
 /obj/structure/bed/chair/wood/wings{
@@ -2902,14 +2901,14 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pA" = (
 /obj/structure/bed,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pC" = (
 /turf/open/floor/wood,
@@ -2946,7 +2945,7 @@
 /obj/structure/closet,
 /obj/effect/spawner/random/misc/cigarettes,
 /obj/machinery/light,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pK" = (
 /turf/closed/wall,
@@ -3167,7 +3166,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /obj/structure/nuke_disk_candidate,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "qS" = (
 /obj/structure/window/reinforced{
@@ -3841,7 +3840,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "tO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3926,7 +3925,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "us" = (
 /obj/structure/closet/radiation,
@@ -4209,7 +4208,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "yI" = (
 /obj/structure/table/flipped,
@@ -4418,7 +4417,7 @@
 /obj/structure/bed,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "BJ" = (
 /turf/closed/mineral/smooth,
@@ -4476,7 +4475,7 @@
 /area/lv624/ground/compound/n)
 "Ct" = (
 /obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "Cz" = (
 /obj/item/weapon/gun/pistol/holdout,
@@ -4496,7 +4495,7 @@
 "CO" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "CW" = (
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -4971,7 +4970,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/random/engineering/toolbox,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "KH" = (
 /turf/open/ground,
@@ -6015,7 +6014,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "YT" = (
 /obj/machinery/door/airlock/mainship/generic{

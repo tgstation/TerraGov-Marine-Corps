@@ -72,6 +72,19 @@
 	dir = 8
 	},
 /area/orion_outpost/surface/building/administration)
+"aF" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails{
+	density = 0
+	},
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/administration)
 "aG" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
@@ -98,7 +111,7 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "aR" = (
 /obj/effect/ai_node,
@@ -173,7 +186,7 @@
 /area/orion_outpost/ground/outpostcent)
 "bg" = (
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "bh" = (
 /obj/structure/cable,
@@ -268,7 +281,7 @@
 	color = "#7a8c54";
 	dir = 9
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "bH" = (
 /obj/machinery/computer3,
@@ -303,7 +316,7 @@
 /area/orion_outpost/surface/building/administration)
 "bN" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "bP" = (
 /obj/structure/cable,
@@ -320,6 +333,18 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/prep)
+"bT" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/administration)
 "bV" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/platform{
@@ -329,7 +354,6 @@
 /area/orion_outpost/surface/building/tadpolepad)
 "bX" = (
 /obj/machinery/newscaster,
-/turf/open/floor/wood,
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/barracks)
 "bY" = (
@@ -440,7 +464,7 @@
 /area/orion_outpost/surface/building/prep)
 "cF" = (
 /obj/structure/flora/tree/joshua,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/underground/caveE)
 "cG" = (
 /obj/effect/landmark/weed_node,
@@ -557,7 +581,7 @@
 /obj/structure/flora/grass/tallgrass{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostnw)
 "dn" = (
 /obj/effect/ai_node,
@@ -580,7 +604,7 @@
 	color = "#7a8c54";
 	dir = 1
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "dw" = (
 /obj/effect/landmark/weed_node,
@@ -594,7 +618,7 @@
 	color = "#7a8c54";
 	dir = 9
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "dy" = (
 /obj/structure/table/mainship,
@@ -615,7 +639,7 @@
 	},
 /area/orion_outpost/surface/building/engineering)
 "dA" = (
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostn)
 "dC" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -653,11 +677,18 @@
 	},
 /area/orion_outpost/surface/building/prep)
 "dM" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/tadpolepad)
+"dN" = (
+/obj/structure/bed/chair/office/dark,
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/administration)
 "dO" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -678,7 +709,7 @@
 	},
 /area/orion_outpost/surface/building/administration)
 "dS" = (
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostnw)
 "dV" = (
 /obj/structure/prop/brokenvendor/surplusarmor,
@@ -689,7 +720,7 @@
 "dW" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "dX" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -726,7 +757,7 @@
 	color = "#7a8c54";
 	dir = 10
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "eg" = (
 /obj/effect/landmark/corpsespawner/marine,
@@ -801,7 +832,7 @@
 /obj/structure/flora/grass/tallgrass{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "eC" = (
 /obj/structure/cable,
@@ -927,7 +958,7 @@
 	},
 /area/orion_outpost/surface/building/command)
 "fc" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -950,7 +981,7 @@
 "fi" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "fm" = (
 /obj/structure/cable,
@@ -978,7 +1009,7 @@
 "fs" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "ft" = (
 /turf/open/floor/plating,
@@ -1404,7 +1435,7 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostn)
 "hS" = (
 /obj/machinery/light{
@@ -1446,12 +1477,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/dorms)
-"if" = (
-/obj/structure/window{
-	dir = 4
-	},
-/turf/closed/wall/mainship/gray,
-/area/orion_outpost/surface/building/administration)
 "ig" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1605,7 +1630,7 @@
 	color = "#7a8c54";
 	dir = 4
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "iX" = (
 /obj/structure/cable,
@@ -1671,7 +1696,7 @@
 	},
 /area/orion_outpost/surface/landing_pad)
 "jk" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -1723,7 +1748,7 @@
 	color = "#7a8c54";
 	dir = 4
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "jy" = (
 /obj/machinery/door/airlock/mainship/generic,
@@ -1765,7 +1790,7 @@
 	color = "#7a8c54";
 	dir = 6
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "jJ" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -1838,7 +1863,7 @@
 	color = "#7a8c54";
 	dir = 10
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "jX" = (
 /obj/structure/toilet{
@@ -2001,7 +2026,7 @@
 	color = "#7a8c54";
 	dir = 9
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "kQ" = (
 /obj/structure/table/mainship,
@@ -2019,7 +2044,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
 "kT" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -2042,7 +2067,7 @@
 /area/orion_outpost/ground/outpostw)
 "kY" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "kZ" = (
 /obj/structure/cable,
@@ -2101,7 +2126,7 @@
 	color = "#7a8c54";
 	dir = 5
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "lp" = (
 /turf/open/floor/mainship/orange{
@@ -2140,7 +2165,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/orion_outpost/surface/building/medbay)
 "lw" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -2273,7 +2298,7 @@
 	dir = 6
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "mh" = (
 /turf/open/floor/plating/ground/concrete,
@@ -2293,7 +2318,7 @@
 	color = "#7a8c54";
 	dir = 5
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "mo" = (
 /turf/open/floor/mainship/blue{
@@ -2341,7 +2366,7 @@
 	color = "#7a8c54";
 	dir = 8
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "mA" = (
 /obj/effect/landmark/sensor_tower,
@@ -2376,7 +2401,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/nebuilding)
 "mJ" = (
-/obj/structure/stairs/seamless/platform/alt,
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostcent)
 "mL" = (
@@ -2443,7 +2468,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostsw)
 "nb" = (
-/obj/structure/stairs/seamless/platform/alt,
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "nc" = (
@@ -2508,7 +2533,7 @@
 	color = "#7a8c54";
 	dir = 6
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "nn" = (
 /turf/open/floor/mainship/orange,
@@ -2741,7 +2766,7 @@
 	color = "#7a8c54";
 	dir = 9
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "ov" = (
 /obj/structure/cable,
@@ -3181,7 +3206,7 @@
 	color = "#7a8c54";
 	dir = 1
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "qx" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
@@ -3242,7 +3267,7 @@
 	color = "#7a8c54";
 	dir = 10
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "qK" = (
 /obj/structure/closet/secure_closet/security,
@@ -3346,7 +3371,7 @@
 	},
 /area/orion_outpost/surface/building/command)
 "rm" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -3510,7 +3535,6 @@
 	pixel_x = -15;
 	pixel_y = -1
 	},
-/turf/open/floor/wood,
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/barracks)
 "sa" = (
@@ -3615,7 +3639,7 @@
 	color = "#7a8c54";
 	dir = 9
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "sA" = (
 /obj/effect/landmark/weed_node,
@@ -3633,7 +3657,7 @@
 /area/orion_outpost/surface/building/brig)
 "sD" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "sE" = (
 /obj/machinery/vending/cola,
@@ -3644,7 +3668,7 @@
 	color = "#7a8c54";
 	dir = 1
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "sG" = (
 /turf/open/floor/mainship/terragov/north{
@@ -3725,7 +3749,7 @@
 	dir = 10
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostn)
 "sV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -3826,7 +3850,7 @@
 /area/orion_outpost/surface/building/tadpolepad)
 "tr" = (
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "tt" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
@@ -3848,7 +3872,7 @@
 /obj/structure/flora/grass/tallgrass{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "tE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3901,14 +3925,14 @@
 /area/orion_outpost/ground/outposts)
 "tT" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "tV" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
 	dir = 5
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "tW" = (
 /obj/structure/platform,
@@ -3978,7 +4002,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/nebuilding)
 "un" = (
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "up" = (
 /obj/structure/closet/crate/science,
@@ -4056,7 +4080,7 @@
 /obj/structure/flora/grass/tallgrass{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "uR" = (
 /obj/structure/cable,
@@ -4067,7 +4091,7 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "uT" = (
 /obj/structure/cable,
@@ -4079,7 +4103,7 @@
 /area/orion_outpost/surface/building/brig)
 "uX" = (
 /obj/structure/flora/tree/joshua,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "va" = (
 /obj/structure/cable,
@@ -4099,7 +4123,7 @@
 /area/orion_outpost/ground/outposts)
 "vc" = (
 /obj/structure/flora/tree/joshua,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "ve" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -4148,7 +4172,7 @@
 	color = "#7a8c54";
 	dir = 10
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "vn" = (
 /obj/structure/cable,
@@ -4244,7 +4268,7 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "vL" = (
 /obj/machinery/camera/autoname/lz_camera,
@@ -4279,7 +4303,7 @@
 	color = "#7a8c54";
 	dir = 8
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "vW" = (
 /obj/effect/landmark/xeno_silo_spawn,
@@ -4368,7 +4392,7 @@
 	color = "#7a8c54";
 	dir = 8
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostnw)
 "wr" = (
 /turf/open/floor/mainship/mono,
@@ -4383,7 +4407,7 @@
 /area/orion_outpost/surface/building/administration)
 "wA" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "wD" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -4443,7 +4467,7 @@
 /obj/structure/flora/grass/tallgrass{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "wS" = (
 /obj/structure/cable,
@@ -4473,7 +4497,7 @@
 	dir = 9
 	},
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostn)
 "wW" = (
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/engineer,
@@ -4541,7 +4565,7 @@
 /area/orion_outpost/surface/building/prep)
 "xp" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "xt" = (
 /obj/effect/ai_node,
@@ -4624,7 +4648,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/administration)
 "xS" = (
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/underground/caveE)
 "xT" = (
 /obj/structure/cable,
@@ -4721,7 +4745,7 @@
 /area/orion_outpost/surface/building/vehicledepot)
 "ym" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostn)
 "yn" = (
 /obj/structure/bed/chair/office/dark{
@@ -4740,7 +4764,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "yp" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -4904,7 +4928,7 @@
 /area/orion_outpost/ground/outposte)
 "zm" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostn)
 "zn" = (
 /obj/structure/cable,
@@ -4920,7 +4944,7 @@
 /area/orion_outpost/ground/outpostse)
 "zq" = (
 /obj/structure/flora/tree/joshua,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "zu" = (
 /obj/structure/bed/chair{
@@ -5022,7 +5046,7 @@
 	},
 /area/orion_outpost/surface/building/cargo)
 "zV" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -5093,7 +5117,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostse)
 "Ap" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -5218,7 +5242,7 @@
 	dir = 10
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "AU" = (
 /obj/structure/desertdam/decals/road{
@@ -5399,7 +5423,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/tadpolepad)
 "BU" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -5487,7 +5511,7 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "Cp" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
@@ -5524,7 +5548,7 @@
 	color = "#7a8c54";
 	dir = 4
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "Cy" = (
 /obj/effect/landmark/weed_node,
@@ -5574,7 +5598,7 @@
 /area/orion_outpost/ground/outpostnw)
 "CF" = (
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostnw)
 "CH" = (
 /obj/structure/prop/vehicle/van{
@@ -5687,7 +5711,7 @@
 	color = "#7a8c54";
 	dir = 8
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "Dm" = (
 /obj/structure/bed/chair/office/dark{
@@ -5734,7 +5758,7 @@
 	color = "#7a8c54";
 	dir = 6
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "Dw" = (
 /obj/structure/cable,
@@ -5761,7 +5785,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostnw)
 "DH" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -5864,7 +5888,7 @@
 	color = "#7a8c54";
 	dir = 9
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostnw)
 "Eg" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -5939,7 +5963,7 @@
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/prep)
 "EB" = (
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "EC" = (
 /obj/effect/landmark/patrol_point{
@@ -6124,7 +6148,7 @@
 	dir = 6
 	},
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "FI" = (
 /turf/open/floor/plating/ground/concrete/lines,
@@ -6226,7 +6250,7 @@
 	color = "#7a8c54";
 	dir = 5
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "Gq" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
@@ -6266,7 +6290,7 @@
 	},
 /area/orion_outpost/surface/landing_pad_2)
 "Gy" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -6322,14 +6346,14 @@
 	color = "#7a8c54";
 	dir = 4
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "GP" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
 	dir = 10
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "GQ" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -6395,7 +6419,7 @@
 	color = "#7a8c54";
 	dir = 8
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "Hi" = (
 /obj/structure/bed/chair{
@@ -6449,7 +6473,7 @@
 	color = "#7a8c54";
 	dir = 8
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "Hx" = (
 /obj/machinery/light{
@@ -6467,7 +6491,7 @@
 /area/orion_outpost/surface/building/command)
 "Hz" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "HB" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
@@ -6644,7 +6668,7 @@
 /area/orion_outpost/ground/underground/caveS/garbledradio)
 "It" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "Iw" = (
 /obj/structure/platform{
@@ -6674,10 +6698,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/cargo)
-"IF" = (
-/turf/open/floor/wood,
-/turf/closed/wall/mainship/gray,
-/area/orion_outpost/surface/building/barracks)
 "IH" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -6847,7 +6867,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostsw)
 "JC" = (
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "JD" = (
 /turf/open/floor/mainship/orange{
@@ -6874,7 +6894,7 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "JL" = (
 /turf/open/floor/mainship/orange{
@@ -6994,7 +7014,7 @@
 "Kn" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "Ko" = (
 /obj/effect/ai_node,
@@ -7039,7 +7059,7 @@
 /area/orion_outpost/surface/building/medbay)
 "Kx" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "Ky" = (
 /turf/open/floor/mainship/mono,
@@ -7187,7 +7207,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/prep)
 "Lk" = (
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "Ll" = (
 /obj/machinery/light{
@@ -7268,7 +7288,7 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "LA" = (
 /obj/effect/ai_node,
@@ -7330,7 +7350,7 @@
 /area/orion_outpost/surface/building/command)
 "LQ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "LR" = (
 /obj/structure/window/framed/mainship/gray,
@@ -7658,7 +7678,7 @@
 	color = "#7a8c54";
 	dir = 1
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "Nw" = (
 /obj/structure/window/framed/mainship/gray,
@@ -7783,7 +7803,7 @@
 /area/orion_outpost/surface/building/ammodepot)
 "Oa" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "Ob" = (
 /obj/structure/bed/chair,
@@ -7951,7 +7971,7 @@
 /area/orion_outpost/surface/building/vehicledepot)
 "OQ" = (
 /obj/structure/flora/tree/joshua,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "OR" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -7963,7 +7983,7 @@
 	color = "#7a8c54";
 	dir = 6
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "OW" = (
 /obj/structure/bed/chair{
@@ -8020,7 +8040,7 @@
 "Pi" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "Pj" = (
 /turf/open/floor/mainship/orange/corner{
@@ -8056,7 +8076,7 @@
 /turf/open/liquid/water/river,
 /area/orion_outpost/ground/river/riverside_south)
 "Pr" = (
-/obj/structure/stairs/seamless/platform/alt,
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
 "Ps" = (
@@ -8085,7 +8105,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/underground/caveE/garbledradio)
 "Py" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -8225,7 +8245,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/monitor)
 "Qp" = (
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "Qq" = (
 /obj/effect/landmark/weed_node,
@@ -8238,7 +8258,7 @@
 	color = "#7a8c54";
 	dir = 6
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostn)
 "Qt" = (
 /obj/structure/bed/chair{
@@ -8351,7 +8371,7 @@
 	color = "#7a8c54";
 	dir = 6
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "Re" = (
 /obj/structure/closet/secure_closet/guncabinet/riot_control,
@@ -8427,7 +8447,7 @@
 /obj/structure/flora/grass/tallgrass{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "Rv" = (
 /obj/structure/monorail{
@@ -8578,7 +8598,7 @@
 	color = "#7a8c54";
 	dir = 10
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostnw)
 "Sk" = (
 /obj/structure/flora/tree/joshua,
@@ -8633,7 +8653,7 @@
 	color = "#7a8c54";
 	dir = 5
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "Sy" = (
 /turf/open/floor/mainship/mono,
@@ -8795,7 +8815,7 @@
 "Tq" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostn)
 "Tr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8821,7 +8841,7 @@
 /obj/structure/flora/grass/tallgrass{
 	color = "#7a8c54"
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "Tv" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access,
@@ -9354,7 +9374,6 @@
 /obj/machinery/status_display{
 	pixel_y = -1
 	},
-/turf/open/floor/wood,
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/barracks)
 "Wg" = (
@@ -9369,7 +9388,7 @@
 /area/orion_outpost/ground/underground/caveS)
 "Wi" = (
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "Wj" = (
 /turf/open/floor/mainship/orange{
@@ -9484,7 +9503,7 @@
 /area/orion_outpost/ground/outpostcent)
 "WL" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostnw)
 "WM" = (
 /turf/open/floor/plating/ground/concrete/edge,
@@ -9536,7 +9555,7 @@
 	color = "#7a8c54";
 	dir = 1
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "Xf" = (
 /obj/structure/bed/chair,
@@ -9618,7 +9637,7 @@
 	color = "#7a8c54";
 	dir = 6
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostnw)
 "XA" = (
 /obj/docking_port/stationary/crashmode,
@@ -9731,7 +9750,7 @@
 	},
 /area/orion_outpost/surface/building/cargo)
 "Yb" = (
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "Yc" = (
 /obj/structure/prop/brokenvendor/brokenuniformvendor,
@@ -9742,7 +9761,7 @@
 "Yd" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/tree/joshua,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "Yf" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -9812,7 +9831,7 @@
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/prep)
 "Yv" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
@@ -9844,7 +9863,7 @@
 	dir = 9
 	},
 /obj/effect/ai_node,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "YC" = (
 /turf/open/floor/mainship/terragov/north,
@@ -9868,7 +9887,7 @@
 	color = "#7a8c54";
 	dir = 10
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "YL" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -9879,7 +9898,7 @@
 	color = "#7a8c54";
 	dir = 5
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "YO" = (
 /obj/effect/landmark/corpsespawner/marine,
@@ -9905,7 +9924,7 @@
 	color = "#7a8c54";
 	dir = 6
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostw)
 "YU" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -10035,7 +10054,7 @@
 	color = "#7a8c54";
 	dir = 9
 	},
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "ZC" = (
 /obj/structure/prop/vehicle/crawler/crawler_blue,
@@ -10047,7 +10066,7 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "ZE" = (
 /obj/machinery/vending/coffee,
@@ -10055,7 +10074,7 @@
 /area/orion_outpost/surface/building/brig)
 "ZF" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grasspatch/grassyellow,
+/turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposte)
 "ZH" = (
 /obj/machinery/door/airlock/mainship/security,
@@ -10064,7 +10083,6 @@
 /area/orion_outpost/surface/building/armory)
 "ZK" = (
 /obj/machinery/status_display,
-/turf/open/floor/wood,
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/barracks)
 "ZL" = (
@@ -14535,10 +14553,10 @@ Ub
 FI
 uM
 pN
-if
-if
+pN
+pN
 zC
-if
+pN
 pN
 pN
 pN
@@ -14667,10 +14685,10 @@ Ub
 FI
 Ub
 pN
-pC
-Qy
+aF
+bT
 Vd
-vt
+dN
 jb
 pN
 Id
@@ -18920,7 +18938,7 @@ Ud
 Ud
 Pf
 Ud
-IF
+Jd
 lA
 vj
 vj
