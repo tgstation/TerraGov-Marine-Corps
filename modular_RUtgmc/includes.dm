@@ -1,6 +1,7 @@
 #include "code\__DEFINES\mobs.dm"
 #include "code\__DEFINES\xeno.dm"
 #include "code\__DEFINES\dsc\signals.dm"
+#include "code\__DEFINES\colors.dm"
 #include "code\_onclick\hud\screen_objects\menu_text_objects.dm"
 #include "code\datums\jobs\squads.dm"
 #include "code\game\objects\structures\signs.dm"
