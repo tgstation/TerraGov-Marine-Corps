@@ -125,6 +125,7 @@
 	full_name = "Transfer Plasma"
 	description = "Give some of your plasma to a teammate."
 	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
+	hotkey_keys = list("N")
 
 /datum/keybinding/xeno/pounce
 	name = "pounce"
@@ -448,18 +449,21 @@
 	full_name = "Drone: Essence Link"
 	description = "Establish a link of plasma with a sister."
 	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
+	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/essence_link_remove
 	name = "essence_link_remove"
 	full_name = "Drone: End Essence Link"
 	description = "Forcibly end an Essence Link."
 	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/enhancement
 	name = "enhancement"
 	full_name = "Drone: Enhancement"
 	description = "Using an Essence Link, increase a sister's capabilities beyond their limits."
 	keybind_signal = COMSIG_XENOABILITY_ENHANCEMENT
+	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/devour
 	name = "devour"
@@ -644,17 +648,25 @@
 	description = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
 
+/datum/keybinding/xeno/acid_dash
+	name = "acid_dash"
+	full_name = "Praetorian : Acid Dash"
+	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
+	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
+
 /datum/keybinding/xeno/screech
 	name = "screech"
 	full_name = "Queen: Screech"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/toggle_queen_zoom
 	name = "toggle_queen_zoom"
 	full_name = "Queen: Toggle Zoom"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/xeno_leaders
 	name = "xeno_leaders"
@@ -667,12 +679,14 @@
 	full_name = "Queen: Give Heal"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
+	hotkey_keys = list("H")
 
 /datum/keybinding/xeno/queen_give_plasma
 	name = "queen_give_plasma"
 	full_name = "Queen: Give Plasma"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
+	hotkey_keys = list("N")
 
 /datum/keybinding/xeno/queen_hive_message
 	name = "queen_hive_message"
@@ -685,6 +699,7 @@
 	full_name = "Queen: Bulwark"
 	description = "Forms an area around you that reduces damage taken by friendly xenomorphs."
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_BULWARK
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/deevolve
 	name = "deevolve"
@@ -731,12 +746,6 @@
 	full_name = "Ravager: Select Ravage"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
-
-/datum/keybinding/xeno/acid_dash
-	name = "acid_dash"
-	full_name = "Praetorian : Acid Dash"
-	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
-	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
 
 /datum/keybinding/xeno/toggle_savage
 	name = "toggle_savage"
