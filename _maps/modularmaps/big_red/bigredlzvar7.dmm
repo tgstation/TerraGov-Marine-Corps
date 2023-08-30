@@ -1668,11 +1668,6 @@
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
-"Nu" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/space_port)
 "Nv" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -2431,7 +2426,7 @@ rD
 rD
 rD
 rD
-Nu
+Jw
 JU
 AM
 AM
@@ -2471,7 +2466,7 @@ rD
 rD
 rD
 rD
-Nu
+Jw
 Ak
 gF
 gF

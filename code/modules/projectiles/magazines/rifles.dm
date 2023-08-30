@@ -591,3 +591,22 @@
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle
 	max_rounds = 25
+
+//-------------------------------------------------------
+//ML-41 Autoshotgun
+/obj/item/ammo_magazine/rifle/icc_autoshotgun
+	name = "\improper ML-41 Autoshotgun flechette drum magazine (12G)"
+	desc = "A magazine filled with 12G flechette shells for the ML-41."
+	caliber = CALIBER_12G
+	icon_state = "ml41"
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
+	max_rounds = 16
+	icon_state_mini = "mag_rifle"
+
+/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag
+	name = "\improper ML-41 Autoshotgun frag drum magazine (12G)"
+	desc = "A magazine filled with 12G fragmentation shells for the ML-41."
+	caliber = CALIBER_12G
+	icon_state = "ml41_frag"
+	default_ammo = /datum/ammo/bullet/shotgun/frag
+	max_rounds = 12

@@ -1583,6 +1583,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/smg/m25)
 	cost = 3
 
+/datum/supply_packs/imports/alf
+	name = "ALF-51B Kauser machinecarbine"
+	contains = list(/obj/item/weapon/gun/rifle/alf_machinecarbine)
+	cost = 50
+
+/datum/supply_packs/imports/alf/ammo
+	name = "ALF-51B Kauser machinecarbine Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/alf_machinecarbine)
+	cost = 3
+
 /datum/supply_packs/imports/skorpion
 	name = "CZ-81 Skorpion SMG"
 	contains = list(/obj/item/weapon/gun/smg/skorpion)
