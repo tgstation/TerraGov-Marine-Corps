@@ -994,8 +994,7 @@
 "adA" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/obj/structure/lattice,
-/turf/closed/banish_space,
+/turf/open/floor/plating/airless,
 /area/space)
 "adB" = (
 /obj/machinery/bodyscanner,
@@ -2496,7 +2495,6 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "anK" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 8

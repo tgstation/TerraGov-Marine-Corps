@@ -72,6 +72,19 @@
 	dir = 8
 	},
 /area/orion_outpost/surface/building/administration)
+"aF" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails{
+	density = 0
+	},
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/administration)
 "aG" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
@@ -320,6 +333,18 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/prep)
+"bT" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/administration)
 "bV" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/platform{
@@ -329,7 +354,6 @@
 /area/orion_outpost/surface/building/tadpolepad)
 "bX" = (
 /obj/machinery/newscaster,
-/turf/open/floor/wood,
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/barracks)
 "bY" = (
@@ -658,6 +682,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/tadpolepad)
+"dN" = (
+/obj/structure/bed/chair/office/dark,
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/administration)
 "dO" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -1446,12 +1477,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/dorms)
-"if" = (
-/obj/structure/window{
-	dir = 4
-	},
-/turf/closed/wall/mainship/gray,
-/area/orion_outpost/surface/building/administration)
 "ig" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3510,7 +3535,6 @@
 	pixel_x = -15;
 	pixel_y = -1
 	},
-/turf/open/floor/wood,
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/barracks)
 "sa" = (
@@ -6674,10 +6698,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/cargo)
-"IF" = (
-/turf/open/floor/wood,
-/turf/closed/wall/mainship/gray,
-/area/orion_outpost/surface/building/barracks)
 "IH" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -9354,7 +9374,6 @@
 /obj/machinery/status_display{
 	pixel_y = -1
 	},
-/turf/open/floor/wood,
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/barracks)
 "Wg" = (
@@ -10064,7 +10083,6 @@
 /area/orion_outpost/surface/building/armory)
 "ZK" = (
 /obj/machinery/status_display,
-/turf/open/floor/wood,
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/barracks)
 "ZL" = (
@@ -14535,10 +14553,10 @@ Ub
 FI
 uM
 pN
-if
-if
+pN
+pN
 zC
-if
+pN
 pN
 pN
 pN
@@ -14667,10 +14685,10 @@ Ub
 FI
 Ub
 pN
-pC
-Qy
+aF
+bT
 Vd
-vt
+dN
 jb
 pN
 Id
@@ -18920,7 +18938,7 @@ Ud
 Ud
 Pf
 Ud
-IF
+Jd
 lA
 vj
 vj
