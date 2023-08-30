@@ -178,6 +178,8 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 
 		//calculate step duration
 		var/step_duration = max(0.5 SECONDS, rand(surgery_step.min_duration, surgery_step.max_duration) - 1 SECONDS * user.skills.getRating(SKILL_SURGERY))
+		if((locate(/obj/machinery/optable, M.loc)) && user.skills.getRating(SKILL_SURGERY) >= SKILL_SURGERY_PROFESSIONAL)
+			step_duration = 0.5 SECONDS
 
 		//Multiply tool success rate with multipler
 		if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, TYPE_PROC_REF(/mob, break_do_after_checks), null, null, user.zone_selected)) && prob(surgery_step.tool_quality(tool) * CLAMP01(multipler)))
