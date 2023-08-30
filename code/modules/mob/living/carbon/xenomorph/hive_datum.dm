@@ -1082,7 +1082,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos)))
+	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSmonitor.gamestate == SHUTTERS_CLOSED)))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
