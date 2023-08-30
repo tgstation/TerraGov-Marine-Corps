@@ -24543,7 +24543,7 @@
 /obj/machinery/door/window{
 	color = "#b753f5";
 	dir = 8;
-	name = "Reinforced phoron door"
+	name = "Embryo Access"
 	},
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/slumbridge/colony/northerndome)
@@ -31833,7 +31833,6 @@
 	},
 /area/slumbridge/pmcdome)
 "xrN" = (
-/obj/structure/stairs/seamless,
 /obj/structure/stairs,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow,
