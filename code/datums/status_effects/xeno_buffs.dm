@@ -874,7 +874,7 @@
 	buff_owner = owner
 	if(!isxeno(buff_owner))
 		return FALSE
-	modifier = strength * 0.08
+	modifier = strength * 0.07
 	buff_owner.xeno_melee_damage_modifier += modifier
 	return TRUE
 
