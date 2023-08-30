@@ -897,7 +897,7 @@
 	keybind_signal = COMSIG_XENOABILITY_JAB
 	hotkey_keys = list("E")
 
-	/datum/keybinding/xeno/burrow
+/datum/keybinding/xeno/burrow
 	name = "burrow"
 	full_name = "Widow: Burrow"
 	description = "Dig to the ground, making you invisible."
