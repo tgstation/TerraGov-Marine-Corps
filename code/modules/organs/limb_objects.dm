@@ -17,7 +17,7 @@
 	if(H.species && H.species.icobase)
 		base = icon(H.species.icobase)
 	else
-		base = icon('icons/mob/human_races/r_human.dmi')
+		base = icon('modular_RUtgmc/icons/mob/human_races/r_human.dmi')
 
 
 	icon = base
