@@ -6733,14 +6733,6 @@
 	dir = 4
 	},
 /area/mainship/hallways/hangar)
-"giS" = (
-/obj/structure/window/framed/mainship,
-/obj/machinery/door/poddoor/shutters/mainship/corporate,
-/obj/machinery/door/firedoor/mainship{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/mainship/command/corporateliaison)
 "gjc" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/storage/surgical_tray,
@@ -11661,7 +11653,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "kqS" = (
-/obj/structure/lattice,
 /turf/closed/shuttle/ert/engines/left{
 	dir = 1
 	},
@@ -15283,7 +15274,6 @@
 	},
 /area/mainship/squads/req)
 "noK" = (
-/obj/structure/lattice,
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
 	},
@@ -16209,11 +16199,6 @@
 	},
 /turf/open/floor/tile/damaged/four,
 /area/mainship/shipboard/chief_mp_office)
-"oaE" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/command/self_destruct)
 "oaM" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
@@ -16748,7 +16733,6 @@
 /area/mainship/medical/lower_medical)
 "oyB" = (
 /obj/machinery/atmospherics/components/unary/tank/carbon_dioxide,
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/self_destruct)
 "oyF" = (
@@ -20857,7 +20841,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/floor,
 /area/mainship/command/corporateliaison)
 "rYs" = (
 /turf/open/floor/mainship/silver{
@@ -26308,7 +26292,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "wXL" = (
@@ -30996,9 +30979,9 @@ eqk
 gVa
 aYD
 rkn
-giS
+kKF
 rYl
-giS
+kKF
 kKF
 rsX
 kKF
@@ -36935,7 +36918,7 @@ chu
 mlK
 mcL
 oyB
-oaE
+skq
 oyB
 mcL
 dNm
@@ -37547,7 +37530,7 @@ chu
 mlK
 mcL
 oyB
-oaE
+skq
 oyB
 mcL
 dNm
@@ -38159,7 +38142,7 @@ chu
 mlK
 mcL
 oyB
-oaE
+skq
 oyB
 mcL
 dNm
