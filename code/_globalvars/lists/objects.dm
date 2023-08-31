@@ -40,6 +40,8 @@ GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light 
 GLOBAL_LIST_EMPTY(main_overwatch_consoles)			//list of all main overwatch consoles
 ///List of all objectives to destroy in the campaign gamemode
 GLOBAL_LIST_EMPTY(campaign_destroy_objectives)
+
+GLOBAL_LIST_EMPTY(campaign_mech_spawners)
 ///List of all teleporter arrays
 GLOBAL_LIST_EMPTY(teleporter_arrays)
 ///List of all droppod bays

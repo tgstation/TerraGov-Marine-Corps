@@ -1789,6 +1789,7 @@
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
+/obj/effect/landmark/campaign/mech_spawner,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -1803,6 +1804,7 @@
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
+/obj/effect/landmark/campaign/mech_spawner,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -2088,6 +2090,12 @@
 	dir = 8
 	},
 /area/mainship/patrol_base/command)
+"Fb" = (
+/obj/effect/landmark/campaign/mech_spawner,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
 "Fd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2553,12 +2561,14 @@
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
+/obj/effect/landmark/campaign/mech_spawner,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
 "Lf" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
+/obj/effect/landmark/campaign/mech_spawner,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
 "Lh" = (
@@ -2689,6 +2699,10 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base/barracks)
+"NZ" = (
+/obj/effect/landmark/campaign/mech_spawner,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
 "Ob" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/mainship/black/corner{
@@ -31978,11 +31992,11 @@ fV
 fV
 um
 cc
-zS
+Fb
 fV
 Ff
 fV
-Jc
+NZ
 OF
 OF
 fV
@@ -32704,11 +32718,11 @@ fV
 qB
 ur
 ta
-zS
+Fb
 fV
 HJ
 fV
-Jc
+NZ
 OJ
 OJ
 fV

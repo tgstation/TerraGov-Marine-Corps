@@ -1,6 +1,6 @@
-/////basic tdm mission - i.e. combat patrol
-/datum/campaign_mission/mech_wars
-	name = "Combat patrol"
+//mech on mech violence
+/datum/campaign_mission/tdm/mech_wars
+	name = "Mech war"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	objective_description = list(
@@ -23,86 +23,77 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
 
-	mission_brief = list(
-		"starting_faction" = "Hostile forces have been attempting to expand the territory under their control in this area. <br>\
-		Although this territory is of limited direct strategic value, \
-		to prevent them from establishing a permanent presence in the area command has ordered your battalion to execute force recon patrols to locate and eliminate any hostile presence. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
-		"hostile_faction" = "Intelligence indicates that hostile forces are massing for a coordinated push to dislodge us from territory where we are aiming to establish a permanent presence. <br>\
-		Your battalion has been issued orders to regroup and counter attack the enemy push before they can make any progress, and kill their ambitions in this region. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
-	)
-
 	additional_rewards = list(
-		"starting_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
-		"hostile_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
+		"starting_faction" = "Mechanised units will be allocated to your battalion.",
+		"hostile_faction" = "Mechanised units will be allocated to your battalion.",
 	)
 
-/datum/campaign_mission/mech_wars/play_start_intro()
+/datum/campaign_mission/tdm/mech_wars/play_start_intro()
 	intro_message = list(
 		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
 		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
 	)
 	. = ..()
 
-/datum/campaign_mission/mech_wars/check_mission_progress()
-	if(outcome)
-		return TRUE
-
-	if(!game_timer)
-		return
-
-	///pulls the number of both factions, dead or alive
-	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-	var/num_team_one = length(player_list[1])
-	var/num_team_two = length(player_list[2])
-	var/num_dead_team_one = length(player_list[3])
-	var/num_dead_team_two = length(player_list[4])
-
-	if(num_team_two && num_team_one && !max_time_reached)
-		return //fighting is ongoing
-
-	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
-	if(!num_team_two)
-		if(!num_team_one)
-			message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //everyone died at the same time, no one wins
-			outcome = MISSION_OUTCOME_DRAW
-			return TRUE
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]") //starting team wiped the hostile team
-		outcome = MISSION_OUTCOME_MAJOR_VICTORY
-		return TRUE
-
-	if(!num_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]") //hostile team wiped the starting team
-		outcome = MISSION_OUTCOME_MAJOR_LOSS
-		return TRUE
-
-	//minor victories for more kills or draw for equal kills
-	if(num_dead_team_two > num_dead_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]") //starting team got more kills
-		outcome = MISSION_OUTCOME_MINOR_VICTORY
-		return TRUE
-	if(num_dead_team_one > num_dead_team_two)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]") //hostile team got more kills
-		outcome = MISSION_OUTCOME_MINOR_LOSS
-		return TRUE
-
-	message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //equal number of kills, or any other edge cases
-	outcome = MISSION_OUTCOME_DRAW
-	return TRUE
-
-//todo: remove these if nothing new is added
-/datum/campaign_mission/mech_wars/apply_major_victory()
+/datum/campaign_mission/tdm/mech_wars/load_objective_description()
 	. = ..()
+	mission_brief = list(
+		"starting_faction" = "[hostile_faction] mechanised forces have been identified staging in this region, in advance of a suspected strike against our lines. <br>\
+		A heavy mechanised force of our own has been authorised for deployment to crush their forces before they can strike. \
+		Unleash the full power of our mechanised units and crush all enemy forces in the ao while preserving your own forces. Good hunting",
+		"hostile_faction" = "A large [starting_faction] mechanised force has been detected enroute towards one of our staging points in this region. <br>\
+		Our mechanised forces here are vital to our future plans. The enemy assault has given us a unique opportunity to destroy a significant portion of their mechanised forces with a swift counter attack. <br>\
+		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
+	)
 
-/datum/campaign_mission/mech_wars/apply_minor_victory()
+/datum/campaign_mission/tdm/mech_wars/load_mission()
 	. = ..()
+	for(var/obj/effect/landmark/campaign/mech_spawner/spawner AS in GLOB.campaign_mech_spawners[starting_faction])
+		spawner.spawn_mech()
+	for(var/obj/effect/landmark/campaign/mech_spawner/spawner AS in GLOB.campaign_mech_spawners[hostile_faction])
+		spawner.spawn_mech()
 
-/datum/campaign_mission/mech_wars/apply_draw()
-	winning_faction = pick(starting_faction, hostile_faction)
+//todo: proper rewards
+/datum/campaign_mission/tdm/mech_wars/apply_major_victory()
+	winning_faction = starting_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
+	winning_team.add_reward(/datum/campaign_reward/equipment/mech_heavy)
 
-/datum/campaign_mission/mech_wars/apply_minor_loss()
+/datum/campaign_mission/tdm/mech_wars/apply_minor_victory()
+	winning_faction = starting_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
+	winning_team.add_reward(/datum/campaign_reward/equipment/mech_heavy)
+
+/datum/campaign_mission/tdm/mech_wars/apply_draw()
+	winning_faction = hostile_faction
+
+/datum/campaign_mission/tdm/mech_wars/apply_minor_loss()
+	winning_faction = hostile_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+	winning_team.add_reward(/datum/campaign_reward/equipment/mech_heavy)
+
+/datum/campaign_mission/tdm/mech_wars/apply_major_loss()
+	winning_faction = hostile_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+	winning_team.add_reward(/datum/campaign_reward/equipment/mech_heavy)
+
+/obj/effect/landmark/campaign/mech_spawner
+	name = "tgmc_mech_spawner"
+	icon_state = "mech"
+	var/faction = FACTION_TERRAGOV
+	var/obj/vehicle/sealed/mecha/combat/greyscale/mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+
+/obj/effect/landmark/campaign/mech_spawner/Initialize(mapload)
 	. = ..()
+	GLOB.campaign_mech_spawners[faction] += list(src)
 
-/datum/campaign_mission/mech_wars/apply_major_loss()
-	. = ..()
+/obj/effect/landmark/campaign/mech_spawner/Destroy()
+	GLOB.campaign_mech_spawners[faction] -= src
+	return ..()
+
+/obj/effect/landmark/campaign/mech_spawner/proc/spawn_mech()
+	new mech_type(loc)
+
+/obj/effect/landmark/campaign/mech_spawner/som
+	name = "som_mech_spawner"
+	faction = FACTION_SOM

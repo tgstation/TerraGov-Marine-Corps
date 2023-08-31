@@ -3499,6 +3499,10 @@
 	dir = 6
 	},
 /area/mainship/patrol_base/som)
+"Zl" = (
+/obj/effect/landmark/campaign/mech_spawner/som,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "Zs" = (
 /obj/structure/ship_ammo/heavygun/highvelocity,
 /turf/open/floor/mainship_hull/gray,
@@ -9210,7 +9214,7 @@ Uk
 mr
 Aw
 Aw
-Aw
+Zl
 Aw
 Aw
 Aw
@@ -9454,7 +9458,7 @@ Uk
 Uk
 vz
 Aw
-Aw
+Zl
 Aw
 yD
 oA
@@ -9698,7 +9702,7 @@ Uk
 Uk
 vz
 Aw
-Aw
+Zl
 Aw
 xU
 sx
@@ -9942,7 +9946,7 @@ Uk
 Uk
 vz
 Aw
-Aw
+Zl
 Aw
 yD
 oA
@@ -10796,7 +10800,7 @@ Uk
 Uk
 vz
 Aw
-Aw
+Zl
 Aw
 xg
 sB
@@ -11040,7 +11044,7 @@ Uk
 Uk
 vz
 Aw
-Aw
+Zl
 Aw
 xU
 To
@@ -11284,7 +11288,7 @@ Uk
 Uk
 vz
 Aw
-Aw
+Zl
 Aw
 xg
 sB
@@ -11528,7 +11532,7 @@ Uk
 gW
 Aw
 Aw
-Aw
+Zl
 Aw
 Aw
 Aw
