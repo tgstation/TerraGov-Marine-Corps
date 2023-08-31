@@ -1,12 +1,10 @@
-/////basic tdm mission - i.e. combat patrol
-/datum/campaign_mission/fire_support_raid
-	name = "Combat patrol"
-	map_name = "Orion Outpost"
+//disabling some of the enemy's firesupport options. Maybe don't need this parent one considering the destroy mission parent...
+/datum/campaign_mission/destroy_mission/fire_support_raid
+	name = "Fire support raid" //update generic
+	map_name = "Lunar base BD-832"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
-	objective_description = list(
-		"starting_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
-		"hostile_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
-	)
+	objectives_total = 5
+	min_destruction_amount = 3
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
@@ -24,85 +22,36 @@
 	)
 
 	mission_brief = list(
-		"starting_faction" = "Hostile forces have been attempting to expand the territory under their control in this area. <br>\
-		Although this territory is of limited direct strategic value, \
-		to prevent them from establishing a permanent presence in the area command has ordered your battalion to execute force recon patrols to locate and eliminate any hostile presence. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
-		"hostile_faction" = "Intelligence indicates that hostile forces are massing for a coordinated push to dislodge us from territory where we are aiming to establish a permanent presence. <br>\
-		Your battalion has been issued orders to regroup and counter attack the enemy push before they can make any progress, and kill their ambitions in this region. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
+		"starting_faction" = "A hostile fire support position has been identified in this area. This key location provides fire support to enemy forces across the region. <br>\
+		By destroying this outpost we can silence their guns and greatly weaken the enemy's forces. \
+		Move quickly and destroy all fire support installations before they have time to react.",
+		"hostile_faction" = "Hostile forces have been detected moving against our fire support installation in this area. <br>\
+		Repel the enemy and protect the installations until reinforcements can arrive. <br>\
+		Loss of these fire support installations will significantly weaken our forces across this region.",
 	)
 
 	additional_rewards = list(
-		"starting_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
-		"hostile_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
+		"starting_faction" = "Severely degrade enemy fire support options in the future",
+		"hostile_faction" = "Protect our fire support options so they can still be used in the future",
 	)
 
-/datum/campaign_mission/fire_support_raid/play_start_intro()
+/datum/campaign_mission/destroy_mission/fire_support_raid/play_start_intro()
 	intro_message = list(
-		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
-		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
+		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy all [objectives_total] [hostile_faction] fire support installations before further [hostile_faction] reinforcements can arrive. Good hunting!",
+		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all [objectives_total] fire support installations until reinforcements arrive. Eliminate all [starting_faction] forces and secure the area.",
 	)
 	. = ..()
 
-/datum/campaign_mission/fire_support_raid/check_mission_progress()
-	if(outcome)
-		return TRUE
+//setup some rewards here...
+/datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_victory()
+	. = ..()
+	//todo: new reward applied to hostile faction that disabled fire support for X missions
 
-	if(!game_timer)
-		return
-
-	///pulls the number of both factions, dead or alive
-	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-	var/num_team_one = length(player_list[1])
-	var/num_team_two = length(player_list[2])
-	var/num_dead_team_one = length(player_list[3])
-	var/num_dead_team_two = length(player_list[4])
-
-	if(num_team_two && num_team_one && !max_time_reached)
-		return //fighting is ongoing
-
-	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
-	if(!num_team_two)
-		if(!num_team_one)
-			message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //everyone died at the same time, no one wins
-			outcome = MISSION_OUTCOME_DRAW
-			return TRUE
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]") //starting team wiped the hostile team
-		outcome = MISSION_OUTCOME_MAJOR_VICTORY
-		return TRUE
-
-	if(!num_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]") //hostile team wiped the starting team
-		outcome = MISSION_OUTCOME_MAJOR_LOSS
-		return TRUE
-
-	//minor victories for more kills or draw for equal kills
-	if(num_dead_team_two > num_dead_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]") //starting team got more kills
-		outcome = MISSION_OUTCOME_MINOR_VICTORY
-		return TRUE
-	if(num_dead_team_one > num_dead_team_two)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]") //hostile team got more kills
-		outcome = MISSION_OUTCOME_MINOR_LOSS
-		return TRUE
-
-	message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //equal number of kills, or any other edge cases
-	outcome = MISSION_OUTCOME_DRAW
-	return TRUE
-
-//todo: remove these if nothing new is added
-/datum/campaign_mission/fire_support_raid/apply_major_victory()
+/datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_victory()
 	. = ..()
 
-/datum/campaign_mission/fire_support_raid/apply_minor_victory()
+/datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_loss()
 	. = ..()
 
-/datum/campaign_mission/fire_support_raid/apply_draw()
-	winning_faction = pick(starting_faction, hostile_faction)
-
-/datum/campaign_mission/fire_support_raid/apply_minor_loss()
-	. = ..()
-
-/datum/campaign_mission/fire_support_raid/apply_major_loss()
+/datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_loss()
 	. = ..()

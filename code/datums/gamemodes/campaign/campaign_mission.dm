@@ -114,6 +114,8 @@
 	play_selection_intro()
 	load_map()
 
+	load_objective_description()
+
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), 2 MINUTES)
 
 /datum/campaign_mission/Destroy(force, ...)
@@ -131,6 +133,10 @@
 	var/datum/space_level/new_level = load_new_z_level(map_file, map_name)
 	mode.set_lighting(new_level.z_value)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, new_level.z_value)
+
+///Generates the objective description for the mission if it needs to be late loaded
+/datum/campaign_mission/proc/load_objective_description()
+	return
 
 ///Checks mission end criteria, and ends the mission if met
 /datum/campaign_mission/proc/check_mission_progress()

@@ -1,4 +1,4 @@
-/////disabling SOM's ability to teleport deploy
+//disabling SOM's ability to teleport deploy
 /datum/campaign_mission/destroy_mission/teleporter_raid
 	name = "Teleporter control raid"
 	map_name = "Lunar base BD-832"
@@ -13,7 +13,7 @@
 	)
 	objective_description = list(
 		"starting_faction" = "Major Victory: Destroy the SOM Bluespace core",
-		"hostile_faction" = "Major Victory: Protect the Bluespace core and wipe out all hostiles in the area of operation. Minor Victory: Protect the Bluespace core",
+		"hostile_faction" = "Major Victory: Protect the Bluespace core at all costs",
 	)
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
@@ -52,12 +52,14 @@
 	)
 	. = ..()
 
+/datum/campaign_mission/destroy_mission/teleporter_raid/load_objective_description()
+	return
+
 /datum/campaign_mission/destroy_mission/teleporter_raid/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[hostile_faction]
 	som_team.add_reward(/datum/campaign_reward/teleporter_disabled)
 	som_team.add_reward(/datum/campaign_reward/attrition_modifier/malus_teleporter)
-
 
 /datum/campaign_mission/destroy_mission/teleporter_raid/apply_major_loss()
 	. = ..()

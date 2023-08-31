@@ -55,6 +55,7 @@
 	if(!objectives_total)
 		CRASH("Destroy mission loaded with no objectives to destroy!")
 
+/datum/campaign_mission/destroy_mission/load_objective_description()
 	objective_description = list(
 		"starting_faction" = "Major Victory:Destroy all [objectives_total] targets.[min_destruction_amount ? " Minor Victory: Destroy at least [min_destruction_amount] targets." : ""]",
 		"hostile_faction" = "Major Victory: Protect all [objectives_total] assets from destruction.[min_destruction_amount ? " Minor Victory: Protect at least [objectives_total - min_destruction_amount + 1] assets." : ""]",
