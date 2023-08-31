@@ -96,6 +96,9 @@
 /area/shuttle/minidropship)
 "E" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "H" = (
@@ -118,8 +121,12 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
+/obj/machinery/vending/nanomed/tadpolemed{
+	dir = 4;
+	pixel_x = -15
+	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/space)
 "R" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/closed/wall/mainship/outer/canterbury,
@@ -153,6 +160,9 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "Z" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 
