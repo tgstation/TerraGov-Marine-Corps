@@ -16,6 +16,7 @@
 			if ("groin")
 				return "[ethnicity]_groin_[get_gender_name(gender)]"
 
+/// RUTGMC edit start - partial revert of #12293
 			if ("r_arm", "right arm")
 				return "[ethnicity]_right_arm"
 
@@ -39,6 +40,7 @@
 
 			if ("l_foot", "left foot")
 				return "[ethnicity]_left_foot"
+/// RUTGMC edit end
 
 			else
 				return null
