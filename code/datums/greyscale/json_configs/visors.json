@@ -47,6 +47,12 @@
 			"icon_state": "kabuto"
 		}
 	],
+	"hotaru_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "hotaru"
+		}
+	],
 	"eva_visor": [
 		{
 			"type": "hyperscale",
