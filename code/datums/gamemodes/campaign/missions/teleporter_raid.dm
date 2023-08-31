@@ -1,8 +1,10 @@
 /////disabling SOM's ability to teleport deploy
 /datum/campaign_mission/destroy_mission/teleporter_raid
 	name = "Teleporter control raid"
-	map_name = "Orion Outpost"
+	map_name = "Lunar base BD-832"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
+	objectives_total = 1
+	min_destruction_amount = 0
 	objective_destruction_messages = list(
 		"last" = list(
 			"starting_faction" = "Bluespace core destroyed, outstanding work marines!",

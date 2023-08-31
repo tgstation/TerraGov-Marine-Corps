@@ -56,8 +56,8 @@
 		CRASH("Destroy mission loaded with no objectives to destroy!")
 
 	objective_description = list(
-		"starting_faction" = "Major Victory:Destroy all [objectives_total] targets. Minor Victory: Destroy at least [min_destruction_amount] targets.",
-		"hostile_faction" = "Major Victory: Protect all [objectives_total] assets from destruction. Minor Victory: Protect at least [objectives_total - min_destruction_amount + 1] assets.",
+		"starting_faction" = "Major Victory:Destroy all [objectives_total] targets.[min_destruction_amount ? " Minor Victory: Destroy at least [min_destruction_amount] targets." : ""]",
+		"hostile_faction" = "Major Victory: Protect all [objectives_total] assets from destruction.[min_destruction_amount ? " Minor Victory: Protect at least [objectives_total - min_destruction_amount + 1] assets." : ""]",
 	)
 
 /datum/campaign_mission/destroy_mission/end_mission()
@@ -84,7 +84,7 @@
 		if(length(player_list[1]))
 			return FALSE //attacking team still has living guys
 
-	if(objectives_destroyed >= min_destruction_amount) //Destroyed at least the minimum required
+	if(min_destruction_amount && objectives_destroyed >= min_destruction_amount) //Destroyed at least the minimum required
 		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]")
 		outcome = MISSION_OUTCOME_MINOR_VICTORY
 	else if(objectives_destroyed > 0) //Destroyed atleast 1 target
@@ -109,20 +109,20 @@
 	. = ..()
 
 ///Handles the destruction of an objective
-/datum/campaign_mission/destroy_mission/proc/objective_destroyed(datum/source)
+/datum/campaign_mission/destroy_mission/proc/objective_destroyed(datum/source, atom/destroyed_objective)
 	SIGNAL_HANDLER
-	objectives_destroyed = objectives_destroyed ++
+	objectives_destroyed ++
 	var/message_to_play
 	if(objectives_destroyed == objectives_total)
 		message_to_play = "last"
-	if(objectives_destroyed == objectives_total - 1)
+	else if(objectives_destroyed == objectives_total - 1)
 		message_to_play = "second_last"
-	if(objectives_destroyed == 1)
+	else if(objectives_destroyed == 1)
 		message_to_play = "first"
-	if(objectives_destroyed == 2)
+	else if(objectives_destroyed == 2)
 		message_to_play = "second"
 	else //catch all if a mission has a million objectives
 		message_to_play = "third"
 
-	map_text_broadcast(starting_faction, objective_destruction_messages[message_to_play]["starting_faction"], "[source] destroyed")
-	map_text_broadcast(hostile_faction, objective_destruction_messages[message_to_play]["hostile_faction"], "[source] destroyed")
+	map_text_broadcast(starting_faction, objective_destruction_messages[message_to_play]["starting_faction"], "[destroyed_objective] destroyed")
+	map_text_broadcast(hostile_faction, objective_destruction_messages[message_to_play]["hostile_faction"], "[destroyed_objective] destroyed")

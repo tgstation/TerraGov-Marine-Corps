@@ -24,7 +24,7 @@
 
 ///Handles the objective being destroyed, disabled or otherwise completed
 /obj/structure/campaign/destruction_objective/proc/disable()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, src)
 	GLOB.campaign_destroy_objectives -= src
 
 #define BLUESPACE_CORE_OK "bluespace_core_ok"
