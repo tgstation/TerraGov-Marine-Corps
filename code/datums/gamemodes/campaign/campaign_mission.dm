@@ -111,11 +111,12 @@
 	op_name_starting = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	op_name_hostile = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 
-	play_selection_intro()
-	load_map()
-
 	load_objective_description()
 
+///Sets up the mission once it has been selected
+/datum/campaign_mission/proc/load_mission()
+	play_selection_intro()
+	load_map()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), 2 MINUTES)
 
 /datum/campaign_mission/Destroy(force, ...)

@@ -23,7 +23,7 @@
 		/datum/job/som/squad/standard = -1,
 	)
 	///The current mission type being played
-	var/datum/campaign_mission/current_mission = /datum/campaign_mission/tdm
+	var/datum/campaign_mission/current_mission
 	///campaign stats organised by faction
 	var/list/datum/faction_stats/stat_list = list()
 
@@ -41,7 +41,7 @@
 	. = ..()
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //som 'ship' map is now ground, but this ensures we clean up exit points if this changes in the future
 		qdel(exit_point)
-	load_new_mission(current_mission, factions[1])
+	load_new_mission(new /datum/campaign_mission/tdm(factions[1])) //this is the 'roundstart' mission
 
 	for(var/i in stat_list)
 		var/datum/faction_stats/selected_faction = stat_list[i]
@@ -98,11 +98,15 @@
 
 ///selects the next mission to be played
 /datum/game_mode/hvh/campaign/proc/select_next_mission(mob/selector) //basic placeholder
-	var/choice = tgui_input_list(selector, "What course of action would you like to take?", "Mission selection", stat_list[selector.faction].potential_missions, timeout = 2 MINUTES)
+	var/list/mission_choices = list()
+	for(var/datum/campaign_mission/mission_option AS in stat_list[selector.faction].potential_missions)
+		mission_choices[mission_option] = mission_option.name
+	var/choice = tgui_input_list(selector, "What course of action would you like to take?", "Mission selection", mission_choices, timeout = 2 MINUTES)
 	if(!choice)
-		choice = pick(stat_list[selector.faction].potential_missions) //placeholder pick
+		choice = pick(mission_choices) //placeholder pick
+
 	//probably have some time limit on the choice, so need some logic for that
-	load_new_mission(choice, selector.faction)
+	load_new_mission(choice)
 
 	select_attrition_points() //both teams choose the number of lads to commit
 
@@ -128,8 +132,9 @@
 		items += "[current_mission.hostile_faction] Mission objectives: [current_mission.objective_description["hostile_faction"]]"
 
 ///sets up the newly selected mission
-/datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission, acting_faction)
-	current_mission = new new_mission(acting_faction)
+/datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
+	current_mission = new_mission
+	current_mission.load_mission()
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
 ///each faction chooses how many attrition points to use for the upcoming mission - PLACEHOLDER UNTIL INTERFACE
@@ -438,7 +443,7 @@
 
 		if("set_next_mission")
 			var/datum/campaign_mission/choice = team.potential_missions[text2path(params["new_mission"])] //locate or something maybe?
-			current_mode.load_new_mission(choice, faction)
+			current_mode.load_new_mission(choice)
 
 		if("activate_reward")
 			var/datum/campaign_reward/choice = team.faction_rewards[text2path(params["selected_reward"])] //locate or something maybe?

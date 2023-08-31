@@ -13,7 +13,7 @@
 	///Multiplier on the passive attrition point gain for this faction
 	var/attrition_gain_multiplier = 1
 	///Future missions this faction can currently choose from
-	var/list/datum/campaign_mission/potential_missions = list(/datum/campaign_mission/tdm, /datum/campaign_mission/tdm/lv624, /datum/campaign_mission/tdm/desparity) //placeholders
+	var/list/datum/campaign_mission/potential_missions = list()
 	///Missions this faction has succesfully completed
 	var/list/datum/campaign_mission/finished_missions = list()
 	///List of all rewards the faction has earnt this campaign
@@ -27,6 +27,18 @@
 	add_reward(/datum/campaign_reward/teleporter_charges) //testuse
 	add_reward(/datum/campaign_reward/droppod_refresh) //testuse
 	add_reward(/datum/campaign_reward/fire_support) //testuse
+
+	load_default_missions()
+
+///The default available missions for this faction
+/datum/faction_stats/proc/load_default_missions()
+	var/list/default_missions = list(/datum/campaign_mission/tdm, /datum/campaign_mission/tdm/lv624, /datum/campaign_mission/tdm/desparity) //placeholders todo: make this a var or something so it can be modified by faction
+	for(var/new_mission in default_missions)
+		add_new_mission(new_mission)
+
+///Adds a mission to the potential mission pool
+/datum/faction_stats/proc/add_new_mission(datum/campaign_mission/new_mission)
+	potential_missions += new new_mission(faction)
 
 ///Returns the faction's leader, selecting one if none is available
 /datum/faction_stats/proc/get_selector()
