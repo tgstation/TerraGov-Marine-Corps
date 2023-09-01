@@ -599,7 +599,7 @@ then, for every time you included a field, increment fields. */
 
 /obj/item/paper/crane
 	name = "Maintenance Notice"
-	info = {"Once again, I am reminding you that the crane equipment is not a toy, and you people shouldnt even be driving it without an operator’s certification. As it stands, I moved it to engineering for the time being, so you dont get any ideas. I pulled the spark plugs too, just for some added security. - Chief Drydock Engineer Steele"}
+	info = {"Once again, I am reminding you that the crane equipment is not a toy, and you people shouldnt even be driving it without an operators certification. As it stands, I moved it to engineering for the time being, so you dont get any ideas. I pulled the spark plugs too, just for some added security. - Chief Drydock Engineer Steele"}
 
 /obj/item/paper/arachneresearch1
 	name = "URGENT WORK ORDER - SUSPEND ALL OTHER ASSIGNMENTS"
@@ -620,4 +620,4 @@ then, for every time you included a field, increment fields. */
 	info = {"They have nearly broken through the inner airlock. I have no doubts that they will kill me to get to him, but I will not give them an easy fight.
 	I signed on as an MP to uphold the principles of our government. We should be accountable to the law, even during times of war - and the rights of humankind are not up for debate. We took Bennett into custody on account of multiple, heinous violations of these principles.
 	I suppose our sponsors disagree. So be it. I am making this record so that their voices are heard, even in some small way; we have brought the men who did these things to justice, for a time, but that time is nearly up.
-	Just because they’re our enemy doesn’t mean they should suff-"}
+	Just because they are our enemy does not mean they should suff-"}

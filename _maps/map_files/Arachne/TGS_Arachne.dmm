@@ -1353,8 +1353,8 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "buj" = (
-/obj/machinery/door/airlock/mainship/research/glass/cell/cell1,
-/obj/machinery/door/poddoor/shutters/mainship/cell/cell1,
+/obj/machinery/door/airlock/mainship/research/glass/cell,
+/obj/machinery/door/poddoor/shutters/mainship/cell,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "bup" = (
@@ -4533,16 +4533,6 @@
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lounge)
 "ejm" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/vending/weapon,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -4550,7 +4540,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
 /area/mainship/squads/general)
 "eju" = (
 /turf/closed/wall/mainship/outer,
@@ -12497,6 +12489,10 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
+"kUs" = (
+/obj/structure/window/framed/mainship,
+/turf/open/floor/plating,
+/area/mainship/command/corporateliaison)
 "kUD" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship{
@@ -18236,16 +18232,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/port_hallway)
-"pMW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/general)
 "pNb" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -26017,7 +26003,8 @@
 /area/mainship/command/cic)
 "wGu" = (
 /obj/machinery/crema_switch{
-	id = 2
+	id = 2;
+	pixel_x = -22
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
@@ -27144,7 +27131,9 @@
 	},
 /area/mainship/squads/req)
 "xIS" = (
-/obj/machinery/crema_switch,
+/obj/machinery/crema_switch{
+	pixel_x = -21
+	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -29524,9 +29513,9 @@ vlB
 vlB
 vlB
 vlB
-vlB
-vlB
-vlB
+vqX
+vqX
+vqX
 vlB
 vlB
 vlB
@@ -29625,11 +29614,11 @@ qAQ
 pxf
 uro
 pxf
-pxf
-pxf
 uro
 pxf
 pxf
+pxf
+uro
 pxf
 uro
 pxf
@@ -29728,9 +29717,9 @@ vgL
 vgL
 vgL
 dDc
-dDc
-dDc
-dDc
+kUs
+kUs
+kUs
 dDc
 dDc
 dDc
@@ -37691,7 +37680,7 @@ xTJ
 urw
 ejm
 uxQ
-urw
+lbd
 xJg
 xTJ
 urw
@@ -37793,7 +37782,7 @@ xTJ
 urw
 ejm
 xTJ
-urw
+lbd
 xJg
 xTJ
 urw
@@ -37893,9 +37882,9 @@ lqg
 iEb
 pNg
 lqg
-pMW
+ejm
 lqg
-lqg
+lbd
 lqg
 lqg
 pNg
@@ -37997,7 +37986,7 @@ xTJ
 urw
 ejm
 xTJ
-urw
+lbd
 xJg
 xTJ
 urw
@@ -38099,7 +38088,7 @@ xTJ
 urw
 ejm
 xTJ
-urw
+lbd
 xJg
 xTJ
 urw
