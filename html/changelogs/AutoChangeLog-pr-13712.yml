@@ -1,5 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - rscadd: "New Widow ability: Cannibalise. Consume one of our young, in exchange for a lowered cooldown when birthing new young."
-  - imageadd: "Cannibalise icon"

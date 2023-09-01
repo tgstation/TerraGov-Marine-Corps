@@ -289,9 +289,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs{
 	dir = 4
 	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/canteen)
 "bS" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
@@ -494,7 +495,7 @@
 /area/lv624/ground/jungle5)
 "db" = (
 /obj/structure/cable,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/bar)
 "df" = (
 /obj/structure/table,
@@ -1854,7 +1855,7 @@
 /obj/structure/cable,
 /obj/structure/table/gamblingtable,
 /obj/item/toy/deck/kotahi,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/bar)
 "jD" = (
 /turf/open/floor/tile/blue/taupeblue{
@@ -1994,7 +1995,7 @@
 /area/lv624/ground/jungle9)
 "ks" = (
 /obj/machinery/light/small,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/spaceport)
 "kt" = (
 /obj/machinery/landinglight/ds1/delayone{
@@ -3355,7 +3356,7 @@
 "rD" = (
 /obj/machinery/door/window,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/bar)
 "rE" = (
 /obj/structure/cable,
@@ -4013,7 +4014,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/spaceport)
 "uQ" = (
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -4521,7 +4522,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/chapel)
 "xF" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/spaceport)
 "xH" = (
 /obj/structure/cable,
@@ -4729,7 +4730,7 @@
 	pixel_x = -7;
 	pixel_y = -1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/bar)
 "yB" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -7389,12 +7390,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_male)
-"LC" = (
-/obj/structure/table,
-/obj/structure/table,
-/obj/item/stack/sheet/metal/small_stack,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle7)
 "LE" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -14554,7 +14549,7 @@ Rw
 Yp
 Rw
 CU
-LC
+Gz
 Rw
 EH
 Kg

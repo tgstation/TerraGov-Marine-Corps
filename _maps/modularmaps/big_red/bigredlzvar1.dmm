@@ -1168,11 +1168,6 @@
 /obj/machinery/door/airlock/maintenance,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"EG" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/space_port)
 "EO" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
@@ -2306,7 +2301,7 @@ gJ
 gJ
 gJ
 gJ
-EG
+ht
 Ju
 uG
 uG
@@ -2346,7 +2341,7 @@ gJ
 gJ
 gJ
 gJ
-EG
+ht
 jS
 jS
 jS

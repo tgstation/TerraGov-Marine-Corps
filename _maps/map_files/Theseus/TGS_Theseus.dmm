@@ -95,14 +95,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
-"aar" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 2
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/lower_engineering)
 "aas" = (
 /obj/machinery/telecomms/server/presets/bravo,
 /obj/machinery/light/mainship{
@@ -6656,7 +6648,6 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -8863,6 +8854,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/surgery_hallway)
+"dQd" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/cic)
 "dQi" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -9117,9 +9114,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/mainship/engineering/lower_engine_monitoring)
 "eqI" = (
 /obj/machinery/chem_dispenser/soda{
@@ -10799,13 +10797,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"hgZ" = (
-/obj/structure/window/framed/mainship/hull,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/turf/closed/wall/mainship/outer,
-/area/mainship/command/cic)
 "hhA" = (
 /obj/structure/ship_ammo/heavygun,
 /turf/open/floor/mainship/cargo,
@@ -11206,9 +11197,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/mainship/engineering/lower_engine_monitoring)
 "hQB" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
@@ -12445,14 +12437,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/firing_range)
-"kmv" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/engineering/engine_core)
 "kmW" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -12949,6 +12933,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/mainship/squads/req)
+"kWU" = (
+/obj/structure/stairs/seamless{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/cic)
 "kXm" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/orange{
@@ -17958,11 +17948,6 @@
 	dir = 10
 	},
 /area/mainship/living/tankerbunks)
-"tkT" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/mainship/ai,
-/area/mainship/command/airoom)
 "tlq" = (
 /obj/structure/window/reinforced,
 /obj/machinery/light/mainship{
@@ -19591,9 +19576,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "wgT" = (
-/turf/open/floor/stairs/rampbottom{
-	dir = 8
-	},
+/obj/structure/stairs/seamless/edge,
+/turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "wgW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -33611,7 +33595,7 @@ wPV
 wPV
 wPV
 wPV
-hgZ
+pBS
 hqL
 tmp
 tmp
@@ -33870,10 +33854,10 @@ eFi
 fPA
 bYT
 snR
-wgT
-wgT
-wgT
-wgT
+dQd
+kWU
+kWU
+kWU
 wgT
 vkC
 bYT
@@ -70866,7 +70850,7 @@ rhS
 hbF
 rZo
 rhS
-tkT
+rhS
 adj
 dLh
 xAd
@@ -71385,7 +71369,7 @@ jyd
 lYK
 pns
 rGn
-aar
+tuJ
 pBg
 bCW
 btn
@@ -73714,7 +73698,7 @@ bIU
 bpX
 bpX
 bxQ
-kmv
+xjw
 xON
 brQ
 uaA
@@ -74228,7 +74212,7 @@ bIU
 bpX
 bpX
 bxQ
-kmv
+xjw
 xON
 brQ
 jFy
@@ -74485,7 +74469,7 @@ bTG
 rcQ
 bxQ
 bxQ
-kmv
+xjw
 syT
 brQ
 jFy

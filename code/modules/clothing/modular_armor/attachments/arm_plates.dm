@@ -58,3 +58,8 @@
 	name = "\improper Style Pattern Kabuto arm plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Kabuto armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/kabuto
+
+/obj/item/armor_module/armor/arms/marine/hotaru
+	name = "\improper Style Pattern Hotaru arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Hotaru armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/hotaru

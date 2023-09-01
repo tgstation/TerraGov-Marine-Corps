@@ -389,7 +389,7 @@
 	},
 /area/whiskey_outpost)
 "bz" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -3219,7 +3219,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "pG" = (
-/obj/structure/stairs/seamless/platform/alt{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -3810,7 +3810,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "sB" = (
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "sD" = (
 /obj/structure/flora/tree/joshua,
@@ -5567,9 +5568,10 @@
 /obj/structure/barricade/plasteel{
 	dir = 4
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "DX" = (
 /obj/machinery/floodlight/outpost,
@@ -5686,9 +5688,10 @@
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost)
 "ET" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "EV" = (
 /obj/machinery/floodlight/outpost,
