@@ -12092,6 +12092,21 @@
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/glass/beaker/large,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25;
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
 	},
