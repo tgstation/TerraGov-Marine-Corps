@@ -92,9 +92,10 @@
 #define ui_borg_health "EAST-1:28,6:13" //borgs have the health display where humans have the bodytemp indicator.
 #define ui_borg_temp "EAST-1:28,10:21"	//borgs have the bodytemp display where humans have the pressure indicator.
 #define ui_alien_nightvision "EAST-1:28,5:13"
-#define ui_alien_health "EAST-1:28,6:13" //aliens have the health display where humans have the bodytemp indicator.
+
+#define ui_alien_health "EAST-1:13,8:13" ///RUTGMC edit:
 #define ui_queen_locator "EAST-1:28,7:13"
-#define ui_alienplasmadisplay "EAST-1:28,8:13"
+#define ui_alienplasmadisplay "EAST-1:45,8:13" ///RUTGMC edit:
 
 //Pop-up inventory
 #define ui_shoes "WEST+1:8,1:5"
