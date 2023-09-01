@@ -304,6 +304,11 @@
 			if(XENO_HIVE_FALLEN)
 				new_mob_type = /mob/living/carbon/xenomorph/queen/Corrupted/fallen
 
+	for(var/forbid_info in hive.hive_forbidencastes)
+		if(forbid_info["type_path"] == new_mob_type && forbid_info["is_forbid"])
+			balloon_alert(src, "We can't evolve to forbided caste")
+			return FALSE
+
 	if(!regression)
 		if(new_caste_type.tier == XENO_TIER_TWO && no_room_tier_two)
 			balloon_alert(src, "The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die")

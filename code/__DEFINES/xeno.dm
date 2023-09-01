@@ -55,6 +55,9 @@
 #define REGULAR_ACID_STRENGTH 0.04
 #define STRONG_ACID_STRENGTH 0.1
 
+//Forbid
+#define MAX_FORBIDEN_CASTES 8
+
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 		/obj/alien/weeds/node,

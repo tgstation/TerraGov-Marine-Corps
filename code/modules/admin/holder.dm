@@ -293,6 +293,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/check_fingerprints,
+	/datum/admins/proc/unforbid,
 	/client/proc/smite,
 	/client/proc/show_traitor_panel,
 	/client/proc/validate_objectives,

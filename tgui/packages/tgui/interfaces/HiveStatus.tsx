@@ -22,6 +22,7 @@ type InputPack = {
   hive_death_timers: DeathTimer[];
   hive_queen_max: number;
   hive_structures: StructureData[];
+  hive_forbidencastes: ForbidenData[];
   // ----- Per xeno info ------
   xeno_info: XenoData[];
   static_info: StaticData[];
@@ -83,6 +84,10 @@ type DeathTimer = {
   caste: string;
   time_left: number;
   end_time: number;
+};
+
+type ForbidenData = {
+  is_forbid: boolean;
 };
 
 export const HiveStatus = (_props, context) => {
@@ -410,6 +415,7 @@ const PopulationPyramid = (_props, context) => {
     hive_max_tier_three,
     hive_minion_count,
     hive_primos,
+    hive_forbidencastes,
     xeno_info,
     static_info,
     user_ref,
@@ -588,8 +594,10 @@ const PopulationPyramid = (_props, context) => {
                     return <Box />;
                   }
                   const static_entry = static_info[value];
+                  const forbid_entry = hive_forbidencastes[value];
                   return (
                     <Flex.Item
+                      textColor={forbid_entry.is_forbid ? 'red' : 'white'}
                       width="100%"
                       minWidth={row_width}
                       bold
@@ -601,6 +609,12 @@ const PopulationPyramid = (_props, context) => {
                           transform: 'scale(3) translateX(-3.5px)',
                           '-ms-interpolation-mode': 'nearest-neighbor',
                         }}
+                        onClick={() =>
+                          act('Forbid', {
+                            xeno: user_ref,
+                            forbidcaste: value,
+                          })
+                        }
                       />
                       {static_entry.name}
                     </Flex.Item>

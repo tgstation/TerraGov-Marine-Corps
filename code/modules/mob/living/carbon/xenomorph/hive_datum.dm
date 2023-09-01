@@ -32,6 +32,10 @@
 	///Reference to upgrades available and purchased by this hive.
 	var/datum/hive_purchases/purchases = new
 
+	///
+	var/list/hive_forbidencastes = list()
+	var/forbid_count = 0
+
 // ***************************************
 // *********** Init
 // ***************************************
@@ -48,6 +52,16 @@
 
 	for(var/upgrade in GLOB.xenoupgradetiers)
 		xenos_by_upgrade[upgrade] = list()
+
+	for(var/caste_type_path AS in GLOB.xeno_caste_datums)
+		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
+		if(initial(caste.tier) == XENO_TIER_MINION)
+			continue
+		hive_forbidencastes += list(list(
+			"is_forbid" = FALSE,
+			"type_path" = caste.caste_type_path,
+			"caste_name" = initial(caste.caste_name),
+		))
 
 	SSdirection.set_leader(hivenumber, null)
 
@@ -144,6 +158,7 @@
 			"is_ssd" = !xeno.client,
 			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
 		))
+	.["hive_forbidencastes"] = hive_forbidencastes
 
 	var/mob/living/carbon/xenomorph/xeno_user
 	if(isxeno(user))
@@ -271,6 +286,10 @@
 			if(!isxeno(usr))
 				return
 			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_STRUCTURES)
+		if("Forbid")
+			if(!isxenoqueen(usr))  // Queen only.
+				return
+			toggle_forbit(usr, params["forbidcaste"] + 1); // +1 array offset
 
 /// Returns the string location of the xeno
 /datum/hive_status/proc/get_xeno_location(atom/xeno)
@@ -591,6 +610,43 @@
 		leader.handle_xeno_leader_pheromones(living_xeno_queen)
 
 // ***************************************
+// *********** Forbid
+// ***************************************
+
+/datum/hive_status/proc/toggle_forbit(mob/living/carbon/xenomorph/forbider, idx)
+	if(!forbit_checks(forbider, idx))
+		return
+	var/is_forbiden = hive_forbidencastes[idx]["is_forbid"]
+	var/caste_name = hive_forbidencastes[idx]["caste_name"]
+	if(is_forbiden)
+		xeno_message("[usr] undeclared the [caste_name] a forbidden caste!", "xenoannounce")
+		log_game("[key_name(usr)] has unforbid [caste_name].")
+		message_admins("[ADMIN_TPMONTY(usr)] has unforbid [caste_name].")
+		forbid_count--
+	else
+		if(forbid_count >= MAX_FORBIDEN_CASTES)
+			forbider.balloon_alert(forbider, "You can't forbid more castes!")
+			return
+		xeno_message("[usr] declared the [caste_name] a forbidden caste!", "xenoannounce")
+		log_game("[key_name(usr)] has forbid [caste_name].")
+		message_admins("[ADMIN_TPMONTY(usr)] has forbid [caste_name].")
+		forbid_count++
+	hive_forbidencastes[idx]["is_forbid"] = !is_forbiden
+
+/datum/hive_status/proc/forbit_checks(mob/living/carbon/xenomorph/forbider, idx)
+	if(hive_forbidencastes[idx]["type_path"] in GLOB.forbid_excepts)
+		forbider.balloon_alert(forbider, "You can't forbid this caste!")
+		return FALSE
+	return TRUE
+
+/datum/hive_status/proc/unforbid_all_castes(var/is_admin = FALSE)
+	if(is_admin)
+		xeno_message("Queen Mother unforbid all castes!", "xenoannounce")
+	for(var/forbid_data in hive_forbidencastes)
+		forbid_data["is_forbid"] = FALSE
+	forbid_count = 0
+
+// ***************************************
 // *********** Status changes
 // ***************************************
 /datum/hive_status/proc/xeno_z_changed(mob/living/carbon/xenomorph/X, old_z, new_z)
@@ -869,6 +925,7 @@
 /datum/hive_status/proc/on_queen_death()
 	living_xeno_queen = null
 	update_leader_pheromones()
+	unforbid_all_castes()
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
