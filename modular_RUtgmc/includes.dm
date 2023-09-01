@@ -19,3 +19,12 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\panther\panther.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\panther\abilities_panther.dm"
 #include "code\modules\vehicles\powerloader.dm"
+//			Fe_ed Modules			//
+#include "code\_onclick\hud\_defines.dm"
+#include "code\modules\mob\living\carbon\xenomorph\life.dm"
+#include "code\modules\mob\living\carbon\xenomorph\death.dm"
+#include "code\modules\mob\living\carbon\human\life\death.dm"
+#include "code\modules\mob\living\carbon\human\life\handle_regular_hud_updates.dm"
+#include "code\modules\mob\death.dm"
+#include "code\_onclick\hud\screen_objects\screen_objects.dm"
+//				end					//
