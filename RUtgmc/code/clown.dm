@@ -31,7 +31,7 @@
 	html_description = {"
 		<b>Difficulty</b>: HONK!<br /><br />
 		<b>You answer to the</b> Honkmother<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10h as any TGMC<br /><br />
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		<b>Duty</b>: Your primary job is to HONK! Do pranks and funny jokes, tell anecdotes, annoy marines, try not to die, try to resist pepperball, survive, for the glore of the Honkmother! HONK!
 	"}

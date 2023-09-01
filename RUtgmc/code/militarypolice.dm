@@ -52,7 +52,7 @@
 	html_description = {"
 		<b>Difficulty</b>: Death<br /><br />
 		<b>You answer to the</b> Captain<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10h as any TGMC<br /><br />
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		<b>Duty</b>: Your primary job is to uphold the law, order, peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!

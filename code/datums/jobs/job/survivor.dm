@@ -292,7 +292,7 @@ Good luck, but do not expect to survive."})
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to: </b> Yourself<br /><br />
-		<b>Unlock Requirement</b>: 300h Living<br /><br />
+		<b>Unlock Requirement</b>: 60h Living<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War, Distress<br /><br />
 		You are one of lucky people to survive the initial xeno infestation. You're one of unlucky people who have not escaped yet. Do not fear, or you will die even faster.
 		<br /><br />

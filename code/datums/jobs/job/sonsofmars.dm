@@ -287,7 +287,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10h as any TGMC<br /><br />
 		<b>Gamemode Availability</b>: Combat patrol and Sensor Capture<br /><br /><br />
 		Squad Leaders are basically the boss of any able-bodied squad. Though while they are not trained compared to engineers, corpsmen and smartgunners, they are (usually) capable of leading the squad. They can issue orders to bolster their soldiers, and are expected to confidentally lead them to victory.
 		<br /><br />

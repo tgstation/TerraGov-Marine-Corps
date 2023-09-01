@@ -72,7 +72,7 @@
 	html_description = {"
 		<b>Difficulty</b>: Soul crushing<br /><br />
 		<b>You answer to the</b> Queen Mother<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10h as Xenomorph<br /><br />
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
 		<b>Duty</b>: Lead the hive and ensure success isn’t snatched away by your enemies. Manage the supply of psypoints
 	"}
