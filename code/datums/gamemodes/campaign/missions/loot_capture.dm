@@ -3,10 +3,6 @@
 	name = "Capture mission"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
-	objective_description = list(
-		"starting_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
-		"hostile_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
-	)
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
@@ -24,18 +20,16 @@
 	)
 
 	mission_brief = list(
-		"starting_faction" = "Hostile forces have been attempting to expand the territory under their control in this area. <br>\
-		Although this territory is of limited direct strategic value, \
-		to prevent them from establishing a permanent presence in the area command has ordered your battalion to execute force recon patrols to locate and eliminate any hostile presence. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
-		"hostile_faction" = "Intelligence indicates that hostile forces are massing for a coordinated push to dislodge us from territory where we are aiming to establish a permanent presence. <br>\
-		Your battalion has been issued orders to regroup and counter attack the enemy push before they can make any progress, and kill their ambitions in this region. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
+		"starting_faction" = "Hostile forces have been building a stock pile of valuable phoron in this location. <br>\
+		Before they have the chance to ship it out, your forces are being sent to intercept and liberate these supplies to hamper the enemy's war effort. <br>\
+		Hostile forces will likely be aiming to evacuate as much phoron out of the ao as well. Get to the phoron first and fulton out as much as you can.",
+		"hostile_faction" = "Enemy forces are moving to steal a stockpile of valuable phoron. <br>\
+		Send in your forces to fulton out the phoron as quickly as possible, before they can get to it first.",
 	)
 
 	additional_rewards = list(
-		"starting_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
-		"hostile_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
+		"starting_faction" = "Additional supplies for every phoron crate captured",
+		"hostile_faction" = "Additional supplies for every phoron crate captured",
 	)
 	///Total number of objectives at round start
 	var/objectives_total = 3
@@ -95,7 +89,7 @@
 	return TRUE
 
 
-//todo: remove these if nothing new is added
+//todo: add some logic to modify rewards based on crates captured
 /datum/campaign_mission/loot_capture/apply_major_victory()
 	. = ..()
 
