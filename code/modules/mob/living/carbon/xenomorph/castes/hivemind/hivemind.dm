@@ -40,7 +40,7 @@
 	var/obj/structure/xeno/hivemindcore/new_core = new /obj/structure/xeno/hivemindcore(loc, hivenumber)
 	core = REF(new_core)
 	. = ..()
-	new_core.parent = src
+	new_core.parent = REF(src)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, PROC_REF(return_to_core))
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, PROC_REF(change_form))
 	update_action_buttons()
