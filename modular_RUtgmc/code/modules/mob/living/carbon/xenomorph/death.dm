@@ -1,4 +1,5 @@
 /mob/living/carbon/xenomorph/on_death()
+	. = ..()
 	if(hud_used)
 		if(hud_used.healths)
 			hud_used.healths.icon_state = "health_dead"
