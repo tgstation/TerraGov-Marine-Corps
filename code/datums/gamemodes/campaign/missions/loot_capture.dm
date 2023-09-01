@@ -39,23 +39,23 @@
 	)
 	///Total number of objectives at round start
 	var/objectives_total = 3
-	///number of targets destroyed for a minor victory
-	var/min_capture_amount = 2 //placeholder number
-	///How many objectives currently destroyed
+	///number of targets to capture for a minor victory
+	var/min_capture_amount = 3 //placeholder number
+	///How many objectives currently remaining
 	var/objectives_remaining = 0
-
+	///How many objects extracted by each team
 	var/list/extracted_count = list(
 		"starting_faction" = 0,
 		"hostile_faction" = 0,
 	)
 
 /datum/campaign_mission/loot_capture/load_mission()
-	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_FULTON_OBJECTIVE_EXTRACTED, PROC_REF(objective_extracted))
 	objectives_total = length(GLOB.campaign_objectives)
 	objectives_remaining = objectives_total
 	if(!objectives_total)
 		CRASH("Destroy mission loaded with no objectives to extract!")
+	return ..()
 
 /datum/campaign_mission/loot_capture/load_objective_description()
 	objective_description = list(
@@ -108,7 +108,7 @@
 /datum/campaign_mission/loot_capture/apply_major_loss()
 	. = ..()
 
-/datum/campaign_mission/loot_capture/proc/objective_extracted(obj/structure/campaign/fulton_objective/objective, mob/living/user)
+/datum/campaign_mission/loot_capture/proc/objective_extracted(datum/source, obj/structure/campaign/fulton_objective/objective, mob/living/user)
 	SIGNAL_HANDLER
 	var/capturing_team
 	var/losing_team

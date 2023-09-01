@@ -7,7 +7,7 @@
 	//resistance_flags = RESIST_ALL
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
-	icon = 'icons/obj/structures/structures.dmi'
+	icon = 'icons/obj/structures/campaign_structures.dmi'
 
 
 /obj/structure/campaign/destruction_objective
@@ -75,13 +75,22 @@
 		disable()
 
 /obj/structure/campaign/fulton_objective
-	name = "GENERIC CAMPAIGN STRUCTURE"
-	desc = "THIS SHOULDN'T BE VISIBLE"
+	name = "phoron crate"
+	desc = "A crate packed full of valuable phoron, ready to claim."
+	icon_state = "orebox_phoron"
 	resistance_flags = RESIST_ALL
 	var/fulton_status = FALSE
 	///Reference to the balloon vis obj effect
 	var/atom/movable/vis_obj/fulton_balloon/balloon
+	///Vis copy of the object when it is fultoned
 	var/obj/effect/fulton_extraction_holder/holder_obj
+
+/obj/structure/campaign/fulton_objective/Initialize(mapload)
+	. = ..()
+	GLOB.campaign_objectives += src
+	balloon = new()
+	holder_obj = new()
+
 
 /obj/structure/campaign/fulton_objective/attack_hand(mob/living/user)
 	if(!ishuman(user))
@@ -93,6 +102,7 @@
 		return
 	extract(user)
 
+///Starts the fulton process
 /obj/structure/campaign/fulton_objective/proc/extract(mob/living/user)
 	user.visible_message(span_notice("[user] starts activating a fulton on [src]."),\
 	span_notice("You start activating a fulton on [src]..."), null, 5)
@@ -110,10 +120,9 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_FULTON_OBJECTIVE_EXTRACTED, src, user)
 	qdel(src)
 
-
+///Fultons the object
 /obj/structure/campaign/fulton_objective/proc/do_extract(mob/user)
 	fulton_status = TRUE
-
 	holder_obj.appearance = appearance
 	holder_obj.forceMove(loc)
 	if(anchored)
@@ -136,7 +145,7 @@
 	animate(pixel_z = 10, time = 1 SECONDS)
 	animate(pixel_z = SCREEN_PIXEL_SIZE, time = 1 SECONDS)
 
-
+///Cleans up after fulton is complete
 /obj/structure/campaign/fulton_objective/proc/cleanup_extraction()
 	holder_obj.moveToNullspace()
 	holder_obj.pixel_z = initial(pixel_z)
