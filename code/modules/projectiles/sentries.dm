@@ -304,7 +304,7 @@
 		return
 	if(prob(10))
 		spark_system.start()
-	if(damage_amount >= knockdown_threshold) //Knockdown is certain if we deal this much in one hit; no more RNG nonsense, the fucking thing is bolted.
+	if(damage_amount >= knockdown_threshold && damage_type != STAMINA) //Knockdown is certain if we deal this much in one hit; no more RNG nonsense, the fucking thing is bolted.
 		knock_down()
 
 	. = ..()
