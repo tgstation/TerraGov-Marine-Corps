@@ -1,0 +1,5 @@
+author: "Victor239"
+delete-after: True
+changes:
+  - rscadd: "Added some default keybinds for Drone, Queen and multi-caste abilities"
+  - refactor: "Reordered xeno keybindings so it's now in alphabetical caste order"
