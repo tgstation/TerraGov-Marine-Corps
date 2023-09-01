@@ -48,10 +48,10 @@
 		),
 	)
 
-/datum/campaign_mission/destroy_mission/New(initiating_faction)
+/datum/campaign_mission/destroy_mission/load_mission()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, PROC_REF(objective_destroyed))
-	objectives_total = length(GLOB.campaign_destroy_objectives)
+	objectives_total = length(GLOB.campaign_objectives)
 	if(!objectives_total)
 		CRASH("Destroy mission loaded with no objectives to destroy!")
 
@@ -63,7 +63,6 @@
 
 /datum/campaign_mission/destroy_mission/end_mission()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED)
-	QDEL_LIST(GLOB.campaign_destroy_objectives) //clean up objectives for any future destroy missions
 	return ..()
 
 /datum/campaign_mission/destroy_mission/check_mission_progress()
@@ -73,7 +72,7 @@
 	if(!game_timer)
 		return FALSE
 
-	if(!length(GLOB.campaign_destroy_objectives))
+	if(!length(GLOB.campaign_objectives))
 		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]")
 		outcome = MISSION_OUTCOME_MAJOR_VICTORY
 		return TRUE

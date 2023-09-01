@@ -1,6 +1,6 @@
-/////basic tdm mission - i.e. combat patrol
+//Loot capture mission
 /datum/campaign_mission/loot_capture
-	name = "Combat patrol"
+	name = "Capture mission"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	objective_description = list(
@@ -37,59 +37,63 @@
 		"starting_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
 		"hostile_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
 	)
+	///Total number of objectives at round start
+	var/objectives_total = 3
+	///number of targets destroyed for a minor victory
+	var/min_capture_amount = 2 //placeholder number
+	///How many objectives currently destroyed
+	var/objectives_remaining = 0
 
-/datum/campaign_mission/loot_capture/play_start_intro()
-	intro_message = list(
-		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
-		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
+	var/list/extracted_count = list(
+		"starting_faction" = 0,
+		"hostile_faction" = 0,
 	)
+
+/datum/campaign_mission/loot_capture/load_mission()
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_FULTON_OBJECTIVE_EXTRACTED, PROC_REF(objective_extracted))
+	objectives_total = length(GLOB.campaign_objectives)
+	objectives_remaining = objectives_total
+	if(!objectives_total)
+		CRASH("Destroy mission loaded with no objectives to extract!")
+
+/datum/campaign_mission/loot_capture/load_objective_description()
+	objective_description = list(
+		"starting_faction" = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]",
+		"hostile_faction" = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]",
+	)
+
+/datum/campaign_mission/loot_capture/end_mission()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_FULTON_OBJECTIVE_EXTRACTED)
+	return ..()
 
 /datum/campaign_mission/loot_capture/check_mission_progress()
 	if(outcome)
 		return TRUE
 
 	if(!game_timer)
-		return
+		return FALSE
 
-	///pulls the number of both factions, dead or alive
-	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-	var/num_team_one = length(player_list[1])
-	var/num_team_two = length(player_list[2])
-	var/num_dead_team_one = length(player_list[3])
-	var/num_dead_team_two = length(player_list[4])
+	if(!max_time_reached && objectives_remaining) //todo: maybe a check in case both teams wipe each other out at the same time...
+		return FALSE
 
-	if(num_team_two && num_team_one && !max_time_reached)
-		return //fighting is ongoing
-
-	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
-	if(!num_team_two)
-		if(!num_team_one)
-			message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //everyone died at the same time, no one wins
-			outcome = MISSION_OUTCOME_DRAW
-			return TRUE
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]") //starting team wiped the hostile team
+	if(extracted_count["starting_faction"] >= objectives_total)
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]")
 		outcome = MISSION_OUTCOME_MAJOR_VICTORY
-		return TRUE
-
-	if(!num_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]") //hostile team wiped the starting team
+	else if(extracted_count["hostile_faction"] >= objectives_total)
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]")
 		outcome = MISSION_OUTCOME_MAJOR_LOSS
-		return TRUE
-
-	//minor victories for more kills or draw for equal kills
-	if(num_dead_team_two > num_dead_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]") //starting team got more kills
+	else if(min_capture_amount && (extracted_count["starting_faction"] >= min_capture_amount))
+		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]")
 		outcome = MISSION_OUTCOME_MINOR_VICTORY
-		return TRUE
-	if(num_dead_team_one > num_dead_team_two)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]") //hostile team got more kills
+	else if(min_capture_amount && (extracted_count["hostile_faction"] >= min_capture_amount))
+		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]")
 		outcome = MISSION_OUTCOME_MINOR_LOSS
-		return TRUE
-
-	message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //equal number of kills, or any other edge cases
-	outcome = MISSION_OUTCOME_DRAW
+	else
+		message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //everyone died at the same time, no one wins
+		outcome = MISSION_OUTCOME_DRAW
 	return TRUE
+
 
 //todo: remove these if nothing new is added
 /datum/campaign_mission/loot_capture/apply_major_victory()
@@ -98,11 +102,25 @@
 /datum/campaign_mission/loot_capture/apply_minor_victory()
 	. = ..()
 
-/datum/campaign_mission/loot_capture/apply_draw()
-	winning_faction = pick(starting_faction, hostile_faction)
-
 /datum/campaign_mission/loot_capture/apply_minor_loss()
 	. = ..()
 
 /datum/campaign_mission/loot_capture/apply_major_loss()
 	. = ..()
+
+/datum/campaign_mission/loot_capture/proc/objective_extracted(obj/structure/campaign/fulton_objective/objective, mob/living/user)
+	SIGNAL_HANDLER
+	var/capturing_team
+	var/losing_team
+	objectives_remaining --
+	if(user.faction == starting_faction)
+		extracted_count["starting_faction"] ++
+		capturing_team = starting_faction
+		losing_team = hostile_faction
+	else if(user.faction == hostile_faction)
+		extracted_count["hostile_faction"] ++
+		capturing_team = hostile_faction
+		losing_team = starting_faction
+
+	map_text_broadcast(capturing_team, "[objective] secured, well done. [objectives_remaining] left in play!", "Objective extracted")
+	map_text_broadcast(losing_team, "We've lost a [objective], secure the remaining [objectives_remaining] objectives!", "Objective lost")

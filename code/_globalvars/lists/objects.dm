@@ -38,8 +38,8 @@ GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)				///list of spawn locations for nuke d
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
 GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light can be shut down
 GLOBAL_LIST_EMPTY(main_overwatch_consoles)			//list of all main overwatch consoles
-///List of all objectives to destroy in the campaign gamemode
-GLOBAL_LIST_EMPTY(campaign_destroy_objectives)
+///List of all objectives in the campaign gamemode loaded in the current mission
+GLOBAL_LIST_EMPTY(campaign_objectives)
 
 GLOBAL_LIST_EMPTY(campaign_mech_spawners)
 ///List of all teleporter arrays

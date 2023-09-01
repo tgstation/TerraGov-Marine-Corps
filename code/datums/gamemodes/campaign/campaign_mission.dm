@@ -183,6 +183,7 @@
 /datum/campaign_mission/proc/end_mission()
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
+	QDEL_LIST(GLOB.campaign_objectives) //clean up objectives for any future missions
 	STOP_PROCESSING(SSslowprocess, src)
 	mission_state = MISSION_STATE_FINISHED
 	apply_outcome() //figure out where best to put this
