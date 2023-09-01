@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Surgery time is no longer random on an operating tables specifically, always being the minimum for the doctor's skill"
