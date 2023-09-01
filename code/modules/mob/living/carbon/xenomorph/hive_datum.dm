@@ -449,15 +449,21 @@
 	if(!GLOB.xeno_structures_by_hive[HS.hivenumber])
 		GLOB.xeno_structures_by_hive[HS.hivenumber] = list()
 
-	GLOB.xeno_structures_by_hive[HS.hivenumber] |= core
+	var/obj/structure/xeno/hivemindcore/hive_core = get_core()
+
+	if(!hive_core) //how are you even alive then?
+		qdel(src)
+		return
+
+	GLOB.xeno_structures_by_hive[HS.hivenumber] |= hive_core
 
 	if(!GLOB.xeno_critical_structures_by_hive[HS.hivenumber])
 		GLOB.xeno_critical_structures_by_hive[HS.hivenumber] = list()
 
-	GLOB.xeno_critical_structures_by_hive[HS.hivenumber] |= core
-	core.hivenumber = HS.hivenumber
-	core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name] "]hivemind core"
-	core.color = HS.color
+	GLOB.xeno_critical_structures_by_hive[HS.hivenumber] |= hive_core
+	hive_core.hivenumber = HS.hivenumber
+	hive_core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name] "]hivemind core"
+	hive_core.color = HS.color
 
 /mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force = FALSE)
 	. = ..()
@@ -583,12 +589,13 @@
 		hive_removed_from.update_ruler() //Try to find a successor.
 
 /mob/living/carbon/xenomorph/hivemind/remove_from_hive()
-	GLOB.xeno_structures_by_hive[hivenumber] -= core
-	GLOB.xeno_critical_structures_by_hive[hivenumber] -= core
+	var/obj/structure/xeno/hivemindcore/hive_core = get_core()
+	GLOB.xeno_structures_by_hive[hivenumber] -= hive_core
+	GLOB.xeno_critical_structures_by_hive[hivenumber] -= hive_core
 	. = ..()
-	if(!QDELETED(src)) //if we aren't dead
-		core.name = "banished hivemind core"
-		core.color = null
+	if(!QDELETED(src)) //if we aren't dead, somehow?
+		hive_core.name = "banished hivemind core"
+		hive_core.color = null
 
 
 // ***************************************

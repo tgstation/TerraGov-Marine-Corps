@@ -53,8 +53,7 @@ GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 	if(queued_to_see[M])
 		queued_to_see -= M
 		return
-	for(var/h in hudatoms)
-		var/atom/A = h
+	for(var/atom/A AS in hudatoms)
 		remove_from_single_hud(M, A)
 
 
@@ -107,7 +106,7 @@ GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 		return FALSE
 	hudatoms |= A
 	if(!ismob(A))
-		RegisterSignal(A, COMSIG_QDELETING, PROC_REF(remove_from_hud), A)
+		RegisterSignal(A, COMSIG_QDELETING, PROC_REF(remove_from_hud))
 	for(var/u in hudusers)
 		var/mob/M = u
 		if(!queued_to_see[M])

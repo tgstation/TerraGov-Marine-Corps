@@ -319,6 +319,11 @@
 	holder.icon = icon
 	holder.icon_state = icon_state_on
 
+/mob/camera/aiEye/remote/hud/Destroy()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	squad_hud.remove_from_hud(src)
+	return ..()
+
 //This one's for overwatch/CIC
 /mob/camera/aiEye/remote/hud/overwatch
 	icon_state_on = "cic_camera"
