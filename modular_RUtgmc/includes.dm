@@ -6,6 +6,7 @@
 #include "code\datums\jobs\squads.dm"
 #include "code\game\objects\structures\signs.dm"
 #include "code\game\turfs\floor_types.dm"
+#include "code\game\turfs\wall_types.dm"
 #include "code\modules\organs\limb_objects.dm"
 #include "code\modules\mob\living\carbon\human\zombie.dm"
 #include "code\modules\mob\living\carbon\human\species.dm"
