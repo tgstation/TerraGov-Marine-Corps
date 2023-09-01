@@ -3146,9 +3146,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "dUt" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
@@ -6868,7 +6865,6 @@
 /area/mainship/hull/lower_hull)
 "iXB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/holopad,
 /obj/effect/turf_decal/warning_stripes/thin{
