@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - bugfix: "Fixed PoS CAS ammo storage not having a button to open it."

@@ -1,4 +1,0 @@
-author: "Zar000"
-delete-after: True
-changes:
-  - bugfix: "fixed baneling being unable to use acid and fixed looping death animation"

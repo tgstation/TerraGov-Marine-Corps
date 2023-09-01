@@ -1,0 +1,7 @@
+2023-09-01:
+  Barnet2:
+  - bugfix: Fixed PoS CAS ammo storage not having a button to open it.
+  Zar000:
+  - bugfix: fixed baneling being unable to use acid and fixed looping death animation
+  forestbbbbbbb:
+  - admin: Added missing flags to VV
