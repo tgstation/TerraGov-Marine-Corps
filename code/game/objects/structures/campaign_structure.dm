@@ -118,7 +118,7 @@
 /obj/structure/campaign_objective/capture_objective/proc/capture_check(mob/living/user)
 	if(owning_faction)
 		if(owning_faction == user.faction)
-			user.balloon_alert(user, "Already captured!")
+			user.balloon_alert(user, "Already yours!")
 			return FALSE
 		if(!(capture_flags & CAPTURE_OBJECTIVE_RECAPTURABLE))
 			user.balloon_alert(user, "Cannot recaptured!")
@@ -129,7 +129,7 @@
 /obj/structure/campaign_objective/capture_objective/proc/do_capture(mob/living/user)
 	SHOULD_CALL_PARENT(TRUE)
 	owning_faction = user.faction
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_FULTON_OBJECTIVE_EXTRACTED, src, user)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, src, user)
 
 /obj/structure/campaign_objective/capture_objective/fultonable
 	name = "phoron crate"
@@ -179,3 +179,9 @@
 	holder_obj.pixel_z = initial(pixel_z)
 	holder_obj.vis_contents -= balloon
 	balloon.icon_state = initial(balloon.icon_state)
+
+/obj/structure/campaign_objective/capture_objective/fultonable/asat_system
+	name = "\improper T-4000 ASAT system"
+	desc = "A sophisticated surface to space missile system designed for attacking orbiting satellites or spacecraft."
+	capture_time = 12 SECONDS
+	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE

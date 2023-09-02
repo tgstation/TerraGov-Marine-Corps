@@ -1,5 +1,5 @@
 //Loot capture mission
-/datum/campaign_mission/loot_capture
+/datum/campaign_mission/capture_mission
 	name = "Capture mission"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
@@ -38,30 +38,30 @@
 	///How many objectives currently remaining
 	var/objectives_remaining = 0
 	///How many objects extracted by each team
-	var/list/extracted_count = list(
+	var/list/capture_count = list(
 		"starting_faction" = 0,
 		"hostile_faction" = 0,
 	)
 
-/datum/campaign_mission/loot_capture/load_mission()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_FULTON_OBJECTIVE_EXTRACTED, PROC_REF(objective_extracted))
+/datum/campaign_mission/capture_mission/load_mission()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, PROC_REF(objective_extracted))
 	objectives_total = length(GLOB.campaign_objectives)
 	objectives_remaining = objectives_total
 	if(!objectives_total)
 		CRASH("Destroy mission loaded with no objectives to extract!")
-	return ..()
 
-/datum/campaign_mission/loot_capture/load_objective_description()
+/datum/campaign_mission/capture_mission/load_objective_description()
 	objective_description = list(
 		"starting_faction" = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]",
 		"hostile_faction" = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]",
 	)
 
-/datum/campaign_mission/loot_capture/end_mission()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_FULTON_OBJECTIVE_EXTRACTED)
+/datum/campaign_mission/capture_mission/end_mission()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED)
 	return ..()
 
-/datum/campaign_mission/loot_capture/check_mission_progress()
+/datum/campaign_mission/capture_mission/check_mission_progress()
 	if(outcome)
 		return TRUE
 
@@ -71,16 +71,16 @@
 	if(!max_time_reached && objectives_remaining) //todo: maybe a check in case both teams wipe each other out at the same time...
 		return FALSE
 
-	if(extracted_count["starting_faction"] >= objectives_total)
+	if(capture_count["starting_faction"] >= objectives_total)
 		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]")
 		outcome = MISSION_OUTCOME_MAJOR_VICTORY
-	else if(extracted_count["hostile_faction"] >= objectives_total)
+	else if(capture_count["hostile_faction"] >= objectives_total)
 		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]")
 		outcome = MISSION_OUTCOME_MAJOR_LOSS
-	else if(min_capture_amount && (extracted_count["starting_faction"] >= min_capture_amount))
+	else if(min_capture_amount && (capture_count["starting_faction"] >= min_capture_amount))
 		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]")
 		outcome = MISSION_OUTCOME_MINOR_VICTORY
-	else if(min_capture_amount && (extracted_count["hostile_faction"] >= min_capture_amount))
+	else if(min_capture_amount && (capture_count["hostile_faction"] >= min_capture_amount))
 		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]")
 		outcome = MISSION_OUTCOME_MINOR_LOSS
 	else
@@ -90,29 +90,29 @@
 
 
 //todo: add some logic to modify rewards based on crates captured
-/datum/campaign_mission/loot_capture/apply_major_victory()
+/datum/campaign_mission/capture_mission/apply_major_victory()
 	. = ..()
 
-/datum/campaign_mission/loot_capture/apply_minor_victory()
+/datum/campaign_mission/capture_mission/apply_minor_victory()
 	. = ..()
 
-/datum/campaign_mission/loot_capture/apply_minor_loss()
+/datum/campaign_mission/capture_mission/apply_minor_loss()
 	. = ..()
 
-/datum/campaign_mission/loot_capture/apply_major_loss()
+/datum/campaign_mission/capture_mission/apply_major_loss()
 	. = ..()
 
-/datum/campaign_mission/loot_capture/proc/objective_extracted(datum/source, obj/structure/campaign_objective/capture_objective/fultonable/objective, mob/living/user)
+/datum/campaign_mission/capture_mission/proc/objective_extracted(datum/source, obj/structure/campaign_objective/capture_objective/fultonable/objective, mob/living/user)
 	SIGNAL_HANDLER
 	var/capturing_team
 	var/losing_team
 	objectives_remaining --
 	if(objective.owning_faction == starting_faction)
-		extracted_count["starting_faction"] ++
+		capture_count["starting_faction"] ++
 		capturing_team = starting_faction
 		losing_team = hostile_faction
 	else if(objective.owning_faction == hostile_faction)
-		extracted_count["hostile_faction"] ++
+		capture_count["hostile_faction"] ++
 		capturing_team = hostile_faction
 		losing_team = starting_faction
 

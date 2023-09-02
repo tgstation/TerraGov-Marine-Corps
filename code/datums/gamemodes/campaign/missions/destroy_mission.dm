@@ -49,11 +49,11 @@
 	)
 
 /datum/campaign_mission/destroy_mission/load_mission()
+	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, PROC_REF(objective_destroyed))
 	objectives_total = length(GLOB.campaign_objectives)
 	if(!objectives_total)
 		CRASH("Destroy mission loaded with no objectives to destroy!")
-	return ..()
 
 /datum/campaign_mission/destroy_mission/load_objective_description()
 	objective_description = list(

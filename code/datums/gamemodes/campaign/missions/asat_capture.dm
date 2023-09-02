@@ -1,12 +1,8 @@
-/////basic tdm mission - i.e. combat patrol
-/datum/campaign_mission/asap_capture
-	name = "Combat patrol"
+//ASAT capture mission
+/datum/campaign_mission/capture_mission/asat/asat
+	name = "ASAT capture"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
-	objective_description = list(
-		"starting_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
-		"hostile_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
-	)
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
@@ -24,85 +20,64 @@
 	)
 
 	mission_brief = list(
-		"starting_faction" = "Hostile forces have been attempting to expand the territory under their control in this area. <br>\
-		Although this territory is of limited direct strategic value, \
-		to prevent them from establishing a permanent presence in the area command has ordered your battalion to execute force recon patrols to locate and eliminate any hostile presence. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
-		"hostile_faction" = "Intelligence indicates that hostile forces are massing for a coordinated push to dislodge us from territory where we are aiming to establish a permanent presence. <br>\
-		Your battalion has been issued orders to regroup and counter attack the enemy push before they can make any progress, and kill their ambitions in this region. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
+		"starting_faction" = "A TGMC ASAT battery has been detected in this location. It forms part if their space defense grid across the planet and so is a valuable installation to them. <br>\
+		Although the destruction of this site is unlikely to weaken their space defenses appreciably, \
+		the capture of these weapons would provide us with a unique opportunity to bypass parts of their own ship defenses. <br>\
+		Capture as many of the weapons as possible so we can put them to proper use.",
+		"hostile_faction" = "SOM forces are moving towards one our our ASAT installations in this location. \
+		The loss of this installation would weaken our space defense grid which currently guarantees our orbital superiority. <br>\
+		Protect the ASAT weapons at all costs. Do not allow them to be destroyed or to fall into enemy hands.",
 	)
 
 	additional_rewards = list(
-		"starting_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
-		"hostile_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
+		"starting_faction" = "Additional ICC support, ability to counteract TGMC drop pod usage",
+		"hostile_faction" = "Preserve the ability to use drop pods uncontested",
+	)
+	min_capture_amount = 3
+
+
+/datum/campaign_mission/capture_mission/asat/load_objective_description()
+	objective_description = list(
+		"starting_faction" = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]",
+		"hostile_faction" = "Major Victory:Prevent the capture of all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Prevent the capture of atleast [min_capture_amount] ASAT systems." : ""]",
 	)
 
-/datum/campaign_mission/asap_capture/play_start_intro()
-	intro_message = list(
-		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
-		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
-	)
-	. = ..()
-
-/datum/campaign_mission/asap_capture/check_mission_progress()
+/datum/campaign_mission/capture_mission/asat/check_mission_progress()
 	if(outcome)
 		return TRUE
 
 	if(!game_timer)
-		return
+		return FALSE
 
-	///pulls the number of both factions, dead or alive
-	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-	var/num_team_one = length(player_list[1])
-	var/num_team_two = length(player_list[2])
-	var/num_dead_team_one = length(player_list[3])
-	var/num_dead_team_two = length(player_list[4])
+	if(!max_time_reached && objectives_remaining) //todo: maybe a check in case both teams wipe each other out at the same time...
+		return FALSE
 
-	if(num_team_two && num_team_one && !max_time_reached)
-		return //fighting is ongoing
-
-	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
-	if(!num_team_two)
-		if(!num_team_one)
-			message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //everyone died at the same time, no one wins
-			outcome = MISSION_OUTCOME_DRAW
-			return TRUE
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]") //starting team wiped the hostile team
+	if(capture_count["starting_faction"] >= objectives_total)
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]")
 		outcome = MISSION_OUTCOME_MAJOR_VICTORY
-		return TRUE
-
-	if(!num_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]") //hostile team wiped the starting team
-		outcome = MISSION_OUTCOME_MAJOR_LOSS
-		return TRUE
-
-	//minor victories for more kills or draw for equal kills
-	if(num_dead_team_two > num_dead_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]") //starting team got more kills
+	else if(min_capture_amount && (capture_count["starting_faction"] >= min_capture_amount))
+		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]")
 		outcome = MISSION_OUTCOME_MINOR_VICTORY
-		return TRUE
-	if(num_dead_team_one > num_dead_team_two)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]") //hostile team got more kills
+	else if(capture_count["starting_faction"] > 0)
+		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]")
 		outcome = MISSION_OUTCOME_MINOR_LOSS
-		return TRUE
+	else
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]")
+		outcome = MISSION_OUTCOME_MAJOR_LOSS
 
-	message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //equal number of kills, or any other edge cases
-	outcome = MISSION_OUTCOME_DRAW
 	return TRUE
 
-//todo: remove these if nothing new is added
-/datum/campaign_mission/asap_capture/apply_major_victory()
+
+//todo
+/datum/campaign_mission/capture_mission/asat/apply_major_victory()
 	. = ..()
 
-/datum/campaign_mission/asap_capture/apply_minor_victory()
+/datum/campaign_mission/capture_mission/asat/apply_minor_victory()
 	. = ..()
 
-/datum/campaign_mission/asap_capture/apply_draw()
-	winning_faction = pick(starting_faction, hostile_faction)
-
-/datum/campaign_mission/asap_capture/apply_minor_loss()
+/datum/campaign_mission/capture_mission/asat/apply_minor_loss()
 	. = ..()
 
-/datum/campaign_mission/asap_capture/apply_major_loss()
+/datum/campaign_mission/capture_mission/asat/apply_major_loss()
 	. = ..()
+
