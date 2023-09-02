@@ -1,0 +1,14 @@
+2023-09-01:
+  Barnet2:
+  - bugfix: Fixed PoS CAS ammo storage not having a button to open it.
+  Zar000:
+  - bugfix: fixed baneling being unable to use acid and fixed looping death animation
+  forestbbbbbbb:
+  - admin: Added missing flags to VV
+2023-09-02:
+  Barnet2:
+  - balance: Surgery time is no longer random on an operating tables specifically,
+      always being the minimum for the doctor's skill
+  Victor239:
+  - rscadd: Added some default keybinds for Drone, Queen and multi-caste abilities
+  - refactor: Reordered xeno keybindings so it's now in alphabetical caste order

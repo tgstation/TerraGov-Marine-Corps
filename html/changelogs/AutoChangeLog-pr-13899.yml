@@ -1,5 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - bugfix: "fixed order action icon being missing"
-  - imageadd: "updated hunter invis, pounce, leader assign, vote action icons."
