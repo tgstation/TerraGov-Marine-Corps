@@ -34,8 +34,8 @@
 		return TRUE
 
 	if(planet_nuked == INFESTATION_NUKE_COMPLETED)
-		message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines managed to nuke the colony
-		round_finished = MODE_INFESTATION_M_MINOR
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines managed to nuke the colony
+		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
 
 	if(!num_humans)
