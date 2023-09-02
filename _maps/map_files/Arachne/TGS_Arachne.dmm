@@ -444,7 +444,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/turf/open/floor/mainship/research,
+/turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "ayz" = (
 /obj/structure/cable,
@@ -908,6 +908,9 @@
 /area/mainship/hallways/port_hallway)
 "aZk" = (
 /obj/machinery/holopad,
+/obj/machinery/door/window{
+	dir = 1
+	},
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "aZO" = (
@@ -2357,7 +2360,8 @@
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 6
 	},
-/turf/open/floor/mainship/research,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "cub" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -2633,7 +2637,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
 	},
-/turf/open/floor/mainship/research,
+/turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "cDr" = (
 /obj/structure/cable,
@@ -3919,6 +3923,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
+"dGb" = (
+/turf/open/floor/plating,
+/area/mainship/medical/medical_science)
 "dGd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5129,7 +5136,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/floor/mainship/research,
+/turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "eLX" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -5365,7 +5372,6 @@
 	pixel_y = 6
 	},
 /obj/item/tool/pen,
-/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -6332,6 +6338,16 @@
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"fLX" = (
+/obj/machinery/door/airlock/mainship/marine/general/smart{
+	dir = 2
+	},
+/obj/machinery/door/firedoor{
+	dir = 1
+	},
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "fMs" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/purple/corner{
@@ -8534,7 +8550,7 @@
 /area/mainship/shipboard/brig)
 "hGO" = (
 /obj/machinery/atmospherics/pipe/manifold4w,
-/turf/open/floor/mainship/research,
+/turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "hHi" = (
 /obj/machinery/door/poddoor/railing{
@@ -8553,6 +8569,10 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
+"hHI" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/closed/wall/mainship,
+/area/mainship/living/pilotbunks)
 "hHY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -11060,10 +11080,12 @@
 	},
 /area/space)
 "jOe" = (
-/obj/machinery/smartfridge/chemistry,
 /obj/structure/cable,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry{
+	dir = 1
+	},
+/obj/machinery/door/firedoor{
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
@@ -11380,6 +11402,20 @@
 /obj/effect/spawner/random/engineering/radio,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/telecomms)
+"kdH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/upper_medical)
 "kdZ" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -12089,6 +12125,13 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
+"kGf" = (
+/obj/structure/table/mainship/nometal,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship/research,
+/area/mainship/medical/medical_science)
 "kGs" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -12529,6 +12572,9 @@
 "kWO" = (
 /obj/machinery/firealarm{
 	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
@@ -13694,7 +13740,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine{
 	dir = 8
 	},
-/turf/open/floor/mainship/research,
+/turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "lUz" = (
 /obj/structure/cable,
@@ -14774,6 +14820,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/effect/ai_node,
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "mPS" = (
@@ -16379,7 +16426,6 @@
 	},
 /area/mainship/hallways/port_hallway)
 "ojT" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /obj/structure/closet/secure_closet/freezer,
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/bottle/sake,
@@ -18056,7 +18102,7 @@
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4
 	},
-/turf/open/floor/mainship/research,
+/turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "pEn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -18106,10 +18152,6 @@
 	dir = 6
 	},
 /area/mainship/squads/general)
-"pHD" = (
-/obj/machinery/camera/autoname/mainship,
-/turf/open/floor/mainship/research,
-/area/mainship/medical/medical_science)
 "pHG" = (
 /turf/open/floor/mainship/silver,
 /area/mainship/living/evacuation)
@@ -19744,6 +19786,9 @@
 "rdC" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/crew,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "rdJ" = (
@@ -22058,6 +22103,7 @@
 /obj/machinery/autodoc,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "tgV" = (
@@ -22169,6 +22215,10 @@
 	dir = 1
 	},
 /area/mainship/hallways/port_hallway)
+"tmj" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/space/basic,
+/area/space)
 "tnk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -22469,7 +22519,7 @@
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 5
 	},
-/turf/open/floor/mainship/research,
+/turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "tAp" = (
 /obj/structure/platform{
@@ -23745,15 +23795,13 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/ce_room)
 "uIx" = (
-/obj/machinery/door/airlock/mainship/medical/glass/chemistry{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor{
-	dir = 1
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
+/obj/machinery/smartfridge/chemistry,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "uIJ" = (
@@ -24912,7 +24960,7 @@
 /area/mainship/shipboard/weapon_room)
 "vKq" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
-/turf/open/floor/mainship/research,
+/turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "vLB" = (
 /obj/machinery/door/airlock/mainship/generic/glass{
@@ -31104,9 +31152,9 @@ vkb
 vlB
 rIa
 nLu
-pHD
+dGb
 pEb
-pQC
+dGb
 kWO
 pQC
 rgE
@@ -31311,7 +31359,7 @@ nLu
 crZ
 hGO
 tAj
-skU
+kGf
 scN
 pQC
 uyr
@@ -33289,7 +33337,7 @@ jjn
 uRr
 gdm
 lwv
-vLI
+kdH
 kse
 amp
 lig
@@ -38374,7 +38422,7 @@ lXb
 dNX
 pUk
 pnh
-xKp
+fLX
 sqT
 lqg
 lqg
@@ -38668,7 +38716,7 @@ mGC
 mGC
 hMW
 fRR
-xMD
+hHI
 oBe
 kSb
 pfy
@@ -41943,23 +41991,23 @@ meP
 meP
 meP
 meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
 meP
 meP
 meP
@@ -42045,23 +42093,23 @@ meP
 meP
 meP
 meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
-meP
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
+tmj
 meP
 meP
 meP
