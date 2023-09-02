@@ -12,14 +12,14 @@
 	melee_damage = 23
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 1000
-	plasma_gain = 80
+	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 360
+	max_health = 340
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -31,20 +31,20 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 50, ACID = 40)
+	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 10, BIO = 35, FIRE = 45, ACID = 35)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_range = 5
 	acid_spray_damage = 16
-	acid_spray_damage_on_hit = 47
-	acid_spray_structure_damage = 69
+	acid_spray_damage_on_hit = 43
+	acid_spray_structure_damage = 61
 
 	// *** Pheromones *** //
-	aura_strength = 4.5 //Praetorian's aura starts strong. They are the Queen's right hand.
+	aura_strength = 4 //Praetorian's aura starts strong. They are the Queen's right hand.
 
 	// *** Minimap Icon *** //
 	minimap_icon = "praetorian"

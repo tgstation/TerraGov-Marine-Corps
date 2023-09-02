@@ -18,13 +18,13 @@
 	weeds_speed_mod = 0.2
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 300
 	plasma_gain = 0
 	plasma_regen_limit = 0
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 500
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -37,15 +37,15 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 20, FIRE = 20, ACID = 20)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 15, FIRE = 15, ACID = 15)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "gorger"
 
 	// *** Gorger Abilities *** //
-	overheal_max = 275
-	drain_plasma_gain = 40
-	carnage_plasma_gain = 40
+	overheal_max = 250
+	drain_plasma_gain = 30
+	carnage_plasma_gain = 35
 	feast_plasma_drain = 20
 
 	actions = list(

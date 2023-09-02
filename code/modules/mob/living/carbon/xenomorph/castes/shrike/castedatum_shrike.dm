@@ -14,14 +14,14 @@
 	melee_damage = 23
 
 	// *** Speed *** //
-	speed = -0.6
+	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 925
-	plasma_gain = 45
+	plasma_max = 900
+	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 375
 
 	// *** Evolution *** //
 	// The only evolution path does not require threshold
@@ -39,10 +39,10 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 25, FIRE = 45, ACID = 20)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 20, FIRE = 40, ACID = 20)
 
 	// *** Pheromones *** //
-	aura_strength = 3 //The Shrike's aura is decent.
+	aura_strength = 2.8
 
 	// *** Minimap Icon *** //
 	minimap_icon = "xenoshrike"

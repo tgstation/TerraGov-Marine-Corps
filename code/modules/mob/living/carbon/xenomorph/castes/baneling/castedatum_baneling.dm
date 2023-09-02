@@ -9,18 +9,18 @@
 	wound_type = "baneling" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 16
+	melee_damage = 14
 	attack_delay = 6
 
 	// *** Speed *** //
-	speed = -1.6
+	speed = -1.5
 
 	// *** Plasma *** //
-	plasma_max = 275
-	plasma_gain = 11
+	plasma_max = 250
+	plasma_gain = 9
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 225
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_ONE_THRESHOLD
@@ -36,7 +36,7 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 25, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = 15, ACID = 100)
+	soft_armor = list(MELEE = 20, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 10, ACID = 100)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "baneling"

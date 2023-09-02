@@ -9,17 +9,17 @@
 	wound_type = "king" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = 0
 
 	// *** Plasma *** //
-	plasma_max = 1200
-	plasma_gain = 70
+	plasma_max = 1100
+	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 650
+	max_health = 625
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -33,10 +33,10 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 55, FIRE = 100, ACID = 55)
 
 	// *** Pheromones *** //
-	aura_strength = 6
+	aura_strength = 5
 
 	minimap_icon = "xenoking"
 

@@ -15,15 +15,15 @@
 	melee_damage = 18
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1
 	weeds_speed_mod = -0.4
 
 	// *** Plasma *** //
-	plasma_max = 1000
-	plasma_gain = 40
+	plasma_max = 900
+	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 275
 
 	// *** Evolution *** //
 	evolution_threshold = 100
@@ -45,10 +45,10 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 15, FIRE = 30, ACID = 15)
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 10, FIRE = 25, ACID = 10)
 
 	// *** Pheromones *** //
-	aura_strength = 2 //Drone's aura is the weakest.
+	aura_strength = 1.8 //Drone's aura is the weakest.
 
 	// *** Minimap Icon *** //
 	minimap_icon = "drone"

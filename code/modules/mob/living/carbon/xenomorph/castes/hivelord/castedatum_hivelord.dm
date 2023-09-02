@@ -12,16 +12,16 @@
 	melee_damage = 20
 
 	// *** Speed *** //
-	speed = 0.1
+	speed = 0.2
 
 	// *** Plasma *** //
-	plasma_max = 2400
+	plasma_max = 2000
 	plasma_gain = 65
 	plasma_regen_limit = 0.5
 	plasma_icon_state = "hivelord_plasma"
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 340
 
 
 	// *** Evolution *** //
@@ -39,14 +39,14 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 20, FIRE = 25, ACID = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/sticky)
 
 	// *** Pheromones *** //
-	aura_strength = 3 //Hivelord's aura is not extremely strong, but better than Drones.
+	aura_strength = 2.8 //Hivelord's aura is not extremely strong, but better than Drones.
 
 	// *** Minimap Icon *** //
 	minimap_icon = "hivelord"
