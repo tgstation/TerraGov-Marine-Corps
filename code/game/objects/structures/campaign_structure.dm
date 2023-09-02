@@ -27,6 +27,13 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, src)
 	GLOB.campaign_objectives -= src
 
+/obj/structure/campaign/destruction_objective/howitzer
+	name = "\improper TA-100Y howitzer"
+	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes."
+	icon = 'icons/Marine/howitzer.dmi'
+	icon_state = "howitzer_deployed"
+	pixel_x = -16
+
 #define BLUESPACE_CORE_OK "bluespace_core_ok"
 #define BLUESPACE_CORE_UNSTABLE "bluespace_core_unstable"
 #define BLUESPACE_CORE_BROKEN "bluespace_core_broken"
