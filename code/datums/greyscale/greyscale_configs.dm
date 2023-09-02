@@ -198,6 +198,10 @@
 	icon_file = 'icons/mob/modular/marine_uniform.dmi'
 	json_config = 'code/datums/greyscale/json_configs/marine_uniform.json'
 
+/datum/greyscale_config/glove
+	icon_file = 'icons/mob/modular/glove.dmi'
+	json_config = 'code/datums/greyscale/json_configs/glove.json'
+
 /*
  * COLORABLE BADGES
  */

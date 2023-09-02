@@ -28,6 +28,15 @@
 	icon_state = "gloves_marine_fingerless"
 	item_state = "fingerless"
 
+/obj/item/clothing/gloves/marine/hyperscale
+	name = "hyperscale marine combat gloves"
+	icon_state = "hyperscale_glove_inhand"
+	item_state = "hyperscale_glove_mob"
+	greyscale_colors = ARMOR_PALETTE_BLACK
+	greyscale_config = /datum/greyscale_config/marine_uniform
+	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
+
 /obj/item/clothing/gloves/marine/insulated
 	name = "insulated marine combat gloves"
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
