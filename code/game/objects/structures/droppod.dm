@@ -458,9 +458,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /mob/camera/aiEye/remote/droppod/update_remote_sight(mob/living/user)
 	if(nvg_vision_possible)
-		user.see_in_dark = 6
-		user.sight = 0
-		user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+		user.see_in_dark = 0
+		user.sight = SEE_BLACKNESS
+		user.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 		user.sync_lighting_plane_alpha()
 		return TRUE
 	user.see_in_dark = 0
