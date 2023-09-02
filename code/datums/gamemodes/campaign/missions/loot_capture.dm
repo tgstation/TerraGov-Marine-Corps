@@ -102,16 +102,16 @@
 /datum/campaign_mission/loot_capture/apply_major_loss()
 	. = ..()
 
-/datum/campaign_mission/loot_capture/proc/objective_extracted(datum/source, obj/structure/campaign/fulton_objective/objective, mob/living/user)
+/datum/campaign_mission/loot_capture/proc/objective_extracted(datum/source, obj/structure/campaign_objective/capture_objective/fultonable/objective, mob/living/user)
 	SIGNAL_HANDLER
 	var/capturing_team
 	var/losing_team
 	objectives_remaining --
-	if(user.faction == starting_faction)
+	if(objective.owning_faction == starting_faction)
 		extracted_count["starting_faction"] ++
 		capturing_team = starting_faction
 		losing_team = hostile_faction
-	else if(user.faction == hostile_faction)
+	else if(objective.owning_faction == hostile_faction)
 		extracted_count["hostile_faction"] ++
 		capturing_team = hostile_faction
 		losing_team = starting_faction
