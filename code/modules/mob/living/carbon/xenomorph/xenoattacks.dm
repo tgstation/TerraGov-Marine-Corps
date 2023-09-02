@@ -75,6 +75,9 @@
 
 	if(src == X)
 		return TRUE
+	
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage_amount, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier)
+
 	if(isxenolarva(X)) //Larvas can't eat people
 		X.visible_message(span_danger("[X] nudges its head against \the [src]."), \
 		span_danger("We nudge our head against \the [src]."))

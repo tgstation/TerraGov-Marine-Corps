@@ -304,7 +304,7 @@
 /datum/component/riding/creature/widow/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
 	unequip_buckle_inhands(parent)
 	former_rider.density = initial(former_rider.density)
-	REMOVE_TRAIT(former_rider, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(former_rider, TRAIT_IMMOBILE, WIDOW_RIDING_TRAIT)
 	return ..()
 
 /// If the widow gets knocked over, force the riding rounys off and see if someone got hurt
@@ -312,4 +312,4 @@
 	SIGNAL_HANDLER
 	for(var/mob/living/rider AS in carrying_widow.buckled_mobs)
 		carrying_widow.unbuckle_mob(rider)
-		REMOVE_TRAIT(rider, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+		REMOVE_TRAIT(rider, TRAIT_IMMOBILE, WIDOW_RIDING_TRAIT)

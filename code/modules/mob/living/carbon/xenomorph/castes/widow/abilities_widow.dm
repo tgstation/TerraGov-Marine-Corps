@@ -129,7 +129,7 @@
 /datum/action/xeno_action/create_spiderling
 	name = "Birth Spiderling"
 	ability_name = "birth_spiderling"
-	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
+	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 4 spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 	action_icon_state = "spawn_spiderling"
 	plasma_cost = 100
 	cooldown_timer = 15 SECONDS
@@ -140,6 +140,12 @@
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
 	/// Current amount of cannibalise charges
 	var/cannibalise_charges = 0
+
+/datum/action/xeno_action/create_spiderling/New(Target)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/max_spiderlings = X?.xeno_caste.max_spiderlings ? X.xeno_caste.max_spiderlings : 4
+	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy [max_spiderlings] spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 
 /datum/action/xeno_action/create_spiderling/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -269,11 +275,14 @@
 	X.mouse_opacity = initial(X.mouse_opacity)
 	X.density = TRUE
 	X.allow_pass_flags &= ~PASSABLE
-	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
-	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
-	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_IMMOBILE, ability_name)
+	REMOVE_TRAIT(X, TRAIT_BURROWED, ability_name)
+	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, ability_name)
 	X.update_icons()
 	add_cooldown()
+	if(!owner.buckled_mobs)
+		return
+	owner.unbuckle_all_mobs(TRUE)
 
 /// Called by xeno_burrow only when burrowing
 /datum/action/xeno_action/burrow/proc/xeno_burrow_doafter()
@@ -285,9 +294,9 @@
 	owner.density = FALSE
 	owner.allow_pass_flags |= PASSABLE
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
-	ADD_TRAIT(owner, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
-	ADD_TRAIT(owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
-	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, ability_name)
+	ADD_TRAIT(owner, TRAIT_BURROWED, ability_name)
+	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, ability_name)
 	// We register for movement so that we unburrow if bombed
 	var/mob/living/carbon/xenomorph/X = owner
 	X.soft_armor = X.soft_armor.modifyRating(fire = -100)
@@ -339,7 +348,7 @@
 			continue
 		remaining_list -= remaining_spiderling
 		owner.buckle_mob(remaining_spiderling, TRUE, TRUE, 90, 1,0)
-		ADD_TRAIT(remaining_spiderling, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+		ADD_TRAIT(remaining_spiderling, TRAIT_IMMOBILE, WIDOW_RIDING_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(grab_spiderlings), remaining_list, number_of_attempts_left - 1), 1)
 
 // ***************************************
