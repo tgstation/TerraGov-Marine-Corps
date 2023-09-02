@@ -1228,7 +1228,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 5
 	damage = 120
 	penetration = 60
-	sundering = 35
+	sundering = 20
 
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"

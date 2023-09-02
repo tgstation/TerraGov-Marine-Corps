@@ -682,12 +682,12 @@
 
 /obj/item/weapon/gun/rifle/dpm
 	name = "\improper Degtyaryov 'RP' machine gun"
-	desc = "A cheap and robust machine gun seen commonly in the fringes of the bubble. Fires high caliber rounds to accommodate for its sluggish rate of fire, it is generally found being called 'The Record Player' due to the resemblance. Fires 7.62x54mmR rounds."
+	desc = "A cheap and robust machine gun seen commonly in the fringes of the bubble. Fires high caliber rounds to accommodate for its sluggish rate of fire, it is generally found being called 'The Record Player' due to the resemblance. Fires 7.62x39mm AP rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "dp27"
 	item_state = "dp27"
 	max_shells = 47 //codex
-	caliber = CALIBER_762X54 //codex
+	caliber = CALIBER_762X39 //codex
 	fire_sound = "svd_fire"
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
@@ -708,16 +708,15 @@
 	aim_fire_delay = 0.25 SECONDS
 	aim_speed_modifier = 0.75
 
-	fire_delay = 0.5 SECONDS
-	damage_mult = 0.575 // Equals exactly 69, nice.
+	fire_delay = 0.45 SECONDS
+	damage_mult = 2
 	burst_amount = 1
 	accuracy_mult = 1
-	scatter = 0
+	scatter = 2
 	recoil = -1
-	wield_delay = 1 SECONDS
-	aim_slowdown = 1.3
-	movement_acc_penalty_mult = 2.5
-
+	wield_delay = 0.9 SECONDS
+	aim_slowdown = 0.85
+	movement_acc_penalty_mult = 4
 
 //-------------------------------------------------------
 //M16 RIFLE

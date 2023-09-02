@@ -410,7 +410,7 @@
 
 /obj/item/weapon/gun/clf_heavyrifle
 	name = "\improper PTR-41/1785 anti-mech gun"
-	desc = "The PTR-41/1785 is a bottom shelf solution modernized for dealing with armor, you could use it while standing, not a great idea. It is recommended to be used while the bipod is deployed. It uses 14.5mm high velocity rounds that will certainly leave a hole in whatever unfortunate soul is hit by it."
+	desc = "The PTR-41/1785 is a bottom shelf solution modernized for dealing with armor, while one could use it while standing it is obviously not a great idea. It is recommended to be used while the bipod is deployed. It uses 14.5mm high velocity rounds that will certainly leave a hole in whatever unfortunate soul is hit by it."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/clf_heavyrifle.dmi'
 	icon_state = "ptrs"
@@ -459,11 +459,12 @@
 	deployed_scatter_change = -16
 	recoil = 4
 	scatter_unwielded = 45
-	accuracy_mult = 1.5
+	accuracy_mult = 1
 	burst_amount = 1
 	fire_delay = 1.35 SECONDS
 	deploy_time = 1 SECONDS // Meant to be used by ERT's
 	undeploy_time = 0.25 SECONDS
+	movement_acc_penalty_mult = 20 // Good luck hitting on the move, bruv
 
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun

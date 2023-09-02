@@ -178,11 +178,11 @@
 //DP-27
 
 /obj/item/ammo_magazine/rifle/dpm
-	name = "\improper Degtyaryov drum magazine (7.62x54mmR)"
-	desc = "A drum magazine for the Degtyaryov machine gun, looks like a record player."
-	caliber = CALIBER_762X54
+	name = "\improper Degtyaryov drum AP magazine (7.62x39mm)"
+	desc = "A drum magazine for the Degtyaryov machine gun."
+	caliber = CALIBER_762X39
 	icon_state = "dp27"
-	default_ammo = /datum/ammo/bullet/sniper/svd
+	default_ammo = /datum/ammo/bullet/rifle/ap
 	max_rounds = 47
 	icon_state_mini = "mag_rifle"
 
