@@ -123,7 +123,7 @@
 #define COUNT_IGNORE_ALIVE_SSD (COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
 
 #define SILO_PRICE 600
-#define XENO_TURRET_PRICE 40
+#define XENO_TURRET_PRICE 80
 
 //How many psy points a hive gets if all generators are corrupted
 #define GENERATOR_PSYCH_POINT_OUTPUT 1
